@@ -234,8 +234,8 @@ const Index = () => {
   const advance = useCallback(() => {
     if (showLangPrompt || langClosing) return;
     setInteracted(true);
-    if (lang === null && index === 0) {
-      setIndex(1);
+    if (lang === null) {
+      // First interaction: open language prompt without changing hero text
       setShowLangPrompt(true);
       return;
     }
@@ -244,7 +244,7 @@ const Index = () => {
       return;
     }
     setIndex((i) => (i + 1) % STORIES.en.length);
-  }, [index, lang, showLangPrompt, langClosing, view]);
+  }, [lang, showLangPrompt, langClosing, view]);
 
   useEffect(() => {
     document.title = "The Great Kurdistan — Historical Characters";
