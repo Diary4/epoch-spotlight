@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
-import officeBg from "@/assets/office-bg.jpg";
+import officeBg from "@/assets/office.jpeg";
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -42,11 +42,12 @@ const HINTS: Record<LangCode, string> = {
   ar: "انقر في أي مكان للاستكشاف",
 };
 
-const LANG_PROMPT: Record<LangCode, string> = {
-  en: "Select a language",
-  ku: "زمانێک هەڵبژێرە",
-  ar: "اختر لغة",
+const INTRO_SPEAKING_TEXT: Story = {
+  title: "The character is speaking...",
+  description: "Please wait, language selection will appear after the intro.",
 };
+
+const INTRO_DURATION_MS = 3500;
 
 // ---- Leadership data ----
 type Leader = { name: string; years: string; photo?: string };
@@ -229,14 +230,19 @@ const Index = () => {
   const [lang, setLang] = useState<LangCode | null>(null);
   const [showLangPrompt, setShowLangPrompt] = useState(false);
   const [langClosing, setLangClosing] = useState(false);
+  const [introPlaying, setIntroPlaying] = useState(false);
   const [view, setView] = useState<"hero" | "leadership">("hero");
 
   const advance = useCallback(() => {
-    if (showLangPrompt || langClosing) return;
+    if (showLangPrompt || langClosing || introPlaying) return;
     setInteracted(true);
     if (lang === null) {
-      // First interaction: open language prompt without changing hero text
-      setShowLangPrompt(true);
+      // First interaction: keep same screen, change text, then show language prompt.
+      setIntroPlaying(true);
+      window.setTimeout(() => {
+        setIntroPlaying(false);
+        setShowLangPrompt(true);
+      }, INTRO_DURATION_MS);
       return;
     }
     if (view === "hero") {
@@ -244,7 +250,7 @@ const Index = () => {
       return;
     }
     setIndex((i) => (i + 1) % STORIES.en.length);
-  }, [lang, showLangPrompt, langClosing, view]);
+  }, [lang, showLangPrompt, langClosing, introPlaying, view]);
 
   useEffect(() => {
     document.title = "The Great Kurdistan — Historical Characters";
@@ -263,7 +269,7 @@ const Index = () => {
   }, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (showLangPrompt || langClosing) return;
+    if (showLangPrompt || langClosing || introPlaying) return;
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       advance();
@@ -273,16 +279,17 @@ const Index = () => {
   const activeLang: LangCode = lang ?? "en";
   const dir = LANG_OPTIONS.find((l) => l.code === activeLang)?.dir ?? "ltr";
   const current = STORIES[activeLang][index];
+  const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
   const L = LEADERSHIP[activeLang];
 
   const handleSelectLang = (code: LangCode) => {
     setLang(code);
     setLangClosing(true);
-    // Wait for fade-out before swapping to next section
+    // Move content first so the overlay fades over leadership.
+    setView("leadership");
     window.setTimeout(() => {
       setShowLangPrompt(false);
       setLangClosing(false);
-      setView("leadership");
     }, 400);
   };
 
@@ -316,18 +323,21 @@ const Index = () => {
         <div className="relative z-10 flex w-full max-w-3xl flex-col items-center px-6 text-center animate-fade-in">
           <HeroCharacter className="mb-8 h-40 w-auto md:mb-12 md:h-56" />
 
-          <div key={`${activeLang}-${index}`} className="animate-fade-in">
+          <div
+            key={`${activeLang}-${index}-${introPlaying ? "intro" : "story"}`}
+            className="animate-fade-in transition-all duration-700 ease-out"
+          >
             <h1
-              className="text-4xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl"
+              className="text-4xl font-bold leading-tight tracking-tight transition-all duration-700 ease-out md:text-6xl lg:text-7xl"
               style={{ color: "hsl(var(--hero-foreground))" }}
             >
-              {current.title}
+              {visibleStory.title}
             </h1>
             <p
-              className="mt-5 text-base font-light tracking-wide md:mt-7 md:text-lg"
+              className="mt-5 text-base font-light tracking-wide transition-all duration-700 ease-out md:mt-7 md:text-lg"
               style={{ color: "hsl(var(--hero-muted))" }}
             >
-              {current.description}
+              {visibleStory.description}
             </p>
           </div>
         </div>
@@ -484,7 +494,7 @@ const Index = () => {
       {/* Hint */}
       <div
         className={`pointer-events-none absolute bottom-8 left-0 right-0 z-10 text-center text-xs uppercase tracking-[0.3em] transition-opacity duration-500 md:text-sm ${
-          interacted || showLangPrompt ? "opacity-0" : "opacity-70"
+          interacted || showLangPrompt || introPlaying ? "opacity-0" : "opacity-70"
         }`}
         style={{ color: "hsl(var(--hero-muted))" }}
       >
@@ -504,20 +514,7 @@ const Index = () => {
           style={{ backgroundColor: "hsl(var(--hero-overlay) / 0.6)" }}
         >
           <div className="flex w-full max-w-3xl flex-col items-center text-center">
-            <p
-              className="mb-4 text-xs uppercase tracking-[0.4em] md:text-sm"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              {LANG_PROMPT.en}
-            </p>
-            <h2
-              className="mb-10 text-2xl font-bold leading-tight md:text-3xl"
-              style={{ color: "hsl(var(--hero-foreground))" }}
-            >
-              {LANG_PROMPT.ku} · {LANG_PROMPT.en} · {LANG_PROMPT.ar}
-            </h2>
-
-            <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
+            <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
               {LANG_OPTIONS.map((opt) => (
                 <button
                   key={opt.code}
