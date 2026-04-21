@@ -4,6 +4,8 @@ import secondBg from "@/assets/second-bg.svg";
 import firstPerson from "@/assets/firstperson.jpg";
 import bg from "@/assets/images/bg.jpg";
 import trump from "@/assets/images/trump.jpg";
+import benjaminfranklin from "@/assets/images/benjaminfranklin.jpg";
+import napoleon from "@/assets/images/napel.jpg";
 
 export type Portrait = {
   id: number;
@@ -18,8 +20,8 @@ const BASE_PORTRAITS: Omit<Portrait, "id">[] = [
   {
     name: "Arin Soran",
     role: "Regional Commander",
-    image: firstPerson,
-    images: [firstPerson, office, secondBg, bg, trump],
+    image: benjaminfranklin,
+    images: [benjaminfranklin, napoleon, trump, bg, trump, benjaminfranklin],
     about: "A strategic leader focused on civic growth and cross-border cooperation.",
   },
   {
@@ -32,8 +34,8 @@ const BASE_PORTRAITS: Omit<Portrait, "id">[] = [
   {
     name: "Dara Haval",
     role: "Council Head",
-    image: secondBg,
-    images: [secondBg, natureBg, firstPerson],
+    image: napoleon,
+    images: [napoleon, natureBg, firstPerson],
     about: "A unifying figure who connects education, infrastructure, and public trust.",
   },
   {
