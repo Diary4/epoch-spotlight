@@ -10,7 +10,6 @@ const PortraitDetail = () => {
   const portrait = useMemo(() => getPortraitById(portraitId), [portraitId]);
   const [slide, setSlide] = useState(0);
   const [showContent, setShowContent] = useState(false);
-  const [isFading, setIsFading] = useState(false);
   const [pageReady, setPageReady] = useState(false);
 
   if (!portrait) {
@@ -31,30 +30,16 @@ const PortraitDetail = () => {
   }, []);
 
   const nextSlide = () => {
-    if (isFading) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setSlide((s) => (s + 1) % portrait.images.length);
-      setTimeout(() => setIsFading(false), 60);
-    }, 200);
+    setSlide((s) => (s + 1) % portrait.images.length);
   };
 
   const prevSlide = () => {
-    if (isFading) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setSlide((s) => (s - 1 + portrait.images.length) % portrait.images.length);
-      setTimeout(() => setIsFading(false), 60);
-    }, 200);
+    setSlide((s) => (s - 1 + portrait.images.length) % portrait.images.length);
   };
 
   const goToSlide = (index: number) => {
-    if (isFading || index === slide) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setSlide(index);
-      setTimeout(() => setIsFading(false), 60);
-    }, 200);
+    if (index === slide) return;
+    setSlide(index);
   };
 
   return (
@@ -69,7 +54,6 @@ const PortraitDetail = () => {
           backgroundImage: `url(${currentSlide || portrait.image || secondBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: isFading ? 0.82 : undefined,
         }}
       />
       
@@ -87,10 +71,7 @@ const PortraitDetail = () => {
           <button
             type="button"
             onClick={prevSlide}
-            disabled={isFading}
-            className={`fixed left-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 md:left-8 ${
-              isFading ? "opacity-50 cursor-not-allowed" : "hover:scale-110 hover:bg-black/70"
-            }`}
+            className="fixed left-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:bg-black/70 md:left-8"
             style={{
               background: "rgba(0,0,0,0.5)",
               backdropFilter: "blur(8px)",
@@ -103,10 +84,7 @@ const PortraitDetail = () => {
           <button
             type="button"
             onClick={nextSlide}
-            disabled={isFading}
-            className={`fixed right-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 md:right-8 ${
-              isFading ? "opacity-50 cursor-not-allowed" : "hover:scale-110 hover:bg-black/70"
-            }`}
+            className="fixed right-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:bg-black/70 md:right-8"
             style={{
               background: "rgba(0,0,0,0.5)",
               backdropFilter: "blur(8px)",
@@ -123,7 +101,6 @@ const PortraitDetail = () => {
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
-                disabled={isFading}
                 className="transition-all duration-300"
                 style={{
                   width: slide === idx ? "32px" : "8px",
