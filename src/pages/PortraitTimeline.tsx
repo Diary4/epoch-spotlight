@@ -67,7 +67,7 @@ const PortraitTimeline = () => {
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const sections = document.querySelectorAll('.timeline-section');
-    const scrollPosition = e.currentTarget.scrollTop + 200;
+    const scrollPosition = e.currentTarget.scrollTop + 300;
     
     sections.forEach((section, index) => {
       const sectionTop = (section as HTMLElement).offsetTop;
@@ -101,7 +101,7 @@ const PortraitTimeline = () => {
       
       {/* Gradient overlays */}
       <div className="fixed inset-0" style={{
-        background: "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%)",
       }} />
       
       <div className="fixed inset-0" style={{
@@ -122,29 +122,6 @@ const PortraitTimeline = () => {
         <span>←</span>
         <span>Back to Portrait</span>
       </Link>
-
-      {/* Header Title */}
-      <div className={`fixed left-0 right-0 top-0 z-20 transition-all duration-700 ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-      }`}>
-        <div className="mx-auto max-w-6xl px-6 pt-20 text-center md:pt-24">
-          <h1 
-            className="text-3xl font-light tracking-tight md:text-5xl lg:text-6xl"
-            style={{ color: "white" }}
-          >
-            {portrait.name}'s Journey
-          </h1>
-          <div className="mt-4 flex justify-center">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-          </div>
-          <p 
-            className="mt-4 text-sm uppercase tracking-[0.2em]"
-            style={{ color: "rgba(255,255,255,0.5)" }}
-          >
-            A Life of Greatness • Timeline
-          </p>
-        </div>
-      </div>
 
       {/* Timeline Navigation - Vertical Line */}
       <div className="fixed bottom-0 left-8 top-0 z-20 hidden md:block">
@@ -193,11 +170,11 @@ const PortraitTimeline = () => {
 
       {/* Timeline Content */}
       <div 
-        className="relative z-10 mx-auto max-w-4xl px-6 pb-20 pt-32 md:pl-32 md:pr-8"
+        className="relative z-10 mx-auto max-w-5xl px-6 pb-20 pt-32 md:pl-32 md:pr-8"
         onScroll={handleScroll}
-        style={{ height: "100vh", overflowY: "auto" }}
+        style={{ height: "100vh", overflowY: "auto", scrollBehavior: "smooth" }}
       >
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-32">
           {timelineData.map((item, index) => (
             <div 
               key={index}
@@ -209,8 +186,23 @@ const PortraitTimeline = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="relative">
-                {/* Year Badge */}
-                <div className="mb-6 inline-block">
+                {/* Year Badge - Centered on desktop */}
+                <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 md:block">
+                  <div 
+                    className="rounded-full px-6 py-2 text-sm font-medium uppercase tracking-[0.2em] shadow-xl"
+                    style={{
+                      background: "rgba(0,0,0,0.8)",
+                      backdropFilter: "blur(10px)",
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      color: "rgba(255,255,255,0.9)",
+                    }}
+                  >
+                    {item.year}
+                  </div>
+                </div>
+
+                {/* Mobile Year Badge */}
+                <div className="mb-6 inline-block md:hidden">
                   <div 
                     className="rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em]"
                     style={{
@@ -224,7 +216,7 @@ const PortraitTimeline = () => {
                   </div>
                 </div>
 
-                {/* Content Card */}
+                {/* Content Card - Alternating layout */}
                 <div 
                   className="overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-2xl"
                   style={{
@@ -233,55 +225,97 @@ const PortraitTimeline = () => {
                     border: "1px solid rgba(255,255,255,0.1)",
                   }}
                 >
-                  <div className="grid md:grid-cols-2">
-                    {/* Image Section */}
-                    <div className="relative h-64 overflow-hidden md:h-auto">
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
-                      />
-                      <div className="absolute inset-0" style={{
-                        background: "linear-gradient(90deg, rgba(0,0,0,0.6) 0%, transparent 100%)",
-                      }} />
-                    </div>
-
-                    {/* Text Content */}
-                    <div className="p-6 md:p-8">
-                      <h2 
-                        className="mb-3 text-2xl font-light tracking-tight md:text-3xl"
-                        style={{ color: "white" }}
-                      >
-                        {item.title}
-                      </h2>
-                      <p 
-                        className="mb-6 text-sm leading-relaxed md:text-base"
-                        style={{ color: "rgba(255,255,255,0.8)" }}
-                      >
-                        {item.description}
-                      </p>
-                      
-                      {/* Key Details List */}
-                      <div className="space-y-2">
-                        {item.details.map((detail, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <span className="mt-1.5 h-1 w-1 rounded-full bg-white/40" />
-                            <span 
-                              className="text-xs md:text-sm"
-                              style={{ color: "rgba(255,255,255,0.6)" }}
-                            >
-                              {detail}
-                            </span>
-                          </div>
-                        ))}
+                  {/* Alternating layout based on index */}
+                  {index % 2 === 0 ? (
+                    // Even index: Image on left, text on right
+                    <div className="grid md:grid-cols-2">
+                      <div className="relative h-64 overflow-hidden md:h-auto">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
+                        />
+                        <div className="absolute inset-0 md:hidden" style={{
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%)",
+                        }} />
+                      </div>
+                      <div className="p-6 md:p-8">
+                        <h2 
+                          className="mb-3 text-2xl font-light tracking-tight md:text-3xl"
+                          style={{ color: "white" }}
+                        >
+                          {item.title}
+                        </h2>
+                        <p 
+                          className="mb-6 text-sm leading-relaxed md:text-base"
+                          style={{ color: "rgba(255,255,255,0.8)" }}
+                        >
+                          {item.description}
+                        </p>
+                        
+                        <div className="space-y-2">
+                          {item.details.map((detail, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <span className="mt-1.5 h-1 w-1 rounded-full bg-white/40" />
+                              <span 
+                                className="text-xs md:text-sm"
+                                style={{ color: "rgba(255,255,255,0.6)" }}
+                              >
+                                {detail}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    // Odd index: Text on left, image on right
+                    <div className="grid md:grid-cols-2">
+                      <div className="order-2 p-6 md:order-1 md:p-8">
+                        <h2 
+                          className="mb-3 text-2xl font-light tracking-tight md:text-3xl"
+                          style={{ color: "white" }}
+                        >
+                          {item.title}
+                        </h2>
+                        <p 
+                          className="mb-6 text-sm leading-relaxed md:text-base"
+                          style={{ color: "rgba(255,255,255,0.8)" }}
+                        >
+                          {item.description}
+                        </p>
+                        
+                        <div className="space-y-2">
+                          {item.details.map((detail, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <span className="mt-1.5 h-1 w-1 rounded-full bg-white/40" />
+                              <span 
+                                className="text-xs md:text-sm"
+                                style={{ color: "rgba(255,255,255,0.6)" }}
+                              >
+                                {detail}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="relative order-1 h-64 overflow-hidden md:order-2 md:h-auto">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
+                        />
+                        <div className="absolute inset-0 md:hidden" style={{
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%)",
+                        }} />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Connector Line between sections (desktop) */}
+                {/* Connector Line between sections */}
                 {index < timelineData.length - 1 && (
-                  <div className="absolute -bottom-12 left-1/2 hidden h-12 w-px -translate-x-1/2 md:block" style={{
+                  <div className="absolute -bottom-16 left-1/2 hidden h-16 w-px -translate-x-1/2 md:block" style={{
                     background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%)",
                   }} />
                 )}
@@ -291,16 +325,16 @@ const PortraitTimeline = () => {
         </div>
 
         {/* End of Timeline Message */}
-        <div className="mt-16 text-center pb-20">
+        <div className="mt-20 text-center pb-20">
           <div 
-            className="inline-block rounded-full px-6 py-3"
+            className="inline-block rounded-full px-8 py-4"
             style={{
-              background: "rgba(255,255,255,0.05)",
+              background: "rgba(0,0,0,0.6)",
               backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.15)",
             }}
           >
-            <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="text-sm uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.6)" }}>
               The Legacy Continues...
             </p>
           </div>

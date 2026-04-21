@@ -1,17 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { getPortraitById } from "@/data/portraits";
 import secondBg from "@/assets/second-bg.svg";
 
 const PortraitDetail = () => {
   const { id } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
   const portraitId = Number(id);
   const portrait = useMemo(() => getPortraitById(portraitId), [portraitId]);
   const [slide, setSlide] = useState(0);
   const [showContent, setShowContent] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+  const [pageReady, setPageReady] = useState(false);
 
   if (!portrait) {
     return <Navigate to="/portraits" replace />;
@@ -19,33 +19,60 @@ const PortraitDetail = () => {
 
   const currentSlide = portrait.images[slide] ?? portrait.images[0];
   const hasSlider = portrait.images.length > 1;
-  const animateFromList = Boolean((location.state as { fromPortraitList?: boolean } | null)?.fromPortraitList);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setShowContent(true), 300);
     return () => window.clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => setPageReady(true), 40);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   const nextSlide = () => {
-    setSlide((s) => (s + 1) % portrait.images.length);
-    setIsImageLoaded(false);
+    if (isFading) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setSlide((s) => (s + 1) % portrait.images.length);
+      setTimeout(() => setIsFading(false), 60);
+    }, 200);
   };
 
   const prevSlide = () => {
-    setSlide((s) => (s - 1 + portrait.images.length) % portrait.images.length);
-    setIsImageLoaded(false);
+    if (isFading) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setSlide((s) => (s - 1 + portrait.images.length) % portrait.images.length);
+      setTimeout(() => setIsFading(false), 60);
+    }, 200);
+  };
+
+  const goToSlide = (index: number) => {
+    if (isFading || index === slide) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setSlide(index);
+      setTimeout(() => setIsFading(false), 60);
+    }, 200);
   };
 
   return (
     <main
-      className={`relative min-h-screen overflow-hidden ${animateFromList ? "animate-fade-in" : ""}`}
-      style={{
-        backgroundImage: `url(${currentSlide || portrait.image || secondBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
+      className="relative h-screen overflow-hidden"
+      style={{ backgroundColor: "#000" }}
     >
+      {/* Background Image with Simple Fade */}
+      <div 
+        className={`absolute inset-0 transition-all duration-500 ease-out ${pageReady ? "opacity-100 scale-100" : "opacity-0 scale-[1.01]"}`}
+        style={{
+          backgroundImage: `url(${currentSlide || portrait.image || secondBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: isFading ? 0.82 : undefined,
+        }}
+      />
+      
       {/* Dark gradient overlay for better text visibility */}
       <div 
         className="absolute inset-0"
@@ -60,7 +87,10 @@ const PortraitDetail = () => {
           <button
             type="button"
             onClick={prevSlide}
-            className="fixed left-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 hover:scale-110 md:left-8"
+            disabled={isFading}
+            className={`fixed left-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 md:left-8 ${
+              isFading ? "opacity-50 cursor-not-allowed" : "hover:scale-110 hover:bg-black/70"
+            }`}
             style={{
               background: "rgba(0,0,0,0.5)",
               backdropFilter: "blur(8px)",
@@ -73,7 +103,10 @@ const PortraitDetail = () => {
           <button
             type="button"
             onClick={nextSlide}
-            className="fixed right-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 hover:scale-110 md:right-8"
+            disabled={isFading}
+            className={`fixed right-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 transition-all duration-300 md:right-8 ${
+              isFading ? "opacity-50 cursor-not-allowed" : "hover:scale-110 hover:bg-black/70"
+            }`}
             style={{
               background: "rgba(0,0,0,0.5)",
               backdropFilter: "blur(8px)",
@@ -89,10 +122,8 @@ const PortraitDetail = () => {
             {portrait.images.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => {
-                  setSlide(idx);
-                  setIsImageLoaded(false);
-                }}
+                onClick={() => goToSlide(idx)}
+                disabled={isFading}
                 className="transition-all duration-300"
                 style={{
                   width: slide === idx ? "32px" : "8px",
@@ -200,13 +231,6 @@ const PortraitDetail = () => {
           </button>
         </div>
       </div>
-
-      {/* Loading indicator for image transition
-      {!isImageLoaded && (
-        <div className="fixed inset-0 z-5 flex items-center justify-center bg-black/50">
-          <div className="h-12 w-12 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-        </div>
-      )} */}
     </main>
   );
 };
