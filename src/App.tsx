@@ -5,6 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import SecondScreen from "./pages/SecondScreen.tsx";
+import Portraits from "./pages/Portraits.tsx";
+import PortraitDetail from "./pages/PortraitDetail.tsx";
+import PortraitTimeline from "./pages/PortraitTimeline.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -18,6 +21,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/screen-2" element={<SecondScreen />} />
+          <Route path="/portraits" element={<Portraits />} />
+          <Route path="/portraits/:id" element={<PortraitDetail />} />
+          <Route path="/portraits/:id/timeline" element={<PortraitTimeline />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
