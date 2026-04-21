@@ -53,6 +53,13 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Hero — cinematic neutral palette */
+    --hero-background: 24 10% 6%;
+    --hero-foreground: 36 30% 96%;
+    --hero-muted: 36 12% 70%;
+    --hero-accent: 38 55% 62%;
+    --hero-overlay: 24 12% 4%;
   }
 
   .dark {
