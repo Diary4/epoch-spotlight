@@ -17,13 +17,6 @@ const Portraits = () => {
           role: portrait.role,
           target: portrait,
         },
-        wife: {
-          id: `${portrait.id}-wife`,
-          name: `${portrait.name.split(" ")[0]} Wife`,
-          image: portrait.images[1] ?? portrait.image,
-          role: "Wife",
-          target: portrait,
-        },
       })),
     [],
   );
@@ -50,7 +43,7 @@ const Portraits = () => {
       <div className="fixed bottom-8 right-8 h-20 w-20 border-b-2 border-r-2 border-white/10" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-12 md:py-16 lg:px-8">
-        {/* Header Section - Elegant */}
+        {/* Header Section */}
         <div className="mb-16 text-center md:text-left">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-end">
             <div className="space-y-3">
@@ -96,7 +89,7 @@ const Portraits = () => {
           </div>
         </div>
 
-        {/* Portraits Grid - No borders, elegant cards */}
+        {/* Portraits Grid */}
         <div className="space-y-8">
           {rows.map((row, rowIndex) => (
             <div
@@ -114,81 +107,54 @@ const Portraits = () => {
                   background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)",
                 }}
               />
-              
+
               <div className="relative px-6 py-8 md:px-8 md:py-10">
-                <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
-                  {/* Row Number - Elegant display */}
-                  <div className="relative">
-                    <div 
-                      className="text-center md:text-left"
-                      style={{
-                        fontSize: "clamp(3rem, 8vw, 5rem)",
-                        fontWeight: 200,
-                        background: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                      }}
+                <button
+                  type="button"
+                  onClick={() => navigate(`/portraits/${row.character.target.id}`, { state: { fromPortraitList: true } })}
+                  className={`group/person relative flex w-full items-center gap-8 transition-all duration-300 md:gap-16 ${
+                    rowIndex % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  }`}
+                >
+                  {/* Glow on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/person:opacity-100"
+                    style={{
+                      background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
+                      filter: "blur(30px)",
+                    }}
+                  />
+
+                  {/* Image */}
+                  <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full shadow-2xl transition-all duration-500 md:h-36 md:w-36 lg:h-44 lg:w-44">
+                    <div
+                      className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover/person:opacity-100"
+                      style={{ background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)" }}
+                    />
+                    <img
+                      src={row.character.image}
+                      alt={row.character.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover/person:scale-110"
+                    />
+                    <div className="absolute inset-0 rounded-full border-2 border-white/0 transition-all duration-500 group-hover/person:border-white/40" />
+                  </div>
+
+                  {/* Text — flips alignment to match image side */}
+                  <div className={`flex flex-col gap-1 ${rowIndex % 2 === 0 ? "items-start text-left" : "items-end text-right"}`}>
+                    <p
+                      className="text-sm font-medium uppercase tracking-[0.2em] transition-all duration-300 md:text-lg group-hover/person:tracking-[0.25em]"
+                      style={{ color: "rgba(255,255,255,0.9)" }}
                     >
-                      {String(rowIndex + 1).padStart(2, '0')}
-                    </div>
-                    <div className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-white/20 to-transparent md:hidden" />
+                      {row.character.name}
+                    </p>
+                    <span
+                      className="text-[10px] font-light uppercase tracking-[0.15em] md:text-xs"
+                      style={{ color: "rgba(255,255,255,0.5)" }}
+                    >
+                      {row.character.role || "Character"}
+                    </span>
                   </div>
-                  
-                  {/* Character Cards - No borders, elegant design */}
-                  <div className="flex flex-1 flex-wrap items-center justify-center gap-8 md:justify-around md:gap-12">
-                    {[row.character, row.wife].map((person, idx) => (
-                      <button
-                        key={person.id}
-                        type="button"
-                        onClick={() => navigate(`/portraits/${person.target.id}`, { state: { fromPortraitList: true } })}
-                        className="group/person relative text-center transition-all duration-300 hover:scale-105"
-                      >
-                        {/* Elegant glow effect on hover */}
-                        <div className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover/person:opacity-100" style={{
-                          background: "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)",
-                          filter: "blur(20px)",
-                        }} />
-                        
-                        {/* Image Container - No border, elegant shadow */}
-                        <div className="relative mx-auto h-28 w-28 overflow-hidden rounded-full shadow-2xl transition-all duration-500 md:h-32 md:w-32 lg:h-36 lg:w-36">
-                          <div className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover/person:opacity-100" style={{
-                            background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)",
-                          }} />
-                          <img 
-                            src={person.image} 
-                            alt={person.name} 
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover/person:scale-110"
-                          />
-                          
-                          {/* Elegant ring on hover */}
-                          <div className="absolute inset-0 rounded-full border-2 border-white/0 transition-all duration-500 group-hover/person:border-white/40" />
-                        </div>
-                        
-                        {/* Name with elegant styling */}
-                        <p 
-                          className="mt-4 text-xs font-medium uppercase tracking-[0.2em] transition-all duration-300 md:text-sm group-hover/person:tracking-[0.25em]"
-                          style={{ 
-                            color: "rgba(255,255,255,0.9)",
-                            letterSpacing: "0.15em",
-                          }}
-                        >
-                          {person.name}
-                        </p>
-                        
-                        {/* Role badge */}
-                        <div className="mt-1">
-                          <span 
-                            className="text-[10px] font-light uppercase tracking-[0.15em] md:text-xs"
-                            style={{ color: "rgba(255,255,255,0.5)" }}
-                          >
-                            {idx === 0 ? "Character" : "Partner"}
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                </button>
               </div>
             </div>
           ))}

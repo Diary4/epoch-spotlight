@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { getPortraitById } from "@/data/portraits";
 
@@ -8,6 +8,8 @@ const PortraitTimeline = () => {
   const portrait = getPortraitById(portraitId);
   const [activeSection, setActiveSection] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -80,9 +82,15 @@ const PortraitTimeline = () => {
   };
 
   const scrollToSection = (index: number) => {
-    const sections = document.querySelectorAll('.timeline-section');
-    if (sections[index]) {
-      sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const container = scrollContainerRef.current;
+    const section = sectionRefs.current[index];
+
+    if (container && section) {
+      const topOffset = 24;
+      container.scrollTo({
+        top: section.offsetTop - topOffset,
+        behavior: "smooth",
+      });
       setActiveSection(index);
     }
   };
@@ -171,6 +179,7 @@ const PortraitTimeline = () => {
       {/* Timeline Content */}
       <div 
         className="relative z-10 mx-auto max-w-5xl px-6 pb-20 pt-32 md:pl-32 md:pr-8"
+        ref={scrollContainerRef}
         onScroll={handleScroll}
         style={{ height: "100vh", overflowY: "auto", scrollBehavior: "smooth" }}
       >
@@ -183,6 +192,9 @@ const PortraitTimeline = () => {
                   ? "translate-y-0 opacity-100" 
                   : "translate-y-20 opacity-0"
               }`}
+              ref={(el) => {
+                sectionRefs.current[index] = el;
+              }}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="relative">
