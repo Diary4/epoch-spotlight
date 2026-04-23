@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PORTRAITS } from "@/data/portraits";
-import background from "@/assets/images/kurdistan.jpg";
+import background from "@/assets/images/bg-3.jpg";
 
 const Portraits = () => {
   const navigate = useNavigate();
@@ -71,8 +71,6 @@ const Portraits = () => {
               to="/" 
               className="group flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:gap-3"
               style={{
-                background: "rgba(255,255,255,0.08)",
-                backdropFilter: "blur(10px)",
                 color: "white",
                 border: "1px solid rgba(255,255,255,0.15)",
               }}
@@ -94,19 +92,19 @@ const Portraits = () => {
           {rows.map((row, rowIndex) => (
             <div
               key={`row-${rowIndex}`}
-              className="group relative overflow-hidden rounded-3xl transition-all duration-500 hover:shadow-2xl"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                backdropFilter: "blur(10px)",
-              }}
+              className="group relative overflow-hidden rounded-3xl transition-all duration-500"
+              // style={{
+              //   background: "rgba(255,255,255,0.03)",
+              //   backdropFilter: "blur(10px)",
+              // }}
             >
               {/* Elegant background gradient on hover */}
-              <div 
+              {/* <div 
                 className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{
                   background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)",
                 }}
-              />
+              /> */}
 
               <div className="relative px-6 py-8 md:px-8 md:py-10">
                 <button
@@ -117,13 +115,13 @@ const Portraits = () => {
                   }`}
                 >
                   {/* Glow on hover */}
-                  <div
+                  {/* <div
                     className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/person:opacity-100"
                     style={{
                       background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
                       filter: "blur(30px)",
                     }}
-                  />
+                  /> */}
 
                   {/* Image */}
                   <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full shadow-2xl transition-all duration-500 md:h-36 md:w-36 lg:h-44 lg:w-44">

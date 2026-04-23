@@ -1,10 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
 import officeBg from "@/assets/office.jpeg";
+import peshmargaBg from "@/assets/images/peshmarga.jpg";
+import bg2 from "@/assets/images/bg-2.jpg";
+import bg3 from "@/assets/images/bg-3.jpg";
 
 type LangCode = "ku" | "en" | "ar";
 
 type Story = { title: string; description: string };
+type SectionCard = { title: string; description: string; icon: string };
+type JourneyItem = { id: string; title: string; description: string; image: string; icon: string };
 
 const STORIES: Record<LangCode, Story[]> = {
   en: [
@@ -49,180 +54,239 @@ const INTRO_SPEAKING_TEXT: Story = {
 
 const INTRO_DURATION_MS = 3500;
 
-// ---- Leadership data ----
-type Leader = { name: string; years: string; photo?: string };
-
-const LEADERSHIP: Record<
+const MENU_UI: Record<
   LangCode,
   {
-    sectionTitle: string;
-    presidents: string;
-    primeMinisters: string;
-    speakers: string;
-    currentPMLabel: string;
-    achievementsLabel: string;
-    visionLabel: string;
-    presidentsList: Leader[];
-    pastPMs: Leader[];
-    speakersList: Leader[];
-    currentPM: {
-      name: string;
-      years: string;
-      photo?: string;
-      bio: string;
-      achievements: string[];
-      vision: string;
-    };
+    previous: string;
+    returnToMain: string;
+    next: string;
+  }
+> = {
+  en: { previous: "Previous", returnToMain: "Return to Main Menu", next: "Next" },
+  ku: { previous: "پێشوو", returnToMain: "گەڕانەوە بۆ مێنیوی سەرەکی", next: "دواتر" },
+  ar: { previous: "السابق", returnToMain: "العودة إلى القائمة الرئيسية", next: "التالي" },
+};
+
+const JOURNEY_CONTENT: Record<
+  LangCode,
+  {
+    title: string;
+    subtitle: string;
+    items: JourneyItem[];
   }
 > = {
   en: {
-    sectionTitle: "Leadership",
-    presidents: "Presidents",
-    primeMinisters: "Prime Ministers",
-    speakers: "Speakers of Parliament",
-    currentPMLabel: "Current Prime Minister",
-    achievementsLabel: "Key Achievements",
-    visionLabel: "Vision",
-    presidentsList: [
-      { name: "Massoud Barzani", years: "2005 – 2017" },
-      { name: "Nechirvan Barzani", years: "2019 – Present" },
+    title: "The Journey",
+    subtitle: "Explore the key milestones that shaped the Kurdistan Region from 1991 until today.",
+    items: [
+      {
+        id: "1991",
+        title: "1991",
+        description: "A historic turning point that opened the path to a new reality.",
+        image: peshmargaBg,
+        icon: "★",
+      },
+      {
+        id: "1992",
+        title: "1992",
+        description: "The first parliament and government marked the beginning of self-rule.",
+        image: bg2,
+        icon: "🏛",
+      },
+      {
+        id: "institutions",
+        title: "Building Institutions",
+        description: "Public institutions gradually formed the structure of modern governance.",
+        image: bg3,
+        icon: "👥",
+      },
+      {
+        id: "2005",
+        title: "2005",
+        description: "Federal recognition gave constitutional status to the Kurdistan Region.",
+        image: bg2,
+        icon: "📜",
+      },
+      {
+        id: "today",
+        title: "Today",
+        description: "Kurdistan continues to grow through institutions, development, and vision.",
+        image: bg3,
+        icon: "☀",
+      },
     ],
-    pastPMs: [
-      { name: "Nechirvan Barzani", years: "1999 – 2009" },
-      { name: "Barham Salih", years: "2009 – 2012" },
-      { name: "Nechirvan Barzani", years: "2012 – 2019" },
-    ],
-    speakersList: [
-      { name: "Adnan Mufti", years: "2005 – 2009" },
-      { name: "Kamal Kirkuki", years: "2009 – 2013" },
-      { name: "Yousif Mohammed", years: "2013 – 2018" },
-      { name: "Rewaz Faiq", years: "2019 – Present" },
-    ],
-    currentPM: {
-      name: "Masrour Barzani",
-      years: "2019 – Present",
-      bio: "Prime Minister of the Kurdistan Regional Government, leading reform and modernization across the region.",
-      achievements: [
-        "Public sector and salary reform",
-        "Digital government and e-services",
-        "Energy and infrastructure investment",
-        "Strengthened international partnerships",
-      ],
-      vision:
-        "Build a transparent, prosperous, and modern Kurdistan grounded in good governance and opportunity for every citizen.",
-    },
   },
   ku: {
-    sectionTitle: "سەرکردایەتی",
-    presidents: "سەرۆکەکان",
-    primeMinisters: "سەرۆک وەزیرەکان",
-    speakers: "سەرۆکەکانی پەرلەمان",
-    currentPMLabel: "سەرۆک وەزیری ئێستا",
-    achievementsLabel: "گرنگترین دەستکەوتەکان",
-    visionLabel: "بینین",
-    presidentsList: [
-      { name: "مەسعود بارزانی", years: "٢٠٠٥ – ٢٠١٧" },
-      { name: "نێچیرڤان بارزانی", years: "٢٠١٩ – ئێستا" },
+    title: "گەشت",
+    subtitle: "گرنگترین وێستگەکان بگەڕێ کە لە ساڵی ١٩٩١ تا ئێستا هەرێمی کوردستانیان شێوە دا.",
+    items: [
+      {
+        id: "1991",
+        title: "١٩٩١",
+        description: "خاڵێکی مێژوویی گرنگ کە ڕێگای قۆناغێکی نوێی کردەوە.",
+        image: peshmargaBg,
+        icon: "★",
+      },
+      {
+        id: "1992",
+        title: "١٩٩٢",
+        description: "یەکەم پەرلەمان و حکومەت دەستپێکی خۆبەڕێوەبردنیان نیشاندا.",
+        image: bg2,
+        icon: "🏛",
+      },
+      {
+        id: "institutions",
+        title: "بنیاتنانی دامەزراوەکان",
+        description: "دامەزراوە گشتییەکان هەنگاو بە هەنگاو شێوەی حکومڕانی نوێیان درووست کرد.",
+        image: bg3,
+        icon: "👥",
+      },
+      {
+        id: "2005",
+        title: "٢٠٠٥",
+        description: "ناساندنی فیدراڵی باری یاسایی دەستووری بە هەرێمەکە دا.",
+        image: bg2,
+        icon: "📜",
+      },
+      {
+        id: "today",
+        title: "ئێستا",
+        description: "کوردستان بەردەوامە لە پێشکەوتن بە هۆی دامەزراوە و گەشەپێدان و بینین.",
+        image: bg3,
+        icon: "☀",
+      },
     ],
-    pastPMs: [
-      { name: "نێچیرڤان بارزانی", years: "١٩٩٩ – ٢٠٠٩" },
-      { name: "بەرهەم ساڵح", years: "٢٠٠٩ – ٢٠١٢" },
-      { name: "نێچیرڤان بارزانی", years: "٢٠١٢ – ٢٠١٩" },
-    ],
-    speakersList: [
-      { name: "عەدنان موفتی", years: "٢٠٠٥ – ٢٠٠٩" },
-      { name: "کەمال کەرکوکی", years: "٢٠٠٩ – ٢٠١٣" },
-      { name: "یوسف محمد", years: "٢٠١٣ – ٢٠١٨" },
-      { name: "ڕێواز فایەق", years: "٢٠١٩ – ئێستا" },
-    ],
-    currentPM: {
-      name: "مەسرور بارزانی",
-      years: "٢٠١٩ – ئێستا",
-      bio: "سەرۆک وەزیری حکومەتی هەرێمی کوردستان، ڕابەری چاکسازی و نوێکردنەوە لە هەرێمدا.",
-      achievements: [
-        "چاکسازی کەرتی گشتی و مووچە",
-        "حکومەتی دیجیتاڵی و خزمەتگوزاری ئەلیکترۆنی",
-        "وەبەرهێنان لە وزە و بنیاتنانی ژێرخان",
-        "بەهێزکردنی هاوبەشی نێودەوڵەتی",
-      ],
-      vision:
-        "بنیاتنانی کوردستانێکی شەفاف، دەوڵەمەند و نوێ لە‌سەر بنەمای حکومڕانی باش و دەرفەت بۆ هەموو هاوڵاتیان.",
-    },
   },
   ar: {
-    sectionTitle: "القيادة",
-    presidents: "الرؤساء",
-    primeMinisters: "رؤساء الوزراء",
-    speakers: "رؤساء البرلمان",
-    currentPMLabel: "رئيس الوزراء الحالي",
-    achievementsLabel: "أبرز الإنجازات",
-    visionLabel: "الرؤية",
-    presidentsList: [
-      { name: "مسعود بارزاني", years: "٢٠٠٥ – ٢٠١٧" },
-      { name: "نيجيرفان بارزاني", years: "٢٠١٩ – الحاضر" },
+    title: "الرحلة",
+    subtitle: "استكشف المحطات الأساسية التي شكّلت إقليم كوردستان من عام 1991 حتى اليوم.",
+    items: [
+      {
+        id: "1991",
+        title: "1991",
+        description: "نقطة تحول تاريخية فتحت الطريق نحو واقع جديد.",
+        image: peshmargaBg,
+        icon: "★",
+      },
+      {
+        id: "1992",
+        title: "1992",
+        description: "أول برلمان وحكومة شكّلا بداية الحكم الذاتي.",
+        image: bg2,
+        icon: "🏛",
+      },
+      {
+        id: "institutions",
+        title: "بناء المؤسسات",
+        description: "تكوّنت المؤسسات العامة تدريجياً لتشكّل بنية الحكم الحديث.",
+        image: bg3,
+        icon: "👥",
+      },
+      {
+        id: "2005",
+        title: "2005",
+        description: "منح الاعتراف الاتحادي الإقليمَ مكانةً دستورية.",
+        image: bg2,
+        icon: "📜",
+      },
+      {
+        id: "today",
+        title: "اليوم",
+        description: "يواصل كوردستان النمو عبر المؤسسات والتنمية والرؤية.",
+        image: bg3,
+        icon: "☀",
+      },
     ],
-    pastPMs: [
-      { name: "نيجيرفان بارزاني", years: "١٩٩٩ – ٢٠٠٩" },
-      { name: "برهم صالح", years: "٢٠٠٩ – ٢٠١٢" },
-      { name: "نيجيرفان بارزاني", years: "٢٠١٢ – ٢٠١٩" },
-    ],
-    speakersList: [
-      { name: "عدنان مفتي", years: "٢٠٠٥ – ٢٠٠٩" },
-      { name: "كمال كركوكي", years: "٢٠٠٩ – ٢٠١٣" },
-      { name: "يوسف محمد", years: "٢٠١٣ – ٢٠١٨" },
-      { name: "ريواز فائق", years: "٢٠١٩ – الحاضر" },
-    ],
-    currentPM: {
-      name: "مسرور بارزاني",
-      years: "٢٠١٩ – الحاضر",
-      bio: "رئيس وزراء حكومة إقليم كوردستان، يقود الإصلاح والتحديث في الإقليم.",
-      achievements: [
-        "إصلاح القطاع العام والرواتب",
-        "الحكومة الرقمية والخدمات الإلكترونية",
-        "الاستثمار في الطاقة والبنية التحتية",
-        "تعزيز الشراكات الدولية",
-      ],
-      vision:
-        "بناء كوردستان شفافة ومزدهرة وحديثة قائمة على الحوكمة الرشيدة والفرص لكل مواطن.",
-    },
   },
 };
 
-const LeaderCard = ({ leader }: { leader: Leader }) => (
-  <div
-    className="flex items-center gap-4 rounded-lg border p-4 transition-colors"
-    style={{
-      borderColor: "hsl(var(--hero-foreground) / 0.15)",
-      backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-    }}
-  >
-    <div
-      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-base font-semibold"
-      style={{
-        backgroundColor: "hsl(var(--hero-foreground) / 0.1)",
-        color: "hsl(var(--hero-foreground))",
-      }}
-      aria-hidden="true"
-    >
-      {leader.name
-        .split(" ")
-        .slice(0, 2)
-        .map((p) => p[0])
-        .join("")}
-    </div>
-    <div className="min-w-0">
-      <p
-        className="truncate text-sm font-medium md:text-base"
-        style={{ color: "hsl(var(--hero-foreground))" }}
-      >
-        {leader.name}
-      </p>
-      <p className="text-xs md:text-sm" style={{ color: "hsl(var(--hero-muted))" }}>
-        {leader.years}
-      </p>
-    </div>
-  </div>
-);
+const SECTION_MENU: Record<
+  LangCode,
+  {
+    title: string;
+    subtitle: string;
+    cards: SectionCard[];
+  }
+> = {
+  en: {
+    title: "Explore the Gate of Kurdistan",
+    subtitle: "Choose a chapter to continue your journey.",
+    cards: [
+      {
+        title: "The People",
+        description: "Who the Kurds are, their identity, values, and resilience.",
+        icon: "👥",
+      },
+      {
+        title: "The Journey",
+        description: "Major milestones that shaped the Kurdistan Region.",
+        icon: "✨",
+      },
+      {
+        title: "The System",
+        description: "How institutions and leadership roles are organized.",
+        icon: "🏛️",
+      },
+      {
+        title: "The Land and Future",
+        description: "Geography, symbols, progress, and future vision.",
+        icon: "⛰️",
+      },
+    ],
+  },
+  ku: {
+    title: "دەروازەی کوردستان بگەڕێ",
+    subtitle: "بەشێک هەڵبژێرە بۆ بەردەوامبوون لە گەشتەکەت.",
+    cards: [
+      {
+        title: "خەڵک",
+        description: "کێن کوردەکان، ناسنامە، بەها و بەرگرییان.",
+        icon: "👥",
+      },
+      {
+        title: "گەشت",
+        description: "گرنگترین وێستگە مێژووییەکانی هەرێم.",
+        icon: "✨",
+      },
+      {
+        title: "سیستەم",
+        description: "ڕێکخستنی دامەزراوەکان و ڕۆڵەکانی سەرکردایەتی.",
+        icon: "🏛️",
+      },
+      {
+        title: "خاک و داهاتوو",
+        description: "جوگرافیا، نیشانەکان، پێشکەوتن و بینینی داهاتوو.",
+        icon: "⛰️",
+      },
+    ],
+  },
+  ar: {
+    title: "اكتشف بوابة كوردستان",
+    subtitle: "اختر فصلاً لمتابعة الرحلة.",
+    cards: [
+      {
+        title: "الشعب",
+        description: "من هم الكرد وقيمهم وهويتهم وصمودهم.",
+        icon: "👥",
+      },
+      {
+        title: "الرحلة",
+        description: "أهم المحطات التي شكلت إقليم كوردستان.",
+        icon: "✨",
+      },
+      {
+        title: "النظام",
+        description: "كيف تُنظم المؤسسات وأدوار القيادة.",
+        icon: "🏛️",
+      },
+      {
+        title: "الأرض والمستقبل",
+        description: "الجغرافيا والرموز والتقدم ورؤية المستقبل.",
+        icon: "⛰️",
+      },
+    ],
+  },
+};
 
 const Index = () => {
   const [index, setIndex] = useState(0);
@@ -231,7 +295,7 @@ const Index = () => {
   const [showLangPrompt, setShowLangPrompt] = useState(false);
   const [langClosing, setLangClosing] = useState(false);
   const [introPlaying, setIntroPlaying] = useState(false);
-  const [view, setView] = useState<"hero" | "leadership">("hero");
+  const [view, setView] = useState<"hero" | "menu" | "journey">("hero");
 
   const advance = useCallback(() => {
     if (showLangPrompt || langClosing || introPlaying) return;
@@ -246,7 +310,7 @@ const Index = () => {
       return;
     }
     if (view === "hero") {
-      setView("leadership");
+      setView("menu");
       return;
     }
     setIndex((i) => (i + 1) % STORIES.en.length);
@@ -280,13 +344,15 @@ const Index = () => {
   const dir = LANG_OPTIONS.find((l) => l.code === activeLang)?.dir ?? "ltr";
   const current = STORIES[activeLang][index];
   const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
-  const L = LEADERSHIP[activeLang];
+  const menu = SECTION_MENU[activeLang];
+  const menuUi = MENU_UI[activeLang];
+  const journey = JOURNEY_CONTENT[activeLang];
 
   const handleSelectLang = (code: LangCode) => {
     setLang(code);
     setLangClosing(true);
-    // Move content first so the overlay fades over leadership.
-    setView("leadership");
+    // Move content first so the overlay fades over section menu.
+    setView("menu");
     window.setTimeout(() => {
       setShowLangPrompt(false);
       setLangClosing(false);
@@ -308,7 +374,17 @@ const Index = () => {
         src={officeBg}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-sm"
+        className={`pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-sm transition-opacity duration-700 ${
+          view === "hero" ? "opacity-100" : "opacity-0"
+        }`}
+      />
+      <img
+        src={peshmargaBg}
+        alt=""
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px] transition-opacity duration-700 ${
+          view === "hero" ? "opacity-0" : "opacity-100"
+        }`}
       />
       <div
         className="pointer-events-none absolute inset-0"
@@ -343,150 +419,285 @@ const Index = () => {
         </div>
       )}
 
-      {/* LEADERSHIP VIEW */}
-      {view === "leadership" && (
+      {/* SECTION MENU VIEW */}
+      {view === "menu" && (
         <div
-          className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-20"
+          className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10"
           onClick={(e) => e.stopPropagation()}
         >
-          <header className="mb-10 text-center">
+          <header className="mb-8">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div
+                  className="h-10 w-8 rounded-md border"
+                  style={{
+                    borderColor: "hsl(var(--hero-accent) / 0.7)",
+                    backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
+                  }}
+                  aria-hidden="true"
+                />
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>
+                    Gate of Kurdistan
+                  </p>
+                  <p className="text-xs font-medium" style={{ color: "hsl(var(--hero-foreground))" }}>
+                    GOK
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 text-xs md:text-sm">
+                {LANG_OPTIONS.map((opt, idx) => (
+                  <div key={opt.code} className="flex items-center gap-3">
+                    <span
+                      style={{
+                        color:
+                          opt.code === activeLang
+                            ? "hsl(var(--hero-accent))"
+                            : "hsl(var(--hero-foreground) / 0.7)",
+                      }}
+                    >
+                      {opt.label}
+                    </span>
+                    {idx < LANG_OPTIONS.length - 1 && (
+                      <span style={{ color: "hsl(var(--hero-foreground) / 0.35)" }}>|</span>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className="ml-2 flex h-8 w-8 items-center justify-center rounded-full border text-sm"
+                  style={{ borderColor: "hsl(var(--hero-accent) / 0.4)", color: "hsl(var(--hero-foreground))" }}
+                  onClick={() => setView("hero")}
+                >
+                  ⌂
+                </button>
+                <button
+                  type="button"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border text-sm"
+                  style={{ borderColor: "hsl(var(--hero-accent) / 0.4)", color: "hsl(var(--hero-foreground))" }}
+                >
+                  ←
+                </button>
+              </div>
+            </div>
+
+            <div className="text-center">
             <p
               className="mb-3 text-xs uppercase tracking-[0.4em] md:text-sm"
               style={{ color: "hsl(var(--hero-accent))" }}
             >
-              {L.sectionTitle}
+              {menu.title}
             </p>
             <h2
-              className="text-3xl font-bold leading-tight md:text-5xl"
+              className="text-xl font-medium leading-tight md:text-2xl"
               style={{ color: "hsl(var(--hero-foreground))" }}
             >
-              {L.presidents} · {L.primeMinisters} · {L.speakers}
+              {menu.subtitle}
             </h2>
+            </div>
           </header>
 
-          {/* Current PM — full treatment */}
-          <section
-            className="mb-12 rounded-2xl border p-6 md:p-8"
-            style={{
-              borderColor: "hsl(var(--hero-accent) / 0.4)",
-              backgroundColor: "hsl(var(--hero-foreground) / 0.05)",
-            }}
-          >
-            <p
-              className="mb-4 text-xs uppercase tracking-[0.3em]"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              {L.currentPMLabel}
-            </p>
-            <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
-              <div
-                className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full text-2xl font-semibold md:h-28 md:w-28"
+          <div className="grid gap-4 md:grid-cols-2">
+            {menu.cards.map((card) => (
+              <article
+                key={card.title}
+                className="rounded-2xl border p-5 transition-colors duration-300 hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-6"
                 style={{
-                  backgroundColor: "hsl(var(--hero-foreground) / 0.12)",
-                  color: "hsl(var(--hero-foreground))",
+                  borderColor: "hsl(var(--hero-accent) / 0.35)",
+                  backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
                 }}
-                aria-hidden="true"
               >
-                {L.currentPM.name
-                  .split(" ")
-                  .slice(0, 2)
-                  .map((p) => p[0])
-                  .join("")}
-              </div>
-              <div className="min-w-0 flex-1">
+                <div
+                  className="mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg"
+                  style={{
+                    borderColor: "hsl(var(--hero-accent) / 0.5)",
+                    color: "hsl(var(--hero-accent))",
+                  }}
+                >
+                  <span aria-hidden="true">{card.icon}</span>
+                </div>
                 <h3
-                  className="text-2xl font-bold md:text-3xl"
+                  className="mb-2 text-xl font-semibold md:text-2xl"
                   style={{ color: "hsl(var(--hero-foreground))" }}
                 >
-                  {L.currentPM.name}
+                  {card.title}
                 </h3>
-                <p className="mt-1 text-sm" style={{ color: "hsl(var(--hero-muted))" }}>
-                  {L.currentPM.years}
-                </p>
-                <p
-                  className="mt-3 text-sm leading-relaxed md:text-base"
-                  style={{ color: "hsl(var(--hero-foreground) / 0.85)" }}
-                >
-                  {L.currentPM.bio}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 grid gap-6 md:grid-cols-2">
-              <div>
-                <p
-                  className="mb-2 text-xs uppercase tracking-[0.25em]"
-                  style={{ color: "hsl(var(--hero-accent))" }}
-                >
-                  {L.achievementsLabel}
-                </p>
-                <ul className="space-y-1.5 text-sm md:text-base" style={{ color: "hsl(var(--hero-foreground) / 0.9)" }}>
-                  {L.currentPM.achievements.map((a) => (
-                    <li key={a} className="flex gap-2">
-                      <span style={{ color: "hsl(var(--hero-accent))" }}>•</span>
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p
-                  className="mb-2 text-xs uppercase tracking-[0.25em]"
-                  style={{ color: "hsl(var(--hero-accent))" }}
-                >
-                  {L.visionLabel}
-                </p>
                 <p
                   className="text-sm leading-relaxed md:text-base"
-                  style={{ color: "hsl(var(--hero-foreground) / 0.9)" }}
+                  style={{ color: "hsl(var(--hero-muted))" }}
                 >
-                  {L.currentPM.vision}
+                  {card.description}
                 </p>
-              </div>
-            </div>
-          </section>
+              </article>
+            ))}
+          </div>
 
-          {/* Past leaders — simple cards */}
-          <div className="grid gap-8 md:grid-cols-3">
-            <div>
-              <h4
-                className="mb-3 text-sm uppercase tracking-[0.25em]"
-                style={{ color: "hsl(var(--hero-accent))" }}
-              >
-                {L.presidents}
-              </h4>
-              <div className="space-y-3">
-                {L.presidentsList.map((p) => (
-                  <LeaderCard key={p.name + p.years} leader={p} />
-                ))}
-              </div>
+          <div className="mt-8 grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("hero")}
+            >
+              ← {menuUi.previous}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.55)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
+              }}
+              onClick={() => setView("hero")}
+            >
+              {menuUi.returnToMain}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("journey")}
+            >
+              {menuUi.next} →
+            </button>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p
+              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
+              style={{ color: "hsl(var(--hero-accent))" }}
+            >
+              Explore the Gate of Kurdistan
+            </p>
+            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
+              {menu.cards.map((card, i) => (
+                <div key={card.title} className="flex items-center gap-2">
+                  <span
+                    className={`h-3 w-3 rounded-full border ${i === 1 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+                    style={{
+                      borderColor: "hsl(var(--hero-accent) / 0.7)",
+                      backgroundColor: i === 1 ? "hsl(var(--hero-accent))" : "transparent",
+                    }}
+                  />
+                  <span
+                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
+                    style={{ color: i === 1 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+                  >
+                    {card.title}
+                  </span>
+                </div>
+              ))}
             </div>
-            <div>
-              <h4
-                className="mb-3 text-sm uppercase tracking-[0.25em]"
-                style={{ color: "hsl(var(--hero-accent))" }}
-              >
-                {L.primeMinisters}
-              </h4>
-              <div className="space-y-3">
-                {L.pastPMs.map((p) => (
-                  <LeaderCard key={p.name + p.years} leader={p} />
-                ))}
-              </div>
+          </div>
+        </div>
+      )}
+
+      {/* JOURNEY VIEW */}
+      {view === "journey" && (
+        <div className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
+          <header className="mb-6 text-center">
+            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+              {journey.title}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
+              {journey.subtitle}
+            </p>
+          </header>
+
+          <div className="grid gap-4 md:grid-cols-[70px_1fr]">
+            <div className="hidden md:flex md:flex-col md:items-center md:gap-4">
+              <div className="h-4 w-[2px]" style={{ backgroundColor: "hsl(var(--hero-accent) / 0.4)" }} />
+              {journey.items.map((item, i) => (
+                <div key={item.id} className="flex flex-col items-center gap-4">
+                  <div
+                    className="flex h-11 w-11 items-center justify-center rounded-full border text-sm"
+                    style={{
+                      borderColor: "hsl(var(--hero-accent) / 0.7)",
+                      color: "hsl(var(--hero-accent))",
+                      backgroundColor: "hsl(var(--hero-background) / 0.55)",
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+                  {i < journey.items.length - 1 && (
+                    <div className="h-10 w-[2px]" style={{ backgroundColor: "hsl(var(--hero-accent) / 0.4)" }} />
+                  )}
+                </div>
+              ))}
             </div>
-            <div>
-              <h4
-                className="mb-3 text-sm uppercase tracking-[0.25em]"
-                style={{ color: "hsl(var(--hero-accent))" }}
-              >
-                {L.speakers}
-              </h4>
-              <div className="space-y-3">
-                {L.speakersList.map((p) => (
-                  <LeaderCard key={p.name + p.years} leader={p} />
-                ))}
-              </div>
+
+            <div className="space-y-3">
+              {journey.items.map((item) => (
+                <article
+                  key={item.id}
+                  className="group flex items-center gap-4 rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4"
+                  style={{
+                    borderColor: "hsl(var(--hero-accent) / 0.35)",
+                    backgroundColor: "hsl(var(--hero-background) / 0.5)",
+                  }}
+                >
+                  <img src={item.image} alt={item.title} className="h-20 w-28 rounded-xl object-cover md:h-24 md:w-36" />
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-2xl font-bold md:text-4xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm md:text-base" style={{ color: "hsl(var(--hero-muted))" }}>
+                      {item.description}
+                    </p>
+                  </div>
+                  <span className="text-2xl" style={{ color: "hsl(var(--hero-accent))" }}>
+                    ›
+                  </span>
+                </article>
+              ))}
             </div>
+          </div>
+
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("menu")}
+            >
+              ← {menuUi.previous}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.55)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
+              }}
+              onClick={() => setView("menu")}
+            >
+              {menuUi.returnToMain}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+            >
+              {menuUi.next} →
+            </button>
           </div>
         </div>
       )}
