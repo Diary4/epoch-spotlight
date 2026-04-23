@@ -492,7 +492,7 @@ const Index = () => {
   const landFuture = LAND_FUTURE_CONTENT[activeLang];
   const bgByView: Record<SectionView, string> = {
     hero: officeBg,
-    people: kurdistan1Bg,
+    people: bg2,
     journey: kurdistan2Bg,
     system: kurdistan3Bg,
     landFuture: kurdistan1Bg,
@@ -520,7 +520,7 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      {[officeBg, kurdistan1Bg, kurdistan2Bg, kurdistan3Bg].map((bg) => (
+      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, kurdistan3Bg].map((bg) => (
         <img
           key={bg}
           src={bg}
@@ -621,13 +621,21 @@ const Index = () => {
             </p>
           </header>
 
-          <div className="grid gap-4 md:grid-cols-[70px_1fr]">
-            <div className="hidden md:flex md:flex-col md:items-center md:gap-4">
-              <div className="h-4 w-[2px]" style={{ backgroundColor: "hsl(var(--hero-accent) / 0.4)" }} />
-              {journey.items.map((item, i) => (
-                <div key={item.id} className="flex flex-col items-center gap-4">
-                  <div
-                    className="flex h-11 w-11 items-center justify-center rounded-full border text-sm"
+          <div className="space-y-3">
+            {journey.items.map((item, i) => (
+              <div key={item.id} className="grid gap-3 md:grid-cols-[56px_1fr] md:items-stretch">
+                <div className="relative hidden md:block">
+                  {i < journey.items.length - 1 && (
+                    <span
+                      className="absolute left-1/2 top-11 w-[2px] -translate-x-1/2"
+                      style={{
+                        height: "calc(100% + 12px)",
+                        backgroundColor: "hsl(var(--hero-accent) / 0.35)",
+                      }}
+                    />
+                  )}
+                  <span
+                    className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border text-sm"
                     style={{
                       borderColor: "hsl(var(--hero-accent) / 0.7)",
                       color: "hsl(var(--hero-accent))",
@@ -635,18 +643,10 @@ const Index = () => {
                     }}
                   >
                     {item.icon}
-                  </div>
-                  {i < journey.items.length - 1 && (
-                    <div className="h-10 w-[2px]" style={{ backgroundColor: "hsl(var(--hero-accent) / 0.4)" }} />
-                  )}
+                  </span>
                 </div>
-              ))}
-            </div>
 
-            <div className="space-y-3">
-              {journey.items.map((item) => (
                 <article
-                  key={item.id}
                   className="group relative flex items-center gap-4 rounded-2xl border p-3 pr-14 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4 md:pr-16"
                   style={{
                     borderColor: "hsl(var(--hero-accent) / 0.35)",
@@ -669,8 +669,8 @@ const Index = () => {
                     ›
                   </span>
                 </article>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           <SectionNav ui={menuUi} onPrevious={() => setView("people")} onNext={() => setView("system")} />
