@@ -10,6 +10,8 @@ type LangCode = "ku" | "en" | "ar";
 type Story = { title: string; description: string };
 type SectionCard = { title: string; description: string; icon: string };
 type JourneyItem = { id: string; title: string; description: string; image: string; icon: string };
+type SystemNode = { title: string; subtitle: string; icon: string };
+type SystemItem = { id: string; title: string; description: string; image: string; icon: string };
 
 const STORIES: Record<LangCode, Story[]> = {
   en: [
@@ -200,6 +202,61 @@ const JOURNEY_CONTENT: Record<
   },
 };
 
+const SYSTEM_CONTENT: Record<
+  LangCode,
+  {
+    title: string;
+    subtitle: string;
+    center: SystemNode;
+    left: SystemNode;
+    right: SystemNode;
+    items: SystemItem[];
+  }
+> = {
+  en: {
+    title: "The System",
+    subtitle: "Learn how the Kurdistan Region is governed through its key institutions and leadership roles.",
+    center: { title: "Parliament", subtitle: "Legislative Power", icon: "🏛" },
+    left: { title: "Government", subtitle: "Executive Power", icon: "⚖" },
+    right: { title: "Presidency", subtitle: "Constitutional Power", icon: "🦅" },
+    items: [
+      { id: "1", title: "1. Parliament", description: "The legislative institution responsible for laws and representation.", image: bg2, icon: "🏛" },
+      { id: "2", title: "2. Government", description: "The executive body responsible for administration and public services.", image: bg3, icon: "🦅" },
+      { id: "3", title: "3. Presidency", description: "A constitutional and national institution within the regional system.", image: peshmargaBg, icon: "🦅" },
+      { id: "4", title: "4. How It Works", description: "Institutions work together through a parliamentary system.", image: bg2, icon: "👥" },
+      { id: "5", title: "5. Leadership", description: "Presidents, Prime Ministers, and Speakers helped shape the Region's development.", image: bg3, icon: "👥" },
+    ],
+  },
+  ku: {
+    title: "سیستەم",
+    subtitle: "فێربە چۆن هەرێمی کوردستان لە ڕێگای دامەزراوە سەرەکییەکانەوە بەڕێوەدەچێت.",
+    center: { title: "پەرلەمان", subtitle: "هێزی یاسادانان", icon: "🏛" },
+    left: { title: "حکومەت", subtitle: "هێزی جێبەجێکردن", icon: "⚖" },
+    right: { title: "سەرۆکایەتی", subtitle: "هێزی دەستووری", icon: "🦅" },
+    items: [
+      { id: "1", title: "١. پەرلەمان", description: "دامەزراوەی یاسادانان کە بەرپرسیارە لە یاساکان و نوێنەرایەتی.", image: bg2, icon: "🏛" },
+      { id: "2", title: "٢. حکومەت", description: "دەستەی جێبەجێکار بەرپرسیار لە بەڕێوەبردن و خزمەتگوزارییە گشتییەکان.", image: bg3, icon: "🦅" },
+      { id: "3", title: "٣. سەرۆکایەتی", description: "دامەزراوەیەکی دەستووری و نەتەوەیی لە چوارچێوەی سیستەمی هەرێم.", image: peshmargaBg, icon: "🦅" },
+      { id: "4", title: "٤. چۆنیەتی کارکردن", description: "دامەزراوەکان لە ڕێگای سیستەمی پەرلەمانی هاوکاری دەکەن.", image: bg2, icon: "👥" },
+      { id: "5", title: "٥. سەرکردایەتی", description: "سەرۆک و سەرۆک وەزیر و سەرۆکی پەرلەمان ڕۆڵیان هەبووە لە پێشکەوتنی هەرێم.", image: bg3, icon: "👥" },
+    ],
+  },
+  ar: {
+    title: "النظام",
+    subtitle: "تعرّف كيف يُحكم إقليم كوردستان عبر مؤسساته الأساسية وأدوار القيادة.",
+    center: { title: "البرلمان", subtitle: "السلطة التشريعية", icon: "🏛" },
+    left: { title: "الحكومة", subtitle: "السلطة التنفيذية", icon: "⚖" },
+    right: { title: "الرئاسة", subtitle: "السلطة الدستورية", icon: "🦅" },
+    items: [
+      { id: "1", title: "1. البرلمان", description: "المؤسسة التشريعية المسؤولة عن القوانين والتمثيل.", image: bg2, icon: "🏛" },
+      { id: "2", title: "2. الحكومة", description: "الهيئة التنفيذية المسؤولة عن الإدارة والخدمات العامة.", image: bg3, icon: "🦅" },
+      { id: "3", title: "3. الرئاسة", description: "مؤسسة دستورية ووطنية ضمن النظام الإقليمي.", image: peshmargaBg, icon: "🦅" },
+      { id: "4", title: "4. كيف يعمل", description: "تعمل المؤسسات معاً عبر نظام برلماني.", image: bg2, icon: "👥" },
+      { id: "5", title: "5. القيادة", description: "ساهم الرؤساء ورؤساء الوزراء ورؤساء البرلمان في تشكيل تطور الإقليم.", image: bg3, icon: "👥" },
+    ],
+  },
+};
+
 const SECTION_MENU: Record<
   LangCode,
   {
@@ -295,7 +352,7 @@ const Index = () => {
   const [showLangPrompt, setShowLangPrompt] = useState(false);
   const [langClosing, setLangClosing] = useState(false);
   const [introPlaying, setIntroPlaying] = useState(false);
-  const [view, setView] = useState<"hero" | "menu" | "journey">("hero");
+  const [view, setView] = useState<"hero" | "menu" | "journey" | "system">("hero");
 
   const advance = useCallback(() => {
     if (showLangPrompt || langClosing || introPlaying) return;
@@ -347,6 +404,7 @@ const Index = () => {
   const menu = SECTION_MENU[activeLang];
   const menuUi = MENU_UI[activeLang];
   const journey = JOURNEY_CONTENT[activeLang];
+  const system = SYSTEM_CONTENT[activeLang];
 
   const handleSelectLang = (code: LangCode) => {
     setLang(code);
@@ -695,9 +753,167 @@ const Index = () => {
                 color: "hsl(var(--hero-foreground))",
                 backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
               }}
+              onClick={() => setView("system")}
             >
               {menuUi.next} →
             </button>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p
+              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
+              style={{ color: "hsl(var(--hero-accent))" }}
+            >
+              Explore the Gate of Kurdistan
+            </p>
+            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
+              {menu.cards.map((card, i) => (
+                <div key={card.title} className="flex items-center gap-2">
+                  <span
+                    className={`h-3 w-3 rounded-full border ${i === 1 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+                    style={{
+                      borderColor: "hsl(var(--hero-accent) / 0.7)",
+                      backgroundColor: i === 1 ? "hsl(var(--hero-accent))" : "transparent",
+                    }}
+                  />
+                  <span
+                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
+                    style={{ color: i === 1 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+                  >
+                    {card.title}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* SYSTEM VIEW */}
+      {view === "system" && (
+        <div className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
+          <header className="mb-6 text-center">
+            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+              {system.title}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
+              {system.subtitle}
+            </p>
+          </header>
+
+          <div className="mb-6 rounded-2xl border p-4 md:p-6" style={{ borderColor: "hsl(var(--hero-accent) / 0.35)", backgroundColor: "hsl(var(--hero-background) / 0.45)" }}>
+            <div className="grid items-center gap-4 md:grid-cols-3">
+              <div className="text-center">
+                <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full border text-2xl" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>{system.left.icon}</div>
+                <p className="text-lg font-semibold" style={{ color: "hsl(var(--hero-foreground))" }}>{system.left.title}</p>
+                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>{system.left.subtitle}</p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-2 flex h-20 w-20 items-center justify-center rounded-full border text-3xl" style={{ borderColor: "hsl(var(--hero-accent) / 0.8)", color: "hsl(var(--hero-accent))" }}>{system.center.icon}</div>
+                <p className="text-xl font-semibold" style={{ color: "hsl(var(--hero-foreground))" }}>{system.center.title}</p>
+                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>{system.center.subtitle}</p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full border text-2xl" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>{system.right.icon}</div>
+                <p className="text-lg font-semibold" style={{ color: "hsl(var(--hero-foreground))" }}>{system.right.title}</p>
+                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>{system.right.subtitle}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {system.items.map((item) => (
+              <article
+                key={item.id}
+                className="group flex items-center gap-4 rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4"
+                style={{
+                  borderColor: "hsl(var(--hero-accent) / 0.35)",
+                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
+                }}
+              >
+                <img src={item.image} alt={item.title} className="h-20 w-28 rounded-xl object-cover md:h-24 md:w-36" />
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-sm" style={{ borderColor: "hsl(var(--hero-accent) / 0.6)", color: "hsl(var(--hero-accent))" }}>
+                  {item.icon}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-2xl font-bold md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-sm md:text-base" style={{ color: "hsl(var(--hero-muted))" }}>
+                    {item.description}
+                  </p>
+                </div>
+                <span className="text-2xl" style={{ color: "hsl(var(--hero-accent))" }}>
+                  ›
+                </span>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("journey")}
+            >
+              ← {menuUi.previous}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.55)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
+              }}
+              onClick={() => setView("menu")}
+            >
+              {menuUi.returnToMain}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+            >
+              {menuUi.next} →
+            </button>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p
+              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
+              style={{ color: "hsl(var(--hero-accent))" }}
+            >
+              Explore the Gate of Kurdistan
+            </p>
+            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
+              {menu.cards.map((card, i) => (
+                <div key={card.title} className="flex items-center gap-2">
+                  <span
+                    className={`h-3 w-3 rounded-full border ${i === 2 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+                    style={{
+                      borderColor: "hsl(var(--hero-accent) / 0.7)",
+                      backgroundColor: i === 2 ? "hsl(var(--hero-accent))" : "transparent",
+                    }}
+                  />
+                  <span
+                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
+                    style={{ color: i === 2 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+                  >
+                    {card.title}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
