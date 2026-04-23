@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
 import officeBg from "@/assets/office.jpeg";
-import peshmargaBg from "@/assets/images/bg-2.jpg";
+import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
 import bg3 from "@/assets/images/bg-3.jpg";
-import React from "react";
+import kurdistan1Bg from "@/assets/images/kurdistan-1.jpeg";
+import kurdistan2Bg from "@/assets/images/kurdistan-2.jpeg";
+import kurdistan3Bg from "@/assets/images/kurdistan-3.jpeg";
 
 type LangCode = "ku" | "en" | "ar";
 
 type Story = { title: string; description: string };
-type SectionCard = { title: string; description: string; icon: string };
 type PeopleItem = { id: string; title: string; description: string; image: string; icon: string };
 type JourneyItem = { id: string; title: string; description: string; image: string; icon: string };
 type SystemNode = { title: string; subtitle: string; icon: string };
@@ -352,93 +353,80 @@ const LAND_FUTURE_CONTENT: Record<
   },
 };
 
-const SECTION_MENU: Record<
-  LangCode,
-  {
-    title: string;
-    subtitle: string;
-    cards: SectionCard[];
-  }
-> = {
-  en: {
-    title: "Explore the Gate of Kurdistan",
-    subtitle: "Choose a chapter to continue your journey.",
-    cards: [
-      {
-        title: "The People",
-        description: "Who the Kurds are, their identity, values, and resilience.",
-        icon: "👥",
-      },
-      {
-        title: "The Journey",
-        description: "Major milestones that shaped the Kurdistan Region.",
-        icon: "✨",
-      },
-      {
-        title: "The System",
-        description: "How institutions and leadership roles are organized.",
-        icon: "🏛️",
-      },
-      {
-        title: "The Land and Future",
-        description: "Geography, symbols, progress, and future vision.",
-        icon: "⛰️",
-      },
-    ],
-  },
-  ku: {
-    title: "دەروازەی کوردستان بگەڕێ",
-    subtitle: "بەشێک هەڵبژێرە بۆ بەردەوامبوون لە گەشتەکەت.",
-    cards: [
-      {
-        title: "خەڵک",
-        description: "کێن کوردەکان، ناسنامە، بەها و بەرگرییان.",
-        icon: "👥",
-      },
-      {
-        title: "گەشت",
-        description: "گرنگترین وێستگە مێژووییەکانی هەرێم.",
-        icon: "✨",
-      },
-      {
-        title: "سیستەم",
-        description: "ڕێکخستنی دامەزراوەکان و ڕۆڵەکانی سەرکردایەتی.",
-        icon: "🏛️",
-      },
-      {
-        title: "خاک و داهاتوو",
-        description: "جوگرافیا، نیشانەکان، پێشکەوتن و بینینی داهاتوو.",
-        icon: "⛰️",
-      },
-    ],
-  },
-  ar: {
-    title: "اكتشف بوابة كوردستان",
-    subtitle: "اختر فصلاً لمتابعة الرحلة.",
-    cards: [
-      {
-        title: "الشعب",
-        description: "من هم الكرد وقيمهم وهويتهم وصمودهم.",
-        icon: "👥",
-      },
-      {
-        title: "الرحلة",
-        description: "أهم المحطات التي شكلت إقليم كوردستان.",
-        icon: "✨",
-      },
-      {
-        title: "النظام",
-        description: "كيف تُنظم المؤسسات وأدوار القيادة.",
-        icon: "🏛️",
-      },
-      {
-        title: "الأرض والمستقبل",
-        description: "الجغرافيا والرموز والتقدم ورؤية المستقبل.",
-        icon: "⛰️",
-      },
-    ],
-  },
+const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
+  en: ["The People", "The Journey", "The System", "The Land and Future"],
+  ku: ["خەڵک", "گەشت", "سیستەم", "خاک و داهاتوو"],
+  ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
+
+type SectionView = "hero" | "people" | "journey" | "system" | "landFuture";
+
+const SectionNav = ({
+  ui,
+  onPrevious,
+  onNext,
+}: {
+  ui: { previous: string; next: string };
+  onPrevious: () => void;
+  onNext?: () => void;
+}) => (
+  <div className="mt-6 grid grid-cols-2 gap-3">
+    <button
+      type="button"
+      onClick={onPrevious}
+      className="rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
+      style={{
+        borderColor: "hsl(var(--hero-accent) / 0.45)",
+        color: "hsl(var(--hero-foreground))",
+        backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+      }}
+      aria-label="Previous section"
+    >
+      {ui.previous}
+    </button>
+    <button
+      type="button"
+      onClick={onNext}
+      disabled={!onNext}
+      className="rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] disabled:cursor-not-allowed disabled:opacity-45"
+      style={{
+        borderColor: "hsl(var(--hero-accent) / 0.45)",
+        color: "hsl(var(--hero-foreground))",
+        backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+      }}
+      aria-label="Next section"
+    >
+      {ui.next}
+    </button>
+  </div>
+);
+
+const SectionProgress = ({ labels, activeIndex }: { labels: string[]; activeIndex: number }) => (
+  <div className="mt-6 text-center">
+    <p className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs" style={{ color: "hsl(var(--hero-accent))" }}>
+      Explore the Gate of Kurdistan
+    </p>
+    <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
+      {labels.map((label, i) => (
+        <div key={label} className="flex items-center gap-2">
+          <span
+            className={`h-3 w-3 rounded-full border ${i === activeIndex ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+            style={{
+              borderColor: "hsl(var(--hero-accent) / 0.7)",
+              backgroundColor: i === activeIndex ? "hsl(var(--hero-accent))" : "transparent",
+            }}
+          />
+          <span
+            className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
+            style={{ color: i === activeIndex ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+          >
+            {label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const Index = () => {
   const [index, setIndex] = useState(0);
@@ -447,7 +435,7 @@ const Index = () => {
   const [showLangPrompt, setShowLangPrompt] = useState(false);
   const [langClosing, setLangClosing] = useState(false);
   const [introPlaying, setIntroPlaying] = useState(false);
-  const [view, setView] = useState<"hero" | "menu" | "people" | "journey" | "system" | "landFuture">("hero");
+  const [view, setView] = useState<SectionView>("hero");
 
   const advance = useCallback(() => {
     if (showLangPrompt || langClosing || introPlaying) return;
@@ -496,12 +484,19 @@ const Index = () => {
   const dir = LANG_OPTIONS.find((l) => l.code === activeLang)?.dir ?? "ltr";
   const current = STORIES[activeLang][index];
   const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
-  const menu = SECTION_MENU[activeLang];
+  const stepLabels = SECTION_STEP_LABELS[activeLang];
   const menuUi = MENU_UI[activeLang];
   const people = PEOPLE_CONTENT[activeLang];
   const journey = JOURNEY_CONTENT[activeLang];
   const system = SYSTEM_CONTENT[activeLang];
   const landFuture = LAND_FUTURE_CONTENT[activeLang];
+  const bgByView: Record<SectionView, string> = {
+    hero: officeBg,
+    people: kurdistan1Bg,
+    journey: kurdistan2Bg,
+    system: kurdistan3Bg,
+    landFuture: kurdistan1Bg,
+  };
 
   const handleSelectLang = (code: LangCode) => {
     setLang(code);
@@ -525,22 +520,17 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      <img
-        src={officeBg}
-        alt=""
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-sm transition-opacity duration-700 ${
-          view === "hero" ? "opacity-100" : "opacity-0"
-        }`}
-      />
-      <img
-        src={peshmargaBg}
-        alt=""
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px] transition-opacity duration-700 ${
-          view === "hero" ? "opacity-0" : "opacity-100"
-        }`}
-      />
+      {[officeBg, kurdistan1Bg, kurdistan2Bg, kurdistan3Bg].map((bg) => (
+        <img
+          key={bg}
+          src={bg}
+          alt=""
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px] transition-opacity duration-700 ${
+            bgByView[view] === bg ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -574,382 +564,50 @@ const Index = () => {
         </div>
       )}
 
-      {/* SECTION MENU VIEW */}
-      {false && view === "menu" && (
-        <div
-          className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <header className="mb-8">
-            <div className="mb-6 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div
-                  className="h-10 w-8 rounded-md border"
-                  style={{
-                    borderColor: "hsl(var(--hero-accent) / 0.7)",
-                    backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
-                  }}
-                  aria-hidden="true"
-                />
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>
-                    Gate of Kurdistan
-                  </p>
-                  <p className="text-xs font-medium" style={{ color: "hsl(var(--hero-foreground))" }}>
-                    GOK
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-xs md:text-sm">
-                {LANG_OPTIONS.map((opt, idx) => (
-                  <div key={opt.code} className="flex items-center gap-3">
-                    <span
-                      style={{
-                        color:
-                          opt.code === activeLang
-                            ? "hsl(var(--hero-accent))"
-                            : "hsl(var(--hero-foreground) / 0.7)",
-                      }}
-                    >
-                      {opt.label}
-                    </span>
-                    {idx < LANG_OPTIONS.length - 1 && (
-                      <span style={{ color: "hsl(var(--hero-foreground) / 0.35)" }}>|</span>
-                    )}
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  className="ml-2 flex h-8 w-8 items-center justify-center rounded-full border text-sm"
-                  style={{ borderColor: "hsl(var(--hero-accent) / 0.4)", color: "hsl(var(--hero-foreground))" }}
-                  onClick={() => setView("hero")}
-                >
-                  ⌂
-                </button>
-                <button
-                  type="button"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border text-sm"
-                  style={{ borderColor: "hsl(var(--hero-accent) / 0.4)", color: "hsl(var(--hero-foreground))" }}
-                >
-                  ←
-                </button>
-              </div>
-            </div>
-
-            <div className="text-center">
-            <p
-              className="mb-3 text-xs uppercase tracking-[0.4em] md:text-sm"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              {menu.title}
-            </p>
-            <h2
-              className="text-xl font-medium leading-tight md:text-2xl"
-              style={{ color: "hsl(var(--hero-foreground))" }}
-            >
-              {menu.subtitle}
+      {/* PEOPLE VIEW */}
+      {view === "people" && (
+        <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
+          <div className="mb-5 text-center">
+            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+              {people.title}
             </h2>
-            </div>
-          </header>
+            <p className="mx-auto mt-3 max-w-3xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
+              {people.subtitle}
+            </p>
+          </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {menu.cards.map((card) => (
+          <section className="mb-4">
+            <img src={people.heroImage} alt={people.title} className="h-60 w-full rounded-3xl object-cover md:h-80" />
+          </section>
+
+          <section className="grid gap-3 md:grid-cols-3">
+            {people.items.map((item) => (
               <article
-                key={card.title}
-                className="rounded-2xl border p-5 transition-colors duration-300 hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-6"
+                key={item.id}
+                className="rounded-2xl border p-4 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
                 style={{
                   borderColor: "hsl(var(--hero-accent) / 0.35)",
-                  backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
                 }}
               >
-                <div
-                  className="mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg"
-                  style={{
-                    borderColor: "hsl(var(--hero-accent) / 0.5)",
-                    color: "hsl(var(--hero-accent))",
-                  }}
-                >
-                  <span aria-hidden="true">{card.icon}</span>
+                <img src={item.image} alt={item.title} className="mb-3 h-28 w-full rounded-xl object-cover" />
+                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border text-sm" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>
+                  {item.icon}
                 </div>
-                <h3
-                  className="mb-2 text-xl font-semibold md:text-2xl"
-                  style={{ color: "hsl(var(--hero-foreground))" }}
-                >
-                  {card.title}
+                <h3 className="text-2xl font-semibold leading-tight md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+                  {item.title}
                 </h3>
-                <p
-                  className="text-sm leading-relaxed md:text-base"
-                  style={{ color: "hsl(var(--hero-muted))" }}
-                >
-                  {card.description}
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: "hsl(var(--hero-muted))" }}>
+                  {item.description}
                 </p>
               </article>
             ))}
-          </div>
+          </section>
 
-          <div className="mt-8 grid grid-cols-3 gap-3">
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("people")}
-            >
-              ← {menuUi.previous}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.55)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
-              }}
-              onClick={() => setView("hero")}
-            >
-              {menuUi.returnToMain}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("journey")}
-            >
-              {menuUi.next} →
-            </button>
-          </div>
-
-          <div className="mt-6 text-center">
-            <p
-              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              Explore the Gate of Kurdistan
-            </p>
-            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
-              {menu.cards.map((card, i) => (
-                <div key={card.title} className="flex items-center gap-2">
-                  <span
-                    className={`h-3 w-3 rounded-full border ${i === 1 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
-                    style={{
-                      borderColor: "hsl(var(--hero-accent) / 0.7)",
-                      backgroundColor: i === 1 ? "hsl(var(--hero-accent))" : "transparent",
-                    }}
-                  />
-                  <span
-                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-                    style={{ color: i === 1 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
-                  >
-                    {card.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <SectionNav ui={menuUi} onPrevious={() => setView("hero")} onNext={() => setView("journey")} />
+          <SectionProgress labels={stepLabels} activeIndex={0} />
         </div>
       )}
-
-      {/* PEOPLE VIEW */}
-{view === "people" && (
-  <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
-    {/* Header with GOK branding */}
-    {/* <header className="mb-8 flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <div
-          className="h-12 w-10 rounded-md border"
-          style={{
-            borderColor: "hsl(var(--hero-accent) / 0.7)",
-            backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
-          }}
-          aria-hidden="true"
-        />
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>
-            Gate of Kurdistan
-          </p>
-          <p className="text-sm font-bold tracking-wide" style={{ color: "hsl(var(--hero-foreground))" }}>
-            GOK
-          </p>
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        {LANG_OPTIONS.map((opt, idx) => (
-          <React.Fragment key={opt.code}>
-            <span
-              className="text-xs uppercase tracking-wider"
-              style={{
-                color: opt.code === activeLang
-                  ? "hsl(var(--hero-accent))"
-                  : "hsl(var(--hero-foreground) / 0.6)",
-              }}
-            >
-              {opt.label}
-            </span>
-            {idx < LANG_OPTIONS.length - 1 && (
-              <span style={{ color: "hsl(var(--hero-foreground) / 0.3)" }}>|</span>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
-    </header> */}
-
-    {/* Main Title */}
-    <div className="mb-2 text-center">
-      <p
-        className="mb-1 text-xs uppercase tracking-[0.4em] md:text-sm"
-        style={{ color: "hsl(var(--hero-accent))" }}
-      >
-        {people.title}
-      </p>
-    </div>
-
-    {/* Subtitle */}
-    <p
-      className="mx-auto mb-10 max-w-3xl text-center text-base leading-relaxed md:text-lg"
-      style={{ color: "hsl(var(--hero-muted))" }}
-    >
-      {people.subtitle}
-    </p>
-
-    {/* Cards Grid */}
-    <section className="mb-10 grid gap-4 md:grid-cols-3">
-      {people.items.map((item) => (
-        <article
-          key={item.id}
-          className="group relative overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-          style={{
-            borderColor: "hsl(var(--hero-accent) / 0.25)",
-            backgroundColor: "hsl(var(--hero-background) / 0.3)",
-            backdropFilter: "blur(8px)",
-          }}
-        >
-          {/* Subtle top accent line */}
-          <div
-            className="absolute left-0 right-0 top-0 h-[2px] transition-all duration-300 group-hover:h-1"
-            style={{ backgroundColor: "hsl(var(--hero-accent) / 0.5)" }}
-          />
-          
-          {/* Icon */}
-          <div
-            className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border text-xl"
-            style={{
-              borderColor: "hsl(var(--hero-accent) / 0.4)",
-              color: "hsl(var(--hero-accent))",
-              backgroundColor: "hsl(var(--hero-accent) / 0.08)",
-            }}
-          >
-            {item.icon}
-          </div>
-
-          {/* Title */}
-          <h3
-            className="mb-2 text-2xl font-semibold leading-tight md:text-3xl"
-            style={{ color: "hsl(var(--hero-foreground))" }}
-          >
-            {item.title}
-          </h3>
-
-          {/* Divider */}
-          <div
-            className="mb-3 h-px w-12 transition-all duration-300 group-hover:w-20"
-            style={{ backgroundColor: "hsl(var(--hero-accent) / 0.4)" }}
-          />
-
-          {/* Description */}
-          <p
-            className="text-sm leading-relaxed md:text-base"
-            style={{ color: "hsl(var(--hero-muted))" }}
-          >
-            {item.description}
-          </p>
-        </article>
-      ))}
-    </section>
-
-    {/* Navigation */}
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-      <button
-        type="button"
-        onClick={() => setView("hero")}
-        className="flex items-center justify-center gap-2 rounded-xl border px-6 py-3 text-sm transition-all duration-300 hover:scale-[1.02]"
-        style={{
-          borderColor: "hsl(var(--hero-accent) / 0.4)",
-          color: "hsl(var(--hero-foreground))",
-          backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-        }}
-      >
-        <span>←</span> {menuUi.previous}
-      </button>
-      
-      {/* Center button spans full width on mobile */}
-      <button
-        type="button"
-        onClick={() => setView("hero")}
-        className="col-span-2 flex items-center justify-center gap-2 rounded-xl border px-6 py-3 text-sm transition-all duration-300 hover:scale-[1.02] md:col-span-1"
-        style={{
-          borderColor: "hsl(var(--hero-accent) / 0.5)",
-          color: "hsl(var(--hero-foreground))",
-          backgroundColor: "hsl(var(--hero-accent) / 0.1)",
-        }}
-      >
-        ⌂ {menuUi.returnToMain}
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setView("journey")}
-        className="flex items-center justify-center gap-2 rounded-xl border px-6 py-3 text-sm transition-all duration-300 hover:scale-[1.02]"
-        style={{
-          borderColor: "hsl(var(--hero-accent) / 0.4)",
-          color: "hsl(var(--hero-foreground))",
-          backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-        }}
-      >
-        {menuUi.next} <span>→</span>
-      </button>
-    </div>
-
-    {/* Bottom Progress Indicator */}
-    <div className="mt-8 text-center">
-      <p
-        className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
-        style={{ color: "hsl(var(--hero-accent))" }}
-      >
-        Explore the Gate of Kurdistan
-      </p>
-      <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
-        {menu.cards.map((card, i) => (
-          <div key={card.title} className="flex items-center justify-center gap-2">
-            <span
-              className={`h-2.5 w-2.5 rounded-full border transition-all duration-300 ${
-                i === 0 ? "shadow-[0_0_10px_rgba(255,214,128,0.5)]" : ""
-              }`}
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.6)",
-                backgroundColor: i === 0 ? "hsl(var(--hero-accent))" : "transparent",
-              }}
-            />
-            <span
-              className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-              style={{
-                color: i === 0 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))",
-              }}
-            >
-              {card.title}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-)}
 
       {/* JOURNEY VIEW */}
       {view === "journey" && (
@@ -989,7 +647,7 @@ const Index = () => {
               {journey.items.map((item) => (
                 <article
                   key={item.id}
-                  className="group flex items-center gap-4 rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4"
+                  className="group relative flex items-center gap-4 rounded-2xl border p-3 pr-14 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4 md:pr-16"
                   style={{
                     borderColor: "hsl(var(--hero-accent) / 0.35)",
                     backgroundColor: "hsl(var(--hero-background) / 0.5)",
@@ -1004,7 +662,10 @@ const Index = () => {
                       {item.description}
                     </p>
                   </div>
-                  <span className="text-2xl" style={{ color: "hsl(var(--hero-accent))" }}>
+                  <span
+                    className="absolute right-4 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-2xl transition-transform duration-200 group-hover:scale-110"
+                    style={{ color: "hsl(var(--hero-accent) / 0.92)" }}
+                  >
                     ›
                   </span>
                 </article>
@@ -1012,72 +673,8 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("people")}
-            >
-              ← {menuUi.previous}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.55)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
-              }}
-              onClick={() => setView("hero")}
-            >
-              {menuUi.returnToMain}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("system")}
-            >
-              {menuUi.next} →
-            </button>
-          </div>
-
-          <div className="mt-6 text-center">
-            <p
-              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              Explore the Gate of Kurdistan
-            </p>
-            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
-              {menu.cards.map((card, i) => (
-                <div key={card.title} className="flex items-center gap-2">
-                  <span
-                    className={`h-3 w-3 rounded-full border ${i === 1 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
-                    style={{
-                      borderColor: "hsl(var(--hero-accent) / 0.7)",
-                      backgroundColor: i === 1 ? "hsl(var(--hero-accent))" : "transparent",
-                    }}
-                  />
-                  <span
-                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-                    style={{ color: i === 1 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
-                  >
-                    {card.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <SectionNav ui={menuUi} onPrevious={() => setView("people")} onNext={() => setView("system")} />
+          <SectionProgress labels={stepLabels} activeIndex={1} />
         </div>
       )}
 
@@ -1117,7 +714,7 @@ const Index = () => {
             {system.items.map((item) => (
               <article
                 key={item.id}
-                className="group flex items-center gap-4 rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4"
+                className="group relative flex items-center gap-4 rounded-2xl border p-3 pr-14 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4 md:pr-16"
                 style={{
                   borderColor: "hsl(var(--hero-accent) / 0.35)",
                   backgroundColor: "hsl(var(--hero-background) / 0.5)",
@@ -1135,79 +732,18 @@ const Index = () => {
                     {item.description}
                   </p>
                 </div>
-                <span className="text-2xl" style={{ color: "hsl(var(--hero-accent))" }}>
+                <span
+                  className="absolute right-4 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-2xl transition-transform duration-200 group-hover:scale-110"
+                  style={{ color: "hsl(var(--hero-accent) / 0.92)" }}
+                >
                   ›
                 </span>
               </article>
             ))}
           </div>
 
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("journey")}
-            >
-              ← {menuUi.previous}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.55)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
-              }}
-              onClick={() => setView("hero")}
-            >
-              {menuUi.returnToMain}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("landFuture")}
-            >
-              {menuUi.next} →
-            </button>
-          </div>
-
-          <div className="mt-6 text-center">
-            <p
-              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              Explore the Gate of Kurdistan
-            </p>
-            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
-              {menu.cards.map((card, i) => (
-                <div key={card.title} className="flex items-center gap-2">
-                  <span
-                    className={`h-3 w-3 rounded-full border ${i === 2 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
-                    style={{
-                      borderColor: "hsl(var(--hero-accent) / 0.7)",
-                      backgroundColor: i === 2 ? "hsl(var(--hero-accent))" : "transparent",
-                    }}
-                  />
-                  <span
-                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-                    style={{ color: i === 2 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
-                  >
-                    {card.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <SectionNav ui={menuUi} onPrevious={() => setView("journey")} onNext={() => setView("landFuture")} />
+          <SectionProgress labels={stepLabels} activeIndex={2} />
         </div>
       )}
 
@@ -1277,71 +813,8 @@ const Index = () => {
             ))}
           </section>
 
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-              onClick={() => setView("system")}
-            >
-              ← {menuUi.previous}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.55)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
-              }}
-              onClick={() => setView("hero")}
-            >
-              {menuUi.returnToMain}
-            </button>
-            <button
-              type="button"
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "hsl(var(--hero-accent) / 0.45)",
-                color: "hsl(var(--hero-foreground))",
-                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
-              }}
-            >
-              {menuUi.next} →
-            </button>
-          </div>
-
-          <div className="mt-6 text-center">
-            <p
-              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
-              style={{ color: "hsl(var(--hero-accent))" }}
-            >
-              Explore the Gate of Kurdistan
-            </p>
-            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
-              {menu.cards.map((card, i) => (
-                <div key={card.title} className="flex items-center gap-2">
-                  <span
-                    className={`h-3 w-3 rounded-full border ${i === 3 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
-                    style={{
-                      borderColor: "hsl(var(--hero-accent) / 0.7)",
-                      backgroundColor: i === 3 ? "hsl(var(--hero-accent))" : "transparent",
-                    }}
-                  />
-                  <span
-                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-                    style={{ color: i === 3 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
-                  >
-                    {card.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <SectionNav ui={menuUi} onPrevious={() => setView("system")} />
+          <SectionProgress labels={stepLabels} activeIndex={3} />
         </div>
       )}
 
