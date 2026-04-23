@@ -9,9 +9,11 @@ type LangCode = "ku" | "en" | "ar";
 
 type Story = { title: string; description: string };
 type SectionCard = { title: string; description: string; icon: string };
+type PeopleItem = { id: string; title: string; description: string; image: string; icon: string };
 type JourneyItem = { id: string; title: string; description: string; image: string; icon: string };
 type SystemNode = { title: string; subtitle: string; icon: string };
 type SystemItem = { id: string; title: string; description: string; image: string; icon: string };
+type LandItem = { id: string; title: string; description: string; image: string; icon: string };
 
 const STORIES: Record<LangCode, Story[]> = {
   en: [
@@ -67,6 +69,47 @@ const MENU_UI: Record<
   en: { previous: "Previous", returnToMain: "Return to Main Menu", next: "Next" },
   ku: { previous: "پێشوو", returnToMain: "گەڕانەوە بۆ مێنیوی سەرەکی", next: "دواتر" },
   ar: { previous: "السابق", returnToMain: "العودة إلى القائمة الرئيسية", next: "التالي" },
+};
+
+const PEOPLE_CONTENT: Record<
+  LangCode,
+  {
+    title: string;
+    subtitle: string;
+    heroImage: string;
+    items: PeopleItem[];
+  }
+> = {
+  en: {
+    title: "The People",
+    subtitle: "Discover who the Kurds are and the values, identity, and resilience that shape their story.",
+    heroImage: bg3,
+    items: [
+      { id: "who", title: "Who Are the Kurds?", description: "An ancient people of the Middle East known for courage, hospitality, and cultural richness.", image: bg2, icon: "🏛" },
+      { id: "identity", title: "A Shared Identity", description: "A people connected by language, history, tradition, and collective memory.", image: peshmargaBg, icon: "❖" },
+      { id: "resilience", title: "A Story of Resilience", description: "A history shaped by endurance, dignity, and hope.", image: bg3, icon: "☀" },
+    ],
+  },
+  ku: {
+    title: "خەڵک",
+    subtitle: "بزانە کوردەکان کێن و چۆن بەها و ناسنامە و خۆڕاگرییان چیرۆکەکەیان درووست کردووە.",
+    heroImage: bg3,
+    items: [
+      { id: "who", title: "کوردەکان کێن؟", description: "گەلەکی کۆنی ڕۆژهەڵاتی ناوەڕاست، بە ناوبانگی ئازایەتی و میوانداری و دەوڵەمی کلتووری.", image: bg2, icon: "🏛" },
+      { id: "identity", title: "ناسنامەی هاوبەش", description: "گەلێک کە بە زمان، مێژوو، نەریت و یادەوەری هاوبەش پێکەوە گرێدراون.", image: peshmargaBg, icon: "❖" },
+      { id: "resilience", title: "چیرۆکی خۆڕاگری", description: "مێژوویەک شێوەدراو بە خۆڕاگری، شکۆ و هیوا.", image: bg3, icon: "☀" },
+    ],
+  },
+  ar: {
+    title: "الشعب",
+    subtitle: "اكتشف من هم الكرد والقيم والهوية والصلابة التي تشكّل قصتهم.",
+    heroImage: bg3,
+    items: [
+      { id: "who", title: "من هم الكرد؟", description: "شعب عريق في الشرق الأوسط معروف بالشجاعة والكرم والغنى الثقافي.", image: bg2, icon: "🏛" },
+      { id: "identity", title: "هوية مشتركة", description: "شعب يجمعه اللغة والتاريخ والتقاليد والذاكرة الجماعية.", image: peshmargaBg, icon: "❖" },
+      { id: "resilience", title: "قصة صمود", description: "تاريخ تشكّل بالصبر والكرامة والأمل.", image: bg3, icon: "☀" },
+    ],
+  },
 };
 
 const JOURNEY_CONTENT: Record<
@@ -257,6 +300,57 @@ const SYSTEM_CONTENT: Record<
   },
 };
 
+const LAND_FUTURE_CONTENT: Record<
+  LangCode,
+  {
+    title: string;
+    subtitle: string;
+    mapTitle: string;
+    mapCities: string[];
+    items: LandItem[];
+  }
+> = {
+  en: {
+    title: "The Land and Future",
+    subtitle: "Explore Kurdistan's geography, symbols, protection, development, and future vision.",
+    mapTitle: "Kurdistan",
+    mapCities: ["Duhok", "Erbil", "Sulaymaniyah", "Halabja"],
+    items: [
+      { id: "land", title: "The Land", description: "Erbil, Sulaymaniyah, Duhok, and Halabja form a region of beauty and heritage.", image: bg3, icon: "⛰" },
+      { id: "symbols", title: "Identity and Symbols", description: "The flag, anthem, language, and heritage reflect the spirit of Kurdistan.", image: peshmargaBg, icon: "☀" },
+      { id: "peshmarga", title: "Peshmerga", description: "A symbol of courage, protection, and service.", image: peshmargaBg, icon: "★" },
+      { id: "progress", title: "Progress", description: "Development continues in infrastructure, education, economy, and tourism.", image: bg2, icon: "📈" },
+      { id: "future", title: "Future Vision", description: "Kurdistan looks ahead with ambition, opportunity, and confidence.", image: bg3, icon: "☼" },
+    ],
+  },
+  ku: {
+    title: "خاک و داهاتوو",
+    subtitle: "جوگرافیا، نیشانەکان، پاراستن، پێشکەوتن، و بینینی داهاتووی کوردستان بگەڕێ.",
+    mapTitle: "کوردستان",
+    mapCities: ["دهۆک", "هەولێر", "سلێمانی", "هەڵەبجە"],
+    items: [
+      { id: "land", title: "خاک", description: "هەولێر، سلێمانی، دهۆک و هەڵەبجە ناوچەیەکی جوان و میراتی پێکدەهێنن.", image: bg3, icon: "⛰" },
+      { id: "symbols", title: "ناسنامە و نیشانەکان", description: "ئاڵا، سروود، زمان و میرات ڕووحی کوردستان پیشان دەدەن.", image: peshmargaBg, icon: "☀" },
+      { id: "peshmarga", title: "پێشمەرگە", description: "هێمای ئازایەتی، پاراستن و خزمەت.", image: peshmargaBg, icon: "★" },
+      { id: "progress", title: "پێشکەوتن", description: "گەشەپێدان بەردەوامە لە ژێرخان، خوێندن، ئابووری و گەشتیاری.", image: bg2, icon: "📈" },
+      { id: "future", title: "بینینی داهاتوو", description: "کوردستان بە هیوا و دەرفەت و متمانەوە بۆ داهاتوو دەڕوات.", image: bg3, icon: "☼" },
+    ],
+  },
+  ar: {
+    title: "الأرض والمستقبل",
+    subtitle: "استكشف جغرافية كوردستان ورموزها وحمايتها وتطورها ورؤيتها للمستقبل.",
+    mapTitle: "كوردستان",
+    mapCities: ["دهوك", "أربيل", "السليمانية", "حلبجة"],
+    items: [
+      { id: "land", title: "الأرض", description: "أربيل والسليمانية ودهوك وحلبجة تشكّل منطقة من الجمال والتراث.", image: bg3, icon: "⛰" },
+      { id: "symbols", title: "الهوية والرموز", description: "العلم والنشيد واللغة والتراث تعكس روح كوردستان.", image: peshmargaBg, icon: "☀" },
+      { id: "peshmarga", title: "البيشمركة", description: "رمز للشجاعة والحماية والخدمة.", image: peshmargaBg, icon: "★" },
+      { id: "progress", title: "التقدم", description: "يتواصل التطور في البنية التحتية والتعليم والاقتصاد والسياحة.", image: bg2, icon: "📈" },
+      { id: "future", title: "رؤية المستقبل", description: "تنظر كوردستان إلى المستقبل بطموح وفرص وثقة.", image: bg3, icon: "☼" },
+    ],
+  },
+};
+
 const SECTION_MENU: Record<
   LangCode,
   {
@@ -352,7 +446,7 @@ const Index = () => {
   const [showLangPrompt, setShowLangPrompt] = useState(false);
   const [langClosing, setLangClosing] = useState(false);
   const [introPlaying, setIntroPlaying] = useState(false);
-  const [view, setView] = useState<"hero" | "menu" | "journey" | "system">("hero");
+  const [view, setView] = useState<"hero" | "menu" | "people" | "journey" | "system" | "landFuture">("hero");
 
   const advance = useCallback(() => {
     if (showLangPrompt || langClosing || introPlaying) return;
@@ -367,7 +461,7 @@ const Index = () => {
       return;
     }
     if (view === "hero") {
-      setView("menu");
+      setView("people");
       return;
     }
     setIndex((i) => (i + 1) % STORIES.en.length);
@@ -403,14 +497,16 @@ const Index = () => {
   const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
   const menu = SECTION_MENU[activeLang];
   const menuUi = MENU_UI[activeLang];
+  const people = PEOPLE_CONTENT[activeLang];
   const journey = JOURNEY_CONTENT[activeLang];
   const system = SYSTEM_CONTENT[activeLang];
+  const landFuture = LAND_FUTURE_CONTENT[activeLang];
 
   const handleSelectLang = (code: LangCode) => {
     setLang(code);
     setLangClosing(true);
-    // Move content first so the overlay fades over section menu.
-    setView("menu");
+    // Move content first so the overlay fades into the first section.
+    setView("people");
     window.setTimeout(() => {
       setShowLangPrompt(false);
       setLangClosing(false);
@@ -478,7 +574,7 @@ const Index = () => {
       )}
 
       {/* SECTION MENU VIEW */}
-      {view === "menu" && (
+      {false && view === "menu" && (
         <div
           className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10"
           onClick={(e) => e.stopPropagation()}
@@ -599,7 +695,7 @@ const Index = () => {
                 color: "hsl(var(--hero-foreground))",
                 backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
               }}
-              onClick={() => setView("hero")}
+              onClick={() => setView("people")}
             >
               ← {menuUi.previous}
             </button>
@@ -649,6 +745,112 @@ const Index = () => {
                   <span
                     className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
                     style={{ color: i === 1 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+                  >
+                    {card.title}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PEOPLE VIEW */}
+      {view === "people" && (
+        <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
+          <header className="mb-6 text-center">
+            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+              {people.title}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
+              {people.subtitle}
+            </p>
+          </header>
+
+          <section className="mb-4">
+            <img src={people.heroImage} alt={people.title} className="h-56 w-full rounded-3xl object-cover md:h-80" />
+          </section>
+
+          <section className="grid gap-3 md:grid-cols-3">
+            {people.items.map((item) => (
+              <article
+                key={item.id}
+                className="rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
+                style={{
+                  borderColor: "hsl(var(--hero-accent) / 0.35)",
+                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
+                }}
+              >
+                <img src={item.image} alt={item.title} className="mb-3 h-28 w-full rounded-xl object-cover" />
+                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border text-sm" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-semibold leading-tight md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: "hsl(var(--hero-muted))" }}>
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </section>
+
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("hero")}
+            >
+              ← {menuUi.previous}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.55)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
+              }}
+              onClick={() => setView("hero")}
+            >
+              {menuUi.returnToMain}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("journey")}
+            >
+              {menuUi.next} →
+            </button>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs" style={{ color: "hsl(var(--hero-accent))" }}>
+              Explore the Gate of Kurdistan
+            </p>
+            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
+              {menu.cards.map((card, i) => (
+                <div key={card.title} className="flex items-center gap-2">
+                  <span
+                    className={`h-3 w-3 rounded-full border ${i === 0 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+                    style={{
+                      borderColor: "hsl(var(--hero-accent) / 0.7)",
+                      backgroundColor: i === 0 ? "hsl(var(--hero-accent))" : "transparent",
+                    }}
+                  />
+                  <span
+                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
+                    style={{ color: i === 0 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
                   >
                     {card.title}
                   </span>
@@ -729,7 +931,7 @@ const Index = () => {
                 color: "hsl(var(--hero-foreground))",
                 backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
               }}
-              onClick={() => setView("menu")}
+              onClick={() => setView("hero")}
             >
               ← {menuUi.previous}
             </button>
@@ -741,7 +943,7 @@ const Index = () => {
                 color: "hsl(var(--hero-foreground))",
                 backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
               }}
-              onClick={() => setView("menu")}
+              onClick={() => setView("hero")}
             >
               {menuUi.returnToMain}
             </button>
@@ -871,7 +1073,142 @@ const Index = () => {
                 color: "hsl(var(--hero-foreground))",
                 backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
               }}
-              onClick={() => setView("menu")}
+              onClick={() => setView("hero")}
+            >
+              {menuUi.returnToMain}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("landFuture")}
+            >
+              {menuUi.next} →
+            </button>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p
+              className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs"
+              style={{ color: "hsl(var(--hero-accent))" }}
+            >
+              Explore the Gate of Kurdistan
+            </p>
+            <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
+              {menu.cards.map((card, i) => (
+                <div key={card.title} className="flex items-center gap-2">
+                  <span
+                    className={`h-3 w-3 rounded-full border ${i === 2 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+                    style={{
+                      borderColor: "hsl(var(--hero-accent) / 0.7)",
+                      backgroundColor: i === 2 ? "hsl(var(--hero-accent))" : "transparent",
+                    }}
+                  />
+                  <span
+                    className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
+                    style={{ color: i === 2 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+                  >
+                    {card.title}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* LAND AND FUTURE VIEW */}
+      {view === "landFuture" && (
+        <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
+          <header className="mb-6 text-center">
+            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+              {landFuture.title}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
+              {landFuture.subtitle}
+            </p>
+          </header>
+
+          <section
+            className="mb-6 rounded-2xl border p-5 md:p-6"
+            style={{ borderColor: "hsl(var(--hero-accent) / 0.35)", backgroundColor: "hsl(var(--hero-background) / 0.4)" }}
+          >
+            <div className="grid items-center gap-4 md:grid-cols-[1.2fr_1fr]">
+              <div>
+                <img src={bg3} alt={landFuture.mapTitle} className="h-56 w-full rounded-2xl object-cover md:h-72" />
+              </div>
+              <div>
+                <h3 className="text-3xl font-semibold md:text-4xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+                  {landFuture.mapTitle}
+                </h3>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  {landFuture.mapCities.map((city) => (
+                    <div
+                      key={city}
+                      className="rounded-lg border px-3 py-2 text-sm"
+                      style={{ borderColor: "hsl(var(--hero-accent) / 0.35)", color: "hsl(var(--hero-muted))" }}
+                    >
+                      {city}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="grid gap-3 md:grid-cols-5">
+            {landFuture.items.map((item) => (
+              <article
+                key={item.id}
+                className="rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
+                style={{
+                  borderColor: "hsl(var(--hero-accent) / 0.35)",
+                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
+                }}
+              >
+                <img src={item.image} alt={item.title} className="mb-3 h-28 w-full rounded-xl object-cover" />
+                <div
+                  className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border text-sm"
+                  style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}
+                >
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-semibold leading-tight md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: "hsl(var(--hero-muted))" }}>
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </section>
+
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.45)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+              }}
+              onClick={() => setView("system")}
+            >
+              ← {menuUi.previous}
+            </button>
+            <button
+              type="button"
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "hsl(var(--hero-accent) / 0.55)",
+                color: "hsl(var(--hero-foreground))",
+                backgroundColor: "hsl(var(--hero-foreground) / 0.08)",
+              }}
+              onClick={() => setView("hero")}
             >
               {menuUi.returnToMain}
             </button>
@@ -899,15 +1236,15 @@ const Index = () => {
               {menu.cards.map((card, i) => (
                 <div key={card.title} className="flex items-center gap-2">
                   <span
-                    className={`h-3 w-3 rounded-full border ${i === 2 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
+                    className={`h-3 w-3 rounded-full border ${i === 3 ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
                     style={{
                       borderColor: "hsl(var(--hero-accent) / 0.7)",
-                      backgroundColor: i === 2 ? "hsl(var(--hero-accent))" : "transparent",
+                      backgroundColor: i === 3 ? "hsl(var(--hero-accent))" : "transparent",
                     }}
                   />
                   <span
                     className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-                    style={{ color: i === 2 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+                    style={{ color: i === 3 ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
                   >
                     {card.title}
                   </span>
