@@ -17,6 +17,16 @@ type SystemNode = { title: string; subtitle: string; icon: string };
 type SystemItem = { id: string; title: string; description: string; image: string; icon: string };
 type LandItem = { id: string; title: string; description: string; image: string; icon: string };
 
+const UI_COLORS = {
+  panelBg: "rgba(8, 16, 30, 0.62)",
+  panelBgStrong: "rgba(8, 16, 30, 0.74)",
+  panelBorder: "rgba(214, 170, 92, 0.44)",
+  panelBorderStrong: "rgba(214, 170, 92, 0.62)",
+  textPrimary: "rgba(246, 236, 216, 0.98)",
+  textMuted: "rgba(235, 222, 194, 0.82)",
+  accent: "rgba(214, 170, 92, 0.98)",
+};
+
 const STORIES: Record<LangCode, Story[]> = {
   en: [
     { title: "The Great Kurdistan", description: "An ancient land of mountains, poets, and resilience." },
@@ -376,9 +386,9 @@ const SectionNav = ({
       onClick={onPrevious}
       className="rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
       style={{
-        borderColor: "hsl(var(--hero-accent) / 0.45)",
-        color: "hsl(var(--hero-foreground))",
-        backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+        borderColor: UI_COLORS.panelBorder,
+        color: UI_COLORS.textPrimary,
+        backgroundColor: UI_COLORS.panelBg,
       }}
       aria-label="Previous section"
     >
@@ -390,9 +400,9 @@ const SectionNav = ({
       disabled={!onNext}
       className="rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] disabled:cursor-not-allowed disabled:opacity-45"
       style={{
-        borderColor: "hsl(var(--hero-accent) / 0.45)",
-        color: "hsl(var(--hero-foreground))",
-        backgroundColor: "hsl(var(--hero-foreground) / 0.04)",
+        borderColor: UI_COLORS.panelBorder,
+        color: UI_COLORS.textPrimary,
+        backgroundColor: UI_COLORS.panelBg,
       }}
       aria-label="Next section"
     >
@@ -403,7 +413,7 @@ const SectionNav = ({
 
 const SectionProgress = ({ labels, activeIndex }: { labels: string[]; activeIndex: number }) => (
   <div className="mt-6 text-center">
-    <p className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs" style={{ color: "hsl(var(--hero-accent))" }}>
+    <p className="mb-3 text-[10px] uppercase tracking-[0.4em] md:text-xs" style={{ color: UI_COLORS.accent }}>
       Explore the Gate of Kurdistan
     </p>
     <div className="mx-auto grid max-w-xl grid-cols-4 items-center gap-2">
@@ -412,13 +422,13 @@ const SectionProgress = ({ labels, activeIndex }: { labels: string[]; activeInde
           <span
             className={`h-3 w-3 rounded-full border ${i === activeIndex ? "shadow-[0_0_12px_rgba(255,214,128,0.65)]" : ""}`}
             style={{
-              borderColor: "hsl(var(--hero-accent) / 0.7)",
-              backgroundColor: i === activeIndex ? "hsl(var(--hero-accent))" : "transparent",
+              borderColor: UI_COLORS.panelBorderStrong,
+              backgroundColor: i === activeIndex ? UI_COLORS.accent : "transparent",
             }}
           />
           <span
             className="hidden text-[10px] uppercase tracking-[0.1em] md:inline"
-            style={{ color: i === activeIndex ? "hsl(var(--hero-accent))" : "hsl(var(--hero-muted))" }}
+            style={{ color: i === activeIndex ? UI_COLORS.accent : UI_COLORS.textMuted }}
           >
             {label}
           </span>
@@ -495,7 +505,7 @@ const Index = () => {
     people: bg2,
     journey: kurdistan2Bg,
     system: kurdistan3Bg,
-    landFuture: kurdistan1Bg,
+    landFuture: bg3,
   };
 
   const handleSelectLang = (code: LangCode) => {
@@ -520,7 +530,7 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, kurdistan3Bg].map((bg) => (
+      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, bg3].map((bg) => (
         <img
           key={bg}
           src={bg}
@@ -534,10 +544,15 @@ const Index = () => {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "linear-gradient(to bottom, hsl(var(--hero-overlay) / 0.55), hsl(var(--hero-overlay) / 0.75))",
+          background: "linear-gradient(to bottom, rgba(5,10,20,0.48), rgba(5,10,20,0.78))",
         }}
       />
+      {view === "landFuture" && (
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-56"
+          style={{ background: "linear-gradient(to top, rgba(5,10,20,0.9), rgba(5,10,20,0))" }}
+        />
+      )}
 
       {/* HERO VIEW */}
       {view === "hero" && (
@@ -758,33 +773,6 @@ const Index = () => {
               {landFuture.subtitle}
             </p>
           </header>
-
-          <section
-            className="mb-6 rounded-2xl border p-5 md:p-6"
-            style={{ borderColor: "hsl(var(--hero-accent) / 0.35)", backgroundColor: "hsl(var(--hero-background) / 0.4)" }}
-          >
-            <div className="grid items-center gap-4 md:grid-cols-[1.2fr_1fr]">
-              <div>
-                <img src={bg3} alt={landFuture.mapTitle} className="h-56 w-full rounded-2xl object-cover md:h-72" />
-              </div>
-              <div>
-                <h3 className="text-3xl font-semibold md:text-4xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-                  {landFuture.mapTitle}
-                </h3>
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  {landFuture.mapCities.map((city) => (
-                    <div
-                      key={city}
-                      className="rounded-lg border px-3 py-2 text-sm"
-                      style={{ borderColor: "hsl(var(--hero-accent) / 0.35)", color: "hsl(var(--hero-muted))" }}
-                    >
-                      {city}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
 
           <section className="grid gap-3 md:grid-cols-5">
             {landFuture.items.map((item) => (
