@@ -505,7 +505,7 @@ const Index = () => {
     people: bg2,
     journey: kurdistan2Bg,
     system: kurdistan3Bg,
-    landFuture: bg3,
+    landFuture: bg2,
   };
 
   const handleSelectLang = (code: LangCode) => {
@@ -530,7 +530,7 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, bg3].map((bg) => (
+      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, bg2].map((bg) => (
         <img
           key={bg}
           src={bg}
@@ -762,49 +762,64 @@ const Index = () => {
         </div>
       )}
 
-      {/* LAND AND FUTURE VIEW */}
-      {view === "landFuture" && (
-        <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
-          <header className="mb-6 text-center">
-            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-              {landFuture.title}
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
-              {landFuture.subtitle}
-            </p>
-          </header>
+{view === "landFuture" && (
+  <div
+    className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 text-center"
+    onClick={(e) => e.stopPropagation()}
+  >
+    <header className="mb-10">
+      <h2 className="text-5xl md:text-7xl font-semibold tracking-wide text-[#E6D3A3]">
+        {landFuture.title}
+      </h2>
 
-          <section className="grid gap-3 md:grid-cols-5">
-            {landFuture.items.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-2xl border p-3 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
-                style={{
-                  borderColor: "hsl(var(--hero-accent) / 0.35)",
-                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
-                }}
-              >
-                <img src={item.image} alt={item.title} className="mb-3 h-28 w-full rounded-xl object-cover" />
-                <div
-                  className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border text-sm"
-                  style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}
-                >
-                  {item.icon}
-                </div>
-                <h3 className="text-2xl font-semibold leading-tight md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed" style={{ color: "hsl(var(--hero-muted))" }}>
-                  {item.description}
-                </p>
-              </article>
-            ))}
-          </section>
+      <div className="mt-3 flex items-center justify-center gap-2">
+        <div className="h-[1px] w-10 bg-[#E6D3A3]/40"></div>
+        <div className="h-2 w-2 rotate-45 bg-[#E6D3A3]"></div>
+        <div className="h-[1px] w-10 bg-[#E6D3A3]/40"></div>
+      </div>
 
-          <SectionNav ui={menuUi} onPrevious={() => setView("system")} />
-          <SectionProgress labels={stepLabels} activeIndex={3} />
-        </div>
-      )}
+      <p className="mx-auto mt-4 max-w-2xl text-sm md:text-lg text-[#CFC6B0]">
+        {landFuture.subtitle}
+      </p>
+    </header>
+
+    <section className="grid gap-4 md:grid-cols-5">
+      {landFuture.items.map((item) => (
+        <article
+          key={item.id}
+          className="group relative flex flex-col justify-between rounded-2xl border border-[#E6D3A3]/30 bg-[#0B1A24]/70 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#E6D3A3]/70"
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className="mb-4 h-36 w-full rounded-xl object-cover"
+          />
+
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-[#E6D3A3]/60 text-lg text-[#E6D3A3]">
+            {item.icon}
+          </div>
+
+          <h3 className="text-xl font-semibold text-[#E6D3A3] md:text-2xl">
+            {item.title}
+          </h3>
+
+          <div className="my-2 flex items-center justify-center gap-2">
+            <div className="h-[1px] w-6 bg-[#E6D3A3]/40"></div>
+            <div className="h-1 w-1 rounded-full bg-[#E6D3A3]"></div>
+            <div className="h-[1px] w-6 bg-[#E6D3A3]/40"></div>
+          </div>
+
+          <p className="text-sm leading-relaxed text-[#CFC6B0]">
+            {item.description}
+          </p>
+        </article>
+      ))}
+    </section>
+
+    <SectionNav ui={menuUi} onPrevious={() => setView("system")} />
+    <SectionProgress labels={stepLabels} activeIndex={3} />
+  </div>
+)}
 
       {/* Hint */}
       <div
