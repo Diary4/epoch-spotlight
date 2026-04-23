@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
 import officeBg from "@/assets/office.jpeg";
-import peshmargaBg from "@/assets/images/peshmarga.jpg";
+import peshmargaBg from "@/assets/images/bg-2.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
 import bg3 from "@/assets/images/bg-3.jpg";
 import React from "react";
@@ -760,7 +760,7 @@ const Index = () => {
 {view === "people" && (
   <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
     {/* Header with GOK branding */}
-    <header className="mb-8 flex items-center justify-between">
+    {/* <header className="mb-8 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <div
           className="h-12 w-10 rounded-md border"
@@ -798,7 +798,7 @@ const Index = () => {
           </React.Fragment>
         ))}
       </div>
-    </header>
+    </header> */}
 
     {/* Main Title */}
     <div className="mb-2 text-center">
