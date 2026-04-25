@@ -531,9 +531,9 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, bg2].map((bg) => (
+      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, bg2].map((bg, idx) => (
         <img
-          key={bg}
+          key={`${bg}-${idx}`}
           src={bg}
           alt=""
           aria-hidden="true"
