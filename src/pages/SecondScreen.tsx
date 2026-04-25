@@ -217,6 +217,7 @@ const SecondScreen = () => {
     <main
       role="button"
       tabIndex={0}
+      lang={activeLang}
       aria-label="Tap to explore the next section"
       onClick={advance}
       onKeyDown={onKeyDown}
