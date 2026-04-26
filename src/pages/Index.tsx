@@ -5,6 +5,7 @@ import ThePeoplePage from "@/components/Sections/ThePeople";
 import JourneyTimelinePage from "@/components/Sections/TheJourney";
 import SharedIdentityPage from "@/components/Sections/ThePople/SharedIdentity";
 import WhoAreTheKurdsSection from "@/components/Sections/ThePople/WhoAreTheKurds";
+import StoryOfResilience from "@/components/Sections/ThePople/StoryOfResilence";
 import officeBg from "@/assets/office.jpeg";
 import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
@@ -374,7 +375,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "journey" | "system" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "system" | "landFuture";
 
 const SectionNav = ({
   ui,
@@ -513,6 +514,7 @@ const Index = () => {
     people: bg2,
     whoAreTheKurds: bg2,
     sharedIdentity: bg2,
+    resilience: bg2,
     journey: kurdistan2Bg,
     system: kurdistan3Bg,
     landFuture: bg2,
@@ -619,6 +621,8 @@ const Index = () => {
                 setView("whoAreTheKurds");
               } else if (cardId === "sharedIdentity") {
                 setView("sharedIdentity");
+              } else if (cardId === "resilience") {
+                setView('resilience');
               }
             }}
           />
@@ -636,6 +640,13 @@ const Index = () => {
       {view === "sharedIdentity" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <SharedIdentityPage />
+        </div>
+      )}
+
+      {/* STORY OF RESILIENCE VIEW */}
+      {view === "resilience" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <StoryOfResilience />
         </div>
       )}
 
