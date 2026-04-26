@@ -34,6 +34,8 @@ const milestones = [
   },
 ];
 
+type JourneyMilestoneId = "1991" | "1992" | "buildingInstitutions" | "2005" | "today";
+
 function Logo() {
   return (
     <div className="flex items-center gap-5">
@@ -56,7 +58,11 @@ function HeaderButton({ icon, label }) {
   );
 }
 
-export default function JourneyTimelinePage() {
+type JourneyTimelinePageProps = {
+  onSelectMilestone?: (milestone: JourneyMilestoneId) => void;
+};
+
+export default function JourneyTimelinePage({ onSelectMilestone }: JourneyTimelinePageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -125,9 +131,19 @@ export default function JourneyTimelinePage() {
             <div className="relative z-10 space-y-9">
               {milestones.map((item, index) => {
                 const Icon = item.icon;
+                const milestoneId: JourneyMilestoneId =
+                  index === 0 ? "1991" : index === 1 ? "1992" : index === 2 ? "buildingInstitutions" : index === 3 ? "2005" : "today";
                 return (
-                  <article
+                  <button
+                    type="button"
                     key={item.title}
+                    onClick={() => {
+                      if (milestoneId === "1991") {
+                        onSelectMilestone?.("1991");
+                      } else if (milestoneId === "1992") {
+                        onSelectMilestone?.("1992");
+                      }
+                    }}
                     className="relative flex h-[186px] w-[575px] items-center rounded-[26px] border border-[#ead8b7] bg-white/72 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-sm"
                   >
                     <div className="flex w-[185px] justify-center">
@@ -150,7 +166,7 @@ export default function JourneyTimelinePage() {
                     >
                       <span className="h-4 w-4 rounded-full bg-white" />
                     </span>
-                  </article>
+                  </button>
                 );
               })}
             </div>

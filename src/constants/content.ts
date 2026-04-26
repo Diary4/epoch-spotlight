@@ -1,11 +1,7 @@
 import type { LangCode, Story, PeopleContent, JourneyContent, SystemContent, LandFutureContent, MenuUI } from "@/types/types";
-import officeBg from "@/assets/office.jpeg";
 import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
 import bg3 from "@/assets/images/bg-3.jpg";
-import kurdistan1Bg from "@/assets/images/kurdistan-1.jpeg";
-import kurdistan2Bg from "@/assets/images/kurdistan-2.jpeg";
-import kurdistan3Bg from "@/assets/images/kurdistan-3.jpeg";
 
 export const UI_COLORS = {
   panelBg: "rgba(8, 16, 30, 0.62)",

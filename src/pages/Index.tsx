@@ -3,6 +3,7 @@ import HeroCharacter from "@/components/HeroCharacter";
 import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
 import ThePeoplePage from "@/components/Sections/ThePeople";
 import JourneyTimelinePage from "@/components/Sections/TheJourney";
+import Year1991Page from "@/components/Sections/TheJourney/1991";
 import SharedIdentityPage from "@/components/Sections/ThePople/SharedIdentity";
 import WhoAreTheKurdsSection from "@/components/Sections/ThePople/WhoAreTheKurds";
 import StoryOfResilience from "@/components/Sections/ThePople/StoryOfResilence";
@@ -13,6 +14,8 @@ import bg3 from "@/assets/images/bg-3.jpg";
 import kurdistan1Bg from "@/assets/images/kurdistan-1.jpeg";
 import kurdistan2Bg from "@/assets/images/kurdistan-2.jpeg";
 import kurdistan3Bg from "@/assets/images/kurdistan-3.jpeg";
+import Year1992Page from "@/components/Sections/TheJourney/1992";
+
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -375,7 +378,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "system" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "system" | "landFuture";
 
 const SectionNav = ({
   ui,
@@ -516,6 +519,8 @@ const Index = () => {
     sharedIdentity: bg2,
     resilience: bg2,
     journey: kurdistan2Bg,
+    journey1991: kurdistan2Bg,
+    journey1992: kurdistan2Bg,
     system: kurdistan3Bg,
     landFuture: bg2,
   };
@@ -653,11 +658,33 @@ const Index = () => {
       {/* JOURNEY VIEW */}
       {view === "journey" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <JourneyTimelinePage />
+          <JourneyTimelinePage
+            onSelectMilestone={(milestone) => {
+              if (milestone === "1991") {
+                setView("journey1991");
+              } else if (milestone === "1992") {
+                setView("journey1992");
+              }
+            }}
+          />
         </div>
       )}
 
-      {/* SYSTEM VIEW */}
+      {/* 1991 VIEW */}
+      {view === "journey1991" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <Year1991Page />
+        </div>
+      )}
+
+      {/* 1992 VIEW */}
+      {view === "journey1992" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <Year1992Page />
+        </div>
+      )}
+
+        {/* SYSTEM VIEW */}
       {view === "system" && (
         <div className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
           <header className="mb-6 text-center">
