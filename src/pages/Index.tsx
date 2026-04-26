@@ -643,21 +643,21 @@ const Index = () => {
       {/* WHO ARE THE KURDS VIEW */}
       {view === "whoAreTheKurds" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <WhoAreTheKurdsSection />
+          <WhoAreTheKurdsSection onBack={() => setView("people")} />
         </div>
       )}
 
       {/* SHARED IDENTITY VIEW */}
       {view === "sharedIdentity" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <SharedIdentityPage />
+          <SharedIdentityPage onBack={() => setView("people")} />
         </div>
       )}
 
       {/* STORY OF RESILIENCE VIEW */}
       {view === "resilience" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <StoryOfResilience />
+          <StoryOfResilience onBack={() => setView("people")} />
         </div>
       )}
 
@@ -685,35 +685,35 @@ const Index = () => {
       {/* 1991 VIEW */}
       {view === "journey1991" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <Year1991Page />
+          <Year1991Page onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* 1992 VIEW */}
       {view === "journey1992" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <Year1992Page />
+          <Year1992Page onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* BUILDING INSTITUTIONS VIEW */}
       {view === "journeyBuildingInstitutions" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <BuildingInstitutionsPage />
+          <BuildingInstitutionsPage onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* 2005 VIEW */}
       {view === "journey2005" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <Year2005Page />
+          <Year2005Page onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* TODAY VIEW */}
       {view === "journeyToday" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <TodayDevelopmentPage />
+          <TodayDevelopmentPage onBack={() => setView("journey")} />
         </div>
       )}
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Landmark, Mountain, Vote } from "lucide-react";
+import { ArrowLeft, Landmark, Mountain, Vote } from "lucide-react";
 
 const rows = [
   {
@@ -22,10 +22,22 @@ const rows = [
   },
 ];
 
-export default function Year1992Page() {
+type Year1992PageProps = {
+  onBack?: () => void;
+};
+
+export default function Year1992Page({ onBack }: Year1992PageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          aria-label="Back to The Journey"
+        >
+          <ArrowLeft size={28} />
+        </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />

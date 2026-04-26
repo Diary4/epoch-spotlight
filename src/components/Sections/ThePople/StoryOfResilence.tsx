@@ -1,5 +1,5 @@
 import React from "react";
-import { Mountain, SunMedium, Landmark } from "lucide-react";
+import { ArrowLeft, Mountain, SunMedium, Landmark } from "lucide-react";
 
 const cards = [
   {
@@ -19,10 +19,22 @@ const cards = [
   },
 ];
 
-export default function StoryOfResilience() {
+type StoryOfResilienceProps = {
+  onBack?: () => void;
+};
+
+export default function StoryOfResilience({ onBack }: StoryOfResilienceProps) {
   return (
     <main className="min-h-screen w-full bg-[#fbf3e8] text-[#174b3d]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fff7ec] px-12 py-10">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#174b3d] shadow-sm"
+          aria-label="Back to The People"
+        >
+          <ArrowLeft size={28} />
+        </button>
         <div className="pointer-events-none absolute inset-0 opacity-16 [background-image:radial-gradient(#d8b875_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="pointer-events-none absolute left-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d5b372_1px,transparent_1px),linear-gradient(-45deg,#d5b372_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="pointer-events-none absolute right-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d5b372_1px,transparent_1px),linear-gradient(-45deg,#d5b372_1px,transparent_1px)] [background-size:24px_24px]" />

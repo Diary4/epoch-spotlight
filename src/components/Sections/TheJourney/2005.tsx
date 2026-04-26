@@ -36,9 +36,9 @@ function Logo() {
   );
 }
 
-function HeaderButton({ icon, label }) {
+function HeaderButton({ icon, label, onClick }: { icon: React.ReactNode; label: string; onClick?: () => void }) {
   return (
-    <button className="flex flex-col items-center gap-1 text-[#17233b]">
+    <button type="button" onClick={onClick} className="flex flex-col items-center gap-1 text-[#17233b]">
       <span className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#d7bd8a] bg-white/55 shadow-sm">
         {icon}
       </span>
@@ -47,7 +47,11 @@ function HeaderButton({ icon, label }) {
   );
 }
 
-export default function Year2005Page() {
+type Year2005PageProps = {
+  onBack?: () => void;
+};
+
+export default function Year2005Page({ onBack }: Year2005PageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -68,7 +72,7 @@ export default function Year2005Page() {
 
           <div className="flex gap-8">
             <HeaderButton icon={<Home size={34} />} label="Home" />
-            <HeaderButton icon={<ArrowLeft size={38} />} label="Back" />
+            <HeaderButton icon={<ArrowLeft size={38} />} label="Back" onClick={onBack} />
           </div>
         </header>
 
