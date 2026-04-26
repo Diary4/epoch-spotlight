@@ -4,6 +4,8 @@ import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
 import ThePeoplePage from "@/components/Sections/ThePeople";
 import JourneyTimelinePage from "@/components/Sections/TheJourney";
 import Year1991Page from "@/components/Sections/TheJourney/1991";
+import BuildingInstitutionsPage from "@/components/Sections/TheJourney/BuildingInstitutions";
+import Year2005Page from "@/components/Sections/TheJourney/2005";
 import SharedIdentityPage from "@/components/Sections/ThePople/SharedIdentity";
 import WhoAreTheKurdsSection from "@/components/Sections/ThePople/WhoAreTheKurds";
 import StoryOfResilience from "@/components/Sections/ThePople/StoryOfResilence";
@@ -378,7 +380,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "system" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "system" | "landFuture";
 
 const SectionNav = ({
   ui,
@@ -521,6 +523,8 @@ const Index = () => {
     journey: kurdistan2Bg,
     journey1991: kurdistan2Bg,
     journey1992: kurdistan2Bg,
+    journeyBuildingInstitutions: kurdistan2Bg,
+    journey2005: kurdistan2Bg,
     system: kurdistan3Bg,
     landFuture: bg2,
   };
@@ -664,6 +668,10 @@ const Index = () => {
                 setView("journey1991");
               } else if (milestone === "1992") {
                 setView("journey1992");
+              } else if (milestone === "buildingInstitutions") {
+                setView("journeyBuildingInstitutions");
+              } else if (milestone === "2005") {
+                setView("journey2005");
               }
             }}
           />
@@ -681,6 +689,20 @@ const Index = () => {
       {view === "journey1992" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <Year1992Page />
+        </div>
+      )}
+
+      {/* BUILDING INSTITUTIONS VIEW */}
+      {view === "journeyBuildingInstitutions" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <BuildingInstitutionsPage />
+        </div>
+      )}
+
+      {/* 2005 VIEW */}
+      {view === "journey2005" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <Year2005Page />
         </div>
       )}
 

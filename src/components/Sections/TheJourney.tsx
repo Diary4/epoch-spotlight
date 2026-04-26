@@ -142,6 +142,10 @@ export default function JourneyTimelinePage({ onSelectMilestone }: JourneyTimeli
                         onSelectMilestone?.("1991");
                       } else if (milestoneId === "1992") {
                         onSelectMilestone?.("1992");
+                      } else if (milestoneId === "buildingInstitutions") {
+                        onSelectMilestone?.("buildingInstitutions");
+                      } else if (milestoneId === "2005") {
+                        onSelectMilestone?.("2005");
                       }
                     }}
                     className="relative flex h-[186px] w-[575px] items-center rounded-[26px] border border-[#ead8b7] bg-white/72 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-sm"
