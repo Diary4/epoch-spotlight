@@ -1,8 +1,15 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
 
-const cards = [
+const cards: {
+  id: ThePeopleCardId;
+  title: string;
+  description: string;
+  image: string;
+  icon: typeof Landmark;
+}[] = [
   {
+    id: "whoAreTheKurds",
     title: "Who Are\nthe Kurds?",
     description:
       "An ancient people of the Middle East known for courage, hospitality, and cultural richness.",
@@ -11,6 +18,7 @@ const cards = [
     icon: Landmark,
   },
   {
+    id: "sharedIdentity",
     title: "A Shared\nIdentity",
     description:
       "A people connected by language, history, tradition, and collective memory.",
@@ -19,6 +27,7 @@ const cards = [
     icon: Grid2X2,
   },
   {
+    id: "resilience",
     title: "A Story of\nResilience",
     description:
       "A history shaped by endurance, dignity, and hope.",
@@ -27,6 +36,12 @@ const cards = [
     icon: Sun,
   },
 ];
+
+type ThePeopleCardId = "whoAreTheKurds" | "sharedIdentity" | "resilience";
+
+type ThePeoplePageProps = {
+  onSelectCard?: (cardId: ThePeopleCardId) => void;
+};
 
 function GoldButton({ children, active = false }) {
   return (
@@ -50,7 +65,7 @@ function CircleIcon({ Icon }) {
   );
 }
 
-export default function ThePeoplePage() {
+export default function ThePeoplePage({ onSelectCard }: ThePeoplePageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f9f3e7] text-[#1e352d]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fcf7ed] px-10 py-10">
@@ -91,9 +106,11 @@ export default function ThePeoplePage() {
           {cards.map((card) => {
             const Icon = card.icon;
             return (
-              <article
+              <button
+                type="button"
                 key={card.title}
-                className="relative overflow-hidden rounded-[22px] border-2 border-[#e4c78f] bg-white shadow-[0_10px_30px_rgba(84,54,16,0.14)]"
+                onClick={() => onSelectCard?.(card.id)}
+                className="relative overflow-hidden rounded-[22px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)]"
               >
                 <img src={card.image} alt={card.title} className="h-[290px] w-full object-cover" />
                 <CircleIcon Icon={Icon} />
@@ -112,7 +129,7 @@ export default function ThePeoplePage() {
                     {card.description}
                   </p>
                 </div>
-              </article>
+              </button>
             );
           })}
         </div>

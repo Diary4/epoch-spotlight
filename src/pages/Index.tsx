@@ -3,6 +3,7 @@ import HeroCharacter from "@/components/HeroCharacter";
 import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
 import ThePeoplePage from "@/components/Sections/ThePeople";
 import JourneyTimelinePage from "@/components/Sections/TheJourney";
+import WhoAreTheKurdsSection from "@/components/Sections/ThePople/WhoAreTheKurds";
 import officeBg from "@/assets/office.jpeg";
 import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
@@ -372,7 +373,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "journey" | "system" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "journey" | "system" | "landFuture";
 
 const SectionNav = ({
   ui,
@@ -509,6 +510,7 @@ const Index = () => {
     hero: officeBg,
     discover: officeBg,
     people: bg2,
+    whoAreTheKurds: bg2,
     journey: kurdistan2Bg,
     system: kurdistan3Bg,
     landFuture: bg2,
@@ -609,7 +611,20 @@ const Index = () => {
       {/* PEOPLE VIEW */}
       {view === "people" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <ThePeoplePage />
+          <ThePeoplePage
+            onSelectCard={(cardId) => {
+              if (cardId === "whoAreTheKurds") {
+                setView("whoAreTheKurds");
+              }
+            }}
+          />
+        </div>
+      )}
+
+      {/* WHO ARE THE KURDS VIEW */}
+      {view === "whoAreTheKurds" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <WhoAreTheKurdsSection />
         </div>
       )}
 
