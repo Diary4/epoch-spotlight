@@ -146,6 +146,8 @@ export default function JourneyTimelinePage({ onSelectMilestone }: JourneyTimeli
                         onSelectMilestone?.("buildingInstitutions");
                       } else if (milestoneId === "2005") {
                         onSelectMilestone?.("2005");
+                      } else if (milestoneId === "today") {
+                        onSelectMilestone?.("today");
                       }
                     }}
                     className="relative flex h-[186px] w-[575px] items-center rounded-[26px] border border-[#ead8b7] bg-white/72 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-sm"
