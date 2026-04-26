@@ -1,26 +1,38 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Compass, Grid2X2, Home, Landmark, Map, Mountain, UsersRound } from "lucide-react";
 
-const sections = [
+type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
+
+const sections: {
+  id: DiscoverSectionId;
+  title: string;
+  desc: string;
+  icon: typeof UsersRound;
+  image: string;
+}[] = [
   {
+    id: "people",
     title: "The People",
     desc: "Identity, culture,\nand resilience",
     icon: UsersRound,
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=90",
   },
   {
+    id: "journey",
     title: "The Journey",
     desc: "From 1991 to\nthe present",
     icon: Map,
     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
   },
   {
+    id: "system",
     title: "The System",
     desc: "Parliament, government,\nand leadership",
     icon: Landmark,
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=90",
   },
   {
+    id: "landFuture",
     title: "The Land and Future",
     desc: "Geography, symbols,\nprotection, and progress",
     icon: Mountain,
@@ -55,9 +67,10 @@ function Logo() {
 
 type DiscoverKurdistanProps = {
   onStartExploring?: () => void;
+  onSelectSection?: (section: DiscoverSectionId) => void;
 };
 
-export default function DiscoverKurdistan({ onStartExploring }: DiscoverKurdistanProps) {
+export default function DiscoverKurdistan({ onStartExploring, onSelectSection }: DiscoverKurdistanProps) {
   return (
     <main className="min-h-screen w-full overflow-hidden bg-[#f8f1e4] text-[#18362d]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5ea] px-12 py-12">
@@ -141,6 +154,8 @@ export default function DiscoverKurdistan({ onStartExploring }: DiscoverKurdista
                 return (
                   <button
                     key={section.title}
+                    type="button"
+                    onClick={() => onSelectSection?.(section.id)}
                     className="relative overflow-hidden rounded-[20px] border-2 border-[#e1bf7a] bg-[#fffaf0] text-center shadow-[0_10px_30px_rgba(84,54,16,0.16)] transition active:scale-[0.98]"
                   >
                     <img src={section.image} alt={section.title} className="h-[240px] w-full object-cover" />

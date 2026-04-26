@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
 import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
+import ThePeoplePage from "@/components/Sections/ThePeople";
+import JourneyTimelinePage from "@/components/Sections/TheJourney";
 import officeBg from "@/assets/office.jpeg";
 import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
@@ -501,8 +503,6 @@ const Index = () => {
   const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
   const stepLabels = SECTION_STEP_LABELS[activeLang];
   const menuUi = MENU_UI[activeLang];
-  const people = PEOPLE_CONTENT[activeLang];
-  const journey = JOURNEY_CONTENT[activeLang];
   const system = SYSTEM_CONTENT[activeLang];
   const landFuture = LAND_FUTURE_CONTENT[activeLang];
   const bgByView: Record<SectionView, string> = {
@@ -589,126 +589,34 @@ const Index = () => {
       {/* DISCOVER VIEW */}
       {view === "discover" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <DiscoverKurdistan onStartExploring={() => {
-            setView("people");
-            setIntroPlaying(false);
-            setShowLangPrompt(false);
-            setLangClosing(false);
-          }} />
+          <DiscoverKurdistan
+            onStartExploring={() => {
+              setView("people");
+              setIntroPlaying(false);
+              setShowLangPrompt(false);
+              setLangClosing(false);
+            }}
+            onSelectSection={(section) => {
+              setView(section);
+              setIntroPlaying(false);
+              setShowLangPrompt(false);
+              setLangClosing(false);
+            }}
+          />
         </div>
       )}
 
       {/* PEOPLE VIEW */}
       {view === "people" && (
-        <div className="relative z-10 mx-auto w-full max-w-6xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
-          <div className="mb-5 text-center">
-            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-              {people.title}
-            </h2>
-            <p className="mx-auto mt-3 max-w-3xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
-              {people.subtitle}
-            </p>
-          </div>
-
-          <section className="mb-4">
-            <img src={people.heroImage} alt={people.title} className="h-60 w-full rounded-3xl object-cover md:h-80" />
-          </section>
-
-          <section className="grid gap-3 md:grid-cols-3">
-            {people.items.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-2xl border p-4 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)]"
-                style={{
-                  borderColor: "hsl(var(--hero-accent) / 0.35)",
-                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
-                }}
-              >
-                <img src={item.image} alt={item.title} className="mb-3 h-28 w-full rounded-xl object-cover" />
-                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border text-sm" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>
-                  {item.icon}
-                </div>
-                <h3 className="text-2xl font-semibold leading-tight md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed" style={{ color: "hsl(var(--hero-muted))" }}>
-                  {item.description}
-                </p>
-              </article>
-            ))}
-          </section>
-
-          <SectionNav ui={menuUi} onPrevious={() => setView("hero")} onNext={() => setView("journey")} />
-          <SectionProgress labels={stepLabels} activeIndex={0} />
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <ThePeoplePage />
         </div>
       )}
 
       {/* JOURNEY VIEW */}
       {view === "journey" && (
-        <div className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
-          <header className="mb-6 text-center">
-            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-              {journey.title}
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
-              {journey.subtitle}
-            </p>
-          </header>
-
-          <div className="space-y-3">
-            {journey.items.map((item, i) => (
-              <div key={item.id} className="grid gap-3 md:grid-cols-[56px_1fr] md:items-stretch">
-                <div className="relative hidden md:block">
-                  {i < journey.items.length - 1 && (
-                    <span
-                      className="absolute left-1/2 top-11 w-[2px] -translate-x-1/2"
-                      style={{
-                        height: "calc(100% + 12px)",
-                        backgroundColor: "hsl(var(--hero-accent) / 0.35)",
-                      }}
-                    />
-                  )}
-                  <span
-                    className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border text-sm"
-                    style={{
-                      borderColor: "hsl(var(--hero-accent) / 0.7)",
-                      color: "hsl(var(--hero-accent))",
-                      backgroundColor: "hsl(var(--hero-background) / 0.55)",
-                    }}
-                  >
-                    {item.icon}
-                  </span>
-                </div>
-
-                <article
-                  className="group relative flex items-center gap-4 rounded-2xl border p-3 pr-14 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4 md:pr-16"
-                  style={{
-                    borderColor: "hsl(var(--hero-accent) / 0.35)",
-                    backgroundColor: "hsl(var(--hero-background) / 0.5)",
-                  }}
-                >
-                  <img src={item.image} alt={item.title} className="h-20 w-28 rounded-xl object-cover md:h-24 md:w-36" />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-2xl font-bold md:text-4xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-sm md:text-base" style={{ color: "hsl(var(--hero-muted))" }}>
-                      {item.description}
-                    </p>
-                  </div>
-                  <span
-                    className="absolute right-4 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-2xl transition-transform duration-200 group-hover:scale-110"
-                    style={{ color: "hsl(var(--hero-accent) / 0.92)" }}
-                  >
-                    ›
-                  </span>
-                </article>
-              </div>
-            ))}
-          </div>
-
-          <SectionNav ui={menuUi} onPrevious={() => setView("people")} onNext={() => setView("system")} />
-          <SectionProgress labels={stepLabels} activeIndex={1} />
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <JourneyTimelinePage />
         </div>
       )}
 
