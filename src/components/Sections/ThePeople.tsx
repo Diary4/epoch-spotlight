@@ -109,7 +109,15 @@ export default function ThePeoplePage({ onSelectCard }: ThePeoplePageProps) {
               <button
                 type="button"
                 key={card.title}
-                onClick={() => onSelectCard?.(card.id)}
+                onClick={() => {
+                  if (card.id === "whoAreTheKurds") {
+                    onSelectCard?.("whoAreTheKurds");
+                  } else if (card.id === "sharedIdentity") {
+                    onSelectCard?.("sharedIdentity");
+                  } else if (card.id === "resilience") {
+                    onSelectCard?.("resilience");
+                  }
+                }}
                 className="relative overflow-hidden rounded-[22px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)]"
               >
                 <img src={card.image} alt={card.title} className="h-[290px] w-full object-cover" />
