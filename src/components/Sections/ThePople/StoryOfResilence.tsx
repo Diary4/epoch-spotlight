@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Grid2X2, Home, Mountain, SunMedium, Landmark } from "lucide-react";
+import { Mountain, SunMedium, Landmark } from "lucide-react";
 
 const cards = [
   {
@@ -18,45 +18,6 @@ const cards = [
     icon: SunMedium,
   },
 ];
-
-function Logo() {
-  return (
-    <div className="flex items-center gap-5">
-      <div className="relative h-24 w-16">
-        <div className="absolute left-0 top-8 h-16 w-6 bg-gradient-to-b from-[#e5c16f] to-[#a9782f]" />
-        <div className="absolute right-0 top-8 h-16 w-6 bg-gradient-to-b from-[#e5c16f] to-[#a9782f]" />
-        <div className="absolute left-2 top-0 h-16 w-12 rounded-t-full border-[18px] border-b-0 border-[#d5a84e]" />
-      </div>
-      <div className="leading-tight">
-        <p className="text-[28px] font-bold tracking-[0.08em] text-[#174b3d]">GATE OF</p>
-        <p className="text-[28px] font-bold tracking-[0.08em] text-[#174b3d]">KURDISTAN</p>
-        <p className="text-[21px] tracking-[0.18em] text-[#c9903f]">GOK</p>
-      </div>
-    </div>
-  );
-}
-
-function CircleButton({ children }) {
-  return (
-    <button className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/55 text-[#174b3d] shadow-md">
-      {children}
-    </button>
-  );
-}
-
-function NavButton({ children, active = false }) {
-  return (
-    <button
-      className={`flex h-[92px] min-w-[275px] items-center justify-center gap-5 rounded-[18px] border-2 px-7 text-[29px] shadow-md ${
-        active
-          ? "border-[#d79f43] bg-gradient-to-b from-[#fff2d0] to-[#edc974] text-[#455143]"
-          : "border-[#e0b974] bg-[#fff9ef] text-[#174b3d]"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
 
 export default function StoryOfResilience() {
   return (
@@ -77,26 +38,8 @@ export default function StoryOfResilience() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fff7ec]" />
         </div>
 
-        {/* Header */}
-        <header className="relative z-10 flex items-start justify-between">
-          <Logo />
-
-          <nav className="mt-8 flex items-center gap-6 text-[22px] text-[#243d52]">
-            <span>Kurdish</span>
-            <span className="h-8 w-px bg-[#c99a55]" />
-            <span className="border-b-4 border-[#c99a55] pb-3 font-semibold text-[#c9903f]">English</span>
-            <span className="h-8 w-px bg-[#c99a55]" />
-            <span>Arabic</span>
-          </nav>
-
-          <div className="mt-4 flex gap-5">
-            <CircleButton><Home size={32} /></CircleButton>
-            <CircleButton><ArrowLeft size={36} /></CircleButton>
-          </div>
-        </header>
-
         {/* Text */}
-        <section className="relative z-10 mt-24 max-w-[540px]">
+        <section className="relative z-10 mt-16 max-w-[540px]">
           <h1 className="font-serif text-[91px] font-semibold leading-[1.03] tracking-tight text-[#214439]">
             A Story of<br />Resilience
           </h1>
@@ -158,41 +101,6 @@ export default function StoryOfResilience() {
           })}
         </section>
 
-        {/* Bottom controls */}
-        <footer className="relative z-20 pb-4">
-          <div className="grid grid-cols-3 gap-12">
-            <NavButton>
-              <ArrowLeft size={42} />
-              Previous
-            </NavButton>
-            <NavButton active>
-              <Grid2X2 size={44} className="text-[#c9903f]" />
-              <span className="leading-tight text-left">Return to<br />Main Menu</span>
-            </NavButton>
-            <NavButton>
-              Next
-              <ArrowRight size={42} />
-            </NavButton>
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-[21px] font-bold uppercase tracking-[0.35em] text-[#214439]">
-              Explore the Gate of Kurdistan
-            </p>
-
-            <div className="relative mx-auto mt-7 flex max-w-[740px] items-center justify-between text-[#c9903f]">
-              <span className="absolute left-10 right-10 top-[13px] h-0.5 bg-[#cfc8bb]" />
-              {[1, 2, 3, 4].map((n) => (
-                <div key={n} className="relative z-10 flex flex-col items-center gap-4">
-                  <span className={`h-7 w-7 rounded-full border-4 ${n === 2 ? "border-[#d29128] bg-white shadow-[0_0_0_6px_rgba(210,145,40,0.25)]" : "border-[#cfc8bb] bg-[#fff7ec]"}`} />
-                  <span className={`text-[17px] font-bold ${n === 2 ? "text-[#c9903f]" : "text-[#777]"}`}>
-                    {n}. {n === 1 ? "THE LAND" : n === 2 ? "THE PEOPLE" : n === 3 ? "THE HERITAGE" : "THE FUTURE"}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </footer>
       </section>
     </main>
   );
