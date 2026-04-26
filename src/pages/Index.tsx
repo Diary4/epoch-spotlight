@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
+import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
 import officeBg from "@/assets/office.jpeg";
 import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
@@ -369,7 +370,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "people" | "journey" | "system" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "journey" | "system" | "landFuture";
 
 const SectionNav = ({
   ui,
@@ -460,6 +461,10 @@ const Index = () => {
       return;
     }
     if (view === "hero") {
+      setView("discover");
+      return;
+    }
+    if (view === "discover") {
       setView("people");
       return;
     }
@@ -502,6 +507,7 @@ const Index = () => {
   const landFuture = LAND_FUTURE_CONTENT[activeLang];
   const bgByView: Record<SectionView, string> = {
     hero: officeBg,
+    discover: officeBg,
     people: bg2,
     journey: kurdistan2Bg,
     system: kurdistan3Bg,
@@ -511,8 +517,8 @@ const Index = () => {
   const handleSelectLang = (code: LangCode) => {
     setLang(code);
     setLangClosing(true);
-    // Move content first so the overlay fades into the first section.
-    setView("people");
+    // Move content first so the overlay fades into Discover Kurdistan.
+    setView("discover");
     window.setTimeout(() => {
       setShowLangPrompt(false);
       setLangClosing(false);
@@ -577,6 +583,18 @@ const Index = () => {
               {visibleStory.description}
             </p>
           </div>
+        </div>
+      )}
+
+      {/* DISCOVER VIEW */}
+      {view === "discover" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <DiscoverKurdistan onStartExploring={() => {
+            setView("people");
+            setIntroPlaying(false);
+            setShowLangPrompt(false);
+            setLangClosing(false);
+          }} />
         </div>
       )}
 
