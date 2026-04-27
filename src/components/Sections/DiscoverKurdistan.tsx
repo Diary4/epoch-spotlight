@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Compass, Grid2X2, Home, Landmark, Map, Mountain, UsersRound } from "lucide-react";
+import { ArrowRight, Landmark, Map, Mountain, UsersRound } from "lucide-react";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -74,32 +74,18 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
   return (
     <main className="min-h-screen w-full overflow-hidden bg-[#f8f1e4] text-[#18362d]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5ea] px-12 py-12">
-        <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[620px] bg-[url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center opacity-20" />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[700px] bg-gradient-to-t from-[#f8f1e4]/80 via-[#f8f1e4]/70 to-transparent" />
+        {/* Background image */}
+        <img
+          src="https://images.pexels.com/photos/18040523/pexels-photo-18040523.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt=""
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center opacity-40"
+        />
 
-        {/* Header
-        <header className="relative z-10 flex items-start justify-between">
-          <Logo />
+        {/* Light cream overlay */}
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />
 
-          <nav className="mt-8 flex items-center gap-8 text-[24px] text-[#38433e]">
-            <span>Kurdish</span>
-            <span className="h-10 w-px bg-[#c8a05a]" />
-            <span className="border-b-4 border-[#c8a05a] pb-4 font-semibold text-[#b5853d]">English</span>
-            <span className="h-10 w-px bg-[#c8a05a]" />
-            <span>Arabic</span>
-          </nav>
-
-          <div className="mt-5 flex gap-5">
-            <button className="grid h-18 w-18 place-items-center rounded-full border-2 border-[#b88b43] bg-white/45 text-[#18362d] shadow-sm">
-              <Home size={34} />
-            </button>
-            <button className="grid h-18 w-18 place-items-center rounded-full border-2 border-[#b88b43] bg-white/45 text-[#18362d] shadow-sm">
-              <ArrowLeft size={38} />
-            </button>
-          </div>
-        </header> */}
-
+        {/* Bottom fade */}
+        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-[#fbf5ea]/85 via-transparent to-[#fbf5ea]/65" />
         {/* Main content fills vertical space */}
         <div className="relative z-10 flex flex-1 flex-col justify-between pt-20">
           <div className="text-center">
@@ -109,11 +95,11 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
               <span className="h-0.5 w-150 max-w-[150px] bg-[#c49b52]" />
             </div>
 
-            <h1 className="font-serif text-[84px] font-semibold leading-none tracking-tight text-[#18362d]">
+            <h1 className="font-serif text-[84px] leading-none tracking-tight text-[#18362d]">
               Discover Kurdistan
             </h1>
 
-            <p className="mx-auto mt-8 max-w-[760px] text-[28px] leading-[1.45] text-[#424c48]">
+            <p className="mx-auto mt-8 max-w-[760px] font-light text-[28px] leading-[1.45] text-[#424c48]">
               A short journey through the people, identity, history,
               institutions, and future of the Kurdistan Region.
             </p>
@@ -124,7 +110,7 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
             </div>
 
-            <p className="mx-auto mt-8 max-w-[650px] text-[28px] leading-[1.45] text-[#4d5652]">
+            <p className="mx-auto mt-8 max-w-[650px] font-light text-[28px] leading-[1.45] text-[#4d5652]">
               This interactive experience offers visitors
               a simple introduction to Kurdistan and its story.
             </p>
@@ -132,7 +118,7 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
             <button
               type="button"
               onClick={onStartExploring}
-              className="mt-9 inline-flex min-w-[520px] items-center justify-center gap-14 rounded-[22px] border-4 border-[#d0a660] bg-[#0f442f] px-12 py-8 font-serif text-[43px] font-bold text-[#f6d995] shadow-[0_12px_28px_rgba(57,35,6,0.28)]"
+              className="mt-9 inline-flex min-w-[520px] items-center justify-center gap-14 rounded-[22px] border-4 border-[#d0a660] bg-[#0f442f] px-12 py-8 font-serif text-[43px] text-[#f6d995] shadow-[0_12px_28px_rgba(57,35,6,0.28)]"
             >
               Start Exploring
               <ArrowRight size={52} strokeWidth={1.7} />
@@ -173,30 +159,6 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
             </div>
           </div>
 
-          <footer className="grid grid-cols-[1fr_120px_1fr] items-end pt-10 text-center">
-            <button className="rounded-t-[70px] border-t-2 border-[#c8a05a] pt-6">
-              <div className="mx-auto grid h-18 w-18 place-items-center rounded-full border-2 border-[#c8a05a] bg-white/40 text-[#18362d]">
-                <Grid2X2 size={36} />
-              </div>
-              <h4 className="mt-4 font-serif text-[30px]">Main Menu</h4>
-              <p className="text-[20px] text-[#6c706d]">Return to the main menu</p>
-            </button>
-
-            <div className="flex flex-col items-center text-[#c8a05a]">
-              <div className="h-20 w-px bg-[#c8a05a]" />
-              <div className="grid h-20 w-20 place-items-center border-2 border-[#c8a05a] bg-[#fbf5ea] rotate-45">
-                <span className="rotate-[-45deg] text-3xl">✥</span>
-              </div>
-            </div>
-
-            <button className="rounded-t-[70px] border-t-2 border-[#c8a05a] pt-6">
-              <div className="mx-auto grid h-18 w-18 place-items-center rounded-full border-2 border-[#c8a05a] bg-white/40 text-[#18362d]">
-                <Compass size={38} />
-              </div>
-              <h4 className="mt-4 font-serif text-[30px]">Explore More</h4>
-              <p className="text-[20px] text-[#6c706d]">Continue your journey</p>
-            </button>
-          </footer>
         </div>
       </section>
     </main>
