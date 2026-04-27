@@ -18,6 +18,7 @@ import kurdistan1Bg from "@/assets/images/kurdistan-1.jpeg";
 import kurdistan2Bg from "@/assets/images/kurdistan-2.jpeg";
 import kurdistan3Bg from "@/assets/images/kurdistan-3.jpeg";
 import Year1992Page from "@/components/Sections/TheJourney/1992";
+import SystemPage from "@/components/Sections/TheSystem";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -627,6 +628,7 @@ const Index = () => {
       {view === "people" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <ThePeoplePage
+            onBack={() => setView("discover")}
             onSelectCard={(cardId) => {
               if (cardId === "whoAreTheKurds") {
                 setView("whoAreTheKurds");
@@ -665,6 +667,7 @@ const Index = () => {
       {view === "journey" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <JourneyTimelinePage
+            onBack={() => setView("discover")}
             onSelectMilestone={(milestone) => {
               if (milestone === "1991") {
                 setView("journey1991");
@@ -716,73 +719,12 @@ const Index = () => {
           <TodayDevelopmentPage onBack={() => setView("journey")} />
         </div>
       )}
+      
+      {/* SYSTEM VIEW */}
 
-        {/* SYSTEM VIEW */}
       {view === "system" && (
-        <div className="relative z-10 mx-auto w-full max-w-5xl animate-fade-in px-6 py-8 md:py-10" onClick={(e) => e.stopPropagation()}>
-          <header className="mb-6 text-center">
-            <h2 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-              {system.title}
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-lg" style={{ color: "hsl(var(--hero-muted))" }}>
-              {system.subtitle}
-            </p>
-          </header>
-
-          <div className="mb-6 rounded-2xl border p-4 md:p-6" style={{ borderColor: "hsl(var(--hero-accent) / 0.35)", backgroundColor: "hsl(var(--hero-background) / 0.45)" }}>
-            <div className="grid items-center gap-4 md:grid-cols-3">
-              <div className="text-center">
-                <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full border text-2xl" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>{system.left.icon}</div>
-                <p className="text-lg font-semibold" style={{ color: "hsl(var(--hero-foreground))" }}>{system.left.title}</p>
-                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>{system.left.subtitle}</p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto mb-2 flex h-20 w-20 items-center justify-center rounded-full border text-3xl" style={{ borderColor: "hsl(var(--hero-accent) / 0.8)", color: "hsl(var(--hero-accent))" }}>{system.center.icon}</div>
-                <p className="text-xl font-semibold" style={{ color: "hsl(var(--hero-foreground))" }}>{system.center.title}</p>
-                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>{system.center.subtitle}</p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full border text-2xl" style={{ borderColor: "hsl(var(--hero-accent) / 0.7)", color: "hsl(var(--hero-accent))" }}>{system.right.icon}</div>
-                <p className="text-lg font-semibold" style={{ color: "hsl(var(--hero-foreground))" }}>{system.right.title}</p>
-                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "hsl(var(--hero-muted))" }}>{system.right.subtitle}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            {system.items.map((item) => (
-              <article
-                key={item.id}
-                className="group relative flex items-center gap-4 rounded-2xl border p-3 pr-14 transition-colors hover:bg-[hsl(var(--hero-foreground)/0.08)] md:p-4 md:pr-16"
-                style={{
-                  borderColor: "hsl(var(--hero-accent) / 0.35)",
-                  backgroundColor: "hsl(var(--hero-background) / 0.5)",
-                }}
-              >
-                <img src={item.image} alt={item.title} className="h-20 w-28 rounded-xl object-cover md:h-24 md:w-36" />
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-sm" style={{ borderColor: "hsl(var(--hero-accent) / 0.6)", color: "hsl(var(--hero-accent))" }}>
-                  {item.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-2xl font-bold md:text-3xl" style={{ color: "hsl(var(--hero-foreground))" }}>
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-sm md:text-base" style={{ color: "hsl(var(--hero-muted))" }}>
-                    {item.description}
-                  </p>
-                </div>
-                <span
-                  className="absolute right-4 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-2xl transition-transform duration-200 group-hover:scale-110"
-                  style={{ color: "hsl(var(--hero-accent) / 0.92)" }}
-                >
-                  ›
-                </span>
-              </article>
-            ))}
-          </div>
-
-          <SectionNav ui={menuUi} onPrevious={() => setView("journey")} onNext={() => setView("landFuture")} />
-          <SectionProgress labels={stepLabels} activeIndex={2} />
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <SystemPage />
         </div>
       )}
 

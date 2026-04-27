@@ -41,6 +41,7 @@ type ThePeopleCardId = "whoAreTheKurds" | "sharedIdentity" | "resilience";
 
 type ThePeoplePageProps = {
   onSelectCard?: (cardId: ThePeopleCardId) => void;
+  onBack?: () => void;
 };
 
 function GoldButton({ children, active = false }) {
@@ -65,10 +66,18 @@ function CircleIcon({ Icon }) {
   );
 }
 
-export default function ThePeoplePage({ onSelectCard }: ThePeoplePageProps) {
+export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f9f3e7] text-[#1e352d]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fcf7ed] px-10 py-10">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          aria-label="Back to Discover"
+        >
+          <ArrowLeft size={28} />
+        </button>
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
         <div className="absolute inset-x-0 top-[300px] h-[520px] bg-[url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-22" />
         <div className="absolute inset-x-0 top-[260px] h-[620px] bg-gradient-to-b from-transparent via-[#fcf7ed]/20 to-[#fcf7ed]" />
