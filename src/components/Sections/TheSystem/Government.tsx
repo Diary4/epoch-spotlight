@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ArrowLeft,
   ArrowRight,
   Building2,
   CheckCircle2,
@@ -87,10 +88,22 @@ function SmallDivider() {
   );
 }
 
-export default function GovernmentPage() {
+type GovernmentPageProps = {
+  onBack?: () => void;
+};
+
+export default function GovernmentPage({ onBack }: GovernmentPageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-12 py-8">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          aria-label="Back to The System"
+        >
+          <ArrowLeft size={28} />
+        </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-28 opacity-14 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />

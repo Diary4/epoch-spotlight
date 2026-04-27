@@ -52,15 +52,25 @@ function InstitutionNode({ label, icon, color, className = "", onClick }: { labe
 }
 
 type SystemPageProps = {
+  onBack?: () => void;
   onPrimeMinisterClick?: () => void;
   onParliamentClick?: () => void;
   onGovernmentClick?: () => void;
+  onPresidencyClick?: () => void;
 };
 
-export default function SystemPage({ onPrimeMinisterClick, onParliamentClick, onGovernmentClick }: SystemPageProps) {
+export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          aria-label="Back to Discover"
+        >
+          <ArrowLeft size={28} />
+        </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
@@ -123,7 +133,13 @@ export default function SystemPage({ onPrimeMinisterClick, onParliamentClick, on
               className="left-0 top-[285px]"
               onClick={onGovernmentClick}
             />
-            <InstitutionNode label="Presidency" icon={Bird} color="bg-[#9d3637]" className="right-0 top-[285px]" />
+            <InstitutionNode
+              label="Presidency"
+              icon={Bird}
+              color="bg-[#9d3637]"
+              className="right-0 top-[285px]"
+              onClick={onPresidencyClick}
+            />
 
             <div className="absolute left-1/2 top-[300px] grid h-20 w-20 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">
               <span className="text-4xl">✥</span>
