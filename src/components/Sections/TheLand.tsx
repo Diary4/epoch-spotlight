@@ -32,6 +32,7 @@ const topCards = [
 
 const bottomCards = [
   {
+    id: "progress",
     number: "04",
     title: "Progress",
     text: "Development continues in infrastructure, education, economy, and tourism.",
@@ -39,6 +40,7 @@ const bottomCards = [
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=90",
   },
   {
+    id: "futureVision",
     number: "05",
     title: "Future Vision",
     text: "Kurdistan looks ahead with ambition, opportunity, and confidence.",
@@ -108,10 +110,18 @@ function SmallCard({ card, onClick }: { card: (typeof topCards)[number]; onClick
   );
 }
 
-function WideCard({ card }) {
+function WideCard({ card, onClick }: { card: (typeof bottomCards)[number]; onClick?: () => void }) {
   const Icon = card.icon;
   return (
     <article className="relative min-h-[270px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-9 shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
+      {onClick && (
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`Open ${card.title}`}
+          className="absolute inset-0 z-20 appearance-none bg-transparent p-0"
+        />
+      )}
       <NumberBadge number={card.number} />
       <img
         src={card.image}
@@ -137,7 +147,7 @@ function WideCard({ card }) {
 
 type LandAndFuturePageProps = {
   onBack?: () => void;
-  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga") => void;
+  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga" | "progress") => void;
 };
 
 export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFuturePageProps) {
@@ -204,6 +214,8 @@ export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFutur
                     ? () => onSelectCard?.("land")
                     : card.id === "peshmerga"
                       ? () => onSelectCard?.("peshmerga")
+                      : card.id === "identitySymbols"
+                        ? () => onSelectCard?.("identitySymbols")
                       : undefined
                 }
               />
@@ -212,7 +224,11 @@ export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFutur
 
           <section className="grid grid-cols-2 gap-6 pb-4">
             {bottomCards.map((card) => (
-              <WideCard key={card.number} card={card} />
+              <WideCard
+                key={card.number}
+                card={card}
+                onClick={card.id === "progress" ? () => onSelectCard?.("progress") : undefined}
+              />
             ))}
           </section>
         </div>

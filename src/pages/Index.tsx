@@ -26,6 +26,8 @@ import PresidencyPage from "@/components/Sections/TheSystem/Presidency";
 import LandAndFuturePage from "@/components/Sections/TheLand";
 import TheLandPage from "@/components/Sections/TheLand/TheLand";
 import PeshmergaPage from "@/components/Sections/TheLand/Peshmarga";
+import ProgressPage from "@/components/Sections/TheLand/Progress";
+import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -389,7 +391,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "landFuture" | "land" | "peshmerga";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
 
 const SectionNav = ({
   ui,
@@ -543,6 +545,8 @@ const Index = () => {
     landFuture: bg2,
     land: bg2,
     peshmerga: bg2,
+    progress: bg2,
+    identitySymbols: bg2,
   };
 
   const handleSelectLang = (code: LangCode) => {
@@ -780,6 +784,10 @@ const Index = () => {
                 setView("land");
               } else if (cardId === "peshmerga") {
                 setView("peshmerga");
+              } else if (cardId === "progress") {
+                setView("progress");
+              } else if (cardId === "identitySymbols") {
+                setView("identitySymbols");
               }
             }}
           />
@@ -795,6 +803,18 @@ const Index = () => {
       {view === "peshmerga" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <PeshmergaPage onBack={() => setView("landFuture")} />
+        </div>
+      )}
+
+      {view === "progress" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <ProgressPage onBack={() => setView("landFuture")} />
+        </div>
+      )}
+
+      {view === "identitySymbols" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <KurdishLanguageDialectsPage onBack={() => setView("landFuture")} />
         </div>
       )}
 
