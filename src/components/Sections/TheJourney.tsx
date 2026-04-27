@@ -2,7 +2,6 @@ import React from "react";
 import {
   ArrowLeft,
   BarChart3,
-  Home,
   Landmark,
   Network,
   Scale,
@@ -42,57 +41,32 @@ const milestones = [
   },
 ];
 
-function Logo() {
-  return (
-    <div className="flex items-center gap-5">
-      <div className="grid h-18 w-18 place-items-center rounded-t-[28px] border-2 border-[#bd9650] text-[#bd9650]">
-        <Landmark size={42} strokeWidth={1.4} />
-      </div>
-      <h2 className="font-serif text-[34px] text-[#17233b]">Gate of Kurdistan</h2>
-    </div>
-  );
-}
+type JourneyMilestoneId = "1991" | "1992" | "buildingInstitutions" | "2005" | "today";
 
-function HeaderButton({ icon, label }) {
-  return (
-    <button className="flex flex-col items-center gap-1 text-[#17233b]">
-      <span className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#d7bd8a] bg-white/55 shadow-sm">
-        {icon}
-      </span>
-      <span className="text-[18px]">{label}</span>
-    </button>
-  );
-}
+type JourneyTimelinePageProps = {
+  onBack?: () => void;
+  onSelectMilestone?: (milestone: JourneyMilestoneId) => void;
+};
 
-export default function JourneyTimelinePage() {
+export default function JourneyTimelinePage({ onBack, onSelectMilestone }: JourneyTimelinePageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          aria-label="Back to Discover"
+        >
+          <ArrowLeft size={28} />
+        </button>
         {/* subtle paper/pattern */}
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Header */}
-        <header className="relative z-30 flex h-[135px] items-center justify-between border-b border-[#e6d2aa] bg-white/35 px-10">
-          <Logo />
-
-          <nav className="flex items-center gap-5 text-[22px]">
-            <span>Kurdish</span>
-            <span className="h-8 w-px bg-[#b99152]" />
-            <span className="border-b-4 border-[#b99152] pb-3 font-semibold">English</span>
-            <span className="h-8 w-px bg-[#b99152]" />
-            <span>Arabic</span>
-          </nav>
-
-          <div className="flex gap-8">
-            <HeaderButton icon={<Home size={34} />} label="Home" />
-            <HeaderButton icon={<ArrowLeft size={38} />} label="Back" />
-          </div>
-        </header>
-
         {/* Right illustration column - replace these with your AI images */}
-        <div className="pointer-events-none absolute right-0 top-[190px] z-0 h-[1500px] w-[580px]">
+        <div className="pointer-events-none absolute right-0 top-[120px] z-0 h-[1500px] w-[580px]">
           <img
             src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=90"
             className="absolute right-0 top-0 h-[430px] w-[520px] rounded-[50px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_52%,transparent_78%)]"
@@ -175,8 +149,12 @@ export default function JourneyTimelinePage() {
             <div className="space-y-8">
               {milestones.map((item, index) => {
                 const Icon = item.icon;
+                const milestoneId: JourneyMilestoneId =
+                  index === 0 ? "1991" : index === 1 ? "1992" : index === 2 ? "buildingInstitutions" : index === 3 ? "2005" : "today";
                 return (
-                  <article
+                  <button
+                    type="button"
+                    onClick={() => onSelectMilestone?.(milestoneId)}
                     key={item.title}
                     className="relative z-10 flex h-[178px] w-[590px] items-center rounded-[26px] border border-[#ead8b7] bg-white/78 shadow-[0_12px_30px_rgba(84,54,16,0.14)] backdrop-blur-sm"
                   >
@@ -199,7 +177,7 @@ export default function JourneyTimelinePage() {
                         {item.text}
                       </p>
                     </div>
-                  </article>
+                  </button>
                 );
               })}
             </div>
