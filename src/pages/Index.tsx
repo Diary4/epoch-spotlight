@@ -24,6 +24,8 @@ import ParliamentPage from "@/components/Sections/TheSystem/Parliment";
 import GovernmentPage from "@/components/Sections/TheSystem/Government";
 import PresidencyPage from "@/components/Sections/TheSystem/Presidency";
 import LandAndFuturePage from "@/components/Sections/TheLand";
+import TheLandPage from "@/components/Sections/TheLand/TheLand";
+import PeshmergaPage from "@/components/Sections/TheLand/Peshmarga";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -387,7 +389,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "landFuture" | "land" | "peshmerga";
 
 const SectionNav = ({
   ui,
@@ -539,6 +541,8 @@ const Index = () => {
     presidency: kurdistan3Bg,
     primeMinister: kurdistan3Bg,
     landFuture: bg2,
+    land: bg2,
+    peshmerga: bg2,
   };
 
   const handleSelectLang = (code: LangCode) => {
@@ -769,7 +773,28 @@ const Index = () => {
 
       {view === "landFuture" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <LandAndFuturePage onBack={() => setView("discover")} />
+          <LandAndFuturePage
+            onBack={() => setView("discover")}
+            onSelectCard={(cardId) => {
+              if (cardId === "land") {
+                setView("land");
+              } else if (cardId === "peshmerga") {
+                setView("peshmerga");
+              }
+            }}
+          />
+        </div>
+      )}
+
+      {view === "land" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <TheLandPage onBack={() => setView("landFuture")} />
+        </div>
+      )}
+
+      {view === "peshmerga" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <PeshmergaPage onBack={() => setView("landFuture")} />
         </div>
       )}
 

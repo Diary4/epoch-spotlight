@@ -3,6 +3,7 @@ import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "l
 
 const topCards = [
   {
+    id: "land",
     number: "01",
     title: "The Land",
     text: "A region of breathtaking geography, rich history, and timeless heritage.",
@@ -10,6 +11,7 @@ const topCards = [
     image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=90",
   },
   {
+    id: "identitySymbols",
     number: "02",
     title: "Identity and Symbols",
     text: "The flag, anthem, language, and heritage reflect the spirit of Kurdistan.",
@@ -18,6 +20,7 @@ const topCards = [
     featured: true,
   },
   {
+    id: "peshmerga",
     number: "03",
     title: "Peshmerga",
     text: "A symbol of courage, protection, and selfless service to the people.",
@@ -62,13 +65,21 @@ function NumberBadge({ number }) {
   );
 }
 
-function SmallCard({ card }) {
+function SmallCard({ card, onClick }: { card: (typeof topCards)[number]; onClick?: () => void }) {
   const Icon = card.icon;
   const iconBg = card.red ? "#963538" : card.featured ? "#c69237" : "#13213b";
   const iconColor = "#f8e5b8";
 
   return (
     <article className="relative flex min-h-[435px] flex-col overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
+      {onClick && (
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`Open ${card.title}`}
+          className="absolute inset-0 z-20 appearance-none bg-transparent p-0"
+        />
+      )}
       <NumberBadge number={card.number} />
       <div className="relative z-10 mx-auto mt-6 grid h-22 w-22 place-items-center rounded-full border-2 border-[#e7cfa1] bg-[#fff8ed] shadow-[0_6px_16px_rgba(0,0,0,0.1)]">
         <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: iconBg, color: iconColor }}>
@@ -126,9 +137,10 @@ function WideCard({ card }) {
 
 type LandAndFuturePageProps = {
   onBack?: () => void;
+  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga") => void;
 };
 
-export default function LandAndFuturePage({ onBack }: LandAndFuturePageProps) {
+export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFuturePageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-9 py-8">
@@ -184,7 +196,17 @@ export default function LandAndFuturePage({ onBack }: LandAndFuturePageProps) {
 
           <section className="grid grid-cols-3 gap-6 pb-5">
             {topCards.map((card) => (
-              <SmallCard key={card.number} card={card} />
+              <SmallCard
+                key={card.number}
+                card={card}
+                onClick={
+                  card.id === "land"
+                    ? () => onSelectCard?.("land")
+                    : card.id === "peshmerga"
+                      ? () => onSelectCard?.("peshmerga")
+                      : undefined
+                }
+              />
             ))}
           </section>
 
