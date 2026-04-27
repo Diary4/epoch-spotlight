@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, BarChart3, Flag, Hand, Mountain, Star, SunMedium } from "lucide-react";
+import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
 
 const topCards = [
   {
@@ -21,7 +21,7 @@ const topCards = [
     number: "03",
     title: "Peshmerga",
     text: "A symbol of courage, protection, and selfless service to the people.",
-    icon: Hand,
+    icon: Shield,
     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
     red: true,
   },
@@ -64,31 +64,34 @@ function NumberBadge({ number }) {
 
 function SmallCard({ card }) {
   const Icon = card.icon;
-  const color = card.red ? "#963538" : card.featured ? "#c69237" : "#13213b";
+  const iconBg = card.red ? "#963538" : card.featured ? "#c69237" : "#13213b";
+  const iconColor = "#f8e5b8";
 
   return (
-    <article className="relative min-h-[435px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
+    <article className="relative flex min-h-[435px] flex-col overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
       <NumberBadge number={card.number} />
-      <div className="mx-auto mt-6 grid h-22 w-22 place-items-center rounded-full border-2 border-[#e7cfa1] bg-[#fff8ed]" style={{ color }}>
-        <Icon size={48} strokeWidth={1.45} />
+      <div className="relative z-10 mx-auto mt-6 grid h-22 w-22 place-items-center rounded-full border-2 border-[#e7cfa1] bg-[#fff8ed] shadow-[0_6px_16px_rgba(0,0,0,0.1)]">
+        <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: iconBg, color: iconColor }}>
+          <Icon size={34} strokeWidth={1.7} />
+        </div>
       </div>
 
-      <h3 className="mt-6 font-serif text-[34px] font-semibold leading-tight text-[#17233b]">
+      <h3 className="relative z-10 mt-6 font-serif text-[34px] font-semibold leading-tight text-[#17233b]">
         {card.title}
       </h3>
 
-      <Divider className="mx-auto my-5 w-36" />
+      <Divider className="relative z-10 mx-auto my-5 w-36" />
 
-      <p className="mx-auto max-w-[250px] text-[18px] font-semibold leading-[1.45] text-[#35435b]">
+      <p className="relative z-10 mx-auto mb-6 max-w-[255px] text-[18px] font-semibold leading-[1.45] text-[#35435b]">
         {card.text}
       </p>
 
       <img
         src={card.image}
         alt={card.title}
-        className="absolute bottom-0 left-0 h-[165px] w-full object-cover opacity-80"
+        className="absolute bottom-0 left-0 h-[152px] w-full object-cover opacity-80"
       />
-      <div className="absolute bottom-0 left-0 right-0 h-[220px] bg-gradient-to-t from-transparent via-[#fff8ed]/25 to-[#fff8ed]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[176px] bg-gradient-to-t from-[#fff8ed]/95 via-[#fff8ed]/52 to-transparent" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
     </article>
   );
@@ -163,7 +166,7 @@ export default function LandAndFuturePage({ onBack }: LandAndFuturePageProps) {
               The Land<br />and Future
             </h1>
 
-            <p className="mt-8 font-serif text-[30px] leading-tight text-[#9b6d35]">
+            <p className="mt-8 font-serif text-[30px] z-10 leading-tight text-[#9b6d35]">
               Roots of Heritage.<br />Horizons of Tomorrow.
             </p>
 
