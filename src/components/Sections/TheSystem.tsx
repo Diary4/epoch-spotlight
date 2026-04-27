@@ -23,25 +23,41 @@ function HeaderButton({ icon, label }) {
   );
 }
 
-function InstitutionNode({ label, icon, color, className = "" }) {
+function InstitutionNode({ label, icon, color, className = "", onClick }: { label: string; icon: React.ElementType; color: string; className?: string; onClick?: () => void }) {
   const Icon = icon;
-  return (
-    <div className={`absolute flex flex-col items-center ${className}`}>
+  const content = (
+    <>
       <div className={`grid h-40 w-40 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55]`}>
         <Icon size={76} strokeWidth={1.35} />
       </div>
       <p className="mt-6 font-serif text-[31px] font-bold uppercase tracking-[0.06em] text-[#17233b]">
         {label}
       </p>
-    </div>
+    </>
+  );
+
+  if (!onClick) {
+    return <div className={`absolute flex flex-col items-center ${className}`}>{content}</div>;
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`absolute flex flex-col items-center appearance-none border-0 bg-transparent p-0 text-inherit cursor-pointer ${className}`}
+    >
+      {content}
+    </button>
   );
 }
 
 type SystemPageProps = {
   onPrimeMinisterClick?: () => void;
+  onParliamentClick?: () => void;
+  onGovernmentClick?: () => void;
 };
 
-export default function SystemPage({ onPrimeMinisterClick }: SystemPageProps) {
+export default function SystemPage({ onPrimeMinisterClick, onParliamentClick, onGovernmentClick }: SystemPageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -93,8 +109,20 @@ export default function SystemPage({ onPrimeMinisterClick }: SystemPageProps) {
               ))}
             </svg>
 
-            <InstitutionNode label="Parliament" icon={Landmark} color="bg-[#13213b]" className="left-1/2 top-0 -translate-x-1/2" />
-            <InstitutionNode label="Government" icon={Building2} color="bg-[#405846]" className="left-0 top-[285px]" />
+            <InstitutionNode
+              label="Parliament"
+              icon={Landmark}
+              color="bg-[#13213b]"
+              className="left-1/2 top-0 -translate-x-1/2"
+              onClick={onParliamentClick}
+            />
+            <InstitutionNode
+              label="Government"
+              icon={Building2}
+              color="bg-[#405846]"
+              className="left-0 top-[285px]"
+              onClick={onGovernmentClick}
+            />
             <InstitutionNode label="Presidency" icon={Bird} color="bg-[#9d3637]" className="right-0 top-[285px]" />
 
             <div className="absolute left-1/2 top-[300px] grid h-20 w-20 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">

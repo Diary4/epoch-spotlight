@@ -20,6 +20,8 @@ import kurdistan3Bg from "@/assets/images/kurdistan-3.jpeg";
 import Year1992Page from "@/components/Sections/TheJourney/1992";
 import SystemPage from "@/components/Sections/TheSystem";
 import PrimeMinisterPage from "@/components/Sections/TheSystem/ThePrimeMinistir";
+import ParliamentPage from "@/components/Sections/TheSystem/Parliment";
+import GovernmentPage from "@/components/Sections/TheSystem/Government";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -383,7 +385,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "primeMinister" | "landFuture";
+type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "primeMinister" | "landFuture";
 
 const SectionNav = ({
   ui,
@@ -530,6 +532,8 @@ const Index = () => {
     journey2005: kurdistan2Bg,
     journeyToday: kurdistan2Bg,
     system: kurdistan3Bg,
+    parliament: kurdistan3Bg,
+    government: kurdistan3Bg,
     primeMinister: kurdistan3Bg,
     landFuture: bg2,
   };
@@ -726,13 +730,29 @@ const Index = () => {
 
       {view === "system" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <SystemPage onPrimeMinisterClick={() => setView("primeMinister")} />
+          <SystemPage
+            onParliamentClick={() => setView("parliament")}
+            onGovernmentClick={() => setView("government")}
+            onPrimeMinisterClick={() => setView("primeMinister")}
+          />
+        </div>
+      )}
+
+      {view === "parliament" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <ParliamentPage />
         </div>
       )}
 
       {view === "primeMinister" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <PrimeMinisterPage />
+        </div>
+      )}
+
+      {view === "government" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <GovernmentPage />
         </div>
       )}
 
