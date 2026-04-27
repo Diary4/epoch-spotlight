@@ -23,6 +23,7 @@ import PrimeMinisterPage from "@/components/Sections/TheSystem/ThePrimeMinistir"
 import ParliamentPage from "@/components/Sections/TheSystem/Parliment";
 import GovernmentPage from "@/components/Sections/TheSystem/Government";
 import PresidencyPage from "@/components/Sections/TheSystem/Presidency";
+import LandAndFuturePage from "@/components/Sections/TheLand";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -766,64 +767,11 @@ const Index = () => {
         </div>
       )}
 
-{view === "landFuture" && (
-  <div
-    className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 text-center"
-    onClick={(e) => e.stopPropagation()}
-  >
-    <header className="mb-10">
-      <h2 className="text-5xl md:text-7xl font-semibold tracking-wide text-[#E6D3A3]">
-        {landFuture.title}
-      </h2>
-
-      <div className="mt-3 flex items-center justify-center gap-2">
-        <div className="h-[1px] w-10 bg-[#E6D3A3]/40"></div>
-        <div className="h-2 w-2 rotate-45 bg-[#E6D3A3]"></div>
-        <div className="h-[1px] w-10 bg-[#E6D3A3]/40"></div>
-      </div>
-
-      <p className="mx-auto mt-4 max-w-2xl text-sm md:text-lg text-[#CFC6B0]">
-        {landFuture.subtitle}
-      </p>
-    </header>
-
-    <section className="grid gap-4 md:grid-cols-5">
-      {landFuture.items.map((item) => (
-        <article
-          key={item.id}
-          className="group relative flex flex-col justify-between rounded-2xl border border-[#E6D3A3]/30 bg-[#0B1A24]/70 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#E6D3A3]/70"
-        >
-          <img
-            src={item.image}
-            alt={item.title}
-            className="mb-4 h-36 w-full rounded-xl object-cover"
-          />
-
-          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-[#E6D3A3]/60 text-lg text-[#E6D3A3]">
-            {item.icon}
-          </div>
-
-          <h3 className="text-xl font-semibold text-[#E6D3A3] md:text-2xl">
-            {item.title}
-          </h3>
-
-          <div className="my-2 flex items-center justify-center gap-2">
-            <div className="h-[1px] w-6 bg-[#E6D3A3]/40"></div>
-            <div className="h-1 w-1 rounded-full bg-[#E6D3A3]"></div>
-            <div className="h-[1px] w-6 bg-[#E6D3A3]/40"></div>
-          </div>
-
-          <p className="text-sm leading-relaxed text-[#CFC6B0]">
-            {item.description}
-          </p>
-        </article>
-      ))}
-    </section>
-
-    <SectionNav ui={menuUi} onPrevious={() => setView("system")} />
-    <SectionProgress labels={stepLabels} activeIndex={3} />
-  </div>
-)}
+      {view === "landFuture" && (
+        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <LandAndFuturePage onBack={() => setView("discover")} />
+        </div>
+      )}
 
       {/* Hint */}
       <div
