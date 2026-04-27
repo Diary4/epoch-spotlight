@@ -37,7 +37,11 @@ function InstitutionNode({ label, icon, color, className = "" }) {
   );
 }
 
-export default function SystemPage() {
+type SystemPageProps = {
+  onPrimeMinisterClick?: () => void;
+};
+
+export default function SystemPage({ onPrimeMinisterClick }: SystemPageProps) {
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -98,7 +102,11 @@ export default function SystemPage() {
             </div>
           </section>
 
-          <button className="mx-auto mt-8 flex h-[130px] w-[780px] items-center justify-between rounded-[24px] border-4 border-[#cda55e] bg-white/62 px-16 font-serif text-[55px] font-semibold text-[#17233b] shadow-[0_12px_30px_rgba(84,54,16,0.14)]">
+          <button
+            type="button"
+            onClick={onPrimeMinisterClick}
+            className="mx-auto mt-8 flex h-[130px] w-[780px] items-center justify-between rounded-[24px] border-4 border-[#cda55e] bg-white/62 px-16 font-serif text-[55px] font-semibold text-[#17233b] shadow-[0_12px_30px_rgba(84,54,16,0.14)]"
+          >
             <span className="text-[#b99152] text-6xl">✥</span>
             <span>Prime Minister</span>
             <ArrowRight size={56} strokeWidth={1.6} className="text-[#b99152]" />
