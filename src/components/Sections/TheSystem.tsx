@@ -52,6 +52,7 @@ function InstitutionNode({ label, icon, color, className = "", onClick }: { labe
 }
 
 type SystemPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
   onPrimeMinisterClick?: () => void;
   onParliamentClick?: () => void;
@@ -59,7 +60,21 @@ type SystemPageProps = {
   onPresidencyClick?: () => void;
 };
 
-export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
+export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
+  const isAr = lang === "ar";
+  const title = isAr ? "النظام" : "The System";
+  const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : "How Kurdistan’s institutions work together.";
+  const description = isAr
+    ? "يعمل إقليم كوردستان وفق نظام برلماني تتعاون فيه المؤسسات لخدمة الحياة العامة."
+    : "The Kurdistan Region operates through a parliamentary system in which institutions work together to support public life.";
+  const parliamentLabel = isAr ? "البرلمان" : "Parliament";
+  const governmentLabel = isAr ? "الحكومة" : "Government";
+  const presidencyLabel = isAr ? "الرئاسة" : "Presidency";
+  const primeMinisterLabel = isAr ? "رئيس الوزراء" : "Prime Minister";
+  const footerText = isAr
+    ? "تدعم هذه المؤسسات مجتمعةً الحوكمة والقانون والإدارة العامة."
+    : "Together, these institutions support governance, law, and public administration.";
+
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -88,11 +103,11 @@ export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentC
         <div className="relative z-10 flex flex-1 flex-col px-14 pt-22 pb-7">
           <section className="max-w-[575px]">
             <h1 className="font-serif text-[88px] font-semibold leading-[1.03] tracking-tight text-[#17233b]">
-              The System
+              {title}
             </h1>
 
             <p className="mt-8 text-[34px] font-bold leading-tight text-[#9b6d35]">
-              How Kurdistan’s institutions<br />work together.
+              {heading}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -101,7 +116,7 @@ export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentC
             </div>
 
             <p className="mt-10 max-w-[535px] text-[28px] font-medium leading-[1.5] text-[#2d3549]">
-              The Kurdistan Region operates through a parliamentary system in which institutions work together to support public life.
+              {description}
             </p>
           </section>
 
@@ -120,21 +135,21 @@ export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentC
             </svg>
 
             <InstitutionNode
-              label="Parliament"
+              label={parliamentLabel}
               icon={Landmark}
               color="bg-[#13213b]"
               className="left-1/2 top-0 -translate-x-1/2"
               onClick={onParliamentClick}
             />
             <InstitutionNode
-              label="Government"
+              label={governmentLabel}
               icon={Building2}
               color="bg-[#405846]"
               className="left-0 top-[285px]"
               onClick={onGovernmentClick}
             />
             <InstitutionNode
-              label="Presidency"
+              label={presidencyLabel}
               icon={Bird}
               color="bg-[#9d3637]"
               className="right-0 top-[285px]"
@@ -152,7 +167,7 @@ export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentC
             className="mx-auto mt-8 flex h-[130px] w-[780px] items-center justify-between rounded-[24px] border-4 border-[#cda55e] bg-white/62 px-16 font-serif text-[55px] font-semibold text-[#17233b] shadow-[0_12px_30px_rgba(84,54,16,0.14)]"
           >
             <span className="text-[#b99152] text-6xl">✥</span>
-            <span>Prime Minister</span>
+            <span>{primeMinisterLabel}</span>
             <ArrowRight size={56} strokeWidth={1.6} className="text-[#b99152]" />
           </button>
 
@@ -161,7 +176,7 @@ export default function SystemPage({ onBack, onPrimeMinisterClick, onParliamentC
               <span className="text-5xl">✥</span>
             </div>
             <p className="font-serif text-[34px] leading-tight text-[#17233b] p-4">
-              Together, these institutions support<br />governance, law, and public administration.
+              {footerText}
             </p>
           </div>
         </div>

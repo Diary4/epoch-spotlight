@@ -625,6 +625,7 @@ const Index = () => {
       {view === "discover" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <DiscoverKurdistan
+            lang={activeLang}
             onStartExploring={() => {
               setView("people");
               setIntroPlaying(false);

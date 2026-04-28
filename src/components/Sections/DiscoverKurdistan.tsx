@@ -1,42 +1,52 @@
 import React from "react";
 import { ArrowRight, Landmark, Map, Mountain, UsersRound } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
-const sections: {
+type LangCode = "ku" | "en" | "ar";
+const CONTENT = { en, ar, ku } as const;
+
+const sectionIcons: Record<DiscoverSectionId, typeof UsersRound> = {
+  people: UsersRound,
+  journey: Map,
+  system: Landmark,
+  landFuture: Mountain,
+};
+
+const sectionImages: Record<DiscoverSectionId, string> = {
+  people: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=90",
+  journey: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
+  system: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=90",
+  landFuture: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=90",
+};
+
+const fallbackSections: {
   id: DiscoverSectionId;
   title: string;
   desc: string;
-  icon: typeof UsersRound;
-  image: string;
 }[] = [
   {
     id: "people",
     title: "The People",
     desc: "Identity, culture,\nand resilience",
-    icon: UsersRound,
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=90",
   },
   {
     id: "journey",
     title: "The Journey",
     desc: "From 1991 to\nthe present",
-    icon: Map,
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
   },
   {
     id: "system",
     title: "The System",
     desc: "Parliament, government,\nand leadership",
-    icon: Landmark,
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=90",
   },
   {
     id: "landFuture",
     title: "The Land and Future",
     desc: "Geography, symbols,\nprotection, and progress",
-    icon: Mountain,
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=90",
   },
 ];
 
@@ -66,11 +76,22 @@ function Logo() {
 }
 
 type DiscoverKurdistanProps = {
+  lang?: LangCode;
   onStartExploring?: () => void;
   onSelectSection?: (section: DiscoverSectionId) => void;
 };
 
-export default function DiscoverKurdistan({ onStartExploring, onSelectSection }: DiscoverKurdistanProps) {
+export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSelectSection }: DiscoverKurdistanProps) {
+  const data = CONTENT[lang] as any;
+  const discover = data?.discover ?? {};
+  const localizedSections = Array.isArray(discover.sections)
+    ? discover.sections.map((section: { id: DiscoverSectionId; title: string; desc: string }) => ({
+        id: section.id,
+        title: section.title,
+        desc: section.desc,
+      }))
+    : fallbackSections;
+
   return (
     <main className="min-h-screen w-full overflow-hidden bg-[#f8f1e4] text-[#18362d]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5ea] px-12 py-12">
@@ -99,13 +120,10 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
               <span className="h-0.5 w-150 max-w-[150px] bg-[#c49b52]" />
             </div>
 
-            <h1 className="font-serif text-[84px] leading-none tracking-tight text-[#18362d]">
-              Discover Kurdistan
-            </h1>
+            <h1 className="font-serif text-[84px] leading-none tracking-tight text-[#18362d]">{discover.title ?? "Discover Kurdistan"}</h1>
 
             <p className="mx-auto mt-8 max-w-[760px] font-light text-[28px] leading-[1.45] text-[#424c48]">
-              A short journey through the people, identity, history,
-              institutions, and future of the Kurdistan Region.
+              {discover.subtitle ?? "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
             </p>
 
             <div className="mx-auto mt-10 flex max-w-[420px] items-center gap-6 text-[#c49b52]">
@@ -115,8 +133,7 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
             </div>
 
             <p className="mx-auto mt-8 max-w-[650px] font-light text-[28px] leading-[1.45] text-[#4d5652]">
-              This interactive experience offers visitors
-              a simple introduction to Kurdistan and its story.
+              {discover.description ?? "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
             </p>
 
             <button
@@ -124,7 +141,7 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
               onClick={onStartExploring}
               className="mt-9 inline-flex min-w-[520px] items-center justify-center gap-14 rounded-[22px] border-4 border-[#d0a660] bg-[#0f442f] px-12 py-8 font-serif text-[43px] text-[#f6d995] shadow-[0_12px_28px_rgba(57,35,6,0.28)]"
             >
-              Start Exploring
+              {discover.startExploring ?? "Start Exploring"}
               <ArrowRight size={52} strokeWidth={1.7} />
             </button>
           </div>
@@ -133,14 +150,14 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
             <div className="mb-6 flex items-center justify-center gap-5 font-serif text-[30px] text-[#2d3d35]">
               <span className="h-0.5 w-74 max-w-[74px] bg-[#c8a05a]" />
               <span className="h-4 w-4 rotate-45 border-2 border-[#c8a05a]" />
-              <span>Choose a section to begin</span>
+              <span>{discover.chooseSection ?? "Choose a section to begin"}</span>
               <span className="h-4 w-4 rotate-45 border-2 border-[#c8a05a]" />
               <span className="h-0.5 w-74 max-w-[74px] bg-[#c8a05a]" />
             </div>
 
             <div className="grid grid-cols-2 gap-8">
-              {sections.map((section) => {
-                const Icon = section.icon;
+              {localizedSections.map((section) => {
+                const Icon = sectionIcons[section.id];
                 return (
                   <button
                     key={section.title}
@@ -148,7 +165,7 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
                     onClick={() => onSelectSection?.(section.id)}
                     className="relative overflow-hidden rounded-[20px] border-2 border-[#e1bf7a] bg-[#fffaf0] text-center shadow-[0_10px_30px_rgba(84,54,16,0.16)] transition active:scale-[0.98]"
                   >
-                    <img src={section.image} alt={section.title} className="h-[240px] w-full object-cover" />
+                    <img src={sectionImages[section.id]} alt={section.title} className="h-[240px] w-full object-cover" />
                     <GoldIcon className="absolute left-1/2 top-[202px] h-24 w-24 -translate-x-1/2">
                       <Icon size={48} strokeWidth={1.6} />
                     </GoldIcon>

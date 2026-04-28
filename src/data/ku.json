@@ -1,0 +1,333 @@
+{
+  "app": {
+    "name": "Epoch Spotlight",
+    "language": "English",
+    "title": "The Great Kurdistan — Historical Characters",
+    "description": "Explore historical characters and civilizations — from The Great Kurdistan to the Silk Road, Mesopotamia, the Ottoman and Persian Empires."
+  },
+  "hero": {
+    "hint": "Tap anywhere to explore",
+    "intro": {
+      "title": "The character is speaking...",
+      "description": "Please wait, language selection will appear after the intro."
+    },
+    "stories": [
+      {
+        "title": "The Great Kurdistan",
+        "description": "An ancient land of mountains, poets, and resilience."
+      },
+      {
+        "title": "The Silk Road",
+        "description": "Where empires, ideas, and caravans crossed continents."
+      },
+      {
+        "title": "Mesopotamia",
+        "description": "The cradle of civilization between two rivers."
+      },
+      {
+        "title": "The Ottoman Era",
+        "description": "Six centuries that reshaped three continents."
+      },
+      {
+        "title": "The Persian Empire",
+        "description": "From Cyrus to Darius — an empire of tolerance and reach."
+      }
+    ]
+  },
+  "discover": {
+    "title": "Discover Kurdistan",
+    "subtitle": "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region.",
+    "description": "This interactive experience offers visitors a simple introduction to Kurdistan and its story.",
+    "startExploring": "Start Exploring",
+    "chooseSection": "Choose a section to begin",
+    "sections": [
+      {
+        "id": "people",
+        "title": "The People",
+        "desc": "Identity, culture,\nand resilience"
+      },
+      {
+        "id": "journey",
+        "title": "The Journey",
+        "desc": "From 1991 to\nthe present"
+      },
+      {
+        "id": "system",
+        "title": "The System",
+        "desc": "Parliament, government,\nand leadership"
+      },
+      {
+        "id": "landFuture",
+        "title": "The Land and Future",
+        "desc": "Geography, symbols,\nprotection, and progress"
+      }
+    ]
+  },
+  "navigation": {
+    "previous": "Previous",
+    "next": "Next",
+    "returnToMain": "Return to Main Menu",
+    "progressTitle": "Explore the Gate of Kurdistan",
+    "sectionSteps": [
+      "The People",
+      "The Journey",
+      "The System",
+      "The Land and Future"
+    ]
+  },
+  "people": {
+    "title": "The People",
+    "subtitle": "Discover who the Kurds are and the values, identity, and resilience that shape their story.",
+    "items": [
+      {
+        "id": "who",
+        "title": "Who Are the Kurds?",
+        "description": "An ancient people of the Middle East known for courage, hospitality, and cultural richness."
+      },
+      {
+        "id": "identity",
+        "title": "A Shared Identity",
+        "description": "A people connected by language, history, tradition, and collective memory."
+      },
+      {
+        "id": "resilience",
+        "title": "A Story of Resilience",
+        "description": "A history shaped by endurance, dignity, and hope."
+      }
+    ]
+  },
+  "journey": {
+    "title": "The Journey",
+    "subtitle": "Explore the key milestones that shaped the Kurdistan Region from 1991 until today.",
+    "items": [
+      {
+        "id": "1991",
+        "title": "1991",
+        "description": "A historic turning point that opened the path to a new reality."
+      },
+      {
+        "id": "1992",
+        "title": "1992",
+        "description": "The first parliament and government marked the beginning of self-rule."
+      },
+      {
+        "id": "institutions",
+        "title": "Building Institutions",
+        "description": "Public institutions gradually formed the structure of modern governance."
+      },
+      {
+        "id": "2005",
+        "title": "2005",
+        "description": "Federal recognition gave constitutional status to the Kurdistan Region."
+      },
+      {
+        "id": "today",
+        "title": "Today",
+        "description": "Kurdistan continues to grow through institutions, development, and vision."
+      }
+    ],
+    "sections": {
+      "1991": {
+        "title": "1991",
+        "headline": "A historic turning point.",
+        "description": "A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region.",
+        "cards": [
+          {
+            "title": "Historic Uprising",
+            "description": "In 1991, a major uprising marked a turning point in Kurdish history in Iraq."
+          },
+          {
+            "title": "A New Reality",
+            "description": "This moment opened the way for a new political and administrative reality in the Kurdistan Region."
+          },
+          {
+            "title": "A Foundation for the Future",
+            "description": "The developments of 1991 laid the groundwork for modern self-governance."
+          }
+        ]
+      },
+      "1992": {
+        "title": "1992",
+        "headline": "The beginning of self-rule.",
+        "description": "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future.",
+        "cards": [
+          {
+            "title": "First Election",
+            "description": "In 1992, the Kurdistan Region held its first parliamentary election."
+          },
+          {
+            "title": "Parliament and Government",
+            "description": "The first parliament and government were formed, marking the beginning of modern self-rule."
+          },
+          {
+            "title": "A Defining Milestone",
+            "description": "This step transformed earlier achievements into an organized political reality."
+          }
+        ]
+      },
+      "institutions": {
+        "title": "Building Institutions",
+        "headline": "From transition to governance.",
+        "description": "Discover how institutions were established and strengthened to serve the people of Kurdistan.",
+        "cards": [
+          {
+            "title": "Public Institutions",
+            "description": "Over time, Kurdistan developed institutions that helped organize governance and public life."
+          },
+          {
+            "title": "Parliament, Government, Presidency",
+            "description": "These institutions became essential parts of the regional political system."
+          },
+          {
+            "title": "Institutional Growth",
+            "description": "Together, they helped shape a more structured and functioning regional administration."
+          }
+        ]
+      },
+      "2005": {
+        "title": "2005",
+        "headline": "Federal recognition within Iraq.",
+        "cards": [
+          {
+            "title": "Constitutional Recognition",
+            "description": "In 2005, Iraq's constitution officially recognized the Kurdistan Region as a federal region."
+          },
+          {
+            "title": "Legal Status",
+            "description": "This recognition affirmed the legal and constitutional status of the Region and its institutions."
+          },
+          {
+            "title": "A New Chapter",
+            "description": "It marked an important step in the development of the Kurdistan Region within federal Iraq."
+          }
+        ]
+      },
+      "today": {
+        "title": "Today",
+        "headline": "Growth, development, and vision.",
+        "description": "Kurdistan is building a stronger tomorrow through progress, unity, and opportunity.",
+        "cards": [
+          {
+            "title": "Development",
+            "description": "Today, the Kurdistan Region continues to advance in infrastructure, education, and public services."
+          },
+          {
+            "title": "Economy and Investment",
+            "description": "Economic growth, business activity, and investment remain important parts of the Region's future."
+          },
+          {
+            "title": "Youth and Opportunity",
+            "description": "A new generation is helping shape Kurdistan through learning, work, and innovation."
+          },
+          {
+            "title": "Looking Ahead",
+            "description": "Kurdistan continues to look forward with resilience, ambition, and confidence."
+          }
+        ]
+      }
+    }
+  },
+  "system": {
+    "title": "The System",
+    "subtitle": "Learn how the Kurdistan Region is governed through its key institutions and leadership roles.",
+    "nodes": {
+      "center": {
+        "title": "Parliament",
+        "subtitle": "Legislative Power"
+      },
+      "left": {
+        "title": "Government",
+        "subtitle": "Executive Power"
+      },
+      "right": {
+        "title": "Presidency",
+        "subtitle": "Constitutional Power"
+      }
+    },
+    "items": [
+      {
+        "id": "1",
+        "title": "1. Parliament",
+        "description": "The legislative institution responsible for laws and representation."
+      },
+      {
+        "id": "2",
+        "title": "2. Government",
+        "description": "The executive body responsible for administration and public services."
+      },
+      {
+        "id": "3",
+        "title": "3. Presidency",
+        "description": "A constitutional and national institution within the regional system."
+      },
+      {
+        "id": "4",
+        "title": "4. How It Works",
+        "description": "Institutions work together through a parliamentary system."
+      },
+      {
+        "id": "5",
+        "title": "5. Leadership",
+        "description": "Presidents, Prime Ministers, and Speakers helped shape the Region's development."
+      }
+    ]
+  },
+  "landFuture": {
+    "title": "The Land and Future",
+    "subtitle": "Explore Kurdistan's geography, symbols, protection, development, and future vision.",
+    "mapTitle": "Kurdistan",
+    "mapCities": [
+      "Duhok",
+      "Erbil",
+      "Sulaymaniyah",
+      "Halabja"
+    ],
+    "items": [
+      {
+        "id": "land",
+        "title": "The Land",
+        "description": "Erbil, Sulaymaniyah, Duhok, and Halabja form a region of beauty and heritage."
+      },
+      {
+        "id": "symbols",
+        "title": "Identity and Symbols",
+        "description": "The flag, anthem, language, and heritage reflect the spirit of Kurdistan."
+      },
+      {
+        "id": "peshmarga",
+        "title": "Peshmerga",
+        "description": "A symbol of courage, protection, and service."
+      },
+      {
+        "id": "progress",
+        "title": "Progress",
+        "description": "Development continues in infrastructure, education, economy, and tourism."
+      },
+      {
+        "id": "future",
+        "title": "Future Vision",
+        "description": "Kurdistan looks ahead with ambition, opportunity, and confidence."
+      }
+    ]
+  },
+  "accessibility": {
+    "mainTapLabel": "Tap to explore the next section",
+    "languageDialogLabel": "Select a language",
+    "previousSectionLabel": "Previous section",
+    "nextSectionLabel": "Next section"
+  },
+  "languages": {
+    "ku": {
+      "label": "Kurdish",
+      "native": "کوردی"
+    },
+    "en": {
+      "label": "English",
+      "native": "English"
+    },
+    "ar": {
+      "label": "Arabic",
+      "native": "العربية"
+    }
+  }
+}

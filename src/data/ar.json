@@ -12,6 +12,35 @@
         "description": "Please wait, language selection will appear after the intro."
       }
     },
+    "discover": {
+      "title": "اكتشف كوردستان",
+      "subtitle": "رحلة قصيرة عبر شعب كوردستان وهويته وتاريخه ومؤسساته ومستقبله.",
+      "description": "تقدّم هذه التجربة التفاعلية للزوار مدخلاً بسيطاً إلى كوردستان وقصتها.",
+      "startExploring": "ابدأ الاستكشاف",
+      "chooseSection": "اختر قسمًا للبدء",
+      "sections": [
+        {
+          "id": "people",
+          "title": "الشعب",
+          "desc": "الهوية والثقافة\nوالصمود"
+        },
+        {
+          "id": "journey",
+          "title": "الرحلة",
+          "desc": "من 1991 حتى\nالوقت الحاضر"
+        },
+        {
+          "id": "system",
+          "title": "النظام",
+          "desc": "البرلمان والحكومة\nوالقيادة"
+        },
+        {
+          "id": "landFuture",
+          "title": "الأرض والمستقبل",
+          "desc": "الجغرافيا والرموز\nوالحماية والتقدم"
+        }
+      ]
+    },
     "navigation": {
       "previous": "القائمة الرئيسية",
       "next": "استكشف المزيد",
