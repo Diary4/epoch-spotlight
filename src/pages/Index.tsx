@@ -517,7 +517,7 @@ const Index = () => {
   };
 
   const activeLang: LangCode = lang ?? "en";
-  const dir = LANG_OPTIONS.find((l) => l.code === activeLang)?.dir ?? "ltr";
+  const dir: "ltr" = "ltr";
   const current = STORIES[activeLang][index];
   const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
   const stepLabels = SECTION_STEP_LABELS[activeLang];
@@ -684,6 +684,7 @@ const Index = () => {
       {view === "journey" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <JourneyTimelinePage
+            lang={activeLang}
             onBack={() => setView("discover")}
             onSelectMilestone={(milestone) => {
               if (milestone === "1991") {
@@ -705,35 +706,35 @@ const Index = () => {
       {/* 1991 VIEW */}
       {view === "journey1991" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <Year1991Page onBack={() => setView("journey")} />
+          <Year1991Page lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* 1992 VIEW */}
       {view === "journey1992" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <Year1992Page onBack={() => setView("journey")} />
+          <Year1992Page lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* BUILDING INSTITUTIONS VIEW */}
       {view === "journeyBuildingInstitutions" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <BuildingInstitutionsPage onBack={() => setView("journey")} />
+          <BuildingInstitutionsPage lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* 2005 VIEW */}
       {view === "journey2005" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <Year2005Page onBack={() => setView("journey")} />
+          <Year2005Page lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* TODAY VIEW */}
       {view === "journeyToday" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <TodayDevelopmentPage onBack={() => setView("journey")} />
+          <TodayDevelopmentPage lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
       

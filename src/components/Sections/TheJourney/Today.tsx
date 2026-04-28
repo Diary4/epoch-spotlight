@@ -1,5 +1,8 @@
 import React from "react";
 import { ArrowLeft, BarChart3, GraduationCap, Mountain, Waves } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const cards = [
   {
@@ -28,11 +31,29 @@ const cards = [
   },
 ];
 
+type LangCode = "ku" | "en" | "ar";
+type JourneySection = {
+  title?: string;
+  headline?: string;
+  description?: string;
+  cards?: { title: string; description: string }[];
+};
+const CONTENT = { en, ar, ku } as const;
+
 type TodayDevelopmentPageProps = {
+  lang?: LangCode;
   onBack?: () => void;
 };
 
-export default function TodayDevelopmentPage({ onBack }: TodayDevelopmentPageProps) {
+export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevelopmentPageProps) {
+  const data = CONTENT[lang] as any;
+  const section: JourneySection =
+    data?.journey?.sections?.today ?? data?.people?.sections?.today ?? {};
+  const localizedCards = cards.map((card, i) => ({
+    ...card,
+    title: (section.cards?.[i]?.title ?? card.title).replace(" and ", " and\n"),
+    text: section.cards?.[i]?.description ?? card.text,
+  }));
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -62,11 +83,11 @@ export default function TodayDevelopmentPage({ onBack }: TodayDevelopmentPagePro
         <div className="relative z-10 flex flex-1 flex-col px-14 pt-14 pb-14">
           <section className="max-w-[500px]">
             <h1 className="font-serif text-[120px] font-semibold leading-none tracking-tight text-[#17233b]">
-              Today
+              {section.title ?? "Today"}
             </h1>
 
             <p className="mt-8 text-[38px] font-bold leading-tight text-[#9b6d35]">
-              Growth, development,<br />and vision.
+              {section.headline ?? "Growth, development, and vision."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -75,14 +96,14 @@ export default function TodayDevelopmentPage({ onBack }: TodayDevelopmentPagePro
             </div>
 
             <p className="mt-10 max-w-[475px] text-[29px] font-medium leading-[1.52] text-[#2d3549]">
-              Kurdistan is building a stronger tomorrow through progress, unity, and opportunity.
+              {section.description ?? "Kurdistan is building a stronger tomorrow through progress, unity, and opportunity."}
             </p>
           </section>
 
           <div className="flex-1" />
 
           <section className="grid grid-cols-2 gap-8">
-            {cards.map((card) => {
+            {localizedCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article

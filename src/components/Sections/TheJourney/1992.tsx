@@ -1,5 +1,8 @@
 import React from "react";
 import { ArrowLeft, Landmark, Mountain, Vote } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const rows = [
   {
@@ -22,11 +25,29 @@ const rows = [
   },
 ];
 
+type LangCode = "ku" | "en" | "ar";
+type JourneySection = {
+  title?: string;
+  headline?: string;
+  description?: string;
+  cards?: { title: string; description: string }[];
+};
+const CONTENT = { en, ar, ku } as const;
+
 type Year1992PageProps = {
+  lang?: LangCode;
   onBack?: () => void;
 };
 
-export default function Year1992Page({ onBack }: Year1992PageProps) {
+export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps) {
+  const data = CONTENT[lang] as any;
+  const section: JourneySection =
+    data?.journey?.sections?.["1992"] ?? data?.people?.sections?.["1992"] ?? {};
+  const localizedRows = rows.map((row, i) => ({
+    ...row,
+    title: section.cards?.[i]?.title ?? row.title,
+    text: section.cards?.[i]?.description ?? row.text,
+  }));
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -56,11 +77,11 @@ export default function Year1992Page({ onBack }: Year1992PageProps) {
         <div className="relative z-10 flex flex-1 flex-col px-14 pt-14 pb-14">
           <section className="max-w-[560px]">
             <h1 className="font-serif text-[150px] font-semibold leading-none tracking-tight text-[#17233b]">
-              1992
+              {section.title ?? "1992"}
             </h1>
 
             <p className="mt-6 text-[37px] font-bold leading-tight text-[#9b6d35]">
-              The beginning of self-rule.
+              {section.headline ?? "The beginning of self-rule."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -69,14 +90,14 @@ export default function Year1992Page({ onBack }: Year1992PageProps) {
             </div>
 
             <p className="mt-10 max-w-[490px] text-[30px] font-medium leading-[1.55] text-[#2d3549]">
-              A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future.
+              {section.description ?? "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future."}
             </p>
           </section>
 
           <div className="flex-1" />
 
           <section className="space-y-8">
-            {rows.map((row) => {
+            {localizedRows.map((row) => {
               const Icon = row.icon;
               return (
                 <article

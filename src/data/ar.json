@@ -1,0 +1,283 @@
+{
+    "app": {
+      "name": "Gate Of Kurdistan",
+      "language": "English",
+      "title": "The Great Kurdistan — Historical Characters",
+      "description": "Explore historical characters and civilizations — from The Great Kurdistan to the Silk Road, Mesopotamia, the Ottoman and Persian Empires."
+    },
+    "hero": {
+      "hint": "Tap anywhere to explore",
+      "intro": {
+        "title": "The character is speaking...",
+        "description": "Please wait, language selection will appear after the intro."
+      }
+    },
+    "navigation": {
+      "previous": "القائمة الرئيسية",
+      "next": "استكشف المزيد",
+      "returnToMain": "العودة إلى القائمة الرئيسية",
+      "progressTitle": "تابع رحلتك",
+      "sectionSteps": [
+        "The People",
+        "The Journey",
+        "The System",
+        "The Land and Future"
+      ]
+    },
+    "people": {
+      "title": "The People",
+      "subtitle": "Discover who the Kurds are and the values, identity, and resilience that shape their story.",
+      "items": [
+        {
+          "id": "who",
+          "title": "Who Are the Kurds?",
+          "description": "An ancient people of the Middle East known for courage, hospitality, and cultural richness."
+        },
+        {
+          "id": "identity",
+          "title": "A Shared Identity",
+          "description": "A people connected by language, history, tradition, and collective memory."
+        },
+        {
+          "id": "resilience",
+          "title": "A Story of Resilience",
+          "description": "A history shaped by endurance, dignity, and hope."
+        }
+      ],
+      "sections": {
+        "1991": {
+          "title": "1991",
+          "headline": "منعطف تاريخي.",
+          "description": "لحظة من الشجاعة والوحدة فتحت الطريق نحو فصل جديد في تاريخ إقليم كوردستان.",
+          "cards": [
+            {
+              "title": "انتفاضة تاريخية",
+              "description": "في عام 1991، شهد تاريخ كوردستان في العراق انتفاضةً كبرى كانت نقطة تحوّل مفصلية."
+            },
+            {
+              "title": "واقع جديد",
+              "description": "فتح هذا الحدث الطريقَ أمام واقع سياسي وإداري جديد في إقليم كوردستان."
+            },
+            {
+              "title": "أساس للمستقبل",
+              "description": "أرست مستجدات عام 1991 الركائزَ الأساسية للحكم الذاتي الحديث."
+            }
+          ]
+        },
+        "1992": {
+          "title": "1992",
+          "headline": "بداية الحكم الذاتي.",
+          "description": "عام محوري اتّخذ فيه إقليم كُردستان خطوة حاسمة نحو بناء مؤسساته الخاصة ورسم مستقبله.",
+          "cards": [
+            {
+              "title": "أول انتخابات",
+              "description": "أجرى إقليم كوردستان في عام 1992 أولى انتخاباته البرلمانية."
+            },
+            {
+              "title": "البرلمان والحكومة",
+              "description": "تشكّلت أول برلمان وحكومة، مما أسّس لبداية الحكم الذاتي الحديث."
+            },
+            {
+              "title": "محطة فارقة",
+              "description": "حوّلت هذه الخطوة المكاسبَ السابقة إلى واقع سياسي منظّم ومتماسك."
+            }
+          ]
+        },
+        "institutions": {
+          "title": "بناء المؤسسات",
+          "headline": "من المرحلة الانتقالية إلى الحوكمة.",
+          "description": "اكتشف كيف تأسّست المؤسسات وتعزّزت لتخدم أبناء كُردستان.",
+          "cards": [
+            {
+              "title": "المؤسسات العامة",
+              "description": "طوّرت كوردستان على مرّ السنين مؤسساتٍ راسخة أسهمت في تنظيم الحوكمة وتنظيم الحياة العامة"
+            },
+            {
+              "title": "البرلمان والحكومة والرئاسة",
+              "description": "باتت هذه المؤسسات ركائزَ أساسية في المنظومة السياسية للإقليم."
+            },
+            {
+              "title": "النمو المؤسسي",
+              "description": "أسهمت هذه المؤسسات مجتمعةً في تشكيل إدارة إقليمية أكثر تنظيمًا وكفاءةً وفاعلية"
+            }
+          ]
+        },
+        "2005": {
+          "title": "2005",
+          "headline": "الاعتراف الفيدرالي داخل العراق.",
+          "cards": [
+            {
+              "title": "الاعتراف الدستوري",
+              "description": "في عام 2005، اعترف الدستور العراقي رسميًا بإقليم كوردستان إقليمًا فيدراليًا."
+            },
+            {
+              "title": "الوضع القانوني",
+              "description": "رسّخ هذا الاعتراف المكانةَ القانونية والدستورية للإقليم ومؤسساته."
+            },
+            {
+              "title": "فصل جديد",
+              "description": "شكّل هذا الاعتراف خطوةً مهمة في مسيرة تطور إقليم كوردستان ضمن العراق الفيدرالي."
+            }
+          ]
+        },
+        "today": {
+          "title": "اليوم",
+          "headline": "النمو والتنمية والرؤية المستقبلية.",
+          "description": "يبني إقليم كوردستان غدًا أكثر إشراقًا من خلال التقدم والوحدة والفرص.",
+          "cards": [
+            {
+              "title": "التنمية",
+              "description": "يواصل إقليم كوردستان تقدّمه في مجالات البنية التحتية والتعليم والخدمات العامة."
+            },
+            {
+              "title": "الاقتصاد والاستثمار",
+              "description": "يظل النمو الاقتصادي والنشاط التجاري والاستثمار من الركائز الأساسية في مستقبل الإقليم."
+            },
+            {
+              "title": "الشباب والفرص",
+              "description": "يُسهم جيل جديد في تشكيل مستقبل كوردستان من خلال التعلّم والعمل والابتكار."
+            },
+            {
+              "title": "النظرة إلى المستقبل",
+              "description": "يتطلع إقليم كوردستان إلى المستقبل بثقة وطموح وإصرار لا يلين."
+            }
+          ]
+        }
+      }
+    },
+    "journey": {
+      "title": "الرحلة",
+      "subtitle": "استكشف أبرز المحطات التي شكّلت إقليم كوردستان من عام 1991 حتى الوقت الحاضر.",
+      "items": [
+        {
+          "id": "1991",
+          "title": "1991",
+          "description": "منعطف تاريخي فتح الطريق نحو واقع جديد."
+        },
+        {
+          "id": "1992",
+          "title": "1992",
+          "description": "أجرى إقليم كوردستان أولى انتخاباته، فتأسّس البرلمان والحكومة، وانطلقت بذلك مسيرة الحكم الذاتي."
+        },
+        {
+          "id": "institutions",
+          "title": "بناء المؤسسات",
+          "description": "نشأت المؤسسات العامة تدريجيًا وترسّخت، لتشكّل الإطار الذي تقوم عليه الحوكمة الحديثة في الإقليم."
+        },
+        {
+          "id": "2005",
+          "title": "2005",
+          "description": "منح الاعتراف الفيدرالي إقليمَ كوردستان مكانةً دستورية رسمية."
+        },
+        {
+          "id": "today",
+          "title": "اليوم",
+          "description": "يواصل إقليم كوردستان مسيرة نموّه عبر المؤسسات والتنمية والرؤية المستقبلية."
+        }
+      ]
+    },
+    "system": {
+      "title": "The System",
+      "subtitle": "Learn how the Kurdistan Region is governed through its key institutions and leadership roles.",
+      "nodes": {
+        "center": {
+          "title": "Parliament",
+          "subtitle": "Legislative Power"
+        },
+        "left": {
+          "title": "Government",
+          "subtitle": "Executive Power"
+        },
+        "right": {
+          "title": "Presidency",
+          "subtitle": "Constitutional Power"
+        }
+      },
+      "items": [
+        {
+          "id": "1",
+          "title": "1. Parliament",
+          "description": "The legislative institution responsible for laws and representation."
+        },
+        {
+          "id": "2",
+          "title": "2. Government",
+          "description": "The executive body responsible for administration and public services."
+        },
+        {
+          "id": "3",
+          "title": "3. Presidency",
+          "description": "A constitutional and national institution within the regional system."
+        },
+        {
+          "id": "4",
+          "title": "4. How It Works",
+          "description": "Institutions work together through a parliamentary system."
+        },
+        {
+          "id": "5",
+          "title": "5. Leadership",
+          "description": "Presidents, Prime Ministers, and Speakers helped shape the Region's development."
+        }
+      ]
+    },
+    "landFuture": {
+      "title": "The Land and Future",
+      "subtitle": "Explore Kurdistan's geography, symbols, protection, development, and future vision.",
+      "mapTitle": "Kurdistan",
+      "mapCities": [
+        "Duhok",
+        "Erbil",
+        "Sulaymaniyah",
+        "Halabja"
+      ],
+      "items": [
+        {
+          "id": "land",
+          "title": "The Land",
+          "description": "Erbil, Sulaymaniyah, Duhok, and Halabja form a region of beauty and heritage."
+        },
+        {
+          "id": "symbols",
+          "title": "Identity and Symbols",
+          "description": "The flag, anthem, language, and heritage reflect the spirit of Kurdistan."
+        },
+        {
+          "id": "peshmarga",
+          "title": "Peshmerga",
+          "description": "A symbol of courage, protection, and service."
+        },
+        {
+          "id": "progress",
+          "title": "Progress",
+          "description": "Development continues in infrastructure, education, economy, and tourism."
+        },
+        {
+          "id": "future",
+          "title": "Future Vision",
+          "description": "Kurdistan looks ahead with ambition, opportunity, and confidence."
+        }
+      ]
+    },
+    "accessibility": {
+      "mainTapLabel": "Tap to explore the next section",
+      "languageDialogLabel": "Select a language",
+      "previousSectionLabel": "Previous section",
+      "nextSectionLabel": "Next section"
+    },
+    "languages": {
+      "ku": {
+        "label": "Kurdish",
+        "native": "کوردی"
+      },
+      "en": {
+        "label": "English",
+        "native": "English"
+      },
+      "ar": {
+        "label": "Arabic",
+        "native": "العربية"
+      }
+    }
+  }
+  

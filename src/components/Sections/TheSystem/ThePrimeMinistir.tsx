@@ -14,6 +14,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
+import masrourbarzani from "@/assets/images/masrourbarzani-removebg-preview.png";
 
 const achievements = [
   {
@@ -149,12 +150,12 @@ export default function PrimeMinisterPage({ onBack }: PrimeMinisterPageProps) {
         {/* Replace this with your generated portrait image */}
         <div className="pointer-events-none absolute right-0 top-0 h-[930px] w-[650px]">
           <img
-            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=90"
+            src={masrourbarzani}
             alt="Prime Minister portrait placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-88 [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+            className="absolute inset-0 h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-[260px] bg-gradient-to-b from-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-[260px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
         {/* Scenic base image placeholder */}

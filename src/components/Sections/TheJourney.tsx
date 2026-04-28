@@ -7,6 +7,9 @@ import {
   Scale,
   SunMedium,
 } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const milestones = [
   {
@@ -41,14 +44,26 @@ const milestones = [
   },
 ];
 
+type LangCode = "ku" | "en" | "ar";
+const CONTENT = { en, ar, ku } as const;
+
 type JourneyMilestoneId = "1991" | "1992" | "buildingInstitutions" | "2005" | "today";
 
 type JourneyTimelinePageProps = {
+  lang?: LangCode;
   onBack?: () => void;
   onSelectMilestone?: (milestone: JourneyMilestoneId) => void;
 };
 
-export default function JourneyTimelinePage({ onBack, onSelectMilestone }: JourneyTimelinePageProps) {
+export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMilestone }: JourneyTimelinePageProps) {
+  const data = CONTENT[lang] as any;
+  const journey = data?.journey ?? {};
+  const journeyItems = Array.isArray(journey.items) ? journey.items : [];
+  const localizedMilestones = milestones.map((item, idx) => ({
+    ...item,
+    title: journeyItems[idx]?.title ?? item.title,
+    text: journeyItems[idx]?.description ?? item.text,
+  }));
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -95,17 +110,17 @@ export default function JourneyTimelinePage({ onBack, onSelectMilestone }: Journ
           {/* Title */}
           <section className="max-w-[620px]">
             <h1 className="font-serif text-[94px] font-semibold leading-none text-[#17233b]">
-              The Journey
+              {journey.title ?? "The Journey"}
             </h1>
             <h2 className="mt-6 text-[36px] font-semibold text-[#9b6d35]">
-              From 1991 to the present.
+              {lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present."}
             </h2>
             <div className="mt-9 flex w-[260px] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
             <p className="mt-9 max-w-[460px] text-[29px] leading-snug text-[#2d3549]">
-              Explore the key milestones that shaped the Kurdistan Region.
+              {journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region."}
             </p>
           </section>
 
@@ -147,7 +162,7 @@ export default function JourneyTimelinePage({ onBack, onSelectMilestone }: Journ
             </svg>
 
             <div className="space-y-8">
-              {milestones.map((item, index) => {
+              {localizedMilestones.map((item, index) => {
                 const Icon = item.icon;
                 const milestoneId: JourneyMilestoneId =
                   index === 0 ? "1991" : index === 1 ? "1992" : index === 2 ? "buildingInstitutions" : index === 3 ? "2005" : "today";

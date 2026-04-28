@@ -91,7 +91,11 @@ export default function DiscoverKurdistan({ onStartExploring, onSelectSection }:
           <div className="text-center">
             <div className="mb-6 flex items-center justify-center gap-12 text-[#c49b52]">
               <span className="h-0.5 w-150 max-w-[150px] bg-[#c49b52]" />
-              <span className="text-8xl leading-none">✹</span>
+              <div className="flex flex-col items-center w-full">
+                {/* <span className="mb-2 h-8 w-full rounded-sm bg-red-500" /> */}
+                <span className="text-8xl leading-none">✹</span>
+                {/* <span className="mt-2 h-8 w-full rounded-sm bg-green-500" /> */}
+              </div>
               <span className="h-0.5 w-150 max-w-[150px] bg-[#c49b52]" />
             </div>
 

@@ -1,5 +1,8 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const cards = [
   {
@@ -22,11 +25,32 @@ const cards = [
   },
 ];
 
+type LangCode = "ku" | "en" | "ar";
+
+type JourneySection = {
+  title?: string;
+  headline?: string;
+  description?: string;
+  cards?: { title: string; description: string }[];
+};
+
+const CONTENT = { en, ar, ku } as const;
+
 type Year1991PageProps = {
+  lang?: LangCode;
   onBack?: () => void;
 };
 
-export default function Year1991Page({ onBack }: Year1991PageProps) {
+export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps) {
+  const data = CONTENT[lang] as any;
+  const section: JourneySection =
+    data?.journey?.sections?.["1991"] ?? data?.people?.sections?.["1991"] ?? {};
+  const localizedCards = cards.map((card, i) => ({
+    ...card,
+    title: (section.cards?.[i]?.title ?? card.title).replace(" ", "\n"),
+    text: section.cards?.[i]?.description ?? card.text,
+  }));
+
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -57,11 +81,11 @@ export default function Year1991Page({ onBack }: Year1991PageProps) {
           {/* Text */}
           <section className="max-w-[540px]">
             <h1 className="font-serif text-[150px] font-semibold leading-none tracking-tight text-[#17233b]">
-              1991
+              {section.title ?? "1991"}
             </h1>
 
             <p className="mt-7 text-[39px] font-bold leading-tight text-[#9b6d35]">
-              A historic turning point.
+              {section.headline ?? "A historic turning point."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -70,7 +94,7 @@ export default function Year1991Page({ onBack }: Year1991PageProps) {
             </div>
 
             <p className="mt-10 max-w-[455px] text-[30px] font-medium leading-[1.55] text-[#2d3549]">
-              A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region.
+              {section.description ?? "A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region."}
             </p>
           </section>
 
@@ -79,7 +103,7 @@ export default function Year1991Page({ onBack }: Year1991PageProps) {
 
           {/* Cards */}
           <section className="grid grid-cols-3 gap-9">
-            {cards.map((card) => {
+            {localizedCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article

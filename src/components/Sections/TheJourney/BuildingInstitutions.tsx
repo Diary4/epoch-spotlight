@@ -1,5 +1,8 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const rows = [
   {
@@ -22,11 +25,29 @@ const rows = [
   },
 ];
 
+type LangCode = "ku" | "en" | "ar";
+type JourneySection = {
+  title?: string;
+ headline?: string;
+  description?: string;
+  cards?: { title: string; description: string }[];
+};
+const CONTENT = { en, ar, ku } as const;
+
 type BuildingInstitutionsPageProps = {
+  lang?: LangCode;
   onBack?: () => void;
 };
 
-export default function BuildingInstitutionsPage({ onBack }: BuildingInstitutionsPageProps) {
+export default function BuildingInstitutionsPage({ lang = "en", onBack }: BuildingInstitutionsPageProps) {
+  const data = CONTENT[lang] as any;
+  const section: JourneySection =
+    data?.journey?.sections?.institutions ?? data?.people?.sections?.institutions ?? {};
+  const localizedRows = rows.map((row, i) => ({
+    ...row,
+    title: section.cards?.[i]?.title ?? row.title,
+    text: section.cards?.[i]?.description ?? row.text,
+  }));
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-16 py-16">
@@ -57,11 +78,11 @@ export default function BuildingInstitutionsPage({ onBack }: BuildingInstitution
           {/* Hero text */}
           <section className="max-w-[570px] pt-18">
             <h1 className="font-serif text-[96px] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
-              Building<br />Institutions
+              {(section.title ?? "Building Institutions").split(" ").slice(0, -1).join(" ")}<br />{(section.title ?? "Building Institutions").split(" ").slice(-1)}
             </h1>
 
             <p className="mt-8 text-[35px] font-bold leading-tight text-[#9b6d35]">
-              From transition to governance.
+              {section.headline ?? "From transition to governance."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -70,7 +91,7 @@ export default function BuildingInstitutionsPage({ onBack }: BuildingInstitution
             </div>
 
             <p className="mt-10 max-w-[480px] text-[30px] font-medium leading-[1.48] text-[#2d3549]">
-              Discover how institutions were established and strengthened to serve the people of Kurdistan.
+              {section.description ?? "Discover how institutions were established and strengthened to serve the people of Kurdistan."}
             </p>
           </section>
 
@@ -97,7 +118,7 @@ export default function BuildingInstitutionsPage({ onBack }: BuildingInstitution
 
           {/* Rows */}
           <section className="space-y-7 pb-6">
-            {rows.map((row) => {
+            {localizedRows.map((row) => {
               const Icon = row.icon;
               return (
                 <article

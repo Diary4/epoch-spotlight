@@ -1,5 +1,8 @@
 import React from "react";
 import { ArrowLeft, BookOpen, Home, Landmark, Scale, SunMedium } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const rows = [
   {
@@ -47,11 +50,28 @@ function HeaderButton({ icon, label, onClick }: { icon: React.ReactNode; label: 
   );
 }
 
+type LangCode = "ku" | "en" | "ar";
+type JourneySection = {
+  title?: string;
+  headline?: string;
+  cards?: { title: string; description: string }[];
+};
+const CONTENT = { en, ar, ku } as const;
+
 type Year2005PageProps = {
+  lang?: LangCode;
   onBack?: () => void;
 };
 
-export default function Year2005Page({ onBack }: Year2005PageProps) {
+export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps) {
+  const data = CONTENT[lang] as any;
+  const section: JourneySection =
+    data?.journey?.sections?.["2005"] ?? data?.people?.sections?.["2005"] ?? {};
+  const localizedRows = rows.map((row, i) => ({
+    ...row,
+    title: section.cards?.[i]?.title ?? row.title,
+    text: section.cards?.[i]?.description ?? row.text,
+  }));
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
@@ -90,11 +110,11 @@ export default function Year2005Page({ onBack }: Year2005PageProps) {
         <div className="relative z-10 flex flex-1 flex-col px-14 pt-22 pb-14">
           <section className="max-w-[520px]">
             <h1 className="font-serif text-[150px] font-semibold leading-none tracking-tight text-[#17233b]">
-              2005
+              {section.title ?? "2005"}
             </h1>
 
             <p className="mt-6 text-[37px] font-bold leading-tight text-[#9b6d35]">
-              Federal recognition<br />within Iraq.
+              {section.headline ?? "Federal recognition within Iraq."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -106,7 +126,7 @@ export default function Year2005Page({ onBack }: Year2005PageProps) {
           <div className="flex-1" />
 
           <section className="space-y-8">
-            {rows.map((row) => {
+            {localizedRows.map((row) => {
               const Icon = row.icon;
               return (
                 <article
