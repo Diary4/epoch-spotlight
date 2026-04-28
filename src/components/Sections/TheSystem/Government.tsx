@@ -14,6 +14,7 @@ import {
   TrendingUp,
   UsersRound,
 } from "lucide-react";
+import { localizeDigits } from "@/lib/utils";
 
 const mainCards = [
   {
@@ -195,15 +196,15 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                       className="grid h-9 w-9 place-items-center rounded-full text-[22px] font-bold text-white"
                       style={{ backgroundColor: card.color }}
                     >
-                      {card.number}
+                      {localizeDigits(card.number, lang)}
                     </span>
-                    {card.title}
+                    {localizeDigits(card.title, lang)}
                   </h3>
 
                   <SmallDivider />
 
                   <p className="text-[23px] font-medium leading-[1.45] text-[#35435b]">
-                    {card.text}
+                    {localizeDigits(card.text, lang)}
                   </p>
 
                   <button

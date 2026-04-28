@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
+import { localizeDigits } from "@/lib/utils";
 
 const mapCards = [
   {
@@ -35,7 +36,7 @@ function Divider({ color = "#b99152" }) {
   );
 }
 
-function MapCard({ card }) {
+function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: "ku" | "en" | "ar" }) {
   return (
     <article className="grid min-h-[440px] grid-cols-[205px_1fr] overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
       <div className="flex flex-col items-center justify-center border-r border-[#ead8b7] px-7 py-8 text-center">
@@ -43,17 +44,17 @@ function MapCard({ card }) {
           className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[34px] font-bold text-white shadow-md"
           style={{ backgroundColor: card.color }}
         >
-          {card.number}
+          {localizeDigits(card.number, lang)}
         </div>
 
         <Divider color={card.color} />
 
         <h3 className="whitespace-pre-line font-serif text-[24px] font-semibold leading-tight text-[#17233b]">
-          {card.title}
+          {localizeDigits(card.title, lang)}
         </h3>
 
         <p className="mt-6 text-[17px] font-semibold leading-[1.45] text-[#35435b]">
-          {card.text}
+          {localizeDigits(card.text, lang)}
         </p>
 
         <button
@@ -151,7 +152,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         {/* Right maps */}
         <section className="relative z-10 flex flex-1 flex-col gap-7 pl-4">
           {localMapCards.map((card) => (
-            <MapCard key={card.number} card={card} />
+            <MapCard key={card.number} card={card} lang={lang} />
           ))}
         </section>
       </section>

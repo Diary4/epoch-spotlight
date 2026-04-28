@@ -3,6 +3,7 @@ import { ArrowRight, Landmark, Map, Mountain, UsersRound } from "lucide-react";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import { localizeDigits } from "@/lib/utils";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -170,8 +171,8 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
                       <Icon size={48} strokeWidth={1.6} />
                     </GoldIcon>
                     <div className="relative min-h-[160px] px-12 pb-7 pt-14">
-                      <h3 className="font-serif text-[34px] font-semibold leading-tight text-[#18362d]">{section.title}</h3>
-                      <p className="mt-2 whitespace-pre-line text-[23px] leading-tight text-[#5f6662]">{section.desc}</p>
+                      <h3 className="font-serif text-[34px] font-semibold leading-tight text-[#18362d]">{localizeDigits(section.title, lang)}</h3>
+                      <p className="mt-2 whitespace-pre-line text-[23px] leading-tight text-[#5f6662]">{localizeDigits(section.desc, lang)}</p>
                       <ArrowRight className="absolute right-8 top-1/2 text-[#b88b43]" size={40} strokeWidth={1.8} />
                     </div>
                   </button>

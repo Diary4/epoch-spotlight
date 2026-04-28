@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
+import { localizeDigits } from "@/lib/utils";
 
 const topCards = [
   {
@@ -59,15 +60,15 @@ function Divider({ className = "" }) {
   );
 }
 
-function NumberBadge({ number }) {
+function NumberBadge({ number, lang = "en" }: { number: string; lang?: "ku" | "en" | "ar" }) {
   return (
     <div className="absolute left-5 top-0 z-20 rounded-b-[18px] bg-[#102541] px-4 py-4 font-serif text-[26px] font-semibold text-[#f2cc79] shadow-md">
-      {number}
+      {localizeDigits(number, lang)}
     </div>
   );
 }
 
-function SmallCard({ card, onClick }: { card: (typeof topCards)[number]; onClick?: () => void }) {
+function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   const iconBg = card.red ? "#963538" : card.featured ? "#c69237" : "#13213b";
   const iconColor = "#f8e5b8";
@@ -82,7 +83,7 @@ function SmallCard({ card, onClick }: { card: (typeof topCards)[number]; onClick
           className="absolute inset-0 z-20 appearance-none bg-transparent p-0"
         />
       )}
-      <NumberBadge number={card.number} />
+      <NumberBadge number={card.number} lang={lang} />
       <div className="relative z-10 mx-auto mt-6 grid h-22 w-22 place-items-center rounded-full border-2 border-[#e7cfa1] bg-[#fff8ed] shadow-[0_6px_16px_rgba(0,0,0,0.1)]">
         <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: iconBg, color: iconColor }}>
           <Icon size={34} strokeWidth={1.7} />
@@ -90,13 +91,13 @@ function SmallCard({ card, onClick }: { card: (typeof topCards)[number]; onClick
       </div>
 
       <h3 className="relative z-10 mt-6 font-serif text-[34px] font-semibold leading-tight text-[#17233b]">
-        {card.title}
+        {localizeDigits(card.title, lang)}
       </h3>
 
       <Divider className="relative z-10 mx-auto my-5 w-36" />
 
       <p className="relative z-10 mx-auto mb-6 max-w-[255px] text-[18px] font-semibold leading-[1.45] text-[#35435b]">
-        {card.text}
+        {localizeDigits(card.text, lang)}
       </p>
 
       <img
@@ -110,7 +111,7 @@ function SmallCard({ card, onClick }: { card: (typeof topCards)[number]; onClick
   );
 }
 
-function WideCard({ card, onClick }: { card: (typeof bottomCards)[number]; onClick?: () => void }) {
+function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   return (
     <article className="relative min-h-[270px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-9 shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
@@ -122,7 +123,7 @@ function WideCard({ card, onClick }: { card: (typeof bottomCards)[number]; onCli
           className="absolute inset-0 z-20 appearance-none bg-transparent p-0"
         />
       )}
-      <NumberBadge number={card.number} />
+      <NumberBadge number={card.number} lang={lang} />
       <img
         src={card.image}
         alt={card.title}
@@ -135,9 +136,9 @@ function WideCard({ card, onClick }: { card: (typeof bottomCards)[number]; onCli
           <Icon size={52} strokeWidth={1.5} />
         </div>
         <div>
-          <h3 className="font-serif text-[36px] font-semibold text-[#17233b]">{card.title}</h3>
+          <h3 className="font-serif text-[36px] font-semibold text-[#17233b]">{localizeDigits(card.title, lang)}</h3>
           <p className="mt-4 max-w-[330px] text-[20px] font-semibold leading-[1.45] text-[#35435b]">
-            {card.text}
+            {localizeDigits(card.text, lang)}
           </p>
         </div>
       </div>
@@ -236,6 +237,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <SmallCard
                 key={card.number}
                 card={card}
+                lang={lang}
                 onClick={
                   card.id === "land"
                     ? () => onSelectCard?.("land")
@@ -254,6 +256,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <WideCard
                 key={card.number}
                 card={card}
+                lang={lang}
                 onClick={card.id === "progress" ? () => onSelectCard?.("progress") : undefined}
               />
             ))}

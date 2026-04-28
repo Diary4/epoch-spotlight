@@ -10,6 +10,7 @@ import {
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import { localizeDigits } from "@/lib/utils";
 
 const milestones = [
   {
@@ -61,8 +62,8 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
   const journeyItems = Array.isArray(journey.items) ? journey.items : [];
   const localizedMilestones = milestones.map((item, idx) => ({
     ...item,
-    title: journeyItems[idx]?.title ?? item.title,
-    text: journeyItems[idx]?.description ?? item.text,
+    title: localizeDigits(journeyItems[idx]?.title ?? item.title, lang),
+    text: localizeDigits(journeyItems[idx]?.description ?? item.text, lang),
   }));
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
@@ -113,14 +114,17 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
               {journey.title ?? "The Journey"}
             </h1>
             <h2 className="mt-6 text-[36px] font-semibold text-[#9b6d35]">
-              {lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present."}
+              {localizeDigits(
+                lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
+                lang,
+              )}
             </h2>
             <div className="mt-9 flex w-[260px] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
             <p className="mt-9 max-w-[460px] text-[29px] leading-snug text-[#2d3549]">
-              {journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region."}
+              {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
             </p>
           </section>
 

@@ -1,8 +1,9 @@
 import React from "react";
-import { ArrowLeft, BookOpen, Home, Landmark, Scale, SunMedium } from "lucide-react";
+import { ArrowLeft, BookOpen, Landmark, Scale } from "lucide-react";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import { localizeDigits } from "@/lib/utils";
 
 const rows = [
   {
@@ -27,28 +28,6 @@ const rows = [
     color: "bg-[#9d3637]",
   },
 ];
-
-function Logo() {
-  return (
-    <div className="flex items-center gap-5">
-      <div className="grid h-18 w-18 place-items-center rounded-t-[28px] border-2 border-[#bd9650] text-[#bd9650]">
-        <Landmark size={42} strokeWidth={1.4} />
-      </div>
-      <h2 className="font-serif text-[34px] text-[#17233b]">Gate of Kurdistan</h2>
-    </div>
-  );
-}
-
-function HeaderButton({ icon, label, onClick }: { icon: React.ReactNode; label: string; onClick?: () => void }) {
-  return (
-    <button type="button" onClick={onClick} className="flex flex-col items-center gap-1 text-[#17233b]">
-      <span className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#d7bd8a] bg-white/55 shadow-sm">
-        {icon}
-      </span>
-      <span className="text-[18px]">{label}</span>
-    </button>
-  );
-}
 
 type LangCode = "ku" | "en" | "ar";
 type JourneySection = {
@@ -75,26 +54,17 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          aria-label="Back to Journey"
+        >
+          <ArrowLeft size={28} />
+        </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-
-        <header className="relative z-10 flex h-[135px] items-center justify-between border-b border-[#e6d2aa] bg-white/35 px-10">
-          <Logo />
-
-          <nav className="flex items-center gap-5 text-[22px]">
-            <span>Kurdish</span>
-            <span className="h-8 w-px bg-[#b99152]" />
-            <span className="border-b-4 border-[#b99152] pb-3 font-semibold">English</span>
-            <span className="h-8 w-px bg-[#b99152]" />
-            <span>Arabic</span>
-          </nav>
-
-          <div className="flex gap-8">
-            <HeaderButton icon={<Home size={34} />} label="Home" />
-            <HeaderButton icon={<ArrowLeft size={38} />} label="Back" onClick={onBack} />
-          </div>
-        </header>
 
         {/* Main visual placeholder: replace with your generated 2005 constitution/legal image */}
         <div className="pointer-events-none absolute right-0 top-[170px] h-[980px] w-[850px]">
@@ -110,7 +80,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
         <div className="relative z-10 flex flex-1 flex-col px-14 pt-22 pb-14">
           <section className="max-w-[520px]">
             <h1 className="font-serif text-[150px] font-semibold leading-none tracking-tight text-[#17233b]">
-              {section.title ?? "2005"}
+              {localizeDigits(section.title ?? "2005", lang)}
             </h1>
 
             <p className="mt-6 text-[37px] font-bold leading-tight text-[#9b6d35]">
@@ -144,15 +114,15 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
                   <div className="px-10">
                     <div className="flex items-center gap-5">
                       <span className={`grid h-12 w-12 place-items-center rounded-full text-[28px] font-bold text-white ${row.color}`}>
-                        {row.number}
+                        {localizeDigits(row.number, lang)}
                       </span>
                       <h3 className="font-serif text-[39px] font-semibold leading-tight text-[#17233b]">
-                        {row.title}
+                        {localizeDigits(row.title, lang)}
                       </h3>
                     </div>
 
                     <p className="mt-4 max-w-[610px] text-[25px] font-medium leading-[1.42] text-[#303a50]">
-                      {row.text}
+                      {localizeDigits(row.text, lang)}
                     </p>
                   </div>
 
