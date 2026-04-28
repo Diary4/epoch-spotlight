@@ -89,10 +89,20 @@ function DialectItem({ item }) {
 }
 
 type KurdishLanguageDialectsPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function KurdishLanguageDialectsPage({ onBack }: KurdishLanguageDialectsPageProps) {
+export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: KurdishLanguageDialectsPageProps) {
+  const isAr = lang === "ar";
+  const localDialects = isAr
+    ? [
+        { name: "السورانية", text: "تُتحدث في جنوب كوردستان في العراق وإيران. وهي اللهجة الرسمية في كوردستان العراق ولها تقليد أدبي مكتوب عريق.", letter: "س", color: "#963538" },
+        { name: "الكُرمانجية", text: "تُتحدث بصورة رئيسية في شمال كوردستان في تركيا وسوريا وأجزاء من إيران. وهي اللهجة الكوردية الأوسع انتشارًا ولها تقليد أدبي وشفهي غني.", letter: "ژ", color: "#13213b" },
+        { name: "الهَوْرامي / الگورانية", text: "تُتحدث في منطقة هَوْرامان وأجزاء أخرى من إيران والعراق. تعكس الغنى اللغوي والتنوع الثقافي لكوردستان .", letter: "✥", color: "#c69237" },
+        { name: "الزازاكية", text: "تُتحدث في أجزاء من شرق تركيا وشمال غرب إيران. تُعدّ من اللهجات المهمة في عائلة اللغة الكوردية.", letter: "ز", color: "#405846" },
+      ]
+    : dialects;
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-8 py-9">
@@ -123,11 +133,15 @@ export default function KurdishLanguageDialectsPage({ onBack }: KurdishLanguageD
           {/* Hero */}
           <section className="max-w-[520px] pt-2 pl-5">
             <h1 className="font-serif text-[76px] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
-              Kurdish<br />Language &<br />Dialects
+              {isAr ? "اللغة الكوردية واللهجات" : "Kurdish"}
+              {!isAr && <br />}
+              {!isAr && "Language &"}
+              {!isAr && <br />}
+              {!isAr && "Dialects"}
             </h1>
 
             <p className="mt-8 font-serif text-[31px] leading-tight text-[#9b6d35]">
-              A living language of literature,<br />identity, and expression.
+              {isAr ? "لغة حية تحمل الأدب والهوية والتعبير." : "A living language of literature, identity, and expression."}
             </p>
 
             <div className="mt-8 w-[230px]">
@@ -135,7 +149,9 @@ export default function KurdishLanguageDialectsPage({ onBack }: KurdishLanguageD
             </div>
 
             <p className="mt-8 max-w-[420px] text-[20px] font-semibold leading-[1.55] text-[#35435b]">
-              Kurdish is an important language of the Kurdish people. It unites millions across Kurdistan and the diaspora, carrying a rich literary tradition and a vibrant oral heritage that has been passed down through generations.
+              {isAr
+                ? "اللغة الكوردية لغة الشعب الكوردي، تجمع الملايين في كوردستان والمهجر، وتحمل تراثًا أدبيًا ثريًا وموروثًا شفهيًا حيًا تناقلته الأجيال."
+                : "Kurdish is an important language of the Kurdish people. It unites millions across Kurdistan and the diaspora, carrying a rich literary tradition and a vibrant oral heritage that has been passed down through generations."}
             </p>
           </section>
 
@@ -144,10 +160,10 @@ export default function KurdishLanguageDialectsPage({ onBack }: KurdishLanguageD
           {/* Main content */}
           <section className="grid grid-cols-[330px_1fr] gap-4 pb-6">
             <aside className="rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md">
-              <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b]">Main Dialects</h2>
+              <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b]">{isAr ? "اللهجات الرئيسية" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
               <div className="mt-3">
-                {dialects.map((item) => (
+                {localDialects.map((item) => (
                   <DialectItem key={item.name} item={item} />
                 ))}
               </div>
@@ -196,9 +212,13 @@ export default function KurdishLanguageDialectsPage({ onBack }: KurdishLanguageD
                 <Feather size={54} strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold text-[#17233b]">Literature & Oral Heritage</h3>
+                <h3 className="font-serif text-[28px] font-semibold text-[#17233b]">
+                  {isAr ? "الأدب والتراث الشفهي" : "Literature & Oral Heritage"}
+                </h3>
                 <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b]">
-                  From classical poetry and storytelling to modern novels and songs, Kurdish language expresses the depth of human experience and the spirit of resilience and hope.
+                  {isAr
+                    ? "من الشعر الكلاسيكي والحكايات إلى الروايات والأغاني الحديثة، تُعبّر اللغة الكوردية عن عمق التجربة الإنسانية وروح الصمود والأمل."
+                    : "From classical poetry and storytelling to modern novels and songs, Kurdish language expresses the depth of human experience and the spirit of resilience and hope."}
                 </p>
               </div>
             </article>
@@ -210,9 +230,13 @@ export default function KurdishLanguageDialectsPage({ onBack }: KurdishLanguageD
                 <UsersRound size={54} strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold text-[#17233b]">Language in Daily Life</h3>
+                <h3 className="font-serif text-[28px] font-semibold text-[#17233b]">
+                  {isAr ? "اللغة في الحياة اليومية" : "Language in Daily Life"}
+                </h3>
                 <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b]">
-                  Kurdish is the language of home, education, media, and culture. It connects communities and strengthens identity across borders and generations.
+                  {isAr
+                    ? "الكوردية هي لغة البيت والتعليم والإعلام والثقافة. تربط المجتمعات وتعزز الهوية عبر الحدود والأجيال."
+                    : "Kurdish is the language of home, education, media, and culture. It connects communities and strengthens identity across borders and generations."}
                 </p>
               </div>
             </article>

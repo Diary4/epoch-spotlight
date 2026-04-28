@@ -73,10 +73,19 @@ function MapCard({ card }) {
 }
 
 type TheLandPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function TheLandPage({ onBack }: TheLandPageProps) {
+export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
+  const isAr = lang === "ar";
+  const localMapCards = isAr
+    ? [
+        { ...mapCards[0], title: "إقليم كوردستان العراق", text: "استكشف إقليم كوردستان المعترف به رسميًا في العراق، محافظاته ومدنه الكبرى وحدوده." },
+        { ...mapCards[1], title: "المناطق المتنازع عليها", text: "استكشف المناطق المتنازع عليها بين كوردستان والعراق، الموضحة باللون الوردي." },
+        { ...mapCards[2], title: "الوجود الكوردي\nعبر الدول", text: "تعرّف على المناطق الأوسع التي تعيش فيها المجتمعات الكوردية في المنطقة." },
+      ]
+    : mapCards;
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] overflow-hidden bg-[#fbf5eb] px-8 py-10">
@@ -105,7 +114,13 @@ export default function TheLandPage({ onBack }: TheLandPageProps) {
         {/* Left text */}
         <aside className="relative z-10 flex w-[370px] shrink-0 flex-col pt-20 pl-6">
           <h1 className="font-serif text-[86px] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
-            The<br />Land
+            {isAr ? (
+              "الأرض"
+            ) : (
+              <>
+                The<br />Land
+              </>
+            )}
           </h1>
 
           <div className="mt-10 w-[230px]">
@@ -113,11 +128,19 @@ export default function TheLandPage({ onBack }: TheLandPageProps) {
           </div>
 
           <p className="mt-4 font-serif text-[30px] leading-tight text-[#9b6d35]">
-            A region of beauty,<br />geography, and heritage.
+            {isAr ? (
+              "إقليم من الجمال والجغرافيا والتراث."
+            ) : (
+              <>
+                A region of beauty,<br />geography, and heritage.
+              </>
+            )}
           </p>
 
           <p className="mt-10 max-w-[285px] text-[21px] font-semibold leading-[1.55] text-[#35435b]">
-            Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people.
+            {isAr
+              ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
+              : "Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people."}
           </p>
 
           <div className="mt-10 w-[150px]">
@@ -127,7 +150,7 @@ export default function TheLandPage({ onBack }: TheLandPageProps) {
 
         {/* Right maps */}
         <section className="relative z-10 flex flex-1 flex-col gap-7 pl-4">
-          {mapCards.map((card) => (
+          {localMapCards.map((card) => (
             <MapCard key={card.number} card={card} />
           ))}
         </section>

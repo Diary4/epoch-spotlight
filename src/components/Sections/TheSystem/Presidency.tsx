@@ -30,10 +30,20 @@ function Divider({ wide = false }) {
 }
 
 type PresidencyPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function PresidencyPage({ onBack }: PresidencyPageProps) {
+export default function PresidencyPage({ lang = "en", onBack }: PresidencyPageProps) {
+  const isAr = lang === "ar";
+  const localCards = isAr
+    ? [
+        { title: "الدور الدستوري", text: "دعم الإطار المؤسسي للإقليم.", icon: BookOpenCheck },
+        { title: "الدور الوطني", text: "تمثيل الوحدة والاستمرارية والكرامة الوطنية.", icon: UsersRound },
+        { title: "التوازن المؤسسي", text: "العمل ضمن منظومة الحوكمة الأشمل.", icon: Building2 },
+      ]
+    : cards;
+
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-14 py-12">
@@ -72,7 +82,7 @@ export default function PresidencyPage({ onBack }: PresidencyPageProps) {
           {/* Hero */}
           <section className="max-w-[560px] pt-28">
             <h1 className="font-serif text-[92px] font-semibold leading-none tracking-tight text-[#943134]">
-              Presidency
+              {isAr ? "الرئاسة" : "Presidency"}
             </h1>
 
             <div className="mt-10">
@@ -80,7 +90,7 @@ export default function PresidencyPage({ onBack }: PresidencyPageProps) {
             </div>
 
             <p className="mt-9 text-[35px] font-bold leading-[1.35] text-[#9b6d35]">
-              A constitutional and<br />national institution within<br />the regional system.
+              {isAr ? "مؤسسة دستورية وطنية في المنظومة الإقليمية." : "A constitutional and national institution within the regional system."}
             </p>
 
             <div className="mt-10">
@@ -88,7 +98,9 @@ export default function PresidencyPage({ onBack }: PresidencyPageProps) {
             </div>
 
             <p className="mt-9 max-w-[510px] text-[29px] font-medium leading-[1.55] text-[#2d3549]">
-              The Presidency contributes to the constitutional framework, public life, and the broader institutional balance of the Kurdistan Region.
+              {isAr
+                ? "تُسهم الرئاسة في الإطار الدستوري والحياة العامة والتوازن المؤسسي الأشمل لإقليم كوردستان."
+                : "The Presidency contributes to the constitutional framework, public life, and the broader institutional balance of the Kurdistan Region."}
             </p>
           </section>
 
@@ -96,7 +108,7 @@ export default function PresidencyPage({ onBack }: PresidencyPageProps) {
 
           {/* Cards */}
           <section className="grid grid-cols-3 gap-7 pb-2">
-            {cards.map((card) => {
+            {localCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article

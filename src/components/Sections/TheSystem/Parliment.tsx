@@ -51,10 +51,27 @@ function Divider() {
 }
 
 type ParliamentPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function ParliamentPage({ onBack }: ParliamentPageProps) {
+export default function ParliamentPage({ lang = "en", onBack }: ParliamentPageProps) {
+  const isAr = lang === "ar";
+  const localMainCards = isAr
+    ? [
+        { title: "التشريع", text: "يراجع القوانين ويُقرّها لخدمة الحياة العامة.", icon: Scale, color: "#13213b" },
+        { title: "التمثيل", text: "يعكس صوت الشعب ومصالحه.", icon: UsersRound, color: "#405846" },
+        { title: "الرقابة", text: "يراقب الشؤون العامة ويحاسب المؤسسات.", icon: Search, color: "#963538" },
+      ]
+    : mainCards;
+  const localBottomItems = isAr
+    ? [
+        { title: "النقاش", text: "حوار مفتوح حول القضايا التي تشكّل مجتمعنا.", icon: MessageCircleMore },
+        { title: "القانون", text: "تحويل الأفكار إلى قوانين لمستقبل عادل ومزدهر.", icon: FilePenLine },
+        { title: "التمثيل", text: "منتخَب من الشعب، يعمل لخدمة أبناء كوردستان.", icon: UsersRound },
+      ]
+    : bottomItems;
+
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-14 py-10">
@@ -84,11 +101,11 @@ export default function ParliamentPage({ onBack }: ParliamentPageProps) {
           {/* Hero */}
           <section className="max-w-[540px] pt-24">
             <h1 className="font-serif text-[92px] font-semibold leading-none tracking-tight text-[#17233b]">
-              Parliament
+              {isAr ? "البرلمان" : "Parliament"}
             </h1>
 
             <p className="mt-10 text-[34px] font-bold leading-tight text-[#9b6d35]">
-              The legislative institution<br />of the Kurdistan Region.
+              {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : "The legislative institution of the Kurdistan Region."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -97,7 +114,9 @@ export default function ParliamentPage({ onBack }: ParliamentPageProps) {
             </div>
 
             <p className="mt-9 max-w-[430px] text-[29px] font-medium leading-[1.52] text-[#2d3549]">
-              Parliament discusses public issues, passes laws, and represents the people.
+              {isAr
+                ? "يناقش البرلمان الشؤون العامة ويُشرّع القوانين ويمثّل الشعب."
+                : "Parliament discusses public issues, passes laws, and represents the people."}
             </p>
           </section>
 
@@ -105,7 +124,7 @@ export default function ParliamentPage({ onBack }: ParliamentPageProps) {
 
           {/* Main cards */}
           <section className="grid grid-cols-3 gap-8 pb-8">
-            {mainCards.map((card) => {
+            {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article
@@ -144,7 +163,7 @@ export default function ParliamentPage({ onBack }: ParliamentPageProps) {
 
           {/* Bottom information panel */}
           <section className="grid min-h-[290px] grid-cols-3 rounded-[24px] border-2 border-[#ead8b7] bg-white/72 px-8 py-8 text-center shadow-[0_14px_35px_rgba(84,54,16,0.12)] backdrop-blur-md">
-            {bottomItems.map((item, index) => {
+            {localBottomItems.map((item, index) => {
               const Icon = item.icon;
               return (
                 <article key={item.title} className="relative flex flex-col items-center justify-center px-8">

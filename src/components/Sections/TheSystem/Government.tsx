@@ -89,10 +89,30 @@ function SmallDivider() {
 }
 
 type GovernmentPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function GovernmentPage({ onBack }: GovernmentPageProps) {
+export default function GovernmentPage({ lang = "en", onBack }: GovernmentPageProps) {
+  const isAr = lang === "ar";
+  const localMainCards = isAr
+    ? [
+        { number: "1", title: "الخدمات العامة", text: "دعم التعليم والصحة والمياه والكهرباء والخدمات اليومية.", icon: UsersRound, color: "#13213b" },
+        { number: "2", title: "تنفيذ السياسات", text: "تحويل الخطط والقرارات إلى واقع ملموس.", icon: ClipboardCheck, color: "#405846" },
+        { number: "3", title: "الإدارة", text: "تنسيق عمل الوزارات والمؤسسات.", icon: Building2, color: "#963538" },
+      ]
+    : mainCards;
+  const localKeyAreas = isAr
+    ? [
+        { title: "الوزارات", text: "قيادة القطاعات الأساسية للحوكمة.", icon: Landmark, color: "#13213b" },
+        { title: "الخدمات العامة", text: "تقديم الخدمات الأساسية للمواطنين.", icon: UsersRound, color: "#405846" },
+        { title: "المشاركة المجتمعية", text: "العمل مع المجتمعات المحلية.", icon: Handshake, color: "#963538" },
+        { title: "الإدارة الاقتصادية", text: "إدارة الموارد والميزانيات.", icon: TrendingUp, color: "#405846" },
+        { title: "الشفافية والمساءلة", text: "صون النزاهة وثقة المواطن.", icon: ShieldCheck, color: "#13213b" },
+        { title: "التخطيط والتنمية", text: "التخطيط للنمو والتحسين المستمر.", icon: Settings, color: "#13213b" },
+      ]
+    : keyAreas;
+
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-12 py-8">
@@ -123,7 +143,7 @@ export default function GovernmentPage({ onBack }: GovernmentPageProps) {
           {/* Top breadcrumb */}
           <div className="flex items-center gap-4 text-[27px] font-semibold text-[#9b6d35]">
             <span className="text-4xl">‹</span>
-            <span>The System</span>
+            <span>{isAr ? "النظام" : "The System"}</span>
           </div>
 
           {/* Hero */}
@@ -133,11 +153,11 @@ export default function GovernmentPage({ onBack }: GovernmentPageProps) {
             </div>
 
             <h1 className="mt-12 font-serif text-[88px] font-semibold leading-none tracking-tight text-[#17233b]">
-              Government
+              {isAr ? "الحكومة" : "Government"}
             </h1>
 
             <p className="mt-8 text-[32px] font-bold leading-tight text-[#9b6d35]">
-              The executive body responsible for<br />administration and public services.
+              {isAr ? "الجهاز التنفيذي المسؤول عن الإدارة والخدمات العامة." : "The executive body responsible for administration and public services."}
             </p>
 
             <div className="mt-9 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -146,7 +166,9 @@ export default function GovernmentPage({ onBack }: GovernmentPageProps) {
             </div>
 
             <p className="mt-9 max-w-[460px] text-[25px] font-medium leading-[1.55] text-[#2d3549]">
-              The government implements policy, manages services, and oversees daily administration.
+              {isAr
+                ? "تنفّذ الحكومة السياسات وتدير الخدمات وتشرف على الإدارة اليومية."
+                : "The government implements policy, manages services, and oversees daily administration."}
             </p>
           </section>
 
@@ -154,7 +176,7 @@ export default function GovernmentPage({ onBack }: GovernmentPageProps) {
 
           {/* 3 Cards */}
           <section className="grid grid-cols-3 gap-8 pb-8">
-            {mainCards.map((card) => {
+            {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article
@@ -200,13 +222,13 @@ export default function GovernmentPage({ onBack }: GovernmentPageProps) {
           {/* Key areas section */}
           <section className="rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-5 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
             <div className="mb-5 flex items-center gap-5 px-3 pt-0 font-serif text-[28px] font-semibold text-[#9b6d35]">
-              <span>Key Areas of Government Work</span>
+              {isAr ? <span>المجالات الرئيسية لعمل الحكومة</span> : <span>Key Areas of Government Work</span>}
               <span className="h-0.5 flex-1 bg-[#c7a05d]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#c7a05d]" />
             </div>
 
             <div className="grid grid-cols-6 gap-5">
-              {keyAreas.map((item) => {
+              {localKeyAreas.map((item) => {
                 const Icon = item.icon;
                 return (
                   <article
@@ -232,7 +254,9 @@ export default function GovernmentPage({ onBack }: GovernmentPageProps) {
               <FileText size={54} strokeWidth={1.45} />
             </div>
             <p className="max-w-[700px] text-[25px] font-semibold leading-tight text-[#2d3549]">
-              The government works to improve quality of life, protect rights, and build a stronger Kurdistan.
+              {isAr
+                ? "تعمل الحكومة على تحسين جودة الحياة وحماية الحقوق وبناء كوردستان أقوى."
+                : "The government works to improve quality of life, protect rights, and build a stronger Kurdistan."}
             </p>
             <div className="ml-auto h-full w-[260px] opacity-25 [background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=70')] bg-cover bg-center" />
           </section>

@@ -88,10 +88,25 @@ function ProgressCard({ card, large = false }) {
 }
 
 type ProgressPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function ProgressPage({ onBack }: ProgressPageProps) {
+export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps) {
+  const isAr = lang === "ar";
+  const localTopCards = isAr
+    ? [
+        { title: "البنية التحتية", text: "بناء الطرق الحديثة والمرافق والخدمات العامة.", icon: Route, color: "#13213b" },
+        { title: "التعليم", text: "الاستثمار في المعرفة وتمكين الأجيال القادمة.", icon: GraduationCap, color: "#405846" },
+        { title: "الاقتصاد", text: "تحقيق النمو المستدام وخلق فرص العمل.", icon: BarChart3, color: "#963538" },
+      ]
+    : topCards;
+  const localBottomCards = isAr
+    ? [
+        { title: "السياحة", text: "إبراز جمال كوردستان وتراثها الثقافي.", icon: Mountain, color: "#c69237" },
+        { title: "التحول الرقمي", text: "تبنّي التكنولوجيا والابتكار لمستقبل أكثر ذكاءً.", icon: MonitorCog, color: "#13213b" },
+      ]
+    : bottomCards;
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-12 py-12">
@@ -121,11 +136,11 @@ export default function ProgressPage({ onBack }: ProgressPageProps) {
           {/* Hero */}
           <section className="max-w-[560px] pt-16">
             <h1 className="font-serif text-[105px] font-semibold leading-none tracking-tight text-[#17233b]">
-              Progress
+              {isAr ? "التقدم" : "Progress"}
             </h1>
 
             <p className="mt-8 text-[34px] font-bold leading-tight text-[#9b6d35]">
-              Development across key sectors.
+              {isAr ? "التنمية عبر القطاعات الرئيسية." : "Development across key sectors."}
             </p>
 
             <div className="mt-10 w-[230px]">
@@ -133,7 +148,9 @@ export default function ProgressPage({ onBack }: ProgressPageProps) {
             </div>
 
             <p className="mt-10 max-w-[520px] text-[28px] font-medium leading-[1.55] text-[#2d3549]">
-              The Kurdistan Region continues to advance through infrastructure, education, economy, tourism, and digital transformation.
+              {isAr
+                ? "يواصل إقليم كوردستان مسيرة تقدّمه في البنية التحتية والتعليم والاقتصاد والسياحة والتحول الرقمي."
+                : "The Kurdistan Region continues to advance through infrastructure, education, economy, tourism, and digital transformation."}
             </p>
           </section>
 
@@ -141,14 +158,14 @@ export default function ProgressPage({ onBack }: ProgressPageProps) {
 
           {/* Top 3 cards */}
           <section className="grid grid-cols-3 gap-8 pb-8">
-            {topCards.map((card) => (
+            {localTopCards.map((card) => (
               <ProgressCard key={card.title} card={card} />
             ))}
           </section>
 
           {/* Bottom 2 centered cards */}
           <section className="mx-auto grid w-[760px] grid-cols-2 gap-8 pb-4">
-            {bottomCards.map((card) => (
+            {localBottomCards.map((card) => (
               <ProgressCard key={card.title} card={card} large />
             ))}
           </section>

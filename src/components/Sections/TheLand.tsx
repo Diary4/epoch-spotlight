@@ -146,11 +146,26 @@ function WideCard({ card, onClick }: { card: (typeof bottomCards)[number]; onCli
 }
 
 type LandAndFuturePageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
   onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga" | "progress") => void;
 };
 
-export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFuturePageProps) {
+export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }: LandAndFuturePageProps) {
+  const isAr = lang === "ar";
+  const localTopCards = isAr
+    ? [
+        { ...topCards[0], title: "الأرض", text: "إقليم تتجلى فيه جغرافيا خلابة وتاريخ ثري وتراث خالد." },
+        { ...topCards[1], title: "الهوية والرموز", text: "العلم والنشيد واللغة والتراث تعكس روح كوردستان ." },
+        { ...topCards[2], title: "البيشمركة", text: "رمز الشجاعة والحماية والخدمة المخلصة للشعب." },
+      ]
+    : topCards;
+  const localBottomCards = isAr
+    ? [
+        { ...bottomCards[0], title: "التقدم", text: "التنمية مستمرة في البنية التحتية والتعليم والاقتصاد والسياحة." },
+        { ...bottomCards[1], title: "الرؤية المستقبلية", text: "تتطلع كوردستان إلى الأمام بطموح وفرص وثقة." },
+      ]
+    : bottomCards;
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-9 py-8">
@@ -185,11 +200,21 @@ export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFutur
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="max-w-[490px] pt-20 pl-4">
             <h1 className="font-serif text-[78px] font-semibold leading-[1.03] tracking-tight text-[#17233b]">
-              The Land<br />and Future
+              {isAr ? "الأرض والمستقبل" : "The Land"}
+              {!isAr && <br />}
+              {!isAr && "and Future"}
             </h1>
 
             <p className="mt-8 font-serif text-[30px] z-10 leading-tight text-[#9b6d35]">
-              Roots of Heritage.<br />Horizons of Tomorrow.
+              {isAr ? (
+                <>
+                  جذور التراث.<br />لآفاق الغد.
+                </>
+              ) : (
+                <>
+                  Roots of Heritage.<br />Horizons of Tomorrow.
+                </>
+              )}
             </p>
 
             <div className="mt-9 flex w-[245px] items-center gap-4 text-[#b99152]">
@@ -198,14 +223,16 @@ export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFutur
             </div>
 
             <p className="mt-8 max-w-[260px] text-[20px] font-semibold leading-[1.55] text-[#35435b]">
-              Kurdistan is a land of ancient civilizations, proud identity, and unwavering spirit. We protect our heritage, build with vision, and walk together toward a brighter future.
+              {isAr
+                ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
+                : "Kurdistan is a land of ancient civilizations, proud identity, and unwavering spirit. We protect our heritage, build with vision, and walk together toward a brighter future."}
             </p>
           </section>
 
           <div className="flex-1" />
 
           <section className="grid grid-cols-3 gap-6 pb-5">
-            {topCards.map((card) => (
+            {localTopCards.map((card) => (
               <SmallCard
                 key={card.number}
                 card={card}
@@ -223,7 +250,7 @@ export default function LandAndFuturePage({ onBack, onSelectCard }: LandAndFutur
           </section>
 
           <section className="grid grid-cols-2 gap-6 pb-4">
-            {bottomCards.map((card) => (
+            {localBottomCards.map((card) => (
               <WideCard
                 key={card.number}
                 card={card}

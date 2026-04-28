@@ -33,10 +33,19 @@ function Divider({ className = "" }) {
 }
 
 type PeshmergaPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function PeshmergaPage({ onBack }: PeshmergaPageProps) {
+export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProps) {
+  const isAr = lang === "ar";
+  const localCards = isAr
+    ? [
+        { title: "الدفاع عن\nالإقليم", text: "الوقوف في وجه كل من يهدد كوردستان وشعبها.", icon: Shield, color: "#963538" },
+        { title: "حماية\nالمدنيين", text: "تأمين السلامة في أوقات الأزمات.", icon: UsersRound, color: "#405846" },
+        { title: "التصدي للإرهاب", text: "أداء دور محوري في مواجهة التطرف.", icon: Bird, color: "#13213b" },
+      ]
+    : cards;
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-14 py-12">
@@ -66,11 +75,11 @@ export default function PeshmergaPage({ onBack }: PeshmergaPageProps) {
           {/* Hero */}
           <section className="max-w-[540px] pt-28">
             <h1 className="font-serif text-[92px] font-semibold leading-none tracking-tight text-[#17233b]">
-              Peshmerga
+              {isAr ? "البيشمركة" : "Peshmerga"}
             </h1>
 
             <p className="mt-9 text-[34px] font-bold leading-tight text-[#9b6d35]">
-              A symbol of courage,<br />protection, and service.
+              {isAr ? "رمز الشجاعة والحماية والخدمة." : "A symbol of courage, protection, and service."}
             </p>
 
             <div className="mt-10 w-[230px]">
@@ -78,7 +87,9 @@ export default function PeshmergaPage({ onBack }: PeshmergaPageProps) {
             </div>
 
             <p className="mt-10 max-w-[465px] text-[29px] font-medium leading-[1.58] text-[#2d3549]">
-              The Peshmerga have played an important role in defending the Kurdistan Region and protecting civilians.
+              {isAr
+                ? "أدّى البيشمركة دورًا بالغ الأهمية في الدفاع عن إقليم كوردستان وحماية المدنيين."
+                : "The Peshmerga have played an important role in defending the Kurdistan Region and protecting civilians."}
             </p>
           </section>
 
@@ -86,7 +97,7 @@ export default function PeshmergaPage({ onBack }: PeshmergaPageProps) {
 
           {/* Cards */}
           <section className="grid grid-cols-3 gap-8 pb-6">
-            {cards.map((card) => {
+            {localCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article

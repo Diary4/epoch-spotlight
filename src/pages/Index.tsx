@@ -744,6 +744,7 @@ const Index = () => {
       {view === "system" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <SystemPage
+            lang={activeLang}
             onBack={() => setView("discover")}
             onParliamentClick={() => setView("parliament")}
             onGovernmentClick={() => setView("government")}
@@ -755,31 +756,32 @@ const Index = () => {
 
       {view === "parliament" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <ParliamentPage onBack={() => setView("system")} />
+          <ParliamentPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
       {view === "primeMinister" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <PrimeMinisterPage onBack={() => setView("system")} />
+          <PrimeMinisterPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
       {view === "government" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <GovernmentPage onBack={() => setView("system")} />
+          <GovernmentPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
       {view === "presidency" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <PresidencyPage onBack={() => setView("system")} />
+          <PresidencyPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
       {view === "landFuture" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <LandAndFuturePage
+            lang={activeLang}
             onBack={() => setView("discover")}
             onSelectCard={(cardId) => {
               if (cardId === "land") {
@@ -798,25 +800,25 @@ const Index = () => {
 
       {view === "land" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <TheLandPage onBack={() => setView("landFuture")} />
+          <TheLandPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
       {view === "peshmerga" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <PeshmergaPage onBack={() => setView("landFuture")} />
+          <PeshmergaPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
       {view === "progress" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <ProgressPage onBack={() => setView("landFuture")} />
+          <ProgressPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
       {view === "identitySymbols" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <KurdishLanguageDialectsPage onBack={() => setView("landFuture")} />
+          <KurdishLanguageDialectsPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 

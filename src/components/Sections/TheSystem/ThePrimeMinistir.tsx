@@ -128,10 +128,38 @@ function InfoPanel({ title, items, tone = "gold" }) {
 }
 
 type PrimeMinisterPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function PrimeMinisterPage({ onBack }: PrimeMinisterPageProps) {
+export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinisterPageProps) {
+  const isAr = lang === "ar";
+  const title = isAr ? "رئيس الوزراء" : "The Prime Minister";
+  const name = isAr ? "مسرور بارزاني" : "Masrour Barzani";
+  const subtitle = isAr
+    ? "يقود إقليم كوردستان بتركيز على الإصلاح والابتكار وبناء مستقبل أفضل للجميع."
+    : "Leading the Kurdistan Region with a focus on reform, innovation, and building a stronger future for all.";
+  const achievementsTitle = isAr ? "الإنجازات المختارة" : "Selected Achievements";
+  const visionTitle = isAr ? "الرؤية المستقبلية" : "Future Vision";
+  const localAchievements = isAr
+    ? [
+        { title: "الإصلاح الاقتصادي", text: "التركيز على التنويع الاقتصادي ونمو القطاع الخاص.", icon: BarChart3 },
+        { title: "حسابي", text: "توسيع تحديث الرواتب والشمول المالي.", icon: UsersRound },
+        { title: "برنامج ڕووناکی", text: "العمل نحو طاقة كهربائية أكثر موثوقية وإصلاح قطاع الطاقة.", icon: Bolt },
+        { title: "البنية التحتية", text: "تطوير الطرق والمياه والنقل والمشاريع الاستراتيجية.", icon: Route },
+        { title: "الخدمات الرقمية", text: "دعم تحديث الخدمات العامة وأنظمة الحكومة.", icon: Monitor },
+      ]
+    : achievements;
+  const localVision = isAr
+    ? [
+        { title: "اقتصاد متنوع", text: "بناء اقتصاد أقوى بعيدًا عن الاعتماد على النفط", icon: BarChart3 },
+        { title: "طاقة موثوقة", text: "تحسين الكهرباء والخدمات الأساسية.", icon: Lightbulb },
+        { title: "فرص للشباب", text: "توفير المزيد من فرص العمل والابتكار وريادة الأعمال.", icon: UsersRound },
+        { title: "الاستثمار والشراكات", text: "تعزيز العلاقات الدولية واستقطاب الاستثمارات.", icon: Handshake },
+        { title: "كوردستان الحديثة", text: "دعم إقليم مستقر ورقمي وجاهز للمستقبل.", icon: Mountain },
+      ]
+    : vision;
+
   return (
     <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-12 py-10">
@@ -171,11 +199,11 @@ export default function PrimeMinisterPage({ onBack }: PrimeMinisterPageProps) {
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="max-w-[510px] pt-32">
             <h1 className="font-serif text-[78px] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
-              The Prime<br />Minister
+              {title}
             </h1>
 
             <p className="mt-5 font-serif text-[42px] leading-tight text-[#9b6d35]">
-              Masrour Barzani
+              {name}
             </p>
 
             <div className="mt-8 w-[360px]">
@@ -183,15 +211,15 @@ export default function PrimeMinisterPage({ onBack }: PrimeMinisterPageProps) {
             </div>
 
             <p className="mt-8 max-w-[420px] text-[27px] font-semibold leading-[1.45] text-[#2d3549]">
-              Leading the Kurdistan Region with a focus on reform, innovation, and building a stronger future for all.
+              {subtitle}
             </p>
           </section>
 
           <div className="flex-1" />
 
           <section className="grid grid-cols-2 gap-8 pb-0">
-            <InfoPanel title="Selected Achievements" items={achievements} tone="gold" />
-            <InfoPanel title="Future Vision" items={vision} tone="green" />
+            <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
+            <InfoPanel title={visionTitle} items={localVision} tone="green" />
           </section>
         </div>
       </section>
