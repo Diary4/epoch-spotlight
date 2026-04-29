@@ -94,8 +94,8 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
     : fallbackSections;
 
   return (
-    <main className="min-h-screen w-full overflow-hidden bg-[#f8f1e4] text-[#18362d]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5ea] px-12 py-12">
+    <main className="m-0 flex min-h-screen w-screen justify-center overflow-hidden bg-[#f8f1e4] p-0 text-[#18362d]">
+      <section className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fbf5ea]">
         {/* Background image */}
         <img
           src="https://images.pexels.com/photos/18040523/pexels-photo-18040523.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -109,54 +109,45 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
         {/* Bottom fade */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-[#fbf5ea]/85 via-transparent to-[#fbf5ea]/65" />
         {/* Main content fills vertical space */}
-        <div className="relative z-10 flex flex-1 flex-col justify-between pt-20">
+        <div className="relative z-10 flex flex-1 flex-col justify-between px-6 pb-10 pt-12 sm:px-10 sm:pt-16 md:px-14 md:pb-12 md:pt-20 lg:px-16 lg:pb-14 lg:pt-24">
           <div className="text-center">
-            <div className="mb-6 flex items-center justify-center gap-12 text-[#c49b52]">
-              <span className="h-0.5 w-150 max-w-[150px] bg-[#c49b52]" />
-              <div className="flex flex-col items-center w-full">
-                {/* <span className="mb-2 h-8 w-full rounded-sm bg-red-500" /> */}
-                <span className="text-8xl leading-none">✹</span>
-                {/* <span className="mt-2 h-8 w-full rounded-sm bg-green-500" /> */}
+            <div className="mb-5 flex items-center justify-center gap-3 text-[#c49b52] sm:mb-6 sm:gap-6 md:gap-12 lg:mb-8">
+              <span className="h-0.5 w-10 bg-[#c49b52] sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
+              <div className="flex w-full flex-col items-center">
+                <span className="mb-[-12px] h-4 w-full max-w-[1150px] rounded-sm bg-red-500 sm:mb-[-16px] sm:h-6 md:mb-[-20px] md:h-8 lg:h-9" />
+                <span className="text-5xl leading-none sm:text-6xl md:text-8xl lg:text-9xl">✹</span>
+                <span className="mt-[-8px] h-4 w-full max-w-[1150px] rounded-sm bg-green-500 sm:mt-[-12px] sm:h-6 md:mt-[-15px] md:h-8 lg:h-9" />
               </div>
-              <span className="h-0.5 w-150 max-w-[150px] bg-[#c49b52]" />
+              <span className="h-0.5 w-10 bg-[#c49b52] sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
             </div>
 
-            <h1 className="font-serif text-[84px] leading-none tracking-tight text-[#18362d]">{discover.title ?? "Discover Kurdistan"}</h1>
+            <h1 className="font-serif text-[42px] leading-none tracking-tight text-[#18362d] sm:text-[56px] md:text-[84px] lg:text-[102px]">{discover.title ?? "Discover Kurdistan"}</h1>
 
-            <p className="mx-auto mt-8 max-w-[760px] font-light text-[28px] leading-[1.45] text-[#424c48]">
+            <p className="mx-auto mt-5 max-w-[980px] px-1 text-[17px] leading-[1.5] text-[#424c48] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]">
               {discover.subtitle ?? "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
             </p>
 
-            <div className="mx-auto mt-10 flex max-w-[420px] items-center gap-6 text-[#c49b52]">
+            <div className="mx-auto mt-6 flex max-w-[420px] items-center gap-4 text-[#c49b52] sm:mt-8 sm:gap-5 md:mt-10 md:gap-6 lg:mt-12 lg:max-w-[520px]">
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
-              <span className="h-5 w-5 rotate-45 bg-[#c49b52]" />
+              <span className="h-3.5 w-3.5 rotate-45 bg-[#c49b52] sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
             </div>
 
-            <p className="mx-auto mt-8 max-w-[650px] font-light text-[28px] leading-[1.45] text-[#4d5652]">
+            <p className="mx-auto mt-5 max-w-[880px] px-1 text-[17px] leading-[1.5] text-[#4d5652] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]">
               {discover.description ?? "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
             </p>
-
-            <button
-              type="button"
-              onClick={onStartExploring}
-              className="mt-9 inline-flex min-w-[520px] items-center justify-center gap-14 rounded-[22px] border-4 border-[#d0a660] bg-[#0f442f] px-12 py-8 font-serif text-[43px] text-[#f6d995] shadow-[0_12px_28px_rgba(57,35,6,0.28)]"
-            >
-              {discover.startExploring ?? "Start Exploring"}
-              <ArrowRight size={52} strokeWidth={1.7} />
-            </button>
           </div>
 
-          <div>
-            <div className="mb-6 flex items-center justify-center gap-5 font-serif text-[30px] text-[#2d3d35]">
-              <span className="h-0.5 w-74 max-w-[74px] bg-[#c8a05a]" />
-              <span className="h-4 w-4 rotate-45 border-2 border-[#c8a05a]" />
+          <div className="mt-10 md:mt-0">
+            <div className="mb-4 flex items-center justify-center gap-2 font-serif text-[18px] text-[#2d3d35] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px]">
+              <span className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
+              <span className="h-2.5 w-2.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
               <span>{discover.chooseSection ?? "Choose a section to begin"}</span>
-              <span className="h-4 w-4 rotate-45 border-2 border-[#c8a05a]" />
-              <span className="h-0.5 w-74 max-w-[74px] bg-[#c8a05a]" />
+              <span className="h-2.5 w-2.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
+              <span className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:gap-8 lg:gap-10">
               {localizedSections.map((section) => {
                 const Icon = sectionIcons[section.id];
                 return (
@@ -166,14 +157,14 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
                     onClick={() => onSelectSection?.(section.id)}
                     className="relative overflow-hidden rounded-[20px] border-2 border-[#e1bf7a] bg-[#fffaf0] text-center shadow-[0_10px_30px_rgba(84,54,16,0.16)] transition active:scale-[0.98]"
                   >
-                    <img src={sectionImages[section.id]} alt={section.title} className="h-[240px] w-full object-cover" />
-                    <GoldIcon className="absolute left-1/2 top-[202px] h-24 w-24 -translate-x-1/2">
-                      <Icon size={48} strokeWidth={1.6} />
+                    <img src={sectionImages[section.id]} alt={section.title} className="h-[185px] w-full object-cover sm:h-[210px] md:h-[240px] lg:h-[300px]" />
+                    <GoldIcon className="absolute left-1/2 top-[156px] h-16 w-16 -translate-x-1/2 sm:top-[176px] sm:h-20 sm:w-20 md:top-[202px] md:h-24 md:w-24 lg:top-[254px] lg:h-28 lg:w-28">
+                      <Icon className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14" strokeWidth={1.6} />
                     </GoldIcon>
-                    <div className="relative min-h-[160px] px-12 pb-7 pt-14">
-                      <h3 className="font-serif text-[34px] font-semibold leading-tight text-[#18362d]">{localizeDigits(section.title, lang)}</h3>
-                      <p className="mt-2 whitespace-pre-line text-[23px] leading-tight text-[#5f6662]">{localizeDigits(section.desc, lang)}</p>
-                      <ArrowRight className="absolute right-8 top-1/2 text-[#b88b43]" size={40} strokeWidth={1.8} />
+                    <div className="relative min-h-[140px] px-6 pb-5 pt-10 sm:min-h-[148px] sm:px-8 sm:pb-6 sm:pt-12 md:min-h-[160px] md:px-12 md:pb-7 md:pt-14 lg:min-h-[210px] lg:px-14 lg:pb-9 lg:pt-16">
+                      <h3 className="font-serif text-[26px] font-semibold leading-tight text-[#18362d] sm:text-[30px] md:text-[34px] lg:text-[44px]">{localizeDigits(section.title, lang)}</h3>
+                      <p className="mt-2 whitespace-pre-line text-[17px] leading-tight text-[#5f6662] sm:text-[20px] md:text-[23px] lg:mt-3 lg:text-[30px]">{localizeDigits(section.desc, lang)}</p>
+                      <ArrowRight className="absolute right-5 top-1/2 h-7 w-7 text-[#b88b43] sm:right-6 sm:h-8 sm:w-8 md:right-8 md:h-10 md:w-10 lg:right-10 lg:h-12 lg:w-12" strokeWidth={1.8} />
                     </div>
                   </button>
                 );

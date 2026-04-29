@@ -68,50 +68,49 @@ function CircleIcon({ Icon }) {
 
 export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePageProps) {
   return (
-    <main className="min-h-screen w-full bg-[#f9f3e7] text-[#1e352d]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fcf7ed] px-10 py-10">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e7] p-0 text-[#1e352d]">
+      <section className="relative flex min-h-screen w-[min(96vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to Discover"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
-        <div className="absolute inset-x-0 top-[300px] h-[520px] bg-[url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-22" />
-        <div className="absolute inset-x-0 top-[260px] h-[620px] bg-gradient-to-b from-transparent via-[#fcf7ed]/20 to-[#fcf7ed]" />
+        <div className="absolute inset-x-0 top-[220px] h-[470px] bg-[url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-22 sm:top-[280px] sm:h-[520px] lg:top-[320px] lg:h-[620px]" />
+        <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-[#fcf7ed]/20 to-[#fcf7ed] sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
 
         {/* Hero */}
-        <header className="relative z-10 pt-8 text-center">
-          <h1 className="font-serif text-[110px] font-semibold leading-none tracking-tight text-[#1d342d]">
+        <header className="relative z-10 pt-10 text-center sm:pt-8 lg:pt-12">
+          <h1 className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
             The People
           </h1>
 
-          <div className="mx-auto mt-6 flex max-w-[520px] items-center justify-center gap-6 text-[#c8a05a]">
+          <div className="mx-auto mt-5 flex max-w-[520px] items-center justify-center gap-4 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
             <span className="h-0.5 flex-1 bg-[#d5b773]" />
-            <Sparkles size={28} />
+            <Sparkles className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
             <span className="h-0.5 flex-1 bg-[#d5b773]" />
           </div>
 
-          <p className="mx-auto mt-8 max-w-[760px] text-[28px] leading-relaxed text-[#49524e]">
+          <p className="mx-auto mt-6 max-w-[980px] text-[20px] leading-relaxed text-[#49524e] sm:mt-8 sm:text-[28px] lg:text-[34px]">
             Discover who the Kurds are and the values, identity,
             and resilience that shape their story.
           </p>
         </header>
 
-        Character Showcase
-        <div className="relative z-10 mt-10 flex justify-center">
+        <div className="relative z-10 mt-8 flex justify-center sm:mt-10 lg:mt-12">
           <img
             src="https://images.pexels.com/photos/11972899/pexels-photo-11972899.jpeg"
             alt="Kurdish people"
-            className="h-[540px] w-full rounded-[28px] object-cover shadow-[0_18px_40px_rgba(84,54,16,0.18)]"
+            className="h-[360px] w-full rounded-[24px] object-cover shadow-[0_18px_40px_rgba(84,54,16,0.18)] sm:h-[500px] sm:rounded-[28px] lg:h-[620px] lg:rounded-[32px]"
           />
-          <div className="absolute inset-0 rounded-[28px] bg-gradient-to-t from-[#fcf7ed] via-transparent to-transparent" />
+          <div className="absolute inset-0 rounded-[24px] bg-gradient-to-t from-[#fcf7ed] via-transparent to-transparent sm:rounded-[28px] lg:rounded-[32px]" />
         </div>
 
         {/* Cards */}
-        <div className="relative z-10 mt-10 grid grid-cols-3 gap-7">
+        <div className="relative z-10 mt-8 grid grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:mt-12 lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => {
             const Icon = card.icon;
             return (
@@ -127,12 +126,12 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                     onSelectCard?.("resilience");
                   }
                 }}
-                className="relative overflow-hidden rounded-[22px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)]"
+                className="relative overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <img src={card.image} alt={card.title} className="h-[290px] w-full object-cover" />
+                <img src={card.image} alt={card.title} className="h-[220px] w-full object-cover sm:h-[250px] lg:h-[300px]" />
                 <CircleIcon Icon={Icon} />
-                <div className="min-h-[360px] px-8 pb-10 pt-20 text-center">
-                  <h3 className="whitespace-pre-line font-serif text-[34px] font-semibold leading-tight text-[#1f352d]">
+                <div className="min-h-[300px] px-6 pb-8 pt-16 text-center sm:min-h-[320px] sm:px-8 sm:pb-10 sm:pt-20 lg:min-h-[390px]">
+                  <h3 className="whitespace-pre-line font-serif text-[28px] font-semibold leading-tight text-[#1f352d] sm:text-[32px] lg:text-[36px]">
                     {card.title}
                   </h3>
 
@@ -142,7 +141,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                     <span className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[24px] leading-relaxed text-[#59625d]">
+                  <p className="text-[20px] leading-relaxed text-[#59625d] sm:text-[22px] lg:text-[26px]">
                     {card.description}
                   </p>
                 </div>
