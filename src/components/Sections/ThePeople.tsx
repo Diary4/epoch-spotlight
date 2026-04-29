@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
+import gsap from "gsap";
 import whoAreKurdsBg from "@/assets/pexels-mohammad-majid-112544081-31576586.jpg"
 import storyOfResilienceBg from "@/assets/pexels-rebaz-geo-1735378-14960015.jpg"
 import sharedIdentityBg from "@/assets/pexels-sia-art-285926721-13108265.jpg"
@@ -71,9 +72,53 @@ function CircleIcon({ Icon }) {
 }
 
 export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePageProps) {
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set("[data-people-bg='true']", { autoAlpha: 0, scale: 1.08, y: 24 });
+      gsap.set("[data-people-hero='true']", { autoAlpha: 0, y: 18 });
+      gsap.set("[data-people-card='true']", { autoAlpha: 0, y: 42, rotateX: -10, transformOrigin: "center top" });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to("[data-people-bg='true']", {
+        autoAlpha: 1,
+        scale: 1,
+        y: 0,
+        duration: 1.1,
+      })
+        .to(
+          "[data-people-hero='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+          },
+          "-=0.55",
+        )
+        .to(
+          "[data-people-card='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.85,
+            stagger: 0.14,
+          },
+          "-=0.15",
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e7] p-0 text-[#1e352d]">
-      <section className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
         <button
           type="button"
           onClick={onBack}
@@ -84,27 +129,28 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         </button>
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
         <img
+          data-people-bg="true"
           src={kurdistanBg}
           alt=""
           className="pointer-events-none absolute inset-x-0 top-[280px] h-[500px] w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]"
         />
-        <div className="pointer-events-none absolute inset-x-0 top-[280px] h-[470px] bg-gradient-to-r from-[#fcf7ed] via-transparent to-[#fcf7ed] opacity-80 sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]" />
-        <div className="pointer-events-none absolute inset-x-0 top-[280px] h-[140px] bg-gradient-to-b from-[#fcf7ed] to-transparent sm:top-[340px] lg:top-[380px]" />
+        <div data-people-bg="true" className="pointer-events-none absolute inset-x-0 top-[280px] h-[470px] bg-gradient-to-r from-[#fcf7ed] via-transparent to-[#fcf7ed] opacity-80 sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]" />
+        <div data-people-bg="true" className="pointer-events-none absolute inset-x-0 top-[280px] h-[140px] bg-gradient-to-b from-[#fcf7ed] to-transparent sm:top-[340px] lg:top-[380px]" />
         <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-[#fcf7ed]/20 to-[#fcf7ed] sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
 
         {/* Hero */}
         <header className="relative z-10 pt-10 text-center sm:pt-8 lg:pt-12">
-          <h1 className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
+          <h1 data-people-hero="true" className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
             The People
           </h1>
 
-          <div className="mx-auto mt-5 flex max-w-[520px] items-center justify-center gap-4 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
+          <div data-people-hero="true" className="mx-auto mt-5 flex max-w-[520px] items-center justify-center gap-4 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
             <span className="h-0.5 flex-1 bg-[#d5b773]" />
             <Sparkles className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
             <span className="h-0.5 flex-1 bg-[#d5b773]" />
           </div>
 
-          <p className="mx-auto mt-6 max-w-[980px] text-[20px] leading-relaxed text-[#49524e] sm:mt-8 sm:text-[28px] lg:text-[34px]">
+          <p data-people-hero="true" className="mx-auto mt-6 max-w-[980px] text-[20px] leading-relaxed text-[#49524e] sm:mt-8 sm:text-[28px] lg:text-[34px]">
             Discover who the Kurds are and the values, identity,
             and resilience that shape their story.
           </p>
@@ -120,6 +166,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
             const Icon = card.icon;
             return (
               <button
+                data-people-card="true"
                 type="button"
                 key={card.title}
                 onClick={() => {

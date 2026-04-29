@@ -4,6 +4,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
+import gsap from "gsap";
 import ThePeopleBg from "@/assets/pexels-peyvandpezeshki-28375100.jpg"
 import TheJourneyBg from "@/assets/pexels-i-brahim-vural-250459888-36479358.jpg"
 import TheSystemBg from "@/assets/parliment.jpg"
@@ -87,6 +88,8 @@ type DiscoverKurdistanProps = {
 };
 
 export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSelectSection }: DiscoverKurdistanProps) {
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+
   const data = CONTENT[lang] as any;
   const discover = data?.discover ?? {};
   const localizedSections = Array.isArray(discover.sections)
@@ -97,9 +100,67 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
       }))
     : fallbackSections;
 
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set("[data-intro-lineshape='true']", { autoAlpha: 0, y: -18 });
+      gsap.set("[data-intro-title='true']", { autoAlpha: 0, y: 24 });
+      gsap.set("[data-intro-rest='true']", { autoAlpha: 0, y: 20 });
+      gsap.set("[data-intro-grid='true']", { autoAlpha: 0, y: 26 });
+      gsap.set("[data-choose-line='true']", { scaleX: 0, transformOrigin: "center" });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to("[data-intro-lineshape='true']", {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.85,
+      })
+        .to(
+          "[data-intro-title='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+          },
+          "-=0.15",
+        )
+        .to(
+          "[data-intro-rest='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.75,
+          },
+          "-=0.1",
+        )
+        .to(
+          "[data-choose-line='true']",
+          {
+            scaleX: 1,
+            duration: 0.7,
+            stagger: 0.07,
+          },
+          "-=0.25",
+        )
+        .to(
+          "[data-intro-grid='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.95,
+          },
+          "-=0.2",
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center overflow-hidden bg-[#f8f1e4] p-0 text-[#18362d]">
-      <section className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fbf5ea]">
+      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fbf5ea]">
         {/* Background image */}
         <img
           src="https://images.pexels.com/photos/18040523/pexels-photo-18040523.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -115,7 +176,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
         {/* Main content fills vertical space */}
         <div className="relative z-10 flex flex-1 flex-col justify-between px-6 pb-10 pt-12 sm:px-10 sm:pt-16 md:px-14 md:pb-12 md:pt-20 lg:px-16 lg:pb-14 lg:pt-24">
           <div className="text-center">
-            <div className="mb-5 flex items-center justify-center gap-3 text-[#c49b52] sm:mb-6 sm:gap-6 md:gap-12 lg:mb-8">
+            <div data-intro-lineshape="true" className="mb-5 flex items-center justify-center gap-3 text-[#c49b52] sm:mb-6 sm:gap-6 md:gap-12 lg:mb-8">
               <span className="h-0.5 w-10 bg-[#c49b52] sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
               <div className="flex w-full flex-col items-center">
                 <span className="mb-[-12px] h-4 w-full max-w-[1150px] rounded-sm bg-red-500 sm:mb-[-16px] sm:h-6 md:mb-[-20px] md:h-8 lg:h-9" />
@@ -125,33 +186,33 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
               <span className="h-0.5 w-10 bg-[#c49b52] sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
             </div>
 
-            <h1 className="font-serif text-[42px] leading-none tracking-tight text-[#18362d] sm:text-[56px] md:text-[84px] lg:text-[102px]">{discover.title ?? "Discover Kurdistan"}</h1>
+            <h1 data-intro-title="true" className="font-serif text-[42px] leading-none tracking-tight text-[#18362d] sm:text-[56px] md:text-[84px] lg:text-[102px]">{discover.title ?? "Discover Kurdistan"}</h1>
 
-            <p className="mx-auto mt-5 max-w-[980px] px-1 text-[17px] leading-[1.5] text-[#424c48] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]">
+            <p data-intro-rest="true" className="mx-auto mt-5 max-w-[980px] px-1 text-[17px] leading-[1.5] text-[#424c48] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]">
               {discover.subtitle ?? "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
             </p>
 
-            <div className="mx-auto mt-6 flex max-w-[420px] items-center gap-4 text-[#c49b52] sm:mt-8 sm:gap-5 md:mt-10 md:gap-6 lg:mt-12 lg:max-w-[520px]">
+            <div data-intro-rest="true" className="mx-auto mt-6 flex max-w-[420px] items-center gap-4 text-[#c49b52] sm:mt-8 sm:gap-5 md:mt-10 md:gap-6 lg:mt-12 lg:max-w-[520px]">
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
               <span className="h-3.5 w-3.5 rotate-45 bg-[#c49b52] sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
             </div>
 
-            <p className="mx-auto mt-5 max-w-[880px] px-1 text-[17px] leading-[1.5] text-[#4d5652] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]">
+            <p data-intro-rest="true" className="mx-auto mt-5 max-w-[880px] px-1 text-[17px] leading-[1.5] text-[#4d5652] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]">
               {discover.description ?? "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
             </p>
           </div>
 
-          <div className="mt-10 md:mt-0">
+          <div data-intro-rest="true" className="mt-10 md:mt-0">
             <div className="mb-4 flex items-center justify-center gap-2 font-serif text-[18px] text-[#2d3d35] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px]">
-              <span className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
+              <span data-choose-line="true" className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
               <span className="h-2.5 w-2.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
               <span>{discover.chooseSection ?? "Choose a section to begin"}</span>
               <span className="h-2.5 w-2.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
+              <span data-choose-line="true" className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
             </div>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:gap-8 lg:gap-10">
+            <div data-intro-grid="true" className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:gap-8 lg:gap-10">
               {localizedSections.map((section) => {
                 const Icon = sectionIcons[section.id];
                 return (
