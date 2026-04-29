@@ -4,6 +4,10 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
+import ThePeopleBg from "@/assets/pexels-peyvandpezeshki-28375100.jpg"
+import TheJourneyBg from "@/assets/pexels-i-brahim-vural-250459888-36479358.jpg"
+import TheSystemBg from "@/assets/parliment.jpg"
+import Nature from "@/assets/nature.jpg"
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -18,10 +22,10 @@ const sectionIcons: Record<DiscoverSectionId, typeof UsersRound> = {
 };
 
 const sectionImages: Record<DiscoverSectionId, string> = {
-  people: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=90",
-  journey: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
-  system: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=90",
-  landFuture: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=90",
+  people: ThePeopleBg,
+  journey: TheJourneyBg,
+  system: TheSystemBg,
+  landFuture: Nature,
 };
 
 const fallbackSections: {

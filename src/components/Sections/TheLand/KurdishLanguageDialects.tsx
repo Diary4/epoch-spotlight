@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, Feather, UsersRound } from "lucide-react";
+import bgImage from "@/assets/pexels-gullllsa-19795680.jpg"
 
 const dialects = [
   {
@@ -114,17 +115,17 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
-        <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-28 opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this with your generated language/books background */}
         <div className="pointer-events-none absolute right-0 top-[60px] h-[700px] w-[58vw] min-w-[740px]">
           <img
-            src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1500&q=90"
+            src={bgImage}
             alt="Kurdish language books placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-76 [mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover opacity-76 [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_52%,transparent_86%)]"
           />
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/68 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/24 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
@@ -155,14 +156,12 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             </p>
           </section>
 
-          <div className="flex-1" />
-
           {/* Main content */}
-          <section className="grid grid-cols-1 gap-5 pb-6 lg:grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] lg:gap-7">
-            <aside className="rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:px-7 lg:py-7">
+          <section className="mt-6 grid grid-cols-1 gap-5 pb-6 lg:mt-10 lg:grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] lg:gap-7">
+            <aside className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
               <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
-              <div className="mt-3">
+              <div className="mt-3 grid flex-1 content-between">
                 {localDialects.map((item) => (
                   <DialectItem key={item.name} item={item} />
                 ))}

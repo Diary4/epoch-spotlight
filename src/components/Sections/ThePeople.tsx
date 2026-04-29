@@ -1,5 +1,9 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
+import whoAreKurdsBg from "@/assets/pexels-mohammad-majid-112544081-31576586.jpg"
+import storyOfResilienceBg from "@/assets/pexels-rebaz-geo-1735378-14960015.jpg"
+import sharedIdentityBg from "@/assets/pexels-sia-art-285926721-13108265.jpg"
+import kurdistanBg from "@/assets/pexels-hama-24861075.jpg"
 
 const cards: {
   id: ThePeopleCardId;
@@ -14,7 +18,7 @@ const cards: {
     description:
       "An ancient people of the Middle East known for courage, hospitality, and cultural richness.",
     image:
-      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=900&q=90",
+      whoAreKurdsBg,
     icon: Landmark,
   },
   {
@@ -23,7 +27,7 @@ const cards: {
     description:
       "A people connected by language, history, tradition, and collective memory.",
     image:
-      "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=900&q=90",
+      sharedIdentityBg,
     icon: Grid2X2,
   },
   {
@@ -32,7 +36,7 @@ const cards: {
     description:
       "A history shaped by endurance, dignity, and hope.",
     image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=90",
+      storyOfResilienceBg,
     icon: Sun,
   },
 ];
@@ -60,7 +64,7 @@ function GoldButton({ children, active = false }) {
 
 function CircleIcon({ Icon }) {
   return (
-    <div className="absolute left-1/2 top-[184px] grid h-16 w-16 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[214px] sm:h-20 sm:w-20 lg:top-[250px] lg:h-24 lg:w-24">
+    <div className="absolute left-1/2 top-[184px] grid h-16 w-16 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[214px] sm:h-20 sm:w-20 lg:top-[452px] lg:h-24 lg:w-24">
       <Icon className="h-8 w-8 text-[#c7a04e] sm:h-10 sm:w-10 lg:h-[42px] lg:w-[42px]" strokeWidth={1.6} />
     </div>
   );
@@ -79,7 +83,13 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
-        <div className="absolute inset-x-0 top-[220px] h-[470px] bg-[url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-22 sm:top-[280px] sm:h-[520px] lg:top-[320px] lg:h-[620px]" />
+        <img
+          src={kurdistanBg}
+          alt=""
+          className="pointer-events-none absolute inset-x-0 top-[280px] h-[500px] w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]"
+        />
+        <div className="pointer-events-none absolute inset-x-0 top-[280px] h-[470px] bg-gradient-to-r from-[#fcf7ed] via-transparent to-[#fcf7ed] opacity-80 sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]" />
+        <div className="pointer-events-none absolute inset-x-0 top-[280px] h-[140px] bg-gradient-to-b from-[#fcf7ed] to-transparent sm:top-[340px] lg:top-[380px]" />
         <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-[#fcf7ed]/20 to-[#fcf7ed] sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
 
         {/* Hero */}
@@ -100,14 +110,9 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           </p>
         </header>
 
-        <div className="relative z-10 mt-8 flex justify-center sm:mt-10 lg:mt-12">
-          <img
-            src="https://images.pexels.com/photos/11972899/pexels-photo-11972899.jpeg"
-            alt="Kurdish people"
-            className="h-[360px] w-full rounded-[24px] object-cover shadow-[0_18px_40px_rgba(84,54,16,0.18)] sm:h-[500px] sm:rounded-[28px] lg:h-[620px] lg:rounded-[32px]"
-          />
-          <div className="absolute inset-0 rounded-[24px] bg-gradient-to-t from-[#fcf7ed] via-transparent to-transparent sm:rounded-[28px] lg:rounded-[32px]" />
-        </div>
+
+        {/* Keep cards anchored even if showcase is removed */}
+        <div className="relative z-10 mt-8 h-[360px] sm:mt-10 sm:h-[500px] lg:mt-12 lg:h-[620px]" />
 
         {/* Cards */}
         <div className="relative z-10 mt-8 grid grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:mt-12 lg:grid-cols-3 lg:gap-8">
@@ -128,7 +133,11 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                 }}
                 className="relative overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <img src={card.image} alt={card.title} className="h-[220px] w-full object-cover sm:h-[250px] lg:h-[300px]" />
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="block h-[200px] w-full object-cover object-center brightness-[0.94] contrast-110 sm:h-[250px] lg:h-[500px]"
+                />
                 <CircleIcon Icon={Icon} />
                 <div className="min-h-[300px] px-6 pb-8 pt-16 text-center sm:min-h-[320px] sm:px-8 sm:pb-10 sm:pt-20 lg:min-h-[390px]">
                   <h3 className="whitespace-pre-line font-serif text-[28px] font-semibold leading-tight text-[#1f352d] sm:text-[32px] lg:text-[36px]">

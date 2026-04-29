@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, KeyRound, Sparkles, TreePine } from "lucide-react";
+import bgImage from "@/assets/pexels-alisa-anton-10275495.jpg"
 
 const infoCards = [
   {
