@@ -60,8 +60,8 @@ function GoldButton({ children, active = false }) {
 
 function CircleIcon({ Icon }) {
   return (
-    <div className="absolute left-1/2 top-[250px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)]">
-      <Icon size={42} className="text-[#c7a04e]" strokeWidth={1.6} />
+    <div className="absolute left-1/2 top-[184px] grid h-16 w-16 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[214px] sm:h-20 sm:w-20 lg:top-[250px] lg:h-24 lg:w-24">
+      <Icon className="h-8 w-8 text-[#c7a04e] sm:h-10 sm:w-10 lg:h-[42px] lg:w-[42px]" strokeWidth={1.6} />
     </div>
   );
 }
@@ -69,7 +69,7 @@ function CircleIcon({ Icon }) {
 export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePageProps) {
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e7] p-0 text-[#1e352d]">
-      <section className="relative flex min-h-screen w-[min(96vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+      <section className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
         <button
           type="button"
           onClick={onBack}

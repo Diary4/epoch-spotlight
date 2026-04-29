@@ -27,10 +27,10 @@ function InstitutionNode({ label, icon, color, className = "", onClick }: { labe
   const Icon = icon;
   const content = (
     <>
-      <div className={`grid h-40 w-40 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55]`}>
-        <Icon size={76} strokeWidth={1.35} />
+      <div className={`grid h-40 w-40 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55] md:h-44 md:w-44 lg:h-48 lg:w-48`}>
+        <Icon className="h-[76px] w-[76px] md:h-[84px] md:w-[84px] lg:h-[92px] lg:w-[92px]" strokeWidth={1.35} />
       </div>
-      <p className="mt-6 font-serif text-[31px] font-bold uppercase tracking-[0.06em] text-[#17233b]">
+      <p className="mt-6 font-serif text-[28px] font-bold uppercase tracking-[0.06em] text-[#17233b] md:text-[31px] lg:text-[36px]">
         {label}
       </p>
     </>
@@ -76,21 +76,21 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
     : "Together, these institutions support governance, law, and public administration.";
 
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to Discover"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this visual later with your generated building/flag image */}
-        <div className="pointer-events-none absolute right-0 top-[170px] h-[470px] w-[560px]">
+        <div className="pointer-events-none absolute right-0 top-[140px] h-[560px] w-[44vw] min-w-[560px]">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=90"
             alt="System building placeholder"
@@ -100,37 +100,37 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col px-14 pt-22 pb-7">
-          <section className="max-w-[575px]">
-            <h1 className="font-serif text-[88px] font-semibold leading-[1.03] tracking-tight text-[#17233b]">
+        <div className="relative z-10 flex flex-1 flex-col px-8 pb-10 pt-16 sm:px-12 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
+          <section className="max-w-[760px]">
+            <h1 className="font-serif text-[72px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
               {title}
             </h1>
 
-            <p className="mt-8 text-[34px] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-6 text-[28px] font-bold leading-tight text-[#9b6d35] sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
               {heading}
             </p>
 
-            <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
+            <div className="mt-8 flex w-[280px] items-center gap-4 text-[#b99152] md:mt-10">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-10 max-w-[535px] text-[28px] font-medium leading-[1.5] text-[#2d3549]">
+            <p className="mt-8 max-w-[700px] text-[24px] font-medium leading-[1.5] text-[#2d3549] md:mt-10 md:text-[30px] lg:text-[36px]">
               {description}
             </p>
           </section>
 
           {/* Diagram */}
-          <section className="relative mx-auto mt-28 h-[610px] w-[720px]">
-            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 720 610" fill="none">
-              <circle cx="360" cy="300" r="270" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
-              <circle cx="360" cy="300" r="205" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
-              <path d="M360 105 C260 160 180 250 160 392" stroke="#b99152" strokeWidth="3" fill="none" />
-              <path d="M360 105 C465 160 545 250 560 392" stroke="#b99152" strokeWidth="3" fill="none" />
-              <path d="M160 392 C260 455 460 455 560 392" stroke="#b99152" strokeWidth="3" fill="none" />
-              <path d="M360 205 L360 315 M245 392 L360 315 M475 392 L360 315" stroke="#b99152" strokeWidth="3" />
-              {[360,160,560,245,475,360].map((x, i) => (
-                <circle key={i} cx={x} cy={i === 0 ? 105 : i === 1 || i === 2 ? 392 : i === 5 ? 315 : 392} r="10" fill="#c59a4b" />
+          <section className="relative mx-auto mt-20 h-[710px] w-[900px] max-w-full md:mt-24">
+            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 900 710" fill="none">
+              <circle cx="450" cy="350" r="318" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
+              <circle cx="450" cy="350" r="242" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
+              <path d="M450 116 C330 180 234 288 210 458" stroke="#b99152" strokeWidth="4" fill="none" />
+              <path d="M450 116 C575 180 670 288 700 458" stroke="#b99152" strokeWidth="4" fill="none" />
+              <path d="M210 458 C330 528 570 528 700 458" stroke="#b99152" strokeWidth="4" fill="none" />
+              <path d="M450 242 L450 370 M315 458 L450 370 M585 458 L450 370" stroke="#b99152" strokeWidth="4" />
+              {[450, 210, 700, 315, 585, 450].map((x, i) => (
+                <circle key={i} cx={x} cy={i === 0 ? 116 : i === 1 || i === 2 ? 458 : i === 5 ? 370 : 458} r="12" fill="#c59a4b" />
               ))}
             </svg>
 
@@ -138,44 +138,44 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               label={parliamentLabel}
               icon={Landmark}
               color="bg-[#13213b]"
-              className="left-1/2 top-0 -translate-x-1/2"
+              className="left-1/2 top-1 -translate-x-1/2"
               onClick={onParliamentClick}
             />
             <InstitutionNode
               label={governmentLabel}
               icon={Building2}
               color="bg-[#405846]"
-              className="left-0 top-[285px]"
+              className="left-[28px] top-[346px]"
               onClick={onGovernmentClick}
             />
             <InstitutionNode
               label={presidencyLabel}
               icon={Bird}
               color="bg-[#9d3637]"
-              className="right-0 top-[285px]"
+              className="right-[28px] top-[346px]"
               onClick={onPresidencyClick}
             />
 
-            <div className="absolute left-1/2 top-[300px] grid h-20 w-20 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">
-              <span className="text-4xl">✥</span>
+            <div className="absolute left-1/2 top-[350px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">
+              <span className="text-5xl">✥</span>
             </div>
           </section>
 
           <button
             type="button"
             onClick={onPrimeMinisterClick}
-            className="mx-auto mt-8 flex h-[130px] w-[780px] items-center justify-between rounded-[24px] border-4 border-[#cda55e] bg-white/62 px-16 font-serif text-[55px] font-semibold text-[#17233b] shadow-[0_12px_30px_rgba(84,54,16,0.14)]"
+            className="mx-auto mt-8 flex h-[150px] w-[min(92vw,980px)] items-center justify-between rounded-[28px] border-4 border-[#cda55e] bg-white/62 px-12 font-serif text-[42px] font-semibold text-[#17233b] shadow-[0_12px_30px_rgba(84,54,16,0.14)] sm:px-16 sm:text-[55px]"
           >
             <span className="text-[#b99152] text-6xl">✥</span>
             <span>{primeMinisterLabel}</span>
             <ArrowRight size={56} strokeWidth={1.6} className="text-[#b99152]" />
           </button>
 
-          <div className="mt-auto flex min-h-[110px] items-center rounded-[18px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
-            <div className="ml-12 mr-14 grid h-24 w-24 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white">
+          <div className="mt-auto flex min-h-[132px] items-center rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
+            <div className="ml-8 mr-8 grid h-24 w-24 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white sm:ml-12 sm:mr-14 sm:h-28 sm:w-28">
               <span className="text-5xl">✥</span>
             </div>
-            <p className="font-serif text-[34px] leading-tight text-[#17233b] p-4">
+            <p className="p-4 font-serif text-[25px] leading-tight text-[#17233b] sm:text-[34px]">
               {footerText}
             </p>
           </div>

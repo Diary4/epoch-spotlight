@@ -104,22 +104,22 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
       ]
     : dialects;
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-8 py-9">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] px-6 py-8 sm:px-8 sm:py-9 lg:px-12 lg:py-10">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to The Land and Future"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-28 opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this with your generated language/books background */}
-        <div className="pointer-events-none absolute right-0 top-[70px] h-[610px] w-[760px]">
+        <div className="pointer-events-none absolute right-0 top-[60px] h-[700px] w-[58vw] min-w-[740px]">
           <img
             src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1500&q=90"
             alt="Kurdish language books placeholder"
@@ -131,8 +131,8 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
 
         <div className="relative z-10 flex flex-1 flex-col">
           {/* Hero */}
-          <section className="max-w-[520px] pt-2 pl-5">
-            <h1 className="font-serif text-[76px] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
+          <section className="max-w-[720px] pt-2 pl-1 sm:pl-5">
+            <h1 className="font-serif text-[68px] font-semibold leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
               {isAr ? "اللغة الكوردية واللهجات" : "Kurdish"}
               {!isAr && <br />}
               {!isAr && "Language &"}
@@ -140,15 +140,15 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               {!isAr && "Dialects"}
             </h1>
 
-            <p className="mt-8 font-serif text-[31px] leading-tight text-[#9b6d35]">
+            <p className="mt-8 font-serif text-[28px] leading-tight text-[#9b6d35] sm:text-[31px] lg:text-[40px]">
               {isAr ? "لغة حية تحمل الأدب والهوية والتعبير." : "A living language of literature, identity, and expression."}
             </p>
 
-            <div className="mt-8 w-[230px]">
+            <div className="mt-8 w-[230px] lg:w-[320px]">
               <Divider />
             </div>
 
-            <p className="mt-8 max-w-[420px] text-[20px] font-semibold leading-[1.55] text-[#35435b]">
+            <p className="mt-8 max-w-[500px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[620px] lg:text-[28px]">
               {isAr
                 ? "اللغة الكوردية لغة الشعب الكوردي، تجمع الملايين في كوردستان والمهجر، وتحمل تراثًا أدبيًا ثريًا وموروثًا شفهيًا حيًا تناقلته الأجيال."
                 : "Kurdish is an important language of the Kurdish people. It unites millions across Kurdistan and the diaspora, carrying a rich literary tradition and a vibrant oral heritage that has been passed down through generations."}
@@ -158,9 +158,9 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           <div className="flex-1" />
 
           {/* Main content */}
-          <section className="grid grid-cols-[330px_1fr] gap-4 pb-6">
-            <aside className="rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md">
-              <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b]">{isAr ? "اللهجات الرئيسية" : "Main Dialects"}</h2>
+          <section className="grid grid-cols-1 gap-5 pb-6 lg:grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] lg:gap-7">
+            <aside className="rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:px-7 lg:py-7">
+              <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
               <div className="mt-3">
                 {localDialects.map((item) => (
@@ -169,53 +169,72 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               </div>
             </aside>
 
-            <section className="rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-7 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md">
-              <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b]">Alphabet & Writing</h2>
-              <Divider className="mx-auto mt-4 w-52" />
+            <section className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-4 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-6 lg:py-6">
+              <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b] lg:text-[36px]">
+                Alphabet & Writing
+              </h2>
 
-              <div className="mt-5 grid grid-cols-2 gap-8 text-[15px] font-semibold text-[#17233b]">
+              <Divider className="mx-auto mt-3 w-44 lg:w-56" />
+
+              <div className="mt-5 grid flex-1 grid-cols-1 gap-5 xl:grid-cols-2">
                 {[letters.slice(0, 13), letters.slice(13)].map((group, groupIndex) => (
-                  <table key={groupIndex} className="w-full border-collapse">
-                    <thead>
-                      <tr className="text-[10px] uppercase text-[#35435b]">
-                        <th className="py-1 text-left">IPA</th>
-                        <th>Latin1</th>
-                        <th>Latin2</th>
-                        <th>Cyrillic</th>
-                        <th>Final</th>
-                        <th>Medial</th>
-                        <th>Initial</th>
-                        <th>Isolated</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {group.map((row, idx) => (
-                        <tr key={idx} className="border-b border-[#efe3cc]/70 last:border-0">
-                          {row.map((cell, i) => (
-                            <td key={i} className={`py-[5px] text-center ${i === 0 ? "text-left text-[13px] text-[#35435b]" : ""}`}>
-                              {cell}
-                            </td>
-                          ))}
+                  <div
+                    key={groupIndex}
+                    className="flex h-full flex-col"
+                  >
+                    <table className="h-full w-full table-fixed border-collapse text-[#17233b]">
+                      <thead>
+                        <tr className="text-[9px] uppercase text-[#35435b] lg:text-[10px]">
+                          <th className="w-[13%] px-1 py-2 text-left">IPA</th>
+                          <th className="w-[12%] px-1 py-2">Latin1</th>
+                          <th className="w-[12%] px-1 py-2">Latin2</th>
+                          <th className="w-[14%] px-1 py-2">Cyrillic</th>
+                          <th className="w-[12%] px-1 py-2">Final</th>
+                          <th className="w-[12%] px-1 py-2">Medial</th>
+                          <th className="w-[13%] px-1 py-2">Initial</th>
+                          <th className="w-[12%] px-1 py-2">Isol.</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+
+                      <tbody>
+                        {group.map((row, idx) => (
+                          <tr
+                            key={idx}
+                            className="h-[72px] last:border-0 lg:h-[78px]"
+                          >
+                            {row.map((cell, i) => (
+                              <td
+                                key={i}
+                                className={`px-1 py-[8px] text-center align-middle text-[13px] font-bold leading-none lg:text-[15px] ${
+                                  i === 0
+                                    ? "text-left text-[11px] font-semibold text-[#35435b] lg:text-[12px]"
+                                    : ""
+                                }`}
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 ))}
               </div>
             </section>
           </section>
 
           {/* Bottom strip */}
-          <section className="grid min-h-[150px] grid-cols-[1fr_120px_1fr] items-center rounded-[22px] border-2 border-[#ead8b7] bg-white/72 px-8 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
-            <article className="grid grid-cols-[90px_1fr] gap-6">
-              <div className="grid h-24 w-24 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fff8ed] text-[#c69237]">
-                <Feather size={54} strokeWidth={1.5} />
+          <section className="grid min-h-[150px] grid-cols-1 items-center gap-6 rounded-[22px] border-2 border-[#ead8b7] bg-white/72 px-6 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md sm:grid-cols-[1fr_120px_1fr] sm:gap-0 sm:px-8">
+            <article className="grid grid-cols-[90px_1fr] gap-6 lg:grid-cols-[100px_1fr]">
+              <div className="grid h-24 w-24 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fff8ed] text-[#c69237] lg:h-26 lg:w-26">
+                <Feather className="h-[54px] w-[54px] lg:h-[60px] lg:w-[60px]" strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold text-[#17233b]">
+                <h3 className="font-serif text-[28px] font-semibold text-[#17233b] lg:text-[34px]">
                   {isAr ? "الأدب والتراث الشفهي" : "Literature & Oral Heritage"}
                 </h3>
-                <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b]">
+                <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b] lg:text-[20px]">
                   {isAr
                     ? "من الشعر الكلاسيكي والحكايات إلى الروايات والأغاني الحديثة، تُعبّر اللغة الكوردية عن عمق التجربة الإنسانية وروح الصمود والأمل."
                     : "From classical poetry and storytelling to modern novels and songs, Kurdish language expresses the depth of human experience and the spirit of resilience and hope."}
@@ -225,15 +244,15 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
 
             <div className="grid place-items-center text-[#b99152] text-6xl">✥</div>
 
-            <article className="grid grid-cols-[90px_1fr] gap-6">
-              <div className="grid h-24 w-24 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fff8ed] text-[#c69237]">
-                <UsersRound size={54} strokeWidth={1.5} />
+            <article className="grid grid-cols-[90px_1fr] gap-6 lg:grid-cols-[100px_1fr]">
+              <div className="grid h-24 w-24 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fff8ed] text-[#c69237] lg:h-26 lg:w-26">
+                <UsersRound className="h-[54px] w-[54px] lg:h-[60px] lg:w-[60px]" strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold text-[#17233b]">
+                <h3 className="font-serif text-[28px] font-semibold text-[#17233b] lg:text-[34px]">
                   {isAr ? "اللغة في الحياة اليومية" : "Language in Daily Life"}
                 </h3>
-                <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b]">
+                <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b] lg:text-[20px]">
                   {isAr
                     ? "الكوردية هي لغة البيت والتعليم والإعلام والثقافة. تربط المجتمعات وتعزز الهوية عبر الحدود والأجيال."
                     : "Kurdish is the language of home, education, media, and culture. It connects communities and strengthens identity across borders and generations."}
