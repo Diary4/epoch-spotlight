@@ -1,4 +1,5 @@
 import React from "react";
+import gsap from "gsap";
 import {
   ArrowLeft,
   BarChart3,
@@ -88,12 +89,12 @@ function InfoPanel({ title, items, tone = "gold" }) {
   const circleBg = isGold ? "bg-[#c69237]" : "bg-[#5d7757]";
 
   return (
-    <section className="relative min-h-[770px] rounded-[26px] border-2 border-[#ead8b7] bg-white/78 px-8 pb-8 pt-16 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md">
+    <section className="relative min-h-[700px] rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-6 pb-7 pt-14 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:min-h-[770px] sm:rounded-[26px] sm:px-8 sm:pb-8 sm:pt-16 lg:min-h-[860px] lg:px-9 lg:pb-10 lg:pt-18">
       <div className={`absolute left-1/2 top-[-38px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-[6px] border-white ${circleBg} text-[#f8e5b8] shadow-[0_10px_25px_rgba(84,54,16,0.2)]`}>
         {isGold ? <Trophy size={54} strokeWidth={1.45} /> : <Compass size={54} strokeWidth={1.45} />}
       </div>
 
-      <h2 className="text-center font-serif text-[36px] font-semibold text-[#17233b]">
+      <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] sm:text-[36px] lg:text-[44px]">
         {title}
       </h2>
 
@@ -101,19 +102,19 @@ function InfoPanel({ title, items, tone = "gold" }) {
         <DecorativeLine color={main} />
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-1.5 lg:space-y-2">
         {items.map((item) => {
           const Icon = item.icon;
           return (
-            <article key={item.title} className="grid grid-cols-[92px_1fr] gap-5 border-b border-[#e6d2aa] py-4 last:border-b-0">
-              <div className="grid h-18 w-18 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fffaf0]" style={{ color: main }}>
-                <Icon size={42} strokeWidth={1.7} />
+            <article key={item.title} className="grid grid-cols-[78px_1fr] gap-4 border-b border-[#e6d2aa] py-3.5 last:border-b-0 sm:grid-cols-[92px_1fr] sm:gap-5 sm:py-4 lg:grid-cols-[102px_1fr] lg:py-5">
+              <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fffaf0] sm:h-18 sm:w-18 lg:h-20 lg:w-20" style={{ color: main }}>
+                <Icon className="h-8 w-8 sm:h-[42px] sm:w-[42px] lg:h-[46px] lg:w-[46px]" strokeWidth={1.7} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold leading-tight text-[#17233b]">
+                <h3 className="font-serif text-[23px] font-semibold leading-tight text-[#17233b] sm:text-[28px] lg:text-[34px]">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-[19px] font-semibold leading-snug text-[#344052]">
+                <p className="mt-1 text-[16px] font-semibold leading-snug text-[#344052] sm:text-[19px] lg:text-[23px]">
                   {item.text}
                 </p>
               </div>
@@ -133,6 +134,7 @@ type PrimeMinisterPageProps = {
 };
 
 export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinisterPageProps) {
+  const sectionRef = React.useRef<HTMLElement | null>(null);
   const isAr = lang === "ar";
   const title = isAr ? "رئيس الوزراء" : "The Prime Minister";
   const name = isAr ? "مسرور بارزاني" : "Masrour Barzani";
@@ -160,23 +162,42 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
       ]
     : vision;
 
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set("[data-pm-portrait='true']", { autoAlpha: 0, y: 10 });
+      gsap.set("[data-pm-rest='true']", { autoAlpha: 0, y: 22 });
+
+      gsap.to("[data-pm-portrait='true'], [data-pm-rest='true']", {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.85,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-12 py-10">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section ref={sectionRef} className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
         <button
+          data-pm-rest="true"
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to The System"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this with your generated portrait image */}
-        <div className="pointer-events-none absolute right-0 top-0 h-[930px] w-[650px]">
+        <div data-pm-portrait="true" className="pointer-events-none absolute right-0 top-0 h-[980px] w-[46vw] min-w-[620px]">
           <img
             src={masrourbarzani}
             alt="Prime Minister portrait placeholder"
@@ -187,7 +208,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         </div>
 
         {/* Scenic base image placeholder */}
-        <div className="pointer-events-none absolute left-0 top-[575px] h-[300px] w-[650px]">
+        <div data-pm-rest="true" className="pointer-events-none absolute left-0 top-[620px] h-[360px] w-[50vw] min-w-[640px]">
           <img
             src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=90"
             alt="Kurdistan landscape placeholder"
@@ -197,27 +218,27 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section className="max-w-[510px] pt-32">
-            <h1 className="font-serif text-[78px] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
+          <section data-pm-rest="true" className="max-w-[710px] pt-20 sm:pt-24 lg:pt-30">
+            <h1 className="font-serif text-[62px] font-semibold leading-[1.02] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
               {title}
             </h1>
 
-            <p className="mt-5 font-serif text-[42px] leading-tight text-[#9b6d35]">
+            <p className="mt-4 font-serif text-[34px] leading-tight text-[#9b6d35] sm:mt-5 sm:text-[42px] lg:text-[52px]">
               {name}
             </p>
 
-            <div className="mt-8 w-[360px]">
+            <div className="mt-7 w-[260px] sm:w-[360px] lg:w-[430px]">
               <DecorativeLine color="#b99152" />
             </div>
 
-            <p className="mt-8 max-w-[420px] text-[27px] font-semibold leading-[1.45] text-[#2d3549]">
+            <p className="mt-7 max-w-[560px] text-[21px] font-semibold leading-[1.45] text-[#2d3549] sm:text-[27px] lg:max-w-[660px] lg:text-[33px]">
               {subtitle}
             </p>
           </section>
 
-          <div className="flex-1" />
+          <div className="flex-1 min-h-[70px] lg:min-h-[100px]" />
 
-          <section className="grid grid-cols-2 gap-8 pb-0">
+          <section data-pm-rest="true" className="grid grid-cols-1 gap-6 pb-2 sm:grid-cols-2 sm:gap-7 lg:gap-8">
             <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
             <InfoPanel title={visionTitle} items={localVision} tone="green" />
           </section>

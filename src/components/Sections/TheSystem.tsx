@@ -1,5 +1,7 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Home, Landmark, Building2, Bird } from "lucide-react";
+import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
+import gsap from "gsap";
+import parlimentBg from "@/assets/parliment.jpg"
 
 function Logo() {
   return (
@@ -23,7 +25,21 @@ function HeaderButton({ icon, label }) {
   );
 }
 
-function InstitutionNode({ label, icon, color, className = "", onClick }: { label: string; icon: React.ElementType; color: string; className?: string; onClick?: () => void }) {
+function InstitutionNode({
+  label,
+  icon,
+  color,
+  className = "",
+  onClick,
+  nodeId,
+}: {
+  label: string;
+  icon: React.ElementType;
+  color: string;
+  className?: string;
+  onClick?: () => void;
+  nodeId?: string;
+}) {
   const Icon = icon;
   const content = (
     <>
@@ -37,11 +53,16 @@ function InstitutionNode({ label, icon, color, className = "", onClick }: { labe
   );
 
   if (!onClick) {
-    return <div className={`absolute flex flex-col items-center ${className}`}>{content}</div>;
+    return (
+      <div data-system-node={nodeId} className={`absolute flex flex-col items-center ${className}`}>
+        {content}
+      </div>
+    );
   }
 
   return (
     <button
+      data-system-node={nodeId}
       type="button"
       onClick={onClick}
       className={`absolute flex flex-col items-center appearance-none border-0 bg-transparent p-0 text-inherit cursor-pointer ${className}`}
@@ -61,6 +82,7 @@ type SystemPageProps = {
 };
 
 export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
+  const sectionRef = React.useRef<HTMLElement | null>(null);
   const isAr = lang === "ar";
   const title = isAr ? "النظام" : "The System";
   const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : "How Kurdistan’s institutions work together.";
@@ -75,9 +97,62 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
     ? "تدعم هذه المؤسسات مجتمعةً الحوكمة والقانون والإدارة العامة."
     : "Together, these institutions support governance, law, and public administration.";
 
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set("[data-system-bg='true']", { autoAlpha: 0, y: 18, scale: 1.04 });
+      gsap.set("[data-system-hero='true']", { autoAlpha: 0, y: 20 });
+      gsap.set("[data-system-triangle='true']", { autoAlpha: 0, rotate: -14, scale: 0.94, transformOrigin: "50% 50%" });
+      gsap.set("[data-system-node]", { autoAlpha: 0, y: 28, scale: 0.9 });
+      gsap.set("[data-system-footer='true']", { autoAlpha: 0, y: 24 });
+      gsap.set("[data-system-prime-border='true']", { clipPath: "inset(0 100% 0 0 round 30px)" });
+      gsap.set("[data-system-prime-text='true']", { autoAlpha: 0, y: 12 });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      tl.to("[data-system-prime-border='true']", {
+        clipPath: "inset(0 0% 0 0 round 30px)",
+        duration: 0.95,
+        ease: "power3.out",
+      })
+        .to(
+          "[data-system-prime-text='true']",
+          { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.08 },
+          "-=0.08",
+        )
+        .to(
+          "[data-system-triangle='true']",
+          { autoAlpha: 1, rotate: 0, scale: 1, duration: 1.15, ease: "power3.out" },
+          "-=0.05",
+        )
+        .to(
+          "[data-system-bg='true']",
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.9 },
+          "<+=0.1",
+        )
+        .to(
+          "[data-system-node]",
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.75, stagger: 0.14 },
+          "-=0.7",
+        )
+        .to(
+          "[data-system-hero='true']",
+          { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.1 },
+          "-=0.2",
+        )
+        .to(
+          "[data-system-footer='true']",
+          { autoAlpha: 1, y: 0, duration: 0.8 },
+          "-=0.2",
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb]">
+      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -90,9 +165,9 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this visual later with your generated building/flag image */}
-        <div className="pointer-events-none absolute right-0 top-[140px] h-[560px] w-[44vw] min-w-[560px]">
+        <div data-system-bg="true" className="pointer-events-none absolute right-0 top-[140px] h-[560px] w-[44vw] min-w-[560px]">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=90"
+            src={parlimentBg}
             alt="System building placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
           />
@@ -102,26 +177,26 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
         <div className="relative z-10 flex flex-1 flex-col px-8 pb-10 pt-16 sm:px-12 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
           <section className="max-w-[760px]">
-            <h1 className="font-serif text-[72px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
+            <h1 data-system-hero="true" className="font-serif text-[72px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
               {title}
             </h1>
 
-            <p className="mt-6 text-[28px] font-bold leading-tight text-[#9b6d35] sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
+            <p data-system-hero="true" className="mt-6 text-[28px] font-bold leading-tight text-[#9b6d35] sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
               {heading}
             </p>
 
-            <div className="mt-8 flex w-[280px] items-center gap-4 text-[#b99152] md:mt-10">
+            <div data-system-hero="true" className="mt-8 flex w-[280px] items-center gap-4 text-[#b99152] md:mt-10">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-8 max-w-[700px] text-[24px] font-medium leading-[1.5] text-[#2d3549] md:mt-10 md:text-[30px] lg:text-[36px]">
+            <p data-system-hero="true" className="mt-8 max-w-[700px] text-[24px] font-medium leading-[1.5] text-[#2d3549] md:mt-10 md:text-[30px] lg:text-[36px]">
               {description}
             </p>
           </section>
 
           {/* Diagram */}
-          <section className="relative mx-auto mt-20 h-[710px] w-[900px] max-w-full md:mt-24">
+          <section data-system-triangle="true" className="relative mx-auto mt-20 h-[710px] w-[900px] max-w-full md:mt-24">
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 900 710" fill="none">
               <circle cx="450" cy="350" r="318" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
               <circle cx="450" cy="350" r="242" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
@@ -140,6 +215,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               color="bg-[#13213b]"
               className="left-1/2 top-1 -translate-x-1/2"
               onClick={onParliamentClick}
+              nodeId="parliament"
             />
             <InstitutionNode
               label={governmentLabel}
@@ -147,6 +223,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               color="bg-[#405846]"
               className="left-[28px] top-[346px]"
               onClick={onGovernmentClick}
+              nodeId="government"
             />
             <InstitutionNode
               label={presidencyLabel}
@@ -154,6 +231,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               color="bg-[#9d3637]"
               className="right-[28px] top-[346px]"
               onClick={onPresidencyClick}
+              nodeId="presidency"
             />
 
             <div className="absolute left-1/2 top-[350px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">
@@ -161,17 +239,23 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             </div>
           </section>
 
-          <button
-            type="button"
-            onClick={onPrimeMinisterClick}
-            className="mx-auto mt-8 flex h-[150px] w-[min(92vw,980px)] items-center justify-between rounded-[28px] border-4 border-[#cda55e] bg-white/62 px-12 font-serif text-[42px] font-semibold text-[#17233b] shadow-[0_12px_30px_rgba(84,54,16,0.14)] sm:px-16 sm:text-[55px]"
+          <div
+            data-system-prime="true"
+            data-system-prime-border="true"
+            className="mx-auto mt-8 w-[780px] max-w-[100vw] rounded-[30px] border-4 border-[#ead8b7] bg-white/62 p-[3px] shadow-[0_12px_30px_rgba(84,54,16,0.14)]"
           >
-            <span className="text-[#b99152] text-6xl">✥</span>
-            <span>{primeMinisterLabel}</span>
-            <ArrowRight size={56} strokeWidth={1.6} className="text-[#b99152]" />
-          </button>
+            <button
+              type="button"
+              onClick={onPrimeMinisterClick}
+              className="flex h-[150px] w-full items-center justify-between rounded-[27px] px-12 font-serif text-[42px] font-semibold text-[#17233b] sm:px-16 sm:text-[55px]"
+            >
+              <span data-system-prime-text="true" className="text-[#b99152] text-6xl">✥</span>
+              <span data-system-prime-text="true">{primeMinisterLabel}</span>
+              <ArrowRight data-system-prime-text="true" size={56} strokeWidth={1.6} className="text-[#b99152]" />
+            </button>
+          </div>
 
-          <div className="mt-auto flex min-h-[132px] items-center rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
+          <div data-system-footer="true" className="mt-auto flex min-h-[132px] items-center rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
             <div className="ml-8 mr-8 grid h-24 w-24 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white sm:ml-12 sm:mr-14 sm:h-28 sm:w-28">
               <span className="text-5xl">✥</span>
             </div>

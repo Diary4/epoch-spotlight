@@ -88,17 +88,17 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         autoAlpha: 1,
         scale: 1,
         y: 0,
-        duration: 1.1,
+        duration: 1.8,
       })
         .to(
           "[data-people-hero='true']",
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 1.2,
+            stagger: 0.18,
           },
-          "-=0.55",
+          "-=0.75",
         )
         .to(
           "[data-people-card='true']",
@@ -106,10 +106,10 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
             autoAlpha: 1,
             y: 0,
             rotateX: 0,
-            duration: 0.85,
-            stagger: 0.14,
+            duration: 1.15,
+            stagger: 0.24,
           },
-          "-=0.15",
+          "-=0.35",
         );
     }, sectionRef);
 
@@ -134,9 +134,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           alt=""
           className="pointer-events-none absolute inset-x-0 top-[280px] h-[500px] w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]"
         />
-        <div data-people-bg="true" className="pointer-events-none absolute inset-x-0 top-[280px] h-[470px] bg-gradient-to-r from-[#fcf7ed] via-transparent to-[#fcf7ed] opacity-80 sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]" />
-        <div data-people-bg="true" className="pointer-events-none absolute inset-x-0 top-[280px] h-[140px] bg-gradient-to-b from-[#fcf7ed] to-transparent sm:top-[340px] lg:top-[380px]" />
-        <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-[#fcf7ed]/20 to-[#fcf7ed] sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
+        <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-transparent to-[#fcf7ed]/78 sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
 
         {/* Hero */}
         <header className="relative z-10 pt-10 text-center sm:pt-8 lg:pt-12">
