@@ -84,18 +84,23 @@ type SystemPageProps = {
 export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const isAr = lang === "ar";
-  const title = isAr ? "النظام" : "The System";
-  const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : "How Kurdistan’s institutions work together.";
+  const isKu = lang === "ku";
+  const title = isAr ? "النظام" : isKu ? "سیستەمەکە" : "The System";
+  const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : isKu ? "چۆنیەتی کارکردنی دامەزراوەکانی کوردستان پێکەوە." : "How Kurdistan’s institutions work together.";
   const description = isAr
     ? "يعمل إقليم كوردستان وفق نظام برلماني تتعاون فيه المؤسسات لخدمة الحياة العامة."
-    : "The Kurdistan Region operates through a parliamentary system in which institutions work together to support public life.";
-  const parliamentLabel = isAr ? "البرلمان" : "Parliament";
-  const governmentLabel = isAr ? "الحكومة" : "Government";
-  const presidencyLabel = isAr ? "الرئاسة" : "Presidency";
-  const primeMinisterLabel = isAr ? "رئيس الوزراء" : "Prime Minister";
+    : isKu
+      ? "هەرێمی کوردستان لە ڕێگەی سیستەمێکی پەرلەمانییەوە بەڕێوە دەبرێت کە تێیدا دامەزراوەکان پێکەوە کاردەکەن بۆ پاڵپشتیکردنی ژیانی گشتی."
+      : "The Kurdistan Region operates through a parliamentary system in which institutions work together to support public life.";
+  const parliamentLabel = isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament";
+  const governmentLabel = isAr ? "الحكومة" : isKu ? "حکومەت" : "Government";
+  const presidencyLabel = isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency";
+  const primeMinisterLabel = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
   const footerText = isAr
     ? "تدعم هذه المؤسسات مجتمعةً الحوكمة والقانون والإدارة العامة."
-    : "Together, these institutions support governance, law, and public administration.";
+    : isKu
+      ? "ئەم دامەزراوانە پێکەوە پاڵپشتیی حکومەت، یاسا، و کارگێڕی گشتی دەکەن."
+      : "Together, these institutions support governance, law, and public administration.";
 
   React.useEffect(() => {
     if (!sectionRef.current) return;

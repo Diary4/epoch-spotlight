@@ -39,13 +39,20 @@ type PeshmergaPageProps = {
 
 export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localCards = isAr
     ? [
         { title: "الدفاع عن\nالإقليم", text: "الوقوف في وجه كل من يهدد كوردستان وشعبها.", icon: Shield, color: "#963538" },
         { title: "حماية\nالمدنيين", text: "تأمين السلامة في أوقات الأزمات.", icon: UsersRound, color: "#405846" },
         { title: "التصدي للإرهاب", text: "أداء دور محوري في مواجهة التطرف.", icon: Bird, color: "#13213b" },
       ]
-    : cards;
+    : isKu
+      ? [
+          { title: "بەرگریکردن لە هەرێم", text: "وەستان بۆ بەرگری لە کوردستان و گەلەکەی.", icon: Shield, color: "#963538" },
+          { title: "پاراستنی مەدەنییەکان", text: "پاڵپشتیکردنی ئاسایش لە کاتی قەیرانەکاندا.", icon: UsersRound, color: "#405846" },
+          { title: "وەستانەوە دژی تیرۆر", text: "گێڕانی ڕۆڵێکی سەرەکی لە ڕووبەڕووبوونەوەی توندڕەویدا.", icon: Bird, color: "#13213b" },
+        ]
+      : cards;
   return (
     <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] p-0 text-[#17233b]">
       <section className="relative mx-auto flex min-h-[100vh] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-0">
@@ -75,11 +82,11 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
           {/* Hero */}
           <section className="max-w-[min(58vw,760px)] pt-[clamp(72px,9.5vh,136px)]">
             <h1 className="font-serif text-[clamp(66px,8.2vw,120px)] font-semibold leading-none tracking-tight text-[#17233b]">
-              {isAr ? "البيشمركة" : "Peshmerga"}
+              {isAr ? "البيشمركة" : isKu ? "پێشمەرگە" : "Peshmerga"}
             </h1>
 
             <p className="mt-[clamp(20px,2.9vh,38px)] text-[clamp(28px,3.25vw,48px)] font-bold leading-tight text-[#9b6d35]">
-              {isAr ? "رمز الشجاعة والحماية والخدمة." : "A symbol of courage, protection, and service."}
+              {isAr ? "رمز الشجاعة والحماية والخدمة." : isKu ? "هێمای ئازایەتی، پاراستن، و خزمەت." : "A symbol of courage, protection, and service."}
             </p>
 
             <div className="mt-[clamp(18px,2.8vh,36px)] w-[clamp(160px,16vw,260px)]">
@@ -89,6 +96,8 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
             <p className="mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.3vw,34px)] font-medium leading-[1.58] text-[#2d3549]">
               {isAr
                 ? "أدّى البيشمركة دورًا بالغ الأهمية في الدفاع عن إقليم كوردستان وحماية المدنيين."
+                : isKu
+                  ? "پێشمەرگە ڕۆڵێکی گرنگیان هەبووە لە بەرگریکردن لە هەرێمی کوردستان و پاراستنی مەدەنییەکان."
                 : "The Peshmerga have played an important role in defending the Kurdistan Region and protecting civilians."}
             </p>
           </section>

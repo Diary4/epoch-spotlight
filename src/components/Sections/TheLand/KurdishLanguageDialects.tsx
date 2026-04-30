@@ -96,6 +96,7 @@ type KurdishLanguageDialectsPageProps = {
 
 export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: KurdishLanguageDialectsPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localDialects = isAr
     ? [
         { name: "السورانية", text: "تُتحدث في جنوب كوردستان في العراق وإيران. وهي اللهجة الرسمية في كوردستان العراق ولها تقليد أدبي مكتوب عريق.", letter: "س", color: "#963538" },
@@ -103,7 +104,14 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         { name: "الهَوْرامي / الگورانية", text: "تُتحدث في منطقة هَوْرامان وأجزاء أخرى من إيران والعراق. تعكس الغنى اللغوي والتنوع الثقافي لكوردستان .", letter: "✥", color: "#c69237" },
         { name: "الزازاكية", text: "تُتحدث في أجزاء من شرق تركيا وشمال غرب إيران. تُعدّ من اللهجات المهمة في عائلة اللغة الكوردية.", letter: "ز", color: "#405846" },
       ]
-    : dialects;
+    : isKu
+      ? [
+          { name: "سۆرانی", text: "لە باشوور و ڕۆژهەڵاتی کوردستان (عێراق و ئێران) قسەی پێدەکرێت. دیالێکتێکی فەرمییە لە کوردستانی عێراق و خاوەن نەریتێکی درێژی ئەدەبی نووسراوە.", letter: "س", color: "#963538" },
+          { name: "کرمانجی", text: "بە شێوەیەکی سەرەکی لە باکوور و ڕۆژئاوای کوردستان (تورکیا، سووریا و بەشێک لە ئێران) قسەی پێدەکرێت. بەربڵاوترین دیالێکتی کوردییە و خاوەن نەریتێکی دەوڵەمەندی ئەدەبی و زارەکییە.", letter: "ژ", color: "#13213b" },
+          { name: "هەورامی / گۆرانی", text: "لە ناوچەی هەورامان و چەند ناوچەیەک تری ئێران و عێراق قسەی پێدەکرێت. ڕەنگدانەوەی دەوڵەمەندیی زمانەوانی و فرەجۆریی کولتووریی کوردستانە.", letter: "✥", color: "#c69237" },
+          { name: "زازاکی", text: "لە بەشێک لە ڕۆژهەڵاتی تورکیا و باکووری ڕۆژئاوای ئێران قسەی پێدەکرێت. یەکێکە لە دیالێکتە گرنگەکانی خێزانی زمانی کوردی.", letter: "ز", color: "#405846" },
+        ]
+      : dialects;
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
       <section className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] p-0">
@@ -134,15 +142,15 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           {/* Hero */}
           <section className="max-w-[720px] pt-2 pl-1 sm:pl-5">
             <h1 className="font-serif text-[68px] font-semibold leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
-              {isAr ? "اللغة الكوردية واللهجات" : "Kurdish"}
-              {!isAr && <br />}
-              {!isAr && "Language &"}
-              {!isAr && <br />}
-              {!isAr && "Dialects"}
+              {isAr ? "اللغة الكوردية واللهجات" : isKu ? "زمان و زاراوە کوردییەکان" : "Kurdish"}
+              {!isAr && !isKu && <br />}
+              {!isAr && !isKu && "Language &"}
+              {!isAr && !isKu && <br />}
+              {!isAr && !isKu && "Dialects"}
             </h1>
 
             <p className="mt-8 font-serif text-[28px] leading-tight text-[#9b6d35] sm:text-[31px] lg:text-[40px]">
-              {isAr ? "لغة حية تحمل الأدب والهوية والتعبير." : "A living language of literature, identity, and expression."}
+              {isAr ? "لغة حية تحمل الأدب والهوية والتعبير." : isKu ? "زمانێکی زیندووی ئەدەب، ناسنامە، و دەربڕین." : "A living language of literature, identity, and expression."}
             </p>
 
             <div className="mt-8 w-[230px] lg:w-[320px]">
@@ -152,6 +160,8 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             <p className="mt-8 max-w-[500px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[620px] lg:text-[28px]">
               {isAr
                 ? "اللغة الكوردية لغة الشعب الكوردي، تجمع الملايين في كوردستان والمهجر، وتحمل تراثًا أدبيًا ثريًا وموروثًا شفهيًا حيًا تناقلته الأجيال."
+                : isKu
+                  ? "زمانێکی گرنگی گەلی کوردە. ملیۆنان کەس لە کوردستان و تاراوگە یەکدەخات، هەڵگری نەریتێکی ئەدەبی دەوڵەمەند و کەلەپوورێکی زارەکی زیندووە کە نەوە دوای نەوە دەگوازرێتەوە."
                 : "Kurdish is an important language of the Kurdish people. It unites millions across Kurdistan and the diaspora, carrying a rich literary tradition and a vibrant oral heritage that has been passed down through generations."}
             </p>
           </section>
@@ -159,7 +169,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           {/* Main content */}
           <section className="mt-6 grid grid-cols-1 gap-5 pb-6 lg:mt-10 lg:grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] lg:gap-7">
             <aside className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
-              <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : "Main Dialects"}</h2>
+              <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
               <div className="mt-3 grid flex-1 content-between">
                 {localDialects.map((item) => (
@@ -231,11 +241,13 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               </div>
               <div>
                 <h3 className="font-serif text-[28px] font-semibold text-[#17233b] lg:text-[34px]">
-                  {isAr ? "الأدب والتراث الشفهي" : "Literature & Oral Heritage"}
+                  {isAr ? "الأدب والتراث الشفهي" : isKu ? "ئەدەب و کەلەپووری زارەکی" : "Literature & Oral Heritage"}
                 </h3>
                 <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b] lg:text-[20px]">
                   {isAr
                     ? "من الشعر الكلاسيكي والحكايات إلى الروايات والأغاني الحديثة، تُعبّر اللغة الكوردية عن عمق التجربة الإنسانية وروح الصمود والأمل."
+                    : isKu
+                      ? "لە شیعری کلاسیک و گێڕانەوە تا ڕۆمان و گۆرانییە مۆدێرنەکان، زمانی کوردی گوزارشت لە قووڵایی ئەزموونی مرۆیی و ڕۆحی خۆڕاگری و ئومێد دەکات."
                     : "From classical poetry and storytelling to modern novels and songs, Kurdish language expresses the depth of human experience and the spirit of resilience and hope."}
                 </p>
               </div>
@@ -249,11 +261,13 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               </div>
               <div>
                 <h3 className="font-serif text-[28px] font-semibold text-[#17233b] lg:text-[34px]">
-                  {isAr ? "اللغة في الحياة اليومية" : "Language in Daily Life"}
+                  {isAr ? "اللغة في الحياة اليومية" : isKu ? "زمان لە ژیانی ڕۆژانەدا" : "Language in Daily Life"}
                 </h3>
                 <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b] lg:text-[20px]">
                   {isAr
                     ? "الكوردية هي لغة البيت والتعليم والإعلام والثقافة. تربط المجتمعات وتعزز الهوية عبر الحدود والأجيال."
+                    : isKu
+                      ? "کوردی زمانی ماڵ، پەروەردە، میدیا و کولتوورە. کۆمەڵگە بەیەکەوە دەبەستێتەوە و ناسنامە لە سەرانسەری سنوورەکان و نەوەکاندا بەهێز دەکات."
                     : "Kurdish is the language of home, education, media, and culture. It connects communities and strengthens identity across borders and generations."}
                 </p>
               </div>

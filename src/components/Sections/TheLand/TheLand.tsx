@@ -80,13 +80,20 @@ type TheLandPageProps = {
 
 export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localMapCards = isAr
     ? [
         { ...mapCards[0], title: "إقليم كوردستان العراق", text: "استكشف إقليم كوردستان المعترف به رسميًا في العراق، محافظاته ومدنه الكبرى وحدوده." },
         { ...mapCards[1], title: "المناطق المتنازع عليها", text: "استكشف المناطق المتنازع عليها بين كوردستان والعراق، الموضحة باللون الوردي." },
         { ...mapCards[2], title: "الوجود الكوردي\nعبر الدول", text: "تعرّف على المناطق الأوسع التي تعيش فيها المجتمعات الكوردية في المنطقة." },
       ]
-    : mapCards;
+    : isKu
+      ? [
+          { ...mapCards[0], title: "هەرێمی کوردستانی عێراق", text: "گەڕان لەناو هەرێمی کوردستانی عێراق کە بە فەرمی ناسراوە — پارێزگاکانی، شارە سەرەکییەکانی، و سنوورەکانی." },
+          { ...mapCards[1], title: "ناوچە جێناکۆکەکان", text: "گەڕان لەناو ناوچە جێناکۆکەکانی نێوان هەرێمی کوردستان و عێراق، کە لێرەدا بە ڕەنگی پەمەیی دیاری کراوە." },
+          { ...mapCards[2], title: "بوونی کورد\nلە سەرانسەری وڵاتان", text: "ئەو ناوچە فراوانانەی کە کۆمەڵگە کوردییەکانی لێ نیشتەجێیە لە سەرانسەری ناوچەکەدا." },
+        ]
+      : mapCards;
   return (
     <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] p-0 text-[#17233b]">
       <section className="relative mx-auto flex min-h-[100vh] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-0">
@@ -117,6 +124,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           <h1 className="font-serif text-[clamp(60px,7.2vw,108px)] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
             {isAr ? (
               "الأرض"
+            ) : isKu ? (
+              "خاک"
             ) : (
               <>
                 The<br />Land
@@ -131,6 +140,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           <p className="mt-[clamp(10px,1.5vh,22px)] font-serif text-[clamp(24px,2.8vw,42px)] leading-tight text-[#9b6d35]">
             {isAr ? (
               "إقليم من الجمال والجغرافيا والتراث."
+            ) : isKu ? (
+              "ناوچەیەک لە جوانی، جوگرافیا، و کەلەپوور."
             ) : (
               <>
                 A region of beauty,<br />geography, and heritage.
@@ -141,6 +152,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           <p className="mt-[clamp(18px,2.8vh,40px)] max-w-[clamp(250px,25vw,430px)] text-[clamp(16px,1.7vw,26px)] font-semibold leading-[1.55] text-[#35435b]">
             {isAr
               ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
+              : isKu
+                ? "کوردستان خاکی چیاکان سەرکەشەکان، ڕووبارەکان، و مێژوویەکی دەوڵەمەندە. لە دڵی هەرێمی کوردستانی عێراق تا ناوچە فراوانەکانی تر کە کورد لێی نیشتەجێیە لە سەرانسەری ڕۆژهەڵاتی ناوەڕاست، ئەمە خاکێکە کە بە خۆڕاگری، کولتوور، و شکۆی خەڵکەکەی دەناسرێتەوە."
               : "Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people."}
           </p>
 

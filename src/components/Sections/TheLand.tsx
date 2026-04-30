@@ -154,19 +154,31 @@ type LandAndFuturePageProps = {
 
 export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }: LandAndFuturePageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localTopCards = isAr
     ? [
         { ...topCards[0], title: "الأرض", text: "إقليم تتجلى فيه جغرافيا خلابة وتاريخ ثري وتراث خالد." },
         { ...topCards[1], title: "الهوية والرموز", text: "العلم والنشيد واللغة والتراث تعكس روح كوردستان ." },
         { ...topCards[2], title: "البيشمركة", text: "رمز الشجاعة والحماية والخدمة المخلصة للشعب." },
       ]
-    : topCards;
+    : isKu
+      ? [
+          { ...topCards[0], title: "خاک", text: "ناوچەیەکە لە جوگرافیاییەکی سەرنجڕاکێش، مێژوویەکی دەوڵەمەند، و کەلەپوورێکی نەمر." },
+          { ...topCards[1], title: "ناسنامە و هێماکان", text: "ئاڵا، سروود، زمان، و کەلەپوور ڕەنگدانەوەی ڕۆحی کوردستانن." },
+          { ...topCards[2], title: "پێشمەرگە", text: "هێمای ئازایەتی، پاراستن، و خزمەتی دڵسۆزانەی گەلە." },
+        ]
+      : topCards;
   const localBottomCards = isAr
     ? [
         { ...bottomCards[0], title: "التقدم", text: "التنمية مستمرة في البنية التحتية والتعليم والاقتصاد والسياحة." },
         { ...bottomCards[1], title: "الرؤية المستقبلية", text: "تتطلع كوردستان إلى الأمام بطموح وفرص وثقة." },
       ]
-    : bottomCards;
+    : isKu
+      ? [
+          { ...bottomCards[0], title: "پێشکەوتن", text: "گەشەپێدان لە ژێرخان، پەروەردە، ئابووری، و گەشتیاریدا بەردەوامە." },
+          { ...bottomCards[1], title: "دیدگای داهاتوو", text: "کوردستان بە هیوا، دەرفەت، و متمانەوە دەڕوانێتە داهاتوو." },
+        ]
+      : bottomCards;
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
       <section className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] px-6 py-8 sm:px-9 lg:px-14 lg:py-10">
@@ -201,15 +213,19 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="max-w-[700px] pt-16 pl-2 lg:pt-20 lg:pl-4">
             <h1 className="font-serif text-[70px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
-              {isAr ? "الأرض والمستقبل" : "The Land"}
-              {!isAr && <br />}
-              {!isAr && "and Future"}
+              {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
+              {!isAr && !isKu && <br />}
+              {!isAr && !isKu && "and Future"}
             </h1>
 
             <p className="z-10 mt-7 font-serif text-[28px] leading-tight text-[#9b6d35] sm:text-[30px] lg:text-[40px]">
               {isAr ? (
                 <>
                   جذور التراث.<br />لآفاق الغد.
+                </>
+              ) : isKu ? (
+                <>
+                  ڕەگ و ڕیشەی کەلەپوور<br />ئاسۆی داهاتووە
                 </>
               ) : (
                 <>
@@ -226,6 +242,8 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
             <p className="mt-8 max-w-[330px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[430px] lg:text-[28px]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
+                : isKu
+                  ? "کوردستان خاکی شارستانییەتە دێرینەکان، ناسنامەیەکی پڕ لە شانازی، و ڕۆحێکی نەبەزە. کەلەپوورمان دەپارێزین، بە دیدگاوە بونیاد دەنێین، و پێکەوە بەرەو داهاتوویەکی گەشتر هەنگاو دەنێین."
                 : "Kurdistan is a land of ancient civilizations, proud identity, and unwavering spirit. We protect our heritage, build with vision, and walk together toward a brighter future."}
             </p>
           </section>

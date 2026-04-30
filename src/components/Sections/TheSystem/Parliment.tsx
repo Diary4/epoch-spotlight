@@ -57,12 +57,19 @@ type ParliamentPageProps = {
 
 export default function ParliamentPage({ lang = "en", onBack }: ParliamentPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localMainCards = isAr
     ? [
         { title: "التشريع", text: "يراجع القوانين ويُقرّها لخدمة الحياة العامة.", icon: Scale, color: "#13213b" },
         { title: "التمثيل", text: "يعكس صوت الشعب ومصالحه.", icon: UsersRound, color: "#405846" },
         { title: "الرقابة", text: "يراقب الشؤون العامة ويحاسب المؤسسات.", icon: Search, color: "#963538" },
       ]
+    : isKu
+      ? [
+          { title: "یاسادانان", text: "پێداچوونەوە و پەسەندکردنی یاساکان بۆ ژیانی گشتی.", icon: Scale, color: "#13213b" },
+          { title: "نوێنەرایەتیکردن", text: "ڕەنگدانەوەی دەنگ و بەرژەوەندییەکانی گەل.", icon: UsersRound, color: "#405846" },
+          { title: "چاودێری", text: "چاودێریکردنی کاروباری گشتی و لێپرسینەوەی دامەزراوەیی.", icon: Search, color: "#963538" },
+        ]
     : mainCards;
   const localBottomItems = isAr
     ? [
@@ -70,6 +77,12 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
         { title: "القانون", text: "تحويل الأفكار إلى قوانين لمستقبل عادل ومزدهر.", icon: FilePenLine },
         { title: "التمثيل", text: "منتخَب من الشعب، يعمل لخدمة أبناء كوردستان.", icon: UsersRound },
       ]
+    : isKu
+      ? [
+          { title: "گفتوگۆ", text: "گفتوگۆی کراوە لەسەر ئەو پرسانەی کۆمەڵگەکەمان دادەڕێژنەوە.", icon: MessageCircleMore },
+          { title: "یاسا", text: "گۆڕینی بیرۆکەکان بۆ یاسا بۆ داهاتوویەکی دادپەروەر و گەشاوە.", icon: FilePenLine },
+          { title: "نوێنەرایەتیکردن", text: "لەلایەن گەلەوە هەڵبژێردراون، بۆ گەلی کوردستان کاردەکەن.", icon: UsersRound },
+        ]
     : bottomItems;
 
   return (
@@ -101,11 +114,11 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
           {/* Hero */}
           <section className="max-w-[540px] pt-24">
             <h1 className="font-serif text-[92px] font-semibold leading-none tracking-tight text-[#17233b]">
-              {isAr ? "البرلمان" : "Parliament"}
+              {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
             </h1>
 
             <p className="mt-10 text-[34px] font-bold leading-tight text-[#9b6d35]">
-              {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : "The legislative institution of the Kurdistan Region."}
+              {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : isKu ? "دامەزراوەی یاسادانانی هەرێمی کوردستان." : "The legislative institution of the Kurdistan Region."}
             </p>
 
             <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -116,6 +129,8 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             <p className="mt-9 max-w-[430px] text-[29px] font-medium leading-[1.52] text-[#2d3549]">
               {isAr
                 ? "يناقش البرلمان الشؤون العامة ويُشرّع القوانين ويمثّل الشعب."
+                : isKu
+                  ? "پەرلەمان گفتوگۆ لەسەر کاروباری گشتی دەکات، یاسا دەر دەکات و نوێنەرایەتیی گەل دەکات."
                 : "Parliament discusses public issues, passes laws, and represents the people."}
             </p>
           </section>

@@ -36,12 +36,19 @@ type PresidencyPageProps = {
 
 export default function PresidencyPage({ lang = "en", onBack }: PresidencyPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localCards = isAr
     ? [
         { title: "الدور الدستوري", text: "دعم الإطار المؤسسي للإقليم.", icon: BookOpenCheck },
         { title: "الدور الوطني", text: "تمثيل الوحدة والاستمرارية والكرامة الوطنية.", icon: UsersRound },
         { title: "التوازن المؤسسي", text: "العمل ضمن منظومة الحوكمة الأشمل.", icon: Building2 },
       ]
+    : isKu
+      ? [
+          { title: "ڕۆڵی دەستووری", text: "پاڵپشتی چوارچێوەی دامەزراوەیی هەرێم دەکات.", icon: BookOpenCheck },
+          { title: "ڕۆڵی نیشتمانی", text: "نوێنەرایەتی یەکڕیزی، بەردەوامی، و شکۆی گشتی دەکات.", icon: UsersRound },
+          { title: "هاوسەنگی دامەزراوەیی", text: "لەناو سیستەمێكی حکومڕانی فراوانتردا کاردەکات.", icon: Building2 },
+        ]
     : cards;
 
   return (
@@ -82,7 +89,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
           {/* Hero */}
           <section className="max-w-[560px] pt-28">
             <h1 className="font-serif text-[92px] font-semibold leading-none tracking-tight text-[#943134]">
-              {isAr ? "الرئاسة" : "Presidency"}
+              {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
             </h1>
 
             <div className="mt-10">
@@ -90,7 +97,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             </div>
 
             <p className="mt-9 text-[35px] font-bold leading-[1.35] text-[#9b6d35]">
-              {isAr ? "مؤسسة دستورية وطنية في المنظومة الإقليمية." : "A constitutional and national institution within the regional system."}
+              {isAr ? "مؤسسة دستورية وطنية في المنظومة الإقليمية." : isKu ? "دامەزراوەیەکی دەستووری و نیشتمانی لەناو سیستەمی هەرێمیدا." : "A constitutional and national institution within the regional system."}
             </p>
 
             <div className="mt-10">
@@ -100,6 +107,8 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             <p className="mt-9 max-w-[510px] text-[29px] font-medium leading-[1.55] text-[#2d3549]">
               {isAr
                 ? "تُسهم الرئاسة في الإطار الدستوري والحياة العامة والتوازن المؤسسي الأشمل لإقليم كوردستان."
+                : isKu
+                  ? "سەرۆکایەتی کۆڵەکەیەکی بنەڕەتییە لە چوارچێوەی دەستووری، ژیانی گشتی و پاراستنی هاوسەنگیی دامەزراوەیی لە هەرێمی کوردستان."
                 : "The Presidency contributes to the constitutional framework, public life, and the broader institutional balance of the Kurdistan Region."}
             </p>
           </section>

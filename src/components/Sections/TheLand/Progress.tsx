@@ -95,19 +95,31 @@ type ProgressPageProps = {
 
 export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localTopCards = isAr
     ? [
         { title: "البنية التحتية", text: "بناء الطرق الحديثة والمرافق والخدمات العامة.", icon: Route, color: "#13213b" },
         { title: "التعليم", text: "الاستثمار في المعرفة وتمكين الأجيال القادمة.", icon: GraduationCap, color: "#405846" },
         { title: "الاقتصاد", text: "تحقيق النمو المستدام وخلق فرص العمل.", icon: BarChart3, color: "#963538" },
       ]
-    : topCards;
+    : isKu
+      ? [
+          { title: "ژێرخان", text: "بونیادنانی ڕێگاوبانی مۆدێرن، پێداویستییە سەرەکییەکان و خزمەتگوزارییە گشتییەکان.", icon: Route, color: "#13213b" },
+          { title: "پەروەردە", text: "وەبەرهێنان لە زانیاری و بەهێزکردنی نەوەکانی داهاتوو.", icon: GraduationCap, color: "#405846" },
+          { title: "ئابووری", text: "هاندانی گەشەی بەردەوام و ڕەخساندنی هەلی کار.", icon: BarChart3, color: "#963538" },
+        ]
+      : topCards;
   const localBottomCards = isAr
     ? [
         { title: "السياحة", text: "إبراز جمال كوردستان وتراثها الثقافي.", icon: Mountain, color: "#c69237" },
         { title: "التحول الرقمي", text: "تبنّي التكنولوجيا والابتكار لمستقبل أكثر ذكاءً.", icon: MonitorCog, color: "#13213b" },
       ]
-    : bottomCards;
+    : isKu
+      ? [
+          { title: "گەشتیاری", text: "نیشاندانی جوانیی کوردستان و کەلەپوورە کولتوورییەکەی.", icon: Mountain, color: "#c69237" },
+          { title: "گۆڕانی دیجیتاڵی", text: "لەئامێزگرتنی تەکنەلۆژیا و داهێنان بۆ داهاتوویەکی زیرەکتر.", icon: MonitorCog, color: "#13213b" },
+        ]
+      : bottomCards;
   return (
     <main className="m-0 p-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-[100vh] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-0">
@@ -136,11 +148,11 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
           {/* Hero */}
           <section className="max-w-[min(58vw,760px)] pt-[clamp(64px,8.5vh,130px)]">
             <h1 className="font-serif text-[clamp(72px,9vw,130px)] font-semibold leading-none tracking-tight text-[#17233b]">
-              {isAr ? "التقدم" : "Progress"}
+              {isAr ? "التقدم" : isKu ? "پێشکەوتن" : "Progress"}
             </h1>
 
             <p className="mt-[clamp(18px,2.8vh,36px)] text-[clamp(28px,3.3vw,48px)] font-bold leading-tight text-[#9b6d35]">
-              {isAr ? "التنمية عبر القطاعات الرئيسية." : "Development across key sectors."}
+              {isAr ? "التنمية عبر القطاعات الرئيسية." : isKu ? "گەشەپێدان لە کەرتە سەرەکییەکاندا." : "Development across key sectors."}
             </p>
 
             <div className="mt-[clamp(16px,2.5vh,34px)] w-[clamp(160px,16vw,260px)]">
@@ -150,6 +162,8 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
             <p className="mt-[clamp(16px,2.6vh,36px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.2vw,34px)] font-medium leading-[1.55] text-[#2d3549]">
               {isAr
                 ? "يواصل إقليم كوردستان مسيرة تقدّمه في البنية التحتية والتعليم والاقتصاد والسياحة والتحول الرقمي."
+                : isKu
+                  ? "هەرێمی کوردستان بەردەوامە لە پێشخستنی ژێرخان، پەروەردە، ئابووری، گەشتیاری، و گۆڕانی دیجیتاڵی."
                 : "The Kurdistan Region continues to advance through infrastructure, education, economy, tourism, and digital transformation."}
             </p>
           </section>

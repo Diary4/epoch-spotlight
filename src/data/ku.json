@@ -334,40 +334,40 @@
     ]
   },
   "landFuture": {
-    "title": "The Land and Future",
-    "subtitle": "Explore Kurdistan's geography, symbols, protection, development, and future vision.",
-    "mapTitle": "Kurdistan",
+    "title": "خاک و داهاتوو",
+    "subtitle": "کوردستان خاکی شارستانییەتە دێرینەکان، ناسنامەیەکی پڕ لە شانازی، و ڕۆحێکی نەبەزە. کەلەپوورمان دەپارێزین، بە دیدگاوە بونیاد دەنێین، و پێکەوە بەرەو داهاتوویەکی گەشتر هەنگاو دەنێین.",
+    "mapTitle": "کوردستان",
     "mapCities": [
-      "Duhok",
-      "Erbil",
-      "Sulaymaniyah",
-      "Halabja"
+      "دهۆک",
+      "هەولێر",
+      "سلێمانی",
+      "هەڵەبجە"
     ],
     "items": [
       {
         "id": "land",
-        "title": "The Land",
-        "description": "Erbil, Sulaymaniyah, Duhok, and Halabja form a region of beauty and heritage."
+        "title": "خاک",
+        "description": "ناوچەیەکە لە جوگرافیاییەکی سەرنجڕاکێش، مێژوویەکی دەوڵەمەند، و کەلەپوورێکی نەمر."
       },
       {
         "id": "symbols",
-        "title": "Identity and Symbols",
-        "description": "The flag, anthem, language, and heritage reflect the spirit of Kurdistan."
+        "title": "ناسنامە و هێماکان",
+        "description": "ئاڵا، سروود، زمان، و کەلەپوور ڕەنگدانەوەی ڕۆحی کوردستانن."
       },
       {
         "id": "peshmarga",
-        "title": "Peshmerga",
-        "description": "A symbol of courage, protection, and service."
+        "title": "پێشمەرگە",
+        "description": "هێمای ئازایەتی، پاراستن، و خزمەتی دڵسۆزانەی گەلە."
       },
       {
         "id": "progress",
-        "title": "Progress",
-        "description": "Development continues in infrastructure, education, economy, and tourism."
+        "title": "پێشکەوتن",
+        "description": "گەشەپێدان لە ژێرخان، پەروەردە، ئابووری، و گەشتیاریدا بەردەوامە."
       },
       {
         "id": "future",
-        "title": "Future Vision",
-        "description": "Kurdistan looks ahead with ambition, opportunity, and confidence."
+        "title": "دیدگای داهاتوو",
+        "description": "کوردستان بە هیوا، دەرفەت، و متمانەوە دەڕوانێتە داهاتوو."
       }
     ]
   },

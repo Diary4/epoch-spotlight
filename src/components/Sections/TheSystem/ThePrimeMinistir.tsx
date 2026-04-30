@@ -136,13 +136,16 @@ type PrimeMinisterPageProps = {
 export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinisterPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const isAr = lang === "ar";
-  const title = isAr ? "رئيس الوزراء" : "The Prime Minister";
-  const name = isAr ? "مسرور بارزاني" : "Masrour Barzani";
+  const isKu = lang === "ku";
+  const title = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "The Prime Minister";
+  const name = isAr || isKu ? "مەسرور بارزانی" : "Masrour Barzani";
   const subtitle = isAr
     ? "يقود إقليم كوردستان بتركيز على الإصلاح والابتكار وبناء مستقبل أفضل للجميع."
+    : isKu
+      ? "ڕێبەرایەتی هەرێمی کوردستان دەکات بە پێداگری کردن لەسەر چاکسازی، داهێنان، و بونیادنانی داهاتوویەکی بەهێزتر بۆ هەمووان."
     : "Leading the Kurdistan Region with a focus on reform, innovation, and building a stronger future for all.";
-  const achievementsTitle = isAr ? "الإنجازات المختارة" : "Selected Achievements";
-  const visionTitle = isAr ? "الرؤية المستقبلية" : "Future Vision";
+  const achievementsTitle = isAr ? "الإنجازات المختارة" : isKu ? "دەستکەوتەکان" : "Selected Achievements";
+  const visionTitle = isAr ? "الرؤية المستقبلية" : isKu ? "ئامانجەکانی داهاتوو" : "Future Vision";
   const localAchievements = isAr
     ? [
         { title: "الإصلاح الاقتصادي", text: "التركيز على التنويع الاقتصادي ونمو القطاع الخاص.", icon: BarChart3 },
@@ -151,6 +154,14 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         { title: "البنية التحتية", text: "تطوير الطرق والمياه والنقل والمشاريع الاستراتيجية.", icon: Route },
         { title: "الخدمات الرقمية", text: "دعم تحديث الخدمات العامة وأنظمة الحكومة.", icon: Monitor },
       ]
+    : isKu
+      ? [
+          { title: "چاکسازیی ئابوور", text: "جەختکردنەوە لەسەر هەمەجۆرکردن و گەشەی کەرتی تایبەت.", icon: BarChart3 },
+          { title: "هەژماری من", text: "پەرەپێدانی بە دیجیتاڵکردنی مووچە و گشتگیریی دارایی.", icon: UsersRound },
+          { title: "پڕۆژەی ڕووناکی", text: "کارکردن بۆ کارەبای جێگیرتر و چاکسازی لە وزەدا.", icon: Bolt },
+          { title: "ژێرخان", text: "پێشخستنی ڕێگاوبان، ئاو، گواستنەوە، و پڕۆژە ستراتیژییەکان.", icon: Route },
+          { title: "خزمەتگوزارییە دیجیتاڵییەکان", text: "پاڵپشتیکردنی پەرەپێدانی خزمەتگوزارییە گشتییەکان و سیستەمەکانی حکومەت.", icon: Monitor },
+        ]
     : achievements;
   const localVision = isAr
     ? [
@@ -160,6 +171,14 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         { title: "الاستثمار والشراكات", text: "تعزيز العلاقات الدولية واستقطاب الاستثمارات.", icon: Handshake },
         { title: "كوردستان الحديثة", text: "دعم إقليم مستقر ورقمي وجاهز للمستقبل.", icon: Mountain },
       ]
+    : isKu
+      ? [
+          { title: "ئابوورییەکی هەمەجۆر", text: "بونیادنانی ئابوورییەکی بەهێزتر لە دەرەوەی نەوت.", icon: BarChart3 },
+          { title: "وزەی جێگیر", text: "باشترکردنی کارەبا و خزمەتگوزارییە سەرەکییەکان.", icon: Lightbulb },
+          { title: "دەرفەت بۆ گەنجان", text: "ڕەخساندنی هەلی کاری زیاتر، داهێنان، و کارسازی.", icon: UsersRound },
+          { title: "وەبەرهێنان و هاوبەش", text: "بەهێزکردنی پەیوەندییە جیهانییەکان و ڕاکێشانی وەبەرهێنان.", icon: Handshake },
+          { title: "کوردستانێکی مۆدێرن", text: "بونیادنانی هەرێمێکی سەقامگیر، دیجیتاڵ و ئامادە بۆ داهاتوو.", icon: Mountain },
+        ]
     : vision;
 
   React.useEffect(() => {

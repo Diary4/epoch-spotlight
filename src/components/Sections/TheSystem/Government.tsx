@@ -96,12 +96,19 @@ type GovernmentPageProps = {
 
 export default function GovernmentPage({ lang = "en", onBack }: GovernmentPageProps) {
   const isAr = lang === "ar";
+  const isKu = lang === "ku";
   const localMainCards = isAr
     ? [
         { number: "1", title: "الخدمات العامة", text: "دعم التعليم والصحة والمياه والكهرباء والخدمات اليومية.", icon: UsersRound, color: "#13213b" },
         { number: "2", title: "تنفيذ السياسات", text: "تحويل الخطط والقرارات إلى واقع ملموس.", icon: ClipboardCheck, color: "#405846" },
         { number: "3", title: "الإدارة", text: "تنسيق عمل الوزارات والمؤسسات.", icon: Building2, color: "#963538" },
       ]
+    : isKu
+      ? [
+          { number: "1", title: "خزمەتگوزارییە گشتییەکان", text: "پاڵپشتی پەروەردە، تەندروستی، ئاو، کارەبا، و خزمەتگوزارییەکانی ڕۆژانەکان دەکات.", icon: UsersRound, color: "#13213b" },
+          { number: "2", title: "جێبەجێکردنی سیاسەت", text: "پلان و بڕیارەکان دەگۆڕێت بۆ کردار.", icon: ClipboardCheck, color: "#405846" },
+          { number: "3", title: "کارگێڕی", text: "هەماهەنگی لەنێوان وەزارەتەکان و کارە دامەزراوەیییەکان دەکات.", icon: Building2, color: "#963538" },
+        ]
     : mainCards;
   const localKeyAreas = isAr
     ? [
@@ -112,6 +119,15 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
         { title: "الشفافية والمساءلة", text: "صون النزاهة وثقة المواطن.", icon: ShieldCheck, color: "#13213b" },
         { title: "التخطيط والتنمية", text: "التخطيط للنمو والتحسين المستمر.", icon: Settings, color: "#13213b" },
       ]
+    : isKu
+      ? [
+          { title: "وەزارەتەکان", text: "ڕێبەرایەتی کەرتە سەرەکییەکانی حکومڕانی دەکەن.", icon: Landmark, color: "#13213b" },
+          { title: "خزمەتگوزارییە گشتییەکان", text: "گەیاندنی خزمەتگوزارییە سەرەکییەکان بۆ هاووڵاتییان.", icon: UsersRound, color: "#405846" },
+          { title: "بەشداریی کۆمەڵایەتی", text: "کارکردن لەگەڵ کۆمەڵگە ناوخۆیییەکان.", icon: Handshake, color: "#963538" },
+          { title: "بەڕێوەبردنی ئابووری", text: "بەڕێوەبردنی سەرچاوەکان و بودجەکان.", icon: TrendingUp, color: "#405846" },
+          { title: "شەفافیەت و لێپرسینەوە", text: "پاراستنی دەستپاکی و متمانەی گشتی.", icon: ShieldCheck, color: "#13213b" },
+          { title: "پلاندانان و گەشەپێدان", text: "پلاندانان بۆ گەشە و پەرەپێدان.", icon: Settings, color: "#13213b" },
+        ]
     : keyAreas;
 
   return (
@@ -154,11 +170,11 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             </div>
 
             <h1 className="mt-12 font-serif text-[88px] font-semibold leading-none tracking-tight text-[#17233b]">
-              {isAr ? "الحكومة" : "Government"}
+              {isAr ? "الحكومة" : isKu ? "حکومەت" : "Government"}
             </h1>
 
             <p className="mt-8 text-[32px] font-bold leading-tight text-[#9b6d35]">
-              {isAr ? "الجهاز التنفيذي المسؤول عن الإدارة والخدمات العامة." : "The executive body responsible for administration and public services."}
+              {isAr ? "الجهاز التنفيذي المسؤول عن الإدارة والخدمات العامة." : isKu ? "دەستەی جێبەجێکار کە بەرپرسە لە کارگێڕی و خزمەتگوزارییە گشتییەکان." : "The executive body responsible for administration and public services."}
             </p>
 
             <div className="mt-9 flex w-[230px] items-center gap-4 text-[#b99152]">
@@ -169,6 +185,8 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             <p className="mt-9 max-w-[460px] text-[25px] font-medium leading-[1.55] text-[#2d3549]">
               {isAr
                 ? "تنفّذ الحكومة السياسات وتدير الخدمات وتشرف على الإدارة اليومية."
+                : isKu
+                  ? "حکومەت سیاسەتەکان جێبەجێ دەکات، خزمەتگوزارییەکان بەڕێوەدەبات، و سەرپەرشتی کارگێڕی ڕۆژانە دەکات."
                 : "The government implements policy, manages services, and oversees daily administration."}
             </p>
           </section>
@@ -223,7 +241,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           {/* Key areas section */}
           <section className="rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-5 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
             <div className="mb-5 flex items-center gap-5 px-3 pt-0 font-serif text-[28px] font-semibold text-[#9b6d35]">
-              {isAr ? <span>المجالات الرئيسية لعمل الحكومة</span> : <span>Key Areas of Government Work</span>}
+              {isAr ? <span>المجالات الرئيسية لعمل الحكومة</span> : isKu ? <span>بوارە سەرەکییەکانی کاری حکومەت</span> : <span>Key Areas of Government Work</span>}
               <span className="h-0.5 flex-1 bg-[#c7a05d]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#c7a05d]" />
             </div>
@@ -257,6 +275,8 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             <p className="max-w-[700px] text-[25px] font-semibold leading-tight text-[#2d3549]">
               {isAr
                 ? "تعمل الحكومة على تحسين جودة الحياة وحماية الحقوق وبناء كوردستان أقوى."
+                : isKu
+                  ? "حکومەت کاردەکات بۆ باشترکردنی کوالێتی ژیان، پاراستنی مافەکان، و بونیادنانی کوردستانێکی بەهێزتر."
                 : "The government works to improve quality of life, protect rights, and build a stronger Kurdistan."}
             </p>
             <div className="ml-auto h-full w-[260px] opacity-25 [background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=70')] bg-cover bg-center" />
