@@ -88,8 +88,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
       ]
     : mapCards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] px-[clamp(12px,1.8vw,28px)] py-[clamp(10px,1.6vh,24px)] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] px-[clamp(16px,2.2vw,36px)] py-[clamp(18px,2.4vh,36px)]">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section className="relative mx-auto flex min-h-[100vh] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-0">
         <button
           type="button"
           onClick={onBack}

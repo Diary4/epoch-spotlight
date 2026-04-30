@@ -1,10 +1,10 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
 import gsap from "gsap";
-import whoAreKurdsBg from "@/assets/pexels-mohammad-majid-112544081-31576586.jpg"
-import storyOfResilienceBg from "@/assets/pexels-rebaz-geo-1735378-14960015.jpg"
-import sharedIdentityBg from "@/assets/pexels-sia-art-285926721-13108265.jpg"
-import kurdistanBg from "@/assets/pexels-hama-24861075.jpg"
+import mainImage from "@/assets/mainImages/thepeople.PNG?url"
+import card2 from "@/assets/mainImages/card-2.PNG?url"
+import card1 from "@/assets/mainImages/card-1.PNG?url"
+import card3 from "@/assets/mainImages/card-3.PNG?url"
 
 const cards: {
   id: ThePeopleCardId;
@@ -19,7 +19,7 @@ const cards: {
     description:
       "An ancient people of the Middle East known for courage, hospitality, and cultural richness.",
     image:
-      whoAreKurdsBg,
+      card1,
     icon: Landmark,
   },
   {
@@ -28,7 +28,7 @@ const cards: {
     description:
       "A people connected by language, history, tradition, and collective memory.",
     image:
-      sharedIdentityBg,
+      card2,
     icon: Grid2X2,
   },
   {
@@ -37,7 +37,7 @@ const cards: {
     description:
       "A history shaped by endurance, dignity, and hope.",
     image:
-      storyOfResilienceBg,
+      card3,
     icon: Sun,
   },
 ];
@@ -65,8 +65,8 @@ function GoldButton({ children, active = false }) {
 
 function CircleIcon({ Icon }) {
   return (
-    <div className="absolute left-1/2 top-[184px] grid h-16 w-16 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[214px] sm:h-20 sm:w-20 lg:top-[452px] lg:h-24 lg:w-24">
-      <Icon className="h-8 w-8 text-[#c7a04e] sm:h-10 sm:w-10 lg:h-[42px] lg:w-[42px]" strokeWidth={1.6} />
+    <div className="absolute left-1/2 top-[160px] grid h-14 w-14 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[188px] sm:h-16 sm:w-16 lg:top-[410px] lg:h-20 lg:w-20">
+      <Icon className="h-7 w-7 text-[#c7a04e] sm:h-8 sm:w-8 lg:h-9 lg:w-9" strokeWidth={1.6} />
     </div>
   );
 }
@@ -122,7 +122,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className="absolute left-4 top-4 z-30 gri d h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to Discover"
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
@@ -130,14 +130,15 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
         <img
           data-people-bg="true"
-          src={kurdistanBg}
+          src={mainImage}
           alt=""
-          className="pointer-events-none absolute inset-x-0 top-[280px] h-[500px] w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[340px] sm:h-[520px] lg:top-[380px] lg:h-[620px]"
+          className="pointer-events-none absolute inset-x-0 top-[200px] h-auto w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[250px] lg:top-[300px]"
         />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[clamp(220px,30vh,420px)] bg-gradient-to-b from-[#fcf7ed] via-[#fcf7ed]/96 via-45% to-transparent" />
         <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-transparent to-[#fcf7ed]/78 sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
 
         {/* Hero */}
-        <header className="relative z-10 pt-10 text-center sm:pt-8 lg:pt-12">
+        <header className="relative z-10 text-center sm:pt-8 lg:pt-12">
           <h1 data-people-hero="true" className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
             The People
           </h1>
@@ -155,11 +156,8 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         </header>
 
 
-        {/* Keep cards anchored even if showcase is removed */}
-        <div className="relative z-10 mt-8 h-[360px] sm:mt-10 sm:h-[500px] lg:mt-12 lg:h-[620px]" />
-
         {/* Cards */}
-        <div className="relative z-10 mt-8 grid grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:mt-12 lg:grid-cols-3 lg:gap-8">
+        <div className="relative z-10 mt-auto grid grid-cols-1 gap-4 pb-4 pt-6 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
           {cards.map((card) => {
             const Icon = card.icon;
             return (
@@ -184,8 +182,8 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                   className="block h-[200px] w-full object-cover object-center brightness-[0.94] contrast-110 sm:h-[250px] lg:h-[500px]"
                 />
                 <CircleIcon Icon={Icon} />
-                <div className="min-h-[300px] px-6 pb-8 pt-16 text-center sm:min-h-[320px] sm:px-8 sm:pb-10 sm:pt-20 lg:min-h-[390px]">
-                  <h3 className="whitespace-pre-line font-serif text-[28px] font-semibold leading-tight text-[#1f352d] sm:text-[32px] lg:text-[36px]">
+                <div className="min-h-[230px] px-5 pb-6 pt-14 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
+                  <h3 className="whitespace-pre-line font-serif text-[24px] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
                     {card.title}
                   </h3>
 
@@ -195,7 +193,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                     <span className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[20px] leading-relaxed text-[#59625d] sm:text-[22px] lg:text-[26px]">
+                  <p className="text-[17px] leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">
                     {card.description}
                   </p>
                 </div>

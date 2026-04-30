@@ -47,8 +47,8 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
       ]
     : cards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] px-[clamp(12px,1.8vw,28px)] py-[clamp(10px,1.6vh,24px)] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] px-[clamp(20px,3.1vw,52px)] py-[clamp(20px,2.7vh,40px)]">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section className="relative mx-auto flex min-h-[100vh] w-[min(96vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-0">
         <button
           type="button"
           onClick={onBack}
