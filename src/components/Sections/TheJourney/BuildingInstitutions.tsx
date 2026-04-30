@@ -49,22 +49,22 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
     text: section.cards?.[i]?.description ?? row.text,
   }));
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-16 py-16">
+    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb] px-[clamp(1.2rem,4vw,4rem)] py-[clamp(1.2rem,3.6vh,3.8rem)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Journey"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft size={32} />
         </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Right-side visual placeholder: replace this image later */}
-        <div className="pointer-events-none absolute right-0 top-[120px] h-[1110px] w-[720px]">
+        <div className="pointer-events-none absolute right-0 top-[7.5vh] h-[min(80vh,1120px)] w-[min(53vw,860px)]">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
             alt="Institutions placeholder"
@@ -76,73 +76,73 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
 
         <div className="relative z-10 flex flex-1 flex-col">
           {/* Hero text */}
-          <section className="max-w-[570px] pt-18">
-            <h1 className="font-serif text-[96px] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
+          <section className="max-w-[min(46vw,740px)] pt-[clamp(2.5rem,7vh,6rem)]">
+            <h1 className="font-serif text-[clamp(3.9rem,7.2vw,6.8rem)] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
               {(section.title ?? "Building Institutions").split(" ").slice(0, -1).join(" ")}<br />{(section.title ?? "Building Institutions").split(" ").slice(-1)}
             </h1>
 
-            <p className="mt-8 text-[35px] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.55rem,2.5vw,2.45rem)] font-bold leading-tight text-[#9b6d35]">
               {section.headline ?? "From transition to governance."}
             </p>
 
-            <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
+            <div className="mt-[clamp(1rem,2.3vh,2rem)] flex w-[clamp(9rem,18vw,14.5rem)] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-10 max-w-[480px] text-[30px] font-medium leading-[1.48] text-[#2d3549]">
+            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(37vw,560px)] text-[clamp(1.12rem,1.85vw,1.85rem)] font-medium leading-[1.48] text-[#2d3549]">
               {section.description ?? "Discover how institutions were established and strengthened to serve the people of Kurdistan."}
             </p>
           </section>
 
           {/* Institution relationship diagram */}
-          <section className="relative mt-36 h-[380px] w-[520px]">
-            <div className="absolute left-[110px] top-[20px] h-[330px] w-[330px] rounded-full border-2 border-[#b99152]" />
-            <div className="absolute left-[215px] top-[125px] h-[120px] w-[120px] rounded-full border-2 border-dashed border-[#b99152]" />
-            <div className="absolute left-[245px] top-[155px] grid h-16 w-16 place-items-center rounded-full bg-[#b99152] text-[#f8e5b8]">
-              <Landmark size={34} strokeWidth={1.4} />
+          <section className="relative mt-[clamp(1.3rem,4vh,3.2rem)] h-[clamp(15rem,31vh,24rem)] w-[min(42vw,560px)]">
+            <div className="absolute left-[21%] top-[5%] h-[84%] w-[63%] rounded-full border-2 border-[#b99152]" />
+            <div className="absolute left-[41%] top-[33%] h-[31%] w-[23%] rounded-full border-2 border-dashed border-[#b99152]" />
+            <div className="absolute left-[46.5%] top-[41%] grid h-[clamp(2.4rem,4.1vw,4rem)] w-[clamp(2.4rem,4.1vw,4rem)] place-items-center rounded-full bg-[#b99152] text-[#f8e5b8]">
+              <Landmark size={32} strokeWidth={1.4} />
             </div>
 
-            <div className="absolute left-[220px] top-0 grid h-28 w-28 place-items-center rounded-full border-[6px] border-white bg-[#13213b] text-[#f8e5b8] shadow-lg">
-              <Landmark size={58} strokeWidth={1.5} />
+            <div className="absolute left-[42%] top-0 grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white bg-[#13213b] text-[#f8e5b8] shadow-lg">
+              <Landmark size={54} strokeWidth={1.5} />
             </div>
-            <div className="absolute left-0 top-[210px] grid h-28 w-28 place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-lg">
-              <Building2 size={58} strokeWidth={1.5} />
+            <div className="absolute left-0 top-[55%] grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-lg">
+              <Building2 size={54} strokeWidth={1.5} />
             </div>
-            <div className="absolute right-0 top-[210px] grid h-28 w-28 place-items-center rounded-full border-[6px] border-white bg-[#943134] text-[#f8e5b8] shadow-lg">
-              <BarChart3 size={58} strokeWidth={1.5} />
+            <div className="absolute right-0 top-[55%] grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white bg-[#943134] text-[#f8e5b8] shadow-lg">
+              <BarChart3 size={54} strokeWidth={1.5} />
             </div>
           </section>
 
-          <div className="flex-1" />
+          <div className="flex-[0.85]" />
 
           {/* Rows */}
-          <section className="space-y-7 pb-6">
+          <section className="space-y-[clamp(0.75rem,1.6vh,1.6rem)] pb-[clamp(0.3rem,1.4vh,1rem)]">
             {localizedRows.map((row) => {
               const Icon = row.icon;
               return (
                 <article
                   key={row.title}
-                  className="relative flex min-h-[170px] items-center rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-10 py-8 shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
+                  className="relative flex min-h-[clamp(9.2rem,15.8vh,13.2rem)] items-center rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1vw,2.5rem)] py-[clamp(0.9rem,1.9vh,1.8rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                 >
-                  <div className="flex w-[190px] justify-center">
-                    <div className={`grid h-28 w-28 place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
-                      <Icon size={58} strokeWidth={1.5} />
+                  <div className="flex w-[clamp(5.6rem,13vw,11.5rem)] justify-center">
+                    <div className={`grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
+                      <Icon size={54} strokeWidth={1.5} />
                     </div>
                   </div>
 
-                  <div className="h-[108px] w-px bg-[#e2c99b]" />
+                  <div className="h-[clamp(4.5rem,8.8vh,6.8rem)] w-px bg-[#e2c99b]" />
 
-                  <div className="px-10">
-                    <h3 className="font-serif text-[39px] font-semibold leading-tight text-[#17233b]">
+                  <div className="px-[clamp(0.9rem,1.9vw,2.4rem)]">
+                    <h3 className="font-serif text-[clamp(1.35rem,2.45vw,2.4rem)] font-semibold leading-tight text-[#17233b]">
                       {row.title}
                     </h3>
-                    <p className="mt-3 max-w-[610px] text-[25px] font-medium leading-[1.42] text-[#303a50]">
+                    <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.56vw,1.48rem)] font-medium leading-[1.42] text-[#303a50]">
                       {row.text}
                     </p>
                   </div>
 
-                  <div className="pointer-events-none absolute right-0 top-0 h-full w-28 opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+                  <div className="pointer-events-none absolute right-0 top-0 h-full w-[clamp(2.4rem,6vw,7rem)] opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
                 </article>
               );
             })}
