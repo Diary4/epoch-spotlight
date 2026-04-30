@@ -646,6 +646,7 @@ const Index = () => {
       {view === "people" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <ThePeoplePage
+            lang={activeLang}
             onBack={() => setView("discover")}
             onSelectCard={(cardId) => {
               if (cardId === "whoAreTheKurds") {
@@ -663,21 +664,21 @@ const Index = () => {
       {/* WHO ARE THE KURDS VIEW */}
       {view === "whoAreTheKurds" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <WhoAreTheKurdsSection onBack={() => setView("people")} />
+          <WhoAreTheKurdsSection lang={activeLang} onBack={() => setView("people")} />
         </div>
       )}
 
       {/* SHARED IDENTITY VIEW */}
       {view === "sharedIdentity" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <SharedIdentityPage onBack={() => setView("people")} />
+          <SharedIdentityPage lang={activeLang} onBack={() => setView("people")} />
         </div>
       )}
 
       {/* STORY OF RESILIENCE VIEW */}
       {view === "resilience" && (
         <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <StoryOfResilience onBack={() => setView("people")} />
+          <StoryOfResilience lang={activeLang} onBack={() => setView("people")} />
         </div>
       )}
 

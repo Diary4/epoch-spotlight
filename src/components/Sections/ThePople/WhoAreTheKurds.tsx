@@ -2,6 +2,9 @@ import React, { useLayoutEffect, useRef } from "react";
 import { ArrowLeft, KeyRound, Sparkles, TreePine } from "lucide-react";
 import { gsap } from "gsap";
 import bgImage from "@/assets/images/kurdistan.jpg";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 
 const infoCards = [
@@ -26,11 +29,21 @@ const infoCards = [
 ];
 
 type WhoAreTheKurdsSectionProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function WhoAreTheKurdsSection({ onBack }: WhoAreTheKurdsSectionProps) {
+const CONTENT = { en, ar, ku } as const;
+
+export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreTheKurdsSectionProps) {
   const rootRef = useRef<HTMLElement | null>(null);
+  const data = CONTENT[lang] as any;
+  const detail = data?.people?.detailPages?.whoAreTheKurds ?? {};
+  const localizedCards = infoCards.map((card, i) => ({
+    ...card,
+    title: detail?.cards?.[i]?.title ?? card.title,
+    text: detail?.cards?.[i]?.description ?? card.text,
+  }));
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -134,11 +147,11 @@ export default function WhoAreTheKurdsSection({ onBack }: WhoAreTheKurdsSectionP
           <div className="section-label mb-[clamp(30px,4vh,60px)] flex items-center gap-[clamp(14px,1.4vw,24px)] text-[#c9903f]">
             <span className="h-0.5 w-[clamp(52px,5vw,90px)] bg-[#c9903f]" />
             <span className="h-[clamp(16px,1.6vw,24px)] w-[clamp(32px,3.1vw,54px)] rounded-full border-2 border-[#c9903f]" />
-            <h2 className="font-serif text-[clamp(24px,2.45vw,38px)] font-bold uppercase tracking-[0.05em]">The People</h2>
+            <h2 className="font-serif text-[clamp(24px,2.45vw,38px)] font-bold tracking-[0.05em]">{detail?.sectionLabel ?? "The People"}</h2>
           </div>
 
           <h1 className="main-title font-serif text-[clamp(66px,8.4vw,120px)] font-semibold leading-[1.02] tracking-tight text-[#00604f]">
-            Who Are<br />the Kurds?
+            {(detail?.title ?? "Who Are the Kurds?").replace(" ", "\n")}
           </h1>
 
           <div className="title-divider mt-[clamp(30px,4vh,52px)] flex items-center gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
@@ -148,17 +161,17 @@ export default function WhoAreTheKurdsSection({ onBack }: WhoAreTheKurdsSectionP
           </div>
 
           <p className="subtitle-text mt-[clamp(28px,3.8vh,50px)] font-serif text-[clamp(33px,3.9vw,58px)] leading-tight text-[#00604f]">
-            An ancient people of<br />the Middle East.
+            {(detail?.subtitle ?? "An ancient people of the Middle East.").replace(" of ", " of\n")}
           </p>
 
           <p className="description-text mt-[clamp(24px,3.2vh,42px)] max-w-[min(46vw,600px)] text-[clamp(22px,2.55vw,34px)] font-semibold leading-[1.45] text-[#31445d]">
-            The Kurds have lived in these mountains and plains for thousands of years, shaping the region with their strength, spirit, and culture.
+            {detail?.description ?? "The Kurds have lived in these mountains and plains for thousands of years, shaping the region with their strength, spirit, and culture."}
           </p>
         </section>
 
         {/* Cards */}
         <section className="relative z-20 mt-[clamp(26px,5.5vh,84px)] grid grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(6px,1vh,20px)] pt-[clamp(24px,3.2vh,52px)]">
-          {infoCards.map((card) => {
+          {localizedCards.map((card) => {
             const Icon = card.icon;
             return (
               <article

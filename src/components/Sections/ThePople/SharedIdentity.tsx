@@ -1,6 +1,9 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, MessageSquareText, Music2, UsersRound } from "lucide-react";
 import { gsap } from "gsap";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const identityCards = [
   {
@@ -22,11 +25,21 @@ const identityCards = [
 ];
 
 type SharedIdentityPageProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function SharedIdentityPage({ onBack }: SharedIdentityPageProps) {
+const CONTENT = { en, ar, ku } as const;
+
+export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdentityPageProps) {
   const rootRef = useRef<HTMLElement | null>(null);
+  const data = CONTENT[lang] as any;
+  const detail = data?.people?.detailPages?.sharedIdentity ?? {};
+  const localizedCards = identityCards.map((card, i) => ({
+    ...card,
+    title: (detail?.cards?.[i]?.title ?? card.title).replace(" ", "\n"),
+    text: detail?.cards?.[i]?.description ?? card.text,
+  }));
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -72,7 +85,7 @@ export default function SharedIdentityPage({ onBack }: SharedIdentityPageProps) 
         {/* Main text */}
         <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)]">
           <h1 className="main-title font-serif text-[clamp(66px,8.3vw,120px)] font-semibold leading-[1.02] tracking-tight text-[#214439]">
-            A Shared<br />Identity
+            {(detail?.title ?? "A Shared Identity").replace(" ", "\n")}
           </h1>
 
           <div className="title-divider mt-[clamp(30px,4vh,52px)] flex items-center gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
@@ -82,17 +95,17 @@ export default function SharedIdentityPage({ onBack }: SharedIdentityPageProps) 
           </div>
 
           <p className="subtitle-text mt-[clamp(24px,3.3vh,44px)] font-serif text-[clamp(31px,3.7vw,54px)] leading-tight text-[#b06f25]">
-            United by language,<br />heritage, and memory.
+            {(detail?.subtitle ?? "United by language, heritage, and memory.").replace(", ", ",\n")}
           </p>
 
           <p className="description-text mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[clamp(20px,2.3vw,32px)] font-semibold leading-[1.62] text-[#35435b]">
-            Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life, it connects people through what they speak, celebrate, remember, and share.
+            {detail?.description ?? "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life, it connects people through what they speak, celebrate, remember, and share."}
           </p>
         </section>
 
         {/* Cards */}
         <section className="relative z-20 mt-[clamp(26px,5.5vh,84px)] grid grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(24px,3.2vh,52px)]">
-          {identityCards.map((card) => {
+          {localizedCards.map((card) => {
             const Icon = card.icon;
             return (
               <article

@@ -1,6 +1,9 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { ArrowLeft, Mountain, SunMedium, Landmark } from "lucide-react";
 import { gsap } from "gsap";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 
 const cards = [
   {
@@ -21,11 +24,21 @@ const cards = [
 ];
 
 type StoryOfResilienceProps = {
+  lang?: "ku" | "en" | "ar";
   onBack?: () => void;
 };
 
-export default function StoryOfResilience({ onBack }: StoryOfResilienceProps) {
+const CONTENT = { en, ar, ku } as const;
+
+export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResilienceProps) {
   const rootRef = useRef<HTMLElement | null>(null);
+  const data = CONTENT[lang] as any;
+  const detail = data?.people?.detailPages?.resilience ?? {};
+  const localizedCards = cards.map((card, i) => ({
+    ...card,
+    title: detail?.cards?.[i]?.title ?? card.title,
+    text: detail?.cards?.[i]?.description ?? card.text,
+  }));
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,7 +88,7 @@ export default function StoryOfResilience({ onBack }: StoryOfResilienceProps) {
         {/* Text */}
         <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)]">
           <h1 className="main-title font-serif text-[clamp(64px,8vw,116px)] font-semibold leading-[1.03] tracking-tight text-[#214439]">
-            A Story of<br />Resilience
+            {(detail?.title ?? "A Story of Resilience").replace(" of ", " of\n")}
           </h1>
 
           <div className="title-divider mt-[clamp(26px,3.8vh,48px)] flex items-center gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
@@ -85,11 +98,11 @@ export default function StoryOfResilience({ onBack }: StoryOfResilienceProps) {
           </div>
 
           <p className="subtitle-text mt-[clamp(22px,3vh,40px)] font-serif text-[clamp(30px,3.6vw,52px)] leading-tight text-[#b06f25]">
-            A history shaped by endurance,<br />dignity, and hope.
+            {(detail?.subtitle ?? "A history shaped by endurance, dignity, and hope.").replace(", ", ",\n")}
           </p>
 
           <p className="description-text mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,650px)] text-[clamp(18px,2vw,30px)] font-semibold leading-[1.75] text-[#35435b]">
-            Across centuries, the Kurdish people have faced hardship and change, yet they have held on to their identity, culture, and values. Through every challenge, they have stood together, preserved their heritage, and moved forward with courage and hope for a better tomorrow.
+            {detail?.description ?? "Across centuries, the Kurdish people have faced hardship and change, yet they have held on to their identity, culture, and values. Through every challenge, they have stood together, preserved their heritage, and moved forward with courage and hope for a better tomorrow."}
           </p>
         </section>
 
@@ -104,7 +117,7 @@ export default function StoryOfResilience({ onBack }: StoryOfResilienceProps) {
 
         {/* Cards */}
         <section className="relative z-20 mt-[clamp(20px,4.2vh,70px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(20px,2.8vh,42px)]">
-          {cards.map((card) => {
+          {localizedCards.map((card) => {
             const Icon = card.icon;
             return (
               <article

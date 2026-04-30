@@ -42,37 +42,98 @@
       ]
     },
     "navigation": {
-      "previous": "القائمة الرئيسية",
-      "next": "استكشف المزيد",
+      "previous": "السابق",
+      "next": "التالي",
       "returnToMain": "العودة إلى القائمة الرئيسية",
-      "progressTitle": "تابع رحلتك",
+      "progressTitle": "اكتشف بوابة كوردستان",
       "sectionSteps": [
-        "The People",
-        "The Journey",
-        "The System",
-        "The Land and Future"
+        "الأرض",
+        "الشعب",
+        "التراث",
+        "المستقبل"
       ]
     },
     "people": {
-      "title": "The People",
-      "subtitle": "Discover who the Kurds are and the values, identity, and resilience that shape their story.",
+      "title": "الشعب",
+      "subtitle": "اكتشف من هم الكورد، والقيم والهوية والصمود التي تصوغ قصتهم.",
       "items": [
         {
           "id": "who",
-          "title": "Who Are the Kurds?",
-          "description": "An ancient people of the Middle East known for courage, hospitality, and cultural richness."
+          "title": "من هم الكورد؟",
+          "description": "شعب عريق من الشرق الأوسط."
         },
         {
           "id": "identity",
-          "title": "A Shared Identity",
-          "description": "A people connected by language, history, tradition, and collective memory."
+          "title": "هوية مشتركة",
+          "description": "متّحدون باللغة والتراث والذاكرة."
         },
         {
           "id": "resilience",
-          "title": "A Story of Resilience",
-          "description": "A history shaped by endurance, dignity, and hope."
+          "title": "قصة صمود",
+          "description": "تاريخ نسجته الصلابة والكرامة والأمل."
         }
       ],
+      "detailPages": {
+        "whoAreTheKurds": {
+          "sectionLabel": "الشعب",
+          "title": "من هم الكورد؟",
+          "subtitle": "شعب عريق من الشرق الأوسط.",
+          "description": "عاش الكورد في هذه الجبال والسهول منذ آلاف السنين، وشكّلوا المنطقة بقوتهم وروحهم وثقافتهم.",
+          "cards": [
+            {
+              "title": "أصول عريقة",
+              "description": "في القِدَم الكورد من أعرق شعوب الشرق الأوسط، ولهم حضور تاريخي طويل وغني في المنطقة."
+            },
+            {
+              "title": "الثقافة والقيم",
+              "description": "يرتبط المجتمع الكوردي بالشجاعة والكرم وأواصر الأسرة والحب العميق للحرية والثقافة."
+            },
+            {
+              "title": "هوية حيّة",
+              "description": "تتواصل الهوية الكوردية اليوم عبر اللغة والموسيقى والتقاليد والأدب والحياة اليومية عبر الأجيال."
+            }
+          ]
+        },
+        "sharedIdentity": {
+          "title": "هوية مشتركة",
+          "subtitle": "متّحدون باللغة والتراث والذاكرة.",
+          "description": "عبر الأجيال والأماكن، تُمثّل الهوية الكوردية مصدر قوة وفخر ووحدة. متجذّرة في تاريخ عريق وتتجدد في الحياة اليومية، تربط الناس بما يتحدثون به ويحتفلون به ويتذكرونه ويتشاركونه.",
+          "cards": [
+            {
+              "title": "اللغة",
+              "description": "اللغة الكوردية ركيزة أساسية في الهوية وصلة حيّة بين الأجيال والمجتمعات."
+            },
+            {
+              "title": "التقاليد",
+              "description": "الموسيقى والرقص والأزياء والاحتفالات والكرم تُبقي الشعور المشترك بالانتماء حيّاً."
+            },
+            {
+              "title": "الذاكرة الجماعية",
+              "description": "عبر الأماكن والحدود، يظل الكورد مترابطين من خلال التاريخ المشترك والقصص والذاكرة الثقافية."
+            }
+          ],
+          "ctaLabel": "اعرف أكثر"
+        },
+        "resilience": {
+          "title": "قصة صمود",
+          "subtitle": "تاريخ نسجته الصلابة والكرامة والأمل.",
+          "description": "على مرّ القرون، واجه الشعب الكوردي الشدائد والتغيرات، غير أنه تمسّك بهويته وثقافته وقيمه. في كل تحدٍّ وقفوا معًا وصانوا إرثهم ومضوا إلى الأمام بشجاعة وأمل نحو غدٍ أفضل.",
+          "cards": [
+            {
+              "title": "الصمود",
+              "description": "واجه الشعب الكوردي تحديات لا تُحصى، فأبدى قوةً راسخة وإرادةً لا تلين."
+            },
+            {
+              "title": "الكرامة",
+              "description": "بتمسّكهم العميق بتراثهم وقيمهم، حافظ الكورد على هويتهم بفخر وشموخ."
+            },
+            {
+              "title": "الأمل",
+              "description": "يتطلع الشعب الكوردي إلى الأفق بتفاؤل، ساعيًا إلى بناء مستقبل يقوم على السلام والوحدة والتقدم."
+            }
+          ]
+        }
+      },
       "sections": {
         "1991": {
           "title": "1991",

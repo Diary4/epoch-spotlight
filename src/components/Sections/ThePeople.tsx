@@ -1,6 +1,9 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
 import gsap from "gsap";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
+import ku from "@/data/ku.json";
 import card2 from "@/assets/mainImages/card-2.PNG?url"
 import card1 from "@/assets/mainImages/card-1.PNG?url"
 import card3 from "@/assets/mainImages/card-3.PNG?url"
@@ -44,8 +47,10 @@ const cards: {
 ];
 
 type ThePeopleCardId = "whoAreTheKurds" | "sharedIdentity" | "resilience";
+type LangCode = "ku" | "en" | "ar";
 
 type ThePeoplePageProps = {
+  lang?: LangCode;
   onSelectCard?: (cardId: ThePeopleCardId) => void;
   onBack?: () => void;
 };
@@ -76,8 +81,27 @@ function CircleImage({ image }) {
   );
 }
 
-export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePageProps) {
+const CONTENT = { en, ar, ku } as const;
+
+export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: ThePeoplePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const data = CONTENT[lang] as any;
+  const people = data?.people ?? {};
+  const items = people?.items ?? [];
+  const localizedCards = cards.map((card) => {
+    const source =
+      card.id === "whoAreTheKurds"
+        ? items.find((item: any) => item?.id === "who")
+        : card.id === "sharedIdentity"
+          ? items.find((item: any) => item?.id === "identity")
+          : items.find((item: any) => item?.id === "resilience");
+
+    return {
+      ...card,
+      title: (source?.title ?? card.title).replace(" ", "\n"),
+      description: source?.description ?? card.description,
+    };
+  });
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -204,7 +228,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         {/* Hero */}
         <header className="relative z-10 text-center sm:pt-8 lg:pt-12">
           <h1 data-people-hero="true" className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
-            The People
+            {people?.title ?? "The People"}
           </h1>
 
           <div data-people-hero="true" className="mx-auto mt-5 flex max-w-[520px] items-center justify-center gap-4 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
@@ -214,14 +238,13 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           </div>
 
           <p data-people-hero="true" className="mx-auto mt-6 max-w-[980px] text-[20px] leading-relaxed text-[#49524e] sm:mt-8 sm:text-[28px] lg:text-[34px]">
-            Discover who the Kurds are and the values, identity,
-            and resilience that shape their story.
+            {people?.subtitle ?? "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
           </p>
         </header>
 
         {/* Cards */}
         <div className="relative z-10 mt-auto grid grid-cols-1 gap-4 pb-4 pt-6 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
-          {cards.map((card) => {
+          {localizedCards.map((card) => {
             const Icon = card.icon;
             return (
               <button

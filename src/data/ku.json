@@ -35,66 +35,127 @@
     ]
   },
   "discover": {
-    "title": "Discover Kurdistan",
-    "subtitle": "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region.",
-    "description": "This interactive experience offers visitors a simple introduction to Kurdistan and its story.",
-    "startExploring": "Start Exploring",
-    "chooseSection": "Choose a section to begin",
+    "title": "کوردستان بناسە",
+    "subtitle": "گەشتێکی کورت بەناو گەل، ناسنامە، مێژوو، دامەزراوەکان و داهاتووی هەرێمی کوردستان.",
+    "description": "ئەم ئەزموونە کارلێکەرە پێشەکییەکی سادە پێشکەش بە سەردانیکەران دەکات دەربارەی کوردستان و چیرۆکەکەی.",
+    "startExploring": "دەستپێکردنی گەڕان",
+    "chooseSection": "(بەشێک هەڵبژێرە بۆ دەستپێکردن):",
     "sections": [
       {
         "id": "people",
-        "title": "The People",
-        "desc": "Identity, culture,\nand resilience"
+        "title": "گەل",
+        "desc": "ناسنامە، کولتوور\nو خۆڕاگری."
       },
       {
         "id": "journey",
-        "title": "The Journey",
-        "desc": "From 1991 to\nthe present"
+        "title": "گەشت",
+        "desc": "لە ١٩٩١ـەوە تا\nئێستا."
       },
       {
         "id": "system",
-        "title": "The System",
-        "desc": "Parliament, government,\nand leadership"
+        "title": "سیستەم",
+        "desc": "پەرلەمان، حکومەت\nو سەرکردایەتی."
       },
       {
         "id": "landFuture",
-        "title": "The Land and Future",
-        "desc": "Geography, symbols,\nprotection, and progress"
+        "title": "خاک و داهاتوو",
+        "desc": "جوگرافیا، هێماکان،\nپاراستن و پێشکەوتن."
       }
     ]
   },
   "navigation": {
-    "previous": "Previous",
-    "next": "Next",
-    "returnToMain": "Return to Main Menu",
-    "progressTitle": "Explore the Gate of Kurdistan",
+    "previous": "پێشوو",
+    "next": "دواتر",
+    "returnToMain": "گەڕانەوە بۆ پەڕەی سەرەکی",
+    "progressTitle": "گەڕان لە دەروازەی کوردستان",
     "sectionSteps": [
-      "The People",
-      "The Journey",
-      "The System",
-      "The Land and Future"
+      "خاک",
+      "گەل",
+      "کەلەپوور",
+      "داهاتوو"
     ]
   },
   "people": {
-    "title": "The People",
-    "subtitle": "Discover who the Kurds are and the values, identity, and resilience that shape their story.",
+    "title": "گەل",
+    "subtitle": "بزانە کورد کێیە و ئەو بەها و ناسنامە و خۆڕاگرییەی کە چیرۆکەکەیان دادەڕێژن چییە.",
     "items": [
       {
         "id": "who",
-        "title": "Who Are the Kurds?",
-        "description": "An ancient people of the Middle East known for courage, hospitality, and cultural richness."
+        "title": "کورد کێیە؟",
+        "description": "گەلێکی دێرینی ڕۆژهەڵاتی ناوەڕاستە بە ئازایەتی، میواندۆستی و دەوڵەمەندیی کولتووری ناسراون."
       },
       {
         "id": "identity",
-        "title": "A Shared Identity",
-        "description": "A people connected by language, history, tradition, and collective memory."
+        "title": "ناسنامەی هاوبەش",
+        "description": "گەلێک کە بە زمان، مێژوو، نەریت و یادەوەری بەکۆمەڵ بەیەکەوە بەستراونەتەوە."
       },
       {
         "id": "resilience",
-        "title": "A Story of Resilience",
-        "description": "A history shaped by endurance, dignity, and hope."
+        "title": "چیرۆکی خۆڕاگری",
+        "description": "مێژوویەک کە بە خۆڕاگری، شکۆ و ئومێد داڕێژراوە."
       }
-    ]
+    ],
+    "detailPages": {
+      "whoAreTheKurds": {
+        "sectionLabel": "گەل",
+        "title": "کورد کێیە؟",
+        "subtitle": "گەلێکی دێرینی ڕۆژهەڵاتی ناوەڕاست.",
+        "description": "کورد هەزاران ساڵە لەم چیا و دەشتانەدا دەژین، بە هێز، ڕۆح و کولتووری خۆیان ناوچەکەیان داڕێژاوە.",
+        "cards": [
+          {
+            "title": "ڕەگ و ڕیشە",
+            "description": "کورد لە گەلە دێرینەکانی ڕۆژهەڵاتی ناوەڕاستە، خاوەن مێژوویەکی دوورودرێژ و دەوڵەمەندە لە ناوچەکەدا."
+          },
+          {
+            "title": "کولتوور و بەهاکان",
+            "description": "کۆمەڵگەی کوردی بە شێوەیەکی دیار بە ئازایەتی، میواندۆستی، پەیوەندییە خێزانییەکان و خۆشەویستییەکی زۆر بۆ ئازادی و کولتوور دەناسرێتەوە."
+          },
+          {
+            "title": "ناسنامەیەکی زیندوو",
+            "description": "ئەمرۆ ناسنامەی کوردی لە ڕێگەی زمان، مۆسیقا، نەریت، ئەدەب و ژیانی ڕۆژانەوە لەنێوان نەوەکاندا بەردەوامە."
+          }
+        ]
+      },
+      "sharedIdentity": {
+        "title": "ناسنامەیەکی هاوبەش",
+        "subtitle": "بە زمان، کەلەپوور و یادەوەری یەکگرتوون.",
+        "description": "لە ناو گەلی کوردا، ناسنامەی کوردی بە ڕەگ و ڕیشەیەک کە لە مێژووە دەوڵەمەندەکەیەوە سەرچاوەی گرتووە مایەی هێز، شانازی و یەکڕیزییە. لە ڕێگەی ژیانی ڕۆژانەوە خەڵک بەیەکەوە دەبەستێتەوە لەوەی پێی دەدوێن، جەژنی بۆ دەگێڕن، یادی دەکەنەوە و بەشی دەکەن.",
+        "cards": [
+          {
+            "title": "زمان",
+            "description": "زمانی کوردی بەشێکی سەرەکییە لە ناسنامە و وەک سەرچاوەیەکی زیندوو لە نێوان نەوەکان و کۆمەڵگادا دەمێنێتەوە."
+          },
+          {
+            "title": "نەریتەکان",
+            "description": "مۆسیقا، هەڵپەڕکێ، پۆشاک، ئاهەنگەکان و میواندۆستی یارمەتیدەرن لە پاراستنی هەستی یەکبوون."
+          },
+          {
+            "title": "یادەوەری بەکۆمەڵ",
+            "description": "لە شوێن و سنوورە جیاوازەکاندا، کورد لە ڕێگەی مێژووی هاوبەش، چیرۆکەکان و یادەوەرییە کولتوورییەکانەوە بە یەکگرتوویی دەمێننەوە."
+          }
+        ],
+        "ctaLabel": "زیاتر بزانە"
+      },
+      "resilience": {
+        "title": "چیرۆکی خۆڕاگری",
+        "subtitle": "مێژوویەک کە بە خۆڕاگری، شکۆ و ئومێد داڕێژراوە.",
+        "description": "بە درێژایی مێژوو، گەلی کورد ڕووبەڕووی سەختی و گۆڕانکاری بوونەتەوە، کەچی دەستیان بە ناسنامە، کولتوور و بەهاکانی خۆیانەوە گرتووە. لەناو هەموو ئاڵەنگاریەکان، یەک دەست بوونە، کەلەپووری خۆیان پاراستووە، و بە ئازایەتی و ئومێد بۆ داهاتوویەکی گەشتر هەنگاویان ناوە.",
+        "cards": [
+          {
+            "title": "خۆڕاگری",
+            "description": "گەلی کورد بە هێزێکی پتەو و ئیرادەیەکی نەبڕاوە ڕووبەڕووی ئاڵەنگاری بێشومار بووەتەوە."
+          },
+          {
+            "title": "شکۆ",
+            "description": "بە شانازی و شکۆوە گەلی کورد دەستیان بە کەلەپوور و بەهاکانیان گرتووە و ناسنامەی خۆیان پاراستووە."
+          },
+          {
+            "title": "ئومێد",
+            "description": "گەلی کورد بە گەشبینییەوە دەڕواننە داهاتوو و بەردەوامن لە بونیادنانی پاشەرۆژ لەسەر بنەمای ئاشتی، یەکڕیزی و پێشکەوتن."
+          }
+        ]
+      }
+    }
   },
   "journey": {
     "title": "The Journey",
