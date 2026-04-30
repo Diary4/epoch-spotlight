@@ -96,14 +96,6 @@ export default function WhoAreTheKurdsSection({ onBack }: WhoAreTheKurdsSectionP
         stagger: 0.8,
       });
 
-      gsap.to(".info-card", {
-        y: -10,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.35,
-      });
     }, rootRef);
 
     return () => ctx.revert();

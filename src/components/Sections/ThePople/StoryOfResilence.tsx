@@ -41,14 +41,6 @@ export default function StoryOfResilience({ onBack }: StoryOfResilienceProps) {
         .from(".culture-strip", { opacity: 0, y: 28, duration: 1 }, "-=0.35")
         .from(".resilience-card", { opacity: 0, y: 70, scale: 0.95, stagger: 0.2, duration: 0.9 }, "-=0.35");
 
-      gsap.to(".resilience-card", {
-        y: -8,
-        duration: 4.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.25,
-      });
     }, rootRef);
 
     return () => ctx.revert();

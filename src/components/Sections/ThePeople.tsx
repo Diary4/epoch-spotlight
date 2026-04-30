@@ -1,11 +1,11 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
 import gsap from "gsap";
-import mainImage from "@/assets/mainImages/thepeople.PNG?url"
 import card2 from "@/assets/mainImages/card-2.PNG?url"
 import card1 from "@/assets/mainImages/card-1.PNG?url"
 import card3 from "@/assets/mainImages/card-3.PNG?url"
 import bgMainImage from "@/assets/mainImages/main.PNG?url"
+import bg from '@/assets/pexels-mohammad-majid-112544081-31576586.jpg'
 
 const cards: {
   id: ThePeopleCardId;
@@ -64,10 +64,14 @@ function GoldButton({ children, active = false }) {
   );
 }
 
-function CircleIcon({ Icon }) {
+function CircleImage({ image }) {
   return (
-    <div className="absolute left-1/2 top-[172px] z-20 grid h-14 w-14 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[218px] sm:h-16 sm:w-16 lg:top-[260px] lg:h-20 lg:w-20">
-      <Icon className="h-7 w-7 text-[#c7a04e] sm:h-8 sm:w-8 lg:h-9 lg:w-9" strokeWidth={1.6} />
+    <div className="absolute left-1/2 top-[172px] z-20 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white bg-white shadow-[0_10px_30px_rgba(84,54,16,0.18)] sm:top-[218px] sm:h-24 sm:w-24 lg:top-[305px] lg:h-28 lg:w-28 overflow-hidden">
+      <img
+        src={image}
+        alt=""
+        className="h-full w-full object-cover"
+      />
     </div>
   );
 }
@@ -82,6 +86,8 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
       gsap.set("[data-people-bg='true']", { autoAlpha: 0, scale: 1.08, y: 24 });
       gsap.set("[data-people-hero='true']", { autoAlpha: 0, y: 18 });
       gsap.set("[data-people-card='true']", { autoAlpha: 0, y: 42, rotateX: -10, transformOrigin: "center top" });
+      gsap.set("[data-top-divider-part='true']", { scaleX: 0, autoAlpha: 0, transformOrigin: "center center" });
+      gsap.set("[data-card-divider-part='true']", { scaleX: 0, autoAlpha: 0, transformOrigin: "center center" });
 
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
@@ -102,6 +108,16 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           "-=0.75",
         )
         .to(
+          "[data-top-divider-part='true']",
+          {
+            autoAlpha: 1,
+            scaleX: 1,
+            duration: 0.7,
+            stagger: 0.12,
+          },
+          "-=0.8",
+        )
+        .to(
           "[data-people-card='true']",
           {
             autoAlpha: 1,
@@ -111,7 +127,54 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
             stagger: 0.24,
           },
           "-=0.35",
+        )
+        .to(
+          "[data-card-divider-part='true']",
+          {
+            autoAlpha: 1,
+            scaleX: 1,
+            duration: 0.55,
+            stagger: 0.05,
+          },
+          "-=0.6",
         );
+
+      gsap.to("[data-top-divider-line='true']", {
+        opacity: 0.58,
+        duration: 1.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.14,
+      });
+
+      gsap.to("[data-top-divider-diamond='true']", {
+        rotation: 45 + 10,
+        scale: 1.08,
+        duration: 1.7,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("[data-card-divider-line='true']", {
+        opacity: 0.62,
+        duration: 1.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.08,
+      });
+
+      gsap.to("[data-card-divider-diamond='true']", {
+        rotation: 45 + 8,
+        scale: 1.07,
+        duration: 1.9,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.1,
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -133,7 +196,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           data-people-bg="true"
           src={bgMainImage}
           alt=""
-          className="pointer-events-none absolute inset-x-0 top-[100px] h-auto w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[230px]"
+          className="pointer-events-none absolute inset-x-0 h-auto w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[100px]"
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[clamp(220px,30vh,420px)] bg-gradient-to-b from-[#fcf7ed] via-[#fcf7ed]/96 via-45% to-transparent" />
         <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-transparent to-[#fcf7ed]/78 sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
@@ -145,9 +208,9 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           </h1>
 
           <div data-people-hero="true" className="mx-auto mt-5 flex max-w-[520px] items-center justify-center gap-4 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
-            <span className="h-0.5 flex-1 bg-[#d5b773]" />
-            <Sparkles className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-            <span className="h-0.5 flex-1 bg-[#d5b773]" />
+            <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
+            <Sparkles data-top-divider-diamond="true" className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+            <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
           </div>
 
           <p data-people-hero="true" className="mx-auto mt-6 max-w-[980px] text-[20px] leading-relaxed text-[#49524e] sm:mt-8 sm:text-[28px] lg:text-[34px]">
@@ -176,27 +239,25 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                 }}
                 className="relative overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                {/* Fixed image container */}
-                <div className="relative h-[200px] w-full overflow-hidden sm:h-[250px] lg:h-[350px]">
+                <div className="relative h-[200px] w-full overflow-hidden border-b border-white/75 sm:h-[250px] lg:h-[350px]">
                   <img
                     src={card.image}
                     alt={card.title}
                     className="absolute inset-0 h-full w-full object-cover brightness-[0.94] contrast-110"
-                    style={{
-                      objectPosition: card.id === "resilience" ? "center 30%" : "center",
-                    }}
+                    style={{ objectPosition: "center" }}
                   />
                 </div>
-                <CircleIcon Icon={Icon} />
+
+                <CircleImage image={card.image} />
                 <div className="min-h-[230px] px-5 pb-6 pt-14 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
                   <h3 className="whitespace-pre-line font-serif text-[24px] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
                     {card.title}
                   </h3>
 
                   <div className="mx-auto my-5 flex max-w-[140px] items-center justify-center gap-3 text-[#c7a04e]">
-                    <span className="h-0.5 flex-1 bg-[#d7bc81]" />
-                    <span className="h-3 w-3 rotate-45 border border-[#c7a04e]" />
-                    <span className="h-0.5 flex-1 bg-[#d7bc81]" />
+                    <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
+                    <span data-card-divider-part="true" data-card-divider-diamond="true" className="h-3 w-3 rotate-45 border border-[#c7a04e]" />
+                    <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
                   <p className="text-[17px] leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">

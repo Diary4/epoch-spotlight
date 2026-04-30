@@ -41,14 +41,6 @@ export default function SharedIdentityPage({ onBack }: SharedIdentityPageProps) 
         .from(".description-text", { opacity: 0, y: 26, duration: 0.85 }, "-=0.4")
         .from(".identity-card", { opacity: 0, y: 70, scale: 0.95, stagger: 0.2, duration: 0.9 }, "-=0.3");
 
-      gsap.to(".identity-card", {
-        y: -8,
-        duration: 4.2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.25,
-      });
     }, rootRef);
 
     return () => ctx.revert();
