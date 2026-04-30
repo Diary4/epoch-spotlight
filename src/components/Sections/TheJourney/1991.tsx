@@ -52,22 +52,22 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
   }));
 
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Journey"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft size={32} />
         </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Background hero image placeholder */}
-        <div className="pointer-events-none absolute right-0 top-[120px] h-[900px] w-[860px]">
+        <div className="pointer-events-none absolute right-0 top-[7.5vh] h-[min(72vh,980px)] w-[min(63vw,980px)]">
           <img
             src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=90"
             alt="1991 background placeholder"
@@ -77,54 +77,54 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col px-14 pt-14 pb-14">
+        <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
           {/* Text */}
-          <section className="max-w-[540px]">
-            <h1 className="font-serif text-[150px] font-semibold leading-none tracking-tight text-[#17233b]">
+          <section className="max-w-[min(46vw,720px)]">
+            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {section.title ?? "1991"}
             </h1>
 
-            <p className="mt-7 text-[39px] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.65rem,2.75vw,2.7rem)] font-bold leading-tight text-[#9b6d35]">
               {section.headline ?? "A historic turning point."}
             </p>
 
-            <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
+            <div className="mt-[clamp(1rem,2.3vh,2rem)] flex w-[clamp(9rem,18vw,14.5rem)] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-10 max-w-[455px] text-[30px] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(38vw,590px)] text-[clamp(1.2rem,2vw,1.95rem)] font-medium leading-[1.55] text-[#2d3549]">
               {section.description ?? "A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region."}
             </p>
           </section>
 
           {/* Spacer keeps card block near bottom like reference */}
-          <div className="flex-1" />
+          <div className="flex-[0.85]" />
 
           {/* Cards */}
-          <section className="grid grid-cols-3 gap-9">
+          <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8vw,2.1rem)]">
             {localizedCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[520px] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-8 py-10 text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
+                  className="relative flex min-h-[clamp(23rem,37vh,33rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9vw,2rem)] py-[clamp(1rem,2.2vh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                 >
-                  <div className={`grid h-28 w-28 place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
-                    <Icon size={60} strokeWidth={1.5} />
+                  <div className={`grid h-[clamp(4.1rem,7.5vw,7.2rem)] w-[clamp(4.1rem,7.5vw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
+                    <Icon size={56} strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-9 whitespace-pre-line font-serif text-[39px] font-semibold leading-[0.98] text-[#17233b]">
+                  <h3 className="mt-[clamp(0.8rem,1.8vh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7vw,2.5rem)] font-semibold leading-[0.98] text-[#17233b]">
                     {card.title}
                   </h3>
 
-                  <div className="my-7 flex w-32 items-center justify-center gap-3 text-[#b99152]">
+                  <div className="my-[clamp(0.75rem,1.6vh,1.7rem)] flex w-[clamp(4.8rem,10vw,8rem)] items-center justify-center gap-3 text-[#b99152]">
                     <span className="h-0.5 flex-1 bg-[#d2b475]" />
                     <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                     <span className="h-0.5 flex-1 bg-[#d2b475]" />
                   </div>
 
-                  <p className="text-[23px] font-medium leading-[1.5] text-[#303a50]">
+                  <p className="text-[clamp(1.02rem,1.58vw,1.5rem)] font-medium leading-[1.5] text-[#303a50]">
                     {card.text}
                   </p>
 

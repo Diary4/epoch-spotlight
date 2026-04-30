@@ -49,22 +49,22 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
     text: section.cards?.[i]?.description ?? row.text,
   }));
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb]">
+    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Journey"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft size={32} />
         </button>
         <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Main visual placeholder: replace later with your generated 1992 image */}
-        <div className="pointer-events-none absolute right-0 top-[120px] h-[980px] w-[850px]">
+        <div className="pointer-events-none absolute right-0 top-[7.5vh] h-[min(74vh,1020px)] w-[min(63vw,980px)]">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
             alt="1992 parliament placeholder"
@@ -74,49 +74,49 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col px-14 pt-14 pb-14">
-          <section className="max-w-[560px]">
-            <h1 className="font-serif text-[150px] font-semibold leading-none tracking-tight text-[#17233b]">
+        <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
+          <section className="max-w-[min(47vw,740px)]">
+            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {section.title ?? "1992"}
             </h1>
 
-            <p className="mt-6 text-[37px] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.1vh,1.8rem)] text-[clamp(1.6rem,2.6vw,2.55rem)] font-bold leading-tight text-[#9b6d35]">
               {section.headline ?? "The beginning of self-rule."}
             </p>
 
-            <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
+            <div className="mt-[clamp(1rem,2.3vh,2rem)] flex w-[clamp(9rem,18vw,14.5rem)] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-10 max-w-[490px] text-[30px] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(39vw,620px)] text-[clamp(1.2rem,2vw,1.95rem)] font-medium leading-[1.55] text-[#2d3549]">
               {section.description ?? "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future."}
             </p>
           </section>
 
-          <div className="flex-1" />
+          <div className="flex-[0.85]" />
 
-          <section className="space-y-8">
+          <section className="space-y-[clamp(0.8rem,1.7vh,1.9rem)]">
             {localizedRows.map((row) => {
               const Icon = row.icon;
               return (
                 <article
                   key={row.title}
-                  className="relative flex min-h-[178px] items-center rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-10 py-8 shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
+                  className="relative flex min-h-[clamp(9.2rem,16vh,13.5rem)] items-center rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1vw,2.5rem)] py-[clamp(0.9rem,1.9vh,1.8rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                 >
-                  <div className="flex w-[190px] justify-center">
-                    <div className={`grid h-28 w-28 place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
-                      <Icon size={58} strokeWidth={1.5} />
+                  <div className="flex w-[clamp(5.6rem,13vw,11.5rem)] justify-center">
+                    <div className={`grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
+                      <Icon size={54} strokeWidth={1.5} />
                     </div>
                   </div>
 
-                  <div className="h-[110px] w-px bg-[#e2c99b]" />
+                  <div className="h-[clamp(4.5rem,9vh,7rem)] w-px bg-[#e2c99b]" />
 
-                  <div className="px-10">
-                    <h3 className="font-serif text-[41px] font-semibold leading-tight text-[#17233b]">
+                  <div className="px-[clamp(0.9rem,1.9vw,2.4rem)]">
+                    <h3 className="font-serif text-[clamp(1.45rem,2.65vw,2.6rem)] font-semibold leading-tight text-[#17233b]">
                       {row.title}
                     </h3>
-                    <p className="mt-3 max-w-[560px] text-[25px] font-medium leading-[1.42] text-[#303a50]">
+                    <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.58vw,1.5rem)] font-medium leading-[1.42] text-[#303a50]">
                       {row.text}
                     </p>
                   </div>
