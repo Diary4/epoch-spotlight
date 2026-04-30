@@ -52,8 +52,8 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
   }));
 
   return (
-    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] px-[2vw] py-[1.8vh] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-[min(95vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
+    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}

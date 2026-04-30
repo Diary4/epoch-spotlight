@@ -49,8 +49,8 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
     text: section.cards?.[i]?.description ?? row.text,
   }));
   return (
-    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] px-[2vw] py-[1.8vh] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-[min(95vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb] px-[clamp(1.2rem,4vw,4rem)] py-[clamp(1.2rem,3.6vh,3.8rem)]">
+    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb] px-[clamp(1.2rem,4vw,4rem)] py-[clamp(1.2rem,3.6vh,3.8rem)]">
         <button
           type="button"
           onClick={onBack}
