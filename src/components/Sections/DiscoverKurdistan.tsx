@@ -179,9 +179,9 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
             <div data-intro-lineshape="true" className="mb-5 flex items-center justify-center gap-3 text-[#c49b52] sm:mb-6 sm:gap-6 md:gap-12 lg:mb-8">
               <span className="h-0.5 w-10 bg-[#c49b52] sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
               <div className="flex w-full flex-col items-center">
-                <span className="mb-[-12px] h-4 w-full max-w-[1150px] rounded-sm bg-red-500 sm:mb-[-16px] sm:h-6 md:mb-[-20px] md:h-8 lg:h-9" />
+                {/* <span className="mb-[-12px] h-4 w-full max-w-[1150px] rounded-sm bg-red-500 sm:mb-[-16px] sm:h-6 md:mb-[-20px] md:h-8 lg:h-9" /> */}
                 <span className="text-5xl leading-none sm:text-6xl md:text-8xl lg:text-9xl">✹</span>
-                <span className="mt-[-8px] h-4 w-full max-w-[1150px] rounded-sm bg-green-500 sm:mt-[-12px] sm:h-6 md:mt-[-15px] md:h-8 lg:h-9" />
+                {/* <span className="mt-[-8px] h-4 w-full max-w-[1150px] rounded-sm bg-green-500 sm:mt-[-12px] sm:h-6 md:mt-[-15px] md:h-8 lg:h-9" /> */}
               </div>
               <span className="h-0.5 w-10 bg-[#c49b52] sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
             </div>

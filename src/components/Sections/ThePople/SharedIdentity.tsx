@@ -26,18 +26,18 @@ type SharedIdentityPageProps = {
 
 export default function SharedIdentityPage({ onBack }: SharedIdentityPageProps) {
   return (
-    <main className="min-h-screen w-full bg-[#fbf3e8] text-[#00604f]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fff7ec] px-12 py-10">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#fbf3e8] px-[clamp(12px,1.8vw,28px)] py-[clamp(10px,1.6vh,24px)] text-[#00604f]">
+      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fff7ec] px-[clamp(20px,3.1vw,52px)] py-[clamp(20px,2.7vh,40px)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#00604f] shadow-sm"
+          className="absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#00604f] shadow-sm"
           aria-label="Back to The People"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft size={30} />
         </button>
         <div className="pointer-events-none absolute inset-0 opacity-16 [background-image:radial-gradient(#d8b875_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div className="pointer-events-none absolute right-0 top-[130px] h-[920px] w-[760px]">
+        <div className="pointer-events-none absolute right-0 top-[clamp(120px,11vh,200px)] h-[clamp(760px,66vh,1100px)] w-[clamp(520px,52vw,900px)]">
           {/* Replace this placeholder with your generated people/culture image */}
           <img
             src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1500&q=90"
@@ -49,64 +49,59 @@ export default function SharedIdentityPage({ onBack }: SharedIdentityPageProps) 
         </div>
 
         {/* Main text */}
-        <section className="relative z-10 mt-16 max-w-[520px]">
-          <h1 className="font-serif text-[96px] font-semibold leading-[1.02] tracking-tight text-[#214439]">
+        <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)]">
+          <h1 className="font-serif text-[clamp(66px,8.3vw,120px)] font-semibold leading-[1.02] tracking-tight text-[#214439]">
             A Shared<br />Identity
           </h1>
 
-          <div className="mt-12 flex items-center gap-6 text-[#c9903f]">
-            <span className="h-0.5 w-48 bg-[#c9903f]" />
-            <span className="text-3xl">✥</span>
-            <span className="h-0.5 w-28 bg-[#c9903f]" />
+          <div className="mt-[clamp(30px,4vh,52px)] flex items-center gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
+            <span className="h-0.5 w-[clamp(130px,13vw,220px)] bg-[#c9903f]" />
+            <span className="text-[clamp(24px,2.2vw,36px)]">✥</span>
+            <span className="h-0.5 w-[clamp(90px,9vw,160px)] bg-[#c9903f]" />
           </div>
 
-          <p className="mt-8 font-serif text-[37px] leading-tight text-[#b06f25]">
+          <p className="mt-[clamp(24px,3.3vh,44px)] font-serif text-[clamp(31px,3.7vw,54px)] leading-tight text-[#b06f25]">
             United by language,<br />heritage, and memory.
           </p>
 
-          <p className="mt-9 max-w-[380px] text-[25px] font-semibold leading-[1.62] text-[#35435b]">
+          <p className="mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[clamp(20px,2.3vw,32px)] font-semibold leading-[1.62] text-[#35435b]">
             Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life, it connects people through what they speak, celebrate, remember, and share.
           </p>
         </section>
 
         {/* Cards */}
-        <section className="relative z-20 mt-auto grid grid-cols-3 gap-7 pb-8 pt-12">
+        <section className="relative z-20 mt-[clamp(26px,5.5vh,84px)] grid grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(24px,3.2vh,52px)]">
           {identityCards.map((card) => {
             const Icon = card.icon;
             return (
               <article
                 key={card.title}
-                className="flex min-h-[555px] flex-col items-center rounded-[24px] border-2 border-white bg-white/82 px-7 py-9 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
+                className="flex min-h-[clamp(360px,33vh,560px)] flex-col items-center rounded-[clamp(22px,2.3vw,34px)] border-2 border-white bg-white/82 px-[clamp(16px,1.7vw,32px)] py-[clamp(18px,2.1vh,34px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
               >
-                <div className="grid h-30 w-30 place-items-center rounded-full border-4 border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
+                <div className="grid h-[clamp(82px,7.3vw,124px)] w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border-4 border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
                   {card.iconText ? (
                     <div className="relative">
-                      <MessageSquareText size={64} strokeWidth={1.5} />
-                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[20px] font-bold">{card.iconText}</span>
+                      <MessageSquareText size={58} strokeWidth={1.5} />
+                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[clamp(16px,1.55vw,24px)] font-bold">{card.iconText}</span>
                     </div>
                   ) : (
-                    <Icon size={66} strokeWidth={1.45} />
+                    <Icon size={58} strokeWidth={1.45} />
                   )}
                 </div>
 
-                <h3 className="mt-8 whitespace-pre-line font-serif text-[37px] font-semibold leading-[0.95] text-[#214439]">
+                <h3 className="mt-[clamp(14px,1.9vh,30px)] whitespace-pre-line font-serif text-[clamp(24px,2.4vw,38px)] font-semibold leading-[0.95] text-[#214439]">
                   {card.title}
                 </h3>
 
-                <div className="my-6 flex w-30 items-center justify-center gap-3 text-[#c9903f]">
+                <div className="my-[clamp(12px,1.7vh,24px)] flex w-[clamp(88px,8.3vw,138px)] items-center justify-center gap-3 text-[#c9903f]">
                   <span className="h-0.5 flex-1 bg-[#d7b56c]" />
-                  <span className="text-xl">✥</span>
+                  <span className="text-[clamp(16px,1.5vw,24px)]">✥</span>
                   <span className="h-0.5 flex-1 bg-[#d7b56c]" />
                 </div>
 
-                <p className="flex-1 text-[22px] font-semibold leading-[1.55] text-[#35435b]">
+                <p className="flex-1 text-[clamp(17px,1.65vw,27px)] font-semibold leading-[1.55] text-[#35435b]">
                   {card.text}
                 </p>
-
-                <button className="mt-8 flex h-16 w-full items-center justify-center gap-10 rounded-[17px] border-2 border-[#ead2a8] bg-[#fff8ed] text-[24px] font-semibold text-[#c07b24] shadow-sm">
-                  Learn More
-                  <ArrowRight size={36} />
-                </button>
               </article>
             );
           })}
