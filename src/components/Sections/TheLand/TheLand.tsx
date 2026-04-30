@@ -88,21 +88,21 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
       ]
     : mapCards;
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] overflow-hidden bg-[#fbf5eb] px-8 py-10">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] px-[clamp(12px,1.8vw,28px)] py-[clamp(10px,1.6vh,24px)] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] px-[clamp(16px,2.2vw,36px)] py-[clamp(18px,2.4vh,36px)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Land and Future"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft size={30} />
         </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Left scenic placeholder */}
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[850px] w-[420px]">
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70vh,980px)] w-[clamp(260px,28vw,470px)]">
           <img
             src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=90"
             alt="Kurdistan landscape placeholder"
@@ -113,8 +113,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         </div>
 
         {/* Left text */}
-        <aside className="relative z-10 flex w-[370px] shrink-0 flex-col pt-20 pl-6">
-          <h1 className="font-serif text-[86px] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
+        <aside className="relative z-10 flex w-[clamp(300px,30vw,470px)] shrink-0 flex-col pt-[clamp(64px,8vh,120px)] pl-[clamp(8px,1.1vw,20px)]">
+          <h1 className="font-serif text-[clamp(60px,7.2vw,108px)] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
             {isAr ? (
               "الأرض"
             ) : (
@@ -124,11 +124,11 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
             )}
           </h1>
 
-          <div className="mt-10 w-[230px]">
+          <div className="mt-[clamp(24px,3.3vh,44px)] w-[clamp(160px,16vw,260px)]">
             <Divider />
           </div>
 
-          <p className="mt-4 font-serif text-[30px] leading-tight text-[#9b6d35]">
+          <p className="mt-[clamp(10px,1.5vh,22px)] font-serif text-[clamp(24px,2.8vw,42px)] leading-tight text-[#9b6d35]">
             {isAr ? (
               "إقليم من الجمال والجغرافيا والتراث."
             ) : (
@@ -138,19 +138,19 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
             )}
           </p>
 
-          <p className="mt-10 max-w-[285px] text-[21px] font-semibold leading-[1.55] text-[#35435b]">
+          <p className="mt-[clamp(18px,2.8vh,40px)] max-w-[clamp(250px,25vw,430px)] text-[clamp(16px,1.7vw,26px)] font-semibold leading-[1.55] text-[#35435b]">
             {isAr
               ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
               : "Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people."}
           </p>
 
-          <div className="mt-10 w-[150px]">
+          <div className="mt-[clamp(18px,2.8vh,40px)] w-[clamp(110px,10vw,180px)]">
             <Divider />
           </div>
         </aside>
 
         {/* Right maps */}
-        <section className="relative z-10 flex flex-1 flex-col gap-7 pl-4">
+        <section className="relative z-10 flex flex-1 flex-col gap-[clamp(14px,1.6vh,28px)] pl-[clamp(6px,1vw,18px)]">
           {localMapCards.map((card) => (
             <MapCard key={card.number} card={card} lang={lang} />
           ))}
