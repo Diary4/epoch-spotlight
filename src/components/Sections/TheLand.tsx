@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
+import gsap from "gsap";
 
 const topCards = [
   {
@@ -74,7 +75,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
   const iconColor = "#f8e5b8";
 
   return (
-    <article className="relative flex min-h-[435px] flex-col overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md lg:min-h-[510px] lg:rounded-[28px] lg:p-9">
+    <article data-land-card="true" className="relative flex min-h-[435px] flex-col overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md lg:min-h-[510px] lg:rounded-[28px] lg:p-9">
       {onClick && (
         <button
           type="button"
@@ -114,7 +115,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
 function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   return (
-    <article className="relative min-h-[270px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-9 shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md lg:min-h-[320px] lg:rounded-[28px] lg:px-10 lg:py-10">
+    <article data-land-card="true" className="relative min-h-[270px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-9 shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md lg:min-h-[320px] lg:rounded-[28px] lg:px-10 lg:py-10">
       {onClick && (
         <button
           type="button"
@@ -153,6 +154,7 @@ type LandAndFuturePageProps = {
 };
 
 export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }: LandAndFuturePageProps) {
+  const sectionRef = React.useRef<HTMLElement | null>(null);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localTopCards = isAr
@@ -179,9 +181,63 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
           { ...bottomCards[1], title: "دیدگای داهاتوو", text: "کوردستان بە هیوا، دەرفەت، و متمانەوە دەڕوانێتە داهاتوو." },
         ]
       : bottomCards;
+
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set("[data-land-bg='true']", { autoAlpha: 0, scale: 1.05, y: 20 });
+      gsap.set("[data-land-hero='true']", { autoAlpha: 0, y: 26 });
+      gsap.set("[data-land-divider='true']", { autoAlpha: 0, scaleX: 0, transformOrigin: "center center" });
+      gsap.set("[data-land-card='true']", { autoAlpha: 0, y: 42, rotateX: -9, transformOrigin: "center top" });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to("[data-land-bg='true']", {
+        autoAlpha: 1,
+        scale: 1,
+        y: 0,
+        duration: 1.5,
+      })
+        .to(
+          "[data-land-hero='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.14,
+          },
+          "-=0.8",
+        )
+        .to(
+          "[data-land-divider='true']",
+          {
+            autoAlpha: 1,
+            scaleX: 1,
+            duration: 0.7,
+            stagger: 0.08,
+          },
+          "-=0.5",
+        )
+        .to(
+          "[data-land-card='true']",
+          {
+            autoAlpha: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.9,
+            stagger: 0.16,
+          },
+          "-=0.2",
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] px-6 py-8 sm:px-9 lg:px-14 lg:py-10">
+      <section ref={sectionRef} className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] px-6 py-8 sm:px-9 lg:px-14 lg:py-10">
         <button
           type="button"
           onClick={onBack}
@@ -200,7 +256,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         </div>
 
         {/* Main hero visual placeholder */}
-        <div className="pointer-events-none absolute right-0 top-[80px] h-[860px] w-[56vw] min-w-[760px]">
+        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-[80px] h-[860px] w-[56vw] min-w-[760px]">
           <img
             src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=90"
             alt="Land and Future placeholder"
@@ -212,13 +268,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
 
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="max-w-[700px] pt-16 pl-2 lg:pt-20 lg:pl-4">
-            <h1 className="font-serif text-[70px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
+            <h1 data-land-hero="true" className="font-serif text-[70px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "and Future"}
             </h1>
 
-            <p className="z-10 mt-7 font-serif text-[28px] leading-tight text-[#9b6d35] sm:text-[30px] lg:text-[40px]">
+            <p data-land-hero="true" className="z-10 mt-7 font-serif text-[28px] leading-tight text-[#9b6d35] sm:text-[30px] lg:text-[40px]">
               {isAr ? (
                 <>
                   جذور التراث.<br />لآفاق الغد.
@@ -235,11 +291,11 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
             </p>
 
             <div className="mt-9 flex w-[245px] items-center gap-4 text-[#b99152] lg:w-[320px]">
-              <span className="h-0.5 flex-1 bg-[#b99152]" />
-              <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+              <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
+              <span data-land-divider="true" className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-8 max-w-[330px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[430px] lg:text-[28px]">
+            <p data-land-hero="true" className="mt-8 max-w-[330px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[430px] lg:text-[28px]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu

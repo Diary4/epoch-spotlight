@@ -113,8 +113,8 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         ]
       : dialects;
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] p-0">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] px-[clamp(8px,1.2vw,18px)] py-[clamp(8px,1.3vh,16px)] text-[#17233b]">
+      <section className="relative flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}

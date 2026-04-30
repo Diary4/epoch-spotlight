@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
+import bg from "@/assets/mainImages/bg-2.png";
 
 const mapCards = [
   {
@@ -15,7 +16,7 @@ const mapCards = [
     title: "Disputed Areas",
     text: "Explore the disputed areas between Kurdistan and Iraq, shown here in pink.",
     color: "#963538",
-    mapImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Iraqi_Kurdistan_in_Iraq_%28disputed_hatched%29.svg/1280px-Iraqi_Kurdistan_in_Iraq_%28disputed_hatched%29.svg.png",
+    mapImage: bg,
   },
   {
     number: "3",
@@ -38,7 +39,7 @@ function Divider({ color = "#b99152" }) {
 
 function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: "ku" | "en" | "ar" }) {
   return (
-    <article className="grid min-h-[440px] grid-cols-[205px_1fr] overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
+    <article className="grid min-h-0 flex-1 grid-cols-[205px_1fr] overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
       <div className="flex flex-col items-center justify-center border-r border-[#ead8b7] px-7 py-8 text-center">
         <div
           className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[34px] font-bold text-white shadow-md"
@@ -95,8 +96,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         ]
       : mapCards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section className="relative mx-auto flex min-h-[100vh] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-0">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}
@@ -111,7 +112,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         {/* Left scenic placeholder */}
         <div className="pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70vh,980px)] w-[clamp(260px,28vw,470px)]">
           <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=90"
+            src={bg}
             alt="Kurdistan landscape placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:linear-gradient(to_bottom,transparent_0%,black_18%,black_76%,transparent_100%)]"
           />
@@ -163,7 +164,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         </aside>
 
         {/* Right maps */}
-        <section className="relative z-10 flex flex-1 flex-col gap-[clamp(14px,1.6vh,28px)] pl-[clamp(6px,1vw,18px)]">
+        <section className="relative z-10 flex flex-1 flex-col gap-[clamp(14px,1.6vh,28px)] pl-[clamp(6px,1vw,18px)] pb-[clamp(4px,0.8vh,10px)]">
           {localMapCards.map((card) => (
             <MapCard key={card.number} card={card} lang={lang} />
           ))}
