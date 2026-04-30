@@ -158,131 +158,131 @@
     }
   },
   "journey": {
-    "title": "The Journey",
-    "subtitle": "Explore the key milestones that shaped the Kurdistan Region from 1991 until today.",
+    "title": "گەشت",
+    "subtitle": "گەڕان بەناو ئەو وێستگە سەرەکییانەی کە هەرێمی کوردستانیان دروستکردووە.",
     "items": [
       {
         "id": "1991",
-        "title": "1991",
-        "description": "A historic turning point that opened the path to a new reality."
+        "title": "١٩٩١",
+        "description": "وەرچەرخانێکی مێژوویی کە ڕێگەی بۆ سەردەمێکی نوێ کردەوە."
       },
       {
         "id": "1992",
-        "title": "1992",
-        "description": "The first parliament and government marked the beginning of self-rule."
+        "title": "١٩٩٢",
+        "description": "هەرێمی کوردستان یەکەمین هەڵبژاردنی خۆی ئەنجامدا، کە تێیدا پەرلەمان و حکومەت دامەزران و کاروانی خۆبەڕێوەبەری دەستی پێکرد."
       },
       {
         "id": "institutions",
-        "title": "Building Institutions",
-        "description": "Public institutions gradually formed the structure of modern governance."
+        "title": "بونیادنانی دامەزراوەکان",
+        "description": "دامەزراوە گشتییەکان قۆناغ بە قۆناغ دروست بوون و جێگیر بوون، وەک بنەمایەک بۆ سیستمێکی حوکمڕانیی سەردەمیانە لە هەرێمدا."
       },
       {
         "id": "2005",
-        "title": "2005",
-        "description": "Federal recognition gave constitutional status to the Kurdistan Region."
+        "title": "٢٠٠٥",
+        "description": "دانپێدانانی فیدراڵی پێگەیەکی دەستووری بە هەرێمی کوردستان بەخشی."
       },
       {
         "id": "today",
-        "title": "Today",
-        "description": "Kurdistan continues to grow through institutions, development, and vision."
+        "title": "ئەمڕۆ",
+        "description": "کوردستان لە ڕێگەی دامەزراوە، گەشەپێدان و دیدگاوە بەردەوامە لە گەشەکردن."
       }
     ],
     "sections": {
       "1991": {
-        "title": "1991",
-        "headline": "A historic turning point.",
-        "description": "A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region.",
+        "title": "١٩٩١",
+        "headline": "وەرچەرخانێکی مێژوویی.",
+        "description": "ساتێکی پڕ لە ئازایەتی و یەکڕیزی کە ڕێگەی بۆ قۆناغێکی نوێ لە هەرێمی کوردستان کردەوە.",
         "cards": [
           {
-            "title": "Historic Uprising",
-            "description": "In 1991, a major uprising marked a turning point in Kurdish history in Iraq."
+            "title": "ڕاپەڕینی مێژوویی",
+            "description": "لە ساڵی ١٩٩١دا، ڕاپەڕینێکی گەورە و وەرچەرخانێک لە مێژووی کورد لە عێراقدا ڕوویدا."
           },
           {
-            "title": "A New Reality",
-            "description": "This moment opened the way for a new political and administrative reality in the Kurdistan Region."
+            "title": "سەردەمێکی نوێ",
+            "description": "ئەم ساتە ڕێگەی بۆ قۆناغێکی سیاسی و کارگێڕی نوێ لە هەرێمی کوردستاندا کردەوە."
           },
           {
-            "title": "A Foundation for the Future",
-            "description": "The developments of 1991 laid the groundwork for modern self-governance."
+            "title": "بناغەیەک بۆ داهاتوو",
+            "description": "پەرەسەندنەکانی ساڵی ١٩٩١ بوونە بەردی بناغەی سیستمێکی نوێی خۆبەڕێوەبردن لە هەرێمی کوردستان."
           }
         ]
       },
       "1992": {
-        "title": "1992",
-        "headline": "The beginning of self-rule.",
-        "description": "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future.",
+        "title": "١٩٩٢",
+        "headline": "سەرەتای خۆبەڕێوەبردن( حکومڕانی ).",
+        "description": "ساڵێکی گرنگە کە تێیدا هەرێمی کوردستان هەنگاوێکی یەکلاکەرەوەی نا بەرەو بونیادنانی دامەزراوەکانی و داڕشتنی داهاتووی.",
         "cards": [
           {
-            "title": "First Election",
-            "description": "In 1992, the Kurdistan Region held its first parliamentary election."
+            "title": "یەکەم هەڵبژاردن",
+            "description": "لە ساڵی ١٩٩٢دا، هەرێمی کوردستان یەکەم هەڵبژاردنی پەرلەمانی ئەنجامدا."
           },
           {
-            "title": "Parliament and Government",
-            "description": "The first parliament and government were formed, marking the beginning of modern self-rule."
+            "title": "پەرلەمان و حکومەت",
+            "description": "یەکەم پەرلەمان و حکومەت پێکهێنران، کە سەرەتای خۆبەڕێوەبردنی مۆدێرن بوون."
           },
           {
-            "title": "A Defining Milestone",
-            "description": "This step transformed earlier achievements into an organized political reality."
+            "title": "وێستگەیەکی دیار",
+            "description": "ئەم هەنگاوە دەستکەوتەکانی پێشووی گۆڕی بۆ واقیعێکی سیاسی ڕێکخراو."
           }
         ]
       },
       "institutions": {
-        "title": "Building Institutions",
-        "headline": "From transition to governance.",
-        "description": "Discover how institutions were established and strengthened to serve the people of Kurdistan.",
+        "title": "بونیادنانی دامەزراوەکان",
+        "headline": "لە قۆناغی ڕاگۆڕینەوە بۆ حوکمڕانی.",
+        "description": "بزانە چۆن دامەزراوەکان بۆ خزمەتکردنی گەلی کوردستان دامەزران و بەهێز کران.",
         "cards": [
           {
-            "title": "Public Institutions",
-            "description": "Over time, Kurdistan developed institutions that helped organize governance and public life."
+            "title": "دامەزراوە گشتییەکان",
+            "description": "بە تێپەڕبوونی کات، کوردستان دامەزراوەی وای پەرەپێدا کە یارمەتیدەر بوون لە ڕێکخستنی حوکمڕانی و ژیانی گشتیدا."
           },
           {
-            "title": "Parliament, Government, Presidency",
-            "description": "These institutions became essential parts of the regional political system."
+            "title": "پەرلەمان، حکومەت، سەرۆکایەتی",
+            "description": "ئەم دامەزراوانە بوونە بەشێکی سەرەکی لە سیستەمی سیاسی هەرێم."
           },
           {
-            "title": "Institutional Growth",
-            "description": "Together, they helped shape a more structured and functioning regional administration."
+            "title": "گەشەی دامەزراوەیی",
+            "description": "ئەم دامەزراوانە پێکەوە یارمەتیدەر بوون لە داڕشتنی کارگێڕییەکی هەرێمیی ڕێکخراوتر، بەتواناتر و کاراتر."
           }
         ]
       },
       "2005": {
-        "title": "2005",
-        "headline": "Federal recognition within Iraq.",
+        "title": "٢٠٠٥",
+        "headline": "دانپێدانانی فیدراڵی لە چوارچێوەی عێراقدا.",
         "cards": [
           {
-            "title": "Constitutional Recognition",
-            "description": "In 2005, Iraq's constitution officially recognized the Kurdistan Region as a federal region."
+            "title": "دانپێدانانی دەستووری",
+            "description": "لە ساڵی ٢٠٠٥دا، دەستووری عێراق بە فەرمی دانی بە هەرێمی کوردستاندا نا وەک هەرێمێکی فیدراڵی(سەربەخۆ)."
           },
           {
-            "title": "Legal Status",
-            "description": "This recognition affirmed the legal and constitutional status of the Region and its institutions."
+            "title": "پێگەی یاسایی",
+            "description": "ئەم دانپێدانانە پێگەی یاسایی و دەستووری هەرێم و دامەزراوەکانی چەسپاند."
           },
           {
-            "title": "A New Chapter",
-            "description": "It marked an important step in the development of the Kurdistan Region within federal Iraq."
+            "title": "وەرچەرخانێکی نوێ",
+            "description": "ئەمە هەنگاوێکی گرنگ بوو لە گەشەپێدانی هەرێمی کوردستان لە چوارچێوەی عێراقێکی فیدراڵدا."
           }
         ]
       },
       "today": {
-        "title": "Today",
-        "headline": "Growth, development, and vision.",
-        "description": "Kurdistan is building a stronger tomorrow through progress, unity, and opportunity.",
+        "title": "ئەمڕۆ",
+        "headline": "گەشەکردن، پەرەپێدان و دیدگا.",
+        "description": "کوردستان لە ڕێگەی پێشکەوتن، یەکڕیزی و دەرفەتەوە دواڕۆژێکی بەهێزتر بونیاد دەنێت.",
         "cards": [
           {
-            "title": "Development",
-            "description": "Today, the Kurdistan Region continues to advance in infrastructure, education, and public services."
+            "title": "گەشەپێدان",
+            "description": "ئەمڕۆ، هەرێمی کوردستان بەردەوامە لە پێشکەوتن لە بوارەکانی ژێرخان، پەروەردە و خزمەتگوزارییە گشتییەکاندا."
           },
           {
-            "title": "Economy and Investment",
-            "description": "Economic growth, business activity, and investment remain important parts of the Region's future."
+            "title": "ئابووری و وەبەرهێنان",
+            "description": "گەشەی ئابووری، چالاکی بازرگانی و وەبەرهێنان بە بەشێکی گرنگی داهاتووی هەرێم دەمێننەوە."
           },
           {
-            "title": "Youth and Opportunity",
-            "description": "A new generation is helping shape Kurdistan through learning, work, and innovation."
+            "title": "گەنجان و دەرفەت",
+            "description": "نەوەیەکی نوێ لە ڕێگەی فێربوون، کارکردن و داهێنانەوە یارمەتی داڕشتنی کوردستان دەدەن."
           },
           {
-            "title": "Looking Ahead",
-            "description": "Kurdistan continues to look forward with resilience, ambition, and confidence."
+            "title": "ڕوانین بۆ داهاتوو",
+            "description": "کوردستان بە خۆڕاگری، ئامانج و متمانەوە بەردەوامە لە ڕوانین بۆ داهاتوو."
           }
         ]
       }
