@@ -5,6 +5,7 @@ import mainImage from "@/assets/mainImages/thepeople.PNG?url"
 import card2 from "@/assets/mainImages/card-2.PNG?url"
 import card1 from "@/assets/mainImages/card-1.PNG?url"
 import card3 from "@/assets/mainImages/card-3.PNG?url"
+import bgMainImage from "@/assets/mainImages/main.PNG?url"
 
 const cards: {
   id: ThePeopleCardId;
@@ -65,7 +66,7 @@ function GoldButton({ children, active = false }) {
 
 function CircleIcon({ Icon }) {
   return (
-    <div className="absolute left-1/2 top-[160px] grid h-14 w-14 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[188px] sm:h-16 sm:w-16 lg:top-[410px] lg:h-20 lg:w-20">
+    <div className="absolute left-1/2 top-[172px] z-20 grid h-14 w-14 -translate-x-1/2 place-items-center rounded-full border-2 border-[#ead8b3] bg-white shadow-[0_8px_22px_rgba(84,54,16,0.18)] sm:top-[218px] sm:h-16 sm:w-16 lg:top-[260px] lg:h-20 lg:w-20">
       <Icon className="h-7 w-7 text-[#c7a04e] sm:h-8 sm:w-8 lg:h-9 lg:w-9" strokeWidth={1.6} />
     </div>
   );
@@ -122,7 +123,7 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 gri d h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to Discover"
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
@@ -130,9 +131,9 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
         <img
           data-people-bg="true"
-          src={mainImage}
+          src={bgMainImage}
           alt=""
-          className="pointer-events-none absolute inset-x-0 top-[200px] h-auto w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[250px] lg:top-[300px]"
+          className="pointer-events-none absolute inset-x-0 top-[100px] h-auto w-full object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[230px]"
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[clamp(220px,30vh,420px)] bg-gradient-to-b from-[#fcf7ed] via-[#fcf7ed]/96 via-45% to-transparent" />
         <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-transparent to-[#fcf7ed]/78 sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
@@ -155,7 +156,6 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
           </p>
         </header>
 
-
         {/* Cards */}
         <div className="relative z-10 mt-auto grid grid-cols-1 gap-4 pb-4 pt-6 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
           {cards.map((card) => {
@@ -176,11 +176,17 @@ export default function ThePeoplePage({ onSelectCard, onBack }: ThePeoplePagePro
                 }}
                 className="relative overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="block h-[200px] w-full object-cover object-center brightness-[0.94] contrast-110 sm:h-[250px] lg:h-[500px]"
-                />
+                {/* Fixed image container */}
+                <div className="relative h-[200px] w-full overflow-hidden sm:h-[250px] lg:h-[350px]">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="absolute inset-0 h-full w-full object-cover brightness-[0.94] contrast-110"
+                    style={{
+                      objectPosition: card.id === "resilience" ? "center 30%" : "center",
+                    }}
+                  />
+                </div>
                 <CircleIcon Icon={Icon} />
                 <div className="min-h-[230px] px-5 pb-6 pt-14 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
                   <h3 className="whitespace-pre-line font-serif text-[24px] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
