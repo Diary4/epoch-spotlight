@@ -15,6 +15,8 @@ import {
   UsersRound,
 } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
+import bg from "@/assets/mainImages/government.png"
+import bg2 from "@/assets/mainImages/government-2.png"
 
 const mainCards = [
   {
@@ -131,8 +133,8 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
     : keyAreas;
 
   return (
-    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] px-[clamp(8px,1.5vw,24px)] py-[clamp(6px,1.2vh,18px)] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb] px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
+    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -145,22 +147,15 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
         <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-14 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(85vh,880px)] w-[min(74vw,920px)] max-w-[min(92vw,920px)]">
+        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(92vh,1100px)] w-full overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
+            src={bg}
             alt="Government building placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_57%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/24 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(24px,3.5vh,56px)]">
-          <div className="flex items-center gap-4 text-[clamp(1.125rem,2.4vw,1.6875rem)] font-semibold text-[#9b6d35]">
-            <span className="text-[clamp(1.75rem,3.5vw,2.5rem)]">‹</span>
-            <span>{isAr ? "النظام" : "The System"}</span>
-          </div>
-
+        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(24px,3.5vh,56px)]">
           <section className="mt-[clamp(4px,1vh,12px)] max-w-[min(92vw,720px)]">
             <div className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]">
               <Building2 className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.45} />
@@ -188,7 +183,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             </p>
           </section>
 
-          <section className="grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
+          <section className="mt-[clamp(36px,24vh,400px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
             {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
@@ -274,7 +269,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                   ? "حکومەت کاردەکات بۆ باشترکردنی کوالێتی ژیان، پاراستنی مافەکان، و بونیادنانی کوردستانێکی بەهێزتر."
                 : "The government works to improve quality of life, protect rights, and build a stronger Kurdistan."}
             </p>
-            <div className="hidden h-[min(140px,16vh)] w-full shrink-0 opacity-25 [background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=70')] bg-cover bg-center sm:ml-auto sm:block sm:h-auto sm:min-h-[100px] sm:w-[clamp(180px,22vw,280px)]" />
+            <img src={bg2} alt="Government background" className="h-[min(200px,16vh)] w-full shrink-0 bg-center sm:ml-auto sm:block sm:h-auto sm:min-h-[100px] sm:w-[clamp(180px,22vw,280px)]" />
           </section>
         </div>
       </section>
