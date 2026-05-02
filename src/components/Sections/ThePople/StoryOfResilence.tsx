@@ -4,6 +4,8 @@ import { gsap } from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import bg1 from "@/assets/mainImages/story-1.png";
+import bg2 from "@/assets/mainImages/story-2.png";
 
 const cards = [
   {
@@ -77,7 +79,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
         {/* Replace this image later with your generated resilience background */}
         <div className="hero-image pointer-events-none absolute right-0 top-[clamp(130px,11vh,210px)] h-[clamp(780px,67vh,1160px)] w-[clamp(520px,52vw,900px)]">
           <img
-            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=90"
+            src={bg1}
             alt="Resilience background placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-80 [mask-image:radial-gradient(circle_at_62%_42%,black_0%,black_54%,transparent_82%)]"
           />
@@ -109,7 +111,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
         {/* Decorative culture strip placeholder */}
         <div className="culture-strip relative z-10 mt-[clamp(18px,2.5vh,36px)] h-[clamp(130px,15vh,250px)] max-w-[min(62vw,860px)] opacity-90">
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
+            src={bg2}
             alt="culture placeholder"
             className="h-full w-full object-cover [mask-image:linear-gradient(to_right,black_0%,black_70%,transparent_100%)]"
           />
