@@ -1,5 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BookOpenCheck, Building2, Landmark, Scale, UsersRound } from "lucide-react";
+import bg from "@/assets/mainImages/presidency-1.png"
+import bg2 from "@/assets/mainImages/presidency-2.png"
 
 const cards = [
   {
@@ -52,8 +54,8 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
     : cards;
 
   return (
-    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] px-[clamp(8px,1.5vw,24px)] py-[clamp(6px,1.2vh,18px)] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-[min(96vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb] px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
+    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -67,23 +69,23 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
         <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(86vh,900px)] w-[min(70vw,880px)] max-w-[min(92vw,880px)]">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
+            src={bg}
             alt="Presidency building placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right [mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="pointer-events-none absolute left-0 right-0 top-[clamp(520px,48vh,920px)] z-[1] h-[clamp(140px,16vh,220px)] opacity-25">
+        <div className="pointer-events-none absolute left-0 right-0 top-[clamp(520px,48vh,800px)] z-[1] h-[clamp(140px,16vh,800px)]">
           <img
-            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+            src={bg2}
             alt=""
             className="h-full w-full object-cover [mask-image:linear-gradient(to_bottom,transparent_0%,black_35%,black_70%,transparent_100%)]"
           />
         </div>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
+        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
           <section className="max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
             <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#943134]">
               {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
@@ -110,7 +112,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             </p>
           </section>
 
-          <section className="grid grid-cols-1 gap-[clamp(16px,2.2vw,32px)] pb-[clamp(8px,1.5vh,16px)] sm:grid-cols-3">
+          <section className="mt-[clamp(36px,24vh,400px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,32px)] pb-[clamp(8px,1.5vh,16px)] sm:grid-cols-3">
             {localCards.map((card) => {
               const Icon = card.icon;
               return (
