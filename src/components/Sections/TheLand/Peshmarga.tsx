@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Bird, Shield, ShieldCheck, UsersRound } from "lucide-react";
+import bg from "@/assets/mainImages/peshmarga.png"
 
 const cards = [
   {
@@ -54,8 +55,8 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
         ]
       : cards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] px-[clamp(8px,1.2vw,18px)] py-[clamp(8px,1.3vh,16px)] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -68,17 +69,17 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this with your generated Peshmerga background image */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[clamp(760px,72vh,1180px)]">
+        <div className="pointer-events-none absolute right-0 top-0 h-[min(92vh,1100px)] w-full min-w-[760px]">
           <img
-            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1700&q=90"
+            src={bg}
             alt="Peshmerga landscape placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-[clamp(170px,20vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-[clamp(170px,20vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col">
+        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex flex-1 flex-col">
           {/* Hero */}
           <section className="max-w-[min(58vw,760px)] pt-[clamp(72px,9.5vh,136px)]">
             <h1 className="font-serif text-[clamp(66px,8.2vw,120px)] font-semibold leading-none tracking-tight text-[#17233b]">
@@ -103,7 +104,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
           </section>
 
           {/* Cards */}
-          <section className="mt-[clamp(120px,18vh,340px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(20px,3vh,44px)]">
+          <section className="mt-[clamp(120px,18vh,450px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(20px,3vh,44px)]">
             {localCards.map((card) => {
               const Icon = card.icon;
               return (
