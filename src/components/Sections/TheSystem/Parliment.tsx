@@ -86,47 +86,45 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
     : bottomItems;
 
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-14 py-10">
+    <main className="m-0 flex min-h-[100dvh] w-[100vw] max-w-none flex-col bg-[#f8f1e7] px-[clamp(8px,1.5vw,24px)] py-[clamp(6px,1.2vh,18px)] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb] px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
           aria-label="Back to The System"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
         </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div className="absolute left-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Replace this with your generated parliament illustration */}
-        <div className="pointer-events-none absolute right-0 top-[70px] h-[760px] w-[820px]">
+        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(88vh,920px)] w-[min(72vw,900px)] max-w-[min(92vw,900px)]">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
             alt="Parliament building placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-76 [mask-image:radial-gradient(circle_at_62%_50%,black_0%,black_57%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:radial-gradient(circle_at_62%_50%,black_0%,black_57%,transparent_84%)]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col">
-          {/* Hero */}
-          <section className="max-w-[540px] pt-24">
-            <h1 className="font-serif text-[92px] font-semibold leading-none tracking-tight text-[#17233b]">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
+          <section className="max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
+            <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
             </h1>
 
-            <p className="mt-10 text-[34px] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(24px,3vh,40px)] text-[clamp(1.25rem,2.8vw,2.125rem)] font-bold leading-tight text-[#9b6d35]">
               {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : isKu ? "دامەزراوەی یاسادانانی هەرێمی کوردستان." : "The legislative institution of the Kurdistan Region."}
             </p>
 
-            <div className="mt-10 flex w-[230px] items-center gap-4 text-[#b99152]">
+            <div className="mt-[clamp(24px,3vh,40px)] flex w-[min(230px,52vw)] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-9 max-w-[430px] text-[29px] font-medium leading-[1.52] text-[#2d3549]">
+            <p className="mt-[clamp(20px,2.6vh,36px)] max-w-[min(92vw,460px)] text-[clamp(1.125rem,2.1vw,1.8125rem)] font-medium leading-[1.52] text-[#2d3549]">
               {isAr
                 ? "يناقش البرلمان الشؤون العامة ويُشرّع القوانين ويمثّل الشعب."
                 : isKu
@@ -135,39 +133,37 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             </p>
           </section>
 
-          <div className="flex-1" />
-
-          {/* Main cards */}
-          <section className="grid grid-cols-3 gap-8 pb-8">
+          <section className="grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
             {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[520px] flex-col items-center overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-10 text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
+                  className="relative flex min-h-[clamp(340px,38vh,560px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.4vw,36px)] py-[clamp(20px,2.5vh,40px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
                 >
                   <div
-                    className="grid h-28 w-28 place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
+                    className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
                     style={{ backgroundColor: card.color }}
                   >
-                    <Icon size={58} strokeWidth={1.5} />
+                    <Icon className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-10 font-serif text-[38px] font-semibold leading-tight" style={{ color: card.color }}>
+                  <h3 className="mt-[clamp(20px,2.5vh,40px)] font-serif text-[clamp(1.375rem,2.4vw,2.375rem)] font-semibold leading-tight" style={{ color: card.color }}>
                     {card.title}
                   </h3>
 
-                  <p className="mt-7 text-[24px] font-medium leading-[1.45] text-[#35435b]">
+                  <p className="mt-[clamp(16px,2vh,28px)] text-[clamp(1rem,1.65vw,1.5rem)] font-medium leading-[1.45] text-[#35435b]">
                     {card.text}
                   </p>
 
                   <Divider />
 
                   <button
-                    className="mt-auto grid h-16 w-16 place-items-center rounded-full text-white shadow-md"
+                    type="button"
+                    className="mt-auto grid h-[clamp(52px,6.5vw,64px)] w-[clamp(52px,6.5vw,64px)] place-items-center rounded-full text-white shadow-md touch-manipulation"
                     style={{ backgroundColor: card.color }}
                   >
-                    <ArrowRight size={36} />
+                    <ArrowRight className="h-[clamp(26px,3.5vw,36px)] w-[clamp(26px,3.5vw,36px)]" />
                   </button>
 
                   <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
@@ -176,18 +172,17 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             })}
           </section>
 
-          {/* Bottom information panel */}
-          <section className="grid min-h-[290px] grid-cols-3 rounded-[24px] border-2 border-[#ead8b7] bg-white/72 px-8 py-8 text-center shadow-[0_14px_35px_rgba(84,54,16,0.12)] backdrop-blur-md">
+          <section className="relative grid min-h-[clamp(220px,26vh,340px)] grid-cols-1 rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/72 px-[clamp(16px,2.4vw,36px)] py-[clamp(20px,2.5vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.12)] backdrop-blur-md sm:grid-cols-3">
             {localBottomItems.map((item, index) => {
               const Icon = item.icon;
               return (
-                <article key={item.title} className="relative flex flex-col items-center justify-center px-8">
-                  {index !== 0 && <span className="absolute left-0 top-8 h-[210px] w-px bg-[#d8b875]" />}
-                  <Icon size={60} strokeWidth={1.5} className="text-[#bd8431]" />
-                  <h4 className="mt-5 font-serif text-[34px] font-semibold text-[#17233b]">
+                <article key={item.title} className="relative flex flex-col items-center justify-center px-[clamp(12px,2vw,32px)] py-2 sm:py-0">
+                  {index !== 0 && <span className="absolute left-0 top-8 hidden h-[min(210px,22vh)] w-px bg-[#d8b875] sm:block" />}
+                  <Icon className="h-[clamp(44px,5.5vw,60px)] w-[clamp(44px,5.5vw,60px)] text-[#bd8431]" strokeWidth={1.5} />
+                  <h4 className="mt-[clamp(16px,2vh,28px)] font-serif text-[clamp(1.25rem,2.4vw,2.125rem)] font-semibold text-[#17233b]">
                     {item.title}
                   </h4>
-                  <p className="mt-3 text-[20px] font-medium leading-snug text-[#35435b]">
+                  <p className="mt-3 text-[clamp(0.95rem,1.5vw,1.25rem)] font-medium leading-snug text-[#35435b]">
                     {item.text}
                   </p>
                 </article>

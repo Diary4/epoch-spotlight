@@ -131,58 +131,55 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
     : keyAreas;
 
   return (
-    <main className="min-h-screen w-full bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1080px] flex-col overflow-hidden bg-[#fbf5eb] px-12 py-8">
+    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] px-[clamp(8px,1.5vw,24px)] py-[clamp(6px,1.2vh,18px)] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb] px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
           aria-label="Back to The System"
         >
-          <ArrowLeft size={28} />
+          <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
         </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-        <div className="absolute right-0 top-0 h-full w-28 opacity-14 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute right-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-14 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Replace this with your generated government background image */}
-        <div className="pointer-events-none absolute right-0 top-[80px] h-[680px] w-[850px]">
+        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(85vh,880px)] w-[min(74vw,920px)] max-w-[min(92vw,920px)]">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
             alt="Government building placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-76 [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_57%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_57%,transparent_84%)]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/24 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col">
-          {/* Top breadcrumb */}
-          <div className="flex items-center gap-4 text-[27px] font-semibold text-[#9b6d35]">
-            <span className="text-4xl">‹</span>
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(24px,3.5vh,56px)]">
+          <div className="flex items-center gap-4 text-[clamp(1.125rem,2.4vw,1.6875rem)] font-semibold text-[#9b6d35]">
+            <span className="text-[clamp(1.75rem,3.5vw,2.5rem)]">‹</span>
             <span>{isAr ? "النظام" : "The System"}</span>
           </div>
 
-          {/* Hero */}
-          <section className="mt-7 max-w-[570px]">
-            <div className="grid h-28 w-28 place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]">
-              <Building2 size={58} strokeWidth={1.45} />
+          <section className="mt-[clamp(4px,1vh,12px)] max-w-[min(92vw,720px)]">
+            <div className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]">
+              <Building2 className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.45} />
             </div>
 
-            <h1 className="mt-12 font-serif text-[88px] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="mt-[clamp(28px,4vh,48px)] font-serif text-[clamp(3rem,9vw,5.5rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {isAr ? "الحكومة" : isKu ? "حکومەت" : "Government"}
             </h1>
 
-            <p className="mt-8 text-[32px] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(20px,3vh,36px)] text-[clamp(1.25rem,2.6vw,2rem)] font-bold leading-tight text-[#9b6d35]">
               {isAr ? "الجهاز التنفيذي المسؤول عن الإدارة والخدمات العامة." : isKu ? "دەستەی جێبەجێکار کە بەرپرسە لە کارگێڕی و خزمەتگوزارییە گشتییەکان." : "The executive body responsible for administration and public services."}
             </p>
 
-            <div className="mt-9 flex w-[230px] items-center gap-4 text-[#b99152]">
+            <div className="mt-[clamp(20px,3vh,36px)] flex w-[min(230px,52vw)] items-center gap-4 text-[#b99152]">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-9 max-w-[460px] text-[25px] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-[clamp(20px,3vh,36px)] max-w-[min(92vw,480px)] text-[clamp(1.0625rem,1.9vw,1.5625rem)] font-medium leading-[1.55] text-[#2d3549]">
               {isAr
                 ? "تنفّذ الحكومة السياسات وتدير الخدمات وتشرف على الإدارة اليومية."
                 : isKu
@@ -191,27 +188,24 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             </p>
           </section>
 
-          <div className="flex-1" />
-
-          {/* 3 Cards */}
-          <section className="grid grid-cols-3 gap-8 pb-8">
+          <section className="grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
             {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[430px] flex-col items-center overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-9 text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
+                  className="relative flex min-h-[clamp(300px,34vh,480px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.4vw,36px)] py-[clamp(18px,2.2vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
                 >
                   <div
-                    className="grid h-28 w-28 place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
+                    className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
                     style={{ backgroundColor: card.color }}
                   >
-                    <Icon size={58} strokeWidth={1.5} />
+                    <Icon className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-8 flex items-center justify-center gap-3 font-serif text-[27px] font-semibold leading-tight" style={{ color: card.color }}>
+                  <h3 className="mt-[clamp(20px,2.5vh,32px)] flex flex-wrap items-center justify-center gap-3 font-serif text-[clamp(1.125rem,2vw,1.6875rem)] font-semibold leading-tight" style={{ color: card.color }}>
                     <span
-                      className="grid h-9 w-9 place-items-center rounded-full text-[22px] font-bold text-white"
+                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[clamp(1rem,1.6vw,1.375rem)] font-bold text-white"
                       style={{ backgroundColor: card.color }}
                     >
                       {localizeDigits(card.number, lang)}
@@ -221,15 +215,16 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
 
                   <SmallDivider />
 
-                  <p className="text-[23px] font-medium leading-[1.45] text-[#35435b]">
+                  <p className="text-[clamp(1.0625rem,1.75vw,1.4375rem)] font-medium leading-[1.45] text-[#35435b]">
                     {localizeDigits(card.text, lang)}
                   </p>
 
                   <button
-                    className="mt-auto grid h-15 w-15 place-items-center rounded-full text-white shadow-md"
+                    type="button"
+                    className="mt-auto grid h-16 w-16 place-items-center rounded-full text-white shadow-md touch-manipulation"
                     style={{ backgroundColor: card.color }}
                   >
-                    <ArrowRight size={34} />
+                    <ArrowRight className="h-[clamp(26px,3.5vw,34px)] w-[clamp(26px,3.5vw,34px)]" />
                   </button>
 
                   <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
@@ -279,7 +274,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                   ? "حکومەت کاردەکات بۆ باشترکردنی کوالێتی ژیان، پاراستنی مافەکان، و بونیادنانی کوردستانێکی بەهێزتر."
                 : "The government works to improve quality of life, protect rights, and build a stronger Kurdistan."}
             </p>
-            <div className="ml-auto h-full w-[260px] opacity-25 [background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=70')] bg-cover bg-center" />
+            <div className="hidden h-[min(140px,16vh)] w-full shrink-0 opacity-25 [background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=70')] bg-cover bg-center sm:ml-auto sm:block sm:h-auto sm:min-h-[100px] sm:w-[clamp(180px,22vw,280px)]" />
           </section>
         </div>
       </section>
