@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, Feather, UsersRound } from "lucide-react";
-import bgImage from "@/assets/pexels-gullllsa-19795680.jpg"
+import bg from "@/assets/mainImages/letter.png"
 
 const dialects = [
   {
@@ -113,8 +113,8 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         ]
       : dialects;
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] px-[clamp(8px,1.2vw,18px)] py-[clamp(8px,1.3vh,16px)] text-[#17233b]">
-      <section className="relative flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -129,16 +129,16 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         {/* Replace this with your generated language/books background */}
         <div className="pointer-events-none absolute right-0 top-[60px] h-[700px] w-[58vw] min-w-[740px]">
           <img
-            src={bgImage}
+            src={bg}
             alt="Kurdish language books placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-76 [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_52%,transparent_86%)]"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/68 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/24 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col">
+        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex flex-1 flex-col">
           {/* Hero */}
           <section className="max-w-[720px] pt-2 pl-1 sm:pl-5">
             <h1 className="font-serif text-[68px] font-semibold leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
