@@ -1,5 +1,5 @@
-import React from "react";
 import { ArrowLeft, ArrowRight, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
+import bg from "@/assets/mainImages/parliment.png"
 
 const mainCards = [
   {
@@ -86,8 +86,8 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
     : bottomItems;
 
   return (
-    <main className="m-0 flex min-h-[100dvh] w-[100vw] max-w-none flex-col bg-[#f8f1e7] px-[clamp(8px,1.5vw,24px)] py-[clamp(6px,1.2vh,18px)] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb] px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
+    <main className="m-0 flex min-h-[100dvh] w-[100vw] max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -99,17 +99,18 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(88vh,920px)] w-[min(72vw,900px)] max-w-[min(92vw,900px)]">
+        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(88vh,920px)] w-full overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
+            src={bg}
             alt="Parliament building placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:radial-gradient(circle_at_62%_50%,black_0%,black_57%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right
+                      [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]
+                      [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
+          {/* Bottom painterly fade */}
+          <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
         </div>
-
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
+        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
           <section className="max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
             <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
@@ -133,7 +134,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             </p>
           </section>
 
-          <section className="grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
+          <section className="mt-[clamp(36px,24vh,300px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
             {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
