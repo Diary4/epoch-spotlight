@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
 import gsap from "gsap";
-import parlimentBg from "@/assets/parliment.jpg"
+import bg from "@/assets/mainImages/system.png"
 
 function Logo() {
   return (
@@ -170,9 +170,9 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this visual later with your generated building/flag image */}
-        <div data-system-bg="true" className="pointer-events-none absolute right-0 top-[140px] h-[560px] w-[44vw] min-w-[560px]">
+        <div data-system-bg="true" className="pointer-events-none absolute right-[-100px] top-0 h-[700px] w-full min-w-full">
           <img
-            src={parlimentBg}
+            src={bg}
             alt="System building placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
           />
