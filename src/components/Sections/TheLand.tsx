@@ -2,6 +2,12 @@ import React from "react";
 import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
+import bg1 from "@/assets/mainImages/land-1.png"
+import bg2 from "@/assets/mainImages/land-2.png"
+import bg3 from "@/assets/mainImages/land-3.png"
+import bg4 from "@/assets/mainImages/land-4.png"
+import bg5 from "@/assets/mainImages/land-5.png"
+import bg6 from "@/assets/mainImages/land-6.png"
 
 const topCards = [
   {
@@ -10,7 +16,7 @@ const topCards = [
     title: "The Land",
     text: "A region of breathtaking geography, rich history, and timeless heritage.",
     icon: Mountain,
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=90",
+    image: bg2,
   },
   {
     id: "identitySymbols",
@@ -18,7 +24,7 @@ const topCards = [
     title: "Identity and Symbols",
     text: "The flag, anthem, language, and heritage reflect the spirit of Kurdistan.",
     icon: SunMedium,
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
+    image: bg3,
     featured: true,
   },
   {
@@ -27,7 +33,7 @@ const topCards = [
     title: "Peshmerga",
     text: "A symbol of courage, protection, and selfless service to the people.",
     icon: Shield,
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=90",
+    image: bg4,
     red: true,
   },
 ];
@@ -39,7 +45,7 @@ const bottomCards = [
     title: "Progress",
     text: "Development continues in infrastructure, education, economy, and tourism.",
     icon: BarChart3,
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=90",
+    image: bg5,
   },
   {
     id: "futureVision",
@@ -47,7 +53,7 @@ const bottomCards = [
     title: "Future Vision",
     text: "Kurdistan looks ahead with ambition, opportunity, and confidence.",
     icon: Star,
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=90",
+    image: bg6,
   },
 ];
 
@@ -75,7 +81,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
   const iconColor = "#f8e5b8";
 
   return (
-    <article data-land-card="true" className="relative flex min-h-[435px] flex-col overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md lg:min-h-[510px] lg:rounded-[28px] lg:p-9">
+    <article data-land-card="true" className="relative flex min-h-[435px] flex-col overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 p-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md lg:min-h-[700px] lg:rounded-[28px] lg:p-9">
       {onClick && (
         <button
           type="button"
@@ -104,10 +110,10 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
       <img
         src={card.image}
         alt={card.title}
-        className="absolute bottom-0 left-0 h-[152px] w-full object-cover opacity-80 lg:h-[190px]"
+        className="absolute bottom-0 left-0 h-[152px] w-full object-cover opacity-80 lg:h-full"
       />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[176px] bg-gradient-to-t from-[#fff8ed]/95 via-[#fff8ed]/52 to-transparent lg:h-[210px]" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+      {/* <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[176px] bg-gradient-to-t from-[#fff8ed]/95 via-[#fff8ed]/52 to-transparent lg:h-[210px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" /> */}
     </article>
   );
 }
@@ -115,7 +121,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
 function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   return (
-    <article data-land-card="true" className="relative min-h-[270px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-8 py-9 shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md lg:min-h-[320px] lg:rounded-[28px] lg:px-10 lg:py-10">
+    <article data-land-card="true" className="relative min-h-[270px] overflow-hidden rounded-[24px] border-2 border-[#ead8b7] px-8 py-9 shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md lg:min-h-[320px] lg:rounded-[28px] lg:px-10 lg:py-10">
       {onClick && (
         <button
           type="button"
@@ -128,7 +134,7 @@ function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[n
       <img
         src={card.image}
         alt={card.title}
-        className="absolute inset-0 h-full w-full object-cover opacity-45"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#fff8ed] via-[#fff8ed]/82 to-[#fff8ed]/30" />
 
@@ -256,14 +262,12 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         </div>
 
         {/* Main hero visual placeholder */}
-        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-[80px] h-[860px] w-[56vw] min-w-[760px]">
+        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-0 h-[min(92vh,1100px)] w-full min-w-[760px]">
           <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=90"
+            src={bg1}
             alt="Land and Future placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_58%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_58%,transparent_84%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
@@ -295,7 +299,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <span data-land-divider="true" className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mt-8 max-w-[330px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[430px] lg:text-[28px]">
+            <p data-land-hero="true" className="mt-8 max-w-[330px] text-[20px] leading-[1.55] lg:max-w-[430px] lg:text-[28px]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
