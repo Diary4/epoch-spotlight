@@ -1,9 +1,10 @@
 import React, { useLayoutEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, MessageSquareText, Music2, UsersRound } from "lucide-react";
+import { ArrowLeft, MessageSquareText, Music2, UsersRound, Sparkles } from "lucide-react";
 import { gsap } from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import bg from "@/assets/mainImages/shared.png";
 
 const identityCards = [
   {
@@ -35,9 +36,10 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
   const rootRef = useRef<HTMLElement | null>(null);
   const data = CONTENT[lang] as any;
   const detail = data?.people?.detailPages?.sharedIdentity ?? {};
+  
   const localizedCards = identityCards.map((card, i) => ({
     ...card,
-    title: (detail?.cards?.[i]?.title ?? card.title).replace(" ", "\n"),
+    title: detail?.cards?.[i]?.title ?? card.title,
     text: detail?.cards?.[i]?.description ?? card.text,
   }));
 
@@ -60,8 +62,10 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
   }, []);
 
   return (
-    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#fbf3e8] text-[#00604f]">
-      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fff7ec]">
+    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#fbf3e8] text-[#00604f] overflow-x-hidden">
+      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1600px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fff7ec]">
+        
+        {/* Navigation */}
         <button
           type="button"
           onClick={onBack}
@@ -70,27 +74,39 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
         >
           <ArrowLeft size={30} />
         </button>
+
         <div className="pattern-layer pointer-events-none absolute inset-0 opacity-16 [background-image:radial-gradient(#d8b875_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div className="hero-image pointer-events-none absolute right-0 top-[clamp(120px,11vh,200px)] h-[clamp(760px,66vh,1100px)] w-[clamp(520px,52vw,900px)]">
-          {/* Replace this placeholder with your generated people/culture image */}
+
+        {/* --- FIXED HERO IMAGE SECTION --- */}
+        <div className="hero-image pointer-events-none absolute right-0 top-0 h-full w-[70%] z-0">
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1500&q=90"
-            alt="Shared identity placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-75 [mask-image:radial-gradient(circle_at_60%_45%,black_0%,black_52%,transparent_82%)]"
+            src={bg}
+            alt="Shared identity visual"
+            className="absolute inset-0 h-full w-full object-contain object-right-top opacity-100"
+            style={{
+              /* This creates the "white effect" fade-out from the screenshot */
+              maskImage: 'linear-gradient(to left, black 40%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to left, black 40%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/25 to-transparent" />
+          {/* Gradients to blend into background exactly like the image */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fff7ec]" />
         </div>
 
-        {/* Main text */}
-        <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)]">
-          <h1 className="main-title font-serif text-[clamp(66px,8.3vw,120px)] font-semibold leading-[1.02] tracking-tight text-[#214439]">
-            {(detail?.title ?? "A Shared Identity").replace(" ", "\n")}
+        {/* Main text content */}
+        <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] px-[clamp(20px,5vw,80px)] max-w-[min(65vw,900px)]">
+          <h1 className="main-title font-serif text-[clamp(66px,8.3vw,120px)] font-bold leading-[0.95] tracking-tight text-[#214439]">
+            {(detail?.title ?? "A Shared\nIdentity").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line} {i === 0 && <br />}
+              </React.Fragment>
+            ))}
           </h1>
 
           <div className="title-divider mt-[clamp(30px,4vh,52px)] flex items-center gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
             <span className="h-0.5 w-[clamp(130px,13vw,220px)] bg-[#c9903f]" />
-            <span className="text-[clamp(24px,2.2vw,36px)]">✥</span>
+            <Sparkles size={32} />
             <span className="h-0.5 w-[clamp(90px,9vw,160px)] bg-[#c9903f]" />
           </div>
 
@@ -99,17 +115,17 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
           </p>
 
           <p className="description-text mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[clamp(20px,2.3vw,32px)] font-semibold leading-[1.62] text-[#35435b]">
-            {detail?.description ?? "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life, it connects people through what they speak, celebrate, remember, and share."}
+            {detail?.description ?? "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
           </p>
         </section>
 
-        {/* Cards */}
-        <section className="relative z-20 mt-[clamp(26px,5.5vh,84px)] grid grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(24px,3.2vh,52px)]">
-          {localizedCards.map((card) => {
+        {/* Cards section preserved as is */}
+        <section className="relative z-20 mt-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(24px,3.2vh,52px)]">
+          {localizedCards.map((card, i) => {
             const Icon = card.icon;
             return (
               <article
-                key={card.title}
+                key={i}
                 className="identity-card flex min-h-[clamp(360px,33vh,560px)] flex-col items-center rounded-[clamp(22px,2.3vw,34px)] border-2 border-white bg-white/82 px-[clamp(16px,1.7vw,32px)] py-[clamp(18px,2.1vh,34px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
               >
                 <div className="grid h-[clamp(82px,7.3vw,124px)] w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border-4 border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
