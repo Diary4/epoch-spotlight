@@ -3,6 +3,7 @@ import { ArrowLeft, BarChart3, GraduationCap, Mountain, Waves } from "lucide-rea
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import bg from "@/assets/mainImages/today.png";
 
 const cards = [
   {
@@ -70,14 +71,14 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Hero city/future image placeholder: replace later with your generated image */}
-        <div className="pointer-events-none absolute right-0 top-[7.5vh] h-[min(73vh,1000px)] w-[min(64vw,980px)]">
+        <div className="pointer-events-none absolute right-0 top-0 h-[min(100vh,1500px)] w-full">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
+            src={bg}
             alt="Today Kurdistan future city placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-76 [mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
