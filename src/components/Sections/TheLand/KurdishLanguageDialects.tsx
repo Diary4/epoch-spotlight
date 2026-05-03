@@ -141,7 +141,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex flex-1 flex-col">
+        <div className="relative z-10 flex flex-1 flex-col px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
           {/* Hero */}
           <section className="max-w-[720px] pt-2 pl-1 sm:pl-5">
             <h1 className="font-serif text-[68px] font-semibold leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
@@ -174,7 +174,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             <aside className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
               <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
-              <div className="mt-6 grid flex-1 auto-rows-min">
+              <div className="mt-6 grid flex-1 content-between">
                 {localDialects.map((item) => (
                   <DialectItem key={item.name} item={item} />
                 ))}

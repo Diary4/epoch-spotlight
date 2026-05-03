@@ -571,20 +571,24 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      {/* Single backdrop layer per route — avoids stacked “ghost” images from opacity crossfades and duplicate URLs */}
-      <img
-        key={bgByView[view]}
-        src={bgByView[view]}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px]"
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, rgba(5,10,20,0.48), rgba(5,10,20,0.78))",
-        }}
-      />
+      {/* Hero-only backdrop: section screens bring their own full-page backgrounds; a global photo here caused old frames to show through when switching views. */}
+      {view === "hero" && (
+        <>
+          <img
+            key={view}
+            src={bgByView[view]}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px]"
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: "linear-gradient(to bottom, rgba(5,10,20,0.48), rgba(5,10,20,0.78))",
+            }}
+          />
+        </>
+      )}
       {view === "landFuture" && (
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 h-56"
