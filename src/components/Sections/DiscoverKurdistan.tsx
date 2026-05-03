@@ -5,10 +5,11 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
-import ThePeopleBg from "@/assets/pexels-peyvandpezeshki-28375100.jpg"
-import TheJourneyBg from "@/assets/pexels-i-brahim-vural-250459888-36479358.jpg"
 import TheSystemBg from "@/assets/parliment.jpg"
 import Nature from "@/assets/nature.jpg"
+import card1 from "@/assets/mainImages/discoverkurdistan/card-1.png"
+import card2 from "@/assets/mainImages/discoverkurdistan/card-2.png"
+import card4 from "@/assets/mainImages/discoverkurdistan/card-4.png"
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -23,10 +24,10 @@ const sectionIcons: Record<DiscoverSectionId, typeof UsersRound> = {
 };
 
 const sectionImages: Record<DiscoverSectionId, string> = {
-  people: ThePeopleBg,
-  journey: TheJourneyBg,
+  people: card1,
+  journey: card2,
   system: TheSystemBg,
-  landFuture: Nature,
+  landFuture: card4,
 };
 
 const fallbackSections: {
@@ -60,23 +61,6 @@ function GoldIcon({ children, className = "" }) {
   return (
     <div className={`grid place-items-center rounded-full border-2 border-[#c8a05a] bg-[#104231] text-[#f6d995] shadow-[0_8px_24px_rgba(84,54,16,0.25)] ${className}`}>
       {children}
-    </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="flex items-center gap-5">
-      <div className="relative h-24 w-16">
-        <div className="absolute left-0 top-8 h-16 w-6 bg-gradient-to-b from-[#e5c16f] to-[#a9782f]" />
-        <div className="absolute right-0 top-8 h-16 w-6 bg-gradient-to-b from-[#e5c16f] to-[#a9782f]" />
-        <div className="absolute left-2 top-0 h-16 w-12 rounded-t-full border-[18px] border-b-0 border-[#d5a84e]" />
-      </div>
-      <div className="leading-tight">
-        <p className="text-[30px] font-semibold tracking-[0.08em] text-[#22372f]">GATE OF</p>
-        <p className="text-[30px] font-semibold tracking-[0.08em] text-[#22372f]">KURDISTAN</p>
-        <p className="text-[22px] tracking-[0.18em] text-[#b6883f]">GOK</p>
-      </div>
     </div>
   );
 }

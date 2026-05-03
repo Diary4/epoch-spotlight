@@ -262,7 +262,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         </div>
 
         {/* Main hero visual placeholder */}
-        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-0 h-[min(92vh,1100px)] w-full min-w-[760px]">
+        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-0 h-[min(92vh,1150px)] w-full min-w-[760px]">
           <img
             src={bg1}
             alt="Land and Future placeholder"
@@ -304,7 +304,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <span data-land-divider="true" className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mt-8 max-w-[330px] text-[20px] leading-[1.55] lg:max-w-[430px] lg:text-[28px]">
+            <p data-land-hero="true" className="text-white/90 mt-8 max-w-[330px] text-[20px] leading-[1.55] lg:max-w-[430px] lg:text-[28px]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
