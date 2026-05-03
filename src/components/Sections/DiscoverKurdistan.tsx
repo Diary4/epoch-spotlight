@@ -5,10 +5,9 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
-import TheSystemBg from "@/assets/parliment.jpg"
-import Nature from "@/assets/nature.jpg"
 import card1 from "@/assets/mainImages/discoverkurdistan/card-1.png"
 import card2 from "@/assets/mainImages/discoverkurdistan/card-2.png"
+import card3 from "@/assets/mainImages/discoverkurdistan/card-3.png"
 import card4 from "@/assets/mainImages/discoverkurdistan/card-4.png"
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
@@ -26,7 +25,7 @@ const sectionIcons: Record<DiscoverSectionId, typeof UsersRound> = {
 const sectionImages: Record<DiscoverSectionId, string> = {
   people: card1,
   journey: card2,
-  system: TheSystemBg,
+  system: card3,
   landFuture: card4,
 };
 
@@ -206,10 +205,17 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
                     onClick={() => onSelectSection?.(section.id)}
                     className="relative overflow-hidden rounded-[20px] border-2 border-[#e1bf7a] bg-[#fffaf0] text-center shadow-[0_10px_30px_rgba(84,54,16,0.16)] transition active:scale-[0.98]"
                   >
-                    <img src={sectionImages[section.id]} alt={section.title} className="h-[185px] w-full object-cover sm:h-[210px] md:h-[240px] lg:h-[300px]" />
-                    <GoldIcon className="absolute left-1/2 top-[156px] h-16 w-16 -translate-x-1/2 sm:top-[176px] sm:h-20 sm:w-20 md:top-[202px] md:h-24 md:w-24 lg:top-[254px] lg:h-28 lg:w-28">
-                      <Icon className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14" strokeWidth={1.6} />
-                    </GoldIcon>
+                    <div className="relative w-full">
+                      <img
+                        src={sectionImages[section.id]}
+                        alt={section.title}
+                        className="h-[185px] w-full object-cover sm:h-[210px] md:h-[240px] lg:h-[400px]"
+                      />
+                      {/* Centered on the seam between image and text — works at any image height */}
+                      <GoldIcon className="absolute bottom-0 left-1/2 z-10 h-16 w-16 -translate-x-1/2 translate-y-1/2 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28">
+                        <Icon className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14" strokeWidth={1.6} />
+                      </GoldIcon>
+                    </div>
                     <div className="relative min-h-[140px] px-6 pb-5 pt-10 sm:min-h-[148px] sm:px-8 sm:pb-6 sm:pt-12 md:min-h-[160px] md:px-12 md:pb-7 md:pt-14 lg:min-h-[210px] lg:px-14 lg:pb-9 lg:pt-16">
                       <h3 className="font-serif text-[26px] font-semibold leading-tight text-[#18362d] sm:text-[30px] md:text-[34px] lg:text-[44px]">{localizeDigits(section.title, lang)}</h3>
                       <p className="mt-2 whitespace-pre-line text-[17px] leading-tight text-[#5f6662] sm:text-[20px] md:text-[23px] lg:mt-3 lg:text-[30px]">{localizeDigits(section.desc, lang)}</p>
