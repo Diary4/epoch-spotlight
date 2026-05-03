@@ -2,6 +2,9 @@ import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/mainImages/bg-2.png";
+import mapImage from "@/assets/mainImages/theland/land-1.png";
+import mapImage2 from "@/assets/mainImages/theland/land-2.jpg";
+import mapImage3 from "@/assets/mainImages/theland/land-3.jpg";
 
 const mapCards = [
   {
@@ -9,21 +12,21 @@ const mapCards = [
     title: "Kurdistan Region\nof Iraq",
     text: "Explore the officially recognized Kurdistan Region of Iraq — its governorates, major cities, and borders.",
     color: "#c69237",
-    mapImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Iraqi_Kurdistan_in_Iraq_%28disputed_hatched%29.svg/1280px-Iraqi_Kurdistan_in_Iraq_%28disputed_hatched%29.svg.png",
+    mapImage: mapImage3,
   },
   {
     number: "2",
     title: "Disputed Areas",
     text: "Explore the disputed areas between Kurdistan and Iraq, shown here in pink.",
     color: "#963538",
-    mapImage: bg,
+    mapImage: mapImage2,
   },
   {
     number: "3",
     title: "Kurdish Presence\nAcross Countries",
     text: "See the broader areas where Kurdish communities live across the region.",
     color: "#c69237",
-    mapImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Kurdish-inhabited_area_by_CIA_%281992%29.jpg/1280px-Kurdish-inhabited_area_by_CIA_%281992%29.jpg",
+    mapImage: mapImage,
   },
 ];
 
@@ -67,7 +70,7 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
       </div>
 
       <div className="relative bg-[#f7efe2]">
-        <img src={card.mapImage} alt={card.title.replace("\n", " ")} className="h-full w-full object-cover opacity-80" />
+        <img src={card.mapImage} alt={card.title.replace("\n", " ")} className="h-full w-full" />
         <div className="absolute inset-0 bg-[#fbf5eb]/20 mix-blend-multiply" />
       </div>
     </article>
@@ -114,7 +117,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           <img
             src={bg}
             alt="Kurdistan landscape placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:linear-gradient(to_bottom,transparent_0%,black_18%,black_76%,transparent_100%)]"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb]" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />

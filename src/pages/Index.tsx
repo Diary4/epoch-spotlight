@@ -14,7 +14,6 @@ import officeBg from "@/assets/office.jpeg";
 import peshmargaBg from "@/assets/images/peshmarga.jpg";
 import bg2 from "@/assets/images/bg-2.jpg";
 import bg3 from "@/assets/images/bg-3.jpg";
-import kurdistan1Bg from "@/assets/images/kurdistan-1.jpeg";
 import kurdistan2Bg from "@/assets/images/kurdistan-2.jpeg";
 import kurdistan3Bg from "@/assets/images/kurdistan-3.jpeg";
 import Year1992Page from "@/components/Sections/TheJourney/1992";
@@ -572,17 +571,14 @@ const Index = () => {
       className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
-      {[officeBg, bg2, kurdistan1Bg, kurdistan2Bg, bg2].map((bg, idx) => (
-        <img
-          key={`${bg}-${idx}`}
-          src={bg}
-          alt=""
-          aria-hidden="true"
-          className={`pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px] transition-opacity duration-700 ${
-            bgByView[view] === bg ? "opacity-100" : "opacity-0"
-          }`}
-        />
-      ))}
+      {/* Single backdrop layer per route — avoids stacked “ghost” images from opacity crossfades and duplicate URLs */}
+      <img
+        key={bgByView[view]}
+        src={bgByView[view]}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px]"
+      />
       <div
         className="pointer-events-none absolute inset-0"
         style={{

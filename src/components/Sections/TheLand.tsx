@@ -266,7 +266,12 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
           <img
             src={bg1}
             alt="Land and Future placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right [mask-image:radial-gradient(circle_at_62%_52%,black_0%,black_58%,transparent_84%)]"
+            className="absolute inset-0 h-full w-full object-cover object-right"
+          />
+          {/* Bottom blend into section bg (#fbf5eb) — same tone as the “paper” background */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent"
+            aria-hidden
           />
         </div>
 
