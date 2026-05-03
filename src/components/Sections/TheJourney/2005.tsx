@@ -4,6 +4,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
+import bg from "@/assets/mainImages/2005.png";
 
 const rows = [
   {
@@ -67,14 +68,14 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Main visual placeholder: replace with your generated 2005 constitution/legal image */}
-        <div className="pointer-events-none absolute right-0 top-[9vh] h-[min(73vh,1020px)] w-[min(63vw,980px)]">
+        <div className="pointer-events-none absolute right-0 top-0 h-[min(100vh,1500px)] w-full">
           <img
-            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=90"
+            src={bg}
             alt="2005 recognition placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_60%_48%,black_0%,black_55%,transparent_84%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.5rem,5vh,4.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">

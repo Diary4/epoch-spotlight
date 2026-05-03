@@ -3,6 +3,7 @@ import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
+import bg from "@/assets/mainImages/building.png";
 
 const rows = [
   {
@@ -63,15 +64,15 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
         <div className="absolute left-0 top-0 h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Right-side visual placeholder: replace this image later */}
-        <div className="pointer-events-none absolute right-0 top-[7.5vh] h-[min(80vh,1120px)] w-[min(53vw,860px)]">
+        {/* Right-side visual: full image visible (no crop) */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-full h-[min(100vh,1400px)]">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90"
+            src={bg}
             alt="Institutions placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-75 [mask-image:radial-gradient(circle_at_62%_42%,black_0%,black_54%,transparent_84%)]"
+            className="h-full w-full object-cover object-right-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
@@ -95,7 +96,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
             </p>
           </section>
 
-          {/* Institution relationship diagram */}
+          {/* Institution relationship diagram
           <section className="relative mt-[clamp(1.3rem,4vh,3.2rem)] h-[clamp(15rem,31vh,24rem)] w-[min(42vw,560px)]">
             <div className="absolute left-[21%] top-[5%] h-[84%] w-[63%] rounded-full border-2 border-[#b99152]" />
             <div className="absolute left-[41%] top-[33%] h-[31%] w-[23%] rounded-full border-2 border-dashed border-[#b99152]" />
@@ -112,7 +113,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
             <div className="absolute right-0 top-[55%] grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white bg-[#943134] text-[#f8e5b8] shadow-lg">
               <BarChart3 size={54} strokeWidth={1.5} />
             </div>
-          </section>
+          </section> */}
 
           <div className="flex-[0.85]" />
 
