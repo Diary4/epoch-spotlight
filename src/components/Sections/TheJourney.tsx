@@ -11,6 +11,9 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
+import bg from "@/assets/mainImages/thejourney/journey-1.png";
+import bg2 from "@/assets/mainImages/thejourney/journey-2.png";
+import bg3 from "@/assets/mainImages/thejourney/journey-3.png";
 
 const milestones = [
   {
@@ -84,27 +87,22 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         {/* Right illustration column - replace these with your AI images */}
         <div className="pointer-events-none absolute right-0 top-[90px] z-0 h-[1720px] w-[46vw] min-w-[520px]">
           <img
-            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=90"
-            className="absolute right-0 top-0 h-[500px] w-[100%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
+            src={bg}
+            className="absolute right-0 top-0 h-[600px] w-[100%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
             alt="1991 illustration"
           />
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=90"
-            className="absolute right-0 top-[480px] h-[430px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+            src={bg2}
+            className="absolute right-0 top-[580px] h-[500px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
             alt="1992 illustration"
           />
           <img
-            src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1000&q=90"
-            className="absolute right-0 top-[910px] h-[410px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+            src={bg3}
+            className="absolute right-0 top-[1050px] h-[810px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
             alt="building institutions illustration"
           />
-          <img
-            src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1000&q=90"
-            className="absolute right-0 top-[1320px] h-[360px] w-[100%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
-            alt="today illustration"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#fbf5eb]/10 to-[#fbf5eb]/72" />
-          <div className="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-b from-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#fbf5eb]/10 to-[#fbf5eb]/72" />
+          <div className="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col px-8 pb-10 pt-16 sm:px-12 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
