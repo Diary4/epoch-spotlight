@@ -69,19 +69,22 @@ function Divider({ className = "" }) {
 }
 
 function DialectItem({ item }) {
+  const hasTitle = Boolean(item?.name?.trim());
   return (
-    <article className="grid grid-cols-[86px_1fr] gap-5 border-b border-[#ead8b7] py-5 last:border-b-0">
+    <article className="grid grid-cols-[86px_1fr] items-center gap-5 border-b border-[#ead8b7] py-5 last:border-b-0">
       <div
         className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[38px] font-bold text-white shadow-md"
         style={{ backgroundColor: item.color }}
       >
         {item.letter}
       </div>
-      <div>
-        <h3 className="font-serif text-[30px] font-semibold leading-tight" style={{ color: item.color }}>
-          {item.name}
-        </h3>
-        <p className="mt-2 text-[15px] font-semibold leading-[1.45] text-[#35435b]">
+      <div className={`flex min-h-[80px] flex-col ${hasTitle ? "justify-start" : "justify-center"}`}>
+        {hasTitle && (
+          <h3 className="font-serif text-[30px] font-semibold leading-tight" style={{ color: item.color }}>
+            {item.name}
+          </h3>
+        )}
+        <p className={`${hasTitle ? "mt-2" : "mt-0"} text-[15px] font-semibold leading-[1.45] text-[#35435b]`}>
           {item.text}
         </p>
       </div>
@@ -171,7 +174,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             <aside className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
               <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
-              <div className="mt-3 grid flex-1 content-between">
+              <div className="mt-6 grid flex-1 auto-rows-min">
                 {localDialects.map((item) => (
                   <DialectItem key={item.name} item={item} />
                 ))}

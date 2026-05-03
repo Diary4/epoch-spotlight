@@ -99,7 +99,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(88vh,920px)] w-full overflow-hidden">
+        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(92vh,1100px)] w-full overflow-hidden">
           <img
             src={bg}
             alt="Parliament building placeholder"
@@ -134,7 +134,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             </p>
           </section>
 
-          <section className="mt-[clamp(36px,24vh,300px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
+          <section className="mt-[clamp(36px,24vh,400px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
             {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
