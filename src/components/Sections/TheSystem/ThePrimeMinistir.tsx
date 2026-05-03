@@ -15,7 +15,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
-import masrourbarzani from "@/assets/images/masrourbarzani-removebg-preview.png";
+import bg from "@/assets/mainImages/thesystem/system-1.png";
 
 const achievements = [
   {
@@ -216,24 +216,14 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         <div className="absolute right-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this with your generated portrait image */}
-        <div data-pm-portrait="true" className="pointer-events-none absolute right-0 top-0 h-[980px] w-[46vw] min-w-[620px]">
+        <div data-pm-portrait="true" className="pointer-events-none absolute right-0 top-0 h-[1280px] w-full min-w-[620px]">
           <img
-            src={masrourbarzani}
+            src={bg}
             alt="Prime Minister portrait placeholder"
             className="absolute inset-0 h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-[260px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
-        </div>
-
-        {/* Scenic base image placeholder */}
-        <div data-pm-rest="true" className="pointer-events-none absolute left-0 top-[620px] h-[360px] w-[50vw] min-w-[640px]">
-          <img
-            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=90"
-            alt="Kurdistan landscape placeholder"
-            className="h-full w-full object-cover opacity-62 [mask-image:radial-gradient(circle_at_45%_55%,black_0%,black_55%,transparent_82%)]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#fbf5eb] via-transparent to-transparent" />
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
