@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
-import bgImage from "@/assets/images/bg-2.jpg";
+import bg from "@/assets/mainImages/theland/progress-4.png";
 
 const topCards = [
   {
@@ -121,7 +121,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
         ]
       : bottomCards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] px-[clamp(8px,1.2vw,18px)] py-[clamp(8px,1.3vh,16px)] text-[#17233b]">
+    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
@@ -136,12 +136,12 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
         {/* Replace this with your generated progress/city background */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[clamp(720px,70vh,1080px)]">
           <img
-            src={bgImage}
+            src={bg}
             alt="Progress city placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
+            className="absolute inset-0 h-full w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-[clamp(160px,19vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-[clamp(160px,19vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
@@ -159,7 +159,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
               <Divider />
             </div>
 
-            <p className="mt-[clamp(16px,2.6vh,36px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.2vw,34px)] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-[clamp(16px,200vh,120px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.2vw,34px)] font-medium leading-[1.55] text-[#2d3549]">
               {isAr
                 ? "يواصل إقليم كوردستان مسيرة تقدّمه في البنية التحتية والتعليم والاقتصاد والسياحة والتحول الرقمي."
                 : isKu
