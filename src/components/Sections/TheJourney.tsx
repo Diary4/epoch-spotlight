@@ -64,7 +64,17 @@ type JourneyTimelinePageProps = {
 /** Horizontal wobble along the rail (matches original art direction). */
 const DOT_X = [59, 58, 60, 61, 62] as const;
 
-/** Smooth curve through milestone centers (Catmull–Rom → cubic Bézier). */
+/** Nudge the whole rail a few px right of the card–image midpoint. */
+const TIMELINE_NUDGE_RIGHT_PX = 28;
+
+/**
+ * Curvier path than default Catmull (1/6): still passes exactly through each milestone
+ * so dots stay on-card; only control handles + lateral swing shape the S between knots.
+ */
+const PATH_CURVE_K = 0.34;
+/** Per-span horizontal offset on Bézier controls (viewBox units), alternating like the legacy art. */
+const PATH_SWING_X: readonly number[] = [24, -28, 26, -24];
+
 function timelinePathThrough(points: { x: number; y: number }[]): string {
   if (points.length < 2) return "";
   const n = points.length;
@@ -81,10 +91,11 @@ function timelinePathThrough(points: { x: number; y: number }[]): string {
         x: 2 * points[n - 1].x - points[n - 2].x,
         y: 2 * points[n - 1].y - points[n - 2].y,
       } as const);
-    const cp1x = p1.x + (p2.x - p0.x) / 6;
-    const cp1y = p1.y + (p2.y - p0.y) / 6;
-    const cp2x = p2.x - (p3.x - p1.x) / 6;
-    const cp2y = p2.y - (p3.y - p1.y) / 6;
+    const swing = PATH_SWING_X[i] ?? 0;
+    const cp1x = p1.x + (p2.x - p0.x) * PATH_CURVE_K + swing;
+    const cp1y = p1.y + (p2.y - p0.y) * PATH_CURVE_K;
+    const cp2x = p2.x - (p3.x - p1.x) * PATH_CURVE_K - swing * 0.78;
+    const cp2y = p2.y - (p3.y - p1.y) * PATH_CURVE_K;
     d += ` C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${p2.x} ${p2.y}`;
   }
   return d;
@@ -110,11 +121,16 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     pathD: string;
     points: { x: number; y: number }[];
     height: number;
+    /** px from track left — centers the 180px-wide rail in the gap between cards and image column */
+    svgLeft: number;
   } | null>(null);
+
+  const imageColumnRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     const measure = () => {
       const track = trackRef.current;
+      const imageCol = imageColumnRef.current;
       if (!track) return;
       const trackRect = track.getBoundingClientRect();
       const h = track.clientHeight;
@@ -131,10 +147,26 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
           y: r.top - trackRect.top + r.height / 2,
         });
       }
+
+      const SVG_W = 180;
+      const firstCard = cardRefs.current[0];
+      let svgLeft = 0;
+      if (firstCard && imageCol) {
+        const cardRight = firstCard.getBoundingClientRect().right;
+        const imageLeft = imageCol.getBoundingClientRect().left;
+        const midX = (cardRight + imageLeft) / 2;
+        svgLeft = midX - SVG_W / 2 - trackRect.left + TIMELINE_NUDGE_RIGHT_PX;
+      } else {
+        // Fallback before image ref is ready
+        const cw = firstCard?.getBoundingClientRect().width ?? 560;
+        svgLeft = cw + 24 + TIMELINE_NUDGE_RIGHT_PX;
+      }
+
       setTimelineLayout({
         height: h,
         points: centers,
         pathD: timelinePathThrough(centers),
+        svgLeft,
       });
     };
 
@@ -142,7 +174,9 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     const raf = requestAnimationFrame(() => measure());
     const ro = new ResizeObserver(() => measure());
     const t = trackRef.current;
+    const img = imageColumnRef.current;
     if (t) ro.observe(t);
+    if (img) ro.observe(img);
     window.addEventListener("resize", measure);
     return () => {
       cancelAnimationFrame(raf);
@@ -153,7 +187,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb]">
+      <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -168,7 +202,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Right illustration column - replace these with your AI images */}
-        <div className="pointer-events-none absolute right-0 top-[90px] z-0 h-[1720px] w-[46vw] min-w-[520px]">
+        <div
+          ref={imageColumnRef}
+          className="pointer-events-none absolute right-0 top-[90px] z-0 h-[1720px] w-[46vw] min-w-[520px]"
+        >
           <img
             src={bg}
             className="absolute right-0 top-0 h-[900px] w-[96%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
@@ -214,7 +251,8 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
             <div ref={trackRef} className="relative flex min-h-0 flex-1 flex-col">
               {timelineLayout && (
                 <svg
-                  className="pointer-events-none absolute left-[clamp(610px,58vw,760px)] top-0 z-20 w-[180px] overflow-visible"
+                  className="pointer-events-none absolute top-0 z-20 w-[180px] overflow-visible"
+                  style={{ left: timelineLayout.svgLeft }}
                   width={180}
                   height={timelineLayout.height}
                   viewBox={`0 0 150 ${timelineLayout.height}`}
