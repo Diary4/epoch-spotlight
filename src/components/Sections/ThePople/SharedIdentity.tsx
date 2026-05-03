@@ -119,14 +119,14 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
           </p>
         </section>
 
-        {/* Cards section preserved as is */}
-        <section className="relative z-20 mt-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(24px,3.2vh,52px)]">
+        {/* Cards: height follows content; desktop row uses equal stretch */}
+        <section className="relative z-20 mt-[clamp(20px,3.5vh,56px)] grid w-full grid-cols-1 items-stretch gap-[clamp(16px,1.7vw,34px)] px-[clamp(20px,5vw,80px)] pb-[clamp(8px,1vh,22px)] md:grid-cols-3">
           {localizedCards.map((card, i) => {
             const Icon = card.icon;
             return (
               <article
                 key={i}
-                className="identity-card flex min-h-[clamp(360px,33vh,560px)] flex-col items-center rounded-[clamp(22px,2.3vw,34px)] border-2 border-white bg-white/82 px-[clamp(16px,1.7vw,32px)] py-[clamp(18px,2.1vh,34px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
+                className="identity-card flex h-full min-h-0 flex-col items-center rounded-[clamp(22px,2.3vw,34px)] border-2 border-white bg-white/82 px-[clamp(16px,1.7vw,32px)] py-[clamp(18px,2.1vh,34px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
               >
                 <div className="grid h-[clamp(82px,7.3vw,124px)] w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border-4 border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
                   {card.iconText ? (
