@@ -15,6 +15,7 @@ import card1 from "@/assets/mainImages/2005.png";
 import card2 from "@/assets/mainImages/2005.png";
 import card3 from "@/assets/mainImages/2005.png";
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
+import Nationalities from "@/components/Sections/religions/Nationalities";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -165,7 +166,7 @@ export default function ReligiousDiversityPage({
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [lang, setLang] = React.useState<LangCode>("en");
-  const [subPage, setSubPage] = React.useState<null | "religionsKurdistan">(null);
+  const [subPage, setSubPage] = React.useState<null | "religionsKurdistan" | "nationalities">(null);
   const content = pageContent[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -197,6 +198,17 @@ export default function ReligiousDiversityPage({
   if (subPage === "religionsKurdistan") {
     return (
       <ReligionsKurdistan
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage === "nationalities") {
+    return (
+      <Nationalities
         lang={lang}
         languageLabel={content.languageLabel}
         onLanguageChange={handleLanguageChange}
@@ -287,26 +299,32 @@ export default function ReligiousDiversityPage({
           >
             {content.cards.map((card) => {
               const Icon = card.icon;
-              const openReligionsKurdistan = card.id === "religions";
+              const subPageTarget =
+                card.id === "religions"
+                  ? ("religionsKurdistan" as const)
+                  : card.id === "nationalities"
+                    ? ("nationalities" as const)
+                    : null;
+              const isNavCard = subPageTarget !== null;
 
               return (
                 <article
                   key={card.id}
-                  role={openReligionsKurdistan ? "button" : undefined}
-                  tabIndex={openReligionsKurdistan ? 0 : undefined}
-                  onClick={openReligionsKurdistan ? () => setSubPage("religionsKurdistan") : undefined}
+                  role={isNavCard ? "button" : undefined}
+                  tabIndex={isNavCard ? 0 : undefined}
+                  onClick={isNavCard ? () => setSubPage(subPageTarget) : undefined}
                   onKeyDown={
-                    openReligionsKurdistan
+                    isNavCard
                       ? (e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            setSubPage("religionsKurdistan");
+                            setSubPage(subPageTarget);
                           }
                         }
                       : undefined
                   }
-                  aria-label={openReligionsKurdistan ? `${card.title}` : undefined}
-                  className={`group relative min-h-[calc(30vh-160px)] overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] shadow-[0_18px_35px_rgba(69,43,14,0.24)] ${openReligionsKurdistan ? "cursor-pointer outline-none transition hover:ring-2 hover:ring-[#d2a35a]/50 focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
+                  aria-label={isNavCard ? `${card.title}` : undefined}
+                  className={`group relative min-h-[calc(30vh-160px)] overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] shadow-[0_18px_35px_rgba(69,43,14,0.24)] ${isNavCard ? "cursor-pointer outline-none transition hover:ring-2 hover:ring-[#d2a35a]/50 focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
                 >
                   <img
                     src={card.image}

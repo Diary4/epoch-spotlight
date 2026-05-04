@@ -1,6 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import {
+  ArrowLeft,
   ChevronRight,
   Globe2,
   UsersRound,
@@ -59,8 +60,23 @@ function DecorativeLine({ color = "#c99a55" }) {
   );
 }
 
-export default function NationalitiesPage() {
+type LangCode = "en" | "ku" | "ar";
+
+type NationalitiesProps = {
+  lang?: LangCode;
+  languageLabel?: string;
+  onLanguageChange?: () => void;
+  onBack?: () => void;
+};
+
+export default function Nationalities({
+  lang = "en",
+  languageLabel = "ENGLISH",
+  onLanguageChange,
+  onBack,
+}: NationalitiesProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -84,7 +100,10 @@ export default function NationalitiesPage() {
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main
+      dir={dir}
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+    >
       <section
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
@@ -92,16 +111,35 @@ export default function NationalitiesPage() {
         <img
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover"
+          className="absolute left-0 top-0 h-[max(14rem,calc(50vh-10rem))] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[max(14rem,calc(50vh-10rem))] z-[1] h-24 -translate-y-full blur-[2px]"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+          }}
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/82 to-[#fbf1df]" />
-        <div className="absolute left-0 top-[430px] h-[300px] w-[46%] rounded-tr-[160px] bg-[#b47724]/45 shadow-[inset_0_0_0_2px_rgba(255,238,194,0.55)]" />
         <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
 
-        <button className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+          aria-label="Back"
+        >
+          <ArrowLeft className="h-7 w-7" />
+        </button>
+
+        <button
+          type="button"
+          onClick={onLanguageChange}
+          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+        >
           <Globe2 className="h-5 w-5" />
-          ENGLISH
+          {languageLabel}
         </button>
 
         <div className="relative z-10 mx-auto max-w-[1040px]">
@@ -165,7 +203,10 @@ export default function NationalitiesPage() {
                   </p>
                 </div>
 
-                <button className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
+                <button
+                  type="button"
+                  className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
+                >
                   <ChevronRight className="h-8 w-8" />
                 </button>
               </article>
@@ -188,7 +229,10 @@ export default function NationalitiesPage() {
               </span>
             </p>
 
-            <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)]">
+            <button
+              type="button"
+              className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)]"
+            >
               <ChevronRight className="h-9 w-9" />
             </button>
           </section>
