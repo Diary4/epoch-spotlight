@@ -10,6 +10,7 @@ import PortraitDetail from "./pages/PortraitDetail.tsx";
 import PortraitTimeline from "./pages/PortraitTimeline.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import SliderPage from "./pages/SliderPage.tsx";
+import Religions from "./pages/Religions.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/portraits/:id" element={<PortraitDetail />} />
           <Route path="/portraits/:id/timeline" element={<PortraitTimeline />} />
           <Route path="/slider" element={<SliderPage />} />
+          <Route path="/religions" element={<Religions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

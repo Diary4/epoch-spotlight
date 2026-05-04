@@ -89,12 +89,12 @@ function InfoPanel({ title, items, tone = "gold" }) {
   const circleBg = isGold ? "bg-[#c69237]" : "bg-[#5d7757]";
 
   return (
-    <section className="relative min-h-[700px] rounded-[24px] border-2 border-[#ead8b7] bg-white/78 px-6 pb-7 pt-14 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:min-h-[770px] sm:rounded-[26px] sm:px-8 sm:pb-8 sm:pt-16 lg:min-h-[860px] lg:px-9 lg:pb-10 lg:pt-18">
-      <div className={`absolute left-1/2 top-[-38px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-[6px] border-white ${circleBg} text-[#f8e5b8] shadow-[0_10px_25px_rgba(84,54,16,0.2)]`}>
-        {isGold ? <Trophy size={54} strokeWidth={1.45} /> : <Compass size={54} strokeWidth={1.45} />}
+    <section className="relative rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-4 pb-5 pt-12 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:rounded-[24px] sm:px-6 sm:pb-7 sm:pt-14 lg:rounded-[26px] lg:px-8 lg:pb-9 lg:pt-16">
+      <div className={`absolute left-1/2 top-[-30px] grid h-20 w-20 -translate-x-1/2 place-items-center rounded-full border-4 border-white ${circleBg} text-[#f8e5b8] shadow-[0_10px_25px_rgba(84,54,16,0.2)] sm:top-[-34px] sm:h-24 sm:w-24 sm:border-[6px]`}>
+        {isGold ? <Trophy className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} /> : <Compass className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} />}
       </div>
 
-      <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] sm:text-[36px] lg:text-[44px]">
+      <h2 className="text-center font-serif text-[clamp(1.6rem,4.2vw,2.75rem)] font-semibold text-[#17233b]">
         {title}
       </h2>
 
@@ -102,19 +102,19 @@ function InfoPanel({ title, items, tone = "gold" }) {
         <DecorativeLine color={main} />
       </div>
 
-      <div className="space-y-1.5 lg:space-y-2">
+      <div className="space-y-1.5 sm:space-y-2">
         {items.map((item) => {
           const Icon = item.icon;
           return (
-            <article key={item.title} className="grid grid-cols-[78px_1fr] gap-4 border-b border-[#e6d2aa] py-3.5 last:border-b-0 sm:grid-cols-[92px_1fr] sm:gap-5 sm:py-4 lg:grid-cols-[102px_1fr] lg:py-5">
-              <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fffaf0] sm:h-18 sm:w-18 lg:h-20 lg:w-20" style={{ color: main }}>
-                <Icon className="h-8 w-8 sm:h-[42px] sm:w-[42px] lg:h-[46px] lg:w-[46px]" strokeWidth={1.7} />
+            <article key={item.title} className="grid grid-cols-[60px_1fr] gap-3 border-b border-[#e6d2aa] py-3 last:border-b-0 sm:grid-cols-[78px_1fr] sm:gap-4 sm:py-3.5 lg:grid-cols-[92px_1fr] lg:gap-5 lg:py-4">
+              <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fffaf0] sm:h-16 sm:w-16 lg:h-18 lg:w-18" style={{ color: main }}>
+                <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-[42px] lg:w-[42px]" strokeWidth={1.7} />
               </div>
               <div>
-                <h3 className="font-serif text-[23px] font-semibold leading-tight text-[#17233b] sm:text-[28px] lg:text-[34px]">
+                <h3 className="font-serif text-[clamp(1.05rem,2.4vw,2.05rem)] font-semibold leading-tight text-[#17233b]">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-[16px] font-semibold leading-snug text-[#344052] sm:text-[19px] lg:text-[23px]">
+                <p className="mt-1 text-[clamp(0.9rem,1.8vw,1.45rem)] font-semibold leading-snug text-[#344052]">
                   {item.text}
                 </p>
               </div>
@@ -200,54 +200,54 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section ref={sectionRef} className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-hidden bg-[#fbf5eb] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+    <main className="m-0 flex min-h-screen w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section ref={sectionRef} className="relative flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden bg-[#fbf5eb] px-4 py-6 sm:px-8 sm:py-9 lg:px-12 lg:py-12">
         <button
           data-pm-rest="true"
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className="absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:left-8 lg:top-8 lg:h-14 lg:w-14"
           aria-label="Back to The System"
         >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+          <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
         </button>
         <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div className="absolute left-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-        <div className="absolute right-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute left-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
+        <div className="absolute right-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
 
         {/* Replace this with your generated portrait image */}
-        <div data-pm-portrait="true" className="pointer-events-none absolute right-0 top-0 h-[1280px] w-full min-w-[620px]">
+        <div data-pm-portrait="true" className="pointer-events-none absolute right-0 top-0 h-[60vh] min-h-[420px] w-full sm:h-[72vh] sm:min-h-[540px] lg:h-[1280px]">
           <img
             src={bg}
             alt="Prime Minister portrait placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+            className="absolute inset-0 h-full w-full object-cover object-[center_top] [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-[260px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section data-pm-rest="true" className="max-w-[710px] pt-20 sm:pt-24 lg:pt-30">
-            <h1 className="font-serif text-[62px] font-semibold leading-[1.02] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
+          <section data-pm-rest="true" className="max-w-[710px] pt-16 sm:pt-20 lg:pt-28">
+            <h1 className="font-serif text-[clamp(2.2rem,9vw,6.4rem)] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
               {title}
             </h1>
 
-            <p className="mt-4 font-serif text-[34px] leading-tight text-[#9b6d35] sm:mt-5 sm:text-[42px] lg:text-[52px]">
+            <p className="mt-3 font-serif text-[clamp(1.5rem,5.2vw,3.25rem)] leading-tight text-[#9b6d35] sm:mt-4">
               {name}
             </p>
 
-            <div className="mt-7 w-[260px] sm:w-[360px] lg:w-[430px]">
+            <div className="mt-5 w-[200px] sm:mt-6 sm:w-[300px] lg:w-[430px]">
               <DecorativeLine color="#b99152" />
             </div>
 
-            <p className="mt-7 max-w-[560px] text-[21px] font-semibold leading-[1.45] text-[#2d3549] sm:text-[27px] lg:max-w-[660px] lg:text-[33px]">
+            <p className="mt-5 max-w-[660px] text-[clamp(1rem,2.5vw,2.05rem)] font-semibold leading-[1.45] text-[#2d3549] sm:mt-6">
               {subtitle}
             </p>
           </section>
 
-          <div className="flex-1 min-h-[70px] lg:min-h-[100px]" />
+          <div className="flex-1 min-h-10 sm:min-h-14 lg:min-h-[90px]" />
 
-          <section data-pm-rest="true" className="grid grid-cols-1 gap-6 pb-2 sm:grid-cols-2 sm:gap-7 lg:gap-8">
+          <section data-pm-rest="true" className="grid grid-cols-1 gap-4 pb-2 sm:grid-cols-2 sm:gap-6 lg:gap-8">
             <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
             <InfoPanel title={visionTitle} items={localVision} tone="green" />
           </section>
