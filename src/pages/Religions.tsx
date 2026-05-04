@@ -14,6 +14,7 @@ import bg from "@/assets/images/religions/r-1.png";
 import card1 from "@/assets/mainImages/2005.png";
 import card2 from "@/assets/mainImages/2005.png";
 import card3 from "@/assets/mainImages/2005.png";
+import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -26,7 +27,14 @@ const pageContent: Record<
     description: string;
     sharedTitle: string;
     sharedText: string;
-    cards: { title: string; text: string; image: string; icon: typeof Church; color: string }[];
+    cards: {
+      id: "religions" | "nationalities" | "coexistence";
+      title: string;
+      text: string;
+      image: string;
+      icon: typeof Church;
+      color: string;
+    }[];
   }
 > = {
   en: {
@@ -39,6 +47,7 @@ const pageContent: Record<
     sharedText: "Festivals and holidays we celebrate together.",
     cards: [
       {
+        id: "religions",
         title: "Religions",
         text: "Explore the rich religious heritage and sacred traditions of Kurdistan.",
         image: card1,
@@ -46,6 +55,7 @@ const pageContent: Record<
         color: "#244b1f",
       },
       {
+        id: "nationalities",
         title: "Nationalities",
         text: "Discover the diverse ethnic communities, their languages, and cultural contributions.",
         image: card2,
@@ -53,6 +63,7 @@ const pageContent: Record<
         color: "#16466b",
       },
       {
+        id: "coexistence",
         title: "Stories of Coexistence",
         text: "Real stories of unity, protection, and everyday coexistence across Kurdistan.",
         image: card3,
@@ -71,6 +82,7 @@ const pageContent: Record<
     sharedText: "فێستیڤاڵ و پشوویەکان کە پێکەوە جێژنیان دەکەین.",
     cards: [
       {
+        id: "religions",
         title: "ئاینەکان",
         text: "بگەڕێ بە میراتی دەوڵەمەندی ئاینی و نەریتە پیرۆزەکانی کوردستان.",
         image: card1,
@@ -78,6 +90,7 @@ const pageContent: Record<
         color: "#244b1f",
       },
       {
+        id: "nationalities",
         title: "نەتەوەکان",
         text: "کۆمەڵگە نەتەوەییە جیاوازەکان و زمان و بەشداری کلتوورییان بناسە.",
         image: card2,
@@ -85,6 +98,7 @@ const pageContent: Record<
         color: "#16466b",
       },
       {
+        id: "coexistence",
         title: "چیرۆکی هاوبژین",
         text: "چیرۆکی ڕاستەقینەی یەکگرتوویی و پاراستن و هاوبژینی ڕۆژانە لە کوردستان.",
         image: card3,
@@ -103,6 +117,7 @@ const pageContent: Record<
     sharedText: "مهرجانات وأعياد نحتفل بها معاً.",
     cards: [
       {
+        id: "religions",
         title: "الأديان",
         text: "اكتشف الإرث الديني الغني والتقاليد المقدسة في كوردستان.",
         image: card1,
@@ -110,6 +125,7 @@ const pageContent: Record<
         color: "#244b1f",
       },
       {
+        id: "nationalities",
         title: "القوميات",
         text: "تعرّف على المجتمعات القومية المتنوعة ولغاتها وإسهاماتها الثقافية.",
         image: card2,
@@ -117,6 +133,7 @@ const pageContent: Record<
         color: "#16466b",
       },
       {
+        id: "coexistence",
         title: "قصص التعايش",
         text: "قصص حقيقية عن الوحدة والحماية والتعايش اليومي في كوردستان.",
         image: card3,
@@ -148,6 +165,7 @@ export default function ReligiousDiversityPage({
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [lang, setLang] = React.useState<LangCode>("en");
+  const [subPage, setSubPage] = React.useState<null | "religionsKurdistan">(null);
   const content = pageContent[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -156,7 +174,7 @@ export default function ReligiousDiversityPage({
   };
 
   React.useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || subPage) return;
 
     const ctx = gsap.context(() => {
       gsap.set("[data-rd-animate='true']", {
@@ -174,7 +192,18 @@ export default function ReligiousDiversityPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [subPage]);
+
+  if (subPage === "religionsKurdistan") {
+    return (
+      <ReligionsKurdistan
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
 
   return (
     <main
@@ -258,11 +287,26 @@ export default function ReligiousDiversityPage({
           >
             {content.cards.map((card) => {
               const Icon = card.icon;
+              const openReligionsKurdistan = card.id === "religions";
 
               return (
                 <article
-                  key={card.title}
-                  className="group relative min-h-[calc(30vh-160px)] overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] shadow-[0_18px_35px_rgba(69,43,14,0.24)]"
+                  key={card.id}
+                  role={openReligionsKurdistan ? "button" : undefined}
+                  tabIndex={openReligionsKurdistan ? 0 : undefined}
+                  onClick={openReligionsKurdistan ? () => setSubPage("religionsKurdistan") : undefined}
+                  onKeyDown={
+                    openReligionsKurdistan
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setSubPage("religionsKurdistan");
+                          }
+                        }
+                      : undefined
+                  }
+                  aria-label={openReligionsKurdistan ? `${card.title}` : undefined}
+                  className={`group relative min-h-[calc(30vh-160px)] overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] shadow-[0_18px_35px_rgba(69,43,14,0.24)] ${openReligionsKurdistan ? "cursor-pointer outline-none transition hover:ring-2 hover:ring-[#d2a35a]/50 focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
                 >
                   <img
                     src={card.image}
@@ -290,9 +334,9 @@ export default function ReligiousDiversityPage({
                       {card.text}
                     </p>
 
-                    <button className="mt-6 grid h-16 w-full place-items-center rounded-2xl border-2 border-[#d8bc7b] bg-white/5 text-white backdrop-blur-sm transition group-hover:bg-white/15">
-                      <ChevronRight className="h-9 w-9" />
-                    </button>
+                    <div className="mt-6 grid h-16 w-full place-items-center rounded-2xl border-2 border-[#d8bc7b] bg-white/5 text-white backdrop-blur-sm transition group-hover:bg-white/15">
+                      <ChevronRight className="h-9 w-9" aria-hidden />
+                    </div>
                   </div>
                 </article>
               );
