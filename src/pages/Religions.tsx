@@ -10,34 +10,122 @@ import {
   HeartHandshake,
 } from "lucide-react";
 
-import bg from "@/assets/mainImages/2005.png";
+import bg from "@/assets/images/religions/r-1.png";
 import card1 from "@/assets/mainImages/2005.png";
 import card2 from "@/assets/mainImages/2005.png";
 import card3 from "@/assets/mainImages/2005.png";
 
-const cards = [
+type LangCode = "en" | "ku" | "ar";
+
+const pageContent: Record<
+  LangCode,
   {
-    title: "Religions",
-    text: "Explore the rich religious heritage and sacred traditions of Kurdistan.",
-    image: card1,
-    icon: Church,
-    color: "#244b1f",
+    languageLabel: string;
+    title: [string, string, string];
+    subtitle: string;
+    description: string;
+    sharedTitle: string;
+    sharedText: string;
+    cards: { title: string; text: string; image: string; icon: typeof Church; color: string }[];
+  }
+> = {
+  en: {
+    languageLabel: "ENGLISH",
+    title: ["Religious &", "National Diversity", "in Kurdistan"],
+    subtitle: "Kurdistan: The Cradle of Coexistence",
+    description:
+      "Across faiths, languages, and cultures, Kurdistan stands as a timeless home of respect, unity, and shared heritage.",
+    sharedTitle: "Shared Celebrations",
+    sharedText: "Festivals and holidays we celebrate together.",
+    cards: [
+      {
+        title: "Religions",
+        text: "Explore the rich religious heritage and sacred traditions of Kurdistan.",
+        image: card1,
+        icon: Church,
+        color: "#244b1f",
+      },
+      {
+        title: "Nationalities",
+        text: "Discover the diverse ethnic communities, their languages, and cultural contributions.",
+        image: card2,
+        icon: UsersRound,
+        color: "#16466b",
+      },
+      {
+        title: "Stories of Coexistence",
+        text: "Real stories of unity, protection, and everyday coexistence across Kurdistan.",
+        image: card3,
+        icon: HeartHandshake,
+        color: "#52235f",
+      },
+    ],
   },
-  {
-    title: "Nationalities",
-    text: "Discover the diverse ethnic communities, their languages, and cultural contributions.",
-    image: card2,
-    icon: UsersRound,
-    color: "#16466b",
+  ku: {
+    languageLabel: "کوردی",
+    title: ["ئاینی و", "فرە نەتەوەیی", "لە کوردستان"],
+    subtitle: "کوردستان: گهوارەی هاوبژین",
+    description:
+      "لە نێوان ئاین و زمان و کلتوورە جیاوازەکاندا، کوردستان ماڵی ڕێز و یەکگرتوویی و میراتی هاوبەشە.",
+    sharedTitle: "جەژنە هاوبەشەکان",
+    sharedText: "فێستیڤاڵ و پشوویەکان کە پێکەوە جێژنیان دەکەین.",
+    cards: [
+      {
+        title: "ئاینەکان",
+        text: "بگەڕێ بە میراتی دەوڵەمەندی ئاینی و نەریتە پیرۆزەکانی کوردستان.",
+        image: card1,
+        icon: Church,
+        color: "#244b1f",
+      },
+      {
+        title: "نەتەوەکان",
+        text: "کۆمەڵگە نەتەوەییە جیاوازەکان و زمان و بەشداری کلتوورییان بناسە.",
+        image: card2,
+        icon: UsersRound,
+        color: "#16466b",
+      },
+      {
+        title: "چیرۆکی هاوبژین",
+        text: "چیرۆکی ڕاستەقینەی یەکگرتوویی و پاراستن و هاوبژینی ڕۆژانە لە کوردستان.",
+        image: card3,
+        icon: HeartHandshake,
+        color: "#52235f",
+      },
+    ],
   },
-  {
-    title: "Stories of Coexistence",
-    text: "Real stories of unity, protection, and everyday coexistence across Kurdistan.",
-    image: card3,
-    icon: HeartHandshake,
-    color: "#52235f",
+  ar: {
+    languageLabel: "العربية",
+    title: ["التنوع الديني", "والقومي", "في كوردستان"],
+    subtitle: "كوردستان: مهد التعايش",
+    description:
+      "عبر الأديان واللغات والثقافات، تظل كوردستان موطناً دائماً للاحترام والوحدة والتراث المشترك.",
+    sharedTitle: "احتفالات مشتركة",
+    sharedText: "مهرجانات وأعياد نحتفل بها معاً.",
+    cards: [
+      {
+        title: "الأديان",
+        text: "اكتشف الإرث الديني الغني والتقاليد المقدسة في كوردستان.",
+        image: card1,
+        icon: Church,
+        color: "#244b1f",
+      },
+      {
+        title: "القوميات",
+        text: "تعرّف على المجتمعات القومية المتنوعة ولغاتها وإسهاماتها الثقافية.",
+        image: card2,
+        icon: UsersRound,
+        color: "#16466b",
+      },
+      {
+        title: "قصص التعايش",
+        text: "قصص حقيقية عن الوحدة والحماية والتعايش اليومي في كوردستان.",
+        image: card3,
+        icon: HeartHandshake,
+        color: "#52235f",
+      },
+    ],
   },
-];
+};
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
@@ -59,6 +147,13 @@ export default function ReligiousDiversityPage({
   onBack,
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [lang, setLang] = React.useState<LangCode>("en");
+  const content = pageContent[lang];
+  const dir = lang === "en" ? "ltr" : "rtl";
+
+  const handleLanguageChange = () => {
+    setLang((prev) => (prev === "en" ? "ku" : prev === "ku" ? "ar" : "en"));
+  };
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -82,7 +177,10 @@ export default function ReligiousDiversityPage({
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main
+      dir={dir}
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+    >
       <section
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-8 py-10 sm:px-12 lg:px-20"
@@ -90,7 +188,14 @@ export default function ReligiousDiversityPage({
         <img
           src={bg}
           alt=""
-          className="absolute inset-0 h-[calc(70vh-160px)] w-full object-cover"
+          className="absolute inset-0 h-[calc(70vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[calc(70vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+          }}
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/78 via-[#fbf1df]/20 to-[#f4dfbb]/92" />
@@ -107,10 +212,12 @@ export default function ReligiousDiversityPage({
 
         <button
           data-rd-animate="true"
+          type="button"
+          onClick={handleLanguageChange}
           className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
         >
           <Globe2 className="h-5 w-5" />
-          ENGLISH
+          {content.languageLabel}
         </button>
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-[1180px] flex-col">
@@ -123,15 +230,15 @@ export default function ReligiousDiversityPage({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.06em] text-[#3b2410] sm:text-[76px] lg:text-[88px]">
-              Religious &
+              {content.title[0]}
               <br />
-              National Diversity
+              {content.title[1]}
               <br />
-              in Kurdistan
+              {content.title[2]}
             </h1>
 
             <h2 className="mt-5 font-serif text-[24px] font-semibold uppercase tracking-[0.08em] text-[#b27a22] sm:text-[30px]">
-              Kurdistan: The Cradle of Coexistence
+              {content.subtitle}
             </h2>
 
             <div className="mx-auto mt-4 w-[190px]">
@@ -139,8 +246,7 @@ export default function ReligiousDiversityPage({
             </div>
 
             <p className="mx-auto mt-5 max-w-[610px] text-[21px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[26px]">
-              Across faiths, languages, and cultures, Kurdistan stands as a
-              timeless home of respect, unity, and shared heritage.
+              {content.description}
             </p>
           </header>
 
@@ -150,7 +256,7 @@ export default function ReligiousDiversityPage({
             data-rd-animate="true"
             className="mx-auto grid w-full max-w-[1040px] grid-cols-1 gap-6 pb-7 sm:grid-cols-3"
           >
-            {cards.map((card) => {
+            {content.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -202,10 +308,10 @@ export default function ReligiousDiversityPage({
             </div>
 
             <p className="flex-1 font-serif text-[25px] font-semibold uppercase leading-tight text-[#3b2410]">
-              Shared Celebrations
+              {content.sharedTitle}
               <br />
               <span className="text-[17px] normal-case font-semibold text-[#6a4a25]">
-                Festivals and holidays we celebrate together.
+                {content.sharedText}
               </span>
             </p>
 
