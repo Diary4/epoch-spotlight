@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-2.png";
+import bg from "@/assets/images/religions/r-4.png";
 import lalish from "@/assets/mainImages/story-1.png";
 import peacock from "@/assets/mainImages/story-2.png";
 import festival from "@/assets/mainImages/2005.png";
@@ -86,13 +86,20 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
         <img
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-[calc(40vh-10rem)] w-full object-cover object-center"
+          className="absolute left-0 top-0 h-[calc(60vh-10rem)] w-full object-cover object-center"
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[calc(60vh-10rem)] z-[1] h-24 -translate-y-full blur-[2px]"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+          }}
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/35 via-[#fbf1df]/15 to-[#fbf1df]" />
-        <div className="absolute left-0 top-[670px] h-[150px] w-full bg-gradient-to-b from-transparent to-[#fbf1df]" />
+        {/* <div className="absolute left-0 top-[670px] h-[150px] w-full bg-gradient-to-b from-transparent to-[#fbf1df]" /> */}
 
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
+        {/* <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}
 
         <button
           type="button"
