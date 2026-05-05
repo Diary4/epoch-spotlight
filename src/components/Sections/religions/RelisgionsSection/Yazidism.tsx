@@ -101,10 +101,10 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
           data-yazidi-hero="true"
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-[calc(60vh-10rem)] w-full object-cover object-center"
+          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 top-[calc(60vh-10rem)] z-[1] h-24 -translate-y-full blur-[2px]"
+          className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
           style={{
             background:
               "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
