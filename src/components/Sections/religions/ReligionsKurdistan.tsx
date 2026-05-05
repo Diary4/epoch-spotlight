@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-2.png";
+import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";
 
 const religions = [
@@ -92,7 +93,7 @@ export default function ReligionsKurdistan({
   onBack,
 }: ReligionsKurdistanProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const [subPage, setSubPage] = React.useState<null | "yazidism">(null);
+  const [subPage, setSubPage] = React.useState<null | "christianity" | "yazidism">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -129,6 +130,10 @@ export default function ReligionsKurdistan({
 
     return () => ctx.revert();
   }, []);
+
+  if (subPage === "christianity") {
+    return <ChristianityPage onBack={() => setSubPage(null)} />;
+  }
 
   if (subPage === "yazidism") {
     return <YazidismPage onBack={() => setSubPage(null)} />;
@@ -208,26 +213,39 @@ export default function ReligionsKurdistan({
           >
             {religions.map((item) => {
               const Icon = item.icon;
+              const isChristianity = item.title === "Christianity";
               const isYazidism = item.title === "Yazidism";
+              const subPageTarget = isChristianity
+                ? ("christianity" as const)
+                : isYazidism
+                  ? ("yazidism" as const)
+                  : null;
+              const isNavCard = subPageTarget !== null;
 
               return (
                 <article
                   key={item.title}
-                  role={isYazidism ? "button" : undefined}
-                  tabIndex={isYazidism ? 0 : undefined}
-                  onClick={isYazidism ? () => setSubPage("yazidism") : undefined}
+                  role={isNavCard ? "button" : undefined}
+                  tabIndex={isNavCard ? 0 : undefined}
+                  onClick={isNavCard ? () => setSubPage(subPageTarget) : undefined}
                   onKeyDown={
-                    isYazidism
+                    isNavCard
                       ? (e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            setSubPage("yazidism");
+                            setSubPage(subPageTarget);
                           }
                         }
                       : undefined
                   }
-                  aria-label={isYazidism ? "Open Yazidism page" : undefined}
-                  className={`flex min-h-[360px] flex-col items-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/88 px-6 py-8 text-center shadow-[0_12px_24px_rgba(75,45,12,0.13)] backdrop-blur-sm ${isYazidism ? "cursor-pointer outline-none transition hover:ring-2 hover:ring-[#d2a35a]/50 focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
+                  aria-label={
+                    isChristianity
+                      ? "Open Christianity page"
+                      : isYazidism
+                        ? "Open Yazidism page"
+                        : undefined
+                  }
+                  className={`flex min-h-[360px] flex-col items-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/88 px-6 py-8 text-center shadow-[0_12px_24px_rgba(75,45,12,0.13)] backdrop-blur-sm ${isNavCard ? "cursor-pointer outline-none transition hover:ring-2 hover:ring-[#d2a35a]/50 focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
                 >
                   <Icon
                     className="mb-8 h-20 w-20"
