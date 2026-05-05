@@ -16,6 +16,7 @@ import card2 from "@/assets/mainImages/2005.png";
 import card3 from "@/assets/mainImages/2005.png";
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
+import StoriesOfCoexistencePage from "@/components/Sections/religions/Coexistence";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -166,7 +167,9 @@ export default function ReligiousDiversityPage({
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [lang, setLang] = React.useState<LangCode>("en");
-  const [subPage, setSubPage] = React.useState<null | "religionsKurdistan" | "nationalities">(null);
+  const [subPage, setSubPage] = React.useState<
+    null | "religionsKurdistan" | "nationalities" | "coexistence"
+  >(null);
   const content = pageContent[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -215,6 +218,10 @@ export default function ReligiousDiversityPage({
         onBack={() => setSubPage(null)}
       />
     );
+  }
+
+  if (subPage === "coexistence") {
+    return <StoriesOfCoexistencePage />;
   }
 
   return (
@@ -304,7 +311,9 @@ export default function ReligiousDiversityPage({
                   ? ("religionsKurdistan" as const)
                   : card.id === "nationalities"
                     ? ("nationalities" as const)
-                    : null;
+                    : card.id === "coexistence"
+                      ? ("coexistence" as const)
+                      : null;
               const isNavCard = subPageTarget !== null;
 
               return (
