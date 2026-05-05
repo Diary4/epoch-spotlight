@@ -221,7 +221,7 @@ export default function ReligiousDiversityPage({
   }
 
   if (subPage === "coexistence") {
-    return <StoriesOfCoexistencePage />;
+    return <StoriesOfCoexistencePage onBack={() => setSubPage(null)} />;
   }
 
   return (
