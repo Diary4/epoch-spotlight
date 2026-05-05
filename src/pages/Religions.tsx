@@ -181,18 +181,32 @@ export default function ReligiousDiversityPage({
     if (!sectionRef.current || subPage) return;
 
     const ctx = gsap.context(() => {
+      gsap.set("[data-rd-hero='true']", {
+        autoAlpha: 0,
+        scale: 1.04,
+      });
       gsap.set("[data-rd-animate='true']", {
         autoAlpha: 0,
         y: 24,
       });
 
-      gsap.to("[data-rd-animate='true']", {
+      const tl = gsap.timeline();
+      tl.to("[data-rd-hero='true']", {
         autoAlpha: 1,
-        y: 0,
-        duration: 0.9,
-        stagger: 0.08,
+        scale: 1,
+        duration: 0.8,
         ease: "power2.out",
-      });
+      }).to(
+        "[data-rd-animate='true']",
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.08,
+          ease: "power2.out",
+        },
+        "-=0.2",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -234,6 +248,7 @@ export default function ReligiousDiversityPage({
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-8 py-10 sm:px-12 lg:px-20"
       >
         <img
+          data-rd-hero="true"
           src={bg}
           alt=""
           className="absolute inset-0 h-[calc(70vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"

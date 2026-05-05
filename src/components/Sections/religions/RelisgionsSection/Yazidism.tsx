@@ -60,18 +60,32 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      gsap.set("[data-yazidi-hero='true']", {
+        autoAlpha: 0,
+        scale: 1.04,
+      });
       gsap.set("[data-yazidi-animate='true']", {
         autoAlpha: 0,
         y: 24,
       });
 
-      gsap.to("[data-yazidi-animate='true']", {
+      const tl = gsap.timeline();
+      tl.to("[data-yazidi-hero='true']", {
         autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
+        scale: 1,
+        duration: 0.8,
         ease: "power2.out",
-      });
+      }).to(
+        "[data-yazidi-animate='true']",
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.85,
+          stagger: 0.07,
+          ease: "power2.out",
+        },
+        "-=0.2",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -84,6 +98,7 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <img
+          data-yazidi-hero="true"
           src={bg}
           alt=""
           className="absolute left-0 top-0 h-[calc(60vh-10rem)] w-full object-cover object-center"
@@ -96,7 +111,7 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/35 via-[#fbf1df]/15 to-[#fbf1df]" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/35 via-[#fbf1df]/15 to-[#fbf1df]" /> */}
         {/* <div className="absolute left-0 top-[670px] h-[150px] w-full bg-gradient-to-b from-transparent to-[#fbf1df]" /> */}
 
         {/* <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}

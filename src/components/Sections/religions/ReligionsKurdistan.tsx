@@ -99,18 +99,32 @@ export default function ReligionsKurdistan({
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      gsap.set("[data-religion-hero='true']", {
+        autoAlpha: 0,
+        scale: 1.04,
+      });
       gsap.set("[data-religion-animate='true']", {
         autoAlpha: 0,
         y: 24,
       });
 
-      gsap.to("[data-religion-animate='true']", {
+      const tl = gsap.timeline();
+      tl.to("[data-religion-hero='true']", {
         autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
+        scale: 1,
+        duration: 0.8,
         ease: "power2.out",
-      });
+      }).to(
+        "[data-religion-animate='true']",
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.85,
+          stagger: 0.07,
+          ease: "power2.out",
+        },
+        "-=0.2",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -130,6 +144,7 @@ export default function ReligionsKurdistan({
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <img
+          data-religion-hero="true"
           src={bg}
           alt=""
           className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"

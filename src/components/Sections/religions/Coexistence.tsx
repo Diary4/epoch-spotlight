@@ -85,18 +85,32 @@ export default function StoriesOfCoexistencePage({
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      gsap.set("[data-story-hero='true']", {
+        autoAlpha: 0,
+        scale: 1.04,
+      });
       gsap.set("[data-story-animate='true']", {
         autoAlpha: 0,
         y: 24,
       });
 
-      gsap.to("[data-story-animate='true']", {
+      const tl = gsap.timeline();
+      tl.to("[data-story-hero='true']", {
         autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
+        scale: 1,
+        duration: 0.8,
         ease: "power2.out",
-      });
+      }).to(
+        "[data-story-animate='true']",
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.85,
+          stagger: 0.07,
+          ease: "power2.out",
+        },
+        "-=0.2",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -109,6 +123,7 @@ export default function StoriesOfCoexistencePage({
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-4 py-6 sm:px-8 sm:py-9 lg:px-16"
       >
         <img
+          data-story-hero="true"
           src={bg}
           alt=""
           className="absolute left-0 top-0 h-[min(46vh,26rem)] w-full object-cover object-center"
