@@ -111,7 +111,7 @@ export default function Nationalities({
         <img
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-[max(14rem,calc(50vh-10rem))] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+          className="pointer-events-none absolute left-0 top-0 z-[1] h-[max(14rem,calc(50vh-10rem))] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
         <div
           className="pointer-events-none absolute inset-x-0 top-[max(14rem,calc(50vh-10rem))] z-[1] h-24 -translate-y-full blur-[2px]"
@@ -121,7 +121,7 @@ export default function Nationalities({
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/82 to-[#fbf1df]" />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#fbf1df]/15 via-[#fbf1df]/58 to-[#fbf1df]" />
         <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
 
         <button
