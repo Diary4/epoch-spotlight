@@ -15,6 +15,7 @@ import zoroastrianism from "@/assets/mainImages/story-2.png";
 import judaism from "@/assets/mainImages/2005.png";
 import bahai from "@/assets/images/bg-2.jpg";
 import mandaean from "@/assets/images/kurdistan.jpg";
+import DiversityMapPage from "@/components/Sections/religions/RelisgionsSection/Diversities";
 
 const faiths = [
   {
@@ -74,6 +75,7 @@ export default function OtherFaithTraditionsPage({
   onBack,
 }: OtherFaithTraditionsPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [subPage, setSubPage] = React.useState<null | "diversities">(null);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -95,6 +97,10 @@ export default function OtherFaithTraditionsPage({
 
     return () => ctx.revert();
   }, []);
+
+  if (subPage === "diversities") {
+    return <DiversityMapPage onBack={() => setSubPage(null)} />;
+  }
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
@@ -220,7 +226,11 @@ export default function OtherFaithTraditionsPage({
               </span>
             </p>
 
-            <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
+            <button
+              type="button"
+              onClick={() => setSubPage("diversities")}
+              className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
+            >
               <ChevronRight className="h-9 w-9" />
             </button>
           </section>
