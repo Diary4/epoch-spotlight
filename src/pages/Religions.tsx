@@ -18,6 +18,7 @@ import card3 from "@/assets/mainImages/2005.png";
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
 import StoriesOfCoexistencePage from "@/components/Sections/religions/Coexistence";
+import SharedCelebrationsPage from "@/components/Sections/religions/SharedCeleberations";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -169,7 +170,7 @@ export default function ReligiousDiversityPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<
-    null | "religionsKurdistan" | "nationalities" | "coexistence"
+    null | "religionsKurdistan" | "nationalities" | "coexistence" | "sharedCelebrations"
   >(null);
   const content = pageContent[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
@@ -237,6 +238,10 @@ export default function ReligiousDiversityPage({
 
   if (subPage === "coexistence") {
     return <StoriesOfCoexistencePage onBack={() => setSubPage(null)} />;
+  }
+
+  if (subPage === "sharedCelebrations") {
+    return <SharedCelebrationsPage onBack={() => setSubPage(null)} />;
   }
 
   return (
@@ -388,6 +393,16 @@ export default function ReligiousDiversityPage({
 
           <section
             data-rd-animate="true"
+            role="button"
+            tabIndex={0}
+            onClick={() => setSubPage("sharedCelebrations")}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setSubPage("sharedCelebrations");
+              }
+            }}
+            aria-label="Open Shared Celebrations page"
             className="mx-auto mb-4 flex w-full max-w-[760px] items-center gap-7 rounded-[28px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
           >
             <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#cf921d] text-white">

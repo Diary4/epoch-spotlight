@@ -1,6 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import {
+  ArrowLeft,
   ChevronRight,
   Cross,
   Flame,
@@ -62,7 +63,13 @@ function DecorativeLine({ color = "#c99a55" }) {
   );
 }
 
-export default function SharedCelebrationsPage() {
+type SharedCelebrationsPageProps = {
+  onBack?: () => void;
+};
+
+export default function SharedCelebrationsPage({
+  onBack,
+}: SharedCelebrationsPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
@@ -95,6 +102,15 @@ export default function SharedCelebrationsPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#fff7e8_0%,#fbf1df_45%,#f3dfbd_100%)]" />
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
+
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+          aria-label="Back"
+        >
+          <ArrowLeft className="h-7 w-7" />
+        </button>
 
         <button className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]">
           <Globe2 className="h-5 w-5" />
