@@ -96,7 +96,6 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
         >
           <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
         </button>
-        <div className="absolute inset-0 opacity-16 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(92vh,1100px)] w-full overflow-hidden">

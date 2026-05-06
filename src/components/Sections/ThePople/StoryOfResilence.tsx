@@ -72,7 +72,6 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
         >
           <ArrowLeft size={30} />
         </button>
-        <div className="pattern-layer pointer-events-none absolute inset-0 opacity-16 [background-image:radial-gradient(#d8b875_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="pattern-layer pointer-events-none absolute left-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d5b372_1px,transparent_1px),linear-gradient(-45deg,#d5b372_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="pattern-layer pointer-events-none absolute right-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d5b372_1px,transparent_1px),linear-gradient(-45deg,#d5b372_1px,transparent_1px)] [background-size:24px_24px]" />
 

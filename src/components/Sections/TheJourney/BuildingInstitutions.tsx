@@ -60,7 +60,6 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
         >
           <ArrowLeft size={32} />
         </button>
-        <div className="absolute inset-0 opacity-18 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="absolute left-0 top-0 h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute right-0 top-0 h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 

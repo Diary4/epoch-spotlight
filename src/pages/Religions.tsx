@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.png";
+import bg2 from "@/assets/images/religions/r-6.jpeg";
 import card1 from "@/assets/mainImages/2005.png";
 import card2 from "@/assets/mainImages/2005.png";
 import card3 from "@/assets/mainImages/2005.png";

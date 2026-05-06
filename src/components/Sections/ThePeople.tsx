@@ -8,7 +8,9 @@ import card2 from "@/assets/mainImages/card-2.PNG?url"
 import card1 from "@/assets/mainImages/card-1.PNG?url"
 import card3 from "@/assets/mainImages/card-3.PNG?url"
 import bgMainImage from "@/assets/mainImages/main.PNG?url"
+import peopleVideo from "@/assets/videos/thepeople.MP4?url"
 import bg from '@/assets/pexels-mohammad-majid-112544081-31576586.jpg'
+import peopleVideo2 from "@/assets/videos/dws.mp4?url"
 
 const cards: {
   id: ThePeopleCardId;
@@ -85,6 +87,7 @@ const CONTENT = { en, ar, ku } as const;
 
 export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: ThePeoplePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const peopleVideoRef = React.useRef<HTMLVideoElement | null>(null);
   const data = CONTENT[lang] as any;
   const people = data?.people ?? {};
   const items = people?.items ?? [];
@@ -204,6 +207,30 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
     return () => ctx.revert();
   }, []);
 
+  React.useEffect(() => {
+    const videoEl = peopleVideoRef.current;
+    if (!videoEl) return;
+
+    const tryPlay = () => {
+      videoEl.play().catch(() => {
+        // Ignore autoplay promise rejections from browser policies.
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        tryPlay();
+      }
+    };
+
+    tryPlay();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e7] p-0 text-[#1e352d]">
       <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
@@ -215,13 +242,23 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
-        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:28px_28px]" />
-        <img
+        <video
+          ref={peopleVideoRef}
+          data-people-bg="true"
+          src={peopleVideo2}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="pointer-events-none absolute inset-x-0 h-auto w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[100px]"
+        />
+        {/* <img
           data-people-bg="true"
           src={bgMainImage}
           alt=""
           className="pointer-events-none absolute inset-x-0 h-auto w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[100px]"
-        />
+        /> */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[clamp(220px,30vh,420px)] bg-gradient-to-b from-[#fcf7ed] via-[#fcf7ed]/96 via-45% to-transparent" />
         <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-transparent to-[#fcf7ed]/78 sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
 

@@ -75,7 +75,6 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
           <ArrowLeft size={30} />
         </button>
 
-        <div className="pattern-layer pointer-events-none absolute inset-0 opacity-16 [background-image:radial-gradient(#d8b875_1px,transparent_1px)] [background-size:26px_26px]" />
 
         {/* --- FIXED HERO IMAGE SECTION --- */}
         <div className="hero-image pointer-events-none absolute right-0 top-0 h-full w-[70%] z-0">

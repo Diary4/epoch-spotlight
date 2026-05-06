@@ -126,13 +126,19 @@ export default function StoriesOfCoexistencePage({
           data-story-hero="true"
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-[min(46vh,26rem)] w-full object-cover object-center"
+          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/15 to-[#fbf1df]" />
-        <div className="absolute left-0 top-[min(70vh,42rem)] h-24 w-full bg-gradient-to-b from-transparent to-[#fbf1df] sm:h-32 md:h-40" />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+          }}
+        />
 
-        <div className="pointer-events-none absolute inset-2 rounded-[20px] border-2 border-[#d2a35a]/40 sm:inset-4 sm:rounded-[30px]" />
+        {/* <div className="pointer-events-none absolute inset-2 rounded-[20px] border-2 border-[#d2a35a]/40 sm:inset-4 sm:rounded-[30px]" /> */}
 
         <button
           type="button"
