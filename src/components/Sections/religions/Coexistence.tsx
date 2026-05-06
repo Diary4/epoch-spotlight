@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Quote,
 } from "lucide-react";
+import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
 import bg from "@/assets/images/religions/r-2.png";
 
@@ -80,6 +81,7 @@ export default function StoriesOfCoexistencePage({
   onBack,
 }: StoriesOfCoexistencePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [subPage, setSubPage] = React.useState<null | "timeline">(null);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -115,6 +117,10 @@ export default function StoriesOfCoexistencePage({
 
     return () => ctx.revert();
   }, []);
+
+  if (subPage === "timeline") {
+    return <TimelineOfCoexistencePage onBack={() => setSubPage(null)} />;
+  }
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
@@ -275,7 +281,11 @@ export default function StoriesOfCoexistencePage({
               </span>
             </p>
 
-            <button className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] sm:h-16 sm:w-16">
+            <button
+              type="button"
+              onClick={() => setSubPage("timeline")}
+              className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] sm:h-16 sm:w-16"
+            >
               <ChevronRight className="h-8 w-8 sm:h-9 sm:w-9" />
             </button>
           </section>
