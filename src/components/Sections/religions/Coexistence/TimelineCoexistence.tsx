@@ -195,7 +195,7 @@ export default function TimelineOfCoexistencePage({
             data-timeline-animate="true"
             className="relative mx-auto mt-10 max-w-[980px]"
           >
-            <div className="absolute left-[210px] top-0 hidden h-full w-px bg-[#c3923a]/55 lg:block" />
+            <div className="absolute left-[235px] top-0 hidden h-full w-px bg-[#c3923a]/55 lg:block" />
 
             <div className="space-y-7">
               {timeline.map((item) => {
