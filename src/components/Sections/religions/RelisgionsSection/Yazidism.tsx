@@ -7,6 +7,7 @@ import {
   HeartHandshake,
   Sparkles,
 } from "lucide-react";
+import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
 import bg from "@/assets/images/religions/r-4.png";
 import lalish from "@/assets/mainImages/story-1.png";
@@ -55,6 +56,7 @@ type YazidismPageProps = {
 
 export default function YazidismPage({ onBack }: YazidismPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [subPage, setSubPage] = React.useState<null | "otherFaith">(null);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -90,6 +92,10 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
 
     return () => ctx.revert();
   }, []);
+
+  if (subPage === "otherFaith") {
+    return <OtherFaithTraditionsPage onBack={() => setSubPage(null)} />;
+  }
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
@@ -226,7 +232,11 @@ export default function YazidismPage({ onBack }: YazidismPageProps) {
               </span>
             </p>
 
-            <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
+            <button
+              type="button"
+              onClick={() => setSubPage("otherFaith")}
+              className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
+            >
               <ChevronRight className="h-9 w-9" />
             </button>
           </section>
