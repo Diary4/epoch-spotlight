@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-3.png";
+import LanguagesOfKurdistanPage from "@/components/Sections/religions/Languages/KurdistanLanguages";
 
 const communities = [
   {
@@ -76,6 +77,7 @@ export default function Nationalities({
   onBack,
 }: NationalitiesProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [subPage, setSubPage] = React.useState<null | "languages">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -112,6 +114,10 @@ export default function Nationalities({
 
     return () => ctx.revert();
   }, []);
+
+  if (subPage === "languages") {
+    return <LanguagesOfKurdistanPage onBack={() => setSubPage(null)} />;
+  }
 
   return (
     <main
@@ -246,6 +252,7 @@ export default function Nationalities({
 
             <button
               type="button"
+              onClick={() => setSubPage("languages")}
               className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)]"
             >
               <ChevronRight className="h-9 w-9" />
