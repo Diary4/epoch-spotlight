@@ -251,17 +251,9 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 h-auto w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[100px]"
+          className="pointer-events-none absolute inset-x-0 top-[calc(18vh-160px)] h-[calc(70vh-160px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
-        {/* <img
-          data-people-bg="true"
-          src={bgMainImage}
-          alt=""
-          className="pointer-events-none absolute inset-x-0 h-auto w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:radial-gradient(circle_at_50%_45%,black_0%,black_58%,transparent_88%)] sm:top-[190px] lg:top-[100px]"
-        /> */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[clamp(220px,30vh,420px)] bg-gradient-to-b from-[#fcf7ed] via-[#fcf7ed]/96 via-45% to-transparent" />
-        <div className="absolute inset-x-0 top-[190px] h-[560px] bg-gradient-to-b from-transparent via-transparent to-[#fcf7ed]/78 sm:top-[240px] sm:h-[620px] lg:top-[280px] lg:h-[720px]" />
-
+       
         {/* Hero */}
         <header className="relative z-10 text-center sm:pt-8 lg:pt-12">
           <h1 data-people-hero="true" className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
