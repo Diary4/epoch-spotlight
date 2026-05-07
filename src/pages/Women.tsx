@@ -120,11 +120,11 @@ export default function LegacyPage({
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-14 sm:px-12 lg:px-16"
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-6 sm:px-12 sm:py-8 lg:px-16"
       >
 
         {/* Hero */}
-        <section className="relative z-10 grid flex-1 grid-cols-1 items-center gap-8 pt-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <section className="relative z-10 grid flex-1 grid-cols-1 items-center gap-8 pt-0 lg:grid-cols-[0.85fr_1.15fr]">
           <div data-legacy-fade="true" className="relative z-20">
             <div className="mb-5 flex items-center gap-5 text-[#b4864d]">
               <span className="h-px w-20 bg-[#d4b98f]" />
