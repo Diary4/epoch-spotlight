@@ -86,6 +86,7 @@ export default function Nationalities({
     text: nationalitiesData?.communities?.[i]?.text ?? item.text,
   }));
   const pageTitle = nationalitiesData?.title ?? ["Nationalities &", "Communities"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle = nationalitiesData?.subtitle ?? "Languages, Heritage, and Belonging.";
   const pageDescription =
     nationalitiesData?.description ??
@@ -199,9 +200,12 @@ export default function Nationalities({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              {pageTitle[0] ?? "Nationalities &"}
-              <br />
-              {pageTitle[1] ?? "Communities"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.13em] text-[#a46f22] sm:text-[30px]">

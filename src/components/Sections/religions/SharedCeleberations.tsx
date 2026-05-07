@@ -86,6 +86,7 @@ export default function SharedCelebrationsPage({
     text: celebrationsData?.celebrations?.[i]?.text ?? item.text,
   }));
   const pageTitle = celebrationsData?.title ?? ["Shared", "Celebrations"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle =
     celebrationsData?.subtitle ?? "Festivals, Holidays, and Moments of Joy.";
   const togetherTitle = celebrationsData?.togetherCard?.title ?? "Together in Celebration";
@@ -160,9 +161,12 @@ export default function SharedCelebrationsPage({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.03] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              {pageTitle[0] ?? "Shared"}
-              <br />
-              {pageTitle[1] ?? "Celebrations"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-4 font-serif text-[23px] font-semibold uppercase tracking-[0.1em] text-[#a46f22] sm:text-[29px]">

@@ -19,48 +19,56 @@ import ar from "@/data/ar.json";
 
 const religions = [
   {
+    id: "sunniIslam",
     title: "Sunni Islam",
     text: "The largest faith tradition, rooted in Sunni Islam and Islamic scholarship.",
     icon: MoonStar,
     color: "#2f6b3f",
   },
   {
+    id: "christianity",
     title: "Christianity",
     text: "Ancient Christian communities with deep historical roots across Kurdistan.",
     icon: Cross,
     color: "#c58b16",
   },
   {
+    id: "yazidism",
     title: "Yazidism",
     text: "A distinct spiritual tradition centered on reverence, ethics, and devotion.",
     icon: Star,
     color: "#c58b16",
   },
   {
+    id: "otherFaith",
     title: "Yarsanism (Kaka'i)",
     text: "A mystical and humanistic path emphasizing truth, righteousness, and inner wisdom.",
     icon: Star,
     color: "#47704c",
   },
   {
+    id: "zoroastrianism",
     title: "Zoroastrianism",
     text: "An ancient faith of light and truth with a rich philosophical heritage.",
     icon: Star,
     color: "#c58b16",
   },
   {
+    id: "judaism",
     title: "Judaism",
     text: "A historic community with enduring contributions to Kurdish life.",
     icon: Star,
     color: "#2e668c",
   },
   {
+    id: "bahaiFaith",
     title: "Baha’i Faith",
     text: "A global faith that teaches unity, justice, and the oneness of humanity.",
     icon: Star,
     color: "#47704c",
   },
   {
+    id: "sabeanMandaeanism",
     title: "Sabean-Mandaeanism",
     text: "An ancient baptismal tradition centered on spiritual purity and renewal.",
     icon: Waves,
@@ -105,6 +113,7 @@ export default function ReligionsKurdistan({
     text: religionsData?.cards?.[i]?.text ?? item.text,
   }));
   const pageTitle = religionsData?.title ?? ["Religions", "of Kurdistan"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle =
     religionsData?.subtitle ?? "Eight recognized faiths, one shared homeland.";
   const footerTitle = religionsData?.footer?.title ?? "One Land, Many Paths";
@@ -240,9 +249,12 @@ export default function ReligionsKurdistan({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.02] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              {pageTitle[0] ?? "Religions"}
-              <br />
-              {pageTitle[1] ?? "of Kurdistan"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-5 font-serif text-[25px] font-semibold text-[#a46f22] sm:text-[31px]">
@@ -260,9 +272,9 @@ export default function ReligionsKurdistan({
           >
             {localizedReligions.map((item) => {
               const Icon = item.icon;
-              const isChristianity = item.title === "Christianity";
-              const isYazidism = item.title === "Yazidism";
-              const isOtherFaith = item.title === "Yarsanism (Kaka'i)";
+              const isChristianity = item.id === "christianity";
+              const isYazidism = item.id === "yazidism";
+              const isOtherFaith = item.id === "otherFaith";
               const subPageTarget = isChristianity
                 ? ("christianity" as const)
                 : isYazidism

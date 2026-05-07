@@ -101,6 +101,7 @@ export default function StoriesOfCoexistencePage({
     text: coexistenceData?.timelinePreview?.items?.[i]?.text ?? item.text,
   }));
   const pageTitle = coexistenceData?.title ?? ["Stories of", "Coexistence"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle =
     coexistenceData?.subtitle ?? "Protection, hospitality, and shared life.";
   const quoteText =
@@ -215,9 +216,12 @@ export default function StoriesOfCoexistencePage({
             </div>
 
             <h1 className="font-serif text-[36px] font-semibold uppercase leading-[1.06] tracking-[0.04em] text-[#2f1f12] sm:text-[58px] sm:leading-[1.02] sm:tracking-[0.06em] lg:text-[90px]">
-              {pageTitle[0] ?? "Stories of"}
-              <br />
-              {pageTitle[1] ?? "Coexistence"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-3 font-serif text-[18px] font-semibold text-[#a46f22] sm:mt-4 sm:text-[25px] lg:text-[31px]">

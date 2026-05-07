@@ -92,6 +92,7 @@ export default function OtherFaithTraditionsPage({
     label: otherFaithData?.faiths?.[i]?.label ?? faith.label,
   }));
   const pageTitle = otherFaithData?.title ?? ["Other Faith", "Traditions"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle =
     otherFaithData?.subtitle ??
     "Yarsanism, Zoroastrianism, Judaism,\nBaha'i Faith, and Sabean-Mandaeanism";
@@ -163,9 +164,12 @@ export default function OtherFaithTraditionsPage({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              {pageTitle[0] ?? "Other Faith"}
-              <br />
-              {pageTitle[1] ?? "Traditions"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-4 font-serif text-[22px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#a46f22] sm:text-[28px]">

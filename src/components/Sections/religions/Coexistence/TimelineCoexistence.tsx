@@ -142,6 +142,7 @@ export default function TimelineOfCoexistencePage({
     text: timelineData?.threads?.items?.[i]?.text ?? item.text,
   }));
   const pageTitle = timelineData?.title ?? ["Timeline of", "Coexistence"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle =
     timelineData?.subtitle ?? "A journey through memory, resilience, and shared life.";
   const threadsTitle = timelineData?.threads?.title ?? "Threads That Connect Us";
@@ -209,9 +210,12 @@ export default function TimelineOfCoexistencePage({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              {pageTitle[0] ?? "Timeline of"}
-              <br />
-              {pageTitle[1] ?? "Coexistence"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold text-[#a46f22] sm:text-[30px]">

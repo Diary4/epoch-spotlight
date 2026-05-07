@@ -84,6 +84,7 @@ export default function DiversityMapPage({
     text: mapData?.infoCards?.[i]?.text ?? card.text,
   }));
   const pageTitle = mapData?.title ?? ["Explore", "The Diversity"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle = mapData?.subtitle ?? "A Living Map of Coexistence";
   const pageDescription =
     mapData?.description ??
@@ -149,9 +150,12 @@ export default function DiversityMapPage({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[0.98] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              {pageTitle[0] ?? "Explore"}
-              <br />
-              {pageTitle[1] ?? "The Diversity"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.08em] text-[#a46f22] sm:text-[30px]">

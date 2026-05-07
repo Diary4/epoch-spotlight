@@ -72,6 +72,7 @@ export default function LanguagesOfKurdistanPage({
     text: languagesData?.languages?.[i]?.text ?? item.text,
   }));
   const pageTitle = languagesData?.title ?? ["Languages", "of Kurdistan"];
+  const pageTitleLines = Array.isArray(pageTitle) ? pageTitle : [pageTitle];
   const pageSubtitle = languagesData?.subtitle ?? "Voices, Scripts, and Living Identity";
   const pageDescription =
     languagesData?.description ??
@@ -174,9 +175,12 @@ export default function LanguagesOfKurdistanPage({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.04] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              {pageTitle[0] ?? "Languages"}
-              <br />
-              {pageTitle[1] ?? "of Kurdistan"}
+              {pageTitleLines.map((line, idx) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < pageTitleLines.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </h1>
 
             <p className="mt-4 font-serif text-[23px] font-semibold uppercase tracking-[0.09em] text-[#a46f22] sm:text-[29px]">
