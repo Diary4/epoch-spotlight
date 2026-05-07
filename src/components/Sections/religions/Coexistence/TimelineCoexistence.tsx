@@ -16,6 +16,8 @@ import {
   Sun,
   UsersRound,
 } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const timeline = [
   {
@@ -126,6 +128,25 @@ export default function TimelineOfCoexistencePage({
   onLanguageChange,
   onBack,
 }: TimelineOfCoexistencePageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const timelineData = data?.religions?.timelineOfCoexistence ?? {};
+  const localizedTimeline = timeline.map((item, i) => ({
+    ...item,
+    period: timelineData?.timeline?.[i]?.period ?? item.period,
+    title: timelineData?.timeline?.[i]?.title ?? item.title,
+    text: timelineData?.timeline?.[i]?.text ?? item.text,
+  }));
+  const localizedThreads = threads.map((item, i) => ({
+    ...item,
+    title: timelineData?.threads?.items?.[i]?.title ?? item.title,
+    text: timelineData?.threads?.items?.[i]?.text ?? item.text,
+  }));
+  const pageTitle = timelineData?.title ?? ["Timeline of", "Coexistence"];
+  const pageSubtitle =
+    timelineData?.subtitle ?? "A journey through memory, resilience, and shared life.";
+  const threadsTitle = timelineData?.threads?.title ?? "Threads That Connect Us";
+  const footerTitle = timelineData?.footer?.title ?? "Past and present, woven together.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -188,13 +209,13 @@ export default function TimelineOfCoexistencePage({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              Timeline of
+              {pageTitle[0] ?? "Timeline of"}
               <br />
-              Coexistence
+              {pageTitle[1] ?? "Coexistence"}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold text-[#a46f22] sm:text-[30px]">
-              A journey through memory, resilience, and shared life.
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-7 w-[190px]">
@@ -209,7 +230,7 @@ export default function TimelineOfCoexistencePage({
             <div className="absolute left-[235px] top-0 hidden h-full w-px bg-[#c3923a]/55 lg:block" />
 
             <div className="space-y-7">
-              {timeline.map((item) => {
+              {localizedTimeline.map((item) => {
                 const Icon = item.icon;
 
                 return (
@@ -254,13 +275,13 @@ export default function TimelineOfCoexistencePage({
             <div className="mx-auto mb-5 flex max-w-[560px] items-center gap-4">
               <span className="h-px flex-1 bg-[#c3923a]" />
               <h2 className="font-serif text-[22px] font-semibold uppercase tracking-[0.06em] text-[#3b2410]">
-                Threads That Connect Us
+                {threadsTitle}
               </h2>
               <span className="h-px flex-1 bg-[#c3923a]" />
             </div>
 
             <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
-              {threads.map((item) => {
+              {localizedThreads.map((item) => {
                 const Icon = item.icon;
 
                 return (
@@ -294,9 +315,7 @@ export default function TimelineOfCoexistencePage({
             <Sparkles className="h-20 w-20 shrink-0 text-[#d6a53a]" />
 
             <p className="font-serif text-[42px] leading-tight text-[#f6e3b4]">
-              Past and present,
-              <br />
-              <span className="italic text-[#e2b95d]">woven together.</span>
+              {footerTitle}
             </p>
 
             <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">

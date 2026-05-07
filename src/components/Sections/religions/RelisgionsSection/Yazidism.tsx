@@ -14,6 +14,8 @@ import lalish from "@/assets/mainImages/story-1.png";
 import peacock from "@/assets/mainImages/story-2.png";
 import festival from "@/assets/mainImages/2005.png";
 import candle from "@/assets/images/bg-2.jpg";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const cards = [
   {
@@ -63,6 +65,25 @@ export default function YazidismPage({
   onLanguageChange,
   onBack,
 }: YazidismPageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const yazidismData = data?.religions?.yazidism ?? {};
+  const localizedCards = cards.map((card, i) => ({
+    ...card,
+    title: yazidismData?.cards?.[i]?.title ?? card.title,
+    text: yazidismData?.cards?.[i]?.text ?? card.text,
+  }));
+  const pageTitle = yazidismData?.title ?? "Yazidism";
+  const pageSubtitle =
+    yazidismData?.subtitle ?? "Sacred memory, resilience, and spiritual continuity.";
+  const pageDescription =
+    yazidismData?.description ??
+    "Rooted in ancient wisdom and nurtured through generations, Yazidism is a faith of light, truth, and compassion. It honors creation, cherishes freedom, and upholds the dignity of every soul.";
+  const photoLabel = yazidismData?.photoLabel ?? "Lalish Temple – Yazidi Holy Site";
+  const footerTitle = yazidismData?.footer?.title ?? "Faith. Memory. Future.";
+  const footerText =
+    yazidismData?.footer?.text ??
+    "Through every trial, Yazidism endures. Our faith is our strength. Our memory is our promise. Our future is our light.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [subPage, setSubPage] = React.useState<null | "otherFaith">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
@@ -166,11 +187,11 @@ export default function YazidismPage({
             </div>
 
             <h1 className="font-serif text-[66px] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12] sm:text-[86px] lg:text-[104px]">
-              Yazidism
+              {pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[25px] font-semibold text-[#a46f22] sm:text-[31px]">
-              Sacred memory, resilience, and spiritual continuity.
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-6 w-[190px]">
@@ -178,9 +199,7 @@ export default function YazidismPage({
             </div>
 
             <p className="mx-auto mt-6 max-w-[620px] text-[19px] font-semibold leading-relaxed text-[#3f3528] sm:text-[23px]">
-              Rooted in ancient wisdom and nurtured through generations,
-              Yazidism is a faith of light, truth, and compassion. It honors
-              creation, cherishes freedom, and upholds the dignity of every soul.
+              {pageDescription}
             </p>
           </header>
 
@@ -191,7 +210,7 @@ export default function YazidismPage({
             className="mb-6 flex justify-end"
           >
             <span className="rounded-full border border-[#d8b875]/70 bg-[#fff8e9]/90 px-5 py-2 font-serif text-[16px] font-semibold text-[#6a4a25] shadow-sm">
-              Lalish Temple – Yazidi Holy Site
+              {photoLabel}
             </span>
           </div>
 
@@ -199,7 +218,7 @@ export default function YazidismPage({
             data-yazidi-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2"
           >
-            {cards.map((card) => (
+            {localizedCards.map((card) => (
               <article
                 key={card.title}
                 className="grid min-h-[255px] grid-cols-[135px_1fr] gap-5 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-6 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
@@ -241,14 +260,10 @@ export default function YazidismPage({
             </div>
 
             <p className="flex-1 font-serif text-[27px] font-semibold uppercase leading-tight text-[#3b2410]">
-              Faith. Memory. Future.
+              {footerTitle}
               <br />
               <span className="text-[18px] normal-case font-semibold text-[#6a4a25]">
-                Through every trial, Yazidism endures.
-                <br />
-                Our faith is our strength. Our memory is our promise.
-                <br />
-                Our future is our light.
+                {footerText}
               </span>
             </p>
 

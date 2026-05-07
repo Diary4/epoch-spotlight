@@ -14,6 +14,8 @@ import {
 import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
 import bg from "@/assets/images/religions/r-2.png";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const storyCards = [
   {
@@ -86,6 +88,31 @@ export default function StoriesOfCoexistencePage({
   onLanguageChange,
   onBack,
 }: StoriesOfCoexistencePageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const coexistenceData = data?.religions?.coexistence ?? {};
+  const localizedStoryCards = storyCards.map((card, i) => ({
+    ...card,
+    title: coexistenceData?.storyCards?.[i]?.title ?? card.title,
+    text: coexistenceData?.storyCards?.[i]?.text ?? card.text,
+  }));
+  const localizedTimeline = timeline.map((item, i) => ({
+    ...item,
+    year: coexistenceData?.timelinePreview?.items?.[i]?.year ?? item.year,
+    text: coexistenceData?.timelinePreview?.items?.[i]?.text ?? item.text,
+  }));
+  const pageTitle = coexistenceData?.title ?? ["Stories of", "Coexistence"];
+  const pageSubtitle =
+    coexistenceData?.subtitle ?? "Protection, hospitality, and shared life.";
+  const quoteText =
+    coexistenceData?.quote?.text ??
+    "In this land, we have learned that our differences do not divide us — they strengthen us.";
+  const quoteAuthor = coexistenceData?.quote?.author ?? "Elder from Kurdistan";
+  const timelineTitle = coexistenceData?.timelinePreview?.title ?? "A Journey Through Time";
+  const readStoryLabel = coexistenceData?.readStoryCta ?? "Read Story";
+  const footerTitle = coexistenceData?.footer?.title ?? "Together, We Build Tomorrow";
+  const footerText =
+    coexistenceData?.footer?.text ?? "Diversity is our strength. Coexistence is our legacy.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [subPage, setSubPage] = React.useState<null | "timeline">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
@@ -188,13 +215,13 @@ export default function StoriesOfCoexistencePage({
             </div>
 
             <h1 className="font-serif text-[36px] font-semibold uppercase leading-[1.06] tracking-[0.04em] text-[#2f1f12] sm:text-[58px] sm:leading-[1.02] sm:tracking-[0.06em] lg:text-[90px]">
-              Stories of
+              {pageTitle[0] ?? "Stories of"}
               <br />
-              Coexistence
+              {pageTitle[1] ?? "Coexistence"}
             </h1>
 
             <p className="mt-3 font-serif text-[18px] font-semibold text-[#a46f22] sm:mt-4 sm:text-[25px] lg:text-[31px]">
-              Protection, hospitality, and shared life.
+              {pageSubtitle}
             </p>
           </header>
 
@@ -208,12 +235,11 @@ export default function StoriesOfCoexistencePage({
             <Quote className="absolute bottom-3 right-3 h-7 w-7 rotate-180 text-[#c58b16] sm:bottom-5 sm:right-8 sm:h-10 sm:w-10" />
 
             <p className="mx-auto max-w-[760px] px-5 font-serif text-[18px] italic leading-relaxed text-[#3b2b1e] sm:px-0 sm:text-[24px]">
-              In this land, we have learned that our differences do not divide
-              us — they strengthen us.
+              {quoteText}
             </p>
 
             <p className="mt-2 font-serif text-[12px] font-semibold uppercase tracking-[0.12em] text-[#b27a22] sm:mt-3 sm:text-[15px] sm:tracking-[0.16em]">
-              Elder from Kurdistan
+              {quoteAuthor}
             </p>
           </section>
 
@@ -221,7 +247,7 @@ export default function StoriesOfCoexistencePage({
             data-story-animate="true"
             className="mt-6 grid grid-cols-1 gap-4 sm:mt-7 sm:gap-5 md:grid-cols-2 xl:grid-cols-4"
           >
-            {storyCards.map((card) => {
+            {localizedStoryCards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -247,7 +273,7 @@ export default function StoriesOfCoexistencePage({
                   <div className="my-4 h-px w-[120px] bg-[#d1a14f]" />
 
                   <button className="flex items-center gap-2 font-serif text-[13px] font-semibold uppercase text-[#6a4a25] sm:gap-3 sm:text-[15px]">
-                    Read Story
+                    {readStoryLabel}
                     <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                   </button>
                 </article>
@@ -259,7 +285,7 @@ export default function StoriesOfCoexistencePage({
             <div className="mx-auto flex max-w-[760px] items-center gap-3 sm:gap-5">
               <span className="h-px flex-1 bg-[#c3923a]" />
               <h2 className="text-center font-serif text-[18px] font-semibold uppercase tracking-[0.05em] text-[#8d611f] sm:text-[25px] sm:tracking-[0.07em]">
-                A Journey Through Time
+                {timelineTitle}
               </h2>
               <span className="h-px flex-1 bg-[#c3923a]" />
             </div>
@@ -267,7 +293,7 @@ export default function StoriesOfCoexistencePage({
             <div className="relative mt-5 grid grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 xl:grid-cols-4">
               <div className="absolute left-0 right-0 top-4 hidden h-px bg-[#c3923a] xl:block" />
 
-              {timeline.map((item) => (
+              {localizedTimeline.map((item) => (
                 <article key={item.year} className="relative text-center">
                   <div className="mx-auto mb-3 h-7 w-7 rounded-full border-4 border-[#f5e2b6] bg-[#c58b16] shadow-sm" />
 
@@ -292,10 +318,10 @@ export default function StoriesOfCoexistencePage({
             </div>
 
             <p className="flex-1 font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[25px]">
-              Together, We Build Tomorrow
+              {footerTitle}
               <br />
               <span className="text-[15px] normal-case font-semibold text-[#6a4a25] sm:text-[17px]">
-                Diversity is our strength. Coexistence is our legacy.
+                {footerText}
               </span>
             </p>
 

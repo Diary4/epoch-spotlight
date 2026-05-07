@@ -16,6 +16,8 @@ import {
 
 import bg from "@/assets/images/religions/r-7.png";
 import placeImg from "@/assets/mainImages/story-1.png";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const places = [
   { title: "Duhok", text: "A mosaic of cultures in the north.", x: "18%", y: "15%", icon: MoonStar, color: "#2f8a55" },
@@ -69,6 +71,28 @@ export default function DiversityMapPage({
   onLanguageChange,
   onBack,
 }: DiversityMapPageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const mapData = data?.religions?.diversityMap ?? {};
+  const localizedPlaces = places.map((place, i) => ({
+    ...place,
+    title: mapData?.places?.[i]?.title ?? place.title,
+    text: mapData?.places?.[i]?.text ?? place.text,
+  }));
+  const localizedInfoCards = infoCards.map((card, i) => ({
+    ...card,
+    title: mapData?.infoCards?.[i]?.title ?? card.title,
+    text: mapData?.infoCards?.[i]?.text ?? card.text,
+  }));
+  const pageTitle = mapData?.title ?? ["Explore", "The Diversity"];
+  const pageSubtitle = mapData?.subtitle ?? "A Living Map of Coexistence";
+  const pageDescription =
+    mapData?.description ??
+    "Across mountains and valleys, different faiths, languages, and communities have woven a rich tapestry of life together-today and for generations.";
+  const countries = mapData?.countries ?? ["Turkey", "Iran", "Syria", "Iraq"];
+  const footerTitle = mapData?.footer?.title ?? "Every place has a story.";
+  const footerText =
+    mapData?.footer?.text ?? "Explore, learn, and celebrate the beautiful diversity of Kurdistan.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -125,13 +149,13 @@ export default function DiversityMapPage({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[0.98] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              Explore
+              {pageTitle[0] ?? "Explore"}
               <br />
-              The Diversity
+              {pageTitle[1] ?? "The Diversity"}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.08em] text-[#a46f22] sm:text-[30px]">
-              A Living Map of Coexistence
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-5 w-[190px]">
@@ -139,9 +163,7 @@ export default function DiversityMapPage({
             </div>
 
             <p className="mx-auto mt-5 max-w-[650px] text-[19px] font-semibold leading-relaxed text-[#3f3528] sm:text-[22px]">
-              Across mountains and valleys, different faiths, languages, and
-              communities have woven a rich tapestry of life together—today and
-              for generations.
+              {pageDescription}
             </p>
           </header>
 
@@ -154,19 +176,19 @@ export default function DiversityMapPage({
               <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(35deg,transparent_48%,#157c87_49%,transparent_51%),linear-gradient(85deg,transparent_48%,#157c87_49%,transparent_51%)]" /> */}
 
               <span className="absolute left-[40%] top-[10%] font-serif text-[18px] font-semibold uppercase tracking-[0.25em] text-[#9b6d35]">
-                Turkey
+                {countries[0] ?? "Turkey"}
               </span>
               <span className="absolute right-[3%] top-[28%] font-serif text-[18px] font-semibold uppercase tracking-[0.25em] text-[#9b6d35]">
-                Iran
+                {countries[1] ?? "Iran"}
               </span>
               <span className="absolute left-[8%] bottom-[23%] font-serif text-[18px] font-semibold uppercase tracking-[0.25em] text-[#9b6d35]">
-                Syria
+                {countries[2] ?? "Syria"}
               </span>
               <span className="absolute left-[28%] bottom-[7%] font-serif text-[18px] font-semibold uppercase tracking-[0.25em] text-[#9b6d35]">
-                Iraq
+                {countries[3] ?? "Iraq"}
               </span>
 
-              {places.map((place) => {
+              {localizedPlaces.map((place) => {
                 const Icon = place.icon;
 
                 return (
@@ -201,7 +223,7 @@ export default function DiversityMapPage({
           </section>
 
           <section data-map-animate="true" className="mx-auto mt-4 grid max-w-[960px] grid-cols-1 gap-6 sm:grid-cols-3">
-            {infoCards.map((card) => {
+            {localizedInfoCards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -238,10 +260,10 @@ export default function DiversityMapPage({
             </div>
 
             <p className="flex-1 font-serif text-[20px] leading-snug text-[#3b2410]">
-              Every place has a story.
+              {footerTitle}
               <br />
               <span className="text-[17px] font-semibold text-[#6a4a25]">
-                Explore, learn, and celebrate the beautiful diversity of Kurdistan.
+                {footerText}
               </span>
             </p>
 

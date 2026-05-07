@@ -10,6 +10,8 @@ import {
 
 import bg from "@/assets/images/religions/r-3.png";
 import LanguagesOfKurdistanPage from "@/components/Sections/religions/Languages/KurdistanLanguages";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const communities = [
   {
@@ -76,6 +78,21 @@ export default function Nationalities({
   onLanguageChange,
   onBack,
 }: NationalitiesProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const nationalitiesData = data?.religions?.nationalities ?? {};
+  const localizedCommunities = communities.map((item, i) => ({
+    ...item,
+    title: nationalitiesData?.communities?.[i]?.title ?? item.title,
+    text: nationalitiesData?.communities?.[i]?.text ?? item.text,
+  }));
+  const pageTitle = nationalitiesData?.title ?? ["Nationalities &", "Communities"];
+  const pageSubtitle = nationalitiesData?.subtitle ?? "Languages, Heritage, and Belonging.";
+  const pageDescription =
+    nationalitiesData?.description ??
+    "Kurdistan is a home to many peoples. Each community brings its own history, language, and traditions-weaving together in a shared identity.";
+  const footerTitle = nationalitiesData?.footer?.title ?? "United in Diversity";
+  const footerText = nationalitiesData?.footer?.text ?? "Different roots, one homeland.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [subPage, setSubPage] = React.useState<null | "languages">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
@@ -182,13 +199,13 @@ export default function Nationalities({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              Nationalities &
+              {pageTitle[0] ?? "Nationalities &"}
               <br />
-              Communities
+              {pageTitle[1] ?? "Communities"}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.13em] text-[#a46f22] sm:text-[30px]">
-              Languages, Heritage, and Belonging.
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-6 w-[190px]">
@@ -196,13 +213,7 @@ export default function Nationalities({
             </div>
 
             <p className="mx-auto mt-5 max-w-[610px] text-[20px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[24px]">
-              Kurdistan is a home to many peoples.
-              <br />
-              Each community brings its own history,
-              <br />
-              language, and traditions—woven together
-              <br />
-              in a shared identity.
+              {pageDescription}
             </p>
           </header>
 
@@ -212,7 +223,7 @@ export default function Nationalities({
             data-nationality-animate="true"
             className="mx-auto space-y-4"
           >
-            {communities.map((item) => (
+            {localizedCommunities.map((item) => (
               <article
                 key={item.title}
                 className="flex min-h-[118px] items-center gap-7 rounded-[22px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-7 py-5 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
@@ -252,10 +263,10 @@ export default function Nationalities({
             </div>
 
             <p className="flex-1 font-serif text-[29px] font-semibold uppercase leading-tight text-[#3b2410]">
-              United in Diversity
+              {footerTitle}
               <br />
               <span className="text-[20px] normal-case font-semibold text-[#6a4a25]">
-                Different roots, one homeland.
+                {footerText}
               </span>
             </p>
 

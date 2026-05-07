@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ArrowLeft, BookOpen, Globe2, MapPin, Sparkles } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-3.png";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const languages = [
   {
@@ -62,6 +64,27 @@ export default function LanguagesOfKurdistanPage({
   onLanguageChange,
   onBack,
 }: LanguagesOfKurdistanPageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const languagesData = data?.religions?.languagesOfKurdistan ?? {};
+  const localizedLanguages = languages.map((item, i) => ({
+    ...item,
+    title: languagesData?.languages?.[i]?.title ?? item.title,
+    text: languagesData?.languages?.[i]?.text ?? item.text,
+  }));
+  const pageTitle = languagesData?.title ?? ["Languages", "of Kurdistan"];
+  const pageSubtitle = languagesData?.subtitle ?? "Voices, Scripts, and Living Identity";
+  const pageDescription =
+    languagesData?.description ??
+    "Across mountains and plains, many communities preserve their identities, pass down their stories, and build their futures-through language.";
+  const photoLabel = languagesData?.photoLabel ?? "Qubahan School - Amedi";
+  const heritageTitle = languagesData?.heritageCard?.title ?? "Language as Heritage";
+  const heritageText =
+    languagesData?.heritageCard?.text ??
+    "Languages carry our memories, our values, and our worldview. Preserving them means preserving who we are-for today and for generations to come.";
+  const footerTitle = languagesData?.footer?.title ?? "Many Tongues, One Homeland.";
+  const footerText =
+    languagesData?.footer?.text ?? "Different languages. Shared stories. One Kurdistan.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -151,13 +174,13 @@ export default function LanguagesOfKurdistanPage({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.04] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              Languages
+              {pageTitle[0] ?? "Languages"}
               <br />
-              of Kurdistan
+              {pageTitle[1] ?? "of Kurdistan"}
             </h1>
 
             <p className="mt-4 font-serif text-[23px] font-semibold uppercase tracking-[0.09em] text-[#a46f22] sm:text-[29px]">
-              Voices, Scripts, and Living Identity
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-7 w-[190px]">
@@ -165,9 +188,7 @@ export default function LanguagesOfKurdistanPage({
             </div>
 
             <p className="mx-auto mt-6 max-w-[650px] text-[20px] font-semibold leading-relaxed text-[#3f3528] sm:text-[24px]">
-              Across mountains and plains, many communities preserve their
-              identities, pass down their stories, and build their
-              futures—through language.
+              {pageDescription}
             </p>
           </header>
 
@@ -179,7 +200,7 @@ export default function LanguagesOfKurdistanPage({
           >
             <span className="flex items-center gap-2 rounded-full border border-[#d8b875]/70 bg-[#fff8e9]/90 px-5 py-2 font-serif text-[15px] font-semibold text-[#6a4a25] shadow-sm">
               <MapPin className="h-4 w-4 text-[#c58b16]" />
-              Qubahan School – Amedi
+              {photoLabel}
             </span>
           </div>
 
@@ -187,7 +208,7 @@ export default function LanguagesOfKurdistanPage({
             data-language-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {languages.map((item) => (
+            {localizedLanguages.map((item) => (
               <article
                 key={item.title}
                 className="flex min-h-[315px] flex-col items-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-7 text-center shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
@@ -222,7 +243,7 @@ export default function LanguagesOfKurdistanPage({
               <BookOpen className="mb-6 h-24 w-24 text-[#c58b16]" strokeWidth={1.4} />
 
               <h3 className="font-serif text-[24px] font-semibold uppercase leading-tight text-[#3b2410]">
-                Language as Heritage
+                {heritageTitle}
               </h3>
 
               <div className="my-4 w-[150px]">
@@ -230,9 +251,7 @@ export default function LanguagesOfKurdistanPage({
               </div>
 
               <p className="text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                Languages carry our memories, our values, and our worldview.
-                Preserving them means preserving who we are—for today and for
-                generations to come.
+                {heritageText}
               </p>
             </article>
           </section>
@@ -244,11 +263,11 @@ export default function LanguagesOfKurdistanPage({
             <Sparkles className="mx-auto mb-4 h-12 w-12 text-[#c58b16]" />
 
             <h2 className="font-serif text-[34px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[42px]">
-              Many Tongues, One Homeland.
+              {footerTitle}
             </h2>
 
             <p className="mt-3 text-[19px] font-semibold text-[#6a4a25]">
-              Different languages. Shared stories. One Kurdistan.
+              {footerText}
             </p>
 
             <div className="mx-auto mt-5 w-[420px] max-w-full">

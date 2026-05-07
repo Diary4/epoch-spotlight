@@ -16,6 +16,8 @@ import churches from "@/assets/mainImages/story-2.png";
 import denominations from "@/assets/mainImages/2005.png";
 import sacredSites from "@/assets/images/bg-2.jpg";
 import pope from "@/assets/images/kurdistan.jpg";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const cards = [
   {
@@ -73,6 +75,29 @@ export default function ChristianityPage({
   onLanguageChange,
   onBack,
 }: ChristianityPageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const christianityData = data?.religions?.christianity ?? {};
+  const localizedCards = cards.map((card, i) => ({
+    ...card,
+    title: christianityData?.cards?.[i]?.title ?? card.title,
+    text: christianityData?.cards?.[i]?.text ?? card.text,
+  }));
+  const pageTitle = christianityData?.title ?? "Christianity";
+  const pageSubtitle = christianityData?.subtitle ?? "Ancient Roots, Living Communities.";
+  const pageDescription =
+    christianityData?.description ??
+    "Christianity has thrived in Kurdistan for nearly two millennia, shaping our heritage, culture, and values. Today, vibrant communities continue to build bridges of faith and harmony.";
+  const photoLabel = christianityData?.photoLabel ?? "Bedial Village – Barzan";
+  const popeTitle = christianityData?.popeVisit?.title ?? "Pope Francis in Erbil";
+  const popeDate = christianityData?.popeVisit?.date ?? "5–8 March 2021";
+  const popeText =
+    christianityData?.popeVisit?.text ??
+    "A historic visit of peace and hope. Pope Francis prayed for the people of Iraq and encouraged dialogue, reconciliation, and the protection of religious communities.";
+  const footerTitle =
+    christianityData?.footer?.title ?? "Faith, hope, and love unite us across generations.";
+  const footerText =
+    christianityData?.footer?.text ?? "Together, we build a future of dignity and peace.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -151,11 +176,11 @@ export default function ChristianityPage({
             </div>
 
             <h1 className="font-serif text-[64px] font-semibold uppercase leading-[1] tracking-[0.08em] text-[#2f1f12] sm:text-[86px] lg:text-[102px]">
-              Christianity
+              {pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.08em] text-[#a46f22] sm:text-[30px]">
-              Ancient Roots, Living Communities.
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-6 w-[190px]">
@@ -163,9 +188,7 @@ export default function ChristianityPage({
             </div>
 
             <p className="mx-auto mt-6 max-w-[560px] text-[20px] font-semibold leading-relaxed text-[#3f3528] sm:text-[24px]">
-              Christianity has thrived in Kurdistan for nearly two millennia,
-              shaping our heritage, culture, and values. Today, vibrant
-              communities continue to build bridges of faith and harmony.
+              {pageDescription}
             </p>
           </header>
 
@@ -176,7 +199,7 @@ export default function ChristianityPage({
             className="mb-5 flex justify-end"
           >
             <span className="rounded-full border border-[#d8b875]/70 bg-[#fff8e9]/90 px-5 py-2 font-serif text-[15px] italic font-semibold text-[#6a4a25] shadow-sm">
-              Bedial Village – Barzan
+              {photoLabel}
             </span>
           </div>
 
@@ -184,7 +207,7 @@ export default function ChristianityPage({
             data-christian-animate="true"
             className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {cards.map((card) => {
+            {localizedCards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -244,17 +267,15 @@ export default function ChristianityPage({
 
               <div>
                 <h2 className="font-serif text-[31px] font-semibold uppercase leading-tight text-[#3b2410]">
-                  Pope Francis in Erbil
+                  {popeTitle}
                 </h2>
 
                 <p className="mt-1 font-serif text-[19px] font-semibold uppercase tracking-[0.07em] text-[#b27a22]">
-                  5–8 March 2021
+                  {popeDate}
                 </p>
 
                 <p className="mt-3 text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                  A historic visit of peace and hope. Pope Francis prayed for
-                  the people of Iraq and encouraged dialogue, reconciliation,
-                  and the protection of religious communities.
+                  {popeText}
                 </p>
               </div>
             </div>
@@ -267,10 +288,10 @@ export default function ChristianityPage({
             <Cross className="h-14 w-14 shrink-0 text-[#c58b16]" />
 
             <p className="flex-1 font-serif text-[22px] font-semibold leading-tight text-[#3b2410]">
-              Faith, hope, and love unite us across generations.
+              {footerTitle}
               <br />
               <span className="italic text-[#a46f22]">
-                Together, we build a future of dignity and peace.
+                {footerText}
               </span>
             </p>
 

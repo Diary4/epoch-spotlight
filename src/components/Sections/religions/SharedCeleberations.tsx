@@ -11,6 +11,8 @@ import {
   Sparkles,
   UsersRound,
 } from "lucide-react";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const celebrations = [
   {
@@ -76,6 +78,26 @@ export default function SharedCelebrationsPage({
   onLanguageChange,
   onBack,
 }: SharedCelebrationsPageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const celebrationsData = data?.religions?.sharedCelebrations ?? {};
+  const localizedCelebrations = celebrations.map((item, i) => ({
+    ...item,
+    title: celebrationsData?.celebrations?.[i]?.title ?? item.title,
+    text: celebrationsData?.celebrations?.[i]?.text ?? item.text,
+  }));
+  const pageTitle = celebrationsData?.title ?? ["Shared", "Celebrations"];
+  const pageSubtitle =
+    celebrationsData?.subtitle ?? "Festivals, Holidays, and Moments of Joy.";
+  const togetherTitle = celebrationsData?.togetherCard?.title ?? "Together in Celebration";
+  const togetherParagraph1 =
+    celebrationsData?.togetherCard?.paragraph1 ??
+    "Across Kurdistan, diverse communities celebrate different occasions-each with its own beauty, stories, and meaning.";
+  const togetherParagraph2 =
+    celebrationsData?.togetherCard?.paragraph2 ??
+    "Yet in every celebration, we share what matters most: joy, hospitality, and belonging.";
+  const footerTitle = celebrationsData?.footer?.title ?? "Joy Shared Across Communities.";
+  const footerText = celebrationsData?.footer?.text ?? "Different traditions, one heart.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -138,13 +160,13 @@ export default function SharedCelebrationsPage({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.03] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              Shared
+              {pageTitle[0] ?? "Shared"}
               <br />
-              Celebrations
+              {pageTitle[1] ?? "Celebrations"}
             </h1>
 
             <p className="mt-4 font-serif text-[23px] font-semibold uppercase tracking-[0.1em] text-[#a46f22] sm:text-[29px]">
-              Festivals, Holidays, and Moments of Joy.
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-7 w-[190px]">
@@ -156,7 +178,7 @@ export default function SharedCelebrationsPage({
             data-celebration-animate="true"
             className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {celebrations.map((item) => {
+            {localizedCelebrations.map((item) => {
               const Icon = item.icon;
 
               return (
@@ -200,7 +222,7 @@ export default function SharedCelebrationsPage({
 
             <div>
               <h2 className="font-serif text-[31px] font-semibold uppercase leading-tight text-[#3b2410]">
-                Together in Celebration
+                {togetherTitle}
               </h2>
 
               <div className="my-4 w-[170px]">
@@ -208,13 +230,11 @@ export default function SharedCelebrationsPage({
               </div>
 
               <p className="text-[18px] font-semibold leading-relaxed text-[#4d3c2a]">
-                Across Kurdistan, diverse communities celebrate different
-                occasions—each with its own beauty, stories, and meaning.
+                {togetherParagraph1}
               </p>
 
               <p className="mt-4 text-[18px] font-semibold leading-relaxed text-[#4d3c2a]">
-                Yet in every celebration, we share what matters most: joy,
-                hospitality, and belonging.
+                {togetherParagraph2}
               </p>
             </div>
           </section>
@@ -228,12 +248,10 @@ export default function SharedCelebrationsPage({
             </div>
 
             <p className="flex-1 font-serif text-[28px] font-semibold uppercase leading-tight text-[#3b2410]">
-              Joy Shared
-              <br />
-              Across Communities.
+              {footerTitle}
               <br />
               <span className="text-[18px] normal-case font-semibold text-[#6a4a25]">
-                Different traditions, one heart.
+                {footerText}
               </span>
             </p>
 

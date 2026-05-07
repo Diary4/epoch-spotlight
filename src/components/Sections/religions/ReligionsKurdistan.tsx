@@ -14,6 +14,8 @@ import bg from "@/assets/images/religions/r-2.png";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const religions = [
   {
@@ -95,6 +97,20 @@ export default function ReligionsKurdistan({
   onOpenDiversityMap,
   onBack,
 }: ReligionsKurdistanProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const religionsData = data?.religions?.religionsKurdistan ?? {};
+  const localizedReligions = religions.map((item, i) => ({
+    ...item,
+    title: religionsData?.cards?.[i]?.title ?? item.title,
+    text: religionsData?.cards?.[i]?.text ?? item.text,
+  }));
+  const pageTitle = religionsData?.title ?? ["Religions", "of Kurdistan"];
+  const pageSubtitle =
+    religionsData?.subtitle ?? "Eight recognized faiths, one shared homeland.";
+  const footerTitle = religionsData?.footer?.title ?? "One Land, Many Paths";
+  const footerText =
+    religionsData?.footer?.text ?? "Diverse in belief, united in coexistence.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [subPage, setSubPage] = React.useState<
     null | "christianity" | "yazidism" | "otherFaith"
@@ -224,13 +240,13 @@ export default function ReligionsKurdistan({
             </div>
 
             <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.02] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              Religions
+              {pageTitle[0] ?? "Religions"}
               <br />
-              of Kurdistan
+              {pageTitle[1] ?? "of Kurdistan"}
             </h1>
 
             <p className="mt-5 font-serif text-[25px] font-semibold text-[#a46f22] sm:text-[31px]">
-              Eight recognized faiths, one shared homeland.
+              {pageSubtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -242,7 +258,7 @@ export default function ReligionsKurdistan({
             data-religion-animate="true"
             className="mt-[calc(30vh-160px)] grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {religions.map((item) => {
+            {localizedReligions.map((item) => {
               const Icon = item.icon;
               const isChristianity = item.title === "Christianity";
               const isYazidism = item.title === "Yazidism";
@@ -317,10 +333,10 @@ export default function ReligionsKurdistan({
             </div>
 
             <p className="flex-1 text-center font-serif text-[31px] font-semibold uppercase leading-tight text-[#3b2410]">
-              One Land, Many Paths
+              {footerTitle}
               <br />
               <span className="text-[21px] normal-case font-semibold text-[#6a4a25]">
-                Diverse in belief, united in coexistence.
+                {footerText}
               </span>
             </p>
 

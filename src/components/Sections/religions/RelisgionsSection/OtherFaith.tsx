@@ -15,6 +15,8 @@ import zoroastrianism from "@/assets/mainImages/story-2.png";
 import judaism from "@/assets/mainImages/2005.png";
 import bahai from "@/assets/images/bg-2.jpg";
 import mandaean from "@/assets/images/kurdistan.jpg";
+import en from "@/data/en.json";
+import ar from "@/data/ar.json";
 
 const faiths = [
   {
@@ -81,6 +83,24 @@ export default function OtherFaithTraditionsPage({
   onOpenDiversityMap,
   onBack,
 }: OtherFaithTraditionsPageProps) {
+  const data = lang === "ar" ? (ar as any) : (en as any);
+  const otherFaithData = data?.religions?.otherFaithTraditions ?? {};
+  const localizedFaiths = faiths.map((faith, i) => ({
+    ...faith,
+    title: otherFaithData?.faiths?.[i]?.title ?? faith.title,
+    text: otherFaithData?.faiths?.[i]?.text ?? faith.text,
+    label: otherFaithData?.faiths?.[i]?.label ?? faith.label,
+  }));
+  const pageTitle = otherFaithData?.title ?? ["Other Faith", "Traditions"];
+  const pageSubtitle =
+    otherFaithData?.subtitle ??
+    "Yarsanism, Zoroastrianism, Judaism,\nBaha'i Faith, and Sabean-Mandaeanism";
+  const pageDescription =
+    otherFaithData?.description ??
+    "Kurdistan is a land of spiritual depth and cultural harmony, where diverse faiths have lived, prayed, and contributed to a shared legacy of peace and respect.";
+  const footerTitle = otherFaithData?.footer?.title ?? "Diversity Is Our Strength";
+  const footerText = otherFaithData?.footer?.text ?? "Different paths, one shared home.";
+
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -143,15 +163,18 @@ export default function OtherFaithTraditionsPage({
             </div>
 
             <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              Other Faith
+              {pageTitle[0] ?? "Other Faith"}
               <br />
-              Traditions
+              {pageTitle[1] ?? "Traditions"}
             </h1>
 
             <p className="mt-4 font-serif text-[22px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#a46f22] sm:text-[28px]">
-              Yarsanism, Zoroastrianism, Judaism,
-              <br />
-              Baha’i Faith, and Sabean-Mandaeanism
+              {(pageSubtitle ?? "").split("\n").map((line: string, idx: number) => (
+                <React.Fragment key={`${line}-${idx}`}>
+                  {line}
+                  {idx < (pageSubtitle ?? "").split("\n").length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
             </p>
 
             <div className="mx-auto mt-6 w-[190px]">
@@ -159,9 +182,7 @@ export default function OtherFaithTraditionsPage({
             </div>
 
             <p className="mx-auto mt-5 max-w-[690px] text-[19px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[23px]">
-              Kurdistan is a land of spiritual depth and cultural harmony,
-              where diverse faiths have lived, prayed, and contributed to a
-              shared legacy of peace and respect.
+              {pageDescription}
             </p>
           </header>
 
@@ -169,7 +190,7 @@ export default function OtherFaithTraditionsPage({
             data-faith-animate="true"
             className="mt-9 space-y-5"
           >
-            {faiths.map((faith) => {
+            {localizedFaiths.map((faith) => {
               const Icon = faith.icon;
 
               return (
@@ -226,10 +247,10 @@ export default function OtherFaithTraditionsPage({
             </div>
 
             <p className="flex-1 font-serif text-[27px] font-semibold uppercase leading-tight text-[#3b2410]">
-              Diversity Is Our Strength
+              {footerTitle}
               <br />
               <span className="text-[18px] normal-case font-semibold text-[#6a4a25]">
-                Different paths, one shared home.
+                {footerText}
               </span>
             </p>
 
