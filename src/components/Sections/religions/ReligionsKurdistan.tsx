@@ -84,6 +84,7 @@ type ReligionsKurdistanProps = {
   lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
+  onOpenDiversityMap?: () => void;
   onBack?: () => void;
 };
 
@@ -91,6 +92,7 @@ export default function ReligionsKurdistan({
   lang = "en",
   languageLabel = "ENGLISH",
   onLanguageChange,
+  onOpenDiversityMap,
   onBack,
 }: ReligionsKurdistanProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
@@ -135,15 +137,37 @@ export default function ReligionsKurdistan({
   }, []);
 
   if (subPage === "christianity") {
-    return <ChristianityPage onBack={() => setSubPage(null)} />;
+    return (
+      <ChristianityPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
   }
 
   if (subPage === "yazidism") {
-    return <YazidismPage onBack={() => setSubPage(null)} />;
+    return (
+      <YazidismPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
   }
 
   if (subPage === "otherFaith") {
-    return <OtherFaithTraditionsPage onBack={() => setSubPage(null)} />;
+    return (
+      <OtherFaithTraditionsPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onOpenDiversityMap={onOpenDiversityMap}
+        onBack={() => setSubPage(null)}
+      />
+    );
   }
 
   return (

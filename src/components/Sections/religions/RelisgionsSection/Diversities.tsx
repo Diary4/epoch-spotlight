@@ -57,11 +57,20 @@ function DecorativeLine({ color = "#c99a55" }) {
 }
 
 type DiversityMapPageProps = {
+  lang?: "en" | "ku" | "ar";
+  languageLabel?: string;
+  onLanguageChange?: () => void;
   onBack?: () => void;
 };
 
-export default function DiversityMapPage({ onBack }: DiversityMapPageProps) {
+export default function DiversityMapPage({
+  lang = "en",
+  languageLabel = "ENGLISH",
+  onLanguageChange,
+  onBack,
+}: DiversityMapPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -81,7 +90,7 @@ export default function DiversityMapPage({ onBack }: DiversityMapPageProps) {
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
       <section
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] bg-top bg-no-repeat px-7 py-9 sm:px-10 lg:px-16"
@@ -100,9 +109,13 @@ export default function DiversityMapPage({ onBack }: DiversityMapPageProps) {
           <ArrowLeft className="h-7 w-7" />
         </button>
 
-        <button className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]">
+        <button
+          type="button"
+          onClick={onLanguageChange}
+          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+        >
           <Globe2 className="h-5 w-5" />
-          ENGLISH
+          {languageLabel}
         </button>
 
         <div className="relative z-10 mx-auto max-w-[1180px]">

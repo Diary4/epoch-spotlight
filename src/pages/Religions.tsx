@@ -19,6 +19,7 @@ import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdist
 import Nationalities from "@/components/Sections/religions/Nationalities";
 import StoriesOfCoexistencePage from "@/components/Sections/religions/Coexistence";
 import SharedCelebrationsPage from "@/components/Sections/religions/SharedCeleberations";
+import DiversityMapPage from "@/components/Sections/religions/RelisgionsSection/Diversities";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -170,7 +171,12 @@ export default function ReligiousDiversityPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<
-    null | "religionsKurdistan" | "nationalities" | "coexistence" | "sharedCelebrations"
+    | null
+    | "religionsKurdistan"
+    | "nationalities"
+    | "coexistence"
+    | "sharedCelebrations"
+    | "diversityMap"
   >(null);
   const content = pageContent[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
@@ -215,13 +221,16 @@ export default function ReligiousDiversityPage({
   }, [subPage]);
 
   if (subPage === "religionsKurdistan") {
+    const religionsKurdistanProps = {
+      lang,
+      languageLabel: content.languageLabel,
+      onLanguageChange: handleLanguageChange,
+      onOpenDiversityMap: () => setSubPage("diversityMap"),
+      onBack: () => setSubPage(null),
+    } as const;
+
     return (
-      <ReligionsKurdistan
-        lang={lang}
-        languageLabel={content.languageLabel}
-        onLanguageChange={handleLanguageChange}
-        onBack={() => setSubPage(null)}
-      />
+      <ReligionsKurdistan {...(religionsKurdistanProps as React.ComponentProps<any>)} />
     );
   }
 
@@ -237,11 +246,36 @@ export default function ReligiousDiversityPage({
   }
 
   if (subPage === "coexistence") {
-    return <StoriesOfCoexistencePage onBack={() => setSubPage(null)} />;
+    return (
+      <StoriesOfCoexistencePage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
   }
 
   if (subPage === "sharedCelebrations") {
-    return <SharedCelebrationsPage onBack={() => setSubPage(null)} />;
+    return (
+      <SharedCelebrationsPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage === "diversityMap") {
+    return (
+      <DiversityMapPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
   }
 
   return (

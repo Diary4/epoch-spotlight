@@ -116,7 +116,16 @@ export default function Nationalities({
   }, []);
 
   if (subPage === "languages") {
-    return <LanguagesOfKurdistanPage onBack={() => setSubPage(null)} />;
+    const languagesPageProps = {
+      lang,
+      languageLabel,
+      onLanguageChange,
+      onBack: () => setSubPage(null),
+    } as const;
+
+    return (
+      <LanguagesOfKurdistanPage {...(languagesPageProps as React.ComponentProps<any>)} />
+    );
   }
 
   return (
