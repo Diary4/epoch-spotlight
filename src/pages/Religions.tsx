@@ -257,27 +257,27 @@ export default function ReligiousDiversityPage({
           data-rd-hero="true"
           src={bg}
           alt=""
-          className="absolute inset-0 h-[calc(70vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+          className="absolute inset-0 h-[calc(90vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
-        <div
+        {/* <div
           className="pointer-events-none absolute inset-x-0 top-[calc(70vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
           style={{
             background:
               "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
           }}
-        />
+        /> */}
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/78 via-[#fbf1df]/20 to-[#f4dfbb]/92" />
         <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
 
-        <button
+        {/* <button
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
         >
           <ArrowLeft className="h-7 w-7" />
-        </button>
+        </button> */}
 
         <button
           data-rd-animate="true"

@@ -87,7 +87,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
         </div>
 
         {/* Text */}
-        <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)]">
+        <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)] px-[clamp(20px,5vw,80px)] py-[clamp(20px,5vh,80px)]">
           <h1 className="main-title font-serif text-[clamp(64px,8vw,116px)] font-semibold leading-[1.03] tracking-tight text-[#214439]">
             {(detail?.title ?? "A Story of Resilience").replace(" of ", " of\n")}
           </h1>

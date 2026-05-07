@@ -310,6 +310,558 @@
       }
     ]
   },
+  "religions": {
+    "title": [
+      "Religious &",
+      "National Diversity",
+      "in Kurdistan"
+    ],
+    "keywords": [
+      "Religions",
+      "Nationalities",
+      "Stories of Coexistence",
+      "Sunni Islam",
+      "Christianity",
+      "Yazidism",
+      "Yarsanism (Kaka'i)",
+      "Zoroastrianism",
+      "Judaism",
+      "Baha'i Faith",
+      "Sabean-Mandaeanism"
+    ],
+    "landing": {
+      "subtitle": "Kurdistan: The Cradle of Coexistence",
+      "description": "Across faiths, languages, and cultures, Kurdistan stands as a timeless home of respect, unity, and shared heritage.",
+      "cards": [
+        {
+          "id": "religions",
+          "title": "Religions",
+          "text": "Explore the rich religious heritage and sacred traditions of Kurdistan."
+        },
+        {
+          "id": "nationalities",
+          "title": "Nationalities",
+          "text": "Discover the diverse ethnic communities, their languages, and cultural contributions."
+        },
+        {
+          "id": "coexistence",
+          "title": "Stories of Coexistence",
+          "text": "Real stories of unity, protection, and everyday coexistence across Kurdistan."
+        }
+      ],
+      "sharedCelebrations": {
+        "title": "Shared Celebrations",
+        "text": "Festivals and holidays we celebrate together."
+      }
+    },
+    "religionsKurdistan": {
+      "title": [
+        "Religions",
+        "of Kurdistan"
+      ],
+      "subtitle": "Eight recognized faiths, one shared homeland.",
+      "cards": [
+        {
+          "title": "Sunni Islam",
+          "text": "The largest faith tradition, rooted in Sunni Islam and Islamic scholarship."
+        },
+        {
+          "title": "Christianity",
+          "text": "Ancient Christian communities with deep historical roots across Kurdistan."
+        },
+        {
+          "title": "Yazidism",
+          "text": "A distinct spiritual tradition centered on reverence, ethics, and devotion."
+        },
+        {
+          "title": "Yarsanism (Kaka'i)",
+          "text": "A mystical and humanistic path emphasizing truth, righteousness, and inner wisdom."
+        },
+        {
+          "title": "Zoroastrianism",
+          "text": "An ancient faith of light and truth with a rich philosophical heritage."
+        },
+        {
+          "title": "Judaism",
+          "text": "A historic community with enduring contributions to Kurdish life."
+        },
+        {
+          "title": "Baha'i Faith",
+          "text": "A global faith that teaches unity, justice, and the oneness of humanity."
+        },
+        {
+          "title": "Sabean-Mandaeanism",
+          "text": "An ancient baptismal tradition centered on spiritual purity and renewal."
+        }
+      ],
+      "footer": {
+        "title": "One Land, Many Paths",
+        "text": "Diverse in belief, united in coexistence."
+      }
+    },
+    "nationalities": {
+      "title": [
+        "Nationalities &",
+        "Communities"
+      ],
+      "subtitle": "Languages, Heritage, and Belonging.",
+      "description": "Kurdistan is a home to many peoples. Each community brings its own history, language, and traditions-weaving together in a shared identity.",
+      "communities": [
+        {
+          "title": "Kurds",
+          "text": "The indigenous people of Kurdistan with a rich cultural heritage, language, and enduring spirit."
+        },
+        {
+          "title": "Turkmens",
+          "text": "Descendants of Oghuz Turkic tribes, known for their hospitality, traditions, and vibrant culture."
+        },
+        {
+          "title": "Assyrians",
+          "text": "An ancient Christian community with a deep historical presence and a strong cultural legacy."
+        },
+        {
+          "title": "Chaldeans",
+          "text": "A distinct Christian community preserving the Chaldean rite, faith, and centuries-old traditions."
+        },
+        {
+          "title": "Syriacs",
+          "text": "Keepers of one of the world's oldest liturgical traditions and a proud heritage of faith and learning."
+        },
+        {
+          "title": "Armenians",
+          "text": "An ancient community with a rich cultural, religious, and artistic heritage in Kurdistan."
+        },
+        {
+          "title": "Yazidis",
+          "text": "A spiritual community with unique beliefs, honoring peace, tolerance, and the cycles of nature."
+        }
+      ],
+      "footer": {
+        "title": "United in Diversity",
+        "text": "Different roots, one homeland."
+      }
+    },
+    "languagesOfKurdistan": {
+      "title": [
+        "Languages",
+        "of Kurdistan"
+      ],
+      "subtitle": "Voices, Scripts, and Living Identity",
+      "description": "Across mountains and plains, many communities preserve their identities, pass down their stories, and build their futures-through language.",
+      "photoLabel": "Qubahan School - Amedi",
+      "languages": [
+        {
+          "title": "Kurdish",
+          "script": "کوردی",
+          "text": "The heart of Kurdistan. Spoken in many dialects and written in Arabic, Latin, and Cyrillic scripts."
+        },
+        {
+          "title": "Arabic",
+          "script": "العربية",
+          "text": "A shared language across the region with deep roots in literature, faith, and daily life."
+        },
+        {
+          "title": "Turkmen",
+          "script": "مان",
+          "text": "A Turkic language spoken by Turkmen communities, carrying oral traditions and poetry."
+        },
+        {
+          "title": "Syriac",
+          "script": "ܣܘܪܝܝܐ",
+          "text": "An ancient Aramaic heritage language of Christian communities, kept alive in worship and tradition."
+        },
+        {
+          "title": "Armenian",
+          "script": "ԱԲԳ",
+          "text": "A classical language with a rich literary and cultural legacy in Kurdistan's historic towns."
+        }
+      ],
+      "heritageCard": {
+        "title": "Language as Heritage",
+        "text": "Languages carry our memories, our values, and our worldview. Preserving them means preserving who we are-for today and for generations to come."
+      },
+      "footer": {
+        "title": "Many Tongues, One Homeland.",
+        "text": "Different languages. Shared stories. One Kurdistan."
+      }
+    },
+    "coexistence": {
+      "title": [
+        "Stories of",
+        "Coexistence"
+      ],
+      "subtitle": "Protection, hospitality, and shared life.",
+      "quote": {
+        "text": "In this land, we have learned that our differences do not divide us - they strengthen us.",
+        "author": "Elder from Kurdistan"
+      },
+      "storyCards": [
+        {
+          "title": "A Safe Haven",
+          "text": "Generations have found protection and refuge in the mountains and cities of Kurdistan."
+        },
+        {
+          "title": "Shared Celebrations",
+          "text": "From religious feasts to national holidays, communities come together in joy and solidarity."
+        },
+        {
+          "title": "Living Side by Side",
+          "text": "Neighbors, colleagues, and friends - different in belief, united in daily life and mutual respect."
+        },
+        {
+          "title": "Hospitality With Heart",
+          "text": "A tradition of welcoming others with open doors, food, and compassion."
+        }
+      ],
+      "readStoryCta": "Read Story",
+      "timelinePreview": {
+        "title": "A Journey Through Time",
+        "items": [
+          {
+            "year": "1900s",
+            "text": "Communities live and trade together across the region."
+          },
+          {
+            "year": "1960s",
+            "text": "Faiths and cultures stand together in challenging times."
+          },
+          {
+            "year": "1990s",
+            "text": "Acts of protection and shelter define Kurdistan's spirit."
+          },
+          {
+            "year": "Today",
+            "text": "Coexistence continues as a living heritage for the future."
+          }
+        ]
+      },
+      "footer": {
+        "title": "Together, We Build Tomorrow",
+        "text": "Diversity is our strength. Coexistence is our legacy."
+      }
+    },
+    "timelineOfCoexistence": {
+      "title": [
+        "Timeline of",
+        "Coexistence"
+      ],
+      "subtitle": "A journey through memory, resilience, and shared life.",
+      "timeline": [
+        {
+          "period": "Before 1900s",
+          "title": "Roots of Diversity",
+          "text": "Ancient peoples, languages, and faiths have shaped Kurdistan's rich and diverse heritage."
+        },
+        {
+          "period": "1900s - Mid 1900s",
+          "title": "A Long-Standing Legacy",
+          "text": "Communities of different religions and ethnicities lived, worked, and celebrated side by side."
+        },
+        {
+          "period": "Mid 1900s - Late 1900s",
+          "title": "Refuge and Resilience",
+          "text": "In times of hardship, Kurdistan became a refuge-offering shelter, solidarity, and hope to many."
+        },
+        {
+          "period": "2000s - Early 2010s",
+          "title": "Recognition and Rights",
+          "text": "The Kurdistan Region formally recognized multiple religions and communities in law."
+        },
+        {
+          "period": "2010s - Present",
+          "title": "Return and Continuity",
+          "text": "Displaced families return home. Communities rebuild, traditions flourish, and bonds endure."
+        },
+        {
+          "period": "Today and Beyond",
+          "title": "Shared Future",
+          "text": "Together, we build a future grounded in respect, equality, and shared purpose."
+        }
+      ],
+      "threads": {
+        "title": "Threads That Connect Us",
+        "items": [
+          {
+            "title": "Respect",
+            "text": "Honoring every belief and identity."
+          },
+          {
+            "title": "Solidarity",
+            "text": "Standing together in times of need and joy."
+          },
+          {
+            "title": "Peace",
+            "text": "Choosing dialogue and understanding over division."
+          },
+          {
+            "title": "Heritage",
+            "text": "Preserving our cultural and spiritual legacy."
+          },
+          {
+            "title": "Unity",
+            "text": "Many paths, one shared home."
+          },
+          {
+            "title": "Hope",
+            "text": "Inspiring future generations to live together."
+          }
+        ]
+      },
+      "footer": {
+        "title": "Past and present, woven together."
+      }
+    },
+    "sharedCelebrations": {
+      "title": [
+        "Shared",
+        "Celebrations"
+      ],
+      "subtitle": "Festivals, Holidays, and Moments of Joy.",
+      "celebrations": [
+        {
+          "title": "Newroz",
+          "text": "The Kurdish New Year and a celebration of renewal, hope, and nature."
+        },
+        {
+          "title": "Eid Al-Fitr",
+          "text": "Marking the end of Ramadan with gratitude, compassion, and togetherness."
+        },
+        {
+          "title": "Eid Al-Adha",
+          "text": "A time of devotion, sacrifice, and care for families and neighbors."
+        },
+        {
+          "title": "Christmas",
+          "text": "A celebration of faith, love, and the spirit of giving and peace."
+        },
+        {
+          "title": "Easter",
+          "text": "A season of hope, renewal, and the promise of new beginnings."
+        },
+        {
+          "title": "Yazidi Jemai Festival",
+          "text": "A sacred gathering of faith, remembrance, and unity in the Lalish Valley."
+        }
+      ],
+      "togetherCard": {
+        "title": "Together in Celebration",
+        "paragraph1": "Across Kurdistan, diverse communities celebrate different occasions-each with its own beauty, stories, and meaning.",
+        "paragraph2": "Yet in every celebration, we share what matters most: joy, hospitality, and belonging."
+      },
+      "footer": {
+        "title": "Joy Shared Across Communities.",
+        "text": "Different traditions, one heart."
+      }
+    },
+    "christianity": {
+      "title": "Christianity",
+      "subtitle": "Ancient Roots, Living Communities.",
+      "description": "Christianity has thrived in Kurdistan for nearly two millennia, shaping our heritage, culture, and values. Today, vibrant communities continue to build bridges of faith and harmony.",
+      "photoLabel": "Bedial Village - Barzan",
+      "cards": [
+        {
+          "title": "Ankawa",
+          "text": "One of the world's oldest Christian communities, the Assyrian Church of the East has its spiritual heart in Ankawa."
+        },
+        {
+          "title": "Churches",
+          "text": "From ancient monasteries to modern parishes, churches across Kurdistan stand as beacons of prayer and community."
+        },
+        {
+          "title": "Major Denominations",
+          "text": "Christian life in Kurdistan is enriched by diverse traditions including the Assyrian Church of the East, Chaldean Catholic, Syriac Orthodox, and more."
+        },
+        {
+          "title": "Sacred Sites",
+          "text": "Historic monasteries, shrines, and holy landscapes reflect a timeless legacy of devotion and resilience."
+        }
+      ],
+      "popeVisit": {
+        "title": "Pope Francis in Erbil",
+        "date": "5-8 March 2021",
+        "text": "A historic visit of peace and hope. Pope Francis prayed for the people of Iraq and encouraged dialogue, reconciliation, and the protection of religious communities."
+      },
+      "footer": {
+        "title": "Faith, hope, and love unite us across generations.",
+        "text": "Together, we build a future of dignity and peace."
+      }
+    },
+    "yazidism": {
+      "title": "Yazidism",
+      "subtitle": "Sacred memory, resilience, and spiritual continuity.",
+      "description": "Rooted in ancient wisdom and nurtured through generations, Yazidism is a faith of light, truth, and compassion. It honors creation, cherishes freedom, and upholds the dignity of every soul.",
+      "photoLabel": "Lalish Temple - Yazidi Holy Site",
+      "cards": [
+        {
+          "title": "Lalish",
+          "text": "The holiest of Yazidism, nestled in the sacred valley of Lalish. A place of pilgrimage, learning, and spiritual renewal for thousands of Yazidis from around the world."
+        },
+        {
+          "title": "Tawus Melek",
+          "text": "The Peacock Angel is the central figure in Yazidi belief. A symbol of divine wisdom, beauty, and the eternal presence of God's light in the world."
+        },
+        {
+          "title": "Major Festivals",
+          "text": "Carsema Sor - Red Wednesday\nEzidi New Year - Sere Sale\nCejna Ezi - The Festival of Gathering and Gratitude"
+        },
+        {
+          "title": "Remembrance of the 2014 Genocide",
+          "text": "We honor the memory of our martyrs and all victims of the 2014 genocide. We remember. We heal. We rise. We are Yazidi."
+        }
+      ],
+      "footer": {
+        "title": "Faith. Memory. Future.",
+        "text": "Through every trial, Yazidism endures. Our faith is our strength. Our memory is our promise. Our future is our light."
+      }
+    },
+    "otherFaithTraditions": {
+      "title": [
+        "Other Faith",
+        "Traditions"
+      ],
+      "subtitle": "Yarsanism, Zoroastrianism, Judaism, Baha'i Faith, and Sabean-Mandaeanism",
+      "description": "Kurdistan is a land of spiritual depth and cultural harmony, where diverse faiths have lived, prayed, and contributed to a shared legacy of peace and respect.",
+      "faiths": [
+        {
+          "title": "Yarsanism",
+          "text": "An ancient Kurdish faith rooted in spiritual enlightenment and devotion to the Divine. Yarsanis value inner purity, truth, and respect for all living beings.",
+          "label": "Kakai Shrines - Hawar Village"
+        },
+        {
+          "title": "Zoroastrianism",
+          "text": "One of the world's oldest monotheistic faiths, brought to the region through ancient migrations. It teaches the eternal struggle between good and evil and the pursuit of truth and virtue.",
+          "label": "Zoroastrian Temple - Darbandikhan"
+        },
+        {
+          "title": "Judaism",
+          "text": "An ancient presence in Kurdistan, dating back thousands of years. Kurdish Jews have played a vital role in the cultural, economic, and social life of the region.",
+          "label": "Shrine of the Prophet Nahum - Aqosh"
+        },
+        {
+          "title": "Baha'i Faith",
+          "text": "A modern faith that teaches the unity of God, the oneness of humanity, and the harmony of religion, science, and reason. Its message resonates deeply in a diverse world.",
+          "label": ""
+        },
+        {
+          "title": "Sabean-Mandaeanism",
+          "text": "An ancient Gnostic faith centered around John the Baptist as a prophet. It honors baptism, purity, and the light of knowledge.",
+          "label": ""
+        }
+      ],
+      "footer": {
+        "title": "Diversity Is Our Strength",
+        "text": "Different paths, one shared home."
+      }
+    },
+    "diversityMap": {
+      "title": [
+        "Explore",
+        "The Diversity"
+      ],
+      "subtitle": "A Living Map of Coexistence",
+      "description": "Across mountains and valleys, different faiths, languages, and communities have woven a rich tapestry of life together-today and for generations.",
+      "countries": [
+        "Turkey",
+        "Iran",
+        "Syria",
+        "Iraq"
+      ],
+      "places": [
+        {
+          "title": "Duhok",
+          "text": "A mosaic of cultures in the north."
+        },
+        {
+          "title": "Amedi",
+          "text": "Historic Christian heritage and natural beauty."
+        },
+        {
+          "title": "Alqosh",
+          "text": "One of the world's oldest Christian communities."
+        },
+        {
+          "title": "Erbil",
+          "text": "A modern city with ancient roots."
+        },
+        {
+          "title": "Ankawa",
+          "text": "A diverse neighborhood where communities thrive."
+        },
+        {
+          "title": "Lalish",
+          "text": "Sacred to the Yazidi community for centuries."
+        },
+        {
+          "title": "Sulaymaniyah",
+          "text": "A cultural and intellectual heart of Kurdistan."
+        },
+        {
+          "title": "Halabja",
+          "text": "A symbol of resilience, peace, and coexistence."
+        }
+      ],
+      "infoCards": [
+        {
+          "title": "8 Recognized Religions",
+          "text": "Islam, Christianity, Yazidism, Judaism, Sabean-Mandaeism, Zoroastrianism, Hinduism, and the Baha'i Faith."
+        },
+        {
+          "title": "Shared Heritage",
+          "text": "Centuries of living together-building communities, traditions, and a shared identity that unites."
+        },
+        {
+          "title": "Protected by Law",
+          "text": "Religious freedom and diversity are guaranteed by the Constitution of the Kurdistan Region."
+        }
+      ],
+      "footer": {
+        "title": "Every place has a story.",
+        "text": "Explore, learn, and celebrate the beautiful diversity of Kurdistan."
+      }
+    },
+    "oneSharedHomeland": {
+      "title": [
+        "One Shared",
+        "Homeland"
+      ],
+      "subtitle": "Diversity, dignity, and a future together.",
+      "description": "Kurdistan is not defined by one faith, one language, or one story. It is strengthened by all of them. Our diversity is our heritage. Our unity is our future.",
+      "values": [
+        {
+          "title": "Respect",
+          "text": "We honor every belief, every identity, and every voice."
+        },
+        {
+          "title": "Protection",
+          "text": "We stand together to protect rights, preserve heritage, and uphold human dignity."
+        },
+        {
+          "title": "Belonging",
+          "text": "Everyone has a place here. Everyone belongs. This is our shared home."
+        },
+        {
+          "title": "Hope",
+          "text": "We build a future of peace, opportunity, and possibilities for generations to come."
+        }
+      ],
+      "closing": {
+        "title": "Different faiths. Different languages. One shared homeland."
+      },
+      "farewell": {
+        "title": "Thank You For Your Visit",
+        "text": "Leave with understanding. Return with pride.",
+        "exit": "Exit"
+      }
+    },
+    "common": {
+      "back": "Back",
+      "languageLabel": "ENGLISH",
+      "readStory": "Read Story",
+      "openSharedCelebrationsPage": "Open Shared Celebrations page",
+      "openChristianityPage": "Open Christianity page",
+      "openYazidismPage": "Open Yazidism page"
+    }
+  },
   "accessibility": {
     "mainTapLabel": "Tap to explore the next section",
     "languageDialogLabel": "Select a language",
