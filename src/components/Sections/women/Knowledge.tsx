@@ -1,10 +1,10 @@
 import React from "react";
 import gsap from "gsap";
-import { BookOpen, Feather, Sparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Feather, Sparkles } from "lucide-react";
 
 import knowledgeHero from "@/assets/images/women/w-7.png";
-import masturaImage from "@/assets/images/women/w-2.png";
-import hapsaImage from "@/assets/images/women/w-3.png";
+import masturaImage from "@/assets/images/women/w-8.png";
+import hapsaImage from "@/assets/images/women/w-9.png";
 
 const knowledgeWomen = [
   {
@@ -23,7 +23,11 @@ const knowledgeWomen = [
   },
 ];
 
-export default function WomenKnowledgePage() {
+type WomenKnowledgePageProps = {
+  onBack?: () => void;
+};
+
+export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
@@ -87,6 +91,14 @@ export default function WomenKnowledgePage() {
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-10 sm:px-12 lg:px-16"
       >
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-50 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white"
+        >
+          <ArrowLeft className="h-7 w-7" />
+        </button>
+
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_7%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_25%_54%,rgba(212,185,143,0.12),transparent_30%)]" />
 
         {/* Hero */}
@@ -134,13 +146,12 @@ export default function WomenKnowledgePage() {
               key={woman.name}
               className="relative overflow-hidden rounded-[28px] border border-[#dfcdb7] bg-white/65 px-9 pb-10 pt-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)]"
             >
-              <div className="relative mx-auto h-[285px] w-[285px]">
-                <div className="absolute inset-0 rounded-full bg-[#c2768a]/35" />
-
+              <div className="relative mx-auto h-[400px] w-[600px]">
+               
                 <img
                   src={woman.image}
                   alt={woman.name}
-                  className="relative z-10 h-full w-full rounded-full object-cover object-top"
+                  className="relative z-10 h-full w-full object-top"
                 />
 
                 <div

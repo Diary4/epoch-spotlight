@@ -61,7 +61,10 @@ export default function LegacyPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [activeSection, setActiveSection] = React.useState<"knowledge" | "resistance" | "culture" | null>(null);
 
-  React.useEffect(() => {
+  // Re-run intro when returning from Knowledge / Culture / Resistance — the main
+  // section unmounts while a subsection is open, so [] would never re-attach GSAP.
+  React.useLayoutEffect(() => {
+    if (activeSection !== null) return;
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -114,14 +117,13 @@ export default function LegacyPage({
           },
           "-=0.4",
         );
-
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [activeSection]);
 
   if (activeSection === "knowledge") {
-    return <WomenKnowledgePage />;
+    return <WomenKnowledgePage onBack={() => setActiveSection(null)} />;
   }
 
   if (activeSection === "culture") {
