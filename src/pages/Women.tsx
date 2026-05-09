@@ -3,6 +3,7 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
+import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
 import gsap from "gsap";
 import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
@@ -58,7 +59,7 @@ export default function LegacyPage({
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const [activeSection, setActiveSection] = React.useState<"knowledge" | "resistance" | null>(null);
+  const [activeSection, setActiveSection] = React.useState<"knowledge" | "resistance" | "culture" | null>(null);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -123,6 +124,10 @@ export default function LegacyPage({
     return <WomenKnowledgePage />;
   }
 
+  if (activeSection === "culture") {
+    return <WomenCultureMemoryPage onBack={() => setActiveSection(null)} />;
+  }
+
   if (activeSection === "resistance") {
     return <WomenResistancePage onBack={() => setActiveSection(null)} />;
   }
@@ -184,6 +189,9 @@ export default function LegacyPage({
                 onClick={() => {
                   if (card.title === "Knowledge") {
                     setActiveSection("knowledge");
+                  }
+                  if (card.title === "Culture") {
+                    setActiveSection("culture");
                   }
                   if (card.title === "Resistance") {
                     setActiveSection("resistance");

@@ -2,7 +2,7 @@ import React from "react";
 import gsap from "gsap";
 import { BookOpen, Feather, Sparkles } from "lucide-react";
 
-import knowledgeHero from "@/assets/images/women/w-6.png";
+import knowledgeHero from "@/assets/images/women/w-7.png";
 import masturaImage from "@/assets/images/women/w-2.png";
 import hapsaImage from "@/assets/images/women/w-3.png";
 
@@ -116,12 +116,12 @@ export default function WomenKnowledgePage() {
             </p>
           </div>
 
-          <div data-hero="true" className="pointer-events-none relative h-[560px]">
+          <div data-hero="true" className="pointer-events-none relative h-[860px] w-[1000px]">
         
             <img
               src={knowledgeHero}
               alt="Women of Knowledge"
-              className="absolute bottom-0 right-[-20px] h-full w-full object-contain object-right-bottom"
+              className="absolute bottom-0 right-[100px] h-full w-full object-cover object-right-bottom"
             />
           </div>
         </section>
