@@ -1,17 +1,17 @@
 import React from "react";
 import {
   ArrowRight,
-  BookOpen,
-  Crown,
-  Flame,
-  Flower2,
-  Music,
   Sparkles,
 } from "lucide-react";
 import gsap from "gsap";
 
 import legacyHero from "@/assets/images/women/w-1.png";
 import journeyImage from "@/assets/nature.jpg";
+import guitarIcon from "@/assets/images/women/icons/guitar.png";
+import crownIcon from "@/assets/images/women/icons/crown.png";
+import bookIcon from "@/assets/images/women/icons/book.png";
+import handIcon from "@/assets/images/women/icons/hand.png";
+import symbolIcon from "@/assets/images/women/icons/symbol.png";
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -20,26 +20,31 @@ type LegacyPageProps = {
   onExploreMore?: () => void;
 };
 
-const legacyCards = [
+type LegacyCard = {
+  title: string;
+  imageSrc: string;
+};
+
+const legacyCards: LegacyCard[] = [
   {
     title: "Leadership",
-    icon: Crown,
+    imageSrc: crownIcon,
   },
   {
     title: "Knowledge",
-    icon: BookOpen,
+    imageSrc: bookIcon,
   },
   {
     title: "Resistance",
-    icon: Flame,
+    imageSrc: handIcon,
   },
   {
     title: "Culture",
-    icon: Music,
+    imageSrc: guitarIcon,
   },
   {
     title: "Identity",
-    icon: Flower2,
+    imageSrc: symbolIcon,
   },
 ];
 
@@ -124,7 +129,7 @@ export default function LegacyPage({
       >
 
         {/* Hero */}
-        <section className="relative z-10 grid flex-1 grid-cols-1 items-center gap-8 pt-0 lg:grid-cols-[0.85fr_1.15fr]">
+        <section className="relative z-10 grid grid-cols-1 items-start gap-8 pt-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div data-legacy-fade="true" className="relative z-20">
             <div className="mb-5 flex items-center gap-5 text-[#b4864d]">
               <span className="h-px w-20 bg-[#d4b98f]" />
@@ -153,12 +158,12 @@ export default function LegacyPage({
 
           <div
             data-legacy-hero="true"
-            className="pointer-events-none relative w-full"
+            className="pointer-events-none relative w-full self-start"
           >
             <img
               src={legacyHero}
               alt="Kurdish women legacy"
-              className="h-[clamp(380px,56vh,760px)] w-full object-cover object-right"
+              className="h-[clamp(380px,56vh,760px)] w-full object-cover object-right-top"
             />
           </div>
         </section>
@@ -166,18 +171,20 @@ export default function LegacyPage({
         {/* Cards */}
         <section className="relative z-20 grid grid-cols-5 gap-5">
           {legacyCards.map((card) => {
-            const Icon = card.icon;
-
             return (
               <button
                 data-legacy-card="true"
                 key={card.title}
                 type="button"
-                className="flex h-[178px] flex-col items-center justify-center rounded-[56px] border border-[#dfcdb7] bg-white/55 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm"
+                className="flex h-[310px] flex-col justify-start rounded-[56px] border border-[#dfcdb7] bg-white/55 px-5 pt-7 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm"
               >
-                <Icon className="h-16 w-16 stroke-[1.25] text-[#ad7445]" />
+                <img
+                  src={card.imageSrc}
+                  alt={card.title}
+                  className="h-full w-full object-contain"
+                />
 
-                <p className="mt-5 font-serif text-[22px] text-[#2c1736]">
+                <p className="mt-4 font-serif text-[22px] text-[#2c1736]">
                   {card.title}
                 </p>
 
