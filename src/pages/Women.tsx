@@ -4,6 +4,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import gsap from "gsap";
+import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 
 import legacyHero from "@/assets/images/women/w-1.png";
@@ -57,7 +58,7 @@ export default function LegacyPage({
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const [activeSection, setActiveSection] = React.useState<"resistance" | null>(null);
+  const [activeSection, setActiveSection] = React.useState<"knowledge" | "resistance" | null>(null);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -118,6 +119,10 @@ export default function LegacyPage({
     return () => ctx.revert();
   }, []);
 
+  if (activeSection === "knowledge") {
+    return <WomenKnowledgePage />;
+  }
+
   if (activeSection === "resistance") {
     return <WomenResistancePage onBack={() => setActiveSection(null)} />;
   }
@@ -177,6 +182,9 @@ export default function LegacyPage({
                 key={card.title}
                 type="button"
                 onClick={() => {
+                  if (card.title === "Knowledge") {
+                    setActiveSection("knowledge");
+                  }
                   if (card.title === "Resistance") {
                     setActiveSection("resistance");
                   }
