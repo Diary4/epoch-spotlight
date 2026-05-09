@@ -119,38 +119,38 @@ export default function LegacyPage({
   }, []);
 
   if (activeSection === "resistance") {
-    return <WomenResistancePage />;
+    return <WomenResistancePage onBack={() => setActiveSection(null)} />;
   }
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-6 sm:px-12 sm:py-8 lg:px-16"
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-4 py-5 sm:px-8 sm:py-6 lg:px-16"
       >
         {/* Hero */}
-        <section className="relative z-10 grid grid-cols-1 items-start gap-8 pt-6 lg:grid-cols-[0.85fr_1.15fr]">
+        <section className="relative z-10 grid grid-cols-1 items-start gap-6 pt-2 sm:gap-8 sm:pt-4 lg:grid-cols-[0.85fr_1.15fr]">
           <div data-legacy-fade="true" className="relative z-20">
-            <div className="mb-5 flex items-center gap-5 text-[#b4864d]">
-              <span className="h-px w-20 bg-[#d4b98f]" />
+            <div className="mb-4 flex items-center gap-3 text-[#b4864d] sm:mb-5 sm:gap-5">
+              <span className="h-px w-12 bg-[#d4b98f] sm:w-20" />
               <Sparkles className="h-5 w-5" />
             </div>
 
-            <h1 className="font-serif text-[104px] font-medium leading-none tracking-tight text-[#2c1337]">
+            <h1 className="font-serif text-[clamp(54px,16vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337]">
               Legacy
             </h1>
 
-            <h2 className="mt-4 font-serif font-light text-[34px] text-[#a75a69]">
+            <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4">
               A lasting influence.
             </h2>
 
-            <div className="my-9 flex w-[290px] items-center gap-3 text-[#b4864d]">
+            <div className="my-6 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d] sm:my-9">
               <span className="h-px flex-1 bg-[#d4b98f]" />
               <Sparkles className="h-5 w-5" />
               <span className="h-px flex-1 bg-[#d4b98f]" />
             </div>
 
-            <p className="max-w-[360px] text-[20px] leading-[1.75] text-[#353445]">
+            <p className="max-w-[420px] text-[clamp(17px,4.2vw,20px)] leading-[1.65] text-[#353445] sm:leading-[1.75]">
               The women of Kurdistan shaped history through leadership,
               learning, courage, and culture.
             </p>
@@ -163,13 +163,13 @@ export default function LegacyPage({
             <img
               src={legacyHero}
               alt="Kurdish women legacy"
-              className="h-[clamp(380px,56vh,760px)] w-full object-cover object-right-top"
+              className="h-[clamp(280px,46vh,760px)] w-full object-cover object-right-top sm:h-[clamp(340px,52vh,760px)]"
             />
           </div>
         </section>
 
         {/* Cards - Fixed to prevent text overflow */}
-        <section className="relative z-20 grid grid-cols-5 gap-5">
+        <section className="relative z-20 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 lg:gap-5">
           {legacyCards.map((card) => {
             return (
               <button
@@ -181,21 +181,21 @@ export default function LegacyPage({
                     setActiveSection("resistance");
                   }
                 }}
-                className="flex h-[310px] flex-col rounded-[56px] border border-[#dfcdb7] bg-white/55 px-5 pt-7 pb-5 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm"
+                className="flex h-[210px] flex-col rounded-[28px] border border-[#dfcdb7] bg-white/55 px-3 pb-3 pt-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[260px] sm:rounded-[40px] sm:px-4 sm:pb-4 sm:pt-5 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7"
               >
                 <div className="flex-1 flex items-center justify-center overflow-hidden">
                   <img
                     src={card.imageSrc}
                     alt={card.title}
-                    className="max-h-full max-w-full object-contain"
+                    className="max-h-[84%] max-w-[84%] object-contain sm:max-h-full sm:max-w-full"
                   />
                 </div>
 
-                <p className="mt-auto font-serif text-[22px] text-[#2c1736] text-center">
+                <p className="mt-auto text-center font-serif text-[clamp(16px,3.4vw,22px)] text-[#2c1736]">
                   {card.title}
                 </p>
 
-                <div className="mt-2 flex items-center justify-center gap-2 text-[#b4864d]">
+                <div className="mt-1 flex items-center justify-center gap-2 text-[#b4864d] sm:mt-2">
                   <span className="h-px w-7 bg-[#d4b98f]" />
                   <span className="h-2 w-2 rotate-45 border border-[#b4864d]" />
                   <span className="h-px w-7 bg-[#d4b98f]" />
@@ -208,16 +208,16 @@ export default function LegacyPage({
         {/* Quote Box - With bigger images */}
         <section
           data-legacy-fade="true"
-          className="relative z-20 mt-8 flex min-h-[420px] items-center justify-center rounded-[28px] border border-[#dfcdb7] bg-white/65 px-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] overflow-hidden"
+          className="relative z-20 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 lg:min-h-[420px]"
         >
           <img 
             src={flowerIcon2} 
             alt="Quote decoration" 
-            className="absolute left-[-100px] top-1/2 -translate-y-1/2 h-[clamp(64px,100vw,520px)] w-[clamp(92px,100vw,400px)] object-contain"
+            className="absolute left-[-62px] top-1/2 hidden h-[clamp(64px,60vw,520px)] w-[clamp(92px,44vw,400px)] -translate-y-1/2 object-contain sm:block lg:left-[-100px]"
           />
 
-          <div className="relative z-10 max-w-2xl">
-            <p className="font-serif text-[36px] leading-snug text-[#281234]">
+          <div className="relative z-10 max-w-2xl px-1 sm:px-0">
+            <p className="font-serif text-[clamp(24px,5.3vw,36px)] leading-snug text-[#281234]">
               Across generations,
               <br />
               Kurdish women have remained
@@ -229,16 +229,16 @@ export default function LegacyPage({
           <img 
             src={flowerIcon} 
             alt="Quote decoration" 
-            className="absolute right-[-80px] top-1/2 -translate-y-1/2 h-[clamp(64px,100vw,520px)] w-[clamp(64px,100vw,400px)] object-contain"
+            className="absolute right-[-52px] top-1/2 hidden h-[clamp(64px,56vw,520px)] w-[clamp(64px,42vw,400px)] -translate-y-1/2 object-contain sm:block lg:right-[-80px]"
           />
         </section>
 
         {/* Journey */}
         <section
           data-legacy-fade="true"
-          className="relative z-20 mt-8 flex h-[120px] items-center gap-7 rounded-[24px] bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] px-10 text-white shadow-[0_12px_30px_rgba(57,20,54,0.24)]"
+          className="relative z-20 mt-6 flex min-h-[110px] flex-col gap-4 rounded-[20px] bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] px-4 py-4 text-white shadow-[0_12px_30px_rgba(57,20,54,0.24)] sm:mt-8 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 sm:rounded-[24px] sm:px-6 sm:py-4 lg:gap-7 lg:px-10"
         >
-          <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-[#d7b06d] bg-white flex-shrink-0">
+          <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-[#d7b06d] bg-white sm:h-20 sm:w-20 lg:h-24 lg:w-24">
             <img
               src={journeyImage}
               alt="Journey"
@@ -247,11 +247,11 @@ export default function LegacyPage({
           </div>
 
           <div className="flex-1">
-            <h3 className="font-serif text-[34px] leading-none">
+            <h3 className="font-serif text-[clamp(26px,6vw,34px)] leading-none">
               Continue the Journey
             </h3>
 
-            <p className="mt-3 text-[17px] text-white/90">
+            <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
               Explore the stories behind each name.
             </p>
           </div>
@@ -259,9 +259,9 @@ export default function LegacyPage({
           <button
             type="button"
             onClick={onExploreMore}
-            className="ml-auto grid h-16 w-16 place-items-center rounded-full border-[3px] border-white bg-[#fff8f5] text-[#35143d] flex-shrink-0 transition-transform hover:scale-105"
+            className="ml-auto grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border-[3px] border-white bg-[#fff8f5] text-[#35143d] transition-transform hover:scale-105 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           >
-            <ArrowRight className="h-8 w-8" />
+            <ArrowRight className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
           </button>
         </section>
       </section>

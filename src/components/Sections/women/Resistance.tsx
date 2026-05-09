@@ -1,10 +1,10 @@
 import React from "react";
 import gsap from "gsap";
-import { Sparkles, Quote } from "lucide-react";
+import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
-import resistanceHero from "@/assets/images/women/w-1.png";
-import zeynabImage from "@/assets/images/women/w-1.png";
-import leylaImage from "@/assets/images/women/w-1.png";
+import resistanceHero from "@/assets/images/women/w-2.png";
+import zeynabImage from "@/assets/images/women/w-4.png";
+import leylaImage from "@/assets/images/women/w-4.png";
 
 const resistanceWomen = [
   {
@@ -24,7 +24,11 @@ const quotes = [
   "Resistance is also a woman's story.",
 ];
 
-export default function WomenResistancePage() {
+type WomenResistancePageProps = {
+  onBack?: () => void;
+};
+
+export default function WomenResistancePage({ onBack }: WomenResistancePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
@@ -88,11 +92,19 @@ export default function WomenResistancePage() {
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-10 sm:px-12 lg:px-16"
       >
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-8 z-50 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white"
+        >
+          <ArrowLeft className="h-7 w-7" />
+        </button>
+
         {/* soft background */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
         {/* Hero */}
-        <section className="relative z-10 grid min-h-[500px] grid-cols-[0.85fr_1.15fr] items-center">
+        <section className="relative z-10 grid min-h-[800px] grid-cols-[0.85fr_1.15fr] items-center">
           <div data-fade="true" className="relative z-20">
             <h1 className="font-serif text-[88px] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
               Women of
@@ -115,13 +127,13 @@ export default function WomenResistancePage() {
             </p>
           </div>
 
-          <div data-hero="true" className="pointer-events-none relative h-[520px]">
-            <div className="absolute left-8 top-0 h-[420px] w-[420px] rounded-full border border-[#dfb7b5]/60 bg-[#f3d7d3]/25" />
+          <div data-hero="true" className="pointer-events-none relative h-[820px] w-[820px]">
+            
 
             <img
               src={resistanceHero}
               alt="Women of Resistance"
-              className="absolute bottom-0 right-[-20px] h-full w-full object-contain object-right-bottom"
+              className="absolute bottom-0 right-[-20px] h-full w-full object-cover object-right-top"
             />
           </div>
         </section>
