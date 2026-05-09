@@ -4,7 +4,7 @@ import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
 import resistanceHero from "@/assets/images/women/w-2.png";
 import zeynabImage from "@/assets/images/women/w-3.png";
-import leylaImage from "@/assets/images/women/w-4.png";
+import leylaImage from "@/assets/images/women/w-5.png";
 
 const resistanceWomen = [
   {
