@@ -4,7 +4,7 @@ import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
 
 import cultureHero from "@/assets/images/women/c-1.png";
 import hanaImage from "@/assets/images/women/w-10.png";
-import sitiImage from "@/assets/images/women/w-3.png";
+import sitiImage from "@/assets/images/women/w-11.png";
 
 type CulturePageProps = {
   onBack?: () => void;
@@ -153,11 +153,11 @@ export default function WomenCultureMemoryPage({ onBack }: CulturePageProps) {
                 <Sparkles className="h-10 w-10" />
               </div>
 
-              <div className="relative mx-auto h-[400px] w-[500px]">
+              <div className="relative mx-auto h-[400px] w-[600px]">
                 <img
                   src={woman.image}
                   alt={woman.name}
-                  className="relative z-10 h-full w-full rounded-full object-cover object-top p-2"
+                  className="relative z-10 h-full w-full object-top"
                 />
               </div>
 
