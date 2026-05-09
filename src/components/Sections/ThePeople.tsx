@@ -73,7 +73,7 @@ function GoldButton({ children, active = false }) {
 
 function CircleImage({ image }) {
   return (
-    <div className="absolute left-1/2 top-[172px] z-20 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white bg-white shadow-[0_10px_30px_rgba(84,54,16,0.18)] sm:top-[218px] sm:h-24 sm:w-24 lg:top-[305px] lg:h-28 lg:w-28 overflow-hidden">
+    <div className="absolute left-1/2 top-[148px] z-20 h-[72px] w-[72px] -translate-x-1/2 rounded-full border-4 border-white bg-white shadow-[0_10px_30px_rgba(84,54,16,0.18)] sm:top-[218px] sm:h-24 sm:w-24 lg:top-[305px] lg:h-28 lg:w-28 overflow-hidden">
       <img
         src={image}
         alt=""
@@ -233,7 +233,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e7] p-0 text-[#1e352d]">
-      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-4 py-6 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
         <button
           type="button"
           onClick={onBack}
@@ -251,28 +251,28 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-[calc(18vh-160px)] h-[calc(70vh-160px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+          className="pointer-events-none absolute inset-x-0 top-[72px] h-[min(42vh,320px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)] sm:top-[calc(18vh-160px)] sm:h-[calc(70vh-160px)]"
         />
        
         {/* Hero */}
-        <header className="relative z-10 text-center sm:pt-8 lg:pt-12">
-          <h1 data-people-hero="true" className="font-serif text-[60px] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
+        <header className="relative z-10 text-center pt-2 sm:pt-8 lg:pt-12">
+          <h1 data-people-hero="true" className="font-serif text-[clamp(38px,12vw,60px)] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
             {people?.title ?? "The People"}
           </h1>
 
-          <div data-people-hero="true" className="mx-auto mt-5 flex max-w-[520px] items-center justify-center gap-4 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
+          <div data-people-hero="true" className="mx-auto mt-4 flex max-w-[520px] items-center justify-center gap-3 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
             <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
             <Sparkles data-top-divider-diamond="true" className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
             <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
           </div>
 
-          <p data-people-hero="true" className="mx-auto mt-6 max-w-[980px] text-[20px] leading-relaxed text-[#49524e] sm:mt-8 sm:text-[28px] lg:text-[34px]">
+          <p data-people-hero="true" className="mx-auto mt-5 max-w-[980px] px-1 text-[clamp(16px,4.2vw,20px)] leading-relaxed text-[#49524e] sm:mt-8 sm:px-0 sm:text-[28px] lg:text-[34px]">
             {people?.subtitle ?? "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
           </p>
         </header>
 
         {/* Cards */}
-        <div className="relative z-10 mt-auto grid grid-cols-1 gap-4 pb-4 pt-6 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
+        <div className="relative z-10 mt-auto grid grid-cols-1 gap-3 pb-4 pt-4 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
             const Icon = card.icon;
             return (
@@ -291,7 +291,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 }}
                 className="relative overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <div className="relative h-[200px] w-full overflow-hidden border-b border-white/75 sm:h-[250px] lg:h-[350px]">
+                <div className="relative h-[180px] w-full overflow-hidden border-b border-white/75 sm:h-[250px] lg:h-[350px]">
                   <img
                     src={card.image}
                     alt={card.title}
@@ -301,8 +301,8 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="min-h-[230px] px-5 pb-6 pt-14 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[24px] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
+                <div className="min-h-[200px] px-4 pb-5 pt-12 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
+                  <h3 className="whitespace-pre-line font-serif text-[clamp(20px,5vw,24px)] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
                     {card.title}
                   </h3>
 
@@ -312,7 +312,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[17px] leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">
+                  <p className="text-[clamp(15px,3.8vw,17px)] leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">
                     {card.description}
                   </p>
                 </div>

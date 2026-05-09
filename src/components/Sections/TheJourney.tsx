@@ -151,15 +151,23 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       const SVG_W = 180;
       const firstCard = cardRefs.current[0];
       let svgLeft = 0;
-      if (firstCard && imageCol) {
-        const cardRight = firstCard.getBoundingClientRect().right;
-        const imageLeft = imageCol.getBoundingClientRect().left;
-        const midX = (cardRight + imageLeft) / 2;
-        svgLeft = midX - SVG_W / 2 - trackRect.left + TIMELINE_NUDGE_RIGHT_PX;
-      } else {
-        // Fallback before image ref is ready
-        const cw = firstCard?.getBoundingClientRect().width ?? 560;
-        svgLeft = cw + 24 + TIMELINE_NUDGE_RIGHT_PX;
+      const narrow =
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 767px)").matches;
+
+      if (firstCard) {
+        if (narrow) {
+          const cardR = firstCard.getBoundingClientRect();
+          svgLeft = Math.max(4, cardR.left - trackRect.left - SVG_W + 28);
+        } else if (imageCol) {
+          const cardRight = firstCard.getBoundingClientRect().right;
+          const imageLeft = imageCol.getBoundingClientRect().left;
+          const midX = (cardRight + imageLeft) / 2;
+          svgLeft = midX - SVG_W / 2 - trackRect.left + TIMELINE_NUDGE_RIGHT_PX;
+        } else {
+          const cw = firstCard.getBoundingClientRect().width ?? 560;
+          svgLeft = cw + 24 + TIMELINE_NUDGE_RIGHT_PX;
+        }
       }
 
       setTimelineLayout({
@@ -203,7 +211,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         {/* Right illustration column - replace these with your AI images */}
         <div
           ref={imageColumnRef}
-          className="pointer-events-none absolute right-0 top-[90px] z-0 h-[1720px] w-[46vw] min-w-[520px]"
+          className="pointer-events-none absolute right-0 top-[90px] z-0 hidden h-[1720px] w-[46vw] min-w-[520px] md:block"
         >
           <img
             src={bg}
@@ -224,29 +232,29 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
           <div className="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-8 pb-10 pt-16 sm:px-12 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-8 pt-14 sm:px-12 md:px-16 md:pb-10 md:pt-20 lg:px-20 lg:pb-14">
           {/* Title */}
           <section className="max-w-[760px]">
-            <h1 className="font-serif text-[76px] font-semibold leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
+            <h1 className="font-serif text-[clamp(40px,10vw,76px)] font-semibold leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
               {journey.title ?? "The Journey"}
             </h1>
-            <h2 className="mt-5 text-[30px] font-semibold text-[#9b6d35] sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
+            <h2 className="mt-4 text-[clamp(18px,4.5vw,30px)] font-semibold text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
               {localizeDigits(
                 lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
                 lang,
               )}
             </h2>
-            <div className="mt-8 flex w-[290px] items-center gap-5 text-[#b99152]">
+            <div className="mt-6 flex w-full max-w-[290px] items-center gap-5 text-[#b99152] md:mt-8">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
-            <p className="mt-8 max-w-[680px] text-[28px] leading-snug text-[#2d3549] md:text-[32px] lg:text-[36px]">
+            <p className="mt-6 max-w-[680px] text-[clamp(17px,4vw,28px)] leading-snug text-[#2d3549] md:mt-8 md:text-[32px] lg:text-[36px]">
               {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
             </p>
           </section>
 
           {/* Timeline — rail + dots track measured card centers */}
-          <section className="relative mt-16 flex min-h-0 flex-1 flex-col md:mt-20">
+          <section className="relative mt-10 flex min-h-0 flex-1 flex-col md:mt-20">
             <div ref={trackRef} className="relative flex min-h-0 flex-1 flex-col">
               {timelineLayout && (
                 <svg
@@ -293,20 +301,20 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="relative z-10 flex min-h-[148px] w-[clamp(480px,48vw,640px)] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/78 shadow-[0_10px_26px_rgba(84,54,16,0.12)] backdrop-blur-sm"
+                    className="relative z-10 flex min-h-[120px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/78 shadow-[0_10px_26px_rgba(84,54,16,0.12)] backdrop-blur-sm md:min-h-[148px] md:w-[clamp(480px,48vw,640px)]"
                   >
-                    <div className="flex w-[148px] shrink-0 items-center justify-center py-4 sm:w-[168px]">
+                    <div className="flex w-[100px] shrink-0 items-center justify-center py-3 sm:w-[148px] sm:py-4 md:w-[168px]">
                       <div
-                        className="grid h-24 w-24 shrink-0 place-items-center rounded-full border-[5px] border-white text-[#f7e3b5] shadow-[0_6px_16px_rgba(0,0,0,0.16)] sm:h-28 sm:w-28"
+                        className="grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full border-[5px] border-white text-[#f7e3b5] shadow-[0_6px_16px_rgba(0,0,0,0.16)] sm:h-24 sm:w-24 md:h-28 md:w-28"
                         style={{ backgroundColor: item.color }}
                       >
-                        <Icon className="h-[46px] w-[46px] sm:h-[52px] sm:w-[52px]" strokeWidth={1.5} />
+                        <Icon className="h-[34px] w-[34px] sm:h-[46px] sm:w-[46px] md:h-[52px] md:w-[52px]" strokeWidth={1.5} />
                       </div>
                     </div>
 
                     <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
-                    <div className="flex min-h-0 flex-1 flex-col justify-center px-5 py-5 sm:px-7 sm:py-6">
+                    <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-3 py-4 sm:px-5 sm:py-5 md:px-7 md:py-6">
                       <h3 className="font-serif text-[clamp(28px,4vw,38px)] font-semibold leading-tight text-[#17233b]">
                         {item.title}
                       </h3>

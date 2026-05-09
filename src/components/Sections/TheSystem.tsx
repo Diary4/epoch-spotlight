@@ -179,28 +179,29 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col px-8 pb-10 pt-16 sm:px-12 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
+        <div className="relative z-10 flex flex-1 flex-col px-4 pb-8 pt-14 sm:px-12 sm:pb-10 sm:pt-16 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
           <section className="max-w-[760px]">
-            <h1 data-system-hero="true" className="font-serif text-[72px] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
+            <h1 data-system-hero="true" className="font-serif text-[clamp(40px,11vw,72px)] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
               {title}
             </h1>
 
-            <p data-system-hero="true" className="mt-6 text-[28px] font-bold leading-tight text-[#9b6d35] sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
+            <p data-system-hero="true" className="mt-4 text-[clamp(18px,5vw,28px)] font-bold leading-tight text-[#9b6d35] sm:mt-6 sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
               {heading}
             </p>
 
-            <div data-system-hero="true" className="mt-8 flex w-[280px] items-center gap-4 text-[#b99152] md:mt-10">
+            <div data-system-hero="true" className="mt-6 flex w-full max-w-[280px] items-center gap-4 text-[#b99152] sm:mt-8 md:mt-10">
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p data-system-hero="true" className="mt-8 max-w-[700px] text-[24px] font-medium leading-[1.5] text-[#2d3549] md:mt-10 md:text-[30px] lg:text-[36px]">
+            <p data-system-hero="true" className="mt-6 max-w-[700px] text-[clamp(17px,4.2vw,24px)] font-medium leading-[1.5] text-[#2d3549] sm:mt-8 md:mt-10 md:text-[30px] lg:mt-8 lg:text-[36px]">
               {description}
             </p>
           </section>
 
-          {/* Diagram */}
-          <section data-system-triangle="true" className="relative mx-auto mt-20 h-[710px] w-[900px] max-w-full md:mt-24">
+          {/* Diagram — fixed 900×710 art; horizontal scroll on small screens only */}
+          <div className="relative -mx-4 mt-12 max-w-[100vw] overflow-x-auto overflow-y-visible px-4 pb-2 sm:mx-0 sm:mt-20 sm:max-w-none sm:overflow-visible sm:px-0 md:mt-24">
+          <section data-system-triangle="true" className="relative mx-auto h-[min(710px,85vh)] w-[900px] shrink-0 sm:h-[710px]">
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 900 710" fill="none">
               <circle cx="450" cy="350" r="318" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
               <circle cx="450" cy="350" r="242" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
@@ -242,28 +243,29 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <span className="text-5xl">✥</span>
             </div>
           </section>
+          </div>
 
           <div
             data-system-prime="true"
             data-system-prime-border="true"
-            className="mx-auto mt-8 w-[780px] max-w-[100vw] rounded-[30px] border-4 border-[#ead8b7] bg-white/62 p-[3px] shadow-[0_12px_30px_rgba(84,54,16,0.14)]"
+            className="mx-auto mt-6 w-full max-w-[780px] rounded-[22px] border-4 border-[#ead8b7] bg-white/62 p-[3px] shadow-[0_12px_30px_rgba(84,54,16,0.14)] sm:mt-8 sm:rounded-[30px]"
           >
             <button
               type="button"
               onClick={onPrimeMinisterClick}
-              className="flex h-[150px] w-full items-center justify-between rounded-[27px] px-12 font-serif text-[42px] font-semibold text-[#17233b] sm:px-16 sm:text-[55px]"
+              className="flex min-h-[100px] w-full items-center justify-between gap-2 rounded-[20px] px-4 font-serif text-[clamp(20px,5vw,42px)] font-semibold text-[#17233b] sm:h-[150px] sm:rounded-[27px] sm:px-12 sm:text-[42px] md:px-16 md:text-[55px]"
             >
-              <span data-system-prime-text="true" className="text-[#b99152] text-6xl">✥</span>
-              <span data-system-prime-text="true">{primeMinisterLabel}</span>
-              <ArrowRight data-system-prime-text="true" size={56} strokeWidth={1.6} className="text-[#b99152]" />
+              <span data-system-prime-text="true" className="shrink-0 text-[#b99152] text-3xl sm:text-6xl">✥</span>
+              <span data-system-prime-text="true" className="text-center">{primeMinisterLabel}</span>
+              <ArrowRight data-system-prime-text="true" size={56} strokeWidth={1.6} className="h-8 w-8 shrink-0 text-[#b99152] sm:h-14 sm:w-14" />
             </button>
           </div>
 
-          <div data-system-footer="true" className="mt-auto flex min-h-[132px] items-center rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
-            <div className="ml-8 mr-8 grid h-24 w-24 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white sm:ml-12 sm:mr-14 sm:h-28 sm:w-28">
-              <span className="text-5xl">✥</span>
+          <div data-system-footer="true" className="mt-auto flex min-h-0 flex-col items-stretch gap-4 rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)] sm:min-h-[132px] sm:flex-row sm:items-center sm:gap-0">
+            <div className="mx-auto mt-4 grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white sm:ml-8 sm:mr-8 sm:mt-0 sm:h-24 sm:w-24 md:ml-12 md:mr-14 md:h-28 md:w-28">
+              <span className="text-4xl sm:text-5xl">✥</span>
             </div>
-            <p className="p-4 font-serif text-[25px] leading-tight text-[#17233b] sm:text-[34px]">
+            <p className="p-4 pb-5 text-center font-serif text-[clamp(17px,4vw,25px)] leading-tight text-[#17233b] sm:pb-4 sm:text-left sm:text-[34px]">
               {footerText}
             </p>
           </div>
