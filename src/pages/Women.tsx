@@ -12,6 +12,8 @@ import crownIcon from "@/assets/images/women/icons/crown.png";
 import bookIcon from "@/assets/images/women/icons/book.png";
 import handIcon from "@/assets/images/women/icons/hand.png";
 import symbolIcon from "@/assets/images/women/icons/symbol.png";
+import flowerIcon from "@/assets/images/women/icons/flower-1.png";
+import flowerIcon2 from "@/assets/images/women/icons/flower-2.png";
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -108,14 +110,6 @@ export default function LegacyPage({
           "-=0.4",
         );
 
-      gsap.to("[data-floating='true']", {
-        y: -10,
-        duration: 2.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.2,
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -127,7 +121,6 @@ export default function LegacyPage({
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-6 sm:px-12 sm:py-8 lg:px-16"
       >
-
         {/* Hero */}
         <section className="relative z-10 grid grid-cols-1 items-start gap-8 pt-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div data-legacy-fade="true" className="relative z-20">
@@ -168,7 +161,7 @@ export default function LegacyPage({
           </div>
         </section>
 
-        {/* Cards */}
+        {/* Cards - Fixed to prevent text overflow */}
         <section className="relative z-20 grid grid-cols-5 gap-5">
           {legacyCards.map((card) => {
             return (
@@ -176,19 +169,21 @@ export default function LegacyPage({
                 data-legacy-card="true"
                 key={card.title}
                 type="button"
-                className="flex h-[310px] flex-col justify-start rounded-[56px] border border-[#dfcdb7] bg-white/55 px-5 pt-7 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm"
+                className="flex h-[310px] flex-col rounded-[56px] border border-[#dfcdb7] bg-white/55 px-5 pt-7 pb-5 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm"
               >
-                <img
-                  src={card.imageSrc}
-                  alt={card.title}
-                  className="h-full w-full object-contain"
-                />
+                <div className="flex-1 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={card.imageSrc}
+                    alt={card.title}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
 
-                <p className="mt-4 font-serif text-[22px] text-[#2c1736]">
+                <p className="mt-auto font-serif text-[22px] text-[#2c1736] text-center">
                   {card.title}
                 </p>
 
-                <div className="mt-2 flex items-center gap-2 text-[#b4864d]">
+                <div className="mt-2 flex items-center justify-center gap-2 text-[#b4864d]">
                   <span className="h-px w-7 bg-[#d4b98f]" />
                   <span className="h-2 w-2 rotate-45 border border-[#b4864d]" />
                   <span className="h-px w-7 bg-[#d4b98f]" />
@@ -198,27 +193,31 @@ export default function LegacyPage({
           })}
         </section>
 
-        {/* Quote Box */}
+        {/* Quote Box - With bigger images */}
         <section
           data-legacy-fade="true"
-          className="relative z-20 mt-8 flex min-h-[190px] items-center justify-center rounded-[28px] border border-[#dfcdb7] bg-white/65 px-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)]"
+          className="relative z-20 mt-8 flex min-h-[420px] items-center justify-center rounded-[28px] border border-[#dfcdb7] bg-white/65 px-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] overflow-hidden"
         >
-          <div
-            data-floating="true"
-            className="absolute left-10 top-9 h-28 w-28 rounded-full bg-[#d99bad]/20 blur-xl"
+          <img 
+            src={flowerIcon2} 
+            alt="Quote decoration" 
+            className="absolute left-[-100px] top-1/2 -translate-y-1/2 h-[clamp(64px,100vw,520px)] w-[clamp(92px,100vw,400px)] object-contain"
           />
 
-          <p className="font-serif text-[36px] leading-snug text-[#281234]">
-            Across generations,
-            <br />
-            Kurdish women have remained
-            <br />
-            voices of strength and continuity.
-          </p>
+          <div className="relative z-10 max-w-2xl">
+            <p className="font-serif text-[36px] leading-snug text-[#281234]">
+              Across generations,
+              <br />
+              Kurdish women have remained
+              <br />
+              voices of strength and continuity.
+            </p>
+          </div>
 
-          <div
-            data-floating="true"
-            className="absolute bottom-9 right-10 h-28 w-28 rounded-full bg-[#d99bad]/20 blur-xl"
+          <img 
+            src={flowerIcon} 
+            alt="Quote decoration" 
+            className="absolute right-[-80px] top-1/2 -translate-y-1/2 h-[clamp(64px,100vw,520px)] w-[clamp(64px,100vw,400px)] object-contain"
           />
         </section>
 
@@ -227,7 +226,7 @@ export default function LegacyPage({
           data-legacy-fade="true"
           className="relative z-20 mt-8 flex h-[120px] items-center gap-7 rounded-[24px] bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] px-10 text-white shadow-[0_12px_30px_rgba(57,20,54,0.24)]"
         >
-          <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-[#d7b06d] bg-white">
+          <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-[#d7b06d] bg-white flex-shrink-0">
             <img
               src={journeyImage}
               alt="Journey"
@@ -235,7 +234,7 @@ export default function LegacyPage({
             />
           </div>
 
-          <div>
+          <div className="flex-1">
             <h3 className="font-serif text-[34px] leading-none">
               Continue the Journey
             </h3>
@@ -248,7 +247,7 @@ export default function LegacyPage({
           <button
             type="button"
             onClick={onExploreMore}
-            className="ml-auto grid h-16 w-16 place-items-center rounded-full border-[3px] border-white bg-[#fff8f5] text-[#35143d]"
+            className="ml-auto grid h-16 w-16 place-items-center rounded-full border-[3px] border-white bg-[#fff8f5] text-[#35143d] flex-shrink-0 transition-transform hover:scale-105"
           >
             <ArrowRight className="h-8 w-8" />
           </button>
