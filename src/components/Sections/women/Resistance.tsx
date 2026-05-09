@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
 import resistanceHero from "@/assets/images/women/w-2.png";
-import zeynabImage from "@/assets/images/women/w-4.png";
+import zeynabImage from "@/assets/images/women/w-3.png";
 import leylaImage from "@/assets/images/women/w-4.png";
 
 const resistanceWomen = [
@@ -146,9 +146,8 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
               key={woman.name}
               className="relative overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-6 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)]"
             >
-              <div className="relative mx-auto h-[360px] overflow-hidden rounded-[22px]">
-                <div className="absolute left-1/2 top-4 h-[300px] w-[300px] -translate-x-1/2 rounded-full border border-[#e3bfc0]/60 bg-[#f3d7d3]/25" />
-
+              <div className="relative mx-auto h-[500px] overflow-hidden rounded-[22px]">
+              
                 <img
                   src={woman.image}
                   alt={woman.name}
