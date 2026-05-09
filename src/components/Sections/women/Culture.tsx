@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
 
 import cultureHero from "@/assets/images/women/c-1.png";
-import hanaImage from "@/assets/images/women/w-5.png";
+import hanaImage from "@/assets/images/women/w-10.png";
 import sitiImage from "@/assets/images/women/w-3.png";
 
 type CulturePageProps = {
@@ -153,9 +153,7 @@ export default function WomenCultureMemoryPage({ onBack }: CulturePageProps) {
                 <Sparkles className="h-10 w-10" />
               </div>
 
-              <div className="relative mx-auto h-[230px] w-[230px]">
-                <div className="absolute inset-0 rounded-full border border-[#dfcdb7] bg-[#f7eee5]" />
-
+              <div className="relative mx-auto h-[400px] w-[500px]">
                 <img
                   src={woman.image}
                   alt={woman.name}
