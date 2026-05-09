@@ -4,8 +4,10 @@ import {
   Sparkles,
 } from "lucide-react";
 import gsap from "gsap";
+import WomenResistancePage from "@/components/Sections/women/Resistance";
 
 import legacyHero from "@/assets/images/women/w-1.png";
+import legacyHero2 from "@/assets/images/women/w-2.png";
 import journeyImage from "@/assets/nature.jpg";
 import guitarIcon from "@/assets/images/women/icons/guitar.png";
 import crownIcon from "@/assets/images/women/icons/crown.png";
@@ -55,6 +57,7 @@ export default function LegacyPage({
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [activeSection, setActiveSection] = React.useState<"resistance" | null>(null);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -115,6 +118,10 @@ export default function LegacyPage({
     return () => ctx.revert();
   }, []);
 
+  if (activeSection === "resistance") {
+    return <WomenResistancePage />;
+  }
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
       <section
@@ -133,7 +140,7 @@ export default function LegacyPage({
               Legacy
             </h1>
 
-            <h2 className="mt-4 font-serif text-[34px] text-[#a75a69]">
+            <h2 className="mt-4 font-serif font-light text-[34px] text-[#a75a69]">
               A lasting influence.
             </h2>
 
@@ -169,6 +176,11 @@ export default function LegacyPage({
                 data-legacy-card="true"
                 key={card.title}
                 type="button"
+                onClick={() => {
+                  if (card.title === "Resistance") {
+                    setActiveSection("resistance");
+                  }
+                }}
                 className="flex h-[310px] flex-col rounded-[56px] border border-[#dfcdb7] bg-white/55 px-5 pt-7 pb-5 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm"
               >
                 <div className="flex-1 flex items-center justify-center overflow-hidden">
