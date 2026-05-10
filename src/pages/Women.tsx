@@ -141,21 +141,37 @@ export default function LegacyPage({
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-4 py-5 sm:px-8 sm:py-6 lg:px-16"
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto bg-[#fcf7ef]"
       >
-        {/* Hero */}
-        <section className="relative z-10 grid grid-cols-1 items-start gap-6 pt-2 sm:gap-8 sm:pt-4 lg:grid-cols-[0.85fr_1.15fr]">
-          <div data-legacy-fade="true" className="relative z-20">
+        {/* Hero full-bleed image */}
+        <div
+          data-legacy-hero="true"
+          className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
+        >
+          <img
+            src={legacyHero}
+            alt="Kurdish women legacy"
+            className="absolute inset-0 h-full w-[100%] object-cover object-right-top"
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
+            aria-hidden
+          />
+        </div>
+
+        {/* Hero text */}
+        <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-16">
+          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
             <div className="mb-4 flex items-center gap-3 text-[#b4864d] sm:mb-5 sm:gap-5">
               <span className="h-px w-12 bg-[#d4b98f] sm:w-20" />
               <Sparkles className="h-5 w-5" />
             </div>
 
-            <h1 className="font-serif text-[clamp(54px,16vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337]">
+            <h1 className="font-serif text-[clamp(54px,16vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
               The Women of Kurdistan
             </h1>
 
-            <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4">
+            <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
               Leadership, knowledge, resistance, culture, and legacy.
             </h2>
 
@@ -165,26 +181,15 @@ export default function LegacyPage({
               <span className="h-px flex-1 bg-[#d4b98f]" />
             </div>
 
-            <p className="max-w-[420px] text-[clamp(17px,4.2vw,20px)] leading-[1.65] text-[#353445] sm:leading-[1.75]">
+            <p className="max-w-[420px] text-[clamp(17px,4.2vw,20px)] leading-[1.65] text-[#353445] sm:leading-[1.75] drop-shadow-[0_1px_1px_rgba(252,247,239,0.9)]">
               Kurdish women have shaped history through leadership,
               learning, courage, and culture.
             </p>
           </div>
-
-          <div
-            data-legacy-hero="true"
-            className="pointer-events-none relative w-full self-start"
-          >
-            <img
-              src={legacyHero}
-              alt="Kurdish women legacy"
-              className="h-[clamp(280px,46vh,760px)] w-full object-cover object-right-top sm:h-[clamp(340px,52vh,760px)]"
-            />
-          </div>
         </section>
 
         {/* Cards - Fixed to prevent text overflow */}
-        <section className="relative z-20 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+        <section className="relative z-20 mt-[clamp(26px,40vh,400px)] grid grid-cols-2 gap-3 px-4 pb-1 sm:grid-cols-3 sm:gap-4 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-16">
           {legacyCards.map((card) => {
             return (
               <button
@@ -232,7 +237,7 @@ export default function LegacyPage({
         {/* Quote Box - With bigger images */}
         <section
           data-legacy-fade="true"
-          className="relative z-20 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 lg:min-h-[420px]"
+          className="relative z-20 mx-4 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mx-8 sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 lg:mx-16 lg:min-h-[420px]"
         >
           <img 
             src={flowerIcon2} 
@@ -260,7 +265,7 @@ export default function LegacyPage({
         {/* Journey */}
         <section
           data-legacy-fade="true"
-          className="relative z-20 mt-6 flex min-h-[110px] flex-col gap-4 rounded-[20px] bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] px-4 py-4 text-white shadow-[0_12px_30px_rgba(57,20,54,0.24)] sm:mt-8 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 sm:rounded-[24px] sm:px-6 sm:py-4 lg:gap-7 lg:px-10"
+          className="relative z-20 mx-4 mb-6 mt-6 flex min-h-[110px] flex-col gap-4 rounded-[20px] bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] px-4 py-4 text-white shadow-[0_12px_30px_rgba(57,20,54,0.24)] sm:mx-8 sm:mt-8 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 sm:rounded-[24px] sm:px-6 sm:py-4 lg:mx-16 lg:gap-7 lg:px-10"
         >
           <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-[#d7b06d] bg-white sm:h-20 sm:w-20 lg:h-24 lg:w-24">
             <img
