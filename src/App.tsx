@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound.tsx";
 import SliderPage from "./pages/SliderPage.tsx";
 import Religions from "./pages/Religions.tsx";
 import WomenPage from "./pages/Women.tsx";
+import StartMenu from "./pages/StartMenu.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<StartMenu />} />
+          <Route path="/screen-1" element={<Index />} />
           <Route path="/screen-2" element={<SecondScreen />} />
           <Route path="/portraits" element={<Portraits />} />
           <Route path="/portraits/:id" element={<PortraitDetail />} />

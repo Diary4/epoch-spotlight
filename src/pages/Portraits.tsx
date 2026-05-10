@@ -68,7 +68,7 @@ const Portraits = () => {
             </div>
             
             <Link 
-              to="/" 
+              to="/screen-1" 
               className="group flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:gap-3"
               style={{
                 color: "white",
@@ -82,7 +82,7 @@ const Portraits = () => {
               }}
             >
               <span>←</span>
-              <span>Back to Home</span>
+              <span>Back to Screen 1</span>
             </Link>
           </div>
         </div>

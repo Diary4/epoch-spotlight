@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, BookOpen, Feather, Landmark, Sparkles } from "lucide-react";
 import gsap from "gsap";
 
-import knowledgeHero from "@/assets/images/women/w-2.png";
+import knowledgeHero from "@/assets/images/women/c-2.png";
 import masturaImg from "@/assets/images/women/w-10.png";
 import hapsaImg from "@/assets/images/women/w-11.png";
 
@@ -76,10 +76,10 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
+    <main className="m-0 flex h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-[min(100vw,1400px)] overflow-hidden bg-[#fcf7ef] px-4 py-5 sm:px-8 sm:py-6 lg:px-14"
+        className="relative flex h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ef]"
       >
         <button
           type="button"
@@ -90,19 +90,25 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
 
-        <div className="absolute left-0 top-0 hidden h-full w-[52px] border-r border-[#eadfce] bg-[linear-gradient(180deg,rgba(190,104,119,0.18),rgba(255,255,255,0.2))] lg:block" />
+        {/* Hero full-bleed image */}
+        <div
+          data-knowledge-hero="true"
+          className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(92vh,1150px)]"
+        >
+           <img
+            src={knowledgeHero}
+            alt="Women of Knowledge"
+            className="absolute inset-0 h-[100%] w-[100%] object-right-top"
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
+            aria-hidden
+          />
+        </div>
 
-        {/* Hero */}
-        <section className="relative z-10 grid grid-cols-1 items-center gap-6 pl-0 lg:grid-cols-[0.9fr_1.1fr] lg:pl-10">
-          <div data-knowledge-fade="true" className="relative z-20">
-            <p className="mb-12 hidden text-center font-serif text-2xl font-semibold tracking-[0.12em] text-[#2c1736] lg:block">
-              KURDISTAN
-              <br />
-              <span className="text-sm font-light tracking-[0.45em] text-[#b4864d]">
-                MUSEUM
-              </span>
-            </p>
-
+        {/* Hero text */}
+        <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14">
+          <div data-knowledge-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
             <h1 className="font-serif text-[clamp(62px,15vw,110px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
               Women
               <br />
@@ -129,21 +135,10 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
               Voices of learning, literature, and education.
             </p>
           </div>
-
-          <div
-            data-knowledge-hero="true"
-            className="pointer-events-none relative flex justify-center"
-          >
-            <img
-              src={knowledgeHero}
-              alt="Women of Knowledge"
-              className="h-[clamp(340px,52vh,700px)] w-full object-contain object-center"
-            />
-          </div>
         </section>
 
         {/* People */}
-        <section className="relative z-20 mt-5 grid grid-cols-1 gap-5 lg:pl-10 sm:grid-cols-2">
+        <section className="relative z-20 mt-[clamp(26px,40vh,600px)] grid grid-cols-1 gap-5 px-4 py-4 sm:grid-cols-2 sm:px-8 lg:px-14">
           {people.map((person) => (
             <article
               data-knowledge-fade="true"
@@ -176,7 +171,7 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
         </section>
 
         {/* Topics */}
-        <section className="relative z-20 mt-5 grid grid-cols-1 gap-4 lg:pl-10 sm:grid-cols-3">
+        <section className="relative z-20 mt-5 grid grid-cols-1 gap-4 px-4 py-1 sm:grid-cols-3 sm:px-8 lg:px-14">
           {topics.map((topic) => {
             const Icon = topic.icon;
 
@@ -207,7 +202,7 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
         {/* Impact */}
         <section
           data-knowledge-fade="true"
-          className="relative z-20 mt-5 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#e4d5c3] bg-white/65 px-5 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)] lg:ml-10"
+          className="relative z-20 mt-5 mx-4 mb-4 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#e4d5c3] bg-white/65 px-5 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)] sm:mx-8 lg:mx-14"
         >
           <h3 className="font-serif text-[clamp(30px,5vw,42px)] leading-none text-[#43223d]">
             ✤ Their Impact

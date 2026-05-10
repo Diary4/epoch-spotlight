@@ -140,12 +140,12 @@ export default function WomenPowerPage({
         {/* Hero full-bleed image */}
         <div
           data-power-hero="true"
-          className="pointer-events-none absolute left-1/2 top-0 h-[min(55vh,520px)] w-screen -translate-x-1/2 sm:h-[min(72vh,900px)] lg:h-[min(92vh,1150px)]"
+          className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[80vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
         >
           <img
             src={mainHero}
             alt="Women of Power"
-            className="absolute inset-0 h-full w-full object-cover object-[75%_center] sm:object-right"
+            className="absolute inset-0 h-full w-full object-[75%_center] sm:object-right"
           />
           <div
             className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
