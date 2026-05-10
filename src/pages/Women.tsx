@@ -172,7 +172,7 @@ export default function LegacyPage({
             </h1>
 
             <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
-              Leadership, knowledge, resistance, culture, and legacy.
+              Leadership, knowledge, <br /> resistance, culture, and legacy.
             </h2>
 
             <div className="my-6 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d] sm:my-9">
