@@ -239,11 +239,22 @@ export default function LegacyPage({
           data-legacy-fade="true"
           className="relative z-20 mx-4 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mx-8 sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 lg:mx-16 lg:min-h-[420px]"
         >
-          <img 
-            src={flowerIcon2} 
-            alt="Quote decoration" 
-            className="absolute left-[-62px] top-1/2 hidden h-[clamp(64px,60vw,520px)] w-[clamp(92px,44vw,400px)] -translate-y-1/2 object-contain sm:block lg:left-[-100px]"
-          />
+          {/* Left flower + pink cloud glow */}
+          <div className="pointer-events-none absolute left-[-62px] top-1/2 z-[1] hidden -translate-y-1/2 sm:block lg:left-[-100px]">
+            <div
+              aria-hidden
+              className="absolute left-[15%] top-1/2 z-0 h-[clamp(100px,52vw,440px)] w-[clamp(88px,48vw,360px)] -translate-x-1/2 -translate-y-1/2 rounded-[48%] bg-[radial-gradient(ellipse_72%_58%_at_45%_48%,rgba(189,104,119,0.55)_0%,rgba(216,166,174,0.38)_42%,rgba(245,208,214,0.2)_62%,transparent_78%)] blur-[28px] sm:blur-[36px]"
+            />
+            <div
+              aria-hidden
+              className="absolute left-[35%] top-[42%] z-0 h-[clamp(72px,36vw,280px)] w-[clamp(80px,40vw,300px)] -translate-x-1/2 -translate-y-1/2 rounded-[55%] bg-[radial-gradient(ellipse_65%_55%_at_35%_45%,rgba(182,95,113,0.42)_0%,rgba(232,180,188,0.28)_50%,transparent_72%)] blur-[20px]"
+            />
+            <img
+              src={flowerIcon2}
+              alt="Quote decoration"
+              className="relative z-[1] h-[clamp(64px,60vw,520px)] w-[clamp(92px,44vw,400px)] object-contain drop-shadow-[0_4px_20px_rgba(90,42,62,0.12)]"
+            />
+          </div>
 
           <div className="relative z-10 max-w-2xl px-1 sm:px-0">
             <p className="font-serif text-[clamp(24px,5.3vw,36px)] leading-snug text-[#281234]">
@@ -255,44 +266,76 @@ export default function LegacyPage({
             </p>
           </div>
 
-          <img 
-            src={flowerIcon} 
-            alt="Quote decoration" 
-            className="absolute right-[-52px] top-1/2 hidden h-[clamp(64px,56vw,520px)] w-[clamp(64px,42vw,400px)] -translate-y-1/2 object-contain sm:block lg:right-[-80px]"
-          />
+          {/* Right flower + pink cloud glow */}
+          <div className="pointer-events-none absolute right-[-52px] top-1/2 z-[1] hidden -translate-y-1/2 sm:block lg:right-[-80px]">
+            <div
+              aria-hidden
+              className="absolute right-[12%] top-1/2 z-0 h-[clamp(96px,50vw,420px)] w-[clamp(80px,44vw,340px)] translate-x-1/2 -translate-y-1/2 rounded-[52%] bg-[radial-gradient(ellipse_70%_56%_at_55%_50%,rgba(189,104,119,0.52)_0%,rgba(216,166,174,0.36)_40%,rgba(245,208,214,0.18)_60%,transparent_76%)] blur-[28px] sm:blur-[36px]"
+            />
+            <div
+              aria-hidden
+              className="absolute right-[28%] top-[44%] z-0 h-[clamp(68px,34vw,260px)] w-[clamp(76px,38vw,280px)] translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(ellipse_62%_52%_at_65%_48%,rgba(182,95,113,0.4)_0%,rgba(232,180,188,0.26)_48%,transparent_70%)] blur-[20px]"
+            />
+            <img
+              src={flowerIcon}
+              alt="Quote decoration"
+              className="relative z-[1] h-[clamp(64px,56vw,520px)] w-[clamp(64px,42vw,400px)] object-contain drop-shadow-[0_4px_20px_rgba(90,42,62,0.12)]"
+            />
+          </div>
         </section>
 
         {/* Journey */}
-        <section
-          data-legacy-fade="true"
-          className="relative z-20 mx-4 mb-6 mt-6 flex min-h-[110px] flex-col gap-4 rounded-[20px] bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] px-4 py-4 text-white shadow-[0_12px_30px_rgba(57,20,54,0.24)] sm:mx-8 sm:mt-8 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 sm:rounded-[24px] sm:px-6 sm:py-4 lg:mx-16 lg:gap-7 lg:px-10"
-        >
-          <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-[#d7b06d] bg-white sm:h-20 sm:w-20 lg:h-24 lg:w-24">
-            <img
-              src={journeyImage}
-              alt="Journey"
-              className="h-full w-full object-cover"
-            />
-          </div>
+<section
+  data-legacy-fade="true"
+  className="relative z-20 mx-4 mb-6 mt-6 overflow-hidden px-4 py-4 text-white sm:mx-8 sm:mt-8 sm:px-6 sm:py-4 lg:mx-16 lg:px-10"
+>
+  {/* Shape background */}
+  <div
+    className="absolute inset-0 -z-10 bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] shadow-[0_12px_30px_rgba(57,20,54,0.24)]"
+    style={{
+      clipPath:
+        "polygon(4% 0%, 96% 0%, 100% 18%, 100% 82%, 96% 100%, 4% 100%, 0% 82%, 0% 18%)",
+      borderRadius: "28px",
+    }}
+  />
 
-          <div className="flex-1">
-            <h3 className="font-serif text-[clamp(26px,6vw,34px)] leading-none">
-              Continue the Journey
-            </h3>
+  {/* Soft texture */}
+  <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_85%_35%,rgba(255,255,255,0.18),transparent_22%),radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.08),transparent_28%)]" />
 
-            <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
-              Explore the stories behind each name.
-            </p>
-          </div>
+  {/* Curved side details */}
+  <div className="absolute -left-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
+  <div className="absolute -right-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
 
-          <button
-            type="button"
-            onClick={onExploreMore}
-            className="ml-auto grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border-[3px] border-white bg-[#fff8f5] text-[#35143d] transition-transform hover:scale-105 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-          >
-            <ArrowRight className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-          </button>
-        </section>
+  <div className="relative z-10 flex min-h-[110px] flex-col gap-4 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 lg:gap-7">
+    <div className="grid h-16 w-16 flex-shrink-0 place-items-center rounded-full border border-[#d7b06d]/70 bg-[#2d1236] p-1 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
+      <div className="h-full w-full overflow-hidden rounded-full border border-[#d7b06d] bg-white">
+        <img
+          src={journeyImage}
+          alt="Journey"
+          className="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+
+    <div className="flex-1">
+      <h3 className="font-serif text-[clamp(26px,6vw,34px)] leading-none">
+        Continue the Journey
+      </h3>
+
+      <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
+        Explore the stories behind each name.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      onClick={onExploreMore}
+      className="ml-auto grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border-[3px] border-white/80 bg-[#fff8f5] text-[#35143d] shadow-[0_0_0_6px_rgba(255,255,255,0.18)] transition-transform hover:scale-105 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+    >
+      <ArrowRight className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+    </button>
+  </div>
+</section>
       </section>
     </main>
   );

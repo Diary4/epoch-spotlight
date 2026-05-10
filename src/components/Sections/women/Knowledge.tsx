@@ -5,8 +5,8 @@ import gsap from "gsap";
 import knowledgeHero from "@/assets/images/women/c-2.png";
 import masturaImg from "@/assets/images/women/w-10.png";
 import hapsaImg from "@/assets/images/women/w-11.png";
-import topicPoetryImg from "@/assets/images/women/icons/k-1.png";
-import topicHistoryImg from "@/assets/images/women/icons/symbol.png";
+import topicPoetryImg from "@/assets/images/women/icons/k-2.png";
+import topicHistoryImg from "@/assets/images/women/icons/k-3.png";
 import topicEducationImg from "@/assets/images/women/icons/k-1.png";
 
 type WomenKnowledgePageProps = {
