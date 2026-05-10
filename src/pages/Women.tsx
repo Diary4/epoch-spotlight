@@ -7,6 +7,7 @@ import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
 import gsap from "gsap";
 import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
+import WomenPowerPage from "@/components/Sections/women/Leadership";
 
 import legacyHero from "@/assets/images/women/w-1.png";
 import journeyImage from "@/assets/nature.jpg";
@@ -14,7 +15,6 @@ import guitarIcon from "@/assets/images/women/icons/guitar.png";
 import crownIcon from "@/assets/images/women/icons/crown.png";
 import bookIcon from "@/assets/images/women/icons/book.png";
 import handIcon from "@/assets/images/women/icons/hand.png";
-import symbolIcon from "@/assets/images/women/icons/symbol.png";
 import flowerIcon from "@/assets/images/women/icons/flower-1.png";
 import flowerIcon2 from "@/assets/images/women/icons/flower-2.png";
 
@@ -58,7 +58,7 @@ export default function LegacyPage({
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const [activeSection, setActiveSection] = React.useState<"knowledge" | "resistance" | "culture" | null>(null);
+  const [activeSection, setActiveSection] = React.useState<"leadership" | "knowledge" | "resistance" | "culture" | null>(null);
 
   // Re-run intro when returning from Knowledge / Culture / Resistance — the main
   // section unmounts while a subsection is open, so [] would never re-attach GSAP.
@@ -120,6 +120,10 @@ export default function LegacyPage({
 
     return () => ctx.revert();
   }, [activeSection]);
+
+  if (activeSection === "leadership") {
+    return <WomenPowerPage onBack={() => setActiveSection(null)} />;
+  }
 
   if (activeSection === "knowledge") {
     return <WomenKnowledgePage onBack={() => setActiveSection(null)} />;
@@ -188,6 +192,9 @@ export default function LegacyPage({
                 key={card.title}
                 type="button"
                 onClick={() => {
+                  if (card.title === "Leadership") {
+                    setActiveSection("leadership");
+                  }
                   if (card.title === "Knowledge") {
                     setActiveSection("knowledge");
                   }
