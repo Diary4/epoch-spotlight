@@ -7,9 +7,6 @@ import ku from "@/data/ku.json";
 import card2 from "@/assets/mainImages/card-2.PNG?url"
 import card1 from "@/assets/mainImages/card-1.PNG?url"
 import card3 from "@/assets/mainImages/card-3.PNG?url"
-import bgMainImage from "@/assets/mainImages/main.PNG?url"
-import peopleVideo from "@/assets/videos/thepeople.MP4?url"
-import bg from '@/assets/pexels-mohammad-majid-112544081-31576586.jpg'
 import peopleVideo2 from "@/assets/videos/dws.mp4?url"
 
 const cards: {

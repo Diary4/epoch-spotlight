@@ -9,7 +9,6 @@ import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 
 import legacyHero from "@/assets/images/women/w-1.png";
-import legacyHero2 from "@/assets/images/women/w-2.png";
 import journeyImage from "@/assets/nature.jpg";
 import guitarIcon from "@/assets/images/women/icons/guitar.png";
 import crownIcon from "@/assets/images/women/icons/crown.png";
@@ -48,10 +47,10 @@ const legacyCards: LegacyCard[] = [
     title: "Culture",
     imageSrc: guitarIcon,
   },
-  {
-    title: "Identity",
-    imageSrc: symbolIcon,
-  },
+  // {
+  //   title: "Identity",
+  //   imageSrc: symbolIcon,
+  // },
 ];
 
 export default function LegacyPage({
@@ -149,11 +148,11 @@ export default function LegacyPage({
             </div>
 
             <h1 className="font-serif text-[clamp(54px,16vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337]">
-              Legacy
+              The Women of Kurdistan
             </h1>
 
             <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4">
-              A lasting influence.
+              Leadership, knowledge, resistance, culture, and legacy.
             </h2>
 
             <div className="my-6 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d] sm:my-9">
@@ -163,7 +162,7 @@ export default function LegacyPage({
             </div>
 
             <p className="max-w-[420px] text-[clamp(17px,4.2vw,20px)] leading-[1.65] text-[#353445] sm:leading-[1.75]">
-              The women of Kurdistan shaped history through leadership,
+              Kurdish women have shaped history through leadership,
               learning, courage, and culture.
             </p>
           </div>
@@ -181,7 +180,7 @@ export default function LegacyPage({
         </section>
 
         {/* Cards - Fixed to prevent text overflow */}
-        <section className="relative z-20 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 lg:gap-5">
+        <section className="relative z-20 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
           {legacyCards.map((card) => {
             return (
               <button
