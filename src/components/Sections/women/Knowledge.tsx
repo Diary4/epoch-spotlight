@@ -1,10 +1,13 @@
 import React from "react";
-import { ArrowLeft, BookOpen, Feather, Landmark, Sparkles } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import gsap from "gsap";
 
 import knowledgeHero from "@/assets/images/women/c-2.png";
 import masturaImg from "@/assets/images/women/w-10.png";
 import hapsaImg from "@/assets/images/women/w-11.png";
+import topicPoetryImg from "@/assets/images/women/icons/k-1.png";
+import topicHistoryImg from "@/assets/images/women/icons/symbol.png";
+import topicEducationImg from "@/assets/images/women/icons/k-1.png";
 
 type WomenKnowledgePageProps = {
   onBack?: () => void;
@@ -26,15 +29,15 @@ const people = [
 const topics = [
   {
     title: "Poetry",
-    icon: Feather,
+    imageSrc: topicPoetryImg,
   },
   {
     title: "History",
-    icon: Landmark,
+    imageSrc: topicHistoryImg,
   },
   {
     title: "Girls’ Education",
-    icon: BookOpen,
+    imageSrc: topicEducationImg,
   },
 ];
 
@@ -172,18 +175,17 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
 
         {/* Topics */}
         <section className="relative z-20 mt-5 grid grid-cols-1 gap-4 px-4 py-1 sm:grid-cols-3 sm:px-8 lg:px-14">
-          {topics.map((topic) => {
-            const Icon = topic.icon;
-
-            return (
+          {topics.map((topic) => (
               <article
                 data-knowledge-fade="true"
                 key={topic.title}
                 className="flex min-h-[180px] flex-col items-center justify-center rounded-[22px] border border-[#e4d5c3] bg-white/65 p-5 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)]"
               >
-                <div className="grid h-20 w-20 place-items-center rounded-full bg-[#f2dfe0] text-[#b4864d]">
-                  <Icon className="h-11 w-11" />
-                </div>
+                  <img
+                   src={topic.imageSrc}
+                   alt={topic.title}
+                   className="h-[200px] w-[200px] object-contain"
+                 />
 
                 <h4 className="mt-4 font-serif text-[clamp(24px,4vw,32px)] text-[#43223d]">
                   {topic.title}
@@ -195,8 +197,7 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
               </article>
-            );
-          })}
+          ))}
         </section>
 
         {/* Impact */}
