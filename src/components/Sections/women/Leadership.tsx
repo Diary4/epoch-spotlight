@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, Crown, Flower2 } from "lucide-react";
 import gsap from "gsap";
 
-import mainHero from "@/assets/images/women/w-9.png";
+import mainHero from "@/assets/images/women/le-1.png";
 import adelaImg from "@/assets/images/women/w-3.png";
 import halimaImg from "@/assets/images/women/w-4.png";
 import meryemImg from "@/assets/images/women/w-5.png";
@@ -126,7 +126,7 @@ export default function WomenPowerPage({
     <main className="m-0 flex h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
       <section
         ref={sectionRef}
-        className="relative flex h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ef] px-4 py-5 sm:px-8 sm:py-6 lg:px-14"
+        className="relative flex h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ef]"
       >
         <button
           type="button"
@@ -137,9 +137,25 @@ export default function WomenPowerPage({
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
 
-        {/* Hero */}
-        <section className="relative z-10 grid grid-cols-1 items-center gap-6 lg:grid-cols-[0.85fr_1.35fr]">
-          <div data-power-fade="true" className="relative z-20 pt-2">
+        {/* Hero full-bleed image */}
+        <div
+          data-power-hero="true"
+          className="pointer-events-none absolute left-1/2 top-0 h-[min(55vh,520px)] w-screen -translate-x-1/2 sm:h-[min(72vh,900px)] lg:h-[min(92vh,1150px)]"
+        >
+          <img
+            src={mainHero}
+            alt="Women of Power"
+            className="absolute inset-0 h-full w-full object-cover object-[75%_center] sm:object-right"
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
+            aria-hidden
+          />
+        </div>
+
+        {/* Hero text */}
+        <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14">
+          <div data-power-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
             <div className="mb-4 flex justify-center lg:justify-start lg:pl-24">
               <div className="grid h-16 w-16 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] shadow-[0_8px_20px_rgba(90,42,62,0.18)] sm:h-20 sm:w-20">
                 <Crown className="h-8 w-8 sm:h-10 sm:w-10" />
@@ -170,21 +186,10 @@ export default function WomenPowerPage({
               of change.
             </p>
           </div>
-
-          <div
-            data-power-hero="true"
-            className="pointer-events-none relative flex w-full justify-center"
-          >
-            <img
-              src={mainHero}
-              alt="Women of Power"
-              className="h-[clamp(360px,55vh,720px)] w-full object-contain object-center"
-            />
-          </div>
         </section>
 
         {/* Cards */}
-        <section className="relative z-20 mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-2 lg:gap-5">
+        <section className="relative z-20 mt-[clamp(26px,40vh,400px)] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 px-4 py-4">
           {womenPowerCards.map((woman) => {
             const Icon = woman.icon === "crown" ? Crown : Flower2;
 
@@ -192,10 +197,10 @@ export default function WomenPowerPage({
               <article
                 data-power-card="true"
                 key={woman.name}
-                className="relative grid min-h-[260px] grid-cols-[0.95fr_1.05fr] overflow-hidden rounded-[28px] border border-[#e4d5c3] bg-white/62 p-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08),0_8px_22px_rgba(70,38,48,0.08)] backdrop-blur-sm sm:min-h-[300px] sm:rounded-[34px] sm:p-5"
+                className="relative grid min-h-[660px] grid-cols-[0.95fr_1.05fr] overflow-hidden rounded-[28px] border border-[#e4d5c3] bg-white/62 p-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08),0_8px_22px_rgba(70,38,48,0.08)] backdrop-blur-sm sm:min-h-[550px] sm:rounded-[34px] sm:p-5"
               >
                 <div className="flex items-center justify-center">
-                  <div className="h-[190px] w-[150px] overflow-hidden rounded-full border-2 border-[#d8b979] bg-[#d8a6ae]/30 p-1 sm:h-[230px] sm:w-[180px]">
+                  <div className="h-[290px] w-[250px] overflow-hidden rounded-full border-2 border-[#d8b979] bg-[#d8a6ae]/30 p-1 sm:h-[390px] sm:w-[250px]">
                     <img
                       src={woman.imageSrc}
                       alt={woman.name}
