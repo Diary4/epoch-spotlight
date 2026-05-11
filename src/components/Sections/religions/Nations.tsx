@@ -288,7 +288,7 @@ export default function NationsPage({
         <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
           <header
             data-n-animate="true"
-            className="mx-auto max-w-[850px] pt-14 text-center"
+            className="mx-auto max-w-[850px] pt-28 text-center sm:pt-32"
           >
             <div className="mx-auto mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
@@ -306,7 +306,7 @@ export default function NationsPage({
 
           <section
             data-n-animate="true"
-            className="mx-auto mt-16 grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4"
+            className="mx-auto mt-[clamp(80px,30vh,360px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4"
           >
             {c.nations.map((nation) => (
               <article

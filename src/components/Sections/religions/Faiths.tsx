@@ -17,9 +17,9 @@ import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";
 // import YarsanismPage from "@/components/Sections/religions/RelisgionsSection/Yarsanism";
-// import ZoroastrianismPage from "@/components/Sections/religions/RelisgionsSection/Zoroastrianism";
-// import JudaismPage from "@/components/Sections/religions/RelisgionsSection/Judaism";
-// import BahaiPage from "@/components/Sections/religions/RelisgionsSection/Bahai";
+import ZoroastrianismPage from "@/components/Sections/religions/RelisgionsSection/Zoroastrianism";
+import JudaismPage from "@/components/Sections/religions/RelisgionsSection/Judaism";
+import BahaiPage from "@/components/Sections/religions/RelisgionsSection/Bahai";
 // import SabeanMandaeanismPage from "@/components/Sections/religions/RelisgionsSection/SabeanMandaeanism";
 
 type LangCode = "en" | "ku" | "ar";
@@ -334,38 +334,38 @@ export default function FaithsPage({
   //   );
   // }
 
-  // if (activeId === "zoroastrianism") {
-  //   return (
-  //     <ZoroastrianismPage
-  //       lang={lang}
-  //       languageLabel={languageLabel}
-  //       onLanguageChange={onLanguageChange}
-  //       onBack={() => setActiveId(null)}
-  //     />
-  //   );
-  // }
+  if (activeId === "zoroastrianism") {
+    return (
+      <ZoroastrianismPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
 
-  // if (activeId === "judaism") {
-  //   return (
-  //     <JudaismPage
-  //       lang={lang}
-  //       languageLabel={languageLabel}
-  //       onLanguageChange={onLanguageChange}
-  //       onBack={() => setActiveId(null)}
-  //     />
-  //   );
-  // }
+  if (activeId === "judaism") {
+    return (
+      <JudaismPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
 
-  // if (activeId === "bahai") {
-  //   return (
-  //     <BahaiPage
-  //       lang={lang}
-  //       languageLabel={languageLabel}
-  //       onLanguageChange={onLanguageChange}
-  //       onBack={() => setActiveId(null)}
-  //     />
-  //   );
-  // }
+  if (activeId === "bahai") {
+    return (
+      <BahaiPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
 
   // if (activeId === "sabean-mandaeanism") {
   //   return (
@@ -381,23 +381,21 @@ export default function FaithsPage({
   return (
     <main
       dir={dir}
-      className="flex min-h-screen w-screen flex-col bg-[#f8f1e7] text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
     >
-      {/* ===== TITLE SECTION ===== */}
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-16 pt-10 sm:px-12 lg:px-20"
+        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
       >
-        {/* Background image */}
+        {/* Background image (fades into cream like Nations / Kurds) */}
         <img
           data-f-hero="true"
           src={bg}
           alt=""
-          className="pointer-events-none absolute left-0 top-0 h-full w-full object-cover object-center"
+          className="pointer-events-none absolute inset-0 h-[55vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
         />
-        {/* Soft overlays so the title stays readable */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf1df]/90 via-[#fbf1df]/15 to-[#fbf1df]/95" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#fbf1df] via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[55vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
+        <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
 
         <button
           type="button"
@@ -417,32 +415,30 @@ export default function FaithsPage({
           {languageLabel}
         </button>
 
-        <header
-          data-f-animate="true"
-          className="relative z-10 mx-auto max-w-[850px] pt-14 text-center"
-        >
-          <div className="mx-auto mt-3 mb-3 w-[260px]">
-            <DecorativeLine color="#c3923a" />
-          </div>
-          <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[84px]">
-            {c.pageTitle}
-          </h1>
-          <div className="mx-auto mt-5 w-[180px]">
-            <DecorativeLine color="#c3923a" />
-          </div>
-          <p className="mx-auto mt-5 max-w-[620px] text-[18px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[20px]">
-            {c.pageDescription}
-          </p>
-        </header>
-      </section>
+        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+          <header
+            data-f-animate="true"
+            className="mx-auto max-w-[850px] pt-28 text-center sm:pt-32"
+          >
+            <div className="mx-auto mt-3 mb-3 w-[260px]">
+              <DecorativeLine color="#c3923a" />
+            </div>
+            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[84px]">
+              {c.pageTitle}
+            </h1>
+            <div className="mx-auto mt-5 w-[180px]">
+              <DecorativeLine color="#c3923a" />
+            </div>
+            <p className="mx-auto mt-5 max-w-[620px] text-[18px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[20px]">
+              {c.pageDescription}
+            </p>
+          </header>
 
-      {/* ===== CARDS SECTION (separate from title) ===== */}
-      <section className="mt-[clamp(20px,50vh,500px)] relative w-full bg-[#f8f1e7] px-6 pb-20 pt-12 sm:px-12 lg:px-20">
-        <div
-          data-f-animate="true"
-          className="mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        >
-          {c.faiths.map((faith) => (
+          <div
+            data-f-animate="true"
+            className="mx-auto mt-[clamp(80px,30vh,360px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
+            {c.faiths.map((faith) => (
             <article
               key={faith.id}
               role="button"
@@ -487,7 +483,10 @@ export default function FaithsPage({
               </div>
             </article>
           ))}
+          </div>
         </div>
+
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
       </section>
     </main>
   );
