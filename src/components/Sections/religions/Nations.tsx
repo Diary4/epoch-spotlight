@@ -8,12 +8,11 @@ import nationTurkmens from "@/assets/images/religions/r-3.png";
 import nationChaldo from "@/assets/images/religions/r-4.png";
 import nationArmenians from "@/assets/images/religions/r-5.png";
 
-// Per-nation detail pages — add them here once the files are created.
-// Example (uncomment and create the matching file in NationsSection/):
-// import KurdsPage from "@/components/Sections/religions/NationsSection/Kurds";
-// import TurkmensPage from "@/components/Sections/religions/NationsSection/Turkmens";
-// import ChaldoAssyriansPage from "@/components/Sections/religions/NationsSection/ChaldoAssyrians";
-// import ArmeniansPage from "@/components/Sections/religions/NationsSection/Armenians";
+// Per-nation detail pages — wire up each nation to its own file in nations/.
+import KurdsPage from "@/components/Sections/religions/nations/Kurds";
+import TurkmensPage from "@/components/Sections/religions/nations/Turkmens";
+import ChaldoAssyriansPage from "@/components/Sections/religions/nations/ChaldoAssyrians";
+import ArmeniansPage from "@/components/Sections/religions/nations/Armenians";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -197,20 +196,54 @@ export default function NationsPage({
 
   // ---------------------------------------------------------------------------
   // Per-nation detail routing.
-  // Add a branch here for each per-nation page you create in NationsSection/.
-  // Example:
-  //
-  // if (activeId === "kurds") {
-  //   return (
-  //     <KurdsPage
-  //       lang={lang}
-  //       languageLabel={languageLabel}
-  //       onLanguageChange={onLanguageChange}
-  //       onBack={() => setActiveId(null)}
-  //     />
-  //   );
-  // }
+  // Wired up: Kurds (existing file in nations/). Add a branch for each new
+  // per-nation page you create — uncomment the matching import at the top of
+  // this file before enabling it.
   // ---------------------------------------------------------------------------
+
+  if (activeId === "kurds") {
+    return (
+      <KurdsPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
+
+  if (activeId === "turkmens") {
+    return (
+      <TurkmensPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
+
+  if (activeId === "chaldo-assyrians") {
+    return (
+      <ChaldoAssyriansPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
+
+  if (activeId === "armenians") {
+    return (
+      <ArmeniansPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
 
   return (
     <main

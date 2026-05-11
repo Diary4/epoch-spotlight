@@ -1,29 +1,37 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Globe2, Languages, Flame, Music, Landmark, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  Church,
+  Clock,
+  Globe2,
+  Landmark,
+  Sparkles,
+  UsersRound,
+} from "lucide-react";
 
-import bg from "@/assets/mainImages/whoarekurds.png";
+import bg from "@/assets/images/religions/r-5.png";
 
 const cards = [
   {
-    title: "LANGUAGE",
-    icon: Languages,
-    text: "Sorani and Kurmanji are the two main Kurdish dialects. Both are official languages of the Kurdistan Region alongside Arabic.",
+    title: "HISTORY",
+    icon: Clock,
+    text: "Armenians arrived in Kurdistan following the 1915 genocide, finding refuge in a land that became their home across generations.",
   },
   {
-    title: "NEWROZ",
-    icon: Flame,
-    text: "The Kurdish New Year celebrated on March 21 with fire and renewal. One of the most celebrated cultural events of the year with ancient Zoroastrian roots.",
+    title: "CHURCHES",
+    icon: Church,
+    text: "The Armenian Diocese oversees 14 churches, 5 of which are in the Kurdistan Region including Holy Cross Church in Erbil inaugurated in 2019.",
   },
   {
-    title: "CULTURE",
-    icon: Music,
-    text: "Traditional dress, the Halparke dance, poetry, and hospitality define Kurdish cultural identity. Sufi orders shaped Kurdish society and spirituality for centuries.",
+    title: "COMMUNITY",
+    icon: UsersRound,
+    text: "Currently approximately 3,500–4,000 Armenians live in the Kurdistan Region. The Armenian Cultural and Social Association is active in Erbil.",
   },
   {
-    title: "CITIES",
+    title: "1 PARLIAMENT SEAT",
     icon: Landmark,
-    text: "Erbil, Duhok, and Sulaymaniyah are the three governorates and cultural hearts of the Kurdistan Region.",
+    text: "The Armenian community holds a reserved seat in the Kurdistan Parliament, ensuring their voice in public life.",
   },
 ];
 
@@ -39,19 +47,19 @@ function DecorativeLine({ color = "#c3923a" }) {
   );
 }
 
-type KurdsPageProps = {
+type ArmeniansPageProps = {
   lang?: "en" | "ku" | "ar";
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
 };
 
-export default function KurdsPage({
+export default function ArmeniansPage({
   lang = "en",
   languageLabel = "ENGLISH",
   onLanguageChange,
   onBack,
-}: KurdsPageProps) {
+}: ArmeniansPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -59,25 +67,25 @@ export default function KurdsPage({
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-kurds-hero='true']", {
+      gsap.set("[data-armenians-hero='true']", {
         autoAlpha: 0,
         scale: 1.04,
       });
 
-      gsap.set("[data-kurds-animate='true']", {
+      gsap.set("[data-armenians-animate='true']", {
         autoAlpha: 0,
         y: 24,
       });
 
       const tl = gsap.timeline();
 
-      tl.to("[data-kurds-hero='true']", {
+      tl.to("[data-armenians-hero='true']", {
         autoAlpha: 1,
         scale: 1,
         duration: 0.9,
         ease: "power2.out",
       }).to(
-        "[data-kurds-animate='true']",
+        "[data-armenians-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
@@ -102,7 +110,7 @@ export default function KurdsPage({
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <img
-          data-kurds-hero="true"
+          data-armenians-hero="true"
           src={bg}
           alt=""
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
@@ -130,7 +138,7 @@ export default function KurdsPage({
 
         <div className="relative z-10 mx-auto max-w-[1120px]">
           <header
-            data-kurds-animate="true"
+            data-armenians-animate="true"
             className="mx-auto max-w-[900px] pt-28 text-center sm:pt-32"
           >
             <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
@@ -142,11 +150,11 @@ export default function KurdsPage({
             </div>
 
             <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              KURDS
+              ARMENIANS
             </h1>
 
             <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              Language, heritage, and living identity
+              A century of belonging in Kurdistan
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -157,7 +165,7 @@ export default function KurdsPage({
           <div className="h-[500px]" />
 
           <section
-            data-kurds-animate="true"
+            data-armenians-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {cards.map((card) => {
@@ -189,7 +197,7 @@ export default function KurdsPage({
           </section>
 
           <section
-            data-kurds-animate="true"
+            data-armenians-animate="true"
             className="mx-auto mt-8 flex max-w-[820px] items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
           >
             <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-[42px] text-white">
@@ -197,7 +205,7 @@ export default function KurdsPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              Rooted in heritage. Building the future.
+              A community of memory, resilience, and belonging.
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
