@@ -1,33 +1,229 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Globe2, BookOpen, MoonStar, Landmark, Sparkles } from "lucide-react";
+import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.png";
+import imgIslam from "@/assets/images/religions/r-1.png";
+import imgChristianity from "@/assets/images/religions/r-2.png";
+import imgYarsanism from "@/assets/images/religions/r-3.png";
+import imgYazidism from "@/assets/images/religions/r-4.png";
+import imgJudaism from "@/assets/images/religions/r-5.png";
+import imgBahai from "@/assets/images/religions/r-6.jpeg";
+import imgZoroastrianism from "@/assets/images/religions/r-7.png";
+import imgSabean from "@/assets/mainImages/story-1.png";
 
-const cards = [
-  {
-    title: "SHAFI'I SCHOOL",
-    icon: BookOpen,
-    text: "The majority of Kurds follow the Shafi'i school of thought, embraced since the 7th century CE during the caliphate of Umar ibn al-Khattab.",
-  },
-  {
-    title: "SUFISM",
-    icon: Sparkles,
-    text: "189 registered Sufi lodges across the KRI. The Qadiriyya and Naqshbandiyya orders shaped Kurdish society and culture for centuries through dhikr, poetry, and spiritual guidance.",
-  },
-  {
-    title: "MINISTRY",
-    icon: Landmark,
-    text: "The Ministry of Endowments and Religious Affairs supervises 6,103 mosques, 121,112 staff, and serves all religions — not only Islam. Includes directorates for Christian and Yazidi affairs.",
-  },
-  {
-    title: "RAMADAN & EID",
-    icon: MoonStar,
-    text: "Shared seasons of fasting, prayer, and generosity. Christians in Erbil prepare iftar tables during Ramadan as a gesture of solidarity with Muslims.",
-  },
-];
+// Per-faith detail pages — wire up each faith to its own file.
+import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";
+import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
+import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";
+// import YarsanismPage from "@/components/Sections/religions/RelisgionsSection/Yarsanism";
+// import ZoroastrianismPage from "@/components/Sections/religions/RelisgionsSection/Zoroastrianism";
+// import JudaismPage from "@/components/Sections/religions/RelisgionsSection/Judaism";
+// import BahaiPage from "@/components/Sections/religions/RelisgionsSection/Bahai";
+// import SabeanMandaeanismPage from "@/components/Sections/religions/RelisgionsSection/SabeanMandaeanism";
 
-function DecorativeLine({ color = "#c3923a" }) {
+type LangCode = "en" | "ku" | "ar";
+
+type FaithId =
+  | "islam"
+  | "christianity"
+  | "yazidism"
+  | "yarsanism"
+  | "zoroastrianism"
+  | "judaism"
+  | "bahai"
+  | "sabean-mandaeanism";
+
+type FaithCard = {
+  id: FaithId;
+  title: string;
+  shortIntro: string;
+  image: string;
+};
+
+type FaithsContent = {
+  back: string;
+  pageTitle: string;
+  pageDescription: string;
+  openLabel: string;
+  faiths: FaithCard[];
+};
+
+const content: Record<LangCode, FaithsContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "Faiths",
+    pageDescription:
+      "The sacred traditions that share one homeland — their beliefs, practices, and place in Kurdistan today.",
+    openLabel: "Open",
+    faiths: [
+      {
+        id: "islam",
+        title: "Islam",
+        shortIntro: "Faith, worship, and living tradition.",
+        image: imgIslam,
+      },
+      {
+        id: "christianity",
+        title: "Christianity",
+        shortIntro: "Ancient roots, faith, and community.",
+        image: imgChristianity,
+      },
+      {
+        id: "yazidism",
+        title: "Yazidism",
+        shortIntro: "Sacred valley, memory, and resilience.",
+        image: imgYazidism,
+      },
+      {
+        id: "yarsanism",
+        title: "Yarsanism (Kaka'i)",
+        shortIntro: "Inner truth, devotion, and community.",
+        image: imgYarsanism,
+      },
+      {
+        id: "zoroastrianism",
+        title: "Zoroastrianism",
+        shortIntro: "Light, truth, and ancient wisdom.",
+        image: imgZoroastrianism,
+      },
+      {
+        id: "judaism",
+        title: "Judaism",
+        shortIntro: "Memory, heritage, and continuity.",
+        image: imgJudaism,
+      },
+      {
+        id: "bahai",
+        title: "Baha'i Faith",
+        shortIntro: "Unity, peace, and one humanity.",
+        image: imgBahai,
+      },
+      {
+        id: "sabean-mandaeanism",
+        title: "Sabean-Mandaeanism",
+        shortIntro: "Living water, purity, and continuity.",
+        image: imgSabean,
+      },
+    ],
+  },
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "ئاینەکان",
+    pageDescription:
+      "نەریتە پیرۆزەکانی کە یەک نیشتمانیان هاوبەشە — باوەڕ، نوێژ، و جێگەیان لە کوردستانی ئەمڕۆ.",
+    openLabel: "بکەرەوە",
+    faiths: [
+      {
+        id: "islam",
+        title: "ئیسلام",
+        shortIntro: "باوەڕ، پەرستن، و نەریتی زیندوو.",
+        image: imgIslam,
+      },
+      {
+        id: "christianity",
+        title: "مەسیحی",
+        shortIntro: "ڕەگەکانی کۆن، باوەڕ، و کۆمەڵگە.",
+        image: imgChristianity,
+      },
+      {
+        id: "yazidism",
+        title: "ئێزدیەتی",
+        shortIntro: "دۆڵی پیرۆز، یاد، و بەرگری.",
+        image: imgYazidism,
+      },
+      {
+        id: "yarsanism",
+        title: "یارسانیەتی (کاکەیی)",
+        shortIntro: "ڕاستیی ناوەخۆ، تەرخانکردن، و کۆمەڵگە.",
+        image: imgYarsanism,
+      },
+      {
+        id: "zoroastrianism",
+        title: "زەردەشتیەتی",
+        shortIntro: "ڕووناکی، ڕاستی، و دانایی کۆن.",
+        image: imgZoroastrianism,
+      },
+      {
+        id: "judaism",
+        title: "جوولەکە",
+        shortIntro: "یاد، میرات، و بەردەوامی.",
+        image: imgJudaism,
+      },
+      {
+        id: "bahai",
+        title: "ئاینی بەهایی",
+        shortIntro: "یەکگرتوویی، ئاشتی، و یەک مرۆڤایەتی.",
+        image: imgBahai,
+      },
+      {
+        id: "sabean-mandaeanism",
+        title: "سابیی-مەندەیی",
+        shortIntro: "ئاوی زیندوو، پاکی، و بەردەوامی.",
+        image: imgSabean,
+      },
+    ],
+  },
+  ar: {
+    back: "العودة",
+    pageTitle: "الأديان",
+    pageDescription:
+      "التقاليد المقدسة التي تتقاسم وطناً واحداً — معتقداتها وممارساتها ومكانتها في كوردستان اليوم.",
+    openLabel: "اعرض",
+    faiths: [
+      {
+        id: "islam",
+        title: "الإسلام",
+        shortIntro: "إيمان وعبادة وتقليد حيّ.",
+        image: imgIslam,
+      },
+      {
+        id: "christianity",
+        title: "المسيحية",
+        shortIntro: "جذور قديمة وإيمان ومجتمع.",
+        image: imgChristianity,
+      },
+      {
+        id: "yazidism",
+        title: "الإيزيدية",
+        shortIntro: "وادٍ مقدس وذاكرة وصمود.",
+        image: imgYazidism,
+      },
+      {
+        id: "yarsanism",
+        title: "اليارسانية (الكاكائية)",
+        shortIntro: "حقيقة باطنية وتفانٍ ومجتمع.",
+        image: imgYarsanism,
+      },
+      {
+        id: "zoroastrianism",
+        title: "الزرادشتية",
+        shortIntro: "نور وحق وحكمة قديمة.",
+        image: imgZoroastrianism,
+      },
+      {
+        id: "judaism",
+        title: "اليهودية",
+        shortIntro: "ذاكرة وتراث واستمرارية.",
+        image: imgJudaism,
+      },
+      {
+        id: "bahai",
+        title: "البهائية",
+        shortIntro: "وحدة وسلام وإنسانية واحدة.",
+        image: imgBahai,
+      },
+      {
+        id: "sabean-mandaeanism",
+        title: "الصابئة-المندائية",
+        shortIntro: "ماء حيّ وطهارة واستمرارية.",
+        image: imgSabean,
+      },
+    ],
+  },
+};
+
+function DecorativeLine({ color = "#c3923a" }: { color?: string }) {
   return (
     <div className="flex items-center justify-center gap-4">
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
@@ -39,152 +235,44 @@ function DecorativeLine({ color = "#c3923a" }) {
   );
 }
 
-// ============================================
-// SEPARATE TITLE SECTION COMPONENT
-// ============================================
-function TitleSection({ lang = "en" }) {
-  const dir = lang === "en" ? "ltr" : "rtl";
-  
-  return (
-    <header
-      data-islam-animate="true"
-      className="mx-auto max-w-[850px] pt-14 text-center"
-      dir={dir}
-    >
-      <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-        ✥
-      </div>
-
-      <div className="mx-auto mb-5 w-[480px] max-w-full">
-        <DecorativeLine />
-      </div>
-
-      <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-        ISLAM
-      </h1>
-
-      <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-        Faith, worship, and living tradition
-      </p>
-
-      <div className="mx-auto mt-8 w-[210px]">
-        <DecorativeLine />
-      </div>
-    </header>
-  );
-}
-
-// ============================================
-// SEPARATE CARDS SECTION COMPONENT
-// ============================================
-function CardsSection() {
-  return (
-    <section
-      data-islam-animate="true"
-      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
-    >
-      {cards.map((card) => {
-        const Icon = card.icon;
-
-        return (
-          <article
-            key={card.title}
-            className="min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm"
-          >
-            <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner">
-              <Icon className="h-10 w-10" strokeWidth={1.7} />
-            </div>
-
-            <h3 className="font-serif text-[21px] font-semibold uppercase leading-tight text-[#3b2410]">
-              {card.title}
-            </h3>
-
-            <div className="mx-auto my-4 w-[140px]">
-              <DecorativeLine color="#d1a14f" />
-            </div>
-
-            <p className="text-[16px] font-semibold leading-relaxed text-[#4d3c2a]">
-              {card.text}
-            </p>
-          </article>
-        );
-      })}
-    </section>
-  );
-}
-
-// ============================================
-// SEPARATE BOTTOM SECTION COMPONENT
-// ============================================
-function BottomSection() {
-  return (
-    <>
-      <section
-        data-islam-animate="true"
-        className="mx-auto mt-8 flex max-w-[720px] items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-      >
-        <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-[42px] text-white">
-          ☾
-        </div>
-
-        <p className="font-serif text-[34px] font-semibold leading-tight text-[#3b2410]">
-          Faith lived every day.
-        </p>
-
-        <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
-      </section>
-
-      <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
-    </>
-  );
-}
-
-// ============================================
-// MAIN COMPONENT (arranged: Title → Cards)
-// ============================================
-type IslamPageProps = {
-  lang?: "en" | "ku" | "ar";
+type FaithsPageProps = {
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
 };
 
-export default function IslamPage({
+export default function FaithsPage({
   lang = "en",
   languageLabel = "ENGLISH",
   onLanguageChange,
   onBack,
-}: IslamPageProps) {
+}: FaithsPageProps) {
+  const [activeId, setActiveId] = React.useState<FaithId | null>(null);
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || activeId) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-islam-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
-
-      gsap.set("[data-islam-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
+      gsap.set("[data-f-hero='true']", { autoAlpha: 0, scale: 1.04 });
+      gsap.set("[data-f-animate='true']", { autoAlpha: 0, y: 24 });
 
       const tl = gsap.timeline();
 
-      tl.to("[data-islam-hero='true']", {
+      tl.to("[data-f-hero='true']", {
         autoAlpha: 1,
         scale: 1,
         duration: 0.9,
         ease: "power2.out",
       }).to(
-        "[data-islam-animate='true']",
+        "[data-f-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.85,
+          duration: 0.7,
           stagger: 0.08,
           ease: "power2.out",
         },
@@ -193,35 +281,129 @@ export default function IslamPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang, activeId]);
+
+  // ---------------------------------------------------------------------------
+  // Per-faith detail routing.
+  // Wired up: Islam, Christianity, Yazidism (existing files in RelisgionsSection/).
+  // Add a branch for each new per-faith page you create — uncomment the matching
+  // import at the top of this file before enabling it.
+  // ---------------------------------------------------------------------------
+
+  if (activeId === "islam") {
+    return (
+      <IslamPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
+
+  if (activeId === "christianity") {
+    return (
+      <ChristianityPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
+
+  if (activeId === "yazidism") {
+    return (
+      <YazidismPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
+
+  // if (activeId === "yarsanism") {
+  //   return (
+  //     <YarsanismPage
+  //       lang={lang}
+  //       languageLabel={languageLabel}
+  //       onLanguageChange={onLanguageChange}
+  //       onBack={() => setActiveId(null)}
+  //     />
+  //   );
+  // }
+
+  // if (activeId === "zoroastrianism") {
+  //   return (
+  //     <ZoroastrianismPage
+  //       lang={lang}
+  //       languageLabel={languageLabel}
+  //       onLanguageChange={onLanguageChange}
+  //       onBack={() => setActiveId(null)}
+  //     />
+  //   );
+  // }
+
+  // if (activeId === "judaism") {
+  //   return (
+  //     <JudaismPage
+  //       lang={lang}
+  //       languageLabel={languageLabel}
+  //       onLanguageChange={onLanguageChange}
+  //       onBack={() => setActiveId(null)}
+  //     />
+  //   );
+  // }
+
+  // if (activeId === "bahai") {
+  //   return (
+  //     <BahaiPage
+  //       lang={lang}
+  //       languageLabel={languageLabel}
+  //       onLanguageChange={onLanguageChange}
+  //       onBack={() => setActiveId(null)}
+  //     />
+  //   );
+  // }
+
+  // if (activeId === "sabean-mandaeanism") {
+  //   return (
+  //     <SabeanMandaeanismPage
+  //       lang={lang}
+  //       languageLabel={languageLabel}
+  //       onLanguageChange={onLanguageChange}
+  //       onBack={() => setActiveId(null)}
+  //     />
+  //   );
+  // }
 
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+      className="flex min-h-screen w-screen flex-col bg-[#f8f1e7] text-[#3d2b18]"
     >
+      {/* ===== TITLE SECTION ===== */}
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-16 pt-10 sm:px-12 lg:px-20"
       >
-        {/* Background Image */}
+        {/* Background image */}
         <img
-          data-islam-hero="true"
+          data-f-hero="true"
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-full w-full object-cover object-center"
+          className="pointer-events-none absolute left-0 top-0 h-full w-full object-cover object-center"
         />
+        {/* Soft overlays so the title stays readable */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf1df]/90 via-[#fbf1df]/15 to-[#fbf1df]/95" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#fbf1df] via-transparent to-transparent" />
 
-        {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/90 via-[#fbf1df]/15 to-[#fbf1df]/95" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#fbf1df] via-transparent to-transparent" />
-
-        {/* Navigation Buttons */}
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm transition hover:bg-white"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -229,31 +411,83 @@ export default function IslamPage({
         <button
           type="button"
           onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-white"
         >
           <Globe2 className="h-5 w-5" />
           {languageLabel}
         </button>
 
-        {/* Content Container */}
-        <div className="relative z-10 mx-auto max-w-[1120px]">
-          
-          {/* ===== TITLE SECTION (ON TOP) ===== */}
-          <TitleSection lang={lang} />
+        <header
+          data-f-animate="true"
+          className="relative z-10 mx-auto max-w-[850px] pt-14 text-center"
+        >
+          <div className="mx-auto mt-3 mb-3 w-[260px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[84px]">
+            {c.pageTitle}
+          </h1>
+          <div className="mx-auto mt-5 w-[180px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <p className="mx-auto mt-5 max-w-[620px] text-[18px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[20px]">
+            {c.pageDescription}
+          </p>
+        </header>
+      </section>
 
-          {/* Spacer between title and cards */}
-          <div className="h-[460px]" />
+      {/* ===== CARDS SECTION (separate from title) ===== */}
+      <section className="mt-[clamp(20px,50vh,500px)] relative w-full bg-[#f8f1e7] px-6 pb-20 pt-12 sm:px-12 lg:px-20">
+        <div
+          data-f-animate="true"
+          className="mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          {c.faiths.map((faith) => (
+            <article
+              key={faith.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveId(faith.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActiveId(faith.id);
+                }
+              }}
+              aria-label={faith.title}
+              className="group relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none transition hover:-translate-y-1 hover:shadow-[0_24px_44px_rgba(69,43,14,0.28)] focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+            >
+              <div className="relative h-[230px] w-full overflow-hidden">
+                <img
+                  src={faith.image}
+                  alt={faith.title}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
+              </div>
 
-          {/* ===== CARDS SECTION (BELOW TITLE) ===== */}
-          <CardsSection />
-
-          {/* ===== BOTTOM SECTION ===== */}
-          <BottomSection />
+              <div className="flex flex-1 flex-col px-6 py-6">
+                <h3 className="font-serif text-[24px] font-semibold uppercase leading-tight text-[#3b2410]">
+                  {faith.title}
+                </h3>
+                <div className="mt-2 mb-3 w-[60px]">
+                  <span className="block h-[2px] bg-[#c3923a]" />
+                </div>
+                <p className="text-[14px] leading-relaxed text-[#5a4a30]">
+                  {faith.shortIntro}
+                </p>
+                <div className="mt-auto flex items-center justify-between pt-5">
+                  <span className="font-serif text-[12px] font-semibold uppercase tracking-[0.28em] text-[#a77423]">
+                    {c.openLabel}
+                  </span>
+                  <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12] transition group-hover:bg-[#c3923a] group-hover:text-white">
+                    <ChevronRight className="h-5 w-5" />
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-
-        {/* Decorative corners */}
-        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
       </section>
     </main>
   );

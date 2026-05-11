@@ -1,41 +1,289 @@
 import React from "react";
 import gsap from "gsap";
 import {
-  ChevronRight,
-  DoorOpen,
+  ArrowLeft,
+  Church,
+  Egg,
+  Flame,
   Globe2,
-  Handshake,
-  ShieldCheck,
-  Sunrise,
-  UsersRound,
+  Landmark,
+  MoonStar,
+  Mountain,
+  Music,
 } from "lucide-react";
 
-import bg from "@/assets/mainImages/diversity/shared-homeland-bg.jpg";
+import bg from "@/assets/images/religions/r-5.png";
+import bg2 from "@/assets/images/religions/r-3.png";
 
-const values = [
-  {
-    title: "Respect",
-    text: "We honor every belief, every identity, and every voice.",
-    icon: Handshake,
-  },
-  {
-    title: "Protection",
-    text: "We stand together to protect rights, preserve heritage, and uphold human dignity.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Belonging",
-    text: "Everyone has a place here. Everyone belongs. This is our shared home.",
-    icon: UsersRound,
-  },
-  {
-    title: "Hope",
-    text: "We build a future of peace, opportunity, and possibilities for generations to come.",
-    icon: Sunrise,
-  },
-];
+type LangCode = "en" | "ku" | "ar";
 
-function DecorativeLine({ color = "#c99a55" }) {
+type SharedCard = {
+  id: string;
+  title: string;
+  body: string;
+  icon: typeof Mountain;
+  accent: string;
+};
+
+type SharedGroup = {
+  id: string;
+  title: string;
+  subtitle: string;
+  cards: SharedCard[];
+  tagline: string;
+};
+
+type SharedContent = {
+  back: string;
+  pageTitle: string;
+  pageDescription: string;
+  groups: [SharedGroup, SharedGroup];
+};
+
+const content: Record<LangCode, SharedContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "Shared Life",
+    pageDescription:
+      "Festivals that bring us together and sacred places that hold our shared memory.",
+    groups: [
+      {
+        id: "shared-celebrations",
+        title: "Shared Celebrations",
+        subtitle: "Festivals, faith, and joyful moments",
+        cards: [
+          {
+            id: "eid",
+            title: "Eid Al-Fitr & Eid Al-Adha",
+            body: "Official 3 and 4-day holidays. Celebrated with communal prayers, feasts, and visits. Christians in Erbil prepare iftar tables during Ramadan in solidarity with Muslims.",
+            icon: MoonStar,
+            accent: "#7a4a12",
+          },
+          {
+            id: "christmas-easter",
+            title: "Christmas & Easter",
+            body: "Official public holidays in the Kurdistan Region. Easter celebrated with egg coloring and special Easter bread (ka'k). Christmas celebrated December 25 or January 7.",
+            icon: Egg,
+            accent: "#a05a18",
+          },
+          {
+            id: "yazidi-festivals",
+            title: "Yazidi Festivals",
+            body: "New Year (Red Wednesday, April), Jemai (October 6–13), Summer Forty Days (August 2), Day of Êzî (December 16) — all official holidays in the Kurdistan Region.",
+            icon: Flame,
+            accent: "#b9822d",
+          },
+          {
+            id: "kakai-festival",
+            title: "Kakai Festival",
+            body: "Qewltas Festival — a three-day religious festival observed in December by the Kakai community.",
+            icon: Music,
+            accent: "#c58b16",
+          },
+        ],
+        tagline: "Different traditions. One shared joy.",
+      },
+      {
+        id: "heritage-sacred-sites",
+        title: "Heritage & Sacred Sites",
+        subtitle: "Places that hold memory and faith",
+        cards: [
+          {
+            id: "mosques",
+            title: "Mosques",
+            body: "6,103 mosques supervised by the Ministry of Endowments. Including historic sites such as the Erbil Citadel Mosque, Grand Mosque of Akre, and Jalil Khayat Mosque.",
+            icon: Landmark,
+            accent: "#7a4a12",
+          },
+          {
+            id: "churches-monasteries",
+            title: "Churches & Monasteries",
+            body: "Mar Mattai Monastery on Mount Maqlub, Monastery of Hormizd in Alqosh, Rabban Boya Monastery in Shaqlawa, and dozens of active churches across the region.",
+            icon: Church,
+            accent: "#a05a18",
+          },
+          {
+            id: "lalish-temple",
+            title: "Lalish Temple",
+            body: "The sacred heart of Yazidism. Located in Shekhan, Duhok. Contains the tombs of Yazidi saints and two sacred springs: Kaniya Spi and Zamzam.",
+            icon: Mountain,
+            accent: "#b9822d",
+          },
+          {
+            id: "zoroastrian-temples",
+            title: "Zoroastrian Temples",
+            body: "Qazkapan Zoroastrian Temple in Dukan, Sulaymaniyah. Charsten Cave Zoroastrian Temple in Duhok. Ancient sites of pre-Islamic Kurdistan still standing today.",
+            icon: Flame,
+            accent: "#c58b16",
+          },
+        ],
+        tagline: "Every sacred place tells a story.",
+      },
+    ],
+  },
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "ژیانی هاوبەش",
+    pageDescription:
+      "جەژنەکانی پێکمان دەگەیەنن و شوێنە پیرۆزەکانی یادی هاوبەشمان دەپارێزن.",
+    groups: [
+      {
+        id: "shared-celebrations",
+        title: "جەژنە هاوبەشەکان",
+        subtitle: "جەژن، باوەڕ، و کاتە خۆشەکان",
+        cards: [
+          {
+            id: "eid",
+            title: "جەژنی ڕەمەزان و قوربان",
+            body: "پشووی فەرمی ٣ و ٤ ڕۆژە. بە نوێژی کۆمەڵگە، خوان، و سەردانی پێکدێن. مەسیحیەکانی هەولێر لە ڕەمەزاندا خوانی فتاری بۆ موسوڵمانان ئامادە دەکەن.",
+            icon: MoonStar,
+            accent: "#7a4a12",
+          },
+          {
+            id: "christmas-easter",
+            title: "کریسمەس و عەید پاسکا",
+            body: "پشووی فەرمیی هەرێمی کوردستانن. عەید پاسکا بە ڕەنگکردنی هێلکە و نانی تایبەتی (کاک) دەکرێت. کریسمەس لە ٢٥ی کانوونی یەکەم یان ٧ی کانوونی دووەم.",
+            icon: Egg,
+            accent: "#a05a18",
+          },
+          {
+            id: "yazidi-festivals",
+            title: "جەژنە ئێزدییەکان",
+            body: "سەری سال (چوارشەممەی سوور، نیسان)، جەماعی (٦–١٣ تشرینی یەکەم)، چلەی هاوین (٢ی ئاب)، ڕۆژی ئێزی (١٦ی کانوونی یەکەم) — هەموو پشووی فەرمین لە هەرێمی کوردستان.",
+            icon: Flame,
+            accent: "#b9822d",
+          },
+          {
+            id: "kakai-festival",
+            title: "جەژنی کاکەیی",
+            body: "جەژنی قەولتاس — جەژنێکی ئاینیی سێ ڕۆژەیە کە کاکەییەکان لە کانوونی یەکەم بەرپای دەکەن.",
+            icon: Music,
+            accent: "#c58b16",
+          },
+        ],
+        tagline: "نەریتی جیاواز. خۆشییەکی هاوبەش.",
+      },
+      {
+        id: "heritage-sacred-sites",
+        title: "میرات و شوێنە پیرۆزەکان",
+        subtitle: "شوێنانێک کە یاد و باوەڕیان تێدایە",
+        cards: [
+          {
+            id: "mosques",
+            title: "مزگەوتەکان",
+            body: "٦,١٠٣ مزگەوت لەژێر چاودێریی وەزارەتی ئەوقاف. لەناویاندا شوێنە مێژووییەکانی وەک مزگەوتی قەڵای هەولێر، مزگەوتی گەورەی ئاکرێ، و مزگەوتی جەلیل خەیات.",
+            icon: Landmark,
+            accent: "#7a4a12",
+          },
+          {
+            id: "churches-monasteries",
+            title: "کڵێسا و دێرەکان",
+            body: "دێری مار مەتای لە چیای مەقلوب، دێری هرمزد لە ئالقۆش، دێری ڕابان بۆیا لە شەقڵاوە، و دەیان کڵێسای چالاک بەسەر هەرێمەکەدا.",
+            icon: Church,
+            accent: "#a05a18",
+          },
+          {
+            id: "lalish-temple",
+            title: "پەرستگای لالش",
+            body: "دڵە پیرۆزی ئێزدیەتی. لە شێخان، دهۆک. تورباتی پیرۆزانی ئێزدی و دوو کانیی پیرۆز: کانیا سپی و زەمزەم لەخۆ دەگرێت.",
+            icon: Mountain,
+            accent: "#b9822d",
+          },
+          {
+            id: "zoroastrian-temples",
+            title: "پەرستگاکانی زەردەشتی",
+            body: "پەرستگای زەردەشتیی قازکەپان لە دۆکان، سلێمانی. پەرستگای ئەشکەوتی چارستێن لە دهۆک. شوێنە کۆنەکانی پێش-ئیسلامیی کوردستان هێشتا ماون.",
+            icon: Flame,
+            accent: "#c58b16",
+          },
+        ],
+        tagline: "هەر شوێنێکی پیرۆز چیرۆکێکی هەیە.",
+      },
+    ],
+  },
+  ar: {
+    back: "العودة",
+    pageTitle: "الحياة المشتركة",
+    pageDescription:
+      "أعياد تجمعنا وأماكن مقدّسة تحفظ ذاكرتنا المشتركة.",
+    groups: [
+      {
+        id: "shared-celebrations",
+        title: "احتفالات مشتركة",
+        subtitle: "أعياد وإيمان ولحظات فرح",
+        cards: [
+          {
+            id: "eid",
+            title: "عيد الفطر وعيد الأضحى",
+            body: "عطل رسمية لمدة ٣ و٤ أيام. تُحتفل بالصلوات الجماعية والولائم والزيارات. يُعدّ المسيحيون في أربيل موائد الإفطار في رمضان تضامناً مع المسلمين.",
+            icon: MoonStar,
+            accent: "#7a4a12",
+          },
+          {
+            id: "christmas-easter",
+            title: "عيد الميلاد وعيد الفصح",
+            body: "عطل رسمية في إقليم كوردستان. يُحتفل بعيد الفصح بتلوين البيض وخبز الكعك (ka'k). يُحتفل بعيد الميلاد في ٢٥ ديسمبر أو ٧ يناير.",
+            icon: Egg,
+            accent: "#a05a18",
+          },
+          {
+            id: "yazidi-festivals",
+            title: "الأعياد الإيزيدية",
+            body: "رأس السنة (الأربعاء الأحمر، نيسان)، الجماعية (٦–١٣ تشرين الأول)، أربعينية الصيف (٢ آب)، يوم إيزي (١٦ كانون الأول) — كلها أعياد رسمية في إقليم كوردستان.",
+            icon: Flame,
+            accent: "#b9822d",
+          },
+          {
+            id: "kakai-festival",
+            title: "العيد الكاكائي",
+            body: "عيد القولتاس — عيد ديني يستمر ثلاثة أيام في كانون الأول لدى الطائفة الكاكائية.",
+            icon: Music,
+            accent: "#c58b16",
+          },
+        ],
+        tagline: "تقاليد مختلفة. فرحة واحدة مشتركة.",
+      },
+      {
+        id: "heritage-sacred-sites",
+        title: "التراث والمواقع المقدسة",
+        subtitle: "أماكن تحمل الذاكرة والإيمان",
+        cards: [
+          {
+            id: "mosques",
+            title: "المساجد",
+            body: "٦,١٠٣ مساجد تشرف عليها وزارة الأوقاف. تشمل مواقع تاريخية كجامع قلعة أربيل، والجامع الكبير في عقرة، وجامع جليل خياط.",
+            icon: Landmark,
+            accent: "#7a4a12",
+          },
+          {
+            id: "churches-monasteries",
+            title: "الكنائس والأديرة",
+            body: "دير مار متى في جبل مقلوب، دير هرمز في القوش، دير ربان بويا في شقلاوة، وعشرات الكنائس النشطة في أنحاء الإقليم.",
+            icon: Church,
+            accent: "#a05a18",
+          },
+          {
+            id: "lalish-temple",
+            title: "معبد لالش",
+            body: "القلب المقدس للإيزيدية. يقع في شيخان، دهوك. يضم أضرحة قديسي الإيزيدية ونبعَين مقدّسَين: كانيا سبي وزمزم.",
+            icon: Mountain,
+            accent: "#b9822d",
+          },
+          {
+            id: "zoroastrian-temples",
+            title: "المعابد الزرادشتية",
+            body: "معبد قازقابان الزرادشتي في دوكان، السليمانية. معبد كهف چارستێن الزرادشتي في دهوك. مواقع قديمة لكوردستان ما قبل الإسلام لا تزال قائمة.",
+            icon: Flame,
+            accent: "#c58b16",
+          },
+        ],
+        tagline: "كل مكان مقدس يحكي قصة.",
+      },
+    ],
+  },
+};
+
+function DecorativeLine({ color = "#c99a55" }: { color?: string }) {
   return (
     <div className="flex items-center justify-center gap-4">
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
@@ -47,174 +295,192 @@ function DecorativeLine({ color = "#c99a55" }) {
   );
 }
 
-export default function OneSharedHomelandPage() {
+type OneSharedHomelandPageProps = {
+  lang?: LangCode;
+  languageLabel?: string;
+  onLanguageChange?: () => void;
+  onBack?: () => void;
+};
+
+export default function OneSharedHomelandPage({
+  lang = "en",
+  languageLabel = "ENGLISH",
+  onLanguageChange,
+  onBack,
+}: OneSharedHomelandPageProps = {}) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
+  const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-homeland-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
+      gsap.set("[data-sh-hero='true']", { autoAlpha: 0, scale: 1.04 });
+      gsap.set("[data-sh-animate='true']", { autoAlpha: 0, y: 24 });
 
-      gsap.to("[data-homeland-animate='true']", {
+      const tl = gsap.timeline();
+      tl.to("[data-sh-hero='true']", {
         autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
+        scale: 1,
+        duration: 0.8,
         ease: "power2.out",
-      });
+      }).to(
+        "[data-sh-animate='true']",
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.05,
+          ease: "power2.out",
+        },
+        "-=0.2",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main
+      dir={dir}
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+    >
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
       >
         <img
+          data-sh-hero="true"
           src={bg}
           alt=""
-          className="absolute left-0 top-[230px] h-[520px] w-full object-cover object-center opacity-90"
+          className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
+        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
+        <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/45 to-[#fbf1df]" />
-        <div className="absolute left-0 top-[650px] h-[170px] w-full bg-gradient-to-b from-transparent to-[#fbf1df]" />
-        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
-
-        <button className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]">
-          <Globe2 className="h-5 w-5" />
-          ENGLISH
-        </button>
-
-        <div className="relative z-10 mx-auto max-w-[920px]">
-          <header
-            data-homeland-animate="true"
-            className="mx-auto max-w-[820px] pt-12 text-center"
+        {onBack && (
+          <button
+            type="button"
+            onClick={onBack}
+            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition hover:bg-white"
+            aria-label={c.back}
           >
-            <div className="mx-auto mb-4 w-[430px] max-w-full">
+            <ArrowLeft className="h-7 w-7" />
+          </button>
+        )}
+
+        {onLanguageChange && (
+          <button
+            type="button"
+            onClick={onLanguageChange}
+            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-white"
+          >
+            <Globe2 className="h-5 w-5" />
+            {languageLabel}
+          </button>
+        )}
+
+        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+          <header
+            data-sh-animate="true"
+            className="mx-auto max-w-[850px] pt-14 text-center"
+          >
+            <div className="mx-auto mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
             </div>
-
-            <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.06] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              One Shared
-              <br />
-              Homeland
+            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[88px]">
+              {c.pageTitle}
             </h1>
-
-            <p className="mt-5 font-serif text-[26px] font-semibold text-[#a46f22] sm:text-[33px]">
-              Diversity, dignity, and a future together.
-            </p>
-
-            <div className="mx-auto mt-7 w-[190px]">
+            <div className="mx-auto mt-5 w-[180px]">
               <DecorativeLine color="#c3923a" />
             </div>
-
-            <p className="mx-auto mt-6 max-w-[650px] text-[21px] font-semibold leading-relaxed text-[#3f3528] sm:text-[25px]">
-              Kurdistan is not defined by one faith, one language, or one story.
-              It is strengthened by all of them.
-              <br />
-              Our diversity is our heritage.
-              <br />
-              Our unity is our future.
+            <p className="mx-auto mt-5 max-w-[620px] text-[19px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[22px]">
+              {c.pageDescription}
             </p>
           </header>
 
-          <div className="h-[430px]" />
-
-          <section
-            data-homeland-animate="true"
-            className="mx-auto grid max-w-[760px] grid-cols-1 gap-6 sm:grid-cols-2"
-          >
-            {values.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <article
-                  key={item.title}
-                  className="flex min-h-[285px] flex-col items-center justify-center rounded-[24px] border-2 border-[#d8b875]/60 bg-[#fff8e9]/92 px-7 py-7 text-center shadow-[0_12px_24px_rgba(75,45,12,0.13)] backdrop-blur-sm"
+          {c.groups.map((group) => (
+            <section
+              key={group.id}
+              data-sh-animate="true"
+              className="mt-24 first:mt-20"
+              aria-labelledby={`sh-group-${group.id}`}
+            >
+              <div className="mx-auto max-w-[860px] text-center">
+                <h2
+                  id={`sh-group-${group.id}`}
+                  className="font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#3b2410] sm:text-[48px]"
                 >
-                  <div className="mb-5 grid h-24 w-24 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc]/70 text-[#c58b16]">
-                    <Icon className="h-14 w-14" strokeWidth={1.6} />
-                  </div>
+                  {group.title}
+                </h2>
+                <div className="mx-auto mt-4 w-[200px]">
+                  <DecorativeLine color="#c3923a" />
+                </div>
+                <p className="mx-auto mt-4 max-w-[640px] font-serif text-[18px] italic text-[#6a4a25] sm:text-[20px]">
+                  {group.subtitle}
+                </p>
+              </div>
 
-                  <h3 className="font-serif text-[29px] font-semibold uppercase leading-tight text-[#3b2410]">
-                    {item.title}
-                  </h3>
+              <div className="mx-auto mt-10 grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {group.cards.map((card) => {
+                  const Icon = card.icon;
+                  return (
+                    <article
+                      key={card.id}
+                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(69,43,14,0.25)]"
+                    >
+                      <div
+                        className="relative h-[120px] w-full"
+                        style={{
+                          background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
+                        }}
+                      >
+                        <div
+                          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+                          style={{
+                            backgroundImage: `url(${bg2})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            mixBlendMode: "overlay",
+                          }}
+                        />
+                        <div className="absolute inset-x-0 top-5 flex items-center justify-end px-6">
+                          <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
+                            <Icon className="h-6 w-6 text-white" />
+                          </div>
+                        </div>
+                      </div>
 
-                  <div className="my-4 w-[150px]">
-                    <DecorativeLine color="#d1a14f" />
-                  </div>
+                      <div className="flex flex-1 flex-col px-6 py-6">
+                        <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[22px]">
+                          {card.title}
+                        </h3>
+                        <div className="mt-3 mb-4 w-[60px]">
+                          <span
+                            className="block h-[2px]"
+                            style={{ backgroundColor: card.accent }}
+                          />
+                        </div>
+                        <p className="text-[15px] font-medium leading-relaxed text-[#4d3c2a]">
+                          {card.body}
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
 
-                  <p className="max-w-[230px] text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                    {item.text}
-                  </p>
-
-                  <div className="mt-5 flex items-center gap-4 text-[#c58b16]">
-                    <span className="h-px w-16 bg-[#d1a14f]" />
-                    <span className="font-serif text-4xl leading-none">“</span>
-                    <span className="h-px w-16 bg-[#d1a14f]" />
-                  </div>
-                </article>
-              );
-            })}
-          </section>
-
-          <section
-            data-homeland-animate="true"
-            className="mx-auto mt-8 max-w-[680px] text-center"
-          >
-            <p className="font-serif text-[29px] leading-tight text-[#3b2410] sm:text-[36px]">
-              Different faiths. Different languages.
-              <br />
-              <span className="text-[44px] font-semibold sm:text-[58px]">
-                One shared homeland.
-              </span>
-            </p>
-          </section>
-
-          <div className="mx-auto mt-5 w-[520px] max-w-full">
-            <DecorativeLine color="#c3923a" />
-          </div>
-
-          <section
-            data-homeland-animate="true"
-            className="mx-auto mt-5 flex max-w-[720px] items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-          >
-            <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
-              <DoorOpen className="h-14 w-14" strokeWidth={1.7} />
-            </div>
-
-            <p className="flex-1 font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410]">
-              Thank You For Your Visit
-              <br />
-              <span className="text-[16px] normal-case font-semibold text-[#6a4a25]">
-                Leave with understanding.
-                <br />
-                Return with pride.
-              </span>
-            </p>
-
-            <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
-              <ChevronRight className="h-9 w-9" />
-              <span className="mt-1 font-serif text-[11px] font-semibold uppercase">
-                Exit
-              </span>
-            </button>
-          </section>
-
-          <div className="mx-auto mt-5 flex justify-center text-[#c58b16]">
-            ✥
-          </div>
+              <div className="mx-auto mt-10 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
+                <p className="font-serif text-[17px] font-semibold italic leading-snug text-[#6a4a25] sm:text-[19px]">
+                  {group.tagline}
+                </p>
+              </div>
+            </section>
+          ))}
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
       </section>
     </main>
   );
