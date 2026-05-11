@@ -39,6 +39,109 @@ function DecorativeLine({ color = "#c3923a" }) {
   );
 }
 
+// ============================================
+// SEPARATE TITLE SECTION COMPONENT
+// ============================================
+function TitleSection({ lang = "en" }) {
+  const dir = lang === "en" ? "ltr" : "rtl";
+  
+  return (
+    <header
+      data-islam-animate="true"
+      className="mx-auto max-w-[850px] pt-14 text-center"
+      dir={dir}
+    >
+      <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
+        ✥
+      </div>
+
+      <div className="mx-auto mb-5 w-[480px] max-w-full">
+        <DecorativeLine />
+      </div>
+
+      <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
+        ISLAM
+      </h1>
+
+      <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
+        Faith, worship, and living tradition
+      </p>
+
+      <div className="mx-auto mt-8 w-[210px]">
+        <DecorativeLine />
+      </div>
+    </header>
+  );
+}
+
+// ============================================
+// SEPARATE CARDS SECTION COMPONENT
+// ============================================
+function CardsSection() {
+  return (
+    <section
+      data-islam-animate="true"
+      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {cards.map((card) => {
+        const Icon = card.icon;
+
+        return (
+          <article
+            key={card.title}
+            className="min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm"
+          >
+            <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner">
+              <Icon className="h-10 w-10" strokeWidth={1.7} />
+            </div>
+
+            <h3 className="font-serif text-[21px] font-semibold uppercase leading-tight text-[#3b2410]">
+              {card.title}
+            </h3>
+
+            <div className="mx-auto my-4 w-[140px]">
+              <DecorativeLine color="#d1a14f" />
+            </div>
+
+            <p className="text-[16px] font-semibold leading-relaxed text-[#4d3c2a]">
+              {card.text}
+            </p>
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+
+// ============================================
+// SEPARATE BOTTOM SECTION COMPONENT
+// ============================================
+function BottomSection() {
+  return (
+    <>
+      <section
+        data-islam-animate="true"
+        className="mx-auto mt-8 flex max-w-[720px] items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+      >
+        <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-[42px] text-white">
+          ☾
+        </div>
+
+        <p className="font-serif text-[34px] font-semibold leading-tight text-[#3b2410]">
+          Faith lived every day.
+        </p>
+
+        <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
+      </section>
+
+      <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
+    </>
+  );
+}
+
+// ============================================
+// MAIN COMPONENT (arranged: Title → Cards)
+// ============================================
 type IslamPageProps = {
   lang?: "en" | "ku" | "ar";
   languageLabel?: string;
@@ -101,6 +204,7 @@ export default function IslamPage({
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
+        {/* Background Image */}
         <img
           data-islam-hero="true"
           src={bg}
@@ -108,9 +212,11 @@ export default function IslamPage({
           className="absolute left-0 top-0 h-full w-full object-cover object-center"
         />
 
+        {/* Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/90 via-[#fbf1df]/15 to-[#fbf1df]/95" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#fbf1df] via-transparent to-transparent" />
 
+        {/* Navigation Buttons */}
         <button
           type="button"
           onClick={onBack}
@@ -129,84 +235,23 @@ export default function IslamPage({
           {languageLabel}
         </button>
 
+        {/* Content Container */}
         <div className="relative z-10 mx-auto max-w-[1120px]">
-          <header
-            data-islam-animate="true"
-            className="mx-auto max-w-[850px] pt-14 text-center"
-          >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-              ✥
-            </div>
+          
+          {/* ===== TITLE SECTION (ON TOP) ===== */}
+          <TitleSection lang={lang} />
 
-            <div className="mx-auto mb-5 w-[480px] max-w-full">
-              <DecorativeLine />
-            </div>
-
-            <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              ISLAM
-            </h1>
-
-            <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              Faith, worship, and living tradition
-            </p>
-
-            <div className="mx-auto mt-8 w-[210px]">
-              <DecorativeLine />
-            </div>
-          </header>
-
+          {/* Spacer between title and cards */}
           <div className="h-[460px]" />
 
-          <section
-            data-islam-animate="true"
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {cards.map((card) => {
-              const Icon = card.icon;
+          {/* ===== CARDS SECTION (BELOW TITLE) ===== */}
+          <CardsSection />
 
-              return (
-                <article
-                  key={card.title}
-                  className="min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm"
-                >
-                  <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner">
-                    <Icon className="h-10 w-10" strokeWidth={1.7} />
-                  </div>
-
-                  <h3 className="font-serif text-[21px] font-semibold uppercase leading-tight text-[#3b2410]">
-                    {card.title}
-                  </h3>
-
-                  <div className="mx-auto my-4 w-[140px]">
-                    <DecorativeLine color="#d1a14f" />
-                  </div>
-
-                  <p className="text-[16px] font-semibold leading-relaxed text-[#4d3c2a]">
-                    {card.text}
-                  </p>
-                </article>
-              );
-            })}
-          </section>
-
-          <section
-            data-islam-animate="true"
-            className="mx-auto mt-8 flex max-w-[720px] items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-          >
-            <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-[42px] text-white">
-              ☾
-            </div>
-
-            <p className="font-serif text-[34px] font-semibold leading-tight text-[#3b2410]">
-              Faith lived every day.
-            </p>
-
-            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
-          </section>
-
-          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
+          {/* ===== BOTTOM SECTION ===== */}
+          <BottomSection />
         </div>
 
+        {/* Decorative corners */}
         <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
         <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
       </section>

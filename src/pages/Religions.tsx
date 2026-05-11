@@ -28,6 +28,8 @@ import StoriesOfCoexistencePage from "@/components/Sections/religions/Coexistenc
 import SharedCelebrationsPage from "@/components/Sections/religions/SharedCeleberations";
 import DiversityMapPage from "@/components/Sections/religions/RelisgionsSection/Diversities";
 import HistoryPage from "@/components/Sections/religions/History";
+import NationsPage from "@/components/Sections/religions/Nations";
+import FaithsPage from "@/components/Sections/religions/Faiths";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -288,6 +290,8 @@ type SubPage =
   | "sharedCelebrations"
   | "diversityMap"
   | "history"
+  | "nations"
+  | "faiths"
   | { kind: "sectionDetail"; cardId: SectionCardId };
 
 export default function ReligiousDiversityPage({
@@ -306,6 +310,14 @@ export default function ReligiousDiversityPage({
   const openSectionCard = (id: SectionCardId) => {
     if (id === "history") {
       setSubPage("history");
+      return;
+    }
+    if (id === "nations") {
+      setSubPage("nations");
+      return;
+    }
+    if (id === "faiths") {
+      setSubPage("faiths");
       return;
     }
     setSubPage({ kind: "sectionDetail", cardId: id });
@@ -407,6 +419,28 @@ export default function ReligiousDiversityPage({
   if (subPage === "history") {
     return (
       <HistoryPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage === "nations") {
+    return (
+      <NationsPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage === "faiths") {
+    return (
+      <FaithsPage
         lang={lang}
         languageLabel={content.languageLabel}
         onLanguageChange={handleLanguageChange}
