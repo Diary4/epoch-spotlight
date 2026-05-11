@@ -20,7 +20,7 @@ import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazi
 import ZoroastrianismPage from "@/components/Sections/religions/RelisgionsSection/Zoroastrianism";
 import JudaismPage from "@/components/Sections/religions/RelisgionsSection/Judaism";
 import BahaiPage from "@/components/Sections/religions/RelisgionsSection/Bahai";
-// import SabeanMandaeanismPage from "@/components/Sections/religions/RelisgionsSection/SabeanMandaeanism";
+import SabeanMandaeanismPage from "@/components/Sections/religions/RelisgionsSection/SabeanMandaeanism";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -367,16 +367,16 @@ export default function FaithsPage({
     );
   }
 
-  // if (activeId === "sabean-mandaeanism") {
-  //   return (
-  //     <SabeanMandaeanismPage
-  //       lang={lang}
-  //       languageLabel={languageLabel}
-  //       onLanguageChange={onLanguageChange}
-  //       onBack={() => setActiveId(null)}
-  //     />
-  //   );
-  // }
+  if (activeId === "sabean-mandaeanism") {
+    return (
+      <SabeanMandaeanismPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
 
   return (
     <main
