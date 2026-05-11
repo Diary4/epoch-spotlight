@@ -8,20 +8,46 @@ import {
   Church,
   UsersRound,
   HeartHandshake,
+  Sparkles,
+  ScrollText,
+  Scale,
+  Flag,
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.png";
-import bg2 from "@/assets/images/religions/r-6.jpeg";
 import card1 from "@/assets/mainImages/2005.png";
-import card2 from "@/assets/mainImages/2005.png";
-import card3 from "@/assets/mainImages/2005.png";
+import letterImg from "@/assets/mainImages/letter.png";
+import whoarekurdsImg from "@/assets/mainImages/whoarekurds.png";
+import buildingImg from "@/assets/mainImages/building.png";
+import sharedImg from "@/assets/mainImages/shared.png";
+import governmentImg from "@/assets/mainImages/government.png";
+import presidencyImg from "@/assets/mainImages/presidency-1.png";
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
 import StoriesOfCoexistencePage from "@/components/Sections/religions/Coexistence";
 import SharedCelebrationsPage from "@/components/Sections/religions/SharedCeleberations";
 import DiversityMapPage from "@/components/Sections/religions/RelisgionsSection/Diversities";
+import HistoryPage from "@/components/Sections/religions/History";
 
 type LangCode = "en" | "ku" | "ar";
+
+type SectionCardId =
+  | "introduction"
+  | "history"
+  | "nations"
+  | "faiths"
+  | "sharedLife"
+  | "rights"
+  | "closing";
+
+type SectionCard = {
+  id: SectionCardId;
+  eyebrow: string;
+  title: string;
+  image: string;
+  icon: typeof Church;
+  color: string;
+};
 
 const pageContent: Record<
   LangCode,
@@ -30,16 +56,9 @@ const pageContent: Record<
     title: [string, string, string];
     subtitle: string;
     description: string;
-    sharedTitle: string;
-    sharedText: string;
-    cards: {
-      id: "religions" | "nationalities" | "coexistence";
-      title: string;
-      text: string;
-      image: string;
-      icon: typeof Church;
-      color: string;
-    }[];
+    cards: SectionCard[];
+    detailComingSoon: string;
+    detailBack: string;
   }
 > = {
   en: {
@@ -48,69 +67,133 @@ const pageContent: Record<
     subtitle: "Kurdistan: The Cradle of Coexistence",
     description:
       "Across faiths, languages, and cultures, Kurdistan stands as a timeless home of respect, unity, and shared heritage.",
-    sharedTitle: "Shared Celebrations",
-    sharedText: "Festivals and holidays we celebrate together.",
     cards: [
       {
-        id: "religions",
-        title: "Religions",
-        text: "Explore the rich religious heritage and sacred traditions of Kurdistan.",
-        image: card1,
-        icon: Church,
-        color: "#244b1f",
+        id: "introduction",
+        eyebrow: "Section 1",
+        title: "Introduction",
+        image: letterImg,
+        icon: Sparkles,
+        color: "#7a4a12",
       },
       {
-        id: "nationalities",
-        title: "Nationalities",
-        text: "Discover the diverse ethnic communities, their languages, and cultural contributions.",
-        image: card2,
+        id: "history",
+        eyebrow: "Section 2",
+        title: "History",
+        image: presidencyImg,
+        icon: ScrollText,
+        color: "#3a2f12",
+      },
+      {
+        id: "nations",
+        eyebrow: "Section 3",
+        title: "Nations",
+        image: whoarekurdsImg,
         icon: UsersRound,
         color: "#16466b",
       },
       {
-        id: "coexistence",
-        title: "Stories of Coexistence",
-        text: "Real stories of unity, protection, and everyday coexistence across Kurdistan.",
-        image: card3,
+        id: "faiths",
+        eyebrow: "Section 4",
+        title: "Faiths",
+        image: bg,
+        icon: Church,
+        color: "#244b1f",
+      },
+      {
+        id: "sharedLife",
+        eyebrow: "Section 5",
+        title: "Shared Life",
+        image: sharedImg,
         icon: HeartHandshake,
+        color: "#cf921d",
+      },
+      {
+        id: "rights",
+        eyebrow: "Section 6",
+        title: "Rights & Recognition",
+        image: governmentImg,
+        icon: Scale,
         color: "#52235f",
       },
+      {
+        id: "closing",
+        eyebrow: "Section 7",
+        title: "Closing",
+        image: buildingImg,
+        icon: Flag,
+        color: "#6b1d1d",
+      },
     ],
+    detailComingSoon: "Detailed content for this section is coming soon.",
+    detailBack: "Back to overview",
   },
   ku: {
     languageLabel: "کوردی",
     title: ["ئاینی و", "فرە نەتەوەیی", "لە کوردستان"],
-    subtitle: "کوردستان: گهوارەی هاوبژین",
+    subtitle: "کوردستان: گهوارەی پێکەوەژیان",
     description:
       "لە نێوان ئاین و زمان و کلتوورە جیاوازەکاندا، کوردستان ماڵی ڕێز و یەکگرتوویی و میراتی هاوبەشە.",
-    sharedTitle: "جەژنە هاوبەشەکان",
-    sharedText: "فێستیڤاڵ و پشوویەکان کە پێکەوە جێژنیان دەکەین.",
     cards: [
       {
-        id: "religions",
-        title: "ئاینەکان",
-        text: "بگەڕێ بە میراتی دەوڵەمەندی ئاینی و نەریتە پیرۆزەکانی کوردستان.",
-        image: card1,
-        icon: Church,
-        color: "#244b1f",
+        id: "introduction",
+        eyebrow: "بەشی ١",
+        title: "پێشەکی",
+        image: letterImg,
+        icon: Sparkles,
+        color: "#7a4a12",
       },
       {
-        id: "nationalities",
+        id: "history",
+        eyebrow: "بەشی ٢",
+        title: "مێژوو",
+        image: presidencyImg,
+        icon: ScrollText,
+        color: "#3a2f12",
+      },
+      {
+        id: "nations",
+        eyebrow: "بەشی ٣",
         title: "نەتەوەکان",
-        text: "کۆمەڵگە نەتەوەییە جیاوازەکان و زمان و بەشداری کلتوورییان بناسە.",
-        image: card2,
+        image: whoarekurdsImg,
         icon: UsersRound,
         color: "#16466b",
       },
       {
-        id: "coexistence",
-        title: "چیرۆکی هاوبژین",
-        text: "چیرۆکی ڕاستەقینەی یەکگرتوویی و پاراستن و هاوبژینی ڕۆژانە لە کوردستان.",
-        image: card3,
+        id: "faiths",
+        eyebrow: "بەشی ٤",
+        title: "ئاینەکان",
+        image: bg,
+        icon: Church,
+        color: "#244b1f",
+      },
+      {
+        id: "sharedLife",
+        eyebrow: "بەشی ٥",
+        title: "ژیانی هاوبەش",
+        image: sharedImg,
         icon: HeartHandshake,
+        color: "#cf921d",
+      },
+      {
+        id: "rights",
+        eyebrow: "بەشی ٦",
+        title: "ماف و ناسینەوە",
+        image: governmentImg,
+        icon: Scale,
         color: "#52235f",
       },
+      {
+        id: "closing",
+        eyebrow: "بەشی ٧",
+        title: "کۆتایی",
+        image: buildingImg,
+        icon: Flag,
+        color: "#6b1d1d",
+      },
     ],
+    detailComingSoon: "ناوەڕۆکی ورد بۆ ئەم بەشە بەزووی دێت.",
+    detailBack: "گەڕانەوە",
   },
   ar: {
     languageLabel: "العربية",
@@ -118,34 +201,66 @@ const pageContent: Record<
     subtitle: "كوردستان: مهد التعايش",
     description:
       "عبر الأديان واللغات والثقافات، تظل كوردستان موطناً دائماً للاحترام والوحدة والتراث المشترك.",
-    sharedTitle: "احتفالات مشتركة",
-    sharedText: "مهرجانات وأعياد نحتفل بها معاً.",
     cards: [
       {
-        id: "religions",
-        title: "الأديان",
-        text: "اكتشف الإرث الديني الغني والتقاليد المقدسة في كوردستان.",
-        image: card1,
-        icon: Church,
-        color: "#244b1f",
+        id: "introduction",
+        eyebrow: "القسم ١",
+        title: "مقدمة",
+        image: letterImg,
+        icon: Sparkles,
+        color: "#7a4a12",
       },
       {
-        id: "nationalities",
+        id: "history",
+        eyebrow: "القسم ٢",
+        title: "التاريخ",
+        image: presidencyImg,
+        icon: ScrollText,
+        color: "#3a2f12",
+      },
+      {
+        id: "nations",
+        eyebrow: "القسم ٣",
         title: "القوميات",
-        text: "تعرّف على المجتمعات القومية المتنوعة ولغاتها وإسهاماتها الثقافية.",
-        image: card2,
+        image: whoarekurdsImg,
         icon: UsersRound,
         color: "#16466b",
       },
       {
-        id: "coexistence",
-        title: "قصص التعايش",
-        text: "قصص حقيقية عن الوحدة والحماية والتعايش اليومي في كوردستان.",
-        image: card3,
+        id: "faiths",
+        eyebrow: "القسم ٤",
+        title: "الأديان",
+        image: bg,
+        icon: Church,
+        color: "#244b1f",
+      },
+      {
+        id: "sharedLife",
+        eyebrow: "القسم ٥",
+        title: "الحياة المشتركة",
+        image: sharedImg,
         icon: HeartHandshake,
+        color: "#cf921d",
+      },
+      {
+        id: "rights",
+        eyebrow: "القسم ٦",
+        title: "الحقوق والاعتراف",
+        image: governmentImg,
+        icon: Scale,
         color: "#52235f",
       },
+      {
+        id: "closing",
+        eyebrow: "القسم ٧",
+        title: "الخاتمة",
+        image: buildingImg,
+        icon: Flag,
+        color: "#6b1d1d",
+      },
     ],
+    detailComingSoon: "المحتوى التفصيلي لهذا القسم قادم قريباً.",
+    detailBack: "العودة",
   },
 };
 
@@ -165,24 +280,35 @@ type ReligiousDiversityPageProps = {
   onBack?: () => void;
 };
 
+type SubPage =
+  | null
+  | "religionsKurdistan"
+  | "nationalities"
+  | "coexistence"
+  | "sharedCelebrations"
+  | "diversityMap"
+  | "history"
+  | { kind: "sectionDetail"; cardId: SectionCardId };
+
 export default function ReligiousDiversityPage({
   onBack,
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [lang, setLang] = React.useState<LangCode>("en");
-  const [subPage, setSubPage] = React.useState<
-    | null
-    | "religionsKurdistan"
-    | "nationalities"
-    | "coexistence"
-    | "sharedCelebrations"
-    | "diversityMap"
-  >(null);
+  const [subPage, setSubPage] = React.useState<SubPage>(null);
   const content = pageContent[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   const handleLanguageChange = () => {
     setLang((prev) => (prev === "en" ? "ku" : prev === "ku" ? "ar" : "en"));
+  };
+
+  const openSectionCard = (id: SectionCardId) => {
+    if (id === "history") {
+      setSubPage("history");
+      return;
+    }
+    setSubPage({ kind: "sectionDetail", cardId: id });
   };
 
   React.useEffect(() => {
@@ -209,8 +335,8 @@ export default function ReligiousDiversityPage({
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.9,
-          stagger: 0.08,
+          duration: 0.7,
+          stagger: 0.05,
           ease: "power2.out",
         },
         "-=0.2",
@@ -278,6 +404,75 @@ export default function ReligiousDiversityPage({
     );
   }
 
+  if (subPage === "history") {
+    return (
+      <HistoryPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage && typeof subPage === "object" && subPage.kind === "sectionDetail") {
+    const card = content.cards.find((c) => c.id === subPage.cardId);
+    if (card) {
+      return (
+        <main
+          dir={dir}
+          className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+        >
+          <section className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-8 py-10 sm:px-12 lg:px-20">
+            <img
+              src={card.image}
+              alt={card.title}
+              className="absolute inset-0 h-[55vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/70 via-[#fbf1df]/40 to-[#f4dfbb]/95" />
+            <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
+
+            <button
+              type="button"
+              onClick={() => setSubPage(null)}
+              className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm"
+              aria-label={content.detailBack}
+            >
+              <ArrowLeft className="h-7 w-7" />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleLanguageChange}
+              className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+            >
+              <Globe2 className="h-5 w-5" />
+              {content.languageLabel}
+            </button>
+
+            <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-[980px] flex-col items-center pt-28 text-center">
+              <span className="font-serif text-[14px] font-semibold uppercase tracking-[0.32em] text-[#a77423]">
+                {card.eyebrow}
+              </span>
+              <div className="mt-3 w-[200px]">
+                <DecorativeLine color="#c3923a" />
+              </div>
+              <h1 className="mt-5 font-serif text-[44px] font-semibold uppercase leading-[1.05] tracking-[0.04em] text-[#3b2410] sm:text-[64px]">
+                {card.title}
+              </h1>
+              <div className="mt-8 w-[260px]">
+                <DecorativeLine color="#c3923a" />
+              </div>
+              <p className="mt-8 max-w-[640px] rounded-2xl border border-[#d8bc7b] bg-white/65 px-6 py-5 font-serif text-[17px] italic text-[#6a4a25] shadow-[0_10px_24px_rgba(75,45,12,0.12)]">
+                {content.detailComingSoon}
+              </p>
+            </div>
+          </section>
+        </main>
+      );
+    }
+  }
+
   return (
     <main
       dir={dir}
@@ -293,25 +488,9 @@ export default function ReligiousDiversityPage({
           alt=""
           className="absolute inset-0 h-[calc(90vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
-        {/* <div
-          className="pointer-events-none absolute inset-x-0 top-[calc(70vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
-          }}
-        /> */}
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/78 via-[#fbf1df]/20 to-[#f4dfbb]/92" />
+        <div className="absolute inset-x-0 top-0 h-[calc(90vh-160px)] bg-gradient-to-b from-[#fbf1df]/78 via-[#fbf1df]/20 to-[#f4dfbb]/92" />
         <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
-
-        {/* <button
-          type="button"
-          onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
-        >
-          <ArrowLeft className="h-7 w-7" />
-        </button> */}
 
         <button
           data-rd-animate="true"
@@ -323,7 +502,7 @@ export default function ReligiousDiversityPage({
           {content.languageLabel}
         </button>
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-[1180px] flex-col">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-[1180px] flex-col">
           <header
             data-rd-animate="true"
             className="mx-auto max-w-[850px] pt-12 text-center"
@@ -357,38 +536,24 @@ export default function ReligiousDiversityPage({
 
           <section
             data-rd-animate="true"
-            className="mx-auto grid w-full max-w-[1040px] grid-cols-1 gap-6 pb-7 sm:grid-cols-3"
+            className="mx-auto grid w-full max-w-[1180px] grid-cols-2 gap-4 pb-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7"
           >
             {content.cards.map((card) => {
               const Icon = card.icon;
-              const subPageTarget =
-                card.id === "religions"
-                  ? ("religionsKurdistan" as const)
-                  : card.id === "nationalities"
-                    ? ("nationalities" as const)
-                    : card.id === "coexistence"
-                      ? ("coexistence" as const)
-                      : null;
-              const isNavCard = subPageTarget !== null;
-
               return (
                 <article
                   key={card.id}
-                  role={isNavCard ? "button" : undefined}
-                  tabIndex={isNavCard ? 0 : undefined}
-                  onClick={isNavCard ? () => setSubPage(subPageTarget) : undefined}
-                  onKeyDown={
-                    isNavCard
-                      ? (e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setSubPage(subPageTarget);
-                          }
-                        }
-                      : undefined
-                  }
-                  aria-label={isNavCard ? `${card.title}` : undefined}
-                  className={`group relative min-h-[calc(30vh-160px)] overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] shadow-[0_18px_35px_rgba(69,43,14,0.24)] ${isNavCard ? "cursor-pointer outline-none transition hover:ring-2 hover:ring-[#d2a35a]/50 focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openSectionCard(card.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openSectionCard(card.id);
+                    }
+                  }}
+                  aria-label={card.title}
+                  className="group relative min-h-[230px] cursor-pointer overflow-hidden rounded-[22px] border-2 border-[#f3dfb5] shadow-[0_18px_35px_rgba(69,43,14,0.24)] outline-none transition hover:-translate-y-1 hover:ring-2 hover:ring-[#d2a35a]/55 focus-visible:ring-2 focus-visible:ring-[#c3923a]"
                 >
                   <img
                     src={card.image}
@@ -403,57 +568,28 @@ export default function ReligiousDiversityPage({
                     }}
                   />
 
-                  <div className="relative z-10 flex h-full flex-col justify-end px-7 py-7 text-white">
-                    <div className="mb-5 grid h-20 w-20 place-items-center rounded-full border-2 border-[#e4c47e] bg-white/12 backdrop-blur-sm">
-                      <Icon className="h-10 w-10" strokeWidth={1.7} />
+                  <div className="relative z-10 flex h-full flex-col justify-end px-4 py-5 text-white">
+                    <div className="mb-3 grid h-11 w-11 place-items-center rounded-full border-2 border-[#e4c47e] bg-white/12 backdrop-blur-sm">
+                      <Icon className="h-5 w-5" strokeWidth={1.8} />
                     </div>
 
-                    <h3 className="font-serif text-[32px] font-semibold uppercase leading-tight">
+                    <span className="font-serif text-[10px] font-semibold uppercase tracking-[0.28em] text-white/80">
+                      {card.eyebrow}
+                    </span>
+
+                    <h3 className="mt-1 font-serif text-[18px] font-semibold uppercase leading-tight">
                       {card.title}
                     </h3>
 
-                    <p className="mt-3 min-h-[82px] text-[18px] font-semibold leading-snug text-white/90">
-                      {card.text}
-                    </p>
-
-                    <div className="mt-6 grid h-16 w-full place-items-center rounded-2xl border-2 border-[#d8bc7b] bg-white/5 text-white backdrop-blur-sm transition group-hover:bg-white/15">
-                      <ChevronRight className="h-9 w-9" aria-hidden />
+                    <div className="mt-3 flex items-center justify-end">
+                      <div className="grid h-9 w-9 place-items-center rounded-full border border-[#d8bc7b] bg-white/10 backdrop-blur-sm transition group-hover:bg-white/25">
+                        <ChevronRight className="h-5 w-5" aria-hidden />
+                      </div>
                     </div>
                   </div>
                 </article>
               );
             })}
-          </section>
-
-          <section
-            data-rd-animate="true"
-            role="button"
-            tabIndex={0}
-            onClick={() => setSubPage("sharedCelebrations")}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                setSubPage("sharedCelebrations");
-              }
-            }}
-            aria-label="Open Shared Celebrations page"
-            className="mx-auto mb-4 flex w-full max-w-[760px] items-center gap-7 rounded-[28px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-          >
-            <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#cf921d] text-white">
-              <UsersRound className="h-9 w-9" />
-            </div>
-
-            <p className="flex-1 font-serif text-[25px] font-semibold uppercase leading-tight text-[#3b2410]">
-              {content.sharedTitle}
-              <br />
-              <span className="text-[17px] normal-case font-semibold text-[#6a4a25]">
-                {content.sharedText}
-              </span>
-            </p>
-
-            <button className="grid h-14 w-14 place-items-center rounded-full border border-[#d5b873] bg-[#fff4dc] text-[#8a5a12]">
-              <ChevronRight className="h-8 w-8" />
-            </button>
           </section>
         </div>
 
