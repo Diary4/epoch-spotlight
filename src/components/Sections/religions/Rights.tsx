@@ -15,6 +15,7 @@ import {
 
 import bg from "@/assets/images/religions/r-7.png";
 import bg2 from "@/assets/images/religions/r-3.png";
+import bg3 from "@/assets/images/religions/r-8.png";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -287,7 +288,7 @@ export default function RightsPage({
       >
         <img
           data-rts-hero="true"
-          src={bg}
+          src={bg3}
           alt=""
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
@@ -319,7 +320,7 @@ export default function RightsPage({
         <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col">
           <header
             data-rts-animate="true"
-            className="mx-auto max-w-[900px] pt-28 text-center sm:pt-32"
+            className="mx-auto max-w-[900px] pt-28 text-center sm:pt-40"
           >
             <div className="mx-auto mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
@@ -338,7 +339,7 @@ export default function RightsPage({
             </p>
           </header>
 
-          <div className="mx-auto mt-12 grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-[clamp(80px,80vh,760px)] grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {c.cards.map((card) => {
               const Icon = card.icon;
               return (
@@ -358,7 +359,7 @@ export default function RightsPage({
                     <div
                       className="pointer-events-none absolute inset-0 opacity-[0.18]"
                       style={{
-                        backgroundImage: `url(${bg2})`,
+                        backgroundImage: `url(${bg3})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         mixBlendMode: "overlay",
