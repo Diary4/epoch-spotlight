@@ -306,7 +306,7 @@ export default function NationsPage({
 
           <section
             data-n-animate="true"
-            className="mx-auto mt-[clamp(80px,30vh,360px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4"
+            className="mx-auto mt-[clamp(80px,50vh,360px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4"
           >
             {c.nations.map((nation) => (
               <article
@@ -321,7 +321,7 @@ export default function NationsPage({
                   }
                 }}
                 aria-label={nation.title}
-                className="group relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none transition hover:-translate-y-1 hover:shadow-[0_24px_44px_rgba(69,43,14,0.28)] focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+                className="group mt-[clamp(20px,30vh,300px)] relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none transition hover:-translate-y-1 hover:shadow-[0_24px_44px_rgba(69,43,14,0.28)] focus-visible:ring-2 focus-visible:ring-[#c3923a]"
               >
                 <div className="relative h-[230px] w-full overflow-hidden">
                   <img
