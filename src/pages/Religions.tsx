@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.png";
+import bg2 from "@/assets/images/religions/r-8.png";
 import letterImg from "@/assets/mainImages/letter.png";
 import whoarekurdsImg from "@/assets/mainImages/whoarekurds.png";
 import buildingImg from "@/assets/mainImages/building.png";
@@ -46,7 +47,6 @@ type SectionCardId =
 
 type SectionCard = {
   id: SectionCardId;
-  eyebrow: string;
   title: string;
   image: string;
   icon: typeof Church;
@@ -63,6 +63,7 @@ const pageContent: Record<
     cards: SectionCard[];
     detailComingSoon: string;
     detailBack: string;
+    openLabel: string;
   }
 > = {
   en: {
@@ -74,7 +75,6 @@ const pageContent: Record<
     cards: [
       {
         id: "introduction",
-        eyebrow: "Section 1",
         title: "Introduction",
         image: letterImg,
         icon: Sparkles,
@@ -82,7 +82,6 @@ const pageContent: Record<
       },
       {
         id: "history",
-        eyebrow: "Section 2",
         title: "History",
         image: presidencyImg,
         icon: ScrollText,
@@ -90,7 +89,6 @@ const pageContent: Record<
       },
       {
         id: "nations",
-        eyebrow: "Section 3",
         title: "Nations",
         image: whoarekurdsImg,
         icon: UsersRound,
@@ -98,7 +96,6 @@ const pageContent: Record<
       },
       {
         id: "faiths",
-        eyebrow: "Section 4",
         title: "Faiths",
         image: bg,
         icon: Church,
@@ -106,7 +103,6 @@ const pageContent: Record<
       },
       {
         id: "sharedLife",
-        eyebrow: "Section 5",
         title: "Shared Life",
         image: sharedImg,
         icon: HeartHandshake,
@@ -114,7 +110,6 @@ const pageContent: Record<
       },
       {
         id: "rights",
-        eyebrow: "Section 6",
         title: "Rights & Recognition",
         image: governmentImg,
         icon: Scale,
@@ -122,7 +117,6 @@ const pageContent: Record<
       },
       {
         id: "closing",
-        eyebrow: "Section 7",
         title: "Closing",
         image: buildingImg,
         icon: Flag,
@@ -131,6 +125,7 @@ const pageContent: Record<
     ],
     detailComingSoon: "Detailed content for this section is coming soon.",
     detailBack: "Back to overview",
+    openLabel: "Open",
   },
   ku: {
     languageLabel: "کوردی",
@@ -141,7 +136,6 @@ const pageContent: Record<
     cards: [
       {
         id: "introduction",
-        eyebrow: "بەشی ١",
         title: "پێشەکی",
         image: letterImg,
         icon: Sparkles,
@@ -149,7 +143,6 @@ const pageContent: Record<
       },
       {
         id: "history",
-        eyebrow: "بەشی ٢",
         title: "مێژوو",
         image: presidencyImg,
         icon: ScrollText,
@@ -157,7 +150,6 @@ const pageContent: Record<
       },
       {
         id: "nations",
-        eyebrow: "بەشی ٣",
         title: "نەتەوەکان",
         image: whoarekurdsImg,
         icon: UsersRound,
@@ -165,7 +157,6 @@ const pageContent: Record<
       },
       {
         id: "faiths",
-        eyebrow: "بەشی ٤",
         title: "ئاینەکان",
         image: bg,
         icon: Church,
@@ -173,7 +164,6 @@ const pageContent: Record<
       },
       {
         id: "sharedLife",
-        eyebrow: "بەشی ٥",
         title: "ژیانی هاوبەش",
         image: sharedImg,
         icon: HeartHandshake,
@@ -181,7 +171,6 @@ const pageContent: Record<
       },
       {
         id: "rights",
-        eyebrow: "بەشی ٦",
         title: "ماف و ناسینەوە",
         image: governmentImg,
         icon: Scale,
@@ -189,7 +178,6 @@ const pageContent: Record<
       },
       {
         id: "closing",
-        eyebrow: "بەشی ٧",
         title: "کۆتایی",
         image: buildingImg,
         icon: Flag,
@@ -198,6 +186,7 @@ const pageContent: Record<
     ],
     detailComingSoon: "ناوەڕۆکی ورد بۆ ئەم بەشە بەزووی دێت.",
     detailBack: "گەڕانەوە",
+    openLabel: "بکەرەوە",
   },
   ar: {
     languageLabel: "العربية",
@@ -208,7 +197,6 @@ const pageContent: Record<
     cards: [
       {
         id: "introduction",
-        eyebrow: "القسم ١",
         title: "مقدمة",
         image: letterImg,
         icon: Sparkles,
@@ -216,7 +204,6 @@ const pageContent: Record<
       },
       {
         id: "history",
-        eyebrow: "القسم ٢",
         title: "التاريخ",
         image: presidencyImg,
         icon: ScrollText,
@@ -224,7 +211,6 @@ const pageContent: Record<
       },
       {
         id: "nations",
-        eyebrow: "القسم ٣",
         title: "القوميات",
         image: whoarekurdsImg,
         icon: UsersRound,
@@ -232,7 +218,6 @@ const pageContent: Record<
       },
       {
         id: "faiths",
-        eyebrow: "القسم ٤",
         title: "الأديان",
         image: bg,
         icon: Church,
@@ -240,7 +225,6 @@ const pageContent: Record<
       },
       {
         id: "sharedLife",
-        eyebrow: "القسم ٥",
         title: "الحياة المشتركة",
         image: sharedImg,
         icon: HeartHandshake,
@@ -248,7 +232,6 @@ const pageContent: Record<
       },
       {
         id: "rights",
-        eyebrow: "القسم ٦",
         title: "الحقوق والاعتراف",
         image: governmentImg,
         icon: Scale,
@@ -256,7 +239,6 @@ const pageContent: Record<
       },
       {
         id: "closing",
-        eyebrow: "القسم ٧",
         title: "الخاتمة",
         image: buildingImg,
         icon: Flag,
@@ -265,6 +247,7 @@ const pageContent: Record<
     ],
     detailComingSoon: "المحتوى التفصيلي لهذا القسم قادم قريباً.",
     detailBack: "العودة",
+    openLabel: "اعرض",
   },
 };
 
@@ -515,11 +498,7 @@ export default function ReligiousDiversityPage({
             </button>
 
             <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-[980px] flex-col items-center justify-center text-center">
-              <span className="font-serif text-[14px] font-semibold uppercase tracking-[0.35em] text-[#a87222]">
-                {card.eyebrow}
-              </span>
-
-              <div className="mt-4 w-[220px]">
+              <div className="w-[220px]">
                 <DecorativeLine color="#bd8a3c" />
               </div>
 
@@ -548,9 +527,13 @@ export default function ReligiousDiversityPage({
       >
         <img
           data-rd-hero="true"
-          src={bg}
+          src={bg2}
           alt=""
-          className="absolute right-0 top-0 h-[72vh] w-[58%] object-cover opacity-95 [mask-image:linear-gradient(to_left,black_0%,black_70%,transparent_100%)]"
+          className="absolute right-0 top-0 h-[50vh] w-[100%] opacity-95 [mask-image:linear-gradient(to_left,black_0%,black_70%,transparent_100%)]"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 h-[53vh] w-full bg-gradient-to-t from-[#f4eadb] via-[#f4eadb]/0 to-transparent"
         />
 
         {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(205,157,85,0.25),transparent_38%),linear-gradient(90deg,#f7efe3_0%,#f7efe3_47%,rgba(247,239,227,0.76)_70%,rgba(247,239,227,0.35)_100%)]" />
@@ -569,21 +552,6 @@ export default function ReligiousDiversityPage({
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-10 py-10 lg:px-16">
           <div className="grid flex-1 grid-cols-1 items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <div data-rd-animate="true" className="max-w-[760px]">
-              <div className="mb-8 flex items-center gap-4">
-                <div className="grid h-16 w-16 place-items-center border border-[#b9893d]/55 bg-white/25 backdrop-blur-sm">
-                  <Landmark className="h-8 w-8 text-[#9d6b25]" />
-                </div>
-
-                <div>
-                  <p className="font-serif text-[24px] font-semibold uppercase tracking-[0.12em] text-[#2f2114]">
-                    Kurdistan
-                  </p>
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.34em] text-[#8b6b3c]">
-                    Museum of Cultures
-                  </p>
-                </div>
-              </div>
-
               <h1 className="font-serif text-[54px] font-semibold uppercase leading-[1.05] tracking-[0.035em] text-[#2e2116] sm:text-[72px] lg:text-[82px]">
                 {content.title[0]}
                 <br />
@@ -603,27 +571,11 @@ export default function ReligiousDiversityPage({
               <p className="mt-8 max-w-[560px] text-[22px] font-medium leading-relaxed text-[#493726]">
                 {content.description}
               </p>
-
-              <button
-                type="button"
-                onClick={() => openSectionCard("introduction")}
-                    className="mt-10 rounded-sm bg-[#a87222] px-8 py-4 text-[14px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_14px_28px_rgba(120,78,24,0.25)]"
-              >
-                Explore the Exhibition →
-              </button>
             </div>
           </div>
 
           <section data-rd-animate="true" className="pb-10">
-            <div className="mx-auto mb-8 flex max-w-[720px] items-center gap-4">
-              <span className="h-px flex-1 bg-[#c99a55]/60" />
-              <h3 className="font-serif text-[24px] font-semibold uppercase tracking-[0.16em] text-[#332417]">
-                Explore the Exhibition
-              </h3>
-              <span className="h-px flex-1 bg-[#c99a55]/60" />
-            </div>
-
-            <div className="grid w-full grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+            <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {content.cards.map((card) => {
                 const Icon = card.icon;
 
@@ -640,37 +592,36 @@ export default function ReligiousDiversityPage({
                       }
                     }}
                     aria-label={card.title}
-                        className="relative min-h-[320px] cursor-pointer overflow-hidden rounded-[20px] border border-[#ead3a6] shadow-[0_24px_42px_rgba(72,45,18,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+                    className="relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
                   >
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                          className="absolute inset-0 h-full w-full object-cover"
-                    />
+                    <div className="relative h-[230px] w-full overflow-hidden">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
 
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: `linear-gradient(to bottom, rgba(25,18,10,0.08), rgba(25,18,10,0.2) 35%, ${card.color}ee 76%, ${card.color})`,
-                      }}
-                    />
-
-                    <div className="relative z-10 flex h-full flex-col justify-end p-5 text-white">
-                      <div className="mb-5 grid h-12 w-12 place-items-center rounded-full border border-white/70 bg-white/12 backdrop-blur-sm">
+                      <div className="absolute left-4 top-4 grid h-12 w-12 place-items-center rounded-full border border-white/70 bg-white/20 text-white backdrop-blur-sm">
                         <Icon className="h-6 w-6" strokeWidth={1.7} />
                       </div>
+                    </div>
 
-                      <span className="font-serif text-[11px] font-semibold uppercase tracking-[0.3em] text-white/80">
-                        {card.eyebrow}
-                      </span>
-
-                      <h3 className="mt-2 font-serif text-[24px] font-semibold uppercase leading-[1.05]">
+                    <div className="flex flex-1 flex-col px-6 py-6">
+                      <h3 className="font-serif text-[26px] font-semibold uppercase leading-tight text-[#3b2410]">
                         {card.title}
                       </h3>
 
-                      <div className="mt-5 flex justify-end">
-                            <div className="grid h-11 w-11 place-items-center rounded-full border border-white/60 bg-white/10">
-                          <ChevronRight className="h-6 w-6" />
+                      <div className="mt-3 mb-3 w-[60px]">
+                        <span className="block h-[2px] bg-[#c3923a]" />
+                      </div>
+
+                      <div className="mt-auto flex items-center justify-between pt-5">
+                        <span className="font-serif text-[12px] font-semibold uppercase tracking-[0.28em] text-[#a77423]">
+                          {content.openLabel}
+                        </span>
+                        <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12]">
+                          <ChevronRight className="h-5 w-5" />
                         </div>
                       </div>
                     </div>
