@@ -321,13 +321,13 @@ export default function NationsPage({
                   }
                 }}
                 aria-label={nation.title}
-                className="group mt-[clamp(20px,30vh,300px)] relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none transition hover:-translate-y-1 hover:shadow-[0_24px_44px_rgba(69,43,14,0.28)] focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+                className="mt-[clamp(20px,30vh,300px)] relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
               >
                 <div className="relative h-[230px] w-full overflow-hidden">
                   <img
                     src={nation.image}
                     alt={nation.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
                 </div>
@@ -346,7 +346,7 @@ export default function NationsPage({
                     <span className="font-serif text-[12px] font-semibold uppercase tracking-[0.28em] text-[#a77423]">
                       {c.openLabel}
                     </span>
-                    <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12] transition group-hover:bg-[#c3923a] group-hover:text-white">
+                    <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12]">
                       <ChevronRight className="h-5 w-5" />
                     </div>
                   </div>

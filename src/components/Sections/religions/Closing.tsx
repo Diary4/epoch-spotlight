@@ -1,6 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Globe2, BookOpen, Landmark } from "lucide-react";
+import bg from "@/assets/images/religions/c-1.png";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -52,6 +53,13 @@ export default function SourcesReferences({
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.55),transparent_34%),linear-gradient(180deg,#f8eddb_0%,#ead3ad_100%)]" />
 
+        <img
+          data-src-hero="true"
+          src={bg}
+          alt=""
+          className="absolute right-0 top-0 h-[100vh] w-full object-cover [mask-image:linear-gradient(to_left,black_0%,black_70%,transparent_100%)]"
+        />
+        <div className="absolute inset-x-0 top-0 h-[50vh] bg-gradient-to-b from-[#f4eadb]/72 via-[#f4eadb]/30 to-[#f4eadb]/95" />
         <div className="absolute inset-0 opacity-[0.18]">
           <div className="absolute left-0 top-0 h-[360px] w-[360px] rounded-full border border-[#b98634]" />
           <div className="absolute right-0 bottom-0 h-[360px] w-[360px] rounded-full border border-[#b98634]" />
