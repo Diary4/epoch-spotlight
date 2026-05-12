@@ -3,7 +3,6 @@ import gsap from "gsap";
 import {
   ArrowLeft,
   ArrowRight,
-  ChevronRight,
   Globe2,
   Landmark,
   Vote,
