@@ -33,6 +33,7 @@ import NationsPage from "@/components/Sections/religions/Nations";
 import FaithsPage from "@/components/Sections/religions/Faiths";
 import OneSharedHomelandPage from "@/components/Sections/religions/OneShared";
 import IntroductionPage from "@/components/Sections/religions/Introduction";
+import ClosingPage from "@/components/Sections/religions/Closing";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -279,6 +280,7 @@ type SubPage =
   | "faiths"
   | "sharedLife"
   | "introduction"
+  | "closing"
   | { kind: "sectionDetail"; cardId: SectionCardId };
 
 export default function ReligiousDiversityPage({
@@ -300,6 +302,7 @@ export default function ReligiousDiversityPage({
     if (id === "nations") return setSubPage("nations");
     if (id === "faiths") return setSubPage("faiths");
     if (id === "sharedLife") return setSubPage("sharedLife");
+    if (id === "closing") return setSubPage("closing");
 
     setSubPage({ kind: "sectionDetail", cardId: id });
   };
@@ -448,6 +451,17 @@ export default function ReligiousDiversityPage({
   if (subPage === "introduction") {
     return (
       <IntroductionPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage === "closing") {
+    return (
+      <ClosingPage
         lang={lang}
         languageLabel={content.languageLabel}
         onLanguageChange={handleLanguageChange}

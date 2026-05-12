@@ -16,7 +16,7 @@ import imgSabean from "@/assets/mainImages/story-1.png";
 import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";
-// import YarsanismPage from "@/components/Sections/religions/RelisgionsSection/Yarsanism";
+import YarsanismPage from "@/components/Sections/religions/RelisgionsSection/Yarsanism";
 import ZoroastrianismPage from "@/components/Sections/religions/RelisgionsSection/Zoroastrianism";
 import JudaismPage from "@/components/Sections/religions/RelisgionsSection/Judaism";
 import BahaiPage from "@/components/Sections/religions/RelisgionsSection/Bahai";
@@ -323,16 +323,16 @@ export default function FaithsPage({
     );
   }
 
-  // if (activeId === "yarsanism") {
-  //   return (
-  //     <YarsanismPage
-  //       lang={lang}
-  //       languageLabel={languageLabel}
-  //       onLanguageChange={onLanguageChange}
-  //       onBack={() => setActiveId(null)}
-  //     />
-  //   );
-  // }
+  if (activeId === "yarsanism") {
+    return (
+      <YarsanismPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={onLanguageChange}
+        onBack={() => setActiveId(null)}
+      />
+    );
+  }
 
   if (activeId === "zoroastrianism") {
     return (
