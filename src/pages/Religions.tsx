@@ -34,6 +34,15 @@ import FaithsPage from "@/components/Sections/religions/Faiths";
 import OneSharedHomelandPage from "@/components/Sections/religions/OneShared";
 import IntroductionPage from "@/components/Sections/religions/Introduction";
 import ClosingPage from "@/components/Sections/religions/Closing";
+import RightsPage, {
+  type RightsCardId,
+} from "@/components/Sections/religions/Rights";
+import RightsKRG from "@/components/Sections/religions/RightsSection/RightsKRG";
+import RightsParliament from "@/components/Sections/religions/RightsSection/RightsParliament";
+import RightsLaws from "@/components/Sections/religions/RightsSection/RightsLaws";
+import Rights2014 from "@/components/Sections/religions/RightsSection/Rights2014";
+import RightsRefuge from "@/components/Sections/religions/RightsSection/RightsRefuge";
+import RightsMedia from "@/components/Sections/religions/RightsSection/RightsMedia";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -281,6 +290,8 @@ type SubPage =
   | "sharedLife"
   | "introduction"
   | "closing"
+  | "rights"
+  | { kind: "rightsDetail"; cardId: RightsCardId }
   | { kind: "sectionDetail"; cardId: SectionCardId };
 
 export default function ReligiousDiversityPage({
@@ -303,6 +314,7 @@ export default function ReligiousDiversityPage({
     if (id === "faiths") return setSubPage("faiths");
     if (id === "sharedLife") return setSubPage("sharedLife");
     if (id === "closing") return setSubPage("closing");
+    if (id === "rights") return setSubPage("rights");
 
     setSubPage({ kind: "sectionDetail", cardId: id });
   };
@@ -468,6 +480,45 @@ export default function ReligiousDiversityPage({
         onBack={() => setSubPage(null)}
       />
     );
+  }
+
+  if (subPage === "rights") {
+    return (
+      <RightsPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+        onOpenCard={(id) => setSubPage({ kind: "rightsDetail", cardId: id })}
+      />
+    );
+  }
+
+  if (
+    subPage &&
+    typeof subPage === "object" &&
+    subPage.kind === "rightsDetail"
+  ) {
+    const commonProps = {
+      lang,
+      languageLabel: content.languageLabel,
+      onLanguageChange: handleLanguageChange,
+      onBack: () => setSubPage("rights"),
+    };
+    switch (subPage.cardId) {
+      case "krg":
+        return <RightsKRG {...commonProps} />;
+      case "parliament":
+        return <RightsParliament {...commonProps} />;
+      case "laws":
+        return <RightsLaws {...commonProps} />;
+      case "year2014":
+        return <Rights2014 {...commonProps} />;
+      case "refuge":
+        return <RightsRefuge {...commonProps} />;
+      case "media":
+        return <RightsMedia {...commonProps} />;
+    }
   }
 
   if (

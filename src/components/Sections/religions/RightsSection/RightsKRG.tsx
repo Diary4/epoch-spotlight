@@ -1,0 +1,151 @@
+import {
+  BookOpen,
+  Building2,
+  GraduationCap,
+  Landmark,
+  Palette,
+} from "lucide-react";
+import RightsDetailPage, {
+  type RightsDetailContent,
+} from "./RightsDetailPage";
+
+const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "The Kurdistan Regional Government",
+    pageSubtitle: "A government for all its peoples.",
+    cards: [
+      {
+        id: "established-1992",
+        eyebrow: "Established 1992",
+        title: "First Democratic Election",
+        body:
+          "Following democratic elections on May 19, 1992 — the first in the region's history. Parliament was established with reserved minority seats from the very beginning.",
+        icon: Landmark,
+        accent: "#52235f",
+      },
+      {
+        id: "ministry",
+        eyebrow: "Ministry of Religious Affairs",
+        title: "Renamed to Serve All",
+        body:
+          "Renamed in 2007 from “Islamic Affairs” to “Religious Affairs” — reflecting that it serves all faiths. Includes General Directorates for Christian and Yazidi Affairs.",
+        icon: Building2,
+        accent: "#7a4a12",
+      },
+      {
+        id: "education",
+        eyebrow: "Education in All Languages",
+        title: "Schools in Mother Tongues",
+        body:
+          "Schools operate in Turkmen, Syriac, and Armenian. General Directorates for Syriac and Turkmen Education were established by law.",
+        icon: GraduationCap,
+        accent: "#16466b",
+      },
+      {
+        id: "culture",
+        eyebrow: "Culture for All",
+        title: "Heritage Preserved",
+        body:
+          "The Ministry of Culture established General Directorates for Turkmen and Syriac Culture and Arts to preserve and develop minority heritage.",
+        icon: Palette,
+        accent: "#244b1f",
+      },
+    ],
+    tagline: "A government that protects all its people.",
+  },
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "حکومەتی هەرێمی کوردستان",
+    pageSubtitle: "حکومەتێک بۆ هەموو گەلەکانی.",
+    cards: [
+      {
+        id: "established-1992",
+        eyebrow: "دامەزرا ١٩٩٢",
+        title: "یەکەم هەڵبژاردنی دیموکراسی",
+        body:
+          "دوای هەڵبژاردنی دیموکراسی لە ١٩ی ئایاری ١٩٩٢ — یەکەمین هەڵبژاردن لە مێژووی هەرێمدا. پەرلەمان لە سەرەتاوە بە کورسی پاراست بۆ کەمینەکان دامەزرا.",
+        icon: Landmark,
+        accent: "#52235f",
+      },
+      {
+        id: "ministry",
+        eyebrow: "وەزارەتی کاروباری ئاینی",
+        title: "بۆ خزمەتی هەمووان ناونرا",
+        body:
+          "ساڵی ٢٠٠٧ ناوی لە «کاروباری ئیسلامی» گۆڕدرا بۆ «کاروباری ئاینی» — کە دەردەخات خزمەتی هەموو ئاینەکان دەکات. لەخۆدەگرێت بەڕێوەبەرایەتی گشتی بۆ کاروباری مەسیحیان و ئێزدییان.",
+        icon: Building2,
+        accent: "#7a4a12",
+      },
+      {
+        id: "education",
+        eyebrow: "خوێندن بە هەموو زمانەکان",
+        title: "قوتابخانە بە زمانی دایک",
+        body:
+          "قوتابخانەکان بە تورکمانی، سریانی و ئەرمەنی کاردەکەن. بەڕێوەبەرایەتی گشتی بۆ پەروەردەی سریانی و تورکمانی بە یاسا دامەزراون.",
+        icon: GraduationCap,
+        accent: "#16466b",
+      },
+      {
+        id: "culture",
+        eyebrow: "کلتوور بۆ هەمووان",
+        title: "میراتی پارێزراو",
+        body:
+          "وەزارەتی ڕۆشنبیری بەڕێوەبەرایەتی گشتی بۆ کلتوور و هونەری تورکمانی و سریانی دامەزراندووە بۆ پاراستن و پەرەپێدانی میراتی کەمینەکان.",
+        icon: Palette,
+        accent: "#244b1f",
+      },
+    ],
+    tagline: "حکومەتێک کە هەموو گەلەکانی دەپارێزێت.",
+  },
+  ar: {
+    back: "العودة",
+    pageTitle: "حكومة إقليم كوردستان",
+    pageSubtitle: "حكومة لكل شعوبها.",
+    cards: [
+      {
+        id: "established-1992",
+        eyebrow: "تأسست ١٩٩٢",
+        title: "أول انتخابات ديمقراطية",
+        body:
+          "إثر انتخابات ديمقراطية في ١٩ أيار/مايو ١٩٩٢ — الأولى في تاريخ الإقليم. تأسس البرلمان منذ البداية بمقاعد محجوزة للأقليات.",
+        icon: Landmark,
+        accent: "#52235f",
+      },
+      {
+        id: "ministry",
+        eyebrow: "وزارة الشؤون الدينية",
+        title: "إعادة تسمية لخدمة الجميع",
+        body:
+          "أُعيدت تسميتها عام ٢٠٠٧ من «الشؤون الإسلامية» إلى «الشؤون الدينية» لتعكس خدمتها لكل الأديان. وتضم مديريتين عامتين لشؤون المسيحيين والإيزيديين.",
+        icon: Building2,
+        accent: "#7a4a12",
+      },
+      {
+        id: "education",
+        eyebrow: "التعليم بكل اللغات",
+        title: "مدارس باللغة الأم",
+        body:
+          "مدارس تعمل بالتركمانية والسريانية والأرمنية. أُسست المديريتان العامتان للتعليم السرياني والتركماني بموجب القانون.",
+        icon: GraduationCap,
+        accent: "#16466b",
+      },
+      {
+        id: "culture",
+        eyebrow: "الثقافة للجميع",
+        title: "تراث محفوظ",
+        body:
+          "أنشأت وزارة الثقافة المديريتين العامتين للثقافة والفنون التركمانية والسريانية للحفاظ على تراث الأقليات وتطويره.",
+        icon: Palette,
+        accent: "#244b1f",
+      },
+    ],
+    tagline: "حكومة تحمي كل أبنائها.",
+  },
+};
+
+export default function RightsKRG(
+  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content">,
+) {
+  return <RightsDetailPage {...props} content={content} />;
+}
