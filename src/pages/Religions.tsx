@@ -482,6 +482,45 @@ export default function ReligiousDiversityPage({
     );
   }
 
+  if (subPage === "rights") {
+    return (
+      <RightsPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+        onOpenCard={(id) => setSubPage({ kind: "rightsDetail", cardId: id })}
+      />
+    );
+  }
+
+  if (
+    subPage &&
+    typeof subPage === "object" &&
+    subPage.kind === "rightsDetail"
+  ) {
+    const commonProps = {
+      lang,
+      languageLabel: content.languageLabel,
+      onLanguageChange: handleLanguageChange,
+      onBack: () => setSubPage("rights"),
+    };
+    switch (subPage.cardId) {
+      case "krg":
+        return <RightsKRG {...commonProps} />;
+      case "parliament":
+        return <RightsParliament {...commonProps} />;
+      case "laws":
+        return <RightsLaws {...commonProps} />;
+      case "year2014":
+        return <Rights2014 {...commonProps} />;
+      case "refuge":
+        return <RightsRefuge {...commonProps} />;
+      case "media":
+        return <RightsMedia {...commonProps} />;
+    }
+  }
+
   if (
     subPage &&
     typeof subPage === "object" &&
