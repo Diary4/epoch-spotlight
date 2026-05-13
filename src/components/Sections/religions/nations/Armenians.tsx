@@ -12,28 +12,108 @@ import {
 
 import bg from "@/assets/images/religions/r-5.png";
 
-const cards = [
-  {
-    title: "HISTORY",
-    icon: Clock,
-    text: "Armenians arrived in Kurdistan following the 1915 genocide, finding refuge in a land that became their home across generations.",
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+  icon: typeof Landmark;
+};
+
+type ArmeniansContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, ArmeniansContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "ARMENIANS",
+    subtitle: "A century of belonging in Kurdistan",
+    cards: [
+      {
+        title: "HISTORY",
+        icon: Clock,
+        text: "Armenians arrived in Kurdistan following the 1915 genocide, finding refuge in a land that became their home across generations.",
+      },
+      {
+        title: "CHURCHES",
+        icon: Church,
+        text: "The Armenian Diocese oversees 14 churches, 5 of which are in the Kurdistan Region including Holy Cross Church in Erbil inaugurated in 2019.",
+      },
+      {
+        title: "COMMUNITY",
+        icon: UsersRound,
+        text: "Currently approximately 3,500–4,000 Armenians live in the Kurdistan Region. The Armenian Cultural and Social Association is active in Erbil.",
+      },
+      {
+        title: "1 PARLIAMENT SEAT",
+        icon: Landmark,
+        text: "The Armenian community holds a reserved seat in the Kurdistan Parliament, ensuring their voice in public life.",
+      },
+    ],
+    tagline: "A community of memory, resilience, and belonging.",
   },
-  {
-    title: "CHURCHES",
-    icon: Church,
-    text: "The Armenian Diocese oversees 14 churches, 5 of which are in the Kurdistan Region including Holy Cross Church in Erbil inaugurated in 2019.",
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "ئەرمەن",
+    subtitle: "سەدەیەک لە سۆز و پەیوەستبوون لە کوردستان",
+    cards: [
+      {
+        title: "مێژوو",
+        icon: Clock,
+        text: "ئەرمەنەکان دوای کۆمەڵکوژیی ١٩١٥ ڕوویان لە کوردستان کرد و لێرە پەناگەیان دۆزییەوە و بە تێپەڕبوونی چەند نەوەیەک بوو بە نیشتمانیان.",
+      },
+      {
+        title: "کەنیسەکان",
+        icon: Church,
+        text: "ئەپەرشیەی ئەرمەنی سەرپەرشتی ١٤ کەنیسە دەکات، ٥یان لە هەرێمی کوردستانن، لەوانە کەنیسەی خاچی پیرۆز لە هەولێر کە ساڵی ٢٠١٩ کرایەوە.",
+      },
+      {
+        title: "کۆمەڵگە",
+        icon: UsersRound,
+        text: "ئێستا نزیکەی ٣٥٠٠ بۆ ٤٠٠٠ ئەرمەنی لە هەرێم دەژین. کۆمەڵەی کلتووری و کۆمەڵایەتی ئەرمەنی لە هەولێر زۆر چالاکە.",
+      },
+      {
+        title: "کورسییەکی پەرلەمان",
+        icon: Landmark,
+        text: "پێکهاتەی ئەرمەن خاوەنی یەک کورسی کۆتایە لە پەرلەمان، ئەمەش بۆ دڵنیابوون لە نوێنەرایەتیکردنیان.",
+      },
+    ],
+    tagline: "کۆمەڵگەیەک بۆ یادەوەری، خۆڕاگری و دڵسۆزی.",
   },
-  {
-    title: "COMMUNITY",
-    icon: UsersRound,
-    text: "Currently approximately 3,500–4,000 Armenians live in the Kurdistan Region. The Armenian Cultural and Social Association is active in Erbil.",
+  ar: {
+    back: "العودة",
+    pageTitle: "الأرمن",
+    subtitle: "قرنٌ من الانتماء في كوردستان",
+    cards: [
+      {
+        title: "التاريخ",
+        icon: Clock,
+        text: "وصل الأرمن إلى كوردستان إثر إبادة ١٩١٥، فوجدوا فيها ملاذاً صار بمرور الأجيال وطناً لهم.",
+      },
+      {
+        title: "الكنائس",
+        icon: Church,
+        text: "تشرف الأبرشية الأرمنية على ١٤ كنيسة، خمسٌ منها في إقليم كوردستان، ومنها كنيسة الصليب المقدس في أربيل التي افتُتحت عام ٢٠١٩.",
+      },
+      {
+        title: "المجتمع",
+        icon: UsersRound,
+        text: "يعيش حالياً نحو ٣٥٠٠ إلى ٤٠٠٠ أرمني في إقليم كوردستان، والجمعية الثقافية والاجتماعية الأرمنية ناشطة في أربيل.",
+      },
+      {
+        title: "مقعد برلماني",
+        icon: Landmark,
+        text: "يحتفظ مكوّن الأرمن بمقعد مخصص في برلمان كوردستان لضمان تمثيلهم في الحياة العامة.",
+      },
+    ],
+    tagline: "مجتمعٌ للذاكرة والصمود والانتماء.",
   },
-  {
-    title: "1 PARLIAMENT SEAT",
-    icon: Landmark,
-    text: "The Armenian community holds a reserved seat in the Kurdistan Parliament, ensuring their voice in public life.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -48,7 +128,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type ArmeniansPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -61,6 +141,7 @@ export default function ArmeniansPage({
   onBack,
 }: ArmeniansPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -98,7 +179,7 @@ export default function ArmeniansPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
     <main
@@ -122,7 +203,7 @@ export default function ArmeniansPage({
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -150,11 +231,11 @@ export default function ArmeniansPage({
             </div>
 
             <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              ARMENIANS
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              A century of belonging in Kurdistan
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -168,7 +249,7 @@ export default function ArmeniansPage({
             data-armenians-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -205,7 +286,7 @@ export default function ArmeniansPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              A community of memory, resilience, and belonging.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />

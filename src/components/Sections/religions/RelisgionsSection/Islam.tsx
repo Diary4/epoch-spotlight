@@ -1,31 +1,118 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Globe2, BookOpen, MoonStar, Landmark, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  Globe2,
+  BookOpen,
+  MoonStar,
+  Landmark,
+  Sparkles,
+} from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.png";
 
-const cards = [
-  {
-    title: "SHAFI'I SCHOOL",
-    icon: BookOpen,
-    text: "The majority of Kurds follow the Shafi'i school of thought, embraced since the 7th century CE during the caliphate of Umar ibn al-Khattab.",
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+  icon: typeof Landmark;
+};
+
+type IslamContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, IslamContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "ISLAM",
+    subtitle: "Faith, worship, and living tradition",
+    cards: [
+      {
+        title: "SHAFI'I SCHOOL",
+        icon: BookOpen,
+        text: "The majority of Kurds follow the Shafi'i school of thought, embraced since the 7th century CE during the caliphate of Umar ibn al-Khattab.",
+      },
+      {
+        title: "SUFISM",
+        icon: Sparkles,
+        text: "189 registered Sufi lodges across the KRI. The Qadiriyya and Naqshbandiyya orders shaped Kurdish society and culture for centuries through dhikr, poetry, and spiritual guidance.",
+      },
+      {
+        title: "MINISTRY",
+        icon: Landmark,
+        text: "The Ministry of Endowments and Religious Affairs supervises 6,103 mosques, 121,112 staff, and serves all religions — not only Islam. Includes directorates for Christian and Yazidi affairs.",
+      },
+      {
+        title: "RAMADAN & EID",
+        icon: MoonStar,
+        text: "Shared seasons of fasting, prayer, and generosity. Christians in Erbil prepare iftar tables during Ramadan as a gesture of solidarity with Muslims.",
+      },
+    ],
+    tagline: "Faith lived every day.",
   },
-  {
-    title: "SUFISM",
-    icon: Sparkles,
-    text: "189 registered Sufi lodges across the KRI. The Qadiriyya and Naqshbandiyya orders shaped Kurdish society and culture for centuries through dhikr, poetry, and spiritual guidance.",
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "ئیسلام",
+    subtitle: "باوەڕ، پەرستن و نەریتە زیندووەکان",
+    cards: [
+      {
+        title: "مەزهەبی شافعی",
+        icon: BookOpen,
+        text: "زۆربەی کوردان پەیڕەوی مەزهەبی شافعی دەکەن. هەرچەندە ئیسلام لە سەدەی حەوتەمی زایینییەوە گەیشتووەتە کوردستان، بەڵام ئەم مەزهەبە بە درێژایی سەدەکان بووەتە ناسنامەی سەرەکی و ڕێچکەی فقهی و ڕۆحیی زۆربەی کۆمەڵگەی کوردی.",
+      },
+      {
+        title: "سۆفیگەری",
+        icon: Sparkles,
+        text: "١٨٩ تەکیەی سۆفیگەری تۆمارکراو لە هەرێم هەن. تەریقەتی قادری و نەقشبەندی ڕۆڵیان هەبووە لە پەروەردەی ڕۆحی و کلتووری کۆمەڵگەدا.",
+      },
+      {
+        title: "وەزارەت",
+        icon: Landmark,
+        text: "وەزارەتی ئەوقاف و کاروباری ئایینی سەرپەرشتی ٦١٠٣ مزگەوت دەکات. ئەم وەزارەتە خزمەتی هەموو ئایینەکان دەکات و بەڕێوەبەرایەتی تایبەتی بۆ مەسیحی و ئێزیدییەکان هەیە.",
+      },
+      {
+        title: "ڕەمەزان و جەژن",
+        icon: MoonStar,
+        text: "وەرزی ڕۆژوو و نزا و بەخشندەییە. مەسیحییەکانی هەولێر لە ڕەمەزاندا خوانی بەربانگ بۆ نیشاندانی هاوسۆزی ئامادە دەکەن.",
+      },
+    ],
+    tagline: "باوەڕێک کە هەموو ڕۆژێک دەمانژیێنێتەوە.",
   },
-  {
-    title: "MINISTRY",
-    icon: Landmark,
-    text: "The Ministry of Endowments and Religious Affairs supervises 6,103 mosques, 121,112 staff, and serves all religions — not only Islam. Includes directorates for Christian and Yazidi affairs.",
+  ar: {
+    back: "العودة",
+    pageTitle: "الإسلام",
+    subtitle: "إيمان وعبادة وتقاليد حيّة",
+    cards: [
+      {
+        title: "المذهب الشافعي",
+        icon: BookOpen,
+        text: "تتبع غالبية الكورد المذهب الشافعي. ومع أن الإسلام بلغ كوردستان منذ القرن السابع الميلادي، فقد غدا هذا المذهب على مرّ القرون عنوان الهوية الرئيسية والطريق الفقهي والروحي لمعظم المجتمع الكوردي.",
+      },
+      {
+        title: "التصوّف",
+        icon: Sparkles,
+        text: "١٨٩ تكية صوفية مسجلة في الإقليم. أدت الطريقتان القادرية والنقشبندية دوراً بارزاً في التربية الروحية وثقافة المجتمع.",
+      },
+      {
+        title: "الوزارة",
+        icon: Landmark,
+        text: "تشرف وزارة الأوقاف والشؤون الدينية على ٦١٠٣ مساجد. وتخدم هذه الوزارة جميع الأديان، ولها مديريات خاصة بالشؤون المسيحية والإيزيدية.",
+      },
+      {
+        title: "رمضان والعيد",
+        icon: MoonStar,
+        text: "موسم للصيام والصلاة والعطاء. ويُعدّ المسيحيون في أربيل موائد الإفطار في رمضان تعبيراً عن التضامن.",
+      },
+    ],
+    tagline: "إيمانٌ يحيا فينا كل يوم.",
   },
-  {
-    title: "RAMADAN & EID",
-    icon: MoonStar,
-    text: "Shared seasons of fasting, prayer, and generosity. Christians in Erbil prepare iftar tables during Ramadan as a gesture of solidarity with Muslims.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -40,7 +127,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type IslamPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -53,6 +140,7 @@ export default function IslamPage({
   onBack,
 }: IslamPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -90,7 +178,7 @@ export default function IslamPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
     <main
@@ -115,7 +203,7 @@ export default function IslamPage({
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -143,11 +231,11 @@ export default function IslamPage({
             </div>
 
             <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              ISLAM
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              Faith, worship, and living tradition
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -161,7 +249,7 @@ export default function IslamPage({
             data-islam-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -198,7 +286,7 @@ export default function IslamPage({
             </div>
 
             <p className="font-serif text-[34px] font-semibold leading-tight text-[#3b2410]">
-              Faith lived every day.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />

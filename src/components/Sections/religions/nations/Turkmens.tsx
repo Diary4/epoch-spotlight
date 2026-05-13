@@ -12,28 +12,108 @@ import {
 
 import bg from "@/assets/images/religions/r-3.png";
 
-const cards = [
-  {
-    title: "5 PARLIAMENT SEATS",
-    icon: Landmark,
-    text: "Turkmens hold 5 reserved seats in the Kurdistan Parliament under the 2005 amendment — equal to the Chaldo-Assyrian allocation.",
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+  icon: typeof Landmark;
+};
+
+type TurkmensContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, TurkmensContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "TURKMENS",
+    subtitle: "Language, heritage, and community life",
+    cards: [
+      {
+        title: "5 PARLIAMENT SEATS",
+        icon: Landmark,
+        text: "Turkmens hold 5 reserved seats in the Kurdistan Parliament under the 2005 amendment — equal to the Chaldo-Assyrian allocation.",
+      },
+      {
+        title: "OFFICIAL LANGUAGE",
+        icon: Languages,
+        text: "Turkmen is recognized as an official language in areas where Turkmens form the majority under Official Languages Law No. 6 of 2014.",
+      },
+      {
+        title: "CULTURE & ARTS",
+        icon: Music,
+        text: "The Ministry of Culture established a dedicated General Directorate for Turkmen Culture and Arts. Turkmen Language and Culture Day is celebrated on November 17 each year.",
+      },
+      {
+        title: "EDUCATION",
+        icon: GraduationCap,
+        text: "A General Directorate for Turkmen Education ensures Turkmen children receive education in their mother tongue across the Kurdistan Region.",
+      },
+    ],
+    tagline: "Different roots. One homeland.",
   },
-  {
-    title: "OFFICIAL LANGUAGE",
-    icon: Languages,
-    text: "Turkmen is recognized as an official language in areas where Turkmens form the majority under Official Languages Law No. 6 of 2014.",
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "تورکمان",
+    subtitle: "زمان، کەلەپوور و ژیانی کۆمەاڵیەتی",
+    cards: [
+      {
+        title: "٥ کورسی پەرلەمان",
+        icon: Landmark,
+        text: "تورکمانەکان خاوەنی ٥ کورسی کۆتان لە پەرلەمانی کوردستان بەپێی هەموارکردنەوەی ٢٠٠٥، یەکسان بە بەشی کلدان و ئاشورییەکان.",
+      },
+      {
+        title: "زمانی فەرمی",
+        icon: Languages,
+        text: "زمانی تورکمانی وەک زمانێکی فەرمی لەو ناوچانەی زۆرینەی تورکمانن دەناسرێت بەپێی یاسای زمانە فەرمییەکان ژمارە ٦ی ساڵی ٢٠١٤.",
+      },
+      {
+        title: "کلتوور و هونەر",
+        icon: Music,
+        text: "وەزارەتی ڕۆشنبیری بەڕێوەبەرایەتییەکی گشتی تایبەتی بۆ کلتوور و هونەری تورکمانی دامەزراندووە. ١٧ی تشرینی دووەمی هەموو ساڵێک ڕۆژی زمان و کلتووری تورکمانییە.",
+      },
+      {
+        title: "پەروەردە",
+        icon: GraduationCap,
+        text: "بەڕێوەبەرایەتی گشتی خوێندنی تورکمانی دڵنیایی دەدات کە مندااڵنی تورکمان بە زمانی دایکی خۆیان لە هەرێم دەخوێنن.",
+      },
+    ],
+    tagline: "ڕەگی جیاواز. یەک نیشتمان.",
   },
-  {
-    title: "CULTURE & ARTS",
-    icon: Music,
-    text: "The Ministry of Culture established a dedicated General Directorate for Turkmen Culture and Arts. Turkmen Language and Culture Day is celebrated on November 17 each year.",
+  ar: {
+    back: "العودة",
+    pageTitle: "التركمان",
+    subtitle: "اللغة والتراث وحياة المجتمع",
+    cards: [
+      {
+        title: "٥ مقاعد برلمانية",
+        icon: Landmark,
+        text: "يحتل التركمان ٥ مقاعد مخصصة في برلمان كوردستان بموجب تعديل ٢٠٠٥ — مساوياً لحصة الكلدو آشوريين.",
+      },
+      {
+        title: "لغة رسمية",
+        icon: Languages,
+        text: "تُعترف باللغة التركمانية لغةً رسميةً في المناطق ذات الغالبية التركمانية بموجب قانون اللغات الرسمية رقم ٦ لسنة ٢٠١٤.",
+      },
+      {
+        title: "الثقافة والفنون",
+        icon: Music,
+        text: "أسست وزارة الثقافة مديريةً عامةً مخصصةً للثقافة والفنون التركمانية. ويُحتفل بيوم اللغة والثقافة التركمانية في ١٧ نوفمبر من كل عام.",
+      },
+      {
+        title: "التعليم",
+        icon: GraduationCap,
+        text: "تضمن المديرية العامة للتربية التركمانية تلقّي أبناء التركمان تعليمهم بلغتهم الأم في مختلف أنحاء إقليم كوردستان.",
+      },
+    ],
+    tagline: "جذور مختلفة. وطن واحد.",
   },
-  {
-    title: "EDUCATION",
-    icon: GraduationCap,
-    text: "A General Directorate for Turkmen Education ensures Turkmen children receive education in their mother tongue across the Kurdistan Region.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -48,7 +128,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type TurkmensPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -61,6 +141,7 @@ export default function TurkmensPage({
   onBack,
 }: TurkmensPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -98,7 +179,7 @@ export default function TurkmensPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
     <main
@@ -122,7 +203,7 @@ export default function TurkmensPage({
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -150,11 +231,11 @@ export default function TurkmensPage({
             </div>
 
             <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              TURKMENS
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              Language, heritage, and community life
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -168,7 +249,7 @@ export default function TurkmensPage({
             data-turkmens-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -205,7 +286,7 @@ export default function TurkmensPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              Different roots. One homeland.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />

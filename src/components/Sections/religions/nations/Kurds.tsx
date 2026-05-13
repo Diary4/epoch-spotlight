@@ -1,31 +1,119 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Globe2, Languages, Flame, Music, Landmark, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  Globe2,
+  Languages,
+  Flame,
+  Music,
+  Landmark,
+  Sparkles,
+} from "lucide-react";
 
 import bg from "@/assets/mainImages/whoarekurds.png";
 
-const cards = [
-  {
-    title: "LANGUAGE",
-    icon: Languages,
-    text: "Sorani and Kurmanji are the two main Kurdish dialects. Both are official languages of the Kurdistan Region alongside Arabic.",
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+  icon: typeof Landmark;
+};
+
+type KurdsContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, KurdsContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "KURDS",
+    subtitle: "Language, heritage, and living identity",
+    cards: [
+      {
+        title: "LANGUAGE",
+        icon: Languages,
+        text: "Sorani and Kurmanji are the two main Kurdish dialects. Both are official languages of the Kurdistan Region alongside Arabic.",
+      },
+      {
+        title: "NEWROZ",
+        icon: Flame,
+        text: "The Kurdish New Year celebrated on March 21 with fire and renewal. One of the most celebrated cultural events of the year with ancient Zoroastrian roots.",
+      },
+      {
+        title: "CULTURE",
+        icon: Music,
+        text: "Traditional dress, the Halparke dance, poetry, and hospitality define Kurdish cultural identity. Sufi orders shaped Kurdish society and spirituality for centuries.",
+      },
+      {
+        title: "CITIES",
+        icon: Landmark,
+        text: "Erbil, Duhok, and Sulaymaniyah are the three governorates and cultural hearts of the Kurdistan Region.",
+      },
+    ],
+    tagline: "Rooted in heritage. Building the future.",
   },
-  {
-    title: "NEWROZ",
-    icon: Flame,
-    text: "The Kurdish New Year celebrated on March 21 with fire and renewal. One of the most celebrated cultural events of the year with ancient Zoroastrian roots.",
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "کورد",
+    subtitle: "زمان، کەلەپوور و ناسنامەیەکی زیندوو",
+    cards: [
+      {
+        title: "زمان",
+        icon: Languages,
+        text: "سۆرانی و بادینی هەردووکیان دوو شێوەزاری سەرەکین لە هەرێمی کوردستان.",
+      },
+      {
+        title: "نەورۆز",
+        icon: Flame,
+        text: "جەژنی سەرکەوتن و نوێبوونەوەیە، لوتکەی شکۆی نەتەوەیی کورد و دەسپێکی ساڵی نوێیە لە ٢١ی ئازاردا. ئەم یادە مێژووییە بە داگیرساندنی مەشخەڵی ئاگر و جلی ڕەنگینی کوردی، گوزارشت لە ڕەسەنایەتی و ئاشتیخوازیی ئەم گەلە دەکات.",
+      },
+      {
+        title: "کلتوور",
+        icon: Music,
+        text: "جلوبەرگی ڕەسەن، هەڵپەڕکێ، شیعر و میواندۆستی ناسنامەی نەتەوەی کوردن. ئەم میراتە دەوڵەمەندە ڕۆحییە، بە درێژایی سەدەکان کۆمەڵگەی کوردی بونیاد ناوە و وەک سیمبولی شکۆ و ڕەسەنایەتی ماوەتەوە.",
+      },
+      {
+        title: "پارێزگاکان",
+        icon: Landmark,
+        text: "سێ پارێزگا سەرەکییەکانی هەرێمی کوردستان: هەولێر، دهۆک و سلێمانی.",
+      },
+    ],
+    tagline: "ڕەگ داکوتاو لە مێژوو، بنیادنەری داهاتوو.",
   },
-  {
-    title: "CULTURE",
-    icon: Music,
-    text: "Traditional dress, the Halparke dance, poetry, and hospitality define Kurdish cultural identity. Sufi orders shaped Kurdish society and spirituality for centuries.",
+  ar: {
+    back: "العودة",
+    pageTitle: "الكورد",
+    subtitle: "اللغة، التراث، وهوية حيّة",
+    cards: [
+      {
+        title: "اللغة",
+        icon: Languages,
+        text: "السورانية والكرمانجية هما اللهجتان الرئيسيتان في إقليم كوردستان.",
+      },
+      {
+        title: "نوروز",
+        icon: Flame,
+        text: "عيد النصر والتجدد، وذروة المجد القومي الكوردي وبداية السنة الجديدة في ٢١ آذار. تُجسَّد هذه الذكرى التاريخية بإيقاد المشاعل وارتداء الزي الكوردي الزاهي، تعبيراً عن أصالة هذا الشعب ومحبته للسلام.",
+      },
+      {
+        title: "الثقافة",
+        icon: Music,
+        text: "الزي التقليدي ورقصة الهلپَركێ والشعر وحُسن الضيافة من معالم الهوية القومية الكوردية. هذا الإرث الروحي الغني صاغ المجتمع الكوردي عبر القرون وبقي رمزاً للمجد والأصالة.",
+      },
+      {
+        title: "المحافظات",
+        icon: Landmark,
+        text: "محافظات إقليم كوردستان الرئيسية الثلاث: أربيل، دهوك، والسليمانية.",
+      },
+    ],
+    tagline: "جذور راسخة في التاريخ، وبناء للمستقبل.",
   },
-  {
-    title: "CITIES",
-    icon: Landmark,
-    text: "Erbil, Duhok, and Sulaymaniyah are the three governorates and cultural hearts of the Kurdistan Region.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -40,7 +128,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type KurdsPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -53,7 +141,12 @@ export default function KurdsPage({
   onBack,
 }: KurdsPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+  const fontStyle =
+    lang === "ar"
+      ? { fontFamily: "'Almarai', 'Oxygen', sans-serif" }
+      : undefined;
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -90,11 +183,12 @@ export default function KurdsPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
     <main
       dir={dir}
+      style={fontStyle}
       className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
     >
       <section
@@ -114,7 +208,7 @@ export default function KurdsPage({
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -142,11 +236,11 @@ export default function KurdsPage({
             </div>
 
             <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              KURDS
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              Language, heritage, and living identity
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -160,7 +254,7 @@ export default function KurdsPage({
             data-kurds-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -197,7 +291,7 @@ export default function KurdsPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              Rooted in heritage. Building the future.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />

@@ -12,28 +12,108 @@ import {
 
 import bg from "@/assets/images/religions/r-4.png";
 
-const cards = [
-  {
-    title: "SYRIAC LANGUAGE",
-    icon: Languages,
-    text: "One of the world's oldest living languages. A form of Eastern Aramaic. Used in daily life, liturgy, and officially recognized by the KRG.",
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+  icon: typeof Landmark;
+};
+
+type ChaldoContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, ChaldoContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "CHALDO-ASSYRIANS",
+    subtitle: "An ancient nationality with an unbroken heritage",
+    cards: [
+      {
+        title: "SYRIAC LANGUAGE",
+        icon: Languages,
+        text: "One of the world's oldest living languages. A form of Eastern Aramaic. Used in daily life, liturgy, and officially recognized by the KRG.",
+      },
+      {
+        title: "ANKAWA",
+        icon: Church,
+        text: "The main Christian district of Erbil. Home to the Chaldean Archdiocese, seminary, and Babel College of Philosophy and Theology.",
+      },
+      {
+        title: "PATRIARCH RETURNS",
+        icon: Crown,
+        text: "The Assyrian Church of the East returned its patriarchal seat to Erbil in 2015 after 83 years of exile. Patriarchal complex inaugurated in 2022 with support from President Masoud Barzani.",
+      },
+      {
+        title: "5 PARLIAMENT SEATS",
+        icon: Landmark,
+        text: "The Chaldo-Assyrian community holds 5 reserved seats in the Kurdistan Parliament — more than any other minority.",
+      },
+    ],
+    tagline: "The oldest nationality of the land, still here.",
   },
-  {
-    title: "ANKAWA",
-    icon: Church,
-    text: "The main Christian district of Erbil. Home to the Chaldean Archdiocese, seminary, and Babel College of Philosophy and Theology.",
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "کلدو ئاشوورییەکان",
+    subtitle: "نەتەوەیەکی دێرین بە میراتێکی بێ پچڕان",
+    cards: [
+      {
+        title: "زمانی سریانی",
+        icon: Languages,
+        text: "یەکێکە لە دێرینترین زمانە زیندووەکانی جیهان. لقێکە لە ئارامی ڕۆژهەڵاتی. لە ژیانی ڕۆژانە و ڕێوڕەسمە ئایینییەکاندا بەکاردێت و بە فەرمی لەلایەن حکومەتی هەرێمی کوردستانەوە ناسێنراوە.",
+      },
+      {
+        title: "عەنکاوە",
+        icon: Church,
+        text: "گەڕەکی سەرەکی مەسیحییەکانە لە هەولێر. ناوەندی ئەپەرشیەی کلدانی و پەیمانگای بابل بۆ فەلسەفە و خوداناسییە.",
+      },
+      {
+        title: "گەڕانەوەی پاتریارک",
+        icon: Crown,
+        text: "کەنیسەی ڕۆژهەڵاتی ئاشووری کورسی پاتریارکی خۆی لە ساڵی ٢٠١٥دا گەڕاندەوە هەولێر دوای ٨٣ ساڵ لە مەنفا. کۆمەڵگەی پاتریارکی لە ٢٠٢٢ بە پاڵپشتی سەرۆک بارزانی کرایەوە.",
+      },
+      {
+        title: "٥ کورسی پەرلەمان",
+        icon: Landmark,
+        text: "کلدو ئاشوورییەکان ٥ کورسی کۆتایان لە پەرلەمان هەیە.",
+      },
+    ],
+    tagline: "کۆنترین نەتەوەکانی ئەم خاکە، هێشتا لێرەن.",
   },
-  {
-    title: "PATRIARCH RETURNS",
-    icon: Crown,
-    text: "The Assyrian Church of the East returned its patriarchal seat to Erbil in 2015 after 83 years of exile. Patriarchal complex inaugurated in 2022 with support from President Masoud Barzani.",
+  ar: {
+    back: "العودة",
+    pageTitle: "الكلدو-آشوريون",
+    subtitle: "قومية عريقة بإرث متصل لا انقطاع فيه",
+    cards: [
+      {
+        title: "اللغة السريانية",
+        icon: Languages,
+        text: "إحدى أقدم اللغات الحيّة في العالم، وفرع من الآرامية الشرقية. تُستخدم في الحياة اليومية والطقوس الدينية، ومُعترف بها رسمياً من حكومة إقليم كوردستان.",
+      },
+      {
+        title: "عنكاوة",
+        icon: Church,
+        text: "الحي المسيحي الرئيسي في أربيل. مقر أبرشية الكلدان والكلية الإكليريكية وكلية بابل للفلسفة واللاهوت.",
+      },
+      {
+        title: "عودة البطريرك",
+        icon: Crown,
+        text: "أعادت كنيسة المشرق الآشورية كرسيها البطريركي إلى أربيل عام ٢٠١٥ بعد ٨٣ عاماً من المنفى، وافتُتح المجمع البطريركي عام ٢٠٢٢ بدعم من الرئيس مسعود بارزاني.",
+      },
+      {
+        title: "٥ مقاعد برلمانية",
+        icon: Landmark,
+        text: "يحظى الكلدو-آشوريون بـ ٥ مقاعد مخصصة في برلمان كوردستان — أكثر من أي مكوّن آخر.",
+      },
+    ],
+    tagline: "أعرق قوميات هذه الأرض، ولا تزال هنا.",
   },
-  {
-    title: "5 PARLIAMENT SEATS",
-    icon: Landmark,
-    text: "The Chaldo-Assyrian community holds 5 reserved seats in the Kurdistan Parliament — more than any other minority.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -48,7 +128,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type ChaldoAssyriansPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -61,6 +141,7 @@ export default function ChaldoAssyriansPage({
   onBack,
 }: ChaldoAssyriansPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -98,7 +179,7 @@ export default function ChaldoAssyriansPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
     <main
@@ -122,7 +203,7 @@ export default function ChaldoAssyriansPage({
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -150,11 +231,11 @@ export default function ChaldoAssyriansPage({
             </div>
 
             <h1 className="font-serif text-[64px] font-semibold uppercase leading-[1] tracking-[0.14em] text-[#2f1f12] sm:text-[80px] lg:text-[96px]">
-              CHALDO-ASSYRIANS
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[26px] font-semibold text-[#7d5a2d] sm:text-[34px]">
-              An ancient nationality with an unbroken heritage
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -168,7 +249,7 @@ export default function ChaldoAssyriansPage({
             data-chaldo-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -205,7 +286,7 @@ export default function ChaldoAssyriansPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              The oldest nationality of the land, still here.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
