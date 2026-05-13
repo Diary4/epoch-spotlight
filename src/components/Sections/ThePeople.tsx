@@ -7,7 +7,7 @@ import ku from "@/data/ku.json";
 import card2 from "@/assets/mainImages/card-2.PNG?url"
 import card1 from "@/assets/mainImages/card-1.PNG?url"
 import card3 from "@/assets/mainImages/card-3.PNG?url"
-import peopleVideo2 from "@/assets/videos/dws.mp4?url"
+import peopleVideo2 from "@/assets/videos/thepeople.MP4?url"
 
 const cards: {
   id: ThePeopleCardId;
