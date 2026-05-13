@@ -4,6 +4,7 @@ import { ArrowLeft, Globe2, LucideIcon } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-7.png";
 import bg2 from "@/assets/images/religions/r-3.png";
+import bg3 from "@/assets/mainImages/parliment.png";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -88,7 +89,7 @@ export default function RightsDetailPage({
       >
         <img
           data-rd-hero="true"
-          src={heroImage}
+          src={bg3}
           alt=""
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
@@ -138,7 +139,7 @@ export default function RightsDetailPage({
 
           <div
             data-rd-animate="true"
-            className="mx-auto mt-14 grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+            className="mx-auto mt-[40vh] grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
           >
             {c.cards.map((card) => {
               const Icon = card.icon;

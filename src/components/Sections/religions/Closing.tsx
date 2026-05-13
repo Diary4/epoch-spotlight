@@ -1,25 +1,216 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Globe2, BookOpen, Landmark } from "lucide-react";
+import {
+  ArrowLeft,
+  Globe2,
+  BookOpen,
+  Landmark,
+  Heart,
+  UsersRound,
+  ShieldCheck,
+  Sunrise,
+  type LucideIcon,
+} from "lucide-react";
 import bg from "@/assets/images/religions/c-1.png";
 
 type LangCode = "en" | "ku" | "ar";
 
-type SourcesReferencesProps = {
+type ClosingCard = {
+  id: string;
+  title: string;
+  body: string;
+  icon: LucideIcon;
+  accent: string;
+};
+
+type ClosingContent = {
+  back: string;
+  pageTitle: string;
+  pageSubtitle: string;
+  pageLead: string;
+  cards: ClosingCard[];
+  tagline: string;
+  sourcesTitle: string;
+  sourcesSubtitle: string;
+  sourcesIntro: string;
+  publicationTitleLine1: string;
+  publicationTitleLine2: string;
+  publishedByLead: string;
+  ministryName: string;
+  governmentLine: string;
+  footerNote: string;
+};
+
+const CARD_ICONS: ClosingCard["icon"][] = [
+  Heart,
+  UsersRound,
+  ShieldCheck,
+  Sunrise,
+];
+
+const ACCENTS = ["#8b5a2b", "#6b4c2a", "#4a5f8c", "#b8860b"] as const;
+
+const content: Record<LangCode, ClosingContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "One Shared Homeland",
+    pageSubtitle: "Diversity, dignity, and a future together.",
+    pageLead: "All are equal members of society in their rights.",
+    cards: [
+      {
+        id: "respect",
+        title: "Respect",
+        body: "Every identity has its worth. Minorities in Kurdistan deserve respect and protection as a duty. From the mountains of Duhok to the plains of Erbil, every community calls this land home.",
+        icon: CARD_ICONS[0],
+        accent: ACCENTS[0],
+      },
+      {
+        id: "belonging",
+        title: "Belonging",
+        body: "There is a place here for everyone.",
+        icon: CARD_ICONS[1],
+        accent: ACCENTS[1],
+      },
+      {
+        id: "protection",
+        title: "Protection",
+        body: "Rights and heritage are safeguarded by law, by Parliament, and by Kurdish popular culture across history.",
+        icon: CARD_ICONS[2],
+        accent: ACCENTS[2],
+      },
+      {
+        id: "hope",
+        title: "Hope",
+        body: "Tomorrow is built together. The Region continues its pursuit of lasting peace and genuine inclusion for all its people.",
+        icon: CARD_ICONS[3],
+        accent: ACCENTS[3],
+      },
+    ],
+    tagline: "Different faiths. Different languages. One shared homeland.",
+    sourcesTitle: "Sources &\nReferences",
+    sourcesSubtitle: "Official publication and source material",
+    sourcesIntro:
+      "All information presented in this exhibition is sourced from the official publication:",
+    publicationTitleLine1: "“Kurdistan:",
+    publicationTitleLine2: "The Cradle of Coexistence”",
+    publishedByLead: "Published by the",
+    ministryName: "Ministry of Endowment and Religious Affairs",
+    governmentLine: "Kurdistan Regional Government — Iraq",
+    footerNote: "Prepared for museum exhibition\nand public education.",
+  },
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "One Shared Homeland",
+    pageSubtitle: "Diversity, dignity, and a future together.",
+    pageLead: "All are equal members of society in their rights.",
+    cards: [
+      {
+        id: "respect",
+        title: "Respect",
+        body: "Every identity has its worth. Minorities in Kurdistan deserve respect and protection as a duty. From the mountains of Duhok to the plains of Erbil, every community calls this land home.",
+        icon: CARD_ICONS[0],
+        accent: ACCENTS[0],
+      },
+      {
+        id: "belonging",
+        title: "Belonging",
+        body: "There is a place here for everyone.",
+        icon: CARD_ICONS[1],
+        accent: ACCENTS[1],
+      },
+      {
+        id: "protection",
+        title: "Protection",
+        body: "Rights and heritage are safeguarded by law, by Parliament, and by Kurdish popular culture across history.",
+        icon: CARD_ICONS[2],
+        accent: ACCENTS[2],
+      },
+      {
+        id: "hope",
+        title: "Hope",
+        body: "Tomorrow is built together. The Region continues its pursuit of lasting peace and genuine inclusion for all its people.",
+        icon: CARD_ICONS[3],
+        accent: ACCENTS[3],
+      },
+    ],
+    tagline: "Different faiths. Different languages. One shared homeland.",
+    sourcesTitle: "Sources &\nReferences",
+    sourcesSubtitle: "Official publication and source material",
+    sourcesIntro:
+      "All information presented in this exhibition is sourced from the official publication:",
+    publicationTitleLine1: "“Kurdistan:",
+    publicationTitleLine2: "The Cradle of Coexistence”",
+    publishedByLead: "Published by the",
+    ministryName: "Ministry of Endowment and Religious Affairs",
+    governmentLine: "Kurdistan Regional Government — Iraq",
+    footerNote: "Prepared for museum exhibition\nand public education.",
+  },
+  ar: {
+    back: "العودة",
+    pageTitle: "وطن مشترك واحد",
+    pageSubtitle: "التنوع والكرامة ومستقبل مشترك",
+    pageLead: "الجميع أعضاء متساوون في المجتمع حقوقاً",
+    cards: [
+      {
+        id: "respect",
+        title: "الاحترام",
+        body: "كل هوية لها قيمتها. الأقليات في كوردستان — واجباً علينا احترامها وحمايتها. من جبال دهوك إلى سهول أربيل، جميع المجتمعات تسمي هذه الأرض وطناً.",
+        icon: CARD_ICONS[0],
+        accent: ACCENTS[0],
+      },
+      {
+        id: "belonging",
+        title: "الانتماء",
+        body: "للجميع مكان هنا.",
+        icon: CARD_ICONS[1],
+        accent: ACCENTS[1],
+      },
+      {
+        id: "protection",
+        title: "الحماية",
+        body: "الحقوق والتراث محمية بالقانون وبالبرلمان وبثقافة الشعب الكوردي عبر التاريخ.",
+        icon: CARD_ICONS[2],
+        accent: ACCENTS[2],
+      },
+      {
+        id: "hope",
+        title: "الأمل",
+        body: "الغد يُبنى معاً. ويواصل الإقليم سعيه نحو سلام دائم وشمول حقيقي لجميع أبنائه.",
+        icon: CARD_ICONS[3],
+        accent: ACCENTS[3],
+      },
+    ],
+    tagline: "أديان مختلفة. لغات مختلفة. وطن واحد مشترك.",
+    sourcesTitle: "المصادر\nوالمراجع",
+    sourcesSubtitle: "المنشور الرسمي ومواد المصدر",
+    sourcesIntro:
+      "جميع المعلومات الواردة في هذا المعرض مستقاة من المنشور الرسمي:",
+    publicationTitleLine1: "«كوردستان:",
+    publicationTitleLine2: "مهد التعايش»",
+    publishedByLead: "صادر عن",
+    ministryName: "وزارة الأوقاف والشؤون الدينية",
+    governmentLine: "حكومة إقليم كوردستان — العراق",
+    footerNote: "أُعدَّ لعرض المتحف وللتثقيف العام.",
+  },
+};
+
+type ClosingPageProps = {
   lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
 };
 
-export default function SourcesReferences({
+export default function ClosingPage({
   lang = "en",
   languageLabel = "ENGLISH",
   onLanguageChange,
   onBack,
-}: SourcesReferencesProps) {
+}: ClosingPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const c = content[lang];
+  const titleUpper = lang === "en";
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -40,7 +231,9 @@ export default function SourcesReferences({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
+
+  const sourcesTitleLines = c.sourcesTitle.split("\n");
 
   return (
     <main
@@ -49,7 +242,7 @@ export default function SourcesReferences({
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#f3e5ce] px-6 py-10"
+        className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-[#f3e5ce] px-6 py-10 pb-24"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.55),transparent_34%),linear-gradient(180deg,#f8eddb_0%,#ead3ad_100%)]" />
 
@@ -72,6 +265,7 @@ export default function SourcesReferences({
             type="button"
             onClick={onBack}
             className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border border-[#d7b77e] bg-white/75 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+            aria-label={c.back}
           >
             <ArrowLeft className="h-7 w-7" />
           </button>
@@ -88,14 +282,17 @@ export default function SourcesReferences({
           </button>
         )}
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-[900px] flex-col items-center justify-center text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-[900px] flex-col items-center pt-20 text-center">
           <div data-src-animate="true" className="mb-5 grid place-items-center">
             <div className="grid h-24 w-24 place-items-center rounded-full border border-[#b98634]/50 bg-white/35 shadow-[0_16px_40px_rgba(96,60,21,0.15)] backdrop-blur-sm">
               <Landmark className="h-11 w-11 text-[#9f6b25]" strokeWidth={1.4} />
             </div>
           </div>
 
-          <div data-src-animate="true" className="mb-6 flex w-full max-w-[520px] items-center gap-5">
+          <div
+            data-src-animate="true"
+            className="mb-6 flex w-full max-w-[520px] items-center gap-5"
+          >
             <span className="h-px flex-1 bg-[#b98634]/60" />
             <span className="text-3xl text-[#b98634]">✥</span>
             <span className="h-px flex-1 bg-[#b98634]/60" />
@@ -103,18 +300,92 @@ export default function SourcesReferences({
 
           <h1
             data-src-animate="true"
-            className="font-serif text-[56px] font-semibold uppercase leading-[1.05] tracking-[0.08em] text-[#2c1d10] sm:text-[78px] lg:text-[92px]"
+            className={`font-serif text-[40px] font-semibold leading-[1.12] tracking-[0.04em] text-[#2c1d10] sm:text-[56px] lg:text-[68px] ${titleUpper ? "uppercase tracking-[0.08em]" : ""}`}
           >
-            Sources &
-            <br />
-            References
+            {c.pageTitle}
           </h1>
 
           <p
             data-src-animate="true"
-            className="mt-5 font-serif text-[28px] text-[#4f3824] sm:text-[36px]"
+            className="mt-4 max-w-[640px] font-serif text-[22px] italic leading-snug text-[#5c4328] sm:text-[26px]"
           >
-            Official publication and source material
+            {c.pageSubtitle}
+          </p>
+
+          <p
+            data-src-animate="true"
+            className="mt-4 max-w-[620px] font-serif text-[19px] font-semibold leading-relaxed text-[#4f3824] sm:text-[22px]"
+          >
+            {c.pageLead}
+          </p>
+
+          <div
+            data-src-animate="true"
+            className="mt-8 grid w-full max-w-[880px] grid-cols-1 gap-5 sm:grid-cols-2"
+          >
+            {c.cards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <article
+                  key={card.id}
+                  className="flex flex-col overflow-hidden rounded-[22px] border border-[#d7b77e]/80 bg-[#f8ecd8]/90 text-start shadow-[0_14px_36px_rgba(88,55,20,0.12)] backdrop-blur-sm"
+                >
+                  <div
+                    className="flex items-center gap-3 px-6 py-4"
+                    style={{
+                      background: `linear-gradient(135deg, ${card.accent}22 0%, ${card.accent}08 100%)`,
+                      borderBottom: `2px solid ${card.accent}55`,
+                    }}
+                  >
+                    <div
+                      className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#c99a55]/50 bg-white/80"
+                      style={{ color: card.accent }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.6} />
+                    </div>
+                    <h2 className="font-serif text-[20px] font-semibold leading-tight text-[#2c1d10] sm:text-[22px]">
+                      {card.title}
+                    </h2>
+                  </div>
+                  <p className="flex-1 px-6 py-5 font-serif text-[16px] leading-relaxed text-[#3e2a19] sm:text-[17px]">
+                    {card.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+
+          <div
+            data-src-animate="true"
+            className="mt-10 w-full max-w-[640px] rounded-[20px] border border-[#c99a55]/70 bg-[#fff9ed]/95 px-6 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.12)]"
+          >
+            <p className="font-serif text-[18px] font-semibold italic leading-snug text-[#5c4328] sm:text-[20px]">
+              {c.tagline}
+            </p>
+          </div>
+
+          <div data-src-animate="true" className="mt-14 w-full max-w-[520px]">
+            <div className="flex items-center justify-center gap-5">
+              <span className="h-px flex-1 bg-[#b98634]/60" />
+              <span className="text-3xl text-[#b98634]">✥</span>
+              <span className="h-px flex-1 bg-[#b98634]/60" />
+            </div>
+          </div>
+
+          <h2
+            data-src-animate="true"
+            className={`mt-8 font-serif text-[44px] font-semibold leading-[1.05] tracking-[0.04em] text-[#2c1d10] sm:text-[60px] lg:text-[72px] ${titleUpper ? "uppercase tracking-[0.08em]" : ""}`}
+          >
+            {sourcesTitleLines[0]}
+            <br />
+            {sourcesTitleLines[1] ?? ""}
+          </h2>
+
+          <p
+            data-src-animate="true"
+            className="mt-5 font-serif text-[24px] text-[#4f3824] sm:text-[30px]"
+          >
+            {c.sourcesSubtitle}
           </p>
 
           <div data-src-animate="true" className="mt-8 w-[220px]">
@@ -134,8 +405,7 @@ export default function SourcesReferences({
             </div>
 
             <p className="mt-4 font-serif text-[27px] leading-relaxed text-[#3e2a19]">
-              All information presented in this exhibition is sourced from the
-              official publication:
+              {c.sourcesIntro}
             </p>
 
             <div className="mx-auto my-8 w-[180px]">
@@ -146,11 +416,11 @@ export default function SourcesReferences({
               </div>
             </div>
 
-            <h2 className="font-serif text-[42px] font-semibold leading-tight text-[#2f2013] sm:text-[52px]">
-              “Kurdistan:
+            <h3 className="font-serif text-[38px] font-semibold leading-tight text-[#2f2013] sm:text-[48px]">
+              {c.publicationTitleLine1}
               <br />
-              The Cradle of Coexistence”
-            </h2>
+              {c.publicationTitleLine2}
+            </h3>
 
             <div className="mx-auto my-8 w-[180px]">
               <div className="flex items-center justify-center gap-4">
@@ -161,11 +431,11 @@ export default function SourcesReferences({
             </div>
 
             <p className="font-serif text-[27px] leading-relaxed text-[#3e2a19]">
-              Published by the
+              {c.publishedByLead}
               <br />
-              <strong>Ministry of Endowment and Religious Affairs</strong>
+              <strong>{c.ministryName}</strong>
               <br />
-              Kurdistan Regional Government — Iraq
+              {c.governmentLine}
             </p>
           </div>
 
@@ -179,11 +449,9 @@ export default function SourcesReferences({
 
           <p
             data-src-animate="true"
-            className="mt-6 font-serif text-[25px] leading-relaxed text-[#3e2a19]"
+            className="mt-6 whitespace-pre-line font-serif text-[25px] leading-relaxed text-[#3e2a19]"
           >
-            Prepared for museum exhibition
-            <br />
-            and public education.
+            {c.footerNote}
           </p>
         </div>
       </section>
