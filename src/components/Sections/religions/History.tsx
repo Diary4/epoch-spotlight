@@ -448,9 +448,6 @@ export default function HistoryPage({
             data-h-animate="true"
             className="mx-auto max-w-[850px] pt-14 text-center"
           >
-            <span className="font-serif text-[14px] font-semibold uppercase tracking-[0.32em] text-[#a77423]">
-              {c.sectionLabel}
-            </span>
             <div className="mx-auto mt-3 mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
             </div>
@@ -473,12 +470,9 @@ export default function HistoryPage({
               aria-labelledby={`h-slide-${slide.id}`}
             >
               <div className="mx-auto max-w-[860px] text-center">
-                <span className="font-serif text-[13px] font-semibold uppercase tracking-[0.34em] text-[#a77423]">
-                  {slide.eyebrow}
-                </span>
                 <h2
                   id={`h-slide-${slide.id}`}
-                  className="mt-3 font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#3b2410] sm:text-[48px]"
+                  className="font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#3b2410] sm:text-[48px]"
                 >
                   {slide.title}
                 </h2>
@@ -513,12 +507,9 @@ export default function HistoryPage({
                             mixBlendMode: "overlay",
                           }}
                         />
-                        <div className="absolute inset-x-0 top-5 flex items-center justify-between px-6">
-                          <span className="font-serif text-[11px] font-semibold uppercase tracking-[0.32em] text-white/85">
-                            {c.cardLabel} {card.number}
-                          </span>
-                          <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
-                            <Icon className="h-6 w-6 text-white" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
+                            <Icon className="h-7 w-7 text-white" />
                           </div>
                         </div>
                       </div>
