@@ -14,31 +14,98 @@ import lalish from "@/assets/mainImages/story-1.png";
 import peacock from "@/assets/mainImages/story-2.png";
 import festival from "@/assets/mainImages/2005.png";
 import candle from "@/assets/images/bg-2.jpg";
-import en from "@/data/en.json";
-import ar from "@/data/ar.json";
 
-const cards = [
-  {
-    title: "Lalish",
-    text: "The holiest of Yazidism, nestled in the sacred valley of Lalish. A place of pilgrimage, learning, and spiritual renewal for thousands of Yazidis from around the world.",
-    image: lalish,
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+};
+
+type YazidismContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, YazidismContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "YAZIDISM",
+    subtitle: "Sacred valley, memory, and resilience",
+    cards: [
+      {
+        title: "LALISH",
+        text: "60 km north of Mosul, in the Sheikhan district. Home to the shrine of Sheikh Adi and the global spiritual center of the Yazidi faith.",
+      },
+      {
+        title: "TAWUS MELEK",
+        text: "The Peacock Angel — chief of the angels and guardian of the universe, the pillar of Yazidi belief and identity.",
+      },
+      {
+        title: "JEMAYÎ",
+        text: "The largest annual religious gathering (6–13 October). One of the four festivals officially recognized as public holidays.",
+      },
+      {
+        title: "RESILIENCE",
+        text: "The Yazidi population in Kurdistan is estimated at 750,000–800,000. The Kurdistan Parliament has recognized August 3 as Yazidi Genocide Day.",
+      },
+    ],
+    tagline: "Rooted in faith, living with dignity.",
   },
-  {
-    title: "Tawus Melek",
-    text: "The Peacock Angel is the central figure in Yazidi belief. A symbol of divine wisdom, beauty, and the eternal presence of God’s light in the world.",
-    image: peacock,
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "ئێزیدیاتی",
+    subtitle: "دۆڵە پیرۆزەکە، یادەوەری و خۆڕاگری",
+    cards: [
+      {
+        title: "لالش",
+        text: "٦٠ کم لە باکووری مووسڵەوە دوورە، لە قەزای شێخان. مەزاری شێخ عەدی لێیە و ناوەندی ڕۆحیی جیهانی ئێزیدییە.",
+      },
+      {
+        title: "مەلەک تاووس",
+        text: "گەورەی فریشتەکانە و پارێزەری گەردوونە. کۆڵەکەی باوەڕی ئێزیدی و ناسنامەیانە.",
+      },
+      {
+        title: "جەمایێ",
+        text: "گەورەترین کۆبوونەوەی ئایینی ساڵانەیە (٦–١٣ی تشرینی یەکەم). یەکێکە لەو چوار جەژنەی کە وەک پشووی فەرمی ناسراون.",
+      },
+      {
+        title: "خۆڕاگری",
+        text: "ژمارەی ئێزیدییەکان لە کوردستان بە ٧٥٠ بۆ ٨٠٠ هەزار کەس دەخەمڵێنرێت. پەرلەمانی کوردستان ڕۆژی ٣ی ئابی وەک ڕۆژی جینۆسایدی ئێزیدییەکان ناساندووە.",
+      },
+    ],
+    tagline: "لە باوەڕدا ڕەگداکوتاون، بە کەرامەتەوە دەژین.",
   },
-  {
-    title: "Major Festivals",
-    text: "Çarşema Sor – Red Wednesday\nÊzîdî New Year – Serê Salê\nCejna Êzî – The Festival of Gathering and Gratitude",
-    image: festival,
+  ar: {
+    back: "العودة",
+    pageTitle: "الإيزيدية",
+    subtitle: "الوادي المقدس، الذاكرة، والصمود",
+    cards: [
+      {
+        title: "لالش",
+        text: "تبعد ٦٠ كم شمالي الموصل، في قضاء الشيخان. تضمّ ضريح الشيخ عدي، وهي المركز الروحي العالمي للإيزيديين.",
+      },
+      {
+        title: "ملك طاووس",
+        text: "كبير الملائكة وحارس الكون. عماد العقيدة الإيزيدية وهويتها.",
+      },
+      {
+        title: "جماعية",
+        text: "أكبر تجمّع ديني سنوي (٦–١٣ تشرين الأول). أحد أربعة أعياد معترف بها كعطلٍ رسمية.",
+      },
+      {
+        title: "الصمود",
+        text: "يُقدَّر عدد الإيزيديين في إقليم كوردستان بـ ٧٥٠ إلى ٨٠٠ ألف نسمة. وقد اعتمد برلمان كوردستان يوم ٣ آب يوماً لإبادة الإيزيديين.",
+      },
+    ],
+    tagline: "متجذرون في الإيمان، نعيش بكرامة.",
   },
-  {
-    title: "Remembrance of the 2014 Genocide",
-    text: "We honor the memory of our martyrs and all victims of the 2014 genocide. We remember. We heal. We rise. We are Yazidi.",
-    image: candle,
-  },
-];
+};
+
+const cardImages = [lalish, peacock, festival, candle];
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
@@ -53,7 +120,7 @@ function DecorativeLine({ color = "#c99a55" }) {
 }
 
 type YazidismPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -65,27 +132,9 @@ export default function YazidismPage({
   onLanguageChange,
   onBack,
 }: YazidismPageProps) {
-  const data = lang === "ar" ? (ar as any) : (en as any);
-  const yazidismData = data?.religions?.yazidism ?? {};
-  const localizedCards = cards.map((card, i) => ({
-    ...card,
-    title: yazidismData?.cards?.[i]?.title ?? card.title,
-    text: yazidismData?.cards?.[i]?.text ?? card.text,
-  }));
-  const pageTitle = yazidismData?.title ?? "Yazidism";
-  const pageSubtitle =
-    yazidismData?.subtitle ?? "Sacred memory, resilience, and spiritual continuity.";
-  const pageDescription =
-    yazidismData?.description ??
-    "Rooted in ancient wisdom and nurtured through generations, Yazidism is a faith of light, truth, and compassion. It honors creation, cherishes freedom, and upholds the dignity of every soul.";
-  const photoLabel = yazidismData?.photoLabel ?? "Lalish Temple – Yazidi Holy Site";
-  const footerTitle = yazidismData?.footer?.title ?? "Faith. Memory. Future.";
-  const footerText =
-    yazidismData?.footer?.text ??
-    "Through every trial, Yazidism endures. Our faith is our strength. Our memory is our promise. Our future is our light.";
-
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [subPage, setSubPage] = React.useState<null | "otherFaith">(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -121,7 +170,7 @@ export default function YazidismPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   if (subPage === "otherFaith") {
     return (
@@ -135,7 +184,10 @@ export default function YazidismPage({
   }
 
   return (
-    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main
+      dir={dir}
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+    >
       <section
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
@@ -154,16 +206,11 @@ export default function YazidismPage({
           }}
         />
 
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/35 via-[#fbf1df]/15 to-[#fbf1df]" /> */}
-        {/* <div className="absolute left-0 top-[670px] h-[150px] w-full bg-gradient-to-b from-transparent to-[#fbf1df]" /> */}
-
-        {/* <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}
-
         <button
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -187,45 +234,32 @@ export default function YazidismPage({
             </div>
 
             <h1 className="font-serif text-[66px] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12] sm:text-[86px] lg:text-[104px]">
-              {pageTitle}
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[25px] font-semibold text-[#a46f22] sm:text-[31px]">
-              {pageSubtitle}
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-6 w-[190px]">
               <DecorativeLine color="#c3923a" />
             </div>
-
-            <p className="mx-auto mt-6 max-w-[620px] text-[19px] font-semibold leading-relaxed text-[#3f3528] sm:text-[23px]">
-              {pageDescription}
-            </p>
           </header>
 
           <div className="h-[560px]" />
-
-          <div
-            data-yazidi-animate="true"
-            className="mb-6 flex justify-end"
-          >
-            <span className="rounded-full border border-[#d8b875]/70 bg-[#fff8e9]/90 px-5 py-2 font-serif text-[16px] font-semibold text-[#6a4a25] shadow-sm">
-              {photoLabel}
-            </span>
-          </div>
 
           <section
             data-yazidi-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2"
           >
-            {localizedCards.map((card) => (
+            {c.cards.map((card, i) => (
               <article
                 key={card.title}
                 className="grid min-h-[255px] grid-cols-[135px_1fr] gap-5 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-6 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
               >
                 <div className="h-[135px] w-[135px] overflow-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb]">
                   <img
-                    src={card.image}
+                    src={cardImages[i]}
                     alt={card.title}
                     className="h-full w-full object-cover"
                   />
@@ -259,12 +293,8 @@ export default function YazidismPage({
               <HeartHandshake className="h-12 w-12" strokeWidth={1.8} />
             </div>
 
-            <p className="flex-1 font-serif text-[27px] font-semibold uppercase leading-tight text-[#3b2410]">
-              {footerTitle}
-              <br />
-              <span className="text-[18px] normal-case font-semibold text-[#6a4a25]">
-                {footerText}
-              </span>
+            <p className="flex-1 font-serif text-[27px] font-semibold leading-tight text-[#3b2410]">
+              {c.tagline}
             </p>
 
             <button

@@ -4,50 +4,117 @@ import {
   ArrowLeft,
   ChevronRight,
   Church,
+  Crown,
   Cross,
   Globe2,
-  MapPin,
-  UsersRound,
+  Sparkles,
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-5.png";
 import ankawa from "@/assets/mainImages/story-1.png";
 import churches from "@/assets/mainImages/story-2.png";
 import denominations from "@/assets/mainImages/2005.png";
-import sacredSites from "@/assets/images/bg-2.jpg";
 import pope from "@/assets/images/kurdistan.jpg";
-import en from "@/data/en.json";
-import ar from "@/data/ar.json";
 
-const cards = [
-  {
-    title: "Ankawa",
-    text: "One of the world's oldest Christian communities, the Assyrian Church of the East has its spiritual heart in Ankawa.",
-    image: ankawa,
-    icon: Cross,
-    color: "#245a2f",
+type LangCode = "en" | "ku" | "ar";
+
+type CardContent = {
+  title: string;
+  text: string;
+};
+
+type ChristianityContent = {
+  back: string;
+  pageTitle: string;
+  subtitle: string;
+  cards: [CardContent, CardContent, CardContent, CardContent];
+  tagline: string;
+};
+
+const content: Record<LangCode, ChristianityContent> = {
+  en: {
+    back: "Back",
+    pageTitle: "CHRISTIANITY",
+    subtitle: "Ancient roots, steadfast faith, and a united community",
+    cards: [
+      {
+        title: "HISTORICAL PRESENCE",
+        text: "Christianity reached Erbil (Adiabene) in the 1st century CE. By the 3rd century, Erbil had become a major Christian center.",
+      },
+      {
+        title: "CHURCHES",
+        text: "All four main traditions are present: Catholic, Orthodox, Eastern, and Evangelical. Dozens of active churches and monasteries stand in Erbil, Duhok, Zakho, and Sulaymaniyah.",
+      },
+      {
+        title: "EASTER & CHRISTMAS",
+        text: "Both Easter and Christmas are official public holidays across the Kurdistan Region.",
+      },
+      {
+        title: "POPE FRANCIS",
+        text: "On 7 March 2021 he visited Erbil and said: \u201CFreedom is deeply rooted in Kurdistan. Thank you for what you offer to every religion and community.\u201D",
+      },
+    ],
+    tagline: "A living faith in Kurdistan.",
   },
-  {
-    title: "Churches",
-    text: "From ancient monasteries to modern parishes, churches across Kurdistan stand as beacons of prayer and community.",
-    image: churches,
-    icon: Church,
-    color: "#075c78",
+  ku: {
+    back: "گەڕانەوە",
+    pageTitle: "مەسیحییەت",
+    subtitle: "ڕەگی دێرین، باوەڕی چەسپاو و کۆمەڵگەی یەکگرتوو",
+    cards: [
+      {
+        title: "بوونی مێژوویی",
+        text: "مەسیحییەت لە سەدەی یەکەمی زایینی گەیشتە هەولێر (حەدیاب). هەولێر لە سەدەی سێیەمەوە مەڵبەندێکی گەورەی مەسیحی بووە.",
+      },
+      {
+        title: "کەنیسەکان",
+        text: "هەر چوار جۆری سەرەکی: کاسۆلیک، ئۆرسۆدۆکس، ڕۆژهەڵاتی و ئینجیلی. دەیان کەنیسە و دێری چالاک لە هەولێر، دهۆک، زاخۆ و سلێمانی هەن.",
+      },
+      {
+        title: "جەژنی قیامەت و لەدایکبوون",
+        text: "هەردووکیان پشووی فەرمین لە هەرێمی کوردستان.",
+      },
+      {
+        title: "پاپا فرانسیس",
+        text: "لە ٧ی ئاداری ٢٠٢١ سەردانی هەولێری کرد و وتی: «ئازادی لە کوردستان ڕەگی داکوتاوە. سوپاس بۆ ئەوەی پێشکەشی هەموو ئایین و پێکهاتەکانی دەکەن».",
+      },
+    ],
+    tagline: "باوەڕێکی زیندوو لە کوردستان.",
   },
-  {
-    title: "Major Denominations",
-    text: "Christian life in Kurdistan is enriched by diverse traditions including the Assyrian Church of the East, Chaldean Catholic, Syriac Orthodox, and more.",
-    image: denominations,
-    icon: UsersRound,
-    color: "#51245f",
+  ar: {
+    back: "العودة",
+    pageTitle: "المسيحية",
+    subtitle: "جذور عريقة، وإيمان راسخ، ومجتمع متّحد",
+    cards: [
+      {
+        title: "حضور تاريخي",
+        text: "وصلت المسيحية إلى أربيل (حدياب) في القرن الأول الميلادي. وأصبحت أربيل مركزاً مسيحياً كبيراً منذ القرن الثالث.",
+      },
+      {
+        title: "الكنائس",
+        text: "تحضر جميع الطوائف الأربع الرئيسية: الكاثوليكية والأرثوذكسية والمشرقية والإنجيلية. وتنتشر عشرات الكنائس والأديرة النشطة في أربيل ودهوك وزاخو والسليمانية.",
+      },
+      {
+        title: "عيدا الفصح والميلاد",
+        text: "كلاهما عطلتان رسميتان في إقليم كوردستان.",
+      },
+      {
+        title: "البابا فرنسيس",
+        text: "في ٧ آذار ٢٠٢١ زار أربيل وقال: «الحرية متجذرة عميقاً في كوردستان. شكراً لما تقدّمونه لكل الأديان والمكوّنات».",
+      },
+    ],
+    tagline: "إيمان حيٌّ في كوردستان.",
   },
-  {
-    title: "Sacred Sites",
-    text: "Historic monasteries, shrines, and holy landscapes reflect a timeless legacy of devotion and resilience.",
-    image: sacredSites,
-    icon: MapPin,
-    color: "#7b5b16",
-  },
+};
+
+const cardVisuals: Array<{
+  image: string;
+  icon: typeof Cross;
+  color: string;
+}> = [
+  { image: ankawa, icon: Cross, color: "#245a2f" },
+  { image: churches, icon: Church, color: "#075c78" },
+  { image: denominations, icon: Sparkles, color: "#51245f" },
+  { image: pope, icon: Crown, color: "#7b5b16" },
 ];
 
 function DecorativeLine({ color = "#c99a55" }) {
@@ -63,7 +130,7 @@ function DecorativeLine({ color = "#c99a55" }) {
 }
 
 type ChristianityPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -75,30 +142,8 @@ export default function ChristianityPage({
   onLanguageChange,
   onBack,
 }: ChristianityPageProps) {
-  const data = lang === "ar" ? (ar as any) : (en as any);
-  const christianityData = data?.religions?.christianity ?? {};
-  const localizedCards = cards.map((card, i) => ({
-    ...card,
-    title: christianityData?.cards?.[i]?.title ?? card.title,
-    text: christianityData?.cards?.[i]?.text ?? card.text,
-  }));
-  const pageTitle = christianityData?.title ?? "Christianity";
-  const pageSubtitle = christianityData?.subtitle ?? "Ancient Roots, Living Communities.";
-  const pageDescription =
-    christianityData?.description ??
-    "Christianity has thrived in Kurdistan for nearly two millennia, shaping our heritage, culture, and values. Today, vibrant communities continue to build bridges of faith and harmony.";
-  const photoLabel = christianityData?.photoLabel ?? "Bedial Village – Barzan";
-  const popeTitle = christianityData?.popeVisit?.title ?? "Pope Francis in Erbil";
-  const popeDate = christianityData?.popeVisit?.date ?? "5–8 March 2021";
-  const popeText =
-    christianityData?.popeVisit?.text ??
-    "A historic visit of peace and hope. Pope Francis prayed for the people of Iraq and encouraged dialogue, reconciliation, and the protection of religious communities.";
-  const footerTitle =
-    christianityData?.footer?.title ?? "Faith, hope, and love unite us across generations.";
-  const footerText =
-    christianityData?.footer?.text ?? "Together, we build a future of dignity and peace.";
-
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
@@ -120,10 +165,13 @@ export default function ChristianityPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   return (
-    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main
+      dir={dir}
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+    >
       <section
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
@@ -141,16 +189,11 @@ export default function ChristianityPage({
           }}
         />
 
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/35 via-[#fbf1df]/8 to-[#fbf1df]" />
-        <div className="absolute left-0 top-[660px] h-[170px] w-full bg-gradient-to-b from-transparent to-[#fbf1df]" />
-
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}
-
         <button
           type="button"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+          aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
         </button>
@@ -176,39 +219,27 @@ export default function ChristianityPage({
             </div>
 
             <h1 className="font-serif text-[64px] font-semibold uppercase leading-[1] tracking-[0.08em] text-[#2f1f12] sm:text-[86px] lg:text-[102px]">
-              {pageTitle}
+              {c.pageTitle}
             </h1>
 
             <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.08em] text-[#a46f22] sm:text-[30px]">
-              {pageSubtitle}
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-6 w-[190px]">
               <DecorativeLine color="#c3923a" />
             </div>
-
-            <p className="mx-auto mt-6 max-w-[560px] text-[20px] font-semibold leading-relaxed text-[#3f3528] sm:text-[24px]">
-              {pageDescription}
-            </p>
           </header>
 
           <div className="h-[520px]" />
-
-          <div
-            data-christian-animate="true"
-            className="mb-5 flex justify-end"
-          >
-            <span className="rounded-full border border-[#d8b875]/70 bg-[#fff8e9]/90 px-5 py-2 font-serif text-[15px] italic font-semibold text-[#6a4a25] shadow-sm">
-              {photoLabel}
-            </span>
-          </div>
 
           <section
             data-christian-animate="true"
             className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {localizedCards.map((card) => {
-              const Icon = card.icon;
+            {c.cards.map((card, i) => {
+              const visual = cardVisuals[i];
+              const Icon = visual.icon;
 
               return (
                 <article
@@ -216,7 +247,7 @@ export default function ChristianityPage({
                   className="group relative min-h-[470px] overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] shadow-[0_14px_28px_rgba(69,43,14,0.22)]"
                 >
                   <img
-                    src={card.image}
+                    src={visual.image}
                     alt={card.title}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -224,7 +255,7 @@ export default function ChristianityPage({
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to bottom, rgba(40,25,10,0.05), ${card.color}dd 58%, ${card.color})`,
+                      background: `linear-gradient(to bottom, rgba(40,25,10,0.05), ${visual.color}dd 58%, ${visual.color})`,
                     }}
                   />
 
@@ -240,10 +271,6 @@ export default function ChristianityPage({
                     <p className="mt-3 flex-1 text-[16px] font-semibold leading-relaxed text-white/92">
                       {card.text}
                     </p>
-
-                    <button className="mt-5 grid h-14 w-full place-items-center rounded-2xl border-2 border-[#d8bc7b] bg-white/5 text-white backdrop-blur-sm transition group-hover:bg-white/15">
-                      <ChevronRight className="h-8 w-8" />
-                    </button>
                   </div>
                 </article>
               );
@@ -252,47 +279,12 @@ export default function ChristianityPage({
 
           <section
             data-christian-animate="true"
-            className="mt-7 grid overflow-hidden rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 shadow-[0_12px_26px_rgba(75,45,12,0.14)] backdrop-blur-sm sm:grid-cols-[300px_1fr]"
-          >
-            <img
-              src={pope}
-              alt="Pope Francis in Erbil"
-              className="h-full min-h-[170px] w-full object-cover"
-            />
-
-            <div className="flex items-center gap-6 px-7 py-6">
-              <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border border-[#d8b875] bg-[#fff4dc] text-[#c58b16]">
-                <Cross className="h-14 w-14" strokeWidth={1.5} />
-              </div>
-
-              <div>
-                <h2 className="font-serif text-[31px] font-semibold uppercase leading-tight text-[#3b2410]">
-                  {popeTitle}
-                </h2>
-
-                <p className="mt-1 font-serif text-[19px] font-semibold uppercase tracking-[0.07em] text-[#b27a22]">
-                  {popeDate}
-                </p>
-
-                <p className="mt-3 text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                  {popeText}
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section
-            data-christian-animate="true"
-            className="mx-auto mt-6 flex max-w-[800px] items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+            className="mx-auto mt-8 flex max-w-[800px] items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
           >
             <Cross className="h-14 w-14 shrink-0 text-[#c58b16]" />
 
-            <p className="flex-1 font-serif text-[22px] font-semibold leading-tight text-[#3b2410]">
-              {footerTitle}
-              <br />
-              <span className="italic text-[#a46f22]">
-                {footerText}
-              </span>
+            <p className="flex-1 font-serif text-[26px] font-semibold leading-tight text-[#3b2410]">
+              {c.tagline}
             </p>
 
             <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
