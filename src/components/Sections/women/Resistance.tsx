@@ -2,9 +2,9 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
-import resistanceHero from "@/assets/images/women/w-2.png";
-import zeynabImage from "@/assets/images/women/w-3.png";
-import leylaImage from "@/assets/images/women/w-4.png";
+import resistanceHero from "@/assets/images/women/w-2.webp";
+import zeynabImage from "@/assets/images/women/w-3.webp";
+import leylaImage from "@/assets/images/women/w-4.webp";
 
 const resistanceWomen = [
   {

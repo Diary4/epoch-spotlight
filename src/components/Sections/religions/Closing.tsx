@@ -11,7 +11,7 @@ import {
   Sunrise,
   type LucideIcon,
 } from "lucide-react";
-import bg from "@/assets/images/religions/c-1.png";
+import bg from "@/assets/images/religions/c-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

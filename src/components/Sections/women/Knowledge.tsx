@@ -2,12 +2,12 @@ import React from "react";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import gsap from "gsap";
 
-import knowledgeHero from "@/assets/images/women/c-2.png";
-import masturaImg from "@/assets/images/women/w-10.png";
-import hapsaImg from "@/assets/images/women/w-11.png";
-import topicPoetryImg from "@/assets/images/women/icons/k-2.png";
-import topicHistoryImg from "@/assets/images/women/icons/k-3.png";
-import topicEducationImg from "@/assets/images/women/icons/k-1.png";
+import knowledgeHero from "@/assets/images/women/c-2.webp";
+import masturaImg from "@/assets/images/women/w-10.webp";
+import hapsaImg from "@/assets/images/women/w-11.webp";
+import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
+import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
+import topicEducationImg from "@/assets/images/women/icons/k-1.webp";
 
 type WomenKnowledgePageProps = {
   onBack?: () => void;

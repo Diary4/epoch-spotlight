@@ -1,11 +1,11 @@
-import office from "@/assets/office.jpeg";
-import natureBg from "@/assets/images/nature.jpg";
+import office from "@/assets/office.webp";
+import natureBg from "@/assets/images/nature.webp";
 import secondBg from "@/assets/second-bg.svg";
-import firstPerson from "@/assets/firstperson.jpg";
-import bg from "@/assets/images/bg.jpg";
-import trump from "@/assets/images/trump.jpg";
-import benjaminfranklin from "@/assets/images/benjaminfranklin.jpg";
-import napoleon from "@/assets/images/napel.jpg";
+import firstPerson from "@/assets/firstperson.webp";
+import bg from "@/assets/images/bg.webp";
+import trump from "@/assets/images/trump.webp";
+import benjaminfranklin from "@/assets/images/benjaminfranklin.webp";
+import napoleon from "@/assets/images/napel.webp";
 
 export type Portrait = {
   id: number;

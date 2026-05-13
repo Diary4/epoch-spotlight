@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.png";
+import bg from "@/assets/images/religions/r-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

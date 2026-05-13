@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PORTRAITS } from "@/data/portraits";
-import background from "@/assets/images/bg-3.jpg";
+import background from "@/assets/images/bg-3.webp";
 
 const Portraits = () => {
   const navigate = useNavigate();

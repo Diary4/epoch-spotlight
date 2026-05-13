@@ -4,8 +4,8 @@ import { gsap } from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg1 from "@/assets/mainImages/story-1.png";
-import bg2 from "@/assets/mainImages/story-2.png";
+import bg1 from "@/assets/mainImages/story-1.webp";
+import bg2 from "@/assets/mainImages/story-2.webp";
 
 const cards = [
   {

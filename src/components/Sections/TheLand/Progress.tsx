@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
-import bg from "@/assets/mainImages/theland/progress-4.png";
+import bg from "@/assets/mainImages/theland/progress-4.webp";
 
 const topCards = [
   {

@@ -10,7 +10,7 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-5.png";
+import bg from "@/assets/images/religions/r-5.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

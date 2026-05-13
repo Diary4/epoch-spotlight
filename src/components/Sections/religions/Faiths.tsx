@@ -2,15 +2,15 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.png";
-import imgIslam from "@/assets/images/religions/r-1.png";
-import imgChristianity from "@/assets/images/religions/r-2.png";
-import imgYarsanism from "@/assets/images/religions/r-3.png";
-import imgYazidism from "@/assets/images/religions/r-4.png";
-import imgJudaism from "@/assets/images/religions/r-5.png";
-import imgBahai from "@/assets/images/religions/r-6.jpeg";
-import imgZoroastrianism from "@/assets/images/religions/r-7.png";
-import imgSabean from "@/assets/mainImages/story-1.png";
+import bg from "@/assets/images/religions/r-1.webp";
+import imgIslam from "@/assets/images/religions/r-1.webp";
+import imgChristianity from "@/assets/images/religions/r-2.webp";
+import imgYarsanism from "@/assets/images/religions/r-3.webp";
+import imgYazidism from "@/assets/images/religions/r-4.webp";
+import imgJudaism from "@/assets/images/religions/r-5.webp";
+import imgBahai from "@/assets/images/religions/r-6.webp";
+import imgZoroastrianism from "@/assets/images/religions/r-7.webp";
+import imgSabean from "@/assets/mainImages/story-1.webp";
 
 // Per-faith detail pages — wire up each faith to its own file.
 import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";

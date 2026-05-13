@@ -11,9 +11,9 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import bg from "@/assets/mainImages/thejourney/journey-1.png";
-import bg2 from "@/assets/mainImages/thejourney/journey-2.png";
-import bg3 from "@/assets/mainImages/thejourney/journey-3.png";
+import bg from "@/assets/mainImages/thejourney/journey-1.webp";
+import bg2 from "@/assets/mainImages/thejourney/journey-2.webp";
+import bg3 from "@/assets/mainImages/thejourney/journey-3.webp";
 
 const milestones = [
   {

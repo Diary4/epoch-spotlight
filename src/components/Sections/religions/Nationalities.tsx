@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-3.png";
+import bg from "@/assets/images/religions/r-3.webp";
 import LanguagesOfKurdistanPage from "@/components/Sections/religions/Languages/KurdistanLanguages";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";

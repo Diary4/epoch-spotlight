@@ -5,10 +5,10 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
-import card1 from "@/assets/mainImages/discoverkurdistan/card-1.png"
-import card2 from "@/assets/mainImages/discoverkurdistan/card-2.png"
-import card3 from "@/assets/mainImages/discoverkurdistan/card-3.png"
-import card4 from "@/assets/mainImages/discoverkurdistan/card-4.png"
+import card1 from "@/assets/mainImages/discoverkurdistan/card-1.webp"
+import card2 from "@/assets/mainImages/discoverkurdistan/card-2.webp"
+import card3 from "@/assets/mainImages/discoverkurdistan/card-3.webp"
+import card4 from "@/assets/mainImages/discoverkurdistan/card-4.webp"
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -146,7 +146,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
       <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fbf5ea]">
         {/* Background image */}
         <img
-          src="https://images.pexels.com/photos/18040523/pexels-photo-18040523.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          src="https://images.pexels.com/photos/18040523/pexels-photo-18040523.webp?auto=compress&cs=tinysrgb&w=1600"
           alt=""
           className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center opacity-40"
         />

@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Bird, Shield, ShieldCheck, UsersRound } from "lucide-react";
-import bg from "@/assets/mainImages/peshmarga.png"
+import bg from "@/assets/mainImages/peshmarga.webp"
 
 const cards = [
   {

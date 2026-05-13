@@ -3,7 +3,7 @@ import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/building.png";
+import bg from "@/assets/mainImages/building.webp";
 
 const rows = [
   {

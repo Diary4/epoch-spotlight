@@ -10,7 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/mainImages/whoarekurds.png";
+import bg from "@/assets/mainImages/whoarekurds.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

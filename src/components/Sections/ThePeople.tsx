@@ -4,9 +4,9 @@ import gsap from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import card2 from "@/assets/mainImages/card-2.PNG?url"
-import card1 from "@/assets/mainImages/card-1.PNG?url"
-import card3 from "@/assets/mainImages/card-3.PNG?url"
+import card2 from "@/assets/mainImages/card-2.webp?url"
+import card1 from "@/assets/mainImages/card-1.webp?url"
+import card3 from "@/assets/mainImages/card-3.webp?url"
 import peopleVideo2 from "@/assets/videos/thepeople.MP4?url"
 
 const cards: {

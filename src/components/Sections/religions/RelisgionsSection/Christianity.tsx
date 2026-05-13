@@ -10,11 +10,11 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-5.png";
-import ankawa from "@/assets/mainImages/story-1.png";
-import churches from "@/assets/mainImages/story-2.png";
-import denominations from "@/assets/mainImages/2005.png";
-import pope from "@/assets/images/kurdistan.jpg";
+import bg from "@/assets/images/religions/r-5.webp";
+import ankawa from "@/assets/mainImages/story-1.webp";
+import churches from "@/assets/mainImages/story-2.webp";
+import denominations from "@/assets/mainImages/2005.webp";
+import pope from "@/assets/images/kurdistan.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { ArrowLeft, KeyRound, Sparkles, TreePine } from "lucide-react";
 import { gsap } from "gsap";
-import bgImage from "@/assets/mainImages/whoarekurds.png";
+import bgImage from "@/assets/mainImages/whoarekurds.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";

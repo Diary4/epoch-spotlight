@@ -3,7 +3,7 @@ import { ArrowLeft, Landmark, Mountain, Vote } from "lucide-react";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/1992.png";
+import bg from "@/assets/mainImages/1992.webp";
 
 const rows = [
   {

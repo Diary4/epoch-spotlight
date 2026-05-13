@@ -1,7 +1,7 @@
 import type { LangCode, Story, PeopleContent, JourneyContent, SystemContent, LandFutureContent, MenuUI } from "@/types/types";
-import peshmargaBg from "@/assets/images/peshmarga.jpg";
-import bg2 from "@/assets/images/bg-2.jpg";
-import bg3 from "@/assets/images/bg-3.jpg";
+import peshmargaBg from "@/assets/images/peshmarga.webp";
+import bg2 from "@/assets/images/bg-2.webp";
+import bg3 from "@/assets/images/bg-3.webp";
 
 export const UI_COLORS = {
   panelBg: "rgba(8, 16, 30, 0.62)",

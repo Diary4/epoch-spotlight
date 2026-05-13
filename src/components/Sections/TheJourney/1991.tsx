@@ -3,7 +3,7 @@ import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/1991.png";
+import bg from "@/assets/mainImages/1991.webp";
 
 const cards = [
   {

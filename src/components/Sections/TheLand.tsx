@@ -2,12 +2,12 @@ import React from "react";
 import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
-import bg1 from "@/assets/mainImages/land-1.png"
-import bg2 from "@/assets/mainImages/land-2.png"
-import bg3 from "@/assets/mainImages/land-3.png"
-import bg4 from "@/assets/mainImages/land-4.png"
-import bg5 from "@/assets/mainImages/land-5.png"
-import bg6 from "@/assets/mainImages/land-6.png"
+import bg1 from "@/assets/mainImages/land-1.webp"
+import bg2 from "@/assets/mainImages/land-2.webp"
+import bg3 from "@/assets/mainImages/land-3.webp"
+import bg4 from "@/assets/mainImages/land-4.webp"
+import bg5 from "@/assets/mainImages/land-5.webp"
+import bg6 from "@/assets/mainImages/land-6.webp"
 
 const topCards = [
   {

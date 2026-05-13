@@ -13,8 +13,8 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-2.png";
-import bg2 from "@/assets/images/religions/r-3.png";
+import bg from "@/assets/images/religions/r-2.webp";
+import bg2 from "@/assets/images/religions/r-3.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

@@ -9,11 +9,11 @@ import {
 } from "lucide-react";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
-import bg from "@/assets/images/religions/r-3.png";
-import meaningImg from "@/assets/mainImages/letter.png";
-import principlesImg from "@/assets/mainImages/story-2.png";
-import jamkhanaImg from "@/assets/mainImages/shared.png";
-import bookImg from "@/assets/mainImages/story-1.png";
+import bg from "@/assets/images/religions/r-3.webp";
+import meaningImg from "@/assets/mainImages/letter.webp";
+import principlesImg from "@/assets/mainImages/story-2.webp";
+import jamkhanaImg from "@/assets/mainImages/shared.webp";
+import bookImg from "@/assets/mainImages/story-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

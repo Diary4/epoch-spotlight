@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
-import bg from "@/assets/images/religions/r-2.png";
+import bg from "@/assets/images/religions/r-2.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 

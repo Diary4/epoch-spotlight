@@ -14,8 +14,8 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-7.png";
-import placeImg from "@/assets/mainImages/story-1.png";
+import bg from "@/assets/images/religions/r-7.webp";
+import placeImg from "@/assets/mainImages/story-1.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 

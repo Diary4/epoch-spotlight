@@ -2,7 +2,7 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, BookOpen, Globe2, MapPin, Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-3.png";
+import bg from "@/assets/images/religions/r-3.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 

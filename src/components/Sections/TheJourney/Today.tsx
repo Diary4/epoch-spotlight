@@ -3,7 +3,7 @@ import { ArrowLeft, BarChart3, GraduationCap, Mountain, Waves } from "lucide-rea
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/today.png";
+import bg from "@/assets/mainImages/today.webp";
 
 const cards = [
   {

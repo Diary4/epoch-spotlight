@@ -2,9 +2,9 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
 
-import cultureHero from "@/assets/images/women/c-1.png";
-import hanaImage from "@/assets/images/women/w-10.png";
-import sitiImage from "@/assets/images/women/w-11.png";
+import cultureHero from "@/assets/images/women/c-1.webp";
+import hanaImage from "@/assets/images/women/w-10.webp";
+import sitiImage from "@/assets/images/women/w-11.webp";
 
 type CulturePageProps = {
   onBack?: () => void;

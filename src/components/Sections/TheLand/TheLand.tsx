@@ -1,10 +1,10 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
-import bg from "@/assets/mainImages/bg-2.png";
-import mapImage from "@/assets/mainImages/theland/land-1.png";
-import mapImage2 from "@/assets/mainImages/theland/land-2.jpg";
-import mapImage3 from "@/assets/mainImages/theland/land-3.jpg";
+import bg from "@/assets/mainImages/bg-2.webp";
+import mapImage from "@/assets/mainImages/theland/land-1.webp";
+import mapImage2 from "@/assets/mainImages/theland/land-2.webp";
+import mapImage3 from "@/assets/mainImages/theland/land-3.webp";
 
 const mapCards = [
   {

@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, Feather, UsersRound } from "lucide-react";
-import bg from "@/assets/mainImages/letter.png"
+import bg from "@/assets/mainImages/letter.webp"
 
 const dialects = [
   {

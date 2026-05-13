@@ -14,14 +14,14 @@ import {
   Flag,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.png";
-import bg2 from "@/assets/images/religions/r-8.png";
-import letterImg from "@/assets/mainImages/letter.png";
-import whoarekurdsImg from "@/assets/mainImages/whoarekurds.png";
-import buildingImg from "@/assets/mainImages/building.png";
-import sharedImg from "@/assets/mainImages/shared.png";
-import governmentImg from "@/assets/mainImages/government.png";
-import presidencyImg from "@/assets/mainImages/presidency-1.png";
+import bg from "@/assets/images/religions/r-1.webp";
+import bg2 from "@/assets/images/religions/r-8.webp";
+import letterImg from "@/assets/mainImages/letter.webp";
+import whoarekurdsImg from "@/assets/mainImages/whoarekurds.webp";
+import buildingImg from "@/assets/mainImages/building.webp";
+import sharedImg from "@/assets/mainImages/shared.webp";
+import governmentImg from "@/assets/mainImages/government.webp";
+import presidencyImg from "@/assets/mainImages/presidency-1.webp";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";

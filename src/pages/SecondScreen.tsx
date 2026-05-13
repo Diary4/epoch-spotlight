@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import HeroCharacter from "@/components/HeroCharacter";
-import secondBg from "@/assets/images/nature.jpg";
+import secondBg from "@/assets/images/nature.webp";
 
 type LangCode = "ku" | "en" | "ar";
 type Story = { title: string; description: string };

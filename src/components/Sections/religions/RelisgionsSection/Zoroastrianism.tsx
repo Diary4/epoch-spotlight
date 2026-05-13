@@ -10,7 +10,7 @@ import {
   Sun,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-7.png";
+import bg from "@/assets/images/religions/r-7.webp";
 
 const cards = [
   {

@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
-import bg from "@/assets/mainImages/parliment.png"
+import bg from "@/assets/mainImages/parliment.webp"
 
 const mainCards = [
   {

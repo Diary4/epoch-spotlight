@@ -15,7 +15,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
-import bg from "@/assets/mainImages/thesystem/system-1.png";
+import bg from "@/assets/mainImages/thesystem/system-1.webp";
 
 const achievements = [
   {

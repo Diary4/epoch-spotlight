@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
 import gsap from "gsap";
-import bg from "@/assets/mainImages/system.png"
+import bg from "@/assets/mainImages/system.webp"
 
 function Logo() {
   return (

@@ -10,7 +10,7 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-2.png";
+import bg from "@/assets/images/religions/r-2.webp";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";

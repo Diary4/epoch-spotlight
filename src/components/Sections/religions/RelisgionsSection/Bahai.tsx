@@ -11,7 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-6.jpeg";
+import bg from "@/assets/images/religions/r-6.webp";
 
 const cards = [
   {

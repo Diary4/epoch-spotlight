@@ -2,11 +2,11 @@ import React from "react";
 import { ArrowLeft, Crown, Flower2 } from "lucide-react";
 import gsap from "gsap";
 
-import mainHero from "@/assets/images/women/le-1.png";
-import adelaImg from "@/assets/images/women/w-3.png";
-import halimaImg from "@/assets/images/women/w-4.png";
-import meryemImg from "@/assets/images/women/w-5.png";
-import khanzadImg from "@/assets/images/women/w-6.png";
+import mainHero from "@/assets/images/women/le-1.webp";
+import adelaImg from "@/assets/images/women/w-3.webp";
+import halimaImg from "@/assets/images/women/w-4.webp";
+import meryemImg from "@/assets/images/women/w-5.webp";
+import khanzadImg from "@/assets/images/women/w-6.webp";
 
 type LangCode = "ku" | "en" | "ar";
 

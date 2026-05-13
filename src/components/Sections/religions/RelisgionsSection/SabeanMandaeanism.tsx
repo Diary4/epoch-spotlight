@@ -10,7 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/mainImages/story-1.png";
+import bg from "@/assets/mainImages/story-1.webp";
 
 const cards = [
   {

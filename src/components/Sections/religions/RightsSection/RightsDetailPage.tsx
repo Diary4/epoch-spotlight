@@ -2,9 +2,9 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Globe2, LucideIcon } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-7.png";
-import bg2 from "@/assets/images/religions/r-3.png";
-import bg3 from "@/assets/mainImages/parliment.png";
+import bg from "@/assets/images/religions/r-7.webp";
+import bg2 from "@/assets/images/religions/r-3.webp";
+import bg3 from "@/assets/mainImages/parliment.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

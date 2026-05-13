@@ -9,14 +9,14 @@ import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 import WomenPowerPage from "@/components/Sections/women/Leadership";
 
-import legacyHero from "@/assets/images/women/w-1.png";
-import journeyImage from "@/assets/nature.jpg";
-import guitarIcon from "@/assets/images/women/icons/guitar.png";
-import crownIcon from "@/assets/images/women/icons/crown.png";
-import bookIcon from "@/assets/images/women/icons/book.png";
-import handIcon from "@/assets/images/women/icons/hand.png";
-import flowerIcon from "@/assets/images/women/icons/flower-1.png";
-import flowerIcon2 from "@/assets/images/women/icons/flower-2.png";
+import legacyHero from "@/assets/images/women/w-1.webp";
+import journeyImage from "@/assets/nature.webp";
+import guitarIcon from "@/assets/images/women/icons/guitar.webp";
+import crownIcon from "@/assets/images/women/icons/crown.webp";
+import bookIcon from "@/assets/images/women/icons/book.webp";
+import handIcon from "@/assets/images/women/icons/hand.webp";
+import flowerIcon from "@/assets/images/women/icons/flower-1.webp";
+import flowerIcon2 from "@/assets/images/women/icons/flower-2.webp";
 
 type LangCode = "ku" | "en" | "ar";
 

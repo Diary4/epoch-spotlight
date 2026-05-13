@@ -15,8 +15,8 @@ import {
   UsersRound,
 } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
-import bg from "@/assets/mainImages/government.png"
-import bg2 from "@/assets/mainImages/government-2.png"
+import bg from "@/assets/mainImages/government.webp"
+import bg2 from "@/assets/mainImages/government-2.webp"
 
 const mainCards = [
   {

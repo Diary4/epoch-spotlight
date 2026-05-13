@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/shared.png";
+import bg from "@/assets/mainImages/shared.webp";
 
 const identityCards = [
   {

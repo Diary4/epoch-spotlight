@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BookOpenCheck, Building2, Landmark, Scale, UsersRound } from "lucide-react";
-import bg from "@/assets/mainImages/presidency-1.png"
-import bg2 from "@/assets/mainImages/presidency-2.png"
+import bg from "@/assets/mainImages/presidency-1.webp"
+import bg2 from "@/assets/mainImages/presidency-2.webp"
 
 const cards = [
   {

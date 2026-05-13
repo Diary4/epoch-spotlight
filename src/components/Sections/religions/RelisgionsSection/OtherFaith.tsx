@@ -10,11 +10,11 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import yarsanism from "@/assets/mainImages/story-1.png";
-import zoroastrianism from "@/assets/mainImages/story-2.png";
-import judaism from "@/assets/mainImages/2005.png";
-import bahai from "@/assets/images/bg-2.jpg";
-import mandaean from "@/assets/images/kurdistan.jpg";
+import yarsanism from "@/assets/mainImages/story-1.webp";
+import zoroastrianism from "@/assets/mainImages/story-2.webp";
+import judaism from "@/assets/mainImages/2005.webp";
+import bahai from "@/assets/images/bg-2.webp";
+import mandaean from "@/assets/images/kurdistan.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 
