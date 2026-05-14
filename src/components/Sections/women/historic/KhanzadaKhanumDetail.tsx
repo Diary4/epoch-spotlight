@@ -9,6 +9,7 @@ export default function KhanzadaKhanumDetail() {
       nameLine1="Khanzad"
       nameLine2="Khanum"
       role="Leader of Soran"
+      listIcon="flower"
       intro="A powerful Kurdish ruler known for strategic leadership, courage, and regional strength."
       portraitSrc={detailPortrait}
       portraitAlt="Khanzada Khanum"

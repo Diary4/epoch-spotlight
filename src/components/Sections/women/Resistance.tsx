@@ -2,227 +2,370 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
-import resistanceHero from "@/assets/images/women/w-2.webp";
-import zeynabImage from "@/assets/images/women/w-3.webp";
-import leylaImage from "@/assets/images/women/w-4.webp";
+import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 
-const resistanceWomen = [
+import resistanceHero from "@/assets/images/women/w-2.webp";
+import imgQara from "@/assets/images/women/w-5.webp";
+import imgQadam from "@/assets/images/women/w-7.webp";
+import imgShifa from "@/assets/images/women/w-8.webp";
+import imgLayal from "@/assets/images/women/w-9.webp";
+import imgMargaret from "@/assets/images/women/w-6.webp";
+import imgKhaja from "@/assets/images/women/w-4.webp";
+
+type ListIcon = "crown" | "flower";
+
+type ResistanceFigure = {
+  id: string;
+  name: string;
+  nameLine1: string;
+  nameLine2: string;
+  role: string;
+  teaser: string;
+  knownFor: string;
+  legacy: string;
+  placeEra: string;
+  quote: string;
+  image: string;
+  listIcon: ListIcon;
+};
+
+const resistanceWomen: ResistanceFigure[] = [
   {
-    name: "Zeynab Pasha",
-    role: "Resistance leader",
-    image: zeynabImage,
+    id: "qara-fateme",
+    name: "Qara Fateme",
+    nameLine1: "Qara",
+    nameLine2: "Fateme",
+    role: "Military commander and tribal leader",
+    teaser:
+      "A rare military leader remembered for courage in battle and skill in diplomacy.",
+    knownFor: "Command of mounted fighters and negotiation with state powers.",
+    legacy: "Her name is tied to courage that stayed with her at every step.",
+    placeEra: "Marash and Istanbul • 19th century.",
+    quote: "Courage accompanied her in every step.",
+    image: imgQara,
+    listIcon: "crown",
   },
   {
-    name: "Leyla Qasim",
-    role: "Symbol of sacrifice",
-    image: leylaImage,
+    id: "qadam-kher",
+    name: "Qadam Kher",
+    nameLine1: "Qadam",
+    nameLine2: "Kher",
+    role: "Resistance leader",
+    teaser:
+      "A Kurdish lioness who led her tribes’ uprising with unshakable resolve against Reza Shah’s forces.",
+    knownFor: "Leading tribal resistance against Reza Shah’s forces.",
+    legacy: "She held ground where others broke.",
+    placeEra: "Luristan • early 20th century.",
+    quote: "She resisted where others collapsed.",
+    image: imgQadam,
+    listIcon: "flower",
+  },
+  {
+    id: "shifa-gardi",
+    name: "Shifa Gardi",
+    nameLine1: "Shifa",
+    nameLine2: "Gardi",
+    role: "Field journalist",
+    teaser:
+      "A pioneering, fearless reporter who brought truthful news from the front lines of the war against ISIS to the world.",
+    knownFor: "Frontline coverage of the war against ISIS.",
+    legacy: "Her reporting widened the world’s view of Kurdish courage.",
+    placeEra: "Erbil and Mosul • 21st century.",
+    quote: "Her voice carried a message of courage.",
+    image: imgShifa,
+    listIcon: "flower",
+  },
+  {
+    id: "layal-qasim",
+    name: "Layal Qasim",
+    nameLine1: "Layal",
+    nameLine2: "Qasim",
+    role: "Symbol of resistance",
+    teaser:
+      "A young fighter whose sacrifice became a beacon of dignity and national awakening.",
+    knownFor: "Defiance and sacrifice in the face of oppression.",
+    legacy: "Remembered as a national symbol of youth and resolve.",
+    placeEra: "Khanaqin and Baghdad • 1970s.",
+    quote: "Kill me, and thousands of Kurds will rise.",
+    image: imgLayal,
+    listIcon: "flower",
+  },
+  {
+    id: "margaret-george-shilo",
+    name: "Margaret George Shilo",
+    nameLine1: "Margaret",
+    nameLine2: "George Shilo",
+    role: "First female Peshmerga",
+    teaser:
+      "A legendary Assyrian woman who fought for Kurdistan and became a symbol of coexistence and loyalty.",
+    knownFor: "The first woman to command in a Peshmerga military formation.",
+    legacy: "A living emblem of shared struggle for Kurdistan.",
+    placeEra: "Dohuk region • 1960s.",
+    quote: "She fought for a homeland greater than herself.",
+    image: imgMargaret,
+    listIcon: "crown",
+  },
+  {
+    id: "khaja-bawa",
+    name: "Khaja Bawa",
+    nameLine1: "Khaja",
+    nameLine2: "Bawa",
+    role: "Heroine of the 1991 uprising",
+    teaser:
+      "A courageous daughter of Erbil whose life was given during the city’s uprising for freedom.",
+    knownFor: "Leadership and bravery during the 1991 uprising in Erbil.",
+    legacy: "Her sacrifice is woven into Erbil’s memory of that spring.",
+    placeEra: "Erbil • 1991.",
+    quote: "Her courage shook a city.",
+    image: imgKhaja,
+    listIcon: "crown",
   },
 ];
 
 const quotes = [
-  "Courage can awaken a nation.",
-  "Resistance is also a woman's story.",
+  "Kill me, and thousands of Kurds will rise.",
+  "Her voice carried a message of courage.",
+  "She fought for a homeland greater than herself.",
 ];
 
 type WomenResistancePageProps = {
   onBack?: () => void;
 };
 
+function runResistanceListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
+  if (!sectionRef.current) return () => {};
+  const ctx = gsap.context(() => {
+    gsap.set("[data-resist-fade='true']", { autoAlpha: 0, y: 28 });
+    gsap.set("[data-resist-hero='true']", { autoAlpha: 0, scale: 1.04 });
+    gsap.set("[data-resist-card='true']", {
+      autoAlpha: 0,
+      y: 35,
+      rotateX: -8,
+      transformOrigin: "center top",
+    });
+
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+    tl.to("[data-resist-hero='true']", { autoAlpha: 1, scale: 1, duration: 1.2 })
+      .to("[data-resist-fade='true']", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.12 }, "-=0.7")
+      .to(
+        "[data-resist-card='true']",
+        { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.85, stagger: 0.1 },
+        "-=0.35",
+      );
+
+    gsap.to("[data-floating='true']", {
+      y: -10,
+      duration: 2.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.18,
+    });
+  }, sectionRef);
+  return () => ctx.revert();
+}
+
+function runResistanceDetailIntro(sectionRef: React.RefObject<HTMLElement | null>) {
+  if (!sectionRef.current) return () => {};
+  const ctx = gsap.context(() => {
+    gsap.set("[data-women-detail-fade='true']", { autoAlpha: 0, y: 18 });
+    gsap.timeline({ defaults: { ease: "power2.out" } }).to("[data-women-detail-fade='true']", {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.65,
+      stagger: 0.08,
+    });
+  }, sectionRef);
+  return () => ctx.revert();
+}
+
 export default function WomenResistancePage({ onBack }: WomenResistancePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
+  const selected = selectedId ? resistanceWomen.find((w) => w.id === selectedId) ?? null : null;
 
-    const ctx = gsap.context(() => {
-      gsap.set("[data-fade='true']", { autoAlpha: 0, y: 28 });
-      gsap.set("[data-hero='true']", { autoAlpha: 0, scale: 1.04 });
-      gsap.set("[data-card='true']", {
-        autoAlpha: 0,
-        y: 35,
-        rotateX: -8,
-        transformOrigin: "center top",
-      });
+  React.useLayoutEffect(() => {
+    const cleanup = selected
+      ? runResistanceDetailIntro(sectionRef)
+      : runResistanceListIntro(sectionRef);
+    return cleanup;
+  }, [selectedId, selected]);
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+  const handleBack = () => {
+    if (selectedId) setSelectedId(null);
+    else onBack?.();
+  };
 
-      tl.to("[data-hero='true']", {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 1.2,
-      })
-        .to(
-          "[data-fade='true']",
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.12,
-          },
-          "-=0.7",
-        )
-        .to(
-          "[data-card='true']",
-          {
-            autoAlpha: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.85,
-            stagger: 0.14,
-          },
-          "-=0.35",
-        );
-
-      gsap.to("[data-floating='true']", {
-        y: -10,
-        duration: 2.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.18,
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const detailCards = (w: ResistanceFigure) => [
+    { icon: "⚔", title: "Known For", text: w.knownFor },
+    { icon: "♛", title: "Legacy", text: w.legacy },
+    { icon: "♜", title: "Place & Era", text: w.placeEra },
+  ];
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
+    <main
+      className={`m-0 flex w-screen flex-col justify-start p-0 ${
+        selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+      }`}
+    >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ef] px-8 py-10 sm:px-12 lg:px-16"
+        className={`relative flex w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto ${
+          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
+        }`}
       >
         <button
           type="button"
-          onClick={onBack}
-          className="absolute left-8 top-8 z-50 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white"
+          onClick={handleBack}
+          className="absolute left-4 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:left-8 sm:top-8 sm:h-14 sm:w-14"
+          aria-label={selectedId ? "Back to resistance list" : "Back to Women"}
         >
-          <ArrowLeft className="h-7 w-7" />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7" />
         </button>
 
-        {/* soft background */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
+        {selected ? (
+          <WomenDetailPanel
+            nameLine1={selected.nameLine1}
+            nameLine2={selected.nameLine2}
+            role={selected.role}
+            intro={selected.teaser}
+            portraitSrc={selected.image}
+            portraitAlt={selected.name}
+            cards={detailCards(selected)}
+            quote={selected.quote}
+            listIcon={selected.listIcon}
+          />
+        ) : (
+          <>
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-        {/* Hero */}
-        <section className="relative z-10 grid min-h-[800px] grid-cols-[0.85fr_1.15fr] items-center">
-          <div data-fade="true" className="relative z-20">
-            <h1 className="font-serif text-[88px] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
-              Women of
-              <br />
-              Resistance
-            </h1>
+            <section className="relative z-10 grid min-h-0 grid-cols-1 items-center gap-8 px-5 pb-6 pt-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0 lg:px-10 lg:pb-0 lg:pt-10">
+              <div data-resist-fade="true" className="relative z-20 lg:pt-6">
+                <p className="mb-3 font-serif text-sm font-semibold uppercase tracking-[0.2em] text-[#a75a69]">
+                  Part two
+                </p>
+                <h1 className="font-serif text-[clamp(52px,12vw,88px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
+                  Women of
+                  <br />
+                  Resistance
+                </h1>
 
-            <div className="my-8 flex w-[285px] items-center gap-3 text-[#b4864d]">
-              <span className="h-px flex-1 bg-[#d4b98f]" />
-              <Sparkles className="h-6 w-6" />
-              <span className="h-px flex-1 bg-[#d4b98f]" />
-            </div>
+                <div className="my-6 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] lg:my-8">
+                  <span className="h-px flex-1 bg-[#d4b98f]" />
+                  <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
+                  <span className="h-px flex-1 bg-[#d4b98f]" />
+                </div>
 
-            <h2 className="font-serif text-[34px] text-[#a75a69]">
-              Voices of courage.
-            </h2>
+                <h2 className="font-serif text-[clamp(24px,5vw,34px)] text-[#a75a69]">
+                  Voices of courage.
+                </h2>
 
-            <p className="mt-5 max-w-[360px] text-[24px] leading-[1.45] text-[#56505a]">
-              Women who stood against oppression and inspired change.
-            </p>
-          </div>
-
-          <div data-hero="true" className="pointer-events-none relative h-[820px] w-[820px]">
-            
-
-            <img
-              src={resistanceHero}
-              alt="Women of Resistance"
-              className="absolute bottom-0 right-[-20px] h-full w-full object-cover object-right-top"
-            />
-          </div>
-        </section>
-
-        {/* Character Cards */}
-        <section className="relative z-20 mt-3 grid grid-cols-2 gap-7">
-          {resistanceWomen.map((woman) => (
-            <article
-              data-card="true"
-              key={woman.name}
-              className="relative overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-6 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)]"
-            >
-              <div className="relative mx-auto h-[500px] overflow-hidden rounded-[22px]">
-              
-                <img
-                  src={woman.image}
-                  alt={woman.name}
-                  className="relative z-10 h-full w-full object-contain object-bottom"
-                />
+                <p className="mt-4 max-w-[400px] text-[clamp(17px,3.5vw,22px)] leading-[1.5] text-[#56505a] lg:mt-5 lg:text-[24px] lg:leading-[1.45]">
+                  Commanders, journalists, and young women who faced armies, dictators, and occupation—and
+                  helped write Kurdish resistance across the nineteenth century to today.
+                </p>
               </div>
-
-              <h3 className="mt-2 font-serif text-[46px] leading-none text-[#2c1736]">
-                {woman.name}
-              </h3>
-
-              <p className="mt-4 font-serif text-[28px] text-[#a75a69]">
-                {woman.role}
-              </p>
-
-              <div className="mx-auto mt-5 flex w-[150px] items-center gap-3 text-[#b4864d]">
-                <span className="h-px flex-1 bg-[#d4b98f]" />
-                <Sparkles className="h-5 w-5" />
-                <span className="h-px flex-1 bg-[#d4b98f]" />
-              </div>
-            </article>
-          ))}
-        </section>
-
-        {/* Quote Cards */}
-        <section className="relative z-20 mt-7 grid grid-cols-2 gap-7">
-          {quotes.map((text) => (
-            <article
-              data-card="true"
-              key={text}
-              className="relative flex min-h-[170px] items-center overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 px-14 shadow-[0_10px_25px_rgba(67,35,45,0.1)]"
-            >
-              <Quote className="absolute left-9 top-8 h-14 w-14 fill-[#d98994]/70 text-[#d98994]/70" />
-
-              <p className="ml-20 max-w-[280px] font-serif text-[28px] leading-snug text-[#3a293f]">
-                {text}
-              </p>
 
               <div
-                data-floating="true"
-                className="absolute bottom-4 right-10 h-28 w-24 rounded-full bg-[#d99bad]/20 blur-xl"
-              />
-
-              <div className="absolute bottom-8 left-1/2 flex w-[120px] -translate-x-1/2 items-center gap-2 text-[#b4864d]">
-                <span className="h-px flex-1 bg-[#d4b98f]" />
-                <Sparkles className="h-4 w-4" />
-                <span className="h-px flex-1 bg-[#d4b98f]" />
+                data-resist-hero="true"
+                className="pointer-events-none relative mx-auto aspect-square w-full max-w-[min(100%,420px)] lg:mx-0 lg:h-[min(72vh,820px)] lg:max-w-none lg:aspect-auto"
+              >
+                <img
+                  src={resistanceHero}
+                  alt="Women of Resistance"
+                  className="h-full w-full rounded-[28px] object-cover object-right-top lg:absolute lg:inset-0 lg:rounded-none lg:object-right-top"
+                />
               </div>
-            </article>
-          ))}
-        </section>
+            </section>
 
-        {/* Bottom Legacy Box */}
-        <section
-          data-fade="true"
-          className="relative z-20 mt-7 flex min-h-[145px] items-center overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-12 shadow-[0_8px_22px_rgba(67,35,45,0.1)]"
-        >
-          <div className="grid h-28 w-28 place-items-center rounded-full border border-[#e4c78f] bg-[#fff8ed]">
-            <div className="text-[58px] text-[#b4864d]">♧</div>
-          </div>
+            <section className="relative z-20 mt-6 grid grid-cols-1 gap-5 px-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:px-10">
+              {resistanceWomen.map((woman) => (
+                <button
+                  type="button"
+                  data-resist-card="true"
+                  key={woman.id}
+                  onClick={() => setSelectedId(woman.id)}
+                  className="relative flex cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 text-left shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:p-5"
+                >
+                  <div className="relative mx-auto h-[220px] w-full max-w-[280px] overflow-hidden rounded-[20px] sm:h-[260px] sm:max-w-none">
+                    <img
+                      src={woman.image}
+                      alt={woman.name}
+                      className="relative z-10 h-full w-full object-cover object-[center_20%]"
+                    />
+                  </div>
 
-          <div className="ml-20">
-            <h2 className="font-serif text-[44px] leading-none text-[#2c1736]">
-              Legacy of Courage
-            </h2>
+                  <h3 className="mt-3 font-serif text-[clamp(22px,4.5vw,32px)] leading-tight text-[#2c1736] sm:mt-4">
+                    {woman.name}
+                  </h3>
 
-            <p className="mt-4 font-serif text-[28px] text-[#a75a69]">
-              Defiance, sacrifice, and hope.
-            </p>
-          </div>
+                  <p className="mt-2 font-serif text-[clamp(15px,2.8vw,20px)] italic text-[#a75a69]">
+                    ({woman.role})
+                  </p>
 
-          <div className="absolute bottom-0 right-0 h-32 w-[360px] opacity-45">
-            <div className="h-full w-full bg-[radial-gradient(circle_at_60%_30%,rgba(151,97,126,0.28),transparent_22%),linear-gradient(135deg,transparent_35%,rgba(143,76,104,0.25)_36%_50%,transparent_51%)]" />
-          </div>
-        </section>
+                  <div className="my-3 flex w-24 items-center gap-2 text-[#b4864d]">
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                    <Sparkles className="h-4 w-4" />
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                  </div>
+
+                  <p className="text-left text-[14px] leading-relaxed text-[#4a3f50] sm:text-[15px]">
+                    {woman.teaser}
+                  </p>
+                </button>
+              ))}
+            </section>
+
+            <section className="relative z-20 mt-6 grid grid-cols-1 gap-5 px-5 md:grid-cols-3 md:gap-6 lg:px-10">
+              {quotes.map((text) => (
+                <article
+                  data-resist-card="true"
+                  key={text}
+                  className="relative flex min-h-[140px] flex-col justify-center overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 px-6 py-6 shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:min-h-[160px] sm:px-8"
+                >
+                  <Quote className="mb-3 h-9 w-9 shrink-0 fill-[#d98994]/70 text-[#d98994]/70" />
+
+                  <p className="font-serif text-[clamp(17px,2.8vw,22px)] leading-snug text-[#3a293f]">{text}</p>
+
+                  <div
+                    data-floating="true"
+                    className="pointer-events-none absolute bottom-3 right-6 h-20 w-16 rounded-full bg-[#d99bad]/20 blur-xl"
+                  />
+
+                  <div className="mt-4 flex w-full max-w-[120px] items-center gap-2 text-[#b4864d]">
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                    <Sparkles className="h-4 w-4" />
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                  </div>
+                </article>
+              ))}
+            </section>
+
+            <section
+              data-resist-fade="true"
+              className="relative z-20 mx-5 mt-6 flex min-h-[120px] flex-col items-start gap-4 overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-6 py-6 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:min-h-[145px] sm:flex-row sm:items-center sm:px-12 lg:mx-10"
+            >
+              <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#e4c78f] bg-[#fff8ed] sm:h-28 sm:w-28">
+                <div className="text-[40px] text-[#b4864d] sm:text-[58px]">♧</div>
+              </div>
+
+              <div className="min-w-0 sm:ml-12 lg:ml-20">
+                <h2 className="font-serif text-[clamp(28px,5vw,44px)] leading-none text-[#2c1736]">
+                  Legacy of courage
+                </h2>
+
+                <p className="mt-3 font-serif text-[clamp(16px,3vw,28px)] text-[#a75a69] sm:mt-4">
+                  Defiance, sacrifice, and hope.
+                </p>
+              </div>
+
+              <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-[min(100%,360px)] opacity-45 sm:h-32">
+                <div className="h-full w-full bg-[radial-gradient(circle_at_60%_30%,rgba(151,97,126,0.28),transparent_22%),linear-gradient(135deg,transparent_35%,rgba(143,76,104,0.25)_36%_50%,transparent_51%)]" />
+              </div>
+            </section>
+          </>
+        )}
       </section>
     </main>
   );

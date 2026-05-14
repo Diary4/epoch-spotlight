@@ -9,6 +9,7 @@ export default function HafsaKhanumDetail() {
       nameLine1="Hafsa"
       nameLine2="Khanum"
       role="Education Pioneer"
+      listIcon="flower"
       intro="A tireless advocate who widened access to learning for girls and treated schooling as the foundation of a stronger society."
       portraitSrc={detailPortrait}
       portraitAlt="Hafsa Khanum"

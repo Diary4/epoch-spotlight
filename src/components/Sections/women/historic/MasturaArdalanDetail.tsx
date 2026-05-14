@@ -10,6 +10,7 @@ export default function MasturaArdalanDetail() {
       nameLine1="Mastura"
       nameLine2="Ardalan"
       role="Poet and Historian"
+      listIcon="flower"
       intro="An early Kurdish writer whose poetry and historical writing preserved memory, identity, and the story of her time."
       portraitSrc={detailPortrait}
       portraitAlt="Mastura Ardalan"

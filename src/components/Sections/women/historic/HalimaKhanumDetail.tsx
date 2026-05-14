@@ -9,6 +9,7 @@ export default function HalimaKhanumDetail() {
       nameLine1="Halima"
       nameLine2="Khanum"
       role="Leader of the Bashqal Tribe"
+      listIcon="crown"
       intro="A Kurdish leader of memory who stood with her people through political upheaval, offering steadiness when the ground itself seemed to shift."
       portraitSrc={detailPortrait}
       portraitAlt="Halima Khanum"

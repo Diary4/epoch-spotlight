@@ -9,6 +9,7 @@ export default function AdilaKhanumDetail() {
       nameLine1="Adila"
       nameLine2="Khanum"
       role="Ruler of Halabja"
+      listIcon="crown"
       intro="A visionary leader who governed Halabja with justice and diplomacy, lifting trade, order, and the dignity of her people."
       portraitSrc={detailPortrait}
       portraitAlt="Adila Khanum"

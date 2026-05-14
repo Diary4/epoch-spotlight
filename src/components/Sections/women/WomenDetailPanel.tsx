@@ -1,27 +1,28 @@
 import React from "react";
 
-export type HistoricPanelCard = {
+export type WomenDetailPanelCard = {
   icon: string;
   title: string;
   text: string;
 };
 
-export type HistoricCharacterPanelProps = {
+export type WomenDetailPanelProps = {
   nameLine1: string;
   nameLine2: string;
   role: string;
   intro: string;
   portraitSrc: string;
   portraitAlt: string;
-  cards: HistoricPanelCard[];
+  cards: WomenDetailPanelCard[];
   quote: string;
+  /** Accepted for API parity with grid cards; layout matches Historic (no badge). */
   listIcon?: "crown" | "flower";
 };
 
-function HistoricInfoCard({ icon, title, text }: HistoricPanelCard) {
+function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
   return (
     <div
-      data-historic-fade="true"
+      data-women-detail-fade="true"
       className="flex min-h-[250px] flex-col items-center justify-start rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/75 px-5 py-8 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)]"
     >
       <div className="grid h-[78px] w-[78px] place-items-center rounded-full bg-[#5a223f] text-[38px] text-[#d7aa4e]">
@@ -34,18 +35,18 @@ function HistoricInfoCard({ icon, title, text }: HistoricPanelCard) {
         <span className="h-px flex-1 bg-[#d9bd81]" />
       </div>
 
-      <h3 className="mt-4 font-serif text-[30px] leading-none text-[#2d1436]">
-        {title}
-      </h3>
+      <h3 className="mt-4 font-serif text-[30px] leading-none text-[#2d1436]">{title}</h3>
 
-      <p className="mt-6 max-w-[210px] text-[18px] leading-8 text-[#3f3b42]">
-        {text}
-      </p>
+      <p className="mt-6 max-w-[210px] text-[18px] leading-8 text-[#3f3b42]">{text}</p>
     </div>
   );
 }
 
-export default function HistoricCharacterPanel({
+/**
+ * Knowledge / Resistance detail — same layout as {@link HistoricCharacterPanel};
+ * uses `data-women-detail-fade` so GSAP stays scoped away from Historic.
+ */
+export default function WomenDetailPanel({
   nameLine1,
   nameLine2,
   role,
@@ -54,20 +55,18 @@ export default function HistoricCharacterPanel({
   portraitAlt,
   cards,
   quote,
-}: HistoricCharacterPanelProps) {
+}: WomenDetailPanelProps) {
   return (
     <div className="flex min-h-screen w-full justify-center bg-[#f7efe3]">
       <div
-        data-historic-fade="true"
+        data-women-detail-fade="true"
         className="relative min-h-screen w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8]"
       >
-        {/* side ornaments */}
         <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
         <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
-        {/* hero */}
         <section className="relative z-10 grid min-h-[650px] grid-cols-1 items-start gap-4 sm:grid-cols-[0.8fr_1.2fr]">
-          <div className="relative z-20 pt-20" data-historic-fade="true">
+          <div className="relative z-20 pt-20" data-women-detail-fade="true">
             <h1 className="font-serif text-[clamp(70px,9vw,118px)] leading-[0.88] tracking-[-0.04em] text-[#2d1436]">
               {nameLine1}
               <br />
@@ -90,14 +89,12 @@ export default function HistoricCharacterPanel({
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <p className="mt-8 max-w-[330px] text-[20px] leading-9 text-[#3f3b42]">
-              {intro}
-            </p>
+            <p className="mt-8 max-w-[330px] text-[20px] leading-9 text-[#3f3b42]">{intro}</p>
           </div>
 
           <div
             className="relative flex min-h-[620px] items-start justify-center sm:justify-end"
-            data-historic-fade="true"
+            data-women-detail-fade="true"
           >
             <div className="absolute right-[7%] top-4 h-[560px] w-[430px] rounded-t-full bg-[#ead9bd]/55" />
 
@@ -111,23 +108,19 @@ export default function HistoricCharacterPanel({
           </div>
         </section>
 
-        {/* cards */}
         <section className="relative z-30 mt-[20vh] grid grid-cols-1 gap-5 sm:grid-cols-3">
           {cards.map((c) => (
-            <HistoricInfoCard key={c.title} {...c} />
+            <WomenDetailInfoCard key={c.title} {...c} />
           ))}
         </section>
 
-        {/* quote */}
         <section className="relative z-30 mx-auto mt-12 max-w-[760px] rounded-[18px] border border-[#d3ad65] bg-[#fff8ee]/75 p-5">
           <div className="relative rounded-[14px] border border-[#e2c98f] px-8 py-10 text-center">
             <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
               ❖
             </div>
 
-            <p className="font-serif text-[clamp(30px,4vw,44px)] italic leading-tight text-[#2d1436]">
-              {quote}
-            </p>
+            <p className="font-serif text-[clamp(30px,4vw,44px)] italic leading-tight text-[#2d1436]">{quote}</p>
 
             <div className="mx-auto mt-6 flex w-[220px] items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
