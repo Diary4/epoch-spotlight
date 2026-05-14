@@ -17,6 +17,8 @@ export type WomenDetailPanelProps = {
   quote: string;
   /** Accepted for API parity with grid cards; layout matches Historic (no badge). */
   listIcon?: "crown" | "flower";
+  /** Use `rtl` for Sorani / Arabic script detail copy. */
+  dir?: "rtl" | "ltr";
 };
 
 function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
@@ -55,9 +57,10 @@ export default function WomenDetailPanel({
   portraitAlt,
   cards,
   quote,
+  dir = "ltr",
 }: WomenDetailPanelProps) {
   return (
-    <div className="flex min-h-screen w-full justify-center bg-[#f7efe3]">
+    <div className="flex min-h-screen w-full justify-center bg-[#f7efe3]" dir={dir}>
       <div
         data-women-detail-fade="true"
         className="relative min-h-screen w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8]"
