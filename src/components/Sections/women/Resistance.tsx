@@ -3,6 +3,14 @@ import gsap from "gsap";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
+import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
+import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
+import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
+import { womenCardLabels, womenDir } from "@/components/Sections/women/womenLanguage";
+import {
+  getResistancePageCopy,
+  getResistanceWomen,
+} from "@/components/Sections/women/content/resistanceContent";
 
 import resistanceHero from "@/assets/images/women/w-2.webp";
 import imgQara from "@/assets/images/women/w-5.webp";
@@ -12,124 +20,17 @@ import imgLayal from "@/assets/images/women/w-9.webp";
 import imgMargaret from "@/assets/images/women/w-6.webp";
 import imgKhaja from "@/assets/images/women/w-4.webp";
 
-type ListIcon = "crown" | "flower";
-
-type ResistanceFigure = {
-  id: string;
-  name: string;
-  nameLine1: string;
-  nameLine2: string;
-  role: string;
-  teaser: string;
-  knownFor: string;
-  legacy: string;
-  placeEra: string;
-  quote: string;
-  image: string;
-  listIcon: ListIcon;
+type WomenResistancePageProps = WomenLanguageProps & {
+  onBack?: () => void;
 };
 
-const resistanceWomen: ResistanceFigure[] = [
-  {
-    id: "qara-fateme",
-    name: "Qara Fateme",
-    nameLine1: "Qara",
-    nameLine2: "Fateme",
-    role: "Military commander and tribal leader",
-    teaser:
-      "A rare military leader remembered for courage in battle and skill in diplomacy.",
-    knownFor: "Command of mounted fighters and negotiation with state powers.",
-    legacy: "Her name is tied to courage that stayed with her at every step.",
-    placeEra: "Marash and Istanbul • 19th century.",
-    quote: "Courage accompanied her in every step.",
-    image: imgQara,
-    listIcon: "crown",
-  },
-  {
-    id: "qadam-kher",
-    name: "Qadam Kher",
-    nameLine1: "Qadam",
-    nameLine2: "Kher",
-    role: "Resistance leader",
-    teaser:
-      "A Kurdish lioness who led her tribes’ uprising with unshakable resolve against Reza Shah’s forces.",
-    knownFor: "Leading tribal resistance against Reza Shah’s forces.",
-    legacy: "She held ground where others broke.",
-    placeEra: "Luristan • early 20th century.",
-    quote: "She resisted where others collapsed.",
-    image: imgQadam,
-    listIcon: "flower",
-  },
-  {
-    id: "shifa-gardi",
-    name: "Shifa Gardi",
-    nameLine1: "Shifa",
-    nameLine2: "Gardi",
-    role: "Field journalist",
-    teaser:
-      "A pioneering, fearless reporter who brought truthful news from the front lines of the war against ISIS to the world.",
-    knownFor: "Frontline coverage of the war against ISIS.",
-    legacy: "Her reporting widened the world’s view of Kurdish courage.",
-    placeEra: "Erbil and Mosul • 21st century.",
-    quote: "Her voice carried a message of courage.",
-    image: imgShifa,
-    listIcon: "flower",
-  },
-  {
-    id: "layal-qasim",
-    name: "Layal Qasim",
-    nameLine1: "Layal",
-    nameLine2: "Qasim",
-    role: "Symbol of resistance",
-    teaser:
-      "A young fighter whose sacrifice became a beacon of dignity and national awakening.",
-    knownFor: "Defiance and sacrifice in the face of oppression.",
-    legacy: "Remembered as a national symbol of youth and resolve.",
-    placeEra: "Khanaqin and Baghdad • 1970s.",
-    quote: "Kill me, and thousands of Kurds will rise.",
-    image: imgLayal,
-    listIcon: "flower",
-  },
-  {
-    id: "margaret-george-shilo",
-    name: "Margaret George Shilo",
-    nameLine1: "Margaret",
-    nameLine2: "George Shilo",
-    role: "First female Peshmerga",
-    teaser:
-      "A legendary Assyrian woman who fought for Kurdistan and became a symbol of coexistence and loyalty.",
-    knownFor: "The first woman to command in a Peshmerga military formation.",
-    legacy: "A living emblem of shared struggle for Kurdistan.",
-    placeEra: "Dohuk region • 1960s.",
-    quote: "She fought for a homeland greater than herself.",
-    image: imgMargaret,
-    listIcon: "crown",
-  },
-  {
-    id: "khaja-bawa",
-    name: "Khaja Bawa",
-    nameLine1: "Khaja",
-    nameLine2: "Bawa",
-    role: "Heroine of the 1991 uprising",
-    teaser:
-      "A courageous daughter of Erbil whose life was given during the city’s uprising for freedom.",
-    knownFor: "Leadership and bravery during the 1991 uprising in Erbil.",
-    legacy: "Her sacrifice is woven into Erbil’s memory of that spring.",
-    placeEra: "Erbil • 1991.",
-    quote: "Her courage shook a city.",
-    image: imgKhaja,
-    listIcon: "crown",
-  },
-];
-
-const quotes = [
-  "Kill me, and thousands of Kurds will rise.",
-  "Her voice carried a message of courage.",
-  "She fought for a homeland greater than herself.",
-];
-
-type WomenResistancePageProps = {
-  onBack?: () => void;
+const resistanceImages: Record<string, string> = {
+  "qara-fateme": imgQara,
+  "qadam-kher": imgQadam,
+  "shifa-gardi": imgShifa,
+  "layal-qasim": imgLayal,
+  "margaret-george-shilo": imgMargaret,
+  "khaja-bawa": imgKhaja,
 };
 
 function runResistanceListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
@@ -179,32 +80,56 @@ function runResistanceDetailIntro(sectionRef: React.RefObject<HTMLElement | null
   return () => ctx.revert();
 }
 
-export default function WomenResistancePage({ onBack }: WomenResistancePageProps) {
+export default function WomenResistancePage({
+  onBack,
+  lang: langProp,
+  languageLabel = "ENGLISH",
+  onLanguageChange,
+}: WomenResistancePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [lang, setLang] = React.useState<AppLangCode>(() => langProp ?? getAppLanguage());
 
+  React.useEffect(() => {
+    if (langProp) setLang(langProp);
+  }, [langProp]);
+
+  React.useEffect(() => {
+    setSelectedId(null);
+  }, [lang]);
+
+  const copy = getResistancePageCopy(lang);
+  const resistanceWomen = getResistanceWomen(lang);
   const selected = selectedId ? resistanceWomen.find((w) => w.id === selectedId) ?? null : null;
+  const dir = womenDir(lang);
+  const cardLabels = womenCardLabels[lang];
+
+  const handleLanguageChange = () => {
+    if (onLanguageChange) onLanguageChange();
+    else setLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
+  };
 
   React.useLayoutEffect(() => {
     const cleanup = selected
       ? runResistanceDetailIntro(sectionRef)
       : runResistanceListIntro(sectionRef);
     return cleanup;
-  }, [selectedId, selected]);
+  }, [selectedId, selected, lang]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
     else onBack?.();
   };
 
-  const detailCards = (w: ResistanceFigure) => [
-    { icon: "⚔", title: "Known For", text: w.knownFor },
-    { icon: "♛", title: "Legacy", text: w.legacy },
-    { icon: "♜", title: "Place & Era", text: w.placeEra },
+  const detailCards = (w: (typeof resistanceWomen)[number]) => [
+    { icon: "⚔", title: cardLabels.knownFor, text: w.knownFor },
+    { icon: "♛", title: cardLabels.legacy, text: w.legacy },
+    { icon: "♜", title: cardLabels.placeEra, text: w.placeEra },
   ];
 
   return (
     <main
+      dir={dir}
       className={`m-0 flex w-screen flex-col justify-start p-0 ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
@@ -215,11 +140,19 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
           selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
         }`}
       >
+        <WomenLanguageButton
+          lang={lang}
+          languageLabel={languageLabel}
+          onLanguageChange={handleLanguageChange}
+          fadeAttr="data-resist-fade"
+        />
+
         <button
           type="button"
           onClick={handleBack}
+          data-resist-fade="true"
           className="absolute left-4 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:left-8 sm:top-8 sm:h-14 sm:w-14"
-          aria-label={selectedId ? "Back to resistance list" : "Back to Women"}
+          aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7" />
         </button>
@@ -230,7 +163,7 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
             nameLine2={selected.nameLine2}
             role={selected.role}
             intro={selected.teaser}
-            portraitSrc={selected.image}
+            portraitSrc={resistanceImages[selected.id] ?? selected.id}
             portraitAlt={selected.name}
             cards={detailCards(selected)}
             quote={selected.quote}
@@ -243,12 +176,12 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
             <section className="relative z-10 grid min-h-0 grid-cols-1 items-center gap-8 px-5 pb-6 pt-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0 lg:px-10 lg:pb-0 lg:pt-10">
               <div data-resist-fade="true" className="relative z-20 lg:pt-6">
                 <p className="mb-3 font-serif text-sm font-semibold uppercase tracking-[0.2em] text-[#a75a69]">
-                  Part two
+                  {copy.partLabel}
                 </p>
                 <h1 className="font-serif text-[clamp(52px,12vw,88px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
-                  Women of
+                  {copy.heroTitle1}
                   <br />
-                  Resistance
+                  {copy.heroTitle2}
                 </h1>
 
                 <div className="my-6 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] lg:my-8">
@@ -258,12 +191,11 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
                 </div>
 
                 <h2 className="font-serif text-[clamp(24px,5vw,34px)] text-[#a75a69]">
-                  Voices of courage.
+                  {copy.heroSubtitle}
                 </h2>
 
                 <p className="mt-4 max-w-[400px] text-[clamp(17px,3.5vw,22px)] leading-[1.5] text-[#56505a] lg:mt-5 lg:text-[24px] lg:leading-[1.45]">
-                  Commanders, journalists, and young women who faced armies, dictators, and occupation—and
-                  helped write Kurdish resistance across the nineteenth century to today.
+                  {copy.heroIntro}
                 </p>
               </div>
 
@@ -290,7 +222,7 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
                 >
                   <div className="relative mx-auto h-[220px] w-full max-w-[280px] overflow-hidden rounded-[20px] sm:h-[260px] sm:max-w-none">
                     <img
-                      src={woman.image}
+                      src={resistanceImages[woman.id]}
                       alt={woman.name}
                       className="relative z-10 h-full w-full object-cover object-[center_20%]"
                     />
@@ -318,7 +250,7 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
             </section>
 
             <section className="relative z-20 mt-6 grid grid-cols-1 gap-5 px-5 md:grid-cols-3 md:gap-6 lg:px-10">
-              {quotes.map((text) => (
+              {copy.quotes.map((text) => (
                 <article
                   data-resist-card="true"
                   key={text}
@@ -352,11 +284,11 @@ export default function WomenResistancePage({ onBack }: WomenResistancePageProps
 
               <div className="min-w-0 sm:ml-12 lg:ml-20">
                 <h2 className="font-serif text-[clamp(28px,5vw,44px)] leading-none text-[#2c1736]">
-                  Legacy of courage
+                  {copy.legacyTitle}
                 </h2>
 
                 <p className="mt-3 font-serif text-[clamp(16px,3vw,28px)] text-[#a75a69] sm:mt-4">
-                  Defiance, sacrifice, and hope.
+                  {copy.legacySubtitle}
                 </p>
               </div>
 

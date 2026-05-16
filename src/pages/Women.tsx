@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ArrowRight,
-  Globe2,
   Sparkles,
 } from "lucide-react";
 import {
@@ -10,6 +9,9 @@ import {
   setAppLanguage,
   type AppLangCode,
 } from "@/lib/appLanguage";
+import { WOMEN_LANGUAGE_LABELS } from "@/components/Sections/women/womenLanguage";
+import { hubCopy } from "@/components/Sections/women/content/hubContent";
+import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
 import gsap from "gsap";
 import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
@@ -33,27 +35,15 @@ type LegacyPageProps = {
 };
 
 type LegacyCard = {
-  title: string;
+  id: "historic" | "knowledge" | "resistance" | "culture";
   imageSrc: string;
 };
 
 const legacyCards: LegacyCard[] = [
-  {
-    title: "Historic",
-    imageSrc: crownIcon,
-  },
-  {
-    title: "Knowledge",
-    imageSrc: bookIcon,
-  },
-  {
-    title: "Resistance",
-    imageSrc: handIcon,
-  },
-  {
-    title: "Culture",
-    imageSrc: guitarIcon,
-  },
+  { id: "historic", imageSrc: crownIcon },
+  { id: "knowledge", imageSrc: bookIcon },
+  { id: "resistance", imageSrc: handIcon },
+  { id: "culture", imageSrc: guitarIcon },
   // {
   //   title: "Identity",
   //   imageSrc: symbolIcon,
@@ -72,12 +62,8 @@ export default function LegacyPage({
     setLang(getAppLanguage());
   }, [langProp]);
 
-  const languageLabels: Record<LangCode, string> = {
-    en: "ENGLISH",
-    ku: "کوردی",
-    ar: "العربية",
-  };
-  const languageLabel = languageLabels[lang];
+  const languageLabel = WOMEN_LANGUAGE_LABELS[lang];
+  const copy = hubCopy[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   const handleLanguageChange = () => {
@@ -88,10 +74,9 @@ export default function LegacyPage({
     });
   };
 
-  const openCulture = () => {
-    const appLang = getAppLanguage();
-    setLang(appLang);
-    setActiveSection("culture");
+  const openSection = (section: "historic" | "knowledge" | "resistance" | "culture") => {
+    setLang(getAppLanguage());
+    setActiveSection(section);
   };
 
   // Re-run intro when returning from Knowledge / Culture / Resistance — the main
@@ -156,11 +141,25 @@ export default function LegacyPage({
   }, [activeSection]);
 
   if (activeSection === "historic") {
-    return <WomenHistoricPage onBack={() => setActiveSection(null)} />;
+    return (
+      <WomenHistoricPage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setActiveSection(null)}
+      />
+    );
   }
 
   if (activeSection === "knowledge") {
-    return <WomenKnowledgePage onBack={() => setActiveSection(null)} />;
+    return (
+      <WomenKnowledgePage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setActiveSection(null)}
+      />
+    );
   }
 
   if (activeSection === "culture") {
@@ -175,7 +174,14 @@ export default function LegacyPage({
   }
 
   if (activeSection === "resistance") {
-    return <WomenResistancePage onBack={() => setActiveSection(null)} />;
+    return (
+      <WomenResistancePage
+        lang={lang}
+        languageLabel={languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setActiveSection(null)}
+      />
+    );
   }
 
   return (
@@ -187,18 +193,13 @@ export default function LegacyPage({
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto bg-[#fcf7ef]"
       >
-        <button
-          data-legacy-fade="true"
-          type="button"
-          onClick={handleLanguageChange}
-          className={`absolute top-4 z-30 flex items-center gap-2 rounded-full border-2 border-[#d9b477] bg-white/80 px-4 py-2 font-serif text-sm font-semibold text-[#2c1337] shadow-sm backdrop-blur-sm transition hover:bg-white sm:top-8 sm:gap-3 sm:px-5 sm:py-2.5 sm:text-base ${
-            dir === "rtl" ? "left-4 sm:left-8" : "right-4 sm:right-8"
-          }`}
-          aria-label="Switch language"
-        >
-          <Globe2 className="h-5 w-5 shrink-0" />
-          {languageLabel}
-        </button>
+        <WomenLanguageButton
+          lang={lang}
+          languageLabel={languageLabel}
+          onLanguageChange={handleLanguageChange}
+          className="z-30"
+          fadeAttr="data-legacy-fade"
+        />
 
         {/* Hero full-bleed image */}
         <div
@@ -225,11 +226,11 @@ export default function LegacyPage({
             </div>
 
             <h1 className="font-serif text-[clamp(54px,16vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
-              The Women of Kurdistan
+              {copy.title}
             </h1>
 
-            <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
-              Leadership, knowledge, <br /> resistance, culture, and legacy.
+            <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
+              {copy.subtitle}
             </h2>
 
             <div className="my-6 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d] sm:my-9">
@@ -239,8 +240,7 @@ export default function LegacyPage({
             </div>
 
             <p className="max-w-[420px] text-[clamp(17px,4.2vw,20px)] leading-[1.65] text-[#353445] sm:leading-[1.75] drop-shadow-[0_1px_1px_rgba(252,247,239,0.9)]">
-              Kurdish women have shaped history through leadership,
-              learning, courage, and culture.
+              {copy.description}
             </p>
           </div>
         </section>
@@ -251,34 +251,21 @@ export default function LegacyPage({
             return (
               <button
                 data-legacy-card="true"
-                key={card.title}
+                key={card.id}
                 type="button"
-                onClick={() => {
-                  if (card.title === "Historic") {
-                    setActiveSection("historic");
-                  }
-                  if (card.title === "Knowledge") {
-                    setActiveSection("knowledge");
-                  }
-                  if (card.title === "Culture") {
-                    openCulture();
-                  }
-                  if (card.title === "Resistance") {
-                    setActiveSection("resistance");
-                  }
-                }}
+                onClick={() => openSection(card.id)}
                 className="flex h-[210px] flex-col rounded-[28px] border border-[#dfcdb7] bg-white/55 px-3 pb-3 pt-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[260px] sm:rounded-[40px] sm:px-4 sm:pb-4 sm:pt-5 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7"
               >
                 <div className="flex-1 flex items-center justify-center overflow-hidden">
                   <img
                     src={card.imageSrc}
-                    alt={card.title}
+                    alt={copy.cards[card.id]}
                     className="max-h-[84%] max-w-[84%] object-contain sm:max-h-full sm:max-w-full"
                   />
                 </div>
 
                 <p className="mt-auto text-center font-serif text-[clamp(16px,3.4vw,22px)] text-[#2c1736]">
-                  {card.title}
+                  {copy.cards[card.id]}
                 </p>
 
                 <div className="mt-1 flex items-center justify-center gap-2 text-[#b4864d] sm:mt-2">
@@ -315,11 +302,11 @@ export default function LegacyPage({
 
           <div className="relative z-10 max-w-2xl px-1 sm:px-0">
             <p className="font-serif text-[clamp(24px,5.3vw,36px)] leading-snug text-[#281234]">
-              Across generations,
+              {copy.quoteLine1}
               <br />
-              Kurdish women have remained
+              {copy.quoteLine2}
               <br />
-              voices of strength and continuity.
+              {copy.quoteLine3}
             </p>
           </div>
 
@@ -376,11 +363,11 @@ export default function LegacyPage({
 
     <div className="flex-1">
       <h3 className="font-serif text-[clamp(26px,6vw,34px)] leading-none">
-        Continue the Journey
+        {copy.journeyTitle}
       </h3>
 
       <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
-        Explore the stories behind each name.
+        {copy.journeyDesc}
       </p>
     </div>
 

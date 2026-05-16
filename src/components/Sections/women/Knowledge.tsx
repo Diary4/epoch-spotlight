@@ -3,86 +3,34 @@ import { ArrowLeft, Sparkles } from "lucide-react";
 import gsap from "gsap";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
+import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
+import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
+import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
+import { womenCardsToPanel, womenDir } from "@/components/Sections/women/womenLanguage";
+import {
+  getKnowledgePageCopy,
+  getKnowledgePeople,
+} from "@/components/Sections/women/content/knowledgeContent";
 
 import knowledgeHero from "@/assets/images/women/c-2.webp";
-import masturaImg from "@/assets/images/women/w-10.webp";
 import hapsaImg from "@/assets/images/women/w-11.webp";
-import masturaDetail from "@/assets/images/women/historic-detail/mastura-ardalan-detail.webp";
-import hapsaDetail from "@/assets/images/women/historic-detail/hafsa-khanum-detail.webp";
 import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicEducationImg from "@/assets/images/women/icons/k-1.webp";
 
-type WomenKnowledgePageProps = {
+type WomenKnowledgePageProps = WomenLanguageProps & {
   onBack?: () => void;
 };
 
-type KnowledgePerson = {
-  id: string;
-  name: string;
-  nameLine1: string;
-  nameLine2: string;
-  role: string;
-  imageSrc: string;
-  detailPortrait: string;
-  intro: string;
-  cards: { icon: string; title: string; text: string }[];
-  quote: string;
-  listIcon: "crown" | "flower";
+const personImages: Record<string, string> = {
+  "mastura-ardalan": knowledgeHero,
+  "hapsa-khan": hapsaImg,
 };
 
-const people: KnowledgePerson[] = [
-  {
-    id: "mastura-ardalan",
-    name: "Mastura Ardalan",
-    nameLine1: "Mastura",
-    nameLine2: "Ardalan",
-    role: "Historian & poet",
-    imageSrc: knowledgeHero,
-    detailPortrait: knowledgeHero,
-    intro:
-      "An early Kurdish writer whose poetry and historical writing preserved memory, identity, and the story of her time.",
-    cards: [
-      { icon: "✒", title: "Known For", text: "Writing poetry and history." },
-      { icon: "📖", title: "Legacy", text: "One of the earliest Kurdish women of letters." },
-      { icon: "⛩", title: "Place & Era", text: "Ardalan Principality • 19th century." },
-    ],
-    quote: "She wrote herself into history.",
-    listIcon: "flower",
-  },
-  {
-    id: "hapsa-khan",
-    name: "Hapsa Khan",
-    nameLine1: "Hapsa",
-    nameLine2: "Khan",
-    role: "Education pioneer",
-    imageSrc: knowledgeHero,
-    detailPortrait: hapsaImg,
-    intro:
-      "A tireless advocate who widened access to learning for girls and treated schooling as the foundation of a stronger society.",
-    cards: [
-      { icon: "✎", title: "Known For", text: "Founding and expanding programmes for girls’ education." },
-      { icon: "♜", title: "Legacy", text: "Demonstrated that literacy and schools reshape families and futures." },
-      { icon: "⛩", title: "Place & Era", text: "Sulaymaniyah • 20th century." },
-    ],
-    quote: "Every girl who studies opens a new door toward tomorrow.",
-    listIcon: "flower",
-  },
-];
-
-const topics = [
-  {
-    title: "Poetry",
-    imageSrc: topicPoetryImg,
-  },
-  {
-    title: "History",
-    imageSrc: topicHistoryImg,
-  },
-  {
-    title: "Girls’ Education",
-    imageSrc: topicEducationImg,
-  },
+const topicImages = [
+  { key: "poetry" as const, imageSrc: topicPoetryImg },
+  { key: "history" as const, imageSrc: topicHistoryImg },
+  { key: "education" as const, imageSrc: topicEducationImg },
 ];
 
 function runKnowledgeListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
@@ -124,16 +72,39 @@ function runKnowledgeDetailIntro(sectionRef: React.RefObject<HTMLElement | null>
   return () => ctx.revert();
 }
 
-export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) {
+export default function WomenKnowledgePage({
+  onBack,
+  lang: langProp,
+  languageLabel = "ENGLISH",
+  onLanguageChange,
+}: WomenKnowledgePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [lang, setLang] = React.useState<AppLangCode>(() => langProp ?? getAppLanguage());
 
+  React.useEffect(() => {
+    if (langProp) setLang(langProp);
+  }, [langProp]);
+
+  React.useEffect(() => {
+    setSelectedId(null);
+  }, [lang]);
+
+  const copy = getKnowledgePageCopy(lang);
+  const people = getKnowledgePeople(lang);
   const selected = selectedId ? people.find((p) => p.id === selectedId) ?? null : null;
+  const dir = womenDir(lang);
+  const heroConnector = lang === "en" ? "of" : lang === "ku" ? "ی" : "ـ";
+
+  const handleLanguageChange = () => {
+    if (onLanguageChange) onLanguageChange();
+    else setLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
+  };
 
   React.useLayoutEffect(() => {
     const cleanup = selected ? runKnowledgeDetailIntro(sectionRef) : runKnowledgeListIntro(sectionRef);
     return cleanup;
-  }, [selectedId, selected]);
+  }, [selectedId, selected, lang]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
@@ -142,6 +113,7 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
 
   return (
     <main
+      dir={dir}
       className={`m-0 flex w-screen flex-col justify-start p-0 ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
@@ -152,11 +124,19 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
           selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
         }`}
       >
+        <WomenLanguageButton
+          lang={lang}
+          languageLabel={languageLabel}
+          onLanguageChange={handleLanguageChange}
+          fadeAttr="data-knowledge-fade"
+        />
+
         <button
           type="button"
           onClick={handleBack}
+          data-knowledge-fade="true"
           className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-          aria-label={selectedId ? "Back to knowledge list" : "Back to Women"}
+          aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
@@ -167,9 +147,9 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
             nameLine2={selected.nameLine2}
             role={selected.role}
             intro={selected.intro}
-            portraitSrc={selected.detailPortrait}
+            portraitSrc={personImages[selected.id] ?? knowledgeHero}
             portraitAlt={selected.name}
-            cards={selected.cards}
+            cards={womenCardsToPanel(selected.cards, lang)}
             quote={selected.quote}
             listIcon={selected.listIcon}
           />
@@ -193,19 +173,19 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
             <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14">
               <div data-knowledge-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
                 <h1 className="font-serif text-[clamp(62px,15vw,110px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
-                  Women
+                  {copy.heroTitle1}
                   <br />
                   <span className="inline-flex items-center gap-4 text-[0.48em] leading-none">
                     <span className="h-px w-20 bg-[#d4b98f]" />
-                    of
+                    {heroConnector}
                     <span className="h-px w-20 bg-[#d4b98f]" />
                   </span>
                   <br />
-                  Knowledge
+                  {copy.heroTitle2}
                 </h1>
 
                 <h2 className="mt-5 font-serif text-[clamp(28px,6vw,42px)] font-light text-[#b65f71]">
-                  Writers & educators.
+                  {copy.heroSubtitle}
                 </h2>
 
                 <div className="my-6 flex w-full max-w-[300px] items-center gap-3 text-[#b4864d]">
@@ -215,7 +195,7 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
                 </div>
 
                 <p className="max-w-[400px] text-[clamp(17px,4vw,21px)] leading-[1.65] text-[#353445]">
-                  Voices of learning, literature, and education.
+                  {copy.heroIntro}
                 </p>
               </div>
             </section>
@@ -230,7 +210,7 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
                   className="flex min-h-[430px] cursor-pointer flex-col items-center justify-end rounded-[28px] border border-[#e4d5c3] bg-white/65 px-5 pb-8 pt-6 text-center shadow-[0_8px_24px_rgba(76,45,55,0.1)] transition hover:border-[#d8b979]"
                 >
                   <img
-                    src={person.imageSrc}
+                    src={personImages[person.id] ?? knowledgeHero}
                     alt={person.name}
                     className="mb-4 h-[270px] w-full object-contain"
                   />
@@ -253,15 +233,21 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
             </section>
 
             <section className="relative z-20 mt-5 grid grid-cols-1 gap-4 px-4 py-1 sm:grid-cols-3 sm:px-8 lg:px-14">
-              {topics.map((topic) => (
+              {topicImages.map((topic) => (
                 <article
                   data-knowledge-fade="true"
-                  key={topic.title}
+                  key={topic.key}
                   className="flex min-h-[180px] flex-col items-center justify-center rounded-[22px] border border-[#e4d5c3] bg-white/65 p-5 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)]"
                 >
-                  <img src={topic.imageSrc} alt={topic.title} className="h-[200px] w-[200px] object-contain" />
+                  <img
+                    src={topic.imageSrc}
+                    alt={copy.topics[topic.key]}
+                    className="h-[200px] w-[200px] object-contain"
+                  />
 
-                  <h4 className="mt-4 font-serif text-[clamp(24px,4vw,32px)] text-[#43223d]">{topic.title}</h4>
+                  <h4 className="mt-4 font-serif text-[clamp(24px,4vw,32px)] text-[#43223d]">
+                    {copy.topics[topic.key]}
+                  </h4>
 
                   <div className="mt-3 flex w-24 items-center gap-2 text-[#b4864d]">
                     <span className="h-px flex-1 bg-[#d4b98f]" />
@@ -277,10 +263,10 @@ export default function WomenKnowledgePage({ onBack }: WomenKnowledgePageProps) 
               className="relative z-20 mx-4 mb-4 mt-5 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#e4d5c3] bg-white/65 px-5 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)] sm:mx-8 lg:mx-14"
             >
               <h3 className="font-serif text-[clamp(30px,5vw,42px)] leading-none text-[#43223d]">
-                ✤ Their Impact
+                {copy.impactTitle}
               </h3>
 
-              <p className="mt-3 text-[clamp(16px,3vw,21px)] text-[#353445]">They opened doors through knowledge.</p>
+              <p className="mt-3 text-[clamp(16px,3vw,21px)] text-[#353445]">{copy.impactText}</p>
             </section>
           </>
         )}

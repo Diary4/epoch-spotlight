@@ -10,79 +10,29 @@ import hafsaImg from "@/assets/images/women/w-11.webp";
 import khanzadImg from "@/assets/images/women/w-6.webp";
 import halimaImg from "@/assets/images/women/w-4.webp";
 
-import MasturaArdalanDetail from "./historic/MasturaArdalanDetail";
-import AdilaKhanumDetail from "./historic/AdilaKhanumDetail";
-import HafsaKhanumDetail from "./historic/HafsaKhanumDetail";
-import KhanzadaKhanumDetail from "./historic/KhanzadaKhanumDetail";
-import HalimaKhanumDetail from "./historic/HalimaKhanumDetail";
+import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
+import HistoricCharacterPanel from "./historic/HistoricCharacterPanel";
+import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
+import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
+import { womenDir } from "@/components/Sections/women/womenLanguage";
+import {
+  getHistoricDetail,
+  getHistoricPageCopy,
+  getHistoricWomen,
+  historicDetailPortraits,
+  historicDetailToPanelCards,
+} from "@/components/Sections/women/content/historicContent";
 
-type HistoricPageProps = {
+type HistoricPageProps = WomenLanguageProps & {
   onBack?: () => void;
 };
 
-type HistoricFigure = {
-  id: string;
-  name: string;
-  role: string;
-  teaser: string;
-  imageSrc: string;
-  icon: "crown" | "flower";
-};
-
-const historicWomen: HistoricFigure[] = [
-  {
-    id: "mastura-ardalan",
-    name: "Mastura Ardalan",
-    role: "Poet and historian",
-    teaser:
-      "A leading Kurdish writer who preserved identity and memory through poetry and history.",
-    imageSrc: masturaImg,
-    icon: "flower",
-  },
-  {
-    id: "adela-khanum",
-    name: "Adila Khanum",
-    role: "Ruler of Halabja",
-    teaser:
-      "A visionary governor remembered for justice, diplomacy, and rebuilding her city.",
-    imageSrc: adelaImg,
-    icon: "crown",
-  },
-  {
-    id: "hafsa-khanum",
-    name: "Hafsa Khanum",
-    role: "Education pioneer",
-    teaser:
-      "Opened the door of learning to girls and showed that education is the foundation of national renewal.",
-    imageSrc: hafsaImg,
-    icon: "flower",
-  },
-  {
-    id: "khanzada-khanum",
-    name: "Khanzada Khanum",
-    role: "Ruler of Soran",
-    teaser:
-      "A capable mir who defended her emirate with strategic skill, courage, and wide-ranging authority.",
-    imageSrc: khanzadImg,
-    icon: "flower",
-  },
-  {
-    id: "halima-khanum",
-    name: "Halima Khanum",
-    role: "Leader of the Bashqal tribe",
-    teaser:
-      "A historical Kurdish leader who stood by her people with steady judgment in times of change.",
-    imageSrc: halimaImg,
-    icon: "crown",
-  },
-];
-
-const historicDetailById: Record<string, React.ComponentType> = {
-  "mastura-ardalan": MasturaArdalanDetail,
-  "adela-khanum": AdilaKhanumDetail,
-  "hafsa-khanum": HafsaKhanumDetail,
-  "khanzada-khanum": KhanzadaKhanumDetail,
-  "halima-khanum": HalimaKhanumDetail,
+const historicImages: Record<string, string> = {
+  "mastura-ardalan": masturaImg,
+  "adela-khanum": adelaImg,
+  "hafsa-khanum": hafsaImg,
+  "khanzada-khanum": khanzadImg,
+  "halima-khanum": halimaImg,
 };
 
 function runListIntroAnimation(sectionRef: React.RefObject<HTMLElement | null>) {
@@ -123,18 +73,40 @@ function runHistoricDetailIntroAnimation(sectionRef: React.RefObject<HTMLElement
   return () => ctx.revert();
 }
 
-export default function WomenHistoricPage({ onBack }: HistoricPageProps) {
+export default function WomenHistoricPage({
+  onBack,
+  lang: langProp,
+  languageLabel = "ENGLISH",
+  onLanguageChange,
+}: HistoricPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [lang, setLang] = React.useState<AppLangCode>(() => langProp ?? getAppLanguage());
 
-  const DetailComponent = selectedId ? historicDetailById[selectedId] : null;
+  React.useEffect(() => {
+    if (langProp) setLang(langProp);
+  }, [langProp]);
+
+  React.useEffect(() => {
+    setSelectedId(null);
+  }, [lang]);
+
+  const copy = getHistoricPageCopy(lang);
+  const historicWomen = getHistoricWomen(lang);
+  const detail = selectedId ? getHistoricDetail(selectedId, lang) : null;
+  const dir = womenDir(lang);
+
+  const handleLanguageChange = () => {
+    if (onLanguageChange) onLanguageChange();
+    else setLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
+  };
 
   React.useLayoutEffect(() => {
-    const cleanup = DetailComponent
+    const cleanup = detail
       ? runHistoricDetailIntroAnimation(sectionRef)
       : runListIntroAnimation(sectionRef);
     return cleanup;
-  }, [selectedId, DetailComponent]);
+  }, [selectedId, detail, lang]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
@@ -143,6 +115,7 @@ export default function WomenHistoricPage({ onBack }: HistoricPageProps) {
 
   return (
     <main
+      dir={dir}
       className={`m-0 flex w-screen flex-col justify-start p-0 ${
         selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
@@ -153,17 +126,35 @@ export default function WomenHistoricPage({ onBack }: HistoricPageProps) {
           selectedId ? "bg-transparent" : "bg-[#fcf7ef]"
         }`}
       >
+        <WomenLanguageButton
+          lang={lang}
+          languageLabel={languageLabel}
+          onLanguageChange={handleLanguageChange}
+          fadeAttr="data-hist-fade"
+        />
+
         <button
           type="button"
           onClick={handleBack}
+          data-hist-fade="true"
           className="absolute left-4 top-4 z-40 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d8bd83] bg-[#fbf4e8]/95 text-[#2d1436] shadow-md transition hover:bg-white sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-          aria-label={selectedId ? "Back to list" : "Back to Women"}
+          aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
 
-        {DetailComponent ? (
-          <DetailComponent />
+        {detail && selectedId ? (
+          <HistoricCharacterPanel
+            nameLine1={detail.nameLine1}
+            nameLine2={detail.nameLine2}
+            role={detail.role}
+            intro={detail.intro}
+            portraitSrc={historicDetailPortraits[selectedId]}
+            portraitAlt={detail.portraitAlt}
+            cards={historicDetailToPanelCards(detail, lang)}
+            quote={detail.quote}
+            listIcon={detail.listIcon}
+          />
         ) : (
           <>
             <div
@@ -190,9 +181,9 @@ export default function WomenHistoricPage({ onBack }: HistoricPageProps) {
                 </div>
 
                 <h1 className="font-serif text-[clamp(58px,15vw,112px)] font-medium leading-[0.88] tracking-tight text-[#48263f]">
-                  Historic
+                  {copy.heroTitle1}
                   <br />
-                  Women
+                  {copy.heroTitle2}
                 </h1>
 
                 <div className="my-6 flex w-full max-w-[260px] items-center gap-3 text-[#b4864d] sm:my-7">
@@ -201,15 +192,12 @@ export default function WomenHistoricPage({ onBack }: HistoricPageProps) {
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="font-serif text-[clamp(26px,6vw,38px)] font-light italic leading-tight text-[#b65f71]">
-                  Poets, rulers, teachers,
-                  <br />
-                  and tribal leaders.
+                <h2 className="font-serif text-[clamp(26px,6vw,38px)] font-light italic leading-tight text-[#b65f71] whitespace-pre-line">
+                  {copy.heroSubtitle}
                 </h2>
 
                 <p className="mt-7 max-w-[410px] text-[clamp(16px,4vw,19px)] leading-[1.7] text-[#353445]">
-                  Figures from Kurdish history who led, wrote, taught, and defended their communities—each
-                  remembered for a distinct legacy.
+                  {copy.heroIntro}
                 </p>
               </div>
             </section>
@@ -228,7 +216,7 @@ export default function WomenHistoricPage({ onBack }: HistoricPageProps) {
                     <div className="flex items-center justify-center">
                       <div className="h-[260px] w-[220px] overflow-hidden rounded-full border-2 border-[#d8b979] bg-[#d8a6ae]/30 p-1 sm:h-[360px] sm:w-[240px]">
                         <img
-                          src={woman.imageSrc}
+                          src={historicImages[woman.id]}
                           alt=""
                           className="h-full w-full rounded-full object-cover"
                         />
