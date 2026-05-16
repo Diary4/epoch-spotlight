@@ -369,7 +369,7 @@ export default function IntroductionPage({
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition hover:bg-white"
+            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
             aria-label={c.back}
           >
             <ArrowLeft className="h-7 w-7" />
@@ -380,7 +380,7 @@ export default function IntroductionPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-white"
+            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
           >
             <Globe2 className="h-5 w-5" />
             {languageLabel}
@@ -434,7 +434,7 @@ export default function IntroductionPage({
                   return (
                     <article
                       key={card.id}
-                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(69,43,14,0.25)]"
+                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
                     >
                       <div
                         className="relative h-[120px] w-full"

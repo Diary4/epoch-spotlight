@@ -490,7 +490,7 @@ export default function HistoryPage({
                   return (
                     <article
                       key={card.id}
-                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(69,43,14,0.25)]"
+                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
                     >
                       <div
                         className="relative h-[120px] w-full"
