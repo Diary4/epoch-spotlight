@@ -119,7 +119,7 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
   ku: [
     {
       id: "mastura-ardalan",
-      name: "مەستوورە ئەردەڵان",
+      name: "مەستورەی ئەردەڵان",
       role: "شاعیر و مێژوونووس",
       teaser:
         "نووسەرێکی پێشەنگی کوردی کە ناسنامە و یادەوەری لە ڕێگەی شیعر و مێژووەوە پاراست.",
@@ -276,12 +276,12 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
   },
   ku: {
     "mastura-ardalan": {
-      nameLine1: "مەستوورە",
+      nameLine1: "مەستورەی",
       nameLine2: "ئەردەڵان",
       role: "شاعیر و مێژوونووس",
       intro:
         "نووسەرێکی کوردی سەرەتایی کە شیعر و نووسینی مێژوویی یادەوەری، ناسنامە، و چیرۆکی کاتی خۆی پاراست.",
-      portraitAlt: "مەستوورە ئەردەڵان",
+      portraitAlt: "مەستورەی ئەردەڵان",
       listIcon: "flower",
       cards: [
         { icon: "✒", text: "نووسینی شیعر و مێژوو." },

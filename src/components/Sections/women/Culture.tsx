@@ -193,7 +193,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
     },
     {
       id: "hana-malan",
-      name: "هانا ماالن",
+      name: "هانا مالان",
       nameLine1: "هانا",
       nameLine2: "ماالن",
       role: "شاعیری فۆلکلۆر",

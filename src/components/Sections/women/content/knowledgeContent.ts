@@ -98,8 +98,8 @@ const peopleByLang: Record<WomenLangCode, KnowledgePersonCopy[]> = {
   ku: [
     {
       id: "mastura-ardalan",
-      name: "مەستوورە ئەردەڵان",
-      nameLine1: "مەستوورە",
+      name: "مەستورەی ئەردەڵان",
+      nameLine1: "مەستورەی",
       nameLine2: "ئەردەڵان",
       role: "مێژوونووس و شاعیر",
       intro:

@@ -88,11 +88,8 @@ export default function WomenResistancePage({
 }: WomenResistancePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
-  const [lang, setLang] = React.useState<AppLangCode>(() => langProp ?? getAppLanguage());
-
-  React.useEffect(() => {
-    if (langProp) setLang(langProp);
-  }, [langProp]);
+  const [internalLang, setInternalLang] = React.useState<AppLangCode>(() => getAppLanguage());
+  const lang = langProp ?? internalLang;
 
   const copy = getResistancePageCopy(lang);
   const resistanceWomen = getResistanceWomen(lang);
@@ -101,8 +98,11 @@ export default function WomenResistancePage({
   const cardLabels = womenCardLabels[lang];
 
   const handleLanguageChange = () => {
-    if (onLanguageChange) onLanguageChange();
-    else setLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
+    if (onLanguageChange) {
+      onLanguageChange();
+      return;
+    }
+    setInternalLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
   };
 
   React.useLayoutEffect(() => {
@@ -140,21 +140,22 @@ export default function WomenResistancePage({
           lang={lang}
           languageLabel={languageLabel}
           onLanguageChange={handleLanguageChange}
-          fadeAttr="data-resist-fade"
         />
 
         <button
           type="button"
           onClick={handleBack}
-          data-resist-fade="true"
-          className="absolute left-4 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:left-8 sm:top-8 sm:h-14 sm:w-14"
+          className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
+            dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
+          }`}
           aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7" />
+          <ArrowLeft className={`h-6 w-6 sm:h-7 sm:w-7 ${dir === "rtl" ? "rotate-180" : ""}`} />
         </button>
 
         {selected ? (
           <WomenDetailPanel
+            dir={dir}
             nameLine1={selected.nameLine1}
             nameLine2={selected.nameLine2}
             role={selected.role}
