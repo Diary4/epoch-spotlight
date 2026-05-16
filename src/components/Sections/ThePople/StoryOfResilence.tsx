@@ -4,8 +4,7 @@ import { gsap } from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg1 from "@/assets/mainImages/story-1.webp";
-import bg2 from "@/assets/mainImages/story-2.webp";
+import bg1 from "@/assets/mainImages/story-3.webp";
 
 const cards = [
   {
@@ -76,14 +75,13 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
         <div className="pattern-layer pointer-events-none absolute right-0 top-0 h-full w-28 opacity-20 [background-image:linear-gradient(45deg,#d5b372_1px,transparent_1px),linear-gradient(-45deg,#d5b372_1px,transparent_1px)] [background-size:24px_24px]" />
 
         {/* Replace this image later with your generated resilience background */}
-        <div className="hero-image pointer-events-none absolute right-0 top-[clamp(130px,11vh,210px)] h-[clamp(780px,67vh,1160px)] w-[clamp(520px,52vw,900px)]">
+        <div className="hero-image pointer-events-none absolute right-0 top-[clamp(130px,11vh,210px)] h-[clamp(780px,67vh,1160px)] w-full">
           <img
             src={bg1}
             alt="Resilience background placeholder"
             className="absolute inset-0 h-full w-full object-cover opacity-80 [mask-image:radial-gradient(circle_at_62%_42%,black_0%,black_54%,transparent_82%)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/18 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fff7ec]" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-b from-transparent via-[#fff7ec]/55 to-[#fff7ec]" />
         </div>
 
         {/* Text */}
@@ -107,17 +105,10 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
           </p>
         </section>
 
-        {/* Decorative culture strip placeholder */}
-        <div className="culture-strip relative z-10 mt-[clamp(18px,2.5vh,36px)] h-[clamp(130px,15vh,250px)] max-w-[min(62vw,860px)] opacity-90">
-          <img
-            src={bg2}
-            alt="culture placeholder"
-            className="h-full w-full object-cover [mask-image:linear-gradient(to_right,black_0%,black_70%,transparent_100%)]"
-          />
-        </div>
+
 
         {/* Cards */}
-        <section className="relative z-20 mt-[clamp(20px,4.2vh,70px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(20px,2.8vh,42px)]">
+        <section className="relative z-20 mt-[clamp(20px,4.2vh,70px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(20px,2.8vh,42px)] px-4 sm:px-8 lg:px-14">
           {localizedCards.map((card) => {
             const Icon = card.icon;
             return (

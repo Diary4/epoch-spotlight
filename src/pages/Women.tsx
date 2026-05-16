@@ -54,11 +54,24 @@ const legacyCards: LegacyCard[] = [
 ];
 
 export default function LegacyPage({
-  lang = "en",
+  lang: langProp = "en",
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [activeSection, setActiveSection] = React.useState<"historic" | "knowledge" | "resistance" | "culture" | null>(null);
+  const [lang, setLang] = React.useState<LangCode>(langProp);
+
+  React.useEffect(() => {
+    setLang(langProp);
+  }, [langProp]);
+
+  const languageLabels: Record<LangCode, string> = {
+    en: "ENGLISH",
+    ku: "کوردی",
+    ar: "العربية",
+  };
+  const languageLabel = languageLabels[lang];
+  const toggleLang = () => setLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
 
   // Re-run intro when returning from Knowledge / Culture / Resistance — the main
   // section unmounts while a subsection is open, so [] would never re-attach GSAP.
@@ -130,7 +143,14 @@ export default function LegacyPage({
   }
 
   if (activeSection === "culture") {
-    return <WomenCultureMemoryPage onBack={() => setActiveSection(null)} />;
+    return (
+      <WomenCultureMemoryPage
+        lang={lang}
+        onBack={() => setActiveSection(null)}
+        languageLabel={languageLabel}
+        onLanguageChange={toggleLang}
+      />
+    );
   }
 
   if (activeSection === "resistance") {
