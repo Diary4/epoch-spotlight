@@ -1,5 +1,4 @@
 import React from "react";
-import gsap from "gsap";
 import {
   ArrowLeft,
   ChevronRight,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-7.webp";
+import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import placeImg from "@/assets/mainImages/story-1.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -97,36 +97,34 @@ export default function DiversityMapPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set("[data-map-animate='true']", { autoAlpha: 0, y: 24 });
-      gsap.to("[data-map-animate='true']", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
-        ease: "power2.out",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useReligionPageAnimation(
+    sectionRef,
+    {
+      hero: "[data-map-hero='true']",
+      animate: "[data-map-animate='true']",
+      controls: "[data-map-controls='true']",
+    },
+    [lang],
+  );
 
   return (
     <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] bg-top bg-no-repeat px-7 py-9 sm:px-10 lg:px-16"
-        style={{ backgroundImage: `url(${bg})`, backgroundSize: "100% 100%" }}
+        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
+        <div
+          data-map-hero="true"
+          className="absolute inset-0 bg-top bg-no-repeat"
+          style={{ backgroundImage: `url(${bg})`, backgroundSize: "100% 100%" }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/88 to-[#f4dfbb]/55" />
         {/* <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" /> */}
         {/* <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}
 
         <button
           type="button"
+          data-map-controls="true"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
@@ -136,6 +134,7 @@ export default function DiversityMapPage({
 
         <button
           type="button"
+          data-map-controls="true"
           onClick={onLanguageChange}
           className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
         >
@@ -171,7 +170,7 @@ export default function DiversityMapPage({
             </p>
           </header>
 
-          <section data-map-animate="true" className="relative mx-auto mt-7 h-[720px] max-w-[960px]">
+          <section className="relative mx-auto mt-7 h-[720px] max-w-[960px]">
             <Compass className="absolute right-[-55px] top-10 z-20 h-32 w-32 text-[#b8862e]/70" strokeWidth={1.2} />
 
             <div className="relative h-full w-full drop-shadow-[0_18px_26px_rgba(77,46,14,0.28)]">
@@ -198,6 +197,7 @@ export default function DiversityMapPage({
                 return (
                   <article
                     key={place.title}
+                    data-map-animate="true"
                     className="absolute z-30 flex -translate-x-1/2 -translate-y-1/2 items-center"
                     style={{ left: place.x, top: place.y }}
                   >
@@ -226,13 +226,14 @@ export default function DiversityMapPage({
             </div>
           </section>
 
-          <section data-map-animate="true" className="mx-auto mt-4 grid max-w-[960px] grid-cols-1 gap-6 sm:grid-cols-3">
+          <section className="mx-auto mt-4 grid max-w-[960px] grid-cols-1 gap-6 sm:grid-cols-3">
             {localizedInfoCards.map((card) => {
               const Icon = card.icon;
 
               return (
                 <article
                   key={card.title}
+                  data-map-animate="true"
                   className="min-h-[255px] rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff6e1]/92 px-7 py-7 shadow-[0_12px_28px_rgba(75,45,12,0.13)] backdrop-blur-md"
                 >
                   <div className="mb-5 grid h-16 w-16 place-items-center rounded-full bg-gradient-to-b from-[#dba437] to-[#b27612] text-white">

@@ -1,5 +1,4 @@
 import React from "react";
-import gsap from "gsap";
 import {
   ArrowLeft,
   ChevronRight,
@@ -10,6 +9,7 @@ import {
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
 import bg from "@/assets/images/religions/r-4.webp";
+import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import lalish from "@/assets/mainImages/story-1.webp";
 import peacock from "@/assets/mainImages/story-2.webp";
 import festival from "@/assets/mainImages/2005.webp";
@@ -137,40 +137,15 @@ export default function YazidismPage({
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set("[data-yazidi-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
-      gsap.set("[data-yazidi-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
-
-      const tl = gsap.timeline();
-      tl.to("[data-yazidi-hero='true']", {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-      }).to(
-        "[data-yazidi-animate='true']",
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.07,
-          ease: "power2.out",
-        },
-        "-=0.2",
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [lang]);
+  useReligionPageAnimation(
+    sectionRef,
+    {
+      hero: "[data-yazidi-hero='true']",
+      animate: "[data-yazidi-animate='true']",
+      controls: "[data-yazidi-controls='true']",
+    },
+    [lang],
+  );
 
   if (subPage === "otherFaith") {
     return (
@@ -208,6 +183,7 @@ export default function YazidismPage({
 
         <button
           type="button"
+          data-yazidi-controls="true"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label={c.back}
@@ -217,6 +193,7 @@ export default function YazidismPage({
 
         <button
           type="button"
+          data-yazidi-controls="true"
           onClick={onLanguageChange}
           className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
         >
@@ -248,13 +225,11 @@ export default function YazidismPage({
 
           <div className="h-[560px]" />
 
-          <section
-            data-yazidi-animate="true"
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2"
-          >
+          <section className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {c.cards.map((card, i) => (
               <article
                 key={card.title}
+                data-yazidi-animate="true"
                 className="grid min-h-[255px] grid-cols-[135px_1fr] gap-5 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-6 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
               >
                 <div className="h-[135px] w-[135px] overflow-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb]">

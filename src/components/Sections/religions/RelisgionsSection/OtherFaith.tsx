@@ -1,5 +1,4 @@
 import React from "react";
-import gsap from "gsap";
 import {
   ArrowLeft,
   ChevronRight,
@@ -15,6 +14,7 @@ import zoroastrianism from "@/assets/mainImages/story-2.webp";
 import judaism from "@/assets/mainImages/2005.webp";
 import bahai from "@/assets/images/bg-2.webp";
 import mandaean from "@/assets/images/kurdistan.webp";
+import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 
@@ -105,26 +105,15 @@ export default function OtherFaithTraditionsPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set("[data-faith-animate='true']", {
-        autoAlpha: 0,
-        y: 22,
-      });
-
-      gsap.to("[data-faith-animate='true']", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
-        ease: "power2.out",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useReligionPageAnimation(
+    sectionRef,
+    {
+      hero: "[data-faith-hero='true']",
+      animate: "[data-faith-animate='true']",
+      controls: "[data-faith-controls='true']",
+    },
+    [lang],
+  );
 
   return (
     <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
@@ -132,12 +121,16 @@ export default function OtherFaithTraditionsPage({
         ref={sectionRef}
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#fff7e8_0%,#fbf1df_48%,#f3dfbd_100%)]" />
+        <div
+          data-faith-hero="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top,#fff7e8_0%,#fbf1df_48%,#f3dfbd_100%)]"
+        />
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
 
         <button
           type="button"
+          data-faith-controls="true"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
@@ -147,6 +140,7 @@ export default function OtherFaithTraditionsPage({
 
         <button
           type="button"
+          data-faith-controls="true"
           onClick={onLanguageChange}
           className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
         >
@@ -190,16 +184,14 @@ export default function OtherFaithTraditionsPage({
             </p>
           </header>
 
-          <section
-            data-faith-animate="true"
-            className="mt-9 space-y-5"
-          >
+          <section className="mt-9 space-y-5">
             {localizedFaiths.map((faith) => {
               const Icon = faith.icon;
 
               return (
                 <article
                   key={faith.title}
+                  data-faith-animate="true"
                   className="relative grid min-h-[210px] overflow-hidden rounded-[20px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm lg:grid-cols-[420px_1fr]"
                 >
                   <div className="relative z-10 flex gap-6 px-7 py-6">

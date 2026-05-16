@@ -1,5 +1,4 @@
 import React from "react";
-import gsap from "gsap";
 import {
   ArrowLeft,
   Church,
@@ -10,6 +9,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-5.webp";
+import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -143,26 +143,15 @@ export default function ChristianityPage({
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set("[data-christian-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
-
-      gsap.to("[data-christian-animate='true']", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        stagger: 0.07,
-        ease: "power2.out",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [lang]);
+  useReligionPageAnimation(
+    sectionRef,
+    {
+      hero: "[data-christian-hero='true']",
+      animate: "[data-christian-animate='true']",
+      controls: "[data-christian-controls='true']",
+    },
+    [lang],
+  );
 
   return (
     <main
@@ -174,6 +163,7 @@ export default function ChristianityPage({
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <img
+          data-christian-hero="true"
           src={bg}
           alt=""
           className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
@@ -188,6 +178,7 @@ export default function ChristianityPage({
 
         <button
           type="button"
+          data-christian-controls="true"
           onClick={onBack}
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label={c.back}
@@ -197,6 +188,7 @@ export default function ChristianityPage({
 
         <button
           type="button"
+          data-christian-controls="true"
           onClick={onLanguageChange}
           className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
         >
@@ -230,16 +222,14 @@ export default function ChristianityPage({
 
           <div className="h-[520px]" />
 
-          <section
-            data-christian-animate="true"
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
-          >
+          <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
                 <article
                   key={card.title}
+                  data-christian-animate="true"
                   className="min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm"
                 >
                   <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner">
