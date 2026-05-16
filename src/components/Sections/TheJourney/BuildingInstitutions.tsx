@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
+import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -41,6 +42,7 @@ type BuildingInstitutionsPageProps = {
 };
 
 export default function BuildingInstitutionsPage({ lang = "en", onBack }: BuildingInstitutionsPageProps) {
+  const rootRef = useJourneyDetailAnimation([lang]);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.institutions ?? data?.people?.sections?.institutions ?? {};
@@ -50,12 +52,12 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
     text: section.cards?.[i]?.description ?? row.text,
   }));
   return (
-    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb] px-[clamp(1.2rem,4vw,4rem)] py-[clamp(1.2rem,3.6vh,3.8rem)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="journey-detail-back absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Journey"
         >
           <ArrowLeft size={32} />
@@ -68,7 +70,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
           <img
             src={bg}
             alt="Institutions placeholder"
-            className="h-full w-full object-cover object-right-top"
+            className="journey-detail-hero h-full w-full object-cover object-right-top"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
@@ -76,7 +78,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
 
         <div className="relative z-10 flex flex-1 flex-col">
           {/* Hero text */}
-          <section className="max-w-[min(46vw,740px)] pt-[clamp(2.5rem,7vh,6rem)]">
+          <section className="journey-detail-intro max-w-[min(46vw,740px)] pt-[clamp(2.5rem,7vh,6rem)]">
             <h1 className="font-serif text-[clamp(3.9rem,7.2vw,6.8rem)] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
               {(section.title ?? "Building Institutions").split(" ").slice(0, -1).join(" ")}<br />{(section.title ?? "Building Institutions").split(" ").slice(-1)}
             </h1>
@@ -123,7 +125,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
               return (
                 <article
                   key={row.title}
-                  className="relative flex min-h-[clamp(9.2rem,15.8vh,13.2rem)] items-center rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1vw,2.5rem)] py-[clamp(0.9rem,1.9vh,1.8rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
+                  className="journey-detail-card relative flex min-h-[clamp(9.2rem,15.8vh,13.2rem)] items-center rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1vw,2.5rem)] py-[clamp(0.9rem,1.9vh,1.8rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                 >
                   <div className="flex w-[clamp(5.6rem,13vw,11.5rem)] justify-center">
                     <div className={`grid h-[clamp(4.1rem,7.5vw,7rem)] w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>

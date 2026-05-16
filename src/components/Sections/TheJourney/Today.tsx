@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, BarChart3, GraduationCap, Mountain, Waves } from "lucide-react";
+import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -47,6 +48,7 @@ type TodayDevelopmentPageProps = {
 };
 
 export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevelopmentPageProps) {
+  const rootRef = useJourneyDetailAnimation([lang]);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.today ?? data?.people?.sections?.today ?? {};
@@ -56,12 +58,12 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
     text: section.cards?.[i]?.description ?? card.text,
   }));
   return (
-    <main className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} className="m-0 min-h-screen w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="journey-detail-back absolute left-[clamp(1rem,2vw,2rem)] top-[clamp(1rem,2vh,2rem)] z-30 grid h-[clamp(2.8rem,4.4vw,3.8rem)] w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Journey"
         >
           <ArrowLeft size={32} />
@@ -74,14 +76,14 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
           <img
             src={bg}
             alt="Today Kurdistan future city placeholder"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="journey-detail-hero absolute inset-0 h-full w-full object-cover"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
-          <section className="max-w-[min(45vw,670px)]">
+          <section className="journey-detail-intro max-w-[min(45vw,670px)]">
             <h1 className="font-serif text-[clamp(4.9rem,8.7vw,8.5rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {section.title ?? "Today"}
             </h1>
@@ -108,7 +110,7 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[clamp(11rem,19vh,17.5rem)] items-center overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.8rem,1.8vw,1.9rem)] py-[clamp(0.8rem,1.7vh,1.7rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
+                  className="journey-detail-card relative flex min-h-[clamp(11rem,19vh,17.5rem)] items-center overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.8rem,1.8vw,1.9rem)] py-[clamp(0.8rem,1.7vh,1.7rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                 >
                   <div className="flex w-[clamp(4.5rem,10vw,9rem)] justify-center">
                     <div className={`grid h-[clamp(3.85rem,7vw,6.8rem)] w-[clamp(3.85rem,7vw,6.8rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>

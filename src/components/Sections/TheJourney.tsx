@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { gsap } from "gsap";
 import {
   ArrowLeft,
   BarChart3,
@@ -75,6 +76,25 @@ const PATH_CURVE_K = 0.34;
 /** Per-span horizontal offset on Bézier controls (viewBox units), alternating like the legacy art. */
 const PATH_SWING_X: readonly number[] = [24, -28, 26, -24];
 
+/** Fraction along path length (0–1) closest to a milestone dot. */
+function getPathProgress(path: SVGPathElement, x: number, y: number): number {
+  const total = path.getTotalLength();
+  if (total <= 0) return 0;
+  let bestLen = 0;
+  let bestDist = Infinity;
+  const steps = 140;
+  for (let i = 0; i <= steps; i++) {
+    const len = (i / steps) * total;
+    const pt = path.getPointAtLength(len);
+    const dist = (pt.x - x) ** 2 + (pt.y - y) ** 2;
+    if (dist < bestDist) {
+      bestDist = dist;
+      bestLen = len;
+    }
+  }
+  return bestLen / total;
+}
+
 function timelinePathThrough(points: { x: number; y: number }[]): string {
   if (points.length < 2) return "";
   const n = points.length;
@@ -115,8 +135,12 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     [journeyItems, lang],
   );
 
+  const rootRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const pathStrokeRef = useRef<SVGPathElement | null>(null);
+  const pathBgRef = useRef<SVGPathElement | null>(null);
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
   const [timelineLayout, setTimelineLayout] = useState<{
     pathD: string;
     points: { x: number; y: number }[];
@@ -193,13 +217,82 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     };
   }, [localizedMilestones]);
 
+  useLayoutEffect(() => {
+    if (!timelineLayout || !pathStrokeRef.current || !rootRef.current) return;
+
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ctx = gsap.context(() => {
+      const path = pathStrokeRef.current!;
+      const pathBg = pathBgRef.current;
+      const pathEls = [path, pathBg].filter(Boolean) as SVGPathElement[];
+      const pathLen = path.getTotalLength();
+      const cards = cardRefs.current.filter(Boolean) as HTMLButtonElement[];
+      const images = imageRefs.current.filter(Boolean) as HTMLImageElement[];
+      const dots = gsap.utils.toArray<SVGGElement>(".journey-dot");
+
+      const cardProgress = timelineLayout.points.map((pt) => getPathProgress(path, pt.x, pt.y));
+      const imageOffsets = [0, 800, 1400];
+      const imageProgress = imageOffsets.map((top) =>
+        Math.min(1, Math.max(0.05, (top + 280) / timelineLayout.height)),
+      );
+
+      if (reducedMotion) {
+        gsap.set(pathEls, { strokeDashoffset: 0, strokeDasharray: pathLen });
+        gsap.set([cards, images, dots, ".journey-intro > *", ".journey-back"], { autoAlpha: 1, clearProps: "transform" });
+        return;
+      }
+
+      gsap.set(pathEls, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
+      gsap.set(cards, { autoAlpha: 0, x: -48 });
+      gsap.set(images, { autoAlpha: 0, scale: 1.07, transformOrigin: "center center" });
+      gsap.set(dots, { scale: 0, opacity: 0, transformOrigin: "center center" });
+      gsap.set(".journey-intro > *", { autoAlpha: 0, y: 28 });
+      gsap.set(".journey-back", { autoAlpha: 0, scale: 0.85 });
+
+      const lineDuration = 3.2;
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to(".journey-back", { autoAlpha: 1, scale: 1, duration: 0.55 }, 0).to(
+        ".journey-intro > *",
+        { autoAlpha: 1, y: 0, stagger: 0.07, duration: 0.75 },
+        0,
+      )
+        .to(
+          pathEls,
+          {
+            strokeDashoffset: 0,
+            duration: lineDuration,
+            ease: "none",
+          },
+          0,
+        );
+
+      images.forEach((img, i) => {
+        tl.to(img, { autoAlpha: 1, scale: 1, duration: 1.1 }, imageProgress[i]! * lineDuration * 0.92);
+      });
+
+      cards.forEach((card, i) => {
+        const t = cardProgress[i]! * lineDuration;
+        tl.to(card, { autoAlpha: 1, x: 0, duration: 0.7 }, t);
+        if (dots[i]) {
+          tl.to(dots[i], { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)" }, t);
+        }
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [timelineLayout]);
+
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
+    <main ref={rootRef} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
       <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className="journey-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to Discover"
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
@@ -214,18 +307,27 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
           className="pointer-events-none absolute right-0 top-[90px] z-0 hidden h-[1720px] w-[46vw] min-w-[520px] md:block"
         >
           <img
+            ref={(el) => {
+              imageRefs.current[0] = el;
+            }}
             src={bg}
-            className="absolute right-0 top-0 h-[900px] w-[96%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
+            className="journey-image absolute right-0 top-0 h-[900px] w-[96%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
             alt="1991 illustration"
           />
           <img
+            ref={(el) => {
+              imageRefs.current[1] = el;
+            }}
             src={bg2}
-            className="absolute right-0 top-[800px] h-[800px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+            className="journey-image absolute right-0 top-[800px] h-[800px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
             alt="1992 illustration"
           />
           <img
+            ref={(el) => {
+              imageRefs.current[2] = el;
+            }}
             src={bg3}
-            className="absolute right-0 top-[1400px] h-[910px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+            className="journey-image absolute right-0 top-[1400px] h-[910px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
             alt="building institutions illustration"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#fbf5eb]/10 to-[#fbf5eb]/72" />
@@ -234,7 +336,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
 
         <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-8 pt-14 sm:px-12 md:px-16 md:pb-10 md:pt-20 lg:px-20 lg:pb-14">
           {/* Title */}
-          <section className="max-w-[760px]">
+          <section className="journey-intro max-w-[760px]">
             <h1 className="font-serif text-[clamp(40px,10vw,76px)] font-semibold leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
               {journey.title ?? "The Journey"}
             </h1>
@@ -267,19 +369,23 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                   aria-hidden
                 >
                   <path
+                    ref={pathBgRef}
+                    className="journey-path-bg"
                     d={timelineLayout.pathD}
                     stroke="#ffffff"
                     strokeWidth="17"
                     strokeLinecap="round"
                   />
                   <path
+                    ref={pathStrokeRef}
+                    className="journey-path-stroke"
                     d={timelineLayout.pathD}
                     stroke="#d8b875"
                     strokeWidth="9"
                     strokeLinecap="round"
                   />
                   {timelineLayout.points.map((dot, index) => (
-                    <g key={index}>
+                    <g key={index} className="journey-dot">
                       <circle cx={dot.x} cy={dot.y} r="19" fill="#c89a4e" />
                       <circle cx={dot.x} cy={dot.y} r="14" fill="white" />
                       <circle cx={dot.x} cy={dot.y} r="7" fill="#c89a4e" />
@@ -301,7 +407,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="relative z-10 flex min-h-[120px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/78 shadow-[0_10px_26px_rgba(84,54,16,0.12)] backdrop-blur-sm md:min-h-[148px] md:w-[clamp(480px,48vw,640px)]"
+                    className="journey-card relative z-10 flex min-h-[120px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/78 shadow-[0_10px_26px_rgba(84,54,16,0.12)] backdrop-blur-sm md:min-h-[148px] md:w-[clamp(480px,48vw,640px)]"
                   >
                     <div className="flex w-[100px] shrink-0 items-center justify-center py-3 sm:w-[148px] sm:py-4 md:w-[168px]">
                       <div
