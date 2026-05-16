@@ -68,7 +68,7 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
         <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
-        <section className="relative z-10 grid min-h-[650px] grid-cols-1 items-start gap-4 sm:grid-cols-[0.8fr_1.2fr]">
+        <section className="relative z-10 grid min-h-[650px] grid-cols-1 items-start gap-4 px-4 sm:grid-cols-[0.8fr_1.2fr] sm:px-8 lg:px-14">
           <div className="relative z-20 pt-20" data-women-detail-fade="true">
             <h1 className="font-serif text-[clamp(70px,9vw,118px)] leading-[0.88] tracking-[-0.04em] text-[#2d1436]">
               {nameLine1}
@@ -96,28 +96,28 @@ export default function WomenDetailPanel({
           </div>
 
           <div
-            className="relative flex min-h-[620px] items-start justify-center sm:justify-end"
+            className="relative flex min-h-[520px] items-start justify-center sm:justify-end"
             data-women-detail-fade="true"
           >
-            <div className="absolute right-[7%] top-4 h-[560px] w-[430px] rounded-t-full bg-[#ead9bd]/55" />
+            <div className="absolute right-[7%] top-4 h-[460px] w-[360px] rounded-t-full bg-[#ead9bd]/55" />
 
             <img
               src={portraitSrc}
               alt={portraitAlt}
-              className="relative z-10 mt-0 h-[690px] max-w-none object-contain"
+              className="relative z-10 mt-0 h-[clamp(380px,55vh,620px)] w-screen object-cover"
             />
 
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-32 bg-gradient-to-b from-transparent to-[#fbf4e8]" />
           </div>
         </section>
 
-        <section className="relative z-30 mt-[20vh] grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <section className="relative z-30 mt-[10vh] grid grid-cols-1 gap-5 px-4 sm:grid-cols-3 sm:px-8 lg:px-14">
           {cards.map((c) => (
             <WomenDetailInfoCard key={c.title} {...c} />
           ))}
         </section>
 
-        <section className="relative z-30 mx-auto mt-12 max-w-[760px] rounded-[18px] border border-[#d3ad65] bg-[#fff8ee]/75 p-5">
+        <section className="relative z-30 mx-4 mt-12 max-w-[760px] rounded-[18px] border border-[#d3ad65] bg-[#fff8ee]/75 p-5 sm:mx-8 lg:mx-14 xl:mx-auto">
           <div className="relative rounded-[14px] border border-[#e2c98f] px-8 py-10 text-center">
             <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
               ❖

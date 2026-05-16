@@ -39,7 +39,7 @@ const people: KnowledgePerson[] = [
     nameLine2: "Ardalan",
     role: "Historian & poet",
     imageSrc: knowledgeHero,
-    detailPortrait: masturaDetail,
+    detailPortrait: knowledgeHero,
     intro:
       "An early Kurdish writer whose poetry and historical writing preserved memory, identity, and the story of her time.",
     cards: [
