@@ -86,10 +86,6 @@ export default function WomenKnowledgePage({
     if (langProp) setLang(langProp);
   }, [langProp]);
 
-  React.useEffect(() => {
-    setSelectedId(null);
-  }, [lang]);
-
   const copy = getKnowledgePageCopy(lang);
   const people = getKnowledgePeople(lang);
   const selected = selectedId ? people.find((p) => p.id === selectedId) ?? null : null;
@@ -104,7 +100,7 @@ export default function WomenKnowledgePage({
   React.useLayoutEffect(() => {
     const cleanup = selected ? runKnowledgeDetailIntro(sectionRef) : runKnowledgeListIntro(sectionRef);
     return cleanup;
-  }, [selectedId, selected, lang]);
+  }, [selectedId]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);

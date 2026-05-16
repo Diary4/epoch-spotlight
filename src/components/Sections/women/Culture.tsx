@@ -368,16 +368,12 @@ export default function WomenCultureMemoryPage({
   const cultureWomen = cultureWomenByLang[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
-    setSelectedId(null);
-  }, [lang]);
-
   const selected = selectedId ? cultureWomen.find((w) => w.id === selectedId) ?? null : null;
 
   React.useLayoutEffect(() => {
     const cleanup = selected ? runCultureDetailIntro(sectionRef) : runCultureListIntro(sectionRef);
     return cleanup;
-  }, [selectedId, selected]);
+  }, [selectedId]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);

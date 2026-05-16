@@ -87,10 +87,6 @@ export default function WomenHistoricPage({
     if (langProp) setLang(langProp);
   }, [langProp]);
 
-  React.useEffect(() => {
-    setSelectedId(null);
-  }, [lang]);
-
   const copy = getHistoricPageCopy(lang);
   const historicWomen = getHistoricWomen(lang);
   const detail = selectedId ? getHistoricDetail(selectedId, lang) : null;
@@ -106,7 +102,7 @@ export default function WomenHistoricPage({
       ? runHistoricDetailIntroAnimation(sectionRef)
       : runListIntroAnimation(sectionRef);
     return cleanup;
-  }, [selectedId, detail, lang]);
+  }, [selectedId]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);

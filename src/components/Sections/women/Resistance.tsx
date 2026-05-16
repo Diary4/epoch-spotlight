@@ -94,10 +94,6 @@ export default function WomenResistancePage({
     if (langProp) setLang(langProp);
   }, [langProp]);
 
-  React.useEffect(() => {
-    setSelectedId(null);
-  }, [lang]);
-
   const copy = getResistancePageCopy(lang);
   const resistanceWomen = getResistanceWomen(lang);
   const selected = selectedId ? resistanceWomen.find((w) => w.id === selectedId) ?? null : null;
@@ -114,7 +110,7 @@ export default function WomenResistancePage({
       ? runResistanceDetailIntro(sectionRef)
       : runResistanceListIntro(sectionRef);
     return cleanup;
-  }, [selectedId, selected, lang]);
+  }, [selectedId]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);

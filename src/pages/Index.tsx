@@ -49,29 +49,7 @@ const UI_COLORS = {
   accent: "rgba(214, 170, 92, 0.98)",
 };
 
-const STORIES: Record<LangCode, Story[]> = {
-  en: [
-    { title: "The Great Kurdistan", description: "An ancient land of mountains, poets, and resilience." },
-    { title: "The Silk Road", description: "Where empires, ideas, and caravans crossed continents." },
-    { title: "Mesopotamia", description: "The cradle of civilization between two rivers." },
-    { title: "The Ottoman Era", description: "Six centuries that reshaped three continents." },
-    { title: "The Persian Empire", description: "From Cyrus to Darius — an empire of tolerance and reach." },
-  ],
-  ku: [
-    { title: "کوردستانی مەزن", description: "خاکێکی کۆنی چیا و شاعیران و بەرگری." },
-    { title: "ڕێگای ئاوریشم", description: "شوێنی تێپەڕینی ئیمپراتۆریەکان، بیر و کاروانەکان لە کیشوەرەکاندا." },
-    { title: "میزۆپۆتامیا", description: "گاهوارەی شارستانیەت لە نێوان دوو ڕووباردا." },
-    { title: "سەردەمی عوسمانی", description: "شەش سەدە کە سێ کیشوەری گۆڕی." },
-    { title: "ئیمپراتۆریەتی فارس", description: "لە کۆرشەوە بۆ داریوش — ئیمپراتۆریەتێکی لێبووردەیی و فراوان." },
-  ],
-  ar: [
-    { title: "كردستان العظمى", description: "أرض عريقة من الجبال والشعراء والصمود." },
-    { title: "طريق الحرير", description: "حيث تعبر الإمبراطوريات والأفكار والقوافل القارات." },
-    { title: "بلاد ما بين النهرين", description: "مهد الحضارة بين نهرين." },
-    { title: "العصر العثماني", description: "ستة قرون أعادت تشكيل ثلاث قارات." },
-    { title: "الإمبراطورية الفارسية", description: "من كورش إلى داريوش — إمبراطورية التسامح والامتداد." },
-  ],
-};
+
 
 const LANG_OPTIONS: { code: LangCode; label: string; native: string; dir: "ltr" | "rtl" }[] = [
   { code: "ku", label: "Kurdish", native: "کوردی", dir: "rtl" },
@@ -461,7 +439,6 @@ const SectionProgress = ({ labels, activeIndex }: { labels: string[]; activeInde
 );
 
 const Index = () => {
-  const [index, setIndex] = useState(0);
   const [interacted, setInteracted] = useState(false);
   const [lang, setLang] = useState<LangCode | null>(null);
   const [showLangPrompt, setShowLangPrompt] = useState(false);
@@ -489,7 +466,6 @@ const Index = () => {
       setView("people");
       return;
     }
-    setIndex((i) => (i + 1) % STORIES.en.length);
   }, [lang, showLangPrompt, langClosing, introPlaying, view]);
 
   useEffect(() => {
@@ -518,8 +494,6 @@ const Index = () => {
 
   const activeLang: LangCode = lang ?? "en";
   const dir: "ltr" = "ltr";
-  const current = STORIES[activeLang][index];
-  const visibleStory = introPlaying ? INTRO_SPEAKING_TEXT : current;
   const stepLabels = SECTION_STEP_LABELS[activeLang];
   const menuUi = MENU_UI[activeLang];
   const system = SYSTEM_CONTENT[activeLang];
@@ -602,24 +576,6 @@ const Index = () => {
       {view === "hero" && (
         <div className="relative z-10 flex w-full max-w-3xl flex-col items-center px-6 text-center animate-fade-in">
           <HeroCharacter className="mb-8 h-40 w-auto md:mb-12 md:h-56" />
-
-          <div
-            key={`${activeLang}-${index}-${introPlaying ? "intro" : "story"}`}
-            className="animate-fade-in transition-all duration-700 ease-out"
-          >
-            <h1
-              className="text-4xl font-bold leading-tight tracking-tight transition-all duration-700 ease-out md:text-6xl lg:text-7xl"
-              style={{ color: "hsl(var(--hero-foreground))" }}
-            >
-              {visibleStory.title}
-            </h1>
-            <p
-              className="mt-5 text-base font-light tracking-wide transition-all duration-700 ease-out md:mt-7 md:text-lg"
-              style={{ color: "hsl(var(--hero-muted))" }}
-            >
-              {visibleStory.description}
-            </p>
-          </div>
         </div>
       )}
 
