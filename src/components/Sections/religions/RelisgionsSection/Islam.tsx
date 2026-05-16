@@ -147,34 +147,18 @@ export default function IslamPage({
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-islam-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
-
       gsap.set("[data-islam-animate='true']", {
         autoAlpha: 0,
         y: 24,
       });
 
-      const tl = gsap.timeline();
-
-      tl.to("[data-islam-hero='true']", {
+      gsap.to("[data-islam-animate='true']", {
         autoAlpha: 1,
-        scale: 1,
-        duration: 0.9,
+        y: 0,
+        duration: 0.85,
+        stagger: 0.07,
         ease: "power2.out",
-      }).to(
-        "[data-islam-animate='true']",
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.08,
-          ease: "power2.out",
-        },
-        "-=0.25",
-      );
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -190,14 +174,17 @@ export default function IslamPage({
         className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <img
-          data-islam-hero="true"
           src={bg}
           alt=""
-          className="absolute left-0 top-0 h-full w-full object-cover object-center"
+          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/90 via-[#fbf1df]/15 to-[#fbf1df]/95" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#fbf1df] via-transparent to-transparent" />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+          }}
+        />
 
         <button
           type="button"
@@ -217,10 +204,10 @@ export default function IslamPage({
           {languageLabel}
         </button>
 
-        <div className="relative z-10 mx-auto max-w-[1120px]">
+        <div className="relative z-10 mx-auto max-w-[1040px]">
           <header
             data-islam-animate="true"
-            className="mx-auto max-w-[850px] pt-14 text-center"
+            className="mx-auto max-w-[820px] pt-10 text-center"
           >
             <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
               ✥
@@ -243,7 +230,7 @@ export default function IslamPage({
             </div>
           </header>
 
-          <div className="h-[460px]" />
+          <div className="h-[520px]" />
 
           <section
             data-islam-animate="true"

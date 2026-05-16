@@ -2,7 +2,6 @@ import React from "react";
 import gsap from "gsap";
 import {
   ArrowLeft,
-  ChevronRight,
   Church,
   Crown,
   Cross,
@@ -11,16 +10,13 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-5.webp";
-import ankawa from "@/assets/mainImages/story-1.webp";
-import churches from "@/assets/mainImages/story-2.webp";
-import denominations from "@/assets/mainImages/2005.webp";
-import pope from "@/assets/images/kurdistan.webp";
 
 type LangCode = "en" | "ku" | "ar";
 
 type CardContent = {
   title: string;
   text: string;
+  icon: typeof Cross;
 };
 
 type ChristianityContent = {
@@ -39,18 +35,22 @@ const content: Record<LangCode, ChristianityContent> = {
     cards: [
       {
         title: "HISTORICAL PRESENCE",
+        icon: Cross,
         text: "Christianity reached Erbil (Adiabene) in the 1st century CE. By the 3rd century, Erbil had become a major Christian center.",
       },
       {
         title: "CHURCHES",
+        icon: Church,
         text: "All four main traditions are present: Catholic, Orthodox, Eastern, and Evangelical. Dozens of active churches and monasteries stand in Erbil, Duhok, Zakho, and Sulaymaniyah.",
       },
       {
         title: "EASTER & CHRISTMAS",
+        icon: Sparkles,
         text: "Both Easter and Christmas are official public holidays across the Kurdistan Region.",
       },
       {
         title: "POPE FRANCIS",
+        icon: Crown,
         text: "On 7 March 2021 he visited Erbil and said: \u201CFreedom is deeply rooted in Kurdistan. Thank you for what you offer to every religion and community.\u201D",
       },
     ],
@@ -63,18 +63,22 @@ const content: Record<LangCode, ChristianityContent> = {
     cards: [
       {
         title: "بوونی مێژوویی",
+        icon: Cross,
         text: "مەسیحییەت لە سەدەی یەکەمی زایینی گەیشتە هەولێر (حەدیاب). هەولێر لە سەدەی سێیەمەوە مەڵبەندێکی گەورەی مەسیحی بووە.",
       },
       {
         title: "کەنیسەکان",
+        icon: Church,
         text: "هەر چوار جۆری سەرەکی: کاسۆلیک، ئۆرسۆدۆکس، ڕۆژهەڵاتی و ئینجیلی. دەیان کەنیسە و دێری چالاک لە هەولێر، دهۆک، زاخۆ و سلێمانی هەن.",
       },
       {
         title: "جەژنی قیامەت و لەدایکبوون",
+        icon: Sparkles,
         text: "هەردووکیان پشووی فەرمین لە هەرێمی کوردستان.",
       },
       {
         title: "پاپا فرانسیس",
+        icon: Crown,
         text: "لە ٧ی ئاداری ٢٠٢١ سەردانی هەولێری کرد و وتی: «ئازادی لە کوردستان ڕەگی داکوتاوە. سوپاس بۆ ئەوەی پێشکەشی هەموو ئایین و پێکهاتەکانی دەکەن».",
       },
     ],
@@ -87,18 +91,22 @@ const content: Record<LangCode, ChristianityContent> = {
     cards: [
       {
         title: "حضور تاريخي",
+        icon: Cross,
         text: "وصلت المسيحية إلى أربيل (حدياب) في القرن الأول الميلادي. وأصبحت أربيل مركزاً مسيحياً كبيراً منذ القرن الثالث.",
       },
       {
         title: "الكنائس",
+        icon: Church,
         text: "تحضر جميع الطوائف الأربع الرئيسية: الكاثوليكية والأرثوذكسية والمشرقية والإنجيلية. وتنتشر عشرات الكنائس والأديرة النشطة في أربيل ودهوك وزاخو والسليمانية.",
       },
       {
         title: "عيدا الفصح والميلاد",
+        icon: Sparkles,
         text: "كلاهما عطلتان رسميتان في إقليم كوردستان.",
       },
       {
         title: "البابا فرنسيس",
+        icon: Crown,
         text: "في ٧ آذار ٢٠٢١ زار أربيل وقال: «الحرية متجذرة عميقاً في كوردستان. شكراً لما تقدّمونه لكل الأديان والمكوّنات».",
       },
     ],
@@ -106,18 +114,7 @@ const content: Record<LangCode, ChristianityContent> = {
   },
 };
 
-const cardVisuals: Array<{
-  image: string;
-  icon: typeof Cross;
-  color: string;
-}> = [
-  { image: ankawa, icon: Cross, color: "#245a2f" },
-  { image: churches, icon: Church, color: "#075c78" },
-  { image: denominations, icon: Sparkles, color: "#51245f" },
-  { image: pope, icon: Crown, color: "#7b5b16" },
-];
-
-function DecorativeLine({ color = "#c99a55" }) {
+function DecorativeLine({ color = "#c3923a" }) {
   return (
     <div className="flex items-center justify-center gap-4">
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
@@ -235,43 +232,31 @@ export default function ChristianityPage({
 
           <section
             data-christian-animate="true"
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {c.cards.map((card, i) => {
-              const visual = cardVisuals[i];
-              const Icon = visual.icon;
+            {c.cards.map((card) => {
+              const Icon = card.icon;
 
               return (
                 <article
                   key={card.title}
-                  className="group relative min-h-[470px] overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] shadow-[0_14px_28px_rgba(69,43,14,0.22)]"
+                  className="min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm"
                 >
-                  <img
-                    src={visual.image}
-                    alt={card.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(to bottom, rgba(40,25,10,0.05), ${visual.color}dd 58%, ${visual.color})`,
-                    }}
-                  />
-
-                  <div className="relative z-10 flex h-full flex-col justify-end px-5 py-6 text-white">
-                    <div className="mb-5 grid h-20 w-20 place-items-center rounded-full border-2 border-[#e4c47e] bg-white/12 backdrop-blur-sm">
-                      <Icon className="h-10 w-10" strokeWidth={1.7} />
-                    </div>
-
-                    <h3 className="font-serif text-[26px] font-semibold uppercase leading-tight">
-                      {card.title}
-                    </h3>
-
-                    <p className="mt-3 flex-1 text-[16px] font-semibold leading-relaxed text-white/92">
-                      {card.text}
-                    </p>
+                  <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner">
+                    <Icon className="h-10 w-10" strokeWidth={1.7} />
                   </div>
+
+                  <h3 className="font-serif text-[21px] font-semibold uppercase leading-tight text-[#3b2410]">
+                    {card.title}
+                  </h3>
+
+                  <div className="mx-auto my-4 w-[140px]">
+                    <DecorativeLine color="#d1a14f" />
+                  </div>
+
+                  <p className="text-[16px] font-semibold leading-relaxed text-[#4d3c2a]">
+                    {card.text}
+                  </p>
                 </article>
               );
             })}
@@ -279,20 +264,23 @@ export default function ChristianityPage({
 
           <section
             data-christian-animate="true"
-            className="mx-auto mt-8 flex max-w-[800px] items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+            className="mx-auto mt-8 flex max-w-[720px] items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
           >
-            <Cross className="h-14 w-14 shrink-0 text-[#c58b16]" />
+            <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-white">
+              <Cross className="h-10 w-10" strokeWidth={1.7} />
+            </div>
 
-            <p className="flex-1 font-serif text-[26px] font-semibold leading-tight text-[#3b2410]">
+            <p className="font-serif text-[34px] font-semibold leading-tight text-[#3b2410]">
               {c.tagline}
             </p>
 
-            <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
-              <ChevronRight className="h-9 w-9" />
-            </button>
+            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>
+
+          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
         </div>
 
+        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
         <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
       </section>
     </main>
