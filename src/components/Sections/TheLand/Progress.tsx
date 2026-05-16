@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
+import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import bg from "@/assets/mainImages/theland/progress-4.webp";
 
 const topCards = [
@@ -53,7 +54,7 @@ function ProgressCard({ card, large = false }) {
 
   return (
     <article
-      className={`relative flex flex-col items-center overflow-hidden rounded-[clamp(22px,2.3vw,34px)] border-2 border-[#ead8b7] bg-white/82 px-[clamp(16px,1.8vw,34px)] py-[clamp(18px,2.2vh,38px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md ${
+      className={`land-detail-card relative flex flex-col items-center overflow-hidden rounded-[clamp(22px,2.3vw,34px)] border-2 border-[#ead8b7] bg-white/82 px-[clamp(16px,1.8vw,34px)] py-[clamp(18px,2.2vh,38px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md ${
         large ? "min-h-[clamp(300px,27vh,420px)]" : "min-h-[clamp(330px,30vh,500px)]"
       }`}
     >
@@ -94,6 +95,7 @@ type ProgressPageProps = {
 };
 
 export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps) {
+  const rootRef = useLandDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localTopCards = isAr
@@ -121,12 +123,12 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
         ]
       : bottomCards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="land-detail-back absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Land and Future"
         >
           <ArrowLeft size={30} />
@@ -138,7 +140,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
           <img
             src={bg}
             alt="Progress city placeholder"
-            className="absolute inset-0 h-full w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
+            className="land-detail-hero absolute inset-0 h-full w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-[clamp(160px,19vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
@@ -146,7 +148,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
 
         <div className="relative z-10 flex flex-1 flex-col">
           {/* Hero */}
-          <section className="max-w-[min(58vw,760px)] pt-[clamp(64px,8.5vh,130px)]">
+          <section className="land-detail-intro max-w-[min(58vw,760px)] pt-[clamp(64px,8.5vh,130px)]">
             <h1 className="font-serif text-[clamp(72px,9vw,130px)] font-semibold leading-none tracking-tight text-[#17233b]">
               {isAr ? "التقدم" : isKu ? "پێشکەوتن" : "Progress"}
             </h1>

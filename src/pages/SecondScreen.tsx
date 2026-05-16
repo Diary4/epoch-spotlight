@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { setAppLanguage } from "@/lib/appLanguage";
 import HeroCharacter from "@/components/HeroCharacter";
 import secondBg from "@/assets/images/nature.webp";
 
@@ -204,6 +205,7 @@ const SecondScreen = () => {
   const L = LEADERSHIP[activeLang];
 
   const handleSelectLang = (code: LangCode) => {
+    setAppLanguage(code);
     setLang(code);
     setLangClosing(true);
     setView("leadership");

@@ -196,11 +196,11 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         <div className="absolute right-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
 
         {/* Replace this with your generated portrait image */}
-        <div data-pm-portrait="true" className="pointer-events-none absolute right-0 top-0 h-[60vh] min-h-[420px] w-full sm:h-[72vh] sm:min-h-[540px] lg:h-[1280px]">
+        <div className="pointer-events-none absolute right-0 top-0 h-[60vh] min-h-[420px] w-full sm:h-[72vh] sm:min-h-[540px] lg:h-[1280px]">
           <img
             src={bg}
             alt="Prime Minister portrait placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-[center_top] [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-[center_top] [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/18 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-[260px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}

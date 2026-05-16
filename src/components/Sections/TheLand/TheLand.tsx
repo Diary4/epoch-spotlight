@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
+import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/mainImages/bg-2.webp";
 import mapImage from "@/assets/mainImages/theland/land-1.webp";
@@ -42,7 +43,7 @@ function Divider({ color = "#b99152" }) {
 
 function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: "ku" | "en" | "ar" }) {
   return (
-    <article className="grid min-h-0 flex-1 grid-cols-[205px_1fr] overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
+    <article className="land-detail-card grid min-h-0 flex-1 grid-cols-[205px_1fr] overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
       <div className="flex flex-col items-center justify-center border-r border-[#ead8b7] px-7 py-8 text-center">
         <div
           className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[34px] font-bold text-white shadow-md"
@@ -83,6 +84,7 @@ type TheLandPageProps = {
 };
 
 export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
+  const rootRef = useLandDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localMapCards = isAr
@@ -99,12 +101,12 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         ]
       : mapCards;
   return (
-    <main className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="land-detail-back absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
           aria-label="Back to The Land and Future"
         >
           <ArrowLeft size={30} />
@@ -116,14 +118,14 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           <img
             src={bg}
             alt="Kurdistan landscape placeholder"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="land-detail-hero absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb]" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
         </div>
 
         {/* Left text */}
-        <aside className="relative z-10 flex w-[clamp(300px,30vw,470px)] shrink-0 flex-col pt-[clamp(64px,8vh,120px)] pl-[clamp(8px,1.1vw,20px)]">
+        <aside className="land-detail-intro relative z-10 flex w-[clamp(300px,30vw,470px)] shrink-0 flex-col pt-[clamp(64px,8vh,120px)] pl-[clamp(8px,1.1vw,20px)]">
           <h1 className="font-serif text-[clamp(60px,7.2vw,108px)] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
             {isAr ? (
               "الأرض"

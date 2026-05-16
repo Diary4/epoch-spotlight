@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { setAppLanguage } from "@/lib/appLanguage";
 import HeroCharacter from "@/components/HeroCharacter";
 import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
 import ThePeoplePage from "@/components/Sections/ThePeople";
@@ -549,6 +550,7 @@ const Index = () => {
   };
 
   const handleSelectLang = (code: LangCode) => {
+    setAppLanguage(code);
     setLang(code);
     setLangClosing(true);
     // Move content first so the overlay fades into Discover Kurdistan.

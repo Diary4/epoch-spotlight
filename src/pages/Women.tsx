@@ -1,8 +1,15 @@
 import React from "react";
 import {
   ArrowRight,
+  Globe2,
   Sparkles,
 } from "lucide-react";
+import {
+  getAppLanguage,
+  nextAppLanguage,
+  setAppLanguage,
+  type AppLangCode,
+} from "@/lib/appLanguage";
 import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
 import gsap from "gsap";
 import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
@@ -18,7 +25,7 @@ import handIcon from "@/assets/images/women/icons/hand.webp";
 import flowerIcon from "@/assets/images/women/icons/flower-1.webp";
 import flowerIcon2 from "@/assets/images/women/icons/flower-2.webp";
 
-type LangCode = "ku" | "en" | "ar";
+type LangCode = AppLangCode;
 
 type LegacyPageProps = {
   lang?: LangCode;
@@ -59,10 +66,10 @@ export default function LegacyPage({
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [activeSection, setActiveSection] = React.useState<"historic" | "knowledge" | "resistance" | "culture" | null>(null);
-  const [lang, setLang] = React.useState<LangCode>(langProp);
+  const [lang, setLang] = React.useState<LangCode>(() => getAppLanguage());
 
   React.useEffect(() => {
-    setLang(langProp);
+    setLang(getAppLanguage());
   }, [langProp]);
 
   const languageLabels: Record<LangCode, string> = {
@@ -71,7 +78,21 @@ export default function LegacyPage({
     ar: "العربية",
   };
   const languageLabel = languageLabels[lang];
-  const toggleLang = () => setLang((current) => (current === "en" ? "ku" : current === "ku" ? "ar" : "en"));
+  const dir = lang === "en" ? "ltr" : "rtl";
+
+  const handleLanguageChange = () => {
+    setLang((current) => {
+      const next = nextAppLanguage(current);
+      setAppLanguage(next);
+      return next;
+    });
+  };
+
+  const openCulture = () => {
+    const appLang = getAppLanguage();
+    setLang(appLang);
+    setActiveSection("culture");
+  };
 
   // Re-run intro when returning from Knowledge / Culture / Resistance — the main
   // section unmounts while a subsection is open, so [] would never re-attach GSAP.
@@ -148,7 +169,7 @@ export default function LegacyPage({
         lang={lang}
         onBack={() => setActiveSection(null)}
         languageLabel={languageLabel}
-        onLanguageChange={toggleLang}
+        onLanguageChange={handleLanguageChange}
       />
     );
   }
@@ -158,11 +179,27 @@ export default function LegacyPage({
   }
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]">
+    <main
+      dir={dir}
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]"
+    >
       <section
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto bg-[#fcf7ef]"
       >
+        <button
+          data-legacy-fade="true"
+          type="button"
+          onClick={handleLanguageChange}
+          className={`absolute top-4 z-30 flex items-center gap-2 rounded-full border-2 border-[#d9b477] bg-white/80 px-4 py-2 font-serif text-sm font-semibold text-[#2c1337] shadow-sm backdrop-blur-sm transition hover:bg-white sm:top-8 sm:gap-3 sm:px-5 sm:py-2.5 sm:text-base ${
+            dir === "rtl" ? "left-4 sm:left-8" : "right-4 sm:right-8"
+          }`}
+          aria-label="Switch language"
+        >
+          <Globe2 className="h-5 w-5 shrink-0" />
+          {languageLabel}
+        </button>
+
         {/* Hero full-bleed image */}
         <div
           data-legacy-hero="true"
@@ -224,7 +261,7 @@ export default function LegacyPage({
                     setActiveSection("knowledge");
                   }
                   if (card.title === "Culture") {
-                    setActiveSection("culture");
+                    openCulture();
                   }
                   if (card.title === "Resistance") {
                     setActiveSection("resistance");

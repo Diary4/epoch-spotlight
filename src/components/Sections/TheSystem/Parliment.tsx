@@ -175,11 +175,11 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             })}
           </section>
 
-          <section className="relative grid min-h-[clamp(220px,26vh,340px)] grid-cols-1 rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/72 px-[clamp(16px,2.4vw,36px)] py-[clamp(20px,2.5vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.12)] backdrop-blur-md sm:grid-cols-3">
+          <section className="system-detail-panel relative grid min-h-[clamp(220px,26vh,340px)] grid-cols-1 rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/72 px-[clamp(16px,2.4vw,36px)] py-[clamp(20px,2.5vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.12)] backdrop-blur-md sm:grid-cols-3">
             {localBottomItems.map((item, index) => {
               const Icon = item.icon;
               return (
-                <article key={item.title} className="system-detail-extra relative flex flex-col items-center justify-center px-[clamp(12px,2vw,32px)] py-2 sm:py-0">
+                <article key={item.title} className="relative flex flex-col items-center justify-center px-[clamp(12px,2vw,32px)] py-2 sm:py-0">
                   {index !== 0 && <span className="absolute left-0 top-8 hidden h-[min(210px,22vh)] w-px bg-[#d8b875] sm:block" />}
                   <Icon className="h-[clamp(44px,5.5vw,60px)] w-[clamp(44px,5.5vw,60px)] text-[#bd8431]" strokeWidth={1.5} />
                   <h4 className="mt-[clamp(16px,2vh,28px)] font-serif text-[clamp(1.25rem,2.4vw,2.125rem)] font-semibold text-[#17233b]">

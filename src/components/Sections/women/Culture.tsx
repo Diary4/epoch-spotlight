@@ -354,7 +354,7 @@ function runCultureDetailIntro(sectionRef: React.RefObject<HTMLElement | null>) 
 }
 
 export default function WomenCultureMemoryPage({
-  lang = "en",
+  lang: langProp = "en",
   onBack,
   languageLabel,
   onLanguageChange,
@@ -362,9 +362,15 @@ export default function WomenCultureMemoryPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
+  const lang: LangCode =
+    langProp === "en" || langProp === "ku" || langProp === "ar" ? langProp : "en";
   const copy = pageCopy[lang];
   const cultureWomen = cultureWomenByLang[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+
+  React.useEffect(() => {
+    setSelectedId(null);
+  }, [lang]);
 
   const selected = selectedId ? cultureWomen.find((w) => w.id === selectedId) ?? null : null;
 

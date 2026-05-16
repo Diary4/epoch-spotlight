@@ -283,7 +283,7 @@ export default function ClosingPage({
         )}
 
         <div className="relative z-10 mx-auto flex w-full max-w-[900px] flex-col items-center pt-20 text-center">
-          <div data-src-animate="true" className="mb-5 grid place-items-center">
+          {/* <div data-src-animate="true" className="mb-5 grid place-items-center">
             <div className="grid h-24 w-24 place-items-center rounded-full border border-[#b98634]/50 bg-white/35 shadow-[0_16px_40px_rgba(96,60,21,0.15)] backdrop-blur-sm">
               <Landmark className="h-11 w-11 text-[#9f6b25]" strokeWidth={1.4} />
             </div>
@@ -362,7 +362,7 @@ export default function ClosingPage({
             <p className="font-serif text-[18px] font-semibold italic leading-snug text-[#5c4328] sm:text-[20px]">
               {c.tagline}
             </p>
-          </div>
+          </div> */}
 
           <div data-src-animate="true" className="mt-14 w-full max-w-[520px]">
             <div className="flex items-center justify-center gap-5">

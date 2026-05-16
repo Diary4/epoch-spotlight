@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, Feather, UsersRound } from "lucide-react";
+import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import bg from "@/assets/mainImages/letter.webp"
 
 const dialects = [
@@ -98,6 +99,7 @@ type KurdishLanguageDialectsPageProps = {
 };
 
 export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: KurdishLanguageDialectsPageProps) {
+  const rootRef = useLandDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localDialects = isAr
@@ -116,12 +118,12 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         ]
       : dialects;
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] text-[#17233b]">
       <section className="relative flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back to The Land and Future"
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
@@ -134,7 +136,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           <img
             src={bg}
             alt="Kurdish language books placeholder"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="land-detail-hero absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/68 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/24 to-transparent" />
@@ -143,7 +145,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
           {/* Hero */}
-          <section className="max-w-[720px] pt-2 pl-1 sm:pl-5">
+          <section className="land-detail-intro max-w-[720px] pt-2 pl-1 sm:pl-5">
             <h1 className="font-serif text-[68px] font-semibold leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
               {isAr ? "اللغة الكوردية واللهجات" : isKu ? "زمان و زاراوە کوردییەکان" : "Kurdish"}
               {!isAr && !isKu && <br />}
@@ -171,7 +173,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
 
           {/* Main content */}
           <section className="mt-6 grid grid-cols-1 gap-5 pb-6 lg:mt-10 lg:grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] lg:gap-7">
-            <aside className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
+            <aside className="land-detail-panel flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
               <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
               <div className="mt-6 grid flex-1 content-between">
@@ -181,7 +183,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               </div>
             </aside>
 
-            <section className="flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-4 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-6 lg:py-6">
+            <section className="land-detail-panel flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-4 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-6 lg:py-6">
               <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b] lg:text-[36px]">
                 Alphabet & Writing
               </h2>
@@ -237,7 +239,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           </section>
 
           {/* Bottom strip */}
-          <section className="grid min-h-[150px] grid-cols-1 items-center gap-6 rounded-[22px] border-2 border-[#ead8b7] bg-white/72 px-6 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md sm:grid-cols-[1fr_120px_1fr] sm:gap-0 sm:px-8">
+          <section className="land-detail-panel grid min-h-[150px] grid-cols-1 items-center gap-6 rounded-[22px] border-2 border-[#ead8b7] bg-white/72 px-6 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md sm:grid-cols-[1fr_120px_1fr] sm:gap-0 sm:px-8">
             <article className="grid grid-cols-[90px_1fr] gap-6 lg:grid-cols-[100px_1fr]">
               <div className="grid h-24 w-24 place-items-center rounded-full border-2 border-[#ead8b7] bg-[#fff8ed] text-[#c69237] lg:h-26 lg:w-26">
                 <Feather className="h-[54px] w-[54px] lg:h-[60px] lg:w-[60px]" strokeWidth={1.5} />
