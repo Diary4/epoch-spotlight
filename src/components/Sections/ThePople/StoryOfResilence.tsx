@@ -79,7 +79,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
           <img
             src={bg1}
             alt="Resilience background placeholder"
-            className="absolute inset-0 h-full w-full object-cover opacity-80 [mask-image:radial-gradient(circle_at_62%_42%,black_0%,black_54%,transparent_82%)]"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-b from-transparent via-[#fff7ec]/55 to-[#fff7ec]" />
         </div>

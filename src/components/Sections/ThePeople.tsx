@@ -286,19 +286,19 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     onSelectCard?.("resilience");
                   }
                 }}
-                className="relative overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
+                className="relative flex h-full flex-col overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <div className="relative h-[180px] w-full overflow-hidden border-b border-white/75 sm:h-[250px] lg:h-[350px]">
+                <div className="relative h-[180px] w-full flex-none overflow-hidden border-b border-white/75 sm:h-[250px] lg:h-[350px]">
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="absolute inset-0 h-full w-full object-cover brightness-[0.94] contrast-110"
+                    className="absolute -inset-px h-[calc(100%+2px)] w-[calc(100%+2px)] object-cover brightness-[0.94] contrast-110"
                     style={{ objectPosition: "center" }}
                   />
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="min-h-[200px] px-4 pb-5 pt-12 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
+                <div className="flex min-h-[200px] flex-1 flex-col px-4 pb-5 pt-12 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
                   <h3 className="whitespace-pre-line font-serif text-[clamp(20px,5vw,24px)] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
                     {card.title}
                   </h3>
