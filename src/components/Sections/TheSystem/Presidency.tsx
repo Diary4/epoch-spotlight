@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BookOpenCheck, Building2, Landmark, Scale, UsersRound } from "lucide-react";
+import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import bg from "@/assets/mainImages/presidency-1.webp"
 import bg2 from "@/assets/mainImages/presidency-2.webp"
 
@@ -37,6 +38,7 @@ type PresidencyPageProps = {
 };
 
 export default function PresidencyPage({ lang = "en", onBack }: PresidencyPageProps) {
+  const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localCards = isAr
@@ -54,12 +56,12 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
     : cards;
 
   return (
-    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
       <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
+          className="system-detail-back absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
           aria-label="Back to The System"
         >
           <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
@@ -70,7 +72,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
           <img
             src={bg}
             alt="Presidency building placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right [mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
+            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
           {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
@@ -80,12 +82,12 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
           <img
             src={bg2}
             alt=""
-            className="h-full w-full object-cover [mask-image:linear-gradient(to_bottom,transparent_0%,black_35%,black_70%,transparent_100%)]"
+            className="system-detail-hero h-full w-full object-cover [mask-image:linear-gradient(to_bottom,transparent_0%,black_35%,black_70%,transparent_100%)]"
           />
         </div>
 
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
-          <section className="max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
+          <section className="system-detail-intro max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
             <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#943134]">
               {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
             </h1>
@@ -117,7 +119,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[clamp(340px,38vh,560px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.2vw,32px)] py-[clamp(20px,2.5vh,40px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
+                  className="system-detail-card relative flex min-h-[clamp(340px,38vh,560px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.2vw,32px)] py-[clamp(20px,2.5vh,40px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
                 >
                   <div className="grid h-[clamp(100px,12vw,120px)] w-[clamp(100px,12vw,120px)] place-items-center rounded-full border-[6px] border-white bg-[#963538] text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#c58e65]">
                     <Icon className="h-[clamp(44px,5.5vw,62px)] w-[clamp(44px,5.5vw,62px)]" strokeWidth={1.45} />

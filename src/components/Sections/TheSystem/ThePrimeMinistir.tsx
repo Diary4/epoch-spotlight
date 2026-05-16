@@ -1,5 +1,5 @@
 import React from "react";
-import gsap from "gsap";
+import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import {
   ArrowLeft,
   BarChart3,
@@ -89,7 +89,7 @@ function InfoPanel({ title, items, tone = "gold" }) {
   const circleBg = isGold ? "bg-[#c69237]" : "bg-[#5d7757]";
 
   return (
-    <section className="relative rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-4 pb-5 pt-12 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:rounded-[24px] sm:px-6 sm:pb-7 sm:pt-14 lg:rounded-[26px] lg:px-8 lg:pb-9 lg:pt-16">
+    <section className="system-detail-panel relative rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-4 pb-5 pt-12 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:rounded-[24px] sm:px-6 sm:pb-7 sm:pt-14 lg:rounded-[26px] lg:px-8 lg:pb-9 lg:pt-16">
       <div className={`absolute left-1/2 top-[-30px] grid h-20 w-20 -translate-x-1/2 place-items-center rounded-full border-4 border-white ${circleBg} text-[#f8e5b8] shadow-[0_10px_25px_rgba(84,54,16,0.2)] sm:top-[-34px] sm:h-24 sm:w-24 sm:border-[6px]`}>
         {isGold ? <Trophy className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} /> : <Compass className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} />}
       </div>
@@ -134,7 +134,7 @@ type PrimeMinisterPageProps = {
 };
 
 export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinisterPageProps) {
-  const sectionRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const title = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "The Prime Minister";
@@ -181,32 +181,13 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         ]
     : vision;
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set("[data-pm-portrait='true']", { autoAlpha: 0, y: 10 });
-      gsap.set("[data-pm-rest='true']", { autoAlpha: 0, y: 22 });
-
-      gsap.to("[data-pm-portrait='true'], [data-pm-rest='true']", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        ease: "power2.out",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <main className="m-0 flex min-h-screen w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section ref={sectionRef} className="relative flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden bg-[#fbf5eb] px-4 py-6 sm:px-8 sm:py-9 lg:px-12 lg:py-12">
+    <main ref={rootRef} className="m-0 flex min-h-screen w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b]">
+      <section className="relative flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden bg-[#fbf5eb] px-4 py-6 sm:px-8 sm:py-9 lg:px-12 lg:py-12">
         <button
-          data-pm-rest="true"
           type="button"
           onClick={onBack}
-          className="absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:left-8 lg:top-8 lg:h-14 lg:w-14"
+          className="system-detail-back absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:left-8 lg:top-8 lg:h-14 lg:w-14"
           aria-label="Back to The System"
         >
           <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
@@ -226,7 +207,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section data-pm-rest="true" className="max-w-[710px] pt-16 sm:pt-20 lg:pt-28">
+          <section className="system-detail-intro max-w-[710px] pt-16 sm:pt-20 lg:pt-28">
             <h1 className="font-serif text-[clamp(2.2rem,9vw,6.4rem)] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
               {title}
             </h1>
@@ -246,7 +227,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
 
           <div className="flex-1 min-h-10 sm:min-h-14 lg:min-h-[90px]" />
 
-          <section data-pm-rest="true" className="grid grid-cols-1 gap-4 pb-2 sm:grid-cols-2 sm:gap-6 lg:gap-8">
+          <section className="grid grid-cols-1 gap-4 pb-2 sm:grid-cols-2 sm:gap-6 lg:gap-8">
             <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
             <InfoPanel title={visionTitle} items={localVision} tone="green" />
           </section>

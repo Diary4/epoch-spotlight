@@ -1,4 +1,6 @@
+import React from "react";
 import { ArrowLeft, ArrowRight, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
+import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import bg from "@/assets/mainImages/parliment.webp"
 
 const mainCards = [
@@ -56,6 +58,7 @@ type ParliamentPageProps = {
 };
 
 export default function ParliamentPage({ lang = "en", onBack }: ParliamentPageProps) {
+  const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localMainCards = isAr
@@ -86,12 +89,12 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
     : bottomItems;
 
   return (
-    <main className="m-0 flex min-h-[100dvh] w-[100vw] max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-[100vw] max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
       <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
+          className="system-detail-back absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
           aria-label="Back to The System"
         >
           <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
@@ -102,7 +105,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
           <img
             src={bg}
             alt="Parliament building placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right
+            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right
                       [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]
                       [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
           />
@@ -110,7 +113,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
           <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
         </div>
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
-          <section className="max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
+          <section className="system-detail-intro max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
             <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#17233b]">
               {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
             </h1>
@@ -139,7 +142,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[clamp(340px,38vh,560px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.4vw,36px)] py-[clamp(20px,2.5vh,40px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
+                  className="system-detail-card relative flex min-h-[clamp(340px,38vh,560px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.4vw,36px)] py-[clamp(20px,2.5vh,40px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
                 >
                   <div
                     className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
@@ -176,7 +179,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             {localBottomItems.map((item, index) => {
               const Icon = item.icon;
               return (
-                <article key={item.title} className="relative flex flex-col items-center justify-center px-[clamp(12px,2vw,32px)] py-2 sm:py-0">
+                <article key={item.title} className="system-detail-extra relative flex flex-col items-center justify-center px-[clamp(12px,2vw,32px)] py-2 sm:py-0">
                   {index !== 0 && <span className="absolute left-0 top-8 hidden h-[min(210px,22vh)] w-px bg-[#d8b875] sm:block" />}
                   <Icon className="h-[clamp(44px,5.5vw,60px)] w-[clamp(44px,5.5vw,60px)] text-[#bd8431]" strokeWidth={1.5} />
                   <h4 className="mt-[clamp(16px,2vh,28px)] font-serif text-[clamp(1.25rem,2.4vw,2.125rem)] font-semibold text-[#17233b]">

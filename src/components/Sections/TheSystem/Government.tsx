@@ -1,4 +1,5 @@
 import React from "react";
+import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -97,6 +98,7 @@ type GovernmentPageProps = {
 };
 
 export default function GovernmentPage({ lang = "en", onBack }: GovernmentPageProps) {
+  const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const localMainCards = isAr
@@ -133,12 +135,12 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
     : keyAreas;
 
   return (
-    <main className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
       <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
+          className="system-detail-back absolute left-[clamp(16px,2.5vw,40px)] top-[clamp(16px,2vh,36px)] z-30 grid h-[clamp(52px,7vw,72px)] w-[clamp(52px,7vw,72px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm touch-manipulation"
           aria-label="Back to The System"
         >
           <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
@@ -150,12 +152,12 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           <img
             src={bg}
             alt="Government building placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-right"
+            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right"
           />
         </div>
 
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(24px,3.5vh,56px)]">
-          <section className="mt-[clamp(4px,1vh,12px)] max-w-[min(92vw,720px)]">
+          <section className="system-detail-intro mt-[clamp(4px,1vh,12px)] max-w-[min(92vw,720px)]">
             <div className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]">
               <Building2 className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.45} />
             </div>
@@ -188,7 +190,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
               return (
                 <article
                   key={card.title}
-                  className="relative flex min-h-[clamp(300px,34vh,480px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.4vw,36px)] py-[clamp(18px,2.2vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
+                  className="system-detail-card relative flex min-h-[clamp(300px,34vh,480px)] flex-col items-center overflow-hidden rounded-[clamp(18px,2vw,28px)] border-2 border-[#ead8b7] bg-white/78 px-[clamp(16px,2.4vw,36px)] py-[clamp(18px,2.2vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
                 >
                   <div
                     className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
@@ -228,7 +230,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           </section>
 
           {/* Key areas section */}
-          <section className="rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-5 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
+          <section className="system-detail-panel rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-5 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
             <div className="mb-5 flex items-center gap-5 px-3 pt-0 font-serif text-[28px] font-semibold text-[#9b6d35]">
               {isAr ? <span>المجالات الرئيسية لعمل الحكومة</span> : isKu ? <span>بوارە سەرەکییەکانی کاری حکومەت</span> : <span>Key Areas of Government Work</span>}
               <span className="h-0.5 flex-1 bg-[#c7a05d]" />
@@ -257,7 +259,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           </section>
 
           {/* Bottom note */}
-          <section className="mt-6 flex min-h-[115px] items-center overflow-hidden rounded-[18px] border-2 border-[#ead8b7] bg-white/68 shadow-[0_10px_25px_rgba(84,54,16,0.1)] backdrop-blur-md">
+          <section className="system-detail-panel mt-6 flex min-h-[115px] items-center overflow-hidden rounded-[18px] border-2 border-[#ead8b7] bg-white/68 shadow-[0_10px_25px_rgba(84,54,16,0.1)] backdrop-blur-md">
             <div className="ml-10 mr-8 grid h-24 w-24 place-items-center rounded-full border-[6px] border-white bg-[#c59a4b] text-[#f8e5b8] shadow-md">
               <FileText size={54} strokeWidth={1.45} />
             </div>

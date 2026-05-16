@@ -66,14 +66,13 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
         <div className="absolute right-0 top-0 h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Right-side visual: full image visible (no crop) */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-full h-[min(100vh,1400px)]">
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-full h-[min(100vh,1600px)]">
           <img
             src={bg}
             alt="Institutions placeholder"
             className="journey-detail-hero h-full w-full object-cover object-right-top"
           />
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(10rem,28vh,22rem)] bg-gradient-to-b from-transparent via-white/75 to-[#fbf5eb]" />
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
