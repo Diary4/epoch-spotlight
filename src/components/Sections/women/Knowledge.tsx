@@ -13,24 +13,23 @@ import {
 } from "@/components/Sections/women/content/knowledgeContent";
 
 import knowledgeHero from "@/assets/images/women/c-2.webp";
-import hapsaImg from "@/assets/images/women/w-11.webp";
 import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
-import topicEducationImg from "@/assets/images/women/icons/k-1.webp";
+import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
+import leylaZanaImg from "@/assets/images/women/w-10.webp";
 
 type WomenKnowledgePageProps = WomenLanguageProps & {
   onBack?: () => void;
 };
 
 const personImages: Record<string, string> = {
-  "mastura-ardalan": knowledgeHero,
-  "hapsa-khan": hapsaImg,
+  "leyla-zana": leylaZanaImg,
 };
 
 const topicImages = [
   { key: "poetry" as const, imageSrc: topicPoetryImg },
   { key: "history" as const, imageSrc: topicHistoryImg },
-  { key: "education" as const, imageSrc: topicEducationImg },
+  { key: "political" as const, imageSrc: topicPoliticalImg },
 ];
 
 function runKnowledgeListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
@@ -197,14 +196,14 @@ export default function WomenKnowledgePage({
               </div>
             </section>
 
-            <section className="relative z-20 mt-[clamp(26px,40vh,600px)] grid grid-cols-1 gap-5 px-4 py-4 sm:grid-cols-2 sm:px-8 lg:px-14">
+            <section className="relative z-20 mt-[clamp(26px,40vh,600px)] flex justify-center px-4 py-4 sm:px-8 lg:px-14">
               {people.map((person) => (
                 <button
                   type="button"
                   data-knowledge-fade="true"
                   key={person.id}
                   onClick={() => setSelectedId(person.id)}
-                  className="flex min-h-[430px] cursor-pointer flex-col items-center justify-end rounded-[28px] border border-[#e4d5c3] bg-white/65 px-5 pb-8 pt-6 text-center shadow-[0_8px_24px_rgba(76,45,55,0.1)] transition hover:border-[#d8b979]"
+                  className="flex w-full max-w-[420px] min-h-[430px] cursor-pointer flex-col items-center justify-end rounded-[28px] border border-[#e4d5c3] bg-white/65 px-5 pb-8 pt-6 text-center shadow-[0_8px_24px_rgba(76,45,55,0.1)] transition hover:border-[#d8b979]"
                 >
                   <img
                     src={personImages[person.id] ?? knowledgeHero}
