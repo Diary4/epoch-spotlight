@@ -12,10 +12,12 @@ import {
   ScrollText,
   Scale,
   Flag,
+  Award,
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.webp";
 import bg2 from "@/assets/images/religions/r-8.webp";
+import leadersImg from "@/assets/images/religions/r-6.webp";
 import letterImg from "@/assets/mainImages/letter.webp";
 import whoarekurdsImg from "@/assets/mainImages/whoarekurds.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
@@ -29,6 +31,7 @@ import StoriesOfCoexistencePage from "@/components/Sections/religions/Coexistenc
 import SharedCelebrationsPage from "@/components/Sections/religions/SharedCeleberations";
 import DiversityMapPage from "@/components/Sections/religions/RelisgionsSection/Diversities";
 import HistoryPage from "@/components/Sections/religions/History";
+import LeadersOfCoexistencePage from "@/components/Sections/religions/LeadersOfCoexistence";
 import NationsPage from "@/components/Sections/religions/Nations";
 import FaithsPage from "@/components/Sections/religions/Faiths";
 import OneSharedHomelandPage from "@/components/Sections/religions/OneShared";
@@ -49,6 +52,7 @@ type LangCode = "en" | "ku" | "ar";
 type SectionCardId =
   | "introduction"
   | "history"
+  | "leaders"
   | "nations"
   | "faiths"
   | "sharedLife"
@@ -96,6 +100,13 @@ const pageContent: Record<
         image: presidencyImg,
         icon: ScrollText,
         color: "#3a2f12",
+      },
+      {
+        id: "leaders",
+        title: "Leaders of Coexistence",
+        image: leadersImg,
+        icon: Award,
+        color: "#52351a",
       },
       {
         id: "nations",
@@ -159,6 +170,13 @@ const pageContent: Record<
         color: "#3a2f12",
       },
       {
+        id: "leaders",
+        title: "ڕابەرانی پێکەوەژیان",
+        image: leadersImg,
+        icon: Award,
+        color: "#52351a",
+      },
+      {
         id: "nations",
         title: "نەتەوەکان",
         image: whoarekurdsImg,
@@ -218,6 +236,13 @@ const pageContent: Record<
         image: presidencyImg,
         icon: ScrollText,
         color: "#3a2f12",
+      },
+      {
+        id: "leaders",
+        title: "قادة التعايش",
+        image: leadersImg,
+        icon: Award,
+        color: "#52351a",
       },
       {
         id: "nations",
@@ -285,6 +310,7 @@ type SubPage =
   | "sharedCelebrations"
   | "diversityMap"
   | "history"
+  | "leaders"
   | "nations"
   | "faiths"
   | "sharedLife"
@@ -310,6 +336,7 @@ export default function ReligiousDiversityPage({
   const openSectionCard = (id: SectionCardId) => {
     if (id === "introduction") return setSubPage("introduction");
     if (id === "history") return setSubPage("history");
+    if (id === "leaders") return setSubPage("leaders");
     if (id === "nations") return setSubPage("nations");
     if (id === "faiths") return setSubPage("faiths");
     if (id === "sharedLife") return setSubPage("sharedLife");
@@ -419,6 +446,17 @@ export default function ReligiousDiversityPage({
   if (subPage === "history") {
     return (
       <HistoryPage
+        lang={lang}
+        languageLabel={content.languageLabel}
+        onLanguageChange={handleLanguageChange}
+        onBack={() => setSubPage(null)}
+      />
+    );
+  }
+
+  if (subPage === "leaders") {
+    return (
+      <LeadersOfCoexistencePage
         lang={lang}
         languageLabel={content.languageLabel}
         onLanguageChange={handleLanguageChange}

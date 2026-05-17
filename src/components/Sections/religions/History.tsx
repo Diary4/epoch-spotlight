@@ -7,10 +7,6 @@ import {
   Star,
   Cross,
   Sun,
-  Shield,
-  Award,
-  Crown,
-  BookOpen,
   Quote,
 } from "lucide-react";
 
@@ -45,7 +41,7 @@ type HistoryContent = {
   pageTitle: string;
   pageDescription: string;
   cardLabel: string;
-  slides: [Slide, Slide];
+  slides: Slide[];
 };
 
 const content: Record<LangCode, HistoryContent> = {
@@ -54,7 +50,7 @@ const content: Record<LangCode, HistoryContent> = {
     sectionLabel: "Section 2",
     pageTitle: "History",
     pageDescription:
-      "Two slides tracing how Kurdistan became a homeland of refuge and a legacy of coexistence.",
+      "How Kurdistan became a homeland of refuge where threatened peoples always found safety.",
     cardLabel: "Card",
     slides: [
       {
@@ -100,51 +96,6 @@ const content: Record<LangCode, HistoryContent> = {
         tagline:
           "Stability and peace made Kurdistan a sanctuary through the ages.",
       },
-      {
-        id: "leaders-of-coexistence",
-        number: 4,
-        eyebrow: "Slide 4",
-        title: "Leaders of Coexistence",
-        subtitle: "A legacy of protection and brotherhood",
-        cards: [
-          {
-            id: "abdul-salam-barzani",
-            number: 1,
-            title: "Sheikh Abdul Salam Barzani",
-            body: "Known as \u201CSheikh of the Christians.\u201D Opposed calls for jihad against Christians. Christians sheltered him when the Ottoman state sought his arrest.",
-            icon: Shield,
-            accent: "#3a2f12",
-          },
-          {
-            id: "mustafa-barzani",
-            number: 2,
-            title: "Mullah Mustafa Barzani",
-            body: "Declared: \u201CThe Jews are very dear to me, and anyone who causes them trouble will be punished by me.\u201D",
-            icon: Award,
-            accent: "#52351a",
-            isQuote: true,
-          },
-          {
-            id: "ahmed-barzani",
-            number: 3,
-            title: "Sheikh Ahmed Barzani",
-            body: "Sent 200 fighters to aid Armenians against the Ottomans, resulting in 14 casualties defending Armenian families.",
-            icon: Crown,
-            accent: "#6b3a1a",
-          },
-          {
-            id: "masoud-barzani",
-            number: 4,
-            title: "Masoud Barzani",
-            body: "\u201CThe Yazidis enjoyed the same security under the revolution as they had never seen before. Christians responded with loyalty and sacrifice.\u201D",
-            icon: BookOpen,
-            accent: "#5a3a18",
-            isQuote: true,
-          },
-        ],
-        tagline:
-          "Coexistence was never a law here. It was always a value.",
-      },
     ],
   },
   ku: {
@@ -152,7 +103,7 @@ const content: Record<LangCode, HistoryContent> = {
     sectionLabel: "بەشی ٢",
     pageTitle: "مێژوو",
     pageDescription:
-      "دوو سلاید کە چۆن کوردستان بوو بە نیشتمانی پەناگە و میراتێکی پێکەوەژیان.",
+      "چۆن کوردستان بوو بە نیشتمانی پەناگە کە گەلانی ترسێنراو هەمیشە تێیدا ئاسایشیان دۆزیوەتەوە.",
     cardLabel: "کارت",
     slides: [
       {
@@ -198,51 +149,6 @@ const content: Record<LangCode, HistoryContent> = {
         tagline:
           "جێگیری و ئاشتی کوردستانی کردووە بە پەناگەیەک بەدرێژایی سەردەمەکان.",
       },
-      {
-        id: "leaders-of-coexistence",
-        number: 4,
-        eyebrow: "سلایدی ٤",
-        title: "ڕابەرانی پێکەوەژیان",
-        subtitle: "میراتێکی پاراستن و برایەتی",
-        cards: [
-          {
-            id: "abdul-salam-barzani",
-            number: 1,
-            title: "شێخ عەبدوسەلام بارزانی",
-            body: "ناسراو بە «شێخی مەسیحیەکان». دژایەتی بانگەشەی جیهادی دژی مەسیحیەکانی کرد. مەسیحیەکان پەنایان دا کاتێک حکومەتی عوسمانی دەستگیرکردنی ویست.",
-            icon: Shield,
-            accent: "#3a2f12",
-          },
-          {
-            id: "mustafa-barzani",
-            number: 2,
-            title: "مەلا مستەفا بارزانی",
-            body: "ڕایگەیاند: «جوولەکە لای من زۆر بەنرخن، و ئەو کەسەی ئازاریان بدا لە لای منەوە سزا دەدرێت».",
-            icon: Award,
-            accent: "#52351a",
-            isQuote: true,
-          },
-          {
-            id: "ahmed-barzani",
-            number: 3,
-            title: "شێخ ئەحمەد بارزانی",
-            body: "٢٠٠ جەنگاوەری بۆ یارمەتیدانی ئەرمەنەکان دژی عوسمانیەکان نارد، کە بووە هۆی ١٤ قوربانی لە بەرگریکردن لە بنەماڵە ئەرمەنیەکان.",
-            icon: Crown,
-            accent: "#6b3a1a",
-          },
-          {
-            id: "masoud-barzani",
-            number: 4,
-            title: "مەسعود بارزانی",
-            body: "«ئێزدیەکان لە سایەی شۆڕشدا هەمان ئاسایش بۆ یەکەم جار بینیان. مەسیحیەکانیش بە وەفاداری و قوربانیدان وەڵامیان دایەوە».",
-            icon: BookOpen,
-            accent: "#5a3a18",
-            isQuote: true,
-          },
-        ],
-        tagline:
-          "پێکەوەژیان لێرە هیچ کاتێک یاسا نەبووە. هەمیشە بەهایەکی پیرۆز بووە.",
-      },
     ],
   },
   ar: {
@@ -250,7 +156,7 @@ const content: Record<LangCode, HistoryContent> = {
     sectionLabel: "القسم ٢",
     pageTitle: "التاريخ",
     pageDescription:
-      "شريحتان تتتبعان كيف صارت كوردستان أرض لجوء وإرثاً للتعايش.",
+      "كيف صارت كوردستان أرض لجوء حيث وجدت الشعوب المهددة الأمان دائماً.",
     cardLabel: "البطاقة",
     slides: [
       {
@@ -295,51 +201,6 @@ const content: Record<LangCode, HistoryContent> = {
         ],
         tagline:
           "الاستقرار والسلام جعلا كوردستان ملاذاً عبر العصور.",
-      },
-      {
-        id: "leaders-of-coexistence",
-        number: 4,
-        eyebrow: "الشريحة ٤",
-        title: "قادة التعايش",
-        subtitle: "إرث من الحماية والأخوّة",
-        cards: [
-          {
-            id: "abdul-salam-barzani",
-            number: 1,
-            title: "الشيخ عبد السلام البارزاني",
-            body: "عُرف بـ«شيخ المسيحيين». رفض دعوات الجهاد ضد المسيحيين. وأواه المسيحيون حين أرادت الدولة العثمانية اعتقاله.",
-            icon: Shield,
-            accent: "#3a2f12",
-          },
-          {
-            id: "mustafa-barzani",
-            number: 2,
-            title: "الملا مصطفى البارزاني",
-            body: "أعلن: «اليهود أعزّاء جداً عليّ، ومن يؤذيهم سيلقى عقابي».",
-            icon: Award,
-            accent: "#52351a",
-            isQuote: true,
-          },
-          {
-            id: "ahmed-barzani",
-            number: 3,
-            title: "الشيخ أحمد البارزاني",
-            body: "أرسل ٢٠٠ مقاتل لنجدة الأرمن ضد العثمانيين، وسقط ١٤ شهيداً دفاعاً عن العائلات الأرمنية.",
-            icon: Crown,
-            accent: "#6b3a1a",
-          },
-          {
-            id: "masoud-barzani",
-            number: 4,
-            title: "مسعود البارزاني",
-            body: "«نعم الإيزيديون في ظل الثورة بأمان لم يعرفوه من قبل، وردّ المسيحيون بالولاء والتضحية».",
-            icon: BookOpen,
-            accent: "#5a3a18",
-            isQuote: true,
-          },
-        ],
-        tagline:
-          "التعايش هنا لم يكن قانوناً يوماً. كان دائماً قيمة.",
       },
     ],
   },
@@ -410,7 +271,7 @@ export default function HistoryPage({
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
+        className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#fbf1df] px-6 pt-10 sm:px-12 lg:px-20"
       >
         <img
           data-h-hero="true"
@@ -443,10 +304,10 @@ export default function HistoryPage({
           </button>
         )}
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+        <div className="relative z-10 mx-auto min-h-screen w-full max-w-[1180px]">
           <header
             data-h-animate="true"
-            className="mx-auto max-w-[850px] pt-14 text-center"
+            className="mx-auto max-w-[850px] shrink-0 pt-14 text-center"
           >
             <div className="mx-auto mt-3 mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
@@ -466,7 +327,7 @@ export default function HistoryPage({
             <section
               key={slide.id}
               data-h-animate="true"
-              className="mt-24 first:mt-20"
+              className="absolute inset-x-0 top-[50vh] z-10 w-full pb-[200px]"
               aria-labelledby={`h-slide-${slide.id}`}
             >
               <div className="mx-auto max-w-[860px] text-center">
