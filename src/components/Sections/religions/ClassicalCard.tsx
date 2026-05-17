@@ -40,10 +40,6 @@ export default function ClassicalCard({
           <span className="h-px w-10 bg-[#c69235]" />
         </div>
       </div>
-
-      <div className="absolute bottom-8 right-8 flex h-11 w-11 items-center justify-center rounded-full border border-[#c9973e]/70 bg-[#fff3d8] text-[#b98222]">
-        <ChevronRight size={22} />
-      </div>
     </button>
   );
 }
