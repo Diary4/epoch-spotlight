@@ -594,15 +594,10 @@ export default function ReligiousDiversityPage({
           data-rd-hero="true"
           src={bg2}
           alt=""
-          className="absolute right-0 top-0 h-[50vh] w-[100%] opacity-95 [mask-image:linear-gradient(to_left,black_0%,black_70%,transparent_100%)]"
+          className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 h-[53vh] w-full bg-gradient-to-t from-[#f4eadb] via-[#f4eadb]/0 to-transparent"
-        />
-
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(205,157,85,0.25),transparent_38%),linear-gradient(90deg,#f7efe3_0%,#f7efe3_47%,rgba(247,239,227,0.76)_70%,rgba(247,239,227,0.35)_100%)]" />
-        <div className="pointer-events-none absolute inset-6 rounded-[34px] border border-[#c99a55]/45" /> */}
+        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#f6ead8]/72 via-[#f6ead8]/30 to-[#f4eadb]/95" />
+        <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
 
         <button
           data-rd-animate="true"

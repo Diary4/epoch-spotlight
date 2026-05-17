@@ -13,8 +13,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-7.webp";
-import bg2 from "@/assets/images/religions/r-3.webp";
 import bg3 from "@/assets/images/religions/r-8.webp";
 
 type LangCode = "en" | "ku" | "ar";
