@@ -2,7 +2,6 @@ import React from "react";
 import gsap from "gsap";
 import {
   ArrowLeft,
-  ChevronRight,
   Globe2,
   Landmark,
   Church,
@@ -46,6 +45,7 @@ import RightsLaws from "@/components/Sections/religions/RightsSection/RightsLaws
 import Rights2014 from "@/components/Sections/religions/RightsSection/Rights2014";
 import RightsRefuge from "@/components/Sections/religions/RightsSection/RightsRefuge";
 import RightsMedia from "@/components/Sections/religions/RightsSection/RightsMedia";
+import ClassicalCard from "@/components/Sections/religions/ClassicalCard";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -71,7 +71,7 @@ const pageContent: Record<
   LangCode,
   {
     languageLabel: string;
-    title: [string, string, string];
+    title: string[];
     subtitle: string;
     description: string;
     cards: SectionCard[];
@@ -82,7 +82,7 @@ const pageContent: Record<
 > = {
   en: {
     languageLabel: "ENGLISH",
-    title: ["Religious &", "National Diversity", "in Kurdistan"],
+    title: ["Religious", "&", "National", "Diversity", "in", "Kurdistan"],
     subtitle: "Kurdistan: The Cradle of Coexistence",
     description:
       "Across faiths, languages, and cultures, Kurdistan stands as a timeless home of respect, unity, and shared heritage.",
@@ -150,7 +150,7 @@ const pageContent: Record<
   },
   ku: {
     languageLabel: "کوردی",
-    title: ["ئاینی و", "فرە نەتەوەیی", "لە کوردستان"],
+    title: ["ئاینی", "و", "فرە", "نەتەوەیی", "لە", "کوردستان"],
     subtitle: "کوردستان: گهوارەی پێکەوەژیان",
     description:
       "لە نێوان ئاین و زمان و کلتوورە جیاوازەکاندا، کوردستان ماڵی ڕێز و یەکگرتوویی و میراتی هاوبەشە.",
@@ -218,7 +218,7 @@ const pageContent: Record<
   },
   ar: {
     languageLabel: "العربية",
-    title: ["التنوع الديني", "والقومي", "في كوردستان"],
+    title: ["التنوع", "الديني", "والقومي", "في", "كوردستان"],
     subtitle: "كوردستان: مهد التعايش",
     description:
       "عبر الأديان واللغات والثقافات، تظل كوردستان موطناً دائماً للاحترام والوحدة والتراث المشترك.",
@@ -635,8 +635,6 @@ export default function ReligiousDiversityPage({
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
         <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#f6ead8]/72 via-[#f6ead8]/30 to-[#f4eadb]/95" />
-        <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
-
         <button
           data-rd-animate="true"
           type="button"
@@ -647,85 +645,46 @@ export default function ReligiousDiversityPage({
           {content.languageLabel}
         </button>
 
-        <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-10 py-10 lg:px-16">
-          <div className="grid flex-1 grid-cols-1 items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <div data-rd-animate="true" className="max-w-[760px]">
-              <h1 className="font-serif text-[54px] font-semibold uppercase leading-[1.05] tracking-[0.035em] text-[#2e2116] sm:text-[72px] lg:text-[82px]">
-                {content.title[0]}
-                <br />
-                {content.title[1]}
-                <br />
-                {content.title[2]}
+        <div className="relative z-10 mx-auto min-h-screen w-full max-w-[1500px] px-10 pb-10 pt-24 lg:px-16 lg:pt-28">
+          <div data-rd-animate="true" className="shrink-0">
+            <div className="relative max-w-[min(100%,720px)] border-s-2 border-[#c9973e]/50 ps-7 sm:ps-10">
+              <h1 className="font-serif text-[clamp(38px,5.2vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.02em] text-[#332315]">
+                {content.title.map((line, index) => (
+                  <span key={`${line}-${index}`} className="block">
+                    {line}
+                  </span>
+                ))}
               </h1>
 
-              <h2 className="mt-6 font-serif text-[22px] font-semibold uppercase tracking-[0.08em] text-[#b47a24] sm:text-[28px]">
+              <h2 className="mt-5 max-w-[640px] font-serif text-[clamp(13px,1.5vw,20px)] font-bold uppercase leading-snug tracking-[0.14em] text-[#b98222] sm:mt-6">
                 {content.subtitle}
               </h2>
-
-              <div className="mt-8 w-[340px] max-w-full">
-                <DecorativeLine color="#bd8a3c" />
-              </div>
-
-              <p className="mt-8 max-w-[560px] text-[22px] font-medium leading-relaxed text-[#493726]">
-                {content.description}
-              </p>
             </div>
           </div>
 
-          <section data-rd-animate="true" className="pb-10">
+          <div
+            data-rd-animate="true"
+            className="mt-5 border-t border-[#c9973e]/30 pt-5 sm:mt-6 sm:pt-6"
+          >
+            <p className="max-w-[min(100%,560px)] font-sans text-[clamp(15px,1.35vw,19px)] font-normal leading-[1.65] text-[#332315]/90">
+              {content.description}
+            </p>
+          </div>
+
+          <section
+            data-rd-animate="true"
+            className="absolute inset-x-10 top-[60vh] z-10 pb-10 lg:inset-x-16"
+          >
             <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {content.cards.map((card) => {
-                const Icon = card.icon;
-
-                return (
-                  <article
-                    key={card.id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => openSectionCard(card.id)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        openSectionCard(card.id);
-                      }
-                    }}
-                    aria-label={card.title}
-                    className="relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
-                  >
-                    <div className="relative h-[230px] w-full overflow-hidden">
-                      <img
-                        src={card.image}
-                        alt={card.title}
-                        className="absolute inset-0 h-full w-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
-
-                      <div className="absolute left-4 top-4 grid h-12 w-12 place-items-center rounded-full border border-white/70 bg-white/20 text-white backdrop-blur-sm">
-                        <Icon className="h-6 w-6" strokeWidth={1.7} />
-                      </div>
-                    </div>
-
-                    <div className="flex flex-1 flex-col px-6 py-6">
-                      <h3 className="font-serif text-[26px] font-semibold uppercase leading-tight text-[#3b2410]">
-                        {card.title}
-                      </h3>
-
-                      <div className="mt-3 mb-3 w-[60px]">
-                        <span className="block h-[2px] bg-[#c3923a]" />
-                      </div>
-
-                      <div className="mt-auto flex items-center justify-between pt-5">
-                        <span className="font-serif text-[12px] font-semibold uppercase tracking-[0.28em] text-[#a77423]">
-                          {content.openLabel}
-                        </span>
-                        <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12]">
-                          <ChevronRight className="h-5 w-5" />
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
+              {content.cards.map((card) => (
+                <ClassicalCard
+                  key={card.id}
+                  title={card.title}
+                  image={card.image}
+                  onClick={() => openSectionCard(card.id)}
+                  ariaLabel={card.title}
+                />
+              ))}
             </div>
           </section>
         </div>
