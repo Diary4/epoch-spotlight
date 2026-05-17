@@ -102,7 +102,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Keeping a sense of national belonging alive through song.",
       placeEra: "Twentieth century, Kurdistan and the diaspora.",
       quote: "She gave sharp voice to what others wished to silence.",
-      image: imgAysha,
+      image: imgKurdistan,
       listIcon: "flower",
     },
     {
@@ -116,7 +116,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Advancing Kurdish linguistics and literature.",
       placeEra: "Twentieth century, Sulaymaniyah and beyond.",
       quote: "Science and knowledge can preserve identity.",
-      image: imgPakiza,
+      image: imgKurdistan,
       listIcon: "crown",
     },
     {
@@ -144,7 +144,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Negotiating on behalf of her people in wartime.",
       placeEra: "River region, First World War era.",
       quote: "Authority must speak with the language of wisdom.",
-      image: imgMaryam,
+      image: imgKurdistan,
       listIcon: "crown",
     },
     {

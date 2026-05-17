@@ -99,12 +99,10 @@ export default function WomenDetailPanel({
             className="relative flex min-h-[520px] items-start justify-center sm:justify-end"
             data-women-detail-fade="true"
           >
-            <div className="absolute right-[7%] top-4 h-[460px] w-[360px] rounded-t-full bg-[#ead9bd]/55" />
-
             <img
               src={portraitSrc}
               alt={portraitAlt}
-              className="relative z-10 mt-0 h-[clamp(380px,55vh,620px)] w-screen object-cover"
+              className="relative z-10 mt-0 h-[clamp(380px,55vh,1220px)] w-screen object-cover"
             />
 
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-32 bg-gradient-to-b from-transparent to-[#fbf4e8]" />
