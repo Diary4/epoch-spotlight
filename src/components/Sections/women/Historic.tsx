@@ -11,7 +11,7 @@ import khanzadImg from "@/assets/images/women/w-6.webp";
 import halimaImg from "@/assets/images/women/w-4.webp";
 
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
-import HistoricCharacterPanel from "./historic/HistoricCharacterPanel";
+import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
 import { womenDir } from "@/components/Sections/women/womenLanguage";
@@ -59,11 +59,56 @@ function runListIntroAnimation(sectionRef: React.RefObject<HTMLElement | null>) 
   return () => ctx.revert();
 }
 
+function HistoricListCard({
+  woman,
+  imageSrc,
+  onSelect,
+}: {
+  woman: { id: string; name: string; role: string; teaser: string; icon: "crown" | "flower" };
+  imageSrc: string;
+  onSelect: () => void;
+}) {
+  const Icon = woman.icon === "crown" ? Crown : Flower2;
+
+  return (
+    <button
+      type="button"
+      data-hist-card="true"
+      onClick={onSelect}
+      className="relative flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[26px] border border-[#e4d5c3] bg-white/62 p-4 text-center shadow-[inset_0_0_20px_rgba(159,116,81,0.06),0_8px_22px_rgba(70,38,48,0.08)] backdrop-blur-sm transition hover:border-[#d8b979] sm:rounded-[30px] sm:p-5 lg:p-6"
+    >
+      <div className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] sm:h-12 sm:w-12">
+        <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+      </div>
+
+      <div className="mx-auto h-[160px] w-[130px] overflow-hidden rounded-full border-2 border-[#d8b979] bg-[#d8a6ae]/30 p-1 sm:h-[190px] sm:w-[155px] lg:h-[210px] lg:w-[170px]">
+        <img src={imageSrc} alt="" className="h-full w-full rounded-full object-cover" />
+      </div>
+
+      <h3 className="mt-4 font-serif text-[clamp(20px,3vw,28px)] font-semibold leading-tight text-[#4c2d43]">
+        {woman.name}
+      </h3>
+
+      <p className="mt-1.5 font-serif text-[clamp(15px,2.4vw,19px)] italic leading-snug text-[#b65f71]">
+        ({woman.role})
+      </p>
+
+      <div className="my-3 flex w-20 items-center gap-2 text-[#b4864d]">
+        <span className="h-px flex-1 bg-[#d4b98f]" />
+        <span className="h-2 w-2 rotate-45 bg-[#b4864d]" />
+        <span className="h-px flex-1 bg-[#d4b98f]" />
+      </div>
+
+      <p className="max-w-[320px] text-[clamp(13px,2.2vw,16px)] leading-[1.5] text-[#353445]">{woman.teaser}</p>
+    </button>
+  );
+}
+
 function runHistoricDetailIntroAnimation(sectionRef: React.RefObject<HTMLElement | null>) {
   if (!sectionRef.current) return () => {};
   const ctx = gsap.context(() => {
-    gsap.set("[data-historic-fade='true']", { autoAlpha: 0, y: 18 });
-    gsap.timeline({ defaults: { ease: "power2.out" } }).to("[data-historic-fade='true']", {
+    gsap.set("[data-women-detail-fade='true']", { autoAlpha: 0, y: 18 });
+    gsap.timeline({ defaults: { ease: "power2.out" } }).to("[data-women-detail-fade='true']", {
       autoAlpha: 1,
       y: 0,
       duration: 0.65,
@@ -113,13 +158,13 @@ export default function WomenHistoricPage({
     <main
       dir={dir}
       className={`m-0 flex w-screen flex-col justify-start p-0 ${
-        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+        selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto ${
-          selectedId ? "bg-transparent" : "bg-[#fcf7ef]"
+        className={`relative flex w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden ${
+          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
@@ -140,7 +185,8 @@ export default function WomenHistoricPage({
         </button>
 
         {detail && selectedId ? (
-          <HistoricCharacterPanel
+          <WomenDetailPanel
+            dir={dir}
             nameLine1={detail.nameLine1}
             nameLine2={detail.nameLine2}
             role={detail.role}
@@ -198,53 +244,30 @@ export default function WomenHistoricPage({
               </div>
             </section>
 
-            <section className="relative z-20 mt-[clamp(26px,40vh,400px)] grid grid-cols-1 gap-4 px-4 py-4 sm:grid-cols-2 lg:gap-5">
-              {historicWomen.map((woman) => {
-                const Icon = woman.icon === "crown" ? Crown : Flower2;
-                return (
-                  <button
-                    type="button"
-                    key={woman.id}
-                    data-hist-card="true"
-                    onClick={() => setSelectedId(woman.id)}
-                    className="relative grid min-h-[560px] w-full cursor-pointer grid-cols-[0.95fr_1.05fr] overflow-hidden rounded-[28px] border border-[#e4d5c3] bg-white/62 p-4 text-left shadow-[inset_0_0_24px_rgba(159,116,81,0.08),0_8px_22px_rgba(70,38,48,0.08)] backdrop-blur-sm transition hover:border-[#d8b979] sm:min-h-[500px] sm:rounded-[34px] sm:p-5"
-                  >
-                    <div className="flex items-center justify-center">
-                      <div className="h-[260px] w-[220px] overflow-hidden rounded-full border-2 border-[#d8b979] bg-[#d8a6ae]/30 p-1 sm:h-[360px] sm:w-[240px]">
-                        <img
-                          src={historicImages[woman.id]}
-                          alt=""
-                          className="h-full w-full rounded-full object-cover"
-                        />
-                      </div>
-                    </div>
+            <section className="relative z-20 mt-[clamp(26px,40vh,400px)] px-4 py-4 sm:px-6 lg:px-10">
+              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 lg:gap-6">
+                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+                  {historicWomen.slice(0, 3).map((woman) => (
+                    <HistoricListCard
+                      key={woman.id}
+                      woman={woman}
+                      imageSrc={historicImages[woman.id]}
+                      onSelect={() => setSelectedId(woman.id)}
+                    />
+                  ))}
+                </div>
 
-                    <div className="relative flex flex-col justify-center pr-1">
-                      <div className="absolute right-0 top-0 grid h-12 w-12 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] sm:h-14 sm:w-14">
-                        <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
-                      </div>
-
-                      <h3 className="max-w-[220px] font-serif text-[clamp(26px,4.5vw,38px)] font-semibold leading-[1.05] text-[#4c2d43]">
-                        {woman.name}
-                      </h3>
-
-                      <p className="mt-2 font-serif text-[clamp(16px,3.2vw,22px)] italic leading-snug text-[#b65f71]">
-                        ({woman.role})
-                      </p>
-
-                      <div className="my-3 flex w-24 items-center gap-2 text-[#b4864d]">
-                        <span className="h-px flex-1 bg-[#d4b98f]" />
-                        <span className="h-2 w-2 rotate-45 bg-[#b4864d]" />
-                        <span className="h-px flex-1 bg-[#d4b98f]" />
-                      </div>
-
-                      <p className="mt-1 max-w-[260px] text-left text-[clamp(13px,2.7vw,16px)] leading-[1.45] text-[#353445]">
-                        {woman.teaser}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
+                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+                  {historicWomen.slice(3).map((woman) => (
+                    <HistoricListCard
+                      key={woman.id}
+                      woman={woman}
+                      imageSrc={historicImages[woman.id]}
+                      onSelect={() => setSelectedId(woman.id)}
+                    />
+                  ))}
+                </div>
+              </div>
             </section>
           </>
         )}

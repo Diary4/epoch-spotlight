@@ -44,10 +44,7 @@ function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
   );
 }
 
-/**
- * Knowledge / Resistance detail — same layout as {@link HistoricCharacterPanel};
- * uses `data-women-detail-fade` so GSAP stays scoped away from Historic.
- */
+/** Shared detail layout for Historic, Knowledge, Culture, and Resistance. */
 export default function WomenDetailPanel({
   nameLine1,
   nameLine2,

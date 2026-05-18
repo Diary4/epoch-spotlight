@@ -316,6 +316,55 @@ type CulturePageProps = {
   onLanguageChange?: () => void;
 };
 
+function CultureListCard({
+  woman,
+  dir,
+  onSelect,
+}: {
+  woman: CultureFigure;
+  dir: "ltr" | "rtl";
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      data-culture-card="true"
+      onClick={onSelect}
+      className={`relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5 lg:p-6 ${
+        dir === "rtl" ? "text-right" : "text-left"
+      }`}
+    >
+      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[20px] sm:h-[220px] lg:h-[260px]">
+        <img
+          src={woman.image}
+          alt={woman.name}
+          className="relative z-10 h-full w-full object-cover object-[center_20%]"
+        />
+      </div>
+
+      <h3 className="mt-3 font-serif text-[clamp(20px,3vw,28px)] leading-tight text-[#2c1736] sm:mt-4">
+        {woman.name}
+      </h3>
+
+      <p className="mt-1.5 font-serif text-[clamp(14px,2.4vw,18px)] italic text-[#a75a69]">({woman.role})</p>
+
+      <div className="my-3 flex w-24 items-center gap-2 text-[#b4864d]">
+        <span className="h-px flex-1 bg-[#d4b98f]" />
+        <Sparkles className="h-4 w-4" />
+        <span className="h-px flex-1 bg-[#d4b98f]" />
+      </div>
+
+      <p
+        className={`text-[clamp(13px,2.2vw,16px)] leading-relaxed text-[#4a3f50] ${
+          dir === "rtl" ? "text-right" : "text-left"
+        }`}
+      >
+        {woman.teaser}
+      </p>
+    </button>
+  );
+}
+
 function runCultureListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
   if (!sectionRef.current) return () => {};
   const ctx = gsap.context(() => {
@@ -482,48 +531,30 @@ export default function WomenCultureMemoryPage({
               />
             </section>
 
-            <section className="relative z-20 mt-2 grid grid-cols-1 gap-5 px-5 pb-6 sm:grid-cols-2 sm:gap-6 lg:mt-4 lg:grid-cols-3 lg:px-10">
-              {cultureWomen.map((woman) => (
-                <button
-                  type="button"
-                  data-culture-card="true"
-                  key={woman.id}
-                  onClick={() => setSelectedId(woman.id)}
-                  className={`relative flex cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:p-5 ${
-                    dir === "rtl" ? "text-right" : "text-left"
-                  }`}
-                >
-                  <div className="relative mx-auto h-[200px] w-full max-w-[280px] overflow-hidden rounded-[20px] sm:h-[240px] sm:max-w-none">
-                    <img
-                      src={woman.image}
-                      alt={woman.name}
-                      className="relative z-10 h-full w-full object-cover object-[center_20%]"
+            <section className="relative z-20 mt-2 px-5 pb-6 lg:mt-4 lg:px-10">
+              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 lg:gap-6">
+                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+                  {cultureWomen.slice(0, 3).map((woman) => (
+                    <CultureListCard
+                      key={woman.id}
+                      woman={woman}
+                      dir={dir}
+                      onSelect={() => setSelectedId(woman.id)}
                     />
-                  </div>
+                  ))}
+                </div>
 
-                  <h3 className="mt-3 font-serif text-[clamp(20px,4vw,30px)] leading-tight text-[#2c1736] sm:mt-4">
-                    {woman.name}
-                  </h3>
-
-                  <p className="mt-2 font-serif text-[clamp(14px,2.8vw,19px)] italic text-[#a75a69]">
-                    ({woman.role})
-                  </p>
-
-                  <div className="my-3 flex w-24 items-center gap-2 text-[#b4864d]">
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                    <Sparkles className="h-4 w-4" />
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                  </div>
-
-                  <p
-                    className={`text-[14px] leading-relaxed text-[#4a3f50] sm:text-[15px] ${
-                      dir === "rtl" ? "text-right" : "text-left"
-                    }`}
-                  >
-                    {woman.teaser}
-                  </p>
-                </button>
-              ))}
+                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+                  {cultureWomen.slice(3).map((woman) => (
+                    <CultureListCard
+                      key={woman.id}
+                      woman={woman}
+                      dir={dir}
+                      onSelect={() => setSelectedId(woman.id)}
+                    />
+                  ))}
+                </div>
+              </div>
             </section>
 
             <section
