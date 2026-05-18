@@ -2,7 +2,6 @@ import React from "react";
 import gsap from "gsap";
 import {
   ArrowLeft,
-  ArrowRight,
   Globe2,
   Landmark,
   Vote,
@@ -14,6 +13,12 @@ import {
 } from "lucide-react";
 
 import bg3 from "@/assets/images/religions/r-8.webp";
+import governmentImg from "@/assets/mainImages/government.webp";
+import parliamentImg from "@/assets/mainImages/parliment.webp";
+import letterImg from "@/assets/mainImages/letter.webp";
+import buildingImg from "@/assets/mainImages/building.webp";
+import sharedImg from "@/assets/mainImages/shared.webp";
+import mediaImg from "@/assets/images/religions/r-6.webp";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -38,7 +43,6 @@ type RightsOverviewContent = {
   pageTitle: string;
   pageSubtitle: string;
   pageDescription: string;
-  openLabel: string;
   cards: RightsOverviewCard[];
   tagline: string;
 };
@@ -61,6 +65,15 @@ const ICONS: Record<RightsCardId, LucideIcon> = {
   media: Tv,
 };
 
+const CARD_IMAGES: Record<RightsCardId, string> = {
+  krg: governmentImg,
+  parliament: parliamentImg,
+  laws: letterImg,
+  year2014: buildingImg,
+  refuge: sharedImg,
+  media: mediaImg,
+};
+
 const content: Record<LangCode, RightsOverviewContent> = {
   en: {
     back: "Back",
@@ -68,7 +81,6 @@ const content: Record<LangCode, RightsOverviewContent> = {
     pageSubtitle: "A government for all its peoples.",
     pageDescription:
       "From the first democratic election in 1992 to the laws of today, Kurdistan has built a framework that recognizes, protects, and celebrates every community.",
-    openLabel: "Open",
     cards: [
       {
         id: "krg",
@@ -121,7 +133,6 @@ const content: Record<LangCode, RightsOverviewContent> = {
     pageSubtitle: "حکومەتێک بۆ هەموو گەلەکانی.",
     pageDescription:
       "لە یەکەم هەڵبژاردنی دیموکراسی ١٩٩٢ ەوە تاکوو یاساکانی ئەمڕۆ، کوردستان چوارچێوەیەکی بنیات ناوە کە هەموو کۆمەڵگەیەک دەناسێتەوە، دەپارێزێت و پێی ئاهەنگ دەگێڕێ.",
-    openLabel: "بکەرەوە",
     cards: [
       {
         id: "krg",
@@ -174,7 +185,6 @@ const content: Record<LangCode, RightsOverviewContent> = {
     pageSubtitle: "حكومة لكل شعوبها.",
     pageDescription:
       "من أول انتخابات ديمقراطية عام ١٩٩٢ إلى قوانين اليوم، أرست كوردستان إطاراً يعترف بكل مجتمع ويحميه ويحتفي به.",
-    openLabel: "اعرض",
     cards: [
       {
         id: "krg",
@@ -235,6 +245,73 @@ function DecorativeLine({ color = "#c99a55" }: { color?: string }) {
   );
 }
 
+function RightsOverviewCardButton({
+  card,
+  imageSrc,
+  onOpen,
+}: {
+  card: RightsOverviewCard;
+  imageSrc: string;
+  onOpen: () => void;
+}) {
+  const Icon = card.icon;
+
+  return (
+    <button
+      type="button"
+      data-rts-animate="true"
+      onClick={onOpen}
+      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)] transition hover:border-[#c99745]/70 hover:shadow-[0_18px_36px_rgba(69,43,14,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+    >
+      <div className="relative mx-3 mt-3 overflow-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
+        <div className="relative h-[min(148px,32vw)] overflow-hidden rounded-[14px] sm:h-[160px]">
+          <img
+            src={imageSrc}
+            alt=""
+            className="h-full w-full object-cover object-center transition duration-700 ease-out group-hover:scale-[1.04]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1f140c]/70 via-[#1f140c]/20 to-[#f8f0e4]/10" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background: `linear-gradient(145deg, ${card.accent}88 0%, transparent 52%)`,
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
+            aria-hidden
+          />
+
+          <div className="absolute bottom-3 left-3">
+            <div
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/45 shadow-[0_4px_14px_rgba(0,0,0,0.25)] backdrop-blur-md"
+              style={{ backgroundColor: `${card.accent}dd` }}
+            >
+              <Icon className="h-5 w-5 text-white drop-shadow-sm" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+        <h3 className="font-serif text-[18px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[20px]">
+          {card.title}
+        </h3>
+        <div className="mb-2.5 mt-3 flex w-full max-w-[72px] items-center gap-2">
+          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
+          <span className="text-[10px]" style={{ color: card.accent }}>
+            ◆
+          </span>
+          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
+        </div>
+        <p className="text-[14px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[14.5px]">
+          {card.subtitle}
+        </p>
+      </div>
+    </button>
+  );
+}
+
 type RightsPageProps = {
   lang?: LangCode;
   languageLabel?: string;
@@ -253,7 +330,6 @@ export default function RightsPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
-  const ChevronIcon = dir === "rtl" ? ArrowLeft : ArrowRight;
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -337,63 +413,15 @@ export default function RightsPage({
             </p>
           </header>
 
-          <div className="mx-auto mt-[clamp(80px,80vh,760px)] grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {c.cards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <button
-                  key={card.id}
-                  type="button"
-                  data-rts-animate="true"
-                  onClick={() => onOpenCard?.(card.id)}
-                  className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/92 text-start shadow-[0_16px_32px_rgba(69,43,14,0.16)] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
-                >
-                  <div
-                    className="relative h-[120px] w-full"
-                    style={{
-                      background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
-                    }}
-                  >
-                    <div
-                      className="pointer-events-none absolute inset-0 opacity-[0.18]"
-                      style={{
-                        backgroundImage: `url(${bg3})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        mixBlendMode: "overlay",
-                      }}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-end px-6">
-                      <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
-                        <Icon className="h-6 w-6 text-white" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-1 flex-col px-6 py-6">
-                    <h3 className="font-serif text-[19px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[21px]">
-                      {card.title}
-                    </h3>
-                    <div className="mb-3 mt-3 w-[60px]">
-                      <span
-                        className="block h-[2px]"
-                        style={{ backgroundColor: card.accent }}
-                      />
-                    </div>
-                    <p className="text-[14.5px] font-medium leading-relaxed text-[#4d3c2a]">
-                      {card.subtitle}
-                    </p>
-                    <span
-                      className="mt-5 inline-flex items-center gap-2 self-start rounded-full px-4 py-2 font-serif text-[12.5px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm"
-                      style={{ backgroundColor: card.accent }}
-                    >
-                      {c.openLabel}
-                      <ChevronIcon className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
+          <div className="mx-auto mt-[clamp(80px,50vh,520px)] grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {c.cards.map((card) => (
+              <RightsOverviewCardButton
+                key={card.id}
+                card={card}
+                imageSrc={CARD_IMAGES[card.id]}
+                onOpen={() => onOpenCard?.(card.id)}
+              />
+            ))}
           </div>
 
           <div
