@@ -8,19 +8,32 @@ import {
   Cross,
   Sun,
   Quote,
+  type LucideIcon,
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.webp";
-import bg2 from "@/assets/images/religions/r-3.webp";
+import ancientRootsImg from "@/assets/mainImages/letter.webp";
+import jewishCommunityImg from "@/assets/images/religions/r-5.webp";
+import christiansImg from "@/assets/images/religions/r-2.webp";
+import bahaullahImg from "@/assets/mainImages/shared.webp";
 
 type LangCode = "en" | "ku" | "ar";
 
+type HistoryCardId = "ancient-roots" | "jewish-community" | "christians" | "bahaullah";
+
+const CARD_IMAGES: Record<HistoryCardId, string> = {
+  "ancient-roots": ancientRootsImg,
+  "jewish-community": jewishCommunityImg,
+  christians: christiansImg,
+  bahaullah: bahaullahImg,
+};
+
 type SlideCard = {
-  id: string;
+  id: HistoryCardId;
   number: number;
   title: string;
   body: string;
-  icon: typeof Mountain;
+  icon: LucideIcon;
   accent: string;
   isQuote?: boolean;
 };
@@ -218,6 +231,76 @@ function DecorativeLine({ color = "#c99a55" }) {
   );
 }
 
+function HistoryOverviewCard({ card }: { card: SlideCard }) {
+  const Icon = card.icon;
+  const imageSrc = CARD_IMAGES[card.id];
+
+  return (
+    <article
+      data-h-animate="true"
+      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)]"
+    >
+      <div className="relative mx-3 mt-3 overflow-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
+        <div className="relative h-[min(148px,32vw)] overflow-hidden rounded-[14px] sm:h-[160px]">
+          <img
+            src={imageSrc}
+            alt=""
+            className="h-full w-full object-cover object-center transition duration-700 ease-out group-hover:scale-[1.04]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1f140c]/70 via-[#1f140c]/20 to-[#f8f0e4]/10" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background: `linear-gradient(145deg, ${card.accent}88 0%, transparent 52%)`,
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
+            aria-hidden
+          />
+
+          <div className="absolute bottom-3 left-3">
+            <div
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/45 shadow-[0_4px_14px_rgba(0,0,0,0.25)] backdrop-blur-md"
+              style={{ backgroundColor: `${card.accent}dd` }}
+            >
+              <Icon className="h-5 w-5 text-white drop-shadow-sm" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+        <h3 className="font-serif text-[18px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[20px]">
+          {card.title}
+        </h3>
+        <div className="mb-2.5 mt-3 flex w-full max-w-[72px] items-center gap-2">
+          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
+          <span className="text-[10px]" style={{ color: card.accent }}>
+            ◆
+          </span>
+          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
+        </div>
+        {card.isQuote ? (
+          <div className="relative pt-1">
+            <Quote
+              className="absolute -top-0.5 left-0 h-5 w-5 opacity-50"
+              style={{ color: card.accent }}
+            />
+            <p className="pl-7 text-[14px] font-medium italic leading-relaxed text-[#4d3c2a] sm:text-[14.5px]">
+              {card.body}
+            </p>
+          </div>
+        ) : (
+          <p className="text-[14px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[14.5px]">
+            {card.body}
+          </p>
+        )}
+      </div>
+    </article>
+  );
+}
+
 type HistoryPageProps = {
   lang?: LangCode;
   languageLabel?: string;
@@ -345,65 +428,10 @@ export default function HistoryPage({
                 </p>
               </div>
 
-              <div className="mx-auto mt-10 grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {slide.cards.map((card) => {
-                  const Icon = card.icon;
-                  return (
-                    <article
-                      key={card.id}
-                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
-                    >
-                      <div
-                        className="relative h-[120px] w-full"
-                        style={{
-                          background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
-                        }}
-                      >
-                        <div
-                          className="pointer-events-none absolute inset-0 opacity-[0.18]"
-                          style={{
-                            backgroundImage: `url(${bg2})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            mixBlendMode: "overlay",
-                          }}
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
-                            <Icon className="h-7 w-7 text-white" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-1 flex-col px-6 py-6">
-                        <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[22px]">
-                          {card.title}
-                        </h3>
-                        <div className="mt-3 mb-4 w-[60px]">
-                          <span
-                            className="block h-[2px]"
-                            style={{ backgroundColor: card.accent }}
-                          />
-                        </div>
-                        {card.isQuote ? (
-                          <div className="relative pt-2">
-                            <Quote
-                              className="absolute -top-1 left-0 h-5 w-5 opacity-50"
-                              style={{ color: card.accent }}
-                            />
-                            <p className="pl-7 text-[15px] font-medium italic leading-relaxed text-[#4d3c2a]">
-                              {card.body}
-                            </p>
-                          </div>
-                        ) : (
-                          <p className="text-[15px] font-medium leading-relaxed text-[#4d3c2a]">
-                            {card.body}
-                          </p>
-                        )}
-                      </div>
-                    </article>
-                  );
-                })}
+              <div className="mx-auto mt-10 grid w-full max-w-[1280px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {slide.cards.map((card) => (
+                  <HistoryOverviewCard key={card.id} card={card} />
+                ))}
               </div>
 
               <div className="mx-auto mt-10 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">

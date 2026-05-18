@@ -413,7 +413,7 @@ export default function RightsPage({
             </p>
           </header>
 
-          <div className="mx-auto mt-[clamp(80px,50vh,520px)] grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-[clamp(80px,50vh,700px)] grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {c.cards.map((card) => (
               <RightsOverviewCardButton
                 key={card.id}
