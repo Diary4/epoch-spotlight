@@ -1,9 +1,7 @@
-import { ChevronRight } from "lucide-react";
-
 type ClassicalCardProps = {
   title: string;
   image: string;
-  onClick: () => void;
+  onClick?: () => void;
   ariaLabel?: string;
 };
 
@@ -18,26 +16,85 @@ export default function ClassicalCard({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel ?? title}
-      className="relative h-[360px] w-full overflow-hidden rounded-[28px] border border-[#d9b873]/60 bg-[#fff8ea] p-3 text-left shadow-[0_18px_35px_rgba(67,43,18,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+      className="relative flex w-full cursor-pointer flex-col overflow-hidden text-left focus-visible:ring-2 focus-visible:ring-[#c99a55] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4eadb]"
+      style={{
+        background: "#fffdf6",
+        border: "1px solid #d9c07a",
+        borderRadius: "10px",
+        outline: "none",
+      }}
     >
-      <div className="relative h-[210px] overflow-hidden rounded-[20px]">
+      <div
+        className="pointer-events-none absolute inset-[5px] z-10"
+      />
+
+      <span
+        className="pointer-events-none absolute left-2 top-2 z-10 text-[10px] leading-none opacity-40"
+        style={{ color: "#c99a55" }}
+        aria-hidden="true"
+      >
+        ✦
+      </span>
+      <span
+        className="pointer-events-none absolute right-2 top-2 z-10 text-[10px] leading-none opacity-40"
+        style={{ color: "#c99a55" }}
+        aria-hidden="true"
+      >
+        ✦
+      </span>
+
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
         <img
           src={image}
-          alt=""
+          alt={title}
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#3a2615]/25" />
+        <div
+          className="absolute inset-x-0 bottom-0"
+          style={{
+            height: "45%",
+            background: "linear-gradient(to top, #fffdf6 0%, transparent 100%)",
+          }}
+        />
       </div>
 
-      <div className="relative flex h-[120px] flex-col items-center justify-center px-4 text-center">
-        <h3 className="font-serif text-[25px] font-black uppercase leading-[1.05] tracking-tight text-[#332315]">
+      <div
+        className="flex flex-col items-center gap-2 px-4 pb-5 pt-3"
+        style={{ background: "#fffdf6" }}
+      >
+        <h3
+          className="text-center font-serif leading-snug"
+          style={{
+            fontFamily: "'Cinzel', 'Playfair Display', Georgia, serif",
+            fontSize: "clamp(9px, 1vw, 11px)",
+            fontWeight: 700,
+            letterSpacing: "0.13em",
+            textTransform: "uppercase",
+            color: "#2e2116",
+            margin: 0,
+          }}
+        >
           {title}
         </h3>
 
-        <div className="mt-5 flex items-center gap-2 text-[#b98222]">
-          <span className="h-px w-10 bg-[#c69235]" />
-          <span className="text-xs">◆</span>
-          <span className="h-px w-10 bg-[#c69235]" />
+        <div className="flex items-center gap-[5px]">
+          <span
+            className="block"
+            style={{ width: 22, height: 0.5, background: "#c99a55" }}
+          />
+          <span
+            className="block"
+            style={{
+              width: 5,
+              height: 5,
+              background: "#c99a55",
+              transform: "rotate(45deg)",
+            }}
+          />
+          <span
+            className="block"
+            style={{ width: 22, height: 0.5, background: "#c99a55" }}
+          />
         </div>
       </div>
     </button>

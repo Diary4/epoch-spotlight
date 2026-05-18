@@ -673,7 +673,8 @@ export default function ReligiousDiversityPage({
 
           <section
             data-rd-animate="true"
-            className="absolute inset-x-10 top-[60vh] z-10 pb-10 lg:inset-x-16"
+            className="absolute inset-x-10 z-10 pb-10 lg:inset-x-16"
+            style={{ top: "min(72vh, 1360px)" }}
           >
             <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {content.cards.map((card) => (
