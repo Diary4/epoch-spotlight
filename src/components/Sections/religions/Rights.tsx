@@ -261,14 +261,14 @@ function RightsOverviewCardButton({
       type="button"
       data-rts-animate="true"
       onClick={onOpen}
-      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)] transition hover:border-[#c99745]/70 hover:shadow-[0_18px_36px_rgba(69,43,14,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+      className="relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
     >
       <div className="relative mx-3 mt-3 overflow-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
         <div className="relative h-[min(148px,32vw)] overflow-hidden rounded-[14px] sm:h-[160px]">
           <img
             src={imageSrc}
             alt=""
-            className="h-full w-full object-cover object-center transition duration-700 ease-out group-hover:scale-[1.04]"
+            className="h-full w-full object-cover object-center"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1f140c]/70 via-[#1f140c]/20 to-[#f8f0e4]/10" />
           <div

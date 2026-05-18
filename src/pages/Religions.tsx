@@ -62,6 +62,8 @@ type SectionCardId =
 type SectionCard = {
   id: SectionCardId;
   title: string;
+  description: string;
+  badges: [string, string];
   image: string;
   icon: typeof Church;
   color: string;
@@ -90,6 +92,9 @@ const pageContent: Record<
       {
         id: "introduction",
         title: "Introduction",
+        description:
+          "An opening look at how faiths and peoples have long shared this land.",
+        badges: ["Overview", "Opening chapter"],
         image: letterImg,
         icon: Sparkles,
         color: "#7a4a12",
@@ -97,6 +102,9 @@ const pageContent: Record<
       {
         id: "history",
         title: "History",
+        description:
+          "Centuries of encounter, migration, and memory across Kurdistan.",
+        badges: ["Timeline", "Heritage"],
         image: presidencyImg,
         icon: ScrollText,
         color: "#3a2f12",
@@ -104,6 +112,9 @@ const pageContent: Record<
       {
         id: "leaders",
         title: "Leaders of Coexistence",
+        description:
+          "Figures who defended pluralism and mutual respect in public life.",
+        badges: ["Profiles", "Leaders"],
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -111,6 +122,9 @@ const pageContent: Record<
       {
         id: "nations",
         title: "Nations",
+        description:
+          "Kurds, Assyrians, Armenians, Turkmens, and other communities.",
+        badges: ["Communities", "8 peoples"],
         image: whoarekurdsImg,
         icon: UsersRound,
         color: "#16466b",
@@ -118,6 +132,9 @@ const pageContent: Record<
       {
         id: "faiths",
         title: "Faiths",
+        description:
+          "Islam, Christianity, Yarsanism, Judaism, and other traditions.",
+        badges: ["Beliefs", "Sacred life"],
         image: bg,
         icon: Church,
         color: "#244b1f",
@@ -125,6 +142,9 @@ const pageContent: Record<
       {
         id: "sharedLife",
         title: "Shared Life",
+        description:
+          "Festivals, neighborhoods, and everyday coexistence side by side.",
+        badges: ["Culture", "Daily life"],
         image: sharedImg,
         icon: HeartHandshake,
         color: "#cf921d",
@@ -132,6 +152,9 @@ const pageContent: Record<
       {
         id: "rights",
         title: "Rights & Recognition",
+        description:
+          "Constitutional protections and legal recognition in the Region.",
+        badges: ["Law", "Recognition"],
         image: governmentImg,
         icon: Scale,
         color: "#52235f",
@@ -139,6 +162,9 @@ const pageContent: Record<
       {
         id: "closing",
         title: "Closing",
+        description:
+          "A reflection on unity, dignity, and the road ahead together.",
+        badges: ["Reflection", "Closing chapter"],
         image: buildingImg,
         icon: Flag,
         color: "#6b1d1d",
@@ -146,7 +172,7 @@ const pageContent: Record<
     ],
     detailComingSoon: "Detailed content for this section is coming soon.",
     detailBack: "Back to overview",
-    openLabel: "Open",
+    openLabel: "Explore",
   },
   ku: {
     languageLabel: "کوردی",
@@ -158,6 +184,9 @@ const pageContent: Record<
       {
         id: "introduction",
         title: "پێشەکی",
+        description:
+          "سەرەتایەکی گشتگیر بۆ چۆنیەتی هاوبەشی ئاین و نەتەوەکان لەم خاکە.",
+        badges: ["گشتی", "بەشی سەرەتا"],
         image: letterImg,
         icon: Sparkles,
         color: "#7a4a12",
@@ -165,6 +194,9 @@ const pageContent: Record<
       {
         id: "history",
         title: "مێژوو",
+        description:
+          "سەدان ساڵ پەیوەندی، کۆچ و یادەوەری لە ناو کوردستاندا.",
+        badges: ["هێڵی کات", "میرات"],
         image: presidencyImg,
         icon: ScrollText,
         color: "#3a2f12",
@@ -172,6 +204,9 @@ const pageContent: Record<
       {
         id: "leaders",
         title: "ڕابەرانی پێکەوەژیان",
+        description:
+          "کەسایەتییەکان کە فرەڕەنگی و ڕێزگرتن لە ژیانی گشتی پاراست.",
+        badges: ["پڕۆفایل", "ڕابەران"],
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -179,6 +214,9 @@ const pageContent: Record<
       {
         id: "nations",
         title: "نەتەوەکان",
+        description:
+          "کورد، ئاشوری، ئەرمەنی، تورکمان و کۆمەڵگە جیاوازەکانی تر.",
+        badges: ["کۆمەڵگە", "٨ نەتەوە"],
         image: whoarekurdsImg,
         icon: UsersRound,
         color: "#16466b",
@@ -186,6 +224,9 @@ const pageContent: Record<
       {
         id: "faiths",
         title: "ئاینەکان",
+        description:
+          "ئیسلام، مەسیحی، یارسان، یەهودی و ئاینەکانی تر.",
+        badges: ["باوەڕ", "ژیانی ئایینی"],
         image: bg,
         icon: Church,
         color: "#244b1f",
@@ -193,6 +234,9 @@ const pageContent: Record<
       {
         id: "sharedLife",
         title: "ژیانی هاوبەش",
+        description:
+          "جەژن، گەڕەک و پێکەوەژیانی ڕۆژانە لە تەنیشت یەکدا.",
+        badges: ["کلتوور", "ژیانی ڕۆژانە"],
         image: sharedImg,
         icon: HeartHandshake,
         color: "#cf921d",
@@ -200,6 +244,9 @@ const pageContent: Record<
       {
         id: "rights",
         title: "ماف و ناسینەوە",
+        description:
+          "پاراستنی دەستووری و ناسینەوەی یاسایی لە هەرێمدا.",
+        badges: ["یاسا", "ناسینەوە"],
         image: governmentImg,
         icon: Scale,
         color: "#52235f",
@@ -207,6 +254,9 @@ const pageContent: Record<
       {
         id: "closing",
         title: "کۆتایی",
+        description:
+          "بیرکردنەوە لەسەر یەکگرتوویی، ڕێز و ڕێگای پێشەوە پێکەوە.",
+        badges: ["کۆتایی", "بەشی کۆتایی"],
         image: buildingImg,
         icon: Flag,
         color: "#6b1d1d",
@@ -214,7 +264,7 @@ const pageContent: Record<
     ],
     detailComingSoon: "ناوەڕۆکی ورد بۆ ئەم بەشە بەزووی دێت.",
     detailBack: "گەڕانەوە",
-    openLabel: "بکەرەوە",
+    openLabel: "گەڕان",
   },
   ar: {
     languageLabel: "العربية",
@@ -226,6 +276,9 @@ const pageContent: Record<
       {
         id: "introduction",
         title: "مقدمة",
+        description:
+          "نظرة افتتاحية عن كيف شاركت الأديان والشعوب هذه الأرض عبر الزمن.",
+        badges: ["نظرة عامة", "الفصل الافتتاحي"],
         image: letterImg,
         icon: Sparkles,
         color: "#7a4a12",
@@ -233,6 +286,9 @@ const pageContent: Record<
       {
         id: "history",
         title: "التاريخ",
+        description:
+          "قرون من اللقاء والهجرة والذاكرة في أنحاء كوردستان.",
+        badges: ["الخط الزمني", "التراث"],
         image: presidencyImg,
         icon: ScrollText,
         color: "#3a2f12",
@@ -240,6 +296,9 @@ const pageContent: Record<
       {
         id: "leaders",
         title: "قادة التعايش",
+        description:
+          "شخصيات دافعت عن التعدد والاحترام المتبادل في الحياة العامة.",
+        badges: ["ملفات", "القادة"],
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -247,6 +306,9 @@ const pageContent: Record<
       {
         id: "nations",
         title: "القوميات",
+        description:
+          "الأكراد والآشوريون والأرمن والتركمان ومجتمعات أخرى.",
+        badges: ["المجتمعات", "٨ شعوب"],
         image: whoarekurdsImg,
         icon: UsersRound,
         color: "#16466b",
@@ -254,6 +316,9 @@ const pageContent: Record<
       {
         id: "faiths",
         title: "الأديان",
+        description:
+          "الإسلام والمسيحية واليزيدية واليهودية وتقاليد أخرى.",
+        badges: ["المعتقدات", "الحياة المقدسة"],
         image: bg,
         icon: Church,
         color: "#244b1f",
@@ -261,6 +326,9 @@ const pageContent: Record<
       {
         id: "sharedLife",
         title: "الحياة المشتركة",
+        description:
+          "الأعياد والأحياء والتعايش اليومي جنباً إلى جنب.",
+        badges: ["الثقافة", "الحياة اليومية"],
         image: sharedImg,
         icon: HeartHandshake,
         color: "#cf921d",
@@ -268,6 +336,9 @@ const pageContent: Record<
       {
         id: "rights",
         title: "الحقوق والاعتراف",
+        description:
+          "الحماية الدستورية والاعتراف القانوني في الإقليم.",
+        badges: ["القانون", "الاعتراف"],
         image: governmentImg,
         icon: Scale,
         color: "#52235f",
@@ -275,6 +346,9 @@ const pageContent: Record<
       {
         id: "closing",
         title: "الخاتمة",
+        description:
+          "تأمل في الوحدة والكرامة والطريق المشترك إلى الأمام.",
+        badges: ["تأمل", "الفصل الختامي"],
         image: buildingImg,
         icon: Flag,
         color: "#6b1d1d",
@@ -282,7 +356,7 @@ const pageContent: Record<
     ],
     detailComingSoon: "المحتوى التفصيلي لهذا القسم قادم قريباً.",
     detailBack: "العودة",
-    openLabel: "اعرض",
+    openLabel: "استكشف",
   },
 };
 
@@ -674,14 +748,17 @@ export default function ReligiousDiversityPage({
           <section
             data-rd-animate="true"
             className="absolute inset-x-10 z-10 pb-10 lg:inset-x-16"
-            style={{ top: "min(72vh, 1360px)" }}
+            style={{ top: "min(70vh, 1280px)" }}
           >
-            <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {content.cards.map((card) => (
                 <ClassicalCard
                   key={card.id}
                   title={card.title}
+                  description={card.description}
+                  badges={[...card.badges]}
                   image={card.image}
+                  ctaLabel={content.openLabel}
                   onClick={() => openSectionCard(card.id)}
                   ariaLabel={card.title}
                 />
