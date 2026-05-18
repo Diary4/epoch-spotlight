@@ -10,6 +10,7 @@ import imgPakiza from "@/assets/images/women/w-11.webp";
 import imgHana from "@/assets/images/women/w-1.webp";
 import imgMaryam from "@/assets/images/women/w-2.webp";
 import imgKurdistan from "@/assets/images/women/w-3.webp";
+import imgKurdistanMukryani from "@/assets/images/women/kurdistan-mukryani.png";
 
 type LangCode = "ku" | "en" | "ar";
 type ListIcon = "crown" | "flower";
@@ -158,7 +159,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Defending Kurdish through academic research and teaching.",
       placeEra: "Twentieth century, Kurdistan and Moscow.",
       quote: "Language is the identity of a people.",
-      image: imgKurdistan,
+      image: imgKurdistanMukryani,
       listIcon: "crown",
     },
   ],
@@ -230,7 +231,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "داکۆکیکردن لە زمانی کوردی لە ڕێگەی توێژینەوەی ئەکادیمی و وانەوتنەوە.",
       placeEra: "سەدەی بیستەم، کوردستان و مۆسکۆ.",
       quote: "زمان شوناسی نەتەوەیە.",
-      image: imgKurdistan,
+      image: imgKurdistanMukryani,
       listIcon: "crown",
     },
   ],
@@ -302,7 +303,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "الدفاع عن الكردية من خلال البحث الأكاديمي والتدريس.",
       placeEra: "القرن العشرون، كردستان وموسكو.",
       quote: "اللغة هي هوية الشعب.",
-      image: imgKurdistan,
+      image: imgKurdistanMukryani,
       listIcon: "crown",
     },
   ],

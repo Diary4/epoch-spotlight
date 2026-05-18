@@ -68,48 +68,44 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
         <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
-        <section className="relative z-10 grid min-h-[650px] grid-cols-1 items-start gap-4 px-4 sm:grid-cols-[0.8fr_1.2fr] sm:px-8 lg:px-14">
-          <div className="relative z-20 pt-20" data-women-detail-fade="true">
+        <section className="relative z-10 w-full">
+          <img
+            src={portraitSrc}
+            alt={portraitAlt}
+            data-women-detail-fade="true"
+            className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+          />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#fbf4e8]/72 via-[#fbf4e8]/30 to-[#fbf4e8]/95" />
+
+          <div className="relative z-20 px-4 pb-8 pt-24 sm:px-8 sm:pt-28 lg:px-14" data-women-detail-fade="true">
             <h1 className="font-serif text-[clamp(70px,9vw,118px)] leading-[0.88] tracking-[-0.04em] text-[#2d1436]">
               {nameLine1}
               <br />
               {nameLine2}
             </h1>
 
-            <div className="mt-8 flex w-[260px] items-center gap-3 text-[#c7a45e]">
+            <div className="mt-8 flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-8 max-w-[300px] font-serif text-[clamp(34px,4vw,48px)] italic leading-tight text-[#b48734]">
+            <h2 className="mt-8 max-w-[min(100%,300px)] font-serif text-[clamp(34px,4vw,48px)] italic leading-tight text-[#b48734]">
               {role}
             </h2>
 
-            <div className="mt-8 flex w-[190px] items-center gap-3 text-[#c7a45e]">
+            <div className="mt-8 flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <p className="mt-8 max-w-[330px] text-[20px] leading-9 text-[#3f3b42]">{intro}</p>
+            <p className="mt-8 max-w-[min(100%,330px)] text-[20px] leading-9 text-[#3f3b42]">{intro}</p>
           </div>
 
-          <div
-            className="relative flex min-h-[520px] items-start justify-center sm:justify-end"
-            data-women-detail-fade="true"
-          >
-            <img
-              src={portraitSrc}
-              alt={portraitAlt}
-              className="relative z-10 mt-0 h-[clamp(380px,55vh,1220px)] w-screen object-cover"
-            />
-
-            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-32 bg-gradient-to-b from-transparent to-[#fbf4e8]" />
-          </div>
         </section>
 
-        <section className="relative z-30 mt-[10vh] grid grid-cols-1 gap-5 px-4 sm:grid-cols-3 sm:px-8 lg:px-14">
+        <section className="relative z-30 mt-[clamp(80px,50vh,360px)] grid grid-cols-1 gap-5 px-4 sm:grid-cols-3 sm:px-8 lg:px-14">
           {cards.map((c) => (
             <WomenDetailInfoCard key={c.title} {...c} />
           ))}

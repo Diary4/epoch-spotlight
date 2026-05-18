@@ -267,7 +267,7 @@ export default function NationsPage({
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm"
+            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm"
             aria-label={c.back}
           >
             <ArrowLeft className="h-7 w-7" />
@@ -278,7 +278,7 @@ export default function NationsPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
           >
             <Globe2 className="h-5 w-5" />
             {languageLabel}
@@ -321,7 +321,7 @@ export default function NationsPage({
                   }
                 }}
                 aria-label={nation.title}
-                className="mt-[clamp(20px,30vh,300px)] relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+                className="mt-[clamp(20px,30vh,500px)] relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
               >
                 <div className="relative h-[230px] w-full overflow-hidden">
                   <img

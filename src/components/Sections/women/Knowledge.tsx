@@ -16,7 +16,7 @@ import knowledgeHero from "@/assets/images/women/c-2.webp";
 import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
-import leylaZanaImg from "@/assets/images/women/w-10.webp";
+import leylaZanaImg from "@/assets/images/women/layla-zana.png";
 
 type WomenKnowledgePageProps = WomenLanguageProps & {
   onBack?: () => void;
