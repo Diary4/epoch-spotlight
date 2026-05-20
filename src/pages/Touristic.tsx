@@ -19,6 +19,11 @@ const NaturalPlaces = () => {
           location: place.location,
           description: place.description,
           role: place.role,
+          distanceFromErbil: place.distanceFromErbil,
+          bestTimeToVisit: place.bestTimeToVisit,
+          visitorExperience: place.visitorExperience,
+          travelGuidance: place.travelGuidance,
+          accommodation: place.accommodation,
           target: place,
         },
       })),
@@ -199,7 +204,7 @@ const NaturalPlaces = () => {
             className="text-xs font-light uppercase tracking-[0.2em]"
             style={{ color: "rgba(210,190,150,0.5)" }}
           >
-            {NATURAL_PLACES.length} Sacred Places • Click any landscape to explore
+            {NATURAL_PLACES.length} Natural Places • Click any landscape to explore
           </p>
           <div className="flex justify-center gap-3 mt-6">
             <span className="text-xs tracking-widest text-stone-400/50">
@@ -262,17 +267,33 @@ const NaturalPlaces = () => {
             <div className="p-6 md:p-8">
               <p className="text-white/80 leading-relaxed text-base md:text-lg font-light">
                 {selectedPlace.description}
-                <br />
-                <br />
-                Surrounded by ancient forests and breathtaking vistas,{" "}
-                {selectedPlace.name} stands as a testament to nature's timeless
-                artistry. The atmosphere here is pure serenity — with dark
-                silhouettes of distant peaks at twilight, and a profound silence
-                that heals the soul.
               </p>
+
+              <div className="mt-6 grid gap-3 md:grid-cols-2">
+                {[
+                  ["Distance from Erbil", selectedPlace.distanceFromErbil],
+                  ["Best time to visit", selectedPlace.bestTimeToVisit],
+                  ["Visitor experience", selectedPlace.visitorExperience],
+                  ["Travel guidance", selectedPlace.travelGuidance],
+                  ["Accommodation", selectedPlace.accommodation],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                  >
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-amber-300/70">
+                      {label}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/75">
+                      {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
               <div className="mt-6 flex flex-wrap gap-3 justify-between items-center border-t border-white/10 pt-5">
                 <span className="text-xs uppercase tracking-wider text-amber-400/70">
-                  ✦ elevation of wonder ✦
+                  ✦ natural adventure ✦
                 </span>
                 <button
                   onClick={closeModal}
