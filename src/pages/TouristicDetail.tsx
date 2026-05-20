@@ -69,16 +69,17 @@ const TouristicDetail = () => {
       ref={rootRef}
       className="min-h-screen w-screen overflow-x-hidden bg-[#071014] text-white selection:bg-[#c89b52]/30"
     >
-      <section className="relative h-[60vh] min-h-[500px] w-full">
+      <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
         <img
           data-place-hero-image="true"
           src={place.image}
           alt={place.name}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover will-change-transform"
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071014] via-[#071014]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071014] via-[#071014]/70 to-transparent" />
+        <div className="absolute bottom-[-1px] left-0 right-0 h-32 bg-gradient-to-t from-[#071014] via-[#071014]/95 to-transparent" />
 
         <div
           data-place-back="true"
