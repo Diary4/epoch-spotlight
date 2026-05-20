@@ -2,6 +2,28 @@ import { useLayoutEffect, useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { gsap } from "gsap";
 import { NATURAL_PLACES } from "@/data/naturalPlaces";
+import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
+import { RELIGIOUS_SITES } from "@/data/religousSites";
+import { MUSEUM_CENTERS } from "@/data/museumCenters";
+
+const placeCategories = [
+  {
+    id: "nature",
+    places: NATURAL_PLACES,
+  },
+  {
+    id: "religious",
+    places: RELIGIOUS_SITES,
+  },
+  {
+    id: "historical",
+    places: HISTORICAL_PLACES,
+  },
+  {
+    id: "museums",
+    places: MUSEUM_CENTERS,
+  },
+];
 
 const detailFields = [
   ["Distance from Erbil", "distanceFromErbil"],
@@ -12,9 +34,12 @@ const detailFields = [
 ];
 
 const TouristicDetail = () => {
-  const { id } = useParams();
+  const { category, id } = useParams();
   const rootRef = useRef<HTMLElement | null>(null);
-  const place = NATURAL_PLACES.find((item) => item.id === id);
+  const categoryId = category ?? "nature";
+  const activeCategory =
+    placeCategories.find((item) => item.id === categoryId) ?? placeCategories[0];
+  const place = activeCategory.places.find((item) => item.id === id);
 
   useLayoutEffect(() => {
     if (!rootRef.current || !place) return;
@@ -86,7 +111,7 @@ const TouristicDetail = () => {
           className="absolute left-6 top-8 z-20 sm:left-10 lg:left-14"
         >
           <Link
-            to="/touristic"
+            to={`/touristic?category=${activeCategory.id}`}
             className="inline-flex items-center gap-2 rounded-full border border-[#c89b52]/35 bg-black/25 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-[#e6d8bd] backdrop-blur-md transition hover:bg-[#c89b52]/20 hover:text-white"
           >
             <span>←</span> Back

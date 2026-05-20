@@ -27,6 +27,20 @@ export const NATURAL_PLACES = [
       "Via Erbil-Soran highway. Approx. 1.5-2 hours. Fully paved road.",
     accommodation:
       "Korek Mountain Resort (on-site). Hotels in Soran city (~15 km).",
+    nameAr: "جبل كورك وتلفريك",
+    locationAr: "سوران / محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "قمة جبلية شاهقة في منطقة سوران. يقل تلفريك حديث الزوار إلى القمة مع مناظر بانورامية خالبة. يحيط به وادي مالكان ومرافق منتجعات متعددة.",
+    distanceFromErbilAr: "~100 كم",
+    bestTimeToVisitAr:
+      "الربيع (مايو-يونيو) والصيف للتلفريك. الشتاء لسياحة الثلج.",
+    visitorExperienceAr:
+      "رحلة التلفريك، مناظر قمة الجبل، مسارات المشي، منتجع كوريك الجبلي في القمة.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران. حوالي 1.5-2 ساعة. طريق معبد بالكامل.",
+    accommodationAr:
+      "منتجع كوريك الجبلي (في الموقع). فنادق سوران (~15 كم).",
   },
   {
     id: "gali-ali-begg-waterfall-valley",
@@ -42,6 +56,18 @@ export const NATURAL_PLACES = [
       "Waterfall viewing, picnicking, dining in valley restaurants, photography.",
     travelGuidance: "On the Erbil-Soran highway. Approx. 1.5 hours.",
     accommodation: "Restaurants and cafes on site. Hotels in Soran (~10-15 km).",
+    nameAr: "شلال وادي كلي علي بك",
+    locationAr: "سوران، محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "واد بطول 12 كم بين جبلي كوريك وبرادوست. يضم أحد أكثر المعالم الطبيعية زيارة في كردستان، شلال كلي علي بك، إلى جانب ينابيع ومطاعم ومقاه.",
+    distanceFromErbilAr: "~95 كم",
+    bestTimeToVisitAr: "الربيع (مارس-مايو) لذروة تدفق المياه.",
+    visitorExperienceAr:
+      "مشاهدة الشلال، النزهات، تناول الطعام في مطاعم الوادي، التصوير.",
+    travelGuidanceAr: "على طريق أربيل-سوران. حوالي 1.5 ساعة.",
+    accommodationAr:
+      "مطاعم ومقاه في الموقع. فنادق سوران (~10-15 كم).",
   },
   {
     id: "halgurd-mountain",
@@ -59,6 +85,19 @@ export const NATURAL_PLACES = [
       "Via Erbil-Soran-Choman road. Approx. 3-3.5 hours. Mountain trails require guides.",
     accommodation:
       "Guesthouses in Choman and Haji Omran. Rezan Summer Resort (~22 km from Barzan).",
+    nameAr: "جبل هلگورد",
+    locationAr: "شومان / محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "أعلى جبل في العراق بارتفاع 3,607 متر. مكسو بالثلوج حتى أبريل. يحيط به المنتزه الوطني هلگورد-سكران (1,000 كم²) بنباتاته وحيواناته وبحيراته الفريدة.",
+    distanceFromErbilAr: "~170 كم شمال شرق",
+    bestTimeToVisitAr: "يوليو-سبتمبر للتنزه. أبريل-مايو للثلج والخضرة.",
+    visitorExperienceAr:
+      "تسلق الجبال، التنزه، استكشاف المنتزه الوطني، مراقبة الحياة البرية.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-شومان. حوالي 3-3.5 ساعات. المسارات الجبلية تتطلب مرشدين.",
+    accommodationAr:
+      "بيوت ضيافة في شومان وحاج عمران. منتجع ريزان الصيفي (~22 كم من بارزان).",
   },
   {
     id: "shaqlawa-resort-town",
@@ -77,6 +116,20 @@ export const NATURAL_PLACES = [
       "Via Erbil-Shaqlawa mountain road. Approx. 1-1.5 hours.",
     accommodation:
       "Numerous hotels, resorts and guesthouses throughout the town.",
+    nameAr: "بلدة شقلاوة السياحية",
+    locationAr: "محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "أشهر بلدة منتجع جبلية في كردستان بين جبلي صفين وسورك. تشتهر بهوائها النقي وصيفها المعتدل وبساتين الفاكهة والمناظر الجبلية البانورامية.",
+    distanceFromErbilAr: "~47 كم",
+    bestTimeToVisitAr:
+      "أبريل-أكتوبر (مناخ معتدل؛ هروب من حر الأراضي المنخفضة).",
+    visitorExperienceAr:
+      "تسوق في سوق الجبل، زيارة البساتين، مناظر بانورامية، مطاعم محلية.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-شقلاوة الجبلي. حوالي 1-1.5 ساعة.",
+    accommodationAr:
+      "فنادق ومنتجعات وبيوت ضيافة عديدة في أرجاء البلدة.",
   },
   {
     id: "dukan-lake-resort",
@@ -94,6 +147,19 @@ export const NATURAL_PLACES = [
       "Via Erbil-Sulaymaniyah road then west toward Dukan. Approx. 2.5-3 hours.",
     accommodation:
       "On-site resort hotels and cabins directly on the lakeshore.",
+    nameAr: "منتجع بحيرة دوكان",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "إحدى أجمل البحيرات في كردستان. تحيط بها التلال المتدحرجة وماؤها الأزرق الصافي. منتجع في الموقع مع فنادق وأكواخ ومطاعم.",
+    distanceFromErbilAr: "~180 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع (أبريل-يونيو) وأوائل الخريف.",
+    visitorExperienceAr:
+      "السباحة، التجديف، الصيد، تناول الطعام بجانب البحيرة، الإقامة في الأكواخ.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-السليمانية ثم غربا نحو دوكان. حوالي 2.5-3 ساعات.",
+    accommodationAr:
+      "فنادق وأكواخ المنتجع مباشرة على الشاطئ.",
   },
   {
     id: "darbandikhan-lake",
@@ -111,6 +177,19 @@ export const NATURAL_PLACES = [
       "Via Sulaymaniyah-Darbandikhan road. From Erbil approx. 3+ hours.",
     accommodation:
       "Resort facilities near the lake. Hotels in Sulaymaniyah (~60 km).",
+    nameAr: "بحيرة دربنديخان",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "60 كم جنوب شرق السليمانية. شاطئ بحيرة طبيعي خلاب بجانب طوني بابا، ممر صخري قديم نحته الريح والماء على مر القرون.",
+    distanceFromErbilAr: "~220 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع وأوائل الخريف.",
+    visitorExperienceAr:
+      "التجديف في البحيرة، الصيد، النزهات، زيارة ممر طوني بابا الصخري.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية-دربنديخان. من أربيل حوالي 3 ساعات أو أكثر.",
+    accommodationAr:
+      "مرافق منتجع قرب البحيرة. فنادق السليمانية (~60 كم).",
   },
   {
     id: "snow-cave-prsha-waterfall",
@@ -128,6 +207,20 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Soran-Sidikan roads. Mountain tracks, guide recommended.",
     accommodation: "Guesthouses in nearby Balakian. Soran hotels (~40 km).",
+    nameAr: "كهف الثلج (پرزا) والشلال",
+    locationAr: "بالاكيان / جبل سكران، محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "نحته شلال پرشا في الصخر. تبقى درجة الحرارة دون 5 درجات مئوية حتى في الصيف، تجربة استثنائية فريدة في كردستان.",
+    distanceFromErbilAr: "~150 كم فأكثر",
+    bestTimeToVisitAr:
+      "يوليو-أغسطس للتجربة السحرية: ثلج في قلب الصيف.",
+    visitorExperienceAr:
+      "المشي عبر كهف الثلج في منتصف الصيف، تصوير الشلال، التنزه في منطقة جبل سكران.",
+    travelGuidanceAr:
+      "عبر طريق سوران-سيدكان. مسالك جبلية، ينصح بمرشد.",
+    accommodationAr:
+      "بيوت ضيافة في بالاكيان القريبة. فنادق سوران (~40 كم).",
   },
   {
     id: "sakran-valley",
@@ -144,6 +237,19 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Soran-Sidikan-Sakran roads. Some unpaved mountain tracks.",
     accommodation: "Traditional village guesthouses. Soran hotels (~40 km).",
+    nameAr: "وادي سكران",
+    locationAr: "محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "واد أخضر مورق تحيط به الأشجار والأزهار والجداول الجبلية والطيور. تقدم قرية تقليدية ضيافة ريفية كردية أصيلة.",
+    distanceFromErbilAr: "~150 كم",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "الإقامة في القرية، المشي في الطبيعة، مراقبة الطيور، التصوير، الضيافة الريفية الكردية.",
+    travelGuidanceAr:
+      "عبر طريق سوران-سيدكان-سكران. بعض المسالك غير معبدة.",
+    accommodationAr:
+      "بيوت ضيافة تقليدية في القرية. فنادق سوران (~40 كم).",
   },
   {
     id: "haji-omran-highland-area",
@@ -162,6 +268,19 @@ export const NATURAL_PLACES = [
       "Via Erbil-Soran-Choman-Haji Omran. Approx. 3.5-4 hours. Mountain roads.",
     accommodation:
       "Guesthouses and lodges in Haji Omran. Rezan Summer Resort nearby.",
+    nameAr: "منطقة حاج عمران الجبلية",
+    locationAr: "شومان / محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "على ارتفاع 3,000 متر على الحدود الإيرانية. تشتهر بمياهها الطبية. تنطلق منها رحلات إلى أعلى جبال كردستان.",
+    distanceFromErbilAr: "~200 كم شمال شرق",
+    bestTimeToVisitAr: "يونيو-سبتمبر للوصول. الشتاء لسياحة الثلج.",
+    visitorExperienceAr:
+      "المياه الطبية العلاجية، المناظر الجبلية الشاهقة، المشي في الجبال.",
+    travelGuidanceAr:
+      "عبر أربيل-سوران-شومان-حاج عمران. حوالي 3.5-4 ساعات. طرق جبلية.",
+    accommodationAr:
+      "بيوت ضيافة ونزل في حاج عمران. منتجع ريزان الصيفي قريب.",
   },
   {
     id: "mirgasor-district-forests",
@@ -178,6 +297,18 @@ export const NATURAL_PLACES = [
     travelGuidance: "Via Erbil-Barzan road. Approx. 2-2.5 hours.",
     accommodation:
       "Village guesthouses. Rezan Summer Resort (~22 km from Barzan area).",
+    nameAr: "منطقة ميركسور والغابات",
+    locationAr: "شمال محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منطقة جبلية وعرة تضم 252 قرية. تشتهر بغاباتها البكر تماما ومحاصيلها وفاكهتها الطبيعية. الصيد محظور تماما.",
+    distanceFromErbilAr: "~130 كم شمالا",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي في الغابات، زيارة القرى، قطف الفاكهة، استكشاف الطبيعة البكر.",
+    travelGuidanceAr: "عبر طريق أربيل-بارزان. حوالي 2-2.5 ساعة.",
+    accommodationAr:
+      "بيوت ضيافة في القرى. منتجع ريزان الصيفي (~22 كم من منطقة بارزان).",
   },
   {
     id: "malakan-valley",
@@ -195,6 +326,19 @@ export const NATURAL_PLACES = [
       "Via Erbil-Soran-Khalifan road. Approx. 2 hours.",
     accommodation:
       "Hotels in Soran (~20 km from Khalifan). Korek Mountain Resort nearby.",
+    nameAr: "وادي مالكان",
+    locationAr: "خليفان / سوران",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "عند سفح سلسلة جبال كوريك، 25 كم من خليفان. طبيعة خلابة، ينابيع صافية، أشجار خضراء ومطاعم.",
+    distanceFromErbilAr: "~125 كم",
+    bestTimeToVisitAr: "الصيف (يونيو-أغسطس) للهروب من الحرارة.",
+    visitorExperienceAr:
+      "النزهات، مياه الينابيع، مسارات المشي، زيارة المطاعم بخلفية جبلية.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-خليفان. حوالي 2 ساعة.",
+    accommodationAr:
+      "فنادق سوران (~20 كم). منتجع كوريك الجبلي قريب.",
   },
   {
     id: "alana-valley",
@@ -211,6 +355,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Erbil-Soran-Khalifan road. Approx. 1.5-2 hours.",
     accommodation: "Hotels in Khalifan and Soran.",
+    nameAr: "وادي آلانة",
+    locationAr: "خليفان / سوران",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "15 كم من خليفان. واد محاط بالغابات تتدفق فيه نهر بارد. محبوب للنزهات والاستجمام الطبيعي.",
+    distanceFromErbilAr: "~110 كم",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "الاسترخاء على ضفاف النهر، المشي في الغابات، مراقبة الطيور، التصوير، النزهات العائلية.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-خليفان. حوالي 1.5-2 ساعة.",
+    accommodationAr: "فنادق في خليفان وسوران.",
   },
   {
     id: "shanadar-park-newroz-site",
@@ -228,6 +384,20 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Central Erbil. Walking distance from Citadel. All transport options available.",
     accommodation: "Full range of Erbil city hotels within 2-5 km.",
+    nameAr: "منتزه شاندر (موقع نوروز)",
+    locationAr: "وسط مدينة أربيل",
+    roleAr: "طبيعي | ثقافي",
+    descriptionAr:
+      "منتزه مركزي كبير في أربيل والمكان الرسمي للاحتفال السنوي بنوروز في 21 مارس. يجتمع فيه جميع الأعراق والأديان. يضم قاعة معارض فنية بنيت على غرار كهف شاندر.",
+    distanceFromErbilAr: "~2 كم (وسط المدينة)",
+    bestTimeToVisitAr:
+      "21 مارس (نوروز). كذلك الربيع والخريف للترفيه العام.",
+    visitorExperienceAr:
+      "أجواء مهرجان نوروز، النزهات، الأنشطة العائلية، معارض فنية، فعاليات ثقافية طوال العام.",
+    travelGuidanceAr:
+      "وسط أربيل. على مسافة مشي من القلعة. جميع وسائل المواصلات متاحة.",
+    accommodationAr:
+      "مجموعة كاملة من فنادق أربيل في نطاق 2-5 كم.",
   },
   {
     id: "ahmad-awa-resort",
@@ -245,6 +415,19 @@ export const NATURAL_PLACES = [
       "Via Sulaymaniyah-Khurmall road. From Erbil approx. 3.5+ hours.",
     accommodation:
       "On-site resort facilities. Hotels in Sulaymaniyah (84 km).",
+    nameAr: "منتجع أحمد آوا",
+    locationAr: "قرب خورمال، محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "84 كم شرق السليمانية قرب خورمال. واد أخضر غني تخترقه نهر الظالم مع شلال جميل وغابات كثيفة.",
+    distanceFromErbilAr: "~250 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "مشاهدة الشلال، المشي على ضفاف النهر، التصوير الطبيعي، النزهات.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية-خورمال. من أربيل حوالي 3.5 ساعات أو أكثر.",
+    accommodationAr:
+      "مرافق منتجع في الموقع. فنادق السليمانية (84 كم).",
   },
   {
     id: "sarsang-ashawa-mountain-resorts",
@@ -262,6 +445,19 @@ export const NATURAL_PLACES = [
       "Via Duhok-Atrush-Sarsang road. From Erbil approx. 3 hours.",
     accommodation:
       "Sarsang has multiple hotels, motels and restaurants, fully equipped resort.",
+    nameAr: "منتجع جبل سرسنج وأشاوا",
+    locationAr: "محافظة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "سرسنج: بلدة منتجع جبلي مكتملة المرافق على جبل گارا مع فنادق ومطاعم وسوق وقلعة بناها الملك فيصل الأول. عشاوا: 4 كم شرقا مع أشجار وشلال وسد.",
+    distanceFromErbilAr: "~200 كم فأكثر",
+    bestTimeToVisitAr: "الصيف (يونيو-أغسطس) كملاذ جبلي.",
+    visitorExperienceAr:
+      "نمط الحياة في المنتجع الجبلي، زيارة قلعة فيصل الأول، شلال وسد عشاوا.",
+    travelGuidanceAr:
+      "عبر طريق دهوك-عطروش-سرسنج. من أربيل حوالي 3 ساعات.",
+    accommodationAr:
+      "سرسنج تضم فنادق ونزلا ومطاعم متعددة، منتجع مكتمل المرافق.",
   },
   {
     id: "zawita-valley",
@@ -278,6 +474,19 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Duhok northeast mountain road. From Erbil approx. 3.5 hours.",
     accommodation: "Hotels in Duhok (16 km). Swaratuka resort (32 km from Duhok).",
+    nameAr: "وادي زاويتا",
+    locationAr: "محافظة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "16 كم شمال شرق مدينة دهوك. يكتنفه أشجار متنوعة ذات جمال طبيعي استثنائي. مرافق ترفيهية ومطاعم.",
+    distanceFromErbilAr: "~260 كم",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي في الغابات، مناظر النهر، تناول الطعام، الترفيه العائلي.",
+    travelGuidanceAr:
+      "عبر الطريق الجبلي شمال شرق دهوك. من أربيل حوالي 3.5 ساعات.",
+    accommodationAr:
+      "فنادق دهوك (16 كم). منتجع سواراتوكا (32 كم من دهوك).",
   },
   {
     id: "hawraman-horaman",
@@ -296,6 +505,20 @@ export const NATURAL_PLACES = [
       "Via Erbil-Sulaymaniyah-Halabja-Hawraman road. Approx. 3-3.5 hours.",
     accommodation:
       "Tourist chalets and guesthouses in Tawela and Byara. Hotels in Halabja (~30 km).",
+    nameAr: "هورامان — التراث العالمي لليونسكو",
+    locationAr: "محافظة السليمانية / حلبجة",
+    roleAr: "طبيعي | ثقافي | تاريخي",
+    descriptionAr:
+      "موقع التراث العالمي لليونسكو (2021)، الوحيد في كردستان. منطقة جبلية مذهلة موطن الشعب الهوراماني بلهجته وعمارته وموسيقاه وتقاليده الفريدة.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr:
+      "الربيع (مارس-مايو) للأزهار البرية والخضرة. الصيف للهروب من الحرارة.",
+    visitorExperienceAr:
+      "استكشاف قرى تاويلا وبيارة، العمارة الحجرية التقليدية، التجارب الثقافية الهورامانية، المطبخ المحلي، التنزه الجبلي.",
+    travelGuidanceAr:
+      "عبر أربيل-السليمانية-حلبجة-هورامان. حوالي 3-3.5 ساعات.",
+    accommodationAr:
+      "شاليهات وبيوت ضيافة في تاويلا وبيارة. فنادق حلبجة (~30 كم).",
   },
   {
     id: "zawa-mountain",
@@ -312,6 +535,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "From central Duhok city by taxi or car, a short drive to the cable car station.",
     accommodation: "Full range of hotels in Duhok city.",
+    nameAr: "جبل زاوا",
+    locationAr: "مدينة دهوك",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "الجبل الشامخ خلف دهوك مباشرة. تلفريك يوصل الزوار إلى القمة بمقاه ومطاعم. يتيح مناظر بانورامية لكامل المدينة وبحيرة سد الموصل.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والخريف للمناظر الأفضل. الشتاء للثلج.",
+    visitorExperienceAr:
+      "رحلة التلفريك، منظور شامل لدهوك، المشي إلى الأطلال التاريخية، المقاهي في القمة.",
+    travelGuidanceAr:
+      "من وسط دهوك بسيارة أجرة، مسافة قصيرة إلى محطة التلفريك.",
+    accommodationAr: "مجموعة كاملة من فنادق دهوك.",
   },
   {
     id: "sami-abdulrahman-park",
@@ -329,6 +564,20 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "On 60 Meter Street in the western part of the city, opposite the Kurdistan Regional Parliament.",
     accommodation: "Full range of Erbil city hotels within 1-5 km.",
+    nameAr: "منتزه سامي عبد الرحمن",
+    locationAr: "مدينة أربيل",
+    roleAr: "طبيعي | تاريخي",
+    descriptionAr:
+      "أكبر منتزه أخضر في أربيل، بني على موقع أحد مرافق الاحتجاز لصدام حسين. يضم ممشيات ونوافير ومروجا ومقاه ونصب الشهداء ومعرض أربيل الدولي ومكتبة الزيتون.",
+    distanceFromErbilAr: "0 كم (وسط المدينة)",
+    bestTimeToVisitAr:
+      "طوال العام. أمسيات الربيع والخريف الأكثر شعبية.",
+    visitorExperienceAr:
+      "المشي، الركض، النزهات العائلية، مقاه مفتوحة، فعاليات ثقافية، زيارة نصب الشهداء.",
+    travelGuidanceAr:
+      "على شارع الستين، مقابل برلمان إقليم كردستان.",
+    accommodationAr:
+      "مجموعة كاملة من فنادق أربيل في نطاق 1-5 كم.",
   },
   {
     id: "nawroli-valley",
@@ -345,6 +594,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Sulaymaniyah road. Approx. 45 minutes from Sulaymaniyah city by car.",
     accommodation: "Hotels in Sulaymaniyah city.",
+    nameAr: "وادي نوروليه",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "واد طبيعي هادئ قرب السليمانية بهوائه المنعش ومصادر مياهه العذبة وخضرته الكثيفة. ملاذ محبوب لأهالي السليمانية مع قرى تقليدية وحياة ريفية أصيلة.",
+    distanceFromErbilAr: "~180 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي في الطبيعة، مراقبة الطيور، زيارة القرى، التصوير، النزهات العائلية.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية. حوالي 45 دقيقة من وسط المدينة بالسيارة.",
+    accommodationAr: "فنادق مدينة السليمانية.",
   },
   {
     id: "tangi-buk-u-zawa",
@@ -361,6 +622,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Near Rawanduz, via Erbil-Soran highway. Approx. 1.5-2 hours.",
     accommodation: "Hotels in Soran (~20 km). Hotels in Rawanduz.",
+    nameAr: "وادي بوك و زاوا (ممر العروس والعريس)",
+    locationAr: "سوران / رواندوز، محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "ممر ضيق درامي سمي 'العروس والعريس' بسبب صخرتين تشبهان شكليهما. جزء من نظام وادي رواندوز بجدرانه الكلسية الشاهقة.",
+    distanceFromErbilAr: "~95-100 كم",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "المشي في الوادي، تصوير التكوينات الصخرية المثيرة، نقاط مشاهدة الممر.",
+    travelGuidanceAr:
+      "قرب رواندوز، عبر طريق أربيل-سوران. حوالي 1.5-2 ساعة.",
+    accommodationAr: "فنادق سوران (~20 كم). فنادق رواندوز.",
   },
   {
     id: "awa-shin-blue-water-avasheen",
@@ -377,6 +650,19 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Erbil-Duhok-Amedi-Deraluk road. Approx. 3.5-4 hours. Local guide recommended.",
     accommodation: "Guesthouses near Amedi. Hotels in Duhok (~80 km).",
+    nameAr: "آوا شين (المياه الزرقاء / آفاشين)",
+    locationAr: "ديرالوك، عمادية، محافظة دهوك",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "معروفة بـ'المياه الزرقاء' بالكردية، ينبوع طبيعي بمياه فيروزية زاهية. وجهة صيفية شهيرة تتطلب مشيا للوصول إلى الينبوع البكر.",
+    distanceFromErbilAr: "~230 كم شمال غرب",
+    bestTimeToVisitAr: "الصيف (يونيو-سبتمبر).",
+    visitorExperienceAr:
+      "المشي إلى ينابيع فيروزية بكر، السباحة في برك زرقاء صافية، تصوير الألوان الطبيعية الزاهية.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-دهوك-عمادية-ديرالوك. حوالي 3.5-4 ساعات. ينصح بمرشد.",
+    accommodationAr:
+      "بيوت ضيافة قرب عمادية. فنادق دهوك (~80 كم).",
   },
   {
     id: "gomi-felaw-alpine-lake",
@@ -394,6 +680,20 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Erbil-Soran-Choman (Hamilton Road), then dirt road east of Choman. 4WD essential. Guide recommended.",
     accommodation: "Guesthouses in Choman (~9 km). Haji Omran lodges.",
+    nameAr: "گومي فيلاو (البحيرة الألبية)",
+    locationAr: "شومان، محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "بحيرة ألبية مثالية على حافة واد قرب طريق هاملتون. تحيط بها أعشاب خضراء زمردية وقمم مكسوة بالثلج. وصفها مسافرون بأنها أجمل مكان في كردستان العراق.",
+    distanceFromErbilAr: "~175 كم شمال شرق",
+    bestTimeToVisitAr:
+      "أبريل-يونيو لخضرة الربيع. الصيف للتنزه والتخييم.",
+    visitorExperienceAr:
+      "تصوير البحيرة الألبية، التنزه (9 كم ذهابا من شومان)، التخييم، مناظر جبال زاغروس.",
+    travelGuidanceAr:
+      "عبر أربيل-سوران-شومان (طريق هاملتون). دفع رباعي ضروري. ينصح بمرشد.",
+    accommodationAr:
+      "بيوت ضيافة في شومان (~9 كم). نزل حاج عمران.",
   },
   {
     id: "kani-rash-black-spring",
@@ -410,6 +710,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Erbil-Soran-Choman road. Approx. 2.5-3 hours.",
     accommodation: "Guesthouses in Choman. Haji Omran lodges.",
+    nameAr: "كاني رش (الينبوع الأسود)",
+    locationAr: "منطقة شومان، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "ينبوع طبيعي في قضاء شومان يتميز بمياهه المعدنية الداكنة اللون على خلفية جبلية خضراء.",
+    distanceFromErbilAr: "~175 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة الينبوع المعدني الطبيعي، المناظر الجبلية، النزهات، التصوير.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-شومان. حوالي 2.5-3 ساعات.",
+    accommodationAr: "بيوت ضيافة في شومان. نزل حاج عمران.",
   },
   {
     id: "jundyan-summer-resort",
@@ -426,6 +738,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Erbil-Soran road, 5 km east of Soran center. Approx. 1.5-2 hours.",
     accommodation: "On-site resort facilities. Hotels in Soran.",
+    nameAr: "منتجع جونديان الصيفي",
+    locationAr: "سوران، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "على منحدرات جبل هيندرين، 5 كم شرق سوران. يتميز بينبوع متقطع سحري يجف ويعود فجأة كل ربيع. أشجار برية ومناخ جبلي صيفي مفضل.",
+    distanceFromErbilAr: "~115 كم",
+    bestTimeToVisitAr: "الصيف (يونيو-سبتمبر).",
+    visitorExperienceAr:
+      "الاسترخاء في المنتجع، زيارة الينبوع المتقطع السحري، الأشجار البرية، مناخ صيفي معتدل.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران، 5 كم شرق مركز سوران. حوالي 1.5-2 ساعة.",
+    accommodationAr: "مرافق منتجع في الموقع. فنادق سوران.",
   },
   {
     id: "bekhal-waterfall",
@@ -443,6 +767,20 @@ export const NATURAL_PLACES = [
       "Via Soran-Rawanduz road. Approx. 1.5-2 hours from Erbil.",
     accommodation:
       "Hotels in Soran or Rawanduz. Small guesthouses near the waterfall.",
+    nameAr: "شلال بيخال",
+    locationAr: "منطقة رواندوز، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "7 كم من رواندوز و130 كم من أربيل. يتهاوى عبر تكوينات صخرية كلسية محدثا ضبابا دائما. من أبرز وجهات السياحة الداخلية المحبوبة.",
+    distanceFromErbilAr: "~130 كم شمال شرق",
+    bestTimeToVisitAr:
+      "الربيع-الخريف (تدفق مستمر طوال العام).",
+    visitorExperienceAr:
+      "مشاهدة الشلال، صعود الدرجات بجانبه، بازار، شرب المياه المعدنية، مناطق نزهة ومطاعم قريبة.",
+    travelGuidanceAr:
+      "عبر طريق سوران-رواندوز. حوالي 1.5-2 ساعة من أربيل.",
+    accommodationAr:
+      "فنادق سوران أو رواندوز. بيوت ضيافة صغيرة قرب الشلال.",
   },
   {
     id: "rawanduz-canyon",
@@ -460,6 +798,20 @@ export const NATURAL_PLACES = [
     travelGuidance: "Via Erbil-Soran-Rawanduz. Approx. 2 hours. Fully paved.",
     accommodation:
       "Hotels in Soran (~17 km) and Rawanduz. Pank Tourist Resort (5-star).",
+    nameAr: "وادي رواندوز",
+    locationAr: "رواندوز، محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "واد صخري كلسي رائع يحيط بمدينة رواندوز المتربعة على حافته بجدران شاهقة من الجانبين، يتيح مناظر بانورامية مثيرة.",
+    distanceFromErbilAr: "~107 كم شمال شرق",
+    bestTimeToVisitAr:
+      "الربيع والخريف للخضرة. الصيف للهواء الجبلي المعتدل.",
+    visitorExperienceAr:
+      "مناظر بانورامية من الحواف، التصوير، شلال بيخال وطريق خارند القريبين.",
+    travelGuidanceAr:
+      "عبر أربيل-سوران-رواندوز. حوالي 2 ساعة. طريق معبد بالكامل.",
+    accommodationAr:
+      "فنادق سوران (~17 كم) ورواندوز. منتجع بانك السياحي (5 نجوم).",
   },
   {
     id: "rezan-summer-resort",
@@ -475,6 +827,17 @@ export const NATURAL_PLACES = [
       "Riverside relaxation, cool summer highland climate, base for visiting Barzan area and surrounding mountains.",
     travelGuidance: "Via Erbil-Barzan road. Approx. 2 hours.",
     accommodation: "On-site resort facilities at the Rezan riverbank.",
+    nameAr: "منتجع ريزان الصيفي",
+    locationAr: "ميرجاسر / منطقة بارزان، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "22 كم جنوب شرق بارزان و134 كم من أربيل على ارتفاع 1,200 متر على ضفاف نهر رزان. مناخ جبلي رائع في أشهر الصيف.",
+    distanceFromErbilAr: "~134 كم شمالا",
+    bestTimeToVisitAr: "يونيو-سبتمبر.",
+    visitorExperienceAr:
+      "الاسترخاء على ضفاف النهر، مناخ جبلي صيفي، قاعدة لزيارة منطقة بارزان.",
+    travelGuidanceAr: "عبر طريق أربيل-بارزان. حوالي 2 ساعة.",
+    accommodationAr: "مرافق منتجع على ضفاف نهر رزان.",
   },
   {
     id: "gomesban-white-horse-spring",
@@ -491,6 +854,19 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Accessible via the Erbil-Pirmam road or the Erbil-Koya route. Well-paved roads.",
     accommodation: "Nearby resort guesthouses. Hotels in Erbil for base.",
+    nameAr: "گومسبان (ينبوع الحصان الأبيض)",
+    locationAr: "محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "ينبوع طبيعي ومنطقة خلابة في محافظة أربيل. يشتهر بمياهه الصافية ومحيطه الجبلي الأخضر. ملاذ طبيعي هادئ يقدر لطابعه البكر.",
+    distanceFromErbilAr: "~130 كم",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة الينبوع الجبلي، النزهات بجانبه، التصوير، المشي الهادئ في الطبيعة البكر.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-بيرمام أو طريق أربيل-كويسنجق.",
+    accommodationAr:
+      "بيوت ضيافة منتجع قريبة. فنادق أربيل كقاعدة.",
   },
   {
     id: "mergapan",
@@ -506,6 +882,17 @@ export const NATURAL_PLACES = [
       "Nature walks, spring water, picnicking, cool mountain air, resort facilities.",
     travelGuidance: "Via Sulaymaniyah roads. Private car recommended.",
     accommodation: "Hotels in Sulaymaniyah.",
+    nameAr: "ميرگپان",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "واد طبيعي خلاب وينبوع خلف جبل پيراماغرون غرب مدينة السليمانية. يعمل فيه جامعو الثلج في الصيف لبيعه للقرى المحيطة.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي في الطبيعة، مياه الينابيع، النزهات، الهواء الجبلي المعتدل.",
+    travelGuidanceAr: "عبر طرق السليمانية. ينصح بسيارة خاصة.",
+    accommodationAr: "فنادق السليمانية.",
   },
   {
     id: "sarchnar-park-spring",
@@ -522,6 +909,19 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "5 km west of Sulaymaniyah city center. Approx. 10 minutes from city.",
     accommodation: "On-site hotel facilities. All Sulaymaniyah hotels.",
+    nameAr: "منتزه وينبوع سرجنار",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منتزه ترفيهي شهير 5 كم غرب مدينة السليمانية. طور مؤخرا بفنادق ومطاعم وحمامات سباحة وملاعب ومتحف حيوانات صغير.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي في المنتزه، ماء الينبوع الطبيعي، النزهات العائلية، حمامات السباحة، ملعب الأطفال، متحف الحيوانات الصغير.",
+    travelGuidanceAr:
+      "5 كم غرب وسط مدينة السليمانية. حوالي 10 دقائق من المدينة.",
+    accommodationAr:
+      "مرافق فندقية في الموقع. جميع فنادق السليمانية.",
   },
   {
     id: "goizha-mountain",
@@ -538,6 +938,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Located on the western side of Sulaymaniyah; approximately 10 minutes from city center.",
     accommodation: "Available at all hotels across Sulaymaniyah.",
+    nameAr: "جبل گويزه",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "أحد أشهر الجبال في كردستان، خلد في الشعر والأغنية الكردية رمزا لهوية السليمانية. يتميز بتلفريك يقل الزوار إلى قممه الساحرة.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "ركوب التلفريك، التنزه والمشي الجبلي، المناظر البانورامية للسليمانية.",
+    travelGuidanceAr:
+      "على الجانب الغربي للسليمانية؛ حوالي 10 دقائق من وسط المدينة.",
+    accommodationAr: "متوفرة في جميع فنادق السليمانية.",
   },
   {
     id: "sheladeze",
@@ -554,6 +966,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Take the Duhok-Amadiya road. A private vehicle is required to reach the area.",
     accommodation: "Local guesthouses or hotels in Duhok city.",
+    nameAr: "شيالدزي",
+    locationAr: "محافظة دهوك (بهدينان)",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "ناحية جبلية مذهلة ضمن قضاء العمادية، تشتهر بمناظرها الجبلية الاستثنائية وغاباتها الكثيفة وقراها التاريخية الأصيلة.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "الاستمتاع بمناظر الجبال الشاهقة، استكشاف القرى المحلية، تصوير الطبيعة.",
+    travelGuidanceAr:
+      "عبر طريق دهوك-عمادية. تتطلب سيارة خاصة.",
+    accommodationAr: "بيوت ضيافة محلية أو فنادق دهوك.",
   },
   {
     id: "zoragvan-valley",
@@ -572,6 +996,20 @@ export const NATURAL_PLACES = [
       "No public transport. Private car or guide required from Soran/Khalifan area. Approx. 2.5 hours from Erbil.",
     accommodation:
       "Guesthouses and homestays in nearby villages. Hotels in Soran (~30 km).",
+    nameAr: "وادي زوراگڤان",
+    locationAr: "منطقة سوران، محافظة أربيل",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "واد أخضر مورق ضمن المنتزه الوطني يتميز بمسار مشي ملحمي 3 ساعات عبر جداول وشلالات صغيرة. ينتهي بشلال رئيسي مثير.",
+    distanceFromErbilAr: "~150 كم شمال شرق",
+    bestTimeToVisitAr:
+      "الربيع (أبريل-يونيو) للخضرة الكاملة والشلالات الغزيرة.",
+    visitorExperienceAr:
+      "مسار مشي 3 ساعات إلى الشلال الرئيسي، عبور الجداول، تصوير الشلالات.",
+    travelGuidanceAr:
+      "لا مواصلات عامة. سيارة خاصة أو مرشد. حوالي 2.5 ساعة من أربيل.",
+    accommodationAr:
+      "بيوت ضيافة في القرى المجاورة. فنادق سوران (~30 كم).",
   },
   {
     id: "mawat",
@@ -588,6 +1026,19 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Via Sulaymaniyah north roads. Private car recommended for village and mountain access.",
     accommodation: "Local guesthouses in Mawat. Hotels in Sulaymaniyah as base.",
+    nameAr: "ماوت",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي | تاريخي",
+    descriptionAr:
+      "قضاء قديم شمال السليمانية بتاريخ ثري ومناظر جبلية خلابة وقرى تقليدية. بوابة المنتزه الوطني هلگورد-سكران من جهة السليمانية.",
+    distanceFromErbilAr: "~170 كم جنوب شرق",
+    bestTimeToVisitAr: "أبريل-سبتمبر.",
+    visitorExperienceAr:
+      "استكشاف المواقع التاريخية، التنزه الجبلي، زيارة القرى التقليدية.",
+    travelGuidanceAr:
+      "عبر السليمانية-رانية-ماوت. حوالي 2.5-3 ساعات من أربيل.",
+    accommodationAr:
+      "بيوت ضيافة في ماوت. فنادق السليمانية كقاعدة.",
   },
   {
     id: "pank-tourist-resort",
@@ -605,6 +1056,20 @@ export const NATURAL_PLACES = [
       "Via Erbil-Soran-Rawanduz highway. Approx. 1.5-2 hours.",
     accommodation:
       "On-site 5-star resort with full facilities (cottages, restaurants, pools).",
+    nameAr: "منتجع بانك السياحي",
+    locationAr: "رواندوز، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منتجع 5 نجوم على تل قرب رواندوز. يقدم أكواخا صيفية ومطاعم ومحلات وحمامات سباحة وملاه.",
+    distanceFromErbilAr: "~100 كم شمال شرق",
+    bestTimeToVisitAr:
+      "الصيف (يونيو-سبتمبر) للهواء الجبلي المعتدل.",
+    visitorExperienceAr:
+      "الاسترخاء في المنتجع، حمامات السباحة، الملاهي، مناظر جبلية، تناول الطعام.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-رواندوز. حوالي 1.5-2 ساعة.",
+    accommodationAr:
+      "منتجع 5 نجوم في الموقع (أكواخ، مطاعم، حمامات سباحة).",
   },
   {
     id: "minarah-park",
@@ -622,6 +1087,18 @@ export const NATURAL_PLACES = [
     travelGuidance:
       "Central Erbil, opposite Shanadar Park. Accessible by all transport.",
     accommodation: "Full range of Erbil city hotels within walking distance.",
+    nameAr: "منتزه المنارة",
+    locationAr: "مدينة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "من أجمل المساحات الترفيهية في أربيل، يقع مقابل منتزه شاندر. يضم المنارة الجولية التاريخية. تقام فيه الأنشطة والاحتفالات الوطنية.",
+    distanceFromErbilAr: "وسط المدينة",
+    bestTimeToVisitAr:
+      "طوال العام. أمسيات الربيع والخريف للترفيه.",
+    visitorExperienceAr:
+      "المشي والترفيه، مشاهدة المنارة الجولية التاريخية، حضور الاحتفالات الوطنية.",
+    travelGuidanceAr: "وسط أربيل، مقابل منتزه شاندر.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
   },
   {
     id: "sarsir-summer-resort",
@@ -911,3 +1388,255 @@ export const NATURAL_PLACES = [
     accommodation: "Hotels in Zakho. Full range in Duhok city (~80 km).",
   },
 ];
+
+const NATURAL_PLACE_AR_TRANSLATIONS = {
+  "sarsir-summer-resort": {
+    nameAr: "منتجع سرسير الصيفي",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منتجع صيفي 36 كم شمال مدينة السليمانية. يحيط به الأشجار والينابيع الطبيعية.",
+    distanceFromErbilAr: "~195 كم جنوب شرق",
+    bestTimeToVisitAr: "الصيف (يونيو-سبتمبر).",
+    visitorExperienceAr:
+      "الاسترخاء في المنتجع الجبلي، ينابيع طبيعية، أنشطة ترفيهية عائلية.",
+    travelGuidanceAr:
+      "عبر الطريق الشمالي للسليمانية. حوالي 45 دقيقة من مدينة السليمانية.",
+    accommodationAr:
+      "مرافق منتجع في الموقع. فنادق السليمانية (36 كم).",
+  },
+  "setak-area": {
+    nameAr: "منطقة سيتك",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منطقة سياحية جميلة خلف جبل أزمر، 20 كم شمال مدينة السليمانية. تزار كثيرا في الربيع والصيف.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "المشي الجبلي، الهواء النقي، التصوير.",
+    travelGuidanceAr:
+      "عبر الطريق الشمالي للسليمانية. حوالي 30 دقيقة من السليمانية.",
+    accommodationAr: "فنادق مدينة السليمانية.",
+  },
+  ahmadawa: {
+    nameAr: "أحمداوا",
+    locationAr: "شرق السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منطقة طبيعية جميلة شرق السليمانية حيث تغذي ينابيعها شلالات تحيط بها أشجار الجوز والرمان والتين.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة الشلالات، النزهات تحت أشجار الجوز والرمان والتين، ماء الينابيع.",
+    travelGuidanceAr: "عبر الطريق الشرقي للسليمانية. ينصح بسيارة خاصة.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "qopi-qaradagh": {
+    nameAr: "قوبي قرةداغ",
+    locationAr: "شمال محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "قضاء يتألف من تسعة جبال متلاصقة. يأتي الزوار للاستمتاع بينابيعه الكثيرة وزيارة الأضرحة. أكواخ سياحية متاحة للإقامة.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة الينابيع، الحج إلى الأضرحة، المناظر الجبلية، الإقامة في الأكواخ.",
+    travelGuidanceAr: "عبر طرق السليمانية. ينصح بسيارة خاصة.",
+    accommodationAr: "أكواخ سياحية في الموقع. فنادق السليمانية.",
+  },
+  "qashqoli-resort": {
+    nameAr: "منتجع قاشقولي",
+    locationAr: "قرب دوكان، محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منتجع قرب بلدة دوكان على ضفتي نهر الزاب الصغير. محبوب للسباحة والتجديف.",
+    distanceFromErbilAr: "~190 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "السباحة والتجديف في النهر، الاسترخاء على الضفاف، النزهات.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية-دوكان. من أربيل حوالي 2.5-3 ساعات.",
+    accommodationAr: "مرافق منتجع على الضفتين. فنادق السليمانية.",
+  },
+  "darbandi-ranya": {
+    nameAr: "مضيق رانية",
+    locationAr: "محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "مضيق طبيعي 4 كم شرق رانية. ازداد جماله حين وصلت مياه سد دوكان إليه. بحيرة معدنية قريبة (گاناو) تزار لعلاج أمراض الجلد.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "مناظر المضيق الطبيعية، زيارة بحيرة گاناو المعدنية، التصوير، النزهات.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية-رانية-قلعدزة. من أربيل حوالي 3 ساعات.",
+    accommodationAr: "فنادق رانية. فنادق السليمانية كقاعدة.",
+  },
+  "betwata-sar-ashkawtan": {
+    nameAr: "بيتواتا (سار أشكاوتان)",
+    locationAr: "قرب رانية، محافظة السليمانية",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "20 كم من مركز بلدة رانية. جغرافيا مميزة بينابيع وشلالات وحدائق وأراض زراعية وفيرة.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة الينابيع والشلالات، المشي في الحدائق، مناظر الأراضي الزراعية، النزهات.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية-رانية، 20 كم من مركز رانية.",
+    accommodationAr:
+      "بيوت ضيافة محلية في رانية. فنادق السليمانية كقاعدة.",
+  },
+  "duhok-zoo": {
+    nameAr: "حديقة حيوانات دهوك",
+    locationAr: "مدينة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "تقع في وسط مدينة دهوك. يأتي إليها الناس لمشاهدة الحيوانات والاستمتاع بمنتزهها وملاعب أطفالها.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "طوال العام. الربيع والخريف للتجربة الخارجية الأفضل.",
+    visitorExperienceAr:
+      "مشاهدة حيوانات الحديقة، النزهات في المنتزه، مرافق ملعب الأطفال.",
+    travelGuidanceAr: "وسط مدينة دهوك. يمكن الوصول بسيارة الأجرة.",
+    accommodationAr: "مجموعة كاملة من فنادق دهوك.",
+  },
+  "azadi-park-duhok": {
+    nameAr: "منتزه الحرية، دهوك",
+    locationAr: "مدينة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "في وسط دهوك بالقرب من النادي الرياضي. يضم مطعما ومقهى ومروجا خضراء واسعة.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "النزهات على المروج الخضراء، تناول الطعام في المطعم والمقهى، الاسترخاء.",
+    travelGuidanceAr: "وسط دهوك، قرب النادي الرياضي.",
+    accommodationAr: "مجموعة كاملة من فنادق دهوك.",
+  },
+  "mazi-complex": {
+    nameAr: "مجمع مازي",
+    locationAr: "مدينة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "مجمع سياحي متعدد المرافق يضم سوبرماركت كبيرا وفندقا ونزلا وملاه وحمامات سباحة.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "ملاه وحمامات سباحة ومرافق فندقية وتناول الطعام والتسوق.",
+    travelGuidanceAr: "مدينة دهوك. يمكن الوصول بسيارة الأجرة.",
+    accommodationAr: "مرافق فندق ونزل في الموقع.",
+  },
+  "swaratuka-resort": {
+    nameAr: "منتجع سواراتوكا",
+    locationAr: "محافظة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منتجع جميل 32 كم شرق مدينة دهوك على ارتفاع 1,075 متر. مناظره الجبلية رائعة وهواؤه نقي معتدل.",
+    distanceFromErbilAr: "~260 كم شمال غرب",
+    bestTimeToVisitAr: "الصيف (يونيو-سبتمبر).",
+    visitorExperienceAr:
+      "الاسترخاء في المنتجع الجبلي، مناظر جبلية رائعة، هواء نقي معتدل، تناول الطعام.",
+    travelGuidanceAr: "عبر الطريق الشرقي لدهوك. حوالي 40 دقيقة من دهوك.",
+    accommodationAr: "مرافق منتجع في الموقع. فنادق دهوك (32 كم).",
+  },
+  "gara-mountain": {
+    nameAr: "جبل گارا",
+    locationAr: "محافظة دهوك",
+    roleAr: "طبيعي | مغامرات",
+    descriptionAr:
+      "جبل شامخ شمال شرق دهوك يرتفع 2,151 مترا. تزار أطلال قصر صدام حسين على الجبل كتراث تاريخي معاصر.",
+    distanceFromErbilAr: "~200 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "التنزه، مناظر بانورامية لمنطقة دهوك، زيارة أطلال القصر الجبلي.",
+    travelGuidanceAr: "عبر طريق دهوك-سرسنج. من أربيل حوالي 3 ساعات.",
+    accommodationAr: "فنادق ونزل في سرسنج. مجموعة كاملة في دهوك.",
+  },
+  "gulan-park-soran": {
+    nameAr: "منتزه گوالن، سوران",
+    locationAr: "سوران، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "3 كم من مركز مدينة سوران. يضم ملاه للأطفال والعائلات ومناظر جميلة.",
+    distanceFromErbilAr: "~100 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "ملاه للعائلات والأطفال، مناظر جبلية جميلة، نزهات.",
+    travelGuidanceAr:
+      "3 كم من مركز سوران. عبر طريق أربيل-سوران. حوالي 1.5 ساعة.",
+    accommodationAr: "فنادق مركز مدينة سوران.",
+  },
+  "sidekan-streams": {
+    nameAr: "جداول سيدكان",
+    locationAr: "منطقة سوران، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "تتدفق في منطقة سيدكان جداول متعددة. توفر مناظر مذهلة في الصيف تشمل قمما مكسوة بالثلج تنبثق من سهول خضراء واسعة.",
+    distanceFromErbilAr: "~140 كم شمال شرق",
+    bestTimeToVisitAr:
+      "الصيف للقمم الثلجية فوق الوديان الخضراء. الربيع لتدفق الجداول.",
+    visitorExperienceAr:
+      "المشي عند الجداول، تصوير القمم الثلجية، النزهات، ملاذ صيفي منعش.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-سيدكان. حوالي 2 ساعة من أربيل.",
+    accommodationAr: "بيوت ضيافة في سيدكان. فنادق سوران (~30 كم).",
+  },
+  "bsta-waterfall": {
+    nameAr: "شلال بستا",
+    locationAr: "منطقة شومان، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "شلال جميل 3 كم من قرية بستا شمال شرق شومان. المناخ المنعش ومصادر المياه الوفيرة مثالية للنزهات.",
+    distanceFromErbilAr: "~180 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "مشاهدة الشلال، النزهات في محيط جبلي منعش، التصوير.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-سوران-شومان ثم شمال شرق نحو بستا. حوالي 3 ساعات.",
+    accommodationAr: "بيوت ضيافة في شومان (~10 كم).",
+  },
+  awesar: {
+    nameAr: "أوايسار",
+    locationAr: "قضاء هورامان، محافظة حلبجة",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منطقة في قضاء هورامان، 3 كم شرق قرية تاويلا. تشتهر بأشجار الجوز وبساتين الفاكهة والينابيع العذبة.",
+    distanceFromErbilAr: "~220 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي بين بساتين الجوز وأشجار الفاكهة، شرب الينابيع العذبة، النزهات.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-السليمانية-حلبجة-هورامان-تاويلا. من أربيل حوالي 3.5 ساعات.",
+    accommodationAr: "بيوت ضيافة في تاويلا. فنادق حلبجة (~25 كم).",
+  },
+  "chauq-gullan-park-halabja": {
+    nameAr: "منتزه چووق وگوالن، حلبجة",
+    locationAr: "مدينة حلبجة",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "منطقة نزهة خضراء 5 كم شرق مدينة حلبجة بينابيع عذبة وبساتين وأشجار عالية وملعب للأطفال.",
+    distanceFromErbilAr: "~215 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "النزهات وسط الينابيع والبساتين والأشجار العالية، ملعب الأطفال، مناظر بانورامية على حلبجة.",
+    travelGuidanceAr:
+      "5 كم شرق مدينة حلبجة. عبر طريق أربيل-السليمانية-حلبجة.",
+    accommodationAr: "فنادق حلبجة. فنادق السليمانية (~75 كم).",
+  },
+  "happy-theme-park-zakho": {
+    nameAr: "منتزه الترفيه هابي، زاخو",
+    locationAr: "زاخو، محافظة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "أكبر مدينة ملاه في زاخو. يقدم ألعابا خارجية وداخلية وبحيرات ونوافير ومطاعم وسينما 5D.",
+    distanceFromErbilAr: "~290 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "ألعاب خارجية وداخلية وبحيرات ونوافير ومطاعم وسينما 5D، وجهة ترفيه عائلية شاملة.",
+    travelGuidanceAr: "عبر طريق أربيل-دهوك-زاخو. حوالي 4 ساعات.",
+    accommodationAr: "فنادق زاخو. مجموعة كاملة في دهوك (~80 كم).",
+  },
+};
+
+NATURAL_PLACES.forEach((place) => {
+  Object.assign(place, NATURAL_PLACE_AR_TRANSLATIONS[place.id]);
+});

@@ -252,3 +252,168 @@ export const RELIGIOUS_SITES = [
     accommodation: "Full range of Sulaymaniyah city hotels.",
   },
 ];
+
+const RELIGIOUS_SITE_AR_TRANSLATIONS = {
+  "lalish-temple-yazidi-holy-site": {
+    nameAr: "معبد اللش — الموقع المقدس للإيزيديين",
+    locationAr: "محافظة دهوك",
+    roleAr: "ديني",
+    descriptionAr:
+      "أقدس موقع في العالم للديانة الإيزيدية. يؤمن أتباعها أن سفينة نوح رست هنا. يزوره آلاف الحجاج سنويا. مفتوح لجميع الأديان.",
+    distanceFromErbilAr: "~80 كم غربا",
+    bestTimeToVisitAr:
+      "أول أربعاء من أبريل (چارشمه سور — رأس السنة الإيزيدية). أبريل-أكتوبر.",
+    visitorExperienceAr:
+      "مجمع المعبد المقدس بأضرحة مخروطية وينابيع مقدسة وأجواء روحانية. يخلع الحذاء عند الدخول.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-دهوك ثم شمالا نحو عين سفني. حوالي 1.5-2 ساعة.",
+    accommodationAr:
+      "بيوت ضيافة في القرى المجاورة. مجموعة كاملة من فنادق دهوك.",
+  },
+  "hiran-village-sheikh-hira-cemetery": {
+    nameAr: "قرية هيران ومقبرة الشيخ هيرا",
+    locationAr: "شقلاوة / محافظة أربيل",
+    roleAr: "ديني | طبيعي",
+    descriptionAr:
+      "قرية خضراء 23 كم من شقلاوة. تضم مقبرة الشيخ هيرا، ضريح صوفي نقشبندي. يمارس الدراويش طقوسهم الصوفية خلال الاحتفالات الدينية في تكية هيران.",
+    distanceFromErbilAr: "~70 كم",
+    bestTimeToVisitAr: "الصيف (يونيو-أغسطس).",
+    visitorExperienceAr:
+      "زيارة مقبرة الشيخ هيرا وتجربة الطقوس الصوفية والتسوق للتذكارات المحلية.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-شقلاوة ثم جنوبا نحو هيران. حوالي 1-1.5 ساعة.",
+    accommodationAr: "فنادق ومنتجعات شقلاوة (23 كم).",
+  },
+  "kani-maran-spring": {
+    nameAr: "ينبوع كاني ماران",
+    locationAr: "غرب سوران، محافظة أربيل",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "غرب سوران على الطريق الرئيسي أربيل-سوران. ينبوع طبيعي متدفق باستمرار.",
+    distanceFromErbilAr: "~92 كم",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "التوقف للاستمتاع بمياه الينبوع خلال رحلات أربيل-سوران.",
+    travelGuidanceAr: "على طريق أربيل-سوران. حوالي 1.5 ساعة.",
+    accommodationAr: "فنادق سوران (~8 كم).",
+  },
+  "koya-city-shrines-mosques": {
+    nameAr: "مزارات ومساجد كويسنجق",
+    locationAr: "بين أربيل والسليمانية",
+    roleAr: "ديني | تاريخي",
+    descriptionAr:
+      "مزارات متعددة ومساجد تاريخية كانت مراكز للعلم والفن ومقر الحكومة العثمانية (القشلة).",
+    distanceFromErbilAr: "~80 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "الحج إلى المزارات وزيارة المساجد التاريخية واستكشاف مبنى القشلة.",
+    travelGuidanceAr: "عبر طريق أربيل-كويسنجق. حوالي 1.5 ساعة.",
+    accommodationAr: "فنادق وبيوت ضيافة في كويسنجق.",
+  },
+  "great-mosque-of-sulaymaniyah": {
+    nameAr: "الجامع الكبير في السليمانية",
+    locationAr: "مدينة السليمانية",
+    roleAr: "ديني | تاريخي",
+    descriptionAr:
+      "بناه الأمير إبراهيم باشا بابان عام 1785. من أقدم المساجد وأكثرها أهمية في كردستان. يضم أضرحة الحاج كاكا أحمد والملك محمود.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام. صلاة الجمعة للأجواء التراثية.",
+    visitorExperienceAr:
+      "زيارة المسجد من القرن الثامن عشر والتبرك عند الأضرحة.",
+    travelGuidanceAr: "وسط مدينة السليمانية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
+  "zaiwei-village-shrines": {
+    nameAr: "قرية زيوي والأضرحة",
+    locationAr: "قرب مدينة السليمانية",
+    roleAr: "ديني | تاريخي",
+    descriptionAr:
+      "34 كم غرب السليمانية. تضم أضرحة العالم الإسلامي پيرا ماغرون واللغوي الشهير توفيق وهبي.",
+    distanceFromErbilAr: "~210 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "زيارة الأضرحة والجمع بين الإرث الثقافي والروحي.",
+    travelGuidanceAr: "34 كم غرب السليمانية. تتطلب سيارة خاصة.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "sheikh-balk-shrine": {
+    nameAr: "الشيخ بالك",
+    locationAr: "منطقة حاج عمران، محافظة أربيل",
+    roleAr: "ديني",
+    descriptionAr:
+      "ضريح من القرن السابع عشر لشيخ اشتهر بإيمانه وتقديمه الطريقة السهروردية في الإسلام.",
+    distanceFromErbilAr: "~200 كم شمال شرق",
+    bestTimeToVisitAr: "طوال العام. الأعياد الدينية لذروة الحج.",
+    visitorExperienceAr:
+      "الحج إلى الضريح الصوفي والتعرف على الطريقة السهروردية.",
+    travelGuidanceAr:
+      "في منطقة حاج عمران. عبر أربيل-سوران-شومان-حاج عمران.",
+    accommodationAr: "بيوت ضيافة في حاج عمران.",
+  },
+  "lonesome-boya-temple": {
+    nameAr: "معبد الرهبان المنعزل (لونسوم بويا)",
+    locationAr: "جبل صفين، محافظة أربيل",
+    roleAr: "ديني",
+    descriptionAr:
+      "على الطريق بين شقلاوة وهيران، 46 كم من أربيل. ضريح كهفي مقدس لدى المسلمين والمسيحيين. يزوره المسيحيون بعد عيد الفصح سنويا.",
+    distanceFromErbilAr: "~46 كم",
+    bestTimeToVisitAr: "بعد عيد الفصح (للحجاج المسيحيين). الربيع والخريف.",
+    visitorExperienceAr: "زيارة الضريح الكهفي المقدس لدى الديانتين.",
+    travelGuidanceAr: "على طريق شقلاوة-هيران، 46 كم من أربيل.",
+    accommodationAr: "فنادق شقلاوة (~15 كم).",
+  },
+  "byara-shrines": {
+    nameAr: "أضرحة بيارة",
+    locationAr: "محافظة حلبجة",
+    roleAr: "ديني",
+    descriptionAr:
+      "قرية قديمة 98 كم شمال شرق السليمانية في قضاء هورامان. تضم ضريح الشيخ علاء الدين النقشبندي. يزوره آلاف الحجاج. يشتهر أبناؤها بالكلاش والملابس المنسوجة.",
+    distanceFromErbilAr: "~230 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف. الأعياد الدينية.",
+    visitorExperienceAr: "الحج إلى الضريح وشراء الكلاش المصنوع يدويا.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-السليمانية-حلبجة-هورامان-بيارة.",
+    accommodationAr: "بيوت ضيافة في بيارة. فنادق حلبجة (~50 كم).",
+  },
+  "shrine-of-sheikh-othman-naqshaband-taweila": {
+    nameAr: "ضريح الشيخ عثمان النقشبندي، تاويلا",
+    locationAr: "محافظة حلبجة / هورامان",
+    roleAr: "ديني",
+    descriptionAr:
+      "بلدة تاويلا على الحدود العراقية-الإيرانية. تضم ضريح الشيخ عثمان الثاني، قائد الطريقة النقشبندية.",
+    distanceFromErbilAr: "~240 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف. مواسم الحج.",
+    visitorExperienceAr: "زيارة الضريح واستكشاف الطراز الهوراماني المميز.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-السليمانية-حلبجة-هورامان-تاويلا.",
+    accommodationAr: "بيوت ضيافة في تاويلا.",
+  },
+  "khurmal-historic-mosque": {
+    nameAr: "خورمال وجامعها التاريخي",
+    locationAr: "محافظة حلبجة",
+    roleAr: "ديني | تاريخي",
+    descriptionAr:
+      "بلدة شرق السليمانية. الجامع والمئذنة بنيا على يد عبدالله حفيد الخليفة الثاني عمر بن الخطاب. بركة معدنية (غاراو) يعتقد لها خصائص علاجية.",
+    distanceFromErbilAr: "~225 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr: "زيارة الجامع التاريخي والبركة المعدنية غاراو.",
+    travelGuidanceAr: "عبر طريق السليمانية-حلبجة-خورمال.",
+    accommodationAr: "فنادق السليمانية (~50 كم).",
+  },
+  "syed-mahmoud-shrine-paweh-mahmoud": {
+    nameAr: "مقام السيد محمود (پاوه محمود)",
+    locationAr: "قرب خانقين، محافظة ديالى",
+    roleAr: "ديني",
+    descriptionAr:
+      "10 كم غرب خانقين. وجهة شعبية لدى الحجاج. يحيط بالمقام مئات الدونمات من البساتين وأشجار النخيل.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام. الأعياد الدينية.",
+    visitorExperienceAr: "الحج إلى المقام والمشي بين البساتين وأشجار النخيل.",
+    travelGuidanceAr:
+      "10 كم غرب خانقين. عبر طريق أربيل-خانقين. حوالي 2.5 ساعة.",
+    accommodationAr: "فنادق خانقين.",
+  },
+};
+
+RELIGIOUS_SITES.forEach((place) => {
+  Object.assign(place, RELIGIOUS_SITE_AR_TRANSLATIONS[place.id]);
+});

@@ -1,15 +1,52 @@
 import { useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { NATURAL_PLACES } from "@/data/naturalPlaces";
+import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
+import { RELIGIOUS_SITES } from "@/data/religousSites";
+import { MUSEUM_CENTERS } from "@/data/museumCenters";
+
+const placeCategories = [
+  {
+    id: "nature",
+    label: "Nature",
+    title: "Natural Places",
+    places: NATURAL_PLACES,
+  },
+  {
+    id: "religious",
+    label: "Religious",
+    title: "Religious Sites",
+    places: RELIGIOUS_SITES,
+  },
+  {
+    id: "historical",
+    label: "Historical",
+    title: "Historical Places",
+    places: HISTORICAL_PLACES,
+  },
+  {
+    id: "museums",
+    label: "Museums",
+    title: "Museum Centers",
+    places: MUSEUM_CENTERS,
+  },
+];
 
 const NaturalPlaces = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeCategoryId = searchParams.get("category") ?? placeCategories[0].id;
+
+  const activeCategory =
+    placeCategories.find((category) => category.id === activeCategoryId) ??
+    placeCategories[0];
+
   const places = useMemo(
     () =>
-      NATURAL_PLACES.map((place) => ({
+      activeCategory.places.map((place) => ({
         ...place,
         locationLabel: place.location.split(",")[0],
       })),
-    [],
+    [activeCategory],
   );
 
   return (
@@ -21,13 +58,33 @@ const NaturalPlaces = () => {
         <div className="pointer-events-none fixed inset-y-0 right-0 w-32 bg-gradient-to-l from-black/75 to-transparent md:w-44" />
 
         <header className="relative z-30 flex items-center justify-between gap-4 px-6 pb-4 pt-8 sm:px-10 lg:px-14">
-          <div>
+          <div className="min-w-0">
             <p className="text-[11px] uppercase tracking-[0.38em] text-[#d6a45b]/80">
               Kurdistan
             </p>
             <h1 className="mt-2 font-serif text-3xl uppercase tracking-[0.2em] text-[#f2eee5] sm:text-4xl">
-              Natural Places
+              {activeCategory.title}
             </h1>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {placeCategories.map((category) => {
+                const isActive = category.id === activeCategory.id;
+
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => setSearchParams({ category: category.id })}
+                    className={`rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] backdrop-blur-sm transition ${
+                      isActive
+                        ? "border-[#d6a45b]/70 bg-[#c89b52]/20 text-white"
+                        : "border-white/10 bg-black/20 text-white/60 hover:border-[#c89b52]/45 hover:text-[#e6d8bd]"
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <Link
@@ -45,7 +102,7 @@ const NaturalPlaces = () => {
               className="relative w-full"
             >
               <Link
-                to={`/touristic/${place.id}`}
+                to={`/touristic/${activeCategory.id}/${place.id}`}
                 className="relative block h-[35vh] min-h-[320px] w-full overflow-hidden text-left group"
               >
                 <img
@@ -77,7 +134,7 @@ const NaturalPlaces = () => {
         </div>
 
         <footer className="relative z-20 pb-10 text-center text-[11px] uppercase tracking-[0.28em] text-[#d6a45b]/60">
-          {NATURAL_PLACES.length} Natural Places
+          {places.length} {activeCategory.title}
         </footer>
       </section>
     </main>

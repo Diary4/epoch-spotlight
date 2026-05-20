@@ -902,3 +902,719 @@ export const HISTORICAL_PLACES = [
     accommodation: "Full range of hotels in Kirkuk city.",
   },
 ];
+
+const HISTORICAL_PLACE_AR_TRANSLATIONS = {
+  "erbil-citadel": {
+    nameAr: "قلعة أربيل (قلعة هولير)",
+    locationAr: "مدينة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "من أقدم المواقع المأهولة باستمرار في العالم. موقع تراث عالمي لليونسكو (2014). يرتفع التل 25-32 مترا فوق المدينة بستة آلاف سنة من الحضارات المتراكمة.",
+    distanceFromErbilAr: "0 كم — وسط المدينة",
+    bestTimeToVisitAr: "مارس-مايو، أكتوبر-نوفمبر.",
+    visitorExperienceAr:
+      "المشي في الأزقة القديمة، زيارة متحف المنسوجات والبيوت المرممة. مناظر 360 درجة على أربيل.",
+    travelGuidanceAr: "سيرا من وسط أربيل.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "shanidar-cave": {
+    nameAr: "كهف شاندر",
+    locationAr: "جبل برادوست، محافظة أربيل",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "بقايا عشرة أفراد من إنسان النياندرتال يعود تاريخها إلى 35,000-65,000 سنة، أحد أهم المواقع ما قبل التاريخية في العالم.",
+    distanceFromErbilAr: "~100 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "المشي إلى مدخل الكهف، مناظر جبلية رائعة، موقع بحث أثري دولي مستمر.",
+    travelGuidanceAr:
+      "عبر طريق سوران ثم مسار جبلي. دفع رباعي موصى به. حوالي 2-2.5 ساعة.",
+    accommodationAr: "بيوت ضيافة في سوران (~50 كم).",
+  },
+  "akre-town-citadel": {
+    nameAr: "بلدة عقرة والقلعة",
+    locationAr: "محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "أسسها الأمير الكردي زند عام 580 ق.م. غنية بالمعابد والتماثيل والبيوت القديمة والينابيع المعدنية وشلال سيبا البالغ 30 مترا ومعبد زرادشت الكهفي.",
+    distanceFromErbilAr: "~175 كم شمال شرق",
+    bestTimeToVisitAr: "20 مارس (نوروز)، الربيع والخريف.",
+    visitorExperienceAr:
+      "استكشاف القلعة، شلال سيبا، الينابيع المعدنية العلاجية، كهف معبد زرادشت.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-گور-مخمور-عقرة. حوالي 2-2.5 ساعة من أربيل.",
+    accommodationAr: "فنادق وبيوت ضيافة في عقرة.",
+  },
+  "khanzad-citadel": {
+    nameAr: "قلعة خانزاد",
+    locationAr: "محافظة أربيل (طريق أربيل-شقلاوة)",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "بنيت في القرن السادس عشر إبان إمارة السوران. شاهد على الحكم الأنثوي في التاريخ الكردي. تجلس على تل بأربعة أبراج مستديرة في زواياه.",
+    distanceFromErbilAr: "~22 كم (على طريق أربيل-شقلاوة)",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "استكشاف أطلال القلعة والأبراج الأربعة والمناظر البانورامية.",
+    travelGuidanceAr:
+      "على طريق أربيل-شقلاوة، 22 كم من أربيل. حوالي 30-40 دقيقة.",
+    accommodationAr: "فنادق شقلاوة (~25 كم أبعد). فنادق أربيل.",
+  },
+  "barzan-graveyard-of-martyrs": {
+    nameAr: "بارزان — مقبرة الشهداء",
+    locationAr: "بارزان / ميرجاسر، شمال أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "تحتضن المقبرة رفات ملا مصطفى البارزاني (1903-1979) ونجله الأكبر إدريس. يزورها مئات الآلاف سنويا.",
+    distanceFromErbilAr: "~155 كم شمالا",
+    bestTimeToVisitAr: "في أي وقت من العام (موقع حج وطني).",
+    visitorExperienceAr: "موقع حج وطني عميق الأثر محوري للهوية الكردية.",
+    travelGuidanceAr: "عبر طريق أربيل-ميرجاسر-بارزان. حوالي 2.5 ساعة.",
+    accommodationAr:
+      "بيوت ضيافة في بارزان. منتجع ريزان الصيفي (22 كم جنوب شرق).",
+  },
+  "rost-valley-citadel": {
+    nameAr: "وادي روست والقلعة",
+    locationAr: "منطقة هلگورد / محافظة أربيل",
+    roleAr: "تاريخي | طبيعي | مغامرات",
+    descriptionAr:
+      "وادي روست عند سفح جبل هلگورد بمياهه العذبة وغاباته وبساتينه. قلعة روست فوق الجبل موقع أثري مهم.",
+    distanceFromErbilAr: "~137 كم شمال شرق",
+    bestTimeToVisitAr: "أواخر الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي في الوادي، استكشاف القلعة، مناظر جبلية قرب أعلى قمة في العراق.",
+    travelGuidanceAr:
+      "عبر طريق سوران-شومان قرب قرية سيرين. حوالي 2.5 ساعة.",
+    accommodationAr: "بيوت ضيافة في منطقة روست/سيرين. مدينة شومان.",
+  },
+  "bestoon-bastoon-cave": {
+    nameAr: "كهف بيستون (باستون)",
+    locationAr: "منطقة سوران، محافظة أربيل",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "كهف من العصر الحجري يعتقد أنه كان موطن إنسان النياندرتال. لم ينقب بعد.",
+    distanceFromErbilAr: "~100 كم فأكثر",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "استكشاف الكهف، الأجواء ما قبل التاريخية، مشي صعب للوصول.",
+    travelGuidanceAr: "عبر طرق منطقة سوران. دفع رباعي موصى به.",
+    accommodationAr: "فنادق سوران (~20 كم).",
+  },
+  "koya-city": {
+    nameAr: "مدينة كويسنجق",
+    locationAr: "بين أربيل والسليمانية",
+    roleAr: "تاريخي | ديني",
+    descriptionAr:
+      "تحيط بها جبال باواجي وهيبت سلطان. غنية بالمزارات والمساجد التاريخية ومقر الحكومة العثمانية (القشلة) وأحد أقدم الأسواق في المنطقة.",
+    distanceFromErbilAr: "~80 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "الحج إلى المزارات، استكشاف السوق القديم، زيارة مبنى القشلة.",
+    travelGuidanceAr: "عبر طريق أربيل-كويسنجق. حوالي 1.5 ساعة.",
+    accommodationAr: "فنادق وبيوت ضيافة في كويسنجق.",
+  },
+  "qizqapan-rock-sculpture": {
+    nameAr: "نقش كيژقاپان الصخري",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "واجهة صخرية منقوشة تعود إلى 650 ق.م، يرجح أنها ضريح الملك كايخوسرو. تتضمن شخصيات زرادشتية وتشبه بالبتراء الأردنية.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "مشاهدة النقوش الأثرية، التفسير التاريخي، تصوير الواجهة المنقوشة.",
+    travelGuidanceAr:
+      "50 كم غرب السليمانية في وادي شامي رزان، 17 كم شرق دوكان.",
+    accommodationAr: "فنادق السليمانية (~90 كم) أو كويسنجق.",
+  },
+  "duhok-valley-dam": {
+    nameAr: "وادي دهوك والسد",
+    locationAr: "مدينة دهوك",
+    roleAr: "تاريخي | طبيعي | ديني",
+    descriptionAr:
+      "2 كم شمال دهوك. السد يكون بحيرة هادئة بجانب معبد چوار ئاستون الزرادشتي الكهفي، مزيج نادر من الجمال والإرث الديني القديم.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "مناظر البحيرة، زيارة المعبد الزرادشتي الكهفي، استكشاف الكهف الكبير.",
+    travelGuidanceAr: "عبر طريق أربيل-دهوك. حوالي 3-3.5 ساعات.",
+    accommodationAr: "مجموعة كاملة من فنادق دهوك (2 كم).",
+  },
+  "hazar-merd-cave": {
+    nameAr: "كهف هزار ميرد (كهف الألف رجل)",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "مجمع كهوف 13 كم جنوب غرب السليمانية. نقبت به دوروثي غارود عام 1928 وعثر على أدوات حجرية وعظام حيوانات تعود إلى 50,000 سنة.",
+    distanceFromErbilAr: "~190 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "مسار مشي معتدل، مناظر رائعة على الوادي، أجواء ما قبل التاريخ.",
+    travelGuidanceAr:
+      "13 كم غرب وسط مدينة السليمانية. يسهل الوصول بالسيارة.",
+    accommodationAr: "جميع فنادق السليمانية.",
+  },
+  "qalinj-agha-hill": {
+    nameAr: "تل قلنج آغا",
+    locationAr: "مدينة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "موقع أثري مهم في وسط أربيل يحوي طبقات استيطانية من الألفيتين الرابعة والخامسة قبل الميلاد.",
+    distanceFromErbilAr: "وسط المدينة (1 كم من القلعة)",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "استكشاف الموقع الأثري وربطه بالتاريخ العريق لأربيل.",
+    travelGuidanceAr: "وسط أربيل. يمكن الوصول سيرا أو بأي مواصلة.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "choli-minaret": {
+    nameAr: "المنارة الجولية",
+    locationAr: "مدينة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "بنيت عام 1128-1138م في عهد السلطان مظفر الدين. تعرف بالمنارة المظفرية. رمز في قلب أربيل.",
+    distanceFromErbilAr: "وسط المدينة",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "مشاهدة المنارة السلجوقية من القرن الثاني عشر وزيارة منتزه المنارة.",
+    travelGuidanceAr: "وسط أربيل. مرئية من مسافات بعيدة.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "qaysari-bazaar": {
+    nameAr: "بازار القيصرية",
+    locationAr: "مدينة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "جنوب شرق قلعة أربيل. شيد في الحقبة العثمانية بممرات طويلة تصطف على جانبيها المحلات. رمم مؤخرا مع الحفاظ على طابعه.",
+    distanceFromErbilAr: "وسط المدينة (عند بوابة القلعة)",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "التسوق للحرف اليدوية والبهارات والنسيج؛ إعجاب بعمارة السوق المقبب العثماني.",
+    travelGuidanceAr:
+      "عند قاعدة قلعة أربيل. على مسافة مشي من جميع فنادق أربيل المركزية.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "dween-castle": {
+    nameAr: "قلعة دوين",
+    locationAr: "شمال غرب أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "56 كم شمال غرب أربيل. حصن عسكري على تل استراتيجي. مرتبطة بإمارة السوران ويحتمل ارتباطها بحقبة جد صلاح الدين. تضم مقبرة قديمة بشواهد قبور مكتوبة.",
+    distanceFromErbilAr: "~56 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف أطلال القلعة والمقبرة القديمة المكتوبة.",
+    travelGuidanceAr: "عبر طريق أربيل-بيرمام. حوالي 1-1.5 ساعة.",
+    accommodationAr: "فنادق أربيل كقاعدة.",
+  },
+  "dairei-citadel": {
+    nameAr: "قلعة ديريه",
+    locationAr: "محافظة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "تعود إلى عهد الأمير محمد (1813-1837). تقع 38 كم من أربيل على طريق أربيل-دارابزمار. جدار دفاعي سميك بفتحات قنص لا يزال بعضه قائما.",
+    distanceFromErbilAr: "~38 كم",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "استكشاف أطلال القلعة من القرن التاسع عشر وبقايا الجدار الدفاعي.",
+    travelGuidanceAr: "عبر طريق أربيل-دارابزمار. حوالي 45 دقيقة.",
+    accommodationAr: "فنادق أربيل كقاعدة.",
+  },
+  "barsireen-bridge": {
+    nameAr: "جسر بارسيرين",
+    locationAr: "شمال شرق سوران، محافظة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "جسر أثري على طريق هاملتون بني في عهد إمارة السوران (1813-1837). أربعة أعمدة أسطوانية بديعة لا تزال تحته واستخدامه مستمر.",
+    distanceFromErbilAr: "~120 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "مشاهدة الجسر التاريخي وأعمدته الأسطوانية الأربعة، التصوير.",
+    travelGuidanceAr: "على قسم سوران-حاج عمران من طريق هاملتون.",
+    accommodationAr: "فنادق سوران (~30 كم).",
+  },
+  "cannon-of-wasta-rajab": {
+    nameAr: "مدفع وستا رجب",
+    locationAr: "رواندوز، محافظة أربيل",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "صنعه واستا رجب في عهد أمير السوران (1813-1837). كان واستا رجب أول كردي يبعث إلى فرنسا لتعلم صناعة الأسلحة.",
+    distanceFromErbilAr: "~107 كم شمال شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "مشاهدة المدفع التاريخي والتعرف على تاريخ الحرفة الكردية في القرن التاسع عشر.",
+    travelGuidanceAr:
+      "في مدينة رواندوز. عبر طريق أربيل-سوران-رواندوز. حوالي 2 ساعة.",
+    accommodationAr: "فنادق سوران (~17 كم). بيوت ضيافة رواندوز.",
+  },
+  "shrine-of-marbina-qadisha": {
+    nameAr: "ضريح ماربينا قديشا",
+    locationAr: "قرب مدينة كويسنجق",
+    roleAr: "تاريخي | ديني",
+    descriptionAr:
+      "3 كم من كويسنجق. يعرف بماربينا بهنام. موقع حج مسيحي إلى اليوم.",
+    distanceFromErbilAr: "~80 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف. مواسم الحج.",
+    visitorExperienceAr: "الحج إلى الضريح المسيحي، العمارة التاريخية.",
+    travelGuidanceAr: "3 كم شمال شرق قرية هارموتا، قرب كويسنجق.",
+    accommodationAr: "فنادق كويسنجق. فنادق أربيل كقاعدة.",
+  },
+  "chwar-taqan": {
+    nameAr: "چوار تاقان",
+    locationAr: "جنوب مدينة كويسنجق",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "محطة توقف واستراحة للقوافل التاريخية. رممت أطلاله عام 2002 وتضم أربعة أجران ماء كبيرة.",
+    distanceFromErbilAr: "~85 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "زيارة أطلال محطة القوافل ومشاهدة الأجران الأربعة القديمة.",
+    travelGuidanceAr: "جنوب مدينة كويسنجق. عبر طريق أربيل-كويسنجق.",
+    accommodationAr: "فنادق كويسنجق.",
+  },
+  "koya-bazar": {
+    nameAr: "بازار كويسنجق",
+    locationAr: "مدينة كويسنجق",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "من أقدم الأسواق في المنطقة بأقواسه وممراته القديمة. في وسط مدينة كويسنجق.",
+    distanceFromErbilAr: "~80 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "استكشاف الأقواس والممرات القديمة، التسوق للمنتجات المحلية.",
+    travelGuidanceAr: "وسط مدينة كويسنجق. عبر طريق أربيل-كويسنجق.",
+    accommodationAr: "فنادق كويسنجق.",
+  },
+  "taq-taq": {
+    nameAr: "طاق طاق",
+    locationAr: "قضاء كويسنجق",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "جزء من قضاء كويسنجق. يشتهر بحدائقه ومحيطه الطبيعي الساحر بما فيه نهر صغير يتدفق عبر المدينة.",
+    distanceFromErbilAr: "~90 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة الحدائق، المشي على ضفاف النهر، المناظر الطبيعية، النزهات العائلية.",
+    travelGuidanceAr: "عبر طريق أربيل-كويسنجق ثم جنوب شرق إلى طاق طاق.",
+    accommodationAr: "فنادق كويسنجق (~10 كم).",
+  },
+  "jally-river": {
+    nameAr: "نهر جالي",
+    locationAr: "قرب كويسنجق، محافظة أربيل",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "75 كم شمال شرق أربيل و24 كم من كويسنجق. يشق وادي سماقولي بمناظر خلابة. يعتقد أن ماء بحيراته وبركه يعالج بعض أمراض الجلد.",
+    distanceFromErbilAr: "~75 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "المشي على ضفاف النهر، مناظر البساتين، زيارة البرك العلاجية.",
+    travelGuidanceAr: "عبر طريق أربيل-كويسنجق ثم شمال شرقا.",
+    accommodationAr: "فنادق كويسنجق (~24 كم).",
+  },
+  "amne-soreke-red-security-museum": {
+    nameAr: "أمنه سوركه (متحف الأمن الأحمر)",
+    locationAr: "مدينة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "المقر السابق للشرطة السرية لنظام البعث. بعد انتفاضة 1991 تحول إلى متحف يوثق تعذيب الأكراد. من أكثر المواقع أثرا في كردستان.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام. مفتوح يوميا 8ص-4م.",
+    visitorExperienceAr:
+      "جولة إرشادية في زنازين التعذيب السابقة؛ فهم حجم القمع البعثي.",
+    travelGuidanceAr: "وسط مدينة السليمانية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
+  merqully: {
+    nameAr: "مركولي",
+    locationAr: "قرب قرية زيوي، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "منحوتة قديمة عمرها أكثر من 3,000 سنة نقرت في وجه الجبل الصخري. 34 كم من السليمانية.",
+    distanceFromErbilAr: "~210 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "مشاهدة النقش الصخري، التصوير.",
+    travelGuidanceAr: "34 كم غرب السليمانية. تتطلب سيارة خاصة.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "jami-rezan-caves": {
+    nameAr: "كهوف جمي ريزان",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "خدمت مقرا لإذاعة صوت كردستان والثورة الكردية عام 1961. تقع 1 كم من شلال بافل.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف الكهوف التي أذاعت منها الثورة الكردية.",
+    travelGuidanceAr: "عبر طرق السليمانية. ينصح بسيارة خاصة.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "jasna-cave": {
+    nameAr: "كهف جاسنة",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "50 كم شرق السليمانية. لجأ إليه الشيخ محمود عام 1923 وأصدر أول عدد من جريدة 'بانكي حق' من داخله.",
+    distanceFromErbilAr: "~220 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف الكهف والتعرف على تاريخ الصحافة الكردية.",
+    travelGuidanceAr: "عبر طريق السليمانية-دوكان نحو منطقة سوردش.",
+    accommodationAr: "فنادق السليمانية (~50 كم).",
+  },
+  "palagawra-caves": {
+    nameAr: "كهوف پاالاگورا",
+    locationAr: "منطقة بازيان، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr: "ثلاثة كهوف من العصر الحجري القديم في منطقة بازيان.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف الكهوف والأجواء ما قبل التاريخية.",
+    travelGuidanceAr: "عبر طريق السليمانية-بازيان.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "bazyan-strait-historical-remains": {
+    nameAr: "أطلال مضيق بازيان التاريخية",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "بقايا قلعة قديمة مرممة وبوابة المضيق، 1 كم من صخرة القائد. تحول إلى معلم سياحي.",
+    distanceFromErbilAr: "~180 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف أطلال القلعة وبوابة المضيق.",
+    travelGuidanceAr: "عبر طريق السليمانية-بازيان.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "ancient-charmo-village": {
+    nameAr: "قرية چرمو القديمة",
+    locationAr: "قرب چمچمال، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "أطلال إحدى أقدم القرى الزراعية في العالم. تعود إلى 7,000 ق.م. نقب بها فريق جامعة شيكاغو عام 1955.",
+    distanceFromErbilAr: "~150 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "زيارة الموقع الأثري وفهم فجر الزراعة في التاريخ الإنساني.",
+    travelGuidanceAr:
+      "عبر طريق أربيل-كويسنجق-چمچمال. حوالي 2-2.5 ساعة.",
+    accommodationAr: "فنادق السليمانية (~40 كم).",
+  },
+  "barda-qaraman": {
+    nameAr: "برده قهرمان (صخرة البطل)",
+    locationAr: "غرب محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "35 كم غرب السليمانية. تحصن خلفها الملك الكردي محمود في مواجهة القوات البريطانية. يقوم في الموقع تمثال تكريمي له.",
+    distanceFromErbilAr: "~160 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "زيارة التمثال التكريمي وتصوير الصخرة المميزة.",
+    travelGuidanceAr: "على طريق السليمانية-كركوك، 35 كم غرب السليمانية.",
+    accommodationAr: "فنادق السليمانية (35 كم).",
+  },
+  "gawar-strait-sculptures": {
+    nameAr: "منحوتات مضيق گاوار",
+    locationAr: "قضاء قرةداغ، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "منحوتات عمرها 4,000 سنة في وادي گوشان إلى جانب تمثال الملك الأكادي نارامسين.",
+    distanceFromErbilAr: "~210 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "مشاهدة المنحوتات وتمثال الملك نارامسين.",
+    travelGuidanceAr: "عبر طريق السليمانية-قرةداغ. تتطلب سيارة خاصة.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "zirzi-cave": {
+    nameAr: "كهف زرزي",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "عند سفح جبل قوناكوتير. يعود إلى العصور الحجرية. نقبت به دوروثي غارود عام 1928.",
+    distanceFromErbilAr: "~195 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف الكهف والأجواء ما قبل التاريخية.",
+    travelGuidanceAr: "قرب موقع كيژقاپان، غرب السليمانية.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "sartka-citadel": {
+    nameAr: "قلعة سارتكة",
+    locationAr: "منطقة قاشقولي، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "مطلة على النهر من قمة تل. بناها الأمير محمد أمير السوران (1813-1837). بقايا جدران وغرف لا تزال ماثلة.",
+    distanceFromErbilAr: "~190 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "استكشاف بقايا القلعة ومناظر النهر البانورامية من التل.",
+    travelGuidanceAr:
+      "عبر طريق السليمانية-دوكان. من أربيل حوالي 2.5-3 ساعات.",
+    accommodationAr: "مرافق منتجع قاشقولي. فنادق السليمانية.",
+  },
+  "sargalu-village": {
+    nameAr: "قرية سرگالو",
+    locationAr: "وادي جعفاياتي، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "65 كم من السليمانية. خدمت مقرا للثوار الأكراد وكانت موطن بث إذاعة صوت كردستان.",
+    distanceFromErbilAr: "~235 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "زيارة المقر الثوري التاريخي واستكشاف البساتين الغنية والحياة القروية.",
+    travelGuidanceAr: "عبر طريق السليمانية-وادي جعفاياتي.",
+    accommodationAr: "فنادق السليمانية (~65 كم).",
+  },
+  "halabja-martyrs-monument-cemetery": {
+    nameAr: "نصب شهداء حلبجة والمقبرة",
+    locationAr: "مدينة حلبجة",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "النصب الوطني الذي يخلد ذكرى القصف الكيميائي في 16 مارس 1988 الذي راح ضحيته أكثر من 5,000 شهيد. رمز للمقاومة الكردية.",
+    distanceFromErbilAr: "~210 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام. 16 مارس (يوم حلبجة).",
+    visitorExperienceAr:
+      "زيارة النصب والمقبرة، إحياء ذكرى الضحايا، من أكثر المواقع أهمية في كردستان.",
+    travelGuidanceAr:
+      "في مدينة حلبجة. عبر طريق أربيل-السليمانية-حلبجة. حوالي 3-3.5 ساعات.",
+    accommodationAr: "فنادق حلبجة. فنادق السليمانية (~75 كم).",
+  },
+  "darband-belola-ruins": {
+    nameAr: "أطلال دربند بيلوله",
+    locationAr: "منطقة ميدان، محافظة السليمانية",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "خريطة منقورة على أحجاره اكتشفها رولينسون عام 1836. ترجح إلى 32 ق.م وتضم رسما لمحارب وأسيرين.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "مشاهدة الخريطة المنقوشة القديمة وأشكال المحارب.",
+    travelGuidanceAr: "منطقة ميدان. عبر طرق السليمانية.",
+    accommodationAr: "فنادق السليمانية.",
+  },
+  "shrine-srochki-castle-barzinja": {
+    nameAr: "ضريح وقلعة سروجك، برزنجة",
+    locationAr: "محافظة السليمانية",
+    roleAr: "تاريخي | ديني",
+    descriptionAr:
+      "بلدة برزنجة 55 كم شمال شرق السليمانية. تضم ضريح اثنين من ذرية النبي محمد. قلعة سروچكي بنيت في القرن السادس عشر.",
+    distanceFromErbilAr: "~220 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "الحج إلى الضريح واستكشاف قلعة سروچكي.",
+    travelGuidanceAr: "55 كم شمال شرق السليمانية.",
+    accommodationAr: "فنادق السليمانية (~55 كم).",
+  },
+  "duhok-museum": {
+    nameAr: "متحف دهوك",
+    locationAr: "مدينة دهوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "بجانب حديقة قع في دهوك. يضم أكثر من 1,000 قطعة أثرية من العصر الحجري حتى الإسلامي.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr: "مشاهدة أكثر من 1,000 قطعة أثرية في قاعات منسقة بعناية.",
+    travelGuidanceAr: "بجانب حديقة قع، وسط دهوك.",
+    accommodationAr: "مجموعة كاملة من فنادق دهوك.",
+  },
+  "sculptures-of-halamta-cave": {
+    nameAr: "منحوتات كهف هالمتا",
+    locationAr: "شرق مدينة دهوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "كهف 7 كم شرق دهوك. أربعة أقسام مزينة بنقوش لبشر وحيوانات تجسد انتصارا في معركة.",
+    distanceFromErbilAr: "~250 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "مشاهدة الأقسام الأربعة ونقوشها القديمة.",
+    travelGuidanceAr: "7 كم شرق دهوك، شمال كيفركي.",
+    accommodationAr: "مجموعة كاملة من فنادق دهوك.",
+  },
+  "chairlifts-pablo": {
+    nameAr: "تلفريك بابلو",
+    locationAr: "محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "مجمع سياحي 11 كم شمال شرق دهوك. يضم نزلا ومطاعم وكراسي تلفريك.",
+    distanceFromErbilAr: "~255 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "ركوب كراسي التلفريك، مناظر بانورامية، تناول الطعام.",
+    travelGuidanceAr: "11 كم شمال شرق دهوك.",
+    accommodationAr: "مرافق نزل في الموقع. فنادق دهوك (11 كم).",
+  },
+  "amediya-amedi-town": {
+    nameAr: "بلدة عمادية (آمدي)",
+    locationAr: "محافظة دهوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "بلدة تاريخية على هضبة قمة جبل. بنيت قبل أكثر من ألف سنة. تضم مسجدا قديما والبوابة القديمة ومئذنة وقبة وبوابة زرادشت وأطلال مدرسة قوباهاني.",
+    distanceFromErbilAr: "~210 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "استكشاف البلدة الهضبية القديمة ومعالمها التاريخية وأطلال مدرسة القرن السابع عشر.",
+    travelGuidanceAr: "عبر طريق أربيل-دهوك-عمادية. حوالي 3 ساعات.",
+    accommodationAr: "بيوت ضيافة في عمادية. فنادق دهوك (~90 كم).",
+  },
+  "khinis-rock-carvings": {
+    nameAr: "نقوش خيناس الصخرية",
+    locationAr: "محافظة دهوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "52 كم شرق دهوك. المنتجع الصيفي للملك الآشوري سنحاريب (705-681 ق.م). ستة صخور منقوشة وتمثال ثور طائر وكتابات مسمارية.",
+    distanceFromErbilAr: "~220 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "مشاهدة النقوش الآشورية والكتابات المسمارية والكهف المعبدي الصغير.",
+    travelGuidanceAr: "52 كم شرق دهوك. تتطلب سيارة خاصة.",
+    accommodationAr: "فنادق دهوك (~52 كم).",
+  },
+  "anishki-cave": {
+    nameAr: "كهف أنيشكي",
+    locationAr: "قرب سرسنج، محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "9 كم شمال سرسنج. تتساقط المياه من سقفه خالقة نافورة طبيعية ومناخا منعشا جدا داخله.",
+    distanceFromErbilAr: "~210 كم شمال غرب",
+    bestTimeToVisitAr: "الصيف لمناخ الكهف المنعش. الربيع للخضرة.",
+    visitorExperienceAr: "صعود درجات السلم الحجري وتجربة النافورة الطبيعية.",
+    travelGuidanceAr: "9 كم شمال سرسنج.",
+    accommodationAr: "فنادق سرسنج (9 كم).",
+  },
+  "girbish-village": {
+    nameAr: "قرية گربيش",
+    locationAr: "قرب عقرة، محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr: "23 كم شمال عقرة. ستة آبار تتدفق تحت بستان أشجار الجوز.",
+    distanceFromErbilAr: "~195 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "زيارة الآبار الستة تحت أشجار الجوز، النزهة في البستان.",
+    travelGuidanceAr: "23 كم شمال عقرة.",
+    accommodationAr: "فنادق عقرة (23 كم).",
+  },
+  "zanta-valley": {
+    nameAr: "وادي زنتا",
+    locationAr: "قرب عقرة، محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "13 كم شرق عقرة. يشق نهر بريشو الوادي بين جبلي ساري سادا وساري سيدانوك. ينابيع وآبار متعددة.",
+    distanceFromErbilAr: "~185 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "المشي على ضفاف نهر بريشو وزيارة الينابيع والآبار.",
+    travelGuidanceAr: "13 كم شرق عقرة.",
+    accommodationAr: "فنادق عقرة (13 كم).",
+  },
+  selei: {
+    nameAr: "سيليه",
+    locationAr: "قرب عقرة، محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr: "8 كم شرق دينارتا، 32 كم من عقرة. شلال 50 مترا على بستان أشجار الصفصاف.",
+    distanceFromErbilAr: "~200 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr:
+      "مشاهدة الشلال البالغ ارتفاعه 50 مترا والاسترخاء بين أشجار الصفصاف.",
+    travelGuidanceAr: "8 كم شرق دينارتا، 32 كم من عقرة.",
+    accommodationAr: "فنادق عقرة (~32 كم).",
+  },
+  "gundik-cave-sculptures": {
+    nameAr: "منحوتات كهف گوندك",
+    locationAr: "قرب عقرة، محافظة دهوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "20 كم شرق عقرة. منحوتات منقورة في الصخر تزين خارج الكهف وداخله.",
+    distanceFromErbilAr: "~190 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "مشاهدة المنحوتات الصخرية القديمة للحيوانات والبشر.",
+    travelGuidanceAr: "20 كم شرق عقرة.",
+    accommodationAr: "فنادق عقرة (20 كم).",
+  },
+  "sepay-bjail-waterfall-resort": {
+    nameAr: "شلال ومنتجع سيباي بجيل",
+    locationAr: "قرب عقرة، محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "في بلدة بجيل، 13 كم شمال غرب عقرة. الشلال يتشكل من عدة ينابيع جبلية. يضم كهفا اصطناعيا خلف الشلال.",
+    distanceFromErbilAr: "~185 كم شمال شرق",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "مشاهدة الشلال واستكشاف الكهف الاصطناعي خلفه.",
+    travelGuidanceAr: "13 كم شمال غرب عقرة، في بلدة بجيل.",
+    accommodationAr: "فنادق عقرة (13 كم).",
+  },
+  "shrine-of-abdul-aziz-al-gaylani": {
+    nameAr: "ضريح الشيخ عبد العزيز الگيلاني",
+    locationAr: "قرب عقرة، محافظة دهوك",
+    roleAr: "تاريخي | ديني",
+    descriptionAr:
+      "قائد الطريقة القادرية رافق صلاح الدين. ضريحه في واد مليء بالبساتين وكروم العنب غرب عقرة. يزوره حجاج من العراق وإيران وباكستان والهند وأفغانستان وتركيا.",
+    distanceFromErbilAr: "~180 كم شمال شرق",
+    bestTimeToVisitAr: "طوال العام. الأعياد الدينية لذروة الحج.",
+    visitorExperienceAr: "الحج إلى الضريح الصوفي ووادي البساتين الجميل.",
+    travelGuidanceAr: "غرب مدينة عقرة.",
+    accommodationAr: "فنادق عقرة. فنادق دهوك (~100 كم).",
+  },
+  "dalal-bridge-zakho": {
+    nameAr: "جسر دلال، زاخو",
+    locationAr: "زاخو، محافظة دهوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "جسر قديم في زاخو على نهر الخابور. طوله 114 م، عرضه 4.7 م، ارتفاعه 16 م. بني بأحجار النهر الكبيرة.",
+    distanceFromErbilAr: "~310 كم شمال غرب",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr: "المشي عبر الجسر القديم وزيارة الينابيع المعدنية القريبة.",
+    travelGuidanceAr: "في قلب مدينة زاخو. عبر طريق أربيل-دهوك-زاخو. حوالي 4 ساعات.",
+    accommodationAr: "فنادق زاخو. فنادق دهوك (~80 كم).",
+  },
+  "sherwana-citadel": {
+    nameAr: "قلعة شيروانة",
+    locationAr: "كالر، گرميان",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "بناها محمود باشا الجاف في أواخر القرن التاسع عشر. تقع على تل صغير وتتألف من بدروم وطابقين وقاعة ثمانية الأضلاع ومتحف صغير.",
+    distanceFromErbilAr: "~190 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف القلعة والقاعة ثمانية الأضلاع والمتحف الصغير.",
+    travelGuidanceAr: "عند المدخل الشمالي الشرقي لكالر. عبر طريق أربيل-كويسنجق-كالر.",
+    accommodationAr: "فنادق كالر.",
+  },
+  "pasha-palace-mahmud-pasha-jaff": {
+    nameAr: "قصر الباشا (محمود باشا الجاف)",
+    locationAr: "قرية تازاداي، قرب كالر",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "9 كم شمال شرق كالر في قرية تازاداي. بناه محمود باشا الجاف عام 1895. قصر من طابقين مع مستودع وإسطبل.",
+    distanceFromErbilAr: "~195 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف القصر التاريخي من طابقين ومباني المستودع والإسطبل.",
+    travelGuidanceAr: "9 كم شمال شرق كالر في قرية تازاداي.",
+    accommodationAr: "فنادق كالر.",
+  },
+  "majeed-basha-palace": {
+    nameAr: "قصر مجيد باشا",
+    locationAr: "شرق قضاء كفري، گرميان",
+    roleAr: "تاريخي",
+    descriptionAr: "شرق قضاء كفري. بني في أواخر القرن التاسع عشر. طابقان وغرف وقاعة.",
+    distanceFromErbilAr: "~160 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr: "استكشاف القصر من طابقين بغرفه وقاعته الأصلية.",
+    travelGuidanceAr: "شرق قضاء كفري. عبر طريق أربيل-كويسنجق-كفري.",
+    accommodationAr: "فنادق كفري.",
+  },
+  "bhairai-cave-zakho": {
+    nameAr: "كهف بهيرا، زاخو",
+    locationAr: "قرب زاخو، محافظة دهوك",
+    roleAr: "تاريخي | طبيعي",
+    descriptionAr:
+      "45 كم شرق زاخو و5 كم من منتجع شارانش. كهف كبير يمكن دمج زيارته مع منتزهي قاسروك ودشتا تخي.",
+    distanceFromErbilAr: "~315 كم شمال غرب",
+    bestTimeToVisitAr: "الربيع والصيف.",
+    visitorExperienceAr: "استكشاف الكهف وزيارة المنتزهات القريبة.",
+    travelGuidanceAr: "45 كم شرق زاخو، 5 كم من شارانش.",
+    accommodationAr: "فنادق منتجع شارانش (5 كم).",
+  },
+  "kirkuk-citadel": {
+    nameAr: "قلعة كركوك",
+    locationAr: "مدينة كركوك",
+    roleAr: "تاريخي",
+    descriptionAr:
+      "أقدم جزء من كركوك. تقوم على تل 130 قدما وتضم جامعا بضريح النبي دانيال وقبتين وثلاث مآذن وأقواسا ومقبرة.",
+    distanceFromErbilAr: "~83 كم جنوبا",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "زيارة ضريح النبي دانيال والجامع التاريخي، التل القديم بحضارته التي تمتد 5,000 سنة.",
+    travelGuidanceAr: "في مدينة كركوك. عبر طريق أربيل-كركوك السريع. حوالي 1.5 ساعة.",
+    accommodationAr: "مجموعة كاملة من فنادق كركوك.",
+  },
+};
+
+HISTORICAL_PLACES.forEach((place) => {
+  Object.assign(place, HISTORICAL_PLACE_AR_TRANSLATIONS[place.id]);
+});
