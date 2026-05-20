@@ -210,3 +210,150 @@ export const MUSEUM_CENTERS = [
     accommodation: "On-site resort facilities. Hotels in Zakho (~40 km).",
   },
 ];
+
+const MUSEUM_CENTER_AR_TRANSLATIONS = {
+  "kurdish-textile-museum": {
+    nameAr: "متحف المنسوجات الكوردية",
+    locationAr: "قلعة أربيل",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "داخل قلعة أربيل. يعرض تقاليد كردستان القديمة في الغزل والنسيج. تشمل المعروضات السجاد والأثواب والصوف المصبوغ طبيعيا.",
+    distanceFromErbilAr: "0 كم — داخل القلعة",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "مشاهدة السجاد التاريخي والأثواب التقليدية وأدوات الغزل والصوف المصبوغ طبيعيا.",
+    travelGuidanceAr: "داخل قلعة أربيل. سيرا من وسط أربيل.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "erbil-citadel-mosque": {
+    nameAr: "جامع القلعة",
+    locationAr: "قلعة أربيل",
+    roleAr: "ثقافي | ديني",
+    descriptionAr:
+      "أول مسجد في القلعة. ذكره ياقوت الحموي عام 1220م. رمم عام 1719-1720م.",
+    distanceFromErbilAr: "0 كم — داخل القلعة",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr: "زيارة المسجد التاريخي ومشاهدة محرابه المزخرف.",
+    travelGuidanceAr: "داخل قلعة أربيل.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "erbil-citadel-bath-hamam": {
+    nameAr: "الحمام التاريخي للقلعة",
+    locationAr: "قلعة أربيل",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "عمره أكثر من مئتي سنة. قسمان: للصيف وللشتاء. قبتان كبيرتان. بئر عمقها 45 مترا تصل إلى قاعدة القلعة.",
+    distanceFromErbilAr: "0 كم — داخل القلعة",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "استكشاف حمام القرن الثامن عشر والقاعتين القبابيتين والبئر الشهيرة.",
+    travelGuidanceAr: "داخل قلعة أربيل.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "erbil-archaeological-museum": {
+    nameAr: "متحف أربيل الأثري",
+    locationAr: "مدينة أربيل",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "مقابل دار البلدية. ثلاثة أقسام بمعروضات زمنية. أقدم المعروضات تعود إلى 5,000 ق.م. مكتبة رائدة بجانبه.",
+    distanceFromErbilAr: "0 كم — وسط المدينة",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "التجول عبر 7,000 سنة من التاريخ وزيارة المكتبة التاريخية المجاورة.",
+    travelGuidanceAr: "مقابل دار بلدية أربيل.",
+    accommodationAr: "مجموعة كاملة من فنادق أربيل.",
+  },
+  "sulaymaniyah-museum": {
+    nameAr: "متحف السليمانية",
+    locationAr: "مدينة السليمانية",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "يحوي آلاف القطع الأثرية من ألواح وفخار. من أهم المتاحف في كردستان.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "مشاهدة آلاف القطع الأثرية؛ رحلة شاملة عبر التاريخ الكردي والرافديني.",
+    travelGuidanceAr: "وسط السليمانية، قرب ساحة الحرية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
+  "sulaymaniyah-handicraft-gallery": {
+    nameAr: "معرض الحرف اليدوية في السليمانية",
+    locationAr: "مدينة السليمانية",
+    roleAr: "ثقافي",
+    descriptionAr:
+      "بنيت عام 1971 بجانب متحف السليمانية. تقدم دورات ومعارض في الخزف والسجاد والأعمال الجلدية والنجارة والخياطة.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "مشاهدة وشراء الحرف اليدوية الكردية ومتابعة الحرفيين.",
+    travelGuidanceAr: "وسط السليمانية، بجانب متحف السليمانية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
+  "freedom-square-saray": {
+    nameAr: "ساحة الحرية (ساراي)",
+    locationAr: "مدينة السليمانية",
+    roleAr: "ثقافي",
+    descriptionAr:
+      "في قلب مدينة السليمانية. القلب الثقافي والاجتماعي للمدينة، ملتقى تاريخي للحياة الفكرية والسياسية.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام. الأمسيات للأجواء التراثية.",
+    visitorExperienceAr:
+      "التجول في قلب السليمانية الثقافي وزيارة المتاحف المجاورة.",
+    travelGuidanceAr: "وسط السليمانية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
+  "kifri-qaysari": {
+    nameAr: "قيصرية كفري",
+    locationAr: "كفري، گرميان",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "بنيت في القرن التاسع عشر. تضم محلات وخانات عديدة كخان الفحم وخان الحنطة. رممت مؤخرا.",
+    distanceFromErbilAr: "~150 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "استكشاف السوق المسقوف القديم والتسوق للمنتجات المحلية.",
+    travelGuidanceAr: "وسط كفري. عبر طريق أربيل-كويسنجق-كفري.",
+    accommodationAr: "فنادق كفري.",
+  },
+  "quldar-mill-of-kifri": {
+    nameAr: "طاحونة قولدار في كفري",
+    locationAr: "كفري، گرميان",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "شمال مقبرة باوشاشوار. برج بغرفتين: إحداهما لطحن القمح والأخرى للتخزين. نموذج نادر من الطواحين التقليدية.",
+    distanceFromErbilAr: "~155 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr: "مشاهدة برج طاحونة الحبوب التقليدية بغرفتيه.",
+    travelGuidanceAr: "شمال مقبرة باوشاشوار، كفري.",
+    accommodationAr: "فنادق كفري.",
+  },
+  "lalonde-bridge-khanaqin": {
+    nameAr: "جسر الوند، خانقين",
+    locationAr: "خانقين، محافظة ديالى",
+    roleAr: "ثقافي | تاريخي",
+    descriptionAr:
+      "في قلب خانقين. عمره أكثر من مئة عام. تمتد على جانبيه البساتين والحدائق والمنتزهات.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "الربيع والخريف.",
+    visitorExperienceAr:
+      "المشي عبر الجسر التاريخي والاسترخاء في البساتين والحدائق.",
+    travelGuidanceAr: "في قلب مدينة خانقين. عبر طريق أربيل-خانقين.",
+    accommodationAr: "فنادق خانقين.",
+  },
+  "sharanish-waterfall-resort": {
+    nameAr: "شلال ومنتجع شرانش",
+    locationAr: "قرب زاخو، محافظة دهوك",
+    roleAr: "طبيعي",
+    descriptionAr:
+      "40 كم شمال شرق زاخو. شلال جميل يحيط به غابات. لا تتجاوز درجات الحرارة 32 درجة مئوية.",
+    distanceFromErbilAr: "~315 كم شمال غرب",
+    bestTimeToVisitAr: "الصيف للمناخ المنعش. الربيع لتدفق الشلال.",
+    visitorExperienceAr: "مشاهدة الشلال والمشي في الغابات وملاذ صيفي منعش.",
+    travelGuidanceAr: "40 كم شمال شرق زاخو.",
+    accommodationAr: "مرافق منتجع في الموقع. فنادق زاخو (~40 كم).",
+  },
+};
+
+MUSEUM_CENTERS.forEach((place) => {
+  Object.assign(place, MUSEUM_CENTER_AR_TRANSLATIONS[place.id]);
+});

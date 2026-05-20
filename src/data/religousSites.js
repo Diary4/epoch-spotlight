@@ -412,6 +412,46 @@ const RELIGIOUS_SITE_AR_TRANSLATIONS = {
       "10 كم غرب خانقين. عبر طريق أربيل-خانقين. حوالي 2.5 ساعة.",
     accommodationAr: "فنادق خانقين.",
   },
+  "khaniqin-church": {
+    nameAr: "كنيسة خانقين",
+    locationAr: "خانقين، محافظة ديالى",
+    roleAr: "ديني",
+    descriptionAr:
+      "في منطقة باشا غوري في خانقين. بنيت عام 1950. من أبرز المعالم في خانقين.",
+    distanceFromErbilAr: "~200 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "زيارة كنيسة 1950 والتعرف على الإرث المسيحي في خانقين.",
+    travelGuidanceAr:
+      "منطقة باشا غوري، مدينة خانقين. عبر طريق أربيل-خانقين.",
+    accommodationAr: "فنادق خانقين.",
+  },
+  "azadi-park-sulaymaniyah": {
+    nameAr: "منتزه الحرية، السليمانية",
+    locationAr: "مدينة السليمانية",
+    roleAr: "طبيعي | تاريخي",
+    descriptionAr:
+      "كان قاعدة عسكرية في عهد البعث. بعد انتفاضة 1991 تحول إلى منتزه بحدائق ومطعم وبحيرة صغيرة وملاعب. رمز لصمود كردستان.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "المشي في الحدائق ومناظر البحيرة والنزهات العائلية.",
+    travelGuidanceAr: "وسط مدينة السليمانية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
+  "sulaymaniyah-park": {
+    nameAr: "منتزه السليمانية",
+    locationAr: "مدينة السليمانية",
+    roleAr: "طبيعي | تاريخي",
+    descriptionAr:
+      "أقدم وأجمل منتزه في السليمانية، أسس عام 1937. يضم تماثيل لشعراء وضباط وفنانين محليين.",
+    distanceFromErbilAr: "~185 كم جنوب شرق",
+    bestTimeToVisitAr: "طوال العام.",
+    visitorExperienceAr:
+      "المشي بين تماثيل الشخصيات الكردية، الاسترخاء العائلي، ملعب الأطفال.",
+    travelGuidanceAr: "مستهل شارع سليم، وسط السليمانية.",
+    accommodationAr: "مجموعة كاملة من فنادق السليمانية.",
+  },
 };
 
 RELIGIOUS_SITES.forEach((place) => {
