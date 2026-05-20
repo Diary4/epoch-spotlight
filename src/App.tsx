@@ -14,6 +14,7 @@ import SliderPage from "./pages/SliderPage.tsx";
 import Religions from "./pages/Religions.tsx";
 import WomenPage from "./pages/Women.tsx";
 import StartMenu from "./pages/StartMenu.tsx";
+import Touristic from "./pages/Touristic.tsx";
 
 const queryClient = new QueryClient();
 const Router = Capacitor.isNativePlatform() ? HashRouter : BrowserRouter;
@@ -33,7 +34,8 @@ const App = () => (
           <Route path="/portraits/:id/timeline" element={<PortraitTimeline />} />
           <Route path="/slider" element={<SliderPage />} />
           <Route path="/religions" element={<Religions />} />
-          <Route path="/women" element={<WomenPage />} />
+          <Route path="/women" element={<WomenPage />} />]
+          <Route path="/touristic" element={<Touristic />} /> 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
