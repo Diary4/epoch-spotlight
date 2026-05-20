@@ -539,4 +539,375 @@ export const NATURAL_PLACES = [
       "Located on the western side of Sulaymaniyah; approximately 10 minutes from city center.",
     accommodation: "Available at all hotels across Sulaymaniyah.",
   },
+  {
+    id: "sheladeze",
+    name: "Sheladeze",
+    location: "Duhok Province (Badinan)",
+    image: highlandImage,
+    description:
+      "A stunning mountainous sub-district within the Amadiya District, renowned for its unparalleled mountain landscapes, dense forests, and authentic historical villages. An exceptional destination for tourists who enjoy exploring remote, high-altitude environments.",
+    role: "Natural",
+    distanceFromErbil: "~250 km northwest",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Majestic towering mountain views, exploring local villages, nature photography, observing remote and untouched landscapes.",
+    travelGuidance:
+      "Take the Duhok-Amadiya road. A private vehicle is required to reach the area.",
+    accommodation: "Local guesthouses or hotels in Duhok city.",
+  },
+  {
+    id: "zoragvan-valley",
+    name: "Zoragvan Valley",
+    location: "Soran Area, Erbil Province",
+    image: waterfallImage,
+    description:
+      "A lush green valley within the Zoragvan National Park featuring an epic 3-hour hiking trail along creeks, small waterfalls and stunning natural scenery. The trail ends at a dramatic main waterfall. Some sections require wading through the stream.",
+    role: "Natural | Adventure",
+    distanceFromErbil: "~150 km northeast",
+    bestTimeToVisit:
+      "Spring (Apr-Jun) for peak green scenery and full waterfalls.",
+    visitorExperience:
+      "3-hour round-trip hike to the main waterfall, creek crossings, waterfall photography, picnicking.",
+    travelGuidance:
+      "No public transport. Private car or guide required from Soran/Khalifan area. Approx. 2.5 hours from Erbil.",
+    accommodation:
+      "Guesthouses and homestays in nearby villages. Hotels in Soran (~30 km).",
+  },
+  {
+    id: "mawat",
+    name: "Mawat",
+    location: "Sulaymaniyah Province",
+    image: mountainImage,
+    description:
+      "An ancient district in northern Sulaymaniyah with rich history. Known for its beautiful mountain scenery, historical sites, traditional villages and its position at the gateway to the Halgurd-Sakran National Park from the Sulaymaniyah side.",
+    role: "Natural | Historical",
+    distanceFromErbil: "~170 km southeast",
+    bestTimeToVisit: "April-September.",
+    visitorExperience:
+      "Historical site exploration, mountain hiking, traditional village visits, gateway to Halgurd-Sakran National Park.",
+    travelGuidance:
+      "Via Sulaymaniyah north roads. Private car recommended for village and mountain access.",
+    accommodation: "Local guesthouses in Mawat. Hotels in Sulaymaniyah as base.",
+  },
+  {
+    id: "pank-tourist-resort",
+    name: "Pank Tourist Resort",
+    location: "Rawanduz, Erbil Province",
+    image: highlandImage,
+    description:
+      "A 5-star resort perched on a hill close to Rawanduz, roughly 100 km from Erbil. Offers summer cottages, restaurants, shops, swimming pools, and a fun park. One of the finest highland resort destinations in Kurdistan.",
+    role: "Natural",
+    distanceFromErbil: "~100 km northeast",
+    bestTimeToVisit: "Summer (Jun-Sep) for cool mountain air.",
+    visitorExperience:
+      "Resort relaxation, swimming pools, fun park, mountain views, dining, shops.",
+    travelGuidance:
+      "Via Erbil-Soran-Rawanduz highway. Approx. 1.5-2 hours.",
+    accommodation:
+      "On-site 5-star resort with full facilities (cottages, restaurants, pools).",
+  },
+  {
+    id: "minarah-park",
+    name: "Minarah Park",
+    location: "Erbil City",
+    image: cityParkImage,
+    description:
+      "One of the most beautiful recreational grounds in Erbil, located opposite Shanadar Park. Named after the historic Choli Minaret housed within its grounds. National activities and celebrations are often held here.",
+    role: "Natural",
+    distanceFromErbil: "City center",
+    bestTimeToVisit:
+      "Year-round. Spring and autumn evenings for recreation.",
+    visitorExperience:
+      "Walking and recreation, viewing the historic Choli Minaret, attending cultural events and national celebrations.",
+    travelGuidance:
+      "Central Erbil, opposite Shanadar Park. Accessible by all transport.",
+    accommodation: "Full range of Erbil city hotels within walking distance.",
+  },
+  {
+    id: "sarsir-summer-resort",
+    name: "Sarsir Summer Resort",
+    location: "Sulaymaniyah Province",
+    image: forestImage,
+    description:
+      "A summer resort 36 km north of Sulaymaniyah city. Surrounded by trees and natural springs. Recreational facilities available for visitors seeking a cool highland escape.",
+    role: "Natural",
+    distanceFromErbil: "~195 km southeast",
+    bestTimeToVisit: "Summer (Jun-Sep).",
+    visitorExperience:
+      "Highland resort relaxation, natural springs, family recreational activities, fresh mountain air.",
+    travelGuidance:
+      "Via Sulaymaniyah north road. Approx. 45 minutes from Sulaymaniyah city.",
+    accommodation: "Resort facilities on-site. Hotels in Sulaymaniyah (36 km).",
+  },
+  {
+    id: "setak-area",
+    name: "Setak Area",
+    location: "Sulaymaniyah Province",
+    image: landscapeImage,
+    description:
+      "A beautiful touristic area set behind the Azmar Mountain, roughly 20 km north of Sulaymaniyah city. Widely visited during spring and summer for its pure mountain air and fabulous scenery.",
+    role: "Natural",
+    distanceFromErbil: "~185 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Mountain walking, fresh air, photography, nature appreciation.",
+    travelGuidance:
+      "Via Sulaymaniyah north road. Approx. 30 minutes from Sulaymaniyah.",
+    accommodation: "Hotels in Sulaymaniyah city.",
+  },
+  {
+    id: "ahmadawa",
+    name: "Ahmadawa",
+    location: "East of Sulaymaniyah",
+    image: waterfallImage,
+    description:
+      "A beautiful natural area east of Sulaymaniyah where springs feed waterfalls surrounded by walnut, pomegranate and fig trees. Their cool shade attracts visitors seeking nature and fresh air.",
+    role: "Natural",
+    distanceFromErbil: "~200 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Waterfall visiting, picnicking under walnut, pomegranate and fig trees, spring water, nature walks.",
+    travelGuidance: "Via Sulaymaniyah east road. Private car recommended.",
+    accommodation: "Hotels in Sulaymaniyah.",
+  },
+  {
+    id: "qopi-qaradagh",
+    name: "Qopi Qaradagh",
+    location: "Northern Sulaymaniyah Province",
+    image: mountainImage,
+    description:
+      "A district in northern Sulaymaniyah made up of nine adjacent mountains. Visitors come to enjoy the area's many water springs and to visit local shrines and graves. Tourist cabins available for overnight stays.",
+    role: "Natural",
+    distanceFromErbil: "~200 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Visiting water springs, shrine pilgrimage, mountain scenery, overnight stays in tourist cabins.",
+    travelGuidance: "Via Sulaymaniyah roads. Private car recommended.",
+    accommodation: "Tourist cabins available on-site. Hotels in Sulaymaniyah.",
+  },
+  {
+    id: "qashqoli-resort",
+    name: "Qashqoli Resort",
+    location: "Near Dukan, Sulaymaniyah Province",
+    image: lakeImage,
+    description:
+      "A resort near Dukan town built on both sides of the Little Zab River. Popular for swimming and boating in the river waters, set amidst the scenic hills of the Dukan area.",
+    role: "Natural",
+    distanceFromErbil: "~190 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "River swimming and boating, riverside relaxation, picnicking.",
+    travelGuidance:
+      "Via Sulaymaniyah-Dukan road. From Erbil approx. 2.5-3 hours.",
+    accommodation:
+      "Resort facilities on both sides of the river. Hotels in Sulaymaniyah.",
+  },
+  {
+    id: "darbandi-ranya",
+    name: "Darbandi Ranya",
+    location: "Sulaymaniyah Province",
+    image: valleyImage,
+    description:
+      "A natural strait 4 km east of Ranya on the main road to Qaladiza. When the Dukan dam and lake were established, the water reached the strait, adding to its natural beauty. A nearby mineral lake (Ganaw) is visited for the treatment of skin diseases.",
+    role: "Natural",
+    distanceFromErbil: "~200 km southeast",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Natural strait scenery, visiting the mineral lake Ganaw for therapeutic purposes, photography, picnicking.",
+    travelGuidance:
+      "Via Sulaymaniyah-Ranya-Qaladiza road. From Erbil approx. 3 hours.",
+    accommodation: "Hotels in Ranya. Sulaymaniyah hotels as a base.",
+  },
+  {
+    id: "betwata-sar-ashkawtan",
+    name: "Betwata (Sar-Ashkawtan)",
+    location: "Near Ranya, Sulaymaniyah Province",
+    image: waterfallImage,
+    description:
+      "Located 20 km from Ranya town center. Remarkable geography with springs and waterfalls, gardens and abundant farmland in a picturesque highland setting.",
+    role: "Natural",
+    distanceFromErbil: "~200 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Spring and waterfall visits, garden walks, farmland scenery, picnicking.",
+    travelGuidance:
+      "Via Sulaymaniyah-Ranya road, 20 km from Ranya center.",
+    accommodation: "Local guesthouses in Ranya. Sulaymaniyah hotels as base.",
+  },
+  {
+    id: "duhok-zoo",
+    name: "Duhok Zoo",
+    location: "Duhok City",
+    image: parkImage,
+    description:
+      "Located in Duhok city center, the zoo is a popular attraction for locals and tourists. Visitors come to see the zoo's many animals and enjoy its park and playgrounds.",
+    role: "Natural",
+    distanceFromErbil: "~250 km northwest",
+    bestTimeToVisit:
+      "Year-round. Spring and autumn for best outdoor experience.",
+    visitorExperience:
+      "Viewing the zoo's animals, picnicking in the park, children's playground facilities.",
+    travelGuidance: "Central Duhok city. Accessible by taxi from all city hotels.",
+    accommodation: "Full range of hotels in Duhok city.",
+  },
+  {
+    id: "azadi-park-duhok",
+    name: "Azadi Park, Duhok",
+    location: "Duhok City",
+    image: cityParkImage,
+    description:
+      "Located in downtown Duhok near the Duhok sports club. Features a restaurant and cafeteria and vast green lawns that make it an ideal place for picnics.",
+    role: "Natural",
+    distanceFromErbil: "~250 km northwest",
+    bestTimeToVisit: "Year-round. Spring and autumn for best conditions.",
+    visitorExperience:
+      "Picnicking on vast green lawns, dining at the restaurant and cafeteria, relaxation in a central green space.",
+    travelGuidance:
+      "Downtown Duhok, near the Duhok sports club. Accessible by all transport.",
+    accommodation: "Full range of hotels in Duhok city.",
+  },
+  {
+    id: "mazi-complex",
+    name: "Mazi Complex",
+    location: "Duhok City",
+    image: parkImage,
+    description:
+      "A multi-facility tourist complex in Duhok housing a large supermarket, a hotel, a motel, a fun park and swimming pools. Many tourists visit in the spring and summer to enjoy its wide variety of facilities.",
+    role: "Natural",
+    distanceFromErbil: "~250 km northwest",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Fun park rides, swimming pools, hotel facilities, dining, shopping at the large supermarket.",
+    travelGuidance: "Duhok city. Accessible by taxi from all city hotels.",
+    accommodation: "On-site hotel and motel facilities.",
+  },
+  {
+    id: "swaratuka-resort",
+    name: "Swaratuka Resort",
+    location: "Duhok Province",
+    image: highlandImage,
+    description:
+      "A beautiful resort 32 km east of Duhok city at 1,075 meters above sea level in a leafy, green area. Its mountain views are stunning and the air is fresh and cool. Offers a restaurant, rest places and a cafe.",
+    role: "Natural",
+    distanceFromErbil: "~260 km northwest",
+    bestTimeToVisit: "Summer (Jun-Sep).",
+    visitorExperience:
+      "Highland resort relaxation, stunning mountain views, fresh cool air, dining, rest areas.",
+    travelGuidance:
+      "Via Duhok east road. Approx. 40 minutes from Duhok city.",
+    accommodation: "On-site resort facilities. Hotels in Duhok city (32 km).",
+  },
+  {
+    id: "gara-mountain",
+    name: "Gara Mountain",
+    location: "Duhok Province",
+    image: mountainImage,
+    description:
+      "A spectacular mountain northeast of Duhok city reaching 2,151 meters above sea level, overlooking the towns of Solav, Ashawa, Aneshki, and Bamerni. The ruins of a palace built by Saddam Hussein on the mountain are accessible as a piece of modern history.",
+    role: "Natural | Adventure",
+    distanceFromErbil: "~200 km northwest",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Hiking, panoramic views over the Duhok region, visiting Saddam Hussein's ruined mountain palace, exploring the surrounding resort towns.",
+    travelGuidance:
+      "Via Duhok-Sarsang road. From Erbil approx. 3 hours.",
+    accommodation: "Hotels and motels in Sarsang. Full range in Duhok city.",
+  },
+  {
+    id: "gulan-park-soran",
+    name: "Gulan Park, Soran",
+    location: "Soran, Erbil Province",
+    image: parkImage,
+    description:
+      "Located 3 km from the center of Soran city. Contains fun rides for children and families. Its beautiful views attract tourists year-round.",
+    role: "Natural",
+    distanceFromErbil: "~100 km northeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Fun rides for families and children, beautiful mountain views, picnicking, recreation.",
+    travelGuidance:
+      "3 km from Soran city center. Via Erbil-Soran highway. Approx. 1.5 hours.",
+    accommodation: "Hotels in Soran city center (~3 km).",
+  },
+  {
+    id: "sidekan-streams",
+    name: "Sidekan Streams",
+    location: "Soran Area, Erbil Province",
+    image: valleyImage,
+    description:
+      "Multiple streams of various sizes run through the area of Sidekan. The area provides amazing views in the summer, including snow-capped mountains emerging from wide green expanses.",
+    role: "Natural",
+    distanceFromErbil: "~140 km northeast",
+    bestTimeToVisit:
+      "Summer for snow-capped peaks above green valleys. Spring for full stream flow.",
+    visitorExperience:
+      "Stream walks, photography of snow-capped peaks contrasting with green valleys, picnicking, cool summer retreat.",
+    travelGuidance:
+      "Via Erbil-Soran-Sidikan road. Approx. 2 hours from Erbil.",
+    accommodation: "Guesthouses in Sidekan. Hotels in Soran (~30 km).",
+  },
+  {
+    id: "bsta-waterfall",
+    name: "Bsta Waterfall",
+    location: "Choman Area, Erbil Province",
+    image: waterfallImage,
+    description:
+      "A beautiful waterfall just 3 km from Bsta village, northeast of Choman. The area's fresh climate and abundant spring water make it a perfect place for picnics and sightseeing during spring and summer months.",
+    role: "Natural",
+    distanceFromErbil: "~180 km northeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Waterfall viewing, picnicking in a fresh highland setting, photography, spring water.",
+    travelGuidance:
+      "Via Erbil-Soran-Choman road, then northeast toward Bsta village. Approx. 3 hours from Erbil.",
+    accommodation: "Guesthouses in Choman (~10 km). Haji Omran lodges.",
+  },
+  {
+    id: "awesar",
+    name: "Awesar",
+    location: "Hawraman District, Halabja Province",
+    image: forestImage,
+    description:
+      "An area of Hawraman district, 3 km east of Taweila village. Famous for its walnut trees, fruit orchards and fresh water springs. One of the most popular natural tourist destinations in the Hawraman region.",
+    role: "Natural",
+    distanceFromErbil: "~220 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Walking among walnut orchards and fruit trees, drinking from fresh water springs, picnicking, photography.",
+    travelGuidance:
+      "Via Sulaymaniyah-Halabja-Hawraman-Taweila road. From Erbil approx. 3.5 hours.",
+    accommodation: "Guesthouses in Taweila. Hotels in Halabja (~25 km).",
+  },
+  {
+    id: "chauq-gullan-park-halabja",
+    name: "Chauq & Gullan Park, Halabja",
+    location: "Halabja City",
+    image: parkImage,
+    description:
+      "An attractive green picnic area 5 km east of Halabja city. Known for its fresh water springs, orchards and high trees. Has a play area for children and provides beautiful views over the town and surrounding hills.",
+    role: "Natural",
+    distanceFromErbil: "~215 km southeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Picnicking among fresh water springs, orchards and high trees, children's play area, panoramic views over Halabja.",
+    travelGuidance:
+      "5 km east of Halabja city. Via Erbil-Sulaymaniyah-Halabja road.",
+    accommodation: "Hotels in Halabja. Hotels in Sulaymaniyah (~75 km).",
+  },
+  {
+    id: "happy-theme-park-zakho",
+    name: "Happy Theme Park, Zakho",
+    location: "Zakho, Duhok Province",
+    image: cityParkImage,
+    description:
+      "The biggest amusement park in Zakho. A modern theme park providing a range of attractions for children and adults alike. Features lakes, fountains, outdoor rides, indoor play areas, restaurants and a 5D cinema.",
+    role: "Natural",
+    distanceFromErbil: "~290 km northwest",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Outdoor rides, indoor play areas, lakes, fountains, restaurants, 5D cinema, a comprehensive family entertainment destination.",
+    travelGuidance:
+      "Via Erbil-Duhok-Zakho road. Approx. 4 hours from Erbil.",
+    accommodation: "Hotels in Zakho. Full range in Duhok city (~80 km).",
+  },
 ];
