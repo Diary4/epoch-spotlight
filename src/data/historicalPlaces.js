@@ -637,4 +637,268 @@ export const HISTORICAL_PLACES = [
     travelGuidance: "7 km east of Duhok city, north of Kifrki. Private car recommended.",
     accommodation: "Full range of hotels in Duhok city.",
   },
+  {
+    id: "chairlifts-pablo",
+    name: "Chairlifts Pablo",
+    location: "Duhok Province",
+    image: mountainImage,
+    description:
+      "A tourist complex located 11 km northeast of Duhok. Features motels, restaurants, a casino, and chairlifts that take visitors up and down the mountainside.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~255 km northwest",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Chairlift rides up and down the mountainside, panoramic views, dining, motel stays.",
+    travelGuidance:
+      "11 km northeast of Duhok city. Approx. 15 minutes from Duhok center.",
+    accommodation: "On-site motel facilities. Hotels in Duhok city (11 km).",
+  },
+  {
+    id: "amediya-amedi-town",
+    name: "Amediya (Amedi) Town",
+    location: "Duhok Province",
+    image: cityImage,
+    description:
+      "A small, beautiful town perched on the plateau at the top of a mountain. Built over 1,000 years ago and still home to 5,000 inhabitants, 90 km northeast of Duhok. Contains an ancient mosque, the town's Old Gate, a Minaret, a Dome, the Zoroastrian's Gate, and ruins of Qubahani School, a 17th-century center for Islamic sciences.",
+    role: "Historical",
+    distanceFromErbil: "~210 km northwest",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Exploring the ancient plateau town, visiting the ancient mosque, Old Gate, Minaret, Dome, Zoroastrian's Gate, and the ruins of Qubahani School.",
+    travelGuidance:
+      "Via Erbil-Duhok-Amedi road. Approx. 3 hours. The plateau is accessible by the car-friendly road.",
+    accommodation: "Guesthouses in Amedi. Hotels in Duhok (~90 km).",
+  },
+  {
+    id: "khinis-rock-carvings",
+    name: "Khinis Rock Carvings",
+    location: "Duhok Province",
+    image: heritageImage,
+    description:
+      "Located 52 km east of Duhok, near Shexan. Also known as Sanharib, the summer resort of Assyrian King Sennacherib (705-681 BC). Features six engraved rocks, a statue of a flying oxen, cuneiform writing, a small cave temple, and a sculpture of the king himself.",
+    role: "Historical",
+    distanceFromErbil: "~220 km northwest",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Viewing the Assyrian rock carvings depicting a winged bull, two gods and King Sennacherib, cuneiform inscriptions, small cave temple.",
+    travelGuidance:
+      "52 km east of Duhok, ~13 km northeast of Shexan. Private car required.",
+    accommodation: "Hotels in Duhok (~52 km).",
+  },
+  {
+    id: "anishki-cave",
+    name: "Anishki Cave",
+    location: "Near Sarsang, Duhok Province",
+    image: shanidarImage,
+    description:
+      "Located 9 km north of Sarsang. A stone staircase leads to the cave where water drips from the ceiling, creating a natural fountain and a refreshingly cool environment inside, especially welcome during hot summer days.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~210 km northwest",
+    bestTimeToVisit: "Summer for the cool cave environment. Spring for greenery.",
+    visitorExperience:
+      "Climbing the stone staircase to the cave, experiencing the natural dripping fountain inside, picnicking in the surrounding tree-shaded area.",
+    travelGuidance: "9 km north of Sarsang. Via Duhok-Sarsang road.",
+    accommodation: "Hotels in Sarsang (9 km). Hotels in Duhok.",
+  },
+  {
+    id: "girbish-village",
+    name: "Girbish Village",
+    location: "Near Akre, Duhok Province",
+    image: valleyImage,
+    description:
+      "A village at the foot of Peris Mountain, 23 km north of Akre. At the tourist site above the village, six wells flow under a grove of walnut trees, creating a beautiful shaded area.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~195 km northeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Visiting the six flowing wells under walnut trees, picnicking in the shaded grove, exploring the foot of Peris Mountain.",
+    travelGuidance: "23 km north of Akre. Via Erbil-Akre road then north.",
+    accommodation: "Hotels in Akre (23 km). Hotels in Duhok.",
+  },
+  {
+    id: "zanta-valley",
+    name: "Zanta Valley",
+    location: "Near Akre, Duhok Province",
+    image: valleyImage,
+    description:
+      "Lies 13 km east of Akre, starting at the small village of Bjail. The Brisho River flows through the valley, with Sari Sada Mountain to its east and Sari Sidanok to its west. Springs and wells can be found throughout the valley.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~185 km northeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "River walks along the Brisho River, spring and well visits, mountain scenery, photography.",
+    travelGuidance:
+      "13 km east of Akre, starting at Bjail village. Via Erbil-Akre road.",
+    accommodation: "Hotels in Akre (13 km). Hotels in Duhok.",
+  },
+  {
+    id: "selei",
+    name: "Selei",
+    location: "Near Akre, Duhok Province",
+    image: valleyImage,
+    description:
+      "A beautiful site at the foot of the Peris Mountain chain, 8 km east of Dinarta and 32 km from Akre. Water flowing from the mountain creates a 50m high waterfall that falls onto an orchard of willow trees. Benches and seating areas are set up for tourists.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~200 km northeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Viewing the 50m waterfall, relaxing among willow trees, picnicking in the seating areas by the waterfall.",
+    travelGuidance: "8 km east of Dinarta, 32 km from Akre. Via Erbil-Akre road.",
+    accommodation: "Hotels in Akre (~32 km). Hotels in Duhok.",
+  },
+  {
+    id: "gundik-cave-sculptures",
+    name: "Gundik Cave Sculptures",
+    location: "Near Akre, Duhok Province",
+    image: shanidarImage,
+    description:
+      "Gundik cave lies 20 km east of Akre, just outside the village of Gundik. Sculptures carved into the natural rock adorn both the outside and interior of the cave, depicting animals and humans.",
+    role: "Historical",
+    distanceFromErbil: "~190 km northeast",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Viewing ancient rock sculptures of animals and humans both on the cave exterior and interior.",
+    travelGuidance: "20 km east of Akre. Via Erbil-Akre road then east.",
+    accommodation: "Hotels in Akre (20 km). Hotels in Duhok.",
+  },
+  {
+    id: "sepay-bjail-waterfall-resort",
+    name: "Sepay Bjail Waterfall & Resort",
+    location: "Near Akre, Duhok Province",
+    image: valleyImage,
+    description:
+      "Located in Bjail town, 13 km northwest of Akre. The waterfall is created by a combination of several mountain springs. Tourist facilities include an artificial cave behind the waterfall.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~185 km northeast",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Viewing the combined-spring waterfall, exploring the artificial cave behind it, picnicking in the orchard valley.",
+    travelGuidance: "13 km northwest of Akre, in Bjail town. Via Erbil-Akre road.",
+    accommodation: "Hotels in Akre (13 km). Hotels in Duhok.",
+  },
+  {
+    id: "shrine-of-abdul-aziz-al-gaylani",
+    name: "Shrine of Abdul Aziz Al Gaylani",
+    location: "Near Akre, Duhok Province",
+    image: cityImage,
+    description:
+      "A famous sheikh and leader of the Alqadiriyya Sufi order who accompanied Saladin during the liberation of Jerusalem. His shrine lies west of the town of Akre in a valley full of orchards and grapevines. Visited by tens of thousands of pilgrims from Iraq, Iran, Pakistan, India, Afghanistan, and Turkey.",
+    role: "Historical | Religious",
+    distanceFromErbil: "~180 km northeast",
+    bestTimeToVisit: "Year-round. Religious holidays for peak pilgrimage.",
+    visitorExperience:
+      "Sufi shrine pilgrimage, beautiful orchard valley setting, multinational pilgrimage atmosphere.",
+    travelGuidance: "West of Akre town, in a valley west of the city. Via Erbil-Akre road.",
+    accommodation: "Hotels in Akre. Hotels in Duhok (~100 km).",
+  },
+  {
+    id: "dalal-bridge-zakho",
+    name: "Dalal Bridge, Zakho",
+    location: "Zakho, Duhok Province",
+    image: heritageImage,
+    description:
+      "An ancient bridge in the town of Zakho, built on the Khapour River. It is 114 m long, 4.7 m wide, and 16 m high, built using large river stones. Zakho is also known for its mineral springs thought to have medicinal properties.",
+    role: "Historical",
+    distanceFromErbil: "~310 km northwest",
+    bestTimeToVisit: "Year-round.",
+    visitorExperience:
+      "Walking across the historic ancient bridge, viewing its massive stone construction over the Khapour River, visiting the nearby mineral springs.",
+    travelGuidance:
+      "In the heart of Zakho city. Via Erbil-Duhok-Zakho road. Approx. 4 hours from Erbil.",
+    accommodation: "Hotels in Zakho. Hotels in Duhok (~80 km).",
+  },
+  {
+    id: "sherwana-citadel",
+    name: "Sherwana Citadel",
+    location: "Kalar, Garmyan",
+    image: heritageImage,
+    description:
+      "Mahmood Pasha Jaff built Sherwana Citadel in the late 19th century as a tribal administrative center and residence. Set atop a small hill at the northeastern entrance to Kalar, this beautiful castle consists of a basement, two floors, an octagonal hall, and a small museum.",
+    role: "Historical",
+    distanceFromErbil: "~190 km southeast",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Exploring the late 19th-century castle, viewing the octagonal hall, visiting the small on-site museum.",
+    travelGuidance:
+      "At the northeastern entrance to Kalar. Via Erbil-Koya-Kalar road. Approx. 2.5 hours.",
+    accommodation: "Hotels in Kalar. Sulaymaniyah hotels as base.",
+  },
+  {
+    id: "pasha-palace-mahmud-pasha-jaff",
+    name: "Pasha Palace (Mahmud Pasha Jaff)",
+    location: "Tazadai Village, Near Kalar",
+    image: heritageImage,
+    description:
+      "Located in Tazadai village, 9 km northeast of Kalar. Mahmood Pasha Jaff built this two-story historic mansion in 1895. A rectangular building north of the palace was used as a storehouse and stable for horses and mules.",
+    role: "Historical",
+    distanceFromErbil: "~195 km southeast",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Exploring the 1895 two-story historic mansion, viewing the original storehouse and stable buildings.",
+    travelGuidance:
+      "9 km northeast of Kalar in Tazadai village. Via Erbil-Koya-Kalar road.",
+    accommodation: "Hotels in Kalar. Sulaymaniyah hotels as base.",
+  },
+  {
+    id: "majeed-basha-palace",
+    name: "Majeed Basha Palace",
+    location: "East of Kifri, Garmyan",
+    image: heritageImage,
+    description:
+      "Located east of Kifri district. Built by Majeed Basha ibn Qader Beik at the end of the 19th century, the palace contains two floors, some rooms and a hall.",
+    role: "Historical",
+    distanceFromErbil: "~160 km southeast",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Exploring the late 19th-century two-story palace with its original rooms and hall.",
+    travelGuidance: "East of Kifri district. Via Erbil-Koya-Kifri road. Approx. 2 hours.",
+    accommodation: "Hotels in Kifri. Sulaymaniyah hotels as base.",
+  },
+  {
+    id: "bawashaswar-manmade-caves",
+    name: "Bawashaswar Manmade Caves",
+    location: "Near Kifri, Garmyan",
+    image: shanidarImage,
+    description:
+      "Rectangular caves constructed in the first centuries AD, located north and northeast of the town of Kifri. Visitors can also explore Bawashaswar's stony hills, the site of many historical graves.",
+    role: "Historical",
+    distanceFromErbil: "~155 km southeast",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Exploring the rectangular manmade caves from the first centuries AD, viewing the ancient burial sites in the stony hills.",
+    travelGuidance: "North and northeast of Kifri. Via Erbil-Koya-Kifri road.",
+    accommodation: "Hotels in Kifri. Sulaymaniyah hotels as base.",
+  },
+  {
+    id: "bhairai-cave-zakho",
+    name: "Bhairai Cave, Zakho",
+    location: "Near Zakho, Duhok Province",
+    image: shanidarImage,
+    description:
+      "Located about 45 km east of Zakho and 5 km from the Sharanish resort. A large cave easily accessible for visitors who can also visit the nearby Qasrok and Dashta Tkhi parks.",
+    role: "Historical | Natural",
+    distanceFromErbil: "~315 km northwest",
+    bestTimeToVisit: "Spring and summer.",
+    visitorExperience:
+      "Cave exploration, visiting nearby Qasrok and Dashta Tkhi parks, combining with Sharanish resort visit.",
+    travelGuidance:
+      "45 km east of Zakho, 5 km from Sharanish resort. Via Erbil-Duhok-Zakho road.",
+    accommodation: "Hotels at Sharanish resort (5 km). Hotels in Zakho (~45 km).",
+  },
+  {
+    id: "kirkuk-citadel",
+    name: "Kirkuk Citadel",
+    location: "Kirkuk City",
+    image: cityImage,
+    description:
+      "Considered the oldest part of Kirkuk. The citadel stands on an artificial mound 130 feet high across the Khasa River, believed to have been built by King Ashurnasirpal II (884-858 BC). The palace houses a mosque with Prophet Daniel's tomb, two domes, three minarets, arches and a graveyard.",
+    role: "Historical",
+    distanceFromErbil: "~83 km south",
+    bestTimeToVisit: "Spring and autumn.",
+    visitorExperience:
+      "Visiting Prophet Daniel's tomb and the historic mosque, viewing the ancient mound and its 5,000-year-old settlement, exploring the domes, minarets and arches.",
+    travelGuidance:
+      "In Kirkuk city, across the Khasa River. Via Erbil-Kirkuk highway. Approx. 1.5 hours.",
+    accommodation: "Full range of hotels in Kirkuk city.",
+  },
 ];
