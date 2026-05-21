@@ -354,7 +354,7 @@ export default function HistoryPage({
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#fbf1df] px-6 pt-10 sm:px-12 lg:px-20"
+        className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#fbf1df] px-6 pt-10 sm:px-12 lg:px-20"
       >
         <img
           data-h-hero="true"

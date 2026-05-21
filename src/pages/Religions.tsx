@@ -626,7 +626,7 @@ export default function ReligiousDiversityPage({
     >
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#f4eadb]"
+        className="relative min-h-screen w-full overflow-x-hidden bg-[#f4eadb]"
       >
         <img
           data-rd-hero="true"
