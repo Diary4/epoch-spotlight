@@ -270,41 +270,32 @@ function RightsOverviewCardButton({
             alt=""
             className="h-full w-full object-cover object-center"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1f140c]/70 via-[#1f140c]/20 to-[#f8f0e4]/10" />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background: `linear-gradient(145deg, ${card.accent}88 0%, transparent 52%)`,
-            }}
-          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2d2114]/62 via-[#f8f0e4]/18 to-[#fff7e8]/22" />
           <div
             className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
             aria-hidden
           />
 
           <div className="absolute bottom-3 left-3">
-            <div
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/45 shadow-[0_4px_14px_rgba(0,0,0,0.25)] backdrop-blur-md"
-              style={{ backgroundColor: `${card.accent}dd` }}
-            >
-              <Icon className="h-5 w-5 text-white drop-shadow-sm" />
+            <div className="grid h-12 w-12 place-items-center rounded-full border border-[#ecd8ad]/80 bg-[#fff7e7]/90 text-[#7a4a12] shadow-[0_6px_16px_rgba(69,43,14,0.18)] backdrop-blur-md">
+              <Icon className="h-6 w-6" strokeWidth={1.7} />
             </div>
           </div>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-        <h3 className="font-serif text-[18px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[20px]">
+        <h3 className="font-serif text-[26px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[30px]">
           {card.title}
         </h3>
-        <div className="mb-2.5 mt-3 flex w-full max-w-[72px] items-center gap-2">
-          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
-          <span className="text-[10px]" style={{ color: card.accent }}>
+        <div className="mb-3 mt-3 flex w-full max-w-[84px] items-center gap-2 text-[#c3923a]">
+          <span className="h-[2px] flex-1 rounded-full bg-[#c3923a]" />
+          <span className="text-[10px]">
             ◆
           </span>
-          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
+          <span className="h-[2px] flex-1 rounded-full bg-[#c3923a]" />
         </div>
-        <p className="text-[14px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[14.5px]">
+        <p className="text-[15px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[16px]">
           {card.subtitle}
         </p>
       </div>
