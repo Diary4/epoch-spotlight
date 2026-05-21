@@ -69,7 +69,7 @@ function Divider({ className = "" }) {
 
 function NumberBadge({ number, lang = "en" }: { number: string; lang?: "ku" | "en" | "ar" }) {
   return (
-    <div className="absolute left-5 top-0 z-20 rounded-b-[18px] bg-[#102541] px-4 py-4 font-serif text-[26px] font-semibold text-[#f2cc79] shadow-md lg:px-5 lg:py-5 lg:text-[30px]">
+    <div className="absolute left-5 top-0 z-20 rounded-b-[18px] bg-[#102541] px-4 py-4 font-serif text-[26px] font-light text-[#f2cc79] shadow-md lg:px-5 lg:py-5 lg:text-[30px]">
       {localizeDigits(number, lang)}
     </div>
   );
@@ -97,13 +97,13 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
         </div>
       </div>
 
-      <h3 className="relative z-10 mt-4 font-serif text-[clamp(26px,6vw,34px)] font-semibold leading-tight text-[#17233b] sm:mt-6 lg:text-[42px]">
+      <h3 className="relative z-10 mt-4 font-serif text-[clamp(26px,6vw,34px)] font-light leading-tight text-[#17233b] sm:mt-6 lg:text-[42px]">
         {localizeDigits(card.title, lang)}
       </h3>
 
       <Divider className="relative z-10 mx-auto my-5 w-36" />
 
-      <p className="relative z-10 mx-auto mb-5 max-w-[255px] text-[clamp(15px,3.6vw,18px)] font-semibold leading-[1.45] text-[#35435b] sm:mb-6 lg:max-w-[320px] lg:text-[23px]">
+      <p className="relative z-10 mx-auto mb-5 max-w-[255px] text-[clamp(15px,3.6vw,18px)] font-light leading-[1.45] text-[#35435b] sm:mb-6 lg:max-w-[320px] lg:text-[23px]">
         {localizeDigits(card.text, lang)}
       </p>
 
@@ -143,8 +143,8 @@ function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[n
           <Icon className="h-10 w-10 sm:h-[52px] sm:w-[52px] lg:h-[60px] lg:w-[60px]" strokeWidth={1.5} />
         </div>
         <div className="min-w-0">
-          <h3 className="font-serif text-[clamp(26px,6vw,36px)] font-semibold text-[#17233b] lg:text-[44px]">{localizeDigits(card.title, lang)}</h3>
-          <p className="mt-3 max-w-[330px] text-[clamp(15px,3.8vw,20px)] font-semibold leading-[1.45] text-[#35435b] sm:mt-4 lg:max-w-[460px] lg:text-[26px]">
+          <h3 className="font-serif text-[clamp(26px,6vw,36px)] font-light text-[#17233b] lg:text-[44px]">{localizeDigits(card.title, lang)}</h3>
+          <p className="mt-3 max-w-[330px] text-[clamp(15px,3.8vw,20px)] font-light leading-[1.45] text-[#35435b] sm:mt-4 lg:max-w-[460px] lg:text-[26px]">
             {localizeDigits(card.text, lang)}
           </p>
         </div>
@@ -276,7 +276,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
 
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="max-w-[700px] pt-12 pl-0 sm:pt-16 sm:pl-2 lg:pt-20 lg:pl-4">
-            <h1 data-land-hero="true" className="font-serif text-[clamp(36px,9vw,70px)] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
+            <h1 data-land-hero="true" className="font-serif text-[clamp(36px,9vw,70px)] font-light leading-[1.03] tracking-tight text-[#17233b] sm:text-[78px] lg:text-[102px]">
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "and Future"}

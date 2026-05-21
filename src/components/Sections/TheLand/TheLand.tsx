@@ -46,7 +46,7 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
     <article className="land-detail-card grid min-h-0 flex-1 grid-cols-[205px_1fr] overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
       <div className="flex flex-col items-center justify-center border-r border-[#ead8b7] px-7 py-8 text-center">
         <div
-          className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[34px] font-bold text-white shadow-md"
+          className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[34px] font-light text-white shadow-md"
           style={{ backgroundColor: card.color }}
         >
           {localizeDigits(card.number, lang)}
@@ -54,11 +54,11 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
 
         <Divider color={card.color} />
 
-        <h3 className="whitespace-pre-line font-serif text-[24px] font-semibold leading-tight text-[#17233b]">
+        <h3 className="whitespace-pre-line font-serif text-[24px] font-light leading-tight text-[#17233b]">
           {localizeDigits(card.title, lang)}
         </h3>
 
-        <p className="mt-6 text-[17px] font-semibold leading-[1.45] text-[#35435b]">
+        <p className="mt-6 text-[17px] font-light leading-[1.45] text-[#35435b]">
           {localizeDigits(card.text, lang)}
         </p>
 
@@ -114,11 +114,11 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Left scenic placeholder */}
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70vh,980px)] w-[clamp(260px,28vw,470px)]">
+        <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70vh,980px)] w-[clamp(260px,28vw,470px)]">
           <img
             src={bg}
             alt="Kurdistan landscape placeholder"
-            className="land-detail-hero absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb]" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
@@ -126,7 +126,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
 
         {/* Left text */}
         <aside className="land-detail-intro relative z-10 flex w-[clamp(300px,30vw,470px)] shrink-0 flex-col pt-[clamp(64px,8vh,120px)] pl-[clamp(8px,1.1vw,20px)]">
-          <h1 className="font-serif text-[clamp(60px,7.2vw,108px)] font-semibold leading-[0.98] tracking-tight text-[#17233b]">
+          <h1 className="font-serif text-[clamp(60px,7.2vw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]">
             {isAr ? (
               "الأرض"
             ) : isKu ? (
@@ -154,7 +154,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
             )}
           </p>
 
-          <p className="mt-[clamp(18px,2.8vh,40px)] max-w-[clamp(250px,25vw,430px)] text-[clamp(16px,1.7vw,26px)] font-semibold leading-[1.55] text-[#35435b]">
+          <p className="mt-[clamp(18px,2.8vh,40px)] max-w-[clamp(250px,25vw,430px)] text-[clamp(16px,1.7vw,26px)] font-light leading-[1.55] text-[#35435b]">
             {isAr
               ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
               : isKu

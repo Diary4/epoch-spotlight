@@ -74,18 +74,18 @@ function DialectItem({ item }) {
   return (
     <article className="grid grid-cols-[86px_1fr] items-center gap-5 border-b border-[#ead8b7] py-5 last:border-b-0">
       <div
-        className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[38px] font-bold text-white shadow-md"
+        className="grid h-20 w-20 place-items-center rounded-full border-[5px] border-white text-[38px] font-light text-white shadow-md"
         style={{ backgroundColor: item.color }}
       >
         {item.letter}
       </div>
       <div className={`flex min-h-[80px] flex-col ${hasTitle ? "justify-start" : "justify-center"}`}>
         {hasTitle && (
-          <h3 className="font-serif text-[30px] font-semibold leading-tight" style={{ color: item.color }}>
+          <h3 className="font-serif text-[30px] font-light leading-tight" style={{ color: item.color }}>
             {item.name}
           </h3>
         )}
-        <p className={`${hasTitle ? "mt-2" : "mt-0"} text-[15px] font-semibold leading-[1.45] text-[#35435b]`}>
+        <p className={`${hasTitle ? "mt-2" : "mt-0"} text-[15px] font-light leading-[1.45] text-[#35435b]`}>
           {item.text}
         </p>
       </div>
@@ -146,7 +146,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)]">
           {/* Hero */}
           <section className="land-detail-intro max-w-[720px] pt-2 pl-1 sm:pl-5">
-            <h1 className="font-serif text-[68px] font-semibold leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
+            <h1 className="font-serif text-[68px] font-light leading-[0.98] tracking-tight text-[#17233b] sm:text-[76px] lg:text-[102px]">
               {isAr ? "اللغة الكوردية واللهجات" : isKu ? "زمان و زاراوە کوردییەکان" : "Kurdish"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "Language &"}
@@ -162,7 +162,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               <Divider />
             </div>
 
-            <p className="mt-8 max-w-[500px] text-[20px] font-semibold leading-[1.55] text-[#35435b] lg:max-w-[620px] lg:text-[28px]">
+            <p className="mt-8 max-w-[500px] text-[20px] font-light leading-[1.55] text-[#35435b] lg:max-w-[620px] lg:text-[28px]">
               {isAr
                 ? "اللغة الكوردية لغة الشعب الكوردي، تجمع الملايين في كوردستان والمهجر، وتحمل تراثًا أدبيًا ثريًا وموروثًا شفهيًا حيًا تناقلته الأجيال."
                 : isKu
@@ -174,7 +174,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
           {/* Main content */}
           <section className="mt-6 grid grid-cols-1 gap-5 pb-6 lg:mt-10 lg:grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] lg:gap-7">
             <aside className="land-detail-panel flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-7 lg:py-7">
-              <h2 className="text-center font-serif text-[30px] font-semibold text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}</h2>
+              <h2 className="text-center font-serif text-[30px] font-light text-[#17233b] lg:text-[38px]">{isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}</h2>
               <Divider className="mx-auto mt-4 w-36" />
               <div className="mt-6 grid flex-1 content-between">
                 {localDialects.map((item) => (
@@ -184,7 +184,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             </aside>
 
             <section className="land-detail-panel flex h-full min-h-[1000px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-4 py-5 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md lg:min-h-[1150px] lg:px-6 lg:py-6">
-              <h2 className="text-center font-serif text-[28px] font-semibold text-[#17233b] lg:text-[36px]">
+              <h2 className="text-center font-serif text-[28px] font-light text-[#17233b] lg:text-[36px]">
                 Alphabet & Writing
               </h2>
 
@@ -245,10 +245,10 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
                 <Feather className="h-[54px] w-[54px] lg:h-[60px] lg:w-[60px]" strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold text-[#17233b] lg:text-[34px]">
+                <h3 className="font-serif text-[28px] font-light text-[#17233b] lg:text-[34px]">
                   {isAr ? "الأدب والتراث الشفهي" : isKu ? "ئەدەب و کەلەپووری زارەکی" : "Literature & Oral Heritage"}
                 </h3>
-                <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b] lg:text-[20px]">
+                <p className="mt-2 text-[17px] font-light leading-snug text-[#35435b] lg:text-[20px]">
                   {isAr
                     ? "من الشعر الكلاسيكي والحكايات إلى الروايات والأغاني الحديثة، تُعبّر اللغة الكوردية عن عمق التجربة الإنسانية وروح الصمود والأمل."
                     : isKu
@@ -265,10 +265,10 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
                 <UsersRound className="h-[54px] w-[54px] lg:h-[60px] lg:w-[60px]" strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="font-serif text-[28px] font-semibold text-[#17233b] lg:text-[34px]">
+                <h3 className="font-serif text-[28px] font-light text-[#17233b] lg:text-[34px]">
                   {isAr ? "اللغة في الحياة اليومية" : isKu ? "زمان لە ژیانی ڕۆژانەدا" : "Language in Daily Life"}
                 </h3>
-                <p className="mt-2 text-[17px] font-semibold leading-snug text-[#35435b] lg:text-[20px]">
+                <p className="mt-2 text-[17px] font-light leading-snug text-[#35435b] lg:text-[20px]">
                   {isAr
                     ? "الكوردية هي لغة البيت والتعليم والإعلام والثقافة. تربط المجتمعات وتعزز الهوية عبر الحدود والأجيال."
                     : isKu

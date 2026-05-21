@@ -65,7 +65,7 @@ function ProgressCard({ card, large = false }) {
         <Icon size={56} strokeWidth={1.45} />
       </div>
 
-      <h3 className="mt-[clamp(16px,2vh,32px)] font-serif text-[clamp(24px,2.4vw,38px)] font-semibold leading-tight text-[#17233b]">
+      <h3 className="mt-[clamp(16px,2vh,32px)] font-serif text-[clamp(24px,2.4vw,38px)] font-light leading-tight text-[#17233b]">
         {card.title}
       </h3>
 
@@ -73,7 +73,7 @@ function ProgressCard({ card, large = false }) {
         <Divider />
       </div>
 
-      <p className="max-w-[clamp(200px,20vw,320px)] text-[clamp(17px,1.65vw,27px)] font-medium leading-[1.45] text-[#35435b]">
+      <p className="max-w-[clamp(200px,20vw,320px)] text-[clamp(17px,1.65vw,27px)] font-light leading-[1.45] text-[#35435b]">
         {card.text}
       </p>
 
@@ -149,11 +149,11 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
         <div className="relative z-10 flex flex-1 flex-col">
           {/* Hero */}
           <section className="land-detail-intro max-w-[min(58vw,760px)] pt-[clamp(64px,8.5vh,130px)]">
-            <h1 className="font-serif text-[clamp(72px,9vw,130px)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(72px,9vw,130px)] font-light leading-none tracking-tight text-[#17233b]">
               {isAr ? "التقدم" : isKu ? "پێشکەوتن" : "Progress"}
             </h1>
 
-            <p className="mt-[clamp(18px,2.8vh,36px)] text-[clamp(28px,3.3vw,48px)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(18px,2.8vh,36px)] text-[clamp(28px,3.3vw,48px)] font-light leading-tight text-[#9b6d35]">
               {isAr ? "التنمية عبر القطاعات الرئيسية." : isKu ? "گەشەپێدان لە کەرتە سەرەکییەکاندا." : "Development across key sectors."}
             </p>
 

@@ -83,11 +83,11 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex flex-1 flex-col">
           {/* Hero */}
           <section className="land-detail-intro max-w-[min(58vw,760px)] pt-[clamp(72px,9.5vh,136px)]">
-            <h1 className="font-serif text-[clamp(66px,8.2vw,120px)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(66px,8.2vw,120px)] font-light leading-none tracking-tight text-[#17233b]">
               {isAr ? "البيشمركة" : isKu ? "پێشمەرگە" : "Peshmerga"}
             </h1>
 
-            <p className="mt-[clamp(20px,2.9vh,38px)] text-[clamp(28px,3.25vw,48px)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(20px,2.9vh,38px)] text-[clamp(28px,3.25vw,48px)] font-light leading-tight text-[#9b6d35]">
               {isAr ? "رمز الشجاعة والحماية والخدمة." : isKu ? "هێمای ئازایەتی، پاراستن، و خزمەت." : "A symbol of courage, protection, and service."}
             </p>
 
@@ -95,7 +95,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
               <Divider />
             </div>
 
-            <p className="mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.3vw,34px)] font-medium leading-[1.58] text-[#2d3549]">
+            <p className="mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.3vw,34px)] font-light leading-[1.58] text-[#2d3549]">
               {isAr
                 ? "أدّى البيشمركة دورًا بالغ الأهمية في الدفاع عن إقليم كوردستان وحماية المدنيين."
                 : isKu
@@ -120,7 +120,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
                     <Icon size={58} strokeWidth={1.45} />
                   </div>
 
-                  <h3 className="mt-[clamp(16px,2vh,32px)] whitespace-pre-line font-serif text-[clamp(25px,2.45vw,38px)] font-semibold leading-[1.02]" style={{ color: card.color }}>
+                  <h3 className="mt-[clamp(16px,2vh,32px)] whitespace-pre-line font-serif text-[clamp(25px,2.45vw,38px)] font-light leading-[1.02]" style={{ color: card.color }}>
                     {card.title}
                   </h3>
 
@@ -128,7 +128,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
                     <Divider />
                   </div>
 
-                  <p className="text-[clamp(18px,1.8vw,28px)] font-medium leading-[1.45] text-[#35435b]">
+                  <p className="text-[clamp(18px,1.8vw,28px)] font-light leading-[1.45] text-[#35435b]">
                     {card.text}
                   </p>
 
