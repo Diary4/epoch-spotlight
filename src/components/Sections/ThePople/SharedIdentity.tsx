@@ -77,7 +77,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
 
 
         {/* --- FIXED HERO IMAGE SECTION --- */}
-        <div className="hero-image pointer-events-none absolute right-0 top-0 h-full w-[70%] z-0">
+        <div className="hero-image pointer-events-none absolute right-0 top-0 h-[90vh] w-[70%] z-0">
           <img
             src={bg}
             alt="Shared identity visual"
@@ -95,7 +95,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
 
         {/* Main text content */}
         <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] px-[clamp(20px,5vw,80px)] max-w-[min(65vw,900px)]">
-          <h1 className="main-title font-serif text-[clamp(66px,8.3vw,120px)] font-bold leading-[0.95] tracking-tight text-[#214439]">
+          <h1 className="main-title font-serif text-[clamp(66px,8.3vw,120px)] font-light leading-[0.95] tracking-tight text-[#214439]">
             {(detail?.title ?? "A Shared\nIdentity").split('\n').map((line, i) => (
               <React.Fragment key={i}>
                 {line} {i === 0 && <br />}
@@ -113,7 +113,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
             {(detail?.subtitle ?? "United by language, heritage, and memory.").replace(", ", ",\n")}
           </p>
 
-          <p className="description-text mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[clamp(20px,2.3vw,32px)] font-semibold leading-[1.62] text-[#35435b]">
+          <p className="description-text mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[clamp(20px,2.3vw,32px)] font-light leading-[1.62] text-[#35435b]">
             {detail?.description ?? "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
           </p>
         </section>
@@ -138,7 +138,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
                   )}
                 </div>
 
-                <h3 className="mt-[clamp(14px,1.9vh,30px)] whitespace-pre-line font-serif text-[clamp(24px,2.4vw,38px)] font-semibold leading-[0.95] text-[#214439]">
+                <h3 className="mt-[clamp(14px,1.9vh,30px)] whitespace-pre-line font-serif text-[clamp(24px,2.4vw,38px)] font-light leading-[0.95] text-[#214439]">
                   {card.title}
                 </h3>
 
@@ -148,7 +148,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
                   <span className="h-0.5 flex-1 bg-[#d7b56c]" />
                 </div>
 
-                <p className="flex-1 text-[clamp(17px,1.65vw,27px)] font-semibold leading-[1.55] text-[#35435b]">
+                <p className="flex-1 text-[clamp(17px,1.65vw,27px)] font-light leading-[1.55] text-[#35435b]">
                   {card.text}
                 </p>
               </article>

@@ -86,7 +86,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
 
         {/* Text */}
         <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] max-w-[min(58vw,760px)] px-[clamp(20px,5vw,80px)] py-[clamp(20px,5vh,80px)]">
-          <h1 className="main-title font-serif text-[clamp(64px,8vw,116px)] font-semibold leading-[1.03] tracking-tight text-[#214439]">
+          <h1 className="main-title font-serif text-[clamp(64px,8vw,116px)] font-light leading-[1.03] tracking-tight text-[#214439]">
             {(detail?.title ?? "A Story of Resilience").replace(" of ", " of\n")}
           </h1>
 
@@ -100,7 +100,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
             {(detail?.subtitle ?? "A history shaped by endurance, dignity, and hope.").replace(", ", ",\n")}
           </p>
 
-          <p className="description-text mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,650px)] text-[clamp(18px,2vw,30px)] font-semibold leading-[1.75] text-[#35435b]">
+          <p className="description-text mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,650px)] text-[clamp(18px,2vw,30px)] font-light leading-[1.75] text-[#35435b]">
             {detail?.description ?? "Across centuries, the Kurdish people have faced hardship and change, yet they have held on to their identity, culture, and values. Through every challenge, they have stood together, preserved their heritage, and moved forward with courage and hope for a better tomorrow."}
           </p>
         </section>
@@ -120,7 +120,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
                   <Icon size={58} strokeWidth={1.45} />
                 </div>
 
-                <h3 className="mt-[clamp(14px,1.9vh,30px)] font-serif text-[clamp(26px,2.7vw,42px)] font-semibold leading-tight text-[#214439]">
+                <h3 className="mt-[clamp(14px,1.9vh,30px)] font-serif text-[clamp(26px,2.7vw,42px)] font-light leading-tight text-[#214439]">
                   {card.title}
                 </h3>
 
@@ -130,7 +130,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
                   <span className="h-0.5 flex-1 bg-[#d7b56c]" />
                 </div>
 
-                <p className="text-[clamp(17px,1.65vw,27px)] font-semibold leading-[1.55] text-[#40515f]">
+                <p className="text-[clamp(17px,1.65vw,27px)] font-light leading-[1.55] text-[#40515f]">
                   {card.text}
                 </p>
 

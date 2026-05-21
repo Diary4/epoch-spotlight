@@ -120,13 +120,13 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
               <span className="w-12 h-[2px] bg-[#c9903f]" />
               <div className="w-4 h-4 border-2 border-[#c9903f] rotate-45 ml-[-2px]" />
             </div>
-            <h2 className="font-serif text-2xl font-bold uppercase tracking-[0.2em] text-[#c9903f]">
+            <h2 className="font-serif text-2xl font-light uppercase tracking-[0.2em] text-[#c9903f]">
               {detail?.sectionLabel ?? "The People"}
             </h2>
           </div>
 
           {/* Massive Title: Structured as requested */}
-          <h1 className="stagger-text font-serif text-[clamp(80px,9vw,160px)] font-bold leading-[0.85] text-[#00604f] tracking-tighter">
+          <h1 className="stagger-text font-serif text-[clamp(80px,9vw,160px)] font-light leading-[0.85] text-[#00604f] tracking-tighter">
             Who Are <br /> 
             the Kurds?
           </h1>
@@ -147,7 +147,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
           </h2>
 
           {/* Body Text */}
-          <p className="stagger-text max-w-[550px] text-[clamp(20px,1.6vw,30px)] leading-relaxed text-[#31445d] font-medium italic opacity-80">
+          <p className="stagger-text max-w-[550px] text-[clamp(20px,1.6vw,30px)] leading-relaxed text-[#31445d] font-light opacity-80">
             {detail?.description ?? "The Kurds have lived in these mountains and plains for thousands of years, shaping the region with their strength, spirit, and culture."}
           </p>
         </div>
@@ -168,10 +168,10 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
                 <span className="h-3 w-3 rotate-45 border border-[#c9903f]" />
                 <span className="h-0.5 flex-1 bg-[#d7b56c]" />
               </div>
-              <h3 className="font-serif text-[clamp(24px,2.35vw,36px)] font-semibold leading-tight text-[#00604f]">
+              <h3 className="font-serif text-[clamp(24px,2.35vw,36px)] font-light leading-tight text-[#00604f]">
                 {card.title}
               </h3>
-              <p className="mt-[clamp(14px,1.8vh,26px)] flex-1 text-[clamp(18px,1.8vw,28px)] font-semibold leading-[1.55] text-[#31445d]">
+              <p className="mt-[clamp(14px,1.8vh,26px)] flex-1 text-[clamp(18px,1.8vw,28px)] font-light leading-[1.55] text-[#31445d]">
                 {card.text}
               </p>
             </article>

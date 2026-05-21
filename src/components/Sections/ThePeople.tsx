@@ -248,7 +248,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-[72px] h-[min(62vh,920px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)] sm:top-[calc(18vh-160px)] sm:h-[calc(70vh-160px)]"
+          className="pointer-events-none absolute inset-x-0 top-[72px] h-[min(62vh,920px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] sm:top-[calc(18vh-160px)] sm:h-[calc(70vh-160px)]"
         />
        
         {/* Hero */}
