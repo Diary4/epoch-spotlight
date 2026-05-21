@@ -46,7 +46,7 @@ function InstitutionNode({
       <div className={`grid h-40 w-40 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55] md:h-44 md:w-44 lg:h-48 lg:w-48`}>
         <Icon className="h-[76px] w-[76px] md:h-[84px] md:w-[84px] lg:h-[92px] lg:w-[92px]" strokeWidth={1.35} />
       </div>
-      <p className="mt-6 font-serif text-[28px] font-bold uppercase tracking-[0.06em] text-[#17233b] md:text-[31px] lg:text-[36px]">
+      <p className="mt-6 rounded-full px-5 py-1.5 font-serif text-[28px] font-light uppercase tracking-[0.06em] text-[#17233b] md:text-[31px] lg:text-[36px]">
         {label}
       </p>
     </>
@@ -181,11 +181,11 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
         <div className="relative z-10 flex flex-1 flex-col px-4 pb-8 pt-14 sm:px-12 sm:pb-10 sm:pt-16 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
           <section className="max-w-[760px]">
-            <h1 data-system-hero="true" className="font-serif text-[clamp(40px,11vw,72px)] font-semibold leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
+            <h1 data-system-hero="true" className="font-serif text-[clamp(40px,11vw,72px)] font-light leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
               {title}
             </h1>
 
-            <p data-system-hero="true" className="mt-4 text-[clamp(18px,5vw,28px)] font-bold leading-tight text-[#9b6d35] sm:mt-6 sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
+            <p data-system-hero="true" className="mt-4 text-[clamp(18px,5vw,28px)] font-light leading-tight text-[#9b6d35] sm:mt-6 sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
               {heading}
             </p>
 
@@ -194,7 +194,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p data-system-hero="true" className="mt-6 max-w-[700px] text-[clamp(17px,4.2vw,24px)] font-medium leading-[1.5] text-[#2d3549] sm:mt-8 md:mt-10 md:text-[30px] lg:mt-8 lg:text-[36px]">
+            <p data-system-hero="true" className="mt-6 max-w-[700px] text-[clamp(17px,4.2vw,24px)] font-light leading-[1.5] text-[#2d3549] sm:mt-8 md:mt-10 md:text-[30px] lg:mt-8 lg:text-[36px]">
               {description}
             </p>
           </section>
@@ -208,7 +208,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <path d="M450 116 C330 180 234 288 210 458" stroke="#b99152" strokeWidth="4" fill="none" />
               <path d="M450 116 C575 180 670 288 700 458" stroke="#b99152" strokeWidth="4" fill="none" />
               <path d="M210 458 C330 528 570 528 700 458" stroke="#b99152" strokeWidth="4" fill="none" />
-              <path d="M450 242 L450 370 M315 458 L450 370 M585 458 L450 370" stroke="#b99152" strokeWidth="4" />
+              <path d="M450 302 L450 370 M315 458 L450 370 M585 458 L450 370" stroke="#b99152" strokeWidth="4" />
               {[450, 210, 700, 315, 585, 450].map((x, i) => (
                 <circle key={i} cx={x} cy={i === 0 ? 116 : i === 1 || i === 2 ? 458 : i === 5 ? 370 : 458} r="12" fill="#c59a4b" />
               ))}
@@ -253,7 +253,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             <button
               type="button"
               onClick={onPrimeMinisterClick}
-              className="flex min-h-[100px] w-full items-center justify-between gap-2 rounded-[20px] px-4 font-serif text-[clamp(20px,5vw,42px)] font-semibold text-[#17233b] sm:h-[150px] sm:rounded-[27px] sm:px-12 sm:text-[42px] md:px-16 md:text-[55px]"
+              className="flex min-h-[100px] w-full items-center justify-between gap-2 rounded-[20px] px-4 font-serif text-[clamp(20px,5vw,42px)] font-light text-[#17233b] sm:h-[150px] sm:rounded-[27px] sm:px-12 sm:text-[42px] md:px-16 md:text-[55px]"
             >
               <span data-system-prime-text="true" className="shrink-0 text-[#b99152] text-3xl sm:text-6xl">✥</span>
               <span data-system-prime-text="true" className="text-center">{primeMinisterLabel}</span>
@@ -265,7 +265,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             <div className="mx-auto mt-4 grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white sm:ml-8 sm:mr-8 sm:mt-0 sm:h-24 sm:w-24 md:ml-12 md:mr-14 md:h-28 md:w-28">
               <span className="text-4xl sm:text-5xl">✥</span>
             </div>
-            <p className="p-4 pb-5 text-center font-serif text-[clamp(17px,4vw,25px)] leading-tight text-[#17233b] sm:pb-4 sm:text-left sm:text-[34px]">
+            <p className="p-4 pb-5 text-center font-serif font-light text-[clamp(17px,4vw,25px)] leading-tight text-[#17233b] sm:pb-4 sm:text-left sm:text-[34px]">
               {footerText}
             </p>
           </div>

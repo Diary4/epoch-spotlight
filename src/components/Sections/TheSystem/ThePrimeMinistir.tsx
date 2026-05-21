@@ -94,7 +94,7 @@ function InfoPanel({ title, items, tone = "gold" }) {
         {isGold ? <Trophy className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} /> : <Compass className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} />}
       </div>
 
-      <h2 className="text-center font-serif text-[clamp(1.6rem,4.2vw,2.75rem)] font-semibold text-[#17233b]">
+      <h2 className="text-center font-serif text-[clamp(1.6rem,4.2vw,2.75rem)] font-light text-[#17233b]">
         {title}
       </h2>
 
@@ -111,10 +111,10 @@ function InfoPanel({ title, items, tone = "gold" }) {
                 <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-[42px] lg:w-[42px]" strokeWidth={1.7} />
               </div>
               <div>
-                <h3 className="font-serif text-[clamp(1.05rem,2.4vw,2.05rem)] font-semibold leading-tight text-[#17233b]">
+                <h3 className="font-serif text-[clamp(1.05rem,2.4vw,2.05rem)] font-light leading-tight text-[#17233b]">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-[clamp(0.9rem,1.8vw,1.45rem)] font-semibold leading-snug text-[#344052]">
+                <p className="mt-1 text-[clamp(0.9rem,1.8vw,1.45rem)] font-light leading-snug text-[#344052]">
                   {item.text}
                 </p>
               </div>
@@ -208,7 +208,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
 
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="system-detail-intro max-w-[710px] pt-16 sm:pt-20 lg:pt-28">
-            <h1 className="font-serif text-[clamp(2.2rem,9vw,6.4rem)] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(2.2rem,9vw,6.4rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
               {title}
             </h1>
 
@@ -220,7 +220,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
               <DecorativeLine color="#b99152" />
             </div>
 
-            <p className="mt-5 max-w-[660px] text-[clamp(1rem,2.5vw,2.05rem)] font-semibold leading-[1.45] text-[#2d3549] sm:mt-6">
+            <p className="mt-5 max-w-[660px] text-[clamp(1rem,2.5vw,2.05rem)] font-light leading-[1.45] text-[#2d3549] sm:mt-6">
               {subtitle}
             </p>
           </section>

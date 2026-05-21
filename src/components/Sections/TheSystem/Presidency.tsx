@@ -88,7 +88,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
           <section className="system-detail-intro max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
-            <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#943134]">
+            <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-light leading-none tracking-tight text-[#943134]">
               {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
             </h1>
 
@@ -96,7 +96,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
               <Divider wide />
             </div>
 
-            <p className="mt-[clamp(24px,3vh,40px)] text-[clamp(1.25rem,2.8vw,2.1875rem)] font-bold leading-[1.35] text-[#9b6d35]">
+            <p className="mt-[clamp(24px,3vh,40px)] text-[clamp(1.25rem,2.8vw,2.1875rem)] font-light leading-[1.35] text-[#9b6d35]">
               {isAr ? "مؤسسة دستورية وطنية في المنظومة الإقليمية." : isKu ? "دامەزراوەیەکی دەستووری و نیشتمانی لەناو سیستەمی هەرێمیدا." : "A constitutional and national institution within the regional system."}
             </p>
 
@@ -104,7 +104,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
               <Divider wide />
             </div>
 
-            <p className="mt-[clamp(20px,2.6vh,36px)] max-w-[min(92vw,520px)] text-[clamp(1.125rem,2.1vw,1.8125rem)] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-[clamp(20px,2.6vh,36px)] max-w-[min(92vw,520px)] text-[clamp(1.125rem,2.1vw,1.8125rem)] font-light leading-[1.55] text-[#2d3549]">
               {isAr
                 ? "تُسهم الرئاسة في الإطار الدستوري والحياة العامة والتوازن المؤسسي الأشمل لإقليم كوردستان."
                 : isKu
@@ -125,7 +125,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
                     <Icon className="h-[clamp(44px,5.5vw,62px)] w-[clamp(44px,5.5vw,62px)]" strokeWidth={1.45} />
                   </div>
 
-                  <h3 className="mt-[clamp(20px,2.5vh,40px)] font-serif text-[clamp(1.25rem,2.2vw,2rem)] font-semibold leading-tight text-[#17233b]">
+                  <h3 className="mt-[clamp(20px,2.5vh,40px)] font-serif text-[clamp(1.25rem,2.2vw,2rem)] font-light leading-tight text-[#17233b]">
                     {card.title}
                   </h3>
 

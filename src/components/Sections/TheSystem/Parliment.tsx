@@ -114,11 +114,11 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
         </div>
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
           <section className="system-detail-intro max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
-            <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-light leading-none tracking-tight text-[#17233b]">
               {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
             </h1>
 
-            <p className="mt-[clamp(24px,3vh,40px)] text-[clamp(1.25rem,2.8vw,2.125rem)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(24px,3vh,40px)] text-[clamp(1.25rem,2.8vw,2.125rem)] font-light leading-tight text-[#9b6d35]">
               {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : isKu ? "دامەزراوەی یاسادانانی هەرێمی کوردستان." : "The legislative institution of the Kurdistan Region."}
             </p>
 
@@ -151,7 +151,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
                     <Icon className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-[clamp(20px,2.5vh,40px)] font-serif text-[clamp(1.375rem,2.4vw,2.375rem)] font-semibold leading-tight" style={{ color: card.color }}>
+                  <h3 className="mt-[clamp(20px,2.5vh,40px)] font-serif text-[clamp(1.375rem,2.4vw,2.375rem)] font-light leading-tight" style={{ color: card.color }}>
                     {card.title}
                   </h3>
 
@@ -182,7 +182,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
                 <article key={item.title} className="relative flex flex-col items-center justify-center px-[clamp(12px,2vw,32px)] py-2 sm:py-0">
                   {index !== 0 && <span className="absolute left-0 top-8 hidden h-[min(210px,22vh)] w-px bg-[#d8b875] sm:block" />}
                   <Icon className="h-[clamp(44px,5.5vw,60px)] w-[clamp(44px,5.5vw,60px)] text-[#bd8431]" strokeWidth={1.5} />
-                  <h4 className="mt-[clamp(16px,2vh,28px)] font-serif text-[clamp(1.25rem,2.4vw,2.125rem)] font-semibold text-[#17233b]">
+                  <h4 className="mt-[clamp(16px,2vh,28px)] font-serif text-[clamp(1.25rem,2.4vw,2.125rem)] font-light text-[#17233b]">
                     {item.title}
                   </h4>
                   <p className="mt-3 text-[clamp(0.95rem,1.5vw,1.25rem)] font-medium leading-snug text-[#35435b]">

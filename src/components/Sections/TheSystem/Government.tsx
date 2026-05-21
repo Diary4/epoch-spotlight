@@ -162,11 +162,11 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
               <Building2 className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.45} />
             </div>
 
-            <h1 className="mt-[clamp(28px,4vh,48px)] font-serif text-[clamp(3rem,9vw,5.5rem)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="mt-[clamp(28px,4vh,48px)] font-serif text-[clamp(3rem,9vw,5.5rem)] font-light leading-none tracking-tight text-[#17233b]">
               {isAr ? "الحكومة" : isKu ? "حکومەت" : "Government"}
             </h1>
 
-            <p className="mt-[clamp(20px,3vh,36px)] text-[clamp(1.25rem,2.6vw,2rem)] font-bold leading-tight text-[#9b6d35]">
+              <p className="mt-[clamp(20px,3vh,36px)] text-[clamp(1.25rem,2.6vw,2rem)] font-light leading-tight text-[#9b6d35]">
               {isAr ? "الجهاز التنفيذي المسؤول عن الإدارة والخدمات العامة." : isKu ? "دەستەی جێبەجێکار کە بەرپرسە لە کارگێڕی و خزمەتگوزارییە گشتییەکان." : "The executive body responsible for administration and public services."}
             </p>
 
@@ -199,9 +199,9 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                     <Icon className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-[clamp(20px,2.5vh,32px)] flex flex-wrap items-center justify-center gap-3 font-serif text-[clamp(1.125rem,2vw,1.6875rem)] font-semibold leading-tight" style={{ color: card.color }}>
+                  <h3 className="mt-[clamp(20px,2.5vh,32px)] flex flex-wrap items-center justify-center gap-3 font-serif text-[clamp(1.125rem,2vw,1.6875rem)] font-light leading-tight" style={{ color: card.color }}>
                     <span
-                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[clamp(1rem,1.6vw,1.375rem)] font-bold text-white"
+                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[clamp(1rem,1.6vw,1.375rem)] font-light text-white"
                       style={{ backgroundColor: card.color }}
                     >
                       {localizeDigits(card.number, lang)}
@@ -231,7 +231,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
 
           {/* Key areas section */}
           <section className="system-detail-panel rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-5 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
-            <div className="mb-5 flex items-center gap-5 px-3 pt-0 font-serif text-[28px] font-semibold text-[#9b6d35]">
+            <div className="mb-5 flex items-center gap-5 px-3 pt-0 font-serif text-[28px] font-light text-[#9b6d35]">
               {isAr ? <span>المجالات الرئيسية لعمل الحكومة</span> : isKu ? <span>بوارە سەرەکییەکانی کاری حکومەت</span> : <span>Key Areas of Government Work</span>}
               <span className="h-0.5 flex-1 bg-[#c7a05d]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#c7a05d]" />
@@ -246,10 +246,10 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                     className="flex min-h-[205px] flex-col items-center justify-start rounded-[14px] border border-[#ead8b7] bg-[#fffaf0]/80 px-3 py-5 text-center"
                   >
                     <Icon size={52} strokeWidth={1.5} style={{ color: item.color }} />
-                    <h4 className="mt-4 font-serif text-[20px] font-semibold leading-tight text-[#17233b]">
+                    <h4 className="mt-4 font-serif text-[20px] font-light leading-tight text-[#17233b]">
                       {item.title}
                     </h4>
-                    <p className="mt-2 text-[15px] font-semibold leading-snug text-[#35435b]">
+                    <p className="mt-2 text-[15px] font-light leading-snug text-[#35435b]">
                       {item.text}
                     </p>
                   </article>
@@ -263,7 +263,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             <div className="ml-10 mr-8 grid h-24 w-24 place-items-center rounded-full border-[6px] border-white bg-[#c59a4b] text-[#f8e5b8] shadow-md">
               <FileText size={54} strokeWidth={1.45} />
             </div>
-            <p className="max-w-[700px] text-[25px] font-semibold leading-tight text-[#2d3549]">
+              <p className="max-w-[700px] text-[25px] font-light leading-tight text-[#2d3549]">
               {isAr
                 ? "تعمل الحكومة على تحسين جودة الحياة وحماية الحقوق وبناء كوردستان أقوى."
                 : isKu
