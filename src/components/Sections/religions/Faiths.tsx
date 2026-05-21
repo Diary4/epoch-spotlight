@@ -2,7 +2,7 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.webp";
+import faithsVideo from "@/assets/videos/faiths.mp4?url";
 import imgIslam from "@/assets/images/religions/r-1.webp";
 import imgChristianity from "@/assets/images/religions/r-2.webp";
 import imgYarsanism from "@/assets/images/religions/r-3.webp";
@@ -387,12 +387,16 @@ export default function FaithsPage({
         ref={sectionRef}
         className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
       >
-        {/* Background image (fades into cream like Nations / Kurds) */}
-        <img
+        {/* Background video (fades into cream like Nations / Kurds) */}
+        <video
           data-f-hero="true"
-          src={bg}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-[55vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+          src={faithsVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="pointer-events-none absolute inset-0 h-[65vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[55vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
         <div className="pointer-events-none absolute inset-5 rounded-[30px] border-2 border-[#d2a35a]/45" />
@@ -436,7 +440,7 @@ export default function FaithsPage({
 
           <div
             data-f-animate="true"
-            className="mx-auto mt-[clamp(80px,30vh,360px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="mx-auto mt-[clamp(80px,40vh,860px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
             {c.faiths.map((faith) => (
             <article
