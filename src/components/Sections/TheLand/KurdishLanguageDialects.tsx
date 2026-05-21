@@ -132,11 +132,11 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
         <div className="absolute right-0 top-0 h-full w-28 opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Replace this with your generated language/books background */}
-        <div className="pointer-events-none absolute right-0 top-[60px] h-[700px] w-[58vw] min-w-[740px]">
+        <div className="land-detail-hero pointer-events-none absolute right-0 top-[60px] h-[700px] w-[58vw] min-w-[740px]">
           <img
             src={bg}
             alt="Kurdish language books placeholder"
-            className="land-detail-hero absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/68 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/24 to-transparent" />
