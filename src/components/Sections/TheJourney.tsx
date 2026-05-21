@@ -337,10 +337,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-8 pt-14 sm:px-12 md:px-16 md:pb-10 md:pt-20 lg:px-20 lg:pb-14">
           {/* Title */}
           <section className="journey-intro max-w-[760px]">
-            <h1 className="font-serif text-[clamp(40px,10vw,76px)] font-semibold leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
+            <h1 className="font-serif text-[clamp(40px,10vw,76px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
               {journey.title ?? "The Journey"}
             </h1>
-            <h2 className="mt-4 text-[clamp(18px,4.5vw,30px)] font-semibold text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
+            <h2 className="mt-4 text-[clamp(18px,4.5vw,30px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
               {localizeDigits(
                 lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
                 lang,
@@ -421,7 +421,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                     <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
                     <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-3 py-4 sm:px-5 sm:py-5 md:px-7 md:py-6">
-                      <h3 className="font-serif text-[clamp(28px,4vw,38px)] font-semibold leading-tight text-[#17233b]">
+                      <h3 className="font-serif text-[clamp(28px,4vw,38px)] font-light leading-tight text-[#17233b]">
                         {item.title}
                       </h3>
                       <p className="mt-2 max-w-[380px] text-[clamp(17px,2.2vw,23px)] leading-snug text-[#303a50]">

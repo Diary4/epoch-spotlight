@@ -78,11 +78,11 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
         <div className="relative z-10 flex flex-1 flex-col">
           {/* Hero text */}
           <section className="journey-detail-intro max-w-[min(46vw,740px)] pt-[clamp(2.5rem,7vh,6rem)]">
-            <h1 className="font-serif text-[clamp(3.9rem,7.2vw,6.8rem)] font-semibold leading-[1.02] tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(3.9rem,7.2vw,6.8rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
               {(section.title ?? "Building Institutions").split(" ").slice(0, -1).join(" ")}<br />{(section.title ?? "Building Institutions").split(" ").slice(-1)}
             </h1>
 
-            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.55rem,2.5vw,2.45rem)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.55rem,2.5vw,2.45rem)] font-light leading-tight text-[#9b6d35]">
               {section.headline ?? "From transition to governance."}
             </p>
 
@@ -91,7 +91,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(37vw,560px)] text-[clamp(1.12rem,1.85vw,1.85rem)] font-medium leading-[1.48] text-[#2d3549]">
+            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(37vw,560px)] text-[clamp(1.12rem,1.85vw,1.85rem)] font-light leading-[1.48] text-[#2d3549]">
               {section.description ?? "Discover how institutions were established and strengthened to serve the people of Kurdistan."}
             </p>
           </section>
@@ -135,7 +135,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
                   <div className="h-[clamp(4.5rem,8.8vh,6.8rem)] w-px bg-[#e2c99b]" />
 
                   <div className="px-[clamp(0.9rem,1.9vw,2.4rem)]">
-                    <h3 className="font-serif text-[clamp(1.35rem,2.45vw,2.4rem)] font-semibold leading-tight text-[#17233b]">
+                    <h3 className="font-serif text-[clamp(1.35rem,2.45vw,2.4rem)] font-light leading-tight text-[#17233b]">
                       {row.title}
                     </h3>
                     <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.56vw,1.48rem)] font-medium leading-[1.42] text-[#303a50]">

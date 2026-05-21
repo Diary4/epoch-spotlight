@@ -78,11 +78,11 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
           <section className="journey-detail-intro max-w-[min(47vw,740px)]">
-            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
               {section.title ?? "1992"}
             </h1>
 
-            <p className="mt-[clamp(1rem,2.1vh,1.8rem)] text-[clamp(1.6rem,2.6vw,2.55rem)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.1vh,1.8rem)] text-[clamp(1.6rem,2.6vw,2.55rem)] font-light leading-tight text-[#9b6d35]">
               {section.headline ?? "The beginning of self-rule."}
             </p>
 
@@ -91,7 +91,7 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(39vw,620px)] text-[clamp(1.2rem,2vw,1.95rem)] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(39vw,620px)] text-[clamp(1.2rem,2vw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
               {section.description ?? "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future."}
             </p>
           </section>
@@ -115,10 +115,10 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
                   <div className="h-[clamp(4.5rem,9vh,7rem)] w-px bg-[#e2c99b]" />
 
                   <div className="px-[clamp(0.9rem,1.9vw,2.4rem)]">
-                    <h3 className="font-serif text-[clamp(1.45rem,2.65vw,2.6rem)] font-semibold leading-tight text-[#17233b]">
+                    <h3 className="font-serif text-[clamp(1.45rem,2.65vw,2.6rem)] font-light leading-tight text-[#17233b]">
                       {row.title}
                     </h3>
-                    <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.58vw,1.5rem)] font-medium leading-[1.42] text-[#303a50]">
+                    <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.58vw,1.5rem)] font-light leading-[1.42] text-[#303a50]">
                       {row.text}
                     </p>
                   </div>

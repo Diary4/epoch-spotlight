@@ -81,11 +81,11 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.5rem,5vh,4.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
           <section className="journey-detail-intro max-w-[min(46vw,700px)]">
-            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
               {localizeDigits(section.title ?? "2005", lang)}
             </h1>
 
-            <p className="mt-[clamp(1rem,2.1vh,1.8rem)] text-[clamp(1.6rem,2.6vw,2.55rem)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.1vh,1.8rem)] text-[clamp(1.6rem,2.6vw,2.55rem)] font-light leading-tight text-[#9b6d35]">
               {section.headline ?? "Federal recognition within Iraq."}
             </p>
 
@@ -118,12 +118,12 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
                       <span className={`grid h-[clamp(2.15rem,3.5vw,3rem)] w-[clamp(2.15rem,3.5vw,3rem)] place-items-center rounded-full text-[clamp(1rem,1.75vw,1.75rem)] font-bold text-white ${row.color}`}>
                         {localizeDigits(row.number, lang)}
                       </span>
-                      <h3 className="font-serif text-[clamp(1.35rem,2.45vw,2.45rem)] font-semibold leading-tight text-[#17233b]">
+                      <h3 className="font-serif text-[clamp(1.35rem,2.45vw,2.45rem)] font-light leading-tight text-[#17233b]">
                         {localizeDigits(row.title, lang)}
                       </h3>
                     </div>
 
-                    <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.58vw,1.5rem)] font-medium leading-[1.42] text-[#303a50]">
+                    <p className="mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-[min(45vw,760px)] text-[clamp(1.02rem,1.58vw,1.5rem)] font-light leading-[1.42] text-[#303a50]">
                       {localizeDigits(row.text, lang)}
                     </p>
                   </div>

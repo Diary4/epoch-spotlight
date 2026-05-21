@@ -82,11 +82,11 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
           {/* Text */}
           <section className="journey-detail-intro max-w-[min(46vw,720px)]">
-            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(6rem,11vw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
               {section.title ?? "1991"}
             </h1>
 
-            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.65rem,2.75vw,2.7rem)] font-bold leading-tight text-[#9b6d35]">
+            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.65rem,2.75vw,2.7rem)] font-light leading-tight text-[#9b6d35]">
               {section.headline ?? "A historic turning point."}
             </p>
 
@@ -116,7 +116,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
                     <Icon size={56} strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-[clamp(0.8rem,1.8vh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7vw,2.5rem)] font-semibold leading-[0.98] text-[#17233b]">
+                  <h3 className="mt-[clamp(0.8rem,1.8vh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7vw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
                     {card.title}
                   </h3>
 
@@ -126,7 +126,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
                     <span className="h-0.5 flex-1 bg-[#d2b475]" />
                   </div>
 
-                  <p className="text-[clamp(1.02rem,1.58vw,1.5rem)] font-medium leading-[1.5] text-[#303a50]">
+                  <p className="text-[clamp(1.02rem,1.58vw,1.5rem)] font-light leading-[1.5] text-[#303a50]">
                     {card.text}
                   </p>
 

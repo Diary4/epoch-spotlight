@@ -84,12 +84,12 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
 
         <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4vw,4rem)] pt-[clamp(1.2rem,4vh,3.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
           <section className="journey-detail-intro max-w-[min(45vw,670px)]">
-            <h1 className="font-serif text-[clamp(4.9rem,8.7vw,8.5rem)] font-semibold leading-none tracking-tight text-[#17233b]">
+            <h1 className="font-serif text-[clamp(4.9rem,8.7vw,8.5rem)] font-light leading-none tracking-tight text-[#17233b]">
               {section.title ?? "Today"}
             </h1>
 
-            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.6rem,2.65vw,2.65rem)] font-bold leading-tight text-[#9b6d35]">
-              {section.headline ?? "Growth, development, and vision."}
+            <p className="mt-[clamp(1rem,2.2vh,2rem)] text-[clamp(1.6rem,2.65vw,2.65rem)] font-light leading-tight text-[#9b6d35]">
+              {section.headline ?? "Growth, development, and vision."}    
             </p>
 
             <div className="mt-[clamp(1rem,2.3vh,2rem)] flex w-[clamp(9rem,18vw,14.5rem)] items-center gap-4 text-[#b99152]">
@@ -97,7 +97,7 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(38vw,580px)] text-[clamp(1.15rem,1.95vw,1.9rem)] font-medium leading-[1.52] text-[#2d3549]">
+            <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[min(38vw,580px)] text-[clamp(1.15rem,1.95vw,1.9rem)] font-light leading-[1.52] text-[#2d3549]">
               {section.description ?? "Kurdistan is building a stronger tomorrow through progress, unity, and opportunity."}
             </p>
           </section>
@@ -121,10 +121,10 @@ export default function TodayDevelopmentPage({ lang = "en", onBack }: TodayDevel
                   <div className="h-[clamp(4.4rem,9.6vh,7.5rem)] w-px bg-[#e2c99b]" />
 
                   <div className="px-[clamp(0.7rem,1.5vw,1.8rem)]">
-                    <h3 className="whitespace-pre-line font-serif text-[clamp(1.25rem,2.15vw,2.25rem)] font-semibold leading-[0.98] text-[#17233b]">
+                    <h3 className="whitespace-pre-line font-serif text-[clamp(1.25rem,2.15vw,2.25rem)] font-light leading-[0.98] text-[#17233b]">
                       {card.title}
                     </h3>
-                    <p className="mt-[clamp(0.4rem,0.9vh,0.85rem)] max-w-[min(24vw,420px)] text-[clamp(0.95rem,1.35vw,1.35rem)] font-medium leading-[1.38] text-[#303a50]">
+                    <p className="mt-[clamp(0.4rem,0.9vh,0.85rem)] max-w-[min(24vw,420px)] text-[clamp(0.95rem,1.35vw,1.35rem)] font-light leading-[1.38] text-[#303a50]">
                       {card.text}
                     </p>
                   </div>
