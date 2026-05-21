@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowUp } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { NATURAL_PLACES } from "@/data/naturalPlaces";
 import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
@@ -34,6 +35,7 @@ const placeCategories = [
 
 const NaturalPlaces = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const activeCategoryId = searchParams.get("category") ?? placeCategories[0].id;
 
   const activeCategory =
@@ -48,6 +50,21 @@ const NaturalPlaces = () => {
       })),
     [activeCategory],
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 520);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <main className="min-h-screen w-screen overflow-x-hidden bg-[#071014] text-white">
@@ -136,6 +153,19 @@ const NaturalPlaces = () => {
         <footer className="relative z-20 pb-10 text-center text-[11px] uppercase tracking-[0.28em] text-[#d6a45b]/60">
           {places.length} {activeCategory.title}
         </footer>
+
+        <button
+          type="button"
+          aria-label="Scroll to top"
+          onClick={scrollToTop}
+          className={`fixed bottom-6 right-6 z-40 grid h-12 w-12 place-items-center rounded-full border border-[#c89b52]/45 bg-black/45 text-[#e6d8bd] shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur-md transition duration-300 hover:border-[#d6a45b]/80 hover:bg-[#c89b52]/20 hover:text-white sm:bottom-8 sm:right-8 ${
+            showScrollTop
+              ? "pointer-events-auto translate-y-0 opacity-100"
+              : "pointer-events-none translate-y-3 opacity-0"
+          }`}
+        >
+          <ArrowUp className="h-5 w-5" aria-hidden="true" />
+        </button>
       </section>
     </main>
   );
