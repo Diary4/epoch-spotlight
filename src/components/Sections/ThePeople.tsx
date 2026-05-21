@@ -248,12 +248,12 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-[72px] h-[min(42vh,320px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)] sm:top-[calc(18vh-160px)] sm:h-[calc(70vh-160px)]"
+          className="pointer-events-none absolute inset-x-0 top-[72px] h-[min(62vh,920px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)] sm:top-[calc(18vh-160px)] sm:h-[calc(70vh-160px)]"
         />
        
         {/* Hero */}
         <header className="relative z-10 text-center pt-2 sm:pt-8 lg:pt-12">
-          <h1 data-people-hero="true" className="font-serif text-[clamp(38px,12vw,60px)] font-semibold leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
+          <h1 data-people-hero="true" className="font-serif font-light text-[clamp(38px,12vw,60px)] leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
             {people?.title ?? "The People"}
           </h1>
 
@@ -263,7 +263,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
             <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
           </div>
 
-          <p data-people-hero="true" className="mx-auto mt-5 max-w-[980px] px-1 text-[clamp(16px,4.2vw,20px)] leading-relaxed text-[#49524e] sm:mt-8 sm:px-0 sm:text-[28px] lg:text-[34px]">
+          <p data-people-hero="true" className="font-light mx-auto mt-5 max-w-[980px] px-1 text-[clamp(16px,4.2vw,20px)] leading-relaxed text-[#49524e] sm:mt-8 sm:px-0 sm:text-[28px] lg:text-[34px]">
             {people?.subtitle ?? "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
           </p>
         </header>
@@ -298,8 +298,8 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="flex min-h-[200px] flex-1 flex-col px-4 pb-5 pt-12 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[clamp(20px,5vw,24px)] font-semibold leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
+                <div className="flex min-h-[200px] mt-[10px] flex-1 flex-col px-4 pb-5 pt-12 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
+                  <h3 className="font-serif font-light text-[clamp(20px,5vw,24px)] leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
                     {card.title}
                   </h3>
 
@@ -309,7 +309,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[clamp(15px,3.8vw,17px)] leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">
+                  <p className="text-[clamp(15px,3.8vw,17px)] font-light leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">
                     {card.description}
                   </p>
                 </div>

@@ -171,7 +171,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
 
             <h1 data-intro-title="true" className="font-serif text-[42px] leading-none tracking-tight text-[#18362d] sm:text-[56px] md:text-[84px] lg:text-[102px]">{discover.title ?? "Discover Kurdistan"}</h1>
 
-            <p data-intro-rest="true" className="mx-auto mt-5 max-w-[980px] px-1 text-[17px] leading-[1.5] text-[#424c48] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]">
+            <p data-intro-rest="true" className="mx-auto mt-5 font-light max-w-[980px] px-1 text-[17px] leading-[1.5] text-[#424c48] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]">
               {discover.subtitle ?? "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
             </p>
 
@@ -190,7 +190,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
             <div className="mb-4 flex items-center justify-center gap-2 font-serif text-[18px] text-[#2d3d35] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px]">
               <span data-choose-line="true" className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
               <span className="h-2.5 w-2.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span>{discover.chooseSection ?? "Choose a section to begin"}</span>
+              <span className="font-light">{discover.chooseSection ?? "Choose a section to begin"}</span>
               <span className="h-2.5 w-2.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
               <span data-choose-line="true" className="h-0.5 w-8 bg-[#c8a05a] sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
             </div>
@@ -216,8 +216,8 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
                         <Icon className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14" strokeWidth={1.6} />
                       </GoldIcon>
                     </div>
-                    <div className="relative min-h-[140px] px-6 pb-5 pt-10 sm:min-h-[148px] sm:px-8 sm:pb-6 sm:pt-12 md:min-h-[160px] md:px-12 md:pb-7 md:pt-14 lg:min-h-[210px] lg:px-14 lg:pb-9 lg:pt-16">
-                      <h3 className="font-serif text-[26px] font-semibold leading-tight text-[#18362d] sm:text-[30px] md:text-[34px] lg:text-[44px]">{localizeDigits(section.title, lang)}</h3>
+                    <div className="relative font-light min-h-[140px] px-6 pb-5 pt-10 sm:min-h-[148px] sm:px-8 sm:pb-6 sm:pt-12 md:min-h-[160px] md:px-12 md:pb-7 md:pt-14 lg:min-h-[210px] lg:px-14 lg:pb-9 lg:pt-16">
+                      <h3 className="font-serif text-[26px] leading-tight font-light text-[#18362d] sm:text-[30px] md:text-[34px] lg:text-[44px]">{localizeDigits(section.title, lang)}</h3>
                       <p className="mt-2 whitespace-pre-line text-[17px] leading-tight text-[#5f6662] sm:text-[20px] md:text-[23px] lg:mt-3 lg:text-[30px]">{localizeDigits(section.desc, lang)}</p>
                       <ArrowRight className="absolute right-5 top-1/2 h-7 w-7 text-[#b88b43] sm:right-6 sm:h-8 sm:w-8 md:right-8 md:h-10 md:w-10 lg:right-10 lg:h-12 lg:w-12" strokeWidth={1.8} />
                     </div>
