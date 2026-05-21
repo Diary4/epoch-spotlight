@@ -12,28 +12,99 @@ import {
 import bg from "@/assets/images/religions/r-7.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
-const cards = [
+type LangCode = "en" | "ku" | "ar";
+
+const content: Record<
+  LangCode,
   {
-    title: "HISTORY",
-    icon: Scale,
-    text: "Dominant religion in Kurdistan before Islam. Flourished during Achaemenid and Sassanian empires. First fire temple in Iraqi Kurdistan opened in Sulaymaniyah in 2016.",
+    title: string;
+    subtitle: string;
+    tagline: string;
+    cards: { title: string; icon: typeof Scale; text: string }[];
+  }
+> = {
+  en: {
+    title: "Zoroastrianism",
+    subtitle: "Light, truth, and ancient wisdom",
+    tagline: "An ancient flame of wisdom.",
+    cards: [
+      {
+        title: "History",
+        icon: Scale,
+        text: "Dominant religion in Kurdistan before Islam. Flourished during Achaemenid and Sassanian empires. First fire temple in Iraqi Kurdistan opened in Sulaymaniyah in 2016.",
+      },
+      {
+        title: "Three Pillars",
+        icon: Sparkles,
+        text: "Good Thoughts, Good Words, Good Deeds. Work and diligence are religious duties. Respecting the beliefs of others is a core principle.",
+      },
+      {
+        title: "Environment",
+        icon: Leaf,
+        text: "Fire, air, water, and earth are sacred. Environmental protection is the most crucial religious duty. Both spouses must plant a tree upon marriage and with the birth of each child.",
+      },
+      {
+        title: "Nowruz",
+        icon: Sun,
+        text: "The most prominent Zoroastrian festival, celebrated March 21. Since 2015 the Atashgah has provided over 10,000 job opportunities to people of all backgrounds in Kurdistan.",
+      },
+    ],
   },
-  {
-    title: "THREE PILLARS",
-    icon: Sparkles,
-    text: "Good Thoughts, Good Words, Good Deeds. Work and diligence are religious duties. Respecting the beliefs of others is a core principle.",
+  ku: {
+    title: "زەردەشتیەتی",
+    subtitle: "ڕووناکی و ڕاستی و دانایی دێرین",
+    tagline: "بڵێسەی داناییەکی دێرین کە ناکوژێتەوە.",
+    cards: [
+      {
+        title: "مێژوو",
+        icon: Scale,
+        text: "پێش ئیسلام ئاینی باڵادەست بوو لە کوردستان. لە سەردەمی هەخامەنشی و ساسانییەکاندا گەشەی کرد. یەکەم پەرستگای ئاگر لە کوردستانی عێراق ساڵی 2016 لە سلێمانی کرایەوە.",
+      },
+      {
+        title: "سێ بنەما",
+        icon: Sparkles,
+        text: "بیرۆکەی باش، وشەی باش، کردەوەی باش. کار و هەوڵدان ئەرکی ئاینییە. ڕێزگرتن لە باوەڕی ئەوانی تر بنەمایەکی سەرەکییە.",
+      },
+      {
+        title: "ژینگە",
+        icon: Leaf,
+        text: "ئاگر و هەوا و ئاو و خاک توخمە پیرۆزەکانن. پاراستنی ژینگە لە گرنگترین ئەرکە ئاینییەکانە. هەر ژن و مێردێک دەبێت لە کاتی هاوسەرگیری و لەدایکبوونی هەر منداڵێکدا دارێک بچێنن.",
+      },
+      {
+        title: "نەورۆز",
+        icon: Sun,
+        text: "گرنگترین جەژنی زەردەشتییە و لە 21ی ئازاردا دەگیرێت. لە ساڵی 2015ەوە ئاتەشگا زیاتر لە 10,000 هەلی کار بۆ خەڵکی ئاین و نەتەوە جیاوازەکانی کوردستان دابین کردووە.",
+      },
+    ],
   },
-  {
-    title: "ENVIRONMENT",
-    icon: Leaf,
-    text: "Fire, air, water, and earth are sacred. Environmental protection is the most crucial religious duty. Both spouses must plant a tree upon marriage and with the birth of each child.",
+  ar: {
+    title: "الزرادشتية",
+    subtitle: "النور والحقيقة والحكمة العريقة",
+    tagline: "شعلة حكمة عريقة لا تنطفئ.",
+    cards: [
+      {
+        title: "التاريخ",
+        icon: Scale,
+        text: "كانت الديانة السائدة في كوردستان قبل الإسلام. ازدهرت في عهدَي الأخمينيين والساسانيين. افتُتح أول معبد للنار في كوردستان العراق بالسليمانية عام 2016.",
+      },
+      {
+        title: "الركائز الثلاث",
+        icon: Sparkles,
+        text: "الأفكار الحسنة والكلمات الحسنة والأفعال الحسنة. العمل والاجتهاد فريضة دينية. واحترام معتقدات الآخرين مبدأ أساسي.",
+      },
+      {
+        title: "البيئة",
+        icon: Leaf,
+        text: "النار والهواء والماء والأرض عناصر مقدسة. وحماية البيئة أهم الواجبات الدينية. ويلزم كل زوجين زرع شجرة عند الزواج وعند ولادة كل طفل.",
+      },
+      {
+        title: "نوروز",
+        icon: Sun,
+        text: "أبرز الأعياد الزرادشتية، يُحتفل به في 21 مارس. ومنذ عام 2015 وفّر معبد النار أكثر من 10,000 فرصة عمل لأبناء مختلف الأديان والقوميات في كوردستان.",
+      },
+    ],
   },
-  {
-    title: "NOWRUZ",
-    icon: Sun,
-    text: "The most prominent Zoroastrian festival, celebrated March 21. Since 2015 the Atashgah has provided over 10,000 job opportunities to people of all backgrounds in Kurdistan.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -48,7 +119,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type ZoroastrianismPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -62,6 +133,7 @@ export default function ZoroastrianismPage({
 }: ZoroastrianismPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const c = content[lang];
 
   useReligionPageAnimation(
     sectionRef,
@@ -125,11 +197,11 @@ export default function ZoroastrianismPage({
             </div>
 
             <h1 className="font-serif text-[64px] font-semibold uppercase leading-[1] tracking-[0.14em] text-[#2f1f12] sm:text-[82px] lg:text-[102px]">
-              ZOROASTRIANISM
+              {c.title}
             </h1>
 
             <p className="mt-4 font-serif text-[26px] font-semibold text-[#7d5a2d] sm:text-[36px]">
-              Light, truth, and ancient wisdom
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -140,7 +212,7 @@ export default function ZoroastrianismPage({
           <div className="h-[480px]" />
 
           <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -178,7 +250,7 @@ export default function ZoroastrianismPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              An ancient flame of wisdom.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />

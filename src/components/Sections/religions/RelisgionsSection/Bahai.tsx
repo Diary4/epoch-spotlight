@@ -13,28 +13,99 @@ import {
 import bg from "@/assets/images/religions/r-6.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
-const cards = [
+type LangCode = "en" | "ku" | "ar";
+
+const content: Record<
+  LangCode,
   {
-    title: "BAHÁ'U'LLÁH IN KURDISTAN",
-    icon: MapPin,
-    text: "Chose Kurdistan for seclusion. Resided in Sargalu then Sulaymaniyah for two years. Sent \"The Four Valleys\" to Kurdish Sufi leader Sheikh Abdul Rahman Talabani and \"The Seven Valleys\" to Sheikh Mohiuddin.",
+    title: string;
+    subtitle: string;
+    tagline: string;
+    cards: { title: string; icon: typeof MapPin; text: string }[];
+  }
+> = {
+  en: {
+    title: "Baha'i Faith",
+    subtitle: "Unity, peace, and one humanity",
+    tagline: "One humanity. One future.",
+    cards: [
+      {
+        title: "Baha'u'llah in Kurdistan",
+        icon: MapPin,
+        text: "Chose Kurdistan for seclusion. Resided in Sargalu then Sulaymaniyah for two years. Sent \"The Four Valleys\" to Kurdish Sufi leader Sheikh Abdul Rahman Talabani and \"The Seven Valleys\" to Sheikh Mohiuddin.",
+      },
+      {
+        title: "Core Principles",
+        icon: Scale,
+        text: "Oneness of God, unity of humanity, gender equality, harmony of religion and science, and justice for all.",
+      },
+      {
+        title: "Free in Kurdistan",
+        icon: Handshake,
+        text: "Since 2015 represented in the Ministry of Endowments and Religious Affairs. Practice rituals freely. Baha'u'llah described Kurdistan as a refuge of peace.",
+      },
+      {
+        title: "Festival of Ridvan",
+        icon: Flower2,
+        text: "Most important Baha'i holiday, April 20 to May 2. Commemorates Baha'u'llah's announcement of his message in Baghdad.",
+      },
+    ],
   },
-  {
-    title: "CORE PRINCIPLES",
-    icon: Scale,
-    text: "Oneness of God, unity of humanity, gender equality, harmony of religion and science, and justice for all.",
+  ku: {
+    title: "ئاینی بەهایی",
+    subtitle: "یەکگرتوویی و ئاشتی و یەک مرۆڤایەتی",
+    tagline: "یەک مرۆڤایەتی. یەک داهاتوو.",
+    cards: [
+      {
+        title: "بەهاءوڵڵا لە کوردستان",
+        icon: MapPin,
+        text: "کوردستانی بۆ گۆشەگیری ڕۆحانی هەڵبژارد. دوو ساڵ لە سەرگەلوو و پاشان لە سلێمانی ژیا. \"چوار دۆڵ\"ی پێشکەش بە شێخ عەبدولڕەحمان تاڵەبانی کرد و \"حەوت دۆڵ\"ی بۆ شێخ محییەدین نووسی.",
+      },
+      {
+        title: "بنەما سەرەکییەکان",
+        icon: Scale,
+        text: "یەکتایی خودا، یەکگرتوویی مرۆڤایەتی، یەکسانی نێوان ڕەگەزەکان، هاوئاهەنگی نێوان ئاین و زانست، و دادپەروەری بۆ هەمووان.",
+      },
+      {
+        title: "ئازادی لە کوردستان",
+        icon: Handshake,
+        text: "لە ساڵی 2015ەوە نوێنەریان لە وەزارەتی ئەوقاف و کاروباری ئاینی هەیە. بە ئازادی ڕێوڕەسمەکانیان ئەنجام دەدەن. بەهاءوڵڵا کوردستانی وەک پەناگەی ئاشتی وەسف کردووە.",
+      },
+      {
+        title: "جەژنی ڕەزوان",
+        icon: Flower2,
+        text: "گرنگترین جەژنی بەهاییە، لە 20-21ی نیسانەوە تا 2ی ئایار. یادکردنەوەی ڕاگەیاندنی پەیامی بەهاءوڵڵا لە بەغدادە.",
+      },
+    ],
   },
-  {
-    title: "FREE IN KURDISTAN",
-    icon: Handshake,
-    text: "Since 2015 represented in the Ministry of Endowments and Religious Affairs. Practice rituals freely. Kurdistan was described as a place of refuge and peace.",
+  ar: {
+    title: "الديانة البهائية",
+    subtitle: "الوحدة والسلام وإنسانية واحدة",
+    tagline: "إنسانية واحدة. مستقبل واحد.",
+    cards: [
+      {
+        title: "بهاء الله في كوردستان",
+        icon: MapPin,
+        text: "اختار كوردستان للعزلة الروحية. أقام في سرجلو ثم السليمانية لمدة عامين. أهدى \"الأودية الأربعة\" للشيخ عبد الرحمن الطالباني، و\"الأودية السبعة\" للشيخ محيي الدين.",
+      },
+      {
+        title: "المبادئ الأساسية",
+        icon: Scale,
+        text: "وحدانية الله، ووحدة البشرية، والمساواة بين الجنسين، والتناغم بين الدين والعلم، والعدل للجميع.",
+      },
+      {
+        title: "حرية في كوردستان",
+        icon: Handshake,
+        text: "ممثَّلون في وزارة الأوقاف والشؤون الدينية منذ 2015. يمارسون شعائرهم بحرية. ووصف بهاء الله كوردستان بأنها ملاذ للسلام.",
+      },
+      {
+        title: "عيد الرضوان",
+        icon: Flower2,
+        text: "أهم الأعياد البهائية، من 20-21 أبريل حتى 2 مايو. يُحيي ذكرى إعلان بهاء الله رسالته في بغداد.",
+      },
+    ],
   },
-  {
-    title: "FESTIVAL OF RIDVÁN",
-    icon: Flower2,
-    text: "Most important Baha'i holiday, April 20 to May 2. Commemorates Bahá'u'lláh's announcement of his message in Baghdad.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -49,7 +120,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type BahaiPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -63,6 +134,7 @@ export default function BahaiPage({
 }: BahaiPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const c = content[lang];
 
   useReligionPageAnimation(
     sectionRef,
@@ -126,11 +198,11 @@ export default function BahaiPage({
             </div>
 
             <h1 className="font-serif text-[64px] font-semibold uppercase leading-[1] tracking-[0.14em] text-[#2f1f12] sm:text-[84px] lg:text-[108px]">
-              BAHA'I FAITH
+              {c.title}
             </h1>
 
             <p className="mt-4 font-serif text-[26px] font-semibold text-[#7d5a2d] sm:text-[36px]">
-              Unity, peace, and one humanity
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -141,7 +213,7 @@ export default function BahaiPage({
           <div className="h-[480px]" />
 
           <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -179,7 +251,7 @@ export default function BahaiPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              One humanity. One future.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />

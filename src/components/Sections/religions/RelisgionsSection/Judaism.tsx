@@ -13,28 +13,99 @@ import {
 import bg from "@/assets/images/religions/r-5.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
-const cards = [
+type LangCode = "en" | "ku" | "ar";
+
+const content: Record<
+  LangCode,
   {
-    title: "KURDISH JEWS",
-    icon: UsersRound,
-    text: "Ancient Eastern community historically residing in northern Mesopotamia. When Cyrus allowed them to return to Jerusalem after Babylonian exile, most chose to remain in Kurdistan.",
+    title: string;
+    subtitle: string;
+    tagline: string;
+    cards: { title: string; icon: typeof UsersRound; text: string }[];
+  }
+> = {
+  en: {
+    title: "Judaism",
+    subtitle: "Memory, heritage, and continuity",
+    tagline: "Rooted in memory and respect.",
+    cards: [
+      {
+        title: "Kurdish Jews",
+        icon: UsersRound,
+        text: "Ancient Eastern community historically residing in northern Mesopotamia. When Cyrus allowed them to return to Jerusalem after Babylonian exile, most chose to remain in Kurdistan.",
+      },
+      {
+        title: "Torah",
+        icon: BookOpen,
+        text: "Judaism's sacred text consists of five books: Genesis, Exodus, Leviticus, Numbers, and Deuteronomy. Other important texts include the Talmud, Tanakh, Midrash, and Mishnah.",
+      },
+      {
+        title: "Nahum Shrine",
+        icon: Landmark,
+        text: "The Shrine of the Prophet Nahum in Alqosh — a historically significant Jewish sacred site in the Kurdistan Region.",
+      },
+      {
+        title: "Heritage",
+        icon: Clock,
+        text: "Kurdistan's Jewish history spans over 2,500 years. Jewish traveler Benjamin of Tudela estimated 25,000 Jews in Amadiya alone in the 12th century.",
+      },
+    ],
   },
-  {
-    title: "TORAH",
-    icon: BookOpen,
-    text: "Judaism's sacred text consists of five books: Genesis, Exodus, Leviticus, Numbers, and Deuteronomy. Other important texts include the Talmud, Tanakh, Midrash, and Mishnah.",
+  ku: {
+    title: "جوولەکەیی",
+    subtitle: "یادەوەری و میرات و بەردەوامی",
+    tagline: "ڕەگداکوتاو لە یادەوەری و ڕێز.",
+    cards: [
+      {
+        title: "جوولەکەکانی کوردستان",
+        icon: UsersRound,
+        text: "کۆمەڵگایەکی ڕۆژهەڵاتی دێرین بوون کە مێژوویان لە باکووری میزۆپۆتامیا بووە. کاتێک کورش ڕێگەی دا دوای دیلی بابلی بگەڕێنەوە بۆ قودس، زۆربەیان مانەوە لە کوردستان هەڵبژارد.",
+      },
+      {
+        title: "تەورات",
+        icon: BookOpen,
+        text: "کتێبی پیرۆزی جوولەکەیی پێنج سێفری لەخۆ دەگرێت: پیدابوون، دەرچوون، لاویان، ژمارەکان و دووبارەکردنەوەی یاسا. تێکستە گرنگەکانی تر بریتین لە تەلمود، تەناخ، میدراش و میشنا.",
+      },
+      {
+        title: "مەزاری پێغەمبەر ناحوم",
+        icon: Landmark,
+        text: "مەزاری پێغەمبەر ناحوم لە ئەلقۆش شوێنێکی پیرۆزی جوولەکەییە و گرنگییەکی مێژوویی زۆری لە هەرێمی کوردستان هەیە.",
+      },
+      {
+        title: "میرات",
+        icon: Clock,
+        text: "مێژووی جوولەکەکان لە کوردستان زیاتر لە 2,500 ساڵ دەبێت. گەشتیاری جوولەکە بنیامین تودێلایی لە سەدەی دوازدەهەمدا ژمارەی جوولەکەکانی ئامێدی بە تەنها بە 25,000 کەس مەزندە کردووە.",
+      },
+    ],
   },
-  {
-    title: "NAHUM SHRINE",
-    icon: Landmark,
-    text: "The Shrine of the Prophet Nahum in Alqosh — a historically significant Jewish sacred site in the Kurdistan Region.",
+  ar: {
+    title: "اليهودية",
+    subtitle: "الذاكرة والتراث والاستمرارية",
+    tagline: "متجذرون في الذاكرة والاحترام.",
+    cards: [
+      {
+        title: "يهود كوردستان",
+        icon: UsersRound,
+        text: "مجتمع شرقي عريق أقام تاريخياً في شمال بلاد الرافدين. حين أذن لهم كورش بالعودة إلى القدس بعد السبي البابلي، اختار معظمهم البقاء في كوردستان.",
+      },
+      {
+        title: "التوراة",
+        icon: BookOpen,
+        text: "الكتاب المقدس لليهودية يتضمن خمسة أسفار: التكوين والخروج واللاويين والعدد والتثنية. وثمة نصوص مهمة أخرى كالتلمود والتناخ والميدراش والمشناه.",
+      },
+      {
+        title: "ضريح النبي ناحوم",
+        icon: Landmark,
+        text: "ضريح النبي ناحوم في ألقوش — موقع يهودي مقدس بالغ الأهمية التاريخية في إقليم كوردستان.",
+      },
+      {
+        title: "التراث",
+        icon: Clock,
+        text: "يمتد التاريخ اليهودي في كوردستان أكثر من 2,500 عام. وقدّر الرحالة اليهودي بنيامين التطيلي عدد يهود عمادية وحدها بـ25,000 نسمة في القرن الثاني عشر.",
+      },
+    ],
   },
-  {
-    title: "HERITAGE",
-    icon: Clock,
-    text: "Kurdistan's Jewish history spans over 2,500 years. Jewish traveler Benjamin of Tudela estimated 25,000 Jews in Amadiya alone in the 12th century.",
-  },
-];
+};
 
 function DecorativeLine({ color = "#c3923a" }) {
   return (
@@ -49,7 +120,7 @@ function DecorativeLine({ color = "#c3923a" }) {
 }
 
 type JudaismPageProps = {
-  lang?: "en" | "ku" | "ar";
+  lang?: LangCode;
   languageLabel?: string;
   onLanguageChange?: () => void;
   onBack?: () => void;
@@ -63,6 +134,7 @@ export default function JudaismPage({
 }: JudaismPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const c = content[lang];
 
   useReligionPageAnimation(
     sectionRef,
@@ -126,11 +198,11 @@ export default function JudaismPage({
             </div>
 
             <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
-              JUDAISM
+              {c.title}
             </h1>
 
             <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
-              Memory, heritage, and continuity
+              {c.subtitle}
             </p>
 
             <div className="mx-auto mt-8 w-[210px]">
@@ -141,7 +213,7 @@ export default function JudaismPage({
           <div className="h-[480px]" />
 
           <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {cards.map((card) => {
+            {c.cards.map((card) => {
               const Icon = card.icon;
 
               return (
@@ -179,7 +251,7 @@ export default function JudaismPage({
             </div>
 
             <p className="font-serif text-[32px] font-semibold leading-tight text-[#3b2410]">
-              Rooted in memory and respect.
+              {c.tagline}
             </p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
