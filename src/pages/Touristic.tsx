@@ -1,4 +1,11 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
+import { useListScrollRestoration } from "@/hooks/useListScrollRestoration";
+import {
+  TOURISTIC_LIST_KEY,
+  readListScrollPosition,
+  restoreListScrollPositionWithRetry,
+  saveListScrollPosition,
+} from "@/lib/listScrollRestoration";
 import { ArrowUp } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { NATURAL_PLACES } from "@/data/naturalPlaces";
@@ -47,6 +54,19 @@ const NaturalPlaces = () => {
   
   const containerRef = useRef(null);
 
+  const refreshScrollTriggers = useCallback(() => {
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  }, []);
+
+  useListScrollRestoration(TOURISTIC_LIST_KEY, activeCategoryId, refreshScrollTriggers);
+
+  const handleOpenPlace = useCallback(
+    (placeId: string) => {
+      saveListScrollPosition(TOURISTIC_LIST_KEY, activeCategoryId, placeId);
+    },
+    [activeCategoryId],
+  );
+
   const activeCategory =
     placeCategories.find((category) => category.id === activeCategoryId) ??
     placeCategories[0];
@@ -64,7 +84,6 @@ const NaturalPlaces = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Use gsap.context to isolate selectors and handle cleanup safely
     const ctx = gsap.context(() => {
       const items = containerRef.current.querySelectorAll(".timeline-item");
 
@@ -72,15 +91,12 @@ const NaturalPlaces = () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: item,
-            start: "top bottom", // Animation starts when top of item enters bottom of screen
-            end: "bottom top",   // Animation ends when bottom of item leaves top of screen
-            scrub: 1,            // Links animation playhead to scroll position
+            start: "top bottom", 
+            end: "bottom top",   
+            scrub: 1,            
           },
         });
 
-        // 1. Fade/slide in from bottom
-        // 2. Remain fully visible in center
-        // 3. Fade/slide out as it leaves the top of the screen
         tl.fromTo(
           item,
           { opacity: 0, y: 30 },
@@ -93,6 +109,19 @@ const NaturalPlaces = () => {
 
     return () => ctx.revert();
   }, [places]);
+
+  // GSAP runs after first paint; restore again once timeline + images are laid out.
+  useEffect(() => {
+    const snapshot = readListScrollPosition(TOURISTIC_LIST_KEY);
+    if (!snapshot || snapshot.category !== activeCategoryId) return;
+    if (window.scrollY > 80 && snapshot.y > window.scrollY + 40) return;
+
+    restoreListScrollPositionWithRetry(
+      TOURISTIC_LIST_KEY,
+      activeCategoryId,
+      refreshScrollTriggers,
+    );
+  }, [places, activeCategoryId, refreshScrollTriggers]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -167,9 +196,14 @@ const NaturalPlaces = () => {
               const isEven = index % 2 === 0;
 
               return (
-                <article key={place.id} className="timeline-item relative group w-full">
+                <article
+                  key={place.id}
+                  id={`touristic-place-${place.id}`}
+                  className="timeline-item relative group w-full scroll-mt-24"
+                >
                   <Link
                     to={`/touristic/${activeCategory.id}/${place.id}`}
+                    onClick={() => handleOpenPlace(place.id)}
                     className="relative flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-16 items-center w-full"
                   >
                     {/* Left Column (Desktop) */}
@@ -201,9 +235,8 @@ const NaturalPlaces = () => {
                             className="h-full w-full object-cover"
                             loading="lazy"
                           />
-                          {/* Softened overlays for improved image visibility */}
-                          <div className="absolute inset-0 bg-black/15" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#071014]/65 via-transparent to-[#071014]/20" />
+                          {/* Dark inner shadow applied only to the borders inside the card */}
+                          <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_#071014]" />
                         </div>
                       )}
                     </div>
@@ -248,9 +281,8 @@ const NaturalPlaces = () => {
                             className="h-full w-full object-cover"
                             loading="lazy"
                           />
-                          {/* Softened overlays for improved image visibility */}
-                          <div className="absolute inset-0 bg-black/15" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#071014]/65 via-transparent to-[#071014]/20" />
+                          {/* Dark inner shadow applied only to the borders inside the card */}
+                          <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_#071014]" />
                         </div>
                       )}
                     </div>
@@ -260,6 +292,7 @@ const NaturalPlaces = () => {
                   <div className="mt-4 ml-16 mr-4 block md:hidden">
                     <Link
                       to={`/touristic/${activeCategory.id}/${place.id}`}
+                      onClick={() => handleOpenPlace(place.id)}
                       className="relative block w-full h-[200px] overflow-hidden rounded-xl border border-white/5"
                     >
                       <img
@@ -268,9 +301,8 @@ const NaturalPlaces = () => {
                         className="h-full w-full object-cover"
                         loading="lazy"
                       />
-                      {/* Consistent softened overlays on mobile */}
-                      <div className="absolute inset-0 bg-black/15" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#071014]/65 via-transparent to-[#071014]/20" />
+                      {/* Dark inner shadow applied only to the borders inside the card */}
+                      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_#071014]" />
                     </Link>
                   </div>
                 </article>

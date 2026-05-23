@@ -86,6 +86,10 @@ const TouristicDetail = () => {
   }, [selectedGalleryImage]);
 
   useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [category, id]);
+
+  useLayoutEffect(() => {
     if (!rootRef.current || !place) return;
 
     const reducedMotion =
@@ -162,6 +166,7 @@ const TouristicDetail = () => {
         >
           <Link
             to={`/touristic?category=${activeCategory.id}`}
+            state={{ restoreTouristicScroll: true }}
             className="inline-flex items-center gap-2 rounded-full border border-[#c89b52]/35 bg-black/25 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-[#e6d8bd] backdrop-blur-md transition hover:bg-[#c89b52]/20 hover:text-white"
           >
             <span>←</span> Back
