@@ -218,8 +218,7 @@ export default function ReligionsKurdistan({
           }}
         />
 
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/15 via-[#fbf1df]/90 to-[#fbf1df]" />
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/15 via-[#fbf1df]/90 to-[#fbf1df]" /> */}
 
         <button
           type="button"

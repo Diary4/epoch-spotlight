@@ -258,7 +258,6 @@ export default function ClosingPage({
           <div className="absolute right-0 bottom-0 h-[360px] w-[360px] rounded-full border border-[#b98634]" />
         </div>
 
-        <div className="pointer-events-none absolute inset-5 rounded-[30px] border border-[#c99a55]/55" />
 
         {onBack && (
           <button

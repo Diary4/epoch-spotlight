@@ -126,7 +126,6 @@ export default function OtherFaithTraditionsPage({
           className="absolute inset-0 bg-[radial-gradient(circle_at_top,#fff7e8_0%,#fbf1df_48%,#f3dfbd_100%)]"
         />
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
 
         <button
           type="button"

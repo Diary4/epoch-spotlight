@@ -170,7 +170,6 @@ export default function Nationalities({
         />
 
         <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#fbf1df]/15 via-[#fbf1df]/58 to-[#fbf1df]" />
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
 
         <button
           type="button"

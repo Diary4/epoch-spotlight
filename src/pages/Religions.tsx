@@ -82,7 +82,8 @@ const pageContent: Record<
 > = {
   en: {
     languageLabel: "ENGLISH",
-    title: ["Religious", "&", "National", "Diversity", "in", "Kurdistan"],
+    title: ["Religious & National Diversity",
+       "in", "Kurdistan"],
     subtitle: "Kurdistan: The Cradle of Coexistence",
     description:
       "Across faiths, languages, and cultures, Kurdistan stands as a timeless home of respect, unity, and shared heritage.",
@@ -150,7 +151,10 @@ const pageContent: Record<
   },
   ku: {
     languageLabel: "کوردی",
-    title: ["ئاینی", "و", "فرە", "نەتەوەیی", "لە", "کوردستان"],
+    title: [
+      "ئاینی و فرە نەتەوەیی", 
+      "لە کوردستان"
+    ],
     subtitle: "کوردستان: لانکەی پێکەوە ژیان",
     description:
       "لە نێوان ئاین و زمان و کلتوورە جیاوازەکاندا، کوردستان ماڵی ڕێز و یەکگرتوویی و میراتی هاوبەشە.",
@@ -218,7 +222,8 @@ const pageContent: Record<
   },
   ar: {
     languageLabel: "العربية",
-    title: ["التنوع", "الديني", "والقومي", "في", "كوردستان"],
+    title: ["التنوع الديني والقومي",
+       " في كوردستان"],
     subtitle: "كوردستان: مهد التعايش",
     description:
       "عبر الأديان واللغات والثقافات، تظل كوردستان موطناً دائماً للاحترام والوحدة والتراث المشترك.",
@@ -582,7 +587,6 @@ export default function ReligiousDiversityPage({
             />
 
             <div className="absolute inset-0 bg-gradient-to-b from-[#f6ead8]/75 via-[#f6ead8]/45 to-[#f4eadb]" />
-            <div className="pointer-events-none absolute inset-6 rounded-[34px] border border-[#c99a55]/45" />
 
             <button
               type="button"
@@ -650,7 +654,7 @@ export default function ReligiousDiversityPage({
         <div className="relative z-10 mx-auto min-h-screen w-full max-w-[1500px] px-10 pb-10 pt-24 lg:px-16 lg:pt-28">
           <div data-rd-animate="true" className="shrink-0">
             <div className="relative max-w-[min(100%,720px)]">
-              <h1 className="font-serif text-[clamp(38px,5.2vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.02em] text-[#332315]">
+              <h1 className="font-serif text-[clamp(38px,5.2vw,76px)] font-black uppercase leading-[0.9] tracking-wider text-[#332315]">
                 {content.title.map((line, index) => (
                   <span key={`${line}-${index}`} className="block">
                     {line}

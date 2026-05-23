@@ -186,7 +186,6 @@ export default function StoriesOfCoexistencePage({
           }}
         />
 
-        {/* <div className="pointer-events-none absolute inset-2 rounded-[20px] border-2 border-[#d2a35a]/40 sm:inset-4 sm:rounded-[30px]" /> */}
 
         <button
           type="button"

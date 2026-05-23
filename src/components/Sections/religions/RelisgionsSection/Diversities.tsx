@@ -120,7 +120,6 @@ export default function DiversityMapPage({
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/88 to-[#f4dfbb]/55" />
         {/* <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" /> */}
-        {/* <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" /> */}
 
         <button
           type="button"

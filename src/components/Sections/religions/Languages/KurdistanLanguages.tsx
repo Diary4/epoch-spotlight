@@ -145,7 +145,6 @@ export default function LanguagesOfKurdistanPage({
               "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
           }}
         />
-        <div className="pointer-events-none absolute inset-4 rounded-[30px] border-2 border-[#d2a35a]/40" />
 
         <button
           type="button"
