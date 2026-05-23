@@ -318,29 +318,49 @@ export default function IntroductionPage({
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
+  // Staggered Page Entrance Animation via useLayoutEffect
+  React.useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set("[data-intro-hero='true']", { autoAlpha: 0, scale: 1.04 });
-      gsap.set("[data-intro-animate='true']", { autoAlpha: 0, y: 24 });
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const tl = gsap.timeline();
-      tl.to("[data-intro-hero='true']", {
+    const ctx = gsap.context(() => {
+      if (reducedMotion) return;
+
+      const hero = "[data-intro-hero='true']";
+      const animElements = "[data-intro-animate='true']";
+      const cards = "[data-intro-card='true']";
+
+      gsap.set(hero, { autoAlpha: 0, scale: 1.04 });
+      gsap.set(animElements, { autoAlpha: 0, y: 24 });
+      gsap.set(cards, { autoAlpha: 0, y: 35 });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      tl.to(hero, {
         autoAlpha: 1,
         scale: 1,
-        duration: 0.8,
+        duration: 1.0,
         ease: "power2.out",
       }).to(
-        "[data-intro-animate='true']",
+        animElements,
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.05,
-          ease: "power2.out",
+          duration: 0.75,
+          stagger: 0.08,
         },
-        "-=0.2",
+        "-=0.5",
+      ).to(
+        cards,
+        {
+          autoAlpha: 1,
+          y: 0,
+          stagger: 0.05,
+          duration: 0.8,
+        },
+        "-=0.4"
       );
     }, sectionRef);
 
@@ -350,25 +370,26 @@ export default function IntroductionPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-stone-800"
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
+        className="relative w-full overflow-hidden bg-[#faf8f5] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
       >
+        {/* Original Background Image / Grading structure kept intact */}
         <img
           data-intro-hero="true"
           src={bg}
           alt=""
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
-        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
+        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
         {onBack && (
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
+            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border border-stone-200 bg-white/85 text-stone-800 shadow-sm transition hover:bg-stone-50"
             aria-label={c.back}
           >
             <ArrowLeft className="h-7 w-7" />
@@ -379,7 +400,7 @@ export default function IntroductionPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
+            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-stone-200 bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50"
           >
             <Globe2 className="h-5 w-5" />
             {languageLabel}
@@ -394,13 +415,13 @@ export default function IntroductionPage({
             <div className="mx-auto mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[88px]">
+            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 sm:text-[76px] lg:text-[88px]">
               {c.pageTitle}
             </h1>
             <div className="mx-auto mt-5 w-[180px]">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-5 max-w-[660px] text-[19px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[22px]">
+            <p className="mx-auto mt-5 max-w-[660px] text-[19px] font-semibold leading-relaxed text-stone-600 sm:text-[22px]">
               {c.pageDescription}
             </p>
           </header>
@@ -415,14 +436,14 @@ export default function IntroductionPage({
               <div className="mx-auto max-w-[860px] text-center">
                 <h2
                   id={`intro-group-${group.id}`}
-                  className="font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#3b2410] sm:text-[48px]"
+                  className="font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-stone-900 sm:text-[48px]"
                 >
                   {group.title}
                 </h2>
                 <div className="mx-auto mt-4 w-[200px]">
                   <DecorativeLine color="#c3923a" />
                 </div>
-                <p className="mx-auto mt-4 max-w-[640px] font-serif text-[18px] italic text-[#6a4a25] sm:text-[20px]">
+                <p className="mx-auto mt-4 max-w-[640px] font-serif text-[18px] italic text-stone-500 sm:text-[20px]">
                   {group.subtitle}
                 </p>
               </div>
@@ -431,53 +452,63 @@ export default function IntroductionPage({
                 {group.cards.map((card) => {
                   const Icon = card.icon;
                   return (
-                    <article
-                      key={card.id}
-                      className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
+                    <div 
+                      key={card.id} 
+                      data-intro-card="true" 
+                      className="w-full"
                     >
-                      <div
-                        className="relative h-[120px] w-full"
-                        style={{
-                          background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
-                        }}
-                      >
-                        <div
-                          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+                      <article className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500">
+                        {/* Framed Banner Area */}
+                        <div 
+                          className="relative h-[110px] w-full overflow-hidden rounded-xl bg-stone-100"
                           style={{
-                            backgroundImage: `url(${bg2})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            mixBlendMode: "overlay",
+                            background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
                           }}
-                        />
-                        <div className="absolute inset-x-0 top-5 flex items-center justify-end px-6">
-                          <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
-                            <Icon className="h-6 w-6 text-white" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-1 flex-col px-6 py-6">
-                        <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[22px]">
-                          {card.title}
-                        </h3>
-                        <div className="mt-3 mb-4 w-[60px]">
-                          <span
-                            className="block h-[2px]"
-                            style={{ backgroundColor: card.accent }}
+                        >
+                          {/* Mixed Overlay Background Pattern */}
+                          <div
+                            className="pointer-events-none absolute inset-0 opacity-[0.14]"
+                            style={{
+                              backgroundImage: `url(${bg2})`,
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                              mixBlendMode: "overlay",
+                            }}
                           />
+                          {/* Floating Icon Container */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/20 bg-white/10 backdrop-blur-sm">
+                              <Icon className="h-6 w-6 text-white" />
+                            </div>
+                          </div>
+                          {/* Inner shadow for recess visual depth */}
+                          <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.05)]" />
                         </div>
-                        <p className="text-[15px] font-medium leading-relaxed text-[#4d3c2a]">
-                          {card.body}
-                        </p>
-                      </div>
-                    </article>
+
+                        {/* Content Area */}
+                        <div className="flex flex-1 flex-col pt-3 sm:pt-4">
+                          <h3 className="font-serif text-[18px] sm:text-[1.1rem] leading-tight text-stone-900 transition duration-300 group-hover:text-[#d6a45b]">
+                            {card.title}
+                          </h3>
+                          <div className="mt-2.5 mb-2.5 w-[45px]">
+                            <span
+                              className="block h-[1.5px] transition-all duration-300 group-hover:w-[65px]"
+                              style={{ backgroundColor: card.accent }}
+                            />
+                          </div>
+                          <p className="text-[13px] leading-relaxed text-stone-600 font-medium">
+                            {card.body}
+                          </p>
+                        </div>
+                      </article>
+                    </div>
                   );
                 })}
               </div>
 
-              <div className="mx-auto mt-10 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
-                <p className="font-serif text-[17px] font-semibold italic leading-snug text-[#6a4a25] sm:text-[19px]">
+              {/* Tagline Container updated to match off-white card design */}
+              <div className="mx-auto mt-10 max-w-[860px] rounded-[24px] border border-stone-200 bg-white px-7 py-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
+                <p className="font-serif text-[17px] font-semibold italic leading-snug text-stone-600 sm:text-[19px]">
                   {group.tagline}
                 </p>
               </div>
@@ -485,7 +516,7 @@ export default function IntroductionPage({
           ))}
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#faf8f5]/20 to-transparent" />
       </section>
     </main>
   );

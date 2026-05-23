@@ -332,8 +332,6 @@ export default function ReligiousDiversityPage({
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<SubPage>(null);
   const content = pageContent[lang];
-  // RTL temporarily disabled so the Religions page can be viewed in its current layout.
-  // const dir = lang === "en" ? "ltr" : "rtl";
   const dir = "ltr";
 
   const handleLanguageChange = () => {
@@ -353,38 +351,34 @@ export default function ReligiousDiversityPage({
     setSubPage({ kind: "sectionDetail", cardId: id });
   };
 
-  React.useEffect(() => {
+  // Staggered Page Entrance Animation via useLayoutEffect
+  React.useLayoutEffect(() => {
     if (!sectionRef.current || subPage) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-rd-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
+      const hero = "[data-rd-hero='true']";
+      const langBtn = "[data-rd-lang-btn='true']";
+      const titleLines = "[data-rd-title-line='true']";
+      const subtitle = "[data-rd-subtitle='true']";
+      const desc = "[data-rd-desc='true']";
+      const cards = "[data-rd-card='true']";
 
-      gsap.set("[data-rd-animate='true']", {
-        autoAlpha: 0,
-        y: 26,
-      });
+      // Set initial hidden positions synchronously
+      gsap.set(hero, { autoAlpha: 0, scale: 1.04 });
+      gsap.set(langBtn, { autoAlpha: 0, y: -15 });
+      gsap.set(titleLines, { autoAlpha: 0, y: 24 });
+      gsap.set(subtitle, { autoAlpha: 0, y: 15 });
+      gsap.set(desc, { autoAlpha: 0, y: 15 });
+      gsap.set(cards, { autoAlpha: 0, y: 35 });
 
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.to("[data-rd-hero='true']", {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
-      }).to(
-        "[data-rd-animate='true']",
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.07,
-          ease: "power2.out",
-        },
-        "-=0.45",
-      );
+      tl.to(hero, { autoAlpha: 1, scale: 1, duration: 1.15 }, 0)
+        .to(langBtn, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.15)
+        .to(titleLines, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.75 }, 0.12)
+        .to(subtitle, { autoAlpha: 1, y: 0, duration: 0.65 }, 0.35)
+        .to(desc, { autoAlpha: 1, y: 0, duration: 0.65 }, 0.45)
+        .to(cards, { autoAlpha: 1, y: 0, stagger: 0.06, duration: 0.8 }, 0.52);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -641,8 +635,9 @@ export default function ReligiousDiversityPage({
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
         <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#f6ead8]/72 via-[#f6ead8]/30 to-[#f4eadb]/95" />
+        
         <button
-          data-rd-animate="true"
+          data-rd-lang-btn="true"
           type="button"
           onClick={handleLanguageChange}
           className="absolute right-10 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
@@ -652,24 +647,31 @@ export default function ReligiousDiversityPage({
         </button>
 
         <div className="relative z-10 mx-auto min-h-screen w-full max-w-[1500px] px-10 pb-10 pt-24 lg:px-16 lg:pt-28">
-          <div data-rd-animate="true" className="shrink-0">
+          <div className="shrink-0">
             <div className="relative max-w-[min(100%,720px)]">
               <h1 className="font-serif text-[clamp(38px,5.2vw,76px)] font-black uppercase leading-[0.9] tracking-wider text-[#332315]">
                 {content.title.map((line, index) => (
-                  <span key={`${line}-${index}`} className="block">
+                  <span 
+                    key={`${line}-${index}`} 
+                    data-rd-title-line="true" 
+                    className="block"
+                  >
                     {line}
                   </span>
                 ))}
               </h1>
 
-              <h2 className="mt-5 max-w-[640px] font-serif text-[clamp(13px,1.5vw,20px)] font-light uppercase leading-snug tracking-[0.14em] text-[#b98222] sm:mt-6">
+              <h2 
+                data-rd-subtitle="true" 
+                className="mt-5 max-w-[640px] font-serif text-[clamp(13px,1.5vw,20px)] font-light uppercase leading-snug tracking-[0.14em] text-[#b98222] sm:mt-6"
+              >
                 {content.subtitle}
               </h2>
             </div>
           </div>
 
           <div
-            data-rd-animate="true"
+            data-rd-desc="true"
             className="mt-5 border-t border-[#c9973e]/30 pt-5 sm:mt-6 sm:pt-6"
           >
             <p className="max-w-[min(100%,560px)] font-sans text-[clamp(15px,1.35vw,19px)] font-normal leading-[1.65] text-[#332315]/90">
@@ -678,20 +680,24 @@ export default function ReligiousDiversityPage({
           </div>
 
           <section
-            data-rd-animate="true"
             className="absolute inset-x-10 z-10 pb-10 lg:inset-x-16"
             style={{ top: "min(70vh, 1280px)" }}
           >
             <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {content.cards.map((card) => (
-                <ClassicalCard
-                  key={card.id}
-                  title={card.title}
-                  image={card.image}
-                  ctaLabel={content.openLabel}
-                  onClick={() => openSectionCard(card.id)}
-                  ariaLabel={card.title}
-                />
+                <div 
+                  key={card.id} 
+                  data-rd-card="true" 
+                  className="w-full"
+                >
+                  <ClassicalCard
+                    title={card.title}
+                    image={card.image}
+                    ctaLabel={content.openLabel}
+                    onClick={() => openSectionCard(card.id)}
+                    ariaLabel={card.title}
+                  />
+                </div>
               ))}
             </div>
           </section>
