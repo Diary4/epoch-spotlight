@@ -17,7 +17,7 @@ export default function ClassicalCard({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel ?? title}
-      className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
+      className="group bg-[#fffff4] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
       style={{ aspectRatio: "3 / 4" }}
     >
       {/* Framed Image Container */}

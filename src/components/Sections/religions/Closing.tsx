@@ -185,8 +185,8 @@ const content: Record<LangCode, ClosingContent> = {
     sourcesSubtitle: "المنشور الرسمي ومواد المصدر",
     sourcesIntro:
       "جميع المعلومات الواردة في هذا المعرض مستقاة من المنشور الرسمي:",
-    publicationTitleLine1: "«كوردستان:",
-    publicationTitleLine2: "مهد التعايش»",
+    publicationTitleLine1: "كوردستان",
+    publicationTitleLine2: "مهد التعايش",
     publishedByLead: "صادر عن",
     ministryName: "وزارة الأوقاف والشؤون الدينية",
     governmentLine: "حكومة إقليم كوردستان — العراق",

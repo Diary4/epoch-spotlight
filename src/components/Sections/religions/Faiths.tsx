@@ -1,6 +1,6 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
+import { ArrowLeft, Globe2 } from "lucide-react";
 
 import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/religions/r-1.webp";
@@ -135,7 +135,7 @@ const content: Record<LangCode, FaithsContent> = {
       {
         id: "yarsanism",
         title: "یارسانیەتی (کاکەیی)",
-        shortIntro: "ڕاستیی ناوەخۆ، تەرخانکردن، و کۆمەڵگە.",
+        shortIntro: "ڕاستیی ناوەخۆ، تەرخانکردن, و کۆمەڵگە.",
         image: imgYarsanism,
       },
       {
@@ -253,42 +253,55 @@ export default function FaithsPage({
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
+  // Staggered Page Entrance Animation via useLayoutEffect
+  React.useLayoutEffect(() => {
     if (!sectionRef.current || activeId) return;
 
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const ctx = gsap.context(() => {
-      gsap.set("[data-f-hero='true']", { autoAlpha: 0, scale: 1.04 });
-      gsap.set("[data-f-animate='true']", { autoAlpha: 0, y: 24 });
+      if (reducedMotion) return;
 
-      const tl = gsap.timeline();
+      const hero = "[data-f-hero='true']";
+      const animElements = "[data-f-animate='true']";
+      const cards = "[data-f-card='true']";
 
-      tl.to("[data-f-hero='true']", {
+      gsap.set(hero, { autoAlpha: 0, scale: 1.04 });
+      gsap.set(animElements, { autoAlpha: 0, y: 24 });
+      gsap.set(cards, { autoAlpha: 0, y: 35 });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to(hero, {
         autoAlpha: 1,
         scale: 1,
-        duration: 0.9,
+        duration: 1.0,
         ease: "power2.out",
       }).to(
-        "[data-f-animate='true']",
+        animElements,
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.75,
           stagger: 0.08,
-          ease: "power2.out",
         },
-        "-=0.25",
+        "-=0.5",
+      ).to(
+        cards,
+        {
+          autoAlpha: 1,
+          y: 0,
+          stagger: 0.05,
+          duration: 0.8,
+        },
+        "-=0.4"
       );
     }, sectionRef);
 
     return () => ctx.revert();
   }, [lang, activeId]);
-
-  // ---------------------------------------------------------------------------
-  // Per-faith detail routing.
-  // Wired up: Islam, Christianity, Yazidism (existing files in RelisgionsSection/).
-  // Add a branch for each new per-faith page you create — uncomment the matching
-  // import at the top of this file before enabling it.
-  // ---------------------------------------------------------------------------
 
   if (activeId === "islam") {
     return (
@@ -381,13 +394,13 @@ export default function FaithsPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-stone-800"
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
+        className="relative w-full overflow-hidden bg-[#faf8f5] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
       >
-        {/* Background video (fades into cream like Nations / Kurds) */}
+        {/* Background video (retained completely intact) */}
         <video
           data-f-hero="true"
           src={faithsVideo}
@@ -398,12 +411,12 @@ export default function FaithsPage({
           preload="auto"
           className="pointer-events-none absolute inset-0 h-[65vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[55vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[55vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm transition"
+          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50"
           aria-label={c.back}
         >
           <ArrowLeft className="h-7 w-7" />
@@ -412,7 +425,7 @@ export default function FaithsPage({
         <button
           type="button"
           onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
+          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-stone-200 bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50"
         >
           <Globe2 className="h-5 w-5" />
           {languageLabel}
@@ -426,70 +439,69 @@ export default function FaithsPage({
             <div className="mx-auto mt-3 mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[84px]">
+            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 sm:text-[76px] lg:text-[84px]">
               {c.pageTitle}
             </h1>
             <div className="mx-auto mt-5 w-[180px]">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-5 max-w-[620px] text-[18px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[20px]">
+            <p className="mx-auto mt-5 max-w-[620px] text-[18px] font-semibold leading-relaxed text-stone-600 sm:text-[20px]">
               {c.pageDescription}
             </p>
           </header>
 
           <div
-            data-f-animate="true"
             className="mx-auto mt-[clamp(80px,40vh,860px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
             {c.faiths.map((faith) => (
-            <article
-              key={faith.id}
-              role="button"
-              tabIndex={0}
-              onClick={() => setActiveId(faith.id)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  setActiveId(faith.id);
-                }
-              }}
-              aria-label={faith.title}
-              className="group relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white/85 shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none transition focus-visible:ring-2 focus-visible:ring-[#c3923a]"
-            >
-              <div className="relative h-[230px] w-full overflow-hidden">
-                <img
-                  src={faith.image}
-                  alt={faith.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
-              </div>
-
-              <div className="flex flex-1 flex-col px-6 py-6">
-                <h3 className="font-serif text-[24px] font-semibold uppercase leading-tight text-[#3b2410]">
-                  {faith.title}
-                </h3>
-                <div className="mt-2 mb-3 w-[60px]">
-                  <span className="block h-[2px] bg-[#c3923a]" />
-                </div>
-                <p className="text-[14px] leading-relaxed text-[#5a4a30]">
-                  {faith.shortIntro}
-                </p>
-                <div className="mt-auto flex items-center justify-between pt-5">
-                  <span className="font-serif text-[12px] font-semibold uppercase tracking-[0.28em] text-[#a77423]">
-                    {c.openLabel}
-                  </span>
-                  <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12] transition">
-                    <ChevronRight className="h-5 w-5" />
+              <div 
+                key={faith.id} 
+                data-f-card="true" 
+                className="w-full"
+              >
+                <article
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setActiveId(faith.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveId(faith.id);
+                    }
+                  }}
+                  aria-label={faith.title}
+                  className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
+                >
+                  {/* Framed Image Container */}
+                  <div className="relative h-[210px] w-full overflow-hidden rounded-2xl bg-stone-100">
+                    <img
+                      src={faith.image}
+                      alt={faith.title}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                    {/* Soft inner shadow for recess depth */}
+                    <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.04)]" />
                   </div>
-                </div>
+
+                  {/* Content Area */}
+                  <div className="flex flex-1 flex-col pt-4">
+                    <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-stone-900 transition duration-300 group-hover:text-[#d6a45b]">
+                      {faith.title}
+                    </h3>
+                    <div className="mt-2 mb-3 w-[45px]">
+                      <span className="block h-[1.5px] bg-[#c3923a] transition-all duration-300 group-hover:w-[60px]" />
+                    </div>
+                    <p className="text-[13px] leading-relaxed text-stone-600 font-medium">
+                      {faith.shortIntro}
+                    </p>
+                  </div>
+                </article>
               </div>
-            </article>
-          ))}
+            ))}
           </div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#faf8f5]/20 to-transparent" />
       </section>
     </main>
   );
