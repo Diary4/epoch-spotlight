@@ -18,6 +18,7 @@ const SCREEN_OPTIONS: ScreenOption[] = [
   { id: "09", label: "Screen 9 - Portrait Detail (ID 2)", path: "/portraits/2" },
   { id: "10", label: "Screen 10 - Portrait Timeline (ID 2)", path: "/portraits/2/timeline" },
   { id: "11", label: "Screen 11 - Portrait Detail (ID 3)", path: "/portraits/3" },
+  { id: "12", label: "Screen 12 - Touristic", path: "/touristic" },
 ];
 
 export default function StartMenu() {

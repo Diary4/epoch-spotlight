@@ -594,7 +594,7 @@ export default function ReligiousDiversityPage({
             <button
               type="button"
               onClick={handleLanguageChange}
-              className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-semibold text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+              className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
             >
               <Globe2 className="h-5 w-5" />
               {content.languageLabel}
@@ -605,7 +605,7 @@ export default function ReligiousDiversityPage({
                 <DecorativeLine color="#bd8a3c" />
               </div>
 
-              <h1 className="mt-6 font-serif text-[52px] font-semibold uppercase leading-[1.04] tracking-[0.05em] text-[#2e2116] sm:text-[76px]">
+              <h1 className="mt-6 font-serif text-[52px] font-light uppercase leading-[1.04] tracking-[0.05em] text-[#2e2116] sm:text-[76px]">
                 {card.title}
               </h1>
 
@@ -639,7 +639,7 @@ export default function ReligiousDiversityPage({
           data-rd-animate="true"
           type="button"
           onClick={handleLanguageChange}
-          className="absolute right-10 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-semibold text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+          className="absolute right-10 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
         >
           <Globe2 className="h-5 w-5" />
           {content.languageLabel}
@@ -656,7 +656,7 @@ export default function ReligiousDiversityPage({
                 ))}
               </h1>
 
-              <h2 className="mt-5 max-w-[640px] font-serif text-[clamp(13px,1.5vw,20px)] font-bold uppercase leading-snug tracking-[0.14em] text-[#b98222] sm:mt-6">
+              <h2 className="mt-5 max-w-[640px] font-serif text-[clamp(13px,1.5vw,20px)] font-light uppercase leading-snug tracking-[0.14em] text-[#b98222] sm:mt-6">
                 {content.subtitle}
               </h2>
             </div>

@@ -18,7 +18,7 @@ export default function ClassicalCard({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel ?? title}
-      className="bg-[#f4eadb] relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[28px] text-left shadow-[0_14px_44px_rgba(28,18,8,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c99a55] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4eadb]"
+      className="bg-[#f4eadb] font-serif relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[28px] text-left shadow-[0_14px_44px_rgba(28,18,8,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c99a55] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4eadb]"
       style={{ aspectRatio: "3 / 4" }}
     >
       <img
