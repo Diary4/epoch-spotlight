@@ -10,7 +10,7 @@ import imgPakiza from "@/assets/images/women/w-11.webp";
 import imgHana from "@/assets/images/women/w-1.webp";
 import imgMaryam from "@/assets/images/women/w-2.webp";
 import imgKurdistan from "@/assets/images/women/w-3.webp";
-import imgKurdistanMukryani from "@/assets/images/women/kurdistan-mukryani.png";
+import imgKurdistanMukryani from "@/assets/images/women/kurdistan-mukryani.webp";
 
 type LangCode = "ku" | "en" | "ar";
 type ListIcon = "crown" | "flower";
