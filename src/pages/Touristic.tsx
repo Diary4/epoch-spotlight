@@ -1,10 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { NATURAL_PLACES } from "@/data/naturalPlaces";
 import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
 import { RELIGIOUS_SITES } from "@/data/religousSites";
 import { MUSEUM_CENTERS } from "@/data/museumCenters";
+
+// GSAP Imports
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const placeCategories = [
   {
@@ -37,6 +44,8 @@ const NaturalPlaces = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const activeCategoryId = searchParams.get("category") ?? placeCategories[0].id;
+  
+  const containerRef = useRef(null);
 
   const activeCategory =
     placeCategories.find((category) => category.id === activeCategoryId) ??
@@ -50,6 +59,40 @@ const NaturalPlaces = () => {
       })),
     [activeCategory],
   );
+
+  // GSAP Scroll Animation Effect
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // Use gsap.context to isolate selectors and handle cleanup safely
+    const ctx = gsap.context(() => {
+      const items = containerRef.current.querySelectorAll(".timeline-item");
+
+      items.forEach((item) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom", // Animation starts when top of item enters bottom of screen
+            end: "bottom top",   // Animation ends when bottom of item leaves top of screen
+            scrub: 1,            // Links animation playhead to scroll position
+          },
+        });
+
+        // 1. Fade/slide in from bottom
+        // 2. Remain fully visible in center
+        // 3. Fade/slide out as it leaves the top of the screen
+        tl.fromTo(
+          item,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.35, ease: "power1.out" }
+        )
+          .to(item, { opacity: 1, duration: 0.3 })
+          .to(item, { opacity: 0, y: -30, duration: 0.35, ease: "power1.in" });
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [places]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,12 +112,14 @@ const NaturalPlaces = () => {
   return (
     <main className="min-h-screen w-screen overflow-x-hidden bg-[#071014] text-white">
       <section className="relative mx-auto min-h-screen w-full bg-[#071014]">
+        {/* Decorative background gradients */}
         <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_8%,rgba(186,140,84,0.18),transparent_28%),linear-gradient(180deg,#071014_0%,#0a1115_45%,#080d10_100%)]" />
         <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_24%,rgba(0,0,0,0.76)_88%)]" />
         <div className="pointer-events-none fixed inset-y-0 left-0 w-32 bg-gradient-to-r from-black/75 to-transparent md:w-44" />
         <div className="pointer-events-none fixed inset-y-0 right-0 w-32 bg-gradient-to-l from-black/75 to-transparent md:w-44" />
 
-        <header className="relative z-30 flex items-center justify-between gap-4 px-6 pb-4 pt-8 sm:px-10 lg:px-14">
+        {/* Header */}
+        <header className="relative z-30 flex items-center justify-between gap-4 px-6 pb-12 pt-8 sm:px-10 lg:px-14">
           <div className="min-w-0">
             <p className="text-[11px] uppercase tracking-[0.38em] text-[#d6a45b]/80">
               Kurdistan
@@ -112,48 +157,134 @@ const NaturalPlaces = () => {
           </Link>
         </header>
 
-        <div className="relative z-20 w-full pb-16 flex flex-col gap-1">
-          {places.map((place) => (
-            <article
-              key={place.id}
-              className="relative w-full"
-            >
-              <Link
-                to={`/touristic/${activeCategory.id}/${place.id}`}
-                className="relative block h-[35vh] min-h-[320px] w-full overflow-hidden text-left group"
-              >
-                <img
-                  src={place.image}
-                  alt={place.name}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
+        {/* Timeline Container scoped with containerRef */}
+        <div ref={containerRef} className="relative z-20 w-full max-w-6xl mx-auto px-6 pb-24">
+          {/* Vertical Central Line */}
+          <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-[#d6a45b]/5 via-[#d6a45b]/25 to-[#d6a45b]/5 -translate-x-1/2" />
 
-                <div className="absolute inset-0 bg-gradient-to-b from-[#071014]/40 via-transparent to-[#071014]/40" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#071014]/90 via-black/30 to-[#071014]/84" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_18%,rgba(0,0,0,0.48)_78%,rgba(0,0,0,0.78)_100%)]" />
+          <div className="flex flex-col gap-16 md:gap-24">
+            {places.map((place, index) => {
+              const isEven = index % 2 === 0;
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-                  <h2 className="max-w-[920px] font-serif text-[28px] uppercase tracking-[0.18em] text-[#f2eee5] drop-shadow-[0_2px_18px_rgba(0,0,0,0.9)] sm:text-[36px] sm:tracking-[0.22em] lg:text-[48px]">
-                    {place.name}
-                  </h2>
-                  <p className="mt-3 max-w-[760px] text-[11px] uppercase tracking-[0.28em] text-[#d6a45b] sm:text-[13px] sm:tracking-[0.38em]">
-                    {place.locationLabel}
-                  </p>
-                  <span className="mt-4 h-px w-12 bg-[#d6a45b]/80" />
-                  <p className="mt-5 line-clamp-2 max-w-[680px] text-center text-xs leading-relaxed text-white/70 sm:text-sm">
-                    {place.description}
-                  </p>
-                </div>
-              </Link>
-            </article>
-          ))}
+              return (
+                <article key={place.id} className="timeline-item relative group w-full">
+                  <Link
+                    to={`/touristic/${activeCategory.id}/${place.id}`}
+                    className="relative flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-16 items-center w-full"
+                  >
+                    {/* Left Column (Desktop) */}
+                    <div
+                      className={`w-full pl-16 md:pl-0 flex flex-col justify-center ${
+                        isEven
+                          ? "md:items-end md:text-right md:pr-12"
+                          : "hidden md:flex md:items-start md:text-left md:pr-12"
+                      }`}
+                    >
+                      {isEven ? (
+                        <div className="max-w-md">
+                          <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#d6a45b]">
+                            {place.locationLabel}
+                          </span>
+                          <h2 className="mt-1 font-serif text-xl uppercase tracking-[0.15em] text-[#f2eee5] transition duration-300 group-hover:text-[#d6a45b] sm:text-2xl">
+                            {place.name}
+                          </h2>
+                          <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-white/60">
+                            {place.description}
+                          </p>
+                        </div>
+                      ) : (
+                        // Desktop Left Side Full-Width Image Preview
+                        <div className="relative w-full h-[280px] lg:h-[340px] overflow-hidden rounded-xl border border-white/5 transition duration-500 group-hover:border-[#c89b52]/30">
+                          <img
+                            src={place.image}
+                            alt={place.name}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                          {/* Softened overlays for improved image visibility */}
+                          <div className="absolute inset-0 bg-black/15" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#071014]/65 via-transparent to-[#071014]/20" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Central Timeline Dot (Circle Thumbnail) */}
+                    <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
+                      <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full border-2 border-[#d6a45b]/40 bg-[#071014] overflow-hidden flex items-center justify-center p-0.5 shadow-[0_0_15px_rgba(214,164,91,0.15)] group-hover:border-[#d6a45b] group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(214,164,91,0.3)] transition duration-300">
+                        <img
+                          src={place.image}
+                          alt=""
+                          className="h-full w-full rounded-full object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Right Column (Desktop) */}
+                    <div
+                      className={`w-full pl-16 md:pl-0 flex flex-col justify-center ${
+                        !isEven
+                          ? "md:items-start md:text-left md:pl-12"
+                          : "hidden md:flex md:items-start md:text-left md:pl-12"
+                      }`}
+                    >
+                      {!isEven ? (
+                        <div className="max-w-md">
+                          <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#d6a45b]">
+                            {place.locationLabel}
+                          </span>
+                          <h2 className="mt-1 font-serif text-xl uppercase tracking-[0.15em] text-[#f2eee5] transition duration-300 group-hover:text-[#d6a45b] sm:text-2xl">
+                            {place.name}
+                          </h2>
+                          <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-white/60">
+                            {place.description}
+                          </p>
+                        </div>
+                      ) : (
+                        // Desktop Right Side Full-Width Image Preview
+                        <div className="relative w-full h-[280px] lg:h-[340px] overflow-hidden rounded-xl border border-white/5 transition duration-500 group-hover:border-[#c89b52]/30">
+                          <img
+                            src={place.image}
+                            alt={place.name}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                          {/* Softened overlays for improved image visibility */}
+                          <div className="absolute inset-0 bg-black/15" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#071014]/65 via-transparent to-[#071014]/20" />
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+
+                  {/* Mobile-only Image Preview */}
+                  <div className="mt-4 ml-16 mr-4 block md:hidden">
+                    <Link
+                      to={`/touristic/${activeCategory.id}/${place.id}`}
+                      className="relative block w-full h-[200px] overflow-hidden rounded-xl border border-white/5"
+                    >
+                      <img
+                        src={place.image}
+                        alt={place.name}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                      {/* Consistent softened overlays on mobile */}
+                      <div className="absolute inset-0 bg-black/15" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#071014]/65 via-transparent to-[#071014]/20" />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
 
+        {/* Footer */}
         <footer className="relative z-20 pb-10 text-center text-[11px] uppercase tracking-[0.28em] text-[#d6a45b]/60">
           {places.length} {activeCategory.title}
         </footer>
 
+        {/* Scroll To Top */}
         <button
           type="button"
           aria-label="Scroll to top"
