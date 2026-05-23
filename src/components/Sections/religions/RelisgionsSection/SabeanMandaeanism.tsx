@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import waterVideo from "@/assets/videos/water.mp4?url";
+import waterVideo from "@/assets/videos/water.webm?url";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
 type LangCode = "en" | "ku" | "ar";
