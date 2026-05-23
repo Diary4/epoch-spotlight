@@ -285,7 +285,7 @@ function RightsOverviewCardButton({
       </div>
 
       <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-        <h3 className="font-serif text-[26px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[30px]">
+        <h3 className="font-serif text-[26px] font-light uppercase leading-tight text-[#3b2410] sm:text-[30px]">
           {card.title}
         </h3>
         <div className="mb-3 mt-3 flex w-full max-w-[84px] items-center gap-2 text-[#c3923a]">
@@ -295,7 +295,7 @@ function RightsOverviewCardButton({
           </span>
           <span className="h-[2px] flex-1 rounded-full bg-[#c3923a]" />
         </div>
-        <p className="text-[15px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[16px]">
+        <p className="text-[15px] font-light leading-relaxed text-[#4d3c2a] sm:text-[16px]">
           {card.subtitle}
         </p>
       </div>

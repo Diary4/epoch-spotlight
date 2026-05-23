@@ -33,7 +33,7 @@ export default function ClassicalCard({
       />
 
       <div className="relative flex h-full min-h-0 flex-col justify-between p-5 sm:p-6">
-        <h3 className="text-center font-sans text-[1.35rem] font-bold leading-tight tracking-tight text-[#332315] sm:text-2xl">
+        <h3 className="text-center font-sans text-[1.35rem] font-light leading-tight tracking-tight text-[#332315] sm:text-2xl">
           {title}
         </h3>
 

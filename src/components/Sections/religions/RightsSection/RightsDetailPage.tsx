@@ -111,7 +111,7 @@ export default function RightsDetailPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
+            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-light text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
           >
             <Globe2 className="h-5 w-5" />
             {languageLabel}
@@ -126,7 +126,7 @@ export default function RightsDetailPage({
             <div className="mx-auto mb-3 w-[260px]">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="font-serif text-[44px] font-semibold uppercase leading-[1.06] tracking-[0.04em] text-[#3b2410] sm:text-[60px] lg:text-[68px]">
+            <h1 className="font-serif text-[44px] font-light uppercase leading-[1.06] tracking-[0.04em] text-[#3b2410] sm:text-[60px] lg:text-[68px]">
               {c.pageTitle}
             </h1>
             <div className="mx-auto mt-5 w-[180px]">
@@ -139,7 +139,7 @@ export default function RightsDetailPage({
 
           <div
             data-rd-animate="true"
-            className="mx-auto mt-[40vh] grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+            className="mx-auto mt-[30vh] grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
           >
             {c.cards.map((card) => {
               const Icon = card.icon;
@@ -156,7 +156,7 @@ export default function RightsDetailPage({
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2d2114]/58 via-[#f8f0e4]/18 to-[#fff7e8]/22" />
                       <div className="absolute inset-0 flex items-end justify-between gap-4 px-5 py-4">
-                        <p className="max-w-[calc(100%-72px)] rounded-[14px] border border-[#ead3a3]/80 bg-[#fff7e7]/92 px-4 py-2.5 font-serif text-[18px] font-semibold uppercase leading-tight tracking-[0.03em] text-[#3b2410] shadow-[0_8px_18px_rgba(69,43,14,0.18)] backdrop-blur-md sm:text-[20px]">
+                        <p className="max-w-[calc(100%-72px)] rounded-[14px] border border-[#ead3a3]/80 bg-[#fff7e7]/92 px-4 py-2.5 font-serif text-[18px] font-light uppercase leading-tight tracking-[0.03em] text-[#3b2410] shadow-[0_8px_18px_rgba(69,43,14,0.18)] backdrop-blur-md sm:text-[20px]">
                           {card.eyebrow}
                         </p>
                         <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-[#ecd8ad]/80 bg-[#fff7e7]/90 text-[#7a4a12] shadow-[0_6px_16px_rgba(69,43,14,0.18)] backdrop-blur-md">
@@ -167,7 +167,7 @@ export default function RightsDetailPage({
                   </div>
 
                   <div className="flex flex-1 flex-col px-6 py-6">
-                    <h3 className="font-serif text-[30px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[34px]">
+                    <h3 className="font-serif text-[30px] font-light uppercase leading-tight text-[#3b2410] sm:text-[34px]">
                       {card.title}
                     </h3>
                     <div className="mb-4 mt-3 w-[72px]">
@@ -186,7 +186,7 @@ export default function RightsDetailPage({
             data-rd-animate="true"
             className="mx-auto mt-12 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]"
           >
-            <p className="font-serif text-[17px] font-semibold italic leading-snug text-[#6a4a25] sm:text-[19px]">
+            <p className="font-serif text-[17px] font-light italic leading-snug text-[#6a4a25] sm:text-[19px]">
               {c.tagline}
             </p>
           </div>

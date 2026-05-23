@@ -116,7 +116,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
                     <Icon size={56} strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-[clamp(0.8rem,1.8vh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7vw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
+                  <h3 className="mt-[clamp(0.8rem,1.8vh,1.9rem)] font-serif text-[clamp(1.5rem,2.7vw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
                     {card.title}
                   </h3>
 

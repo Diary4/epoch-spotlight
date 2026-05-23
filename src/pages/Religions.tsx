@@ -151,7 +151,7 @@ const pageContent: Record<
   ku: {
     languageLabel: "کوردی",
     title: ["ئاینی", "و", "فرە", "نەتەوەیی", "لە", "کوردستان"],
-    subtitle: "کوردستان: گهوارەی پێکەوەژیان",
+    subtitle: "کوردستان: لانکەی پێکەوە ژیان",
     description:
       "لە نێوان ئاین و زمان و کلتوورە جیاوازەکاندا، کوردستان ماڵی ڕێز و یەکگرتوویی و میراتی هاوبەشە.",
     cards: [
@@ -327,7 +327,9 @@ export default function ReligiousDiversityPage({
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<SubPage>(null);
   const content = pageContent[lang];
-  const dir = lang === "en" ? "ltr" : "rtl";
+  // RTL temporarily disabled so the Religions page can be viewed in its current layout.
+  // const dir = lang === "en" ? "ltr" : "rtl";
+  const dir = "ltr";
 
   const handleLanguageChange = () => {
     setLang((prev) => (prev === "en" ? "ku" : prev === "ku" ? "ar" : "en"));
@@ -647,7 +649,7 @@ export default function ReligiousDiversityPage({
 
         <div className="relative z-10 mx-auto min-h-screen w-full max-w-[1500px] px-10 pb-10 pt-24 lg:px-16 lg:pt-28">
           <div data-rd-animate="true" className="shrink-0">
-            <div className="relative max-w-[min(100%,720px)] border-s-2 border-[#c9973e]/50 ps-7 sm:ps-10">
+            <div className="relative max-w-[min(100%,720px)]">
               <h1 className="font-serif text-[clamp(38px,5.2vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.02em] text-[#332315]">
                 {content.title.map((line, index) => (
                   <span key={`${line}-${index}`} className="block">
