@@ -146,9 +146,9 @@ const TouristicDetail = () => {
   return (
     <main
       ref={rootRef}
-      className="min-h-screen w-screen overflow-x-hidden bg-[#071014] text-white selection:bg-[#c89b52]/30"
+      className="min-h-screen w-screen overflow-x-hidden bg-[#faf8f5] text-stone-800 selection:bg-[#c89b52]/30"
     >
-      <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+      <section className="relative h-[50vh] min-h-[500px] w-full overflow-hidden">
         <img
           data-place-hero-image="true"
           src={place.image}
@@ -156,9 +156,11 @@ const TouristicDetail = () => {
           className="absolute inset-0 h-full w-full object-cover will-change-transform"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071014] via-[#071014]/70 to-transparent" />
-        <div className="absolute bottom-[-1px] left-0 right-0 h-32 bg-gradient-to-t from-[#071014] via-[#071014]/95 to-transparent" />
+        {/* Top edge vignette for header contrast */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/45 to-transparent" />
+        
+        {/* Soft bottom edge fade transitioning into off-white */}
+        <div className="absolute bottom-[-1px] left-0 right-0 h-44 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/90 to-transparent" />
 
         <div
           data-place-back="true"
@@ -167,7 +169,7 @@ const TouristicDetail = () => {
           <Link
             to={`/touristic?category=${activeCategory.id}`}
             state={{ restoreTouristicScroll: true }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#c89b52]/35 bg-black/25 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-[#e6d8bd] backdrop-blur-md transition hover:bg-[#c89b52]/20 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white/80 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-stone-700 backdrop-blur-md transition hover:bg-stone-50 hover:text-stone-900"
           >
             <span>←</span> Back
           </Link>
@@ -177,15 +179,15 @@ const TouristicDetail = () => {
           data-place-hero-text="true"
           className="absolute bottom-0 left-0 w-full px-6 pb-12 sm:px-12 md:px-20 lg:px-32"
         >
-          <p className="text-[12px] uppercase tracking-[0.38em] text-[#d6a45b] drop-shadow-md">
+          <p className="text-[12px] uppercase tracking-[0.38em] text-[#d6a45b] font-semibold">
             {place.role}
           </p>
-          <h1 className="mt-4 font-serif text-4xl uppercase tracking-[0.15em] text-[#f2eee5] drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mt-4 font-serif text-4xl uppercase tracking-[0.15em] text-stone-900 sm:text-5xl md:text-6xl lg:text-7xl">
             {place.name}
           </h1>
           <div className="mt-6 flex items-center gap-4">
-            <span className="h-px w-12 bg-[#d6a45b]/80" />
-            <p className="text-sm uppercase tracking-[0.25em] text-white/80">
+            <span className="h-px w-12 bg-[#d6a45b]" />
+            <p className="text-sm uppercase tracking-[0.25em] text-stone-600">
               {place.location}
             </p>
           </div>
@@ -193,10 +195,10 @@ const TouristicDetail = () => {
       </section>
 
       <section className="relative mx-auto max-w-[1200px] px-6 py-16 sm:px-12 md:px-20 lg:px-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(186,140,84,0.05),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(186,140,84,0.06),transparent_40%)]" />
 
         <div data-place-intro="true" className="relative z-10 max-w-3xl">
-          <p className="text-lg font-light leading-relaxed text-white/80 sm:text-xl sm:leading-loose">
+          <p className="text-lg font-light leading-relaxed text-stone-700 sm:text-xl sm:leading-loose">
             {place.description}
           </p>
         </div>
@@ -204,14 +206,14 @@ const TouristicDetail = () => {
         <section data-place-gallery="true" className="relative z-10 mt-14">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.34em] text-[#d6a45b]/80">
+              <p className="text-[11px] uppercase tracking-[0.34em] text-[#d6a45b] font-semibold">
                 Gallery
               </p>
-              <h2 className="mt-2 font-serif text-2xl uppercase tracking-[0.16em] text-[#f2eee5] sm:text-3xl">
+              <h2 className="mt-2 font-serif text-2xl uppercase tracking-[0.16em] text-stone-900 sm:text-3xl">
                 Artistic Flow
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-white/55">
+            <p className="max-w-md text-sm leading-relaxed text-stone-500">
               A visual path through {activeCategory.id === "museums" ? "nearby cultural stops" : "related destinations"} in this collection.
             </p>
           </div>
@@ -223,7 +225,7 @@ const TouristicDetail = () => {
                 type="button"
                 data-place-gallery-item="true"
                 onClick={() => setSelectedGalleryId(image.id)}
-                className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left shadow-[0_24px_70px_rgba(0,0,0,0.35)] transition duration-500 hover:z-10 hover:scale-[1.025] hover:border-[#d6a45b]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] ${
+                className={`group relative overflow-hidden rounded-2xl border border-stone-200 bg-white/70 text-left shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition duration-500 hover:z-10 hover:scale-[1.025] hover:border-[#d6a45b]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] ${
                   image.size === "large"
                     ? "col-span-2 row-span-2"
                     : image.size === "medium"
@@ -237,7 +239,7 @@ const TouristicDetail = () => {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-95" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent opacity-85 transition-opacity duration-300 group-hover:opacity-95" />
                 <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <p className="font-serif text-lg uppercase tracking-[0.12em] text-white">
                     {image.name}
@@ -251,17 +253,18 @@ const TouristicDetail = () => {
           </div>
         </section>
 
+        {/* Updated Detail Cards */}
         <div className="relative z-10 mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {detailFields.map(([label, key]) => (
             <div
               key={key}
               data-place-card="true"
-              className="flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-colors hover:bg-white/[0.04]"
+              className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white/70 p-6 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
             >
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#d6a45b]/90">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#d6a45b]">
                 {label}
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
                 {place[key]}
               </p>
             </div>
@@ -269,8 +272,9 @@ const TouristicDetail = () => {
         </div>
       </section>
 
+      {/* Full-Screen Dark Overlay Lightbox */}
       <div
-        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm transition duration-300 sm:p-8 ${
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm transition duration-300 sm:p-8 ${
           selectedGalleryImage
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
