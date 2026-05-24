@@ -1,5 +1,5 @@
 import kurdistanNature from "@/assets/images/nature.webp";
-import mountainImage from "@/assets/images/kurdistan-2.webp";
+import mountainImage from "@/assets/images/tourist/t-2.png";
 import valleyImage from "@/assets/images/kurdistan-3.webp";
 import landscapeImage from "@/assets/mainImages/land-1.webp";
 import lakeImage from "@/assets/mainImages/theland/land-2.webp";
