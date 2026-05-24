@@ -172,9 +172,6 @@ export default function WomenResistancePage({
 
             <section className="relative z-10 grid min-h-0 grid-cols-1 items-center gap-8 px-5 pb-6 pt-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0 lg:px-10 lg:pb-0 lg:pt-10">
               <div data-resist-fade="true" className="relative z-20 lg:pt-6">
-                <p className="mb-3 font-serif text-sm font-semibold uppercase tracking-[0.2em] text-[#a75a69]">
-                  {copy.partLabel}
-                </p>
                 <h1 className="font-serif text-[clamp(52px,12vw,88px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
                   {copy.heroTitle1}
                   <br />

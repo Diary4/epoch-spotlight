@@ -109,14 +109,14 @@ export default function WomenKnowledgePage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-screen flex-col justify-start p-0 ${
+      className={`m-0 flex w-full max-w-full flex-col justify-start p-0 overflow-x-hidden ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
         className={`relative flex w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden ${
-          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
+          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
         }`}
       >
         <WomenLanguageButton
@@ -151,14 +151,31 @@ export default function WomenKnowledgePage({
           />
         ) : (
           <>
+            {/* Mobile Hero Top Visual */}
             <div
               data-knowledge-hero="true"
-              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(92vh,1150px)]"
+              className="pointer-events-none w-full h-[35vh] min-h-[240px] relative overflow-hidden sm:hidden"
             >
               <img
                 src={knowledgeHero}
                 alt="Women of Knowledge"
-                className="absolute inset-0 h-[100%] w-[100%] object-right-top"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
+              <div
+                className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fcf7ef] to-transparent"
+                aria-hidden
+              />
+            </div>
+
+            {/* Desktop Hero Absolute Backdrop */}
+            <div
+              data-knowledge-hero="true"
+              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(92vh,1150px)] hidden sm:block"
+            >
+              <img
+                src={knowledgeHero}
+                alt="Women of Knowledge"
+                className="absolute inset-0 h-full w-full object-right-top animate-none"
               />
               <div
                 className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
@@ -166,9 +183,9 @@ export default function WomenKnowledgePage({
               />
             </div>
 
-            <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14">
-              <div data-knowledge-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
-                <h1 className="font-serif text-[clamp(62px,15vw,110px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
+            <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14 pt-20 sm:pt-6">
+              <div data-knowledge-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
+                <h1 className="font-serif text-[clamp(36px,12vw,110px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] text-center lg:text-left">
                   {copy.heroTitle1}
                   <br />
                   <span className="inline-flex items-center gap-4 text-[0.48em] leading-none">
@@ -180,23 +197,24 @@ export default function WomenKnowledgePage({
                   {copy.heroTitle2}
                 </h1>
 
-                <h2 className="mt-5 font-serif text-[clamp(28px,6vw,42px)] font-light text-[#b65f71]">
+                <h2 className="mt-5 font-serif text-[clamp(20px,6vw,42px)] font-light text-[#b65f71] text-center lg:text-left">
                   {copy.heroSubtitle}
                 </h2>
 
-                <div className="my-6 flex w-full max-w-[300px] items-center gap-3 text-[#b4864d]">
+                <div className="my-6 mx-auto lg:mx-0 flex w-full max-w-[300px] items-center gap-3 text-[#b4864d]">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                   <Sparkles className="h-5 w-5" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <p className="max-w-[400px] text-[clamp(17px,4vw,21px)] leading-[1.65] text-[#353445]">
+                <p className="max-w-[400px] text-[clamp(17px,4vw,21px)] leading-[1.65] text-[#353445] text-center lg:text-left mx-auto lg:mx-0">
                   {copy.heroIntro}
                 </p>
               </div>
             </section>
 
-            <section className="relative z-20 mt-[clamp(26px,40vh,600px)] flex justify-center px-4 py-4 sm:px-8 lg:px-14">
+            {/* People List */}
+            <section className="relative z-20 mt-8 sm:mt-[clamp(26px,40vh,600px)] flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 px-4 py-4 sm:px-8 lg:px-14">
               {people.map((person) => (
                 <button
                   type="button"
@@ -228,6 +246,7 @@ export default function WomenKnowledgePage({
               ))}
             </section>
 
+            {/* Topics Section */}
             <section className="relative z-20 mt-5 grid grid-cols-1 gap-4 px-4 py-1 sm:grid-cols-3 sm:px-8 lg:px-14">
               {topicImages.map((topic) => (
                 <article
@@ -238,10 +257,10 @@ export default function WomenKnowledgePage({
                   <img
                     src={topic.imageSrc}
                     alt={copy.topics[topic.key]}
-                    className="h-[200px] w-[200px] object-contain"
+                    className="h-[140px] w-[140px] sm:h-[200px] sm:w-[200px] object-contain"
                   />
 
-                  <h4 className="mt-4 font-serif text-[clamp(24px,4vw,32px)] text-[#43223d]">
+                  <h4 className="mt-4 font-serif text-[clamp(18px,4vw,32px)] text-[#43223d]">
                     {copy.topics[topic.key]}
                   </h4>
 
@@ -254,11 +273,12 @@ export default function WomenKnowledgePage({
               ))}
             </section>
 
+            {/* Impact Box */}
             <section
               data-knowledge-fade="true"
-              className="relative z-20 mx-4 mb-4 mt-5 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#e4d5c3] bg-white/65 px-5 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)] sm:mx-8 lg:mx-14"
+              className="relative z-20 mx-4 mb-4 mt-5 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#e4d5c3] bg-white/65 px-5 py-6 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)] sm:mx-8 lg:mx-14"
             >
-              <h3 className="font-serif text-[clamp(30px,5vw,42px)] leading-none text-[#43223d]">
+              <h3 className="font-serif text-[clamp(22px,5vw,42px)] leading-none text-[#43223d]">
                 {copy.impactTitle}
               </h3>
 
