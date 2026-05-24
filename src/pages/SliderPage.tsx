@@ -291,29 +291,29 @@ export default function VerticalTourismShowcase() {
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      {/* <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent animate-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent animate-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 animate-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)] animate-none" /> */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)] animate-none" />
 
-      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1080px] flex-col px-10 py-6 lg:px-14 lg:py-8">
+      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1080px] flex-col px-4 sm:px-10 lg:px-14 py-6 lg:py-8">
         <header data-slider-header="true" className="flex items-start justify-between">
-          <div className="flex items-center gap-7">
+          <div className="flex items-center gap-4 sm:gap-7">
             <FlowerIcon />
             <div dir={dir}>
-              <p className="tracking-[0.45em] text-[#d7ae56] text-xl uppercase">
+              <p className="tracking-[0.2em] sm:tracking-[0.45em] text-[#d7ae56] text-xs sm:text-base lg:text-xl uppercase">
                 {copy.titleKicker}
               </p>
-              <h1 className="font-serif text-5xl tracking-[0.18em] text-[#f1d28b]">
+              <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl tracking-[0.1em] sm:tracking-[0.18em] text-[#f1d28b]">
                 {copy.titleMain}
               </h1>
             </div>
           </div>
 
-          <div className="flex items-center gap-7 pt-3 text-3xl">
+          <div className="flex items-center gap-4 sm:gap-7 pt-1 sm:pt-3 text-lg sm:text-2xl lg:text-3xl shrink-0">
             <button
               type="button"
               aria-label="Switch language"
-              className="transition hover:text-[#f1d28b]"
+              className="text-sm sm:text-base lg:text-lg transition hover:text-[#f1d28b]"
               onClick={(e) => {
                 e.stopPropagation();
                 handleLanguageChange();
@@ -321,10 +321,10 @@ export default function VerticalTourismShowcase() {
             >
               {languageLabels[lang]}
             </button>
-            <span className="h-12 w-px bg-[#d7ae56]" />
+            <span className="h-6 sm:h-12 w-px bg-[#d7ae56]" />
             <button
               type="button"
-              className="grid h-20 w-20 place-items-center rounded-full border border-[#d7ae56]/70 bg-white/5 backdrop-blur-md"
+              className="grid h-10 w-10 sm:h-16 sm:w-16 lg:h-20 lg:w-20 place-items-center rounded-full border border-[#d7ae56]/70 bg-white/5 backdrop-blur-md"
               onClick={(e) => e.stopPropagation()}
             >
               <FlowerIcon small />
@@ -332,14 +332,15 @@ export default function VerticalTourismShowcase() {
           </div>
         </header>
 
+        {/* Responsive Category bar - horizontal scrolls on mobile, wraps on desktop */}
         <nav
           data-slider-nav="true"
           aria-label={copy.categoryBrowse}
           dir={dir}
-          className="mt-5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#f1d28b]"
+          className="mt-5 flex items-center gap-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#f1d28b] overflow-x-auto scrollbar-none pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap shrink-0"
           onClick={(e) => e.stopPropagation()}
         >
-          <span className="mr-2 text-[#d7ae56]/80">{copy.categoryBrowse}</span>
+          <span className="mr-2 text-[#d7ae56]/80 shrink-0">{copy.categoryBrowse}</span>
           {[
             { id: "all" as const, label: copy.all },
             ...placeCategories.map((category) => ({
@@ -354,7 +355,7 @@ export default function VerticalTourismShowcase() {
                 key={category.id}
                 type="button"
                 onClick={() => setActiveCategoryId(category.id)}
-                className={`rounded-full border px-4 py-2 backdrop-blur-md transition ${
+                className={`rounded-full border px-4 py-2 backdrop-blur-md transition shrink-0 ${
                   isActive
                     ? "border-[#f1d28b] bg-[#f1d28b]/20 text-white"
                     : "border-[#d7ae56]/45 bg-black/15 text-[#f1d28b]/80 hover:border-[#f1d28b]/80 hover:text-white"
@@ -366,10 +367,11 @@ export default function VerticalTourismShowcase() {
           })}
         </nav>
 
-        <div className="grid flex-1 grid-cols-[90px_1fr] pt-[clamp(1rem,4vh,8rem)]">
-          <aside data-slider-aside="true" className="flex flex-col items-center text-[#d7ae56]">
+        {/* Grid Area: stacks on mobile, splits on desktop */}
+        <div className="grid flex-1 grid-cols-1 sm:grid-cols-[90px_1fr] pt-[clamp(1rem,4vh,8rem)]">
+          <aside data-slider-aside="true" className="flex flex-col items-center text-[#d7ae56] hidden sm:flex">
             <span className="mb-5 text-3xl">01</span>
-            <div className="relative flex h-[clamp(320px,48vh,650px)] flex-col items-center justify-between">
+            <div className="relative flex h-[clamp(240px,48vh,650px)] flex-col items-center justify-between">
               <span className="absolute top-0 h-full w-px bg-[#d7ae56]/60" />
               {dots.map((dot) => (
                 <button
@@ -390,46 +392,46 @@ export default function VerticalTourismShowcase() {
             <span className="mt-5 text-3xl">{totalNumber}</span>
           </aside>
 
-          <article dir={dir} className="max-w-[650px] pt-[clamp(0rem,2vh,7rem)]">
-            <h2 data-slider-title="true" className="whitespace-pre-line font-serif text-[clamp(46px,5.8vw,82px)] leading-[0.98] tracking-wide drop-shadow-2xl">
+          <article dir={dir} className="max-w-[650px] pt-[clamp(0rem,2vh,7rem)] flex flex-col justify-center sm:justify-start">
+            <h2 data-slider-title="true" className="whitespace-pre-line font-serif text-[clamp(30px,5.8vw,82px)] leading-[1] sm:leading-[0.98] tracking-wide drop-shadow-2xl">
               {formatSlideTitle(placeName)}
             </h2>
 
-            <div data-slider-cat="true" className="mt-5 inline-flex items-center gap-4 rounded-2xl border border-[#d7ae56] bg-black/20 px-6 py-3 text-[#f1d28b] backdrop-blur-md">
+            <div data-slider-cat="true" className="mt-4 sm:mt-5 inline-flex items-center gap-3 sm:gap-4 rounded-xl sm:rounded-2xl border border-[#d7ae56]/70 bg-black/40 px-4 py-2 sm:px-6 sm:py-3 text-[#f1d28b] backdrop-blur-md self-start">
               <FlowerIcon small />
-              <span className="text-xl font-semibold uppercase tracking-[0.25em]">
+              <span className="text-sm sm:text-xl font-semibold uppercase tracking-[0.25em]">
                 {placeCategoryLabel}
               </span>
             </div>
 
-            <p data-slider-desc="true" className="mt-5 line-clamp-4 max-w-[520px] text-[clamp(16px,1.7vw,22px)] leading-relaxed text-white/90 drop-shadow-lg">
+            <p data-slider-desc="true" className="mt-4 sm:mt-5 line-clamp-3 sm:line-clamp-4 max-w-[520px] text-[clamp(14px,1.7vw,22px)] leading-relaxed text-white/90 drop-shadow-lg">
               {placeDescription}
             </p>
 
-            <p data-slider-loc="true" className="mt-4 text-base uppercase tracking-[0.18em] text-[#f1d28b]/85">
+            <p data-slider-loc="true" className="mt-3 sm:mt-4 text-xs sm:text-base uppercase tracking-[0.18em] text-[#f1d28b]/85">
               {placeLocation}
             </p>
 
             {/* Explore Button */}
-            <div data-slider-explore="true" className="mt-6">
+            <div data-slider-explore="true" className="mt-5 sm:mt-6">
               <Link
                 to={`/touristic/${place.categoryId}/${place.id}`}
                 onClick={(e) => e.stopPropagation()}
-                className="group inline-flex items-center gap-3 rounded-full border border-[#f1d28b] bg-[#f1d28b]/15 px-8 py-3.5 text-base font-semibold tracking-[0.18em] text-[#f1d28b] backdrop-blur-md transition-all duration-300 hover:bg-[#f1d28b] hover:text-black hover:shadow-[0_0_20px_rgba(241,210,139,0.5)]"
+                className="group inline-flex items-center gap-2 sm:gap-3 rounded-full border border-[#f1d28b] bg-[#f1d28b]/15 px-6 py-2.5 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold tracking-[0.12em] sm:tracking-[0.18em] text-[#f1d28b] backdrop-blur-md transition-all duration-300 hover:bg-[#f1d28b] hover:text-black hover:shadow-[0_0_20px_rgba(241,210,139,0.5)]"
               >
                 <span className="uppercase">{copy.explore}</span>
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
               </Link>
             </div>
 
-            <div data-slider-counter="true" dir="ltr" className="mt-6 flex items-end gap-4 font-serif">
-              <span className="text-5xl text-[#f1d28b]">{currentNumber}</span>
-              <span className="pb-2 text-3xl text-white">/ {totalNumber}</span>
+            <div data-slider-counter="true" dir="ltr" className="mt-5 sm:mt-6 flex items-end gap-4 font-serif">
+              <span className="text-3xl sm:text-5xl text-[#f1d28b]">{currentNumber}</span>
+              <span className="pb-1 sm:pb-2 text-xl sm:text-3xl text-white">/ {totalNumber}</span>
             </div>
           </article>
         </div>
 
-        <footer data-slider-footer="true" className="hidden items-end justify-between pb-2 pt-6 [@media(min-height:820px)]:flex">
+        <footer data-slider-footer="true" className="hidden items-end justify-between pb-2 pt-6 [@media(min-height:820px)]:flex shrink-0">
           <button
             className="group flex flex-col items-center gap-4 text-[#f1d28b]"
             onClick={(e) => {

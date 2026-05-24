@@ -303,7 +303,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <span data-land-divider="true" className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mt-6 max-w-[330px] text-[clamp(16px,3.8vw,20px)] leading-[1.55] text-white/90 sm:mt-8 lg:max-w-[430px] lg:text-[28px]">
+            <p data-land-hero="true" className="mt-6 max-w-[330px] text-[clamp(16px,3.8vw,20px)] leading-[1.55] sm:mt-8 lg:max-w-[430px] lg:text-[28px]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
