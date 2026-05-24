@@ -157,14 +157,14 @@ export default function WomenHistoricPage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-screen flex-col justify-start p-0 ${
+      className={`m-0 flex w-full max-w-full flex-col justify-start p-0 overflow-x-hidden ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
         className={`relative flex w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden ${
-          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
+          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
         }`}
       >
         <WomenLanguageButton
@@ -199,9 +199,26 @@ export default function WomenHistoricPage({
           />
         ) : (
           <>
+            {/* Mobile layout Hero top element */}
             <div
               data-hist-hero="true"
-              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[80vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
+              className="pointer-events-none w-full h-[35vh] min-h-[240px] relative overflow-hidden sm:hidden"
+            >
+              <img
+                src={mainHero}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover object-[75%_center]"
+              />
+              <div
+                className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fcf7ef] to-transparent"
+                aria-hidden
+              />
+            </div>
+
+            {/* Desktop layout Hero absolute backdrop */}
+            <div
+              data-hist-hero="true"
+              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[80vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)] hidden sm:block"
             >
               <img
                 src={mainHero}
@@ -214,37 +231,37 @@ export default function WomenHistoricPage({
               />
             </div>
 
-            <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14">
-              <div data-hist-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
+            <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14 pt-20 sm:pt-6">
+              <div data-hist-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
                 <div className="mb-4 flex justify-center lg:justify-start lg:pl-24">
                   <div className="grid h-16 w-16 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] shadow-[0_8px_20px_rgba(90,42,62,0.18)] sm:h-20 sm:w-20">
                     <Crown className="h-8 w-8 sm:h-10 sm:w-10" />
                   </div>
                 </div>
 
-                <h1 className="font-serif text-[clamp(58px,15vw,112px)] font-medium leading-[0.88] tracking-tight text-[#48263f]">
+                <h1 className="font-serif text-[clamp(36px,12vw,112px)] font-medium leading-[0.95] tracking-tight text-[#48263f] text-center lg:text-left">
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-6 flex w-full max-w-[260px] items-center gap-3 text-[#b4864d] sm:my-7">
+                <div className="my-6 mx-auto lg:mx-0 flex w-full max-w-[260px] items-center gap-3 text-[#b4864d] sm:my-7">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                   <span className="h-3 w-3 rotate-45 bg-[#b4864d]" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="font-serif text-[clamp(26px,6vw,38px)] font-light italic leading-tight text-[#b65f71] whitespace-pre-line">
+                <h2 className="font-serif text-[clamp(20px,6vw,38px)] font-light italic leading-tight text-[#b65f71] whitespace-pre-line text-center lg:text-left">
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-7 max-w-[410px] text-[clamp(16px,4vw,19px)] leading-[1.7] text-[#353445]">
+                <p className="mt-7 max-w-[410px] text-[clamp(16px,4vw,19px)] leading-[1.7] text-[#353445] text-center lg:text-left mx-auto lg:mx-0">
                   {copy.heroIntro}
                 </p>
               </div>
             </section>
 
-            <section className="relative z-20 mt-[clamp(26px,40vh,400px)] px-4 py-4 sm:px-6 lg:px-10">
+            <section className="relative z-20 mt-8 sm:mt-[clamp(26px,40vh,400px)] px-4 py-4 sm:px-6 lg:px-10">
               <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 lg:gap-6">
                 <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
                   {historicWomen.slice(0, 3).map((woman) => (

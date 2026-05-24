@@ -44,10 +44,6 @@ const legacyCards: LegacyCard[] = [
   { id: "knowledge", imageSrc: bookIcon },
   { id: "resistance", imageSrc: handIcon },
   { id: "culture", imageSrc: guitarIcon },
-  // {
-  //   title: "Identity",
-  //   imageSrc: symbolIcon,
-  // },
 ];
 
 export default function LegacyPage({
@@ -79,8 +75,6 @@ export default function LegacyPage({
     setActiveSection(section);
   };
 
-  // Re-run intro when returning from Knowledge / Culture / Resistance — the main
-  // section unmounts while a subsection is open, so [] would never re-attach GSAP.
   React.useLayoutEffect(() => {
     if (activeSection !== null) return;
     if (!sectionRef.current) return;
@@ -187,11 +181,11 @@ export default function LegacyPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e8] p-0 text-[#2a1534]"
+      className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e8] p-0 text-[#2a1534] overflow-x-hidden"
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto bg-[#fcf7ef]"
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto bg-[#fcf7ef] pb-12 sm:pb-0"
       >
         <WomenLanguageButton
           lang={lang}
@@ -201,15 +195,31 @@ export default function LegacyPage({
           fadeAttr="data-legacy-fade"
         />
 
-        {/* Hero full-bleed image */}
+        {/* Hero layout for mobile (normal element layout) */}
         <div
           data-legacy-hero="true"
-          className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
+          className="pointer-events-none w-full h-[38vh] min-h-[250px] relative overflow-hidden sm:hidden"
         >
           <img
             src={legacyHero}
             alt="Kurdish women legacy"
-            className="absolute inset-0 h-full w-[100%] object-cover object-right-top"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fcf7ef] to-transparent"
+            aria-hidden
+          />
+        </div>
+
+        {/* Hero layout for desktop (absolute layout) */}
+        <div
+          data-legacy-hero="true"
+          className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)] hidden sm:block"
+        >
+          <img
+            src={legacyHero}
+            alt="Kurdish women legacy"
+            className="absolute inset-0 h-full w-full object-cover object-right-top"
           />
           <div
             className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
@@ -218,18 +228,18 @@ export default function LegacyPage({
         </div>
 
         {/* Hero text */}
-        <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-16">
-          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-10 sm:pt-14 lg:pt-16">
+        <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-16 pt-6 sm:pt-8">
+          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
             <div className="mb-4 flex items-center gap-3 text-[#b4864d] sm:mb-5 sm:gap-5">
               <span className="h-px w-12 bg-[#d4b98f] sm:w-20" />
               <Sparkles className="h-5 w-5" />
             </div>
 
-            <h1 className="font-serif text-[clamp(54px,16vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
+            <h1 className="font-serif text-[clamp(38px,12vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
               {copy.title}
             </h1>
 
-            <h2 className="mt-3 font-serif font-light text-[clamp(24px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
+            <h2 className="mt-3 font-serif font-light text-[clamp(20px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
               {copy.subtitle}
             </h2>
 
@@ -245,8 +255,8 @@ export default function LegacyPage({
           </div>
         </section>
 
-        {/* Cards - Fixed to prevent text overflow */}
-        <section className="relative z-20 mt-[clamp(26px,40vh,400px)] grid grid-cols-2 gap-3 px-4 pb-1 sm:grid-cols-3 sm:gap-4 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-16">
+        {/* Cards */}
+        <section className="relative z-20 mt-8 sm:mt-[clamp(26px,40vh,400px)] grid grid-cols-2 gap-3 px-4 pb-1 sm:grid-cols-3 sm:gap-4 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-16">
           {legacyCards.map((card) => {
             return (
               <button
@@ -254,7 +264,7 @@ export default function LegacyPage({
                 key={card.id}
                 type="button"
                 onClick={() => openSection(card.id)}
-                className="flex h-[210px] flex-col rounded-[28px] border border-[#dfcdb7] bg-white/55 px-3 pb-3 pt-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[260px] sm:rounded-[40px] sm:px-4 sm:pb-4 sm:pt-5 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7"
+                className="flex h-[210px] flex-col rounded-[28px] border border-[#dfcdb7] bg-white/55 px-3 pb-3 pt-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[260px] sm:rounded-[40px] sm:px-4 sm:pb-4 sm:pt-5 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7 shrink-0"
               >
                 <div className="flex-1 flex items-center justify-center overflow-hidden">
                   <img
@@ -278,12 +288,12 @@ export default function LegacyPage({
           })}
         </section>
 
-        {/* Quote Box - With bigger images */}
+        {/* Quote Box */}
         <section
           data-legacy-fade="true"
-          className="relative z-20 mx-4 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mx-8 sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 lg:mx-16 lg:min-h-[420px]"
+          className="relative z-20 mx-4 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 py-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mx-8 sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 sm:py-0 lg:mx-16 lg:min-h-[420px]"
         >
-          {/* Left flower + pink cloud glow */}
+          {/* Left flower decoration */}
           <div className="pointer-events-none absolute left-[-62px] top-1/2 z-[1] hidden -translate-y-1/2 sm:block lg:left-[-100px]">
             <div
               aria-hidden
@@ -301,7 +311,7 @@ export default function LegacyPage({
           </div>
 
           <div className="relative z-10 max-w-2xl px-1 sm:px-0">
-            <p className="font-serif text-[clamp(24px,5.3vw,36px)] leading-snug text-[#281234]">
+            <p className="font-serif text-[clamp(20px,5.3vw,36px)] leading-snug text-[#281234]">
               {copy.quoteLine1}
               <br />
               {copy.quoteLine2}
@@ -310,7 +320,7 @@ export default function LegacyPage({
             </p>
           </div>
 
-          {/* Right flower + pink cloud glow */}
+          {/* Right flower decoration */}
           <div className="pointer-events-none absolute right-[-52px] top-1/2 z-[1] hidden -translate-y-1/2 sm:block lg:right-[-80px]">
             <div
               aria-hidden
@@ -328,58 +338,58 @@ export default function LegacyPage({
           </div>
         </section>
 
-        {/* Journey */}
-<section
-  data-legacy-fade="true"
-  className="relative z-20 mx-4 mb-6 mt-6 overflow-hidden px-4 py-4 text-white sm:mx-8 sm:mt-8 sm:px-6 sm:py-4 lg:mx-16 lg:px-10"
->
-  {/* Shape background */}
-  <div
-    className="absolute inset-0 -z-10 bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] shadow-[0_12px_30px_rgba(57,20,54,0.24)]"
-    style={{
-      clipPath:
-        "polygon(4% 0%, 96% 0%, 100% 18%, 100% 82%, 96% 100%, 4% 100%, 0% 82%, 0% 18%)",
-      borderRadius: "28px",
-    }}
-  />
+        {/* Journey Card */}
+        <section
+          data-legacy-fade="true"
+          className="relative z-20 mx-4 mb-6 mt-6 overflow-hidden px-4 py-4 text-white sm:mx-8 sm:mt-8 sm:px-6 sm:py-4 lg:mx-16 lg:px-10 shrink-0"
+        >
+          {/* Shape background */}
+          <div
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] shadow-[0_12px_30px_rgba(57,20,54,0.24)]"
+            style={{
+              clipPath:
+                "polygon(4% 0%, 96% 0%, 100% 18%, 100% 82%, 96% 100%, 4% 100%, 0% 82%, 0% 18%)",
+              borderRadius: "28px",
+            }}
+          />
 
-  {/* Soft texture */}
-  <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_85%_35%,rgba(255,255,255,0.18),transparent_22%),radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.08),transparent_28%)]" />
+          {/* Soft texture */}
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_85%_35%,rgba(255,255,255,0.18),transparent_22%),radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.08),transparent_28%)]" />
 
-  {/* Curved side details */}
-  <div className="absolute -left-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
-  <div className="absolute -right-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
+          {/* Curved side details */}
+          <div className="absolute -left-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
+          <div className="absolute -right-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
 
-  <div className="relative z-10 flex min-h-[110px] flex-col gap-4 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 lg:gap-7">
-    <div className="grid h-16 w-16 flex-shrink-0 place-items-center rounded-full border border-[#d7b06d]/70 bg-[#2d1236] p-1 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
-      <div className="h-full w-full overflow-hidden rounded-full border border-[#d7b06d] bg-white">
-        <img
-          src={journeyImage}
-          alt="Journey"
-          className="h-full w-full object-cover"
-        />
-      </div>
-    </div>
+          <div className="relative z-10 flex min-h-[110px] flex-col gap-4 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 lg:gap-7">
+            <div className="grid h-16 w-16 flex-shrink-0 place-items-center rounded-full border border-[#d7b06d]/70 bg-[#2d1236] p-1 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
+              <div className="h-full w-full overflow-hidden rounded-full border border-[#d7b06d] bg-white">
+                <img
+                  src={journeyImage}
+                  alt="Journey"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
 
-    <div className="flex-1">
-      <h3 className="font-serif text-[clamp(26px,6vw,34px)] leading-none">
-        {copy.journeyTitle}
-      </h3>
+            <div className="flex-1">
+              <h3 className="font-serif text-[clamp(20px,6vw,34px)] leading-none">
+                {copy.journeyTitle}
+              </h3>
 
-      <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
-        {copy.journeyDesc}
-      </p>
-    </div>
+              <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
+                {copy.journeyDesc}
+              </p>
+            </div>
 
-    <button
-      type="button"
-      onClick={onExploreMore}
-      className="ml-auto grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border-[3px] border-white/80 bg-[#fff8f5] text-[#35143d] shadow-[0_0_0_6px_rgba(255,255,255,0.18)] transition-transform hover:scale-105 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-    >
-      <ArrowRight className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-    </button>
-  </div>
-</section>
+            <button
+              type="button"
+              onClick={onExploreMore}
+              className="ml-auto grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border-[3px] border-white/80 bg-[#fff8f5] text-[#35143d] shadow-[0_0_0_6px_rgba(255,255,255,0.18)] transition-transform hover:scale-105 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+            >
+              <ArrowRight className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+            </button>
+          </div>
+        </section>
       </section>
     </main>
   );
