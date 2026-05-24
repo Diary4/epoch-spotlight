@@ -291,9 +291,9 @@ export default function VerticalTourismShowcase() {
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent animate-none" />
+      {/* <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent animate-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 animate-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)] animate-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)] animate-none" /> */}
 
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1080px] flex-col px-10 py-6 lg:px-14 lg:py-8">
         <header data-slider-header="true" className="flex items-start justify-between">
