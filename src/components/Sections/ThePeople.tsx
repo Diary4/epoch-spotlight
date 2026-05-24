@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
+import { ArrowLeft, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
 import gsap from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -229,8 +229,11 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f9f3e7] p-0 text-[#1e352d]">
-      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-hidden bg-[#fcf7ed] px-4 py-6 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+    <main className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e7] p-0 text-[#1e352d] overflow-x-hidden">
+      <section 
+        ref={sectionRef} 
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden lg:overflow-hidden bg-[#fcf7ed] px-4 pt-6 pb-12 sm:px-10 sm:py-10 lg:px-14 lg:py-12"
+      >
         <button
           type="button"
           onClick={onBack}
@@ -252,7 +255,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         />
        
         {/* Hero */}
-        <header className="relative z-10 text-center pt-2 sm:pt-8 lg:pt-12">
+        <header className="relative z-10 text-center pt-20 sm:pt-8 lg:pt-12">
           <h1 data-people-hero="true" className="font-serif font-light text-[clamp(38px,12vw,60px)] leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
             {people?.title ?? "The People"}
           </h1>
@@ -269,9 +272,8 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         </header>
 
         {/* Cards */}
-        <div className="relative z-10 mt-auto grid grid-cols-1 gap-3 pb-4 pt-4 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
+        <div className="relative z-10 mt-8 sm:mt-auto grid grid-cols-1 gap-6 pb-4 pt-4 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
-            const Icon = card.icon;
             return (
               <button
                 data-people-card="true"

@@ -287,8 +287,8 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
   }, [timelineLayout]);
 
   return (
-    <main ref={rootRef} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b]">
-      <section className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
+    <main ref={rootRef} className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
+      <section className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -297,11 +297,12 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
-        {/* subtle paper/pattern */}
-        <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-        <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        
+        {/* subtle paper/pattern (Hidden on mobile to optimize layout clarity) */}
+        <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
+        <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
 
-        {/* Right illustration column - replace these with your AI images */}
+        {/* Right illustration column */}
         <div
           ref={imageColumnRef}
           className="pointer-events-none absolute right-0 top-[90px] z-0 hidden h-[1720px] w-[46vw] min-w-[520px] md:block"
@@ -330,17 +331,15 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
             className="journey-image absolute right-0 top-[1400px] h-[910px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
             alt="building institutions illustration"
           />
-          {/* <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#fbf5eb]/10 to-[#fbf5eb]/72" />
-          <div className="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-8 pt-14 sm:px-12 md:px-16 md:pb-10 md:pt-20 lg:px-20 lg:pb-14">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-8 pt-20 sm:px-12 md:px-16 md:pb-10 md:pt-20 lg:px-20 lg:pb-14">
           {/* Title */}
           <section className="journey-intro max-w-[760px]">
-            <h1 className="font-serif text-[clamp(40px,10vw,76px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
+            <h1 className="font-serif text-[clamp(34px,9vw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
               {journey.title ?? "The Journey"}
             </h1>
-            <h2 className="mt-4 text-[clamp(18px,4.5vw,30px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
+            <h2 className="mt-3 text-[clamp(16px,4vw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
               {localizeDigits(
                 lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
                 lang,
@@ -350,17 +349,19 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
               <span className="h-0.5 flex-1 bg-[#b99152]" />
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
-            <p className="mt-6 max-w-[680px] text-[clamp(17px,4vw,28px)] leading-snug text-[#2d3549] md:mt-8 md:text-[32px] lg:text-[36px]">
+            <p className="mt-4 max-w-[680px] text-[clamp(14px,3.5vw,20px)] leading-snug text-[#2d3549] md:mt-8 md:text-[32px] lg:text-[36px]">
               {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
             </p>
           </section>
 
-          {/* Timeline — rail + dots track measured card centers */}
+          {/* Timeline */}
           <section className="relative mt-10 flex min-h-0 flex-1 flex-col md:mt-20">
             <div ref={trackRef} className="relative flex min-h-0 flex-1 flex-col">
+              
+              {/* Dynamic Curvy Path SVG (Visible on Desktop / Tablets) */}
               {timelineLayout && (
                 <svg
-                  className="pointer-events-none absolute top-0 z-20 w-[180px] overflow-visible"
+                  className="pointer-events-none absolute top-0 z-20 w-[180px] overflow-visible hidden md:block"
                   style={{ left: timelineLayout.svgLeft }}
                   width={180}
                   height={timelineLayout.height}
@@ -394,7 +395,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                 </svg>
               )}
 
-              <div className="flex min-h-0 flex-1 flex-col gap-5">
+              {/* Static Minimalist CSS Timeline Rail (Visible only on Mobile) */}
+              <div className="absolute left-[20px] top-4 bottom-4 w-[2px] bg-[#d8b875]/70 md:hidden z-10" />
+
+              <div className="flex min-h-0 flex-1 flex-col gap-5 pl-10 md:pl-0">
               {localizedMilestones.map((item, index) => {
                 const Icon = item.icon;
                 const milestoneId: JourneyMilestoneId =
@@ -407,24 +411,27 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="journey-card relative z-10 flex min-h-[120px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/78 shadow-[0_10px_26px_rgba(84,54,16,0.12)] backdrop-blur-sm md:min-h-[148px] md:w-[clamp(480px,48vw,640px)]"
+                    className="journey-card relative z-10 flex min-h-[96px] sm:min-h-[120px] md:min-h-[148px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[16px] sm:rounded-[22px] border border-[#ead8b7] bg-white/80 shadow-[0_8px_20px_rgba(84,54,16,0.08)] backdrop-blur-sm md:w-[clamp(480px,48vw,640px)]"
                   >
-                    <div className="flex w-[100px] shrink-0 items-center justify-center py-3 sm:w-[148px] sm:py-4 md:w-[168px]">
+                    {/* Compact Timeline Node Dot (Visible only on Mobile) */}
+                    <div className="absolute -left-[27px] top-1/2 -translate-y-1/2 z-20 h-[14px] w-[14px] rounded-full bg-[#c89a4e] border-[3px] border-[#fbf5eb] ring-1 ring-[#c89a4e]/30 shadow-sm md:hidden" />
+
+                    <div className="flex w-[68px] sm:w-[148px] md:w-[168px] shrink-0 items-center justify-center py-2 sm:py-4">
                       <div
-                        className="grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full border-[5px] border-white text-[#f7e3b5] shadow-[0_6px_16px_rgba(0,0,0,0.16)] sm:h-24 sm:w-24 md:h-28 md:w-28"
+                        className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[3px] sm:border-[5px] border-white text-[#f7e3b5] shadow-[0_4px_10px_rgba(0,0,0,0.12)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.16)] sm:h-24 sm:w-24 md:h-28 md:w-28"
                         style={{ backgroundColor: item.color }}
                       >
-                        <Icon className="h-[34px] w-[34px] sm:h-[46px] sm:w-[46px] md:h-[52px] md:w-[52px]" strokeWidth={1.5} />
+                        <Icon className="h-5 w-5 sm:h-[46px] sm:w-[46px] md:h-[52px] md:w-[52px]" strokeWidth={1.5} />
                       </div>
                     </div>
 
-                    <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
+                    <div className="min-h-[50px] sm:min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
-                    <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-3 py-4 sm:px-5 sm:py-5 md:px-7 md:py-6">
-                      <h3 className="font-serif text-[clamp(28px,4vw,38px)] font-light leading-tight text-[#17233b]">
+                    <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-3 py-3 sm:px-5 sm:py-5 md:px-7 md:py-6">
+                      <h3 className="font-serif text-[clamp(18px,4vw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]">
                         {item.title}
                       </h3>
-                      <p className="mt-2 max-w-[380px] text-[clamp(17px,2.2vw,23px)] leading-snug text-[#303a50]">
+                      <p className="mt-1 sm:mt-2 max-w-[380px] text-[clamp(14px,3vw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
                         {item.text}
                       </p>
                     </div>
