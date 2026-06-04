@@ -470,7 +470,7 @@ export default function FaithsPage({
                     }
                   }}
                   aria-label={faith.title}
-                  className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
+                  className="bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
                 >
                   {/* Framed Image Container */}
                   <div className="relative h-[210px] w-full overflow-hidden rounded-2xl bg-stone-100">
@@ -485,11 +485,11 @@ export default function FaithsPage({
 
                   {/* Content Area */}
                   <div className="flex flex-1 flex-col pt-4">
-                    <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-stone-900 transition duration-300 group-hover:text-[#d6a45b]">
+                    <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-stone-900">
                       {faith.title}
                     </h3>
                     <div className="mt-2 mb-3 w-[45px]">
-                      <span className="block h-[1.5px] bg-[#c3923a] transition-all duration-300 group-hover:w-[60px]" />
+                      <span className="block h-[1.5px] w-full bg-[#c3923a]" />
                     </div>
                     <p className="text-[13px] leading-relaxed text-stone-600 font-medium">
                       {faith.shortIntro}

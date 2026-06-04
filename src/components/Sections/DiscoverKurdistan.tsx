@@ -181,7 +181,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
             </div>
 
-            <p data-intro-rest="true" className="mx-auto mt-5 max-w-[880px] px-1 text-[17px] leading-[1.5] text-[#4d5652] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]">
+            <p data-intro-rest="true" className="mx-auto font-light mt-5 max-w-[880px] px-1 text-[17px] leading-[1.5] text-[#4d5652] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]">
               {discover.description ?? "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
             </p>
           </div>
