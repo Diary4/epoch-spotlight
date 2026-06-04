@@ -49,39 +49,40 @@ function Divider({ className = "" }) {
   );
 }
 
-function ProgressCard({ card, large = false }) {
+function ProgressCard({ card, large = false }: { card: (typeof topCards)[number]; large?: boolean }) {
   const Icon = card.icon;
 
   return (
     <article
-      className={`land-detail-card relative flex flex-col items-center overflow-hidden rounded-[clamp(22px,2.3vw,34px)] border-2 border-[#ead8b7] bg-white/82 px-[clamp(16px,1.8vw,34px)] py-[clamp(18px,2.2vh,38px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md ${
-        large ? "min-h-[clamp(300px,27vh,420px)]" : "min-h-[clamp(330px,30vh,500px)]"
+      className={`land-detail-card relative flex min-h-[260px] flex-col items-center overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/82 px-5 py-6 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md sm:min-h-[300px] sm:rounded-[24px] sm:px-6 sm:py-7 lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(16px,1.8vw,34px)] lg:py-[clamp(18px,2.2vh,38px)] ${
+        large ? "lg:min-h-[clamp(300px,27vh,420px)]" : "lg:min-h-[clamp(330px,30vh,500px)]"
       }`}
     >
       <div
-        className="grid h-[clamp(82px,7.3vw,124px)] w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496]"
+        className="grid h-16 w-16 place-items-center rounded-full border-[5px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496] sm:h-[clamp(72px,7.3vw,124px)] sm:w-[clamp(72px,7.3vw,124px)] sm:border-[6px]"
         style={{ backgroundColor: card.color }}
       >
-        <Icon size={56} strokeWidth={1.45} />
+        <Icon className="h-9 w-9 sm:h-12 sm:w-12 lg:h-14 lg:w-14" strokeWidth={1.45} />
       </div>
 
-      <h3 className="mt-[clamp(16px,2vh,32px)] font-serif text-[clamp(24px,2.4vw,38px)] font-light leading-tight text-[#17233b]">
+      <h3 className="mt-4 font-serif text-[clamp(20px,4.5vw,38px)] font-light leading-tight text-[#17233b] sm:mt-[clamp(16px,2vh,32px)]">
         {card.title}
       </h3>
 
-      <div className="my-[clamp(12px,1.6vh,24px)] w-[clamp(90px,8.5vw,140px)]">
+      <div className="my-4 w-[clamp(80px,22vw,140px)] sm:my-[clamp(12px,1.6vh,24px)]">
         <Divider />
       </div>
 
-      <p className="max-w-[clamp(200px,20vw,320px)] text-[clamp(17px,1.65vw,27px)] font-light leading-[1.45] text-[#35435b]">
+      <p className="max-w-none px-1 text-[clamp(15px,3.8vw,27px)] font-light leading-[1.45] text-[#35435b] sm:max-w-[clamp(200px,20vw,320px)]">
         {card.text}
       </p>
 
       <button
-        className="mt-auto grid h-[clamp(52px,5vw,78px)] w-[clamp(52px,5vw,78px)] place-items-center rounded-full text-white shadow-md ring-4 ring-white"
+        type="button"
+        className="mt-5 grid h-12 w-12 place-items-center rounded-full text-white shadow-md ring-4 ring-white sm:mt-auto sm:h-[clamp(52px,5vw,78px)] sm:w-[clamp(52px,5vw,78px)]"
         style={{ backgroundColor: card.color }}
       >
-        <ArrowRight size={32} />
+        <ArrowRight className="h-6 w-6 sm:h-8 sm:w-8" />
       </button>
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[clamp(48px,5vh,90px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
@@ -123,45 +124,43 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
         ]
       : bottomCards;
   return (
-    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3vw,20px)]">
+    <main ref={rootRef} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)] lg:p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}
-          className="land-detail-back absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)]"
           aria-label="Back to The Land and Future"
         >
-          <ArrowLeft size={30} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-[30px] lg:w-[30px]" />
         </button>
-        <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
-        {/* Replace this with your generated progress/city background */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[clamp(720px,70vh,1080px)]">
+        {/* Progress city background */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[min(50vh,420px)] w-full min-w-0 sm:h-[min(62vh,560px)] lg:h-[clamp(720px,70vh,1080px)]">
           <img
             src={bg}
             alt="Progress city placeholder"
-            className="land-detail-hero absolute inset-0 h-full w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
+            className="land-detail-hero absolute inset-0 h-full w-full object-cover object-[center_top] opacity-60 [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)] sm:opacity-78"
           />
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-[clamp(160px,19vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="relative z-10 flex flex-1 flex-col">
+        <div className="relative z-10 flex flex-1 flex-col px-4 py-4 sm:px-6 sm:py-6">
           {/* Hero */}
-          <section className="land-detail-intro max-w-[min(58vw,760px)] pt-[clamp(64px,8.5vh,130px)]">
-            <h1 className="font-serif text-[clamp(72px,9vw,130px)] font-light leading-none tracking-tight text-[#17233b]">
+          <section className="land-detail-intro w-full max-w-none pt-20 sm:max-w-[min(85vw,760px)] sm:pt-24 lg:max-w-[min(58vw,760px)] lg:pt-[clamp(64px,8.5vh,130px)]">
+            <h1 className="font-serif text-[clamp(44px,12vw,130px)] font-light leading-none tracking-tight text-[#17233b]">
               {isAr ? "التقدم" : isKu ? "پێشکەوتن" : "Progress"}
             </h1>
 
-            <p className="mt-[clamp(18px,2.8vh,36px)] text-[clamp(28px,3.3vw,48px)] font-light leading-tight text-[#9b6d35]">
+            <p className="mt-5 text-[clamp(22px,5vw,48px)] font-light leading-tight text-[#9b6d35] sm:mt-[clamp(18px,2.8vh,36px)]">
               {isAr ? "التنمية عبر القطاعات الرئيسية." : isKu ? "گەشەپێدان لە کەرتە سەرەکییەکاندا." : "Development across key sectors."}
             </p>
 
-            <div className="mt-[clamp(16px,2.5vh,34px)] w-[clamp(160px,16vw,260px)]">
+            <div className="mt-5 w-[clamp(140px,40vw,260px)] sm:mt-[clamp(16px,2.5vh,34px)]">
               <Divider />
             </div>
 
-            <p className="mt-[clamp(16px,200vh,120px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.2vw,34px)] font-medium leading-[1.55] text-[#2d3549]">
+            <p className="mt-5 max-w-none text-[clamp(15px,4vw,34px)] font-medium leading-[1.55] text-[#2d3549] sm:mt-6 lg:max-w-[min(48vw,680px)]">
               {isAr
                 ? "يواصل إقليم كوردستان مسيرة تقدّمه في البنية التحتية والتعليم والاقتصاد والسياحة والتحول الرقمي."
                 : isKu
@@ -171,14 +170,14 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
           </section>
 
           {/* Top 3 cards */}
-          <section className="mt-[clamp(72px,18vh,600px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(10px,1.2vh,24px)]">
+          <section className="mt-8 grid grid-cols-1 gap-4 pb-6 sm:mt-12 sm:grid-cols-2 sm:gap-5 sm:pb-8 lg:mt-[clamp(72px,18vh,600px)] lg:grid-cols-3 lg:gap-[clamp(16px,1.8vw,34px)] lg:pb-[clamp(10px,1.2vh,24px)]">
             {localTopCards.map((card) => (
               <ProgressCard key={card.title} card={card} />
             ))}
           </section>
 
           {/* Bottom 2 centered cards */}
-          <section className="mx-auto mt-[clamp(8px,1.3vh,20px)] grid w-[min(62vw,920px)] grid-cols-2 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,20px)]">
+          <section className="mx-auto mt-4 grid w-full max-w-none grid-cols-1 gap-4 pb-8 sm:mt-[clamp(8px,1.3vh,20px)] sm:max-w-[920px] sm:grid-cols-2 sm:gap-5 lg:gap-[clamp(16px,1.8vw,34px)] lg:pb-[clamp(8px,1vh,20px)]">
             {localBottomCards.map((card) => (
               <ProgressCard key={card.title} card={card} large />
             ))}

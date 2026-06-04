@@ -43,7 +43,7 @@ function Divider({ color = "#b99152" }) {
 
 function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: "ku" | "en" | "ar" }) {
   return (
-    <article className="land-detail-card grid min-h-0 flex-1 grid-cols-1 overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md sm:rounded-[24px] lg:grid-cols-[205px_1fr] lg:rounded-[26px]">
+    <article className="land-detail-card grid w-full min-h-0 flex-1 grid-cols-1 items-stretch overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md sm:rounded-[24px] lg:grid-cols-[205px_1fr] lg:rounded-[26px]">
       <div className="flex flex-col items-center justify-center border-b border-[#ead8b7] px-5 py-6 text-center sm:px-7 sm:py-8 lg:border-b-0 lg:border-r">
         <div
           className="grid h-16 w-16 place-items-center rounded-full border-[5px] border-white text-[28px] font-light text-white shadow-md sm:h-20 sm:w-20 sm:text-[34px]"
@@ -71,13 +71,13 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
         </button>
       </div>
 
-      <div className="relative min-h-[200px] bg-[#f7efe2] sm:min-h-[240px] lg:min-h-0">
+      <div className="relative w-full min-w-0 overflow-hidden bg-[#f7efe2] lg:flex lg:h-full lg:min-h-0 lg:items-stretch">
         <img
           src={card.mapImage}
           alt={card.title.replace("\n", " ")}
-          className="h-full w-full object-cover object-center"
+          className="block h-auto w-full max-w-none align-middle"
         />
-        <div className="absolute inset-0 bg-[#fbf5eb]/20 mix-blend-multiply" />
+        <div className="pointer-events-none absolute inset-0 bg-[#fbf5eb]/20 mix-blend-multiply" />
       </div>
     </article>
   );
@@ -119,11 +119,11 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
         {/* Left scenic placeholder */}
-        <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 hidden h-[min(42vh,320px)] w-[min(52vw,220px)] opacity-70 sm:block lg:h-[clamp(620px,70vh,980px)] lg:w-[clamp(260px,28vw,470px)] lg:opacity-100">
+        <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 hidden h-[min(42vh,320px)] w-[min(52vw,220px)] overflow-hidden opacity-70 sm:block lg:h-[clamp(620px,70vh,980px)] lg:w-[clamp(260px,28vw,470px)] lg:opacity-100">
           <img
             src={bg}
             alt="Kurdistan landscape placeholder"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-[center_35%] lg:object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb]" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
@@ -173,7 +173,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         </aside>
 
         {/* Right maps */}
-        <section className="relative z-10 flex flex-1 flex-col gap-4 px-1 pb-8 sm:gap-5 sm:px-2 sm:pb-10 lg:gap-[clamp(14px,1.6vh,28px)] lg:pl-[clamp(6px,1vw,18px)] lg:pb-[clamp(4px,0.8vh,10px)]">
+        <section className="relative z-10 flex w-full min-w-0 flex-1 flex-col gap-4 pb-8 sm:gap-5 sm:pb-10 lg:gap-[clamp(14px,1.6vh,28px)] lg:pl-[clamp(6px,1vw,18px)] lg:pb-[clamp(4px,0.8vh,10px)]">
           {localMapCards.map((card) => (
             <MapCard key={card.number} card={card} lang={lang} />
           ))}
