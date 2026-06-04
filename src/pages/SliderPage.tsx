@@ -191,14 +191,6 @@ export default function VerticalTourismShowcase() {
     setActive(0);
   }, [activeCategoryId]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActive((current) => (current + 1) % total);
-    }, 6000);
-
-    return () => clearInterval(timer);
-  }, [total]);
-
   const dots = useMemo(() => Array.from({ length: Math.min(total, 20) }, (_, i) => i), [total]);
   const activeDot = Math.round((active / Math.max(total - 1, 1)) * Math.max(dots.length - 1, 0));
 
