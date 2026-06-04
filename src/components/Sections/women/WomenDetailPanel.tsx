@@ -25,21 +25,23 @@ function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
   return (
     <div
       data-women-detail-fade="true"
-      className="flex min-h-[250px] flex-col items-center justify-start rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/75 px-5 py-8 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)]"
+      className="flex min-h-[220px] flex-col items-center justify-start rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/75 px-4 py-6 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)] sm:min-h-[250px] sm:px-5 sm:py-8"
     >
-      <div className="grid h-[78px] w-[78px] place-items-center rounded-full bg-[#5a223f] text-[38px] text-[#d7aa4e]">
+      <div className="grid h-16 w-16 place-items-center rounded-full bg-[#5a223f] text-[30px] text-[#d7aa4e] sm:h-[78px] sm:w-[78px] sm:text-[38px]">
         {icon}
       </div>
 
-      <div className="mt-5 flex w-20 items-center gap-2 text-[#c8a765]">
+      <div className="mt-4 flex w-20 items-center gap-2 text-[#c8a765] sm:mt-5">
         <span className="h-px flex-1 bg-[#d9bd81]" />
         <span className="text-sm">❖</span>
         <span className="h-px flex-1 bg-[#d9bd81]" />
       </div>
 
-      <h3 className="mt-4 font-serif text-[30px] leading-none text-[#2d1436]">{title}</h3>
+      <h3 className="mt-3 font-serif text-[24px] leading-none text-[#2d1436] sm:mt-4 sm:text-[30px]">{title}</h3>
 
-      <p className="mt-6 max-w-[210px] text-[18px] leading-8 text-[#3f3b42]">{text}</p>
+      <p className="mt-4 max-w-[280px] text-[16px] leading-7 text-[#3f3b42] sm:mt-6 sm:max-w-[210px] sm:text-[18px] sm:leading-8">
+        {text}
+      </p>
     </div>
   );
 }
@@ -70,53 +72,54 @@ export default function WomenDetailPanel({
             src={portraitSrc}
             alt={portraitAlt}
             data-women-detail-fade="true"
-            className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+            className="absolute inset-0 h-[50vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] sm:h-[60vh]"
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#fbf4e8]/72 via-[#fbf4e8]/30 to-[#fbf4e8]/95" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vh] bg-gradient-to-b from-[#fbf4e8]/72 via-[#fbf4e8]/30 to-[#fbf4e8]/95 sm:h-[60vh]" />
 
-          <div className="relative z-20 px-4 pb-8 pt-24 sm:px-8 sm:pt-28 lg:px-14" data-women-detail-fade="true">
-            <h1 className="font-serif text-[clamp(70px,9vw,118px)] leading-[0.88] tracking-[-0.04em] text-[#2d1436]">
+          <div className="relative z-20 px-4 pb-8 pt-20 sm:px-8 sm:pt-28 lg:px-14" data-women-detail-fade="true">
+            <h1 className="font-serif text-[clamp(44px,12vw,118px)] leading-[0.88] tracking-[-0.04em] text-[#2d1436] sm:text-[clamp(70px,9vw,118px)]">
               {nameLine1}
               <br />
               {nameLine2}
             </h1>
 
-            <div className="mt-8 flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
+            <div className="mt-6 flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e] sm:mt-8">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-8 max-w-[min(100%,300px)] font-serif text-[clamp(34px,4vw,48px)] italic leading-tight text-[#b48734]">
+            <h2 className="mt-6 max-w-[min(100%,300px)] font-serif text-[clamp(26px,6vw,48px)] italic leading-tight text-[#b48734] sm:mt-8">
               {role}
             </h2>
 
-            <div className="mt-8 flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
+            <div className="mt-6 flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e] sm:mt-8">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <p className="mt-8 max-w-[min(100%,330px)] text-[20px] leading-9 text-[#3f3b42]">{intro}</p>
+            <p className="mt-6 max-w-[min(100%,330px)] text-[17px] leading-8 text-[#3f3b42] sm:mt-8 sm:text-[20px]">
+              {intro}
+            </p>
           </div>
-
         </section>
 
-        <section className="relative z-30 mt-[clamp(80px,50vh,360px)] grid grid-cols-1 gap-5 px-4 sm:grid-cols-3 sm:px-8 lg:px-14">
+        <section className="relative z-30 mt-[clamp(28px,18vh,120px)] grid grid-cols-1 gap-5 px-4 sm:mt-[clamp(80px,50vh,360px)] sm:grid-cols-3 sm:px-8 lg:px-14">
           {cards.map((c) => (
             <WomenDetailInfoCard key={c.title} {...c} />
           ))}
         </section>
 
-        <section className="relative z-30 mx-4 mt-12 max-w-[760px] rounded-[18px] border border-[#d3ad65] bg-[#fff8ee]/75 p-5 sm:mx-8 lg:mx-14 xl:mx-auto">
-          <div className="relative rounded-[14px] border border-[#e2c98f] px-8 py-10 text-center">
+        <section className="relative z-30 mx-4 mt-10 max-w-[760px] rounded-[18px] border border-[#d3ad65] bg-[#fff8ee]/75 p-4 sm:mx-8 sm:mt-12 sm:p-5 lg:mx-14 xl:mx-auto">
+          <div className="relative rounded-[14px] border border-[#e2c98f] px-5 py-8 text-center sm:px-8 sm:py-10">
             <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
               ❖
             </div>
 
-            <p className="font-serif text-[clamp(30px,4vw,44px)] italic leading-tight text-[#2d1436]">{quote}</p>
+            <p className="font-serif text-[clamp(24px,6vw,44px)] italic leading-tight text-[#2d1436]">{quote}</p>
 
-            <div className="mx-auto mt-6 flex w-[220px] items-center gap-3 text-[#c7a45e]">
+            <div className="mx-auto mt-5 flex w-[220px] max-w-full items-center gap-3 text-[#c7a45e] sm:mt-6">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />

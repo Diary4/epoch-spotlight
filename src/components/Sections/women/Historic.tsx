@@ -3,12 +3,6 @@ import { ArrowLeft, Crown, Flower2 } from "lucide-react";
 import gsap from "gsap";
 
 import mainHero from "@/assets/images/women/le-1.webp";
-/** Historic grid thumbnails. Detail portraits live in `src/assets/images/women/historic-detail/`. */
-import masturaImg from "@/assets/images/women/w-10.webp";
-import adelaImg from "@/assets/images/women/w-3.webp";
-import hafsaImg from "@/assets/images/women/w-11.webp";
-import khanzadImg from "@/assets/images/women/w-6.webp";
-import halimaImg from "@/assets/images/women/w-4.webp";
 
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
@@ -25,14 +19,6 @@ import {
 
 type HistoricPageProps = WomenLanguageProps & {
   onBack?: () => void;
-};
-
-const historicImages: Record<string, string> = {
-  "mastura-ardalan": masturaImg,
-  "adela-khanum": adelaImg,
-  "hafsa-khanum": hafsaImg,
-  "khanzada-khanum": khanzadImg,
-  "halima-khanum": halimaImg,
 };
 
 function runListIntroAnimation(sectionRef: React.RefObject<HTMLElement | null>) {
@@ -75,17 +61,21 @@ function HistoricListCard({
       type="button"
       data-hist-card="true"
       onClick={onSelect}
-      className="relative flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[26px] border border-[#e4d5c3] bg-white/62 p-4 text-center shadow-[inset_0_0_20px_rgba(159,116,81,0.06),0_8px_22px_rgba(70,38,48,0.08)] backdrop-blur-sm transition hover:border-[#d8b979] sm:rounded-[30px] sm:p-5 lg:p-6"
+      className="relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5"
     >
-      <div className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] sm:h-12 sm:w-12">
+      <div className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] sm:h-12 sm:w-12">
         <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
       </div>
 
-      <div className="mx-auto h-[160px] w-[130px] overflow-hidden rounded-full border-2 border-[#d8b979] bg-[#d8a6ae]/30 p-1 sm:h-[190px] sm:w-[155px] lg:h-[210px] lg:w-[170px]">
-        <img src={imageSrc} alt="" className="h-full w-full rounded-full object-cover" />
+      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[20px] sm:h-[220px] lg:h-[260px]">
+        <img
+          src={imageSrc}
+          alt={woman.name}
+          className="relative z-10 h-full w-full object-cover object-[center_20%]"
+        />
       </div>
 
-      <h3 className="mt-4 font-serif text-[clamp(20px,3vw,28px)] font-semibold leading-tight text-[#4c2d43]">
+      <h3 className="mt-3 font-serif text-[clamp(20px,3vw,28px)] font-semibold leading-tight text-[#4c2d43] sm:mt-4">
         {woman.name}
       </h3>
 
@@ -268,7 +258,7 @@ export default function WomenHistoricPage({
                     <HistoricListCard
                       key={woman.id}
                       woman={woman}
-                      imageSrc={historicImages[woman.id]}
+                      imageSrc={historicDetailPortraits[woman.id]}
                       onSelect={() => setSelectedId(woman.id)}
                     />
                   ))}
@@ -279,7 +269,7 @@ export default function WomenHistoricPage({
                     <HistoricListCard
                       key={woman.id}
                       woman={woman}
-                      imageSrc={historicImages[woman.id]}
+                      imageSrc={historicDetailPortraits[woman.id]}
                       onSelect={() => setSelectedId(woman.id)}
                     />
                   ))}
