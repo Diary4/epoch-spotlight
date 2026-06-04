@@ -57,45 +57,43 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
         ]
       : cards;
   return (
-    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-[calc(100vh-clamp(16px,2.6vh,32px))] w-[min(100vw,1400px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fbf5eb]">
+    <main ref={rootRef} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
+      <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)]">
         <button
           type="button"
           onClick={onBack}
-          className="land-detail-back absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)]"
           aria-label="Back to The Land and Future"
         >
-          <ArrowLeft size={30} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-[30px] lg:w-[30px]" />
         </button>
-        <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
-        {/* Replace this with your generated Peshmerga background image */}
-        <div className="pointer-events-none absolute right-0 top-0 h-[min(92vh,1100px)] w-full min-w-[760px]">
+        {/* Peshmerga background */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[min(48vh,400px)] w-full min-w-0 sm:h-[min(62vh,640px)] lg:absolute lg:inset-x-auto lg:right-0 lg:h-[min(92vh,1100px)] lg:min-w-[760px]">
           <img
             src={bg}
             alt="Peshmerga landscape placeholder"
-            className="land-detail-hero absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+            className="land-detail-hero absolute inset-0 h-full w-full object-cover object-[center_top] opacity-60 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:object-right sm:opacity-78"
           />
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/22 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-[clamp(170px,20vh,300px)] bg-gradient-to-b from-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex flex-1 flex-col">
+        <div className="relative z-10 flex flex-1 flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-[clamp(18px,3.2vw,52px)] lg:py-[clamp(14px,2vh,36px)]">
           {/* Hero */}
-          <section className="land-detail-intro max-w-[min(58vw,760px)] pt-[clamp(72px,9.5vh,136px)]">
-            <h1 className="font-serif text-[clamp(66px,8.2vw,120px)] font-light leading-none tracking-tight text-[#17233b]">
+          <section className="land-detail-intro w-full max-w-none pt-20 sm:pt-24 sm:max-w-[min(85vw,760px)] lg:max-w-[min(58vw,760px)] lg:pt-[clamp(72px,9.5vh,136px)]">
+            <h1 className="font-serif text-[clamp(44px,12vw,120px)] font-light leading-none tracking-tight text-[#17233b]">
               {isAr ? "البيشمركة" : isKu ? "پێشمەرگە" : "Peshmerga"}
             </h1>
 
-            <p className="mt-[clamp(20px,2.9vh,38px)] text-[clamp(28px,3.25vw,48px)] font-light leading-tight text-[#9b6d35]">
+            <p className="mt-5 text-[clamp(22px,5vw,48px)] font-light leading-tight text-[#9b6d35] sm:mt-[clamp(20px,2.9vh,38px)]">
               {isAr ? "رمز الشجاعة والحماية والخدمة." : isKu ? "هێمای ئازایەتی، پاراستن، و خزمەت." : "A symbol of courage, protection, and service."}
             </p>
 
-            <div className="mt-[clamp(18px,2.8vh,36px)] w-[clamp(160px,16vw,260px)]">
+            <div className="mt-5 w-[clamp(140px,40vw,260px)] sm:mt-[clamp(18px,2.8vh,36px)]">
               <Divider />
             </div>
 
-            <p className="mt-[clamp(18px,2.8vh,38px)] max-w-[min(48vw,680px)] text-[clamp(20px,2.3vw,34px)] font-light leading-[1.58] text-[#2d3549]">
+            <p className="mt-5 max-w-none text-[clamp(15px,4vw,34px)] font-light leading-[1.58] text-[#2d3549] sm:mt-[clamp(18px,2.8vh,38px)] lg:max-w-[min(48vw,680px)]">
               {isAr
                 ? "أدّى البيشمركة دورًا بالغ الأهمية في الدفاع عن إقليم كوردستان وحماية المدنيين."
                 : isKu
@@ -105,38 +103,39 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
           </section>
 
           {/* Cards */}
-          <section className="mt-[clamp(120px,18vh,450px)] grid grid-cols-3 gap-[clamp(16px,1.8vw,34px)] pb-[clamp(8px,1vh,22px)] pt-[clamp(20px,3vh,44px)]">
+          <section className="mt-8 grid grid-cols-1 gap-4 pb-8 pt-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 sm:pb-10 sm:pt-6 lg:mt-[clamp(120px,18vh,450px)] lg:grid-cols-3 lg:gap-[clamp(16px,1.8vw,34px)] lg:pb-[clamp(8px,1vh,22px)] lg:pt-[clamp(20px,3vh,44px)]">
             {localCards.map((card) => {
               const Icon = card.icon;
               return (
                 <article
                   key={card.title}
-                  className="land-detail-card relative flex min-h-[clamp(350px,31vh,520px)] flex-col items-center overflow-hidden rounded-[clamp(22px,2.3vw,34px)] border-2 border-[#ead8b7] bg-white/82 px-[clamp(16px,1.8vw,34px)] py-[clamp(18px,2.2vh,38px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
+                  className="land-detail-card relative flex min-h-[280px] flex-col items-center overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/82 px-5 py-6 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md sm:min-h-[320px] sm:rounded-[24px] sm:px-6 sm:py-7 lg:min-h-[clamp(350px,31vh,520px)] lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(16px,1.8vw,34px)] lg:py-[clamp(18px,2.2vh,38px)]"
                 >
                   <div
-                    className="grid h-[clamp(82px,7.3vw,124px)] w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496]"
+                    className="grid h-16 w-16 place-items-center rounded-full border-[5px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496] sm:h-[clamp(72px,7.3vw,124px)] sm:w-[clamp(72px,7.3vw,124px)] sm:border-[6px]"
                     style={{ backgroundColor: card.color }}
                   >
-                    <Icon size={58} strokeWidth={1.45} />
+                    <Icon className="h-9 w-9 sm:h-12 sm:w-12 lg:h-14 lg:w-14" strokeWidth={1.45} />
                   </div>
 
-                  <h3 className="mt-[clamp(16px,2vh,32px)] whitespace-pre-line font-serif text-[clamp(25px,2.45vw,38px)] font-light leading-[1.02]" style={{ color: card.color }}>
+                  <h3 className="mt-4 whitespace-pre-line font-serif text-[clamp(20px,4.5vw,38px)] font-light leading-[1.08] sm:mt-[clamp(16px,2vh,32px)] sm:leading-[1.02]" style={{ color: card.color }}>
                     {card.title}
                   </h3>
 
-                  <div className="my-[clamp(12px,1.8vh,30px)] w-[clamp(90px,8.5vw,140px)]">
+                  <div className="my-4 w-[clamp(80px,22vw,140px)] sm:my-[clamp(12px,1.8vh,30px)]">
                     <Divider />
                   </div>
 
-                  <p className="text-[clamp(18px,1.8vw,28px)] font-light leading-[1.45] text-[#35435b]">
+                  <p className="text-[clamp(15px,3.8vw,28px)] font-light leading-[1.45] text-[#35435b]">
                     {card.text}
                   </p>
 
                   <button
-                    className="mt-auto grid h-[clamp(52px,5vw,78px)] w-[clamp(52px,5vw,78px)] place-items-center rounded-full text-white shadow-md ring-4 ring-white"
+                    type="button"
+                    className="mt-5 grid h-12 w-12 place-items-center rounded-full text-white shadow-md ring-4 ring-white sm:mt-auto sm:h-[clamp(52px,5vw,78px)] sm:w-[clamp(52px,5vw,78px)]"
                     style={{ backgroundColor: card.color }}
                   >
-                    <ArrowRight size={32} />
+                    <ArrowRight className="h-6 w-6 sm:h-8 sm:w-8" />
                   </button>
 
                   <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[clamp(48px,5vh,90px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
