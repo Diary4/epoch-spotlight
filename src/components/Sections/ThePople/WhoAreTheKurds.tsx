@@ -81,102 +81,111 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
     return () => ctx.revert();
   }, []);
 
+  const titleLines = (detail?.title ?? "Who Are\nthe Kurds?").split("\n");
+  const subtitleLines = (detail?.subtitle ?? "An ancient people of\nthe Middle East.").split("\n");
+  const isRtl = lang === "ar" || lang === "ku";
+
   return (
-    <main 
-      ref={rootRef} 
-      className="m-0 min-h-screen w-full bg-[#fbf3e8] overflow-x-hidden select-none"
-    >
-      <section className="relative mx-auto min-h-screen w-full max-w-[1800px] px-[6vw] py-12 flex flex-col">
-        
-        {/* Navigation Button */}
+    <main ref={rootRef} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#fbf3e8] select-none">
+      <section className="relative mx-auto flex min-h-0 w-full max-w-[1800px] flex-col overflow-x-hidden overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 lg:min-h-screen lg:overflow-hidden lg:px-[6vw] lg:py-12">
         <button
+          type="button"
           onClick={onBack}
-          className="back-btn absolute left-8 top-8 z-50 flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/60 text-[#00604f] shadow-lg backdrop-blur-md transition-all hover:bg-white"
+          className="back-btn absolute left-4 top-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/60 text-[#00604f] shadow-lg backdrop-blur-md transition-all hover:bg-white sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-8 lg:top-8 lg:h-16 lg:w-16"
+          aria-label="Back to The People"
         >
-          <ArrowLeft size={32} />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
 
-        {/* --- BACKGROUND ARTWORK (Right Side) --- */}
-        <div className="hero-image pointer-events-none absolute right-0 top-0 h-[110vh] w-[70%] z-0">
+        <div className="hero-image pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(42vh,360px)] w-full sm:inset-x-auto sm:right-0 sm:h-[min(58vh,520px)] sm:w-[78%] lg:h-[110vh] lg:w-[70%]">
           <img
             src={bgImage}
             alt="Kurdish Visual"
-            className="h-full w-full object-contain object-right-top opacity-100"
+            className="h-full w-full object-contain object-[center_top] opacity-90 sm:object-right-top"
             style={{
-              maskImage: 'linear-gradient(to left, black 50%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to left, black 50%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)'
+              maskImage:
+                "linear-gradient(to left, black 50%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to left, black 50%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)",
             }}
           />
-          {/* Subtle overlay to help text readability if image is too dark */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf3e8] via-[#fbf3e8]/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf3e8] via-[#fbf3e8]/50 to-transparent sm:via-[#fbf3e8]/10" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#fbf3e8] to-transparent sm:hidden" />
         </div>
 
-        {/* --- MAIN CONTENT (Left Side) --- */}
-        <div className="relative z-10 mt-20 flex flex-col items-start max-w-[900px]">
-          
-          {/* Label: THE PEOPLE */}
-          <div className="stagger-text flex items-center gap-4 mb-12">
+        <div
+          dir={isRtl ? "rtl" : "ltr"}
+          className="relative z-10 mt-16 flex w-full min-w-0 max-w-none flex-col items-start sm:mt-20 lg:mt-20 lg:max-w-[900px]"
+        >
+          <div className="stagger-text mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <div className="flex items-center">
-              <span className="w-12 h-[2px] bg-[#c9903f]" />
-              <div className="w-4 h-4 border-2 border-[#c9903f] rotate-45 ml-[-2px]" />
+              <span className="h-[2px] w-8 bg-[#c9903f] sm:w-12" />
+              <div className="ml-[-2px] h-3 w-3 rotate-45 border-2 border-[#c9903f] sm:h-4 sm:w-4" />
             </div>
-            <h2 className="font-serif text-2xl font-light uppercase tracking-[0.2em] text-[#c9903f]">
+            <h2 className="font-serif text-lg font-light uppercase tracking-[0.15em] text-[#c9903f] sm:text-2xl sm:tracking-[0.2em]">
               {detail?.sectionLabel ?? "The People"}
             </h2>
           </div>
 
-          {/* Massive Title: Structured as requested */}
-          <h1 className="stagger-text font-serif text-[clamp(80px,9vw,160px)] font-light leading-[0.85] text-[#00604f] tracking-tighter">
-            Who Are <br /> 
-            the Kurds?
+          <h1 className="stagger-text font-serif text-[clamp(44px,11vw,160px)] font-light leading-[0.9] tracking-tighter text-[#00604f] sm:leading-[0.85]">
+            {titleLines.map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                {i < titleLines.length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </h1>
 
-          {/* Elegant Divider */}
-          <div className="stagger-text my-12 flex items-center gap-6">
-            <span className="h-[2px] w-32 bg-[#d9b477]" />
-            <div className="p-2 border border-[#d9b477] rounded-full">
-               <Sparkles size={24} className="text-[#c9903f]" />
+          <div className="stagger-text my-8 flex items-center gap-4 sm:my-12 sm:gap-6">
+            <span className="h-[2px] w-20 bg-[#d9b477] sm:w-32" />
+            <div className="rounded-full border border-[#d9b477] p-1.5 sm:p-2">
+              <Sparkles className="h-5 w-5 text-[#c9903f] sm:h-6 sm:w-6" />
             </div>
-            <span className="h-[2px] w-16 bg-[#d9b477]" />
+            <span className="h-[2px] w-10 bg-[#d9b477] sm:w-16" />
           </div>
 
-          {/* Subtitle: High contrast font size */}
-          <h2 className="stagger-text font-serif text-[clamp(32px,3.5vw,68px)] leading-[1.1] text-[#00604f] mb-10 max-w-[700px]">
-            An ancient people of <br /> 
-            the Middle East.
+          <h2 className="stagger-text mb-6 max-w-none font-serif text-[clamp(24px,5.5vw,68px)] leading-[1.1] text-[#00604f] sm:mb-10 lg:max-w-[700px]">
+            {subtitleLines.map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                {i < subtitleLines.length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </h2>
 
-          {/* Body Text */}
-          <p className="stagger-text max-w-[550px] text-[clamp(20px,1.6vw,30px)] leading-relaxed text-[#31445d] font-light opacity-80">
-            {detail?.description ?? "The Kurds have lived in these mountains and plains for thousands of years, shaping the region with their strength, spirit, and culture."}
+          <p className="stagger-text max-w-none text-[clamp(16px,4vw,30px)] font-light leading-relaxed text-[#31445d] opacity-80 sm:max-w-[550px]">
+            {detail?.description ??
+              "The Kurds have lived in these mountains and plains for thousands of years, shaping the region with their strength, spirit, and culture."}
           </p>
         </div>
-       {/* Cards */}
-       <section className="relative z-20 mt-[clamp(26px,5.5vh,84px)] grid grid-cols-3 gap-[clamp(16px,1.7vw,34px)] pb-[clamp(6px,1vh,20px)] pt-[clamp(24px,3.2vh,52px)]">
-        {localizedCards.map((card) => {
-          const Icon = card.icon;
-          return (
-            <article
-              key={card.title}
-              className="info-card flex min-h-[clamp(360px,32vh,540px)] flex-col items-center rounded-[clamp(22px,2.3vw,34px)] border-2 border-white bg-white/78 px-[clamp(18px,1.8vw,34px)] py-[clamp(20px,2.2vh,36px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
-            >
-              <div className={`grid h-[clamp(78px,7.2vw,120px)] w-[clamp(78px,7.2vw,120px)] place-items-center rounded-full ${card.color} text-[#f8dfae] shadow-[0_8px_22px_rgba(84,54,16,0.2)]`}>
-                <Icon size={56} strokeWidth={1.45} />
-              </div>
-              <div className="my-[clamp(16px,1.8vh,28px)] flex w-[clamp(82px,8vw,130px)] items-center justify-center gap-3 text-[#c9903f]">
-                <span className="h-0.5 flex-1 bg-[#d7b56c]" />
-                <span className="h-3 w-3 rotate-45 border border-[#c9903f]" />
-                <span className="h-0.5 flex-1 bg-[#d7b56c]" />
-              </div>
-              <h3 className="font-serif text-[clamp(24px,2.35vw,36px)] font-light leading-tight text-[#00604f]">
-                {card.title}
-              </h3>
-              <p className="mt-[clamp(14px,1.8vh,26px)] flex-1 text-[clamp(18px,1.8vw,28px)] font-light leading-[1.55] text-[#31445d]">
-                {card.text}
-              </p>
-            </article>
-          );
-        })}
+
+        <section className="relative z-20 mt-8 grid w-full grid-cols-1 items-stretch gap-4 pb-8 pt-4 sm:mt-12 sm:gap-5 sm:pb-10 sm:pt-6 md:grid-cols-3 lg:mt-[clamp(26px,5.5vh,84px)] lg:gap-[clamp(16px,1.7vw,34px)] lg:pb-[clamp(6px,1vh,20px)] lg:pt-[clamp(24px,3.2vh,52px)]">
+          {localizedCards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <article
+                key={card.title}
+                className="info-card flex min-h-[260px] flex-col items-center rounded-[20px] border-2 border-white bg-white/78 px-5 py-6 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md sm:min-h-[300px] sm:rounded-[24px] sm:px-6 sm:py-7 lg:min-h-[clamp(360px,32vh,540px)] lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(18px,1.8vw,34px)] lg:py-[clamp(20px,2.2vh,36px)]"
+              >
+                <div
+                  className={`grid h-16 w-16 place-items-center rounded-full ${card.color} text-[#f8dfae] shadow-[0_8px_22px_rgba(84,54,16,0.2)] sm:h-[clamp(72px,7.2vw,120px)] sm:w-[clamp(72px,7.2vw,120px)]`}
+                >
+                  <Icon className="h-9 w-9 sm:h-12 sm:w-12 lg:h-14 lg:w-14" strokeWidth={1.45} />
+                </div>
+                <div className="my-4 flex w-[clamp(72px,20vw,130px)] items-center justify-center gap-3 text-[#c9903f] sm:my-[clamp(16px,1.8vh,28px)]">
+                  <span className="h-0.5 flex-1 bg-[#d7b56c]" />
+                  <span className="h-3 w-3 rotate-45 border border-[#c9903f]" />
+                  <span className="h-0.5 flex-1 bg-[#d7b56c]" />
+                </div>
+                <h3 className="font-serif text-[clamp(20px,4.5vw,36px)] font-light leading-tight text-[#00604f]">
+                  {card.title}
+                </h3>
+                <p className="mt-4 flex-1 text-[clamp(15px,3.8vw,28px)] font-light leading-[1.55] text-[#31445d] sm:mt-[clamp(14px,1.8vh,26px)]">
+                  {card.text}
+                </p>
+              </article>
+            );
+          })}
         </section>
       </section>
     </main>
