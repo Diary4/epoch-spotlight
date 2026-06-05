@@ -9,7 +9,7 @@ import {
   Sun,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-7.webp";
+import bg from "@/assets/images/religions/r-2.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
 type LangCode = "en" | "ku" | "ar";

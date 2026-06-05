@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.webp";
+import bg from "@/assets/images/religions/r-8.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
 type LangCode = "en" | "ku" | "ar";

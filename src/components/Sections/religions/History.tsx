@@ -13,7 +13,7 @@ import {
 
 import bg from "@/assets/images/religions/r-1.webp";
 import ancientRootsImg from "@/assets/mainImages/letter.webp";
-import jewishCommunityImg from "@/assets/images/religions/r-5.webp";
+import jewishCommunityImg from "@/assets/images/religions/r-3.webp";
 import christiansImg from "@/assets/images/religions/r-2.webp";
 import bahaullahImg from "@/assets/mainImages/shared.webp";
 
