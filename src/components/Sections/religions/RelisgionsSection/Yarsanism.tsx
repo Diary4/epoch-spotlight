@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
-import bg from "@/assets/images/religions/r-1.webp";
+import bg from "@/assets/images/religions/k-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import meaningImg from "@/assets/mainImages/letter.webp";
 import principlesImg from "@/assets/mainImages/story-2.webp";

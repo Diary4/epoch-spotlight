@@ -9,7 +9,7 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import yarsanism from "@/assets/mainImages/story-1.webp";
+import yarsanism from "@/assets/images/religions/k-1.webp";
 import zoroastrianism from "@/assets/mainImages/story-2.webp";
 import judaism from "@/assets/mainImages/2005.webp";
 import bahai from "@/assets/images/bg-2.webp";

@@ -3,10 +3,10 @@ import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
 
 import faithsVideo from "@/assets/videos/faith.mp4";
-import imgIslam from "@/assets/images/religions/r-8.webp";
+import imgIslam from "@/assets/images/religions/r-9.webp";
 import imgChristianity from "@/assets/images/religions/r-5.webp";
 import imgYazidism from "@/assets/images/religions/r-4.webp";
-import imgYarsanism from "@/assets/images/religions/r-1.webp";
+import imgYarsanism from "@/assets/images/religions/k-1.webp";
 import imgZoroastrianism from "@/assets/images/religions/r-2.webp";
 import imgJudaism from "@/assets/images/religions/r-3.webp";
 import imgBahai from "@/assets/images/religions/r-6.webp";
