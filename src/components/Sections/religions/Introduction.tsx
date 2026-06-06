@@ -370,29 +370,40 @@ export default function IntroductionPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-stone-800"
+      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-stone-800 sm:w-screen"
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#faf8f5] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
+        className="relative w-full overflow-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
-        {/* Original Background Image / Grading structure kept intact */}
+        {/* Mobile: hero in document flow */}
+        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+          <img
+            data-intro-hero="true"
+            src={bg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
+        </div>
+
+        {/* Desktop: hero overlay */}
         <img
           data-intro-hero="true"
           src={bg}
           alt=""
-          className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+          className="absolute inset-0 hidden h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] sm:block"
         />
-        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
+        <div className="absolute inset-x-0 top-0 hidden h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:block" />
 
         {onBack && (
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border border-stone-200 bg-white/85 text-stone-800 shadow-sm transition hover:bg-stone-50"
+            className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border border-stone-200 bg-white/85 text-stone-800 shadow-sm transition hover:bg-stone-50 sm:left-8 sm:top-8 sm:h-14 sm:w-14"
             aria-label={c.back}
           >
-            <ArrowLeft className="h-7 w-7" />
+            <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
           </button>
         )}
 
@@ -400,28 +411,28 @@ export default function IntroductionPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-stone-200 bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50"
+            className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-stone-200 bg-white/75 px-3 py-2 font-serif text-xs font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50 sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
           >
-            <Globe2 className="h-5 w-5" />
+            <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
             {languageLabel}
           </button>
         )}
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col px-4 sm:px-0">
           <header
             data-intro-animate="true"
-            className="mx-auto max-w-[850px] pt-28 text-center sm:pt-32"
+            className="mx-auto max-w-[850px] pt-16 text-center sm:pt-28 lg:pt-32"
           >
-            <div className="mx-auto mb-3 w-[260px]">
+            <div className="mx-auto mb-3 w-[260px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 sm:text-[76px] lg:text-[88px]">
+            <h1 className="break-words font-serif text-[clamp(32px,9vw,88px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 sm:text-[56px] lg:text-[88px]">
               {c.pageTitle}
             </h1>
-            <div className="mx-auto mt-5 w-[180px]">
+            <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-5 max-w-[660px] text-[19px] font-semibold leading-relaxed text-stone-600 sm:text-[22px]">
+            <p className="mx-auto mt-4 max-w-[660px] break-words px-1 text-[16px] font-semibold leading-relaxed text-stone-600 sm:mt-5 sm:px-0 sm:text-[19px] lg:text-[22px]">
               {c.pageDescription}
             </p>
           </header>
@@ -430,25 +441,25 @@ export default function IntroductionPage({
             <section
               key={group.id}
               data-intro-animate="true"
-              className="mt-24 first:mt-20"
+              className="mt-12 first:mt-8 sm:mt-24 sm:first:mt-20"
               aria-labelledby={`intro-group-${group.id}`}
             >
               <div className="mx-auto max-w-[860px] text-center">
                 <h2
                   id={`intro-group-${group.id}`}
-                  className="font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-stone-900 sm:text-[48px]"
+                  className="break-words font-serif text-[clamp(26px,6.5vw,48px)] font-semibold uppercase leading-tight tracking-[0.04em] text-stone-900 sm:text-[48px]"
                 >
                   {group.title}
                 </h2>
-                <div className="mx-auto mt-4 w-[200px]">
+                <div className="mx-auto mt-4 w-[200px] max-w-full">
                   <DecorativeLine color="#c3923a" />
                 </div>
-                <p className="mx-auto mt-4 max-w-[640px] font-serif text-[18px] italic text-stone-500 sm:text-[20px]">
+                <p className="mx-auto mt-4 max-w-[640px] break-words px-1 font-serif text-[16px] italic text-stone-500 sm:px-0 sm:text-[18px] lg:text-[20px]">
                   {group.subtitle}
                 </p>
               </div>
 
-              <div className="mx-auto mt-10 grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mx-auto mt-8 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
                 {group.cards.map((card) => {
                   const Icon = card.icon;
                   return (
@@ -507,8 +518,8 @@ export default function IntroductionPage({
               </div>
 
               {/* Tagline Container updated to match off-white card design */}
-              <div className="mx-auto mt-10 max-w-[860px] rounded-[24px] border border-stone-200 bg-white px-7 py-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
-                <p className="font-serif text-[17px] font-semibold italic leading-snug text-stone-600 sm:text-[19px]">
+              <div className="mx-auto mt-8 max-w-[860px] rounded-[20px] border border-stone-200 bg-white px-4 py-4 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)] sm:mt-10 sm:rounded-[24px] sm:px-7 sm:py-5">
+                <p className="break-words font-serif text-[15px] font-semibold italic leading-snug text-stone-600 sm:text-[17px] lg:text-[19px]">
                   {group.tagline}
                 </p>
               </div>
