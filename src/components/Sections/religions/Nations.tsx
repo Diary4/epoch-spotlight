@@ -3,10 +3,10 @@ import gsap from "gsap";
 import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.webp";
-import whoarekurds from "@/assets/mainImages/whoarekurds.webp";
+import whoarekurds from "@/assets/images/religions/k-2.webp";
 import nationTurkmens from "@/assets/images/religions/r-3.webp";
 import nationChaldo from "@/assets/images/religions/r-4.webp";
-import nationArmenians from "@/assets/images/religions/r-5.webp";
+import nationArmenians from "@/assets/images/religions/a-1.webp";
 
 // Per-nation detail pages — wire up each nation to its own file in nations/.
 import KurdsPage from "@/components/Sections/religions/nations/Kurds";

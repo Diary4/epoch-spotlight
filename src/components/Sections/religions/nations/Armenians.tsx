@@ -8,7 +8,7 @@ import {
   UsersRound,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-5.webp";
+import bg from "@/assets/images/religions/a-1.webp";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_ICON_CARD_CLASS,

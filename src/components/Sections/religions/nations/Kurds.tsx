@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/mainImages/whoarekurds.webp";
+import bg from "@/assets/images/religions/k-2.webp";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_ICON_CARD_CLASS,
