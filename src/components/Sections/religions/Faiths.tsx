@@ -7,9 +7,9 @@ import imgIslam from "@/assets/images/religions/r-9.webp";
 import imgChristianity from "@/assets/images/religions/r-5.webp";
 import imgYazidism from "@/assets/images/religions/r-4.webp";
 import imgYarsanism from "@/assets/images/religions/k-1.webp";
-import imgZoroastrianism from "@/assets/images/religions/r-2.webp";
+import imgZoroastrianism from "@/assets/images/religions/z-1.webp";
 import imgJudaism from "@/assets/images/religions/j-1.webp";
-import imgBahai from "@/assets/images/religions/r-6.webp";
+import imgBahai from "@/assets/images/religions/b-1.webp";
 import imgSabean from "@/assets/images/religions/sabean-water.webp";
 
 // Per-faith detail pages — wire up each faith to its own file.

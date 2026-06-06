@@ -7,7 +7,7 @@ import {
   Sun,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-2.webp";
+import bg from "@/assets/images/religions/z-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_ICON_CARD_CLASS,
