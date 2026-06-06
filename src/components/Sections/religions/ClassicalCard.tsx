@@ -17,7 +17,7 @@ export default function ClassicalCard({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel ?? title}
-      className="group bg-[#fffff4] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
+      className="font-serif bg-[#fffff4] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
       style={{ aspectRatio: "3 / 4" }}
     >
       {/* Framed Image Container */}
@@ -33,14 +33,14 @@ export default function ClassicalCard({
 
       {/* Minimalist Title & Arrow Indicator */}
       <div className="flex items-center justify-between flex-1 pt-3 sm:pt-4 w-full">
-        <h3 className="font-serif text-base sm:text-[1.15rem] leading-snug text-stone-900 transition duration-300 group-hover:text-[#d6a45b] line-clamp-2 pr-3 flex-1">
+        <h3 className="font-serif font-black uppercase tracking-wider font-light text-base sm:text-[1.15rem] leading-snug text-[#332315] line-clamp-2 pr-3 flex-1">
           {title}
         </h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="w-4 h-4 text-[#d6a45b] transform translate-x-0 group-hover:translate-x-1.5 transition-transform duration-300 shrink-0"
+          className="h-4 w-4 shrink-0 text-[#d6a45b]"
         >
           <path
             fillRule="evenodd"
