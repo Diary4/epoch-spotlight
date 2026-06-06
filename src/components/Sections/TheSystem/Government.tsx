@@ -135,8 +135,8 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
     : keyAreas;
 
   return (
-    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
+    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-full flex-col overflow-x-hidden bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-full max-w-[min(100vw,1400px)] flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -145,10 +145,20 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
         >
           <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
         </button>
-        <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-        <div className="absolute right-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-14 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute left-0 top-0 hidden h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
+        <div className="absolute right-0 top-0 hidden h-full w-[clamp(64px,10vw,112px)] opacity-14 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(92vh,1100px)] w-full overflow-hidden">
+        {/* Mobile hero */}
+        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-full overflow-hidden sm:hidden">
+          <img
+            src={bg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf5eb] to-transparent" />
+        </div>
+
+        <div className="pointer-events-none absolute right-0 top-0 z-0 hidden h-[min(92vh,1100px)] w-full overflow-hidden sm:block">
           <img
             src={bg}
             alt="Government building placeholder"
@@ -157,7 +167,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
         </div>
 
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(24px,3.5vh,56px)]">
-          <section className="system-detail-intro mt-[clamp(4px,1vh,12px)] max-w-[min(92vw,720px)]">
+          <section className="system-detail-intro mt-[clamp(4px,1vh,12px)] max-w-[min(92vw,720px)] break-words">
             <div className="grid h-[clamp(88px,11vw,112px)] w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-[6px] border-white bg-[#405846] text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]">
               <Building2 className="h-[clamp(40px,5vw,58px)] w-[clamp(40px,5vw,58px)]" strokeWidth={1.45} />
             </div>
@@ -184,7 +194,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             </p>
           </section>
 
-          <section className="mt-[clamp(36px,24vh,400px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:grid-cols-3">
+          <section className="mt-8 grid grid-cols-1 gap-[clamp(16px,2.2vw,36px)] pb-[clamp(8px,1.5vh,20px)] sm:mt-[clamp(36px,24vh,400px)] sm:grid-cols-3">
             {localMainCards.map((card) => {
               const Icon = card.icon;
               return (
@@ -230,26 +240,26 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           </section>
 
           {/* Key areas section */}
-          <section className="system-detail-panel rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-5 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md">
-            <div className="mb-5 flex items-center gap-5 px-3 pt-0 font-serif text-[28px] font-light text-[#9b6d35]">
+          <section className="system-detail-panel rounded-[22px] border-2 border-[#ead8b7] bg-white/60 px-4 pb-6 pt-0 shadow-[0_12px_30px_rgba(84,54,16,0.1)] backdrop-blur-md sm:px-5">
+            <div className="mb-5 flex flex-col items-start gap-3 px-1 pt-0 font-serif text-[clamp(18px,4vw,28px)] font-light text-[#9b6d35] sm:flex-row sm:items-center sm:gap-5 sm:px-3">
               {isAr ? <span>المجالات الرئيسية لعمل الحكومة</span> : isKu ? <span>بوارە سەرەکییەکانی کاری حکومەت</span> : <span>Key Areas of Government Work</span>}
-              <span className="h-0.5 flex-1 bg-[#c7a05d]" />
-              <span className="h-3 w-3 rotate-45 border-2 border-[#c7a05d]" />
+              <span className="hidden h-0.5 flex-1 bg-[#c7a05d] sm:block" />
+              <span className="hidden h-3 w-3 rotate-45 border-2 border-[#c7a05d] sm:block" />
             </div>
 
-            <div className="grid grid-cols-6 gap-5">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-6">
               {localKeyAreas.map((item) => {
                 const Icon = item.icon;
                 return (
                   <article
                     key={item.title}
-                    className="flex min-h-[205px] flex-col items-center justify-start rounded-[14px] border border-[#ead8b7] bg-[#fffaf0]/80 px-3 py-5 text-center"
+                    className="flex min-h-[180px] flex-col items-center justify-start rounded-[14px] border border-[#ead8b7] bg-[#fffaf0]/80 px-3 py-5 text-center sm:min-h-[205px]"
                   >
-                    <Icon size={52} strokeWidth={1.5} style={{ color: item.color }} />
-                    <h4 className="mt-4 font-serif text-[20px] font-light leading-tight text-[#17233b]">
+                    <Icon className="h-[clamp(40px,10vw,52px)] w-[clamp(40px,10vw,52px)]" strokeWidth={1.5} style={{ color: item.color }} />
+                    <h4 className="mt-4 font-serif text-[clamp(17px,4vw,20px)] font-light leading-tight text-[#17233b]">
                       {item.title}
                     </h4>
-                    <p className="mt-2 text-[15px] font-light leading-snug text-[#35435b]">
+                    <p className="mt-2 text-[clamp(14px,3.5vw,15px)] font-light leading-snug text-[#35435b]">
                       {item.text}
                     </p>
                   </article>
@@ -259,18 +269,18 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           </section>
 
           {/* Bottom note */}
-          <section className="system-detail-panel mt-6 flex min-h-[115px] items-center overflow-hidden rounded-[18px] border-2 border-[#ead8b7] bg-white/68 shadow-[0_10px_25px_rgba(84,54,16,0.1)] backdrop-blur-md">
-            <div className="ml-10 mr-8 grid h-24 w-24 place-items-center rounded-full border-[6px] border-white bg-[#c59a4b] text-[#f8e5b8] shadow-md">
-              <FileText size={54} strokeWidth={1.45} />
+          <section className="system-detail-panel mt-6 flex flex-col items-center gap-4 overflow-hidden rounded-[18px] border-2 border-[#ead8b7] bg-white/68 px-4 py-5 shadow-[0_10px_25px_rgba(84,54,16,0.1)] backdrop-blur-md sm:min-h-[115px] sm:flex-row sm:items-center sm:px-0 sm:py-0">
+            <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border-[6px] border-white bg-[#c59a4b] text-[#f8e5b8] shadow-md sm:ml-10 sm:mr-8 sm:h-24 sm:w-24">
+              <FileText className="h-[clamp(36px,9vw,54px)] w-[clamp(36px,9vw,54px)]" strokeWidth={1.45} />
             </div>
-              <p className="max-w-[700px] text-[25px] font-light leading-tight text-[#2d3549]">
+              <p className="max-w-[700px] break-words text-center text-[clamp(17px,4vw,25px)] font-light leading-tight text-[#2d3549] sm:text-left">
               {isAr
                 ? "تعمل الحكومة على تحسين جودة الحياة وحماية الحقوق وبناء كوردستان أقوى."
                 : isKu
                   ? "حکومەت کاردەکات بۆ باشترکردنی کوالێتی ژیان، پاراستنی مافەکان، و بونیادنانی کوردستانێکی بەهێزتر."
                 : "The government works to improve quality of life, protect rights, and build a stronger Kurdistan."}
             </p>
-            <img src={bg2} alt="Government background" className="h-[min(200px,16vh)] w-full shrink-0 bg-center sm:ml-auto sm:block sm:h-auto sm:min-h-[100px] sm:w-[clamp(180px,22vw,280px)]" />
+            <img src={bg2} alt="Government background" className="mx-auto h-[min(160px,28vw)] w-full max-w-[320px] shrink-0 object-cover object-center sm:ml-auto sm:block sm:h-auto sm:min-h-[100px] sm:w-[clamp(180px,22vw,280px)] sm:max-w-none" />
           </section>
         </div>
       </section>

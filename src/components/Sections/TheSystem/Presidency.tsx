@@ -56,8 +56,8 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
     : cards;
 
   return (
-    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-none flex-col bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-[min(100vw,1400px)] max-w-none flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
+    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-full flex-col overflow-x-hidden bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
+      <section className="relative mx-auto flex w-full max-w-[min(100vw,1400px)] flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         <button
           type="button"
           onClick={onBack}
@@ -66,9 +66,19 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
         >
           <ArrowLeft className="h-[clamp(22px,3vw,32px)] w-[clamp(22px,3vw,32px)]" />
         </button>
-        <div className="absolute left-0 top-0 h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute left-0 top-0 hidden h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(86vh,900px)] w-[min(70vw,880px)] max-w-[min(92vw,880px)]">
+        {/* Mobile hero */}
+        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-full overflow-hidden sm:hidden">
+          <img
+            src={bg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf5eb] to-transparent" />
+        </div>
+
+        <div className="pointer-events-none absolute right-0 top-0 z-0 hidden h-[min(86vh,900px)] w-[min(70vw,880px)] max-w-[min(92vw,880px)] sm:block">
           <img
             src={bg}
             alt="Presidency building placeholder"
@@ -78,7 +88,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
           {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" /> */}
         </div>
 
-        <div className="pointer-events-none absolute left-0 right-0 top-[clamp(520px,48vh,800px)] z-[1] h-[clamp(140px,16vh,800px)]">
+        <div className="pointer-events-none absolute left-0 right-0 top-[clamp(520px,48vh,800px)] z-[1] hidden h-[clamp(140px,16vh,800px)] sm:block">
           <img
             src={bg2}
             alt=""
@@ -87,7 +97,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
         </div>
 
         <div className="px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(28px,4vh,64px)]">
-          <section className="system-detail-intro max-w-[min(92vw,720px)] pt-[clamp(72px,10vh,120px)]">
+          <section className="system-detail-intro max-w-[min(92vw,720px)] break-words pt-0 sm:pt-[clamp(72px,10vh,120px)]">
             <h1 className="font-serif text-[clamp(3rem,9.5vw,5.75rem)] font-light leading-none tracking-tight text-[#943134]">
               {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
             </h1>
@@ -113,7 +123,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             </p>
           </section>
 
-          <section className="mt-[clamp(36px,24vh,400px)] grid grid-cols-1 gap-[clamp(16px,2.2vw,32px)] pb-[clamp(8px,1.5vh,16px)] sm:grid-cols-3">
+          <section className="mt-8 grid grid-cols-1 gap-[clamp(16px,2.2vw,32px)] pb-[clamp(8px,1.5vh,16px)] sm:mt-[clamp(36px,24vh,400px)] sm:grid-cols-3">
             {localCards.map((card) => {
               const Icon = card.icon;
               return (

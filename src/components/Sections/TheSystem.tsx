@@ -43,10 +43,10 @@ function InstitutionNode({
   const Icon = icon;
   const content = (
     <>
-      <div className={`grid h-40 w-40 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55] md:h-44 md:w-44 lg:h-48 lg:w-48`}>
-        <Icon className="h-[76px] w-[76px] md:h-[84px] md:w-[84px] lg:h-[92px] lg:w-[92px]" strokeWidth={1.35} />
+      <div className={`grid h-32 w-32 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55] sm:h-36 sm:w-36 md:h-44 md:w-44 lg:h-48 lg:w-48`}>
+        <Icon className="h-14 w-14 sm:h-[76px] sm:w-[76px] md:h-[84px] md:w-[84px] lg:h-[92px] lg:w-[92px]" strokeWidth={1.35} />
       </div>
-      <p className="mt-6 rounded-full px-5 py-1.5 font-serif text-[28px] font-light uppercase tracking-[0.06em] text-[#17233b] md:text-[31px] lg:text-[36px]">
+      <p className="mt-4 rounded-full px-5 py-1.5 font-serif text-[22px] font-light uppercase tracking-[0.06em] text-[#17233b] sm:mt-6 sm:text-[28px] md:text-[31px] lg:text-[36px]">
         {label}
       </p>
     </>
@@ -157,7 +157,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
   return (
     <main className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
-      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden md:overflow-hidden bg-[#fbf5eb]">
+      <section ref={sectionRef} className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto bg-[#fbf5eb] md:overflow-hidden">
         <button
           type="button"
           onClick={onBack}
@@ -166,10 +166,20 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         >
           <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
-        <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
+        <div className="absolute left-0 top-[120px] hidden h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
-        {/* Hero Illustration Background */}
-        <div data-system-bg="true" className="pointer-events-none absolute right-[-100px] top-0 h-[700px] w-full min-w-full">
+        {/* Mobile hero */}
+        <div className="relative h-[min(36vh,280px)] min-h-[190px] w-full overflow-hidden sm:hidden">
+          <img
+            src={bg}
+            alt=""
+            className="h-full w-full object-cover object-center opacity-70"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf5eb] to-transparent" />
+        </div>
+
+        {/* Desktop hero illustration */}
+        <div data-system-bg="true" className="pointer-events-none absolute right-[-100px] top-0 hidden h-[700px] w-full min-w-full sm:block">
           <img
             src={bg}
             alt="System building placeholder"
@@ -181,11 +191,11 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
         <div className="relative z-10 flex flex-1 flex-col px-4 pb-8 pt-24 sm:px-12 sm:pb-10 sm:pt-16 md:px-16 md:pt-20 lg:px-20 lg:pb-14">
           <section className="max-w-[760px]">
-            <h1 data-system-hero="true" className="font-serif text-[clamp(40px,11vw,72px)] font-light leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
+            <h1 data-system-hero="true" className="break-words font-serif text-[clamp(40px,11vw,72px)] font-light leading-[1.03] tracking-tight text-[#17233b] sm:text-[86px] md:text-[100px] lg:text-[118px]">
               {title}
             </h1>
 
-            <p data-system-hero="true" className="mt-4 text-[clamp(18px,5vw,28px)] font-light leading-tight text-[#9b6d35] sm:mt-6 sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
+            <p data-system-hero="true" className="mt-4 break-words text-[clamp(18px,5vw,28px)] font-light leading-tight text-[#9b6d35] sm:mt-6 sm:text-[34px] md:mt-8 md:text-[40px] lg:text-[46px]">
               {heading}
             </p>
 
@@ -194,7 +204,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
             </div>
 
-            <p data-system-hero="true" className="mt-6 max-w-[700px] text-[clamp(17px,4.2vw,24px)] font-light leading-[1.5] text-[#2d3549] sm:mt-8 md:mt-10 md:text-[30px] lg:mt-8 lg:text-[36px]">
+            <p data-system-hero="true" className="mt-6 max-w-[700px] break-words text-[clamp(17px,4.2vw,24px)] font-light leading-[1.5] text-[#2d3549] sm:mt-8 md:mt-10 md:text-[30px] lg:mt-8 lg:text-[36px]">
               {description}
             </p>
           </section>
