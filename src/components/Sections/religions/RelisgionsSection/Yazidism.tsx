@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  ArrowLeft,
   ChevronRight,
-  Globe2,
   HeartHandshake,
   Sparkles,
 } from "lucide-react";
@@ -10,6 +8,18 @@ import OtherFaithTraditionsPage from "@/components/Sections/religions/Relisgions
 
 import bg from "@/assets/images/religions/r-4.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
+import {
+  FAITH_IMAGE_SIDE_AVATAR_CLASS,
+  FAITH_IMAGE_SIDE_CARD_CLASS,
+  FAITH_CONTENT_PADDING,
+  FAITH_MAIN_CLASS,
+  FAITH_SECTION_CLASS,
+  FAITH_TAGLINE_ACTION_SECTION_CLASS,
+  FAITH_TAGLINE_TEXT_CLASS,
+  FaithDetailControls,
+  FaithDetailHeroImage,
+  FaithDetailSpacer,
+} from "@/components/Sections/religions/faithDetailLayout";
 import lalish from "@/assets/mainImages/story-1.webp";
 import peacock from "@/assets/mainImages/story-2.webp";
 import festival from "@/assets/mainImages/2005.webp";
@@ -85,7 +95,7 @@ const content: Record<LangCode, YazidismContent> = {
     subtitle: "الوادي المقدس، الذاكرة، والصمود",
     cards: [
       {
-        title: "لالش",
+        title: "لalish",
         text: "تبعد ٦٠ كم شمالي الموصل، في قضاء الشيخان. تضمّ ضريح الشيخ عدي، وهي المركز الروحي العالمي للإيزيديين.",
       },
       {
@@ -159,80 +169,62 @@ export default function YazidismPage({
   }
 
   return (
-    <main
-      dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
-    >
-      <section
-        ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
-      >
-        <img
-          data-yazidi-hero="true"
+    <main dir={dir} className={FAITH_MAIN_CLASS}>
+      <section ref={sectionRef} className={FAITH_SECTION_CLASS}>
+        <FaithDetailHeroImage
+          heroAttr="data-yazidi-hero"
           src={bg}
-          alt=""
-          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
-          }}
-        />
-
-        <button
-          type="button"
-          data-yazidi-controls="true"
-          onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label={c.back}
+          desktopClassName="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         >
-          <ArrowLeft className="h-7 w-7" />
-        </button>
+          <div
+            className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] hidden h-24 -translate-y-full blur-[2px] sm:block"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+            }}
+          />
+        </FaithDetailHeroImage>
 
-        <button
-          type="button"
-          data-yazidi-controls="true"
-          onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
-        >
-          <Globe2 className="h-5 w-5" />
-          {languageLabel}
-        </button>
+        <FaithDetailControls
+          controlsAttr="data-yazidi-controls"
+          backLabel={c.back}
+          onBack={onBack}
+          onLanguageChange={onLanguageChange}
+          languageLabel={languageLabel}
+        />
 
-        <div className="relative z-10 mx-auto max-w-[1020px]">
+        <div className={`relative z-10 mx-auto max-w-[1020px] ${FAITH_CONTENT_PADDING}`}>
           <header
             data-yazidi-animate="true"
-            className="mx-auto max-w-[820px] pt-12 text-center"
+            className="mx-auto max-w-[820px] pt-4 text-center sm:pt-12"
           >
             <div className="mx-auto mb-4 w-[440px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className="font-serif text-[66px] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12] sm:text-[86px] lg:text-[104px]">
+            <h1 className="break-words font-serif text-[clamp(36px,10vw,104px)] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12] sm:text-[86px] lg:text-[104px]">
               {c.pageTitle}
             </h1>
 
-            <p className="mt-4 font-serif text-[25px] font-semibold text-[#a46f22] sm:text-[31px]">
+            <p className="mt-3 font-serif text-[clamp(18px,4.5vw,31px)] font-semibold text-[#a46f22] sm:mt-4 sm:text-[31px]">
               {c.subtitle}
             </p>
 
-            <div className="mx-auto mt-6 w-[190px]">
+            <div className="mx-auto mt-5 w-[190px] max-w-full sm:mt-6">
               <DecorativeLine color="#c3923a" />
             </div>
           </header>
 
-          <div className="h-[560px]" />
+          <FaithDetailSpacer desktopHeight="h-[560px]" />
 
-          <section className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
             {c.cards.map((card, i) => (
               <article
                 key={card.title}
                 data-yazidi-animate="true"
-                className="grid min-h-[255px] grid-cols-[135px_1fr] gap-5 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-6 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
+                className={FAITH_IMAGE_SIDE_CARD_CLASS}
               >
-                <div className="h-[135px] w-[135px] overflow-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb]">
+                <div className={FAITH_IMAGE_SIDE_AVATAR_CLASS}>
                   <img
                     src={cardImages[i]}
                     alt={card.title}
@@ -242,17 +234,17 @@ export default function YazidismPage({
 
                 <div>
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-serif text-[27px] font-semibold uppercase leading-tight text-[#3b2410]">
+                    <h3 className="font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[27px]">
                       {card.title}
                     </h3>
-                    <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
+                    <Sparkles className="h-7 w-7 shrink-0 text-[#c58b16] sm:h-8 sm:w-8" />
                   </div>
 
                   <div className="my-3 w-[130px]">
                     <DecorativeLine color="#d1a14f" />
                   </div>
 
-                  <p className="whitespace-pre-line text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
+                  <p className="whitespace-pre-line text-[15px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[17px]">
                     {card.text}
                   </p>
                 </div>
@@ -260,31 +252,28 @@ export default function YazidismPage({
             ))}
           </section>
 
-          <section
-            data-yazidi-animate="true"
-            className="mx-auto mt-7 flex items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-          >
-            <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
-              <HeartHandshake className="h-12 w-12" strokeWidth={1.8} />
+          <section data-yazidi-animate="true" className={FAITH_TAGLINE_ACTION_SECTION_CLASS}>
+            <div className="grid h-16 w-16 shrink-0 place-items-center self-center text-[#c58b16] sm:self-auto">
+              <HeartHandshake className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={1.8} />
             </div>
 
-            <p className="flex-1 font-serif text-[27px] font-semibold leading-tight text-[#3b2410]">
+            <p className={`flex-1 text-center ${FAITH_TAGLINE_TEXT_CLASS} sm:text-left`}>
               {c.tagline}
             </p>
 
             <button
               type="button"
               onClick={() => setSubPage("otherFaith")}
-              className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
+              className="grid h-16 w-16 shrink-0 place-items-center self-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] sm:self-auto"
             >
               <ChevronRight className="h-9 w-9" />
             </button>
           </section>
 
-          <Sparkles className="mx-auto mt-5 h-12 w-12 text-[#c58b16]" />
+          <Sparkles className="mx-auto mt-5 h-10 w-10 text-[#c58b16] sm:h-12 sm:w-12" />
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+        <div className="pointer-events-none absolute bottom-0 right-0 hidden h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
       </section>
     </main>
   );

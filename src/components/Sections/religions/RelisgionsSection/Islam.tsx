@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  ArrowLeft,
-  Globe2,
   BookOpen,
   MoonStar,
   Landmark,
@@ -10,6 +8,20 @@ import {
 
 import bg from "@/assets/images/religions/r-9.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
+import {
+  FAITH_ICON_CARD_CLASS,
+  FAITH_ICON_CARD_ICON_CLASS,
+  FAITH_ICON_CARD_ICON_WRAP_CLASS,
+  FAITH_CONTENT_PADDING,
+  FAITH_MAIN_CLASS,
+  FAITH_SECTION_CLASS,
+  FAITH_TAGLINE_SECTION_CLASS,
+  FAITH_TAGLINE_ICON_WRAP_CLASS,
+  FAITH_TAGLINE_TEXT_CLASS,
+  FaithDetailControls,
+  FaithDetailHeroImage,
+  FaithDetailSpacer,
+} from "@/components/Sections/religions/faithDetailLayout";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -154,77 +166,59 @@ export default function IslamPage({
   );
 
   return (
-    <main
-      dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
-    >
-      <section
-        ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
-      >
-        <img
-          data-islam-hero="true"
+    <main dir={dir} className={FAITH_MAIN_CLASS}>
+      <section ref={sectionRef} className={FAITH_SECTION_CLASS}>
+        <FaithDetailHeroImage
+          heroAttr="data-islam-hero"
           src={bg}
-          alt=""
-          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
-          }}
-        />
-
-        <button
-          type="button"
-          data-islam-controls="true"
-          onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label={c.back}
+          desktopClassName="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
         >
-          <ArrowLeft className="h-7 w-7" />
-        </button>
+          <div
+            className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] hidden h-24 -translate-y-full blur-[2px] sm:block"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+            }}
+          />
+        </FaithDetailHeroImage>
 
-        <button
-          type="button"
-          data-islam-controls="true"
-          onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
-        >
-          <Globe2 className="h-5 w-5" />
-          {languageLabel}
-        </button>
+        <FaithDetailControls
+          controlsAttr="data-islam-controls"
+          backLabel={c.back}
+          onBack={onBack}
+          onLanguageChange={onLanguageChange}
+          languageLabel={languageLabel}
+        />
 
-        <div className="relative z-10 mx-auto max-w-[1040px]">
+        <div className={`relative z-10 mx-auto max-w-[1040px] ${FAITH_CONTENT_PADDING}`}>
           <header
             data-islam-animate="true"
-            className="mx-auto max-w-[820px] pt-10 text-center"
+            className="mx-auto max-w-[820px] pt-4 text-center sm:pt-10"
           >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
+            <div className="mx-auto mb-4 grid h-16 w-16 place-items-center text-[48px] text-[#b9822d] sm:mb-6 sm:h-24 sm:w-24 sm:text-[68px]">
               ✥
             </div>
 
-            <div className="mx-auto mb-5 w-[480px] max-w-full">
+            <div className="mx-auto mb-4 w-[480px] max-w-full sm:mb-5">
               <DecorativeLine />
             </div>
 
-            <h1 className="font-serif text-[72px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
+            <h1 className="break-words font-serif text-[clamp(36px,10vw,118px)] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
               {c.pageTitle}
             </h1>
 
-            <p className="mt-4 font-serif text-[29px] font-semibold text-[#7d5a2d] sm:text-[40px]">
+            <p className="mt-3 font-serif text-[clamp(20px,5vw,40px)] font-semibold text-[#7d5a2d] sm:mt-4 sm:text-[40px]">
               {c.subtitle}
             </p>
 
-            <div className="mx-auto mt-8 w-[210px]">
+            <div className="mx-auto mt-5 w-[210px] max-w-full sm:mt-8">
               <DecorativeLine />
             </div>
           </header>
 
-          <div className="h-[520px]" />
+          <FaithDetailSpacer desktopHeight="h-[520px]" />
 
-          <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {c.cards.map((card) => {
               const Icon = card.icon;
 
@@ -232,21 +226,21 @@ export default function IslamPage({
                 <article
                   key={card.title}
                   data-islam-animate="true"
-                  className="min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm"
+                  className={FAITH_ICON_CARD_CLASS}
                 >
-                  <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner">
-                    <Icon className="h-10 w-10" strokeWidth={1.7} />
+                  <div className={FAITH_ICON_CARD_ICON_WRAP_CLASS}>
+                    <Icon className={FAITH_ICON_CARD_ICON_CLASS} strokeWidth={1.7} />
                   </div>
 
-                  <h3 className="font-serif text-[21px] font-semibold uppercase leading-tight text-[#3b2410]">
+                  <h3 className="font-serif text-[19px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[21px]">
                     {card.title}
                   </h3>
 
-                  <div className="mx-auto my-4 w-[140px]">
+                  <div className="mx-auto my-3 w-[140px] sm:my-4">
                     <DecorativeLine color="#d1a14f" />
                   </div>
 
-                  <p className="text-[16px] font-semibold leading-relaxed text-[#4d3c2a]">
+                  <p className="text-[15px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[16px]">
                     {card.text}
                   </p>
                 </article>
@@ -254,26 +248,21 @@ export default function IslamPage({
             })}
           </section>
 
-          <section
-            data-islam-animate="true"
-            className="mx-auto mt-8 flex max-w-[720px] items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-          >
-            <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-[42px] text-white">
+          <section data-islam-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
+            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[32px] sm:text-[42px]`}>
               ☾
             </div>
 
-            <p className="font-serif text-[34px] font-semibold leading-tight text-[#3b2410]">
-              {c.tagline}
-            </p>
+            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
-            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
+            <Sparkles className="h-7 w-7 shrink-0 text-[#c58b16] sm:h-8 sm:w-8" />
           </section>
 
-          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
+          <div className="mt-6 text-center text-[40px] text-[#b9822d] sm:mt-8 sm:text-[58px]">✥</div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+        <div className="pointer-events-none absolute bottom-0 left-0 hidden h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
+        <div className="pointer-events-none absolute bottom-0 right-0 hidden h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
       </section>
     </main>
   );
