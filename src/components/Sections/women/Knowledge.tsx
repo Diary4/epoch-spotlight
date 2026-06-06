@@ -115,8 +115,8 @@ export default function WomenKnowledgePage({
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden ${
-          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
+        className={`relative flex w-full max-w-full flex-col overflow-y-auto overflow-x-hidden sm:w-[min(100vw,1400px)] ${
+          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
         }`}
       >
         <WomenLanguageButton

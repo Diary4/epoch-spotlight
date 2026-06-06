@@ -126,14 +126,14 @@ export default function WomenResistancePage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-screen flex-col justify-start p-0 ${
+      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto ${
-          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
+        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto sm:w-[min(100vw,1400px)] ${
+          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-screen bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
