@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-6.webp";
+import bg from "@/assets/images/religions/b-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_ICON_CARD_CLASS,
