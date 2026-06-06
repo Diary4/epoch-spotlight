@@ -248,28 +248,40 @@ export default function NationsPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#3d2b18] sm:w-screen"
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
+        className="relative w-full overflow-hidden bg-[#fbf1df] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
+        {/* Mobile: hero in document flow */}
+        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+          <img
+            data-n-hero="true"
+            src={bg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf1df] to-transparent" />
+        </div>
+
+        {/* Desktop: hero overlay */}
         <img
           data-n-hero="true"
           src={bg}
           alt=""
-          className="absolute inset-0 h-[55vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+          className="absolute inset-0 hidden h-[55vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:block"
         />
-        <div className="absolute inset-x-0 top-0 h-[55vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
+        <div className="absolute inset-x-0 top-0 hidden h-[55vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95 sm:block" />
 
         {onBack && (
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm"
+            className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14"
             aria-label={c.back}
           >
-            <ArrowLeft className="h-7 w-7" />
+            <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
           </button>
         )}
 
@@ -277,35 +289,35 @@ export default function NationsPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+            className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-[#d9b477] bg-white px-3 py-2 font-serif text-xs font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
           >
-            <Globe2 className="h-5 w-5" />
+            <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
             {languageLabel}
           </button>
         )}
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col px-4 sm:px-0">
           <header
             data-n-animate="true"
-            className="mx-auto max-w-[850px] pt-28 text-center sm:pt-32"
+            className="mx-auto max-w-[850px] pt-16 text-center sm:pt-28 lg:pt-32"
           >
-            <div className="mx-auto mb-3 w-[260px]">
+            <div className="mx-auto mb-3 w-[260px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[84px]">
+            <h1 className="break-words font-serif text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[56px] lg:text-[84px]">
               {c.pageTitle}
             </h1>
-            <div className="mx-auto mt-5 w-[180px]">
+            <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-5 max-w-[620px] text-[18px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[20px]">
+            <p className="mx-auto mt-4 max-w-[620px] text-[16px] font-semibold leading-relaxed text-[#4d3c2a] sm:mt-5 sm:text-[18px] lg:text-[20px]">
               {c.pageDescription}
             </p>
           </header>
 
           <section
             data-n-animate="true"
-            className="mx-auto mt-[clamp(80px,50vh,360px)] grid w-full max-w-[1180px] grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4"
+            className="mx-auto mt-8 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(80px,50vh,360px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-4"
           >
             {c.nations.map((nation) => (
               <article
@@ -320,9 +332,9 @@ export default function NationsPage({
                   }
                 }}
                 aria-label={nation.title}
-                className="mt-[clamp(20px,30vh,500px)] relative flex min-h-[420px] cursor-pointer flex-col overflow-hidden rounded-[28px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+                className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(20px,30vh,500px)] sm:min-h-[420px] sm:rounded-[28px]"
               >
-                <div className="relative h-[230px] w-full overflow-hidden">
+                <div className="relative h-[180px] w-full overflow-hidden sm:h-[230px]">
                   <img
                     src={nation.image}
                     alt={nation.title}
@@ -331,11 +343,11 @@ export default function NationsPage({
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
                 </div>
 
-                <div className="flex flex-1 flex-col px-6 py-6">
-                  <h3 className="font-serif text-[26px] font-semibold uppercase leading-tight text-[#3b2410]">
+                <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-6">
+                  <h3 className="break-words font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[26px]">
                     {nation.title}
                   </h3>
-                  <div className="mt-2 mb-3 w-[60px]">
+                  <div className="mb-3 mt-2 w-[60px]">
                     <span className="block h-[2px] bg-[#c3923a]" />
                   </div>
                   <p className="text-[14px] leading-relaxed text-[#5a4a30]">
