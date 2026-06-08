@@ -16,6 +16,12 @@ import WomenPage from "./pages/Women.tsx";
 import StartMenu from "./pages/StartMenu.tsx";
 import Touristic from "./pages/Touristic.tsx";
 import TouristicDetail from "./pages/TouristicDetail.tsx";
+import Library from "./pages/Library.tsx";
+import LibraryBrowse from "./pages/LibraryBrowse.tsx";
+import LibraryWriterDetail from "./pages/LibraryWriterDetail.tsx";
+import LibraryFeaturedWriter from "./pages/LibraryFeaturedWriter.tsx";
+import LibraryBookDetail from "./pages/LibraryBookDetail.tsx";
+import LibraryBookReader from "./pages/LibraryBookReader.tsx";
 
 const queryClient = new QueryClient();
 const Router = Capacitor.isNativePlatform() ? HashRouter : BrowserRouter;
@@ -39,6 +45,12 @@ const App = () => (
           <Route path="/touristic" element={<Touristic />} />
           <Route path="/touristic/:category/:id" element={<TouristicDetail />} />
           <Route path="/touristic/:id" element={<TouristicDetail />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/library/browse" element={<LibraryBrowse />} />
+          <Route path="/library/writers/:writerId" element={<LibraryWriterDetail />} />
+          <Route path="/library/writers/:writerId/featured" element={<LibraryFeaturedWriter />} />
+          <Route path="/library/books/:bookId" element={<LibraryBookDetail />} />
+          <Route path="/library/books/:bookId/read" element={<LibraryBookReader />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
