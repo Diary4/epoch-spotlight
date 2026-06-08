@@ -147,18 +147,7 @@ export default function LibraryWriterDetail() {
       {/* Tab Content */}
       <section className="px-5 py-8 sm:px-8">
         {activeTab === "overview" && (
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Quote */}
-            {writer.quote && (
-              <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6">
-                <span className="font-serif text-5xl leading-none text-[#C5A059]/40">"</span>
-                <p className="mt-2 font-serif text-lg italic leading-relaxed text-[#0B1C14]">
-                  {writer.quote}
-                </p>
-                <p className="mt-4 text-sm text-[#8B7355]">— {writer.name}</p>
-              </div>
-            )}
-
+          <div className="grid gap-6 lg:grid-cols-2">
             {/* Timeline */}
             <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6">
               <h3 className="font-serif text-lg text-[#0B1C14]">Life Journey</h3>

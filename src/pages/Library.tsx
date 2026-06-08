@@ -118,7 +118,7 @@ export default function Library() {
       </section>
 
       {/* Explore Books */}
-      <section className="mt-12 px-5 pb-32 sm:px-8">
+      <section className="mt-12 px-5 pb-8 sm:px-8">
         <div className="flex items-center justify-between">
           <h2 className="text-[10px] uppercase tracking-[0.3em] text-[#8B7355]">
             Explore Books
@@ -142,17 +142,6 @@ export default function Library() {
           <div className="absolute inset-x-0 -bottom-1 h-1 rounded-sm bg-[#5C3D0A]" />
         </div>
       </section>
-
-      {/* Footer CTA */}
-      <footer className="fixed inset-x-0 bottom-0 bg-[#0B1C14] px-6 py-5 text-center">
-        <Link to="/library/browse" className="block">
-          <LibraryLogo variant="gold" size="sm" showTagline={false} />
-          <p className="mt-2 font-serif text-sm text-[#C5A059]/90">
-            Touch to begin your journey
-          </p>
-          <p className="mt-1 text-[#C5A059]/50">👆</p>
-        </Link>
-      </footer>
     </main>
   );
 }

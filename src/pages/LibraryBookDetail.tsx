@@ -170,18 +170,6 @@ export default function LibraryBookDetail() {
             <p className="mt-4 text-sm leading-relaxed text-[#5C4A3A]">
               {book.aboutText ?? book.description}
             </p>
-            {book.quoteEnglish && (
-              <div className="mt-6 rounded-xl bg-[#F0EBE3] p-5">
-                {book.quoteKurdish && (
-                  <p className="font-serif text-lg text-[#0B1C14]" dir="rtl">
-                    {book.quoteKurdish}
-                  </p>
-                )}
-                <p className="mt-3 text-sm italic text-[#5C4A3A]">
-                  "{book.quoteEnglish}"
-                </p>
-              </div>
-            )}
           </div>
 
           <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6">
