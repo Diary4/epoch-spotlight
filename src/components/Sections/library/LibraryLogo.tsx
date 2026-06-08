@@ -5,9 +5,21 @@ type LibraryLogoProps = {
 };
 
 const sizeClasses = {
-  sm: { icon: "h-6 w-6", title: "text-[10px]", tagline: "text-[8px]" },
-  md: { icon: "h-8 w-8", title: "text-xs", tagline: "text-[9px]" },
-  lg: { icon: "h-10 w-10", title: "text-sm", tagline: "text-[10px]" },
+  sm: {
+    icon: "h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 3xl:h-10 3xl:w-10",
+    title: "text-[10px] sm:text-xs lg:text-sm 3xl:text-base",
+    tagline: "text-[8px] sm:text-[9px] lg:text-[10px] 3xl:text-sm",
+  },
+  md: {
+    icon: "h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 3xl:h-16 3xl:w-16",
+    title: "text-xs sm:text-sm lg:text-base 3xl:text-xl",
+    tagline: "text-[9px] sm:text-[10px] lg:text-xs 3xl:text-base",
+  },
+  lg: {
+    icon: "h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 3xl:h-20 3xl:w-20",
+    title: "text-sm sm:text-base lg:text-lg 3xl:text-2xl",
+    tagline: "text-[10px] sm:text-xs lg:text-sm 3xl:text-lg",
+  },
 };
 
 const colorClasses = {
@@ -34,7 +46,7 @@ export default function LibraryLogo({
   const colors = colorClasses[variant];
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-1 lg:gap-2">
       <StarIcon className={`${sizes.icon} ${colors.icon}`} />
       <p className={`font-serif uppercase tracking-[0.2em] ${sizes.title} ${colors.title}`}>
         Voices of Kurdistan

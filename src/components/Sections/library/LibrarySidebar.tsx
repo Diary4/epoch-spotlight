@@ -26,8 +26,8 @@ export default function LibrarySidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden w-48 shrink-0 flex-col bg-[#0B1C14] py-8 lg:flex">
-      <nav className="flex flex-col gap-1 px-3">
+    <aside className="hidden w-48 shrink-0 flex-col bg-[#0B1C14] py-8 lg:flex xl:w-56 3xl:w-64 3xl:py-10">
+      <nav className="flex flex-col gap-1 px-3 xl:px-4 3xl:gap-2">
         {navItems.map((item) => {
           const isActive =
             item.path === location.pathname ||
@@ -38,13 +38,13 @@ export default function LibrarySidebar() {
               key={item.label}
               to={item.path}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors xl:text-base 3xl:gap-4 3xl:px-4 3xl:py-3.5 3xl:text-lg",
                 isActive
                   ? "bg-[#1B3022] text-[#C5A059]"
                   : "text-[#B0926A]/80 hover:bg-[#1B3022]/50 hover:text-[#C5A059]",
               )}
             >
-              <item.icon className="h-4 w-4 shrink-0" />
+              <item.icon className="h-4 w-4 shrink-0 xl:h-5 xl:w-5 3xl:h-6 3xl:w-6" />
               <span>{item.label}</span>
             </Link>
           );

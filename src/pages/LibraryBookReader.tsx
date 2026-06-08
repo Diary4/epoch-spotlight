@@ -2,6 +2,15 @@ import { useLayoutEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import BookPurchaseDialog from "@/components/Sections/library/BookPurchaseDialog";
+import {
+  libraryBodySmall,
+  libraryIconSm,
+  libraryNavText,
+  libraryPad,
+  libraryReaderShell,
+  libraryReaderText,
+  librarySectionTitle,
+} from "@/components/Sections/library/libraryLayout";
 import { getBookPreviewPages } from "@/data/bookSampleContent";
 import { getBookById } from "@/data/libraryBooks";
 import { getWriterById } from "@/data/libraryWriters";
@@ -11,6 +20,7 @@ import {
   getMaxReadablePage,
   isBookPurchased,
 } from "@/lib/libraryPreview";
+import { cn } from "@/lib/utils";
 
 export default function LibraryBookReader() {
   const { bookId } = useParams();
@@ -56,66 +66,58 @@ export default function LibraryBookReader() {
 
   return (
     <main className="flex min-h-screen flex-col bg-[#F5F1E6]">
-      {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-[#E8E0D4] bg-[#F5F1E6]/95 px-5 py-4 backdrop-blur-sm sm:px-8">
-        <div className="mx-auto flex max-w-2xl items-center justify-between">
+      <header className={cn("sticky top-0 z-10 border-b border-[#E8E0D4] bg-[#F5F1E6]/95 backdrop-blur-sm", libraryPad, "py-4 lg:py-6 3xl:py-8")}>
+        <div className={cn(libraryReaderShell, "flex items-center justify-between")}>
           <Link
             to={`/library/books/${bookId}`}
-            className="flex items-center gap-2 text-sm text-[#5C4A3A] hover:text-[#0B1C14]"
+            className={cn(libraryNavText, "flex items-center gap-2 hover:text-[#0B1C14]")}
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className={libraryIconSm} />
             Back
           </Link>
 
           <div className="text-center">
-            <p className="font-serif text-sm text-[#0B1C14]">{book.title}</p>
-            {author && (
-              <p className="text-xs text-[#8B7355]">{author.name}</p>
-            )}
+            <p className="font-serif text-sm text-[#0B1C14] lg:text-base 3xl:text-2xl">{book.title}</p>
+            {author && <p className={libraryBodySmall}>{author.name}</p>}
           </div>
 
-          <div className="text-right text-xs text-[#8B7355]">
+          <div className={cn(libraryBodySmall, "text-right")}>
             <span className="font-medium text-[#0B1C14]">{currentPage}</span>
-            {book.pages && (
-              <span> / {book.pages}</span>
-            )}
+            {book.pages && <span> / {book.pages}</span>}
           </div>
         </div>
 
         {!purchased && (
-          <div className="mx-auto mt-3 flex max-w-2xl items-center justify-center gap-2">
-            <span className="rounded-full bg-[#0B1C14]/10 px-3 py-1 text-[10px] uppercase tracking-wider text-[#0B1C14]">
+          <div className={cn(libraryReaderShell, "mt-3 flex items-center justify-center lg:mt-4")}>
+            <span className="rounded-full bg-[#0B1C14]/10 px-3 py-1 text-[10px] uppercase tracking-wider text-[#0B1C14] lg:text-xs 3xl:px-5 3xl:py-2 3xl:text-base">
               Free preview · {FREE_PREVIEW_PAGES} pages
             </span>
           </div>
         )}
       </header>
 
-      {/* Page content */}
-      <article className="mx-auto w-full max-w-2xl flex-1 px-6 py-10 sm:px-8 sm:py-14">
-        <p className="mb-6 text-xs uppercase tracking-widest text-[#C5A059]">
+      <article className={cn(libraryReaderShell, libraryPad, "flex-1 py-10 sm:py-14 lg:py-16 3xl:py-20")}>
+        <p className="mb-6 text-xs uppercase tracking-widest text-[#C5A059] lg:text-sm 3xl:text-lg">
           Page {currentPage}
         </p>
-        <div className="font-serif text-lg leading-[1.9] text-[#2A2018] sm:text-xl sm:leading-[2]">
+        <div className={libraryReaderText}>
           {activePage?.content ?? (
             <p className="text-[#8B7355]">This page is not available in the preview.</p>
           )}
         </div>
 
         {currentPage === FREE_PREVIEW_PAGES && !purchased && (
-          <div className="mt-10 rounded-2xl border border-dashed border-[#C5A059]/50 bg-[#FAF8F5] px-5 py-6 text-center">
-            <Lock className="mx-auto h-5 w-5 text-[#C5A059]" />
-            <p className="mt-3 font-serif text-base text-[#0B1C14]">
-              End of free preview
-            </p>
-            <p className="mt-1 text-sm text-[#8B7355]">
+          <div className="mt-10 rounded-2xl border border-dashed border-[#C5A059]/50 bg-[#FAF8F5] px-5 py-6 text-center lg:mt-14 lg:px-8 lg:py-10 3xl:mt-20 3xl:px-12 3xl:py-14">
+            <Lock className="mx-auto h-5 w-5 text-[#C5A059] lg:h-7 lg:w-7 3xl:h-9 3xl:w-9" />
+            <p className={cn(librarySectionTitle, "mt-3")}>End of free preview</p>
+            <p className={cn(libraryBodySmall, "mt-1")}>
               Purchase the full book to continue reading
               {book.pages ? ` all ${book.pages} pages` : ""}.
             </p>
             <button
               type="button"
               onClick={() => setShowPurchase(true)}
-              className="mt-4 rounded-full bg-[#0B1C14] px-6 py-2.5 text-sm text-[#C5A059]"
+              className="mt-4 rounded-full bg-[#0B1C14] px-6 py-2.5 text-sm text-[#C5A059] lg:px-8 lg:py-3.5 lg:text-lg 3xl:px-10 3xl:py-4 3xl:text-xl"
             >
               Get the Full Book
             </button>
@@ -123,22 +125,20 @@ export default function LibraryBookReader() {
         )}
       </article>
 
-      {/* Navigation */}
-      <footer className="sticky bottom-0 border-t border-[#E8E0D4] bg-[#F5F1E6]/95 px-5 py-4 backdrop-blur-sm sm:px-8">
-        <div className="mx-auto flex max-w-2xl items-center justify-between">
+      <footer className={cn("sticky bottom-0 border-t border-[#E8E0D4] bg-[#F5F1E6]/95 backdrop-blur-sm", libraryPad, "py-4 lg:py-6 3xl:py-8")}>
+        <div className={cn(libraryReaderShell, "flex items-center justify-between")}>
           <button
             type="button"
             onClick={handlePrev}
             disabled={currentPage <= 1}
-            className="flex items-center gap-1 rounded-lg px-4 py-2 text-sm text-[#5C4A3A] transition-colors hover:bg-[#E8E0D4]/50 disabled:opacity-30"
+            className={cn(libraryNavText, "flex items-center gap-1 rounded-lg px-4 py-2 transition-colors hover:bg-[#E8E0D4]/50 disabled:opacity-30 lg:px-6 lg:py-3")}
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className={libraryIconSm} />
             Previous
           </button>
 
-          {/* Preview progress dots */}
           {!purchased && (
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 lg:gap-2">
               {Array.from({ length: FREE_PREVIEW_PAGES }).map((_, index) => {
                 const page = index + 1;
                 const isActive = page === currentPage;
@@ -149,46 +149,39 @@ export default function LibraryBookReader() {
                     key={page}
                     type="button"
                     onClick={() => goToPage(page)}
-                    className={`h-2 w-2 rounded-full transition-colors ${
-                      isActive
-                        ? "bg-[#C5A059] w-4"
-                        : isRead
-                          ? "bg-[#C5A059]/50"
-                          : "bg-[#D4C4A8]"
-                    }`}
+                    className={cn(
+                      "h-2 w-2 rounded-full transition-colors lg:h-2.5 lg:w-2.5 3xl:h-3 3xl:w-3",
+                      isActive ? "bg-[#C5A059] w-4 lg:w-5 3xl:w-6" : isRead ? "bg-[#C5A059]/50" : "bg-[#D4C4A8]",
+                    )}
                     aria-label={`Go to page ${page}`}
                   />
                 );
               })}
-              <Lock className="ml-1 h-3 w-3 text-[#C5A059]/60" />
+              <Lock className="ml-1 h-3 w-3 text-[#C5A059]/60 lg:h-4 lg:w-4 3xl:h-5 3xl:w-5" />
             </div>
           )}
 
           <button
             type="button"
             onClick={handleNext}
-            className="flex items-center gap-1 rounded-lg px-4 py-2 text-sm text-[#5C4A3A] transition-colors hover:bg-[#E8E0D4]/50"
+            className={cn(libraryNavText, "flex items-center gap-1 rounded-lg px-4 py-2 transition-colors hover:bg-[#E8E0D4]/50 lg:px-6 lg:py-3")}
           >
             {currentPage >= maxReadable ? (
               <>
-                <Lock className="h-4 w-4 text-[#C5A059]" />
+                <Lock className={libraryIconSm + " text-[#C5A059]"} />
                 Unlock
               </>
             ) : (
               <>
                 Next
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className={libraryIconSm} />
               </>
             )}
           </button>
         </div>
       </footer>
 
-      <BookPurchaseDialog
-        book={book}
-        open={showPurchase}
-        onOpenChange={setShowPurchase}
-      />
+      <BookPurchaseDialog book={book} open={showPurchase} onOpenChange={setShowPurchase} />
     </main>
   );
 }
