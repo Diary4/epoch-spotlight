@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
+import heroBg from "@/assets/images/new/land-1.jpg"
 import bg1 from "@/assets/mainImages/land-1.webp"
 import bg2 from "@/assets/mainImages/land-2.webp"
 import bg3 from "@/assets/mainImages/land-3.webp"
