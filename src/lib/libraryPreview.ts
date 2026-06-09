@@ -2,17 +2,17 @@
 export const FREE_PREVIEW_PAGES = 5;
 
 /** Deep link scheme for the future mobile purchase app. */
-export const PURCHASE_DEEP_LINK_SCHEME = "voicesofkurdistan://purchase";
+export const PURCHASE_DEEP_LINK_SCHEME = "gateofkurdistan://purchase";
 
 export type PurchaseDevice = "android" | "ios";
 
 /** Replace with the live Play Store URL when the Android app is published. */
 export const ANDROID_PURCHASE_BASE_URL =
-  "https://play.google.com/store/apps/details?id=com.voicesofkurdistan";
+  "https://play.google.com/store/apps/details?id=com.gateofkurdistan";
 
 /** Replace with the live App Store URL when the iOS app is published. */
 export const IOS_PURCHASE_BASE_URL =
-  "https://apps.apple.com/app/voices-of-kurdistan/id000000000";
+  "https://apps.apple.com/app/gate-of-kurdistan/id000000000";
 
 export function getPurchaseDeepLink(bookId: string) {
   return `${PURCHASE_DEEP_LINK_SCHEME}/${bookId}`;

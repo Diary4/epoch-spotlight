@@ -116,7 +116,7 @@ export default function BookPurchaseDialog({
               </DialogTitle>
               <DialogDescription className="text-center text-[#5C4A3A] lg:text-lg 3xl:text-xl">
                 We will show a QR code for your device to purchase the full book in the
-                Voices of Kurdistan app.
+                Gate of Kurdistan app.
               </DialogDescription>
             </>
           )}
@@ -138,7 +138,7 @@ export default function BookPurchaseDialog({
           <div className="rounded-xl border border-[#E8E0D4] bg-white px-4 py-3 text-sm text-[#5C4A3A] lg:text-base 3xl:px-6 3xl:py-5 3xl:text-lg">
             <p className="flex items-start gap-2">
               <Smartphone className="mt-0.5 h-4 w-4 shrink-0 text-[#C5A059] lg:h-5 lg:w-5 3xl:h-6 3xl:w-6" />
-              Full book purchases are completed on your phone through the Voices of
+              Full book purchases are completed on your phone through the Gate of
               Kurdistan mobile app.
             </p>
           </div>

@@ -49,7 +49,7 @@ export default function LibraryLogo({
     <div className="flex flex-col items-center gap-1 lg:gap-2">
       <StarIcon className={`${sizes.icon} ${colors.icon}`} />
       <p className={`font-serif uppercase tracking-[0.2em] ${sizes.title} ${colors.title}`}>
-        Voices of Kurdistan
+        Gate of Kurdistan
       </p>
       {showTagline && (
         <p className={`font-serif italic ${sizes.tagline} ${colors.tagline}`}>
