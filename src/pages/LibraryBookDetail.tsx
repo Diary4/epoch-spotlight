@@ -76,10 +76,7 @@ export default function LibraryBookDetail() {
           <LibraryPageShell>
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12 3xl:gap-16">
               <div data-library-hero-image className="mx-auto shrink-0 lg:mx-0">
-                <div
-                  className="relative h-72 w-48 overflow-hidden rounded-lg shadow-[8px_8px_24px_rgba(11,28,20,0.2)] sm:h-80 sm:w-56 lg:h-96 lg:w-64 xl:h-[28rem] xl:w-72 3xl:h-[32rem] 3xl:w-80"
-                  style={{ backgroundColor: book.coverColor ?? "#1B3022" }}
-                >
+                <div className="relative h-72 w-48 overflow-hidden rounded-lg shadow-[8px_8px_24px_rgba(11,28,20,0.2)] sm:h-80 sm:w-56 lg:h-96 lg:w-64 xl:h-[28rem] xl:w-72 3xl:h-[32rem] 3xl:w-80">
                   <img src={book.cover} alt={book.title} className="h-full w-full object-cover" />
                 </div>
               </div>

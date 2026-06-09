@@ -18,10 +18,7 @@ export default function BookCard({ book, variant = "carousel", showRating = fals
         to={`/library/books/${book.id}`}
         className="flex flex-col items-center"
       >
-        <div
-          className="relative h-44 w-28 overflow-hidden rounded-sm shadow-[4px_4px_12px_rgba(0,0,0,0.25)] sm:h-52 sm:w-32 lg:h-64 lg:w-40 xl:h-72 xl:w-44 3xl:h-80 3xl:w-52"
-          style={{ backgroundColor: book.coverColor ?? "#2D4635" }}
-        >
+        <div className="relative h-44 w-28 overflow-hidden rounded-sm shadow-[4px_4px_12px_rgba(0,0,0,0.25)] sm:h-52 sm:w-32 lg:h-64 lg:w-40 xl:h-72 xl:w-44 3xl:h-80 3xl:w-52">
           <img
             src={book.cover}
             alt={book.title}
@@ -45,10 +42,7 @@ export default function BookCard({ book, variant = "carousel", showRating = fals
         to={`/library/books/${book.id}`}
         className="flex w-36 shrink-0 flex-col sm:w-40 lg:w-48 xl:w-52 3xl:w-60"
       >
-        <div
-          className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-md"
-          style={{ backgroundColor: book.coverColor ?? "#2D4635" }}
-        >
+        <div className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-md">
           <img src={book.cover} alt={book.title} className="h-full w-full object-cover" />
         </div>
         <p className="mt-2 font-serif text-sm text-[#0B1C14] line-clamp-1 lg:text-base 3xl:text-xl">
@@ -74,10 +68,7 @@ export default function BookCard({ book, variant = "carousel", showRating = fals
       to={`/library/books/${book.id}`}
         className="flex w-40 shrink-0 flex-col sm:w-44 lg:w-52 xl:w-56 3xl:w-64"
     >
-      <div
-        className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-[0_8px_24px_rgba(11,28,20,0.12)]"
-        style={{ backgroundColor: book.coverColor ?? "#2D4635" }}
-      >
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-[0_8px_24px_rgba(11,28,20,0.12)]">
         <img
           src={book.cover}
           alt={book.title}

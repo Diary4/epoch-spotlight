@@ -23,7 +23,6 @@ export type LibraryBook = {
   title: string;
   authorId: string;
   cover: string;
-  coverColor?: string;
   genre: string;
   year: number;
   language: string;

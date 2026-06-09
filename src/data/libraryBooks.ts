@@ -1,4 +1,4 @@
-import card1 from "@/assets/mainImages/card-1.webp";
+import dwemCover from "@/assets/images/new/dwem.webp";
 import card2 from "@/assets/mainImages/card-2.webp";
 import card3 from "@/assets/mainImages/card-3.webp";
 import card4 from "@/assets/mainImages/discoverkurdistan/card-1.webp";
@@ -12,8 +12,7 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     id: "dwem-aseman",
     title: "Dwem Aseman",
     authorId: "farhad-pirbal",
-    cover: card1,
-    coverColor: "#1B3022",
+    cover: dwemCover,
     genre: "Poetry",
     year: 1991,
     language: "Kurdish",
@@ -35,7 +34,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "Kaniya Spî",
     authorId: "rebwar-siwayli",
     cover: card2,
-    coverColor: "#C4A882",
     genre: "Poetry",
     year: 1998,
     language: "Kurdish",
@@ -54,7 +52,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "Sînorê Evînê",
     authorId: "bakhtyar-ali",
     cover: card3,
-    coverColor: "#2D4635",
     genre: "Novel",
     year: 2004,
     language: "Kurdish",
@@ -73,7 +70,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "Zindîyan",
     authorId: "cegerxwin",
     cover: card4,
-    coverColor: "#C67B4E",
     genre: "Poetry",
     year: 1970,
     language: "Kurdish",
@@ -90,7 +86,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "Mem u Zîn",
     authorId: "ehmede-khani",
     cover: card5,
-    coverColor: "#4A3728",
     genre: "Epic Poetry",
     year: 1692,
     language: "Kurdish",
@@ -109,7 +104,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "Ghazalnus and the Gardens",
     authorId: "bakhtyar-ali",
     cover: card6,
-    coverColor: "#3D5A4C",
     genre: "Novel",
     year: 2008,
     language: "Kurdish",
@@ -123,7 +117,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "Kîne Em?",
     authorId: "cegerxwin",
     cover: card7,
-    coverColor: "#5C4033",
     genre: "Poetry",
     year: 1960,
     language: "Kurdish",
