@@ -5,10 +5,10 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
-import card1 from "@/assets/mainImages/discoverkurdistan/card-1.webp"
-import card2 from "@/assets/mainImages/discoverkurdistan/card-2.webp"
-import card3 from "@/assets/mainImages/discoverkurdistan/card-3.webp"
-import card4 from "@/assets/mainImages/discoverkurdistan/card-4.webp"
+import card1 from "@/assets/images/new/the-people.webp";
+import card2 from "@/assets/images/new/the-journey.webp";
+import card3 from "@/assets/images/new/the-system.webp";
+import card4 from "@/assets/images/new/the-land-and-future.webp";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 

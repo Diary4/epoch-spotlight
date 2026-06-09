@@ -14,7 +14,8 @@ import {
   libraryPad,
   librarySectionLabel,
 } from "@/components/Sections/library/libraryLayout";
-import { getFeaturedWriters, getWriterById, HERO_BACKGROUND } from "@/data/libraryWriters";
+import libraryHeroBg from "@/assets/images/library/l-1.webp";
+import { getFeaturedWriters } from "@/data/libraryWriters";
 import { getFeaturedBooks } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
@@ -23,7 +24,6 @@ export default function Library() {
   const rootRef = useRef<HTMLElement>(null);
   const featuredWriters = getFeaturedWriters().slice(0, 4);
   const featuredBooks = getFeaturedBooks();
-  const heroWriter = getWriterById("farhad-pirbal");
   const [activeWriterIndex, setActiveWriterIndex] = useState(0);
 
   useLibraryPageAnimation(rootRef);
@@ -43,7 +43,7 @@ export default function Library() {
       >
         <div className="relative flex min-h-[420px] flex-col sm:min-h-[480px] sm:flex-row lg:min-h-[560px] xl:min-h-[640px] 3xl:min-h-[720px]">
           <div className="absolute inset-0">
-            <img src={HERO_BACKGROUND} alt="" className="h-full w-full object-cover" />
+            <img src={libraryHeroBg} alt="" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#F5F2ED] via-[#F5F2ED]/80 to-transparent sm:via-[#F5F2ED]/60" />
           </div>
 
@@ -64,27 +64,6 @@ export default function Library() {
               <ArrowRight className={libraryIconMd} />
             </Link>
           </div>
-
-          {heroWriter && (
-            <div
-              data-library-hero-image
-              className="relative z-10 flex flex-1 items-end justify-center sm:justify-end"
-            >
-              <img
-                src={heroWriter.portrait}
-                alt={heroWriter.name}
-                className="h-72 w-auto object-cover object-top sm:h-96 lg:h-[480px] xl:h-[560px] 3xl:h-[640px]"
-              />
-              <div className="absolute bottom-6 right-6 text-right sm:bottom-10 sm:right-10 lg:bottom-14 lg:right-14">
-                <p className="font-serif text-lg uppercase tracking-wider text-[#C5A059] sm:text-xl lg:text-2xl 3xl:text-4xl">
-                  {heroWriter.name}
-                </p>
-                <p className="text-xs text-[#8B7355] sm:text-sm lg:text-base 3xl:text-xl">
-                  {heroWriter.roles.join(" • ")}
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
