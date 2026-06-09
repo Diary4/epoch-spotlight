@@ -92,7 +92,7 @@ export default function LibraryBookDetail() {
                 {author && (
                   <Link
                     to={`/library/writers/${author.id}`}
-                    className="mt-1 inline-block text-base text-[#B0926A] hover:underline lg:text-lg 3xl:text-2xl"
+                    className="mt-1 inline-block text-base text-[#B0926A] lg:text-lg 3xl:text-2xl"
                   >
                     {author.name}
                   </Link>
@@ -141,7 +141,7 @@ export default function LibraryBookDetail() {
                 key={action.title}
                 type="button"
                 data-library-item
-                className="flex flex-col items-start rounded-xl border border-[#E8E0D4] bg-[#FAF8F5] px-4 py-4 text-left transition-colors hover:border-[#C5A059]/50 lg:px-6 lg:py-6 3xl:px-8 3xl:py-8"
+                className="flex flex-col items-start rounded-xl border border-[#E8E0D4] bg-[#FAF8F5] px-4 py-4 text-left lg:px-6 lg:py-6 3xl:px-8 3xl:py-8"
               >
                 <action.icon className="h-5 w-5 text-[#C5A059] lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
                 <p className="mt-2 text-sm font-medium text-[#0B1C14] lg:text-base 3xl:text-xl">{action.title}</p>

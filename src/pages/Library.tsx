@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
@@ -24,7 +24,6 @@ export default function Library() {
   const rootRef = useRef<HTMLElement>(null);
   const featuredWriters = getFeaturedWriters().slice(0, 4);
   const featuredBooks = getFeaturedBooks();
-  const [activeWriterIndex, setActiveWriterIndex] = useState(0);
 
   useLibraryPageAnimation(rootRef);
 
@@ -74,17 +73,9 @@ export default function Library() {
 
           <div className="relative mt-6 lg:mt-8 3xl:mt-10">
             <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide lg:gap-6 3xl:gap-8">
-              {featuredWriters.map((writer, index) => (
-                <div
-                  key={writer.id}
-                  data-library-item
-                  onMouseEnter={() => setActiveWriterIndex(index)}
-                >
-                  <WriterCard
-                    writer={writer}
-                    variant="featured"
-                    active={index === activeWriterIndex}
-                  />
+              {featuredWriters.map((writer) => (
+                <div key={writer.id} data-library-item>
+                  <WriterCard writer={writer} variant="featured" />
                 </div>
               ))}
             </div>
@@ -96,18 +87,6 @@ export default function Library() {
             >
               <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
             </button>
-          </div>
-
-          <div className="mt-4 flex justify-center gap-2 lg:mt-6 lg:gap-3">
-            {featuredWriters.map((_, index) => (
-              <span
-                key={index}
-                className={cn(
-                  "h-1.5 w-1.5 rounded-full transition-colors lg:h-2 lg:w-2 3xl:h-2.5 3xl:w-2.5",
-                  index === activeWriterIndex ? "bg-[#C5A059]" : "bg-[#D4C4A8]",
-                )}
-              />
-            ))}
           </div>
         </LibraryPageShell>
       </section>
@@ -122,7 +101,7 @@ export default function Library() {
             <h2 className={librarySectionLabel}>Explore Books</h2>
             <Link
               to="/library/browse"
-              className="text-xs text-[#8B7355] transition-colors hover:text-[#0B1C14] lg:text-sm 3xl:text-lg"
+              className="text-xs text-[#8B7355] lg:text-sm 3xl:text-lg"
             >
               View all →
             </Link>

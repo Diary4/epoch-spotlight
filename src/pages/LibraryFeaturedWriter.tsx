@@ -88,7 +88,7 @@ export default function LibraryFeaturedWriter() {
             <div data-library-hero-text>
               <Link
                 to={`/library/writers/${writer.id}`}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#C5A059] bg-[#0B1C14]/80 px-8 py-3 text-sm uppercase tracking-wider text-[#C5A059] backdrop-blur-sm transition-colors hover:bg-[#1B3022] lg:px-10 lg:py-4 lg:text-base 3xl:px-12 3xl:py-5 3xl:text-xl"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#C5A059] bg-[#0B1C14]/80 px-8 py-3 text-sm uppercase tracking-wider text-[#C5A059] backdrop-blur-sm lg:px-10 lg:py-4 lg:text-base 3xl:px-12 3xl:py-5 3xl:text-xl"
               >
                 Explore Writer
                 <ArrowRight className={libraryIconMd} />

@@ -15,7 +15,8 @@ import {
   libraryPad,
   librarySectionTitle,
 } from "@/components/Sections/library/libraryLayout";
-import { getFeaturedWriters, HERO_BACKGROUND } from "@/data/libraryWriters";
+import libraryHeroBg from "@/assets/images/library/l-1.webp";
+import { getFeaturedWriters } from "@/data/libraryWriters";
 import { getPopularBooks, LIBRARY_CATEGORIES } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
@@ -25,19 +26,19 @@ const heroSlides = [
     title: "Stories that shape our identity",
     subtitle: "Explore timeless books from Kurdish writers and thinkers.",
     cta: "Explore Books",
-    image: HERO_BACKGROUND,
+    image: libraryHeroBg,
   },
   {
     title: "Voices of a nation",
     subtitle: "Discover poets, novelists, and thinkers who defined Kurdish literature.",
     cta: "Meet the Writers",
-    image: HERO_BACKGROUND,
+    image: libraryHeroBg,
   },
   {
     title: "Our Writers. Our Heritage.",
     subtitle: "A living library of Kurdish culture and letters.",
     cta: "Begin Reading",
-    image: HERO_BACKGROUND,
+    image: libraryHeroBg,
   },
 ];
 

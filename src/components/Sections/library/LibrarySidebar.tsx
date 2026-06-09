@@ -41,7 +41,7 @@ export default function LibrarySidebar() {
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors xl:text-base 3xl:gap-4 3xl:px-4 3xl:py-3.5 3xl:text-lg",
                 isActive
                   ? "bg-[#1B3022] text-[#C5A059]"
-                  : "text-[#B0926A]/80 hover:bg-[#1B3022]/50 hover:text-[#C5A059]",
+                  : "text-[#B0926A]/80",
               )}
             >
               <item.icon className="h-4 w-4 shrink-0 xl:h-5 xl:w-5 3xl:h-6 3xl:w-6" />

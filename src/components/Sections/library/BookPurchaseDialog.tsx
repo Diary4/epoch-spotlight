@@ -83,7 +83,7 @@ export default function BookPurchaseDialog({
           <button
             type="button"
             onClick={handleBack}
-            className="absolute left-4 top-4 flex items-center gap-1 text-sm text-[#8B7355] transition-colors hover:text-[#0B1C14] lg:text-base 3xl:left-6 3xl:top-6 3xl:text-lg"
+            className="absolute left-4 top-4 flex items-center gap-1 text-sm text-[#8B7355] lg:text-base 3xl:left-6 3xl:top-6 3xl:text-lg"
           >
             <ArrowLeft className="h-4 w-4 lg:h-5 lg:w-5" />
             Back
@@ -151,7 +151,7 @@ export default function BookPurchaseDialog({
                 key={option.id}
                 type="button"
                 onClick={() => handleDeviceSelect(option.id)}
-                className="flex flex-col items-start rounded-2xl border border-[#E8E0D4] bg-white px-5 py-4 text-left transition-colors hover:border-[#C5A059] hover:bg-[#FFFCF8] lg:px-6 lg:py-5 3xl:px-8 3xl:py-6"
+                className="flex flex-col items-start rounded-2xl border border-[#E8E0D4] bg-white px-5 py-4 text-left lg:px-6 lg:py-5 3xl:px-8 3xl:py-6"
               >
                 <span className="font-serif text-lg text-[#0B1C14] lg:text-xl 3xl:text-2xl">
                   {PURCHASE_DEVICE_LABELS[option.id]}
@@ -187,7 +187,7 @@ export default function BookPurchaseDialog({
             <button
               type="button"
               onClick={() => setStep("device")}
-              className="w-full rounded-full bg-[#0B1C14] px-6 py-3 text-sm text-[#C5A059] transition-colors hover:bg-[#1B3022] lg:text-base 3xl:px-8 3xl:py-4 3xl:text-xl"
+              className="w-full rounded-full bg-[#0B1C14] px-6 py-3 text-sm text-[#C5A059] lg:text-base 3xl:px-8 3xl:py-4 3xl:text-xl"
             >
               Get the Full Book
             </button>

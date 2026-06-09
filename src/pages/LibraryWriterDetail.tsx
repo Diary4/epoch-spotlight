@@ -58,7 +58,7 @@ export default function LibraryWriterDetail() {
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link
             to="/library"
-            className={cn(libraryNavText, "flex items-center gap-2 transition-colors hover:text-[#0B1C14]")}
+            className={cn(libraryNavText, "flex items-center gap-2")}
           >
             <ArrowLeft className={libraryIconSm} />
             Back to Home
@@ -129,7 +129,7 @@ export default function LibraryWriterDetail() {
                   "flex shrink-0 items-center gap-2 border-b-2 px-4 py-3 text-sm transition-colors lg:px-6 lg:py-4 lg:text-base 3xl:px-8 3xl:py-5 3xl:text-xl",
                   activeTab === tab.id
                     ? "border-[#C5A059] text-[#0B1C14]"
-                    : "border-transparent text-[#8B7355] hover:text-[#0B1C14]",
+                    : "border-transparent text-[#8B7355]",
                 )}
               >
                 <tab.icon className={libraryIconSm} />

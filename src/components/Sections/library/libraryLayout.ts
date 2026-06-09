@@ -30,13 +30,13 @@ export const libraryNavText =
   "text-sm text-[#5C4A3A] sm:text-base lg:text-lg 3xl:text-xl";
 
 export const libraryBtn =
-  "inline-flex items-center gap-2 rounded-full bg-[#0B1C14] px-6 py-3 text-sm text-[#C5A059] transition-colors hover:bg-[#1B3022] sm:text-base lg:px-8 lg:py-4 lg:text-lg 3xl:px-10 3xl:py-5 3xl:text-xl";
+  "inline-flex items-center gap-2 rounded-full bg-[#0B1C14] px-6 py-3 text-sm text-[#C5A059] sm:text-base lg:px-8 lg:py-4 lg:text-lg 3xl:px-10 3xl:py-5 3xl:text-xl";
 
 export const libraryBtnSecondary =
   "inline-flex items-center gap-2 rounded-lg border border-[#B0926A] bg-white px-5 py-2.5 text-sm text-[#B0926A] sm:text-base lg:px-7 lg:py-3.5 lg:text-lg 3xl:px-9 3xl:py-4 3xl:text-xl";
 
 export const libraryBtnPrimary =
-  "inline-flex items-center gap-2 rounded-lg bg-[#0B1C14] px-5 py-2.5 text-sm text-white transition-colors hover:bg-[#1B3022] sm:text-base lg:px-7 lg:py-3.5 lg:text-lg 3xl:px-9 3xl:py-4 3xl:text-xl";
+  "inline-flex items-center gap-2 rounded-lg bg-[#0B1C14] px-5 py-2.5 text-sm text-white sm:text-base lg:px-7 lg:py-3.5 lg:text-lg 3xl:px-9 3xl:py-4 3xl:text-xl";
 
 export const libraryReaderShell =
   "mx-auto w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl 3xl:max-w-5xl";

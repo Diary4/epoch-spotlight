@@ -70,7 +70,7 @@ export default function LibraryBookReader() {
         <div className={cn(libraryReaderShell, "flex items-center justify-between")}>
           <Link
             to={`/library/books/${bookId}`}
-            className={cn(libraryNavText, "flex items-center gap-2 hover:text-[#0B1C14]")}
+            className={cn(libraryNavText, "flex items-center gap-2")}
           >
             <ArrowLeft className={libraryIconSm} />
             Back
@@ -131,7 +131,7 @@ export default function LibraryBookReader() {
             type="button"
             onClick={handlePrev}
             disabled={currentPage <= 1}
-            className={cn(libraryNavText, "flex items-center gap-1 rounded-lg px-4 py-2 transition-colors hover:bg-[#E8E0D4]/50 disabled:opacity-30 lg:px-6 lg:py-3")}
+            className={cn(libraryNavText, "flex items-center gap-1 rounded-lg px-4 py-2 disabled:opacity-30 lg:px-6 lg:py-3")}
           >
             <ChevronLeft className={libraryIconSm} />
             Previous
@@ -164,7 +164,7 @@ export default function LibraryBookReader() {
           <button
             type="button"
             onClick={handleNext}
-            className={cn(libraryNavText, "flex items-center gap-1 rounded-lg px-4 py-2 transition-colors hover:bg-[#E8E0D4]/50 lg:px-6 lg:py-3")}
+            className={cn(libraryNavText, "flex items-center gap-1 rounded-lg px-4 py-2 lg:px-6 lg:py-3")}
           >
             {currentPage >= maxReadable ? (
               <>
