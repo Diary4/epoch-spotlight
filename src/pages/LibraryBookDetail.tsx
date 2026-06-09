@@ -4,11 +4,7 @@ import {
   ArrowLeft,
   Search,
   BookOpen,
-  Heart,
   Headphones,
-  Play,
-  User,
-  Share2,
   Calendar,
   Globe,
   Clock,
@@ -22,7 +18,6 @@ import {
   libraryBody,
   libraryBodySmall,
   libraryBtnPrimary,
-  libraryBtnSecondary,
   libraryDisplayTitle,
   libraryIconSm,
   libraryNavText,
@@ -33,18 +28,22 @@ import { getBookById, getBooksByAuthor } from "@/data/libraryBooks";
 import { getWriterById } from "@/data/libraryWriters";
 import { FREE_PREVIEW_PAGES } from "@/lib/libraryPreview";
 import { cn } from "@/lib/utils";
+import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
 const quickActions = [
   { icon: Headphones, title: "Listen to Audio", subtitle: "Narrated in Kurdish" },
-  { icon: Play, title: "Watch Video", subtitle: "About the book" },
-  { icon: User, title: "Author", subtitle: "About the writer" },
-  { icon: Share2, title: "Share", subtitle: "Share this book" },
 ];
 
 export default function LibraryBookDetail() {
   const { bookId } = useParams();
   const book = bookId ? getBookById(bookId) : undefined;
   const rootRef = useRef<HTMLElement>(null);
+
+  useLibraryPageAnimation(rootRef, [bookId]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [bookId]);
 
   if (!book) {
     return <Navigate to="/library" replace />;
@@ -53,16 +52,15 @@ export default function LibraryBookDetail() {
   const author = getWriterById(book.authorId);
   const relatedBooks = getBooksByAuthor(book.authorId).filter((b) => b.id !== book.id);
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [bookId]);
-
   return (
     <div className="flex min-h-screen bg-[#F5F1E6]">
       <LibrarySidebar />
 
       <main ref={rootRef} className="flex-1 overflow-x-hidden">
-        <header className={cn("flex items-center justify-between border-b border-[#E8E0D4]", libraryPad, "py-4 lg:py-6 3xl:py-8")}>
+        <header
+          data-library-header
+          className={cn("flex items-center justify-between border-b border-[#E8E0D4]", libraryPad, "py-4 lg:py-6 3xl:py-8")}
+        >
           <Link to="/library" className={cn(libraryNavText, "flex items-center gap-2")}>
             <ArrowLeft className={libraryIconSm} />
             Back
@@ -74,10 +72,10 @@ export default function LibraryBookDetail() {
           </button>
         </header>
 
-        <section className={cn("py-8 lg:py-12 3xl:py-16", libraryPad)}>
+        <section data-library-section className={cn("py-8 lg:py-12 3xl:py-16", libraryPad)}>
           <LibraryPageShell>
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12 3xl:gap-16">
-              <div className="mx-auto shrink-0 lg:mx-0">
+              <div data-library-hero-image className="mx-auto shrink-0 lg:mx-0">
                 <div
                   className="relative h-72 w-48 overflow-hidden rounded-lg shadow-[8px_8px_24px_rgba(11,28,20,0.2)] sm:h-80 sm:w-56 lg:h-96 lg:w-64 xl:h-[28rem] xl:w-72 3xl:h-[32rem] 3xl:w-80"
                   style={{ backgroundColor: book.coverColor ?? "#1B3022" }}
@@ -86,7 +84,7 @@ export default function LibraryBookDetail() {
                 </div>
               </div>
 
-              <div className="flex-1">
+              <div data-library-hero-text className="flex-1">
                 <span className="inline-block rounded-full bg-[#0B1C14] px-3 py-1 text-[10px] uppercase tracking-wider text-white lg:text-xs 3xl:px-4 3xl:py-1.5 3xl:text-sm">
                   {book.genre}
                 </span>
@@ -130,22 +128,19 @@ export default function LibraryBookDetail() {
                     <BookOpen className={libraryIconSm} />
                     Read Sample
                   </Link>
-                  <button type="button" className={libraryBtnSecondary}>
-                    <Heart className={libraryIconSm} />
-                    Add to Favorites
-                  </button>
                 </div>
               </div>
             </div>
           </LibraryPageShell>
         </section>
 
-        <section className={libraryPad}>
-          <LibraryPageShell className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4 3xl:gap-6">
+        <section data-library-section className={libraryPad}>
+          <LibraryPageShell className="grid gap-3 sm:max-w-md lg:gap-4">
             {quickActions.map((action) => (
               <button
                 key={action.title}
                 type="button"
+                data-library-item
                 className="flex flex-col items-start rounded-xl border border-[#E8E0D4] bg-[#FAF8F5] px-4 py-4 text-left transition-colors hover:border-[#C5A059]/50 lg:px-6 lg:py-6 3xl:px-8 3xl:py-8"
               >
                 <action.icon className="h-5 w-5 text-[#C5A059] lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
@@ -156,7 +151,7 @@ export default function LibraryBookDetail() {
           </LibraryPageShell>
         </section>
 
-        <section className={cn("mt-8 3xl:mt-12", libraryPad)}>
+        <section data-library-section className={cn("mt-8 3xl:mt-12", libraryPad)}>
           <LibraryPageShell className="grid gap-6 lg:grid-cols-2 lg:gap-8 3xl:gap-12">
             <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6 lg:p-8 3xl:p-10">
               <h2 className={librarySectionTitle}>About the Book</h2>
@@ -198,7 +193,10 @@ export default function LibraryBookDetail() {
         </section>
 
         {relatedBooks.length > 0 && author && (
-          <section className={cn("mt-10 border-t border-[#E8E0D4] py-8 lg:py-12 3xl:mt-14 3xl:py-16", libraryPad)}>
+          <section
+            data-library-section
+            className={cn("mt-10 border-t border-[#E8E0D4] py-8 lg:py-12 3xl:mt-14 3xl:py-16", libraryPad)}
+          >
             <LibraryPageShell>
               <div className="flex items-center justify-between">
                 <h2 className={librarySectionTitle}>More Books by {author.name}</h2>
@@ -208,14 +206,16 @@ export default function LibraryBookDetail() {
               </div>
               <div className="mt-4 flex gap-4 overflow-x-auto pb-2 lg:mt-6 lg:gap-6 3xl:mt-8 3xl:gap-8">
                 {relatedBooks.map((relatedBook) => (
-                  <BookCard key={relatedBook.id} book={relatedBook} variant="compact" />
+                  <div key={relatedBook.id} data-library-item>
+                    <BookCard book={relatedBook} variant="compact" />
+                  </div>
                 ))}
               </div>
             </LibraryPageShell>
           </section>
         )}
 
-        <footer className={cn("mb-8 mt-6 lg:mb-12 3xl:mb-16", libraryPad)}>
+        <footer data-library-section className={cn("mb-8 mt-6 lg:mb-12 3xl:mb-16", libraryPad)}>
           <LibraryPageShell className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-6 py-5 lg:px-8 lg:py-7 3xl:px-12 3xl:py-10">
             <span className="text-2xl text-[#C5A059] lg:text-3xl 3xl:text-4xl">✦</span>
             <p className={cn(libraryBody, "flex-1")}>

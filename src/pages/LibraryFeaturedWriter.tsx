@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
@@ -12,10 +13,14 @@ import {
 } from "@/data/libraryWriters";
 import { getBooksByAuthor } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
+import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
 export default function LibraryFeaturedWriter() {
   const { writerId } = useParams();
   const writer = writerId ? getWriterById(writerId) : undefined;
+  const rootRef = useRef<HTMLElement>(null);
+
+  useLibraryPageAnimation(rootRef, [writerId]);
 
   if (!writer) {
     return <Navigate to="/library" replace />;
@@ -25,8 +30,11 @@ export default function LibraryFeaturedWriter() {
   const books = getBooksByAuthor(writer.id).slice(0, 2);
 
   return (
-    <main className="min-h-screen bg-[#0A0A0A] text-white">
-      <section className="relative min-h-[55vh] overflow-hidden lg:min-h-[60vh] xl:min-h-[65vh] 3xl:min-h-[70vh]">
+    <main ref={rootRef} className="min-h-screen bg-[#0A0A0A] text-white">
+      <section
+        data-library-section
+        className="relative min-h-[55vh] overflow-hidden lg:min-h-[60vh] xl:min-h-[65vh] 3xl:min-h-[70vh]"
+      >
         <img
           src={FEATURED_HERO_BACKGROUND}
           alt=""
@@ -50,10 +58,15 @@ export default function LibraryFeaturedWriter() {
         />
 
         <div className="relative z-10 flex flex-col items-center px-6 pt-8 lg:pt-12 3xl:pt-16">
-          <LibraryLogo variant="gold" size="lg" />
+          <div data-library-header>
+            <LibraryLogo variant="gold" size="lg" />
+          </div>
 
           <LibraryPageShell className="mt-6 flex flex-col items-center lg:mt-10 3xl:mt-14">
-            <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl 3xl:max-w-2xl">
+            <div
+              data-library-hero-image
+              className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl 3xl:max-w-2xl"
+            >
               <img
                 src={writer.portraitDark ?? writer.portrait}
                 alt={writer.name}

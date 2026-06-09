@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   Search,
-  Bookmark,
-  Share2,
-  Play,
   Calendar,
   MapPin,
   User,
@@ -31,6 +28,7 @@ import {
 import { getWriterById } from "@/data/libraryWriters";
 import { getBooksByAuthor } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
+import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
 const tabs = [
   { id: "overview", label: "Overview", icon: User },
@@ -44,6 +42,9 @@ export default function LibraryWriterDetail() {
   const { writerId } = useParams();
   const writer = writerId ? getWriterById(writerId) : undefined;
   const [activeTab, setActiveTab] = useState("overview");
+  const rootRef = useRef<HTMLElement>(null);
+
+  useLibraryPageAnimation(rootRef, [writerId]);
 
   if (!writer) {
     return <Navigate to="/library" replace />;
@@ -52,8 +53,8 @@ export default function LibraryWriterDetail() {
   const books = getBooksByAuthor(writer.id);
 
   return (
-    <main className="min-h-screen bg-[#F5F2ED]">
-      <header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
+    <main ref={rootRef} className="min-h-screen bg-[#F5F2ED]">
+      <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link
             to="/library"
@@ -70,10 +71,16 @@ export default function LibraryWriterDetail() {
         </LibraryPageShell>
       </header>
 
-      <section className={cn("mx-5 overflow-hidden rounded-2xl bg-[#FAF8F5] sm:mx-8 lg:mx-12 lg:rounded-3xl 3xl:mx-24")}>
+      <section
+        data-library-section
+        className={cn("mx-5 overflow-hidden rounded-2xl bg-[#FAF8F5] sm:mx-8 lg:mx-12 lg:rounded-3xl 3xl:mx-24")}
+      >
         <LibraryPageShell>
           <div className="flex flex-col gap-6 p-6 lg:flex-row lg:items-start lg:gap-10 lg:p-10 3xl:gap-14 3xl:p-14">
-            <div className="relative mx-auto w-full max-w-xs shrink-0 lg:mx-0 lg:max-w-sm xl:max-w-md 3xl:max-w-lg">
+            <div
+              data-library-hero-image
+              className="relative mx-auto w-full max-w-xs shrink-0 lg:mx-0 lg:max-w-sm xl:max-w-md 3xl:max-w-lg"
+            >
               <img
                 src={writer.portrait}
                 alt={writer.name}
@@ -85,7 +92,7 @@ export default function LibraryWriterDetail() {
               />
             </div>
 
-            <div className="flex-1">
+            <div data-library-hero-text className="flex-1">
               <h1 className={libraryDisplayTitle}>{writer.name}</h1>
               <p className="mt-1 text-sm text-[#C5A059] lg:text-base 3xl:text-xl">
                 {writer.roles.join(" • ")}
@@ -105,35 +112,12 @@ export default function LibraryWriterDetail() {
                   </span>
                 )}
               </div>
-
-              <p className={cn(libraryBody, "mt-4 max-w-xl lg:max-w-2xl 3xl:max-w-3xl")}>{writer.bio}</p>
-
-              <p className="mt-4 font-serif text-lg italic text-[#8B7355]/60 lg:text-xl 3xl:text-2xl">
-                — {writer.name}
-              </p>
-            </div>
-
-            <div className="flex flex-row gap-3 lg:flex-col lg:gap-4">
-              {[
-                { icon: Bookmark, label: "Save" },
-                { icon: Share2, label: "Share" },
-                { icon: Play, label: "Listen Introduction" },
-              ].map((action) => (
-                <button
-                  key={action.label}
-                  type="button"
-                  className="flex flex-col items-center gap-1 rounded-xl border border-[#E8E0D4] bg-white px-4 py-3 text-[10px] text-[#5C4A3A] transition-colors hover:border-[#C5A059] sm:text-xs lg:px-6 lg:py-4 lg:text-sm 3xl:px-8 3xl:py-5 3xl:text-base"
-                >
-                  <action.icon className="h-5 w-5 text-[#C5A059] lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
-                  {action.label}
-                </button>
-              ))}
             </div>
           </div>
         </LibraryPageShell>
       </section>
 
-      <nav className={cn("mt-6 border-b border-[#E8E0D4] lg:mt-8 3xl:mt-10", libraryPad)}>
+      <nav data-library-section className={cn("mt-6 border-b border-[#E8E0D4] lg:mt-8 3xl:mt-10", libraryPad)}>
         <LibraryPageShell>
           <div className="flex gap-1 overflow-x-auto lg:gap-2">
             {tabs.map((tab) => (
@@ -156,7 +140,7 @@ export default function LibraryWriterDetail() {
         </LibraryPageShell>
       </nav>
 
-      <section className={cn("py-8 lg:py-12 3xl:py-16", libraryPad)}>
+      <section data-library-section className={cn("py-8 lg:py-12 3xl:py-16", libraryPad)}>
         <LibraryPageShell>
           {activeTab === "overview" && (
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-8 3xl:gap-12">
@@ -189,7 +173,9 @@ export default function LibraryWriterDetail() {
           {activeTab === "books" && (
             <div className="flex flex-wrap gap-4 lg:gap-6 3xl:gap-8">
               {books.map((book) => (
-                <BookCard key={book.id} book={book} variant="compact" />
+                <div key={book.id} data-library-item>
+                  <BookCard book={book} variant="compact" />
+                </div>
               ))}
             </div>
           )}
@@ -227,7 +213,7 @@ export default function LibraryWriterDetail() {
       </section>
 
       {books.length > 0 && (
-        <section className={cn("border-t border-[#E8E0D4] py-8 lg:py-12 3xl:py-16", libraryPad)}>
+        <section data-library-section className={cn("border-t border-[#E8E0D4] py-8 lg:py-12 3xl:py-16", libraryPad)}>
           <LibraryPageShell>
             <div className="flex items-center justify-between">
               <h2 className={librarySectionTitle}>Books by {writer.name}</h2>
@@ -237,14 +223,16 @@ export default function LibraryWriterDetail() {
             </div>
             <div className="mt-4 flex gap-4 overflow-x-auto pb-2 lg:mt-6 lg:gap-6 3xl:mt-8 3xl:gap-8">
               {books.map((book) => (
-                <BookCard key={book.id} book={book} variant="compact" />
+                <div key={book.id} data-library-item>
+                  <BookCard book={book} variant="compact" />
+                </div>
               ))}
             </div>
           </LibraryPageShell>
         </section>
       )}
 
-      <footer className={cn("mb-8 lg:mb-12 3xl:mb-16", libraryPad)}>
+      <footer data-library-section className={cn("mb-8 lg:mb-12 3xl:mb-16", libraryPad)}>
         <LibraryPageShell className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-6 py-5 lg:px-8 lg:py-7 3xl:px-12 3xl:py-10">
           <span className="text-2xl text-[#C5A059] lg:text-3xl 3xl:text-4xl">✦</span>
           <p className={cn(libraryBody, "flex-1")}>

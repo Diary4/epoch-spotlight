@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, ArrowRight } from "lucide-react";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
@@ -18,6 +18,7 @@ import {
 import { getFeaturedWriters, HERO_BACKGROUND } from "@/data/libraryWriters";
 import { getPopularBooks, LIBRARY_CATEGORIES } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
+import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
 const heroSlides = [
   {
@@ -41,14 +42,17 @@ const heroSlides = [
 ];
 
 export default function LibraryBrowse() {
+  const rootRef = useRef<HTMLElement>(null);
   const featuredWriters = getFeaturedWriters();
   const popularBooks = getPopularBooks();
   const [activeSlide, setActiveSlide] = useState(0);
   const slide = heroSlides[activeSlide];
 
+  useLibraryPageAnimation(rootRef);
+
   return (
-    <main className="min-h-screen bg-[#FDFBF7] pb-8 lg:pb-12 3xl:pb-16">
-      <header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
+    <main ref={rootRef} className="min-h-screen bg-[#FDFBF7] pb-8 lg:pb-12 3xl:pb-16">
+      <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <div className="flex items-center gap-3 lg:gap-5 3xl:gap-8">
             <LibraryLogo variant="light" size="md" showTagline={false} />
@@ -67,7 +71,10 @@ export default function LibraryBrowse() {
         </LibraryPageShell>
       </header>
 
-      <section className={cn("mx-5 sm:mx-8 lg:mx-12 3xl:mx-24", "overflow-hidden rounded-2xl lg:rounded-3xl")}>
+      <section
+        data-library-section
+        className={cn("mx-5 sm:mx-8 lg:mx-12 3xl:mx-24", "overflow-hidden rounded-2xl lg:rounded-3xl")}
+      >
         <LibraryPageShell>
           <div className="relative min-h-[200px] lg:min-h-[280px] xl:min-h-[340px] 3xl:min-h-[400px]">
             <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
@@ -80,7 +87,10 @@ export default function LibraryBrowse() {
               }}
             />
 
-            <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-14 3xl:px-16 3xl:py-16">
+            <div
+              data-library-hero-text
+              className="relative z-10 px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-14 3xl:px-16 3xl:py-16"
+            >
               <h2 className={libraryDisplayTitle}>{slide.title}</h2>
               <p className={cn(libraryBody, "mt-2 max-w-xs lg:max-w-lg 3xl:max-w-2xl")}>{slide.subtitle}</p>
               <Link
@@ -110,7 +120,7 @@ export default function LibraryBrowse() {
         </LibraryPageShell>
       </section>
 
-      <section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
+      <section data-library-section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
         <LibraryPageShell>
           <div className="flex items-center justify-between">
             <h2 className={librarySectionTitle}>Browse by Category</h2>
@@ -120,13 +130,15 @@ export default function LibraryBrowse() {
           </div>
           <div className="mt-4 flex gap-3 overflow-x-auto pb-2 lg:mt-6 lg:gap-5 3xl:mt-8 3xl:gap-6">
             {LIBRARY_CATEGORIES.map((category) => (
-              <CategoryCard key={category.id} category={category} />
+              <div key={category.id} data-library-item>
+                <CategoryCard category={category} />
+              </div>
             ))}
           </div>
         </LibraryPageShell>
       </section>
 
-      <section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
+      <section data-library-section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
         <LibraryPageShell>
           <div className="flex items-center justify-between">
             <h2 className={librarySectionTitle}>Featured Writers</h2>
@@ -136,13 +148,15 @@ export default function LibraryBrowse() {
           </div>
           <div className="mt-4 flex gap-4 overflow-x-auto pb-2 lg:mt-6 lg:gap-6 3xl:mt-8 3xl:gap-8">
             {featuredWriters.map((writer) => (
-              <WriterCard key={writer.id} writer={writer} variant="browse" />
+              <div key={writer.id} data-library-item>
+                <WriterCard writer={writer} variant="browse" />
+              </div>
             ))}
           </div>
         </LibraryPageShell>
       </section>
 
-      <section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
+      <section data-library-section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
         <LibraryPageShell>
           <div className="flex items-center justify-between">
             <h2 className={librarySectionTitle}>Popular Books</h2>
@@ -152,7 +166,9 @@ export default function LibraryBrowse() {
           </div>
           <div className="mt-4 flex gap-4 overflow-x-auto pb-2 lg:mt-6 lg:gap-6 3xl:mt-8 3xl:gap-8">
             {popularBooks.map((book) => (
-              <BookCard key={book.id} book={book} showRating />
+              <div key={book.id} data-library-item>
+                <BookCard book={book} showRating />
+              </div>
             ))}
           </div>
         </LibraryPageShell>
