@@ -72,7 +72,10 @@ export default function LibraryFeaturedWriter() {
                 alt={writer.name}
                 className="mx-auto h-64 w-auto object-cover object-top sm:h-80 lg:h-96 xl:h-[28rem] 3xl:h-[32rem]"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0A0A0A] to-transparent pt-16 text-center lg:pt-24">
+              <div
+                data-library-hero-text
+                className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0A0A0A] to-transparent pt-16 text-center lg:pt-24"
+              >
                 <h1 className="font-serif text-2xl uppercase tracking-[0.15em] text-[#C5A059] sm:text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl">
                   {writer.name}
                 </h1>
@@ -82,18 +85,20 @@ export default function LibraryFeaturedWriter() {
               </div>
             </div>
 
-            <Link
-              to={`/library/writers/${writer.id}`}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#C5A059] bg-[#0B1C14]/80 px-8 py-3 text-sm uppercase tracking-wider text-[#C5A059] backdrop-blur-sm transition-colors hover:bg-[#1B3022] lg:px-10 lg:py-4 lg:text-base 3xl:px-12 3xl:py-5 3xl:text-xl"
-            >
-              Explore Writer
-              <ArrowRight className={libraryIconMd} />
-            </Link>
+            <div data-library-hero-text>
+              <Link
+                to={`/library/writers/${writer.id}`}
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#C5A059] bg-[#0B1C14]/80 px-8 py-3 text-sm uppercase tracking-wider text-[#C5A059] backdrop-blur-sm transition-colors hover:bg-[#1B3022] lg:px-10 lg:py-4 lg:text-base 3xl:px-12 3xl:py-5 3xl:text-xl"
+              >
+                Explore Writer
+                <ArrowRight className={libraryIconMd} />
+              </Link>
+            </div>
           </LibraryPageShell>
         </div>
       </section>
 
-      <section className="px-6 py-10 lg:px-12 lg:py-14 3xl:px-24 3xl:py-20">
+      <section data-library-section className="px-6 py-10 lg:px-12 lg:py-14 3xl:px-24 3xl:py-20">
         <LibraryPageShell>
           <div className="flex items-center gap-4 lg:gap-6">
             <div className="h-px flex-1 bg-[#C5A059]/30" />
@@ -103,7 +108,9 @@ export default function LibraryFeaturedWriter() {
 
           <div className="mt-6 flex justify-center gap-6 overflow-x-auto pb-4 lg:mt-10 lg:gap-10 3xl:gap-14">
             {otherWriters.map((w) => (
-              <WriterCard key={w.id} writer={w} variant="avatar" />
+              <div key={w.id} data-library-item>
+                <WriterCard writer={w} variant="avatar" />
+              </div>
             ))}
           </div>
 
@@ -114,7 +121,7 @@ export default function LibraryFeaturedWriter() {
       </section>
 
       {books.length > 0 && (
-        <section className="px-6 py-10 lg:px-12 lg:py-14 3xl:px-24 3xl:py-20">
+        <section data-library-section className="px-6 py-10 lg:px-12 lg:py-14 3xl:px-24 3xl:py-20">
           <LibraryPageShell>
             <div className="flex items-center gap-4 lg:gap-6">
               <div className="h-px flex-1 bg-[#C5A059]/30" />
@@ -124,7 +131,9 @@ export default function LibraryFeaturedWriter() {
 
             <div className="mt-8 flex justify-center gap-10 lg:mt-12 lg:gap-16 3xl:gap-24">
               {books.map((book) => (
-                <BookCard key={book.id} book={book} variant="shelf" />
+                <div key={book.id} data-library-item>
+                  <BookCard book={book} variant="shelf" />
+                </div>
               ))}
             </div>
           </LibraryPageShell>
