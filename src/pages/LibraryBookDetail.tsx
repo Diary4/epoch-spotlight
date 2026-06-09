@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
-  Search,
   BookOpen,
   Headphones,
   Calendar,
@@ -66,10 +65,10 @@ export default function LibraryBookDetail() {
             Back
           </Link>
           <LibraryLogo variant="light" size="md" />
-          <button type="button" className={cn(libraryNavText, "flex items-center gap-1")} aria-label="Search">
-            <Search className={libraryIconSm} />
-            Search
-          </button>
+          <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
+            <ArrowLeft className={libraryIconSm} />
+            Back
+          </div>
         </header>
 
         <section data-library-section className={cn("py-8 lg:py-12 3xl:py-16", libraryPad)}>

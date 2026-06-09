@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
-  Search,
   Calendar,
   MapPin,
   User,
@@ -64,10 +63,10 @@ export default function LibraryWriterDetail() {
             Back to Home
           </Link>
           <LibraryLogo variant="light" size="md" />
-          <button type="button" className={cn(libraryNavText, "flex items-center gap-1")} aria-label="Search">
-            <Search className={libraryIconSm} />
-            Search
-          </button>
+          <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
+            <ArrowLeft className={libraryIconSm} />
+            Back to Home
+          </div>
         </LibraryPageShell>
       </header>
 

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
 import LibraryPageShell from "@/components/Sections/library/LibraryPageShell";
 import WriterCard from "@/components/Sections/library/WriterCard";
@@ -62,13 +62,6 @@ export default function LibraryBrowse() {
               <p className={libraryBodySmall}>Discover the beauty of Kurdish literature</p>
             </div>
           </div>
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E0D4] text-[#2D4635] lg:h-12 lg:w-12 3xl:h-16 3xl:w-16"
-            aria-label="Search"
-          >
-            <Search className={libraryIconMd} />
-          </button>
         </LibraryPageShell>
       </header>
 

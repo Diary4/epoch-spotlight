@@ -108,9 +108,9 @@ export default function Library() {
           </div>
 
           <div className="relative mt-6 lg:mt-8 3xl:mt-10">
-            <div className="flex justify-center gap-6 overflow-x-auto pb-8 sm:gap-10 lg:gap-14 3xl:gap-20">
+            <div className="-mx-5 flex gap-6 overflow-x-auto px-5 pb-8 scrollbar-hide sm:-mx-8 sm:gap-10 sm:px-8 lg:mx-0 lg:justify-center lg:px-0 lg:gap-14 3xl:gap-20">
               {featuredBooks.map((book) => (
-                <div key={book.id} data-library-item>
+                <div key={book.id} data-library-item className="shrink-0">
                   <BookCard book={book} variant="shelf" />
                 </div>
               ))}
