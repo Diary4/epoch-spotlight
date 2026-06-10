@@ -30,7 +30,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "2000s", text: "Became a leading voice in Kurdish intellectual life" },
       { year: "Today", text: "Continues to write, speak, and inspire new generations" },
     ],
-    bookIds: ["dwem-aseman", "kaniya-spi"],
+    bookIds: ["dwem-aseman", "deng-u-bal", "wesfekani-evin"],
     featured: true,
   },
   {
@@ -50,7 +50,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "2000s", text: "Gained international acclaim for Ghazalnus and the Gardens of the Metaphysical" },
       { year: "Today", text: "One of the most translated Kurdish novelists" },
     ],
-    bookIds: ["sinore-evine"],
+    bookIds: ["sinore-evine", "ghazalnus"],
     featured: true,
   },
   {
@@ -69,7 +69,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "2000s", text: "Established as a leading contemporary Kurdish poet" },
       { year: "Today", text: "Continues to publish and perform poetry" },
     ],
-    bookIds: ["kaniya-spi"],
+    bookIds: ["kaniya-spi", "baran-u-ciya", "shar-u-giyan"],
     featured: true,
   },
   {
@@ -104,7 +104,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "1960s", text: "Wrote landmark works including Kîne Em?" },
       { year: "1984", text: "Passed away, leaving a lasting literary legacy" },
     ],
-    bookIds: ["zindiyan"],
+    bookIds: ["zindiyan", "kine-em"],
     featured: true,
   },
   {
@@ -123,7 +123,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "1990s", text: "Published acclaimed novels in Kurdish" },
       { year: "2007", text: "Passed away in Diyarbakır" },
     ],
-    bookIds: ["mem-u-zin"],
+    bookIds: ["tu", "rov"],
     featured: true,
   },
   {
@@ -141,7 +141,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "1692", text: "Completed Mem û Zîn" },
       { year: "1707", text: "Passed away, leaving the Kurdish national epic" },
     ],
-    bookIds: ["mem-u-zin"],
+    bookIds: ["mem-u-zin", "nubihar"],
     featured: false,
   },
 ];

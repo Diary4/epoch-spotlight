@@ -52,7 +52,7 @@ export default function LibraryWriterDetail() {
   const books = getBooksByAuthor(writer.id);
 
   return (
-    <main ref={rootRef} className="min-h-screen bg-[#F5F2ED]">
+    <main ref={rootRef} className="min-h-screen overflow-x-hidden bg-[#F5F2ED] pb-6 lg:pb-8 3xl:pb-10">
       <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link
@@ -231,7 +231,7 @@ export default function LibraryWriterDetail() {
         </section>
       )}
 
-      <footer data-library-section className={cn("mb-8 lg:mb-12 3xl:mb-16", libraryPad)}>
+      <footer data-library-section className={cn("mt-6 lg:mt-8", libraryPad)}>
         <LibraryPageShell className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-6 py-5 lg:px-8 lg:py-7 3xl:px-12 3xl:py-10">
           <span className="text-2xl text-[#C5A059] lg:text-3xl 3xl:text-4xl">✦</span>
           <p className={cn(libraryBody, "flex-1")}>

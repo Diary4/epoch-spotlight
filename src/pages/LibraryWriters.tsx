@@ -30,7 +30,7 @@ export default function LibraryWriters() {
   useLibraryPageAnimation(rootRef);
 
   return (
-    <main ref={rootRef} className="min-h-screen bg-[#F5F2ED]">
+    <main ref={rootRef} className="min-h-screen overflow-x-hidden bg-[#F5F2ED] pb-6 lg:pb-8 3xl:pb-10">
       <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link to="/library" className={cn(libraryNavText, "flex items-center gap-2")}>
@@ -126,7 +126,7 @@ export default function LibraryWriters() {
         </LibraryPageShell>
       </section>
 
-      <section data-library-section className={cn("mb-10 lg:mb-14 3xl:mb-20", libraryPad)}>
+      <section data-library-section className={libraryPad}>
         <LibraryPageShell>
           <div className="grid gap-4 sm:grid-cols-2 lg:gap-6">
             {quotedWriters.slice(0, 4).map((writer) => (

@@ -31,7 +31,7 @@ export default function LibraryBooks() {
   useLibraryPageAnimation(rootRef);
 
   return (
-    <main ref={rootRef} className="min-h-screen bg-[#FDFBF7]">
+    <main ref={rootRef} className="min-h-screen overflow-x-hidden bg-[#FDFBF7] pb-6 lg:pb-8 3xl:pb-10">
       <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link to="/library" className={cn(libraryNavText, "flex items-center gap-2")}>
@@ -161,21 +161,21 @@ export default function LibraryBooks() {
         </LibraryPageShell>
       </section>
 
-      <section data-library-section className={cn("mt-8 pb-10 lg:mt-12 lg:pb-14 3xl:mt-16 3xl:pb-20", libraryPad)}>
+      <section data-library-section className={cn("mt-8 lg:mt-12 3xl:mt-16", libraryPad)}>
         <LibraryPageShell>
           <h2 className={librarySectionTitle}>Full Collection</h2>
           <p className={libraryBodySmall}>{allBooks.length} books to discover</p>
 
-          <div className="relative mt-6 lg:mt-8 3xl:mt-10">
-            <div className="-mx-5 flex flex-wrap justify-center gap-6 px-5 pb-8 sm:-mx-8 sm:gap-8 sm:px-8 lg:mx-0 lg:gap-10 lg:px-0 3xl:gap-14">
+          <div className="mt-6 overflow-hidden rounded-2xl border border-[#E8E0D4]/80 bg-[#FAF8F5]/50 lg:mt-8 3xl:mt-10">
+            <div className="flex flex-wrap justify-center gap-6 px-5 py-6 sm:gap-8 sm:px-8 lg:gap-10 lg:px-8 3xl:gap-14 3xl:py-8">
               {allBooks.map((book) => (
                 <div key={book.id} data-library-item className="shrink-0">
                   <BookCard book={book} variant="shelf" />
                 </div>
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 h-3 rounded-sm bg-gradient-to-b from-[#8B6914] to-[#6B4F10] shadow-[0_4px_8px_rgba(0,0,0,0.2)] lg:h-4 3xl:h-5" />
-            <div className="absolute inset-x-0 -bottom-1 h-1 rounded-sm bg-[#5C3D0A] lg:h-1.5" />
+            <div className="h-3 bg-gradient-to-b from-[#8B6914] to-[#6B4F10] shadow-[0_4px_8px_rgba(0,0,0,0.2)] lg:h-4 3xl:h-5" />
+            <div className="h-1 bg-[#5C3D0A] lg:h-1.5" />
           </div>
         </LibraryPageShell>
       </section>

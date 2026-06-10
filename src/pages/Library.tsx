@@ -33,7 +33,7 @@ export default function Library() {
   useLibraryPageAnimation(rootRef);
 
   return (
-    <main ref={rootRef} className="min-h-screen bg-[#F5F2ED]">
+    <main ref={rootRef} className="min-h-screen overflow-x-hidden bg-[#F5F2ED] pb-6 lg:pb-8 3xl:pb-10">
       <header
         data-library-header
         className={cn(libraryHeaderPad, "border-b border-[#E8E0D4]/60 bg-[#F5F2ED]/80 backdrop-blur-sm")}
@@ -156,7 +156,7 @@ export default function Library() {
       {/* Explore Books */}
       <section
         data-library-section
-        className={cn("mt-12 pb-10 lg:mt-16 lg:pb-14 3xl:mt-24 3xl:pb-20", libraryPad)}
+        className={cn("mt-12 lg:mt-16 3xl:mt-24", libraryPad)}
       >
         <LibraryPageShell>
           <div className="flex items-end justify-between gap-4">
@@ -170,19 +170,19 @@ export default function Library() {
             </Link>
           </div>
 
-          <div className="relative mt-6 rounded-2xl border border-[#E8E0D4]/80 bg-[#FAF8F5]/50 p-5 lg:mt-8 lg:rounded-3xl lg:p-8 3xl:mt-10 3xl:p-10">
-            <div className="-mx-2 flex gap-6 overflow-x-auto px-2 pb-10 scrollbar-hide sm:gap-8 lg:mx-0 lg:justify-center lg:gap-12 3xl:gap-16">
+          <div className="mt-6 overflow-hidden rounded-2xl border border-[#E8E0D4]/80 bg-[#FAF8F5]/50 lg:mt-8 lg:rounded-3xl 3xl:mt-10">
+            <div className="flex gap-6 overflow-x-auto px-5 pb-6 pt-5 scrollbar-hide sm:gap-8 lg:justify-center lg:gap-12 lg:px-8 lg:pt-8 3xl:gap-16 3xl:px-10 3xl:pt-10">
               {featuredBooks.map((book) => (
                 <div key={book.id} data-library-item className="shrink-0">
                   <BookCard book={book} variant="shelf" />
                 </div>
               ))}
             </div>
-            <div className="absolute inset-x-5 bottom-5 h-3 rounded-sm bg-gradient-to-b from-[#A67C1A] to-[#6B4F10] shadow-[0_4px_12px_rgba(0,0,0,0.15)] lg:inset-x-8 lg:bottom-8 lg:h-4 3xl:h-5" />
-            <div className="absolute inset-x-5 -bottom-0.5 h-1 rounded-sm bg-[#5C3D0A] lg:inset-x-8 lg:-bottom-1 lg:h-1.5" />
+            <div className="h-3 bg-gradient-to-b from-[#A67C1A] to-[#6B4F10] shadow-[0_4px_12px_rgba(0,0,0,0.15)] lg:h-4 3xl:h-5" />
+            <div className="h-1 bg-[#5C3D0A] lg:h-1.5" />
           </div>
 
-          <div className="mt-8 flex justify-center lg:mt-10">
+          <div className="mt-6 flex justify-center lg:mt-8">
             <Link to="/library/books" className={libraryBtn}>
               View All Books
               <ArrowRight className={libraryIconMd} />

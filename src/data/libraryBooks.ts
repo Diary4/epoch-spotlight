@@ -5,6 +5,11 @@ import card4 from "@/assets/mainImages/discoverkurdistan/card-1.webp";
 import card5 from "@/assets/mainImages/discoverkurdistan/card-2.webp";
 import card6 from "@/assets/mainImages/discoverkurdistan/card-3.webp";
 import card7 from "@/assets/mainImages/discoverkurdistan/card-4.webp";
+import card1 from "@/assets/mainImages/card-1.webp";
+import story1 from "@/assets/mainImages/story-1.webp";
+import story2 from "@/assets/mainImages/story-2.webp";
+import story3 from "@/assets/mainImages/story-3.webp";
+import letter from "@/assets/mainImages/letter.webp";
 import type { LibraryBook, LibraryCategory } from "./libraryTypes";
 
 export const LIBRARY_BOOKS: LibraryBook[] = [
@@ -125,6 +130,104 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     description: "Who are we? — revolutionary verses that ask the defining question of Kurdish identity.",
     rating: 4.8,
   },
+  {
+    id: "deng-u-bal",
+    title: "Deng û Bal",
+    authorId: "farhad-pirbal",
+    cover: card1,
+    genre: "Poetry",
+    year: 1988,
+    language: "Kurdish",
+    readingTime: "1h 50m",
+    pages: 112,
+    publisher: "Sangar Publications",
+    description: "Voice and honey — early poems of tenderness, exile, and the Kurdish homeland.",
+    rating: 4.6,
+  },
+  {
+    id: "wesfekani-evin",
+    title: "Wesfekanî Evîn",
+    authorId: "farhad-pirbal",
+    cover: story1,
+    genre: "Poetry",
+    year: 2003,
+    language: "Kurdish",
+    readingTime: "2h",
+    pages: 136,
+    publisher: "Sangar Publications",
+    description: "Descriptions of love — lyrical meditations on passion, loss, and the language of the heart.",
+    rating: 4.7,
+  },
+  {
+    id: "baran-u-ciya",
+    title: "Baran û Çiya",
+    authorId: "rebwar-siwayli",
+    cover: story2,
+    genre: "Poetry",
+    year: 2001,
+    language: "Kurdish",
+    readingTime: "1h 30m",
+    pages: 88,
+    publisher: "Kurdistan Press",
+    description: "Rain and mountains — verses rooted in the rhythms of Kurdish nature and memory.",
+    rating: 4.5,
+  },
+  {
+    id: "shar-u-giyan",
+    title: "Shar û Giyan",
+    authorId: "rebwar-siwayli",
+    cover: story3,
+    genre: "Poetry",
+    year: 2010,
+    language: "Kurdish",
+    readingTime: "2h 10m",
+    pages: 104,
+    publisher: "Kurdistan Press",
+    description: "City and soul — poems that move between urban life and the enduring Kurdish spirit.",
+    rating: 4.6,
+  },
+  {
+    id: "tu",
+    title: "Tu",
+    authorId: "mehmed-uzun",
+    cover: card6,
+    genre: "Novel",
+    year: 1993,
+    language: "Kurdish",
+    readingTime: "5h 45m",
+    pages: 280,
+    publisher: "Avesta",
+    description: "You — a novel of identity and exile that helped revive modern Kurdish fiction.",
+    rating: 4.7,
+  },
+  {
+    id: "rov",
+    title: "Rov",
+    authorId: "mehmed-uzun",
+    cover: letter,
+    genre: "Novel",
+    year: 1999,
+    language: "Kurdish",
+    readingTime: "6h",
+    pages: 320,
+    publisher: "Avesta",
+    description: "The plain — a sweeping narrative of Kurdish life, migration, and cultural survival.",
+    rating: 4.8,
+  },
+  {
+    id: "nubihar",
+    title: "Nûbihar",
+    authorId: "ehmede-khani",
+    cover: card4,
+    genre: "Poetry",
+    year: 1688,
+    language: "Kurdish",
+    readingTime: "4h",
+    pages: 220,
+    publisher: "Classical Editions",
+    description: "New spring — philosophical and lyrical poems preceding the epic Mem û Zîn.",
+    rating: 4.9,
+  },
 ];
 
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
@@ -139,8 +242,10 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
 export const getBookById = (id: string) =>
   LIBRARY_BOOKS.find((book) => book.id === id);
 
-export const getBooksByAuthor = (authorId: string) =>
-  LIBRARY_BOOKS.filter((book) => book.authorId === authorId);
+export const getBooksByAuthor = (authorId: string, excludeBookId?: string) =>
+  LIBRARY_BOOKS.filter(
+    (book) => book.authorId === authorId && book.id !== excludeBookId,
+  );
 
 export const getPopularBooks = () =>
   LIBRARY_BOOKS.filter((book) => book.popular);
