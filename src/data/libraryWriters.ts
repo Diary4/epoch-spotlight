@@ -43,6 +43,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     portrait: napoleon,
     portraitDark: napoleon,
     bio: "Bakhtyar Ali is celebrated for his visionary novels that blend surrealism with Kurdish political and cultural history. His work has earned international recognition and brought Kurdish fiction to global audiences.",
+    quote: "Literature is the only homeland that cannot be taken away.",
     timeline: [
       { year: "1966", text: "Born in Sulaymaniyah" },
       { year: "1990s", text: "Published early novels and short fiction" },
@@ -61,6 +62,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     portrait: trump,
     portraitDark: trump,
     bio: "Rebwar Siwayli is known for lyrical poetry rooted in Kurdish landscape and memory. His verses capture the beauty of mountains, rivers, and the quiet resilience of everyday life.",
+    quote: "The mountain remembers what the city forgets.",
     timeline: [
       { year: "1970", text: "Born in Kurdistan" },
       { year: "1990s", text: "Published first poetry collections" },
@@ -77,6 +79,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     portrait: firstPerson,
     portraitDark: firstPerson,
     bio: "Taalat Tahir writes with clarity and warmth, exploring themes of belonging, language, and cultural heritage through poetry and prose.",
+    quote: "Every poem is a bridge between what was lost and what must be kept.",
     timeline: [
       { year: "1980s", text: "Began writing and publishing" },
       { year: "2000s", text: "Contributed to Kurdish literary journals" },
@@ -94,6 +97,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     portrait: laylaZana,
     portraitDark: laylaZana,
     bio: "Cegerxwîn is one of the greatest Kurdish poets of the 20th century. His epic verses celebrate Kurdish identity, resistance, and the beauty of the homeland.",
+    quote: "We are the living ones — our language is our weapon and our shield.",
     timeline: [
       { year: "1903", text: "Born in Mardin" },
       { year: "1930s", text: "Published early revolutionary poetry" },
@@ -112,6 +116,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     portrait: najibaKhan,
     portraitDark: najibaKhan,
     bio: "Mehmed Uzun was a pioneering Kurdish novelist whose works explored exile, identity, and the Kurdish struggle for cultural survival.",
+    quote: "To write in Kurdish is an act of courage, memory, and love.",
     timeline: [
       { year: "1953", text: "Born in Siverek" },
       { year: "1970s", text: "Began writing in exile" },
@@ -130,6 +135,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     portrait: kurdistanMukryani,
     portraitDark: kurdistanMukryani,
     bio: "Ehmedê Xanî is the author of Mem û Zîn, the greatest Kurdish epic poem. His work remains central to Kurdish literary and cultural identity.",
+    quote: "Love is a boundary that no power on earth can ever cross.",
     timeline: [
       { year: "1650", text: "Born in Hakkari region" },
       { year: "1692", text: "Completed Mem û Zîn" },
@@ -145,6 +151,11 @@ export const getWriterById = (id: string) =>
 
 export const getFeaturedWriters = () =>
   LIBRARY_WRITERS.filter((writer) => writer.featured);
+
+export const getAllWriters = () => LIBRARY_WRITERS;
+
+export const getWritersWithQuotes = () =>
+  LIBRARY_WRITERS.filter((writer) => writer.quote);
 
 export const HERO_BACKGROUND = kurdistan;
 export const FEATURED_HERO_BACKGROUND = natureBg;

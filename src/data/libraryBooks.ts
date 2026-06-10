@@ -146,3 +146,8 @@ export const getPopularBooks = () =>
   LIBRARY_BOOKS.filter((book) => book.popular);
 
 export const getFeaturedBooks = () => LIBRARY_BOOKS.slice(0, 4);
+
+export const getAllBooks = () => LIBRARY_BOOKS;
+
+export const getBooksWithQuotes = () =>
+  LIBRARY_BOOKS.filter((book) => book.quoteEnglish || book.quoteKurdish);
