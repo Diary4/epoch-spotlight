@@ -57,15 +57,19 @@ export default function WriterCard({ writer, variant = "featured" }: WriterCardP
   return (
     <Link
       to={`/library/writers/${writer.id}`}
-      className="relative flex w-32 shrink-0 flex-col overflow-hidden rounded-lg sm:w-36 lg:w-44 xl:w-48 3xl:w-56"
+      className="relative flex w-32 shrink-0 flex-col overflow-hidden rounded-xl border border-[#E8E0D4] bg-[#FAF8F5] shadow-sm sm:w-36 lg:w-44 xl:w-48 3xl:w-56"
     >
-      <img
-        src={writer.portrait}
-        alt={writer.name}
-        className="aspect-[3/4] w-full object-cover grayscale"
-      />
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-2 py-3 lg:px-3 lg:py-4">
-        <p className="text-center font-serif text-xs text-white lg:text-sm 3xl:text-lg">{writer.name}</p>
+      <div className="relative overflow-hidden">
+        <img
+          src={writer.portrait}
+          alt={writer.name}
+          className="aspect-[3/4] w-full object-cover grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1C14]/60 via-transparent to-transparent opacity-80" />
+      </div>
+      <div className="px-2 py-3 text-center lg:px-3 lg:py-4">
+        <p className="font-serif text-xs text-[#0B1C14] lg:text-sm 3xl:text-lg">{writer.name}</p>
+        <p className="mt-0.5 text-[10px] text-[#8B7355] lg:text-xs 3xl:text-sm">{writer.roles[0]}</p>
       </div>
     </Link>
   );

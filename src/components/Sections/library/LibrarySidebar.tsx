@@ -43,7 +43,7 @@ export default function LibrarySidebar() {
               key={item.label}
               to={item.path}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors xl:text-base 3xl:gap-4 3xl:px-4 3xl:py-3.5 3xl:text-lg",
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm xl:text-base 3xl:gap-4 3xl:px-4 3xl:py-3.5 3xl:text-lg",
                 isActive
                   ? "bg-[#1B3022] text-[#C5A059]"
                   : "text-[#B0926A]/80",

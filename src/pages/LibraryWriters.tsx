@@ -110,7 +110,7 @@ export default function LibraryWriters() {
               <h2 className={librarySectionTitle}>All Writers</h2>
               <p className={libraryBodySmall}>{allWriters.length} voices in our collection</p>
             </div>
-            <Link to="/library/books" className={cn(libraryBodySmall, "flex items-center gap-1 hover:text-[#0B1C14]")}>
+            <Link to="/library/books" className={cn(libraryBodySmall, "flex items-center gap-1")}>
               Explore Books
               <ArrowRight className="h-3 w-3 lg:h-4 lg:w-4" />
             </Link>

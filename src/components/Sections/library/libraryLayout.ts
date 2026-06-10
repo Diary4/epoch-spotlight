@@ -26,6 +26,12 @@ export const libraryBody =
 export const libraryBodySmall =
   "text-xs text-[#8B7355] sm:text-sm lg:text-base 3xl:text-lg";
 
+export const libraryViewAll =
+  "inline-flex items-center gap-1 text-xs text-[#8B7355] lg:text-sm 3xl:text-lg";
+
+export const libraryBtnOutline =
+  "inline-flex items-center gap-2 rounded-full border border-[#0B1C14]/30 bg-white/60 px-6 py-3 text-sm text-[#0B1C14] backdrop-blur-sm sm:text-base lg:px-8 lg:py-4 lg:text-lg 3xl:px-10 3xl:py-5 3xl:text-xl";
+
 export const libraryNavText =
   "text-sm text-[#5C4A3A] sm:text-base lg:text-lg 3xl:text-xl";
 

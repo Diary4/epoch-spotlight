@@ -22,10 +22,10 @@ export default function WriterQuoteCard({
     <Link
       to={`/library/writers/${writer.id}`}
       className={cn(
-        "group flex shrink-0 flex-col justify-between rounded-2xl border p-6 transition-all duration-300 lg:rounded-3xl lg:p-8 3xl:p-10",
+        "flex shrink-0 flex-col justify-between rounded-2xl border p-6 lg:rounded-3xl lg:p-8 3xl:p-10",
         isDark
-          ? "w-72 border-[#C5A059]/20 bg-[#0B1C14]/80 backdrop-blur-sm hover:border-[#C5A059]/50 sm:w-80 lg:w-96 3xl:w-[28rem]"
-          : "w-72 border-[#E8E0D4] bg-[#FAF8F5] hover:border-[#C5A059]/40 hover:shadow-lg sm:w-80 lg:w-96 3xl:w-[28rem]",
+          ? "w-72 border-[#C5A059]/20 bg-[#0B1C14]/80 backdrop-blur-sm sm:w-80 lg:w-96 3xl:w-[28rem]"
+          : "w-72 border-[#E8E0D4] bg-[#FAF8F5] sm:w-80 lg:w-96 3xl:w-[28rem]",
         className,
       )}
     >
@@ -58,7 +58,7 @@ export default function WriterQuoteCard({
           <img
             src={writer.portrait}
             alt={writer.name}
-            className="h-full w-full object-cover grayscale transition-all group-hover:grayscale-0"
+            className="h-full w-full object-cover grayscale"
           />
         </div>
         <div>

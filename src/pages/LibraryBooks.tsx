@@ -100,7 +100,7 @@ export default function LibraryBooks() {
                     key={book.id}
                     to={`/library/books/${book.id}`}
                     data-library-item
-                    className="group rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6 transition-all hover:border-[#C5A059]/40 hover:shadow-md lg:rounded-3xl lg:p-8 3xl:p-10"
+                    className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6 lg:rounded-3xl lg:p-8 3xl:p-10"
                   >
                     <span className="font-serif text-4xl text-[#C5A059]/40 lg:text-5xl">"</span>
                     {book.quoteEnglish && (
@@ -118,7 +118,7 @@ export default function LibraryBooks() {
                         <p className="font-serif text-sm text-[#2D4635] lg:text-base 3xl:text-xl">{book.title}</p>
                         <p className={libraryBodySmall}>{author?.name}</p>
                       </div>
-                      <span className="text-xs uppercase tracking-wider text-[#C5A059] opacity-0 transition-opacity group-hover:opacity-100 lg:text-sm">
+                      <span className="text-xs uppercase tracking-wider text-[#C5A059] lg:text-sm">
                         Read →
                       </span>
                     </div>
