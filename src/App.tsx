@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Capacitor } from "@capacitor/core";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,7 +17,8 @@ import StartMenu from "./pages/StartMenu.tsx";
 import Touristic from "./pages/Touristic.tsx";
 import TouristicDetail from "./pages/TouristicDetail.tsx";
 import Library from "./pages/Library.tsx";
-import LibraryBrowse from "./pages/LibraryBrowse.tsx";
+import LibraryWriters from "./pages/LibraryWriters.tsx";
+import LibraryBooks from "./pages/LibraryBooks.tsx";
 import LibraryWriterDetail from "./pages/LibraryWriterDetail.tsx";
 import LibraryFeaturedWriter from "./pages/LibraryFeaturedWriter.tsx";
 import LibraryBookDetail from "./pages/LibraryBookDetail.tsx";
@@ -46,7 +47,9 @@ const App = () => (
           <Route path="/touristic/:category/:id" element={<TouristicDetail />} />
           <Route path="/touristic/:id" element={<TouristicDetail />} />
           <Route path="/library" element={<Library />} />
-          <Route path="/library/browse" element={<LibraryBrowse />} />
+          <Route path="/library/writers" element={<LibraryWriters />} />
+          <Route path="/library/books" element={<LibraryBooks />} />
+          <Route path="/library/browse" element={<Navigate to="/library/writers" replace />} />
           <Route path="/library/writers/:writerId" element={<LibraryWriterDetail />} />
           <Route path="/library/writers/:writerId/featured" element={<LibraryFeaturedWriter />} />
           <Route path="/library/books/:bookId" element={<LibraryBookDetail />} />

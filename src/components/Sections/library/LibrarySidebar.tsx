@@ -13,13 +13,13 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Home", icon: Home, path: "/library" },
-  { label: "Writers", icon: Users, path: "/library/browse" },
-  { label: "Books", icon: BookOpen, path: "/library/browse" },
-  { label: "Categories", icon: Grid3X3, path: "/library/browse" },
-  { label: "Timeline", icon: Clock, path: "/library/browse" },
-  { label: "Map", icon: Map, path: "/library/browse" },
-  { label: "Quotes", icon: Quote, path: "/library/browse" },
-  { label: "Favorites", icon: Heart, path: "/library/browse" },
+  { label: "Writers", icon: Users, path: "/library/writers" },
+  { label: "Books", icon: BookOpen, path: "/library/books" },
+  { label: "Categories", icon: Grid3X3, path: "/library/books" },
+  { label: "Timeline", icon: Clock, path: "/library/writers" },
+  { label: "Map", icon: Map, path: "/library" },
+  { label: "Quotes", icon: Quote, path: "/library/writers" },
+  { label: "Favorites", icon: Heart, path: "/library" },
 ];
 
 export default function LibrarySidebar() {
@@ -31,7 +31,12 @@ export default function LibrarySidebar() {
         {navItems.map((item) => {
           const isActive =
             item.path === location.pathname ||
-            (item.label === "Books" && location.pathname.startsWith("/library/books"));
+            (item.label === "Books" &&
+              (location.pathname === "/library/books" ||
+                /^\/library\/books\/[^/]+$/.test(location.pathname))) ||
+            (item.label === "Writers" &&
+              (location.pathname === "/library/writers" ||
+                location.pathname.startsWith("/library/writers/")));
 
           return (
             <Link

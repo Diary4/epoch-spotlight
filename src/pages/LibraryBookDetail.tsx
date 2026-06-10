@@ -60,9 +60,9 @@ export default function LibraryBookDetail() {
           data-library-header
           className={cn("flex items-center justify-between border-b border-[#E8E0D4]", libraryPad, "py-4 lg:py-6 3xl:py-8")}
         >
-          <Link to="/library" className={cn(libraryNavText, "flex items-center gap-2")}>
+          <Link to="/library/books" className={cn(libraryNavText, "flex items-center gap-2")}>
             <ArrowLeft className={libraryIconSm} />
-            Back
+            Back to Books
           </Link>
           <LibraryLogo variant="light" size="md" />
           <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
@@ -217,7 +217,7 @@ export default function LibraryBookDetail() {
             <p className={cn(libraryBody, "flex-1")}>
               Step into the world of words. Explore the beauty of Kurdish literature.
             </p>
-            <Link to="/library/browse" className={libraryBtnPrimary + " shrink-0 !rounded-full text-[#C5A059] !bg-[#0B1C14]"}>
+            <Link to="/library/books" className={libraryBtnPrimary + " shrink-0 !rounded-full text-[#C5A059] !bg-[#0B1C14]"}>
               Explore More Books →
             </Link>
           </LibraryPageShell>

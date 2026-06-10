@@ -46,7 +46,7 @@ export default function LibraryWriterDetail() {
   useLibraryPageAnimation(rootRef, [writerId]);
 
   if (!writer) {
-    return <Navigate to="/library" replace />;
+    return <Navigate to="/library/writers" replace />;
   }
 
   const books = getBooksByAuthor(writer.id);
@@ -56,16 +56,16 @@ export default function LibraryWriterDetail() {
       <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link
-            to="/library"
+            to="/library/writers"
             className={cn(libraryNavText, "flex items-center gap-2")}
           >
             <ArrowLeft className={libraryIconSm} />
-            Back to Home
+            Back to Writers
           </Link>
           <LibraryLogo variant="light" size="md" />
           <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
             <ArrowLeft className={libraryIconSm} />
-            Back to Home
+            Back to Writers
           </div>
         </LibraryPageShell>
       </header>

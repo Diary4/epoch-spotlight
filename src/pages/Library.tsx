@@ -58,10 +58,19 @@ export default function Library() {
             <p className={cn(libraryBody, "mt-4 max-w-sm lg:max-w-lg 3xl:max-w-2xl")}>
               Discover the stories and voices that shaped Kurdistan.
             </p>
-            <Link to="/library/browse" className={cn(libraryBtn, "mt-6 w-fit")}>
-              Explore Writers
-              <ArrowRight className={libraryIconMd} />
-            </Link>
+            <div className="mt-6 flex flex-wrap gap-3 lg:gap-4">
+              <Link to="/library/writers" className={cn(libraryBtn, "w-fit")}>
+                Explore Writers
+                <ArrowRight className={libraryIconMd} />
+              </Link>
+              <Link
+                to="/library/books"
+                className="inline-flex w-fit items-center gap-2 rounded-full border border-[#0B1C14] bg-transparent px-6 py-3 text-sm text-[#0B1C14] sm:text-base lg:px-8 lg:py-4 lg:text-lg 3xl:px-10 3xl:py-5 3xl:text-xl"
+              >
+                Explore Books
+                <ArrowRight className={libraryIconMd} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -100,7 +109,7 @@ export default function Library() {
           <div className="flex items-center justify-between">
             <h2 className={librarySectionLabel}>Explore Books</h2>
             <Link
-              to="/library/browse"
+              to="/library/books"
               className="text-xs text-[#8B7355] lg:text-sm 3xl:text-lg"
             >
               View all →

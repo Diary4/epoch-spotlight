@@ -142,7 +142,7 @@ export default function LibraryFeaturedWriter() {
 
       <footer className="px-6 py-10 text-center lg:py-14 3xl:py-20">
         <LibraryPageShell>
-          <Link to="/library/browse" className="block">
+          <Link to="/library/writers" className="block">
             <p className={cn(librarySectionLabel, "text-[#C5A059]/60")}>
               Touch anywhere to begin your journey
             </p>
