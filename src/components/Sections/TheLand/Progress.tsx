@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
-import bg from "@/assets/mainImages/theland/progress-4.webp";
+import bg from "@/assets/images/new/discoverKurdistan/land-5.webp";
 
 const topCards = [
   {
@@ -125,7 +125,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
       : bottomCards;
   return (
     <main ref={rootRef} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)] lg:p-[clamp(10px,1.3vw,20px)]">
+      <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col overflow-x-hidden overflow-y-auto bg-[#fbf5eb] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:overflow-hidden lg:p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}
