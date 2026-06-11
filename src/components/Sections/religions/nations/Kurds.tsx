@@ -246,11 +246,11 @@ export default function KurdsPage({
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[500px]" />
+          <FaithDetailSpacer desktopHeight="h-[820px]" />
 
           <section
             data-kurds-animate="true"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
+            className="mt-10 grid grid-cols-1 gap-4 sm:mt-0 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
           >
             {c.cards.map((card) => {
               const Icon = card.icon;

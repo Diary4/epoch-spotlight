@@ -12,10 +12,10 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.webp";
-import ancientRootsImg from "@/assets/mainImages/letter.webp";
-import jewishCommunityImg from "@/assets/images/religions/r-3.webp";
-import christiansImg from "@/assets/images/religions/r-2.webp";
-import bahaullahImg from "@/assets/mainImages/shared.webp";
+import ancientRootsImg from "@/assets/images/religions/faiths.jpg";
+import jewishCommunityImg from "@/assets/images/religions/j-1.webp";
+import christiansImg from "@/assets/images/religions/r-5.webp";
+import bahaullahImg from "@/assets/images/religions/b-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

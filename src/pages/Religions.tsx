@@ -14,7 +14,6 @@ import {
   Award,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.webp";
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.jpg";
 import cradleImg from "@/assets/images/religions/main.jpg";
@@ -23,6 +22,7 @@ import whoarekurdsImg from "@/assets/mainImages/whoarekurds.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
+import faithsImg from "@/assets/images/religions/faiths.jpg";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
@@ -119,7 +119,7 @@ const pageContent: Record<
       {
         id: "faiths",
         title: "Faiths",
-        image: bg,
+        image: faithsImg,
         icon: Church,
         color: "#244b1f",
       },
@@ -190,7 +190,7 @@ const pageContent: Record<
       {
         id: "faiths",
         title: "ئاینەکان",
-        image: bg,
+        image: faithsImg,
         icon: Church,
         color: "#244b1f",
       },
@@ -259,7 +259,7 @@ const pageContent: Record<
       {
         id: "faiths",
         title: "الأديان",
-        image: bg,
+        image: faithsImg,
         icon: Church,
         color: "#244b1f",
       },

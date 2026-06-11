@@ -225,7 +225,7 @@ export default function ArmeniansPage({
               <DecorativeLine />
             </div>
 
-            <h1 className="break-words font-serif text-[clamp(36px,10vw,118px)] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
+            <h1 className="whitespace-nowrap font-serif text-[clamp(28px,8.5vw,118px)] font-semibold uppercase leading-[1] tracking-[0.12em] text-[#2f1f12] sm:text-[94px] sm:tracking-[0.16em] lg:text-[118px]">
               {c.pageTitle}
             </h1>
 
@@ -238,11 +238,11 @@ export default function ArmeniansPage({
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[500px]" />
+          <FaithDetailSpacer desktopHeight="h-[820px]" />
 
           <section
             data-armenians-animate="true"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
+            className="mt-10 grid grid-cols-1 gap-4 sm:mt-0 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
           >
             {c.cards.map((card) => {
               const Icon = card.icon;

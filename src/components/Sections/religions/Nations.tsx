@@ -4,7 +4,7 @@ import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-1.webp";
 import whoarekurds from "@/assets/images/religions/k-2.webp";
-import nationTurkmens from "@/assets/images/religions/r-3.webp";
+import nationTurkmens from "@/assets/images/religions/turkmen.jpg";
 import nationChaldo from "@/assets/images/religions/a-2.webp";
 import nationArmenians from "@/assets/images/religions/a-1.webp";
 
@@ -317,7 +317,7 @@ export default function NationsPage({
 
           <section
             data-n-animate="true"
-            className="mx-auto mt-8 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(80px,50vh,360px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-4"
+            className="mx-auto mt-12 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(120px,58vh,480px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-4"
           >
             {c.nations.map((nation) => (
               <article
@@ -332,7 +332,7 @@ export default function NationsPage({
                   }
                 }}
                 aria-label={nation.title}
-                className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(20px,30vh,500px)] sm:min-h-[420px] sm:rounded-[28px]"
+                className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(48px,38vh,600px)] sm:min-h-[420px] sm:rounded-[28px]"
               >
                 <div className="relative h-[180px] w-full overflow-hidden sm:h-[230px]">
                   <img
@@ -344,7 +344,7 @@ export default function NationsPage({
                 </div>
 
                 <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-6">
-                  <h3 className="break-words font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[26px]">
+                  <h3 className="break-normal font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[26px]">
                     {nation.title}
                   </h3>
                   <div className="mb-3 mt-2 w-[60px]">
