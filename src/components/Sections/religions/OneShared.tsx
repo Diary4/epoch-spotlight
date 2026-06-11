@@ -12,7 +12,7 @@ import {
   Music,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-5.webp";
+import bg from "@/assets/images/religions/nl-1.jpg";
 import bg2 from "@/assets/images/religions/r-3.webp";
 
 type LangCode = "en" | "ku" | "ar";

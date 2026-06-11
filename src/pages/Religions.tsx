@@ -16,11 +16,11 @@ import {
 
 import bg from "@/assets/images/religions/r-1.webp";
 import bg2 from "@/assets/images/religions/r-8.webp";
-import leadersImg from "@/assets/images/religions/r-6.webp";
-import letterImg from "@/assets/mainImages/letter.webp";
+import leadersImg from "@/assets/images/religions/nc-1.jpg";
+import cradleImg from "@/assets/images/religions/main.jpg";
+import sharedImg from "@/assets/images/religions/nl-1.jpg";
 import whoarekurdsImg from "@/assets/mainImages/whoarekurds.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
-import sharedImg from "@/assets/mainImages/shared.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
 
@@ -91,7 +91,7 @@ const pageContent: Record<
       {
         id: "introduction",
         title: "The Cradle",
-        image: letterImg,
+        image: cradleImg,
         icon: Sparkles,
         color: "#7a4a12",
       },
@@ -162,7 +162,7 @@ const pageContent: Record<
       {
         id: "introduction",
         title: "لانکە",
-        image: letterImg,
+        image: cradleImg,
         icon: Sparkles,
         color: "#7a4a12",
       },
@@ -231,7 +231,7 @@ const pageContent: Record<
       {
         id: "introduction",
         title: "مهد",
-        image: letterImg,
+        image: cradleImg,
         icon: Sparkles,
         color: "#7a4a12",
       },

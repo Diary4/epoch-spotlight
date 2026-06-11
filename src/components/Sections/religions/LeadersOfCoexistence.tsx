@@ -10,7 +10,7 @@ import {
   Quote,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-1.webp";
+import bg from "@/assets/images/religions/nc-1.jpg";
 import bg2 from "@/assets/images/religions/r-3.webp";
 
 type LangCode = "en" | "ku" | "ar";
