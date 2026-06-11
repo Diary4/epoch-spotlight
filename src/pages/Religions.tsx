@@ -18,7 +18,7 @@ import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.jpg";
 import cradleImg from "@/assets/images/religions/main.jpg";
 import sharedImg from "@/assets/images/religions/nl-1.jpg";
-import whoarekurdsImg from "@/assets/mainImages/whoarekurds.webp";
+import nationsImg from "@/assets/images/religions/nations.jpg";
 import buildingImg from "@/assets/mainImages/building.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
@@ -112,7 +112,7 @@ const pageContent: Record<
       {
         id: "nations",
         title: "Nations",
-        image: whoarekurdsImg,
+        image: nationsImg,
         icon: UsersRound,
         color: "#16466b",
       },
@@ -183,7 +183,7 @@ const pageContent: Record<
       {
         id: "nations",
         title: "نەتەوەکان",
-        image: whoarekurdsImg,
+        image: nationsImg,
         icon: UsersRound,
         color: "#16466b",
       },
@@ -252,7 +252,7 @@ const pageContent: Record<
       {
         id: "nations",
         title: "القوميات",
-        image: whoarekurdsImg,
+        image: nationsImg,
         icon: UsersRound,
         color: "#16466b",
       },
