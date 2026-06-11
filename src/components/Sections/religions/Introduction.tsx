@@ -44,7 +44,7 @@ type IntroductionContent = {
 const content: Record<LangCode, IntroductionContent> = {
   en: {
     back: "Back",
-    pageTitle: "Introduction",
+    pageTitle: "The Cradle",
     pageDescription:
       "A land where many faiths, languages, and peoples have shared one home — and a definition of what truly binds them together.",
     groups: [
@@ -126,7 +126,7 @@ const content: Record<LangCode, IntroductionContent> = {
   },
   ku: {
     back: "گەڕانەوە",
-    pageTitle: "پێشەکی",
+    pageTitle: "لانکە",
     pageDescription:
       "خاکێک کە چەندین ئاین و زمان و گەل ماڵێکیان هاوبەش بووە — و پێناسەی ئەو شتەی بە ڕاستی بەستوویانەتەوە.",
     groups: [
@@ -208,7 +208,7 @@ const content: Record<LangCode, IntroductionContent> = {
   },
   ar: {
     back: "العودة",
-    pageTitle: "مقدمة",
+    pageTitle: "مهد",
     pageDescription:
       "أرضٌ تقاسمت فيها ديانات ولغات وشعوب وطناً واحداً — وتعريفٌ لما يجمعها حقاً.",
     groups: [

@@ -90,7 +90,7 @@ const pageContent: Record<
     cards: [
       {
         id: "introduction",
-        title: "Introduction",
+        title: "The Cradle",
         image: letterImg,
         icon: Sparkles,
         color: "#7a4a12",
@@ -161,7 +161,7 @@ const pageContent: Record<
     cards: [
       {
         id: "introduction",
-        title: "پێشەکی",
+        title: "لانکە",
         image: letterImg,
         icon: Sparkles,
         color: "#7a4a12",
@@ -230,7 +230,7 @@ const pageContent: Record<
     cards: [
       {
         id: "introduction",
-        title: "مقدمة",
+        title: "مهد",
         image: letterImg,
         icon: Sparkles,
         color: "#7a4a12",
