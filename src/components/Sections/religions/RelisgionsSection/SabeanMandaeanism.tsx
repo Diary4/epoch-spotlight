@@ -7,7 +7,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import waterVideo from "@/assets/videos/water.mp4?url";
+import waterVideo from "@/assets/videos/water.webm?url";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_ICON_CARD_CLASS,

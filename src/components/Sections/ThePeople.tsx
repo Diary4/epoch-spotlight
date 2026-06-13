@@ -7,7 +7,7 @@ import ku from "@/data/ku.json";
 import card1 from "@/assets/images/new/discoverKurdistan/thePeople/card-1.webp?url"
 import card2 from "@/assets/mainImages/card-2.webp"
 import card3 from "@/assets/images/new/discoverKurdistan/thePeople/card-3.webp?url"
-import peopleVideo2 from "@/assets/videos/dws.mp4"
+import peopleVideo2 from "@/assets/videos/thepeople.webm"
 
 const cards: {
   id: ThePeopleCardId;

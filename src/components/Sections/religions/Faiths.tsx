@@ -2,7 +2,7 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
 
-import faithsVideo from "@/assets/videos/faith.mp4";
+import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/religions/r-9.webp";
 import imgChristianity from "@/assets/images/religions/r-5.webp";
 import imgYazidism from "@/assets/images/religions/r-4.webp";
