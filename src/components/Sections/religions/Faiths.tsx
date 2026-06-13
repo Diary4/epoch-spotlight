@@ -466,7 +466,7 @@ export default function FaithsPage({
           </header>
 
           <div
-            className="mx-auto mt-8 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(80px,40vh,860px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4"
+            className="mx-auto mt-12 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(120px,52vh,960px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4"
           >
             {c.faiths.map((faith) => (
               <div 

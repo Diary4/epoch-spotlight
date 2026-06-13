@@ -202,7 +202,7 @@ export default function ZoroastrianismPage({
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[480px]" />
+          <FaithDetailSpacer desktopHeight="h-[820px]" />
 
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {c.cards.map((card) => {
