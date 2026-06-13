@@ -12,7 +12,6 @@ import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
 const topCards = [
   {
     id: "land",
-    number: "01",
     title: "The Land",
     text: "A region of breathtaking geography, rich history, and timeless heritage.",
     icon: Mountain,
@@ -20,7 +19,6 @@ const topCards = [
   },
   {
     id: "identitySymbols",
-    number: "02",
     title: "Identity and Symbols",
     text: "The flag, anthem, language, and heritage reflect the spirit of Kurdistan.",
     icon: SunMedium,
@@ -29,7 +27,6 @@ const topCards = [
   },
   {
     id: "peshmerga",
-    number: "03",
     title: "Peshmerga",
     text: "A symbol of courage, protection, and selfless service to the people.",
     icon: Shield,
@@ -41,7 +38,6 @@ const topCards = [
 const bottomCards = [
   {
     id: "progress",
-    number: "04",
     title: "Progress",
     text: "Development continues in infrastructure, education, economy, and tourism.",
     icon: BarChart3,
@@ -49,7 +45,6 @@ const bottomCards = [
   },
   {
     id: "futureVision",
-    number: "05",
     title: "Future Vision",
     text: "Kurdistan looks ahead with ambition, opportunity, and confidence.",
     icon: Star,
@@ -63,14 +58,6 @@ function Divider({ className = "" }) {
       <span className="h-0.5 flex-1 bg-[#b99152]" />
       <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
       <span className="h-0.5 flex-1 bg-[#b99152]" />
-    </div>
-  );
-}
-
-function NumberBadge({ number, lang = "en" }: { number: string; lang?: "ku" | "en" | "ar" }) {
-  return (
-    <div className="absolute left-5 top-0 z-20 rounded-b-[18px] bg-[#102541] px-4 py-4 font-serif text-[26px] font-light text-[#f2cc79] shadow-md lg:px-5 lg:py-5 lg:text-[30px]">
-      {localizeDigits(number, lang)}
     </div>
   );
 }
@@ -90,8 +77,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
           className="absolute inset-0 z-20 appearance-none bg-transparent p-0"
         />
       )}
-      <NumberBadge number={card.number} lang={lang} />
-      <div className="relative z-10 mx-auto mt-6 grid h-22 w-22 place-items-center rounded-full border-2 border-[#e7cfa1] bg-[#fff8ed] shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-28 lg:w-28">
+      <div className="relative z-10 mx-auto grid h-22 w-22 place-items-center rounded-full border-2 border-[#e7cfa1] bg-[#fff8ed] shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-28 lg:w-28">
         <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-white shadow-sm lg:h-20 lg:w-20" style={{ backgroundColor: iconBg, color: iconColor }}>
           <Icon className="h-[34px] w-[34px] lg:h-[42px] lg:w-[42px]" strokeWidth={1.7} />
         </div>
@@ -130,7 +116,6 @@ function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[n
           className="absolute inset-0 z-20 appearance-none bg-transparent p-0"
         />
       )}
-      <NumberBadge number={card.number} lang={lang} />
       <img
         src={card.image}
         alt={card.title}
@@ -317,7 +302,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
           <section className="grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-7 lg:pb-5">
             {localTopCards.map((card) => (
               <SmallCard
-                key={card.number}
+                key={card.id}
                 card={card}
                 lang={lang}
                 onClick={
@@ -336,7 +321,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
           <section className="grid grid-cols-1 gap-5 pb-4 sm:grid-cols-2 lg:gap-7">
             {localBottomCards.map((card) => (
               <WideCard
-                key={card.number}
+                key={card.id}
                 card={card}
                 lang={lang}
                 onClick={card.id === "progress" ? () => onSelectCard?.("progress") : undefined}
