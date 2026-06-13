@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import BookPurchaseDialog from "@/components/Sections/library/BookPurchaseDialog";
@@ -20,6 +20,7 @@ import {
   getMaxReadablePage,
   isBookPurchased,
 } from "@/lib/libraryPreview";
+import { disableBrowserScrollRestoration, scrollToTop } from "@/lib/scrollToTop";
 import { cn } from "@/lib/utils";
 
 export default function LibraryBookReader() {
@@ -27,6 +28,19 @@ export default function LibraryBookReader() {
   const book = bookId ? getBookById(bookId) : undefined;
   const [currentPage, setCurrentPage] = useState(1);
   const [showPurchase, setShowPurchase] = useState(false);
+
+  useLayoutEffect(() => {
+    if (!bookId) return;
+    disableBrowserScrollRestoration();
+    scrollToTop();
+  }, [currentPage, bookId]);
+
+  useEffect(() => {
+    if (!bookId) return;
+    scrollToTop();
+    const raf = requestAnimationFrame(scrollToTop);
+    return () => cancelAnimationFrame(raf);
+  }, [currentPage, bookId]);
 
   if (!book || !bookId) {
     return <Navigate to="/library" replace />;
@@ -37,10 +51,6 @@ export default function LibraryBookReader() {
   const maxReadable = getMaxReadablePage(bookId, book.pages);
   const purchased = isBookPurchased(bookId);
   const activePage = previewPages.find((p) => p.pageNumber === currentPage);
-
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage, bookId]);
 
   const goToPage = (page: number) => {
     if (!canReadPage(page, bookId)) {

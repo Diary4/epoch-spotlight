@@ -1,5 +1,6 @@
-import { useLayoutEffect, type RefObject } from "react";
+import { useEffect, useLayoutEffect, type RefObject } from "react";
 import gsap from "gsap";
+import { disableBrowserScrollRestoration, scrollToTop } from "@/lib/scrollToTop";
 
 function prefersReducedMotion() {
   return (
@@ -12,6 +13,21 @@ export function useLibraryPageAnimation(
   scopeRef: RefObject<HTMLElement | null>,
   deps: unknown[] = [],
 ) {
+  useLayoutEffect(() => {
+    disableBrowserScrollRestoration();
+    scrollToTop();
+  }, deps);
+
+  useEffect(() => {
+    scrollToTop();
+    const raf = requestAnimationFrame(scrollToTop);
+    const timeout = window.setTimeout(scrollToTop, 0);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(timeout);
+    };
+  }, deps);
+
   useLayoutEffect(() => {
     const scope = scopeRef.current;
     if (!scope) return;

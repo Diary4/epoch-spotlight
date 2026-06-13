@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -41,10 +41,6 @@ export default function LibraryBookDetail() {
   const rootRef = useRef<HTMLElement>(null);
 
   useLibraryPageAnimation(rootRef, [bookId]);
-
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [bookId]);
 
   if (!book) {
     return <Navigate to="/library/books" replace />;
