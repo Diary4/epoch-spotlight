@@ -108,6 +108,18 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html,
+  body,
+  #root {
+    height: 100%;
+    min-height: 100dvh;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+
   body {
     @apply bg-background text-foreground;
     margin: 0;

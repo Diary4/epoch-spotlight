@@ -36,7 +36,7 @@ export default function StartMenu() {
   };
 
   return (
-    <main className="flex min-h-screen w-full items-center justify-center bg-[#0c1224] px-6 py-10 text-white">
+    <main className="flex h-[100dvh] min-h-0 w-full items-center justify-center bg-[#0c1224] px-6 py-10 text-white">
       <section className="w-full max-w-4xl rounded-2xl border border-white/15 bg-white/5 p-6 shadow-2xl backdrop-blur-sm sm:p-8">
         <h1 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl">
           Screen Menu

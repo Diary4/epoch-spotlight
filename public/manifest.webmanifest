@@ -1,0 +1,19 @@
+{
+  "name": "The Great Kurdistan",
+  "short_name": "GOK",
+  "description": "Explore historical characters and civilizations of Kurdistan.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "background_color": "#0F0B08",
+  "theme_color": "#0F0B08",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

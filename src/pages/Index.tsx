@@ -544,7 +544,7 @@ const Index = () => {
       onClick={advance}
       onKeyDown={onKeyDown}
       dir={dir}
-      className="relative flex min-h-screen w-full cursor-pointer select-none items-center justify-center overflow-hidden outline-none"
+      className="relative flex h-[100dvh] min-h-0 w-full flex-col cursor-pointer select-none overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
       {/* Hero-only backdrop: section screens bring their own full-page backgrounds; a global photo here caused old frames to show through when switching views. */}
@@ -574,14 +574,16 @@ const Index = () => {
 
       {/* HERO VIEW */}
       {view === "hero" && (
-        <div className="relative z-10 flex w-full max-w-3xl flex-col items-center px-6 text-center animate-fade-in">
-          <HeroCharacter className="mb-8 h-40 w-auto md:mb-12 md:h-56" />
+        <div className="relative z-10 flex flex-1 w-full items-center justify-center animate-fade-in">
+          <div className="flex w-full max-w-3xl flex-col items-center px-6 text-center">
+            <HeroCharacter className="mb-8 h-40 w-auto md:mb-12 md:h-56" />
+          </div>
         </div>
       )}
 
       {/* DISCOVER VIEW */}
       {view === "discover" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <DiscoverKurdistan
             lang={activeLang}
             onStartExploring={() => {
@@ -602,7 +604,7 @@ const Index = () => {
 
       {/* PEOPLE VIEW */}
       {view === "people" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <ThePeoplePage
             lang={activeLang}
             onBack={() => setView("discover")}
@@ -621,28 +623,28 @@ const Index = () => {
 
       {/* WHO ARE THE KURDS VIEW */}
       {view === "whoAreTheKurds" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <WhoAreTheKurdsSection lang={activeLang} onBack={() => setView("people")} />
         </div>
       )}
 
       {/* SHARED IDENTITY VIEW */}
       {view === "sharedIdentity" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <SharedIdentityPage lang={activeLang} onBack={() => setView("people")} />
         </div>
       )}
 
       {/* STORY OF RESILIENCE VIEW */}
       {view === "resilience" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <StoryOfResilience lang={activeLang} onBack={() => setView("people")} />
         </div>
       )}
 
       {/* JOURNEY VIEW */}
       {view === "journey" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <JourneyTimelinePage
             lang={activeLang}
             onBack={() => setView("discover")}
@@ -665,35 +667,35 @@ const Index = () => {
 
       {/* 1991 VIEW */}
       {view === "journey1991" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <Year1991Page lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* 1992 VIEW */}
       {view === "journey1992" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <Year1992Page lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* BUILDING INSTITUTIONS VIEW */}
       {view === "journeyBuildingInstitutions" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <BuildingInstitutionsPage lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* 2005 VIEW */}
       {view === "journey2005" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <Year2005Page lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
 
       {/* TODAY VIEW */}
       {view === "journeyToday" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <TodayDevelopmentPage lang={activeLang} onBack={() => setView("journey")} />
         </div>
       )}
@@ -702,7 +704,7 @@ const Index = () => {
 
       {view === "system" && (
         <div
-          className="relative z-10 h-[100dvh] min-h-0 w-full max-w-none self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <SystemPage
@@ -718,7 +720,7 @@ const Index = () => {
 
       {view === "parliament" && (
         <div
-          className="relative z-10 min-h-[100dvh] w-full max-w-none self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <ParliamentPage lang={activeLang} onBack={() => setView("system")} />
@@ -726,14 +728,14 @@ const Index = () => {
       )}
 
       {view === "primeMinister" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <PrimeMinisterPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
       {view === "government" && (
         <div
-          className="relative z-10 min-h-[100dvh] w-full max-w-none self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <GovernmentPage lang={activeLang} onBack={() => setView("system")} />
@@ -742,7 +744,7 @@ const Index = () => {
 
       {view === "presidency" && (
         <div
-          className="relative z-10 min-h-[100dvh] w-full max-w-none self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <PresidencyPage lang={activeLang} onBack={() => setView("system")} />
@@ -750,7 +752,7 @@ const Index = () => {
       )}
 
       {view === "landFuture" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <LandAndFuturePage
             lang={activeLang}
             onBack={() => setView("discover")}
@@ -770,25 +772,25 @@ const Index = () => {
       )}
 
       {view === "land" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <TheLandPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
       {view === "peshmerga" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <PeshmergaPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
       {view === "progress" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <ProgressPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
       {view === "identitySymbols" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <KurdishLanguageDialectsPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
