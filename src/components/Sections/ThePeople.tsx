@@ -70,7 +70,7 @@ function GoldButton({ children, active = false }) {
 
 function CircleImage({ image }) {
   return (
-    <div className="absolute left-1/2 top-[148px] z-20 h-[72px] w-[72px] -translate-x-1/2 rounded-full border-4 border-white bg-white shadow-[0_10px_30px_rgba(84,54,16,0.18)] sm:top-[218px] sm:h-24 sm:w-24 lg:top-[305px] lg:h-28 lg:w-28 overflow-hidden">
+    <div className="absolute left-1/2 z-20 -translate-x-1/2 rounded-full border border-white bg-white shadow-[0_4px_12px_rgba(84,54,16,0.12)] sm:border-4 sm:shadow-[0_10px_30px_rgba(84,54,16,0.18)] overflow-hidden top-[74px] h-8 w-8 xs:top-[92px] xs:h-9 xs:w-9 sm:top-[168px] sm:h-16 sm:w-16 lg:top-[252px] lg:h-24 lg:w-24">
       <img
         src={image}
         alt=""
@@ -232,16 +232,18 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
     <main className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e7] p-0 text-[#1e352d] overflow-x-hidden">
       <section 
         ref={sectionRef} 
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden lg:overflow-hidden bg-[#fcf7ed] px-4 pt-6 pb-12 sm:px-10 sm:py-10 lg:px-14 lg:py-12"
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden lg:overflow-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:px-14 lg:py-12"
       >
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className="absolute left-3 top-3 z-30 grid h-8 w-8 place-items-center rounded-full border border-[#d9b477] xs:border-2 bg-white/70 text-[#17233b] shadow-sm xs:left-8 xs:top-8 xs:h-14 xs:w-14 lg:h-16 lg:w-16"
           aria-label="Back to Discover"
         >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+          <ArrowLeft className="h-4 w-4 xs:h-7 xs:w-7 lg:h-8 lg:w-8" />
         </button>
+
+        {/* Video background layer */}
         <video
           ref={peopleVideoRef}
           data-people-bg="true"
@@ -251,28 +253,32 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-[72px] h-[min(62vh,920px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] sm:top-[calc(18vh-160px)] sm:h-[calc(70vh-160px)]"
+          className="pointer-events-none absolute mt-[240px] inset-x-0 w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] top-[200px] h-[30vh] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
         />
        
-        {/* Hero */}
-        <header className="relative z-10 text-center pt-20 sm:pt-8 lg:pt-12">
-          <h1 data-people-hero="true" className="font-serif font-light text-[clamp(38px,12vw,60px)] leading-none tracking-tight text-[#1d342d] sm:text-[88px] lg:text-[118px]">
+        {/* Hero Header */}
+        <header className="relative z-10 text-center pt-14 xs:pt-8 lg:pt-12">
+          <h1 data-people-hero="true" className="font-serif font-light text-[32px] xs:text-[72px] lg:text-[118px] leading-none tracking-tight text-[#1d342d]">
             {people?.title ?? "The People"}
           </h1>
 
-          <div data-people-hero="true" className="mx-auto mt-4 flex max-w-[520px] items-center justify-center gap-3 text-[#c8a05a] sm:mt-6 sm:gap-6 lg:max-w-[620px]">
+          <div data-people-hero="true" className="mx-auto mt-2 flex max-w-[160px] items-center justify-center gap-2 text-[#c8a05a] xs:mt-6 xs:gap-6 xs:max-w-[520px] lg:max-w-[620px]">
             <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
-            <Sparkles data-top-divider-diamond="true" className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+            <Sparkles data-top-divider-diamond="true" className="h-4 w-4 xs:h-7 xs:w-7 lg:h-8 lg:w-8" />
             <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
           </div>
 
-          <p data-people-hero="true" className="font-light mx-auto mt-5 max-w-[980px] px-1 text-[clamp(16px,4.2vw,20px)] leading-relaxed text-[#49524e] sm:mt-8 sm:px-0 sm:text-[28px] lg:text-[34px]">
+          <p data-people-hero="true" className="font-light mx-auto mt-3 max-w-[980px] px-1 text-[11px] xs:text-[22px] lg:text-[34px] leading-relaxed text-[#49524e]">
             {people?.subtitle ?? "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
           </p>
         </header>
 
-        {/* Cards */}
-        <div className="relative z-10 mt-8 sm:mt-auto grid grid-cols-1 gap-6 pb-4 pt-4 sm:grid-cols-2 sm:gap-5 sm:pb-6 sm:pt-8 lg:grid-cols-3 lg:gap-6 lg:pb-8 lg:pt-10">
+        {/* 
+            Cards Grid - Strict 3-column structure. 
+            Horizontal card gap and padding are kept compact on mobile/xs screens 
+            to maximize available rendering space for text content.
+        */}
+        <div className="relative z-10 mt-12 xs:mt-auto grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
             return (
               <button
@@ -288,9 +294,9 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     onSelectCard?.("resilience");
                   }
                 }}
-                className="relative flex h-full flex-col overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
+                className="relative flex h-full flex-col overflow-hidden rounded-[12px] border border-[#e4c78f] bg-white text-left shadow-[0_4px_12px_rgba(84,54,16,0.1)] xs:border-2 xs:rounded-[20px] xs:shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <div className="relative h-[180px] w-full flex-none overflow-hidden border-b border-white/75 sm:h-[250px] lg:h-[350px]">
+                <div className="relative h-[90px] xs:h-[110px] sm:h-[200px] lg:h-[300px] w-full flex-none overflow-hidden border-b border-white/75">
                   <img
                     src={card.image}
                     alt={card.title}
@@ -300,18 +306,18 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="flex min-h-[200px] mt-[10px] flex-1 flex-col px-4 pb-5 pt-12 text-center sm:min-h-[260px] sm:px-6 sm:pb-8 sm:pt-16 lg:min-h-[300px]">
-                  <h3 className="font-serif font-light text-[clamp(20px,5vw,24px)] leading-tight text-[#1f352d] sm:text-[28px] lg:text-[31px]">
+                <div className="flex min-h-[100px] mt-[10px] flex-1 flex-col px-1 pb-2 pt-6 text-center xs:min-h-[125px] xs:px-1.5 xs:pb-3 xs:pt-7 sm:min-h-[220px] sm:px-6 sm:pb-8 sm:pt-12 lg:min-h-[300px]">
+                  <h3 className="font-serif font-light text-[9px] xs:text-[11px] whitespace-pre-line leading-tight text-[#1f352d] sm:text-[22px] lg:text-[28px]">
                     {card.title}
                   </h3>
 
-                  <div className="mx-auto my-5 flex max-w-[140px] items-center justify-center gap-3 text-[#c7a04e]">
+                  <div className="mx-auto my-1.5 xs:my-2 sm:my-5 flex max-w-[50px] xs:max-w-[70px] sm:max-w-[140px] items-center justify-center gap-1 xs:gap-1.5 sm:gap-2 text-[#c7a04e]">
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
-                    <span data-card-divider-part="true" data-card-divider-diamond="true" className="h-3 w-3 rotate-45 border border-[#c7a04e]" />
+                    <span data-card-divider-part="true" data-card-divider-diamond="true" className="h-1 w-1 xs:h-1.5 xs:w-1.5 sm:h-2.5 sm:w-2.5 rotate-45 border border-[#c7a04e]" />
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[clamp(15px,3.8vw,17px)] font-light leading-relaxed text-[#59625d] sm:text-[19px] lg:text-[22px]">
+                  <p className="text-[8px] xs:text-[9.5px] sm:text-[15px] lg:text-[18px] font-light leading-relaxed text-[#59625d]">
                     {card.description}
                   </p>
                 </div>

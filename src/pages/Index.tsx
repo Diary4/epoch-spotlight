@@ -701,7 +701,10 @@ const Index = () => {
       {/* SYSTEM VIEW */}
 
       {view === "system" && (
-        <div className="relative z-10 w-full animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="relative z-10 h-[100dvh] min-h-0 w-full max-w-none self-stretch animate-fade-in"
+          onClick={(e) => e.stopPropagation()}
+        >
           <SystemPage
             lang={activeLang}
             onBack={() => setView("discover")}
