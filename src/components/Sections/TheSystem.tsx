@@ -110,7 +110,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
     const handleResize = () => {
       if (!containerRef.current) return;
       const parentWidth = containerRef.current.parentElement?.clientWidth ?? 900;
-      const horizontalPadding = parentWidth >= 460 ? 96 : 32;
+      const horizontalPadding = parentWidth >= 450 ? 96 : 32;
       const targetWidth = parentWidth - horizontalPadding;
       if (targetWidth < 900) {
         setScale(targetWidth / 900);
