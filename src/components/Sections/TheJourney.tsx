@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, useMemo, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import {
   ArrowLeft,
@@ -62,21 +62,30 @@ type JourneyTimelinePageProps = {
   onSelectMilestone?: (milestone: JourneyMilestoneId) => void;
 };
 
-/** Horizontal wobble along the rail (matches original art direction). */
-const DOT_X = [59, 58, 60, 61, 62] as const;
+/** Horizontal wobble along the rail (offsets from viewBox center). */
+const DOT_X_OFFSET = [-1, -2, 0, 1, 2] as const;
 
-/** Nudge the whole rail a few px right of the card–image midpoint. */
-const TIMELINE_NUDGE_RIGHT_PX = 28;
+const SVG_W = 180;
+const VIEWBOX_W = 150;
+// PATH_CENTER_X is the X coordinate in SVG viewBox space where the path & dots are drawn.
+// The SVG is positioned so that this point aligns exactly with the card column right edge.
+const PATH_CENTER_X = VIEWBOX_W / 2; // 75px from the left of the viewBox
 
-/**
- * Curvier path than default Catmull (1/6): still passes exactly through each milestone
- * so dots stay on-card; only control handles + lateral swing shape the S between knots.
- */
 const PATH_CURVE_K = 0.34;
-/** Per-span horizontal offset on Bézier controls (viewBox units), alternating like the legacy art. */
 const PATH_SWING_X: readonly number[] = [24, -28, 26, -24];
 
-/** Fraction along path length (0–1) closest to a milestone dot. */
+function getRelativePoint(el: HTMLElement, container: HTMLElement): { x: number; y: number } {
+  const containerRect = container.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+  const scaleX = container.offsetWidth / containerRect.width || 1;
+  const scaleY = container.offsetHeight / containerRect.height || 1;
+
+  return {
+    x: (elRect.left - containerRect.left) * scaleX,
+    y: (elRect.top - containerRect.top) * scaleY,
+  };
+}
+
 function getPathProgress(path: SVGPathElement, x: number, y: number): number {
   const total = path.getTotalLength();
   if (total <= 0) return 0;
@@ -138,25 +147,50 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
   const rootRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const cardColumnRef = useRef<HTMLDivElement | null>(null);
   const pathStrokeRef = useRef<SVGPathElement | null>(null);
   const pathBgRef = useRef<SVGPathElement | null>(null);
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const imageColumnRef = useRef<HTMLDivElement | null>(null);
+
   const [timelineLayout, setTimelineLayout] = useState<{
     pathD: string;
     points: { x: number; y: number }[];
     height: number;
-    /** px from track left — centers the 180px-wide rail in the gap between cards and image column */
+    // svgLeft: the CSS `left` value for the SVG element in track-relative pixels.
+    // We position the SVG so PATH_CENTER_X (75px in viewBox) sits at the
+    // right edge of the card column. Since the SVG viewBox is VIEWBOX_W wide
+    // but the element is SVG_W wide, we must account for the scale factor.
     svgLeft: number;
   } | null>(null);
 
-  const imageColumnRef = useRef<HTMLDivElement | null>(null);
+  // Layout scale handles for smaller viewports
+  const [scale, setScale] = useState(1);
+  const [leftOffset, setLeftOffset] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const targetWidth = 1400;
+      if (width < targetWidth) {
+        setScale(width / targetWidth);
+        setLeftOffset(0);
+      } else {
+        setScale(1);
+        setLeftOffset((width - targetWidth) / 2);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useLayoutEffect(() => {
     const measure = () => {
       const track = trackRef.current;
-      const imageCol = imageColumnRef.current;
       if (!track) return;
-      const trackRect = track.getBoundingClientRect();
+
       const h = track.clientHeight;
       if (h < 8) return;
 
@@ -165,34 +199,38 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       for (let i = 0; i < n; i++) {
         const el = cardRefs.current[i];
         if (!el) return;
-        const r = el.getBoundingClientRect();
+        const relative = getRelativePoint(el, track);
         centers.push({
-          x: DOT_X[i]!,
-          y: r.top - trackRect.top + r.height / 2,
+          x: PATH_CENTER_X + (DOT_X_OFFSET[i] ?? 0),
+          y: relative.y + el.offsetHeight / 2,
         });
       }
 
-      const SVG_W = 180;
+      // ── KEY FIX ──────────────────────────────────────────────────────────
+      // The card column div is w-full so cardCol.offsetWidth gives the full
+      // container width — useless. Instead, measure the right edge of the
+      // first actual card button, which has max-w-[640px] and reflects the
+      // true rendered card width.
+      //
+      // Then place the SVG so PATH_CENTER_X (75px in viewBox space) lands
+      // exactly at that right edge, centered in the gap between cards and images.
+      //
+      // renderScale = SVG_W / VIEWBOX_W accounts for the fact that the 150-wide
+      // viewBox is rendered into an SVG_W (180) CSS-pixel wide element.
       const firstCard = cardRefs.current[0];
-      let svgLeft = 0;
-      const narrow =
-        typeof window !== "undefined" &&
-        window.matchMedia("(max-width: 767px)").matches;
+      if (!firstCard) return;
+      const firstCardRect = getRelativePoint(firstCard, track);
+      const cardRight = firstCardRect.x + firstCard.offsetWidth;
 
-      if (firstCard) {
-        if (narrow) {
-          const cardR = firstCard.getBoundingClientRect();
-          svgLeft = Math.max(4, cardR.left - trackRect.left - SVG_W + 28);
-        } else if (imageCol) {
-          const cardRight = firstCard.getBoundingClientRect().right;
-          const imageLeft = imageCol.getBoundingClientRect().left;
-          const midX = (cardRight + imageLeft) / 2;
-          svgLeft = midX - SVG_W / 2 - trackRect.left + TIMELINE_NUDGE_RIGHT_PX;
-        } else {
-          const cw = firstCard.getBoundingClientRect().width ?? 560;
-          svgLeft = cw + 24 + TIMELINE_NUDGE_RIGHT_PX;
-        }
-      }
+      // Also find image column left edge for true centering in the gap
+      const imageCol = imageColumnRef.current;
+      const imageLeft = imageCol ? getRelativePoint(imageCol, track).x : cardRight + 80;
+
+      // Center the path in the gap between cards and images
+      const gapCenter = (cardRight + imageLeft) / 2;
+      const renderScale = SVG_W / VIEWBOX_W;
+      const svgLeft = gapCenter - PATH_CENTER_X * renderScale;
+      // ─────────────────────────────────────────────────────────────────────
 
       setTimelineLayout({
         height: h,
@@ -209,11 +247,9 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     const img = imageColumnRef.current;
     if (t) ro.observe(t);
     if (img) ro.observe(img);
-    window.addEventListener("resize", measure);
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
-      window.removeEventListener("resize", measure);
     };
   }, [localizedMilestones]);
 
@@ -287,162 +323,179 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
   }, [timelineLayout]);
 
   return (
-    <main ref={rootRef} className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
-      <section className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
-        <button
-          type="button"
-          onClick={onBack}
-          className="journey-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-          aria-label="Back to Discover"
-        >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-        </button>
-        
-        {/* subtle paper/pattern (Hidden on mobile to optimize layout clarity) */}
-        <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
-        <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
+    <div
+      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      style={{
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
+      <div
+        style={{
+          width: "1400px",
+          height: `${100 / scale}vh`,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: `${leftOffset}px`,
+          containerType: "size",
+        }}
+      >
+        <main ref={rootRef} className="m-0 flex h-full w-full justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
+          <section className="relative flex h-full w-full flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
+            <button
+              type="button"
+              onClick={onBack}
+              className="journey-back absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              aria-label="Back to Discover"
+            >
+              <ArrowLeft className="h-8 w-8" />
+            </button>
+            
+            {/* Subtle paper patterns */}
+            <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] block" />
+            <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] block" />
 
-        {/* Right illustration column */}
-        <div
-          ref={imageColumnRef}
-          className="pointer-events-none absolute right-0 top-[90px] z-0 hidden h-[1720px] w-[46vw] min-w-[520px] md:block"
-        >
-          <img
-            ref={(el) => {
-              imageRefs.current[0] = el;
-            }}
-            src={bg}
-            className="journey-image absolute right-0 top-0 h-[900px] w-[96%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
-            alt="1991 illustration"
-          />
-          <img
-            ref={(el) => {
-              imageRefs.current[1] = el;
-            }}
-            src={bg2}
-            className="journey-image absolute right-0 top-[800px] h-[800px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
-            alt="1992 illustration"
-          />
-          <img
-            ref={(el) => {
-              imageRefs.current[2] = el;
-            }}
-            src={bg3}
-            className="journey-image absolute right-0 top-[1400px] h-[910px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
-            alt="building institutions illustration"
-          />
-        </div>
-
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-8 pt-20 sm:px-12 md:px-16 md:pb-10 md:pt-20 lg:px-20 lg:pb-14">
-          {/* Title */}
-          <section className="journey-intro max-w-[760px]">
-            <h1 className="font-serif text-[clamp(34px,9vw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
-              {journey.title ?? "The Journey"}
-            </h1>
-            <h2 className="mt-3 text-[clamp(16px,4vw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
-              {localizeDigits(
-                lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
-                lang,
-              )}
-            </h2>
-            <div className="mt-6 flex w-full max-w-[290px] items-center gap-5 text-[#b99152] md:mt-8">
-              <span className="h-0.5 flex-1 bg-[#b99152]" />
-              <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+            {/* Right illustration column */}
+            <div
+              ref={imageColumnRef}
+              className="pointer-events-none absolute right-0 top-[90px] z-0 h-[1720px] w-[46cqw] min-w-[520px] block"
+            >
+              <img
+                ref={(el) => { imageRefs.current[0] = el; }}
+                src={bg}
+                className="journey-image absolute right-0 top-0 h-[900px] w-[96%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
+                alt="1991 illustration"
+              />
+              <img
+                ref={(el) => { imageRefs.current[1] = el; }}
+                src={bg2}
+                className="journey-image absolute right-0 top-[800px] h-[800px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+                alt="1992 illustration"
+              />
+              <img
+                ref={(el) => { imageRefs.current[2] = el; }}
+                src={bg3}
+                className="journey-image absolute right-0 top-[1400px] h-[910px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+                alt="building institutions illustration"
+              />
             </div>
-            <p className="mt-4 max-w-[680px] text-[clamp(14px,3.5vw,20px)] leading-snug text-[#2d3549] md:mt-8 md:text-[32px] lg:text-[36px]">
-              {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
-            </p>
-          </section>
 
-          {/* Timeline */}
-          <section className="relative mt-10 flex min-h-0 flex-1 flex-col md:mt-20">
-            <div ref={trackRef} className="relative flex min-h-0 flex-1 flex-col">
-              
-              {/* Dynamic Curvy Path SVG (Visible on Desktop / Tablets) */}
-              {timelineLayout && (
-                <svg
-                  className="pointer-events-none absolute top-0 z-20 w-[180px] overflow-visible hidden md:block"
-                  style={{ left: timelineLayout.svgLeft }}
-                  width={180}
-                  height={timelineLayout.height}
-                  viewBox={`0 0 150 ${timelineLayout.height}`}
-                  fill="none"
-                  aria-hidden
-                >
-                  <path
-                    ref={pathBgRef}
-                    className="journey-path-bg"
-                    d={timelineLayout.pathD}
-                    stroke="#ffffff"
-                    strokeWidth="17"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    ref={pathStrokeRef}
-                    className="journey-path-stroke"
-                    d={timelineLayout.pathD}
-                    stroke="#d8b875"
-                    strokeWidth="9"
-                    strokeLinecap="round"
-                  />
-                  {timelineLayout.points.map((dot, index) => (
-                    <g key={index} className="journey-dot">
-                      <circle cx={dot.x} cy={dot.y} r="19" fill="#c89a4e" />
-                      <circle cx={dot.x} cy={dot.y} r="14" fill="white" />
-                      <circle cx={dot.x} cy={dot.y} r="7" fill="#c89a4e" />
-                    </g>
-                  ))}
-                </svg>
-              )}
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col px-20 pb-14 pt-20">
+              {/* Title */}
+              <section className="journey-intro max-w-[760px]">
+                <h1 className="font-serif text-[clamp(34px,9cqw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
+                  {journey.title ?? "The Journey"}
+                </h1>
+                <h2 className="mt-6 text-[clamp(16px,4cqw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
+                  {localizeDigits(
+                    lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
+                    lang,
+                  )}
+                </h2>
+                <div className="mt-8 flex w-full max-w-[290px] items-center gap-5 text-[#b99152]">
+                  <span className="h-0.5 flex-1 bg-[#b99152]" />
+                  <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+                </div>
+                <p className="mt-8 max-w-[680px] text-[clamp(14px,3.5cqw,20px)] leading-snug text-[#2d3549] md:text-[32px] lg:text-[36px]">
+                  {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
+                </p>
+              </section>
 
-              {/* Static Minimalist CSS Timeline Rail (Visible only on Mobile) */}
-              <div className="absolute left-[20px] top-4 bottom-4 w-[2px] bg-[#d8b875]/70 md:hidden z-10" />
+              {/* Timeline */}
+              <section className="relative mt-20 flex min-h-0 flex-1 flex-col">
+                <div ref={trackRef} className="relative flex min-h-0 flex-1 flex-col">
+                  
+                  {/* Dynamic Curvy Path SVG */}
+                  {timelineLayout && (
+                    <svg
+                      className="pointer-events-none absolute top-0 z-20 overflow-visible block"
+                      style={{ left: timelineLayout.svgLeft, width: SVG_W }}
+                      width={SVG_W}
+                      height={timelineLayout.height}
+                      viewBox={`0 0 ${VIEWBOX_W} ${timelineLayout.height}`}
+                      fill="none"
+                      aria-hidden
+                    >
+                      <path
+                        ref={pathBgRef}
+                        className="journey-path-bg"
+                        d={timelineLayout.pathD}
+                        stroke="#ffffff"
+                        strokeWidth="17"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        ref={pathStrokeRef}
+                        className="journey-path-stroke"
+                        d={timelineLayout.pathD}
+                        stroke="#d8b875"
+                        strokeWidth="9"
+                        strokeLinecap="round"
+                      />
+                      {timelineLayout.points.map((dot, index) => (
+                        <g key={index} className="journey-dot">
+                          <circle cx={dot.x} cy={dot.y} r="19" fill="#c89a4e" />
+                          <circle cx={dot.x} cy={dot.y} r="14" fill="white" />
+                          <circle cx={dot.x} cy={dot.y} r="7" fill="#c89a4e" />
+                        </g>
+                      ))}
+                    </svg>
+                  )}
 
-              <div className="flex min-h-0 flex-1 flex-col gap-5 pl-10 md:pl-0">
-              {localizedMilestones.map((item, index) => {
-                const Icon = item.icon;
-                const milestoneId: JourneyMilestoneId =
-                  index === 0 ? "1991" : index === 1 ? "1992" : index === 2 ? "buildingInstitutions" : index === 3 ? "2005" : "today";
-                return (
-                  <button
-                    type="button"
-                    onClick={() => onSelectMilestone?.(milestoneId)}
-                    key={item.title}
-                    ref={(el) => {
-                      cardRefs.current[index] = el;
-                    }}
-                    className="journey-card relative z-10 flex min-h-[96px] sm:min-h-[120px] md:min-h-[148px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[16px] sm:rounded-[22px] border border-[#ead8b7] bg-white/80 shadow-[0_8px_20px_rgba(84,54,16,0.08)] backdrop-blur-sm md:w-[clamp(480px,48vw,640px)]"
-                  >
-                    {/* Compact Timeline Node Dot (Visible only on Mobile) */}
-                    <div className="absolute -left-[27px] top-1/2 -translate-y-1/2 z-20 h-[14px] w-[14px] rounded-full bg-[#c89a4e] border-[3px] border-[#fbf5eb] ring-1 ring-[#c89a4e]/30 shadow-sm md:hidden" />
+                  {/*
+                    ── KEY FIX ──────────────────────────────────────────────
+                    We add `ref={cardColumnRef}` to the card column div so we
+                    can measure its right edge directly in the layout effect.
+                    Previously the code tried to infer this from the first card's
+                    parent, which was unreliable. Now it's an explicit ref.
+                    ─────────────────────────────────────────────────────────
+                  */}
+                  <div ref={cardColumnRef} className="flex min-h-0 flex-1 flex-col gap-5 pl-0">
+                    {localizedMilestones.map((item, index) => {
+                      const Icon = item.icon;
+                      const milestoneId: JourneyMilestoneId =
+                        index === 0 ? "1991" : index === 1 ? "1992" : index === 2 ? "buildingInstitutions" : index === 3 ? "2005" : "today";
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => onSelectMilestone?.(milestoneId)}
+                          key={item.title}
+                          ref={(el) => {
+                            cardRefs.current[index] = el;
+                          }}
+                          className="journey-card relative z-10 flex min-h-[148px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/80 shadow-[0_8px_20px_rgba(84,54,16,0.08)] backdrop-blur-sm md:w-[clamp(480px,48cqw,640px)]"
+                        >
+                          <div className="flex w-[168px] shrink-0 items-center justify-center py-4">
+                            <div
+                              className="grid h-28 w-28 shrink-0 place-items-center rounded-full border-[5px] border-white text-[#f7e3b5] shadow-[0_6px_16px_rgba(0,0,0,0.16)]"
+                              style={{ backgroundColor: item.color }}
+                            >
+                              <Icon className="h-[52px] w-[52px]" strokeWidth={1.5} />
+                            </div>
+                          </div>
 
-                    <div className="flex w-[68px] sm:w-[148px] md:w-[168px] shrink-0 items-center justify-center py-2 sm:py-4">
-                      <div
-                        className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[3px] sm:border-[5px] border-white text-[#f7e3b5] shadow-[0_4px_10px_rgba(0,0,0,0.12)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.16)] sm:h-24 sm:w-24 md:h-28 md:w-28"
-                        style={{ backgroundColor: item.color }}
-                      >
-                        <Icon className="h-5 w-5 sm:h-[46px] sm:w-[46px] md:h-[52px] md:w-[52px]" strokeWidth={1.5} />
-                      </div>
-                    </div>
+                          <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
-                    <div className="min-h-[50px] sm:min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
-
-                    <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-3 py-3 sm:px-5 sm:py-5 md:px-7 md:py-6">
-                      <h3 className="font-serif text-[clamp(18px,4vw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 sm:mt-2 max-w-[380px] text-[clamp(14px,3vw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
-                        {item.text}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-              </div>
+                          <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-7 py-6">
+                            <h3 className="font-serif text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]">
+                              {item.title}
+                            </h3>
+                            <p className="mt-2 max-w-[380px] text-[clamp(14px,3cqw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
+                              {item.text}
+                            </p>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </section>
             </div>
           </section>
-        </div>
-      </section>
-    </main>
+        </main>
+      </div>
+    </div>
   );
 }
