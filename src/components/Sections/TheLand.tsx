@@ -277,7 +277,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               {!isAr && !isKu && "and Future"}
             </h1>
 
-            <p data-land-hero="true" className="z-10 mt-4 sm:mt-7 font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(24px,5.5vw,68px)] leading-tight text-[#9b6d35]">
+            <p data-land-hero="true" className="z-10 mt-4 sm:mt-7 font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(24px,5.5vw,68px)] leading-tight text-[#17233b]">
               {isAr ? (
                 <>
                   جذور التراث.<br />لآفاق الغد.
@@ -299,7 +299,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mt-4 sm:mt-8 max-w-[330px] text-[clamp(12px,4vw,15px)] xs:text-[clamp(14px,4vw,17px)] sm:text-[clamp(16px,3.8vw,20px)] lg:text-[28px] leading-[1.55] text-[#2d3549]">
+            <p data-land-hero="true" className="mt-4 sm:mt-8 max-w-[330px] text-[clamp(12px,4vw,15px)] xs:text-[clamp(14px,4vw,17px)] sm:text-[clamp(16px,3.8vw,20px)] lg:text-[28px] leading-[1.55] text-[#ffffff]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
