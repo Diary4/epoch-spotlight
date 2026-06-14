@@ -69,33 +69,32 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
         <button
           type="button"
           onClick={onBack}
-          className="back-btn absolute left-[clamp(16px,2vw,30px)] top-[clamp(16px,2vh,30px)] z-30 grid h-[clamp(50px,4.8vw,64px)] w-[clamp(50px,4.8vw,64px)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#00604f] shadow-sm"
+          className="back-btn absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#00604f] shadow-sm sm:border-2 sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-8 lg:top-8 lg:h-16 lg:w-16"
           aria-label="Back to The People"
         >
-          <ArrowLeft size={30} />
+          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
         </button>
 
 
-        {/* --- FIXED HERO IMAGE SECTION --- */}
-        <div className="hero-image pointer-events-none absolute right-0 top-0 h-[90vh] w-[70%] z-0">
+        {/* Absolutely positioned background artwork container */}
+        <div className="hero-image pointer-events-none absolute right-0 top-[000px] h-[30vh] sm:top-0 sm:h-[90vh] w-full sm:w-[70%] z-0">
           <img
             src={bg}
             alt="Shared identity visual"
             className="absolute inset-0 h-full w-full object-contain object-right-top opacity-100"
             style={{
-              /* This creates the "white effect" fade-out from the screenshot */
-              maskImage: 'linear-gradient(to left, black 40%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to left, black 40%, transparent 95%), linear-gradient(to bottom, black 80%, transparent 100%)'
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
             }}
           />
           {/* Gradients to blend into background exactly like the image */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fff7ec]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fff7ec]" /> */}
         </div>
 
         {/* Main text content */}
-        <section className="relative z-10 mt-[clamp(62px,8.2vh,126px)] px-[clamp(20px,5vw,80px)] max-w-[min(65vw,900px)]">
-          <h1 className="main-title font-serif text-[clamp(66px,8.3vw,120px)] font-light leading-[0.95] tracking-tight text-[#214439]">
+        <section className="relative z-10 mt-12 sm:mt-[clamp(62px,8.2vh,126px)] px-3 xs:px-6 sm:px-[clamp(20px,5vw,80px)] max-w-[min(65vw,900px)]">
+          <h1 className="main-title font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,80px)] sm:text-[clamp(66px,8.3vw,120px)] font-light leading-[0.95] tracking-tight text-[#214439]">
             {(detail?.title ?? "A Shared\nIdentity").split('\n').map((line, i) => (
               <React.Fragment key={i}>
                 {line} {i === 0 && <br />}
@@ -103,52 +102,52 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
             ))}
           </h1>
 
-          <div className="title-divider mt-[clamp(30px,4vh,52px)] flex items-center gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
-            <span className="h-0.5 w-[clamp(130px,13vw,220px)] bg-[#c9903f]" />
-            <Sparkles size={32} />
-            <span className="h-0.5 w-[clamp(90px,9vw,160px)] bg-[#c9903f]" />
+          <div className="title-divider mt-[clamp(16px,4vh,52px)] flex items-center gap-2 sm:gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
+            <span className="h-0.5 w-12 xs:w-20 sm:w-[clamp(130px,13vw,220px)] bg-[#c9903f]" />
+            <Sparkles className="h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8" />
+            <span className="h-0.5 w-8 xs:w-12 sm:w-[clamp(90px,9vw,160px)] bg-[#c9903f]" />
           </div>
 
-          <p className="subtitle-text mt-[clamp(24px,3.3vh,44px)] font-serif text-[clamp(31px,3.7vw,54px)] leading-tight text-[#b06f25]">
+          <p className="subtitle-text mt-4 sm:mt-[clamp(24px,3.3vh,44px)] font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(31px,3.7vw,54px)] leading-tight text-[#b06f25]">
             {(detail?.subtitle ?? "United by language, heritage, and memory.").replace(", ", ",\n")}
           </p>
 
-          <p className="description-text mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[clamp(20px,2.3vw,32px)] font-light leading-[1.62] text-[#35435b]">
+          <p className="description-text mt-3 sm:mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[12px] xs:text-[14px] sm:text-[22px] lg:text-[32px] font-light leading-[1.62] text-[#35435b]">
             {detail?.description ?? "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
           </p>
         </section>
 
-        {/* Cards: height follows content; desktop row uses equal stretch */}
-        <section className="relative z-20 mt-[clamp(20px,3.5vh,56px)] grid w-full grid-cols-1 items-stretch gap-[clamp(16px,1.7vw,34px)] px-[clamp(20px,5vw,80px)] pb-[clamp(8px,1vh,22px)] md:grid-cols-3">
+        {/* Cards Section - forced responsive 3-column layout */}
+        <section className="relative z-20 mt-[100px] sm:mt-[200px] grid w-full grid-cols-3 items-stretch gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 px-3 xs:px-6 sm:px-[clamp(20px,5vw,80px)]">
           {localizedCards.map((card, i) => {
             const Icon = card.icon;
             return (
               <article
                 key={i}
-                className="identity-card flex h-full min-h-0 flex-col items-center rounded-[clamp(22px,2.3vw,34px)] border-2 border-white bg-white/82 px-[clamp(16px,1.7vw,32px)] py-[clamp(18px,2.1vh,34px)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
+                className="identity-card flex h-full min-h-[140px] xs:min-h-[180px] sm:min-h-[300px] lg:min-h-[560px] flex-col items-center rounded-[12px] border border-white bg-white/82 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:border-2 sm:rounded-[24px] sm:px-6 sm:py-7 lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(18px,1.8vw,34px)] lg:py-[clamp(20px,2.2vh,36px)] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
               >
-                <div className="grid h-[clamp(82px,7.3vw,124px)] w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border-4 border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
+                <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-[clamp(82px,7.3vw,124px)] sm:w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:border-4 sm:shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
                   {card.iconText ? (
                     <div className="relative">
-                      <MessageSquareText size={58} strokeWidth={1.5} />
-                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[clamp(16px,1.55vw,24px)] font-bold">{card.iconText}</span>
+                      <MessageSquareText className="h-5 w-5 xs:h-6 xs:w-6 sm:h-12 sm:w-12 lg:h-[58px] lg:w-[58px]" strokeWidth={1.5} />
+                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[6px] xs:text-[8px] sm:text-[clamp(16px,1.55vw,24px)] font-bold">{card.iconText}</span>
                     </div>
                   ) : (
-                    <Icon size={58} strokeWidth={1.45} />
+                    <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-12 sm:w-12 lg:h-[58px] lg:w-[58px]" strokeWidth={1.45} />
                   )}
                 </div>
 
-                <h3 className="mt-[clamp(14px,1.9vh,30px)] whitespace-pre-line font-serif text-[clamp(24px,2.4vw,38px)] font-light leading-[0.95] text-[#214439]">
+                <h3 className="mt-2.5 xs:mt-4 sm:mt-[clamp(14px,1.9vh,30px)] whitespace-pre-line font-serif text-[9px] xs:text-[11px] sm:text-[24px] lg:text-[38px] font-light leading-[0.95] text-[#214439]">
                   {card.title}
                 </h3>
 
-                <div className="my-[clamp(12px,1.7vh,24px)] flex w-[clamp(88px,8.3vw,138px)] items-center justify-center gap-3 text-[#c9903f]">
+                <div className="mx-auto my-1.5 xs:my-3 sm:my-[clamp(12px,1.7vh,24px)] flex w-12 xs:w-16 sm:w-[clamp(88px,8.3vw,138px)] items-center justify-center gap-1 sm:gap-3 text-[#c9903f]">
                   <span className="h-0.5 flex-1 bg-[#d7b56c]" />
-                  <span className="text-[clamp(16px,1.5vw,24px)]">✥</span>
+                  <span className="text-[9px] xs:text-[11px] sm:text-[clamp(16px,1.5vw,24px)]">✥</span>
                   <span className="h-0.5 flex-1 bg-[#d7b56c]" />
                 </div>
 
-                <p className="flex-1 text-[clamp(17px,1.65vw,27px)] font-light leading-[1.55] text-[#35435b]">
+                <p className="flex-1 text-[8px] xs:text-[9.5px] sm:text-[15px] lg:text-[27px] font-light leading-[1.55] text-[#35435b]">
                   {card.text}
                 </p>
               </article>
