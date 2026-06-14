@@ -144,12 +144,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center overflow-x-hidden bg-[#f8f1e4] p-0 text-[#18362d]">
       <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden bg-[#fbf5ea]">
-        {/* Background image */}
-        <img
-          src="https://images.pexels.com/photos/18040523/pexels-photo-18040523.webp?auto=compress&cs=tinysrgb&w=1600"
-          alt=""
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center opacity-40"
-        />
+  
 
         {/* Light cream overlay */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />
