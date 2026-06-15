@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { requestAppFullscreen } from "@/lib/fullscreen";
 
 type ScreenOption = {
   id: string;
@@ -31,6 +32,7 @@ export default function StartMenu() {
   const navigate = useNavigate();
 
   const handleSelectScreen = (path: string) => {
+    void requestAppFullscreen();
     // Replace history so users cannot navigate back to this launcher.
     navigate(path, { replace: true });
   };

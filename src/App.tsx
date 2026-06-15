@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Capacitor } from "@capacitor/core";
-import { BrowserRouter, HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import FullscreenGate from "@/components/FullscreenGate";
 import { useAppFullscreen } from "@/hooks/useAppFullscreen";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -29,10 +30,12 @@ const queryClient = new QueryClient();
 const Router = Capacitor.isNativePlatform() ? HashRouter : BrowserRouter;
 
 const AppRoutes = () => {
-  useAppFullscreen();
+  const { pathname } = useLocation();
+  const { showGate, onGateActivate } = useAppFullscreen(pathname);
 
   return (
-    <Router>
+    <>
+      <FullscreenGate visible={showGate} onActivate={onGateActivate} />
       <Routes>
           <Route path="/" element={<StartMenu />} />
           <Route path="/screen-1" element={<Index />} />
@@ -57,7 +60,7 @@ const AppRoutes = () => {
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-    </Router>
+    </>
   );
 };
 
@@ -66,7 +69,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <AppRoutes />
+      <Router>
+        <AppRoutes />
+      </Router>
     </TooltipProvider>
   </QueryClientProvider>
 );
