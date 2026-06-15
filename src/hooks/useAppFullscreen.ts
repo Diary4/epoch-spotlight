@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Capacitor } from "@capacitor/core";
-import { isFullscreenActive, requestAppFullscreen } from "@/lib/fullscreen";
+import { canRequestAppFullscreen, isFullscreenActive, requestAppFullscreen } from "@/lib/fullscreen";
 
 const INTERACTION_EVENTS = ["pointerdown", "click", "keydown", "touchstart"] as const;
 
@@ -10,20 +10,24 @@ function isWebPlatform() {
 
 export function useAppFullscreen(pathname = "/") {
   const [showGate, setShowGate] = useState(false);
+  const gateDismissedRef = useRef(false);
   const skipGate = pathname === "/";
+
+  const dismissGate = useCallback(() => {
+    gateDismissedRef.current = true;
+    setShowGate(false);
+  }, []);
 
   const enterFullscreen = useCallback(() => {
     if (!isWebPlatform() || isFullscreenActive()) {
-      setShowGate(false);
       return Promise.resolve(true);
     }
 
-    return requestAppFullscreen().then((entered) => {
-      if (entered) {
-        setShowGate(false);
-      }
-      return entered;
-    });
+    if (!canRequestAppFullscreen()) {
+      return Promise.resolve(false);
+    }
+
+    return requestAppFullscreen();
   }, []);
 
   useEffect(() => {
@@ -32,53 +36,60 @@ export function useAppFullscreen(pathname = "/") {
     }
 
     let active = true;
-
-    const syncGate = () => {
-      if (!active) {
-        return;
-      }
-      setShowGate(!isFullscreenActive());
-    };
+    gateDismissedRef.current = false;
 
     const onFirstInteraction = () => {
-      void enterFullscreen().then((entered) => {
-        if (!entered) {
-          return;
-        }
+      void enterFullscreen();
+      dismissGate();
 
-        INTERACTION_EVENTS.forEach((eventName) => {
-          document.removeEventListener(eventName, onFirstInteraction, true);
-        });
+      INTERACTION_EVENTS.forEach((eventName) => {
+        document.removeEventListener(eventName, onFirstInteraction, true);
       });
     };
 
     void enterFullscreen().then((entered) => {
-      if (!active) {
+      if (!active || gateDismissedRef.current) {
         return;
       }
 
-      if (!entered && !skipGate) {
+      if (entered) {
+        setShowGate(false);
+        return;
+      }
+
+      if (!skipGate && canRequestAppFullscreen()) {
         setShowGate(true);
       }
     });
 
-    document.addEventListener("fullscreenchange", syncGate);
+    const onFullscreenChange = () => {
+      if (!active || gateDismissedRef.current) {
+        return;
+      }
+
+      if (isFullscreenActive()) {
+        setShowGate(false);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", onFullscreenChange);
     INTERACTION_EVENTS.forEach((eventName) => {
       document.addEventListener(eventName, onFirstInteraction, true);
     });
 
     return () => {
       active = false;
-      document.removeEventListener("fullscreenchange", syncGate);
+      document.removeEventListener("fullscreenchange", onFullscreenChange);
       INTERACTION_EVENTS.forEach((eventName) => {
         document.removeEventListener(eventName, onFirstInteraction, true);
       });
     };
-  }, [enterFullscreen, skipGate]);
+  }, [dismissGate, enterFullscreen, skipGate]);
 
   const onGateActivate = useCallback(() => {
+    dismissGate();
     void enterFullscreen();
-  }, [enterFullscreen]);
+  }, [dismissGate, enterFullscreen]);
 
   return {
     showGate: isWebPlatform() && showGate && !skipGate,

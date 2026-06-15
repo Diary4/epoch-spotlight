@@ -728,7 +728,7 @@ const Index = () => {
       )}
 
       {view === "primeMinister" && (
-        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <PrimeMinisterPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}

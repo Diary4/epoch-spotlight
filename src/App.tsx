@@ -69,9 +69,11 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <Router>
-        <AppRoutes />
-      </Router>
+      <div className="flex min-h-[100dvh] w-full flex-col">
+        <Router>
+          <AppRoutes />
+        </Router>
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );

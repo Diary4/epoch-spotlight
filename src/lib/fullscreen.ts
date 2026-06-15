@@ -17,6 +17,13 @@ export function isFullscreenActive(): boolean {
   );
 }
 
+export function canRequestAppFullscreen(): boolean {
+  const el = document.documentElement as FullscreenElement;
+  return Boolean(
+    el.requestFullscreen ?? el.webkitRequestFullscreen ?? el.mozRequestFullScreen ?? el.msRequestFullscreen,
+  );
+}
+
 export async function requestAppFullscreen(): Promise<boolean> {
   if (isFullscreenActive()) {
     return true;
