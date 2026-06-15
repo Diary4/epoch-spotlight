@@ -2,9 +2,9 @@ import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
-import bg from "@/assets/images/religions/nations.jpg";
+import bg from "@/assets/images/religions/nations.webp";
 import whoarekurds from "@/assets/images/religions/k-2.webp";
-import nationTurkmens from "@/assets/images/religions/turkmen.jpg";
+import nationTurkmens from "@/assets/images/religions/turkmen.webp";
 import nationChaldo from "@/assets/images/religions/a-2.webp";
 import nationArmenians from "@/assets/images/religions/a-1.webp";
 

@@ -14,14 +14,14 @@ import {
 } from "lucide-react";
 
 import bg2 from "@/assets/images/religions/r-8.webp";
-import leadersImg from "@/assets/images/religions/nc-1.jpg";
-import cradleImg from "@/assets/images/religions/main.jpg";
-import sharedImg from "@/assets/images/religions/nl-1.jpg";
-import nationsImg from "@/assets/images/religions/nations.jpg";
+import leadersImg from "@/assets/images/religions/nc-1.webp";
+import cradleImg from "@/assets/images/religions/main.webp";
+import sharedImg from "@/assets/images/religions/nl-1.webp";
+import nationsImg from "@/assets/images/religions/nations.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
-import faithsImg from "@/assets/images/religions/faiths.jpg";
+import faithsImg from "@/assets/images/religions/faiths.webp";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
