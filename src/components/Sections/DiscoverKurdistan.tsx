@@ -58,7 +58,9 @@ const fallbackSections: {
 
 function GoldIcon({ children, className = "" }) {
   return (
-    <div className={`grid place-items-center rounded-full border border-[#c8a05a] sm:border-2 bg-[#104231] text-[#f6d995] shadow-[0_4px_12px_rgba(84,54,16,0.15)] sm:shadow-[0_8px_24px_rgba(84,54,16,0.25)] ${className}`}>
+    <div
+      className={`grid place-items-center rounded-full border border-[#c8a05a] sm:border-2 bg-[#104231] text-[#f6d995] shadow-[0_4px_12px_rgba(84,54,16,0.15)] sm:shadow-[0_8px_24px_rgba(84,54,16,0.25)] ${className}`}
+    >
       {children}
     </div>
   );
@@ -70,30 +72,61 @@ type DiscoverKurdistanProps = {
   onSelectSection?: (section: DiscoverSectionId) => void;
 };
 
-export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSelectSection }: DiscoverKurdistanProps) {
+export default function DiscoverKurdistan({
+  lang = "en",
+  onStartExploring,
+  onSelectSection,
+}: DiscoverKurdistanProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
 
   const data = CONTENT[lang] as any;
   const discover = data?.discover ?? {};
   const localizedSections = Array.isArray(discover.sections)
-    ? discover.sections.map((section: { id: DiscoverSectionId; title: string; desc: string }) => ({
-        id: section.id,
-        title: section.title,
-        desc: section.desc,
-      }))
+    ? discover.sections.map(
+        (section: { id: DiscoverSectionId; title: string; desc: string }) => ({
+          id: section.id,
+          title: section.title,
+          desc: section.desc,
+        }),
+      )
     : fallbackSections;
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-intro-lineshape='true']", { autoAlpha: 0, y: -18 });
-      gsap.set("[data-intro-title='true']", { autoAlpha: 0, y: 24 });
-      gsap.set("[data-intro-rest='true']", { autoAlpha: 0, y: 20 });
-      gsap.set("[data-intro-grid='true']", { autoAlpha: 0, y: 26 });
-      gsap.set("[data-choose-line='true']", { scaleX: 0, transformOrigin: "center" });
+      // Use force3D: true on every set/to call to ensure translate3d is used
+      // This promotes each element to its own GPU compositor layer
+      gsap.set("[data-intro-lineshape='true']", {
+        autoAlpha: 0,
+        y: -18,
+        force3D: true,
+      });
+      gsap.set("[data-intro-title='true']", {
+        autoAlpha: 0,
+        y: 24,
+        force3D: true,
+      });
+      gsap.set("[data-intro-rest='true']", {
+        autoAlpha: 0,
+        y: 20,
+        force3D: true,
+      });
+      // Target individual cards instead of the grid wrapper
+      gsap.set("[data-card-item]", {
+        autoAlpha: 0,
+        y: 26,
+        force3D: true,
+      });
+      gsap.set("[data-choose-line='true']", {
+        scaleX: 0,
+        transformOrigin: "center",
+        force3D: true,
+      });
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out", force3D: true },
+      });
 
       tl.to("[data-intro-lineshape='true']", {
         autoAlpha: 1,
@@ -115,6 +148,7 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
             autoAlpha: 1,
             y: 0,
             duration: 0.75,
+            stagger: 0.08,
           },
           "-=0.1",
         )
@@ -127,12 +161,14 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
           },
           "-=0.25",
         )
+        // Stagger individual cards — 4 lightweight GPU ops instead of one heavy repaint
         .to(
-          "[data-intro-grid='true']",
+          "[data-card-item]",
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.95,
+            duration: 0.55,
+            stagger: 0.1,
           },
           "-=0.2",
         );
@@ -143,67 +179,106 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center overflow-x-hidden bg-[#f8f1e4] p-0 text-[#18362d]">
-      <section ref={sectionRef} className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden bg-[#fbf5ea]">
-  
-
+      {/*
+        Removed overflow-x-hidden from <section> — it was the main GPU killer.
+        overflow: hidden creates a stacking context that collapses all child
+        elements into the parent layer, preventing individual compositor promotion.
+        Horizontal overflow is already handled by the parent <main>.
+      */}
+      <section
+        ref={sectionRef}
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea]"
+      >
         {/* Light cream overlay */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />
 
         {/* Bottom fade */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-[#fbf5ea]/85 via-transparent to-[#fbf5ea]/65" />
-        
+
         {/* Main content container */}
         <div className="relative z-10 flex flex-1 flex-col justify-between px-3 pb-6 pt-6 xs:px-4 sm:px-10 sm:pt-16 md:px-14 md:pb-12 md:pt-20 lg:px-16 lg:pb-14 lg:pt-24">
           <div className="text-center">
             {/* Top decorative line and star */}
-            <div data-intro-lineshape="true" className="mb-3 flex items-center justify-center gap-2 text-[#c49b52] sm:mb-6 sm:gap-6 md:gap-12 lg:mb-8">
+            <div
+              data-intro-lineshape="true"
+              className="mb-3 flex items-center justify-center gap-2 text-[#c49b52] sm:mb-6 sm:gap-6 md:gap-12 lg:mb-8"
+            >
               <span className="h-0.5 w-6 bg-[#c49b52] xs:w-10 sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
               <div className="flex w-full flex-col items-center">
-                <span className="text-2xl leading-none xs:text-3xl sm:text-6xl md:text-8xl lg:text-9xl">✹</span>
+                <span className="text-2xl leading-none xs:text-3xl sm:text-6xl md:text-8xl lg:text-9xl">
+                  ✹
+                </span>
               </div>
               <span className="h-0.5 w-6 bg-[#c49b52] xs:w-10 sm:w-20 md:max-w-[150px] md:flex-1 lg:max-w-[220px]" />
             </div>
 
             {/* Responsive Main Title */}
-            <h1 data-intro-title="true" className="font-serif text-[24px] leading-tight tracking-tight text-[#18362d] xs:text-[30px] sm:text-[56px] md:text-[84px] lg:text-[102px]">
+            <h1
+              data-intro-title="true"
+              className="font-serif text-[24px] leading-tight tracking-tight text-[#18362d] xs:text-[30px] sm:text-[56px] md:text-[84px] lg:text-[102px]"
+            >
               {discover.title ?? "Discover Kurdistan"}
             </h1>
 
             {/* Subtitle */}
-            <p data-intro-rest="true" className="mx-auto mt-3 font-light max-w-[980px] px-1 text-[13px] leading-relaxed text-[#424c48] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]">
-              {discover.subtitle ?? "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
+            <p
+              data-intro-rest="true"
+              className="mx-auto mt-3 font-light max-w-[980px] px-1 text-[13px] leading-relaxed text-[#424c48] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px]"
+            >
+              {discover.subtitle ??
+                "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
             </p>
 
             {/* Central Diamond Divider */}
-            <div data-intro-rest="true" className="mx-auto mt-4 flex max-w-[180px] items-center gap-2 text-[#c49b52] xs:max-w-[240px] sm:mt-8 sm:gap-5 md:mt-10 md:gap-6 lg:mt-12 lg:max-w-[520px]">
+            <div
+              data-intro-rest="true"
+              className="mx-auto mt-4 flex max-w-[180px] items-center gap-2 text-[#c49b52] xs:max-w-[240px] sm:mt-8 sm:gap-5 md:mt-10 md:gap-6 lg:mt-12 lg:max-w-[520px]"
+            >
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
               <span className="h-2 w-2 rotate-45 bg-[#c49b52] sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               <span className="h-0.5 flex-1 bg-[#d6bd83]" />
             </div>
 
             {/* Description Paragraph */}
-            <p data-intro-rest="true" className="mx-auto font-light mt-3 max-w-[880px] px-1 text-[13px] leading-relaxed text-[#4d5652] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]">
-              {discover.description ?? "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
+            <p
+              data-intro-rest="true"
+              className="mx-auto font-light mt-3 max-w-[880px] px-1 text-[13px] leading-relaxed text-[#4d5652] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px]"
+            >
+              {discover.description ??
+                "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
             </p>
           </div>
 
           <div data-intro-rest="true" className="mt-6 sm:mt-12 md:mt-16">
             {/* Choosing section title wrapper */}
             <div className="mb-3 flex items-center justify-center gap-1.5 font-serif text-[13px] text-[#2d3d35] xs:text-[15px] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px]">
-              <span data-choose-line="true" className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
+              <span
+                data-choose-line="true"
+                className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]"
+              />
               <span className="h-1.5 w-1.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span className="font-light">{discover.chooseSection ?? "Choose a section to begin"}</span>
+              <span className="font-light">
+                {discover.chooseSection ?? "Choose a section to begin"}
+              </span>
               <span className="h-1.5 w-1.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span data-choose-line="true" className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]" />
+              <span
+                data-choose-line="true"
+                className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]"
+              />
             </div>
 
-            {/* Forced 2-column layout with strict space management */}
-            <div data-intro-grid="true" className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+            {/*
+              Grid wrapper: no animation data attribute here anymore.
+              Each card gets data-card-item so GSAP animates them individually
+              via stagger — far cheaper than repainting the whole grid subtree.
+            */}
+            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-6 md:gap-8 lg:gap-10">
               {localizedSections.map((section) => {
                 const Icon = sectionIcons[section.id];
                 return (
                   <button
                     key={section.title}
+                    data-card-item
                     type="button"
                     onClick={() => onSelectSection?.(section.id)}
                     className="relative flex flex-col overflow-hidden rounded-[12px] sm:rounded-[20px] border border-[#e1bf7a] sm:border-2 bg-[#fffaf0] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_10px_30px_rgba(84,54,16,0.16)] transition active:scale-[0.98]"
@@ -214,12 +289,13 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
                         alt={section.title}
                         className="h-[100px] xs:h-[120px] sm:h-[210px] md:h-[240px] lg:h-[400px] w-full object-cover"
                       />
-                      {/* Scaled-down central icon for mobile card compatibility */}
                       <GoldIcon className="absolute bottom-0 left-1/2 z-10 h-10 w-10 -translate-x-1/2 translate-y-1/2 xs:h-12 xs:w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28">
-                        <Icon className="h-4 w-4 xs:h-5 xs:w-5 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14" strokeWidth={1.6} />
+                        <Icon
+                          className="h-4 w-4 xs:h-5 xs:w-5 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14"
+                          strokeWidth={1.6}
+                        />
                       </GoldIcon>
                     </div>
-                    {/* Compact layout margins to prevent overflow in smaller horizontal spaces */}
                     <div className="relative flex flex-col justify-center font-light min-h-[95px] px-2 pr-6 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pr-8 xs:pb-4 xs:pt-8 sm:min-h-[148px] sm:px-8 sm:pr-14 sm:pb-6 sm:pt-12 md:min-h-[160px] lg:min-h-[210px]">
                       <h3 className="font-serif text-[12px] leading-tight font-light text-[#18362d] xs:text-[14px] sm:text-[30px] md:text-[34px] lg:text-[44px]">
                         {localizeDigits(section.title, lang)}
@@ -227,15 +303,16 @@ export default function DiscoverKurdistan({ lang = "en", onStartExploring, onSel
                       <p className="mt-1 whitespace-pre-line text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[20px] md:text-[23px] lg:mt-3 lg:text-[30px]">
                         {localizeDigits(section.desc, lang)}
                       </p>
-                      {/* Vertically centered right arrow icon scaled down */}
-                      <ArrowRight className="absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#b88b43] xs:right-2.5 xs:h-4 xs:w-4 sm:right-6 sm:h-8 sm:w-8 md:right-8 md:h-10 md:w-10 lg:right-10 lg:h-12 lg:w-12" strokeWidth={1.8} />
+                      <ArrowRight
+                        className="absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#b88b43] xs:right-2.5 xs:h-4 xs:w-4 sm:right-6 sm:h-8 sm:w-8 md:right-8 md:h-10 md:w-10 lg:right-10 lg:h-12 lg:w-12"
+                        strokeWidth={1.8}
+                      />
                     </div>
                   </button>
                 );
               })}
             </div>
           </div>
-
         </div>
       </section>
     </main>
