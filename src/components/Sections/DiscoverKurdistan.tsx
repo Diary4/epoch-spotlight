@@ -112,6 +112,12 @@ export default function DiscoverKurdistan({
         y: 20,
         force3D: true,
       });
+      // Target individual cards instead of the grid wrapper
+      gsap.set("[data-card-item]", {
+        autoAlpha: 0,
+        y: 26,
+        force3D: true,
+      });
       gsap.set("[data-choose-line='true']", {
         scaleX: 0,
         transformOrigin: "center",
