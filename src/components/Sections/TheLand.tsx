@@ -68,7 +68,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
   const iconColor = "#f8e5b8";
 
   return (
-    <article data-land-card="true" className="relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[400px] lg:min-h-[700px] kiosk-portrait:min-h-[680px] flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 bg-white/80 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:p-7 lg:p-9 kiosk-portrait:p-9 text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
+    <article data-land-card="true" className="relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[400px] lg:min-h-[700px] kiosk-portrait:min-h-[63vw] flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 bg-white/80 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:p-7 lg:p-9 kiosk-portrait:p-[2.4vw] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
@@ -96,19 +96,19 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
 
       {/* Content layer positioned relative to sit over top-and-bottom background overlays */}
       <div className="relative z-10 flex flex-col items-center h-full">
-        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-22 sm:w-22 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-28 lg:w-28 kiosk-portrait:h-28 kiosk-portrait:w-28">
-          <div className="grid h-8 w-8 xs:h-10 xs:w-10 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-20 kiosk-portrait:w-20 place-items-center rounded-full border border-white sm:border-2 shadow-sm" style={{ backgroundColor: iconBg, color: iconColor }}>
-            <Icon className="h-4 w-4 xs:h-5 xs:w-5 sm:h-[34px] sm:w-[34px] lg:h-[42px] lg:w-[42px] kiosk-portrait:h-[44px] kiosk-portrait:w-[44px]" strokeWidth={1.7} />
+        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-22 sm:w-22 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-28 lg:w-28 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw]">
+          <div className="grid h-8 w-8 xs:h-10 xs:w-10 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-[7.4vw] kiosk-portrait:w-[7.4vw] place-items-center rounded-full border border-white sm:border-2 shadow-sm" style={{ backgroundColor: iconBg, color: iconColor }}>
+            <Icon className="h-4 w-4 xs:h-5 xs:w-5 sm:h-[34px] sm:w-[34px] lg:h-[42px] lg:w-[42px] kiosk-portrait:h-[4.1vw] kiosk-portrait:w-[4.1vw]" strokeWidth={1.7} />
           </div>
         </div>
 
-        <h3 className="mt-2.5 xs:mt-4 sm:mt-6 kiosk-portrait:mt-6 font-serif text-[9px] xs:text-[11px] sm:text-[clamp(26px,6vw,34px)] font-light leading-tight text-[#17233b] lg:text-[42px] kiosk-portrait:text-[44px]">
+        <h3 className="mt-2.5 xs:mt-4 sm:mt-6 kiosk-portrait:mt-[1.6vw] font-serif text-[9px] xs:text-[11px] sm:text-[clamp(26px,6vw,34px)] font-light leading-tight text-[#17233b] lg:text-[42px] kiosk-portrait:text-[4.1vw]">
           {localizeDigits(card.title, lang)}
         </h3>
 
-        <Divider className="mx-auto my-1.5 xs:my-3 sm:my-5 kiosk-portrait:my-6 w-12 xs:w-16 sm:w-36 kiosk-portrait:w-40" />
+        <Divider className="mx-auto my-1.5 xs:my-3 sm:my-5 kiosk-portrait:my-[1.6vw] w-12 xs:w-16 sm:w-36 kiosk-portrait:w-[14.8vw]" />
 
-        <p className="mx-auto mb-2 sm:mb-6 max-w-[255px] text-[8px] xs:text-[9.5px] sm:text-[clamp(15px,3.6vw,18px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[320px] lg:text-[23px] kiosk-portrait:max-w-[340px] kiosk-portrait:text-[24px]">
+        <p className="mx-auto mb-2 sm:mb-6 max-w-[255px] text-[8px] xs:text-[9.5px] sm:text-[clamp(15px,3.6vw,18px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[320px] lg:text-[23px] kiosk-portrait:max-w-[32vw] kiosk-portrait:text-[2.2vw]">
           {localizeDigits(card.text, lang)}
         </p>
       </div>
@@ -119,7 +119,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
 function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   return (
-    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[270px] lg:min-h-[320px] kiosk-portrait:min-h-[340px] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-8 sm:py-9 lg:px-10 lg:py-10 kiosk-portrait:px-12 kiosk-portrait:py-12 shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
+    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[270px] lg:min-h-[320px] kiosk-portrait:min-h-[31.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-8 sm:py-9 lg:px-10 lg:py-10 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
@@ -136,12 +136,12 @@ function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[n
       <div className="absolute inset-0 bg-gradient-to-r from-[#fff8ed] via-[#fff8ed]/82 to-[#fff8ed]/30" />
 
       <div className="relative z-10 flex h-full flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left lg:gap-10">
-        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-24 sm:w-24 lg:h-28 lg:w-28 kiosk-portrait:h-28 kiosk-portrait:w-28 shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[6px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
-          <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[52px] sm:w-[52px] lg:h-[60px] lg:w-[60px] kiosk-portrait:h-[60px] kiosk-portrait:w-[60px]" strokeWidth={1.5} />
+        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-24 sm:w-24 lg:h-28 lg:w-28 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[6px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
+          <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[52px] sm:w-[52px] lg:h-[60px] lg:w-[60px] kiosk-portrait:h-[5.5vw] kiosk-portrait:w-[5.5vw]" strokeWidth={1.5} />
         </div>
         <div className="min-w-0">
-          <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(26px,6vw,36px)] font-light text-[#17233b] lg:text-[44px] kiosk-portrait:text-[46px]">{localizeDigits(card.title, lang)}</h3>
-          <p className="mt-1 xs:mt-2 sm:mt-4 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(15px,3.8vw,20px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[26px] kiosk-portrait:max-w-[500px] kiosk-portrait:text-[26px]">
+          <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(26px,6vw,36px)] font-light text-[#17233b] lg:text-[44px] kiosk-portrait:text-[4.25vw]">{localizeDigits(card.title, lang)}</h3>
+          <p className="mt-1 xs:mt-2 sm:mt-4 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(15px,3.8vw,20px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[26px] kiosk-portrait:max-w-[46vw] kiosk-portrait:text-[2.4vw]">
             {localizeDigits(card.text, lang)}
           </p>
         </div>
@@ -270,14 +270,14 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section className="max-w-[700px] pt-12 pl-0 sm:pt-16 sm:pl-2 lg:pt-20 lg:pl-4">
-            <h1 data-land-hero="true" className="font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,64px)] sm:text-[clamp(36px,9vw,70px)] sm:text-[78px] lg:text-[102px] font-light leading-[1.03] tracking-tight text-[#17233b]">
+          <section className="mx-auto max-w-[700px] lg:max-w-[1000px] kiosk-portrait:max-w-[920px] text-center pt-12 sm:pt-16 lg:pt-20">
+            <h1 data-land-hero="true" className="font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,64px)] sm:text-[78px] lg:text-[120px] xl:text-[140px] 3xl:text-[160px] kiosk-portrait:text-[12.2vw] font-light leading-[1.03] tracking-tight text-[#17233b]">
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "and Future"}
             </h1>
 
-            <p data-land-hero="true" className="z-10 mt-4 sm:mt-7 font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(24px,5.5vw,68px)] leading-tight text-[#17233b]">
+            <p data-land-hero="true" className="z-10 mt-4 sm:mt-7 font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(24px,5.5vw,68px)] lg:text-[56px] xl:text-[64px] kiosk-portrait:text-[5.5vw] leading-tight text-[#17233b]">
               {isAr ? (
                 <>
                   جذور التراث.<br />لآفاق الغد.
@@ -293,13 +293,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               )}
             </p>
 
-            <div className="mt-4 sm:mt-9 flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152] lg:max-w-[320px]">
+            <div className="mx-auto mt-4 sm:mt-9 flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152] lg:w-[320px] lg:max-w-[320px] kiosk-portrait:w-[33vw] kiosk-portrait:max-w-[33vw]">
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
               <span data-land-divider="true" className="h-2.5 w-2.5 rotate-45 border-2 border-[#b99152]" />
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mt-4 sm:mt-8 max-w-[330px] text-[clamp(12px,4vw,15px)] xs:text-[clamp(14px,4vw,17px)] sm:text-[clamp(16px,3.8vw,20px)] lg:text-[28px] leading-[1.55] text-[#ffffff]">
+            <p data-land-hero="true" className="mx-auto mt-4 sm:mt-8 max-w-[330px] lg:max-w-[620px] kiosk-portrait:max-w-[52vw] text-[clamp(12px,4vw,15px)] xs:text-[clamp(14px,4vw,17px)] sm:text-[clamp(16px,3.8vw,20px)] lg:text-[28px] xl:text-[32px] kiosk-portrait:text-[2.6vw] leading-[1.55] text-[#ffffff]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
