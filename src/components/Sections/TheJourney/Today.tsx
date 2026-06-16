@@ -5,27 +5,27 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import bg from "@/assets/mainImages/2005.webp";
+import bg from "@/assets/mainImages/today.webp";
 
 const rows = [
   {
     number: "1",
-    title: "Constitutional Recognition",
-    text: "In 2005, Iraq’s constitution officially recognized the Kurdistan Region as a federal region.",
+    title: "Institutional Growth",
+    text: "Today, Kurdistan continues strengthening institutions to serve society and public life.",
     icon: Landmark,
     color: "bg-[#13213b]",
   },
   {
     number: "2",
-    title: "Legal Status",
-    text: "This recognition affirmed the legal and constitutional status of the Region and its institutions.",
+    title: "Development and Services",
+    text: "Ongoing reforms and projects aim to improve services, infrastructure, and opportunities.",
     icon: Scale,
     color: "bg-[#405846]",
   },
   {
     number: "3",
-    title: "A New Chapter",
-    text: "It marked an important step in the development of the Kurdistan Region within federal Iraq.",
+    title: "Future Vision",
+    text: "The Region moves forward with a long-term vision for stability, prosperity, and innovation.",
     icon: BookOpen,
     color: "bg-[#9d3637]",
   },
@@ -39,16 +39,16 @@ type JourneySection = {
 };
 const CONTENT = { en, ar, ku } as const;
 
-type Year2005PageProps = {
+type TodayPageProps = {
   lang?: LangCode;
   onBack?: () => void;
 };
 
-export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps) {
+export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
-    data?.journey?.sections?.["2005"] ?? data?.people?.sections?.["2005"] ?? {};
+    data?.journey?.sections?.today ?? data?.people?.sections?.today ?? {};
   const localizedRows = rows.map((row, i) => ({
     ...row,
     title: section.cards?.[i]?.title ?? row.title,
@@ -76,7 +76,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
         <div className="pointer-events-none absolute right-0 top-[000px] h-[60vh] sm:top-0 sm:h-[min(100vh,1500px)] w-full overflow-hidden z-0">
           <img
             src={bg}
-            alt="2005 recognition placeholder"
+            alt="Today development placeholder"
             className="journey-detail-hero absolute inset-0 h-full w-full object-cover opacity-30 sm:opacity-50 md:opacity-78 
                       [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_75%,transparent_100%)]
                       sm:[mask-image:radial-gradient(circle_at_60%_48%,black_0%,black_55%,transparent_84%)]"
@@ -87,11 +87,11 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
         <div className="relative z-10 flex flex-1 flex-col px-3 xs:px-6 sm:px-[clamp(1.4rem,4vw,4rem)] pt-12 sm:pt-[clamp(1.5rem,5vh,4.5rem)] pb-[clamp(1.2rem,3vh,2.6rem)]">
           <section className="journey-detail-intro max-w-[min(46vw,700px)] pt-12 sm:pt-0">
             <h1 className="font-serif text-[clamp(3.5rem,10vw,5.5rem)] sm:text-[clamp(6rem,11vw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
-              {localizeDigits(section.title ?? "2005", lang)}
+              {localizeDigits(section.title ?? "Today", lang)}
             </h1>
 
             <p className="mt-[clamp(1rem,2.1vh,1.8rem)] text-[clamp(1.4rem,3vw,2.2rem)] sm:text-[clamp(1.6rem,2.6vw,2.55rem)] font-light leading-tight text-[#9b6d35]">
-              {section.headline ?? "Federal recognition within Iraq."}
+              {section.headline ?? "Kurdistan continues to grow through institutions, development, and vision."}
             </p>
 
             <div className="mt-[clamp(1rem,2.3vh,2rem)] flex w-12 xs:w-20 sm:w-[clamp(9rem,18vw,14.5rem)] items-center gap-2 sm:gap-4 text-[#b99152]">

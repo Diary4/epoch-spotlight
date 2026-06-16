@@ -56,6 +56,26 @@ const EMPTY_JOURNEY_ITEMS: never[] = [];
 
 type JourneyMilestoneId = "1991" | "1992" | "buildingInstitutions" | "2005" | "today";
 
+const DEFAULT_MILESTONE_IDS: JourneyMilestoneId[] = [
+  "1991",
+  "1992",
+  "buildingInstitutions",
+  "2005",
+  "today",
+];
+
+function normalizeMilestoneId(rawId: unknown, fallbackIndex: number): JourneyMilestoneId {
+  const id = String(rawId ?? "").toLowerCase().trim();
+  if (id === "1991") return "1991";
+  if (id === "1992") return "1992";
+  if (id === "2005") return "2005";
+  if (id === "today") return "today";
+  if (id === "institutions" || id === "buildinginstitutions" || id === "building_institutions") {
+    return "buildingInstitutions";
+  }
+  return DEFAULT_MILESTONE_IDS[fallbackIndex] ?? "today";
+}
+
 type JourneyTimelinePageProps = {
   lang?: LangCode;
   onBack?: () => void;
@@ -138,6 +158,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     () =>
       milestones.map((item, idx) => ({
         ...item,
+        id: normalizeMilestoneId(journeyItems[idx]?.id, idx),
         title: localizeDigits(journeyItems[idx]?.title ?? item.title, lang),
         text: localizeDigits(journeyItems[idx]?.description ?? item.text, lang),
       })),
@@ -455,12 +476,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                   <div ref={cardColumnRef} className="flex min-h-0 flex-1 flex-col gap-5 pl-0">
                     {localizedMilestones.map((item, index) => {
                       const Icon = item.icon;
-                      const milestoneId: JourneyMilestoneId =
-                        index === 0 ? "1991" : index === 1 ? "1992" : index === 2 ? "buildingInstitutions" : index === 3 ? "2005" : "today";
                       return (
                         <button
                           type="button"
-                          onClick={() => onSelectMilestone?.(milestoneId)}
+                          onClick={() => onSelectMilestone?.(item.id)}
                           key={item.title}
                           ref={(el) => {
                             cardRefs.current[index] = el;
