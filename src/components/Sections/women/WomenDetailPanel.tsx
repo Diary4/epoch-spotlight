@@ -25,23 +25,23 @@ function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
   return (
     <div
       data-women-detail-fade="true"
-      className="flex min-h-0 flex-col items-center justify-start rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/75 px-4 py-5 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)] sm:min-h-[250px] sm:px-5 sm:py-8"
+      className="flex min-h-0 min-w-0 flex-col items-center justify-start rounded-[12px] border border-[#dfc997] bg-[#fff8ee]/75 px-2 py-3 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)] sm:min-h-[250px] sm:rounded-[18px] sm:px-5 sm:py-8"
     >
-      <div className="grid h-14 w-14 place-items-center rounded-full bg-[#5a223f] text-[26px] text-[#d7aa4e] sm:h-[78px] sm:w-[78px] sm:text-[38px]">
+      <div className="grid h-9 w-9 place-items-center rounded-full bg-[#5a223f] text-[16px] text-[#d7aa4e] sm:h-[78px] sm:w-[78px] sm:text-[38px]">
         {icon}
       </div>
 
-      <div className="mt-3 flex w-20 items-center gap-2 text-[#c8a765] sm:mt-5">
+      <div className="mt-1.5 flex w-12 items-center gap-1 text-[#c8a765] sm:mt-5 sm:w-20 sm:gap-2">
         <span className="h-px flex-1 bg-[#d9bd81]" />
-        <span className="text-sm">❖</span>
+        <span className="text-[10px] sm:text-sm">❖</span>
         <span className="h-px flex-1 bg-[#d9bd81]" />
       </div>
 
-      <h3 className="mt-2 font-serif text-[22px] leading-tight text-[#2d1436] sm:mt-4 sm:text-[30px] sm:leading-none">
+      <h3 className="mt-1 font-serif text-[clamp(10px,3vw,30px)] leading-tight text-[#2d1436] sm:mt-4 sm:text-[30px] sm:leading-none">
         {title}
       </h3>
 
-      <p className="mt-3 max-w-full text-[15px] leading-7 text-[#3f3b42] sm:mt-6 sm:max-w-[210px] sm:text-[18px] sm:leading-8">
+      <p className="mt-1.5 max-w-full text-[clamp(9px,2.5vw,18px)] leading-snug text-[#3f3b42] sm:mt-6 sm:max-w-[210px] sm:text-[18px] sm:leading-8">
         {text}
       </p>
     </div>
@@ -73,28 +73,17 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
 
         <section className="relative z-10 w-full">
-          {/* Mobile: portrait in document flow */}
-          <div className="relative h-[min(40vh,320px)] min-h-[210px] w-full overflow-hidden sm:hidden">
-            <img
-              src={portraitSrc}
-              alt={portraitAlt}
-              data-women-detail-fade="true"
-              className="h-full w-full object-cover object-[center_15%]"
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf4e8] to-transparent" />
-          </div>
-
-          {/* Desktop: absolute portrait overlay — unchanged */}
+          {/* Portrait overlay — same treatment on all screen sizes */}
           <img
             src={portraitSrc}
             alt={portraitAlt}
             data-women-detail-fade="true"
-            className="absolute inset-0 hidden h-[50vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] sm:block sm:h-[60vh]"
+            className="absolute inset-0 h-[50vh] w-full object-cover object-[center_15%] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] sm:h-[60vh]"
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[50vh] bg-gradient-to-b from-[#fbf4e8]/72 via-[#fbf4e8]/30 to-[#fbf4e8]/95 sm:block sm:h-[60vh]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vh] bg-gradient-to-b from-[#fbf4e8]/72 via-[#fbf4e8]/30 to-[#fbf4e8]/95 sm:h-[60vh]" />
 
           <div
-            className="relative z-20 px-4 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-28 lg:px-14"
+            className="relative z-20 min-h-[50vh] px-4 pb-6 pt-20 sm:min-h-[60vh] sm:px-8 sm:pb-8 sm:pt-28 lg:px-14"
             data-women-detail-fade="true"
           >
             <h1 className="break-words font-serif text-[clamp(32px,9.5vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436] sm:text-[clamp(70px,9vw,118px)] sm:leading-[0.88]">
@@ -125,7 +114,10 @@ export default function WomenDetailPanel({
           </div>
         </section>
 
-        <section className="relative z-30 mt-5 grid grid-cols-1 gap-4 px-4 sm:mt-[clamp(80px,50vh,360px)] sm:grid-cols-3 sm:gap-5 sm:px-8 lg:px-14">
+        <section
+          className="relative z-30 mt-5 gap-3 px-4 sm:mt-8 sm:gap-5 sm:px-8 lg:px-14"
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+        >
           {cards.map((c) => (
             <WomenDetailInfoCard key={c.title} {...c} />
           ))}

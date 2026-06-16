@@ -16,7 +16,7 @@ import resistanceHero from "@/assets/images/women/w-2.webp";
 import imgQara from "@/assets/images/women/w-5.webp";
 import imgQadam from "@/assets/images/women/w-7.webp";
 import imgShifa from "@/assets/images/women/w-8.webp";
-import imgLayal from "@/assets/images/women/w-9.webp";
+import imgLayal from "@/assets/images/new/women/leylaqasim.webp";
 import imgMargaret from "@/assets/images/women/w-6.webp";
 import imgKhaja from "@/assets/images/women/w-4.webp";
 
@@ -28,7 +28,7 @@ const resistanceImages: Record<string, string> = {
   "qara-fateme": imgQara,
   "qadam-kher": imgQadam,
   "shifa-gardi": imgShifa,
-  "layal-qasim": imgLayal,
+  "layla-qasim": imgLayal,
   "margaret-george-shilo": imgMargaret,
   "khaja-bawa": imgKhaja,
 };
@@ -126,14 +126,14 @@ export default function WomenResistancePage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-screen flex-col justify-start p-0 ${
+      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto ${
-          selectedId ? "min-h-min bg-transparent" : "min-h-screen bg-[#fcf7ef]"
+        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto sm:w-[min(100vw,1400px)] ${
+          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-screen bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
@@ -193,28 +193,32 @@ export default function WomenResistancePage({
                 </p>
               </div>
 
+              {/* Fixed Image Container and Image Flow */}
               <div
                 data-resist-hero="true"
-                className="pointer-events-none relative mx-auto aspect-square w-full max-w-[min(100%,420px)] lg:mx-0 lg:h-[min(72vh,820px)] lg:max-w-none lg:aspect-auto"
+                className="pointer-events-none relative mx-auto aspect-square w-full max-w-[min(100%,420px)] lg:mx-0 lg:h-[72vh] lg:max-h-[820px] lg:max-w-none lg:aspect-auto"
               >
                 <img
                   src={resistanceHero}
                   alt="Women of Resistance"
-                  className="h-full w-full rounded-[28px] object-cover object-right-top lg:absolute lg:inset-0 lg:rounded-none lg:object-right-top"
+                  className="h-full w-full rounded-[28px] object-cover object-right-top lg:rounded-none"
                 />
               </div>
             </section>
 
-            <section className="relative z-20 mt-6 grid grid-cols-1 gap-5 px-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:px-10">
+            <section
+              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10"
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+            >
               {resistanceWomen.map((woman) => (
                 <button
                   type="button"
                   data-resist-card="true"
                   key={woman.id}
                   onClick={() => setSelectedId(woman.id)}
-                  className="relative flex cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 text-left shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:p-5"
+                  className="relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 text-left shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5"
                 >
-                  <div className="relative mx-auto h-[220px] w-full max-w-[280px] overflow-hidden rounded-[20px] sm:h-[260px] sm:max-w-none">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[10px] sm:rounded-[20px]">
                     <img
                       src={resistanceImages[woman.id]}
                       alt={woman.name}
@@ -222,37 +226,40 @@ export default function WomenResistancePage({
                     />
                   </div>
 
-                  <h3 className="mt-3 font-serif text-[clamp(22px,4.5vw,32px)] leading-tight text-[#2c1736] sm:mt-4">
+                  <h3 className="mt-1.5 font-serif text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]">
                     {woman.name}
                   </h3>
 
-                  <p className="mt-2 font-serif text-[clamp(15px,2.8vw,20px)] italic text-[#a75a69]">
+                  <p className="mt-0.5 font-serif text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]">
                     ({woman.role})
                   </p>
 
-                  <div className="my-3 flex w-24 items-center gap-2 text-[#b4864d]">
+                  <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
                     <span className="h-px flex-1 bg-[#d4b98f]" />
-                    <Sparkles className="h-4 w-4" />
+                    <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
                     <span className="h-px flex-1 bg-[#d4b98f]" />
                   </div>
 
-                  <p className="text-left text-[14px] leading-relaxed text-[#4a3f50] sm:text-[15px]">
+                  <p className="hidden text-left text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px]">
                     {woman.teaser}
                   </p>
                 </button>
               ))}
             </section>
 
-            <section className="relative z-20 mt-6 grid grid-cols-1 gap-5 px-5 md:grid-cols-3 md:gap-6 lg:px-10">
+            <section
+              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+            >
               {copy.quotes.map((text) => (
                 <article
                   data-resist-card="true"
                   key={text}
-                  className="relative flex min-h-[140px] flex-col justify-center overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 px-6 py-6 shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:min-h-[160px] sm:px-8"
+                  className="relative flex min-h-[80px] min-w-0 flex-col justify-center overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 px-2 py-3 shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:min-h-[160px] sm:rounded-[24px] sm:px-8 sm:py-6"
                 >
-                  <Quote className="mb-3 h-9 w-9 shrink-0 fill-[#d98994]/70 text-[#d98994]/70" />
+                  <Quote className="mb-1 h-4 w-4 shrink-0 fill-[#d98994]/70 text-[#d98994]/70 sm:mb-3 sm:h-9 sm:w-9" />
 
-                  <p className="font-serif text-[clamp(17px,2.8vw,22px)] leading-snug text-[#3a293f]">{text}</p>
+                  <p className="font-serif text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(17px,2.8vw,22px)]">{text}</p>
 
                   <div
                     data-floating="true"
