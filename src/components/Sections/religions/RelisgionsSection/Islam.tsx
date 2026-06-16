@@ -130,7 +130,7 @@ function DecorativeLine({ color = "#c3923a" }) {
   return (
     <div className="flex items-center justify-center gap-4">
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
-      <span className="text-2xl" style={{ color }}>
+      <span className="text-xl sm:text-2xl" style={{ color }}>
         ✥
       </span>
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
@@ -168,6 +168,8 @@ export default function IslamPage({
   return (
     <main dir={dir} className={FAITH_MAIN_CLASS}>
       <section ref={sectionRef} className={FAITH_SECTION_CLASS}>
+        
+        {/* Original Hero Image Layout */}
         <FaithDetailHeroImage
           heroAttr="data-islam-hero"
           src={bg}
@@ -216,6 +218,7 @@ export default function IslamPage({
             </div>
           </header>
 
+          {/* Original spacing configuration — preserved to cleanly separate header and card contents */}
           <FaithDetailSpacer desktopHeight="h-[720px]" />
 
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
@@ -248,6 +251,7 @@ export default function IslamPage({
             })}
           </section>
 
+          {/* Tagline section */}
           <section data-islam-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
             <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[32px] sm:text-[42px]`}>
               ☾

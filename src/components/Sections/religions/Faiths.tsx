@@ -442,13 +442,13 @@ export default function FaithsPage({
             <div className="mx-auto mb-3 mt-1 w-[260px] max-w-full sm:mt-3">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="break-words font-serif text-4xl xs:text-5xl sm:text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 lg:text-[84px]">
+            <h1 className="text-[#F5EDD6] [@media(min-height:1600px)]:!text-black break-words font-serif text-4xl xs:text-5xl sm:text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 lg:text-[84px]">
               {c.pageTitle}
             </h1>
             <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-4 max-w-[620px] text-[15px] sm:text-[18px] lg:text-[20px] font-semibold leading-relaxed text-stone-600 sm:mt-5">
+            <p className="text-[#F5EDD6] [@media(min-height:1600px)]:!text-black mx-auto mt-4 max-w-[620px] text-[15px] sm:text-[18px] lg:text-[20px] font-semibold leading-relaxed text-stone-600 sm:mt-5">
               {c.pageDescription}
             </p>
           </header>

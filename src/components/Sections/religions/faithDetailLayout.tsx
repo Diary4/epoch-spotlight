@@ -5,7 +5,7 @@ export const FAITH_MAIN_CLASS =
   "m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#3d2b18] sm:w-screen";
 
 export const FAITH_SECTION_CLASS =
-  "relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-0 pb-12 pt-0 sm:px-7 sm:py-9 sm:pb-0 lg:px-16";
+  "relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-0 pb-12 pt-0 sm:px-7 sm:py-9 sm:pb-0 lg:px-16";
 
 export const FAITH_CONTENT_PADDING = "px-4 sm:px-0";
 
