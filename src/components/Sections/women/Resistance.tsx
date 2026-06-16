@@ -133,7 +133,7 @@ export default function WomenResistancePage({
       <section
         ref={sectionRef}
         className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-screen bg-[#fcf7ef]"
+          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-0 bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
@@ -170,7 +170,8 @@ export default function WomenResistancePage({
           <>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-            <section className="relative z-10 grid min-h-0 grid-cols-1 items-center gap-8 px-5 pb-6 pt-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0 lg:px-10 lg:pb-0 lg:pt-10">
+            {/* Hero — no min-h-screen so it sizes to content */}
+            <section className="relative z-10 grid grid-cols-1 items-center gap-8 px-5 pb-6 pt-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0 lg:px-10 lg:pb-0 lg:pt-10">
               <div data-resist-fade="true" className="relative z-20 lg:pt-6">
                 <h1 className="font-serif text-[clamp(52px,12vw,88px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
                   {copy.heroTitle1}
@@ -193,19 +194,22 @@ export default function WomenResistancePage({
                 </p>
               </div>
 
-              {/* Fixed Image Container and Image Flow */}
+              {/* Hero image — capped height on mobile so it doesn't bleed into cards */}
               <div
                 data-resist-hero="true"
-                className="pointer-events-none relative mx-auto aspect-square w-full max-w-[min(100%,420px)] lg:mx-0 lg:h-[72vh] lg:max-h-[820px] lg:max-w-none lg:aspect-auto"
+                className="pointer-events-none relative mx-auto w-full max-w-[min(100%,420px)] overflow-hidden rounded-[28px] lg:mx-0 lg:max-w-none lg:rounded-none"
+                style={{ aspectRatio: "1 / 1", maxHeight: "min(420px, 60vw)" }}
               >
                 <img
                   src={resistanceHero}
                   alt="Women of Resistance"
-                  className="h-full w-full rounded-[28px] object-cover object-right-top lg:rounded-none"
+                  className="h-full w-full object-cover object-right-top lg:aspect-auto lg:max-h-[820px] lg:h-[72vh]"
+                  style={{ display: "block" }}
                 />
               </div>
             </section>
 
+            {/* Cards grid */}
             <section
               className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10"
               style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
@@ -247,6 +251,7 @@ export default function WomenResistancePage({
               ))}
             </section>
 
+            {/* Quotes grid */}
             <section
               className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
               style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
@@ -275,9 +280,10 @@ export default function WomenResistancePage({
               ))}
             </section>
 
+            {/* Legacy banner */}
             <section
               data-resist-fade="true"
-              className="relative z-20 mx-5 mt-6 flex min-h-[120px] flex-col items-start gap-4 overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-6 py-6 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:min-h-[145px] sm:flex-row sm:items-center sm:px-12 lg:mx-10"
+              className="relative z-20 mx-5 mt-6 mb-10 flex min-h-[120px] flex-col items-start gap-4 overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-6 py-6 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:min-h-[145px] sm:flex-row sm:items-center sm:px-12 lg:mx-10"
             >
               <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#e4c78f] bg-[#fff8ed] sm:h-28 sm:w-28">
                 <div className="text-[40px] text-[#b4864d] sm:text-[58px]">♧</div>
