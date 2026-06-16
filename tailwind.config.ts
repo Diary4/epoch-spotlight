@@ -17,6 +17,7 @@ export default {
         xs: "450px",
         "3xl": "1920px",
         "4xl": "2560px",
+        "kiosk-portrait": { raw: "(orientation: portrait) and (min-height: 1200px)" },
       },
       colors: {
         border: "hsl(var(--border))",

@@ -185,10 +185,10 @@ export default function DiscoverKurdistan({
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center overflow-x-hidden bg-[#f8f1e4] p-0 text-[#18362d]">
+    <main className="m-0 flex h-full min-h-0 w-full justify-center overflow-x-hidden overflow-y-auto bg-[#f8f1e4] p-0 text-[#18362d]">
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea]"
+        className="relative flex min-h-full w-full max-w-[1400px] flex-col bg-[#fbf5ea] kiosk-portrait:min-h-[var(--viewport-height,100dvh)]"
       >
         {/* Light cream overlay */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />
@@ -197,7 +197,7 @@ export default function DiscoverKurdistan({
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-[#fbf5ea]/85 via-transparent to-[#fbf5ea]/65" />
 
         {/* Main content container */}
-        <div className="relative z-10 flex flex-1 flex-col justify-between px-3 pb-6 pt-6 xs:px-4 sm:px-10 sm:pt-16 md:px-14 md:pb-12 md:pt-20 lg:px-16 lg:pb-14 lg:pt-24">
+        <div className="relative z-10 flex flex-1 flex-col justify-between gap-6 px-3 pb-6 pt-6 xs:px-4 sm:px-10 sm:pt-16 md:px-14 md:pb-12 md:pt-20 lg:px-16 lg:pb-14 lg:pt-24 kiosk-portrait:justify-start kiosk-portrait:gap-8 kiosk-portrait:pb-10">
           <div className="text-center">
             {/* Top decorative line and star */}
             <div
@@ -285,7 +285,6 @@ export default function DiscoverKurdistan({
                     onClick={() => onSelectSection?.(section.id)}
                     className="relative flex flex-col overflow-hidden rounded-[12px] sm:rounded-[20px] border border-[#e1bf7a] sm:border-2 bg-[#fffaf0] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_10px_30px_rgba(84,54,16,0.16)] active:scale-[0.98] [&:active]:transition-transform [&:active]:duration-150 will-change-transform"
                     style={{
-                      opacity: 0,
                       transformStyle: "preserve-3d",
                       backfaceVisibility: "hidden",
                     }}

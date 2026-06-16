@@ -112,7 +112,8 @@ All colors MUST be HSL.
   body,
   #root {
     height: 100%;
-    min-height: 100dvh;
+    min-height: var(--viewport-height, 100dvh);
+    min-height: var(--viewport-height, 100vh);
     overflow-x: hidden;
   }
 

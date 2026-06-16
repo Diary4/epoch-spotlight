@@ -26,6 +26,8 @@ import LibraryFeaturedWriter from "./pages/LibraryFeaturedWriter.tsx";
 import LibraryBookDetail from "./pages/LibraryBookDetail.tsx";
 import LibraryBookReader from "./pages/LibraryBookReader.tsx";
 
+import { useViewportHeight } from "@/hooks/useViewportHeight";
+
 const queryClient = new QueryClient();
 const Router = Capacitor.isNativePlatform() ? HashRouter : BrowserRouter;
 
@@ -38,6 +40,7 @@ const AppRoutes = () => {
       <FullscreenGate visible={showGate} onActivate={onGateActivate} />
       <Routes>
           <Route path="/" element={<StartMenu />} />
+          <Route path="/screen" element={<Index />} />
           <Route path="/screen-1" element={<Index />} />
           <Route path="/screen-2" element={<SecondScreen />} />
           <Route path="/portraits" element={<Portraits />} />
@@ -64,18 +67,22 @@ const AppRoutes = () => {
   );
 };
 
-const App = () => (
+const App = () => {
+  useViewportHeight();
+
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <div className="flex min-h-[100dvh] w-full flex-col">
+      <div className="flex min-h-[var(--viewport-height,100dvh)] w-full flex-col">
         <Router>
           <AppRoutes />
         </Router>
       </div>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

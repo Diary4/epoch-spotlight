@@ -544,7 +544,7 @@ const Index = () => {
       onClick={advance}
       onKeyDown={onKeyDown}
       dir={dir}
-      className="relative flex h-[100dvh] min-h-0 w-full flex-col cursor-pointer select-none overflow-hidden outline-none"
+      className="relative flex h-[var(--viewport-height,100dvh)] min-h-[var(--viewport-height,100vh)] w-full flex-col cursor-pointer select-none overflow-hidden outline-none"
       style={{ backgroundColor: "hsl(var(--hero-background))" }}
     >
       {/* Hero-only backdrop: section screens bring their own full-page backgrounds; a global photo here caused old frames to show through when switching views. */}
@@ -555,10 +555,10 @@ const Index = () => {
             src={bgByView[view]}
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-[1px]"
+            className="pointer-events-none fixed inset-0 h-[var(--viewport-height,100dvh)] w-full scale-105 object-cover blur-[1px]"
           />
           <div
-            className="pointer-events-none absolute inset-0"
+            className="pointer-events-none fixed inset-0 h-[var(--viewport-height,100dvh)]"
             style={{
               background: "linear-gradient(to bottom, rgba(5,10,20,0.48), rgba(5,10,20,0.78))",
             }}
@@ -574,9 +574,9 @@ const Index = () => {
 
       {/* HERO VIEW */}
       {view === "hero" && (
-        <div className="relative z-10 flex flex-1 w-full items-center justify-center animate-fade-in">
+        <div className="relative z-10 flex min-h-[var(--viewport-height,100dvh)] flex-1 w-full items-center justify-center animate-fade-in kiosk-portrait:min-h-0">
           <div className="flex w-full max-w-3xl flex-col items-center px-6 text-center">
-            <HeroCharacter className="mb-8 h-40 w-auto md:mb-12 md:h-56" />
+            <HeroCharacter className="mb-8 h-40 w-auto md:mb-12 md:h-56 kiosk-portrait:h-48 kiosk-portrait:md:h-64" />
           </div>
         </div>
       )}
