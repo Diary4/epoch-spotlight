@@ -9,6 +9,7 @@ import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
 import card3 from "@/assets/images/new/the-system.webp";
 import card4 from "@/assets/images/new/the-land-and-future.webp";
+import backgroundPattern from "@/assets/images/patterns/pattern.png";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -193,6 +194,12 @@ export default function DiscoverKurdistan({
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea]"
       >
+        {/* Paper texture background pattern */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${backgroundPattern})` }}
+        />
+
         {/* Light cream overlay */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />
 

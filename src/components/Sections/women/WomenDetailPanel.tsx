@@ -73,14 +73,13 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
 
         <section className="relative z-10 w-full">
-          {/* Portrait overlay — same treatment on all screen sizes */}
           <img
             src={portraitSrc}
             alt={portraitAlt}
             data-women-detail-fade="true"
-            className="absolute inset-0 h-[50vh] w-full object-cover object-[center_15%] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] sm:h-[60vh]"
+            className="absolute inset-0 h-[50vh] w-full object-cover object-[center_15%] sm:h-[60vh]"
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vh] bg-gradient-to-b from-[#fbf4e8]/72 via-[#fbf4e8]/30 to-[#fbf4e8]/95 sm:h-[60vh]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vh] bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)] sm:h-[60vh]" />
 
           <div
             className="relative z-20 min-h-[50vh] px-4 pb-6 pt-20 sm:min-h-[60vh] sm:px-8 sm:pb-8 sm:pt-28 lg:px-14"

@@ -1,20 +1,18 @@
-import React from "react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import {
   BarChart3,
   Bolt,
-  BriefcaseBusiness,
   Compass,
   Handshake,
   Lightbulb,
   Monitor,
   Mountain,
   Route,
-  ShieldCheck,
   Trophy,
   UsersRound,
 } from "lucide-react";
-import bg from "@/assets/mainImages/thesystem/system-1.webp";
+import primeMinister from "@/assets/images/prime-minister.png";
+import backgroundPattern from "@/assets/images/patterns/pattern.png";
 
 const achievements = [
   {
@@ -88,7 +86,7 @@ function InfoPanel({ title, items, tone = "gold" }) {
   const circleBg = isGold ? "bg-[#c69237]" : "bg-[#5d7757]";
 
   return (
-    <section className="system-detail-panel mt-[200px] sm:mt-[0] relative rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-4 pb-5 pt-12 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:rounded-[24px] sm:px-6 sm:pb-7 sm:pt-14 lg:rounded-[26px] lg:px-8 lg:pb-9 lg:pt-16">
+    <section className="system-detail-panel relative rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-4 pb-5 pt-12 shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md sm:rounded-[24px] sm:px-6 sm:pb-7 sm:pt-14 lg:rounded-[26px] lg:px-8 lg:pb-9 lg:pt-16">
       <div className={`absolute left-1/2 top-[-30px] grid h-20 w-20 -translate-x-1/2 place-items-center rounded-full border border-white ${circleBg} text-[#f8e5b8] shadow-[0_10px_25px_rgba(84,54,16,0.2)] sm:border-4 sm:top-[-34px] sm:h-24 sm:w-24`}>
         {isGold ? <Trophy className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} /> : <Compass className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} />}
       </div>
@@ -181,7 +179,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
     : vision;
 
   return (
-    <main className="m-0 flex min-h-full w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b]">
+    <main className="m-0 flex min-h-full w-full self-start justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b]">
       <section className="relative flex min-h-full w-full max-w-[1400px] flex-col overflow-x-hidden bg-[#fbf5eb] px-3 pb-8 pt-4 xs:px-8 xs:py-9 lg:px-12 lg:py-12">
         <button
           type="button"
@@ -203,26 +201,21 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
         <div className="absolute left-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
         <div className="absolute right-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
 
-        {/* 
-            Restored original desktop portrait height and scaling constraints, 
-            while keeping the mobile-safe offset positioning parameters.
-        */}
-        <div className="pointer-events-none absolute right-0 w-full top-[200px] h-[30vh] xs:top-[240px] xs:h-[35vh] sm:top-0 sm:h-[72vh] sm:min-h-[540px] lg:h-[1280px]">
-          {/* 
-              Responsive mask rules:
-              - Mobile: Faded at top and bottom to make overlapping header text highly legible.
-              - Desktop (sm and up): Faded only at bottom (black_0% top offset) to keep the head/face solid as originally designed.
-          */}
-          <img
-            src={bg}
-            alt="Prime Minister portrait placeholder"
-            className="system-detail-hero mt-[30px] sm:mt-[0] absolute inset-0 h-full w-full object-cover object-[center_top] [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_75%,transparent_100%)] sm:[mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
-          />
-        </div>
+        {/* Paper texture background pattern */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${backgroundPattern})` }}
+        />
 
-        <div className="relative z-10 flex flex-1 flex-col">
-          {/* Restored exact original typography clamps for headers and name components */}
-          <section className="system-detail-intro max-w-[710px] pt-14 sm:pt-20 lg:pt-28">
+        {/*
+            Layout is a simple top-to-bottom flow: intro → portrait → panels.
+            Keeping the portrait in normal flow (instead of absolutely
+            positioned) guarantees it never overlaps the text or the info
+            panels on any screen size.
+        */}
+        <div className="relative z-10 flex min-h-full flex-1 flex-col items-center">
+          {/* Intro */}
+          <section className="system-detail-intro w-full max-w-[860px] text-center pt-14 sm:pt-16 lg:pt-20">
             <h1 className="font-serif text-[clamp(2.2rem,9vw,6.4rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
               {title}
             </h1>
@@ -231,19 +224,33 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
               {name}
             </p>
 
-            <div className="mt-3 w-[150px] xs:w-[200px] sm:mt-6 sm:w-[300px] lg:w-[430px]">
+            <div className="mx-auto mt-3 w-[150px] xs:w-[200px] sm:mt-6 sm:w-[320px] lg:w-[430px]">
               <DecorativeLine color="#b99152" />
             </div>
 
-            <p className="mt-4 max-w-[660px] text-[clamp(1rem,2.5vw,2.05rem)] font-light leading-[1.45] text-[#2d3549]">
+            <p className="mx-auto mt-4 max-w-[680px] text-[clamp(1rem,2.5vw,2.05rem)] font-light leading-[1.45] text-[#2d3549]">
               {subtitle}
             </p>
           </section>
 
-          <div className="flex-1 min-h-12 xs:min-h-16 lg:min-h-[90px]" />
+          {/* Portrait — centered, large, in normal flow */}
+          <div className="relative flex w-full shrink-0 items-end justify-center my-5 sm:my-8 h-[36vh] min-h-[230px] sm:h-[46vh] lg:h-[50vh] kiosk-portrait:h-[40vh]">
+            {/* Soft radial glow behind the figure */}
+            <div className="absolute bottom-[8%] left-1/2 h-[78%] w-[62%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,154,85,0.22),transparent_68%)] blur-2xl" />
+            {/* Wrapper carries the horizontal centering offset (the figure sits
+                right-of-center inside its square) so it doesn't fight the GSAP
+                scale-in transform applied to the image. */}
+            <div className="relative flex h-full -translate-x-[13%]">
+              <img
+                src={primeMinister}
+                alt="Masrour Barzani, Prime Minister of the Kurdistan Region"
+                className="system-detail-hero h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_24px_50px_rgba(31,40,53,0.28)]"
+              />
+            </div>
+          </div>
 
-          {/* Combined original responsive layout flow for desktop panels, with defensive margin updates for mobile heights */}
-          <section className="grid grid-cols-1 mt-[50px] gap-4 pb-2 sm:grid-cols-2 sm:gap-6 lg:gap-8 mt-12 xs:mt-16 sm:mt-0">
+          {/* Panels */}
+          <section className="grid w-full grid-cols-1 gap-10 pb-2 sm:grid-cols-2 sm:gap-6 lg:gap-8">
             <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
             <InfoPanel title={visionTitle} items={localVision} tone="green" />
           </section>

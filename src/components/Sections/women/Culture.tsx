@@ -5,8 +5,8 @@ import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
-import imgAysha from "@/assets/images/women/w-10.webp";
-import imgPakiza from "@/assets/images/women/w-11.webp";
+import imgAysha from "@/assets/images/patterns/aysha.jpeg";
+import imgPakiza from "@/assets/images/patterns/test2.jpeg";
 import imgHana from "@/assets/images/women/w-1.webp";
 import imgMaryam from "@/assets/images/women/w-2.webp";
 import imgKurdistan from "@/assets/images/women/w-3.webp";
@@ -103,7 +103,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Keeping a sense of national belonging alive through song.",
       placeEra: "Twentieth century, Kurdistan and the diaspora.",
       quote: "She gave sharp voice to what others wished to silence.",
-      image: imgKurdistan,
+      image: imgAysha,
       listIcon: "flower",
     },
     {
@@ -117,7 +117,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Advancing Kurdish linguistics and literature.",
       placeEra: "Twentieth century, Sulaymaniyah and beyond.",
       quote: "Science and knowledge can preserve identity.",
-      image: imgKurdistan,
+      image: imgPakiza,
       listIcon: "crown",
     },
     {
