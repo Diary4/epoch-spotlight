@@ -70,7 +70,7 @@ function GoldButton({ children, active = false }) {
 
 function CircleImage({ image }) {
   return (
-    <div className="absolute left-1/2 top-[92px] z-20 h-9 w-9 -translate-x-1/2 overflow-hidden rounded-full border-2 border-white bg-white shadow-[0_4px_12px_rgba(84,54,16,0.12)] sm:top-[168px] sm:h-16 sm:w-16 sm:shadow-[0_10px_30px_rgba(84,54,16,0.18)] lg:top-[252px] lg:h-24 lg:w-24">
+    <div className="absolute left-1/2 top-[74px] z-20 h-8 w-8 -translate-x-1/2 overflow-hidden rounded-full border border-white bg-white shadow-[0_4px_12px_rgba(84,54,16,0.12)] xs:top-[168px] xs:h-16 xs:w-16 xs:border-2 xs:shadow-[0_10px_30px_rgba(84,54,16,0.18)] lg:top-[252px] lg:h-24 lg:w-24">
       <img
         src={image}
         alt=""
@@ -229,7 +229,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f9f3e7] p-0 text-[#1e352d]">
+    <main className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f9f3e7] p-0 text-[#1e352d] lg:h-screen lg:overflow-hidden">
       <section
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12"
@@ -280,10 +280,10 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="mt-[250px] lg:mt-0 pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[30vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
+          className="pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[30vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
         />
 
-        <div className="relative z-10 mt-12 grid grid-cols-3 gap-1.5 pb-4 pt-4 xs:mt-auto xs:gap-2.5 sm:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
+        <div className="relative z-10 mt-12 grid grid-cols-3 gap-1.5 pb-4 pt-4 xs:mt-auto xs:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
             return (
               <button
@@ -301,7 +301,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 }}
                 className="relative flex h-full flex-col overflow-hidden rounded-[12px] border border-[#e4c78f] bg-white text-left shadow-[0_4px_12px_rgba(84,54,16,0.1)] xs:rounded-[20px] xs:border-2 xs:shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <div className="relative h-[90px] w-full flex-none overflow-hidden border-b border-white/75 xs:h-[110px] sm:h-[200px] lg:h-[300px]">
+                <div className="relative h-[90px] w-full flex-none overflow-hidden border-b border-white/75 xs:h-[200px] lg:h-[300px]">
                   <img
                     src={card.image}
                     alt={card.title}
@@ -311,18 +311,18 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="mt-[10px] flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center xs:min-h-[125px] xs:px-1.5 xs:pb-3 xs:pt-7 sm:min-h-[220px] sm:px-6 sm:pb-8 sm:pt-12 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[11px] sm:text-[22px] lg:text-[28px]">
+                <div className="mt-[10px] flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center xs:min-h-[220px] xs:px-6 xs:pb-8 xs:pt-12 lg:min-h-[300px]">
+                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[22px] lg:text-[28px]">
                     {card.title}
                   </h3>
 
-                  <div className="mx-auto my-1.5 flex max-w-[50px] items-center justify-center gap-1 text-[#c7a04e] xs:my-2 xs:max-w-[70px] xs:gap-1.5 sm:my-5 sm:max-w-[140px] sm:gap-2">
+                  <div className="mx-auto my-1.5 flex max-w-[50px] items-center justify-center gap-1 text-[#c7a04e] xs:my-5 xs:max-w-[140px] xs:gap-2">
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
-                    <span data-card-divider-part="true" data-card-divider-diamond="true" className="h-1.5 w-1.5 rotate-45 border border-[#c7a04e] sm:h-2.5 sm:w-2.5" />
+                    <span data-card-divider-part="true" data-card-divider-diamond="true" className="h-1.5 w-1.5 rotate-45 border border-[#c7a04e] xs:h-2.5 xs:w-2.5" />
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[9.5px] sm:text-[15px] lg:text-[18px]">
+                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[15px] lg:text-[18px]">
                     {card.description}
                   </p>
                 </div>
