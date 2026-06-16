@@ -473,7 +473,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                     parent, which was unreliable. Now it's an explicit ref.
                     ─────────────────────────────────────────────────────────
                   */}
-                  <div ref={cardColumnRef} className="flex min-h-0 flex-1 flex-col gap-5 pl-0">
+                  <div ref={cardColumnRef} className="flex min-h-0 flex-1 flex-col justify-between gap-5 pl-0">
                     {localizedMilestones.map((item, index) => {
                       const Icon = item.icon;
                       return (
