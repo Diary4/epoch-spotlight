@@ -238,10 +238,10 @@ function HistoryOverviewCard({ card }: { card: SlideCard }) {
   return (
     <article
       data-h-animate="true"
-      className="relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)]"
+      className="relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)]"
     >
-      <div className="relative mx-3 mt-3 overflow-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
-        <div className="relative h-[min(148px,32vw)] overflow-hidden rounded-[14px] sm:h-[160px]">
+      <div className="relative mx-3 mt-3 overflow-x-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
+        <div className="relative h-[min(148px,32vw)] overflow-x-hidden rounded-[14px] sm:h-[160px]">
           <img
             src={imageSrc}
             alt=""

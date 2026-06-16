@@ -234,7 +234,7 @@ export default function LeadersOfCoexistencePage({
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#fbf1df] px-6 pt-10 sm:px-12 lg:px-20"
+        className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#fbf1df] px-6 pt-10 sm:px-12 lg:px-20"
       >
         <img
           data-lc-hero="true"
@@ -298,7 +298,7 @@ export default function LeadersOfCoexistencePage({
                 return (
                   <article
                     key={card.id}
-                    className="group relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
+                    className="group relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
                   >
                     <div
                       className="relative h-[120px] w-full"

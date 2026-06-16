@@ -111,7 +111,7 @@ export default function DiversityMapPage({
     <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <div
           data-map-hero="true"
@@ -200,7 +200,7 @@ export default function DiversityMapPage({
                     className="absolute z-30 flex -translate-x-1/2 -translate-y-1/2 items-center"
                     style={{ left: place.x, top: place.y }}
                   >
-                    <div className="relative h-[82px] w-[82px] shrink-0 overflow-hidden rounded-full border-[5px] border-[#d5b873] bg-[#ead6a3] shadow-[0_8px_16px_rgba(50,30,10,0.25)]">
+                    <div className="relative h-[82px] w-[82px] shrink-0 overflow-x-hidden rounded-full border-[5px] border-[#d5b873] bg-[#ead6a3] shadow-[0_8px_16px_rgba(50,30,10,0.25)]">
                       <img src={placeImg} alt={place.title} className="h-full w-full object-cover" />
 
                       <div

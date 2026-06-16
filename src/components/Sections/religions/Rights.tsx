@@ -261,10 +261,10 @@ function RightsOverviewCardButton({
       type="button"
       data-rts-animate="true"
       onClick={onOpen}
-      className="relative flex flex-col overflow-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
+      className="relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
     >
-      <div className="relative mx-3 mt-3 overflow-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
-        <div className="relative h-[min(148px,32vw)] overflow-hidden rounded-[14px] sm:h-[160px]">
+      <div className="relative mx-3 mt-3 overflow-x-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
+        <div className="relative h-[min(148px,32vw)] overflow-x-hidden rounded-[14px] sm:h-[160px]">
           <img
             src={imageSrc}
             alt=""
@@ -349,7 +349,7 @@ export default function RightsPage({
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
+        className="relative w-full overflow-x-hidden bg-[#fbf1df] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
       >
         <img
           data-rts-hero="true"

@@ -119,7 +119,7 @@ export default function OtherFaithTraditionsPage({
     <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <div
           data-faith-hero="true"
@@ -191,7 +191,7 @@ export default function OtherFaithTraditionsPage({
                 <article
                   key={faith.title}
                   data-faith-animate="true"
-                  className="relative grid min-h-[210px] overflow-hidden rounded-[20px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm lg:grid-cols-[420px_1fr]"
+                  className="relative grid min-h-[210px] overflow-x-hidden rounded-[20px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm lg:grid-cols-[420px_1fr]"
                 >
                   <div className="relative z-10 flex gap-6 px-7 py-6">
                     <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc]/70 text-[#c58b16]">

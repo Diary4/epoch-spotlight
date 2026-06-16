@@ -255,7 +255,7 @@ export default function NationsPage({
         className="relative w-full overflow-x-hidden bg-[#fbf1df] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
         {/* Mobile: hero in document flow */}
-        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
           <img
             data-n-hero="true"
             src={bg}
@@ -332,9 +332,9 @@ export default function NationsPage({
                   }
                 }}
                 aria-label={nation.title}
-                className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(48px,38vh,600px)] sm:min-h-[420px] sm:rounded-[28px]"
+                className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-x-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(48px,38vh,600px)] sm:min-h-[420px] sm:rounded-[28px]"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden sm:h-[230px] sm:aspect-auto">
+                <div className="relative aspect-[4/3] w-full overflow-x-hidden sm:h-[230px] sm:aspect-auto">
                   <img
                     src={nation.image}
                     alt={nation.title}

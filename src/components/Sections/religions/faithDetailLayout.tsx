@@ -21,7 +21,7 @@ export const FAITH_IMAGE_SIDE_CARD_CLASS =
   "grid min-h-0 grid-cols-1 gap-4 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-4 py-5 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm sm:grid-cols-[135px_1fr] sm:gap-5 sm:min-h-[255px] sm:px-6 sm:py-6";
 
 export const FAITH_IMAGE_SIDE_AVATAR_CLASS =
-  "mx-auto h-[100px] w-[100px] overflow-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb] sm:mx-0 sm:h-[135px] sm:w-[135px]";
+  "mx-auto h-[100px] w-[100px] overflow-x-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb] sm:mx-0 sm:h-[135px] sm:w-[135px]";
 
 export const FAITH_TAGLINE_SECTION_CLASS =
   "mx-auto mt-6 flex max-w-[820px] flex-col items-center justify-center gap-4 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-5 py-4 text-center shadow-[0_12px_28px_rgba(75,45,12,0.16)] sm:mt-8 sm:flex-row sm:gap-8 sm:px-8 sm:py-5";
@@ -96,7 +96,7 @@ export function FaithDetailHeroImage({
 
   return (
     <>
-      <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+      <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
         <img
           src={src}
           alt={alt}
@@ -134,7 +134,7 @@ export function FaithDetailHeroVideo({
 
   return (
     <>
-      <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+      <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
         <video
           src={src}
           autoPlay

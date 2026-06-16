@@ -17,11 +17,11 @@ export default function ClassicalCard({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel ?? title}
-      className="font-serif bg-[#fffff4] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
+      className="font-serif bg-[#fffff4] border border-stone-200/60 p-3 sm:p-4 relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
       style={{ aspectRatio: "3 / 4" }}
     >
       {/* Framed Image Container */}
-      <div className="relative w-full h-[76%] overflow-hidden rounded-2xl bg-stone-100">
+      <div className="relative w-full h-[76%] overflow-x-hidden rounded-2xl bg-stone-100">
         <img
           src={image}
           alt=""

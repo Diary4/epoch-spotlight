@@ -127,7 +127,7 @@ export default function SharedCelebrationsPage({
     <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#fff7e8_0%,#fbf1df_45%,#f3dfbd_100%)]" />
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />

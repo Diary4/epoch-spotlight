@@ -474,10 +474,10 @@ export default function FaithsPage({
                     }
                   }}
                   aria-label={faith.title}
-                  className="relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[16px] sm:rounded-[32px] border border-stone-200/60 bg-[#faf8f5] p-2.5 sm:p-4 text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
+                  className="relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[16px] sm:rounded-[32px] border border-stone-200/60 bg-[#faf8f5] p-2.5 sm:p-4 text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
                 >
                   {/* Framed Image Container with responsive aspect ratio */}
-                  <div className="relative h-[110px] xs:h-[135px] sm:h-[180px] md:h-[210px] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-stone-100">
+                  <div className="relative h-[110px] xs:h-[135px] sm:h-[180px] md:h-[210px] w-full overflow-x-hidden rounded-xl sm:rounded-2xl bg-stone-100">
                     <img
                       src={faith.image}
                       alt={faith.title}

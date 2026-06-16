@@ -374,10 +374,10 @@ export default function IntroductionPage({
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
+        className="relative w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
         {/* Mobile: hero in document flow */}
-        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
           <img
             data-intro-hero="true"
             src={bg}
@@ -468,10 +468,10 @@ export default function IntroductionPage({
                       data-intro-card="true" 
                       className="w-full"
                     >
-                      <article className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full flex-col overflow-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500">
+                      <article className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full flex-col overflow-x-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500">
                         {/* Framed Banner Area */}
                         <div 
-                          className="relative h-[110px] w-full overflow-hidden rounded-xl bg-stone-100"
+                          className="relative h-[110px] w-full overflow-x-hidden rounded-xl bg-stone-100"
                           style={{
                             background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
                           }}

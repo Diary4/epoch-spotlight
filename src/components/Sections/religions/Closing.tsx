@@ -242,12 +242,12 @@ export default function ClosingPage({
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-[#f3e5ce] px-4 py-8 pb-16 sm:px-6 sm:py-10 sm:pb-24"
+        className="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden bg-[#f3e5ce] px-4 py-8 pb-16 sm:px-6 sm:py-10 sm:pb-24"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.55),transparent_34%),linear-gradient(180deg,#f8eddb_0%,#ead3ad_100%)]" />
 
         {/* Mobile hero */}
-        <div className="relative h-[min(32vh,260px)] min-h-[180px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
+        <div className="relative h-[min(32vh,260px)] min-h-[180px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
           <img
             data-src-hero="true"
             src={bg}
@@ -338,7 +338,7 @@ export default function ClosingPage({
               return (
                 <article
                   key={card.id}
-                  className="flex flex-col overflow-hidden rounded-[22px] border border-[#d7b77e]/80 bg-[#f8ecd8]/90 text-start shadow-[0_14px_36px_rgba(88,55,20,0.12)] backdrop-blur-sm"
+                  className="flex flex-col overflow-x-hidden rounded-[22px] border border-[#d7b77e]/80 bg-[#f8ecd8]/90 text-start shadow-[0_14px_36px_rgba(88,55,20,0.12)] backdrop-blur-sm"
                 >
                   <div
                     className="flex items-center gap-3 px-6 py-4"
