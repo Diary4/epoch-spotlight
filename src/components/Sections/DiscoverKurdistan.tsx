@@ -92,41 +92,46 @@ export default function DiscoverKurdistan({
     : fallbackSections;
 
   React.useEffect(() => {
+    // 1. Preload and pre-decode images immediately on mount to prevent paint bottlenecks later
+    const imagesToPreload = [card1, card2, card3, card4];
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      if (typeof img.decode === "function") {
+        img.decode().catch((err) => {
+          console.debug("Pre-decoding skipped or failed", err);
+        });
+      }
+    });
+
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Use force3D: true on every set/to call to ensure translate3d is used
-      // This promotes each element to its own GPU compositor layer
       gsap.set("[data-intro-lineshape='true']", {
         autoAlpha: 0,
         y: -18,
-        force3D: true,
       });
       gsap.set("[data-intro-title='true']", {
         autoAlpha: 0,
         y: 24,
-        force3D: true,
       });
       gsap.set("[data-intro-rest='true']", {
         autoAlpha: 0,
         y: 20,
-        force3D: true,
-      });
-      // Target individual cards instead of the grid wrapper
-      gsap.set("[data-card-item]", {
-        autoAlpha: 0,
-        y: 26,
-        force3D: true,
       });
       gsap.set("[data-choose-line='true']", {
         scaleX: 0,
         transformOrigin: "center",
+      });
+      gsap.set("[data-discover-card='true']", {
+        autoAlpha: 0,
+        y: 42,
+        rotateX: -10,
+        transformOrigin: "center top",
         force3D: true,
       });
 
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out", force3D: true },
-      });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       tl.to("[data-intro-lineshape='true']", {
         autoAlpha: 1,
@@ -161,16 +166,18 @@ export default function DiscoverKurdistan({
           },
           "-=0.25",
         )
-        // Stagger individual cards — 4 lightweight GPU ops instead of one heavy repaint
         .to(
-          "[data-card-item]",
+          "[data-discover-card='true']",
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.55,
-            stagger: 0.1,
+            rotateX: 0,
+            duration: 1.15,
+            stagger: 0.24,
+            force3D: true,
+            clearProps: "transform",
           },
-          "-=0.2",
+          "-=0.35",
         );
     }, sectionRef);
 
@@ -179,12 +186,6 @@ export default function DiscoverKurdistan({
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center overflow-x-hidden bg-[#f8f1e4] p-0 text-[#18362d]">
-      {/*
-        Removed overflow-x-hidden from <section> — it was the main GPU killer.
-        overflow: hidden creates a stacking context that collapses all child
-        elements into the parent layer, preventing individual compositor promotion.
-        Horizontal overflow is already handled by the parent <main>.
-      */}
       <section
         ref={sectionRef}
         className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea]"
@@ -249,9 +250,12 @@ export default function DiscoverKurdistan({
             </p>
           </div>
 
-          <div data-intro-rest="true" className="mt-6 sm:mt-12 md:mt-16">
+          <div className="mt-6 sm:mt-12 md:mt-16">
             {/* Choosing section title wrapper */}
-            <div className="mb-3 flex items-center justify-center gap-1.5 font-serif text-[13px] text-[#2d3d35] xs:text-[15px] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px]">
+            <div
+              data-intro-rest="true"
+              className="mb-3 flex items-center justify-center gap-1.5 font-serif text-[13px] text-[#2d3d35] xs:text-[15px] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px]"
+            >
               <span
                 data-choose-line="true"
                 className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]"
@@ -267,27 +271,35 @@ export default function DiscoverKurdistan({
               />
             </div>
 
-            {/*
-              Grid wrapper: no animation data attribute here anymore.
-              Each card gets data-card-item so GSAP animates them individually
-              via stagger — far cheaper than repainting the whole grid subtree.
-            */}
-            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+            <div 
+              className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-6 md:gap-8 lg:gap-10"
+              style={{ perspective: "1000px" }}
+            >
               {localizedSections.map((section) => {
                 const Icon = sectionIcons[section.id];
                 return (
                   <button
                     key={section.title}
-                    data-card-item
+                    data-discover-card="true"
                     type="button"
                     onClick={() => onSelectSection?.(section.id)}
-                    className="relative flex flex-col overflow-hidden rounded-[12px] sm:rounded-[20px] border border-[#e1bf7a] sm:border-2 bg-[#fffaf0] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_10px_30px_rgba(84,54,16,0.16)] transition active:scale-[0.98]"
+                    className="relative flex flex-col overflow-hidden rounded-[12px] sm:rounded-[20px] border border-[#e1bf7a] sm:border-2 bg-[#fffaf0] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_10px_30px_rgba(84,54,16,0.16)] active:scale-[0.98] [&:active]:transition-transform [&:active]:duration-150 will-change-transform"
+                    style={{
+                      opacity: 0,
+                      transformStyle: "preserve-3d",
+                      backfaceVisibility: "hidden",
+                    }}
                   >
-                    <div className="relative w-full">
+                    {/* 
+                      2. Defined image container height & cream background placeholder color.
+                      This eliminates layout shifts and mid-animation decoding delays.
+                    */}
+                    <div className="relative w-full overflow-hidden bg-[#e8e0d1] h-[100px] xs:h-[120px] sm:h-[210px] md:h-[240px] lg:h-[400px]">
                       <img
                         src={sectionImages[section.id]}
                         alt={section.title}
-                        className="h-[100px] xs:h-[120px] sm:h-[210px] md:h-[240px] lg:h-[400px] w-full object-cover"
+                        className="h-full w-full object-cover"
+                        decoding="async"
                       />
                       <GoldIcon className="absolute bottom-0 left-1/2 z-10 h-10 w-10 -translate-x-1/2 translate-y-1/2 xs:h-12 xs:w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28">
                         <Icon
