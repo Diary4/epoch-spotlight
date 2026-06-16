@@ -3,16 +3,16 @@ import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
 
 import faithsVideo from "@/assets/videos/faiths.webm";
-import imgIslam from "@/assets/images/religions/r-9.webp";
-import imgChristianity from "@/assets/images/religions/r-5.webp";
-import imgYazidism from "@/assets/images/religions/r-4.webp";
-import imgYarsanism from "@/assets/images/religions/k-1.webp";
-import imgZoroastrianism from "@/assets/images/religions/z-1.webp";
-import imgJudaism from "@/assets/images/religions/j-1.webp";
-import imgBahai from "@/assets/images/religions/b-1.webp";
-import imgSabean from "@/assets/images/religions/sabean-water.webp";
+import imgIslam from "@/assets/images/new/religions/faiths/islam.webp";
+import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
+import imgYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
+import imgYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp";
+import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
+import imgJudaism from "@/assets/images/new/religions/faiths/judaism.webp";
+import imgBahai from "@/assets/images/new/religions/faiths/bahai.webp";
+import imgSabean from "@/assets/images/new/religions/faiths/sabean-mandaeanism.webp";
 
-// Per-faith detail pages — wire up each faith to its own file.
+// Per-faith detail pages
 import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import YazidismPage from "@/components/Sections/religions/RelisgionsSection/Yazidism";
@@ -253,7 +253,6 @@ export default function FaithsPage({
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  // Staggered Page Entrance Animation via useLayoutEffect
   React.useLayoutEffect(() => {
     if (!sectionRef.current || activeId) return;
 
@@ -394,28 +393,13 @@ export default function FaithsPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-stone-800 sm:w-screen"
+      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-stone-800"
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
+        className="relative w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
-        {/* Mobile: video in document flow */}
-        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
-          <video
-            data-f-hero="true"
-            src={faithsVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="h-full w-full object-cover object-center"
-          />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
-        </div>
-
-        {/* Desktop: background video overlay */}
+        {/* Cinematic Absolute Video Background overlay (Unifies mobile and desktop visually) */}
         <video
           data-f-hero="true"
           src={faithsVideo}
@@ -424,10 +408,11 @@ export default function FaithsPage({
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-0 hidden h-[65vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:block"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] sm:h-[65vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[55vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:block" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] sm:h-[55vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
+        {/* Action Controls */}
         <button
           type="button"
           onClick={onBack}
@@ -446,27 +431,31 @@ export default function FaithsPage({
           {languageLabel}
         </button>
 
+        {/* Page Content layout wrapper */}
         <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col px-4 sm:px-0">
+          
+          {/* Header - Overlaps seamlessly over the background video */}
           <header
             data-f-animate="true"
-            className="mx-auto max-w-[850px] pt-16 text-center sm:pt-28 lg:pt-32"
+            className="mx-auto max-w-[850px] pt-20 text-center sm:pt-28 lg:pt-32"
           >
             <div className="mx-auto mb-3 mt-1 w-[260px] max-w-full sm:mt-3">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="break-words font-serif text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 sm:text-[56px] lg:text-[84px]">
+            <h1 className="break-words font-serif text-4xl xs:text-5xl sm:text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 lg:text-[84px]">
               {c.pageTitle}
             </h1>
             <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-4 max-w-[620px] text-[16px] font-semibold leading-relaxed text-stone-600 sm:mt-5 sm:text-[18px] lg:text-[20px]">
+            <p className="mx-auto mt-4 max-w-[620px] text-[15px] sm:text-[18px] lg:text-[20px] font-semibold leading-relaxed text-stone-600 sm:mt-5">
               {c.pageDescription}
             </p>
           </header>
 
+          {/* Cards Grid — Dynamic spacing pushes layout below overlay video area */}
           <div
-            className="mx-auto mt-12 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(120px,52vh,960px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4"
+            className="mx-auto mt-[10vh] sm:mt-[clamp(120px,28vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in"
           >
             {c.faiths.map((faith) => (
               <div 
@@ -485,10 +474,10 @@ export default function FaithsPage({
                     }
                   }}
                   aria-label={faith.title}
-                  className="relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[24px] border border-stone-200/60 bg-[#faf8f5] p-3 text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5] sm:rounded-[32px] sm:p-4"
+                  className="relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[16px] sm:rounded-[32px] border border-stone-200/60 bg-[#faf8f5] p-2.5 sm:p-4 text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
                 >
-                  {/* Framed Image Container */}
-                  <div className="relative h-[180px] w-full overflow-hidden rounded-2xl bg-stone-100 sm:h-[210px]">
+                  {/* Framed Image Container with responsive aspect ratio */}
+                  <div className="relative h-[110px] xs:h-[135px] sm:h-[180px] md:h-[210px] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-stone-100">
                     <img
                       src={faith.image}
                       alt={faith.title}
@@ -499,14 +488,14 @@ export default function FaithsPage({
                   </div>
 
                   {/* Content Area */}
-                  <div className="flex flex-1 flex-col pt-4">
-                    <h3 className="break-words font-serif text-[18px] font-semibold uppercase leading-tight text-stone-900 sm:text-[20px]">
+                  <div className="flex flex-1 flex-col pt-2.5 sm:pt-4">
+                    <h3 className="break-words font-serif text-[13px] xs:text-[15px] sm:text-[18px] md:text-[20px] font-semibold uppercase leading-tight text-stone-900">
                       {faith.title}
                     </h3>
-                    <div className="mb-3 mt-2 w-[45px]">
-                      <span className="block h-[1.5px] w-full bg-[#c3923a]" />
+                    <div className="mb-2 mt-1 w-[30px] sm:mb-3 sm:mt-2 sm:w-[45px]">
+                      <span className="block h-[1px] sm:h-[1.5px] w-full bg-[#c3923a]" />
                     </div>
-                    <p className="text-[13px] font-medium leading-relaxed text-stone-600 sm:text-[13px]">
+                    <p className="text-[11px] xs:text-[12px] sm:text-[13px] font-medium leading-relaxed text-stone-600">
                       {faith.shortIntro}
                     </p>
                   </div>
