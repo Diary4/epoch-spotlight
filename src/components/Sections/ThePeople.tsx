@@ -312,7 +312,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
 
                 <CircleImage image={card.image} />
                 <div className="mt-[20px] lg:mt-[50px]  flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center min-[700px]:min-h-[220px] min-[700px]:px-6 min-[700px]:pb-8 min-[700px]:pt-12 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[32px]">
+                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]">
                     {card.title}
                   </h3>
 
@@ -322,7 +322,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[10px] min-[700px]:text-[15px] lg:text-[24px] xl:text-[28px] 3xl:text-[34px] 4xl:text-[40px] kiosk-portrait:text-[20px]">
+                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[10px] min-[700px]:text-[15px] lg:text-[24px] xl:text-[28px] 3xl:text-[34px] 4xl:text-[40px] kiosk-portrait:text-[1.85vw]">
                     {card.description}
                   </p>
                 </div>

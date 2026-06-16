@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
-import bg1 from "@/assets/images/new/discoverKurdistan/land-1.webp"
+import bg1 from "@/assets/mainImages/land-1.webp"
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
 import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
 import bg4 from "@/assets/images/new/discoverKurdistan/land-4.webp"
@@ -271,7 +271,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
 
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="mx-auto max-w-[700px] lg:max-w-[1000px] kiosk-portrait:max-w-[920px] text-center pt-12 sm:pt-16 lg:pt-20">
-            <h1 data-land-hero="true" className="font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,64px)] sm:text-[78px] lg:text-[120px] xl:text-[140px] 3xl:text-[160px] kiosk-portrait:text-[12.2vw] font-light leading-[1.03] tracking-tight text-[#17233b]">
+            <h1 data-land-hero="true" className="font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,64px)] sm:text-[78px] lg:text-[120px] xl:text-[80px] 3xl:text-[120px] kiosk-portrait:text-[12.2vw] font-light leading-[1.03] tracking-tight text-[#17233b]">
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "and Future"}
