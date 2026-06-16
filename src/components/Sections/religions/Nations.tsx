@@ -3,10 +3,10 @@ import gsap from "gsap";
 import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
 
 import bg from "@/assets/images/religions/nations.webp";
-import whoarekurds from "@/assets/images/religions/k-2.webp";
-import nationTurkmens from "@/assets/images/religions/turkmen.webp";
-import nationChaldo from "@/assets/images/religions/a-2.webp";
-import nationArmenians from "@/assets/images/religions/a-1.webp";
+import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
+import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
+import nationChaldo from "@/assets/images/new/religions/nations/assyrian.webp";
+import nationArmenians from "@/assets/images/new/religions/nations/armenian.webp";
 
 // Per-nation detail pages — wire up each nation to its own file in nations/.
 import KurdsPage from "@/components/Sections/religions/nations/Kurds";
@@ -45,7 +45,7 @@ const content: Record<LangCode, NationsContent> = {
         id: "kurds",
         title: "Kurds",
         shortIntro: "A rooted people of language, dance, and mountains.",
-        image: whoarekurds,
+        image: nationKurds,
       },
       {
         id: "turkmens",
@@ -78,7 +78,7 @@ const content: Record<LangCode, NationsContent> = {
         id: "kurds",
         title: "کورد",
         shortIntro: "گەلێکی ڕەگدار بە زمان، سەماو چیا.",
-        image: whoarekurds,
+        image: nationKurds,
       },
       {
         id: "turkmens",
@@ -111,7 +111,7 @@ const content: Record<LangCode, NationsContent> = {
         id: "kurds",
         title: "الكورد",
         shortIntro: "شعب متجذر باللغة والرقص والجبال.",
-        image: whoarekurds,
+        image: nationKurds,
       },
       {
         id: "turkmens",
@@ -252,7 +252,7 @@ export default function NationsPage({
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden bg-[#fbf1df] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
+        className="relative w-full overflow-x-hidden bg-[#fbf1df] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
         {/* Mobile: hero in document flow */}
         <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-hidden sm:hidden">
@@ -334,11 +334,11 @@ export default function NationsPage({
                 aria-label={nation.title}
                 className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(48px,38vh,600px)] sm:min-h-[420px] sm:rounded-[28px]"
               >
-                <div className="relative h-[180px] w-full overflow-hidden sm:h-[230px]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden sm:h-[230px] sm:aspect-auto">
                   <img
                     src={nation.image}
                     alt={nation.title}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
                 </div>
