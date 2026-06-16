@@ -196,7 +196,7 @@ export default function DiscoverKurdistan({
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-[#fbf5ea]/85 via-transparent to-[#fbf5ea]/65" />
 
         {/* Main content container */}
-        <div className="relative z-10 flex flex-1 flex-col justify-between px-3 pb-6 pt-6 xs:px-4 sm:px-10 sm:pt-16 md:px-14 md:pb-12 md:pt-20 lg:px-16 lg:pb-14 lg:pt-24">
+        <div className="relative z-10 flex flex-1 flex-col justify-between px-3 pb-6 pt-6 xs:px-4 sm:px-8 sm:pt-16 md:px-10 md:pb-12 md:pt-20 lg:px-12 lg:pb-14 lg:pt-24">
           <div className="text-center">
             {/* Top decorative line and star */}
             <div
@@ -272,7 +272,7 @@ export default function DiscoverKurdistan({
               Each card gets data-card-item so GSAP animates them individually
               via stagger — far cheaper than repainting the whole grid subtree.
             */}
-            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-6">
               {localizedSections.map((section) => {
                 const Icon = sectionIcons[section.id];
                 return (
@@ -287,7 +287,7 @@ export default function DiscoverKurdistan({
                       <img
                         src={sectionImages[section.id]}
                         alt={section.title}
-                        className="h-[100px] xs:h-[120px] sm:h-[210px] md:h-[240px] lg:h-[400px] w-full object-cover"
+                        className="aspect-[16/9] w-full object-cover"
                       />
                       <GoldIcon className="absolute bottom-0 left-1/2 z-10 h-10 w-10 -translate-x-1/2 translate-y-1/2 xs:h-12 xs:w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28">
                         <Icon
@@ -296,11 +296,11 @@ export default function DiscoverKurdistan({
                         />
                       </GoldIcon>
                     </div>
-                    <div className="relative flex flex-col justify-center font-light min-h-[95px] px-2 pr-6 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pr-8 xs:pb-4 xs:pt-8 sm:min-h-[148px] sm:px-8 sm:pr-14 sm:pb-6 sm:pt-12 md:min-h-[160px] lg:min-h-[210px]">
-                      <h3 className="font-serif text-[12px] leading-tight font-light text-[#18362d] xs:text-[14px] sm:text-[30px] md:text-[34px] lg:text-[44px]">
+                    <div className="relative flex flex-col justify-center font-light min-h-[95px] px-2 pr-6 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pr-8 xs:pb-4 xs:pt-8 sm:min-h-[160px] sm:px-8 sm:pr-14 sm:pb-6 sm:pt-12 md:min-h-[190px] lg:min-h-[250px]">
+                      <h3 className="font-serif text-[12px] leading-tight font-light text-[#18362d] xs:text-[14px] sm:text-[34px] md:text-[44px] lg:text-[60px] 3xl:text-[72px]">
                         {localizeDigits(section.title, lang)}
                       </h3>
-                      <p className="mt-1 whitespace-pre-line text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[20px] md:text-[23px] lg:mt-3 lg:text-[30px]">
+                      <p className="mt-1 whitespace-pre-line text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[22px] md:text-[28px] lg:mt-3 lg:text-[42px] 3xl:text-[50px]">
                         {localizeDigits(section.desc, lang)}
                       </p>
                       <ArrowRight

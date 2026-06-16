@@ -70,7 +70,7 @@ function GoldButton({ children, active = false }) {
 
 function CircleImage({ image }) {
   return (
-    <div className="absolute left-1/2 top-[74px] z-20 h-8 w-8 -translate-x-1/2 overflow-hidden rounded-full border border-white bg-white shadow-[0_4px_12px_rgba(84,54,16,0.12)] xs:top-[168px] xs:h-16 xs:w-16 xs:border-2 xs:shadow-[0_10px_30px_rgba(84,54,16,0.18)] lg:top-[252px] lg:h-24 lg:w-24">
+    <div className="absolute left-1/2 top-[62px] z-20 h-14 w-14 -translate-x-1/2 overflow-hidden rounded-full border-2 border-white bg-white shadow-[0_4px_12px_rgba(84,54,16,0.12)] min-[700px]:top-[168px] min-[700px]:h-16 min-[700px]:w-16 min-[700px]:shadow-[0_10px_30px_rgba(84,54,16,0.18)] lg:top-[252px] lg:h-24 lg:w-24">
       <img
         src={image}
         alt=""
@@ -280,10 +280,10 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[30vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
+          className="mt-[250px] lg:mt-0 pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[30vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
         />
 
-        <div className="relative z-10 mt-12 grid grid-cols-3 gap-1.5 pb-4 pt-4 xs:mt-auto xs:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
+        <div className="relative z-10 mt-auto grid grid-cols-3 gap-1.5 pb-4 pt-4 min-[700px]:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
             return (
               <button
@@ -299,9 +299,9 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     onSelectCard?.("resilience");
                   }
                 }}
-                className="relative flex h-full flex-col overflow-hidden rounded-[12px] border border-[#e4c78f] bg-white text-left shadow-[0_4px_12px_rgba(84,54,16,0.1)] xs:rounded-[20px] xs:border-2 xs:shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
+                className="relative flex h-full flex-col overflow-hidden rounded-[12px] border border-[#e4c78f] bg-white text-left shadow-[0_4px_12px_rgba(84,54,16,0.1)] min-[700px]:rounded-[20px] min-[700px]:border-2 min-[700px]:shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <div className="relative h-[90px] w-full flex-none overflow-hidden border-b border-white/75 xs:h-[200px] lg:h-[300px]">
+                <div className="relative h-[90px] w-full flex-none overflow-hidden border-b border-white/75 min-[700px]:h-[200px] lg:h-[300px]">
                   <img
                     src={card.image}
                     alt={card.title}
@@ -311,8 +311,8 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="mt-[10px] flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center xs:min-h-[220px] xs:px-6 xs:pb-8 xs:pt-12 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[22px] lg:text-[28px]">
+                <div className="mt-[10px] flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center min-[700px]:min-h-[220px] min-[700px]:px-6 min-[700px]:pb-8 min-[700px]:pt-12 lg:min-h-[300px]">
+                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] 3xl:text-[44px]">
                     {card.title}
                   </h3>
 
@@ -322,7 +322,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[15px] lg:text-[18px]">
+                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[10px] min-[700px]:text-[15px] lg:text-[24px] 3xl:text-[28px]">
                     {card.description}
                   </p>
                 </div>
