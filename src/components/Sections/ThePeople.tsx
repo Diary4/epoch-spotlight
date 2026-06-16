@@ -85,7 +85,6 @@ const CONTENT = { en, ar, ku } as const;
 export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: ThePeoplePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const peopleVideoRef = React.useRef<HTMLVideoElement | null>(null);
-  const [scale, setScale] = React.useState(1);
   const data = CONTENT[lang] as any;
   const people = data?.people ?? {};
   const items = people?.items ?? [];
@@ -103,22 +102,6 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
       description: source?.description ?? card.description,
     };
   });
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const targetWidth = 450;
-      if (width < targetWidth) {
-        setScale(width / targetWidth);
-      } else {
-        setScale(1);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -246,34 +229,48 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
   }, []);
 
   return (
-    <main className="relative m-0 flex h-screen w-screen justify-center overflow-hidden bg-[#f9f3e7] p-0 text-[#1e352d]">
-      <div
-        className={scale < 1 ? undefined : "h-full w-full max-w-[1400px]"}
-        style={
-          scale < 1
-            ? {
-                width: "450px",
-                height: `${100 / scale}vh`,
-                transform: `scale(${scale})`,
-                transformOrigin: "top center",
-              }
-            : undefined
-        }
-      >
-      <section 
-        ref={sectionRef} 
-        className="relative flex min-h-screen w-full flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-10 py-10 lg:overflow-hidden lg:px-14 lg:py-12"
+    <main className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f9f3e7] p-0 text-[#1e352d]">
+      <section
+        ref={sectionRef}
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12"
       >
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm lg:h-16 lg:w-16"
+          className="absolute left-3 top-3 z-30 grid h-9 w-9 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm xs:left-6 xs:top-6 xs:h-10 xs:w-10 xs:border-2 lg:h-11 lg:w-11"
           aria-label="Back to Discover"
         >
-          <ArrowLeft className="h-7 w-7 lg:h-8 lg:w-8" />
+          <ArrowLeft className="h-4 w-4 xs:h-5 xs:w-5" />
         </button>
 
-        {/* Video background layer */}
+        {/* Hero Header */}
+        <header className="relative z-20 shrink-0 text-center pt-14 xs:pt-8 lg:pt-12">
+          <h1
+            data-people-hero="true"
+            className="font-serif text-[32px] font-light leading-none tracking-tight text-[#1d342d] xs:text-[72px] lg:text-[118px]"
+          >
+            {people?.title ?? "The People"}
+          </h1>
+
+          <div
+            data-people-hero="true"
+            className="mx-auto mt-2 flex max-w-[160px] items-center justify-center gap-2 text-[#c8a05a] xs:mt-6 xs:max-w-[520px] xs:gap-6 lg:max-w-[620px]"
+          >
+            <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
+            <Sparkles data-top-divider-diamond="true" className="h-4 w-4 xs:h-7 xs:w-7 lg:h-8 lg:w-8" />
+            <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
+          </div>
+
+          <p
+            data-people-hero="true"
+            className="mx-auto mt-3 max-w-[980px] px-1 text-[11px] font-light leading-relaxed text-[#49524e] xs:text-[22px] lg:text-[34px]"
+          >
+            {people?.subtitle ??
+              "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
+          </p>
+        </header>
+
+        {/* Video below title and description */}
         <video
           ref={peopleVideoRef}
           data-people-bg="true"
@@ -283,27 +280,10 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-[calc(18vh-140px)] h-[calc(65vh-140px)] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)]"
+          className="mt-[250px] lg:mt-0 pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[30vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
         />
-       
-        {/* Hero Header */}
-        <header className="relative z-10 pt-8 text-center lg:pt-12">
-          <h1 data-people-hero="true" className="font-serif text-[72px] font-light leading-none tracking-tight text-[#1d342d] lg:text-[118px]">
-            {people?.title ?? "The People"}
-          </h1>
 
-          <div data-people-hero="true" className="mx-auto mt-6 flex max-w-[520px] items-center justify-center gap-6 text-[#c8a05a] lg:max-w-[620px]">
-            <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
-            <Sparkles data-top-divider-diamond="true" className="h-7 w-7 lg:h-8 lg:w-8" />
-            <span data-top-divider-part="true" data-top-divider-line="true" className="h-0.5 flex-1 bg-[#d5b773]" />
-          </div>
-
-          <p data-people-hero="true" className="mx-auto mt-3 max-w-[980px] px-1 text-[22px] font-light leading-relaxed text-[#49524e] lg:text-[34px]">
-            {people?.subtitle ?? "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
-          </p>
-        </header>
-
-        <div className="relative z-10 mt-auto grid grid-cols-3 gap-2.5 pb-4 pt-4 sm:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
+        <div className="relative z-10 mt-12 grid grid-cols-3 gap-1.5 pb-4 pt-4 xs:mt-auto xs:gap-2.5 sm:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
             return (
               <button
@@ -319,9 +299,9 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     onSelectCard?.("resilience");
                   }
                 }}
-                className="relative flex h-full flex-col overflow-hidden rounded-[20px] border-2 border-[#e4c78f] bg-white text-left shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
+                className="relative flex h-full flex-col overflow-hidden rounded-[12px] border border-[#e4c78f] bg-white text-left shadow-[0_4px_12px_rgba(84,54,16,0.1)] xs:rounded-[20px] xs:border-2 xs:shadow-[0_10px_30px_rgba(84,54,16,0.14)] lg:rounded-[22px]"
               >
-                <div className="relative h-[110px] w-full flex-none overflow-hidden border-b border-white/75 sm:h-[200px] lg:h-[300px]">
+                <div className="relative h-[90px] w-full flex-none overflow-hidden border-b border-white/75 xs:h-[110px] sm:h-[200px] lg:h-[300px]">
                   <img
                     src={card.image}
                     alt={card.title}
@@ -331,18 +311,18 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                 </div>
 
                 <CircleImage image={card.image} />
-                <div className="mt-[10px] flex min-h-[125px] flex-1 flex-col px-1.5 pb-3 pt-7 text-center sm:min-h-[220px] sm:px-6 sm:pb-8 sm:pt-12 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[11px] font-light leading-tight text-[#1f352d] sm:text-[22px] lg:text-[28px]">
+                <div className="mt-[10px] flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center xs:min-h-[125px] xs:px-1.5 xs:pb-3 xs:pt-7 sm:min-h-[220px] sm:px-6 sm:pb-8 sm:pt-12 lg:min-h-[300px]">
+                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[11px] sm:text-[22px] lg:text-[28px]">
                     {card.title}
                   </h3>
 
-                  <div className="mx-auto my-2 flex max-w-[70px] items-center justify-center gap-1.5 text-[#c7a04e] sm:my-5 sm:max-w-[140px] sm:gap-2">
+                  <div className="mx-auto my-1.5 flex max-w-[50px] items-center justify-center gap-1 text-[#c7a04e] xs:my-2 xs:max-w-[70px] xs:gap-1.5 sm:my-5 sm:max-w-[140px] sm:gap-2">
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                     <span data-card-divider-part="true" data-card-divider-diamond="true" className="h-1.5 w-1.5 rotate-45 border border-[#c7a04e] sm:h-2.5 sm:w-2.5" />
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[9.5px] font-light leading-relaxed text-[#59625d] sm:text-[15px] lg:text-[18px]">
+                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[9.5px] sm:text-[15px] lg:text-[18px]">
                     {card.description}
                   </p>
                 </div>
@@ -351,7 +331,6 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           })}
         </div>
       </section>
-      </div>
     </main>
   );
 }
