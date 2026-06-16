@@ -49,10 +49,10 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.today ?? data?.people?.sections?.today ?? {};
-  const localizedRows = rows.map((row, i) => ({
+  const localizedRows = rows.map((row) => ({
     ...row,
-    title: section.cards?.[i]?.title ?? row.title,
-    text: section.cards?.[i]?.description ?? row.text,
+    title: row.title,
+    text: row.text,
   }));
 
   return (
@@ -101,46 +101,41 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
             </div>
           </section>
 
-          {/* Flexible Spacer - Automatically pushes the grid to the bottom */}
-          <div className="flex-1 min-h-[2.5rem] sm:flex-[0.88]" />
+          <div className="flex-0 sm:flex-[0.88] mt-8 sm:mt-0" />
 
-          {/* 3-Column Grid Container */}
-          <section className="grid grid-cols-3 gap-1.5 sm:gap-4 lg:gap-[clamp(0.8rem,1.7vh,1.9rem)]">
+          {/* Stacked Rows Section */}
+          <section className="relative z-10 mt-[250px] sm:mt-[200px] space-y-3 sm:space-y-[clamp(0.8rem,1.7vh,1.9rem)]">
             {localizedRows.map((row) => {
               const Icon = row.icon;
               return (
                 <article
                   key={row.title}
-                  className="journey-detail-card relative flex flex-col items-center rounded-[14px] sm:rounded-[20px] lg:rounded-[26px] border border-[#ead8b7] sm:border-2 bg-white/80 sm:bg-white/76 p-2 sm:p-4 lg:p-[clamp(1rem,2.1vw,2.5rem)] shadow-[0_10px_25px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md text-center"
+                  className="journey-detail-card relative flex min-h-[90px] xs:min-h-[110px] sm:min-h-[clamp(9.2rem,16vh,13.5rem)] items-center rounded-[12px] sm:rounded-[26px] border border-[#ead8b7] sm:border-2 bg-white/76 px-2 py-3 xs:px-4 xs:py-4 sm:px-[clamp(1rem,2.1vw,2.5rem)] sm:py-[clamp(0.9rem,1.9vh,1.8rem)] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                 >
-                  {/* Icon Section */}
-                  <div className="flex justify-center mb-2 sm:mb-4">
-                    <div className={`grid h-10 w-10 sm:h-14 sm:w-14 lg:h-[clamp(4.1rem,7.5vw,7rem)] lg:w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-2 sm:border-4 lg:border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_4px_10px_rgba(0,0,0,0.1)] sm:shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
-                      <Icon className="w-5 h-5 sm:w-7 sm:h-7 lg:w-12 lg:h-12" strokeWidth={1.5} />
+                  <div className="flex w-14 xs:w-20 sm:w-[clamp(5.6rem,13vw,11.5rem)] justify-center shrink-0">
+                    <div className={`grid h-10 w-10 xs:h-12 xs:w-12 sm:h-[clamp(4.1rem,7.5vw,7rem)] sm:w-[clamp(4.1rem,7.5vw,7rem)] place-items-center rounded-full border-2 xs:border-4 sm:border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
+                      <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-12 sm:w-12" strokeWidth={1.5} />
                     </div>
                   </div>
 
-                  {/* Horizontal Divider inside vertical card */}
-                  <div className="w-full h-px bg-[#e2c99b] opacity-60 mb-2 sm:mb-3" />
+                  <div className="h-12 xs:h-16 sm:h-[clamp(4.5rem,9vh,7rem)] w-px bg-[#e2c99b]" />
 
-                  {/* Content Section */}
-                  <div className="flex-1 flex flex-col items-center w-full">
-                    <div className="flex flex-col items-center gap-1 sm:gap-2">
-                      <span className={`grid h-5 w-5 sm:h-6 sm:w-6 lg:h-[clamp(2.15rem,3.5vw,3rem)] lg:w-[clamp(2.15rem,3.5vw,3rem)] place-items-center rounded-full text-[9px] sm:text-[10px] lg:text-[clamp(1rem,1.75vw,1.75rem)] font-bold text-white ${row.color}`}>
+                  <div className="px-3 xs:px-4 sm:px-[clamp(0.9rem,1.9vw,2.4rem)] flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 xs:gap-2.5 sm:gap-[clamp(0.55rem,1.3vw,1.25rem)]">
+                      <span className={`grid h-4 w-4 xs:h-6 xs:w-6 sm:h-[clamp(2.15rem,3.5vw,3rem)] sm:w-[clamp(2.15rem,3.5vw,3rem)] shrink-0 place-items-center rounded-full text-[8px] xs:text-[11px] sm:text-[clamp(1rem,1.75vw,1.75rem)] font-bold text-white ${row.color}`}>
                         {localizeDigits(row.number, lang)}
                       </span>
-                      <h3 className="font-serif text-[10px] sm:text-base lg:text-[clamp(1.35rem,2.45vw,2.45rem)] font-light leading-tight text-[#17233b]">
+                      <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(1.35rem,2.45vw,2.45rem)] font-light leading-tight text-[#17233b] truncate">
                         {localizeDigits(row.title, lang)}
                       </h3>
                     </div>
 
-                    <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-xs lg:text-[clamp(1.02rem,1.58vw,1.5rem)] font-light leading-snug sm:leading-relaxed text-[#303a50]">
+                    <p className="mt-1 sm:mt-[clamp(0.45rem,0.9vh,0.9rem)] max-w-full sm:max-w-[min(45vw,760px)] text-[10px] xs:text-[11.5px] sm:text-[clamp(1.02rem,1.58vw,1.5rem)] font-light leading-[1.42] text-[#303a50]">
                       {localizeDigits(row.text, lang)}
                     </p>
                   </div>
 
-                  {/* Decorative card background details */}
-                  <div className="pointer-events-none absolute right-0 top-0 h-full w-8 sm:w-[clamp(2.4rem,6vw,7rem)] opacity-5 sm:opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+                  <div className="pointer-events-none absolute right-0 top-0 h-full w-[clamp(2.4rem,6vw,7rem)] opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
                 </article>
               );
             })}
