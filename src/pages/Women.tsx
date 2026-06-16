@@ -195,26 +195,10 @@ export default function LegacyPage({
           fadeAttr="data-legacy-fade"
         />
 
-        {/* Hero layout for mobile (normal element layout) */}
+        {/* Hero image — same right-anchored layout across every screen size */}
         <div
           data-legacy-hero="true"
-          className="pointer-events-none w-full h-[38vh] min-h-[250px] relative overflow-hidden sm:hidden"
-        >
-          <img
-            src={legacyHero}
-            alt="Kurdish women legacy"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fcf7ef] to-transparent"
-            aria-hidden
-          />
-        </div>
-
-        {/* Hero layout for desktop (absolute layout) */}
-        <div
-          data-legacy-hero="true"
-          className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[100vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)] hidden sm:block"
+          className="pointer-events-none absolute right-0 top-0 h-[min(46vh,440px)] w-full overflow-hidden sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
         >
           <img
             src={legacyHero}
@@ -222,13 +206,13 @@ export default function LegacyPage({
             className="absolute inset-0 h-full w-full object-cover object-right-top"
           />
           <div
-            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
+            className="absolute inset-x-0 bottom-0 h-[clamp(64px,13vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
             aria-hidden
           />
         </div>
 
-        {/* Hero text */}
-        <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-16 pt-6 sm:pt-8">
+        {/* Hero text — min-height on mobile keeps the cards below the hero image */}
+        <section className="relative z-10 min-h-[min(46vh,440px)] px-4 py-5 pt-6 sm:min-h-0 sm:px-8 sm:py-6 sm:pt-8 lg:px-16">
           <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
             <div className="mb-4 flex items-center gap-3 text-[#b4864d] sm:mb-5 sm:gap-5">
               <span className="h-px w-12 bg-[#d4b98f] sm:w-20" />
@@ -256,7 +240,7 @@ export default function LegacyPage({
         </section>
 
         {/* Cards */}
-        <section className="relative z-20 mt-8 sm:mt-[clamp(26px,40vh,400px)] grid grid-cols-2 gap-3 px-4 pb-1 sm:grid-cols-3 sm:gap-4 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-16">
+        <section className="relative z-20 mt-2 grid grid-cols-4 gap-2 px-3 pb-1 sm:mt-[clamp(26px,40vh,400px)] sm:gap-4 sm:px-8 lg:gap-5 lg:px-16">
           {legacyCards.map((card) => {
             return (
               <button
@@ -264,7 +248,7 @@ export default function LegacyPage({
                 key={card.id}
                 type="button"
                 onClick={() => openSection(card.id)}
-                className="flex h-[210px] flex-col rounded-[28px] border border-[#dfcdb7] bg-white/55 px-3 pb-3 pt-4 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[260px] sm:rounded-[40px] sm:px-4 sm:pb-4 sm:pt-5 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7 shrink-0"
+                className="flex h-[clamp(112px,30vw,150px)] shrink-0 flex-col rounded-[16px] border border-[#dfcdb7] bg-white/55 px-1.5 pb-2 pt-2.5 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[clamp(170px,24vw,260px)] sm:rounded-[34px] sm:px-3 sm:pb-3 sm:pt-4 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7"
               >
                 <div className="flex-1 flex items-center justify-center overflow-hidden">
                   <img
@@ -274,14 +258,14 @@ export default function LegacyPage({
                   />
                 </div>
 
-                <p className="mt-auto text-center font-serif text-[clamp(16px,3.4vw,22px)] text-[#2c1736]">
+                <p className="mt-auto text-center font-serif text-[clamp(10px,2.5vw,22px)] leading-tight text-[#2c1736]">
                   {copy.cards[card.id]}
                 </p>
 
-                <div className="mt-1 flex items-center justify-center gap-2 text-[#b4864d] sm:mt-2">
-                  <span className="h-px w-7 bg-[#d4b98f]" />
-                  <span className="h-2 w-2 rotate-45 border border-[#b4864d]" />
-                  <span className="h-px w-7 bg-[#d4b98f]" />
+                <div className="mt-1 flex items-center justify-center gap-1 text-[#b4864d] sm:mt-2 sm:gap-2">
+                  <span className="h-px w-3.5 bg-[#d4b98f] sm:w-7" />
+                  <span className="h-1.5 w-1.5 rotate-45 border border-[#b4864d] sm:h-2 sm:w-2" />
+                  <span className="h-px w-3.5 bg-[#d4b98f] sm:w-7" />
                 </div>
               </button>
             );
@@ -294,7 +278,7 @@ export default function LegacyPage({
           className="relative z-20 mx-4 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 py-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mx-8 sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 sm:py-0 lg:mx-16 lg:min-h-[420px]"
         >
           {/* Left flower decoration */}
-          <div className="pointer-events-none absolute left-[-62px] top-1/2 z-[1] hidden -translate-y-1/2 sm:block lg:left-[-100px]">
+          <div className="pointer-events-none absolute left-[-96px] top-1/2 z-[1] -translate-y-1/2 sm:left-[-62px] lg:left-[-100px]">
             <div
               aria-hidden
               className="absolute left-[15%] top-1/2 z-0 h-[clamp(100px,52vw,440px)] w-[clamp(88px,48vw,360px)] -translate-x-1/2 -translate-y-1/2 rounded-[48%] bg-[radial-gradient(ellipse_72%_58%_at_45%_48%,rgba(189,104,119,0.55)_0%,rgba(216,166,174,0.38)_42%,rgba(245,208,214,0.2)_62%,transparent_78%)] blur-[28px] sm:blur-[36px]"
@@ -321,7 +305,7 @@ export default function LegacyPage({
           </div>
 
           {/* Right flower decoration */}
-          <div className="pointer-events-none absolute right-[-52px] top-1/2 z-[1] hidden -translate-y-1/2 sm:block lg:right-[-80px]">
+          <div className="pointer-events-none absolute right-[-88px] top-1/2 z-[1] -translate-y-1/2 sm:right-[-52px] lg:right-[-80px]">
             <div
               aria-hidden
               className="absolute right-[12%] top-1/2 z-0 h-[clamp(96px,50vw,420px)] w-[clamp(80px,44vw,340px)] translate-x-1/2 -translate-y-1/2 rounded-[52%] bg-[radial-gradient(ellipse_70%_56%_at_55%_50%,rgba(189,104,119,0.52)_0%,rgba(216,166,174,0.36)_40%,rgba(245,208,214,0.18)_60%,transparent_76%)] blur-[28px] sm:blur-[36px]"
@@ -343,52 +327,7 @@ export default function LegacyPage({
           data-legacy-fade="true"
           className="relative z-20 mx-4 mb-6 mt-6 overflow-hidden px-4 py-4 text-white sm:mx-8 sm:mt-8 sm:px-6 sm:py-4 lg:mx-16 lg:px-10 shrink-0"
         >
-          {/* Shape background */}
-          <div
-            className="absolute inset-0 -z-10 bg-gradient-to-r from-[#36153d] via-[#6f3158] to-[#b66d83] shadow-[0_12px_30px_rgba(57,20,54,0.24)]"
-            style={{
-              clipPath:
-                "polygon(4% 0%, 96% 0%, 100% 18%, 100% 82%, 96% 100%, 4% 100%, 0% 82%, 0% 18%)",
-              borderRadius: "28px",
-            }}
-          />
-
-          {/* Soft texture */}
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_85%_35%,rgba(255,255,255,0.18),transparent_22%),radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.08),transparent_28%)]" />
-
-          {/* Curved side details */}
-          <div className="absolute -left-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
-          <div className="absolute -right-7 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#f4efe8]" />
-
-          <div className="relative z-10 flex min-h-[110px] flex-col gap-4 sm:min-h-[120px] sm:flex-row sm:items-center sm:gap-5 lg:gap-7">
-            <div className="grid h-16 w-16 flex-shrink-0 place-items-center rounded-full border border-[#d7b06d]/70 bg-[#2d1236] p-1 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
-              <div className="h-full w-full overflow-hidden rounded-full border border-[#d7b06d] bg-white">
-                <img
-                  src={journeyImage}
-                  alt="Journey"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="flex-1">
-              <h3 className="font-serif text-[clamp(20px,6vw,34px)] leading-none">
-                {copy.journeyTitle}
-              </h3>
-
-              <p className="mt-2 text-[clamp(14px,3.2vw,17px)] text-white/90 sm:mt-3">
-                {copy.journeyDesc}
-              </p>
-            </div>
-
-            <button
-              type="button"
-              onClick={onExploreMore}
-              className="ml-auto grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border-[3px] border-white/80 bg-[#fff8f5] text-[#35143d] shadow-[0_0_0_6px_rgba(255,255,255,0.18)] transition-transform hover:scale-105 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-            >
-              <ArrowRight className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-            </button>
-          </div>
+          
         </section>
       </section>
     </main>

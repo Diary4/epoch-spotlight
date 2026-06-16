@@ -1,6 +1,6 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, ChevronRight, Globe2 } from "lucide-react";
+import { ArrowLeft, Globe2 } from "lucide-react";
 
 import bg from "@/assets/images/religions/nations.webp";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
@@ -165,30 +165,52 @@ export default function NationsPage({
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!sectionRef.current || activeId) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set("[data-n-hero='true']", { autoAlpha: 0, scale: 1.04 });
-      gsap.set("[data-n-animate='true']", { autoAlpha: 0, y: 24 });
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const tl = gsap.timeline();
-      tl.to("[data-n-hero='true']", {
+    const ctx = gsap.context(() => {
+      if (reducedMotion) return;
+
+      const hero = "[data-n-hero='true']";
+      const animElements = "[data-n-animate='true']";
+      const cards = "[data-n-card='true']";
+
+      gsap.set(hero, { autoAlpha: 0, scale: 1.04 });
+      gsap.set(animElements, { autoAlpha: 0, y: 24 });
+      gsap.set(cards, { autoAlpha: 0, y: 35 });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to(hero, {
         autoAlpha: 1,
         scale: 1,
-        duration: 0.8,
+        duration: 1.0,
         ease: "power2.out",
-      }).to(
-        "[data-n-animate='true']",
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.05,
-          ease: "power2.out",
-        },
-        "-=0.2",
-      );
+      })
+        .to(
+          animElements,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.08,
+          },
+          "-=0.5",
+        )
+        .to(
+          cards,
+          {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.05,
+            duration: 0.8,
+          },
+          "-=0.4",
+        );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -248,37 +270,27 @@ export default function NationsPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#3d2b18] sm:w-screen"
+      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#fbf1df] p-0 text-[#3d2b18]"
     >
       <section
         ref={sectionRef}
         className="relative w-full overflow-x-hidden bg-[#fbf1df] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
-        {/* Mobile: hero in document flow */}
-        <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
-          <img
-            data-n-hero="true"
-            src={bg}
-            alt=""
-            className="h-full w-full object-cover object-center"
-          />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf1df] to-transparent" />
-        </div>
-
-        {/* Desktop: hero overlay */}
+        {/* Cinematic Absolute hero background overlay (Unifies mobile and desktop visually) */}
         <img
           data-n-hero="true"
           src={bg}
           alt=""
-          className="absolute inset-0 hidden h-[55vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:block"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:h-[65vh]"
         />
-        <div className="absolute inset-x-0 top-0 hidden h-[55vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95 sm:block" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#fbf1df]/95 sm:h-[55vh]" />
 
+        {/* Action Controls */}
         {onBack && (
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14"
+            className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm transition hover:bg-[#fff7ea] sm:left-8 sm:top-8 sm:h-14 sm:w-14"
             aria-label={c.back}
           >
             <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
@@ -289,83 +301,77 @@ export default function NationsPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-[#d9b477] bg-white px-3 py-2 font-serif text-xs font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
+            className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-[#d9b477] bg-white px-3 py-2 font-serif text-xs font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-[#fff7ea] sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
           >
             <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
             {languageLabel}
           </button>
         )}
 
+        {/* Page Content layout wrapper */}
         <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col px-4 sm:px-0">
+          {/* Header - Overlaps seamlessly over the hero background */}
           <header
             data-n-animate="true"
-            className="mx-auto max-w-[850px] pt-16 text-center sm:pt-28 lg:pt-32"
+            className="mx-auto max-w-[850px] pt-20 text-center sm:pt-28 lg:pt-32"
           >
-            <div className="mx-auto mb-3 w-[260px] max-w-full">
+            <div className="mx-auto mb-3 mt-1 w-[260px] max-w-full sm:mt-3">
               <DecorativeLine color="#c3923a" />
             </div>
-            <h1 className="break-words font-serif text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[56px] lg:text-[84px]">
+            <h1 className="break-words font-serif text-4xl xs:text-5xl sm:text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] lg:text-[84px]">
               {c.pageTitle}
             </h1>
             <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
               <DecorativeLine color="#c3923a" />
             </div>
-            <p className="mx-auto mt-4 max-w-[620px] text-[16px] font-semibold leading-relaxed text-[#4d3c2a] sm:mt-5 sm:text-[18px] lg:text-[20px]">
+            <p className="mx-auto mt-4 max-w-[620px] text-[15px] sm:text-[18px] lg:text-[20px] font-semibold leading-relaxed text-[#4d3c2a] sm:mt-5">
               {c.pageDescription}
             </p>
           </header>
 
-          <section
-            data-n-animate="true"
-            className="mx-auto mt-12 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-[clamp(120px,58vh,480px)] sm:grid-cols-2 sm:gap-7 lg:grid-cols-4"
-          >
+          {/* Cards Grid — Dynamic spacing pushes layout below the hero overlay area */}
+          <div className="mx-auto mt-[10vh] sm:mt-[clamp(120px,28vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-4 animate-fade-in">
             {c.nations.map((nation) => (
-              <article
-                key={nation.id}
-                role="button"
-                tabIndex={0}
-                onClick={() => setActiveId(nation.id)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setActiveId(nation.id);
-                  }
-                }}
-                aria-label={nation.title}
-                className="relative mt-0 flex min-h-0 cursor-pointer flex-col overflow-x-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white shadow-[0_18px_36px_rgba(69,43,14,0.22)] outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a] sm:mt-[clamp(48px,38vh,600px)] sm:min-h-[420px] sm:rounded-[28px]"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-x-hidden sm:h-[230px] sm:aspect-auto">
-                  <img
-                    src={nation.image}
-                    alt={nation.title}
-                    className="absolute inset-0 h-full w-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f05]/55 via-transparent to-transparent" />
-                </div>
+              <div key={nation.id} data-n-card="true" className="w-full">
+                <article
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setActiveId(nation.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveId(nation.id);
+                    }
+                  }}
+                  aria-label={nation.title}
+                  className="relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[16px] sm:rounded-[32px] border border-[#f3dfb5] bg-white p-2.5 sm:p-4 text-left shadow-[0_8px_30px_rgba(69,43,14,0.06)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fbf1df]"
+                >
+                  {/* Framed Image Container with responsive aspect ratio */}
+                  <div className="relative h-[110px] xs:h-[135px] sm:h-[180px] md:h-[210px] w-full overflow-x-hidden rounded-xl sm:rounded-2xl bg-[#f3e7d2]">
+                    <img
+                      src={nation.image}
+                      alt={nation.title}
+                      className="absolute inset-0 h-full w-full object-cover object-center"
+                    />
+                    <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.04)]" />
+                  </div>
 
-                <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-6">
-                  <h3 className="break-normal font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[26px]">
-                    {nation.title}
-                  </h3>
-                  <div className="mb-3 mt-2 w-[60px]">
-                    <span className="block h-[2px] bg-[#c3923a]" />
-                  </div>
-                  <p className="text-[14px] leading-relaxed text-[#5a4a30]">
-                    {nation.shortIntro}
-                  </p>
-                  <div className="mt-auto flex items-center justify-between pt-5">
-                    <span className="font-serif text-[12px] font-semibold uppercase tracking-[0.28em] text-[#a77423]">
-                      {c.openLabel}
-                    </span>
-                    <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8bc7b] bg-[#fff4dc] text-[#8a5a12]">
-                      <ChevronRight className="h-5 w-5" />
+                  {/* Content Area */}
+                  <div className="flex flex-1 flex-col pt-2.5 sm:pt-4">
+                    <h3 className="break-words font-serif text-[13px] xs:text-[15px] sm:text-[18px] md:text-[20px] font-semibold uppercase leading-tight text-[#3b2410]">
+                      {nation.title}
+                    </h3>
+                    <div className="mb-2 mt-1 w-[30px] sm:mb-3 sm:mt-2 sm:w-[45px]">
+                      <span className="block h-[1px] sm:h-[1.5px] w-full bg-[#c3923a]" />
                     </div>
+                    <p className="text-[11px] xs:text-[12px] sm:text-[13px] font-medium leading-relaxed text-[#5a4a30]">
+                      {nation.shortIntro}
+                    </p>
                   </div>
-                </div>
-                
-              </article>
+                </article>
+              </div>
             ))}
-          </section>
+          </div>
         </div>
 
         <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
