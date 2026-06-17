@@ -720,7 +720,7 @@ const Index = () => {
 
       {view === "parliament" && (
         <div
-          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <ParliamentPage lang={activeLang} onBack={() => setView("system")} />
@@ -735,7 +735,7 @@ const Index = () => {
 
       {view === "government" && (
         <div
-          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <GovernmentPage lang={activeLang} onBack={() => setView("system")} />
@@ -744,7 +744,7 @@ const Index = () => {
 
       {view === "presidency" && (
         <div
-          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in"
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
           <PresidencyPage lang={activeLang} onBack={() => setView("system")} />

@@ -57,7 +57,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
   return (
     <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-full flex-col overflow-x-hidden bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-full max-w-[min(100vw,1400px)] flex-1 flex-col overflow-hidden rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
+      <section className="relative mx-auto flex w-full max-w-[min(100vw,1400px)] flex-1 flex-col overflow-x-clip rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
         
         {/* Responsive back button */}
         <button
@@ -70,14 +70,14 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
         </button>
         <div className="absolute left-0 top-0 hidden h-full w-[clamp(64px,10vw,112px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
 
-        {/* Absolutely positioned background illustration layer */}
-        <div className="pointer-events-none absolute right-0 top-[200px] h-[30vh] xs:top-[230px] xs:h-[35vh] sm:top-0 sm:h-[min(86vh,900px)] w-full sm:w-[min(70vw,880px)] sm:max-w-[min(92vw,880px)] overflow-hidden z-0">
+        {/* Blended background illustration — anchored to the top on every screen so
+            there is no white gap above it, fading into the paper at the bottom. */}
+        <div className="pointer-events-none absolute right-0 top-0 h-[min(86vh,900px)] w-full sm:w-[min(70vw,880px)] sm:max-w-[min(92vw,880px)] overflow-hidden z-0">
           <img
             src={bg}
             alt="Presidency building portrait placeholder"
-            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right 
-                      [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_75%,transparent_100%)]
-                      sm:[mask-image:radial-gradient(circle_at_62%_48%,black_0%,black_56%,transparent_84%)]"
+            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right
+                      [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
         </div>
