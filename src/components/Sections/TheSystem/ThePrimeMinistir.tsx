@@ -11,8 +11,8 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
-import primeMinister from "@/assets/images/prime-minister.png";
-import backgroundPattern from "@/assets/images/patterns/pattern.png";
+import primeMinister from "@/assets/images/prime-minister.webp";
+import backgroundPattern from "@/assets/images/patterns/pattern.webp";
 
 const achievements = [
   {

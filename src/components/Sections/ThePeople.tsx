@@ -280,10 +280,10 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
           loop
           playsInline
           preload="auto"
-          className="mt-[250px] lg:mt-0 pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[30vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:top-[calc(18vh-140px)] xs:h-[calc(65vh-140px)]"
+          className="pointer-events-none relative z-0 mt-4 h-[34vh] w-full border-y border-white/60 object-cover object-center opacity-22 [mask-image:linear-gradient(to_bottom,transparent_0%,black_16%,black_78%,transparent_100%)] xs:absolute xs:inset-x-0 xs:top-[calc(18vh-140px)] xs:mt-[250px] xs:h-[calc(65vh-140px)] lg:mt-0"
         />
 
-        <div className="relative z-10 mt-auto grid grid-cols-3 gap-1.5 pb-4 pt-4 min-[700px]:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
+        <div className="relative z-10 mt-4 grid grid-cols-3 gap-1.5 pb-4 pt-4 xs:mt-auto min-[700px]:gap-5 lg:gap-6 lg:pb-8 lg:pt-10">
           {localizedCards.map((card) => {
             return (
               <button

@@ -8,7 +8,7 @@ import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
 import bg4 from "@/assets/images/new/discoverKurdistan/land-4.webp"
 import bg5 from "@/assets/images/new/discoverKurdistan/land-5.webp"
 import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
-import treeIcon from "@/assets/icons/tree.png";
+import treeIcon from "@/assets/icons/tree.webp";
 
 type LandCardId = "land" | "identitySymbols" | "peshmerga" | "progress" | "futureVision";
 
