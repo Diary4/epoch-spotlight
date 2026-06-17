@@ -2,6 +2,11 @@ import React from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import bg from "@/assets/images/new/discoverKurdistan/land-5.webp";
+import pattern1 from "@/assets/images/patterns/card-1.png";
+import pattern2 from "@/assets/images/patterns/card-2.png";
+import pattern3 from "@/assets/images/patterns/card-3.png";
+
+const cardPatterns = [pattern1, pattern2, pattern3];
 
 const topCards = [
   {
@@ -49,12 +54,20 @@ function Divider({ className = "" }) {
   );
 }
 
-function ProgressCard({ card, large = false }: { card: (typeof topCards)[number]; large?: boolean }) {
+function ProgressCard({
+  card,
+  large = false,
+  pattern,
+}: {
+  card: (typeof topCards)[number];
+  large?: boolean;
+  pattern?: string;
+}) {
   const Icon = card.icon;
 
   return (
     <article
-      className={`land-detail-card relative flex mt-[30px] sm:mt-0 min-h-[140px] xs:min-h-[180px] sm:min-h-[300px] lg:min-h-[clamp(330px,30vh,500px)] flex-col items-center overflow-hidden rounded-[12px] border border-[#ead8b7] bg-white/82 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:border-2 sm:rounded-[24px] sm:px-6 sm:py-7 lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(16px,1.8vw,34px)] lg:py-[clamp(18px,2.2vh,38px)] ${
+      className={`land-detail-card relative flex mt-[72px] sm:mt-0 min-h-[140px] xs:min-h-[180px] sm:min-h-[300px] lg:min-h-[clamp(330px,30vh,500px)] flex-col items-center overflow-hidden rounded-[12px] border border-[#ead8b7] bg-white/82 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:border-2 sm:rounded-[24px] sm:px-6 sm:py-7 lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(16px,1.8vw,34px)] lg:py-[clamp(18px,2.2vh,38px)] ${
         large ? "lg:min-h-[clamp(300px,27vh,420px)]" : ""
       }`}
     >
@@ -79,13 +92,22 @@ function ProgressCard({ card, large = false }: { card: (typeof topCards)[number]
 
       <button
         type="button"
-        className="mt-3 xs:mt-4 grid h-7 w-7 xs:h-9 xs:w-9 sm:mt-auto sm:h-[clamp(52px,5vw,78px)] sm:w-[clamp(52px,5vw,78px)] place-items-center rounded-full text-white shadow-md ring-1 ring-white sm:ring-4 touch-manipulation"
+        className="relative z-10 mt-3 xs:mt-4 grid h-7 w-7 xs:h-9 xs:w-9 sm:mt-auto sm:h-[clamp(52px,5vw,78px)] sm:w-[clamp(52px,5vw,78px)] place-items-center rounded-full text-white shadow-md ring-1 ring-white sm:ring-4 touch-manipulation"
         style={{ backgroundColor: card.color }}
       >
         <ArrowRight className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 sm:h-6 sm:w-6 lg:h-8 lg:w-8" />
       </button>
 
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[clamp(48px,5vh,90px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+      {pattern ? (
+        <img
+          src={pattern}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-[clamp(24px,4vh,72px)] w-full object-cover opacity-[0.15] [mask-image:linear-gradient(to_top,black_45%,transparent_100%)]"
+        />
+      ) : (
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[clamp(48px,5vh,90px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+      )}
     </article>
   );
 }
@@ -176,15 +198,15 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
 
           {/* Cards Section - forced responsive 3-column layout */}
           <section className="relative z-10 mt-12 xs:mt-16 sm:mt-0 grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:pb-[clamp(10px,1.2vh,24px)]">
-            {localTopCards.map((card) => (
-              <ProgressCard key={card.title} card={card} />
+            {localTopCards.map((card, index) => (
+              <ProgressCard key={card.title} card={card} pattern={cardPatterns[index % cardPatterns.length]} />
             ))}
           </section>
 
           {/* Bottom 2 Centered Cards - forced responsive 2-column layout */}
           <section className="relative z-10 mx-auto mt-4 grid w-full max-w-none grid-cols-2 gap-1.5 xs:gap-2.5 sm:gap-5 pb-8 sm:mt-[clamp(8px,1.3vh,20px)] sm:max-w-[920px] lg:pb-[clamp(8px,1vh,20px)]">
-            {localBottomCards.map((card) => (
-              <ProgressCard key={card.title} card={card} large />
+            {localBottomCards.map((card, index) => (
+              <ProgressCard key={card.title} card={card} large pattern={cardPatterns[index % cardPatterns.length]} />
             ))}
           </section>
         </div>
