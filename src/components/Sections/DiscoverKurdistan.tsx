@@ -4,6 +4,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
+import { withRudawGlyphFallback } from "@/lib/kurdishText";
 import gsap from "gsap";
 import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
@@ -83,6 +84,10 @@ export default function DiscoverKurdistan({
 
   const data = CONTENT[lang] as any;
   const discover = data?.discover ?? {};
+  const isKu = lang === "ku";
+  const displayFont = isKu ? "font-rudaw" : "font-serif";
+  const kuText = (text: string) => withRudawGlyphFallback(text, isKu);
+  const bodyWeight = isKu ? "font-normal" : "font-light";
   const localizedSections = Array.isArray(discover.sections)
     ? discover.sections.map(
         (section: { id: DiscoverSectionId; title: string; desc: string }) => ({
@@ -195,7 +200,9 @@ export default function DiscoverKurdistan({
       */}
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea]"
+        lang={lang}
+        dir={lang === "ar" || isKu ? "rtl" : "ltr"}
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea] ${isKu ? "font-rudaw" : ""}`}
       >
         {/* Paper texture background pattern */}
         <div
@@ -229,18 +236,20 @@ export default function DiscoverKurdistan({
             {/* Responsive Main Title */}
             <h1
               data-intro-title="true"
-              className="font-serif text-[24px] leading-tight tracking-tight text-[#18362d] xs:text-[30px] sm:text-[56px] md:text-[84px] lg:text-[102px] xl:text-[120px] 3xl:text-[150px] 4xl:text-[180px] kiosk-portrait:text-[110px]"
+              className={`${displayFont} text-[24px] leading-tight tracking-tight text-[#18362d] xs:text-[30px] sm:text-[56px] md:text-[84px] lg:text-[102px] xl:text-[120px] 3xl:text-[150px] 4xl:text-[180px] kiosk-portrait:text-[110px]`}
             >
-              {discover.title ?? "Discover Kurdistan"}
+              {kuText(discover.title ?? "Discover Kurdistan")}
             </h1>
 
             {/* Subtitle */}
             <p
               data-intro-rest="true"
-              className="mx-auto mt-3 font-light max-w-[980px] px-1 text-[13px] leading-relaxed text-[#424c48] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px] xl:max-w-[1200px] xl:text-[40px] 3xl:max-w-[1500px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[920px] kiosk-portrait:text-[40px]"
+              className={`mx-auto mt-3 ${bodyWeight} max-w-[980px] px-1 text-[13px] leading-relaxed text-[#424c48] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px] xl:max-w-[1200px] xl:text-[40px] 3xl:max-w-[1500px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[920px] kiosk-portrait:text-[40px]`}
             >
-              {discover.subtitle ??
-                "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region."}
+              {kuText(
+                discover.subtitle ??
+                  "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region.",
+              )}
             </p>
 
             {/* Central Diamond Divider */}
@@ -256,23 +265,25 @@ export default function DiscoverKurdistan({
             {/* Description Paragraph */}
             <p
               data-intro-rest="true"
-              className="mx-auto font-light mt-3 max-w-[880px] px-1 text-[13px] leading-relaxed text-[#4d5652] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px] xl:max-w-[1100px] xl:text-[40px] 3xl:max-w-[1400px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[860px] kiosk-portrait:text-[40px]"
+              className={`mx-auto ${bodyWeight} mt-3 max-w-[880px] px-1 text-[13px] leading-relaxed text-[#4d5652] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px] xl:max-w-[1100px] xl:text-[40px] 3xl:max-w-[1400px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[860px] kiosk-portrait:text-[40px]`}
             >
-              {discover.description ??
-                "This interactive experience offers visitors a simple introduction to Kurdistan and its story."}
+              {kuText(
+                discover.description ??
+                  "This interactive experience offers visitors a simple introduction to Kurdistan and its story.",
+              )}
             </p>
           </div>
 
           <div data-intro-rest="true" className="mt-6 sm:mt-12 md:mt-16">
             {/* Choosing section title wrapper */}
-            <div className="mb-3 flex items-center justify-center gap-1.5 font-serif text-[13px] text-[#2d3d35] xs:text-[15px] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px] xl:text-[44px] 3xl:text-[56px] 4xl:text-[66px] kiosk-portrait:text-[44px]">
+            <div className={`mb-3 flex items-center justify-center gap-1.5 ${displayFont} text-[13px] text-[#2d3d35] xs:text-[15px] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px] xl:text-[44px] 3xl:text-[56px] 4xl:text-[66px] kiosk-portrait:text-[44px]`}>
               <span
                 data-choose-line="true"
                 className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]"
               />
               <span className="h-1.5 w-1.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span className="font-light">
-                {discover.chooseSection ?? "Choose a section to begin"}
+              <span className={bodyWeight}>
+                {kuText(discover.chooseSection ?? "Choose a section to begin")}
               </span>
               <span className="h-1.5 w-1.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
               <span
@@ -314,12 +325,12 @@ export default function DiscoverKurdistan({
                         />
                       </GoldIcon>
                     </div>
-                    <div className="relative flex flex-col justify-center font-light min-h-[95px] px-2 pr-6 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pr-8 xs:pb-4 xs:pt-8 sm:min-h-[160px] sm:px-8 sm:pr-14 sm:pb-6 sm:pt-12 md:min-h-[190px] lg:min-h-[250px] xl:min-h-[300px] 3xl:min-h-[360px] 4xl:min-h-[420px] kiosk-portrait:min-h-[220px]">
-                      <h3 className="font-serif text-[12px] leading-tight font-light text-[#18362d] xs:text-[14px] sm:text-[34px] md:text-[44px] lg:text-[38px] xl:text-[46px] 3xl:text-[54px] 4xl:text-[60px] kiosk-portrait:text-[40px]">
-                        {localizeDigits(section.title, lang)}
+                    <div className={`relative flex flex-col justify-center ${bodyWeight} min-h-[95px] px-2 pr-6 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pr-8 xs:pb-4 xs:pt-8 sm:min-h-[160px] sm:px-8 sm:pr-14 sm:pb-6 sm:pt-12 md:min-h-[190px] lg:min-h-[250px] xl:min-h-[300px] 3xl:min-h-[360px] 4xl:min-h-[420px] kiosk-portrait:min-h-[220px]`}>
+                      <h3 className={`${displayFont} text-[12px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[14px] sm:text-[34px] md:text-[44px] lg:text-[38px] xl:text-[46px] 3xl:text-[54px] 4xl:text-[60px] kiosk-portrait:text-[40px]`}>
+                        {kuText(localizeDigits(section.title, lang))}
                       </h3>
                       <p className="mt-1 whitespace-pre-line text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[22px] md:text-[28px] lg:mt-3 lg:text-[42px] xl:text-[48px] 3xl:text-[58px] 4xl:text-[70px] kiosk-portrait:text-[26px]">
-                        {localizeDigits(section.desc, lang)}
+                        {kuText(localizeDigits(section.desc, lang))}
                       </p>
                     </div>
                   </button>

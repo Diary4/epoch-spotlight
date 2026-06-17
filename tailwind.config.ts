@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        rudaw: ['"Rudaw Bold"', "sans-serif"],
+      },
       screens: {
         xs: "450px",
         "3xl": "1920px",
