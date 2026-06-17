@@ -9,7 +9,7 @@ import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
 import card3 from "@/assets/images/new/the-system.webp";
 import card4 from "@/assets/images/new/the-land-and-future.webp";
-import backgroundPattern from "@/assets/images/patterns/pattern.png";
+import backgroundPattern from "@/assets/images/patterns/flower.png";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -114,10 +114,12 @@ export default function DiscoverKurdistan({
         y: 20,
         force3D: true,
       });
-      // Target individual cards instead of the grid wrapper
+      // Target individual cards — match The People card entrance
       gsap.set("[data-card-item]", {
         autoAlpha: 0,
-        y: 26,
+        y: 42,
+        rotateX: -10,
+        transformOrigin: "center top",
         force3D: true,
       });
       gsap.set("[data-choose-line='true']", {
@@ -166,16 +168,17 @@ export default function DiscoverKurdistan({
           },
           "-=0.25",
         )
-        // Stagger individual cards — 4 lightweight GPU ops instead of one heavy repaint
+        // Stagger individual cards with the same smooth tilt-in as The People
         .to(
           "[data-card-item]",
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.55,
-            stagger: 0.1,
+            rotateX: 0,
+            duration: 1.15,
+            stagger: 0.24,
           },
-          "-=0.2",
+          "-=0.35",
         );
     }, sectionRef);
 
@@ -283,7 +286,7 @@ export default function DiscoverKurdistan({
               Each card gets data-card-item so GSAP animates them individually
               via stagger — far cheaper than repainting the whole grid subtree.
             */}
-            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-6">
+            <div className="grid grid-cols-2 gap-3 [perspective:1200px] xs:gap-4 sm:gap-5 md:gap-6 lg:gap-6">
               {localizedSections.map((section) => {
                 const Icon = sectionIcons[section.id];
                 return (

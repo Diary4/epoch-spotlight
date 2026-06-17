@@ -213,44 +213,44 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
             positioned) guarantees it never overlaps the text or the info
             panels on any screen size.
         */}
-        <div className="relative z-10 flex min-h-full flex-1 flex-col items-center">
-          {/* Intro */}
-          <section className="system-detail-intro w-full max-w-[860px] text-center pt-14 sm:pt-16 lg:pt-20">
-            <h1 className="font-serif text-[clamp(2.2rem,9vw,6.4rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
-              {title}
-            </h1>
+        <div className="relative z-10 flex min-h-full flex-1 flex-col">
+          {/* Hero — text on the left, portrait on the right (same on every screen) */}
+          <section className="grid grid-cols-2 items-center gap-3 pt-14 xs:gap-5 sm:pt-16 lg:gap-10 lg:pt-20">
+            {/* Intro text */}
+            <div className="system-detail-intro w-full max-w-[680px] text-left">
+              <h1 className="font-serif text-[clamp(1.3rem,5.5vw,6.4rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
+                {title}
+              </h1>
 
-            <p className="mt-2 font-serif text-[clamp(1.5rem,5.2vw,3.25rem)] leading-tight text-[#9b6d35]">
-              {name}
-            </p>
+              <p className="mt-1.5 font-serif text-[clamp(0.95rem,3.2vw,3.25rem)] leading-tight text-[#9b6d35] sm:mt-2">
+                {name}
+              </p>
 
-            <div className="mx-auto mt-3 w-[150px] xs:w-[200px] sm:mt-6 sm:w-[320px] lg:w-[430px]">
-              <DecorativeLine color="#b99152" />
+              <div className="mt-2 w-[110px] xs:w-[170px] sm:mt-6 sm:w-[300px] lg:w-[430px]">
+                <DecorativeLine color="#b99152" />
+              </div>
+
+              <p className="mt-2.5 max-w-[680px] text-[clamp(0.7rem,1.9vw,2.05rem)] font-light leading-[1.4] text-[#2d3549] sm:mt-4 sm:leading-[1.45]">
+                {subtitle}
+              </p>
             </div>
 
-            <p className="mx-auto mt-4 max-w-[680px] text-[clamp(1rem,2.5vw,2.05rem)] font-light leading-[1.45] text-[#2d3549]">
-              {subtitle}
-            </p>
+            {/* Portrait */}
+            <div className="relative flex w-full shrink-0 items-end justify-center h-[28vh] min-h-[180px] xs:h-[34vh] sm:h-[46vh] lg:h-[58vh] kiosk-portrait:h-[40vh]">
+              {/* Soft radial glow behind the figure */}
+              <div className="absolute bottom-[8%] left-1/2 h-[78%] w-[62%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,154,85,0.22),transparent_68%)] blur-2xl" />
+              <div className="relative flex h-full">
+                <img
+                  src={primeMinister}
+                  alt="Masrour Barzani, Prime Minister of the Kurdistan Region"
+                  className="system-detail-hero h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_24px_50px_rgba(31,40,53,0.28)]"
+                />
+              </div>
+            </div>
           </section>
 
-          {/* Portrait — centered, large, in normal flow */}
-          <div className="relative flex w-full shrink-0 items-end justify-center my-5 sm:my-8 h-[36vh] min-h-[230px] sm:h-[46vh] lg:h-[50vh] kiosk-portrait:h-[40vh]">
-            {/* Soft radial glow behind the figure */}
-            <div className="absolute bottom-[8%] left-1/2 h-[78%] w-[62%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,154,85,0.22),transparent_68%)] blur-2xl" />
-            {/* Wrapper carries the horizontal centering offset (the figure sits
-                right-of-center inside its square) so it doesn't fight the GSAP
-                scale-in transform applied to the image. */}
-            <div className="relative flex h-full -translate-x-[13%]">
-              <img
-                src={primeMinister}
-                alt="Masrour Barzani, Prime Minister of the Kurdistan Region"
-                className="system-detail-hero h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_24px_50px_rgba(31,40,53,0.28)]"
-              />
-            </div>
-          </div>
-
           {/* Panels */}
-          <section className="grid w-full grid-cols-1 gap-10 pb-2 sm:grid-cols-2 sm:gap-6 lg:gap-8">
+          <section className="mt-10 grid w-full grid-cols-1 gap-10 pb-2 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:gap-8">
             <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
             <InfoPanel title={visionTitle} items={localVision} tone="green" />
           </section>

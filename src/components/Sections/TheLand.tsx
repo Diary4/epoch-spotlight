@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, BarChart3, Flag, Mountain, Shield, Star, SunMedium } from "lucide-react";
+import { ArrowLeft, BarChart3, Mountain, Shield, Star, SunMedium, type LucideIcon } from "lucide-react";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
 import bg1 from "@/assets/mainImages/land-1.webp"
@@ -8,8 +8,25 @@ import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
 import bg4 from "@/assets/images/new/discoverKurdistan/land-4.webp"
 import bg5 from "@/assets/images/new/discoverKurdistan/land-5.webp"
 import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
+import treeIcon from "@/assets/icons/tree.png";
 
-const topCards = [
+type LandCardId = "land" | "identitySymbols" | "peshmerga" | "progress" | "futureVision";
+
+type LandCard = {
+  id: LandCardId;
+  title: string;
+  text: string;
+  icon: LucideIcon;
+  image: string;
+  featured?: boolean;
+  red?: boolean;
+};
+
+const landIconImages: Partial<Record<LandCardId, string>> = {
+  land: treeIcon,
+};
+
+const topCards: LandCard[] = [
   {
     id: "land",
     title: "The Land",
@@ -35,7 +52,7 @@ const topCards = [
   },
 ];
 
-const bottomCards = [
+const bottomCards: LandCard[] = [
   {
     id: "progress",
     title: "Progress",
@@ -62,7 +79,27 @@ function Divider({ className = "" }) {
   );
 }
 
-function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
+function LandCardIcon({
+  cardId,
+  Icon,
+  className,
+  strokeWidth = 1.7,
+}: {
+  cardId: LandCardId;
+  Icon: LucideIcon;
+  className: string;
+  strokeWidth?: number;
+}) {
+  const iconSrc = landIconImages[cardId];
+
+  if (iconSrc) {
+    return <img src={iconSrc} alt="" aria-hidden className={`${className} object-contain`} />;
+  }
+
+  return <Icon className={className} strokeWidth={strokeWidth} />;
+}
+
+function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   const iconBg = card.red ? "#963538" : card.featured ? "#c69237" : "#13213b";
   const iconColor = "#f8e5b8";
@@ -97,9 +134,11 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
       {/* Content layer positioned relative to sit over top-and-bottom background overlays */}
       <div className="relative z-10 flex flex-col items-center h-full">
         <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-22 sm:w-22 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-28 lg:w-28 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw]">
-          <div className="grid h-8 w-8 xs:h-10 xs:w-10 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-[7.4vw] kiosk-portrait:w-[7.4vw] place-items-center rounded-full border border-white sm:border-2 shadow-sm" style={{ backgroundColor: iconBg, color: iconColor }}>
-            <Icon className="h-4 w-4 xs:h-5 xs:w-5 sm:h-[34px] sm:w-[34px] lg:h-[42px] lg:w-[42px] kiosk-portrait:h-[4.1vw] kiosk-portrait:w-[4.1vw]" strokeWidth={1.7} />
-          </div>
+         <LandCardIcon
+              cardId={card.id}
+              Icon={Icon}
+              className="h-7 w-7 xs:h-9 xs:w-9 sm:h-[58px] sm:w-[58px] lg:h-[72px] lg:w-[72px] kiosk-portrait:h-[6.8vw] kiosk-portrait:w-[6.8vw]"
+            />
         </div>
 
         <h3 className="mt-2.5 xs:mt-4 sm:mt-6 kiosk-portrait:mt-[1.6vw] font-serif text-[9px] xs:text-[11px] sm:text-[clamp(26px,6vw,34px)] font-light leading-tight text-[#17233b] lg:text-[42px] kiosk-portrait:text-[4.1vw]">
@@ -116,7 +155,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: (typeof topCards)[num
   );
 }
 
-function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[number]; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
+function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   return (
     <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[270px] lg:min-h-[320px] kiosk-portrait:min-h-[31.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-8 sm:py-9 lg:px-10 lg:py-10 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
@@ -137,7 +176,12 @@ function WideCard({ card, onClick, lang = "en" }: { card: (typeof bottomCards)[n
 
       <div className="relative z-10 flex h-full flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left lg:gap-10">
         <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-24 sm:w-24 lg:h-28 lg:w-28 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[6px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
-          <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[52px] sm:w-[52px] lg:h-[60px] lg:w-[60px] kiosk-portrait:h-[5.5vw] kiosk-portrait:w-[5.5vw]" strokeWidth={1.5} />
+          <LandCardIcon
+            cardId={card.id}
+            Icon={Icon}
+            className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[52px] sm:w-[52px] lg:h-[60px] lg:w-[60px] kiosk-portrait:h-[5.5vw] kiosk-portrait:w-[5.5vw]"
+            strokeWidth={1.5}
+          />
         </div>
         <div className="min-w-0">
           <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(26px,6vw,36px)] font-light text-[#17233b] lg:text-[44px] kiosk-portrait:text-[4.25vw]">{localizeDigits(card.title, lang)}</h3>
