@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useRef, useState, useEffect } from "react";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import {
   ArrowLeft,
@@ -185,21 +185,26 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     svgLeft: number;
   } | null>(null);
 
-  // Layout scale handles for smaller viewports
-  const [scale, setScale] = useState(1);
-  const [leftOffset, setLeftOffset] = useState(0);
+  // Layout scale handles for smaller viewports.
+  // Initialize from the current viewport so the first paint is already scaled
+  // (avoids a flash where full-size text renders before the effect shrinks it).
+  const getLayout = () => {
+    const targetWidth = 1400;
+    const width = typeof window !== "undefined" ? window.innerWidth : targetWidth;
+    return width < targetWidth
+      ? { scale: width / targetWidth, leftOffset: 0 }
+      : { scale: 1, leftOffset: (width - targetWidth) / 2 };
+  };
 
-  useEffect(() => {
+  const initialLayout = getLayout();
+  const [scale, setScale] = useState(initialLayout.scale);
+  const [leftOffset, setLeftOffset] = useState(initialLayout.leftOffset);
+
+  useLayoutEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth;
-      const targetWidth = 1400;
-      if (width < targetWidth) {
-        setScale(width / targetWidth);
-        setLeftOffset(0);
-      } else {
-        setScale(1);
-        setLeftOffset((width - targetWidth) / 2);
-      }
+      const next = getLayout();
+      setScale(next.scale);
+      setLeftOffset(next.leftOffset);
     };
 
     handleResize();
