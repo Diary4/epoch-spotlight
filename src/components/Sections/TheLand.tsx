@@ -297,31 +297,36 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         </button>
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
 
-        {/* Absolutely positioned background illustration layer */}
-        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-0 h-[40vh] sm:top-0 sm:h-[min(72vh,900px)] md:min-w-[760px] lg:h-[min(92vh,1150px)] w-full z-0 overflow-hidden">
+        {/* Absolutely positioned background illustration layer — full width of the hero
+            on every breakpoint (mobile keeps the same structure as large screens). */}
+        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-0 h-[56vh] sm:top-0 sm:h-[min(72vh,900px)] md:min-w-0 lg:h-[min(92vh,1150px)] w-full z-0 overflow-hidden">
           <img
             src={bg1}
             alt="Land and Future placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-[75%_center] sm:object-right
-                      [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_75%,transparent_100%)]
-                      sm:[mask-image:none]"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          {/* Left fade — keeps the left side paper-toned over the full-width image
+              so the left-aligned text stays readable on every screen size. */}
+          <div
+            className="absolute inset-y-0 left-0 w-[70%] sm:w-[60%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/85 sm:via-[#fbf5eb]/80 to-transparent block"
+            aria-hidden
           />
           {/* Bottom blend into section bg (#fbf5eb) — same tone as the “paper” background */}
           <div
-            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent sm:block hidden"
+            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent block"
             aria-hidden
           />
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section className="mx-auto max-w-[700px] lg:max-w-[1000px] kiosk-portrait:max-w-[920px] text-center pt-12 sm:pt-16 lg:pt-20">
-            <h1 data-land-hero="true" className="font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,64px)] sm:text-[78px] lg:text-[120px] xl:text-[80px] 3xl:text-[120px] kiosk-portrait:text-[12.2vw] font-light leading-[1.03] tracking-tight text-[#17233b]">
+          <section className="mr-auto max-w-[66%] sm:max-w-[46%] lg:max-w-[600px] kiosk-portrait:max-w-[48%] text-left pt-12 sm:pt-16 lg:pt-24 kiosk-portrait:pt-[10vh]">
+            <h1 data-land-hero="true" className="font-serif text-[clamp(30px,9vw,52px)] sm:text-[clamp(34px,5vw,64px)] kiosk-portrait:text-[8.5vw] font-light leading-[1.05] tracking-tight text-[#17233b]">
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "and Future"}
             </h1>
 
-            <p data-land-hero="true" className="z-10 mt-4 sm:mt-7 font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(24px,5.5vw,68px)] lg:text-[56px] xl:text-[64px] kiosk-portrait:text-[5.5vw] leading-tight text-[#17233b]">
+            <p data-land-hero="true" className="z-10 mt-3 sm:mt-5 font-serif text-[clamp(16px,4.5vw,26px)] sm:text-[clamp(16px,2.1vw,28px)] kiosk-portrait:text-[4.2vw] leading-tight text-[#9b6d35]">
               {isAr ? (
                 <>
                   جذور التراث.<br />لآفاق الغد.
@@ -337,13 +342,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               )}
             </p>
 
-            <div className="mx-auto mt-4 sm:mt-9 flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152] lg:w-[320px] lg:max-w-[320px] kiosk-portrait:w-[33vw] kiosk-portrait:max-w-[33vw]">
+            <div className="mx-0 mt-4 sm:mt-9 flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152] lg:w-[320px] lg:max-w-[320px] kiosk-portrait:w-[33vw] kiosk-portrait:max-w-[33vw]">
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
               <span data-land-divider="true" className="h-2.5 w-2.5 rotate-45 border-2 border-[#b99152]" />
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mx-auto mt-4 sm:mt-8 max-w-[330px] lg:max-w-[620px] kiosk-portrait:max-w-[52vw] text-[clamp(12px,4vw,15px)] xs:text-[clamp(14px,4vw,17px)] sm:text-[clamp(16px,3.8vw,20px)] lg:text-[28px] xl:text-[32px] kiosk-portrait:text-[2.6vw] leading-[1.55] text-[#ffffff]">
+            <p data-land-hero="true" className="mx-0 mt-4 sm:mt-6 max-w-[330px] sm:max-w-[400px] lg:max-w-[460px] kiosk-portrait:max-w-[44%] text-[clamp(12px,3.6vw,15px)] sm:text-[clamp(13px,1.45vw,18px)] kiosk-portrait:text-[2.2vw] leading-[1.6] text-[#2d3549]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
