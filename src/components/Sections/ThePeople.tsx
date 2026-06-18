@@ -247,7 +247,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         <header className="relative z-20 shrink-0 text-center pt-14 xs:pt-8 lg:pt-12">
           <h1
             data-people-hero="true"
-            className="font-serif text-[32px] font-light leading-none tracking-tight text-[#1d342d] xs:text-[72px] lg:text-[118px]"
+            className="font-serif text-[32px] font-light leading-none tracking-tight text-[#1d342d] xs:text-[72px] md:text-[96px] lg:text-[132px] xl:text-[150px] 3xl:text-[170px] 4xl:text-[190px] kiosk-portrait:text-[130px]"
           >
             {people?.title ?? "The People"}
           </h1>
@@ -263,7 +263,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
 
           <p
             data-people-hero="true"
-            className="mx-auto mt-3 max-w-[980px] px-1 text-[11px] font-light leading-relaxed text-[#49524e] xs:text-[22px] lg:text-[34px]"
+            className="mx-auto mt-3 max-w-[980px] px-1 text-[11px] font-light leading-relaxed text-[#49524e] xs:text-[22px] md:text-[30px] lg:mt-6 lg:max-w-[1100px] lg:text-[40px] xl:max-w-[1200px] xl:text-[48px] 3xl:max-w-[1400px] 3xl:text-[56px] 4xl:text-[64px] kiosk-portrait:max-w-[920px] kiosk-portrait:text-[42px]"
           >
             {people?.subtitle ??
               "Discover who the Kurds are and the values, identity, and resilience that shape their story."}
