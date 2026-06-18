@@ -4,7 +4,7 @@ import { womenCardsToPanel } from "@/components/Sections/women/womenLanguage";
 import masturaDetail from "@/assets/images/womens/mastura.jpg";
 import adilaDetail from "@/assets/images/womens/adila.jpg";
 import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
-import khanzadDetail from "@/assets/images/women/w-3.webp";
+import khanzadDetail from "@/assets/images/womens/khanzad.jpg";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
 
 export type HistoricFigureListItem = {

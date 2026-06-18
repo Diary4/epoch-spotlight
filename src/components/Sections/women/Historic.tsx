@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, Crown, Flower2 } from "lucide-react";
+import { ArrowLeft, Crown, Sparkles } from "lucide-react";
 import gsap from "gsap";
 
 import mainHero from "@/assets/images/women/le-1.webp";
@@ -48,26 +48,24 @@ function runListIntroAnimation(sectionRef: React.RefObject<HTMLElement | null>) 
 function HistoricListCard({
   woman,
   imageSrc,
+  dir,
   onSelect,
 }: {
   woman: { id: string; name: string; role: string; teaser: string; icon: "crown" | "flower" };
   imageSrc: string;
+  dir: "ltr" | "rtl";
   onSelect: () => void;
 }) {
-  const Icon = woman.icon === "crown" ? Crown : Flower2;
-
   return (
     <button
       type="button"
       data-hist-card="true"
       onClick={onSelect}
-      className="relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5"
+      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
+        dir === "rtl" ? "text-right" : "text-left"
+      }`}
     >
-      <div className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] sm:h-12 sm:w-12">
-        <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-      </div>
-
-      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[20px] sm:h-[220px] lg:h-[260px]">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[10px] sm:rounded-[20px]">
         <img
           src={imageSrc}
           alt={woman.name}
@@ -75,21 +73,27 @@ function HistoricListCard({
         />
       </div>
 
-      <h3 className="mt-3 font-serif text-[clamp(20px,3vw,28px)] font-semibold leading-tight text-[#4c2d43] sm:mt-4">
+      <h3 className="mt-1.5 font-serif text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]">
         {woman.name}
       </h3>
 
-      <p className="mt-1.5 font-serif text-[clamp(15px,2.4vw,19px)] italic leading-snug text-[#b65f71]">
+      <p className="mt-0.5 font-serif text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]">
         ({woman.role})
       </p>
 
-      <div className="my-3 flex w-20 items-center gap-2 text-[#b4864d]">
+      <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
         <span className="h-px flex-1 bg-[#d4b98f]" />
-        <span className="h-2 w-2 rotate-45 bg-[#b4864d]" />
+        <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
         <span className="h-px flex-1 bg-[#d4b98f]" />
       </div>
 
-      <p className="max-w-[320px] text-[clamp(13px,2.2vw,16px)] leading-[1.5] text-[#353445]">{woman.teaser}</p>
+      <p
+        className={`hidden text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px] ${
+          dir === "rtl" ? "text-right" : "text-left"
+        }`}
+      >
+        {woman.teaser}
+      </p>
     </button>
   );
 }
@@ -251,25 +255,33 @@ export default function WomenHistoricPage({
               </div>
             </section>
 
-            <section className="relative z-20 mt-8 sm:mt-[clamp(26px,40vh,400px)] px-4 py-4 sm:px-6 lg:px-10">
-              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 lg:gap-6">
-                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            <section className="relative z-20 mt-6 px-3 pb-6 sm:px-5 lg:px-10">
+              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 sm:gap-5 lg:gap-6">
+                <div
+                  className="gap-2 sm:gap-5 lg:gap-6"
+                  style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+                >
                   {historicWomen.slice(0, 3).map((woman) => (
                     <HistoricListCard
                       key={woman.id}
                       woman={woman}
                       imageSrc={historicDetailPortraits[woman.id]}
+                      dir={dir}
                       onSelect={() => setSelectedId(woman.id)}
                     />
                   ))}
                 </div>
 
-                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+                <div
+                  className="gap-2 sm:gap-5 lg:gap-6"
+                  style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
+                >
                   {historicWomen.slice(3).map((woman) => (
                     <HistoricListCard
                       key={woman.id}
                       woman={woman}
                       imageSrc={historicDetailPortraits[woman.id]}
+                      dir={dir}
                       onSelect={() => setSelectedId(woman.id)}
                     />
                   ))}
