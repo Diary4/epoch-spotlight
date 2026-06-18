@@ -61,11 +61,11 @@ function HistoricListCard({
       type="button"
       data-hist-card="true"
       onClick={onSelect}
-      className={`relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[12px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_4px_12px_rgba(67,35,45,0.1)] transition hover:border-[#d8b979] xs:p-3 sm:rounded-[26px] sm:p-5 sm:shadow-[0_10px_25px_rgba(67,35,45,0.12)] lg:p-6 ${
+      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5 lg:p-6 ${
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative mx-auto h-[88px] w-full overflow-hidden rounded-[10px] xs:h-[120px] sm:h-[200px] sm:rounded-[20px] md:h-[220px] lg:h-[260px]">
+      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
         <img
           src={imageSrc}
           alt={woman.name}
@@ -73,22 +73,22 @@ function HistoricListCard({
         />
       </div>
 
-      <h3 className="mt-2 font-serif text-[13px] leading-tight text-[#2c1736] xs:text-[15px] sm:mt-4 sm:text-[24px] lg:text-[28px]">
+      <h3 className="mt-1.5 font-serif text-[clamp(11px,3vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]">
         {woman.name}
       </h3>
 
-      <p className="mt-0.5 font-serif text-[10px] italic text-[#a75a69] xs:text-[12px] sm:mt-1.5 sm:text-[16px] lg:text-[18px]">
+      <p className="mt-0.5 font-serif text-[clamp(9px,2.2vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]">
         ({woman.role})
       </p>
 
-      <div className="my-2 flex w-12 items-center gap-1.5 text-[#b4864d] sm:my-3 sm:w-24 sm:gap-2">
+      <div className="my-1.5 flex w-12 items-center gap-1 text-[#b4864d] sm:my-3 sm:w-24 sm:gap-2">
         <span className="h-px flex-1 bg-[#d4b98f]" />
         <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
         <span className="h-px flex-1 bg-[#d4b98f]" />
       </div>
 
       <p
-        className={`text-[10px] leading-relaxed text-[#4a3f50] xs:text-[12px] sm:text-[15px] lg:text-[16px] ${
+        className={`hidden text-[clamp(13px,2.2vw,16px)] leading-relaxed text-[#4a3f50] sm:block ${
           dir === "rtl" ? "text-right" : "text-left"
         }`}
       >
@@ -255,7 +255,7 @@ export default function WomenHistoricPage({
               </div>
             </section>
 
-            <section className="relative z-20 mt-2 px-3 pb-6 xs:px-4 sm:mt-8 sm:px-5 lg:mt-20 lg:px-10">
+            <section className="relative z-20 mt-8 px-3 pb-6 xs:px-4 sm:mt-14 sm:px-5 lg:mt-28 lg:px-10">
               <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
                 <div className="grid w-full grid-cols-3 gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
                   {historicWomen.slice(0, 3).map((woman) => (

@@ -492,7 +492,7 @@ export default function WomenCultureMemoryPage({
 
             <section
               data-culture-hero="true"
-              className="relative z-10 shrink-0 overflow-hidden text-center"
+              className="relative z-10 shrink-0 overflow-hidden text-center min-h-[220px] sm:min-h-[320px] lg:mn-h-[320px]"
             >
               <div
                 data-culture-fade="true"
@@ -529,7 +529,7 @@ export default function WomenCultureMemoryPage({
               <img
                 src={cultureHero}
                 alt=""
-                className="pointer-events-none z-10 mx-auto block h-[clamp(220px,48vh,820px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
+                className="pointer-events-none z-10 mx-auto block h-[clamp(220px,24vh,220px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
               />
             </section>
 
