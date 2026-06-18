@@ -3,6 +3,11 @@ import { ArrowLeft, ArrowRight, BookOpenCheck, Building2, Landmark, Scale, Users
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import bg from "@/assets/mainImages/presidency-1.webp"
 import bg2 from "@/assets/mainImages/presidency-2.webp"
+import pattern1 from "@/assets/images/patterns/card-1.png";
+import pattern2 from "@/assets/images/patterns/card-2.png";
+import pattern3 from "@/assets/images/patterns/card-3.png";
+
+const cardPatterns = [pattern1, pattern2, pattern3];
 
 const cards = [
   {
@@ -120,7 +125,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
           {/* Cards section - mt-12 (xs:mt-16) pushes cards below header safely on mobile viewports */}
           <section className="relative z-10 mt-[200px] sm:mt-[500px] grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-6 lg:pb-8 lg:pt-10">
-            {localCards.map((card) => {
+            {localCards.map((card, index) => {
               const Icon = card.icon;
               return (
                 <article
@@ -145,12 +150,17 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
                   <button
                     type="button"
-                    className="mt-auto grid h-7 w-7 xs:h-9 xs:w-9 sm:h-[clamp(52px,6.5vw,64px)] sm:w-[clamp(52px,6.5vw,64px)] place-items-center rounded-full bg-[#963538] text-white shadow-md ring-1 ring-white sm:ring-4 touch-manipulation"
+                    className="relative z-10 mt-auto grid h-7 w-7 xs:h-9 xs:w-9 sm:h-[clamp(52px,6.5vw,64px)] sm:w-[clamp(52px,6.5vw,64px)] place-items-center rounded-full bg-[#963538] text-white shadow-md ring-1 ring-white sm:ring-4 touch-manipulation"
                   >
                     <ArrowRight className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 sm:h-[clamp(26px,3.5vw,36px)] sm:w-[clamp(26px,3.5vw,36px)]" />
                   </button>
 
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+                  <img
+                    src={cardPatterns[index % cardPatterns.length]}
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-[clamp(24px,4vh,72px)] w-full object-cover opacity-[0.15] [mask-image:linear-gradient(to_top,black_45%,transparent_100%)]"
+                  />
                 </article>
               );
             })}
