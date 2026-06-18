@@ -330,11 +330,11 @@ function CultureListCard({
       type="button"
       data-culture-card="true"
       onClick={onSelect}
-      className={`relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5 lg:p-6 ${
+      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5 lg:p-6 ${
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[20px] sm:h-[220px] lg:h-[260px]">
+      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
         <img
           src={woman.image}
           alt={woman.name}
@@ -342,20 +342,22 @@ function CultureListCard({
         />
       </div>
 
-      <h3 className="mt-3 font-serif text-[clamp(20px,3vw,28px)] leading-tight text-[#2c1736] sm:mt-4">
+      <h3 className="mt-1.5 font-serif text-[clamp(11px,3vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]">
         {woman.name}
       </h3>
 
-      <p className="mt-1.5 font-serif text-[clamp(14px,2.4vw,18px)] italic text-[#a75a69]">({woman.role})</p>
+      <p className="mt-0.5 font-serif text-[clamp(9px,2.2vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]">
+        ({woman.role})
+      </p>
 
-      <div className="my-3 flex w-24 items-center gap-2 text-[#b4864d]">
+      <div className="my-1.5 flex w-12 items-center gap-1 text-[#b4864d] sm:my-3 sm:w-24 sm:gap-2">
         <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-4 w-4" />
+        <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
         <span className="h-px flex-1 bg-[#d4b98f]" />
       </div>
 
       <p
-        className={`text-[clamp(13px,2.2vw,16px)] leading-relaxed text-[#4a3f50] ${
+        className={`hidden text-[clamp(13px,2.2vw,16px)] leading-relaxed text-[#4a3f50] sm:block ${
           dir === "rtl" ? "text-right" : "text-left"
         }`}
       >
@@ -490,11 +492,11 @@ export default function WomenCultureMemoryPage({
 
             <section
               data-culture-hero="true"
-              className="relative z-10 min-h-0 overflow-hidden pb-[clamp(200px,42vh,420px)] text-center sm:min-h-[720px] sm:pb-[clamp(260px,38vh,480px)] lg:min-h-[960px] lg:pb-0"
+              className="relative z-10 shrink-0 overflow-hidden text-center"
             >
               <div
                 data-culture-fade="true"
-                className="relative z-20 mx-auto max-w-[900px] px-3 pt-16 sm:px-4 sm:pt-20 lg:pt-14"
+                className="relative z-20 mx-auto max-w-[900px] px-3 pb-8 pt-16 sm:px-4 sm:pb-10 sm:pt-20 lg:pt-14"
               >
 
                 <div className="mx-auto mb-5 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d] sm:mb-6">
@@ -527,13 +529,13 @@ export default function WomenCultureMemoryPage({
               <img
                 src={cultureHero}
                 alt=""
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto h-[clamp(220px,48vh,820px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
+                className="pointer-events-none z-10 mx-auto block h-[clamp(220px,48vh,820px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
               />
             </section>
 
-            <section className="relative z-20 mt-2 px-5 pb-6 lg:mt-4 lg:px-10">
-              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 lg:gap-6">
-                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            <section className="relative z-20 mt-2 px-3 pb-6 sm:px-5 lg:mt-4 lg:px-10">
+              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 sm:gap-5 lg:gap-6">
+                <div className="grid w-full grid-cols-3 gap-2 sm:gap-5 lg:gap-6">
                   {cultureWomen.slice(0, 3).map((woman) => (
                     <CultureListCard
                       key={woman.id}
@@ -544,7 +546,7 @@ export default function WomenCultureMemoryPage({
                   ))}
                 </div>
 
-                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+                <div className="grid w-full grid-cols-2 gap-2 sm:gap-5 lg:gap-6">
                   {cultureWomen.slice(3).map((woman) => (
                     <CultureListCard
                       key={woman.id}
