@@ -170,41 +170,44 @@ export default function WomenResistancePage({
           <>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-            {/* Hero — no min-h-screen so it sizes to content */}
-            <section className="relative z-10 grid grid-cols-1 items-center gap-8 px-5 pb-6 pt-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0 lg:px-10 lg:pb-0 lg:pt-10">
-              <div data-resist-fade="true" className="relative z-20 lg:pt-6">
-                <h1 className="font-serif text-[clamp(52px,12vw,88px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] lg:text-[96px]">
+            {/* Hero — side-by-side on every screen (text left, image right) */}
+            <section
+              className={`relative z-10 grid grid-cols-[1.05fr_0.95fr] lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.9fr_1.3fr] items-center gap-2 pt-20 sm:gap-4 sm:pt-24 ${
+                dir === "rtl" ? "pl-0 pr-5 sm:pr-8 lg:pr-10" : "pl-5 pr-0 sm:pl-8 lg:pl-10"
+              }`}
+            >
+              <div data-resist-fade="true" className="relative z-20 max-w-[700px]">
+                <h1 className="font-serif text-[clamp(26px,6.5vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-6 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] lg:my-8">
+                <div className="my-3 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] sm:my-6 lg:my-8">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
+                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="font-serif text-[clamp(24px,5vw,34px)] text-[#a75a69]">
+                <h2 className="font-serif text-[clamp(14px,2.8vw,34px)] text-[#a75a69]">
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-4 max-w-[400px] text-[clamp(17px,3.5vw,22px)] leading-[1.5] text-[#56505a] lg:mt-5 lg:text-[24px] lg:leading-[1.45]">
+                <p className="mt-2 max-w-[400px] text-[clamp(11px,2.2vw,24px)] leading-[1.5] text-[#56505a] sm:mt-4 lg:mt-5 lg:leading-[1.45]">
                   {copy.heroIntro}
                 </p>
               </div>
 
-              {/* Hero image — capped height on mobile so it doesn't bleed into cards */}
-              <div
-                data-resist-hero="true"
-                className="pointer-events-none relative mx-auto w-full max-w-[min(100%,420px)] overflow-hidden rounded-[28px] lg:mx-0 lg:max-w-none lg:rounded-none"
-                style={{ aspectRatio: "1 / 1", maxHeight: "min(420px, 60vw)" }}
-              >
+              {/* Hero image — fully visible (contain), scales up on bigger screens */}
+              <div data-resist-hero="true" className="pointer-events-none relative self-stretch">
                 <img
                   src={resistanceHero}
                   alt="Women of Resistance"
-                  className="h-full w-full object-cover object-right-top lg:aspect-auto lg:max-h-[820px] lg:h-[72vh]"
-                  style={{ display: "block" }}
+                  className={`h-full w-full object-contain object-top ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-[clamp(24px,5vh,110px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                  aria-hidden
                 />
               </div>
             </section>
@@ -222,7 +225,7 @@ export default function WomenResistancePage({
                   onClick={() => setSelectedId(woman.id)}
                   className="relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 text-left shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5"
                 >
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[10px] sm:rounded-[20px]">
+                  <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
                     <img
                       src={resistanceImages[woman.id]}
                       alt={woman.name}

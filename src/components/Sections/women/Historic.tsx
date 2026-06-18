@@ -61,11 +61,11 @@ function HistoricListCard({
       type="button"
       data-hist-card="true"
       onClick={onSelect}
-      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
+      className={`relative flex w-full cursor-pointer flex-col overflow-hidden rounded-[12px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_4px_12px_rgba(67,35,45,0.1)] transition hover:border-[#d8b979] xs:p-3 sm:rounded-[26px] sm:p-5 sm:shadow-[0_10px_25px_rgba(67,35,45,0.12)] lg:p-6 ${
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[10px] sm:rounded-[20px]">
+      <div className="relative mx-auto h-[88px] w-full overflow-hidden rounded-[10px] xs:h-[120px] sm:h-[200px] sm:rounded-[20px] md:h-[220px] lg:h-[260px]">
         <img
           src={imageSrc}
           alt={woman.name}
@@ -73,22 +73,22 @@ function HistoricListCard({
         />
       </div>
 
-      <h3 className="mt-1.5 font-serif text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]">
+      <h3 className="mt-2 font-serif text-[13px] leading-tight text-[#2c1736] xs:text-[15px] sm:mt-4 sm:text-[24px] lg:text-[28px]">
         {woman.name}
       </h3>
 
-      <p className="mt-0.5 font-serif text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]">
+      <p className="mt-0.5 font-serif text-[10px] italic text-[#a75a69] xs:text-[12px] sm:mt-1.5 sm:text-[16px] lg:text-[18px]">
         ({woman.role})
       </p>
 
-      <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
+      <div className="my-2 flex w-12 items-center gap-1.5 text-[#b4864d] sm:my-3 sm:w-24 sm:gap-2">
         <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
+        <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
         <span className="h-px flex-1 bg-[#d4b98f]" />
       </div>
 
       <p
-        className={`hidden text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px] ${
+        className={`text-[10px] leading-relaxed text-[#4a3f50] xs:text-[12px] sm:text-[15px] lg:text-[16px] ${
           dir === "rtl" ? "text-right" : "text-left"
         }`}
       >
@@ -212,7 +212,7 @@ export default function WomenHistoricPage({
             {/* Desktop layout Hero absolute backdrop */}
             <div
               data-hist-hero="true"
-              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[80vw] sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)] hidden sm:block"
+              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[80vw] sm:h-[min(72vh,900px)] lg:h-[min(108vh,1160px)] lg:w-[88vw] xl:w-[92vw] hidden sm:block"
             >
               <img
                 src={mainHero}
@@ -227,40 +227,37 @@ export default function WomenHistoricPage({
 
             <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14 pt-20 sm:pt-6">
               <div data-hist-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
-                <div className="mb-4 flex justify-center lg:justify-start lg:pl-24">
+                <div className="mb-4 flex justify-start sm:pl-24">
                   <div className="grid h-16 w-16 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] shadow-[0_8px_20px_rgba(90,42,62,0.18)] sm:h-20 sm:w-20">
                     <Crown className="h-8 w-8 sm:h-10 sm:w-10" />
                   </div>
                 </div>
 
-                <h1 className="font-serif text-[clamp(36px,12vw,112px)] font-medium leading-[0.95] tracking-tight text-[#48263f] text-center lg:text-left">
+                <h1 className="font-serif text-[clamp(32px,8vw,112px)] font-medium leading-[0.95] tracking-tight text-[#48263f] text-left">
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-6 mx-auto lg:mx-0 flex w-full max-w-[260px] items-center gap-3 text-[#b4864d] sm:my-7">
+                <div className="my-6 flex w-full max-w-[260px] items-center gap-3 text-[#b4864d] sm:my-7">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                   <span className="h-3 w-3 rotate-45 bg-[#b4864d]" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="font-serif text-[clamp(20px,6vw,38px)] font-light italic leading-tight text-[#b65f71] whitespace-pre-line text-center lg:text-left">
+                <h2 className="font-serif text-[clamp(20px,6vw,38px)] font-light italic leading-tight text-[#b65f71] whitespace-pre-line text-left">
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-7 max-w-[410px] text-[clamp(16px,4vw,19px)] leading-[1.7] text-[#353445] text-center lg:text-left mx-auto lg:mx-0">
+                <p className="mt-7 max-w-[410px] text-[clamp(16px,4vw,19px)] leading-[1.7] text-[#353445] text-left">
                   {copy.heroIntro}
                 </p>
               </div>
             </section>
 
-            <section className="relative z-20 mt-6 px-3 pb-6 sm:px-5 lg:px-10">
-              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 sm:gap-5 lg:gap-6">
-                <div
-                  className="gap-2 sm:gap-5 lg:gap-6"
-                  style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
-                >
+            <section className="relative z-20 mt-2 px-3 pb-6 xs:px-4 sm:mt-8 sm:px-5 lg:mt-20 lg:px-10">
+              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
+                <div className="grid w-full grid-cols-3 gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
                   {historicWomen.slice(0, 3).map((woman) => (
                     <HistoricListCard
                       key={woman.id}
@@ -272,10 +269,7 @@ export default function WomenHistoricPage({
                   ))}
                 </div>
 
-                <div
-                  className="gap-2 sm:gap-5 lg:gap-6"
-                  style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
-                >
+                <div className="grid w-full grid-cols-2 gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
                   {historicWomen.slice(3).map((woman) => (
                     <HistoricListCard
                       key={woman.id}

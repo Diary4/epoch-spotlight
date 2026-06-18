@@ -195,52 +195,52 @@ export default function LegacyPage({
           fadeAttr="data-legacy-fade"
         />
 
-        {/* Hero image — stacked banner on mobile, right-anchored overlay on sm+ */}
-        <div
-          data-legacy-hero="true"
-          className="pointer-events-none relative h-[clamp(260px,42vh,380px)] w-full overflow-hidden sm:absolute sm:right-0 sm:top-0 sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
+        {/* Hero — side-by-side on every screen (text left, image right), matching the large-screen design */}
+        <section
+          className={`relative z-10 grid grid-cols-[1.05fr_0.95fr] lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.9fr_1.3fr] items-center gap-2 pt-12 sm:gap-4 sm:pt-12 lg:pt-16 ${
+            dir === "rtl" ? "pl-0 pr-4 sm:pr-8 lg:pr-16" : "pl-4 pr-0 sm:pl-8 lg:pl-16"
+          }`}
         >
-          <img
-            src={legacyHero}
-            alt="Kurdish women legacy"
-            className="absolute inset-0 h-full w-full object-cover object-[center_top] sm:object-right-top"
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 h-[clamp(64px,13vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
-            aria-hidden
-          />
-        </div>
-
-        {/* Hero text — flows below the banner on mobile, overlays the image on sm+ */}
-        <section className="relative z-10 px-4 py-5 pt-6 sm:min-h-0 sm:px-8 sm:py-6 sm:pt-8 lg:px-16">
-          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-2 sm:pt-14 lg:pt-16">
-            <div className="mb-4 flex items-center gap-3 text-[#b4864d] sm:mb-5 sm:gap-5">
-              <span className="h-px w-12 bg-[#d4b98f] sm:w-20" />
-              <Sparkles className="h-5 w-5" />
+          <div data-legacy-fade="true" className="relative z-20 max-w-[700px]">
+            <div className="mb-2 flex items-center gap-2 text-[#b4864d] sm:mb-5 sm:gap-5">
+              <span className="h-px w-8 bg-[#d4b98f] sm:w-20" />
+              <Sparkles className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
             </div>
 
-            <h1 className="font-serif text-[clamp(30px,8vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
+            <h1 className="font-serif text-[clamp(24px,6vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
               {copy.title}
             </h1>
 
-            <h2 className="mt-3 font-serif font-light text-[clamp(15px,4vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
+            <h2 className="mt-2 font-serif font-light text-[clamp(12px,2.7vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
               {copy.subtitle}
             </h2>
 
-            <div className="my-6 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d] sm:my-9">
+            <div className="my-3 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d] sm:my-9">
               <span className="h-px flex-1 bg-[#d4b98f]" />
-              <Sparkles className="h-5 w-5" />
+              <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
               <span className="h-px flex-1 bg-[#d4b98f]" />
             </div>
 
-            <p className="max-w-[420px] text-[clamp(17px,4.2vw,20px)] leading-[1.65] text-[#353445] sm:leading-[1.75] drop-shadow-[0_1px_1px_rgba(252,247,239,0.9)]">
+            <p className="max-w-[420px] text-[clamp(11px,2.2vw,20px)] leading-[1.5] text-[#353445] sm:leading-[1.75] drop-shadow-[0_1px_1px_rgba(252,247,239,0.9)]">
               {copy.description}
             </p>
+          </div>
+
+          <div data-legacy-hero="true" className="pointer-events-none relative self-stretch">
+            <img
+              src={legacyHero}
+              alt="Kurdish women legacy"
+              className={`h-full w-full object-contain object-top ${dir === "rtl" ? "-scale-x-100" : ""}`}
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-[clamp(28px,6vh,120px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+              aria-hidden
+            />
           </div>
         </section>
 
         {/* Cards */}
-        <section className="relative z-20 mt-2 grid grid-cols-4 gap-2 px-3 pb-1 sm:mt-[clamp(26px,40vh,400px)] sm:gap-4 sm:px-8 lg:gap-5 lg:px-16">
+        <section className="relative z-20 mt-4 grid grid-cols-4 gap-2 px-3 pb-1 sm:mt-8 sm:gap-4 sm:px-8 lg:mt-10 lg:gap-5 lg:px-16">
           {legacyCards.map((card) => {
             return (
               <button
