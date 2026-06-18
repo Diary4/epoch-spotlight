@@ -1,9 +1,9 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
 import { womenCardsToPanel } from "@/components/Sections/women/womenLanguage";
 
-import masturaDetail from "@/assets/images/women/w-1.webp";
-import adilaDetail from "@/assets/images/women/historic-detail/adila-khanum-detail.webp";
-import hafsaDetail from "@/assets/images/women/historic-detail/hafsa-khanum-detail.webp";
+import masturaDetail from "@/assets/images/womens/mastura.jpg";
+import adilaDetail from "@/assets/images/womens/adila.jpg";
+import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
 import khanzadDetail from "@/assets/images/women/w-3.webp";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
 

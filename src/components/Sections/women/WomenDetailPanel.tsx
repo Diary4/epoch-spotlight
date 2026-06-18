@@ -77,8 +77,17 @@ export default function WomenDetailPanel({
             src={portraitSrc}
             alt={portraitAlt}
             data-women-detail-fade="true"
-            className="absolute inset-0 h-[50vh] w-full object-cover object-[center_15%] sm:h-[60vh]"
+            className={`absolute inset-0 h-[50vh] w-full object-cover sm:h-[60vh] ${
+              dir === "rtl" ? "object-[78%_12%] sm:object-[82%_10%]" : "object-[22%_12%] sm:object-[18%_10%]"
+            }`}
           />
+          {/* <div
+            className={`pointer-events-none absolute inset-x-0 top-0 h-[50vh] sm:h-[60vh] ${
+              dir === "rtl"
+                ? "bg-[linear-gradient(to_right,#fbf4e8_0%,rgba(251,244,232,0.72)_24%,transparent_58%)]"
+                : "bg-[linear-gradient(to_left,#fbf4e8_0%,rgba(251,244,232,0.72)_24%,transparent_58%)]"
+            }`}
+          /> */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vh] bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)] sm:h-[60vh]" />
 
           <div
