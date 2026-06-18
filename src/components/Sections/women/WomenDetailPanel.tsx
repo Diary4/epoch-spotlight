@@ -94,7 +94,7 @@ export default function WomenDetailPanel({
             className="relative z-20 min-h-[50vh] px-4 pb-6 pt-20 sm:min-h-[60vh] sm:px-8 sm:pb-8 sm:pt-28 lg:px-14"
             data-women-detail-fade="true"
           >
-            <h1 className="break-words font-serif text-[clamp(32px,9.5vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436] sm:text-[clamp(70px,9vw,118px)] sm:leading-[0.88]">
+            <h1 className="break-words font-serif text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436] sm:text-[clamp(70px,9vw,118px)] sm:leading-[0.88]">
               {nameLine1}
               <br />
               {nameLine2}
@@ -106,7 +106,7 @@ export default function WomenDetailPanel({
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-4 max-w-[min(100%,300px)] break-words font-serif text-[clamp(22px,5.5vw,48px)] italic leading-tight text-[#b48734] sm:mt-8">
+            <h2 className="mt-4 max-w-[min(100%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#b48734] sm:mt-8 sm:text-[clamp(22px,5.5vw,48px)]">
               {role}
             </h2>
 
@@ -116,7 +116,7 @@ export default function WomenDetailPanel({
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <p className="mt-4 max-w-[min(100%,330px)] text-[16px] leading-7 text-[#3f3b42] sm:mt-8 sm:text-[20px] sm:leading-8">
+            <p className="mt-4 max-w-[min(100%,330px)] text-[13px] leading-6 text-[#3f3b42] sm:mt-8 sm:text-[20px] sm:leading-8">
               {intro}
             </p>
           </div>
