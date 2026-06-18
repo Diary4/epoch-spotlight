@@ -195,15 +195,15 @@ export default function LegacyPage({
           fadeAttr="data-legacy-fade"
         />
 
-        {/* Hero image — same right-anchored layout across every screen size */}
+        {/* Hero image — stacked banner on mobile, right-anchored overlay on sm+ */}
         <div
           data-legacy-hero="true"
-          className="pointer-events-none absolute right-0 top-0 h-[min(46vh,440px)] w-full overflow-hidden sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
+          className="pointer-events-none relative h-[clamp(260px,42vh,380px)] w-full overflow-hidden sm:absolute sm:right-0 sm:top-0 sm:h-[min(72vh,900px)] lg:h-[min(100vh,1000px)]"
         >
           <img
             src={legacyHero}
             alt="Kurdish women legacy"
-            className="absolute inset-0 h-full w-full object-cover object-right-top"
+            className="absolute inset-0 h-full w-full object-cover object-[center_top] sm:object-right-top"
           />
           <div
             className="absolute inset-x-0 bottom-0 h-[clamp(64px,13vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
@@ -211,19 +211,19 @@ export default function LegacyPage({
           />
         </div>
 
-        {/* Hero text — min-height on mobile keeps the cards below the hero image */}
-        <section className="relative z-10 min-h-[min(46vh,440px)] px-4 py-5 pt-6 sm:min-h-0 sm:px-8 sm:py-6 sm:pt-8 lg:px-16">
-          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
+        {/* Hero text — flows below the banner on mobile, overlays the image on sm+ */}
+        <section className="relative z-10 px-4 py-5 pt-6 sm:min-h-0 sm:px-8 sm:py-6 sm:pt-8 lg:px-16">
+          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-2 sm:pt-14 lg:pt-16">
             <div className="mb-4 flex items-center gap-3 text-[#b4864d] sm:mb-5 sm:gap-5">
               <span className="h-px w-12 bg-[#d4b98f] sm:w-20" />
               <Sparkles className="h-5 w-5" />
             </div>
 
-            <h1 className="font-serif text-[clamp(38px,12vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
+            <h1 className="font-serif text-[clamp(30px,8vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
               {copy.title}
             </h1>
 
-            <h2 className="mt-3 font-serif font-light text-[clamp(20px,6vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
+            <h2 className="mt-3 font-serif font-light text-[clamp(15px,4vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
               {copy.subtitle}
             </h2>
 
