@@ -14,10 +14,10 @@ import {
 
 import resistanceHero from "@/assets/images/women/w-2.webp";
 import imgQara from "@/assets/images/women/w-5.webp";
-import imgQadam from "@/assets/images/women/w-7.webp";
+import imgQadam from "@/assets/images/womens/qadamkher.jpg";
 import imgShifa from "@/assets/images/womens/shifagardi.jpg";
 import imgLayal from "@/assets/images/new/women/leylaqasim.webp";
-import imgMargaret from "@/assets/images/women/w-6.webp";
+import imgMargaret from "@/assets/images/womens/margret.jpg";
 import imgKhaja from "@/assets/images/womens/khaja.jpg";
 
 type WomenResistancePageProps = WomenLanguageProps & {
