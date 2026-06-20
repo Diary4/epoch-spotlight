@@ -270,11 +270,11 @@ export default function NationsPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#fbf1df] p-0 text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-[#3d2b18]"
     >
       <section
         ref={sectionRef}
-        className="relative w-full overflow-x-hidden bg-[#fbf1df] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
+        className="relative w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
       >
         {/* Cinematic Absolute hero background overlay (Unifies mobile and desktop visually) */}
         <img
@@ -283,7 +283,7 @@ export default function NationsPage({
           alt=""
           className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:h-[65vh]"
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#fbf1df]/95 sm:h-[55vh]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:h-[55vh]" />
 
         {/* Action Controls */}
         {onBack && (
@@ -330,7 +330,7 @@ export default function NationsPage({
           </header>
 
           {/* Cards Grid — Dynamic spacing pushes layout below the hero overlay area */}
-          <div className="mx-auto mt-[10vh] sm:mt-[clamp(120px,28vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-4 animate-fade-in">
+          <div className="mx-auto mt-[18vh] sm:mt-[clamp(160px,46vh,960px)] grid w-full max-w-[1320px] grid-cols-2 gap-3 sm:gap-8 md:grid-cols-3 lg:grid-cols-4 animate-fade-in">
             {c.nations.map((nation) => (
               <div key={nation.id} data-n-card="true" className="w-full">
                 <article
@@ -344,10 +344,10 @@ export default function NationsPage({
                     }
                   }}
                   aria-label={nation.title}
-                  className="relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[16px] sm:rounded-[32px] border border-[#f3dfb5] bg-white p-2.5 sm:p-4 text-left shadow-[0_8px_30px_rgba(69,43,14,0.06)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fbf1df]"
+                  className="relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[16px] sm:rounded-[32px] border border-[#f3dfb5] bg-white p-2.5 sm:p-5 text-left shadow-[0_8px_30px_rgba(69,43,14,0.06)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
                 >
                   {/* Framed Image Container with responsive aspect ratio */}
-                  <div className="relative h-[110px] xs:h-[135px] sm:h-[180px] md:h-[210px] w-full overflow-x-hidden rounded-xl sm:rounded-2xl bg-[#f3e7d2]">
+                  <div className="relative h-[110px] xs:h-[135px] sm:h-[220px] md:h-[260px] w-full overflow-x-hidden rounded-xl sm:rounded-2xl bg-[#f3e7d2]">
                     <img
                       src={nation.image}
                       alt={nation.title}
@@ -357,14 +357,14 @@ export default function NationsPage({
                   </div>
 
                   {/* Content Area */}
-                  <div className="flex flex-1 flex-col pt-2.5 sm:pt-4">
-                    <h3 className="break-words font-serif text-[13px] xs:text-[15px] sm:text-[18px] md:text-[20px] font-semibold uppercase leading-tight text-[#3b2410]">
+                  <div className="flex flex-1 flex-col pt-2.5 sm:pt-5">
+                    <h3 className="break-words font-serif text-[13px] xs:text-[15px] sm:text-[21px] md:text-[24px] font-semibold uppercase leading-tight text-[#3b2410]">
                       {nation.title}
                     </h3>
-                    <div className="mb-2 mt-1 w-[30px] sm:mb-3 sm:mt-2 sm:w-[45px]">
+                    <div className="mb-2 mt-1 w-[30px] sm:mb-3 sm:mt-2.5 sm:w-[52px]">
                       <span className="block h-[1px] sm:h-[1.5px] w-full bg-[#c3923a]" />
                     </div>
-                    <p className="text-[11px] xs:text-[12px] sm:text-[13px] font-medium leading-relaxed text-[#5a4a30]">
+                    <p className="text-[11px] xs:text-[12px] sm:text-[15px] font-medium leading-relaxed text-[#5a4a30]">
                       {nation.shortIntro}
                     </p>
                   </div>

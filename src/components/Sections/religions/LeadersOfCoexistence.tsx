@@ -230,11 +230,11 @@ export default function LeadersOfCoexistencePage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]"
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#fbf1df] px-6 pt-10 sm:px-12 lg:px-20"
+        className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#faf8f5] px-6 pt-10 sm:px-12 lg:px-20"
       >
         <img
           data-lc-hero="true"
@@ -242,7 +242,7 @@ export default function LeadersOfCoexistencePage({
           alt=""
           className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         />
-        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95" />
+        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
         {onBack && (
           <button

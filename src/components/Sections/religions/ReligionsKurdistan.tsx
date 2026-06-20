@@ -198,11 +198,11 @@ export default function ReligionsKurdistan({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]"
+      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]"
     >
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-7 py-9 sm:px-10 lg:px-16"
       >
         <img
           data-religion-hero="true"
@@ -214,11 +214,11 @@ export default function ReligionsKurdistan({
           className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
           style={{
             background:
-              "linear-gradient(to top, rgba(251,241,223,0.95) 0%, rgba(251,241,223,0.62) 45%, rgba(251,241,223,0) 100%)",
+              "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
           }}
         />
 
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df]/15 via-[#fbf1df]/90 to-[#fbf1df]" /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5]/15 via-[#faf8f5]/90 to-[#faf8f5]" /> */}
 
         <button
           type="button"

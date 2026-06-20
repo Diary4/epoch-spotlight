@@ -238,13 +238,13 @@ export default function ClosingPage({
   return (
     <main
       dir={dir}
-      className="m-0 min-h-screen w-full max-w-full overflow-x-hidden bg-[#f4eadb] p-0 text-[#302214] sm:w-screen"
+      className="m-0 min-h-screen w-full max-w-full overflow-x-hidden bg-[#faf8f5] p-0 text-[#302214] sm:w-screen"
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden bg-[#f3e5ce] px-4 py-8 pb-16 sm:px-6 sm:py-10 sm:pb-24"
+        className="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden bg-[#faf8f5] px-4 py-8 pb-16 sm:px-6 sm:py-10 sm:pb-24"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.55),transparent_34%),linear-gradient(180deg,#f8eddb_0%,#ead3ad_100%)]" />
+        <div className="absolute inset-0 bg-[#faf8f5]" />
 
         {/* Mobile hero */}
         <div className="relative h-[min(32vh,260px)] min-h-[180px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
@@ -254,7 +254,7 @@ export default function ClosingPage({
             alt=""
             className="h-full w-full object-cover object-center"
           />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#f4eadb] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
         </div>
 
         <img
@@ -263,7 +263,7 @@ export default function ClosingPage({
           alt=""
           className="absolute right-0 top-0 hidden h-[100vh] w-full object-cover [mask-image:linear-gradient(to_left,black_0%,black_70%,transparent_100%)] sm:block"
         />
-        <div className="absolute inset-x-0 top-0 hidden h-[50vh] bg-gradient-to-b from-[#f4eadb]/72 via-[#f4eadb]/30 to-[#f4eadb]/95 sm:block" />
+        <div className="absolute inset-x-0 top-0 hidden h-[50vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:block" />
         <div className="absolute inset-0 hidden opacity-[0.18] sm:block">
           <div className="absolute left-0 top-0 h-[360px] w-[360px] rounded-full border border-[#b98634]" />
           <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full border border-[#b98634]" />

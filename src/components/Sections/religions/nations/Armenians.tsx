@@ -201,7 +201,7 @@ export default function ArmeniansPage({
           src={bg}
           desktopClassName="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
         >
-          <div className="absolute inset-x-0 top-0 hidden h-[60vh] bg-gradient-to-b from-[#fbf1df]/72 via-[#fbf1df]/30 to-[#f4dfbb]/95 sm:block" />
+          <div className="absolute inset-x-0 top-0 hidden h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:block" />
         </FaithDetailHeroImage>
 
         <FaithDetailControls

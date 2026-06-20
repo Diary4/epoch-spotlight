@@ -455,7 +455,7 @@ export default function FaithsPage({
 
           {/* Cards Grid — Dynamic spacing pushes layout below overlay video area */}
           <div
-            className="mx-auto mt-[10vh] sm:mt-[clamp(120px,28vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in"
+            className="mx-auto mt-[18vh] sm:mt-[clamp(120px,48vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in"
           >
             {c.faiths.map((faith) => (
               <div 

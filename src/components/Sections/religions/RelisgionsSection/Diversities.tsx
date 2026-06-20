@@ -108,17 +108,17 @@ export default function DiversityMapPage({
   );
 
   return (
-    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#3d2b18]">
+    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]">
       <section
         ref={sectionRef}
-        className="relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-7 py-9 sm:px-10 lg:px-16"
+        className="relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-7 py-9 sm:px-10 lg:px-16"
       >
         <div
           data-map-hero="true"
           className="absolute inset-0 bg-top bg-no-repeat"
           style={{ backgroundImage: `url(${bg})`, backgroundSize: "100% 100%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf1df] via-[#fbf1df]/88 to-[#f4dfbb]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5] via-[#faf8f5]/88 to-[#faf8f5]/55" />
         {/* <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" /> */}
 
         <button

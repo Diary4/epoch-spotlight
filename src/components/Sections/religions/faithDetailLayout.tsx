@@ -2,10 +2,10 @@ import React from "react";
 import { ArrowLeft, Globe2 } from "lucide-react";
 
 export const FAITH_MAIN_CLASS =
-  "m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#3d2b18] sm:w-screen";
+  "m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-[#3d2b18] sm:w-screen";
 
 export const FAITH_SECTION_CLASS =
-  "relative min-h-screen w-full overflow-x-hidden bg-[#fbf1df] px-0 pb-12 pt-0 sm:px-7 sm:py-9 sm:pb-0 lg:px-16";
+  "relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-12 pt-0 sm:px-7 sm:py-9 sm:pb-0 lg:px-16";
 
 export const FAITH_CONTENT_PADDING = "px-4 sm:px-0";
 
@@ -103,7 +103,7 @@ export function FaithDetailHeroImage({
           {...heroProps}
           className="h-full w-full object-cover object-center"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf1df] to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
       </div>
 
       <img
@@ -145,7 +145,7 @@ export function FaithDetailHeroVideo({
           {...heroProps}
           className="h-full w-full object-cover object-center"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbf1df] to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
       </div>
 
       <video
