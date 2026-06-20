@@ -139,14 +139,17 @@ export default function WomenHistoricPage({
           <>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-            {/* Hero — side-by-side on every screen (text left, image right) */}
+            {/* Hero — side-by-side on every screen with adjusted grid splits and overlapping styles */}
             <section
-              className={`relative z-10 grid grid-cols-[1.05fr_0.95fr] lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.9fr_1.3fr] items-center gap-2 pt-20 sm:gap-4 sm:pt-24 ${
+              className={`relative z-10 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-center gap-2 pt-20 sm:gap-4 sm:pt-24 ${
                 dir === "rtl" ? "pl-0 pr-5 sm:pr-8 lg:pr-10" : "pl-5 pr-0 sm:pl-8 lg:pl-10"
               }`}
             >
-              <div data-hist-fade="true" className="relative z-20 max-w-[700px]">
-                <h1 className="font-serif text-[clamp(26px,6.5vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
+              <div 
+                data-hist-fade="true" 
+                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-4 sm:pl-0" : "pr-4 sm:pr-0"}`}
+              >
+                <h1 className="font-serif text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
@@ -158,7 +161,7 @@ export default function WomenHistoricPage({
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="whitespace-pre-line font-serif text-[clamp(14px,2.8vw,34px)] text-[#a75a69]">
+                <h2 className="whitespace-pre-line font-serif text-[clamp(11px,2.5vw,34px)] text-[#a75a69]">
                   {copy.heroSubtitle}
                 </h2>
 
@@ -167,12 +170,19 @@ export default function WomenHistoricPage({
                 </p>
               </div>
 
-              {/* Hero image — fully visible (contain), scales up on bigger screens */}
-              <div data-hist-hero="true" className="pointer-events-none relative self-stretch">
+              {/* Hero image — expanded width and negative margins allow the illustration to sitting underneath the text */}
+              <div 
+                data-hist-hero="true" 
+                className={`pointer-events-none relative self-stretch h-full w-[145%] sm:w-[155%] md:w-[165%] lg:w-[175%] ${
+                  dir === "rtl"
+                    ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
+                    : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
+                }`}
+              >
                 <img
                   src={mainHero}
                   alt="Historic Women"
-                  className={`h-full w-full object-contain object-top ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                  className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
                 />
                 <div
                   className="absolute inset-x-0 bottom-0 h-[clamp(24px,5vh,110px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
