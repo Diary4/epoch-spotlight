@@ -1,31 +1,26 @@
-import React from "react";
-import { ArrowLeft, ArrowRight, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ArrowLeft, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
-import bg from "@/assets/mainImages/parliment.webp"
-import pattern1 from "@/assets/images/patterns/card-1.png";
-import pattern2 from "@/assets/images/patterns/card-2.png";
-import pattern3 from "@/assets/images/patterns/card-3.png";
-
-const cardPatterns = [pattern1, pattern2, pattern3];
+import bg from "@/assets/mainImages/parliment.webp";
 
 const mainCards = [
   {
     title: "Lawmaking",
     text: "Reviews and passes laws for public life.",
     icon: Scale,
-    color: "#13213b",
+    color: "bg-[#13213b]",
   },
   {
     title: "Representation",
     text: "Reflects the voice and interests of the people.",
     icon: UsersRound,
-    color: "#405846",
+    color: "bg-[#405846]",
   },
   {
     title: "Oversight",
     text: "Monitors public affairs and institutional accountability.",
     icon: Search,
-    color: "#963538",
+    color: "bg-[#963538]",
   },
 ];
 
@@ -47,16 +42,6 @@ const bottomItems = [
   },
 ];
 
-function Divider() {
-  return (
-    <div className="mx-auto my-3 xs:my-4 sm:my-8 flex w-12 xs:w-16 sm:w-36 items-center justify-center gap-1 sm:gap-3 text-[#b99152]">
-      <span className="h-0.5 flex-1 bg-[#b99152]" />
-      <span className="h-1.5 w-1.5 xs:h-2 xs:w-2 sm:h-3 sm:w-3 rotate-45 border border-[#b99152] sm:border-2" />
-      <span className="h-0.5 flex-1 bg-[#b99152]" />
-    </div>
-  );
-}
-
 type ParliamentPageProps = {
   lang?: "ku" | "en" | "ar";
   onBack?: () => void;
@@ -66,19 +51,21 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
   const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+
   const localMainCards = isAr
     ? [
-        { title: "التشريع", text: "يراجع القوانين ويُقرّها لخدمة الحياة العامة.", icon: Scale, color: "#13213b" },
-        { title: "التمثيل", text: "يعكس صوت الشعب ومصالحه.", icon: UsersRound, color: "#405846" },
-        { title: "الرقابة", text: "يراقب الشؤون العامة ويحاسب المؤسسات.", icon: Search, color: "#963538" },
+        { title: "التشريع", text: "يراجع القوانين ويُقرّها لخدمة الحياة العامة.", icon: Scale, color: "bg-[#13213b]" },
+        { title: "التمثيل", text: "يعكس صوت الشعب ومصالحه.", icon: UsersRound, color: "bg-[#405846]" },
+        { title: "الرقابة", text: "يراقب الشؤون العامة ويحاسب المؤسسات.", icon: Search, color: "bg-[#963538]" },
       ]
     : isKu
       ? [
-          { title: "یاسادانان", text: "پێداچوونەوە و پەسەندکردنی یاساکان بۆ ژیانی گشتی.", icon: Scale, color: "#13213b" },
-          { title: "نوێنەرایەتیکردن", text: "ڕەنگدانەوەی دەنگ و بەرژەوەندییەکانی گەل.", icon: UsersRound, color: "#405846" },
-          { title: "چاودێری", text: "چاودێریکردنی کاروباری گشتی و لێپرسینەوەی دامەزراوەیی.", icon: Search, color: "#963538" },
+          { title: "یاسادانان", text: "پێداچوونەوە و پەسەندکردنی یاساکان بۆ ژیانی گشتی.", icon: Scale, color: "bg-[#13213b]" },
+          { title: "نوێنەرایەتیکردن", text: "ڕەنگدانەوەی دەنگ و بەرژەوەندییەکانی گەل.", icon: UsersRound, color: "bg-[#405846]" },
+          { title: "چاودێری", text: "چاودێریکردنی کاروباری گشتی و لێپرسینەوەی دامەزراوەیی.", icon: Search, color: "bg-[#963538]" },
         ]
-    : mainCards;
+      : mainCards;
+
   const localBottomItems = isAr
     ? [
         { title: "النقاش", text: "حوار مفتوح حول القضايا التي تشكّل مجتمعنا.", icon: MessageCircleMore },
@@ -91,132 +78,156 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
           { title: "یاسا", text: "گۆڕینی بیرۆکەکان بۆ یاسا بۆ داهاتوویەکی دادپەروەر و گەشاوە.", icon: FilePenLine },
           { title: "نوێنەرایەتیکردن", text: "لەلایەن گەلەوە هەڵبژێردراون، بۆ گەلی کوردستان کاردەکەن.", icon: UsersRound },
         ]
-    : bottomItems;
+      : bottomItems;
+
+  const [scale, setScale] = useState(1);
+  const [leftOffset, setLeftOffset] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const targetWidth = 1400;
+      if (width < targetWidth) {
+        setScale(width / targetWidth);
+        setLeftOffset(0);
+      } else {
+        setScale(1);
+        setLeftOffset((width - targetWidth) / 2);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <main ref={rootRef} className="m-0 flex min-h-[100dvh] w-full max-w-full flex-col overflow-x-hidden bg-[#f8f1e7] text-[#17233b] [padding-bottom:max(env(safe-area-inset-bottom),12px)]">
-      <section className="relative mx-auto flex w-full max-w-[min(100vw,1400px)] flex-1 flex-col overflow-x-clip rounded-[clamp(12px,1.5vw,28px)] bg-[#fbf5eb]">
-        
-        {/* Back button scales proportionately */}
-        <button
-          type="button"
-          onClick={onBack}
-          className="system-detail-back absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:border-2 sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-8 lg:top-8 lg:h-16 lg:w-16"
-          aria-label="Back to The System"
-        >
-          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-        </button>
-        <div className="absolute left-0 top-0 hidden h-full w-[clamp(64px,10vw,112px)] opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
+    <div
+      className="relative h-screen w-screen overflow-x-hidden overflow-y-auto bg-[#f8f1e7]"
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div
+        style={{
+          width: "1400px",
+          minHeight: `${100 / scale}vh`,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: `${leftOffset}px`,
+          containerType: "size",
+        }}
+      >
+        <main ref={rootRef} className="m-0 min-h-full w-full bg-[#f8f1e7] text-[#17233b]">
+          <section className="relative mx-auto flex min-h-full w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
+            <button
+              type="button"
+              onClick={onBack}
+              className="system-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              aria-label="Back to The System"
+            >
+              <ArrowLeft size={32} />
+            </button>
 
-        {/* Blended background illustration — anchored to the top on every screen so
-            there is no white gap above it, fading into the paper at the bottom. */}
-        <div className="pointer-events-none absolute right-0 top-0 h-[min(86vh,1000px)] w-full overflow-hidden">
-          <img
-            src={bg}
-            alt="Parliament building portrait placeholder"
-            className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right
-                      [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
-          />
-          {/* Left fade keeps the heading readable over the image on every screen */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
-          {/* Bottom painterly fade */}
-          <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
-        </div>
+            <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Outer content margins - tight paddings on mobile (px-3) to allow cards maximum horizontal space */}
-        <div className="px-3 xs:px-[clamp(18px,3.2vw,52px)] py-[clamp(14px,2vh,36px)] relative z-10 flex min-h-0 flex-1 flex-col gap-y-[clamp(16px,4vh,64px)]">
-          <section className="system-detail-intro max-w-[min(92vw,720px)] break-words pt-12 sm:pt-[clamp(72px,10vh,120px)]">
-            <h1 className="font-serif text-[clamp(2.4rem,9.5vw,5.75rem)] font-light leading-none tracking-tight text-[#17233b]">
-              {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
-            </h1>
-
-            <p className="mt-[clamp(16px,3vh,40px)] text-[clamp(1.25rem,2.8vw,2.125rem)] font-light leading-tight text-[#9b6d35]">
-              {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : isKu ? "دامەزراوەی یاسادانانی هەرێمی کوردستان." : "The legislative institution of the Kurdistan Region."}
-            </p>
-
-            <div className="mt-[clamp(16px,3vh,40px)] flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152]">
-              <span className="h-0.5 flex-1 bg-[#b99152]" />
-              <span className="h-2.5 w-2.5 rotate-45 border-2 border-[#b99152]" />
-              <span className="h-0.5 flex-1 bg-[#b99152]" />
+            {/* Main portrait — top-right, fading into the paper */}
+            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(86cqh,1000px)] w-full overflow-hidden">
+              <img
+                src={bg}
+                alt="Parliament building portrait"
+                className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
+              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
             </div>
 
-            <p className="mt-[clamp(16px,2.6vh,36px)] max-w-[min(92vw,460px)] text-[clamp(1.125rem,2.1vw,1.8125rem)] font-medium leading-[1.52] text-[#2d3549]">
-              {isAr
-                ? "يناقش البرلمان الشؤون العامة ويُشرّع القوانين ويمثّل الشعب."
-                : isKu
-                  ? "پەرلەمان گفتوگۆ لەسەر کاروباری گشتی دەکات، یاسا دەر دەکات و نوێنەرایەتیی گەل دەکات."
-                : "Parliament discusses public issues, passes laws, and represents the people."}
-            </p>
+            <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+              <section className="system-detail-intro max-w-[min(46cqw,720px)]">
+                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                  {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
+                </h1>
+
+                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
+                  {isAr ? "المؤسسة التشريعية لإقليم كوردستان." : isKu ? "دامەزراوەی یاسادانانی هەرێمی کوردستان." : "The legislative institution of the Kurdistan Region."}
+                </p>
+
+                <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
+                  <span className="h-0.5 flex-1 bg-[#b99152]" />
+                  <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+                  <span className="h-0.5 flex-1 bg-[#b99152]" />
+                </div>
+
+                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                  {isAr
+                    ? "يناقش البرلمان الشؤون العامة ويُشرّع القوانين ويمثّل الشعب."
+                    : isKu
+                      ? "پەرلەمان گفتوگۆ لەسەر کاروباری گشتی دەکات، یاسا دەر دەکات و نوێنەرایەتیی گەل دەکات."
+                      : "Parliament discusses public issues, passes laws, and represents the people."}
+                </p>
+              </section>
+
+              <div className="flex-[0.85]" />
+
+              <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
+                {localMainCards.map((card) => {
+                  const Icon = card.icon;
+                  return (
+                    <article
+                      key={card.title}
+                      className="system-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
+                    >
+                      <div
+                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
+                      >
+                        <Icon size={56} strokeWidth={1.5} />
+                      </div>
+
+                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
+                        {card.title}
+                      </h3>
+
+                      <div className="my-[clamp(0.75rem,1.6cqh,1.7rem)] flex w-[clamp(4.8rem,10cqw,8rem)] items-center justify-center gap-3 text-[#b99152]">
+                        <span className="h-0.5 flex-1 bg-[#d2b475]" />
+                        <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+                        <span className="h-0.5 flex-1 bg-[#d2b475]" />
+                      </div>
+
+                      <p className="text-[clamp(1.02rem,1.58cqw,1.5rem)] font-light leading-[1.5] text-[#303a50]">
+                        {card.text}
+                      </p>
+
+                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+                    </article>
+                  );
+                })}
+              </section>
+
+              <section className="system-detail-panel relative mt-[clamp(1rem,2cqh,2rem)] grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)] rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1cqw,2.5rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md">
+                {localBottomItems.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.title} className="relative flex flex-col items-center justify-center px-[clamp(0.5rem,1cqw,1rem)]">
+                      {index !== 0 && (
+                        <span className="absolute left-0 top-[clamp(0.5rem,1cqh,1rem)] bottom-[clamp(0.5rem,1cqh,1rem)] w-px bg-[#d8b875]" />
+                      )}
+                      <Icon className="text-[#bd8431]" size={44} strokeWidth={1.5} />
+                      <h4 className="mt-[clamp(0.75rem,1.4cqh,1.25rem)] font-serif text-[clamp(1.2rem,2.2cqw,2rem)] font-light text-[#17233b]">
+                        {item.title}
+                      </h4>
+                      <p className="mt-[clamp(0.4rem,0.8cqh,0.75rem)] text-[clamp(0.95rem,1.4cqw,1.25rem)] font-light leading-snug text-[#35435b]">
+                        {item.text}
+                      </p>
+                    </article>
+                  );
+                })}
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+              </section>
+            </div>
           </section>
-
-          {/* Cards section - mt-12 (xs:mt-16) pushes cards below header safely on mobile */}
-          <section className="relative z-10 mt-[200px] sm:mt-[0] xs:mt-[200px] sm:mt-0 grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-8 xl:gap-10 lg:pb-8 lg:pt-10">
-            {localMainCards.map((card, index) => {
-              const Icon = card.icon;
-              return (
-                <article
-                  key={card.title}
-                  className="system-detail-card relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[500px] lg:min-h-[720px] xl:min-h-[780px] flex-col items-center overflow-hidden rounded-[12px] border border-[#ead8b7] bg-[#fdf8f1] px-1.5 py-4 xs:px-3 xs:py-5 sm:border-2 sm:rounded-[20px] sm:px-7 sm:py-10 lg:px-[clamp(28px,3vw,56px)] lg:py-[clamp(32px,3.5vh,60px)] xl:px-[clamp(36px,3.5vw,72px)] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] touch-manipulation"
-                >
-                  <div
-                    className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-[clamp(104px,12.5vw,132px)] sm:w-[clamp(104px,12.5vw,132px)] lg:h-[clamp(120px,11vw,148px)] lg:w-[clamp(120px,11vw,148px)] place-items-center rounded-full border-2 xs:border-4 sm:border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
-                    style={{ backgroundColor: card.color }}
-                  >
-                    <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[clamp(48px,5.8vw,68px)] sm:w-[clamp(48px,5.8vw,68px)] lg:h-[clamp(54px,5vw,76px)] lg:w-[clamp(54px,5vw,76px)]" strokeWidth={1.5} />
-                  </div>
-
-                  <h3 className="mt-2.5 xs:mt-4 sm:mt-[clamp(24px,2.8vh,46px)] font-serif text-[9px] xs:text-[11px] sm:text-[28px] lg:text-[44px] xl:text-[48px] font-light leading-tight" style={{ color: card.color }}>
-                    {card.title}
-                  </h3>
-
-                  <p className="mt-1.5 xs:mt-3 sm:mt-[clamp(18px,2.2vh,32px)] text-[8px] xs:text-[9.5px] sm:text-[17px] lg:text-[28px] xl:text-[30px] font-medium leading-[1.45] text-[#35435b]">
-                    {card.text}
-                  </p>
-
-                  <Divider />
-
-                  <button
-                    type="button"
-                    className="relative z-10 mt-auto grid h-7 w-7 xs:h-9 xs:w-9 sm:h-[clamp(52px,6.5vw,64px)] sm:w-[clamp(52px,6.5vw,64px)] place-items-center rounded-full text-white shadow-md touch-manipulation"
-                    style={{ backgroundColor: card.color }}
-                  >
-                    <ArrowRight className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 sm:h-[clamp(26px,3.5vw,36px)] sm:w-[clamp(26px,3.5vw,36px)]" />
-                  </button>
-
-                  <img
-                    src={cardPatterns[index % cardPatterns.length]}
-                    alt=""
-                    aria-hidden="true"
-                    className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-[clamp(24px,4vh,72px)] w-full object-cover opacity-[0.15] [mask-image:linear-gradient(to_top,black_45%,transparent_100%)]"
-                  />
-                </article>
-              );
-            })}
-          </section>
-
-          {/* Bottom Panel - Forced 3-column horizontal grid across all viewports */}
-          <section className="system-detail-panel mt-[-50px] sm:mt-[0] relative grid grid-cols-3 gap-1 px-1.5 py-4 xs:px-3 xs:py-5 sm:px-[clamp(16px,2.4vw,36px)] sm:py-[clamp(20px,2.5vh,36px)] lg:px-[clamp(24px,3vw,48px)] lg:py-[clamp(28px,3vh,44px)] rounded-[12px] border border-[#ead8b7] bg-[#fdf8f1] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:border-2 sm:rounded-[20px] sm:shadow-[0_14px_35px_rgba(84,54,16,0.12)]">
-            {localBottomItems.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <article key={item.title} className="relative flex flex-col items-center justify-center px-1.5 py-1.5 xs:px-2 sm:px-[clamp(12px,2vw,32px)] sm:py-0">
-                  {/* Fine column separator line on mobile */}
-                  {index !== 0 && <span className="absolute left-0 top-2 bottom-2 w-px bg-[#d8b875] sm:top-8 sm:h-[min(210px,22vh)]" />}
-                  <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[clamp(44px,5.5vw,60px)] sm:w-[clamp(44px,5.5vw,60px)] text-[#bd8431]" strokeWidth={1.5} />
-                  <h4 className="mt-1.5 xs:mt-3 sm:mt-[clamp(16px,2vh,28px)] font-serif text-[9px] xs:text-[11px] sm:text-[24px] lg:text-[34px] font-light text-[#17233b]">
-                    {item.title}
-                  </h4>
-                  <p className="mt-1 xs:mt-1.5 sm:mt-3 text-[8px] xs:text-[9.5px] sm:text-[15px] lg:text-[20px] font-medium leading-snug text-[#35435b]">
-                    {item.text}
-                  </p>
-                </article>
-              );
-            })}
-
-            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
-          </section>
-        </div>
-      </section>
-    </main>
+        </main>
+      </div>
+    </div>
   );
 }
