@@ -682,7 +682,7 @@ export default function ReligiousDiversityPage({
             className="absolute inset-x-10 z-10 pb-10 lg:inset-x-16"
             style={{ top: "min(70vh, 1280px)" }}
           >
-            <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid w-full grid-cols-4 gap-2 sm:gap-6">
               {content.cards.map((card) => (
                 <div 
                   key={card.id} 
