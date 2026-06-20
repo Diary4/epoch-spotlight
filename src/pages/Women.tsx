@@ -195,9 +195,9 @@ export default function LegacyPage({
           fadeAttr="data-legacy-fade"
         />
 
-        {/* Hero — side-by-side on every screen (text left, image right), matching the large-screen design */}
+        {/* Hero — side-by-side layout on all screens with responsive column ratios */}
         <section
-          className={`relative z-10 grid grid-cols-[1fr_1.1fr] sm:grid-cols-[1fr_1.25fr] lg:grid-cols-[1fr_1.45fr] xl:grid-cols-[0.85fr_1.55fr] items-center gap-4 pt-12 sm:gap-6 sm:pt-12 lg:pt-16 ${
+          className={`relative z-10 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-center gap-2 pt-12 sm:gap-4 sm:pt-12 lg:pt-16 ${
             dir === "rtl" ? "pl-0 pr-4 sm:pr-8 lg:pr-16" : "pl-4 pr-0 sm:pl-8 lg:pl-16"
           }`}
         >
@@ -207,11 +207,11 @@ export default function LegacyPage({
               <Sparkles className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
             </div>
 
-            <h1 className="font-serif text-[clamp(24px,6vw,104px)] font-medium leading-[0.92] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
+            <h1 className="font-serif text-[clamp(20px,5.5vw,104px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
               {copy.title}
             </h1>
 
-            <h2 className="mt-2 font-serif font-light text-[clamp(12px,2.7vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
+            <h2 className="mt-2 font-serif font-light text-[clamp(11px,2.5vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
               {copy.subtitle}
             </h2>
 
@@ -226,14 +226,19 @@ export default function LegacyPage({
             </p>
           </div>
 
+          {/* Expanded width and negative margin allows the illustration to bleed under the text for a much larger visual scale */}
           <div 
             data-legacy-hero="true" 
-            className="pointer-events-none relative self-stretch flex items-center justify-end min-h-[280px] sm:min-h-[420px] md:min-h-[520px] lg:min-h-[640px] xl:min-h-[740px] mt-[-16px] sm:mt-[-32px] lg:mt-[-48px]"
+            className={`pointer-events-none relative self-stretch h-full w-[145%] sm:w-[155%] md:w-[165%] lg:w-[175%] ${
+              dir === "rtl"
+                ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
+                : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
+            }`}
           >
             <img
               src={legacyHero}
               alt="Kurdish women legacy"
-              className={`h-full w-full object-contain object-top ${dir === "rtl" ? "-scale-x-100" : ""}`}
+              className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
             />
             <div
               className="absolute inset-x-0 bottom-0 h-[clamp(28px,6vh,120px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
@@ -275,13 +280,13 @@ export default function LegacyPage({
           })}
         </section>
 
-        {/* Quote Box */}
+        {/* Quote Box with optimized responsive typography and flower positioning */}
         <section
           data-legacy-fade="true"
           className="relative z-20 mx-4 mt-6 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[22px] border border-[#dfcdb7] bg-white/65 px-4 py-8 text-center shadow-[0_10px_25px_rgba(67,35,45,0.12)] sm:mx-8 sm:mt-8 sm:min-h-[300px] sm:rounded-[28px] sm:px-8 sm:py-0 lg:mx-16 lg:min-h-[420px]"
         >
-          {/* Left flower decoration */}
-          <div className="pointer-events-none absolute left-[-96px] top-1/2 z-[1] -translate-y-1/2 sm:left-[-62px] lg:left-[-100px]">
+          {/* Left flower decoration — shifted slightly more inward on mobile viewports */}
+          <div className="pointer-events-none absolute left-[-45px] sm:left-[-62px] lg:left-[-100px] top-1/2 z-[1] -translate-y-1/2">
             <div
               aria-hidden
               className="absolute left-[15%] top-1/2 z-0 h-[clamp(100px,52vw,440px)] w-[clamp(88px,48vw,360px)] -translate-x-1/2 -translate-y-1/2 rounded-[48%] bg-[radial-gradient(ellipse_72%_58%_at_45%_48%,rgba(189,104,119,0.55)_0%,rgba(216,166,174,0.38)_42%,rgba(245,208,214,0.2)_62%,transparent_78%)] blur-[28px] sm:blur-[36px]"
@@ -297,8 +302,9 @@ export default function LegacyPage({
             />
           </div>
 
+          {/* Centered Quote text scaled down on mobile screen widths to prevent overlapping */}
           <div className="relative z-10 max-w-2xl px-1 sm:px-0">
-            <p className="font-serif text-[clamp(20px,5.3vw,36px)] leading-snug text-[#281234]">
+            <p className="font-serif text-[clamp(13px,4.5vw,36px)] leading-snug text-[#281234]">
               {copy.quoteLine1}
               <br />
               {copy.quoteLine2}
@@ -307,8 +313,8 @@ export default function LegacyPage({
             </p>
           </div>
 
-          {/* Right flower decoration */}
-          <div className="pointer-events-none absolute right-[-88px] top-1/2 z-[1] -translate-y-1/2 sm:right-[-52px] lg:right-[-80px]">
+          {/* Right flower decoration — shifted slightly more inward on mobile viewports */}
+          <div className="pointer-events-none absolute right-[-40px] sm:right-[-52px] lg:right-[-80px] top-1/2 z-[1] -translate-y-1/2">
             <div
               aria-hidden
               className="absolute right-[12%] top-1/2 z-0 h-[clamp(96px,50vw,420px)] w-[clamp(80px,44vw,340px)] translate-x-1/2 -translate-y-1/2 rounded-[52%] bg-[radial-gradient(ellipse_70%_56%_at_55%_50%,rgba(189,104,119,0.52)_0%,rgba(216,166,174,0.36)_40%,rgba(245,208,214,0.18)_60%,transparent_76%)] blur-[28px] sm:blur-[36px]"
