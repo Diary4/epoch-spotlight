@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, BookOpenCheck, Building2, UsersRound } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import bg from "@/assets/mainImages/presidency-1.webp";
@@ -49,26 +49,37 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
         ]
       : cards;
 
-  const [scale, setScale] = useState(1);
-  const [leftOffset, setLeftOffset] = useState(0);
+  // Fixed design canvas (1400px wide). We measure its natural height and scale
+  // the whole canvas to fit the viewport in BOTH dimensions, then center it
+  // horizontally and anchor it to the top, so all content stays visible without
+  // scrolling on any screen (e.g. 1080x1920) and the hero stays flush to the top.
+  const DESIGN_WIDTH = 1400;
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState({ scale: 1, x: 0 });
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const targetWidth = 1400;
-      if (width < targetWidth) {
-        setScale(width / targetWidth);
-        setLeftOffset(0);
-      } else {
-        setScale(1);
-        setLeftOffset((width - targetWidth) / 2);
-      }
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, [lang]);
 
   return (
     <div
@@ -76,19 +87,19 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
+        ref={canvasRef}
         style={{
-          width: "1400px",
-          height: `${100 / scale}vh`,
-          transform: `scale(${scale})`,
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
           transformOrigin: "top left",
           position: "absolute",
           top: 0,
-          left: `${leftOffset}px`,
-          containerType: "size",
+          left: 0,
+          containerType: "inline-size",
         }}
       >
-        <main ref={rootRef} className="m-0 h-full w-full bg-[#f8f1e7] text-[#17233b]">
-          <section className="relative mx-auto flex h-full w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
+        <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+          <section className="relative mx-auto flex w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
             <button
               type="button"
               onClick={onBack}
@@ -102,7 +113,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Main portrait — top-right, fading into the paper */}
-            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[min(86cqh,900px)] w-full overflow-hidden sm:w-[min(70cqw,880px)] sm:max-w-[min(92cqw,880px)]">
+            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden sm:w-[min(70cqw,880px)] sm:max-w-[min(92cqw,880px)]">
               <img
                 src={bg}
                 alt="Presidency building portrait"
@@ -112,7 +123,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             </div>
 
             {/* Secondary landscape layer below the header */}
-            <div className="pointer-events-none absolute left-0 right-0 top-[clamp(37rem,48cqh,57rem)] z-[1] hidden h-[clamp(10rem,16cqh,50rem)] sm:block">
+            <div className="pointer-events-none absolute left-0 right-0 top-[720px] z-[1] hidden h-[200px] sm:block">
               <img
                 src={bg2}
                 alt=""
@@ -120,7 +131,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
               />
             </div>
 
-            <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+            <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="system-detail-intro max-w-[min(46cqw,720px)]">
                 <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#943134]">
                   {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
@@ -144,9 +155,9 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
                       : "The Presidency contributes to the constitutional framework, public life, and the broader institutional balance of the Kurdistan Region."}
                 </p>
               </section>
+            </div>
 
-              <div className="flex-[0.85]" />
-
+            <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localCards.map((card) => {
                   const Icon = card.icon;

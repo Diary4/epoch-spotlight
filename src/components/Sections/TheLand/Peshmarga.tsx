@@ -1,5 +1,5 @@
-import React from "react";
-import { ArrowLeft, ArrowRight, Bird, Shield, ShieldCheck, UsersRound } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowLeft, ArrowRight, Bird, Shield, UsersRound } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import bg from "@/assets/mainImages/peshmarga.webp"
 
@@ -56,95 +56,152 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
           { title: "وەستانەوە دژی تیرۆر", text: "گێڕانی ڕۆڵێکی سەرەکی لە ڕووبەڕووبوونەوەی توندڕەویدا.", icon: Bird, color: "#13213b" },
         ]
       : cards;
+
+  // Fixed design canvas (1400px wide). We measure its natural height and scale
+  // the whole canvas to fit the viewport in BOTH dimensions, then center it
+  // horizontally and anchor it to the top, so all content stays visible without
+  // scrolling on any screen (e.g. 1080x1920) and the hero stays flush to the top.
+  const DESIGN_WIDTH = 1400;
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState({ scale: 1, x: 0 });
+
+  useEffect(() => {
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
+    };
+
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, [lang]);
+
   return (
-    <main ref={rootRef} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
-      <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)]">
-        <button
-          type="button"
-          onClick={onBack}
-          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)]"
-          aria-label="Back to The Land and Future"
-        >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-[30px] lg:w-[30px]" />
-        </button>
-        <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
+    <div
+      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div
+        ref={canvasRef}
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          containerType: "inline-size",
+        }}
+      >
+        <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+          <section className="relative mx-auto flex w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
+            <button
+              type="button"
+              onClick={onBack}
+              className="land-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              aria-label="Back to The Land and Future"
+            >
+              <ArrowLeft size={32} />
+            </button>
 
-        {/* Peshmerga background */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[min(48vh,400px)] w-full min-w-0 sm:h-[min(62vh,640px)] lg:absolute lg:inset-x-auto lg:right-0 lg:h-[min(92vh,1100px)] lg:min-w-[760px]">
-          <img
-            src={bg}
-            alt="Peshmerga landscape placeholder"
-            className="land-detail-hero absolute inset-0 h-full w-full object-cover object-[center_top] opacity-60 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:object-right sm:opacity-78"
-          />
-        </div>
+            <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        <div className="relative z-10 flex flex-1 flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-[clamp(18px,3.2vw,52px)] lg:py-[clamp(14px,2vh,36px)]">
-          {/* Hero */}
-          <section className="land-detail-intro w-full max-w-none pt-20 sm:pt-24 sm:max-w-[min(85vw,760px)] lg:max-w-[min(58vw,760px)] lg:pt-[clamp(72px,9.5vh,136px)]">
-            <h1 className="font-serif text-[clamp(44px,12vw,120px)] font-light leading-none tracking-tight text-[#17233b]">
-              {isAr ? "البيشمركة" : isKu ? "پێشمەرگە" : "Peshmerga"}
-            </h1>
-
-            <p className="mt-5 text-[clamp(22px,5vw,48px)] font-light leading-tight text-[#9b6d35] sm:mt-[clamp(20px,2.9vh,38px)]">
-              {isAr ? "رمز الشجاعة والحماية والخدمة." : isKu ? "هێمای ئازایەتی، پاراستن، و خزمەت." : "A symbol of courage, protection, and service."}
-            </p>
-
-            <div className="mt-5 w-[clamp(140px,40vw,260px)] sm:mt-[clamp(18px,2.8vh,36px)]">
-              <Divider />
+            {/* Main portrait — top-right, fading into the paper */}
+            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden">
+              <img
+                src={bg}
+                alt="Peshmerga portrait"
+                className="land-detail-hero absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
             </div>
 
-            <p className="mt-5 max-w-none text-[clamp(15px,4vw,34px)] font-light leading-[1.58] text-[#2d3549] sm:mt-[clamp(18px,2.8vh,38px)] lg:max-w-[min(48vw,680px)]">
-              {isAr
-                ? "أدّى البيشمركة دورًا بالغ الأهمية في الدفاع عن إقليم كوردستان وحماية المدنيين."
-                : isKu
-                  ? "پێشمەرگە ڕۆڵێکی گرنگیان هەبووە لە بەرگریکردن لە هەرێمی کوردستان و پاراستنی مەدەنییەکان."
-                  : "The Peshmerga have played an important role in defending the Kurdistan Region and protecting civilians."}
-            </p>
+            <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+              <section className="land-detail-intro max-w-[min(46cqw,720px)]">
+                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                  {isAr ? "البيشمركة" : isKu ? "پێشمەرگە" : "Peshmerga"}
+                </h1>
+
+                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
+                  {isAr ? "رمز الشجاعة والحماية والخدمة." : isKu ? "هێمای ئازایەتی، پاراستن، و خزمەت." : "A symbol of courage, protection, and service."}
+                </p>
+
+                <div className="mt-[clamp(1rem,2.3cqh,2rem)] w-[clamp(9rem,18cqw,14.5rem)]">
+                  <Divider />
+                </div>
+
+                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                  {isAr
+                    ? "أدّى البيشمركة دورًا بالغ الأهمية في الدفاع عن إقليم كوردستان وحماية المدنيين."
+                    : isKu
+                      ? "پێشمەرگە ڕۆڵێکی گرنگیان هەبووە لە بەرگریکردن لە هەرێمی کوردستان و پاراستنی مەدەنییەکان."
+                      : "The Peshmerga have played an important role in defending the Kurdistan Region and protecting civilians."}
+                </p>
+              </section>
+            </div>
+
+            <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+              <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
+                {localCards.map((card) => {
+                  const Icon = card.icon;
+                  return (
+                    <article
+                      key={card.title}
+                      className="land-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/82 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
+                    >
+                      <div
+                        className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496]"
+                        style={{ backgroundColor: card.color }}
+                      >
+                        <Icon className="h-[clamp(2rem,3.5cqw,3.5rem)] w-[clamp(2rem,3.5cqw,3.5rem)]" strokeWidth={1.45} />
+                      </div>
+
+                      <h3
+                        className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[1.02]"
+                        style={{ color: card.color }}
+                      >
+                        {card.title}
+                      </h3>
+
+                      <div className="my-[clamp(0.75rem,1.6cqh,1.7rem)] w-[clamp(4.8rem,10cqw,8rem)]">
+                        <Divider />
+                      </div>
+
+                      <p className="text-[clamp(1.02rem,1.58cqw,1.5rem)] font-light leading-[1.45] text-[#35435b]">
+                        {card.text}
+                      </p>
+
+                      <button
+                        type="button"
+                        className="mt-auto grid h-[clamp(3rem,5cqw,4.8rem)] w-[clamp(3rem,5cqw,4.8rem)] place-items-center rounded-full text-white shadow-md ring-4 ring-white"
+                        style={{ backgroundColor: card.color }}
+                      >
+                        <ArrowRight className="h-[clamp(1.5rem,2.5cqw,2rem)] w-[clamp(1.5rem,2.5cqw,2rem)]" />
+                      </button>
+
+                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+                    </article>
+                  );
+                })}
+              </section>
+            </div>
           </section>
-
-          {/* Cards */}
-          <section className="mt-8 grid grid-cols-1 gap-4 pb-8 pt-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 sm:pb-10 sm:pt-6 lg:mt-[clamp(120px,18vh,450px)] lg:grid-cols-3 lg:gap-[clamp(16px,1.8vw,34px)] lg:pb-[clamp(8px,1vh,22px)] lg:pt-[clamp(20px,3vh,44px)]">
-            {localCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <article
-                  key={card.title}
-                  className="land-detail-card relative flex min-h-[280px] flex-col items-center overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/82 px-5 py-6 text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md sm:min-h-[320px] sm:rounded-[24px] sm:px-6 sm:py-7 lg:min-h-[clamp(350px,31vh,520px)] lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(16px,1.8vw,34px)] lg:py-[clamp(18px,2.2vh,38px)]"
-                >
-                  <div
-                    className="grid h-16 w-16 place-items-center rounded-full border-[5px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496] sm:h-[clamp(72px,7.3vw,124px)] sm:w-[clamp(72px,7.3vw,124px)] sm:border-[6px]"
-                    style={{ backgroundColor: card.color }}
-                  >
-                    <Icon className="h-9 w-9 sm:h-12 sm:w-12 lg:h-14 lg:w-14" strokeWidth={1.45} />
-                  </div>
-
-                  <h3 className="mt-4 whitespace-pre-line font-serif text-[clamp(20px,4.5vw,38px)] font-light leading-[1.08] sm:mt-[clamp(16px,2vh,32px)] sm:leading-[1.02]" style={{ color: card.color }}>
-                    {card.title}
-                  </h3>
-
-                  <div className="my-4 w-[clamp(80px,22vw,140px)] sm:my-[clamp(12px,1.8vh,30px)]">
-                    <Divider />
-                  </div>
-
-                  <p className="text-[clamp(15px,3.8vw,28px)] font-light leading-[1.45] text-[#35435b]">
-                    {card.text}
-                  </p>
-
-                  <button
-                    type="button"
-                    className="mt-5 grid h-12 w-12 place-items-center rounded-full text-white shadow-md ring-4 ring-white sm:mt-auto sm:h-[clamp(52px,5vw,78px)] sm:w-[clamp(52px,5vw,78px)]"
-                    style={{ backgroundColor: card.color }}
-                  >
-                    <ArrowRight className="h-6 w-6 sm:h-8 sm:w-8" />
-                  </button>
-
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[clamp(48px,5vh,90px)] opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
-                </article>
-              );
-            })}
-          </section>
-        </div>
-      </section>
-    </main>
+        </main>
+      </div>
+    </div>
   );
 }
