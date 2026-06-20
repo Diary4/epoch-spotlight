@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
+import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
 import imgAysha from "@/assets/images/patterns/aysha.webp";
@@ -391,20 +392,6 @@ function runCultureListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
   return () => ctx.revert();
 }
 
-function runCultureDetailIntro(sectionRef: React.RefObject<HTMLElement | null>) {
-  if (!sectionRef.current) return () => {};
-  const ctx = gsap.context(() => {
-    gsap.set("[data-women-detail-fade='true']", { autoAlpha: 0, y: 18 });
-    gsap.timeline({ defaults: { ease: "power2.out" } }).to("[data-women-detail-fade='true']", {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.65,
-      stagger: 0.08,
-    });
-  }, sectionRef);
-  return () => ctx.revert();
-}
-
 export default function WomenCultureMemoryPage({
   lang: langProp = "en",
   onBack,
@@ -423,7 +410,7 @@ export default function WomenCultureMemoryPage({
   const selected = selectedId ? cultureWomen.find((w) => w.id === selectedId) ?? null : null;
 
   React.useLayoutEffect(() => {
-    const cleanup = selected ? runCultureDetailIntro(sectionRef) : runCultureListIntro(sectionRef);
+    const cleanup = selected ? runWomenDetailIntroAnimation(sectionRef) : runCultureListIntro(sectionRef);
     return cleanup;
   }, [selectedId]);
 

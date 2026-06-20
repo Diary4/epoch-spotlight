@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
+import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
@@ -66,20 +67,6 @@ function runResistanceListIntro(sectionRef: React.RefObject<HTMLElement | null>)
   return () => ctx.revert();
 }
 
-function runResistanceDetailIntro(sectionRef: React.RefObject<HTMLElement | null>) {
-  if (!sectionRef.current) return () => {};
-  const ctx = gsap.context(() => {
-    gsap.set("[data-women-detail-fade='true']", { autoAlpha: 0, y: 18 });
-    gsap.timeline({ defaults: { ease: "power2.out" } }).to("[data-women-detail-fade='true']", {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.65,
-      stagger: 0.08,
-    });
-  }, sectionRef);
-  return () => ctx.revert();
-}
-
 export default function WomenResistancePage({
   onBack,
   lang: langProp,
@@ -107,7 +94,7 @@ export default function WomenResistancePage({
 
   React.useLayoutEffect(() => {
     const cleanup = selected
-      ? runResistanceDetailIntro(sectionRef)
+      ? runWomenDetailIntroAnimation(sectionRef)
       : runResistanceListIntro(sectionRef);
     return cleanup;
   }, [selectedId]);

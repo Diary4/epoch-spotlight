@@ -70,23 +70,22 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
 
         <section className="relative z-10 w-full">
-          <img
-            src={portraitSrc}
-            alt={portraitAlt}
-            decoding="async"
-            fetchPriority="high"
-            className={`absolute inset-0 h-[50vh] w-full object-cover sm:h-[60vh] ${
-              dir === "rtl" ? "object-[78%_12%] sm:object-[82%_10%]" : "object-[22%_12%] sm:object-[18%_10%]"
-            }`}
-          />
-          {/* <div
-            className={`pointer-events-none absolute inset-x-0 top-0 h-[50vh] sm:h-[60vh] ${
-              dir === "rtl"
-                ? "bg-[linear-gradient(to_right,#fbf4e8_0%,rgba(251,244,232,0.72)_24%,transparent_58%)]"
-                : "bg-[linear-gradient(to_left,#fbf4e8_0%,rgba(251,244,232,0.72)_24%,transparent_58%)]"
-            }`}
-          /> */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vh] bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)] sm:h-[60vh]" />
+          <div className="absolute inset-x-0 top-0 h-[50vh] overflow-hidden sm:h-[60vh]">
+            <img
+              src={portraitSrc}
+              alt={portraitAlt}
+              decoding="async"
+              fetchPriority="high"
+              data-women-detail-portrait-fade="true"
+              className={`h-full w-full object-cover ${
+                dir === "rtl" ? "object-[78%_12%] sm:object-[82%_10%]" : "object-[22%_12%] sm:object-[18%_10%]"
+              }`}
+            />
+            <div
+              data-women-detail-portrait-fade="true"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]"
+            />
+          </div>
 
           <div
             className="relative z-20 min-h-[50vh] px-4 pb-6 pt-20 sm:min-h-[60vh] sm:px-8 sm:pb-8 sm:pt-28 lg:px-14"
