@@ -247,8 +247,9 @@ export default function LegacyPage({
           </div>
         </section>
 
-        {/* Cards */}
-        <section className="relative z-20 mt-4 grid grid-cols-4 gap-2 px-3 pb-1 sm:mt-8 sm:gap-4 sm:px-8 lg:mt-10 lg:gap-5 lg:px-16">
+        {/* Cards — centered row aligned with quote/journey sections */}
+        <section className="relative z-20 mt-4 sm:mt-8 lg:mt-10 mx-4 sm:mx-8 lg:mx-16">
+          <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
           {legacyCards.map((card) => {
             return (
               <button
@@ -256,7 +257,7 @@ export default function LegacyPage({
                 key={card.id}
                 type="button"
                 onClick={() => openSection(card.id)}
-                className="flex h-[clamp(112px,30vw,150px)] shrink-0 flex-col rounded-[16px] border border-[#dfcdb7] bg-white/55 px-1.5 pb-2 pt-2.5 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[clamp(170px,24vw,260px)] sm:rounded-[34px] sm:px-3 sm:pb-3 sm:pt-4 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7"
+                className="flex min-w-0 h-[clamp(112px,30vw,150px)] flex-col rounded-[16px] border border-[#dfcdb7] bg-white/55 px-1.5 pb-2 pt-2.5 shadow-[inset_0_0_24px_rgba(159,116,81,0.08)] backdrop-blur-sm sm:h-[clamp(170px,24vw,260px)] sm:rounded-[34px] sm:px-3 sm:pb-3 sm:pt-4 lg:h-[310px] lg:rounded-[56px] lg:px-5 lg:pb-5 lg:pt-7"
               >
                 <div className="flex-1 flex items-center justify-center overflow-hidden">
                   <img
@@ -278,6 +279,7 @@ export default function LegacyPage({
               </button>
             );
           })}
+          </div>
         </section>
 
         {/* Quote Box with optimized responsive typography and flower positioning */}

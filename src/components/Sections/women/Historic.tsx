@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 import gsap from "gsap";
 
-import mainHero from "@/assets/images/women/le-1.webp";
+import mainHero from "@/assets/images/women/historic.png";
 
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
