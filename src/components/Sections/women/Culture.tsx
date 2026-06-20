@@ -6,7 +6,7 @@ import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
-import imgAysha from "@/assets/images/patterns/aysha.webp";
+import imgAysha from "@/assets/images/womens/aysha.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgHana from "@/assets/images/women/w-1.webp";
 import imgMaryam from "@/assets/images/women/w-2.webp";
