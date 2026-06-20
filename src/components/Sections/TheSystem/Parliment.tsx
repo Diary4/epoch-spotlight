@@ -150,26 +150,26 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
           </section>
 
           {/* Cards section - mt-12 (xs:mt-16) pushes cards below header safely on mobile */}
-          <section className="relative z-10 mt-[200px] sm:mt-[0] xs:mt-[200px] sm:mt-0 grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-6 lg:pb-8 lg:pt-10">
+          <section className="relative z-10 mt-[200px] sm:mt-[0] xs:mt-[200px] sm:mt-0 grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-8 xl:gap-10 lg:pb-8 lg:pt-10">
             {localMainCards.map((card, index) => {
               const Icon = card.icon;
               return (
                 <article
                   key={card.title}
-                  className="system-detail-card relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[420px] lg:min-h-[560px] flex-col items-center overflow-hidden rounded-[12px] border border-[#ead8b7] bg-white/78 px-1.5 py-4 xs:px-3 xs:py-5 sm:border-2 sm:rounded-[20px] sm:px-6 sm:py-8 lg:px-[clamp(16px,2.4vw,36px)] lg:py-[clamp(20px,2.5vh,40px)] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md touch-manipulation"
+                  className="system-detail-card relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[500px] lg:min-h-[720px] xl:min-h-[780px] flex-col items-center overflow-hidden rounded-[12px] border border-[#ead8b7] bg-[#fdf8f1] px-1.5 py-4 xs:px-3 xs:py-5 sm:border-2 sm:rounded-[20px] sm:px-7 sm:py-10 lg:px-[clamp(28px,3vw,56px)] lg:py-[clamp(32px,3.5vh,60px)] xl:px-[clamp(36px,3.5vw,72px)] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] touch-manipulation"
                 >
                   <div
-                    className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-[clamp(88px,11vw,112px)] sm:w-[clamp(88px,11vw,112px)] place-items-center rounded-full border-2 xs:border-4 sm:border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
+                    className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-[clamp(104px,12.5vw,132px)] sm:w-[clamp(104px,12.5vw,132px)] lg:h-[clamp(120px,11vw,148px)] lg:w-[clamp(120px,11vw,148px)] place-items-center rounded-full border-2 xs:border-4 sm:border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
                     style={{ backgroundColor: card.color }}
                   >
-                    <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[clamp(40px,5vw,58px)] sm:w-[clamp(40px,5vw,58px)]" strokeWidth={1.5} />
+                    <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[clamp(48px,5.8vw,68px)] sm:w-[clamp(48px,5.8vw,68px)] lg:h-[clamp(54px,5vw,76px)] lg:w-[clamp(54px,5vw,76px)]" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mt-2.5 xs:mt-4 sm:mt-[clamp(20px,2.5vh,40px)] font-serif text-[9px] xs:text-[11px] sm:text-[24px] lg:text-[34px] font-light leading-tight" style={{ color: card.color }}>
+                  <h3 className="mt-2.5 xs:mt-4 sm:mt-[clamp(24px,2.8vh,46px)] font-serif text-[9px] xs:text-[11px] sm:text-[28px] lg:text-[44px] xl:text-[48px] font-light leading-tight" style={{ color: card.color }}>
                     {card.title}
                   </h3>
 
-                  <p className="mt-1.5 xs:mt-3 sm:mt-[clamp(16px,2vh,28px)] text-[8px] xs:text-[9.5px] sm:text-[15px] lg:text-[24px] font-medium leading-[1.45] text-[#35435b]">
+                  <p className="mt-1.5 xs:mt-3 sm:mt-[clamp(18px,2.2vh,32px)] text-[8px] xs:text-[9.5px] sm:text-[17px] lg:text-[28px] xl:text-[30px] font-medium leading-[1.45] text-[#35435b]">
                     {card.text}
                   </p>
 
@@ -195,7 +195,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
           </section>
 
           {/* Bottom Panel - Forced 3-column horizontal grid across all viewports */}
-          <section className="system-detail-panel mt-[-50px] sm:mt-[0] relative grid grid-cols-3 gap-1 px-1.5 py-4 xs:px-3 xs:py-5 sm:px-[clamp(16px,2.4vw,36px)] sm:py-[clamp(20px,2.5vh,36px)] rounded-[12px] border border-[#ead8b7] bg-white/72 text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:border-2 sm:rounded-[20px] sm:shadow-[0_14px_35px_rgba(84,54,16,0.12)] backdrop-blur-md">
+          <section className="system-detail-panel mt-[-50px] sm:mt-[0] relative grid grid-cols-3 gap-1 px-1.5 py-4 xs:px-3 xs:py-5 sm:px-[clamp(16px,2.4vw,36px)] sm:py-[clamp(20px,2.5vh,36px)] lg:px-[clamp(24px,3vw,48px)] lg:py-[clamp(28px,3vh,44px)] rounded-[12px] border border-[#ead8b7] bg-[#fdf8f1] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:border-2 sm:rounded-[20px] sm:shadow-[0_14px_35px_rgba(84,54,16,0.12)]">
             {localBottomItems.map((item, index) => {
               const Icon = item.icon;
               return (
