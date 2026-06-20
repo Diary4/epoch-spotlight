@@ -101,7 +101,7 @@ export default function WomenHistoricPage({
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto sm:w-[min(100vw,1400px)] ${
+        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
           selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-0 bg-[#fcf7ef]"
         }`}
       >

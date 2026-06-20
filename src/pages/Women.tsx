@@ -185,7 +185,7 @@ export default function LegacyPage({
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto bg-[#fcf7ef] pb-12 sm:pb-0"
+        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-[#fcf7ef] pb-12 sm:pb-0"
       >
         <WomenLanguageButton
           lang={lang}
