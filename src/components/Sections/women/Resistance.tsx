@@ -246,7 +246,7 @@ export default function WomenResistancePage({
               className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
               style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
             >
-              {copy.quotes.map((text) => (
+              {copy.quotes.map(({ text, author }) => (
                 <article
                   data-resist-card="true"
                   key={text}
@@ -255,6 +255,10 @@ export default function WomenResistancePage({
                   <Quote className="mb-1 h-4 w-4 shrink-0 fill-[#d98994]/70 text-[#d98994]/70 sm:mb-3 sm:h-9 sm:w-9" />
 
                   <p className="font-serif text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(17px,2.8vw,22px)]">{text}</p>
+
+                  <p className="mt-2 font-serif text-[clamp(8px,2vw,16px)] italic text-[#a75a69] sm:mt-3 sm:text-[clamp(14px,1.8vw,16px)]">
+                    — {author}
+                  </p>
 
                   <div
                     data-floating="true"

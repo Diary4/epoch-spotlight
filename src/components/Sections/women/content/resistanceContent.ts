@@ -24,7 +24,7 @@ export type ResistancePageCopy = {
   heroIntro: string;
   legacyTitle: string;
   legacySubtitle: string;
-  quotes: string[];
+  quotes: { text: string; author: string }[];
 };
 
 const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
@@ -40,9 +40,9 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacyTitle: "Legacy of courage",
     legacySubtitle: "Defiance, sacrifice, and hope.",
     quotes: [
-      "Kill me, and thousands of Kurds will rise.",
-      "Her voice carried a message of courage.",
-      "She fought for a homeland greater than herself.",
+      { text: "Kill me, and thousands of Kurds will rise.", author: "Layla Qasim" },
+      { text: "Her voice carried a message of courage.", author: "Shifa Gardi" },
+      { text: "She fought for a homeland greater than herself.", author: "Margaret George Shilo" },
     ],
   },
   ku: {
@@ -57,9 +57,9 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacyTitle: "میراتی ئازایەتی",
     legacySubtitle: "سەرهەڵدان، قوربانی، و هیوا.",
     quotes: [
-      "بمکوژە، هەزاران کورد هەڵدەستن.",
-      "دەنگی پەیامی ئازایەتی هەڵگرت.",
-      "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.",
+      { text: "بمکوژە، هەزاران کورد هەڵدەستن.", author: "لەیلا قاسم" },
+      { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شفا گەردی" },
+      { text: "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.", author: "مارگەریت جۆرج شیلۆ" },
     ],
   },
   ar: {
@@ -74,9 +74,9 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacyTitle: "إرث الشجاعة",
     legacySubtitle: "التحدي والتضحية والأمل.",
     quotes: [
-      "اقتلوني، وستنهض آلاف الكرد.",
-      "حمل صوتها رسالة شجاعة.",
-      "قاتلت من أجل وطن أعظم من نفسها.",
+      { text: "اقتلوني، وستنهض آلاف الكرد.", author: "ليلا قاسم" },
+      { text: "حمل صوتها رسالة شجاعة.", author: "شفا گردی" },
+      { text: "قاتلت من أجل وطن أعظم من نفسها.", author: "مارغريت جورج شيلو" },
     ],
   },
 };
