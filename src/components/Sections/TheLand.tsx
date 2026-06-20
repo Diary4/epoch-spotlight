@@ -105,7 +105,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
   const iconColor = "#f8e5b8";
 
   return (
-    <article data-land-card="true" className="relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[400px] lg:min-h-[700px] kiosk-portrait:min-h-[63vw] flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 bg-white/80 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:p-7 lg:p-9 kiosk-portrait:p-[2.4vw] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
+    <article data-land-card="true" className="relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[300px] lg:min-h-[440px] kiosk-portrait:min-h-[50vw] flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 bg-white/80 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:p-6 lg:p-7 kiosk-portrait:p-[2.4vw] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
@@ -133,21 +133,21 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
 
       {/* Content layer positioned relative to sit over top-and-bottom background overlays */}
       <div className="relative z-10 flex flex-col items-center h-full">
-        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-22 sm:w-22 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-28 lg:w-28 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw]">
+        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw]">
          <LandCardIcon
               cardId={card.id}
               Icon={Icon}
-              className="h-7 w-7 xs:h-9 xs:w-9 sm:h-[58px] sm:w-[58px] lg:h-[72px] lg:w-[72px] kiosk-portrait:h-[6.8vw] kiosk-portrait:w-[6.8vw]"
+              className="h-7 w-7 xs:h-9 xs:w-9 sm:h-[42px] sm:w-[42px] lg:h-[52px] lg:w-[52px] kiosk-portrait:h-[6.8vw] kiosk-portrait:w-[6.8vw]"
             />
         </div>
 
-        <h3 className="mt-2.5 xs:mt-4 sm:mt-6 kiosk-portrait:mt-[1.6vw] font-serif text-[9px] xs:text-[11px] sm:text-[clamp(26px,6vw,34px)] font-light leading-tight text-[#17233b] lg:text-[42px] kiosk-portrait:text-[4.1vw]">
+        <h3 className="mt-2.5 xs:mt-4 sm:mt-4 kiosk-portrait:mt-[1.6vw] font-serif text-[9px] xs:text-[11px] sm:text-[clamp(22px,5vw,28px)] font-light leading-tight text-[#17233b] lg:text-[32px] kiosk-portrait:text-[4.1vw]">
           {localizeDigits(card.title, lang)}
         </h3>
 
-        <Divider className="mx-auto my-1.5 xs:my-3 sm:my-5 kiosk-portrait:my-[1.6vw] w-12 xs:w-16 sm:w-36 kiosk-portrait:w-[14.8vw]" />
+        <Divider className="mx-auto my-1.5 xs:my-3 sm:my-3 kiosk-portrait:my-[1.6vw] w-12 xs:w-16 sm:w-28 kiosk-portrait:w-[14.8vw]" />
 
-        <p className="mx-auto mb-2 sm:mb-6 max-w-[255px] text-[8px] xs:text-[9.5px] sm:text-[clamp(15px,3.6vw,18px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[320px] lg:text-[23px] kiosk-portrait:max-w-[32vw] kiosk-portrait:text-[2.2vw]">
+        <p className="mx-auto mb-2 sm:mb-4 max-w-[255px] text-[8px] xs:text-[9.5px] sm:text-[clamp(14px,3.4vw,16px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[320px] lg:text-[18px] kiosk-portrait:max-w-[32vw] kiosk-portrait:text-[2.2vw]">
           {localizeDigits(card.text, lang)}
         </p>
       </div>
@@ -158,7 +158,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
 function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
   const Icon = card.icon;
   return (
-    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[270px] lg:min-h-[320px] kiosk-portrait:min-h-[31.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-8 sm:py-9 lg:px-10 lg:py-10 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
+    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[180px] lg:min-h-[210px] kiosk-portrait:min-h-[31.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-7 sm:py-6 lg:px-8 lg:py-7 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
@@ -175,17 +175,17 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
       <div className="absolute inset-0 bg-gradient-to-r from-[#fff8ed] via-[#fff8ed]/82 to-[#fff8ed]/30" />
 
       <div className="relative z-10 flex h-full flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left lg:gap-10">
-        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-24 sm:w-24 lg:h-28 lg:w-28 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[6px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
+        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[5px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
           <LandCardIcon
             cardId={card.id}
             Icon={Icon}
-            className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[52px] sm:w-[52px] lg:h-[60px] lg:w-[60px] kiosk-portrait:h-[5.5vw] kiosk-portrait:w-[5.5vw]"
+            className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[38px] sm:w-[38px] lg:h-[46px] lg:w-[46px] kiosk-portrait:h-[5.5vw] kiosk-portrait:w-[5.5vw]"
             strokeWidth={1.5}
           />
         </div>
         <div className="min-w-0">
-          <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(26px,6vw,36px)] font-light text-[#17233b] lg:text-[44px] kiosk-portrait:text-[4.25vw]">{localizeDigits(card.title, lang)}</h3>
-          <p className="mt-1 xs:mt-2 sm:mt-4 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(15px,3.8vw,20px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[26px] kiosk-portrait:max-w-[46vw] kiosk-portrait:text-[2.4vw]">
+          <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(22px,5vw,30px)] font-light text-[#17233b] lg:text-[34px] kiosk-portrait:text-[4.25vw]">{localizeDigits(card.title, lang)}</h3>
+          <p className="mt-1 xs:mt-2 sm:mt-3 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(14px,3.4vw,17px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[20px] kiosk-portrait:max-w-[46vw] kiosk-portrait:text-[2.4vw]">
             {localizeDigits(card.text, lang)}
           </p>
         </div>
@@ -348,7 +348,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mx-0 mt-4 sm:mt-6 max-w-[330px] sm:max-w-[400px] lg:max-w-[460px] kiosk-portrait:max-w-[44%] text-[clamp(12px,3.6vw,15px)] sm:text-[clamp(13px,1.45vw,18px)] kiosk-portrait:text-[2.2vw] leading-[1.6] text-[#2d3549]">
+            <p data-land-hero="true" className="mx-0 mt-4 sm:mt-6 max-w-[330px] sm:max-w-[400px] lg:max-w-[860px] kiosk-portrait:max-w-[70%] text-[clamp(12px,3.6vw,15px)] sm:text-[clamp(13px,1.45vw,18px)] kiosk-portrait:text-[2.2vw] leading-[1.6] text-[#2d3549]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu

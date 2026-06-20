@@ -65,10 +65,7 @@ export default function WomenDetailPanel({
       className="flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3]"
       dir={dir}
     >
-      <div
-        data-women-detail-fade="true"
-        className="relative min-h-screen w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10 sm:pb-0"
-      >
+      <div className="relative min-h-screen w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10 sm:pb-0">
         <div className="pointer-events-none absolute left-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
         <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
 
@@ -76,7 +73,8 @@ export default function WomenDetailPanel({
           <img
             src={portraitSrc}
             alt={portraitAlt}
-            data-women-detail-fade="true"
+            decoding="async"
+            fetchPriority="high"
             className={`absolute inset-0 h-[50vh] w-full object-cover sm:h-[60vh] ${
               dir === "rtl" ? "object-[78%_12%] sm:object-[82%_10%]" : "object-[22%_12%] sm:object-[18%_10%]"
             }`}
