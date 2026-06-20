@@ -22,6 +22,9 @@ export type HistoricPageCopy = {
   heroTitle2: string;
   heroSubtitle: string;
   heroIntro: string;
+  legacyTitle: string;
+  legacySubtitle: string;
+  quotes: { text: string; author: string }[];
 };
 
 export type HistoricDetailContent = {
@@ -52,6 +55,13 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     heroSubtitle: "Poets, rulers, teachers,\nand tribal leaders.",
     heroIntro:
       "Figures from Kurdish history who led, wrote, taught, and defended their communities—each remembered for a distinct legacy.",
+    legacyTitle: "Legacy of wisdom",
+    legacySubtitle: "Poetry, justice, and learning.",
+    quotes: [
+      { text: "She wrote herself into history.", author: "Mastura Ardalan" },
+      { text: "True leadership can uplift a city and forge a nation.", author: "Adila Khanum" },
+      { text: "Every girl who studies opens a new door toward tomorrow.", author: "Hafsa Khanum" },
+    ],
   },
   ku: {
     backToWomen: "گەڕانەوە بۆ ژنان",
@@ -61,6 +71,13 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     heroSubtitle: "شاعیر، حاکم، مامۆستا،\nو سەرۆکی هۆز.",
     heroIntro:
       "کەسایەتییەکانی مێژووی کورد کە سەرکردایەتیان کرد، نووسیان، فێریان کرد، و کۆمەڵگاکانیان بەرگریان کرد—هەر یەکێک بە میراتێکی جیاواز لە یادەوەری مایەوە.",
+    legacyTitle: "میراتی دانایی",
+    legacySubtitle: "شیعر، دادپەروەری، و فێربوون.",
+    quotes: [
+      { text: "خۆی لە مێژوو نووسی.", author: "مەستورەی ئەردەڵان" },
+      { text: "سەرکردایەتی ڕاستەقینە دەتوانێت شار بەرز بکاتەوە و نەتەوەیەک دروست بکات.", author: "ئادیلە خانم" },
+      { text: "هەر کچێک کە فێر دەبێت دەرگایەکی نوێ بۆ سبەیین دەکاتەوە.", author: "حەفسە خانم" },
+    ],
   },
   ar: {
     backToWomen: "العودة إلى النساء",
@@ -70,6 +87,13 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     heroSubtitle: "شاعرات، حاكمات، معلمات،\nوقائدات قبليات.",
     heroIntro:
       "شخصيات من التاريخ الكردي قادت وكتبت وعلّمت ودافعت عن مجتمعاتها—كل منهن تُذكر بإرث مميز.",
+    legacyTitle: "إرث الحكمة",
+    legacySubtitle: "الشعر والعدل والتعلّم.",
+    quotes: [
+      { text: "كتبت نفسها في التاريخ.", author: "مستورة أردلان" },
+      { text: "القيادة الحقيقية ترفع المدينة وتصنع الأمة.", author: "عادلة خانم" },
+      { text: "كل فتاة تدرس تفتح باباً جديداً نحو الغد.", author: "حفصة خانم" },
+    ],
   },
 };
 

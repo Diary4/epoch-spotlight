@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, Crown, Sparkles } from "lucide-react";
+import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 import gsap from "gsap";
 
 import mainHero from "@/assets/images/women/le-1.webp";
@@ -35,68 +35,24 @@ function runListIntroAnimation(sectionRef: React.RefObject<HTMLElement | null>) 
     });
 
     const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-    tl.to("[data-hist-hero='true']", { autoAlpha: 1, scale: 1, duration: 1.25 })
-      .to("[data-hist-fade='true']", { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.12 }, "-=0.7")
+    tl.to("[data-hist-hero='true']", { autoAlpha: 1, scale: 1, duration: 1.2 })
+      .to("[data-hist-fade='true']", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.12 }, "-=0.7")
       .to(
         "[data-hist-card='true']",
-        { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.85, stagger: 0.12 },
-        "-=0.4",
+        { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.85, stagger: 0.1 },
+        "-=0.35",
       );
+
+    gsap.to("[data-floating='true']", {
+      y: -10,
+      duration: 2.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.18,
+    });
   }, sectionRef);
   return () => ctx.revert();
-}
-
-function HistoricListCard({
-  woman,
-  imageSrc,
-  dir,
-  onSelect,
-}: {
-  woman: { id: string; name: string; role: string; teaser: string; icon: "crown" | "flower" };
-  imageSrc: string;
-  dir: "ltr" | "rtl";
-  onSelect: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      data-hist-card="true"
-      onClick={onSelect}
-      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5 lg:p-6 ${
-        dir === "rtl" ? "text-right" : "text-left"
-      }`}
-    >
-      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
-        <img
-          src={imageSrc}
-          alt={woman.name}
-          className="relative z-10 h-full w-full object-cover object-[center_20%]"
-        />
-      </div>
-
-      <h3 className="mt-1.5 font-serif text-[clamp(11px,3vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]">
-        {woman.name}
-      </h3>
-
-      <p className="mt-0.5 font-serif text-[clamp(9px,2.2vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]">
-        ({woman.role})
-      </p>
-
-      <div className="my-1.5 flex w-12 items-center gap-1 text-[#b4864d] sm:my-3 sm:w-24 sm:gap-2">
-        <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
-        <span className="h-px flex-1 bg-[#d4b98f]" />
-      </div>
-
-      <p
-        className={`hidden text-[clamp(13px,2.2vw,16px)] leading-relaxed text-[#4a3f50] sm:block ${
-          dir === "rtl" ? "text-right" : "text-left"
-        }`}
-      >
-        {woman.teaser}
-      </p>
-    </button>
-  );
 }
 
 
@@ -139,14 +95,14 @@ export default function WomenHistoricPage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-full max-w-full flex-col justify-start p-0 overflow-x-hidden ${
+      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
         selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-full max-w-full flex-col overflow-y-auto overflow-x-hidden sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
+        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto sm:w-[min(100vw,1400px)] ${
+          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-0 bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
@@ -158,12 +114,12 @@ export default function WomenHistoricPage({
         <button
           type="button"
           onClick={handleBack}
-          className={`absolute top-4 z-[60] grid h-12 w-12 place-items-center rounded-full border-2 border-[#d8bd83] bg-[#fbf4e8]/95 text-[#2d1436] shadow-md transition hover:bg-white sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16 ${
+          className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
             dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
           }`}
           aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
-          <ArrowLeft className={`h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 ${dir === "rtl" ? "rotate-180" : ""}`} />
+          <ArrowLeft className={`h-6 w-6 sm:h-7 sm:w-7 ${dir === "rtl" ? "rotate-180" : ""}`} />
         </button>
 
         {detail && selectedId ? (
@@ -181,93 +137,153 @@ export default function WomenHistoricPage({
           />
         ) : (
           <>
-            {/* Mobile layout Hero top element */}
-            <div
-              data-hist-hero="true"
-              className="pointer-events-none w-full h-[35vh] min-h-[240px] relative overflow-hidden sm:hidden"
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
+
+            {/* Hero — side-by-side on every screen (text left, image right) */}
+            <section
+              className={`relative z-10 grid grid-cols-[1.05fr_0.95fr] lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.9fr_1.3fr] items-center gap-2 pt-20 sm:gap-4 sm:pt-24 ${
+                dir === "rtl" ? "pl-0 pr-5 sm:pr-8 lg:pr-10" : "pl-5 pr-0 sm:pl-8 lg:pl-10"
+              }`}
             >
-              <img
-                src={mainHero}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover object-[75%_center]"
-              />
-              <div
-                className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fcf7ef] to-transparent"
-                aria-hidden
-              />
-            </div>
-
-            {/* Desktop layout Hero absolute backdrop */}
-            <div
-              data-hist-hero="true"
-              className="pointer-events-none absolute right-0 top-0 h-[min(55vh,520px)] w-[80vw] sm:h-[min(72vh,900px)] lg:h-[min(108vh,1160px)] lg:w-[88vw] xl:w-[92vw] hidden sm:block"
-            >
-              <img
-                src={mainHero}
-                alt=""
-                className="absolute inset-0 h-full w-full object-[75%_center] sm:object-right"
-              />
-              <div
-                className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/55 to-transparent"
-                aria-hidden
-              />
-            </div>
-
-            <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14 pt-20 sm:pt-6">
-              <div data-hist-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
-                <div className="mb-4 flex justify-start sm:pl-24">
-                  <div className="grid h-16 w-16 place-items-center rounded-full bg-[#bd6877] text-[#fff8ef] shadow-[0_8px_20px_rgba(90,42,62,0.18)] sm:h-20 sm:w-20">
-                    <Crown className="h-8 w-8 sm:h-10 sm:w-10" />
-                  </div>
-                </div>
-
-                <h1 className="font-serif text-[clamp(32px,8vw,112px)] font-medium leading-[0.95] tracking-tight text-[#48263f] text-left">
+              <div data-hist-fade="true" className="relative z-20 max-w-[700px]">
+                <h1 className="font-serif text-[clamp(26px,6.5vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-6 flex w-full max-w-[260px] items-center gap-3 text-[#b4864d] sm:my-7">
+                <div className="my-3 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] sm:my-6 lg:my-8">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <span className="h-3 w-3 rotate-45 bg-[#b4864d]" />
+                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="font-serif text-[clamp(20px,6vw,38px)] font-light italic leading-tight text-[#b65f71] whitespace-pre-line text-left">
+                <h2 className="whitespace-pre-line font-serif text-[clamp(14px,2.8vw,34px)] text-[#a75a69]">
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-7 max-w-[410px] text-[clamp(16px,4vw,19px)] leading-[1.7] text-[#353445] text-left">
+                <p className="mt-2 max-w-[400px] text-[clamp(11px,2.2vw,24px)] leading-[1.5] text-[#56505a] sm:mt-4 lg:mt-5 lg:leading-[1.45]">
                   {copy.heroIntro}
                 </p>
               </div>
+
+              {/* Hero image — fully visible (contain), scales up on bigger screens */}
+              <div data-hist-hero="true" className="pointer-events-none relative self-stretch">
+                <img
+                  src={mainHero}
+                  alt="Historic Women"
+                  className={`h-full w-full object-contain object-top ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-[clamp(24px,5vh,110px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                  aria-hidden
+                />
+              </div>
             </section>
 
-            <section className="relative z-20 mt-8 px-3 pb-6 xs:px-4 sm:mt-14 sm:px-5 lg:mt-28 lg:px-10">
-              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
-                <div className="grid w-full grid-cols-3 gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
-                  {historicWomen.slice(0, 3).map((woman) => (
-                    <HistoricListCard
-                      key={woman.id}
-                      woman={woman}
-                      imageSrc={historicDetailPortraits[woman.id]}
-                      dir={dir}
-                      onSelect={() => setSelectedId(woman.id)}
+            {/* Cards grid */}
+            <section
+              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10"
+              style={{ display: "grid", gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}
+            >
+              {historicWomen.map((woman, index) => (
+                <button
+                  type="button"
+                  data-hist-card="true"
+                  key={woman.id}
+                  onClick={() => setSelectedId(woman.id)}
+                  style={{ gridColumn: index < 3 ? "span 2" : "span 3" }}
+                  className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
+                    dir === "rtl" ? "text-right" : "text-left"
+                  }`}
+                >
+                  <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
+                    <img
+                      src={historicDetailPortraits[woman.id]}
+                      alt={woman.name}
+                      className="relative z-10 h-full w-full object-cover object-[center_20%]"
                     />
-                  ))}
-                </div>
+                  </div>
 
-                <div className="grid w-full grid-cols-2 gap-2 xs:gap-3 sm:gap-5 lg:gap-6">
-                  {historicWomen.slice(3).map((woman) => (
-                    <HistoricListCard
-                      key={woman.id}
-                      woman={woman}
-                      imageSrc={historicDetailPortraits[woman.id]}
-                      dir={dir}
-                      onSelect={() => setSelectedId(woman.id)}
-                    />
-                  ))}
-                </div>
+                  <h3 className="mt-1.5 font-serif text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]">
+                    {woman.name}
+                  </h3>
+
+                  <p className="mt-0.5 font-serif text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]">
+                    ({woman.role})
+                  </p>
+
+                  <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                    <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                  </div>
+
+                  <p
+                    className={`hidden text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px] ${
+                      dir === "rtl" ? "text-right" : "text-left"
+                    }`}
+                  >
+                    {woman.teaser}
+                  </p>
+                </button>
+              ))}
+            </section>
+
+            {/* Quotes grid */}
+            <section
+              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+            >
+              {copy.quotes.map(({ text, author }) => (
+                <article
+                  data-hist-card="true"
+                  key={text}
+                  className="relative flex min-h-[80px] min-w-0 flex-col justify-center overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 px-2 py-3 shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:min-h-[160px] sm:rounded-[24px] sm:px-8 sm:py-6"
+                >
+                  <Quote className="mb-1 h-4 w-4 shrink-0 fill-[#d98994]/70 text-[#d98994]/70 sm:mb-3 sm:h-9 sm:w-9" />
+
+                  <p className="font-serif text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(17px,2.8vw,22px)]">{text}</p>
+
+                  <p className="mt-2 font-serif text-[clamp(8px,2vw,16px)] italic text-[#a75a69] sm:mt-3 sm:text-[clamp(14px,1.8vw,16px)]">
+                    — {author}
+                  </p>
+
+                  <div
+                    data-floating="true"
+                    className="pointer-events-none absolute bottom-3 right-6 h-20 w-16 rounded-full bg-[#d99bad]/20 blur-xl"
+                  />
+
+                  <div className="mt-4 flex w-full max-w-[120px] items-center gap-2 text-[#b4864d]">
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                    <Sparkles className="h-4 w-4" />
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                  </div>
+                </article>
+              ))}
+            </section>
+
+            {/* Legacy banner */}
+            <section
+              data-hist-fade="true"
+              className="relative z-20 mx-5 mt-6 mb-10 flex min-h-[120px] flex-col items-start gap-4 overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-6 py-6 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:min-h-[145px] sm:flex-row sm:items-center sm:px-12 lg:mx-10"
+            >
+              <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#e4c78f] bg-[#fff8ed] sm:h-28 sm:w-28">
+                <div className="text-[40px] text-[#b4864d] sm:text-[58px]">♧</div>
+              </div>
+
+              <div className="min-w-0 sm:ml-12 lg:ml-20">
+                <h2 className="font-serif text-[clamp(28px,5vw,44px)] leading-none text-[#2c1736]">
+                  {copy.legacyTitle}
+                </h2>
+
+                <p className="mt-3 font-serif text-[clamp(16px,3vw,28px)] text-[#a75a69] sm:mt-4">
+                  {copy.legacySubtitle}
+                </p>
+              </div>
+
+              <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-[min(100%,360px)] opacity-45 sm:h-32">
+                <div className="h-full w-full bg-[radial-gradient(circle_at_60%_30%,rgba(151,97,126,0.28),transparent_22%),linear-gradient(135deg,transparent_35%,rgba(143,76,104,0.25)_36%_50%,transparent_51%)]" />
               </div>
             </section>
           </>
