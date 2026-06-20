@@ -479,11 +479,11 @@ export default function WomenCultureMemoryPage({
 
             <section
               data-culture-hero="true"
-              className="relative z-10 min-h-0 overflow-hidden pb-[clamp(200px,42vh,420px)] text-center sm:min-h-[720px] sm:pb-[clamp(260px,38vh,480px)] lg:min-h-[960px] lg:pb-0"
+              className="relative z-10 shrink-0 overflow-hidden text-center min-h-[220px] sm:min-h-[320px] lg:mn-h-[320px]"
             >
               <div
                 data-culture-fade="true"
-                className="relative z-20 mx-auto max-w-[900px] px-3 pt-16 sm:px-4 sm:pt-20 lg:pt-14"
+                className="relative z-20 mx-auto max-w-[900px] px-3 pb-8 pt-16 sm:px-4 sm:pb-10 sm:pt-20 lg:pt-14"
               >
 
                 <div className="mx-auto mb-5 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d] sm:mb-6">
@@ -516,7 +516,7 @@ export default function WomenCultureMemoryPage({
               <img
                 src={cultureHero}
                 alt=""
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto h-[clamp(220px,48vh,820px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
+                className="pointer-events-none z-10 mx-auto block h-[clamp(220px,24vh,220px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
               />
             </section>
 
