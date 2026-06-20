@@ -34,6 +34,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
   const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const dir = lang === "en" ? "ltr" : "rtl";
 
   const localCards = isAr
     ? [
@@ -83,6 +84,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
   return (
     <div
+      dir={dir}
       className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
       style={{ width: "100vw", height: "100vh" }}
     >
@@ -103,23 +105,25 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             <button
               type="button"
               onClick={onBack}
-              className="system-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              className="system-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-[clamp(1rem,2cqw,2rem)]"
               aria-label="Back to The System"
             >
-              <ArrowLeft size={32} />
+              <ArrowLeft size={32} className="rtl:rotate-180" />
             </button>
 
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Main portrait — top-right, fading into the paper */}
-            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden sm:w-[min(70cqw,880px)] sm:max-w-[min(92cqw,880px)]">
-              <img
-                src={bg}
-                alt="Presidency building portrait"
-                className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden sm:w-[min(70cqw,880px)] sm:max-w-[min(92cqw,880px)] rtl:right-auto rtl:left-0">
+              <div className="absolute inset-0 rtl:-scale-x-100">
+                <img
+                  src={bg}
+                  alt="Presidency building portrait"
+                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent rtl:bg-gradient-to-l" />
             </div>
 
             {/* Secondary landscape layer below the header */}
