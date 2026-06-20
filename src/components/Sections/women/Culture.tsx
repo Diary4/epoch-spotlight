@@ -335,19 +335,19 @@ function CultureListCard({
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
+      <div className="relative mx-auto aspect-[3/4] w-full overflow-hidden rounded-[10px] sm:rounded-[20px]">
         <img
           src={woman.image}
           alt={woman.name}
-          className="relative z-10 h-full w-full object-cover object-[center_20%]"
+          className="relative z-10 h-full w-full object-cover object-[center_22%]"
         />
       </div>
 
-      <h3 className="mt-1.5 font-serif text-[clamp(11px,3vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]">
+      <h3 className="mt-2 font-serif text-[clamp(12px,3.2vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]">
         {woman.name}
       </h3>
 
-      <p className="mt-0.5 font-serif text-[clamp(9px,2.2vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]">
+      <p className="mt-0.5 font-serif text-[clamp(10px,2.4vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]">
         ({woman.role})
       </p>
 
@@ -477,15 +477,11 @@ export default function WomenCultureMemoryPage({
           <>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_6%,rgba(205,143,151,0.15),transparent_30%),radial-gradient(circle_at_20%_48%,rgba(212,185,143,0.12),transparent_32%)]" />
 
-            <section
-              data-culture-hero="true"
-              className="relative z-10 shrink-0 overflow-hidden text-center min-h-[220px] sm:min-h-[320px] lg:mn-h-[320px]"
-            >
+            <section data-culture-hero="true" className="relative z-10 shrink-0">
               <div
                 data-culture-fade="true"
-                className="relative z-20 mx-auto max-w-[900px] px-3 pb-8 pt-16 sm:px-4 sm:pb-10 sm:pt-20 lg:pt-14"
+                className="relative z-20 mx-auto max-w-[900px] px-4 pb-3 pt-16 text-center sm:px-6 sm:pb-5 sm:pt-20 lg:pt-14"
               >
-
                 <div className="mx-auto mb-5 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d] sm:mb-6">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                   <Sparkles className="h-6 w-6 sm:h-8 sm:w-8" />
@@ -513,16 +509,22 @@ export default function WomenCultureMemoryPage({
                 </p>
               </div>
 
-              <img
-                src={cultureHero}
-                alt=""
-                className="pointer-events-none z-10 mx-auto block h-[clamp(220px,24vh,220px)] w-full max-w-[100vw] object-cover object-bottom sm:h-[clamp(320px,45vh,720px)] lg:h-[820px] lg:w-screen"
-              />
+              <div className="relative z-10 w-full px-2 sm:px-4 lg:px-0">
+                <img
+                  src={cultureHero}
+                  alt=""
+                  className="pointer-events-none mx-auto block h-auto w-full max-w-[1400px] object-contain object-center"
+                />
+                {/* <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(36px,10vh,160px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/75 to-transparent"
+                  aria-hidden
+                /> */}
+              </div>
             </section>
 
-            <section className="relative z-20 mt-2 px-3 pb-6 sm:px-5 lg:mt-4 lg:px-10">
-              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 sm:gap-5 lg:gap-6">
-                <div className="grid w-full grid-cols-3 gap-2 sm:gap-5 lg:gap-6">
+            <section className="relative z-20 -mt-2 px-3 pb-6 sm:mt-0 sm:px-5 lg:px-10">
+              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-3 sm:gap-5 lg:gap-6">
+                <div className="grid w-full grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6">
                   {cultureWomen.slice(0, 3).map((woman) => (
                     <CultureListCard
                       key={woman.id}
@@ -533,7 +535,7 @@ export default function WomenCultureMemoryPage({
                   ))}
                 </div>
 
-                <div className="grid w-full grid-cols-2 gap-2 sm:gap-5 lg:gap-6">
+                <div className="grid w-full grid-cols-2 gap-2.5 sm:gap-5 lg:gap-6">
                   {cultureWomen.slice(3).map((woman) => (
                     <CultureListCard
                       key={woman.id}
