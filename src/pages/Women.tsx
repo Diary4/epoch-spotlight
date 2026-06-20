@@ -197,7 +197,7 @@ export default function LegacyPage({
 
         {/* Hero — side-by-side on every screen (text left, image right), matching the large-screen design */}
         <section
-          className={`relative z-10 grid grid-cols-[1.05fr_0.95fr] lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.9fr_1.3fr] items-center gap-2 pt-12 sm:gap-4 sm:pt-12 lg:pt-16 ${
+          className={`relative z-10 grid grid-cols-[1fr_1.1fr] sm:grid-cols-[1fr_1.25fr] lg:grid-cols-[1fr_1.45fr] xl:grid-cols-[0.85fr_1.55fr] items-center gap-4 pt-12 sm:gap-6 sm:pt-12 lg:pt-16 ${
             dir === "rtl" ? "pl-0 pr-4 sm:pr-8 lg:pr-16" : "pl-4 pr-0 sm:pl-8 lg:pl-16"
           }`}
         >
@@ -226,7 +226,10 @@ export default function LegacyPage({
             </p>
           </div>
 
-          <div data-legacy-hero="true" className="pointer-events-none relative self-stretch">
+          <div 
+            data-legacy-hero="true" 
+            className="pointer-events-none relative self-stretch flex items-center justify-end min-h-[280px] sm:min-h-[420px] md:min-h-[520px] lg:min-h-[640px] xl:min-h-[740px] mt-[-16px] sm:mt-[-32px] lg:mt-[-48px]"
+          >
             <img
               src={legacyHero}
               alt="Kurdish women legacy"

@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useRef } from "react";
-import { ArrowLeft, MessageSquareText, Music2, UsersRound, Sparkles } from "lucide-react";
-import { gsap } from "gsap";
+import React, { useState, useEffect } from "react";
+import { ArrowLeft, MessageSquareText, Music2, UsersRound } from "lucide-react";
+import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -12,16 +12,19 @@ const identityCards = [
     text: "Kurdish language is a central part of identity and remains a living connection between generations and communities.",
     icon: MessageSquareText,
     iconText: "کوردی",
+    color: "bg-[#c9903f]",
   },
   {
     title: "Traditions",
     text: "Music, dance, clothing, celebrations, and hospitality help preserve a shared sense of belonging.",
     icon: Music2,
+    color: "bg-[#00604f]",
   },
   {
     title: "Collective\nMemory",
     text: "Across different places and borders, Kurds remain connected through shared history, stories, and cultural memory.",
     icon: UsersRound,
+    color: "bg-[#9d3637]",
   },
 ];
 
@@ -33,129 +36,148 @@ type SharedIdentityPageProps = {
 const CONTENT = { en, ar, ku } as const;
 
 export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdentityPageProps) {
-  const rootRef = useRef<HTMLElement | null>(null);
+  const rootRef = useJourneyDetailAnimation([lang]);
   const data = CONTENT[lang] as any;
   const detail = data?.people?.detailPages?.sharedIdentity ?? {};
-  
+
   const localizedCards = identityCards.map((card, i) => ({
     ...card,
-    title: detail?.cards?.[i]?.title ?? card.title,
+    title: detail?.cards?.[i]?.title
+      ? detail.cards[i].title.replace(" ", "\n")
+      : card.title,
     text: detail?.cards?.[i]?.description ?? card.text,
   }));
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  const [scale, setScale] = useState(1);
+  const [leftOffset, setLeftOffset] = useState(0);
 
-      tl.from(".back-btn", { opacity: 0, scale: 0.72, duration: 0.9 })
-        .from(".pattern-layer", { opacity: 0, duration: 1 }, "-=0.5")
-        .from(".hero-image", { opacity: 0, x: 70, scale: 1.08, duration: 1.6 }, "-=0.7")
-        .from(".main-title", { opacity: 0, y: 62, duration: 1.1 }, "-=0.8")
-        .from(".title-divider > *", { opacity: 0, scaleX: 0, stagger: 0.16, duration: 0.75 }, "-=0.5")
-        .from(".subtitle-text", { opacity: 0, y: 36, duration: 0.9 }, "-=0.5")
-        .from(".description-text", { opacity: 0, y: 26, duration: 0.85 }, "-=0.4")
-        .from(".identity-card", { opacity: 0, y: 70, scale: 0.95, stagger: 0.2, duration: 0.9 }, "-=0.3");
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const targetWidth = 1400;
+      if (width < targetWidth) {
+        setScale(width / targetWidth);
+        setLeftOffset(0);
+      } else {
+        setScale(1);
+        setLeftOffset((width - targetWidth) / 2);
+      }
+    };
 
-    }, rootRef);
-
-    return () => ctx.revert();
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <main ref={rootRef} className="m-0 min-h-[100vh] w-[100vw] max-w-none bg-[#fbf3e8] text-[#00604f] overflow-x-hidden">
-      <section className="relative mx-auto flex min-h-[calc(100vh-2*clamp(10px,1.6vh,24px))] w-[min(100vw,1600px)] max-w-none flex-col overflow-hidden rounded-[clamp(22px,2.4vw,34px)] bg-[#fff7ec]">
-        
-        {/* Navigation */}
-        <button
-          type="button"
-          onClick={onBack}
-          className="back-btn absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#00604f] shadow-sm sm:border-2 sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-8 lg:top-8 lg:h-16 lg:w-16"
-          aria-label="Back to The People"
-        >
-          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-        </button>
+    <div
+      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div
+        style={{
+          width: "1400px",
+          height: `${100 / scale}vh`,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: `${leftOffset}px`,
+          containerType: "size",
+        }}
+      >
+        <main ref={rootRef} className="m-0 h-full w-full bg-[#f8f1e7] text-[#17233b]">
+          <section className="relative mx-auto flex h-full w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
+            <button
+              type="button"
+              onClick={onBack}
+              className="journey-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              aria-label="Back to The People"
+            >
+              <ArrowLeft size={32} />
+            </button>
 
+            <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Absolutely positioned background artwork container */}
-        <div className="hero-image pointer-events-none absolute right-0 top-[000px] h-[30vh] sm:top-0 sm:h-[90vh] w-full sm:w-[70%] z-0">
-          <img
-            src={bg}
-            alt="Shared identity visual"
-            className="absolute inset-0 h-full w-full object-contain object-right-top opacity-100"
-            style={{
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
-            }}
-          />
-          {/* Gradients to blend into background exactly like the image */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/40 to-transparent" />
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fff7ec]" /> */}
-        </div>
+            <div className="pointer-events-none absolute right-0 top-0 h-[min(100cqh,1400px)] w-full">
+              <img
+                src={bg}
+                alt="Shared identity visual"
+                className="journey-detail-hero absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
+              />
+            </div>
 
-        {/* Main text content */}
-        <section className="relative z-10 mt-12 sm:mt-[clamp(62px,8.2vh,126px)] px-3 xs:px-6 sm:px-[clamp(20px,5vw,80px)] max-w-[min(65vw,900px)]">
-          <h1 className="main-title font-serif text-[clamp(32px,10vw,48px)] xs:text-[clamp(38px,11vw,80px)] sm:text-[clamp(66px,8.3vw,120px)] font-light leading-[0.95] tracking-tight text-[#214439]">
-            {(detail?.title ?? "A Shared\nIdentity").split('\n').map((line, i) => (
-              <React.Fragment key={i}>
-                {line} {i === 0 && <br />}
-              </React.Fragment>
-            ))}
-          </h1>
+            <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+              <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
+                <h1 className="whitespace-pre-line font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#214439]">
+                  {detail?.title ?? "A Shared\nIdentity"}
+                </h1>
 
-          <div className="title-divider mt-[clamp(16px,4vh,52px)] flex items-center gap-2 sm:gap-[clamp(14px,1.5vw,22px)] text-[#c9903f]">
-            <span className="h-0.5 w-12 xs:w-20 sm:w-[clamp(130px,13vw,220px)] bg-[#c9903f]" />
-            <Sparkles className="h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8" />
-            <span className="h-0.5 w-8 xs:w-12 sm:w-[clamp(90px,9vw,160px)] bg-[#c9903f]" />
-          </div>
-
-          <p className="subtitle-text mt-4 sm:mt-[clamp(24px,3.3vh,44px)] font-serif text-[clamp(18px,5vw,28px)] xs:text-[clamp(22px,5.5vw,40px)] sm:text-[clamp(31px,3.7vw,54px)] leading-tight text-[#b06f25]">
-            {(detail?.subtitle ?? "United by language, heritage, and memory.").replace(", ", ",\n")}
-          </p>
-
-          <p className="description-text mt-3 sm:mt-[clamp(20px,3vh,40px)] max-w-[min(46vw,620px)] text-[12px] xs:text-[14px] sm:text-[22px] lg:text-[32px] font-light leading-[1.62] text-[#35435b]">
-            {detail?.description ?? "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
-          </p>
-        </section>
-
-        {/* Cards Section - forced responsive 3-column layout */}
-        <section className="relative z-20 mt-[100px] sm:mt-[200px] grid w-full grid-cols-3 items-stretch gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 px-3 xs:px-6 sm:px-[clamp(20px,5vw,80px)]">
-          {localizedCards.map((card, i) => {
-            const Icon = card.icon;
-            return (
-              <article
-                key={i}
-                className="identity-card flex h-full min-h-[140px] xs:min-h-[180px] sm:min-h-[300px] lg:min-h-[560px] flex-col items-center rounded-[12px] border border-white bg-white/82 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:border-2 sm:rounded-[24px] sm:px-6 sm:py-7 lg:rounded-[clamp(22px,2.3vw,34px)] lg:px-[clamp(18px,1.8vw,34px)] lg:py-[clamp(20px,2.2vh,36px)] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
-              >
-                <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-[clamp(82px,7.3vw,124px)] sm:w-[clamp(82px,7.3vw,124px)] place-items-center rounded-full border border-[#f5ead3] bg-white text-[#c9903f] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:border-4 sm:shadow-[0_7px_18px_rgba(84,54,16,0.13)]">
-                  {card.iconText ? (
-                    <div className="relative">
-                      <MessageSquareText className="h-5 w-5 xs:h-6 xs:w-6 sm:h-12 sm:w-12 lg:h-[58px] lg:w-[58px]" strokeWidth={1.5} />
-                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[6px] xs:text-[8px] sm:text-[clamp(16px,1.55vw,24px)] font-bold">{card.iconText}</span>
-                    </div>
-                  ) : (
-                    <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-12 sm:w-12 lg:h-[58px] lg:w-[58px]" strokeWidth={1.45} />
-                  )}
-                </div>
-
-                <h3 className="mt-2.5 xs:mt-4 sm:mt-[clamp(14px,1.9vh,30px)] whitespace-pre-line font-serif text-[9px] xs:text-[11px] sm:text-[24px] lg:text-[38px] font-light leading-[0.95] text-[#214439]">
-                  {card.title}
-                </h3>
-
-                <div className="mx-auto my-1.5 xs:my-3 sm:my-[clamp(12px,1.7vh,24px)] flex w-12 xs:w-16 sm:w-[clamp(88px,8.3vw,138px)] items-center justify-center gap-1 sm:gap-3 text-[#c9903f]">
-                  <span className="h-0.5 flex-1 bg-[#d7b56c]" />
-                  <span className="text-[9px] xs:text-[11px] sm:text-[clamp(16px,1.5vw,24px)]">✥</span>
-                  <span className="h-0.5 flex-1 bg-[#d7b56c]" />
-                </div>
-
-                <p className="flex-1 text-[8px] xs:text-[9.5px] sm:text-[15px] lg:text-[27px] font-light leading-[1.55] text-[#35435b]">
-                  {card.text}
+                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
+                  {detail?.subtitle ?? "United by language, heritage, and memory."}
                 </p>
-              </article>
-            );
-          })}
-        </section>
 
-      </section>
-    </main>
+                <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
+                  <span className="h-0.5 flex-1 bg-[#b99152]" />
+                  <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+                  <span className="h-0.5 flex-1 bg-[#b99152]" />
+                </div>
+
+                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                  {detail?.description ??
+                    "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
+                </p>
+              </section>
+
+              <div className="flex-[0.85]" />
+
+              <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
+                {localizedCards.map((card, i) => {
+                  const Icon = card.icon;
+                  return (
+                    <article
+                      key={i}
+                      className="journey-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
+                    >
+                      <div
+                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
+                      >
+                        {card.iconText ? (
+                          <div className="relative">
+                            <MessageSquareText size={56} strokeWidth={1.5} />
+                            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[clamp(0.65rem,1.1cqw,1.1rem)] font-bold">
+                              {card.iconText}
+                            </span>
+                          </div>
+                        ) : (
+                          <Icon size={56} strokeWidth={1.5} />
+                        )}
+                      </div>
+
+                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#214439]">
+                        {card.title}
+                      </h3>
+
+                      <div className="my-[clamp(0.75rem,1.6cqh,1.7rem)] flex w-[clamp(4.8rem,10cqw,8rem)] items-center justify-center gap-3 text-[#b99152]">
+                        <span className="h-0.5 flex-1 bg-[#d2b475]" />
+                        <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
+                        <span className="h-0.5 flex-1 bg-[#d2b475]" />
+                      </div>
+
+                      <p className="text-[clamp(1.02rem,1.58cqw,1.5rem)] font-light leading-[1.5] text-[#303a50]">
+                        {card.text}
+                      </p>
+
+                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+                    </article>
+                  );
+                })}
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
   );
 }
