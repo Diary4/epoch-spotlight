@@ -96,6 +96,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const dir = lang === "en" ? "ltr" : "rtl";
   const title = isAr ? "النظام" : isKu ? "سیستەمەکە" : "The System";
   const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : isKu ? "چۆنیەتی کارکردنی دامەزراوەکانی کوردستان پێکەوە." : "How Kurdistan’s institutions work together.";
   const description = isAr
@@ -196,7 +197,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   }, []);
 
   return (
-    <main className="relative m-0 h-screen w-screen overflow-hidden bg-[#fbf5eb] p-0 text-[#17233b]">
+    <main dir={dir} className="relative m-0 h-screen w-screen overflow-hidden bg-[#fbf5eb] p-0 text-[#17233b]">
       <div
         ref={pageRef}
         style={{
@@ -215,21 +216,21 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
           <button
             type="button"
             onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+            className="absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-8"
             aria-label="Back to Discover"
           >
-            <ArrowLeft className="h-8 w-8" />
+            <ArrowLeft className="h-8 w-8 rtl:rotate-180" />
           </button>
-          <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+          <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
           {/* Hero illustration overlay */}
-          <div data-system-bg="true" className="pointer-events-none absolute right-[-100px] top-0 block h-[700px] w-full min-w-full">
+          <div data-system-bg="true" className="pointer-events-none absolute right-[-100px] top-0 block h-[700px] w-full min-w-full rtl:right-auto rtl:left-[-100px]">
             <img
               src={bg}
               alt="System building placeholder"
-              className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
+              className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)] rtl:-scale-x-100"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
           </div>
 
@@ -318,10 +319,10 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
             {/* System Footer info */}
             <div data-system-footer="true" className="mt-10 flex min-h-[132px] flex-row items-center rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
-              <div className="ml-12 mr-14 grid h-28 w-28 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white">
+              <div className="ms-12 me-14 grid h-28 w-28 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white">
                 <span className="text-5xl">✥</span>
               </div>
-              <p className="p-4 text-left font-serif font-light text-[34px] leading-tight text-[#17233b]">
+              <p className="p-4 text-start font-serif font-light text-[34px] leading-tight text-[#17233b]">
                 {footerText}
               </p>
             </div>
