@@ -125,7 +125,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
   // all content stays visible without scrolling on any screen (e.g. 1080x1920).
   const DESIGN_WIDTH = 1400;
   const canvasRef = useRef<HTMLDivElement>(null);
-  const [fit, setFit] = useState({ scale: 1, x: 0, y: 0 });
+  const [fit, setFit] = useState({ scale: 1, x: 0 });
 
   useEffect(() => {
     const recompute = () => {
@@ -137,10 +137,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
       const vh = window.innerHeight;
       const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
       const x = (vw - DESIGN_WIDTH * scale) / 2;
-      // Anchor to the top so the hero section stays flush with the top edge;
-      // any leftover space (when width is the limiting factor) falls below.
-      const y = 0;
-      setFit({ scale, x, y });
+      setFit({ scale, x });
     };
 
     recompute();
@@ -164,7 +161,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
         ref={canvasRef}
         style={{
           width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, ${fit.y}px) scale(${fit.scale})`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
           transformOrigin: "top left",
           position: "absolute",
           top: 0,
@@ -188,7 +185,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
 
             {/* Main portrait — top-right, fading into the paper */}
             <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden rtl:right-auto rtl:left-0">
-              <div className="absolute inset-0 rtl:-scale-x-100">
+              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
                 <img
                   src={bg}
                   alt="Government building portrait"
@@ -196,6 +193,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
+              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
             </div>
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">

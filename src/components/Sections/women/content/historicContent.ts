@@ -6,6 +6,7 @@ import adilaDetail from "@/assets/images/womens/adila.jpg";
 import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
 import khanzadDetail from "@/assets/images/womens/khanzad.jpg";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
+import najibaDetail from "@/assets/images/womens/najibakhan.jpg";
 
 export type HistoricFigureListItem = {
   id: string;
@@ -44,6 +45,7 @@ export const historicDetailPortraits: Record<string, string> = {
   "hafsa-khanum": hafsaDetail,
   "khanzada-khanum": khanzadDetail,
   "halima-khanum": halimaDetail,
+  "najiba-jalizada": najibaDetail,
 };
 
 const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
@@ -139,6 +141,14 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
         "A historical Kurdish leader who stood by her people with steady judgment in times of change.",
       icon: "crown",
     },
+    {
+      id: "najiba-jalizada",
+      name: "Najiba Khani Jalizada",
+      role: "Intellectual and pioneer",
+      teaser:
+        "A tireless advocate for girls' education, social awareness, and the preservation of culture.",
+      icon: "flower",
+    },
   ],
   ku: [
     {
@@ -181,6 +191,14 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
         "سەرکردەیەکی مێژوویی کوردی کە لە کاتی گۆڕانکارییەکاندا بە حوکمڕانیی جێگیر لەگەڵ خەڵکەکەی وەستا.",
       icon: "crown",
     },
+    {
+      id: "najiba-jalizada",
+      name: "نەجیبە خانی جەلیزادە",
+      role: "ڕۆشنبیر و پێشەنگ",
+      teaser:
+        "داکۆکیکارێکی سەرسەختی خوێندنی کچان و باڵوکردنەوەی هۆشیاریی کۆمەڵایەتی و پاراستنی کولتوور بوو.",
+      icon: "flower",
+    },
   ],
   ar: [
     {
@@ -217,6 +235,13 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
       role: "قائدة قبيلة باشقال",
       teaser: "قائدة كردية تاريخية وقفت مع شعبها بحكم ثابت في أوقات التغيير.",
       icon: "crown",
+    },
+    {
+      id: "najiba-jalizada",
+      name: "نجيبة خاني جليزادة",
+      role: "مثقفة ورائدة",
+      teaser: "مدافعة عن تعليم الفتيات ورفع الوعي المجتمعي والحفاظ على الثقافة.",
+      icon: "flower",
     },
   ],
 };
@@ -297,6 +322,21 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       ],
       quote: "Leadership and guidance had women's share in them too.",
     },
+    "najiba-jalizada": {
+      nameLine1: "Najiba Khani",
+      nameLine2: "Jalizada",
+      role: "Intellectual and Pioneer",
+      intro:
+        "A tireless advocate for girls' education, raising social awareness, and preserving Kurdish culture.",
+      portraitAlt: "Najiba Khani Jalizada",
+      listIcon: "flower",
+      cards: [
+        { icon: "✎", text: "The first girl from Koya to attend formal school." },
+        { icon: "♛", text: "Championed learning, awareness, and cultural preservation." },
+        { icon: "♜", text: "Koya • 20th century." },
+      ],
+      quote: "She made education a path to changing the lives of future generations.",
+    },
   },
   ku: {
     "mastura-ardalan": {
@@ -373,6 +413,21 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       ],
       quote: "سەرکردایەتی و ڕێنمایی بەشێکی ژنان بوو لەواندا.",
     },
+    "najiba-jalizada": {
+      nameLine1: "نەجیبە خانی",
+      nameLine2: "جەلیزادە",
+      role: "ڕۆشنبیر و پێشەنگ",
+      intro:
+        "داکۆکیکارێکی سەرسەختی خوێندنی کچان و باڵوکردنەوەی هۆشیاریی کۆمەڵایەتی و پاراستنی کولتوور بوو.",
+      portraitAlt: "نەجیبە خانی جەلیزادە",
+      listIcon: "flower",
+      cards: [
+        { icon: "✎", text: "یەکەمین کچی کۆیە بوو کە چووە قوتابخانەی فەرمی." },
+        { icon: "♛", text: "داکۆکی لە فێربوون، هۆشیاری، و پاراستنی کولتوور کرد." },
+        { icon: "♜", text: "کۆیە • سەدەی بیستەم." },
+      ],
+      quote: "خوێندنی کردە ڕێگایەک بۆ گۆڕینی ژیانی نەوەکانی داهاتوو.",
+    },
   },
   ar: {
     "mastura-ardalan": {
@@ -444,6 +499,21 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         { icon: "♜", text: "باشقال • القرن التاسع عشر." },
       ],
       quote: "للقيادة والإرشاد نصيب من النساء أيضاً.",
+    },
+    "najiba-jalizada": {
+      nameLine1: "نجيبة خاني",
+      nameLine2: "جليزادة",
+      role: "مثقفة ورائدة",
+      intro:
+        "مدافعة عن تعليم الفتيات ورفع الوعي المجتمعي والحفاظ على الثقافة الكردية.",
+      portraitAlt: "نجيبة خاني جليزادة",
+      listIcon: "flower",
+      cards: [
+        { icon: "✎", text: "أول فتاة من كويس تلتحق بالمدرسة الرسمية." },
+        { icon: "♛", text: "دافعت عن التعلم والوعي والحفاظ على الثقافة." },
+        { icon: "♜", text: "كويس • القرن العشرين." },
+      ],
+      quote: "جعلت التعليم طريقاً لتغيير حياة الأجيال القادمة.",
     },
   },
 };

@@ -83,16 +83,11 @@ type SystemPageProps = {
 
 export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const pageRef = React.useRef<HTMLDivElement | null>(null);
-  const [scale, setScale] = React.useState(1);
-  const [offset, setOffset] = React.useState({ x: 0, y: 0 });
-  const [naturalH, setNaturalH] = React.useState(0);
+  const canvasRef = React.useRef<HTMLDivElement | null>(null);
+  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
 
-  // The page is designed at this fixed width; its height is measured at runtime.
-  // We then scale the whole thing to *fit* the viewport (contain) so the entire
-  // layout is visible without scrolling, and mobile shows an identical, smaller
-  // copy of the large-screen design.
-  const TARGET_W = 1280;
+  // Fixed design canvas (1400px wide) — same fit logic as Parliament / Presidency.
+  const DESIGN_WIDTH = 1400;
 
   const isAr = lang === "ar";
   const isKu = lang === "ku";
@@ -114,34 +109,29 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
       ? "ئەم دامەزراوانە پێکەوە پاڵپشتیی حکومەت, یاسا، و کارگێڕی گشتی دەکەن."
       : "Together, these institutions support governance, law, and public administration.";
 
-  // Measure the natural (unscaled) height of the fixed-width design.
-  React.useLayoutEffect(() => {
-    const el = pageRef.current;
-    if (!el) return;
-    const measure = () => setNaturalH(el.offsetHeight);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  // Scale to fit the viewport on both axes (contain) and center, so the whole
-  // page is always visible without scrolling.
   React.useEffect(() => {
-    const fit = () => {
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const s = Math.min(1, vw / TARGET_W, naturalH > 0 ? vh / naturalH : 1);
-      setScale(s);
-      // Top-align (y: 0) so there is no blank space above the content; only
-      // center horizontally.
-      setOffset({ x: (vw - TARGET_W * s) / 2, y: 0 });
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
     };
 
-    fit();
-    window.addEventListener("resize", fit);
-    return () => window.removeEventListener("resize", fit);
-  }, [naturalH]);
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -197,44 +187,52 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   }, []);
 
   return (
-    <main dir={dir} className="relative m-0 h-screen w-screen overflow-hidden bg-[#fbf5eb] p-0 text-[#17233b]">
+    <div
+      dir={dir}
+      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      style={{ width: "100vw", height: "100vh" }}
+    >
       <div
-        ref={pageRef}
+        ref={canvasRef}
         style={{
-          width: `${TARGET_W}px`,
-          transform: `scale(${scale})`,
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
           transformOrigin: "top left",
           position: "absolute",
-          top: `${offset.y}px`,
-          left: `${offset.x}px`,
+          top: 0,
+          left: 0,
+          containerType: "inline-size",
         }}
       >
-        <section
-          ref={sectionRef}
-          className="relative flex w-full flex-col bg-[#fbf5eb] overflow-hidden"
-        >
-          <button
-            type="button"
-            onClick={onBack}
-            className="absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-8"
-            aria-label="Back to Discover"
+        <main className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+          <section
+            ref={sectionRef}
+            className="relative mx-auto flex w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]"
           >
-            <ArrowLeft className="h-8 w-8 rtl:rotate-180" />
-          </button>
-          <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
+            <button
+              type="button"
+              onClick={onBack}
+              className="absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-8"
+              aria-label="Back to Discover"
+            >
+              <ArrowLeft className="h-8 w-8 rtl:rotate-180" />
+            </button>
+            <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
-          {/* Hero illustration overlay */}
-          <div data-system-bg="true" className="pointer-events-none absolute right-[-100px] top-0 block h-[700px] w-full min-w-full rtl:right-auto rtl:left-[-100px]">
-            <img
-              src={bg}
-              alt="System building placeholder"
-              className="absolute inset-0 h-full w-full object-cover opacity-72 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)] rtl:-scale-x-100"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf5eb]" />
-          </div>
+            {/* Hero illustration overlay */}
+            <div data-system-bg="true" className="pointer-events-none absolute right-0 top-0 z-0 h-[700px] w-full overflow-hidden rtl:right-auto rtl:left-0">
+              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+                <img
+                  src={bg}
+                  alt="System building placeholder"
+                  className="absolute inset-0 h-full w-full object-cover object-right opacity-72 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
+              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
+            </div>
 
-          <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
+            <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
             <section className="max-w-[760px]">
               <h1 data-system-hero="true" className="break-words font-serif text-[118px] font-light leading-[1.03] tracking-tight text-[#17233b]">
                 {title}
@@ -326,9 +324,10 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                 {footerText}
               </p>
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
+        </main>
       </div>
-    </main>
+    </div>
   );
 }
