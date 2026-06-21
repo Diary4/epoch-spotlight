@@ -17,7 +17,7 @@ import gsap from "gsap";
 import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 import WomenHistoricPage from "@/components/Sections/women/Historic";
-import legacyVideo from "@/assets/videos/thim.mp4";
+import legacyVideo from "@/assets/videos/women.mp4";
 
 import journeyImage from "@/assets/nature.webp";
 import guitarIcon from "@/assets/images/women/icons/guitar.webp";
