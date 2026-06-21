@@ -58,7 +58,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacySubtitle: "سەرهەڵدان، قوربانی، و هیوا.",
     quotes: [
       { text: "بمکوژە، هەزاران کورد هەڵدەستن.", author: "لەیلا قاسم" },
-      { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شفا گەردی" },
+      { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شیفا گەردی" },
       { text: "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.", author: "مارگەریت جۆرج شیلۆ" },
     ],
   },
@@ -169,8 +169,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
   ku: [
     {
       id: "qara-fateme",
-      name: "کارا فاتیمە",
-      nameLine1: "کارا",
+      name: "قەرە فاتیمە",
+      nameLine1: "قەرە",
       nameLine2: "فاتیمە",
       role: "فەرماندەی سەربازی و سەرۆکی هۆز",
       teaser: "سەرکردەیەکی سەربازی دەگمەن کە بە ئازایەتی لە شەڕ و شارەزایی لە دیپلۆماسی لە یادەوەری مایەوە.",
@@ -182,8 +182,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
     },
     {
       id: "qadam-kher",
-      name: "قەدام خێر",
-      nameLine1: "قەدام",
+      name: "قەدەم خێر",
+      nameLine1: "قەدەم",
       nameLine2: "خێر",
       role: "سەرکردەی بەرخۆدان",
       teaser: "شێری کوردی کە سەرهەڵدانی هۆزەکەی بە بڕوای نەگۆڕاو بەرامبەر هێزەکانی ڕەزا شا بەڕێوەبرد.",
@@ -195,8 +195,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
     },
     {
       id: "shifa-gardi",
-      name: "شفا گەردی",
-      nameLine1: "شفا",
+      name: "شیفا گەردی",
+      nameLine1: "شیفا",
       nameLine2: "گەردی",
       role: "ڕۆژنامەنووسی مەیدان",
       teaser: "ڕۆژنامەنووسێکی پێشەنگ و بێترس کە هەواڵی ڕاستەقینە لە هێڵی پێشەوەی شەڕی دژی داعش بۆ جیهان گەیاند.",
@@ -234,8 +234,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
     },
     {
       id: "khaja-bawa",
-      name: "خاجە باوا",
-      nameLine1: "خاجە",
+      name: "خەجە باوا",
+      nameLine1: "خەجە",
       nameLine2: "باوا",
       role: "پاڵەوانی سەرهەڵدانی ١٩٩١",
       teaser: "کچێکی ئازای هەولێر کە ژیانی لە سەرهەڵدانی شارەکە بۆ ئازادی دا.",

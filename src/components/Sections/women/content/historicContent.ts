@@ -76,9 +76,9 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     legacyTitle: "میراتی دانایی",
     legacySubtitle: "شیعر، دادپەروەری، و فێربوون.",
     quotes: [
-      { text: "خۆی لە مێژوو نووسی.", author: "مەستورەی ئەردەڵان" },
-      { text: "سەرکردایەتی ڕاستەقینە دەتوانێت شار بەرز بکاتەوە و نەتەوەیەک دروست بکات.", author: "ئادیلە خانم" },
-      { text: "هەر کچێک کە فێر دەبێت دەرگایەکی نوێ بۆ سبەیین دەکاتەوە.", author: "حەفسە خانم" },
+      { text: "لە ناو جەرگەی مێژوودا، تەختێکی بۆ خۆی بونیاد نا.", author: "مەستورەی ئەردەڵان" },
+      { text: " سەرکردایەتیی ڕاستەقینە دەتوانێت شارێک ئاوا بکات و نەتەوەیەک دروست بکات", author: "عادیلە خانم" },
+      { text: "هەر کچێک کە دەخوێنێت، دەرگایەکی نوێ بە ڕووی پاشەڕۆژدا دەکاتەوە.", author: "حەپسە خانم" },
     ],
   },
   ar: {
@@ -161,7 +161,7 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     },
     {
       id: "adela-khanum",
-      name: "ئادیلە خانم",
+      name: "عادیلە خانم",
       role: "حاکمی هەڵەبجە",
       teaser:
         "فەرمانڕەوایەکی بینراو کە بە دادپەروەری، دیپلۆماسی، و دروستکردنەوەی شارەکەی لە یادەوەری مایەوە.",
@@ -169,7 +169,7 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     },
     {
       id: "hafsa-khanum",
-      name: "حەفسە خانم",
+      name: "حەپسە خانم",
       role: "پێشەنگی پەروەردە",
       teaser:
         "دەرگای فێربوونی بۆ کچان کردەوە و نیشانی دا کە پەروەردە بنەمای نوێکردنەوەی نەتەوەییە.",
@@ -186,7 +186,7 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     {
       id: "halima-khanum",
       name: "حەلیمە خانم",
-      role: "سەرۆکی هۆزی باشقاڵ",
+      role: "سەرۆکی هۆزی باشقەڵا",
       teaser:
         "سەرکردەیەکی مێژوویی کوردی کە لە کاتی گۆڕانکارییەکاندا بە حوکمڕانیی جێگیر لەگەڵ خەڵکەکەی وەستا.",
       icon: "crown",
@@ -355,12 +355,12 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       quote: "خۆی لە مێژوو نووسی.",
     },
     "adela-khanum": {
-      nameLine1: "ئادیلە",
+      nameLine1: "عادیلە",
       nameLine2: "خانم",
       role: "حاکمی هەڵەبجە",
       intro:
         "سەرکردەیەکی بینراو کە هەڵەبجەی بە دادپەروەری و دیپلۆماسی بەڕێوەبرد، بازرگانی، ڕێکخستن، و ڕێزی خەڵکەکەی بەرزکردەوە.",
-      portraitAlt: "ئادیلە خانم",
+      portraitAlt: "عادیلە خانم",
       listIcon: "crown",
       cards: [
         { icon: "⚖", text: "بەڕێوەبردنی هەڵەبجە بە حیکمەت، چاکسازی، و دیپلۆماسیی جێگیر." },
