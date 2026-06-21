@@ -46,6 +46,7 @@ type Year2005PageProps = {
 
 export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
+  const dir = lang === "en" ? "ltr" : "rtl";
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.["2005"] ?? data?.people?.sections?.["2005"] ?? {};
@@ -56,17 +57,17 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
   }));
 
   return (
-    <main ref={rootRef} className="m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden">
+    <main ref={rootRef} dir={dir} className="m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden">
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden sm:rounded-[22px] bg-[#fbf5eb]">
         
         {/* Back Button */}
         <button
           type="button"
           onClick={onBack}
-          className="journey-detail-back absolute left-4 top-4 sm:left-[clamp(1rem,2vw,2rem)] sm:top-[clamp(1rem,2vh,2rem)] z-30 grid h-10 w-10 sm:h-[clamp(2.8rem,4.4vw,3.8rem)] sm:w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm transition-transform active:scale-95"
+          className="journey-detail-back absolute left-4 top-4 sm:left-[clamp(1rem,2vw,2rem)] sm:top-[clamp(1rem,2vh,2rem)] z-30 grid h-10 w-10 sm:h-[clamp(2.8rem,4.4vw,3.8rem)] sm:w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm transition-transform active:scale-95 rtl:left-auto rtl:right-4 sm:rtl:right-[clamp(1rem,2vw,2rem)]"
           aria-label="Back to Journey"
         >
-          <ArrowLeft className="w-5 h-5 sm:w-8 sm:h-8" />
+          <ArrowLeft className="w-5 h-5 sm:w-8 sm:h-8 rtl:rotate-180" />
         </button>
 
         {/* Decorative Side Grids */}
@@ -74,12 +75,14 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
         <div className="absolute right-0 top-[120px] h-full w-12 sm:w-24 opacity-10 sm:opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
         {/* Hero Background Image */}
-        <div className="pointer-events-none absolute right-0 top-0 h-[45vh] sm:h-[min(100vh,1500px)] w-full">
-          <img
-            src={bg}
-            alt="2005 recognition"
-            className="journey-detail-hero absolute inset-0 h-full w-full object-cover"
-          />
+        <div className="journey-detail-hero pointer-events-none absolute right-0 top-0 h-[45vh] sm:h-[min(100vh,1500px)] w-full overflow-hidden rtl:right-auto rtl:left-0">
+          <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+            <img
+              src={bg}
+              alt="2005 recognition"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Content Area */}

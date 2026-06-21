@@ -43,6 +43,7 @@ type BuildingInstitutionsPageProps = {
 
 export default function BuildingInstitutionsPage({ lang = "en", onBack }: BuildingInstitutionsPageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
+  const dir = lang === "en" ? "ltr" : "rtl";
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.institutions ?? data?.people?.sections?.institutions ?? {};
@@ -77,6 +78,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
 
   return (
     <div
+      dir={dir}
       className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
       style={{
         width: "100vw",
@@ -100,22 +102,24 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
             <button
               type="button"
               onClick={onBack}
-              className="journey-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              className="journey-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-[clamp(1rem,2cqw,2rem)]"
               aria-label="Back to The Journey"
             >
-              <ArrowLeft size={32} />
+              <ArrowLeft size={32} className="rtl:rotate-180" />
             </button>
             <div className="absolute left-0 top-0 h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-0 h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Right-side visual: image and fade share the same entrance animation */}
-            <div className="journey-detail-hero pointer-events-none absolute inset-y-0 right-0 h-[min(100cqh,1600px)] w-full">
-              <img
-                src={bg}
-                alt="Institutions placeholder"
-                className="h-full w-full object-cover object-right-top [mask-image:radial-gradient(circle_at_72%_42%,black_0%,black_58%,transparent_92%)]"
-              />
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-[#fbf5eb]/95 via-[#fbf5eb]/35 to-transparent" />
+            <div className="journey-detail-hero pointer-events-none absolute inset-y-0 right-0 h-[min(100cqh,1600px)] w-full overflow-hidden rtl:right-auto rtl:left-0">
+              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+                <img
+                  src={bg}
+                  alt="Institutions placeholder"
+                  className="h-full w-full object-cover object-right-top [mask-image:radial-gradient(circle_at_72%_42%,black_0%,black_58%,transparent_92%)]"
+                />
+              </div>
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-[#fbf5eb]/95 via-[#fbf5eb]/35 to-transparent rtl:left-auto rtl:right-0 rtl:bg-gradient-to-l" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(6rem,16cqh,14rem)] bg-gradient-to-b from-transparent via-[#fbf5eb]/45 to-[#fbf5eb]/90" />
             </div>
 
