@@ -229,29 +229,31 @@ export default function LegacyPage({
           {/* Expanded width and negative margin allows the illustration to bleed under the text for a much larger visual scale */}
           <div
             data-legacy-hero="true"
-            className={`pointer-events-none relative self-stretch h-full w-[145%] sm:w-[155%] md:w-[165%] lg:w-[175%] ${
+            className={`pointer-events-none relative self-stretch h-full w-[200%] pt-14 sm:w-[155%] sm:pt-0 md:w-[165%] lg:w-[175%] ${
               dir === "rtl"
-                ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
-                : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
+                ? "origin-top-left scale-[1.15] sm:scale-100 mr-[-100%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
+                : "origin-top-right scale-[1.15] sm:scale-100 ml-[-100%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
             }`}
           >
-            <video
-              src={legacyVideo}
-              aria-label="Kurdish women legacy"
-              className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-            <div
-              className="absolute inset-x-0 top-0 h-[clamp(32px,8vh,140px)] bg-gradient-to-b from-[#fcf7ef] via-[#fcf7ef]/50 to-transparent"
-              aria-hidden
-            />
-            <div
-              className="absolute inset-x-0 bottom-0 h-[clamp(28px,6vh,120px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
-              aria-hidden
-            />
+            <div className="relative h-full w-full">
+              <video
+                src={legacyVideo}
+                aria-label="Kurdish women legacy"
+                className={`h-[clamp(260px,68vw,520px)] w-full object-contain object-right-top sm:h-full sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+              <div
+                className="absolute inset-x-0 top-0 z-10 h-[clamp(56px,14vw,160px)] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef]/85 via-35% via-[#fcf7ef]/45 via-65% to-transparent sm:hidden"
+                aria-hidden
+              />
+              <div
+                className="absolute inset-x-0 bottom-0 h-[clamp(28px,6vh,120px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                aria-hidden
+              />
+            </div>
           </div>
         </section>
 
