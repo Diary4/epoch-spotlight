@@ -97,13 +97,13 @@ export default function WomenKnowledgePage({
     <main
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start p-0 overflow-x-hidden ${
-        selectedId ? "min-h-min bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+        selectedId ? "h-screen overflow-hidden bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       }`}
     >
       <section
         ref={sectionRef}
         className={`relative flex w-full max-w-full flex-col overflow-y-auto overflow-x-hidden scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-min bg-transparent pb-6 sm:pb-0" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
+          selectedId ? "h-screen overflow-hidden bg-transparent" : "min-h-screen bg-[#fcf7ef] pb-12 sm:pb-0"
         }`}
       >
         <WomenLanguageButton
