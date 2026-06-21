@@ -11,7 +11,6 @@ import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgHana from "@/assets/images/women/w-1.webp";
 import imgMaryam from "@/assets/images/womens/maryamkhan.jpg";
 import imgKurdistan from "@/assets/images/women/w-3.webp";
-import imgKurdistanMukryani from "@/assets/images/women/kurdistan-mukryani.webp";
 
 type LangCode = "ku" | "en" | "ar";
 type ListIcon = "crown" | "flower";
@@ -149,20 +148,6 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       image: imgKurdistan,
       listIcon: "crown",
     },
-    {
-      id: "kurdistan-mukriani",
-      name: "Dr. Kurdistan Mukriani",
-      nameLine1: "Kurdistan",
-      nameLine2: "Mukriani",
-      role: "Linguist and academic",
-      teaser:
-        "A leading scholar who devoted her life to scientific inquiry and the defence of the Kurdish language.",
-      knownFor: "Defending Kurdish through academic research and teaching.",
-      placeEra: "Twentieth century, Kurdistan and Moscow.",
-      quote: "Language is the identity of a people.",
-      image: imgKurdistanMukryani,
-      listIcon: "crown",
-    },
   ],
   ku: [
     {
@@ -221,20 +206,6 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       image: imgMaryam,
       listIcon: "crown",
     },
-    {
-      id: "kurdistan-mukriani",
-      name: "د. کوردستان موکریانی",
-      nameLine1: "کوردستان",
-      nameLine2: "موکریانی",
-      role: "زمانناس و ئەکادیمی",
-      teaser:
-        "زانایەکی پێشەنگ بوو کە ژیانی خۆی بەخشی بە لێکۆڵینەوەی زانستی و پاراستنی زمانی کوردی.",
-      knownFor: "داکۆکیکردن لە زمانی کوردی لە ڕێگەی توێژینەوەی ئەکادیمی و وانەوتنەوە.",
-      placeEra: "سەدەی بیستەم، کوردستان و مۆسکۆ.",
-      quote: "زمان شوناسی نەتەوەیە.",
-      image: imgKurdistanMukryani,
-      listIcon: "crown",
-    },
   ],
   ar: [
     {
@@ -291,20 +262,6 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       placeEra: "منطقة الأنهار، عصر الحرب العالمية الأولى.",
       quote: "يجب أن تتحدث السلطة بلغة الحكمة.",
       image: imgMaryam,
-      listIcon: "crown",
-    },
-    {
-      id: "kurdistan-mukriani",
-      name: "د. كردستان مكراني",
-      nameLine1: "كردستان",
-      nameLine2: "مكراني",
-      role: "لغوية وأكاديمية",
-      teaser:
-        "باحثة رائدة كرّست حياتها للبحث العلمي والدفاع عن اللغة الكردية.",
-      knownFor: "الدفاع عن الكردية من خلال البحث الأكاديمي والتدريس.",
-      placeEra: "القرن العشرون، كردستان وموسكو.",
-      quote: "اللغة هي هوية الشعب.",
-      image: imgKurdistanMukryani,
       listIcon: "crown",
     },
   ],
@@ -546,33 +503,6 @@ export default function WomenCultureMemoryPage({
                   ))}
                 </div>
               </div>
-            </section>
-
-            <section
-              data-culture-fade="true"
-              className="relative z-20 mx-5 mb-8 mt-4 flex min-h-0 flex-col items-stretch gap-4 overflow-hidden rounded-[20px] border border-[#dfcdb7] bg-white/60 px-4 py-5 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:mx-10 sm:mb-10 sm:flex-row sm:items-center sm:gap-6 sm:rounded-[28px] sm:px-8 sm:py-6 lg:px-12"
-            >
-              <div className="mx-auto grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#dfcdb7] bg-[#fff7ef] sm:mx-0 sm:h-24 sm:w-24 lg:h-28 lg:w-28">
-                <TreePine className="h-12 w-12 fill-[#4b183c]/10 text-[#4b183c] sm:h-14 sm:w-14 lg:h-16 lg:w-16" />
-              </div>
-
-              <div className={`min-w-0 flex-1 text-center ${dir === "rtl" ? "sm:text-right" : "sm:text-left"}`}>
-                <h2 className="font-serif text-[clamp(26px,5vw,40px)] leading-none text-[#2c1736]">
-                  {copy.livingMemoryTitle}
-                </h2>
-
-                <div className="mx-auto my-3 flex w-full max-w-[250px] items-center gap-3 text-[#b4864d] sm:mx-0 sm:my-4">
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-5 w-5" />
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                </div>
-
-                <p className="max-w-[850px] text-[clamp(14px,3.2vw,19px)] leading-relaxed text-[#4f4a55]">
-                  {copy.livingMemoryText}
-                </p>
-              </div>
-
-              <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-[120px] opacity-20 bg-[repeating-linear-gradient(45deg,#b76e83_0_2px,transparent_2px_16px)] sm:block sm:w-[200px] lg:w-[270px] lg:opacity-25" />
             </section>
           </>
         )}

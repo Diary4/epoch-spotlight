@@ -221,8 +221,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
     },
     {
       id: "margaret-george-shilo",
-      name: "مارگەریت جۆرج شیلۆ",
-      nameLine1: "مارگەریت",
+      name: "مارگرێت جۆرج شیلۆ",
+      nameLine1: "مارگرێ",
       nameLine2: "جۆرج شیلۆ",
       role: "یەکەم پێشمەرگەی ژن",
       teaser: "ژنێکی ئاشوری ئەفسانەیی کە بۆ کوردستان شەڕی کرد و بووە هێمای پێکەوەژیان و وەفاداری.",
