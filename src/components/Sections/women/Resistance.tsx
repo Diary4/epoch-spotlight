@@ -14,7 +14,7 @@ import {
 } from "@/components/Sections/women/content/resistanceContent";
 
 import resistanceHero from "@/assets/images/women/w-2.webp";
-import imgQara from "@/assets/images/women/w-5.webp";
+import imgKara from "@/assets/images/womens/karafateme.jpg";
 import imgQadam from "@/assets/images/womens/qadamkher.jpg";
 import imgShifa from "@/assets/images/womens/shifagardi.jpg";
 import imgLayal from "@/assets/images/womens/laylaqasim.png";
@@ -26,7 +26,7 @@ type WomenResistancePageProps = WomenLanguageProps & {
 };
 
 const resistanceImages: Record<string, string> = {
-  "qara-fateme": imgQara,
+  "qara-fateme": imgKara,
   "qadam-kher": imgQadam,
   "shifa-gardi": imgShifa,
   "layla-qasim": imgLayal,

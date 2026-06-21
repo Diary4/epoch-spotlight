@@ -85,8 +85,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
   en: [
     {
       id: "qara-fateme",
-      name: "Qara Fateme",
-      nameLine1: "Qara",
+      name: "Kara Fateme",
+      nameLine1: "Kara",
       nameLine2: "Fateme",
       role: "Military commander and tribal leader",
       teaser: "A rare military leader remembered for courage in battle and skill in diplomacy.",
@@ -169,8 +169,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
   ku: [
     {
       id: "qara-fateme",
-      name: "قارا فاتیمە",
-      nameLine1: "قارا",
+      name: "کارا فاتیمە",
+      nameLine1: "کارا",
       nameLine2: "فاتیمە",
       role: "فەرماندەی سەربازی و سەرۆکی هۆز",
       teaser: "سەرکردەیەکی سەربازی دەگمەن کە بە ئازایەتی لە شەڕ و شارەزایی لە دیپلۆماسی لە یادەوەری مایەوە.",
@@ -249,8 +249,8 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
   ar: [
     {
       id: "qara-fateme",
-      name: "قارا فاطمة",
-      nameLine1: "قارا",
+      name: "كارا فاطمة",
+      nameLine1: "كارا",
       nameLine2: "فاطمة",
       role: "قائدة عسكرية وقبلية",
       teaser: "قائدة عسكرية نادرة تُذكر بشجاعتها في المعركة ومهارتها في الدبلوماسية.",

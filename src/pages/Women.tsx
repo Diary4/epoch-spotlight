@@ -17,8 +17,8 @@ import gsap from "gsap";
 import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 import WomenHistoricPage from "@/components/Sections/women/Historic";
+import legacyVideo from "@/assets/videos/thim.mp4";
 
-import legacyHero from "@/assets/images/women/w-1.webp";
 import journeyImage from "@/assets/nature.webp";
 import guitarIcon from "@/assets/images/women/icons/guitar.webp";
 import crownIcon from "@/assets/images/women/icons/crown.webp";
@@ -197,11 +197,11 @@ export default function LegacyPage({
 
         {/* Hero — side-by-side layout on all screens with responsive column ratios */}
         <section
-          className={`relative z-10 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-center gap-2 pt-12 sm:gap-4 sm:pt-12 lg:pt-16 ${
+          className={`relative z-10 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-start gap-2 sm:gap-4 ${
             dir === "rtl" ? "pl-0 pr-4 sm:pr-8 lg:pr-16" : "pl-4 pr-0 sm:pl-8 lg:pl-16"
           }`}
         >
-          <div data-legacy-fade="true" className="relative z-20 max-w-[700px]">
+          <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-12 sm:pt-12 lg:pt-16">
             <div className="mb-2 flex items-center gap-2 text-[#b4864d] sm:mb-5 sm:gap-5">
               <span className="h-px w-8 bg-[#d4b98f] sm:w-20" />
               <Sparkles className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
@@ -227,18 +227,26 @@ export default function LegacyPage({
           </div>
 
           {/* Expanded width and negative margin allows the illustration to bleed under the text for a much larger visual scale */}
-          <div 
-            data-legacy-hero="true" 
+          <div
+            data-legacy-hero="true"
             className={`pointer-events-none relative self-stretch h-full w-[145%] sm:w-[155%] md:w-[165%] lg:w-[175%] ${
               dir === "rtl"
                 ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
                 : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
             }`}
           >
-            <img
-              src={legacyHero}
-              alt="Kurdish women legacy"
+            <video
+              src={legacyVideo}
+              aria-label="Kurdish women legacy"
               className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+            <div
+              className="absolute inset-x-0 top-0 h-[clamp(32px,8vh,140px)] bg-gradient-to-b from-[#fcf7ef] via-[#fcf7ef]/50 to-transparent"
+              aria-hidden
             />
             <div
               className="absolute inset-x-0 bottom-0 h-[clamp(28px,6vh,120px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
