@@ -67,7 +67,7 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
           className="mt-5 grid h-14 w-14 place-items-center rounded-full text-white shadow-md sm:mt-auto sm:h-16 sm:w-16"
           style={{ backgroundColor: card.color }}
         >
-          <ArrowRight className="h-7 w-7 sm:h-[34px] sm:w-[34px]" />
+          <ArrowRight className="h-7 w-7 sm:h-[34px] sm:w-[34px] rtl:rotate-180" />
         </button>
       </div>
 
@@ -92,6 +92,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
   const rootRef = useLandDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const dir = lang === "en" ? "ltr" : "rtl";
   const localMapCards = isAr
     ? [
         { ...mapCards[0], title: "إقليم كوردستان العراق", text: "استكشف إقليم كوردستان المعترف به رسميًا في العراق، محافظاته ومدنه الكبرى وحدوده." },
@@ -106,26 +107,28 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         ]
       : mapCards;
   return (
-    <main ref={rootRef} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} dir={dir} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
       <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col gap-6 overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] p-4 sm:gap-8 sm:p-5 sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:flex-row lg:gap-0 lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)] lg:p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
           onClick={onBack}
-          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)]"
+          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)] rtl:left-auto rtl:right-4 sm:rtl:right-6 lg:rtl:right-[clamp(16px,2vw,30px)]"
           aria-label="Back to The Land and Future"
         >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-[30px] lg:w-[30px]" />
+          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-[30px] lg:w-[30px] rtl:rotate-180" />
         </button>
-        <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block" />
+        <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block rtl:left-auto rtl:right-0" />
 
         {/* Left scenic placeholder */}
-        <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 hidden h-[min(42vh,320px)] w-[min(52vw,220px)] overflow-hidden opacity-70 sm:block lg:h-[clamp(620px,70vh,980px)] lg:w-[clamp(260px,28vw,470px)] lg:opacity-100">
-          <img
-            src={bg}
-            alt="Kurdistan landscape placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-[center_35%] lg:object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb]" />
+        <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 hidden h-[min(42vh,320px)] w-[min(52vw,220px)] overflow-hidden opacity-70 sm:block lg:h-[clamp(620px,70vh,980px)] lg:w-[clamp(260px,28vw,470px)] lg:opacity-100 rtl:left-auto rtl:right-0">
+          <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+            <img
+              src={bg}
+              alt="Kurdistan landscape placeholder"
+              className="absolute inset-0 h-full w-full object-cover object-[center_35%] lg:object-center"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb] rtl:bg-gradient-to-l" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
         </div>
 
