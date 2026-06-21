@@ -18,8 +18,7 @@ import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 import WomenHistoricPage from "@/components/Sections/women/Historic";
 import legacyVideo from "@/assets/videos/women.webm";
-
-import journeyImage from "@/assets/nature.webp";
+;
 import guitarIcon from "@/assets/images/women/icons/guitar.webp";
 import crownIcon from "@/assets/images/women/icons/crown.webp";
 import bookIcon from "@/assets/images/women/icons/book.webp";
@@ -246,7 +245,7 @@ export default function LegacyPage({
                 playsInline
               />
               <div
-                className="absolute inset-x-0 top-0 z-10 h-[clamp(56px,14vw,160px)] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef]/85 via-35% via-[#fcf7ef]/45 via-65% to-transparent sm:hidden"
+                className="absolute inset-x-0 top-0 z-10 h-[clamp(33px,3vw,20px)] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef]/85 via-35% via-[#fcf7ef]/45 via-65% to-transparent sm:hidden"
                 aria-hidden
               />
               <div
