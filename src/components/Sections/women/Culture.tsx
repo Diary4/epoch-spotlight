@@ -9,7 +9,7 @@ import cultureHero from "@/assets/images/women/c-1.webp";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgHana from "@/assets/images/women/w-1.webp";
-import imgMaryam from "@/assets/images/women/w-2.webp";
+import imgMaryam from "@/assets/images/womens/maryamkhan.jpg";
 import imgKurdistan from "@/assets/images/women/w-3.webp";
 import imgKurdistanMukryani from "@/assets/images/women/kurdistan-mukryani.webp";
 

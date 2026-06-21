@@ -25,23 +25,23 @@ function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
   return (
     <div
       data-women-detail-fade="true"
-      className="flex min-h-0 min-w-0 flex-col items-center justify-start rounded-[12px] border border-[#dfc997] bg-[#fff8ee]/75 px-2 py-3 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)] sm:min-h-[250px] sm:rounded-[18px] sm:px-5 sm:py-8"
+      className="flex min-h-0 min-w-0 flex-col items-center justify-start rounded-[clamp(12px,1.6vw,18px)] border border-[#dfc997] bg-[#fff8ee]/75 px-[clamp(8px,1.6vw,20px)] py-[clamp(12px,2.4vw,32px)] text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)]"
     >
-      <div className="grid h-9 w-9 place-items-center rounded-full bg-[#5a223f] text-[16px] text-[#d7aa4e] sm:h-[78px] sm:w-[78px] sm:text-[38px]">
+      <div className="grid h-[clamp(36px,6vw,78px)] w-[clamp(36px,6vw,78px)] place-items-center rounded-full bg-[#5a223f] text-[clamp(16px,3vw,38px)] text-[#d7aa4e]">
         {icon}
       </div>
 
-      <div className="mt-1.5 flex w-12 items-center gap-1 text-[#c8a765] sm:mt-5 sm:w-20 sm:gap-2">
+      <div className="mt-[clamp(6px,1.2vw,20px)] flex w-[clamp(48px,7vw,80px)] items-center gap-[clamp(4px,0.6vw,8px)] text-[#c8a765]">
         <span className="h-px flex-1 bg-[#d9bd81]" />
-        <span className="text-[10px] sm:text-sm">❖</span>
+        <span className="text-[clamp(10px,1.2vw,14px)]">❖</span>
         <span className="h-px flex-1 bg-[#d9bd81]" />
       </div>
 
-      <h3 className="mt-1 font-serif text-[clamp(10px,3vw,30px)] leading-tight text-[#2d1436] sm:mt-4 sm:text-[30px] sm:leading-none">
+      <h3 className="mt-[clamp(4px,1vw,16px)] font-serif text-[clamp(10px,3vw,30px)] leading-tight text-[#2d1436]">
         {title}
       </h3>
 
-      <p className="mt-1.5 max-w-full text-[clamp(9px,2.5vw,18px)] leading-snug text-[#3f3b42] sm:mt-6 sm:max-w-[210px] sm:text-[18px] sm:leading-8">
+      <p className="mt-[clamp(6px,1.4vw,24px)] max-w-[min(100%,210px)] text-[clamp(9px,2.5vw,18px)] leading-snug text-[#3f3b42]">
         {text}
       </p>
     </div>
@@ -70,15 +70,15 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
 
         <section className="relative z-10 w-full">
-          <div className="absolute inset-x-0 top-0 h-[50vh] overflow-hidden sm:h-[60vh]">
+          <div className="absolute inset-x-0 top-0 h-[50vh] overflow-hidden">
             <img
               src={portraitSrc}
               alt={portraitAlt}
               decoding="async"
               fetchPriority="high"
               data-women-detail-portrait-fade="true"
-              className={`h-full w-full object-cover ${
-                dir === "rtl" ? "object-[78%_12%] sm:object-[82%_10%]" : "object-[22%_12%] sm:object-[18%_10%]"
+              className={`h-full w-full object-cover object-[22%_12%] ${
+                dir === "rtl" ? "-scale-x-100" : ""
               }`}
             />
             <div
@@ -88,39 +88,39 @@ export default function WomenDetailPanel({
           </div>
 
           <div
-            className="relative z-20 min-h-[50vh] px-4 pb-6 pt-20 sm:min-h-[60vh] sm:px-8 sm:pb-8 sm:pt-28 lg:px-14"
+            className="relative z-20 min-h-[50vh] px-[clamp(16px,3vw,56px)] pb-[clamp(24px,3vw,32px)] pt-[clamp(80px,12vw,112px)]"
             data-women-detail-fade="true"
           >
-            <h1 className="break-words font-serif text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436] sm:text-[clamp(70px,9vw,118px)] sm:leading-[0.88]">
+            <h1 className="break-words font-serif text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436]">
               {nameLine1}
               <br />
               {nameLine2}
             </h1>
 
-            <div className="mt-4 flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e] sm:mt-8">
+            <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-4 max-w-[min(100%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#b48734] sm:mt-8 sm:text-[clamp(22px,5.5vw,48px)]">
+            <h2 className="mt-[clamp(16px,3vw,32px)] max-w-[min(100%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#b48734]">
               {role}
             </h2>
 
-            <div className="mt-4 flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e] sm:mt-8">
+            <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <p className="mt-4 max-w-[min(100%,330px)] text-[13px] leading-6 text-[#3f3b42] sm:mt-8 sm:text-[20px] sm:leading-8">
+            <p className="mt-[clamp(16px,3vw,32px)] max-w-[min(100%,330px)] text-[clamp(13px,1.6vw,20px)] leading-[1.6] text-[#3f3b42]">
               {intro}
             </p>
           </div>
         </section>
 
         <section
-          className="relative z-30 mt-5 gap-3 px-4 sm:mt-8 sm:gap-5 sm:px-8 lg:px-14"
+          className="relative z-30 mt-[clamp(20px,3vw,32px)] gap-[clamp(12px,1.6vw,20px)] px-[clamp(16px,3vw,56px)]"
           style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
         >
           {cards.map((c) => (
@@ -128,17 +128,17 @@ export default function WomenDetailPanel({
           ))}
         </section>
 
-        <section className="relative z-30 mx-4 mb-6 mt-8 max-w-[760px] rounded-[18px] border border-[#d3ad65] bg-[#fff8ee]/75 p-3 sm:mx-8 sm:mb-0 sm:mt-12 sm:p-5 lg:mx-14 xl:mx-auto">
-          <div className="relative rounded-[14px] border border-[#e2c98f] px-4 py-7 text-center sm:px-8 sm:py-10">
+        <section className="relative z-30 mx-[clamp(16px,3vw,56px)] mb-[clamp(24px,3vw,40px)] mt-[clamp(32px,4vw,48px)] max-w-[760px] rounded-[clamp(14px,2vw,18px)] border border-[#d3ad65] bg-[#fff8ee]/75 p-[clamp(12px,1.4vw,20px)] xl:mx-auto">
+          <div className="relative rounded-[14px] border border-[#e2c98f] px-[clamp(16px,2.4vw,32px)] py-[clamp(28px,3vw,40px)] text-center">
             <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
               ❖
             </div>
 
-            <p className="break-words font-serif text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436] sm:leading-tight">
+            <p className="break-words font-serif text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436]">
               {quote}
             </p>
 
-            <div className="mx-auto mt-4 flex w-[220px] max-w-full items-center gap-3 text-[#c7a45e] sm:mt-6">
+            <div className="mx-auto mt-[clamp(16px,2vw,24px)] flex w-[220px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
