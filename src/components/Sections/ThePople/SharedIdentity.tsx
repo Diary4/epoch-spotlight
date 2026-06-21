@@ -103,12 +103,14 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            <div className="pointer-events-none absolute right-0 top-0 h-[min(100cqh,1400px)] w-full rtl:-scale-x-100">
-              <img
-                src={bg}
-                alt="Shared identity visual"
-                className="journey-detail-hero absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
-              />
+            <div className="journey-detail-hero pointer-events-none absolute right-0 top-0 h-[min(82cqh,1150px)] w-[80%] overflow-hidden rtl:right-auto rtl:left-0">
+              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+                <img
+                  src={bg}
+                  alt="Shared identity visual"
+                  className="absolute inset-0 h-full w-full object-cover object-top opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
+                />
+              </div>
             </div>
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
