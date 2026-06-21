@@ -19,7 +19,7 @@ import imgQadam from "@/assets/images/womens/qadamkher.jpg";
 import imgShifa from "@/assets/images/womens/shifagardi.jpg";
 import imgLayal from "@/assets/images/womens/laylaqasim.png";
 import imgMargaret from "@/assets/images/womens/margret.jpg";
-import imgKhaja from "@/assets/images/womens/khaja.jpg";
+import imgKhaja from "@/assets/images/womens/khajabawa.jpg";
 
 type WomenResistancePageProps = WomenLanguageProps & {
   onBack?: () => void;

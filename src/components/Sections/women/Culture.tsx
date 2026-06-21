@@ -509,7 +509,7 @@ export default function WomenCultureMemoryPage({
                 </p>
               </div>
 
-              <div className="relative z-10 w-full px-2 sm:px-4 lg:px-0">
+              <div className="relative z-10 w-full">
                 <img
                   src={cultureHero}
                   alt=""
