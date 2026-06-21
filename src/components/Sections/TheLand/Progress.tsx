@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
-import bg from "@/assets/images/new/discoverKurdistan/land-5.webp";
+import bg from "@/assets/mainImages/theland/progress-4.webp";
 import pattern1 from "@/assets/images/patterns/card-1.png";
 import pattern2 from "@/assets/images/patterns/card-2.png";
 import pattern3 from "@/assets/images/patterns/card-3.png";
@@ -83,14 +83,6 @@ function ProgressCard({
       <p className="max-w-[min(22cqw,320px)] text-[clamp(1.02rem,1.58cqw,1.5rem)] font-light leading-[1.45] text-[#35435b]">
         {card.text}
       </p>
-
-      <button
-        type="button"
-        className="relative z-10 mt-auto grid h-[clamp(3rem,5cqw,4.8rem)] w-[clamp(3rem,5cqw,4.8rem)] place-items-center rounded-full text-white shadow-md ring-4 ring-white"
-        style={{ backgroundColor: card.color }}
-      >
-        <ArrowRight className="h-[clamp(1.5rem,2.5cqw,2rem)] w-[clamp(1.5rem,2.5cqw,2rem)] rtl:rotate-180" />
-      </button>
 
       {pattern ? (
         <img
