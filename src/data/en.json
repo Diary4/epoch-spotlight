@@ -44,22 +44,22 @@
       {
         "id": "people",
         "title": "The People",
-        "desc": "Identity, culture,\nand resilience"
+        "desc": "Identity, culture, and resilience"
       },
       {
         "id": "journey",
         "title": "The Journey",
-        "desc": "From 1991 to\nthe present"
+        "desc": "From 1991 to the present"
       },
       {
         "id": "system",
         "title": "The System",
-        "desc": "Parliament, government,\nand leadership"
+        "desc": "Parliament, government, and leadership"
       },
       {
         "id": "landFuture",
         "title": "The Land and Future",
-        "desc": "Geography, symbols,\nprotection, and progress"
+        "desc": "Geography, symbols, protection, and progress"
       }
     ]
   },

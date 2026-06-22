@@ -39,22 +39,22 @@ const fallbackSections: {
   {
     id: "people",
     title: "The People",
-    desc: "Identity, culture,\nand resilience",
+    desc: "Identity, culture, and resilience",
   },
   {
     id: "journey",
     title: "The Journey",
-    desc: "From 1991 to\nthe present",
+    desc: "From 1991 to the present",
   },
   {
     id: "system",
     title: "The System",
-    desc: "Parliament, government,\nand leadership",
+    desc: "Parliament, government, and leadership",
   },
   {
     id: "landFuture",
     title: "The Land and Future",
-    desc: "Geography, symbols,\nprotection, and progress",
+    desc: "Geography, symbols, protection, and progress",
   },
 ];
 
@@ -325,11 +325,11 @@ export default function DiscoverKurdistan({
                         />
                       </GoldIcon>
                     </div>
-                    <div className={`relative flex flex-col justify-center ${bodyWeight} min-h-[95px] px-2 pr-6 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pr-8 xs:pb-4 xs:pt-8 sm:min-h-[160px] sm:px-8 sm:pr-14 sm:pb-6 sm:pt-12 md:min-h-[190px] lg:min-h-[250px] xl:min-h-[300px] 3xl:min-h-[360px] 4xl:min-h-[420px] kiosk-portrait:min-h-[220px]`}>
+                    <div className={`relative flex flex-col justify-center ${bodyWeight} min-h-[95px] px-2 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pb-4 xs:pt-8 sm:min-h-[160px] sm:px-6 sm:pb-6 sm:pt-12 md:min-h-[190px] lg:min-h-[250px] xl:min-h-[300px] 3xl:min-h-[360px] 4xl:min-h-[420px] kiosk-portrait:min-h-[220px]`}>
                       <h3 className={`${displayFont} text-[12px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[14px] sm:text-[34px] md:text-[44px] lg:text-[38px] xl:text-[46px] 3xl:text-[54px] 4xl:text-[60px] kiosk-portrait:text-[40px]`}>
                         {kuText(localizeDigits(section.title, lang))}
                       </h3>
-                      <p className="mt-1 whitespace-pre-line text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[22px] md:text-[28px] lg:mt-3 lg:text-[42px] xl:text-[48px] 3xl:text-[58px] 4xl:text-[70px] kiosk-portrait:text-[26px]">
+                      <p className="mt-1 whitespace-nowrap text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[22px] md:text-[28px] lg:mt-3 lg:text-[42px] xl:text-[48px] 3xl:text-[58px] 4xl:text-[70px] kiosk-portrait:text-[26px]">
                         {kuText(localizeDigits(section.desc, lang))}
                       </p>
                     </div>
