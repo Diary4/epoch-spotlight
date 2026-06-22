@@ -98,23 +98,23 @@ export default function WomenDetailPanel({
               {nameLine2}
             </h1>
 
-            <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
+            <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-[66%] items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-[clamp(16px,3vw,32px)] max-w-[min(100%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#b48734]">
+            <h2 className="mt-[clamp(16px,3vw,32px)] max-w-[min(66%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#b48734]">
               {role}
             </h2>
 
-            <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
+            <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-[66%] items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <p className="mt-[clamp(16px,3vw,32px)] max-w-[min(100%,330px)] text-[clamp(13px,1.6vw,20px)] leading-[1.6] text-[#3f3b42]">
+            <p className="mt-[clamp(16px,3vw,32px)] max-w-[min(66%,330px)] text-[clamp(13px,1.6vw,20px)] leading-[1.6] text-[#3f3b42]">
               {intro}
             </p>
           </div>
