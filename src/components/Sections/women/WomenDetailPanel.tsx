@@ -60,6 +60,10 @@ export default function WomenDetailPanel({
   quote,
   dir = "ltr",
 }: WomenDetailPanelProps) {
+  const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
+  const heroScrim =
+    "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
+
   return (
     <div
       className="flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3]"
@@ -72,7 +76,7 @@ export default function WomenDetailPanel({
         <section className="relative z-10 w-full">
           <div className="absolute inset-x-0 top-0 h-[50vh] overflow-hidden">
             <div data-women-detail-portrait-fade="true" className="absolute inset-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+              <div className={`absolute inset-0 ${portraitFlip}`}>
                 <img
                   src={portraitSrc}
                   alt={portraitAlt}
@@ -82,10 +86,7 @@ export default function WomenDetailPanel({
                 />
               </div>
             </div>
-            <div
-              data-women-detail-portrait-fade="true"
-              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]"
-            />
+            <div data-women-detail-portrait-fade="true" className={heroScrim} />
           </div>
 
           <div

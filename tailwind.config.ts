@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         rudaw: ['"Rudaw Bold"', "sans-serif"],
+        "ibm-arabic": ['"IBM Plex Sans Arabic"', "sans-serif"],
       },
       screens: {
         xs: "450px",

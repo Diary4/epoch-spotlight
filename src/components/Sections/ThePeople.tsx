@@ -85,6 +85,8 @@ const CONTENT = { en, ar, ku } as const;
 export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: ThePeoplePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const peopleVideoRef = React.useRef<HTMLVideoElement | null>(null);
+  const isRtlScript = lang === "ku" || lang === "ar";
+  const displayFont = isRtlScript ? "font-ibm-arabic" : "font-serif";
   const data = CONTENT[lang] as any;
   const people = data?.people ?? {};
   const items = people?.items ?? [];
@@ -232,7 +234,9 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
     <main className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f9f3e7] p-0 text-[#1e352d] lg:h-screen lg:overflow-hidden">
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12"
+        lang={lang}
+        dir={isRtlScript ? "rtl" : "ltr"}
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12 ${isRtlScript ? "font-ibm-arabic" : ""}`}
       >
         <button
           type="button"
@@ -247,7 +251,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         <header className="relative z-20 shrink-0 text-center pt-14 xs:pt-8 lg:pt-12">
           <h1
             data-people-hero="true"
-            className="font-serif text-[32px] font-light leading-none tracking-tight text-[#1d342d] xs:text-[72px] md:text-[96px] lg:text-[132px] xl:text-[150px] 3xl:text-[170px] 4xl:text-[190px] kiosk-portrait:text-[130px]"
+            className={`${displayFont} text-[32px] font-light leading-none tracking-tight text-[#1d342d] xs:text-[72px] md:text-[96px] lg:text-[132px] xl:text-[150px] 3xl:text-[170px] 4xl:text-[190px] kiosk-portrait:text-[130px]`}
           >
             {people?.title ?? "The People"}
           </h1>
@@ -312,7 +316,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
 
                 <CircleImage image={card.image} />
                 <div className="mt-[20px] lg:mt-[50px]  flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center min-[700px]:min-h-[220px] min-[700px]:px-6 min-[700px]:pb-8 min-[700px]:pt-12 lg:min-h-[300px]">
-                  <h3 className="whitespace-pre-line font-serif text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]">
+                  <h3 className={`whitespace-pre-line ${displayFont} text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]`}>
                     {card.title}
                   </h3>
 

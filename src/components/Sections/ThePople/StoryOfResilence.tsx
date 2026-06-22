@@ -46,6 +46,8 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
   }));
 
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = lang === "ku" || lang === "ar";
+  const displayFont = isRtlScript ? "font-ibm-arabic" : "font-serif";
 
   const [scale, setScale] = useState(1);
   const [leftOffset, setLeftOffset] = useState(0);
@@ -71,7 +73,8 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      lang={lang}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-ibm-arabic" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -110,7 +113,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="whitespace-pre-line font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#214439]">
+                <h1 className={`whitespace-pre-line ${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#214439]`}>
                   {detail?.title ?? "A Story of\nResilience"}
                 </h1>
 
@@ -146,7 +149,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
                         <Icon size={56} strokeWidth={1.5} />
                       </div>
 
-                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#214439]">
+                      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#214439]`}>
                         {card.title}
                       </h3>
 
