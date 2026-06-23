@@ -21,7 +21,12 @@ export type WomenDetailPanelProps = {
   dir?: "rtl" | "ltr";
 };
 
-function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
+function WomenDetailInfoCard({
+  icon,
+  title,
+  text,
+  displayFont,
+}: WomenDetailPanelCard & { displayFont: string }) {
   return (
     <div
       data-women-detail-fade="true"
@@ -37,7 +42,7 @@ function WomenDetailInfoCard({ icon, title, text }: WomenDetailPanelCard) {
         <span className="h-px flex-1 bg-[#d9bd81]" />
       </div>
 
-      <h3 className="mt-[clamp(4px,1vw,16px)] font-serif text-[clamp(10px,3vw,30px)] leading-tight text-[#2d1436]">
+      <h3 className={`mt-[clamp(4px,1vw,16px)] ${displayFont} text-[clamp(10px,3vw,30px)] leading-tight text-[#2d1436]`}>
         {title}
       </h3>
 
@@ -60,13 +65,14 @@ export default function WomenDetailPanel({
   quote,
   dir = "ltr",
 }: WomenDetailPanelProps) {
+  const displayFont = dir === "rtl" ? "font-amiri" : "font-serif";
   const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
   const heroScrim =
     "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
 
   return (
     <div
-      className="flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3]"
+      className={`flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3] ${dir === "rtl" ? "font-amiri" : ""}`}
       dir={dir}
     >
       <div className="relative min-h-screen w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10 sm:pb-0">
@@ -93,7 +99,7 @@ export default function WomenDetailPanel({
             className="relative z-20 min-h-[50vh] px-[clamp(16px,3vw,56px)] pb-[clamp(24px,3vw,32px)] pt-[clamp(80px,12vw,112px)]"
             data-women-detail-fade="true"
           >
-            <h1 className="break-words font-serif text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436]">
+            <h1 className={`break-words ${displayFont} text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>
               {nameLine1}
               <br />
               {nameLine2}
@@ -105,7 +111,7 @@ export default function WomenDetailPanel({
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-[clamp(16px,3vw,32px)] max-w-[min(66%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#a75a69]">
+            <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-[min(66%,300px)] break-words ${displayFont} text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#a75a69]`}>
               {role}
             </h2>
 
@@ -126,7 +132,7 @@ export default function WomenDetailPanel({
           style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
         >
           {cards.map((c) => (
-            <WomenDetailInfoCard key={c.title} {...c} />
+            <WomenDetailInfoCard key={c.title} {...c} displayFont={displayFont} />
           ))}
         </section>
 
@@ -136,7 +142,7 @@ export default function WomenDetailPanel({
               ❖
             </div>
 
-            <p className="break-words font-serif text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436]">
+            <p className={`break-words ${displayFont} text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436]`}>
               {quote}
             </p>
 

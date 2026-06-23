@@ -8,7 +8,7 @@ import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenD
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
-import { womenCardsToPanel, womenDir } from "@/components/Sections/women/womenLanguage";
+import { womenCardsToPanel, womenDir, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 import {
   getKnowledgePageCopy,
   getKnowledgePeople,
@@ -74,6 +74,8 @@ export default function WomenKnowledgePage({
   const people = getKnowledgePeople(lang);
   const selected = selectedId ? people.find((p) => p.id === selectedId) ?? null : null;
   const dir = womenDir(lang);
+  const displayFont = womenDisplayFont(lang);
+  const isRtlScript = womenRtlScript(lang);
   const heroConnector = lang === "en" ? "of" : lang === "ku" ? "ی" : "ـ";
 
   const handleLanguageChange = () => {
@@ -99,7 +101,7 @@ export default function WomenKnowledgePage({
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start p-0 overflow-x-hidden ${
         selectedId ? "h-screen overflow-hidden bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
-      }`}
+      } ${isRtlScript ? "font-amiri" : ""}`}
     >
       <section
         ref={sectionRef}
@@ -173,7 +175,7 @@ export default function WomenKnowledgePage({
 
             <section className="relative z-10 px-4 py-5 sm:px-8 sm:py-6 lg:px-14 pt-20 sm:pt-6">
               <div data-knowledge-fade="true" className="relative z-20 max-w-[700px] pt-4 sm:pt-14 lg:pt-16">
-                <h1 className="font-serif text-[clamp(36px,12vw,110px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] text-center lg:text-left">
+                <h1 className={`${displayFont} text-[clamp(36px,12vw,110px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] text-center lg:text-left`}>
                   {copy.heroTitle1}
                   <br />
                   <span className="inline-flex items-center gap-4 text-[0.48em] leading-none">
@@ -185,7 +187,7 @@ export default function WomenKnowledgePage({
                   {copy.heroTitle2}
                 </h1>
 
-                <h2 className="mt-5 font-serif text-[clamp(20px,6vw,42px)] font-light text-[#b65f71] text-center lg:text-left">
+                <h2 className={`mt-5 ${displayFont} text-[clamp(20px,6vw,42px)] font-light text-[#b65f71] text-center lg:text-left`}>
                   {copy.heroSubtitle}
                 </h2>
 
@@ -219,11 +221,11 @@ export default function WomenKnowledgePage({
 
                   <Sparkles className="mb-2 h-7 w-7 text-[#b4864d]" />
 
-                  <h3 className="font-serif text-[clamp(34px,5vw,48px)] leading-none text-[#43223d]">
+                  <h3 className={`${displayFont} text-[clamp(34px,5vw,48px)] leading-none text-[#43223d]`}>
                     {person.name}
                   </h3>
 
-                  <p className="mt-2 font-serif text-[clamp(21px,3vw,28px)] text-[#b65f71]">{person.role}</p>
+                  <p className={`mt-2 ${displayFont} text-[clamp(21px,3vw,28px)] text-[#b65f71]`}>{person.role}</p>
 
                   <div className="mt-4 flex w-28 items-center gap-2 text-[#b4864d]">
                     <span className="h-px flex-1 bg-[#d4b98f]" />
@@ -248,7 +250,7 @@ export default function WomenKnowledgePage({
                     className="h-[140px] w-[140px] sm:h-[200px] sm:w-[200px] object-contain"
                   />
 
-                  <h4 className="mt-4 font-serif text-[clamp(18px,4vw,32px)] text-[#43223d]">
+                  <h4 className={`mt-4 ${displayFont} text-[clamp(18px,4vw,32px)] text-[#43223d]`}>
                     {copy.topics[topic.key]}
                   </h4>
 
@@ -266,7 +268,7 @@ export default function WomenKnowledgePage({
               data-knowledge-fade="true"
               className="relative z-20 mx-4 mb-4 mt-5 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#e4d5c3] bg-white/65 px-5 py-6 text-center shadow-[0_8px_20px_rgba(76,45,55,0.08)] sm:mx-8 lg:mx-14"
             >
-              <h3 className="font-serif text-[clamp(22px,5vw,42px)] leading-none text-[#43223d]">
+              <h3 className={`${displayFont} text-[clamp(22px,5vw,42px)] leading-none text-[#43223d]`}>
                 {copy.impactTitle}
               </h3>
 

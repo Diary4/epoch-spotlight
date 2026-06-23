@@ -8,7 +8,7 @@ import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenD
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
-import { womenCardLabels, womenDir } from "@/components/Sections/women/womenLanguage";
+import { womenCardLabels, womenDir, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 import {
   getResistancePageCopy,
   getResistanceWomen,
@@ -83,6 +83,8 @@ export default function WomenResistancePage({
   const resistanceWomen = getResistanceWomen(lang);
   const selected = selectedId ? resistanceWomen.find((w) => w.id === selectedId) ?? null : null;
   const dir = womenDir(lang);
+  const displayFont = womenDisplayFont(lang);
+  const isRtlScript = womenRtlScript(lang);
   const cardLabels = womenCardLabels[lang];
 
   const handleLanguageChange = () => {
@@ -116,7 +118,7 @@ export default function WomenResistancePage({
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
         selectedId ? "h-screen overflow-hidden bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
-      }`}
+      } ${isRtlScript ? "font-amiri" : ""}`}
     >
       <section
         ref={sectionRef}
@@ -168,7 +170,7 @@ export default function WomenResistancePage({
                 data-resist-fade="true" 
                 className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-4 sm:pl-0" : "pr-4 sm:pr-0"}`}
               >
-                <h1 className="font-serif text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]">
+                <h1 className={`${displayFont} text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
@@ -180,7 +182,7 @@ export default function WomenResistancePage({
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className="font-serif text-[clamp(11px,2.5vw,34px)] text-[#a75a69]">
+                <h2 className={`${displayFont} text-[clamp(11px,2.5vw,34px)] text-[#a75a69]`}>
                   {copy.heroSubtitle}
                 </h2>
 
@@ -231,11 +233,11 @@ export default function WomenResistancePage({
                     />
                   </div>
 
-                  <h3 className="mt-1.5 font-serif text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]">
+                  <h3 className={`mt-1.5 ${displayFont} text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]`}>
                     {woman.name}
                   </h3>
 
-                  <p className="mt-0.5 font-serif text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]">
+                  <p className={`mt-0.5 ${displayFont} text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]`}>
                     ({woman.role})
                   </p>
 
@@ -265,9 +267,9 @@ export default function WomenResistancePage({
                 >
                   <Quote className="mb-1 h-4 w-4 shrink-0 fill-[#d98994]/70 text-[#d98994]/70 sm:mb-3 sm:h-9 sm:w-9" />
 
-                  <p className="font-serif text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(17px,2.8vw,22px)]">{text}</p>
+                  <p className={`${displayFont} text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(17px,2.8vw,22px)]`}>{text}</p>
 
-                  <p className="mt-2 font-serif text-[clamp(8px,2vw,16px)] italic text-[#a75a69] sm:mt-3 sm:text-[clamp(14px,1.8vw,16px)]">
+                  <p className={`mt-2 ${displayFont} text-[clamp(8px,2vw,16px)] italic text-[#a75a69] sm:mt-3 sm:text-[clamp(14px,1.8vw,16px)]`}>
                     — {author}
                   </p>
 
@@ -295,11 +297,11 @@ export default function WomenResistancePage({
               </div>
 
               <div className="min-w-0 sm:ml-12 lg:ml-20">
-                <h2 className="font-serif text-[clamp(28px,5vw,44px)] leading-none text-[#2c1736]">
+                <h2 className={`${displayFont} text-[clamp(28px,5vw,44px)] leading-none text-[#2c1736]`}>
                   {copy.legacyTitle}
                 </h2>
 
-                <p className="mt-3 font-serif text-[clamp(16px,3vw,28px)] text-[#a75a69] sm:mt-4">
+                <p className={`mt-3 ${displayFont} text-[clamp(16px,3vw,28px)] text-[#a75a69] sm:mt-4`}>
                   {copy.legacySubtitle}
                 </p>
               </div>

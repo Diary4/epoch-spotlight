@@ -9,7 +9,7 @@ import {
   setAppLanguage,
   type AppLangCode,
 } from "@/lib/appLanguage";
-import { WOMEN_LANGUAGE_LABELS } from "@/components/Sections/women/womenLanguage";
+import { WOMEN_LANGUAGE_LABELS, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 import { hubCopy } from "@/components/Sections/women/content/hubContent";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
@@ -60,6 +60,8 @@ export default function LegacyPage({
   const languageLabel = WOMEN_LANGUAGE_LABELS[lang];
   const copy = hubCopy[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+  const displayFont = womenDisplayFont(lang);
+  const isRtlScript = womenRtlScript(lang);
 
   const handleLanguageChange = () => {
     setLang((current) => {
@@ -180,11 +182,11 @@ export default function LegacyPage({
   return (
     <main
       dir={dir}
-      className="m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e8] p-0 text-[#2a1534] overflow-x-hidden"
+      className={`m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e8] p-0 text-[#2a1534] overflow-x-hidden ${isRtlScript ? "font-amiri" : ""}`}
     >
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-[#fcf7ef] pb-12 sm:pb-0"
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-[#fcf7ef] pb-12 sm:pb-0 ${isRtlScript ? "font-amiri" : ""}`}
       >
         <WomenLanguageButton
           lang={lang}
@@ -206,11 +208,11 @@ export default function LegacyPage({
               <Sparkles className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
             </div>
 
-            <h1 className="font-serif text-[clamp(20px,5.5vw,104px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]">
+            <h1 className={`${displayFont} text-[clamp(20px,5.5vw,104px)] font-medium leading-[0.95] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]`}>
               {copy.title}
             </h1>
 
-            <h2 className="mt-2 font-serif font-light text-[clamp(11px,2.5vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line">
+            <h2 className={`mt-2 ${displayFont} font-light text-[clamp(11px,2.5vw,34px)] text-[#a75a69] sm:mt-4 drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line`}>
               {copy.subtitle}
             </h2>
 
@@ -276,7 +278,7 @@ export default function LegacyPage({
                   />
                 </div>
 
-                <p className="mt-auto text-center font-serif text-[clamp(10px,2.5vw,22px)] leading-tight text-[#2c1736]">
+                <p className={`mt-auto text-center ${displayFont} text-[clamp(10px,2.5vw,22px)] leading-tight text-[#2c1736]`}>
                   {copy.cards[card.id]}
                 </p>
 
@@ -315,7 +317,7 @@ export default function LegacyPage({
 
           {/* Centered Quote text scaled down on mobile screen widths to prevent overlapping */}
           <div className="relative z-10 max-w-2xl px-1 sm:px-0">
-            <p className="font-serif text-[clamp(13px,4.5vw,36px)] leading-snug text-[#281234]">
+            <p className={`${displayFont} text-[clamp(13px,4.5vw,36px)] leading-snug text-[#281234]`}>
               {copy.quoteLine1}
               <br />
               {copy.quoteLine2}

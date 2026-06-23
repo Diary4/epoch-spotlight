@@ -12,6 +12,14 @@ export function womenDir(lang: WomenLangCode): "ltr" | "rtl" {
   return lang === "en" ? "ltr" : "rtl";
 }
 
+export function womenRtlScript(lang: WomenLangCode): boolean {
+  return lang === "ku" || lang === "ar";
+}
+
+export function womenDisplayFont(lang: WomenLangCode): string {
+  return womenRtlScript(lang) ? "font-amiri" : "font-serif";
+}
+
 export type WomenLanguageProps = {
   lang?: WomenLangCode;
   languageLabel?: string;

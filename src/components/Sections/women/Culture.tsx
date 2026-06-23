@@ -5,6 +5,7 @@ import { detailBackIconSize } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
+import { womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
@@ -278,10 +279,12 @@ type CulturePageProps = {
 function CultureListCard({
   woman,
   dir,
+  displayFont,
   onSelect,
 }: {
   woman: CultureFigure;
   dir: "ltr" | "rtl";
+  displayFont: string;
   onSelect: () => void;
 }) {
   return (
@@ -301,11 +304,11 @@ function CultureListCard({
         />
       </div>
 
-      <h3 className="mt-2 font-serif text-[clamp(12px,3.2vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]">
+      <h3 className={`mt-2 ${displayFont} text-[clamp(12px,3.2vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]`}>
         {woman.name}
       </h3>
 
-      <p className="mt-0.5 font-serif text-[clamp(10px,2.4vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]">
+      <p className={`mt-0.5 ${displayFont} text-[clamp(10px,2.4vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]`}>
         ({woman.role})
       </p>
 
@@ -364,6 +367,8 @@ export default function WomenCultureMemoryPage({
   const copy = pageCopy[lang];
   const cultureWomen = cultureWomenByLang[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+  const displayFont = womenDisplayFont(lang);
+  const isRtlScript = womenRtlScript(lang);
 
   const selected = selectedId ? cultureWomen.find((w) => w.id === selectedId) ?? null : null;
 
@@ -387,7 +392,7 @@ export default function WomenCultureMemoryPage({
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
         selectedId ? "h-screen overflow-hidden bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
-      }`}
+      } ${isRtlScript ? "font-amiri" : ""}`}
     >
       <section
         ref={sectionRef}
@@ -410,7 +415,7 @@ export default function WomenCultureMemoryPage({
           <button
             type="button"
             onClick={onLanguageChange}
-            className={`absolute top-4 z-50 rounded-full border-2 border-[#d9b477] bg-white/80 px-4 py-2 font-serif text-sm text-[#2c1337] shadow-sm backdrop-blur-sm transition hover:bg-white sm:top-8 sm:px-5 sm:py-2.5 sm:text-base ${
+            className={`absolute top-4 z-50 rounded-full border-2 border-[#d9b477] bg-white/80 px-4 py-2 ${displayFont} text-sm text-[#2c1337] shadow-sm backdrop-blur-sm transition hover:bg-white sm:top-8 sm:px-5 sm:py-2.5 sm:text-base ${
               dir === "rtl" ? "left-4 sm:left-8" : "right-4 sm:right-8"
             }`}
           >
@@ -446,13 +451,13 @@ export default function WomenCultureMemoryPage({
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h1 className="font-serif text-[clamp(34px,8vw,80px)] font-medium leading-[1.05] tracking-tight text-[#2c1337]">
+                <h1 className={`${displayFont} text-[clamp(34px,8vw,80px)] font-medium leading-[1.05] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitleLine1}
                   <br />
                   {copy.heroTitleLine2}
                 </h1>
 
-                <h2 className="mx-auto mt-5 max-w-[640px] font-serif text-[clamp(17px,3.8vw,28px)] italic leading-snug text-[#a75a69] sm:mt-8">
+                <h2 className={`mx-auto mt-5 max-w-[640px] ${displayFont} text-[clamp(17px,3.8vw,28px)] italic leading-snug text-[#a75a69] sm:mt-8`}>
                   {copy.heroSubtitle}
                 </h2>
 
@@ -488,6 +493,7 @@ export default function WomenCultureMemoryPage({
                       key={woman.id}
                       woman={woman}
                       dir={dir}
+                      displayFont={displayFont}
                       onSelect={() => setSelectedId(woman.id)}
                     />
                   ))}
@@ -499,6 +505,7 @@ export default function WomenCultureMemoryPage({
                       key={woman.id}
                       woman={woman}
                       dir={dir}
+                      displayFont={displayFont}
                       onSelect={() => setSelectedId(woman.id)}
                     />
                   ))}
