@@ -51,7 +51,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
 
   const dir = lang === "en" ? "ltr" : "rtl";
   const isRtlScript = lang === "ku" || lang === "ar";
-  const displayFont = isRtlScript ? "font-ibm-arabic" : "font-serif";
+  const displayFont = isRtlScript ? "font-amiri" : "font-serif";
 
   const [scale, setScale] = useState(1);
   const [leftOffset, setLeftOffset] = useState(0);
@@ -78,7 +78,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
     <div
       dir={dir}
       lang={lang}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-ibm-arabic" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div

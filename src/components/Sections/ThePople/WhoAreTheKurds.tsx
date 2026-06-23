@@ -48,7 +48,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
 
   const dir = lang === "en" ? "ltr" : "rtl";
   const isRtlScript = lang === "ku" || lang === "ar";
-  const displayFont = isRtlScript ? "font-ibm-arabic" : "font-serif";
+  const displayFont = isRtlScript ? "font-amiri" : "font-serif";
 
   const [scale, setScale] = useState(1);
   const [leftOffset, setLeftOffset] = useState(0);
@@ -75,7 +75,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
     <div
       dir={dir}
       lang={lang}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-ibm-arabic" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -112,12 +112,24 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
             />
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
-              <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#00604f]`}>
+              <section className={`journey-detail-intro ${isRtlScript ? "max-w-[min(58cqw,900px)]" : "max-w-[min(46cqw,720px)]"}`}>
+                <h1
+                  className={`${displayFont} font-light leading-none tracking-tight text-[#00604f] ${
+                    isRtlScript
+                      ? "whitespace-nowrap text-[clamp(4.25rem,8.5cqw,8.5rem)]"
+                      : "text-[clamp(6rem,11cqw,10rem)]"
+                  }`}
+                >
                   {detail?.title ?? "Who Are the Kurds?"}
                 </h1>
 
-                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
+                <p
+                  className={`mt-[clamp(1rem,2.2cqh,2rem)] font-light leading-tight text-[#9b6d35] ${
+                    isRtlScript
+                      ? "whitespace-nowrap text-[clamp(1.35rem,2.35cqw,2.35rem)]"
+                      : "text-[clamp(1.65rem,2.75cqw,2.7rem)]"
+                  }`}
+                >
                   {detail?.subtitle ?? "An ancient people of the Middle East."}
                 </p>
 

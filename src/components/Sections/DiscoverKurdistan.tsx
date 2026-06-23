@@ -86,7 +86,7 @@ export default function DiscoverKurdistan({
   const discover = data?.discover ?? {};
   const isKu = lang === "ku";
   const isRtlScript = lang === "ku" || lang === "ar";
-  const displayFont = isRtlScript ? "font-ibm-arabic" : "font-serif";
+  const displayFont = isRtlScript ? "font-amiri" : "font-serif";
   const kuText = (text: string) => withRudawGlyphFallback(text, false);
   const bodyWeight = isKu ? "font-normal" : "font-light";
   const localizedSections = Array.isArray(discover.sections)
@@ -203,7 +203,7 @@ export default function DiscoverKurdistan({
         ref={sectionRef}
         lang={lang}
         dir={lang === "ar" || isKu ? "rtl" : "ltr"}
-        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea] ${isRtlScript ? "font-ibm-arabic" : ""}`}
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea] ${isRtlScript ? "font-amiri" : ""}`}
       >
         {/* Paper texture background pattern */}
         <div
