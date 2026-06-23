@@ -12,6 +12,7 @@ import {
   History,
   BookOpen,
 } from "lucide-react";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 // Localized place data imports
 import { NATURAL_PLACES } from "@/data/naturalPlaces";
@@ -216,10 +217,10 @@ export default function TouristicPlaceDetailPage({
         <button
           type="button"
           onClick={handleBack}
-          className="journey-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rtl:rotate-180"
+          className="journey-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back"
         >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
         </button>
 
         {/* Paper texture columns (Desktop Only) */}

@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
-import { gsap } from "gsap";
 import {
   ArrowLeft,
   BarChart3,
@@ -8,6 +7,7 @@ import {
   Scale,
   SunMedium,
 } from "lucide-react";
+import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -374,10 +374,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
             <button
               type="button"
               onClick={onBack}
-              className="journey-back absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm"
+              className={`journey-back ${sectionBackButtonClassName}`}
               aria-label="Back to Discover"
             >
-              <ArrowLeft className="h-8 w-8" />
+              <ArrowLeft className={sectionBackIconClassName} />
             </button>
             
             {/* Subtle paper patterns */}

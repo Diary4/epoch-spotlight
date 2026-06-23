@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, BookOpen, Landmark, Scale } from "lucide-react";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -67,7 +68,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
           className="journey-detail-back absolute left-4 top-4 sm:left-[clamp(1rem,2vw,2rem)] sm:top-[clamp(1rem,2vh,2rem)] z-30 grid h-10 w-10 sm:h-[clamp(2.8rem,4.4vw,3.8rem)] sm:w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm transition-transform active:scale-95 rtl:left-auto rtl:right-4 sm:rtl:right-[clamp(1rem,2vw,2rem)]"
           aria-label="Back to Journey"
         >
-          <ArrowLeft className="w-5 h-5 sm:w-8 sm:h-8 rtl:rotate-180" />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
         </button>
 
         {/* Decorative Side Grids */}

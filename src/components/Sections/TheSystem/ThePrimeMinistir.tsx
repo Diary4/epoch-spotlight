@@ -1,5 +1,6 @@
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import {
+  ArrowLeft,
   BarChart3,
   Bolt,
   Compass,
@@ -11,6 +12,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import primeMinister from "@/assets/images/prime-minister.webp";
 import backgroundPattern from "@/assets/images/patterns/pattern.webp";
 
@@ -187,16 +189,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
           className="system-detail-back absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:border-2 sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:left-8 lg:top-8 lg:h-14 lg:w-14"
           aria-label="Back to The System"
         >
-          {/* Restored the original icon sizes */}
-          <svg
-            className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
         </button>
         <div className="absolute left-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
         <div className="absolute right-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />

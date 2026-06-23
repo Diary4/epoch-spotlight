@@ -12,6 +12,7 @@ import {
   Scale,
   UsersRound,
 } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 
 import bg from "@/assets/images/religions/r-7.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
@@ -128,7 +129,7 @@ export default function DiversityMapPage({
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
         >
-          <ArrowLeft className="h-7 w-7" />
+          <ArrowLeft size={detailBackIconSize} />
         </button>
 
         <button

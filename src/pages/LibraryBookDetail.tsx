@@ -19,6 +19,7 @@ import {
   libraryBtnPrimary,
   libraryDisplayTitle,
   libraryHeaderPad,
+  libraryBackIconClassName,
   libraryIconSm,
   libraryNavText,
   libraryPad,
@@ -57,7 +58,7 @@ export default function LibraryBookDetail() {
       >
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link to="/library/books" className={cn(libraryNavText, "flex items-center gap-2")}>
-            <ArrowLeft className={libraryIconSm} />
+            <ArrowLeft className={libraryBackIconClassName} />
             Back to Books
           </Link>
           <LibraryLogo variant="light" size="md" />
@@ -71,7 +72,7 @@ export default function LibraryBookDetail() {
             </Link>
           ) : (
             <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
-              <ArrowLeft className={libraryIconSm} />
+              <ArrowLeft className={libraryBackIconClassName} />
               Back
             </div>
           )}

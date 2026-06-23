@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 import gsap from "gsap";
 
 import mainHero from "@/assets/images/women/historic.png";
@@ -119,7 +120,7 @@ export default function WomenHistoricPage({
           }`}
           aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
-          <ArrowLeft className={`h-6 w-6 sm:h-7 sm:w-7 ${dir === "rtl" ? "rotate-180" : ""}`} />
+          <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
         </button>
 
         {detail && selectedId ? (

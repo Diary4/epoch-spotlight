@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
+import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import bg from "@/assets/mainImages/system.webp"
 
@@ -212,10 +213,10 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             <button
               type="button"
               onClick={onBack}
-              className="absolute left-8 top-8 z-30 grid h-16 w-16 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-8"
+              className={sectionBackButtonClassName}
               aria-label="Back to Discover"
             >
-              <ArrowLeft className="h-8 w-8 rtl:rotate-180" />
+              <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
             </button>
             <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 

@@ -11,6 +11,7 @@ import {
   Tv,
   type LucideIcon,
 } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 
 import bg3 from "@/assets/images/religions/r-8.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
@@ -366,7 +367,7 @@ export default function RightsPage({
             className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
             aria-label={c.back}
           >
-            <ArrowLeft className="h-7 w-7" />
+            <ArrowLeft size={detailBackIconSize} />
           </button>
         )}
 

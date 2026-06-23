@@ -11,6 +11,7 @@ import {
   Sparkles,
   UsersRound,
 } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 
@@ -138,7 +139,7 @@ export default function SharedCelebrationsPage({
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
         >
-          <ArrowLeft className="h-7 w-7" />
+          <ArrowLeft size={detailBackIconSize} />
         </button>
 
         <button

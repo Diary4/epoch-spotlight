@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/mainImages/bg-2.webp";
@@ -115,7 +116,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)] rtl:left-auto rtl:right-4 sm:rtl:right-6 lg:rtl:right-[clamp(16px,2vw,30px)]"
           aria-label="Back to The Land and Future"
         >
-          <ArrowLeft className="h-6 w-6 sm:h-7 sm:w-7 lg:h-[30px] lg:w-[30px] rtl:rotate-180" />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
         </button>
         <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block rtl:left-auto rtl:right-0" />
 

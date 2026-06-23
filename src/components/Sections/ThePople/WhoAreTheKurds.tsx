@@ -113,11 +113,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
-                <p className="text-[clamp(0.75rem,1.2cqw,1rem)] font-light uppercase tracking-[0.2em] text-[#c9903f]">
-                  {detail?.sectionLabel ?? "The People"}
-                </p>
-
-                <h1 className={`mt-[clamp(0.5rem,1cqh,0.75rem)] whitespace-pre-line ${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#00604f]`}>
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#00604f]`}>
                   {detail?.title ?? "Who Are the Kurds?"}
                 </h1>
 

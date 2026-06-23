@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, BookOpen, Smartphone } from "lucide-react";
+import { sectionBackIconClassName } from "@/constants/backNavigation";
 import QRCode from "react-qr-code";
 import {
   Dialog,
@@ -85,7 +86,7 @@ export default function BookPurchaseDialog({
             onClick={handleBack}
             className="absolute left-4 top-4 flex items-center gap-1 text-sm text-[#8B7355] lg:text-base 3xl:left-6 3xl:top-6 3xl:text-lg"
           >
-            <ArrowLeft className="h-4 w-4 lg:h-5 lg:w-5" />
+            <ArrowLeft className={sectionBackIconClassName} />
             Back
           </button>
         )}

@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Quote,
 } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
 import bg from "@/assets/images/religions/r-2.webp";
@@ -193,7 +194,7 @@ export default function StoriesOfCoexistencePage({
           className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14"
           aria-label="Back"
         >
-          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
+          <ArrowLeft size={detailBackIconSize} />
         </button>
 
         <button

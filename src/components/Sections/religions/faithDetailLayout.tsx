@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, Globe2 } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 
 export const FAITH_MAIN_CLASS =
   "m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-[#3d2b18] sm:w-screen";
@@ -61,7 +62,7 @@ export function FaithDetailControls({
         className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14"
         aria-label={backLabel}
       >
-        <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
+        <ArrowLeft size={detailBackIconSize} />
       </button>
 
       <button

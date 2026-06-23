@@ -52,4 +52,7 @@ export const libraryReaderText =
 
 export const libraryIconSm = "h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 3xl:h-7 3xl:w-7";
 
+/** Library back links — matches The People section back arrow */
+export const libraryBackIconClassName = "h-4 w-4 xs:h-5 xs:w-5";
+
 export const libraryIconMd = "h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 3xl:h-8 3xl:w-8";

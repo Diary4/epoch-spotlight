@@ -4,6 +4,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import BookPurchaseDialog from "@/components/Sections/library/BookPurchaseDialog";
 import {
   libraryBodySmall,
+  libraryBackIconClassName,
   libraryIconSm,
   libraryNavText,
   libraryPad,
@@ -82,7 +83,7 @@ export default function LibraryBookReader() {
             to={`/library/books/${bookId}`}
             className={cn(libraryNavText, "flex items-center gap-2")}
           >
-            <ArrowLeft className={libraryIconSm} />
+            <ArrowLeft className={libraryBackIconClassName} />
             Back
           </Link>
 

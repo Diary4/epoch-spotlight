@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Mountain, Shield, Star, SunMedium, type LucideIcon } from "lucide-react";
+import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
 import gsap from "gsap";
 import bg1 from "@/assets/mainImages/land-1.webp"
@@ -290,10 +291,10 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:border-2 sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+          className={sectionBackButtonClassName}
           aria-label="Back to Discover"
         >
-          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+          <ArrowLeft className={sectionBackIconClassName} />
         </button>
         <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
 

@@ -11,6 +11,7 @@ import {
   libraryDisplayTitle,
   libraryHeaderPad,
   libraryIconMd,
+  libraryBackIconClassName,
   libraryIconSm,
   libraryNavText,
   libraryPad,
@@ -34,7 +35,7 @@ export default function LibraryWriters() {
       <header data-library-header className={cn(libraryHeaderPad, "flex items-center justify-between")}>
         <LibraryPageShell className="flex w-full items-center justify-between">
           <Link to="/library" className={cn(libraryNavText, "flex items-center gap-2")}>
-            <ArrowLeft className={libraryIconSm} />
+            <ArrowLeft className={libraryBackIconClassName} />
             Back to Library
           </Link>
           <LibraryLogo variant="light" size="md" showTagline={false} />

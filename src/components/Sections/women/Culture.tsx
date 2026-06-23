@@ -1,6 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
@@ -402,7 +403,7 @@ export default function WomenCultureMemoryPage({
           }`}
           aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
-          <ArrowLeft className={`h-6 w-6 sm:h-7 sm:w-7 ${dir === "rtl" ? "rotate-180" : ""}`} />
+          <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
         </button>
 
         {onLanguageChange && languageLabel && (

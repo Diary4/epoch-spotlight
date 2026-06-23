@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
+import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -241,10 +242,10 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-3 top-3 z-30 grid h-9 w-9 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm xs:left-6 xs:top-6 xs:h-10 xs:w-10 xs:border-2 lg:h-11 lg:w-11"
+          className={sectionBackButtonClassName}
           aria-label="Back to Discover"
         >
-          <ArrowLeft className="h-4 w-4 xs:h-5 xs:w-5" />
+          <ArrowLeft className={sectionBackIconClassName} />
         </button>
 
         {/* Hero Header */}

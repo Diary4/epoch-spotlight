@@ -19,6 +19,7 @@ import {
   libraryBtn,
   libraryDisplayTitle,
   libraryHeaderPad,
+  libraryBackIconClassName,
   libraryIconSm,
   libraryNavText,
   libraryPad,
@@ -59,12 +60,12 @@ export default function LibraryWriterDetail() {
             to="/library/writers"
             className={cn(libraryNavText, "flex items-center gap-2")}
           >
-            <ArrowLeft className={libraryIconSm} />
+            <ArrowLeft className={libraryBackIconClassName} />
             Back to Writers
           </Link>
           <LibraryLogo variant="light" size="md" />
           <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
-            <ArrowLeft className={libraryIconSm} />
+            <ArrowLeft className={libraryBackIconClassName} />
             Back to Writers
           </div>
         </LibraryPageShell>

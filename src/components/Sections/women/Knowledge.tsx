@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowLeft, Sparkles } from "lucide-react";
+import { detailBackIconSize } from "@/constants/backNavigation";
 import gsap from "gsap";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
@@ -120,7 +121,7 @@ export default function WomenKnowledgePage({
           }`}
           aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
-          <ArrowLeft className={`h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 ${dir === "rtl" ? "rotate-180" : ""}`} />
+          <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
         </button>
 
         {selected ? (
