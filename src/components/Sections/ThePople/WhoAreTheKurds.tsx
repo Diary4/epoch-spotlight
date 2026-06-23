@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, KeyRound, Sparkles, TreePine } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
-import heroVideo from "@/assets/videos/kch3.mp4";
+import heroVideo from "@/assets/videos/kch3.webm";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";

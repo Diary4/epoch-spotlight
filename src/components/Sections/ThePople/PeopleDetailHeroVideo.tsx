@@ -47,7 +47,7 @@ export default function PeopleDetailHeroVideo({
 
   return (
     <div
-      className={`journey-detail-hero pointer-events-none absolute top-0 ${positionClass} ${className}`}
+      className={`people-detail-hero pointer-events-none absolute top-0 ${positionClass} ${className}`}
     >
       <div className={`absolute inset-0 overflow-hidden ${dir === "rtl" ? "-scale-x-100" : ""}`}>
         <video
