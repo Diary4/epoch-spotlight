@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/theland/progress-4.webp";
 import pattern1 from "@/assets/images/patterns/card-1.png";
 import pattern2 from "@/assets/images/patterns/card-2.png";
@@ -57,9 +58,11 @@ function Divider({ className = "" }) {
 function ProgressCard({
   card,
   pattern,
+  displayFont = "font-serif",
 }: {
   card: (typeof topCards)[number];
   pattern?: string;
+  displayFont?: string;
 }) {
   const Icon = card.icon;
 
@@ -72,7 +75,7 @@ function ProgressCard({
         <Icon className="h-[clamp(2rem,3.5cqw,3.5rem)] w-[clamp(2rem,3.5cqw,3.5rem)]" strokeWidth={1.45} />
       </div>
 
-      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-tight text-[#17233b]">
+      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-tight text-[#17233b]`}>
         {card.title}
       </h3>
 
@@ -108,6 +111,8 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const localTopCards = isAr
     ? [
         { title: "البنية التحتية", text: "بناء الطرق الحديثة والمرافق والخدمات العامة.", icon: Route, color: "#13213b" },
@@ -168,7 +173,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -211,7 +216,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
 
             <div className="relative z-10 flex h-[760px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="land-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {isAr ? "التقدم" : isKu ? "پێشکەوتن" : "Progress"}
                 </h1>
 
@@ -237,14 +242,14 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
               {/* Top 3 cards */}
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localTopCards.map((card, index) => (
-                  <ProgressCard key={card.title} card={card} pattern={cardPatterns[index % cardPatterns.length]} />
+                  <ProgressCard key={card.title} card={card} pattern={cardPatterns[index % cardPatterns.length]} displayFont={displayFont} />
                 ))}
               </section>
 
               {/* Bottom 2 centered cards */}
               <section className="mx-auto mt-[clamp(0.85rem,1.8cqh,2.1rem)] grid w-full max-w-[min(64cqw,920px)] grid-cols-2 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localBottomCards.map((card, index) => (
-                  <ProgressCard key={card.title} card={card} pattern={cardPatterns[index % cardPatterns.length]} />
+                  <ProgressCard key={card.title} card={card} pattern={cardPatterns[index % cardPatterns.length]} displayFont={displayFont} />
                 ))}
               </section>
             </div>

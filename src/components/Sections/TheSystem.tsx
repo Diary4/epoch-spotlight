@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/system.webp"
 
 function Logo() {
@@ -33,6 +34,7 @@ function InstitutionNode({
   className = "",
   onClick,
   nodeId,
+  displayFont = "font-serif",
 }: {
   label: string;
   icon: React.ElementType;
@@ -40,6 +42,7 @@ function InstitutionNode({
   className?: string;
   onClick?: () => void;
   nodeId?: string;
+  displayFont?: string;
 }) {
   const Icon = icon;
   const content = (
@@ -47,7 +50,7 @@ function InstitutionNode({
       <div className={`grid h-48 w-48 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55]`}>
         <Icon className="h-[92px] w-[92px]" strokeWidth={1.35} />
       </div>
-      <p className="mt-6 rounded-full px-5 py-1.5 font-serif text-[36px] font-light uppercase tracking-[0.06em] text-[#17233b]">
+      <p className={`mt-6 rounded-full px-5 py-1.5 ${displayFont} text-[36px] font-light uppercase tracking-[0.06em] text-[#17233b]`}>
         {label}
       </p>
     </>
@@ -92,6 +95,8 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const dir = lang === "en" ? "ltr" : "rtl";
   const title = isAr ? "النظام" : isKu ? "سیستەمەکە" : "The System";
   const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : isKu ? "چۆنیەتی کارکردنی دامەزراوەکانی کوردستان پێکەوە." : "How Kurdistan’s institutions work together.";
@@ -190,7 +195,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -235,7 +240,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
             <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
             <section className="max-w-[760px]">
-              <h1 data-system-hero="true" className="break-words font-serif text-[118px] font-light leading-[1.03] tracking-tight text-[#17233b]">
+              <h1 data-system-hero="true" className={`break-words ${displayFont} text-[118px] font-light leading-[1.03] tracking-tight text-[#17233b]`}>
                 {title}
               </h1>
 
@@ -275,6 +280,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   className="left-1/2 top-1 -translate-x-1/2"
                   onClick={onParliamentClick}
                   nodeId="parliament"
+                  displayFont={displayFont}
                 />
                 <InstitutionNode
                   label={governmentLabel}
@@ -283,6 +289,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   className="left-[28px] top-[346px]"
                   onClick={onGovernmentClick}
                   nodeId="government"
+                  displayFont={displayFont}
                 />
                 <InstitutionNode
                   label={presidencyLabel}
@@ -291,6 +298,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   className="right-[28px] top-[346px]"
                   onClick={onPresidencyClick}
                   nodeId="presidency"
+                  displayFont={displayFont}
                 />
 
                 <div className="absolute left-1/2 top-[350px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">
@@ -308,7 +316,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <button
                 type="button"
                 onClick={onPrimeMinisterClick}
-                className="flex h-[150px] w-full items-center justify-between gap-2 rounded-[27px] px-16 font-serif text-[55px] font-light text-[#17233b]"
+                className={`flex h-[150px] w-full items-center justify-between gap-2 rounded-[27px] px-16 ${displayFont} text-[55px] font-light text-[#17233b]`}
               >
                 <span data-system-prime-text="true" className="shrink-0 text-[#b99152] text-6xl">✥</span>
                 <span data-system-prime-text="true" className="text-center">{primeMinisterLabel}</span>
@@ -321,7 +329,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <div className="ms-12 me-14 grid h-28 w-28 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white">
                 <span className="text-5xl">✥</span>
               </div>
-              <p className="p-4 text-start font-serif font-light text-[34px] leading-tight text-[#17233b]">
+              <p className={`p-4 text-start ${displayFont} font-light text-[34px] leading-tight text-[#17233b]`}>
                 {footerText}
               </p>
             </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -46,6 +47,8 @@ type Year1991PageProps = {
 export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.["1991"] ?? data?.people?.sections?.["1991"] ?? {};
@@ -81,7 +84,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -122,7 +125,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {section.title ?? "1991"}
                 </h1>
 
@@ -158,7 +161,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
                         <Icon size={56} strokeWidth={1.5} />
                       </div>
 
-                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
+                      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
                         {card.title}
                       </h3>
 

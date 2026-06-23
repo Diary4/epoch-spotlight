@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Feather, UsersRound } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/letter.webp"
 
 const dialects = [
@@ -69,7 +70,7 @@ function Divider({ className = "" }) {
   );
 }
 
-function DialectItem({ item }: { item: (typeof dialects)[number] }) {
+function DialectItem({ item, displayFont = "font-serif" }: { item: (typeof dialects)[number]; displayFont?: string }) {
   const hasTitle = Boolean(item?.name?.trim());
   return (
     <article className="grid grid-cols-[86px_1fr] items-center gap-5 border-b border-[#ead8b7] py-5 last:border-b-0">
@@ -81,7 +82,7 @@ function DialectItem({ item }: { item: (typeof dialects)[number] }) {
       </div>
       <div className={`flex min-h-[80px] flex-col ${hasTitle ? "justify-start" : "justify-center"}`}>
         {hasTitle && (
-          <h3 className="font-serif text-[clamp(0.9rem,2.14cqw,30px)] font-light leading-tight" style={{ color: item.color }}>
+          <h3 className={`${displayFont} text-[clamp(0.9rem,2.14cqw,30px)] font-light leading-tight`} style={{ color: item.color }}>
             {item.name}
           </h3>
         )}
@@ -103,6 +104,8 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const localDialects = isAr
     ? [
         { name: "السورانية", text: "تُتحدث في جنوب كوردستان في العراق وإيران. وهي اللهجة الرسمية في كوردستان العراق ولها تقليد أدبي مكتوب عريق.", letter: "س", color: "#963538" },
@@ -157,7 +160,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -204,7 +207,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             <div className="relative z-10 flex w-full flex-col px-[clamp(1.4rem,3.2cqw,52px)] pt-[clamp(1.5rem,4cqw,3rem)] pb-[clamp(1.2rem,3cqw,2.6rem)]">
               {/* Hero header */}
               <section className="land-detail-intro w-full max-w-[min(52cqw,720px)] pt-2">
-                <h1 className="font-serif text-[clamp(2.6rem,7.3cqw,102px)] font-light leading-[0.98] tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(2.6rem,7.3cqw,102px)] font-light leading-[0.98] tracking-tight text-[#17233b]`}>
                   {isAr ? "اللغة الكوردية واللهجات" : isKu ? "زمان و زاراوە کوردییەکان" : "Kurdish"}
                   {!isAr && !isKu && <br />}
                   {!isAr && !isKu && "Language &"}
@@ -212,7 +215,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
                   {!isAr && !isKu && "Dialects"}
                 </h1>
 
-                <p className="mt-8 font-serif text-[clamp(1.3rem,2.86cqw,40px)] leading-tight text-[#9b6d35]">
+                <p className={`mt-8 ${displayFont} text-[clamp(1.3rem,2.86cqw,40px)] leading-tight text-[#9b6d35]`}>
                   {isAr ? "لغة حية تحمل الأدب والهوية والتعبير." : isKu ? "زمانێکی زیندووی ئەدەب، ناسنامە، و دەربڕین." : "A living language of literature, identity, and expression."}
                 </p>
 
@@ -232,19 +235,19 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
               {/* Main Content Panels */}
               <section className="mt-10 grid grid-cols-[minmax(350px,0.82fr)_minmax(0,1.38fr)] gap-7 pb-6">
                 <aside className="land-detail-panel flex min-h-[1150px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-7 py-7 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md">
-                  <h2 className="text-center font-serif text-[clamp(1.1rem,2.71cqw,38px)] font-light text-[#17233b]">
+                  <h2 className={`text-center ${displayFont} text-[clamp(1.1rem,2.71cqw,38px)] font-light text-[#17233b]`}>
                     {isAr ? "اللهجات الرئيسية" : isKu ? "دیالێکتە سەرەکییەکان" : "Main Dialects"}
                   </h2>
                   <Divider className="mx-auto mt-4 w-36" />
                   <div className="mt-6">
                     {localDialects.map((item) => (
-                      <DialectItem key={item.name} item={item} />
+                      <DialectItem key={item.name} item={item} displayFont={displayFont} />
                     ))}
                   </div>
                 </aside>
 
                 <section className="land-detail-panel flex min-h-[1150px] flex-col rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-6 py-6 shadow-[0_12px_30px_rgba(84,54,16,0.13)] backdrop-blur-md">
-                  <h2 className="text-center font-serif text-[clamp(1.1rem,2.57cqw,36px)] font-light text-[#17233b]">
+                  <h2 className={`text-center ${displayFont} text-[clamp(1.1rem,2.57cqw,36px)] font-light text-[#17233b]`}>
                     {isAr ? "الأبجدية والكتابة" : isKu ? "ئەلفوبێ و نووسین" : "Alphabet & Writing"}
                   </h2>
 
@@ -302,7 +305,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
                     <Feather className="h-[clamp(1.5rem,4.3cqw,60px)] w-[clamp(1.5rem,4.3cqw,60px)]" strokeWidth={1.5} />
                   </div>
                   <div className="text-start">
-                    <h3 className="font-serif text-[clamp(1rem,2.43cqw,34px)] font-light text-[#17233b]">
+                    <h3 className={`${displayFont} text-[clamp(1rem,2.43cqw,34px)] font-light text-[#17233b]`}>
                       {isAr ? "الأدب والتراث الشفهي" : isKu ? "ئەدەب و کەلەپووری زارەکی" : "Literature & Oral Heritage"}
                     </h3>
                     <p className="mt-2 text-[clamp(0.7rem,1.43cqw,20px)] font-light leading-snug text-[#35435b]">
@@ -322,7 +325,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
                     <UsersRound className="h-[clamp(1.5rem,4.3cqw,60px)] w-[clamp(1.5rem,4.3cqw,60px)]" strokeWidth={1.5} />
                   </div>
                   <div className="text-start">
-                    <h3 className="font-serif text-[clamp(1rem,2.43cqw,34px)] font-light text-[#17233b]">
+                    <h3 className={`${displayFont} text-[clamp(1rem,2.43cqw,34px)] font-light text-[#17233b]`}>
                       {isAr ? "اللغة في الحياة اليومية" : isKu ? "زمان لە ژیانی ڕۆژانەدا" : "Language in Daily Life"}
                     </h3>
                     <p className="mt-2 text-[clamp(0.7rem,1.43cqw,20px)] font-light leading-snug text-[#35435b]">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, Bird, Shield, UsersRound } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/peshmarga.webp"
 
 const cards = [
@@ -44,6 +45,8 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const localCards = isAr
     ? [
         { title: "الدفاع عن\nالإقليم", text: "الوقوف في وجه كل من يهدد كوردستان وشعبها.", icon: Shield, color: "#963538" },
@@ -93,7 +96,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -136,7 +139,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="land-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {isAr ? "البيشمركة" : isKu ? "پێشمەرگە" : "Peshmerga"}
                 </h1>
 
@@ -175,7 +178,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
                       </div>
 
                       <h3
-                        className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[1.02]"
+                        className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[1.02]`}
                         style={{ color: card.color }}
                       >
                         {card.title}

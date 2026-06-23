@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/mainImages/bg-2.webp";
 import mapImage from "@/assets/mainImages/theland/land-1.webp";
@@ -42,7 +43,8 @@ function Divider({ color = "#b99152" }) {
   );
 }
 
-function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: "ku" | "en" | "ar" }) {
+function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: DiscoverLangCode }) {
+  const displayFont = discoverDisplayFont(lang);
   return (
     <article className="land-detail-card grid w-full min-h-0 flex-1 grid-cols-1 items-stretch overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md sm:rounded-[24px] lg:grid-cols-[205px_1fr] lg:rounded-[26px]">
       <div className="flex flex-col items-center justify-center border-b border-[#ead8b7] px-5 py-6 text-center sm:px-7 sm:py-8 lg:border-b-0 lg:border-r">
@@ -55,7 +57,7 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
 
         <Divider color={card.color} />
 
-        <h3 className="whitespace-pre-line font-serif text-[20px] font-light leading-tight text-[#17233b] sm:text-[24px]">
+        <h3 className={`whitespace-pre-line ${displayFont} text-[20px] font-light leading-tight text-[#17233b] sm:text-[24px]`}>
           {localizeDigits(card.title, lang)}
         </h3>
 
@@ -94,6 +96,8 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const localMapCards = isAr
     ? [
         { ...mapCards[0], title: "إقليم كوردستان العراق", text: "استكشف إقليم كوردستان المعترف به رسميًا في العراق، محافظاته ومدنه الكبرى وحدوده." },
@@ -108,7 +112,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         ]
       : mapCards;
   return (
-    <main ref={rootRef} dir={dir} className="m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b]">
+    <main ref={rootRef} dir={dir} className={`m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b] ${isRtlScript ? "font-amiri" : ""}`}>
       <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col gap-6 overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] p-4 sm:gap-8 sm:p-5 sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:flex-row lg:gap-0 lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)] lg:p-[clamp(10px,1.3vw,20px)]">
         <button
           type="button"
@@ -135,7 +139,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
 
         {/* Left text */}
         <aside className="land-detail-intro relative z-10 flex w-full shrink-0 flex-col px-1 pt-20 sm:px-2 sm:pt-24 lg:w-[clamp(300px,30vw,470px)] lg:pt-[clamp(64px,8vh,120px)] lg:pl-[clamp(8px,1.1vw,20px)]">
-          <h1 className="font-serif text-[clamp(44px,12vw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]">
+          <h1 className={`${displayFont} text-[clamp(44px,12vw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]`}>
             {isAr ? (
               "الأرض"
             ) : isKu ? (
@@ -151,7 +155,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
             <Divider />
           </div>
 
-          <p className="mt-[clamp(10px,1.5vh,22px)] font-serif text-[clamp(24px,2.8vw,42px)] leading-tight text-[#9b6d35]">
+          <p className={`mt-[clamp(10px,1.5vh,22px)] ${displayFont} text-[clamp(24px,2.8vw,42px)] leading-tight text-[#9b6d35]`}>
             {isAr ? (
               "إقليم من الجمال والجغرافيا والتراث."
             ) : isKu ? (

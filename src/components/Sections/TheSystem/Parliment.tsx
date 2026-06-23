@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/parliment.webp";
 
 const mainCards = [
@@ -52,6 +53,8 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
 
   const localMainCards = isAr
     ? [
@@ -116,7 +119,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -160,7 +163,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="system-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament"}
                 </h1>
 
@@ -199,7 +202,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
                         <Icon size={56} strokeWidth={1.5} />
                       </div>
 
-                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
+                      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
                         {card.title}
                       </h3>
 
@@ -228,7 +231,7 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
                         <span className="absolute left-0 top-[clamp(0.5rem,1cqh,1rem)] bottom-[clamp(0.5rem,1cqh,1rem)] w-px bg-[#d8b875]" />
                       )}
                       <Icon className="text-[#bd8431]" size={44} strokeWidth={1.5} />
-                      <h4 className="mt-[clamp(0.75rem,1.4cqh,1.25rem)] font-serif text-[clamp(1.2rem,2.2cqw,2rem)] font-light text-[#17233b]">
+                      <h4 className={`mt-[clamp(0.75rem,1.4cqh,1.25rem)] ${displayFont} text-[clamp(1.2rem,2.2cqw,2rem)] font-light text-[#17233b]`}>
                         {item.title}
                       </h4>
                       <p className="mt-[clamp(0.4rem,0.8cqh,0.75rem)] text-[clamp(0.95rem,1.4cqw,1.25rem)] font-light leading-snug text-[#35435b]">

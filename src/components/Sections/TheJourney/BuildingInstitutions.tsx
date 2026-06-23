@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -44,6 +45,8 @@ type BuildingInstitutionsPageProps = {
 export default function BuildingInstitutionsPage({ lang = "en", onBack }: BuildingInstitutionsPageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.institutions ?? data?.people?.sections?.institutions ?? {};
@@ -79,7 +82,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{
         width: "100vw",
         height: "100vh",
@@ -126,7 +129,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
             <div className="relative z-10 flex flex-1 flex-col">
               {/* Hero text */}
               <section className="journey-detail-intro max-w-[min(46cqw,740px)] pt-[clamp(2.5rem,7cqh,6rem)]">
-                <h1 className="font-serif text-[clamp(3.9rem,7.2cqw,6.8rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(3.9rem,7.2cqw,6.8rem)] font-light leading-[1.02] tracking-tight text-[#17233b]`}>
                   {(section.title ?? "Building Institutions").split(" ").slice(0, -1).join(" ")}<br />{(section.title ?? "Building Institutions").split(" ").slice(-1)}
                 </h1>
 
@@ -164,7 +167,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
                       <div className="h-[clamp(4.5rem,8.8cqh,6.8rem)] w-px bg-[#e2c99b]" />
 
                       <div className="px-[clamp(0.9rem,1.9cqw,2.4rem)]">
-                        <h3 className="font-serif text-[clamp(1.35rem,2.45cqw,2.4rem)] font-light leading-tight text-[#17233b]">
+                        <h3 className={`${displayFont} text-[clamp(1.35rem,2.45cqw,2.4rem)] font-light leading-tight text-[#17233b]`}>
                           {row.title}
                         </h3>
                         <p className="mt-[clamp(0.45rem,0.9cqh,0.9rem)] max-w-[min(45cqw,760px)] text-[clamp(1.02rem,1.56cqw,1.48rem)] font-medium leading-[1.42] text-[#303a50]">

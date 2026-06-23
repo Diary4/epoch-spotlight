@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, BookOpenCheck, Building2, UsersRound } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/presidency-1.webp";
 import bg2 from "@/assets/mainImages/presidency-2.webp";
 
@@ -35,6 +36,8 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
 
   const localCards = isAr
     ? [
@@ -85,7 +88,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -137,7 +140,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="system-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#943134]">
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#943134]`}>
                   {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
                 </h1>
 
@@ -176,7 +179,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
                         <Icon size={56} strokeWidth={1.5} />
                       </div>
 
-                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
+                      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
                         {card.title}
                       </h3>
 

@@ -1,4 +1,5 @@
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
   ArrowLeft,
   BarChart3,
@@ -82,7 +83,7 @@ function DecorativeLine({ color = "#c99a55" }) {
   );
 }
 
-function InfoPanel({ title, items, tone = "gold" }) {
+function InfoPanel({ title, items, tone = "gold", displayFont = "font-serif" }: { title: string; items: typeof achievements; tone?: "gold" | "green"; displayFont?: string }) {
   const isGold = tone === "gold";
   const main = isGold ? "#c69237" : "#5d7757";
   const circleBg = isGold ? "bg-[#c69237]" : "bg-[#5d7757]";
@@ -93,7 +94,7 @@ function InfoPanel({ title, items, tone = "gold" }) {
         {isGold ? <Trophy className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} /> : <Compass className="h-10 w-10 sm:h-12 sm:w-12 lg:h-[54px] lg:w-[54px]" strokeWidth={1.45} />}
       </div>
 
-      <h2 className="text-center font-serif text-[clamp(1.6rem,4.2vw,2.75rem)] font-light text-[#17233b]">
+      <h2 className={`text-center ${displayFont} text-[clamp(1.6rem,4.2vw,2.75rem)] font-light text-[#17233b]`}>
         {title}
       </h2>
 
@@ -110,7 +111,7 @@ function InfoPanel({ title, items, tone = "gold" }) {
                 <Icon className="h-5 w-5 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-[42px] lg:w-[42px]" strokeWidth={1.7} />
               </div>
               <div>
-                <h3 className="font-serif text-[clamp(1.05rem,2.4vw,2.05rem)] font-light leading-tight text-[#17233b]">
+                <h3 className={`${displayFont} text-[clamp(1.05rem,2.4vw,2.05rem)] font-light leading-tight text-[#17233b]`}>
                   {item.title}
                 </h3>
                 <p className="mt-1 text-[clamp(0.9rem,1.8vw,1.45rem)] font-light leading-snug text-[#344052]">
@@ -136,6 +137,8 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
   const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const title = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "The Prime Minister";
   const name = isAr || isKu ? "مەسرور بارزانی" : "Masrour Barzani";
   const subtitle = isAr
@@ -181,7 +184,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
     : vision;
 
   return (
-    <main className="m-0 flex min-h-full w-full self-start justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b]">
+    <main className={`m-0 flex min-h-full w-full self-start justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b] ${isRtlScript ? "font-amiri" : ""}`}>
       <section className="relative flex min-h-full w-full max-w-[1400px] flex-col overflow-x-hidden bg-[#fbf5eb] px-3 pb-8 pt-4 xs:px-8 xs:py-9 lg:px-12 lg:py-12">
         <button
           type="button"
@@ -211,11 +214,11 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
           <section className="grid grid-cols-2 items-center gap-3 pt-14 xs:gap-5 sm:pt-16 lg:gap-10 lg:pt-20">
             {/* Intro text */}
             <div className="system-detail-intro w-full max-w-[680px] text-left">
-              <h1 className="font-serif text-[clamp(1.3rem,5.5vw,6.4rem)] font-light leading-[1.02] tracking-tight text-[#17233b]">
+              <h1 className={`${displayFont} text-[clamp(1.3rem,5.5vw,6.4rem)] font-light leading-[1.02] tracking-tight text-[#17233b]`}>
                 {title}
               </h1>
 
-              <p className="mt-1.5 font-serif text-[clamp(0.95rem,3.2vw,3.25rem)] leading-tight text-[#9b6d35] sm:mt-2">
+              <p className={`mt-1.5 ${displayFont} text-[clamp(0.95rem,3.2vw,3.25rem)] leading-tight text-[#9b6d35] sm:mt-2`}>
                 {name}
               </p>
 
@@ -244,8 +247,8 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
 
           {/* Panels */}
           <section className="mt-10 grid w-full grid-cols-1 gap-10 pb-2 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:gap-8">
-            <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" />
-            <InfoPanel title={visionTitle} items={localVision} tone="green" />
+            <InfoPanel title={achievementsTitle} items={localAchievements} tone="gold" displayFont={displayFont} />
+            <InfoPanel title={visionTitle} items={localVision} tone="green" displayFont={displayFont} />
           </section>
         </div>
       </section>

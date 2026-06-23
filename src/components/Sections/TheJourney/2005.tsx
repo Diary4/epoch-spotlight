@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeft, BookOpen, Landmark, Scale } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -48,6 +49,8 @@ type Year2005PageProps = {
 export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.["2005"] ?? data?.people?.sections?.["2005"] ?? {};
@@ -58,7 +61,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
   }));
 
   return (
-    <main ref={rootRef} dir={dir} className="m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden">
+    <main ref={rootRef} dir={dir} className={`m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden ${isRtlScript ? "font-amiri" : ""}`}>
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden sm:rounded-[22px] bg-[#fbf5eb]">
         
         {/* Back Button */}
@@ -91,7 +94,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
           
           {/* Header */}
           <section className="journey-detail-intro w-full max-w-full sm:max-w-[min(46vw,700px)]">
-            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(6rem,11vw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+            <h1 className={`${displayFont} text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(6rem,11vw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
               {localizeDigits(section.title ?? "2005", lang)}
             </h1>
 
@@ -134,7 +137,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
                       <span className={`grid h-5 w-5 sm:h-6 sm:w-6 lg:h-[clamp(2.15rem,3.5vw,3rem)] lg:w-[clamp(2.15rem,3.5vw,3rem)] place-items-center rounded-full text-[9px] sm:text-[10px] lg:text-[clamp(1rem,1.75vw,1.75rem)] font-bold text-white ${row.color}`}>
                         {localizeDigits(row.number, lang)}
                       </span>
-                      <h3 className="font-serif text-[10px] sm:text-base lg:text-[clamp(1.35rem,2.45vw,2.45rem)] font-light leading-tight text-[#17233b]">
+                      <h3 className={`${displayFont} text-[10px] sm:text-base lg:text-[clamp(1.35rem,2.45vw,2.45rem)] font-light leading-tight text-[#17233b]`}>
                         {localizeDigits(row.title, lang)}
                       </h3>
                     </div>

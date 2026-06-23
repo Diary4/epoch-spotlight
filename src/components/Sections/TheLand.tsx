@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeft, BarChart3, Mountain, Shield, Star, SunMedium, type LucideIcon } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
+import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import gsap from "gsap";
 import bg1 from "@/assets/mainImages/land-1.webp"
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
@@ -100,8 +101,9 @@ function LandCardIcon({
   return <Icon className={className} strokeWidth={strokeWidth} />;
 }
 
-function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
+function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: DiscoverLangCode }) {
   const Icon = card.icon;
+  const displayFont = discoverDisplayFont(lang);
   const iconBg = card.red ? "#963538" : card.featured ? "#c69237" : "#13213b";
   const iconColor = "#f8e5b8";
 
@@ -142,7 +144,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
             />
         </div>
 
-        <h3 className="mt-2.5 xs:mt-4 sm:mt-4 kiosk-portrait:mt-[1.6vw] font-serif text-[9px] xs:text-[11px] sm:text-[clamp(22px,5vw,28px)] font-light leading-tight text-[#17233b] lg:text-[32px] kiosk-portrait:text-[4.1vw]">
+        <h3 className={`mt-2.5 xs:mt-4 sm:mt-4 kiosk-portrait:mt-[1.6vw] ${displayFont} text-[9px] xs:text-[11px] sm:text-[clamp(22px,5vw,28px)] font-light leading-tight text-[#17233b] lg:text-[32px] kiosk-portrait:text-[4.1vw]`}>
           {localizeDigits(card.title, lang)}
         </h3>
 
@@ -156,8 +158,9 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
   );
 }
 
-function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: "ku" | "en" | "ar" }) {
+function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: () => void; lang?: DiscoverLangCode }) {
   const Icon = card.icon;
+  const displayFont = discoverDisplayFont(lang);
   return (
     <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[180px] lg:min-h-[210px] kiosk-portrait:min-h-[31.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-7 sm:py-6 lg:px-8 lg:py-7 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
       {onClick && (
@@ -185,7 +188,7 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
           />
         </div>
         <div className="min-w-0">
-          <h3 className="font-serif text-[12px] xs:text-[14px] sm:text-[clamp(22px,5vw,30px)] font-light text-[#17233b] lg:text-[34px] kiosk-portrait:text-[4.25vw]">{localizeDigits(card.title, lang)}</h3>
+          <h3 className={`${displayFont} text-[12px] xs:text-[14px] sm:text-[clamp(22px,5vw,30px)] font-light text-[#17233b] lg:text-[34px] kiosk-portrait:text-[4.25vw]`}>{localizeDigits(card.title, lang)}</h3>
           <p className="mt-1 xs:mt-2 sm:mt-3 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(14px,3.4vw,17px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[20px] kiosk-portrait:max-w-[46vw] kiosk-portrait:text-[2.4vw]">
             {localizeDigits(card.text, lang)}
           </p>
@@ -205,6 +208,8 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const localTopCards = isAr
     ? [
         { ...topCards[0], title: "الأرض", text: "إقليم تتجلى فيه جغرافيا خلابة وتاريخ ثري وتراث خالد." },
@@ -285,7 +290,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
-      <section ref={sectionRef} className="relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10">
+      <section ref={sectionRef} className={`relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10 ${isRtlScript ? "font-amiri" : ""}`}>
         
         {/* Responsive back button */}
         <button
@@ -321,13 +326,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
 
         <div className="relative z-10 flex flex-1 flex-col">
           <section className="mr-auto max-w-[66%] sm:max-w-[46%] lg:max-w-[600px] kiosk-portrait:max-w-[48%] text-left pt-12 sm:pt-16 lg:pt-24 kiosk-portrait:pt-[10vh]">
-            <h1 data-land-hero="true" className="font-serif text-[clamp(30px,9vw,52px)] sm:text-[clamp(34px,5vw,64px)] kiosk-portrait:text-[8.5vw] font-light leading-[1.05] tracking-tight text-[#17233b]">
+            <h1 data-land-hero="true" className={`${displayFont} text-[clamp(30px,9vw,52px)] sm:text-[clamp(34px,5vw,64px)] kiosk-portrait:text-[8.5vw] font-light leading-[1.05] tracking-tight text-[#17233b]`}>
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
               {!isAr && !isKu && "and Future"}
             </h1>
 
-            <p data-land-hero="true" className="z-10 mt-3 sm:mt-5 font-serif text-[clamp(16px,4.5vw,26px)] sm:text-[clamp(16px,2.1vw,28px)] kiosk-portrait:text-[4.2vw] leading-tight text-[#9b6d35]">
+            <p data-land-hero="true" className={`z-10 mt-3 sm:mt-5 ${displayFont} text-[clamp(16px,4.5vw,26px)] sm:text-[clamp(16px,2.1vw,28px)] kiosk-portrait:text-[4.2vw] leading-tight text-[#9b6d35]`}>
               {isAr ? (
                 <>
                   جذور التراث.<br />لآفاق الغد.

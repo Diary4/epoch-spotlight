@@ -12,6 +12,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/government.webp";
 import bg2 from "@/assets/mainImages/government-2.webp";
 
@@ -85,6 +86,8 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const dir = lang === "en" ? "ltr" : "rtl";
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
 
   const localMainCards = isAr
     ? [
@@ -154,7 +157,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
   return (
     <div
       dir={dir}
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -198,7 +201,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="system-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className="font-serif text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]">
+                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {isAr ? "الحكومة" : isKu ? "حکومەت" : "Government"}
                 </h1>
 
@@ -237,7 +240,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                         <Icon size={56} strokeWidth={1.5} />
                       </div>
 
-                      <h3 className="mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line font-serif text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]">
+                      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
                         {card.title}
                       </h3>
 
@@ -258,7 +261,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
               </section>
 
               <section className="system-detail-panel mt-[clamp(1rem,2cqh,2rem)] rounded-[26px] border-2 border-[#ead8b7] bg-white/60 px-[clamp(1rem,2.1cqw,2.5rem)] py-[clamp(1rem,2.2cqh,2rem)] shadow-[0_14px_35px_rgba(84,54,16,0.1)] backdrop-blur-md">
-                <div className="mb-[clamp(0.75rem,1.5cqh,1.5rem)] flex items-center gap-[clamp(0.5rem,1cqw,1rem)] font-serif text-[clamp(1.2rem,2.2cqw,2rem)] font-light text-[#9b6d35]">
+                <div className={`mb-[clamp(0.75rem,1.5cqh,1.5rem)] flex items-center gap-[clamp(0.5rem,1cqw,1rem)] ${displayFont} text-[clamp(1.2rem,2.2cqw,2rem)] font-light text-[#9b6d35]`}>
                   <span>{isAr ? "المجالات الرئيسية لعمل الحكومة" : isKu ? "بوارە سەرەکییەکانی کاری حکومەت" : "Key Areas of Government Work"}</span>
                   <span className="hidden h-0.5 flex-1 bg-[#c7a05d] sm:block" />
                   <span className="hidden h-3 w-3 rotate-45 border-2 border-[#c7a05d] sm:block" />
@@ -273,7 +276,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                         className="flex min-h-[clamp(8rem,14cqh,12rem)] flex-col items-center justify-start rounded-[18px] border border-[#ead8b7] bg-[#fffaf0]/80 px-[clamp(0.5rem,1cqw,1rem)] py-[clamp(0.75rem,1.4cqh,1.25rem)] text-center"
                       >
                         <Icon size={40} strokeWidth={1.5} style={{ color: item.color }} />
-                        <h4 className="mt-[clamp(0.5rem,1cqh,0.75rem)] font-serif text-[clamp(1rem,1.8cqw,1.5rem)] font-light leading-tight text-[#17233b]">
+                        <h4 className={`mt-[clamp(0.5rem,1cqh,0.75rem)] ${displayFont} text-[clamp(1rem,1.8cqw,1.5rem)] font-light leading-tight text-[#17233b]`}>
                           {item.title}
                         </h4>
                         <p className="mt-[clamp(0.35rem,0.6cqh,0.5rem)] text-[clamp(0.85rem,1.3cqw,1.1rem)] font-light leading-snug text-[#35435b]">

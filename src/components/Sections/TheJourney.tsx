@@ -12,6 +12,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
+import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/images/new/theJourney/journey-1.webp";
 import bg2 from "@/assets/images/new/theJourney/journey-2.webp";
 import bg3 from "@/assets/images/new/theJourney/journey-3.webp";
@@ -151,6 +152,8 @@ function timelinePathThrough(points: { x: number; y: number }[]): string {
 }
 
 export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMilestone }: JourneyTimelinePageProps) {
+  const isRtlScript = discoverRtlScript(lang);
+  const displayFont = discoverDisplayFont(lang);
   const data = CONTENT[lang] as any;
   const journey = data?.journey ?? {};
   const journeyItems = Array.isArray(journey.items) ? journey.items : EMPTY_JOURNEY_ITEMS;
@@ -351,7 +354,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
 
   return (
     <div
-      className="relative h-screen w-screen overflow-hidden bg-[#f8f1e7]"
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
       style={{
         width: "100vw",
         height: "100vh",
@@ -412,7 +415,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
             <div className="relative z-10 flex min-h-0 flex-1 flex-col px-20 pb-14 pt-20">
               {/* Title */}
               <section className="journey-intro max-w-[760px]">
-                <h1 className="font-serif text-[clamp(34px,9cqw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]">
+                <h1 className={`${displayFont} text-[clamp(34px,9cqw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]`}>
                   {journey.title ?? "The Journey"}
                 </h1>
                 <h2 className="mt-6 text-[clamp(16px,4cqw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
@@ -504,7 +507,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                           <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
                           <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-7 py-6">
-                            <h3 className="font-serif text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]">
+                            <h3 className={`${displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]`}>
                               {item.title}
                             </h3>
                             <p className="mt-2 max-w-[380px] text-[clamp(14px,3cqw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
