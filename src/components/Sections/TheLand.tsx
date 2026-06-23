@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, BarChart3, Mountain, Shield, Star, SunMedium, type LucideIcon } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
-import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import gsap from "gsap";
 import bg1 from "@/assets/mainImages/land-1.webp"
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
@@ -176,9 +176,9 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
         alt={card.title}
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#fff8ed] via-[#fff8ed]/82 to-[#fff8ed]/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#fff8ed] via-[#fff8ed]/82 to-[#fff8ed]/30 rtl:bg-gradient-to-l" />
 
-      <div className="relative z-10 flex h-full flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left lg:gap-10">
+      <div className="relative z-10 flex h-full flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-start lg:gap-10">
         <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[5px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
           <LandCardIcon
             cardId={card.id}
@@ -210,6 +210,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
   const isKu = lang === "ku";
   const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
+  const dir = discoverDir(lang);
   const localTopCards = isAr
     ? [
         { ...topCards[0], title: "الأرض", text: "إقليم تتجلى فيه جغرافيا خلابة وتاريخ ثري وتراث خالد." },
@@ -290,31 +291,37 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
 
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
-      <section ref={sectionRef} className={`relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10 ${isRtlScript ? "font-amiri" : ""}`}>
+      <section
+        ref={sectionRef}
+        lang={lang}
+        dir={dir}
+        className={`relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10 ${isRtlScript ? "font-amiri" : ""}`}
+      >
         
         {/* Responsive back button */}
         <button
           type="button"
           onClick={onBack}
-          className={sectionBackButtonClassName}
+          className={`${sectionBackButtonClassName} rtl:left-auto rtl:right-3 xs:rtl:right-6`}
           aria-label="Back to Discover"
         >
-          <ArrowLeft className={sectionBackIconClassName} />
+          <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
         </button>
-        <div className="absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
+        <div className="absolute start-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
 
         {/* Absolutely positioned background illustration layer — full width of the hero
             on every breakpoint (mobile keeps the same structure as large screens). */}
-        <div data-land-bg="true" className="pointer-events-none absolute right-0 top-0 h-[56vh] sm:top-0 sm:h-[min(72vh,900px)] md:min-w-0 lg:h-[min(92vh,1150px)] w-full z-0 overflow-hidden">
-          <img
-            src={bg1}
-            alt="Land and Future placeholder"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
-          {/* Left fade — keeps the left side paper-toned over the full-width image
-              so the left-aligned text stays readable on every screen size. */}
+        <div data-land-bg="true" className="pointer-events-none absolute end-0 top-0 h-[56vh] sm:top-0 sm:h-[min(72vh,900px)] md:min-w-0 lg:h-[min(92vh,1150px)] w-full z-0 overflow-hidden">
+          <div className={`absolute inset-0 ${isRtlScript ? "-scale-x-100" : ""}`}>
+            <img
+              src={bg1}
+              alt="Land and Future placeholder"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+          </div>
+          {/* Start-side fade — keeps the hero text readable over the full-width image */}
           <div
-            className="absolute inset-y-0 left-0 w-[70%] sm:w-[60%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/85 sm:via-[#fbf5eb]/80 to-transparent block"
+            className="absolute inset-y-0 start-0 w-[70%] sm:w-[60%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/85 sm:via-[#fbf5eb]/80 to-transparent rtl:bg-gradient-to-l block"
             aria-hidden
           />
           {/* Bottom blend into section bg (#fbf5eb) — same tone as the “paper” background */}
@@ -325,7 +332,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section className="mr-auto max-w-[66%] sm:max-w-[46%] lg:max-w-[600px] kiosk-portrait:max-w-[48%] text-left pt-12 sm:pt-16 lg:pt-24 kiosk-portrait:pt-[10vh]">
+          <section className="me-auto max-w-[66%] sm:max-w-[46%] lg:max-w-[600px] kiosk-portrait:max-w-[48%] text-start pt-12 sm:pt-16 lg:pt-24 kiosk-portrait:pt-[10vh]">
             <h1 data-land-hero="true" className={`${displayFont} text-[clamp(30px,9vw,52px)] sm:text-[clamp(34px,5vw,64px)] kiosk-portrait:text-[8.5vw] font-light leading-[1.05] tracking-tight text-[#17233b]`}>
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
@@ -348,13 +355,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
               )}
             </p>
 
-            <div className="mx-0 mt-4 sm:mt-9 flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152] lg:w-[320px] lg:max-w-[320px] kiosk-portrait:w-[33vw] kiosk-portrait:max-w-[33vw]">
+            <div className="mt-4 sm:mt-9 flex w-[min(150px,52vw)] items-center gap-3 text-[#b99152] lg:w-[320px] lg:max-w-[320px] kiosk-portrait:w-[33vw] kiosk-portrait:max-w-[33vw]">
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
               <span data-land-divider="true" className="h-2.5 w-2.5 rotate-45 border-2 border-[#b99152]" />
               <span data-land-divider="true" className="h-0.5 flex-1 bg-[#b99152]" />
             </div>
 
-            <p data-land-hero="true" className="mx-0 mt-4 sm:mt-6 max-w-[330px] sm:max-w-[400px] lg:max-w-[860px] kiosk-portrait:max-w-[70%] text-[clamp(12px,3.6vw,15px)] sm:text-[clamp(13px,1.45vw,18px)] kiosk-portrait:text-[2.2vw] leading-[1.6] text-[#2d3549]">
+            <p data-land-hero="true" className="mt-4 sm:mt-6 max-w-[330px] sm:max-w-[400px] lg:max-w-[860px] kiosk-portrait:max-w-[70%] text-[clamp(12px,3.6vw,15px)] sm:text-[clamp(13px,1.45vw,18px)] kiosk-portrait:text-[2.2vw] leading-[1.6] text-[#2d3549]">
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
                 : isKu
