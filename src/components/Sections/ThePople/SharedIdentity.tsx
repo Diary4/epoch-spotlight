@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, MessageSquareText, Music2, UsersRound } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
+import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
+import heroVideo from "@/assets/videos/sharedidentity.mp4";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/shared.webp";
 
 const identityCards = [
   {
@@ -106,18 +107,17 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            <div className="journey-detail-hero pointer-events-none absolute right-0 top-0 h-[min(82cqh,1150px)] w-[80%] overflow-hidden rtl:right-auto rtl:left-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
-                <img
-                  src={bg}
-                  alt="Shared identity visual"
-                  className="absolute inset-0 h-full w-full object-cover object-top opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
-                />
-              </div>
-            </div>
+            <PeopleDetailHeroVideo
+              src={heroVideo}
+              dir={dir}
+              className="h-[min(82cqh,1150px)] w-full"
+              videoSide="left"
+            />
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
-              <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
+              <section
+                className={`journey-detail-intro relative z-20 max-w-[min(40cqw,580px)] ${dir === "rtl" ? "ml-auto" : ""}`}
+              >
                 <h1 className={`whitespace-pre-line ${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#214439]`}>
                   {detail?.title ?? "A Shared\nIdentity"}
                 </h1>
@@ -132,7 +132,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                 </div>
 
-                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(36cqw,520px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
                   {detail?.description ??
                     "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
                 </p>

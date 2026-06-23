@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, KeyRound, Sparkles, TreePine } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
-import bgImage from "@/assets/mainImages/whoarekurds.webp";
+import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
+import heroVideo from "@/assets/videos/kch3.mp4";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -103,13 +104,12 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            <div className="pointer-events-none absolute right-0 top-0 h-[min(100cqh,1400px)] w-full rtl:-scale-x-100">
-              <img
-                src={bgImage}
-                alt="Kurdish Visual"
-                className="journey-detail-hero absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
-              />
-            </div>
+            <PeopleDetailHeroVideo
+              src={heroVideo}
+              dir={dir}
+              className="h-[min(82cqh,1150px)] w-full"
+              videoSide="right"
+            />
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
@@ -118,7 +118,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
                 </p>
 
                 <h1 className={`mt-[clamp(0.5rem,1cqh,0.75rem)] whitespace-pre-line ${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#00604f]`}>
-                  {detail?.title ?? "Who Are\nthe Kurds?"}
+                  {detail?.title ?? "Who Are the Kurds?"}
                 </h1>
 
                 <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
