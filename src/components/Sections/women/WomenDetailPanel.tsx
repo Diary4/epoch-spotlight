@@ -105,7 +105,7 @@ export default function WomenDetailPanel({
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className="mt-[clamp(16px,3vw,32px)] max-w-[min(66%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#b48734]">
+            <h2 className="mt-[clamp(16px,3vw,32px)] max-w-[min(66%,300px)] break-words font-serif text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#a75a69]">
               {role}
             </h2>
 
