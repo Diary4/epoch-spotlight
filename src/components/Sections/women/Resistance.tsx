@@ -116,7 +116,7 @@ export default function WomenResistancePage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
+      className={`m-0 flex w-full max-w-full h-screen flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
         selectedId ? "h-screen overflow-hidden bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       } ${isRtlScript ? "font-amiri" : ""}`}
     >
@@ -287,7 +287,7 @@ export default function WomenResistancePage({
               ))}
             </section>
 
-            {/* Legacy banner */}
+            {/* Legacy banner
             <section
               data-resist-fade="true"
               className="relative z-20 mx-5 mt-6 mb-10 flex min-h-[120px] flex-col items-start gap-4 overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-6 py-6 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:min-h-[145px] sm:flex-row sm:items-center sm:px-12 lg:mx-10"
@@ -309,7 +309,7 @@ export default function WomenResistancePage({
               <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-[min(100%,360px)] opacity-45 sm:h-32">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_60%_30%,rgba(151,97,126,0.28),transparent_22%),linear-gradient(135deg,transparent_35%,rgba(143,76,104,0.25)_36%_50%,transparent_51%)]" />
               </div>
-            </section>
+            </section> */}
           </>
         )}
       </section>

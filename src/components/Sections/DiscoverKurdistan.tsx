@@ -128,11 +128,6 @@ export default function DiscoverKurdistan({
         transformOrigin: "center top",
         force3D: true,
       });
-      gsap.set("[data-choose-line='true']", {
-        scaleX: 0,
-        transformOrigin: "center",
-        force3D: true,
-      });
 
       const tl = gsap.timeline({
         defaults: { ease: "power2.out", force3D: true },
@@ -164,15 +159,6 @@ export default function DiscoverKurdistan({
             stagger: 0.08,
           },
           "-=0.1",
-        )
-        .to(
-          "[data-choose-line='true']",
-          {
-            scaleX: 1,
-            duration: 0.7,
-            stagger: 0.07,
-          },
-          "-=0.25",
         )
         // Stagger individual cards with the same smooth tilt-in as The People
         .to(
@@ -276,23 +262,6 @@ export default function DiscoverKurdistan({
           </div>
 
           <div data-intro-rest="true" className="mt-6 sm:mt-12 md:mt-16">
-            {/* Choosing section title wrapper */}
-            <div className={`mb-3 flex items-center justify-center gap-1.5 ${displayFont} text-[13px] text-[#2d3d35] xs:text-[15px] sm:mb-5 sm:gap-3 sm:text-[23px] md:mb-6 md:gap-5 md:text-[30px] lg:mb-8 lg:text-[36px] xl:text-[44px] 3xl:text-[56px] 4xl:text-[66px] kiosk-portrait:text-[44px]`}>
-              <span
-                data-choose-line="true"
-                className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]"
-              />
-              <span className="h-1.5 w-1.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span className={bodyWeight}>
-                {kuText(discover.chooseSection ?? "Choose a section to begin")}
-              </span>
-              <span className="h-1.5 w-1.5 rotate-45 border border-[#c8a05a] sm:h-3 sm:w-3 md:h-4 md:w-4 md:border-2 lg:h-5 lg:w-5" />
-              <span
-                data-choose-line="true"
-                className="h-0.5 w-4 bg-[#c8a05a] xs:w-8 sm:w-12 md:w-74 md:max-w-[74px] lg:w-[108px]"
-              />
-            </div>
-
             {/*
               Grid wrapper: no animation data attribute here anymore.
               Each card gets data-card-item so GSAP animates them individually
