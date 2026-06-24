@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { setAppLanguage } from "@/lib/appLanguage";
 import HeroCharacter from "@/components/HeroCharacter";
 import DiscoverKurdistan from "@/components/Sections/DiscoverKurdistan";
+import DiscoverKurdistanV2 from "@/components/Sections/DiscoverKurdistanV2";
 import ThePeoplePage from "@/components/Sections/ThePeople";
 import JourneyTimelinePage from "@/components/Sections/TheJourney";
 import Year1991Page from "@/components/Sections/TheJourney/1991";
@@ -369,7 +370,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
+type SectionView = "hero" | "discover" | "discoverV2" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
 
 const SectionNav = ({
   ui,
@@ -501,6 +502,7 @@ const Index = () => {
   const bgByView: Record<SectionView, string> = {
     hero: officeBg,
     discover: officeBg,
+    discoverV2: officeBg,
     people: bg2,
     whoAreTheKurds: bg2,
     sharedIdentity: bg2,
@@ -586,6 +588,29 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <DiscoverKurdistan
             lang={activeLang}
+            onOpenDesignDraft={() => setView("discoverV2")}
+            onStartExploring={() => {
+              setView("people");
+              setIntroPlaying(false);
+              setShowLangPrompt(false);
+              setLangClosing(false);
+            }}
+            onSelectSection={(section) => {
+              setView(section);
+              setIntroPlaying(false);
+              setShowLangPrompt(false);
+              setLangClosing(false);
+            }}
+          />
+        </div>
+      )}
+
+      {/* DISCOVER V2 VIEW — design draft */}
+      {view === "discoverV2" && (
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <DiscoverKurdistanV2
+            lang={activeLang}
+            onBackToOriginal={() => setView("discover")}
             onStartExploring={() => {
               setView("people");
               setIntroPlaying(false);
