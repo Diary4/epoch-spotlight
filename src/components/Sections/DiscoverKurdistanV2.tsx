@@ -126,14 +126,14 @@ function SectionCard({
           </GoldIcon>
         </div>
         <div
-          className={`relative flex flex-col justify-center ${bodyWeight} min-h-[120px] px-3 pb-5 pt-8 xs:min-h-[140px] xs:px-4 xs:pb-6 xs:pt-10 sm:min-h-[180px] sm:px-8 sm:pb-8 sm:pt-14 md:min-h-[210px] lg:min-h-[240px] xl:min-h-[280px]`}
+          className={`relative flex flex-col justify-center ${bodyWeight} min-h-[120px] px-3 pb-5 pt-8 xs:min-h-[140px] xs:px-4 xs:pb-6 xs:pt-10 sm:min-h-[180px] sm:px-8 sm:pb-8 sm:pt-14 md:min-h-[210px] lg:min-h-[240px] xl:min-h-[280px] kiosk-portrait:min-h-[200px]`}
         >
           <h3
-            className={`${displayFont} text-[18px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[22px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[58px]`}
+            className={`${displayFont} text-[22px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[26px] sm:text-[44px] md:text-[52px] lg:text-[56px] xl:text-[62px] 3xl:text-[68px] 4xl:text-[76px] kiosk-portrait:text-[48px]`}
           >
             {kuText(localizeDigits(section.title, lang))}
           </h3>
-          <p className="mx-auto mt-2 max-w-[720px] text-[11px] leading-snug text-[#5f6662] xs:text-[13px] sm:mt-4 sm:text-[24px] md:text-[28px] lg:text-[32px]">
+          <p className="mx-auto mt-2 max-w-[720px] text-[13px] leading-snug text-[#5f6662] xs:text-[15px] sm:mt-4 sm:text-[26px] md:text-[30px] lg:text-[36px] xl:text-[40px] 3xl:text-[48px] 4xl:text-[56px] kiosk-portrait:text-[30px]">
             {kuText(localizeDigits(section.desc, lang))}
           </p>
         </div>
@@ -162,14 +162,14 @@ function SectionCard({
         </GoldIcon>
       </div>
       <div
-        className={`relative flex flex-1 flex-col justify-center ${bodyWeight} min-h-[88px] px-1.5 pb-3 pt-5 xs:min-h-[100px] xs:px-2 xs:pb-4 xs:pt-7 sm:min-h-[130px] sm:px-4 sm:pb-5 sm:pt-10 md:min-h-[150px] lg:min-h-[180px] xl:min-h-[220px]`}
+        className={`relative flex flex-1 flex-col justify-center ${bodyWeight} min-h-[100px] px-2 pb-3 pt-5 xs:min-h-[115px] xs:px-3 xs:pb-4 xs:pt-7 sm:min-h-[150px] sm:px-4 sm:pb-5 sm:pt-10 md:min-h-[170px] lg:min-h-[200px] xl:min-h-[240px]`}
       >
         <h3
-          className={`${displayFont} text-[10px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[12px] sm:text-[22px] md:text-[28px] lg:text-[30px] xl:text-[34px]`}
+          className={`${displayFont} text-[14px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[16px] sm:text-[28px] md:text-[34px] lg:text-[38px] xl:text-[42px] kiosk-portrait:text-[36px]`}
         >
           {kuText(localizeDigits(section.title, lang))}
         </h3>
-        <p className="mt-1 text-[8px] leading-tight text-[#5f6662] xs:text-[9px] sm:mt-2 sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
+        <p className="mt-1 text-[10px] leading-snug text-[#5f6662] xs:text-[12px] sm:mt-2 sm:text-[18px] md:text-[22px] lg:text-[24px] xl:text-[26px] kiosk-portrait:text-[22px]">
           {kuText(localizeDigits(section.desc, lang))}
         </p>
       </div>
@@ -314,10 +314,10 @@ export default function DiscoverKurdistanV2({
           )}
         </div>
         {/* Paper texture background pattern */}
-        <div
+        {/* <div
           className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${backgroundPattern})` }}
-        />
+        /> */}
 
         {/* Light cream overlay */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />

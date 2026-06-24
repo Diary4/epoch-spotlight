@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { localizeDigits } from "@/lib/utils";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -54,10 +55,13 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
     data?.journey?.sections?.["1991"] ?? data?.people?.sections?.["1991"] ?? {};
   const localizedCards = cards.map((card, i) => ({
     ...card,
-    title: section.cards?.[i]?.title
-      ? section.cards[i].title.replace(" ", "\n")
-      : card.title,
-    text: section.cards?.[i]?.description ?? card.text,
+    title: localizeDigits(
+      section.cards?.[i]?.title
+        ? section.cards[i].title.replace(" ", "\n")
+        : card.title,
+      lang,
+    ),
+    text: localizeDigits(section.cards?.[i]?.description ?? card.text, lang),
   }));
 
   const [scale, setScale] = useState(1);
@@ -126,11 +130,11 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
                 <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
-                  {section.title ?? "1991"}
+                  {localizeDigits(section.title ?? "1991", lang)}
                 </h1>
 
                 <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
-                  {section.headline ?? "A historic turning point."}
+                  {localizeDigits(section.headline ?? "A historic turning point.", lang)}
                 </p>
 
                 <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
@@ -140,8 +144,11 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
                 </div>
 
                 <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
-                  {section.description ??
-                    "A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region."}
+                  {localizeDigits(
+                    section.description ??
+                      "A moment of courage and unity that opened the path to a new chapter for the Kurdistan Region.",
+                    lang,
+                  )}
                 </p>
               </section>
 

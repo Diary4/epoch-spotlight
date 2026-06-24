@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Landmark, Mountain, Vote } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { localizeDigits } from "@/lib/utils";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -53,8 +54,8 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
 
   const localizedRows = rows.map((row, i) => ({
     ...row,
-    title: section.cards?.[i]?.title ?? row.title,
-    text: section.cards?.[i]?.description ?? row.text,
+    title: localizeDigits(section.cards?.[i]?.title ?? row.title, lang),
+    text: localizeDigits(section.cards?.[i]?.description ?? row.text, lang),
   }));
 
   // State to manage scaling on smaller devices
@@ -127,11 +128,11 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro max-w-[min(47cqw,740px)]">
                 <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
-                  {section.title ?? "1992"}
+                  {localizeDigits(section.title ?? "1992", lang)}
                 </h1>
 
                 <p className="mt-[clamp(1rem,2.1cqh,1.8rem)] text-[clamp(1.6rem,2.6cqw,2.55rem)] font-light leading-tight text-[#9b6d35]">
-                  {section.headline ?? "The beginning of self-rule."}
+                  {localizeDigits(section.headline ?? "The beginning of self-rule.", lang)}
                 </p>
 
                 <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
@@ -140,7 +141,11 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
                 </div>
 
                 <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(39cqw,620px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
-                  {section.description ?? "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future."}
+                  {localizeDigits(
+                    section.description ??
+                      "A pivotal year when the Kurdistan Region took a decisive step toward building its own institutions and shaping its future.",
+                    lang,
+                  )}
                 </p>
               </section>
 
