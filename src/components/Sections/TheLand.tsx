@@ -7,7 +7,7 @@ import gsap from "gsap";
 import bg1 from "@/assets/mainImages/land-1.webp"
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
 import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
-import bg4 from "@/assets/images/new/discoverKurdistan/land-4.webp"
+import bg4 from "@/assets/images/new/discoverKurdistan/peshmarga.png"
 import bg5 from "@/assets/images/new/discoverKurdistan/land-5.webp"
 import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
 import treeIcon from "@/assets/icons/tree.webp";
@@ -122,7 +122,9 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
       <img
         src={card.image}
         alt={card.title}
-        className="absolute left-1/2 top-1/2 h-[100%] w-[100%] -translate-x-1/2 -translate-y-1/2 object-cover opacity-60 sm:opacity-85 lg:opacity-80"
+        className={`absolute left-1/2 top-1/2 h-[100%] w-[100%] -translate-x-1/2 object-cover opacity-60 sm:opacity-85 lg:opacity-80 ${
+          card.id === "peshmerga" ? "-translate-y-[35%]" : "-translate-y-1/2"
+        }`}
       />
 
       {/* Top soft gradient overlay - blends out background graphics behind top circular icons */}
@@ -144,7 +146,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
             />
         </div> */}
 
-        <h3 className={`mt-2.5 xs:mt-4 sm:mt-4 kiosk-portrait:mt-[1.6vw] ${displayFont} text-[9px] xs:text-[11px] sm:text-[clamp(22px,5vw,28px)] font-light leading-tight text-[#17233b] lg:text-[32px] kiosk-portrait:text-[4.1vw]`}>
+        <h3 className={`mt-2.5 xs:mt-4 sm:mt-4 kiosk-portrait:mt-[1.2vw] ${displayFont} text-[9px] xs:text-[11px] sm:text-[clamp(22px,5vw,28px)] font-light leading-tight text-[#17233b] lg:text-[32px] kiosk-portrait:text-[4.1vw]`}>
           {localizeDigits(card.title, lang)}
         </h3>
 
@@ -162,7 +164,7 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
   const Icon = card.icon;
   const displayFont = discoverDisplayFont(lang);
   return (
-    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[180px] lg:min-h-[210px] kiosk-portrait:min-h-[31.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-7 sm:py-6 lg:px-8 lg:py-7 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
+    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[180px] lg:min-h-[210px] kiosk-portrait:min-h-[21.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-7 sm:py-6 lg:px-8 lg:py-7 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
