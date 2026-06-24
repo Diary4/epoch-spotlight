@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import gsap from "gsap";
 import {
   ArrowLeft,
   BarChart3,

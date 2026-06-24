@@ -112,12 +112,24 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
             </div>
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
-              <section className="journey-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className={`${lang === "ku" ? "whitespace-nowrap" : "whitespace-pre-line"} ${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#214439]`}>
+              <section className={`journey-detail-intro ${isRtlScript ? "max-w-[min(58cqw,900px)]" : "max-w-[min(46cqw,720px)]"}`}>
+                <h1
+                  className={`${displayFont} ${isRtlScript ? "font-medium whitespace-nowrap" : "font-light whitespace-pre-line"} leading-none tracking-tight text-[#214439] ${
+                    isRtlScript
+                      ? "text-[clamp(4.25rem,8.5cqw,8.5rem)]"
+                      : "text-[clamp(6rem,11cqw,10rem)]"
+                  }`}
+                >
                   {detail?.title ?? "A Story of\nResilience"}
                 </h1>
 
-                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
+                <p
+                  className={`mt-[clamp(1rem,2.2cqh,2rem)] ${isRtlScript ? "font-medium" : "font-light"} leading-tight text-[#9b6d35] ${
+                    isRtlScript
+                      ? "whitespace-nowrap text-[clamp(1.35rem,2.35cqw,2.35rem)]"
+                      : "text-[clamp(1.65rem,2.75cqw,2.7rem)]"
+                  }`}
+                >
                   {detail?.subtitle ?? "A history shaped by endurance, dignity, and hope."}
                 </p>
 
@@ -127,7 +139,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                 </div>
 
-                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                <p className={`mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] ${isRtlScript ? "font-bold" : "font-light"} leading-[1.55] text-[#2d3549]`}>
                   {detail?.description ??
                     "Across centuries, the Kurdish people have faced hardship and change, yet they have held on to their identity, culture, and values. Through every challenge, they have stood together, preserved their heritage, and moved forward with courage and hope for a better tomorrow."}
                 </p>

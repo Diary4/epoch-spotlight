@@ -122,27 +122,27 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
       <img
         src={card.image}
         alt={card.title}
-        className="absolute inset-0 h-full w-full object-cover opacity-60 sm:opacity-85 lg:opacity-80"
+        className="absolute left-1/2 top-1/2 h-[100%] w-[100%] -translate-x-1/2 -translate-y-1/2 object-cover opacity-60 sm:opacity-85 lg:opacity-80"
       />
 
       {/* Top soft gradient overlay - blends out background graphics behind top circular icons */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-[#fffaf0] via-[#fffaf0]/95 to-transparent" />
 
-      {/* Bottom soft gradient overlay - retains text readability over card background details */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#fffaf0]/95 via-[#fffaf0]/40 to-transparent" />
+      {/* Bottom soft gradient overlay - retains text readability over card background details
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#fffaf0]/95 via-[#fffaf0]/40 to-transparent" /> */}
 
       {/* Background paper texture elements */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
 
       {/* Content layer positioned relative to sit over top-and-bottom background overlays */}
       <div className="relative z-10 flex flex-col items-center h-full">
-        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw]">
+        {/* <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 place-items-center rounded-full border border-[#e7cfa1] sm:border-2 bg-[#fff8ed] shadow-[0_4px_12px_rgba(0,0,0,0.1)] sm:shadow-[0_6px_16px_rgba(0,0,0,0.1)] lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw]">
          <LandCardIcon
               cardId={card.id}
               Icon={Icon}
               className="h-7 w-7 xs:h-9 xs:w-9 sm:h-[42px] sm:w-[42px] lg:h-[52px] lg:w-[52px] kiosk-portrait:h-[6.8vw] kiosk-portrait:w-[6.8vw]"
             />
-        </div>
+        </div> */}
 
         <h3 className={`mt-2.5 xs:mt-4 sm:mt-4 kiosk-portrait:mt-[1.6vw] ${displayFont} text-[9px] xs:text-[11px] sm:text-[clamp(22px,5vw,28px)] font-light leading-tight text-[#17233b] lg:text-[32px] kiosk-portrait:text-[4.1vw]`}>
           {localizeDigits(card.title, lang)}
@@ -179,14 +179,14 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
       <div className="absolute inset-0 bg-gradient-to-r from-[#fff8ed] via-[#fff8ed]/82 to-[#fff8ed]/30 rtl:bg-gradient-to-l" />
 
       <div className="relative z-10 flex h-full flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-start lg:gap-10">
-        <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[5px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
+        {/* <div className="grid h-10 w-10 xs:h-12 xs:w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 kiosk-portrait:h-[10.4vw] kiosk-portrait:w-[10.4vw] shrink-0 place-items-center rounded-full border-2 xs:border-[4px] sm:border-[5px] border-white bg-[#13213b] text-[#f8e5b8] shadow-md">
           <LandCardIcon
             cardId={card.id}
             Icon={Icon}
             className="h-5 w-5 xs:h-6 xs:w-6 sm:h-[38px] sm:w-[38px] lg:h-[46px] lg:w-[46px] kiosk-portrait:h-[5.5vw] kiosk-portrait:w-[5.5vw]"
             strokeWidth={1.5}
           />
-        </div>
+        </div> */}
         <div className="min-w-0">
           <h3 className={`${displayFont} text-[12px] xs:text-[14px] sm:text-[clamp(22px,5vw,30px)] font-light text-[#17233b] lg:text-[34px] kiosk-portrait:text-[4.25vw]`}>{localizeDigits(card.title, lang)}</h3>
           <p className="mt-1 xs:mt-2 sm:mt-3 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(14px,3.4vw,17px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[20px] kiosk-portrait:max-w-[46vw] kiosk-portrait:text-[2.4vw]">

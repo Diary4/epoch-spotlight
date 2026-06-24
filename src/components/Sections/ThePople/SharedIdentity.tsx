@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowLeft, MessageSquareText, Music2, UsersRound } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
-import heroVideo from "@/assets/videos/sharedidentity.webm";
+import heroVideo from "@/assets/videos/diy.mp4";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -116,23 +116,35 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section
-                className={`journey-detail-intro relative z-20 max-w-[min(40cqw,580px)] ${dir === "rtl" ? "ml-auto" : ""}`}
+                className={`journey-detail-intro relative z-20 ${isRtlScript ? "max-w-[min(58cqw,900px)]" : "max-w-[min(40cqw,580px)]"} ${dir === "rtl" ? "ml-auto" : ""}`}
               >
-                <h1 className={`whitespace-pre-line ${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#214439]`}>
+                <h1
+                  className={`${displayFont} ${isRtlScript ? "font-medium whitespace-nowrap" : "font-light whitespace-pre-line"} leading-none tracking-tight text-[#214439] ${
+                    isRtlScript
+                      ? "text-[clamp(4.25rem,8.5cqw,8.5rem)]"
+                      : "text-[clamp(6rem,11cqw,10rem)]"
+                  }`}
+                >
                   {detail?.title ?? "A Shared\nIdentity"}
                 </h1>
 
-                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
+                <p
+                  className={`mt-[clamp(1rem,2.2cqh,2rem)] ${isRtlScript ? "font-medium" : "font-light"} leading-tight text-[#9b6d35] ${
+                    isRtlScript
+                      ? "whitespace-nowrap text-[clamp(1.35rem,2.35cqw,2.35rem)]"
+                      : "text-[clamp(1.65rem,2.75cqw,2.7rem)]"
+                  }`}
+                >
                   {detail?.subtitle ?? "United by language, heritage, and memory."}
                 </p>
 
-                <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
+                {/* <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                   <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
-                </div>
+                </div> */}
 
-                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(36cqw,520px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                <p className={`mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(36cqw,520px)] text-[clamp(1.2rem,2cqw,1.95rem)] ${isRtlScript ? "font-bold" : "font-light"} leading-[1.55] text-[#2d3549]`}>
                   {detail?.description ??
                     "Across generations and places, Kurdish identity is a source of strength, pride, and unity. Rooted in a rich history and carried forward through everyday life."}
                 </p>

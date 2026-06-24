@@ -133,11 +133,11 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
                   {detail?.subtitle ?? "An ancient people of the Middle East."}
                 </p>
 
-                <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
+                {/* <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                   <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
-                </div>
+                </div> */}
 
                 <p className={`mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] ${isRtlScript ? "font-bold" : "font-light"} leading-[1.55] text-[#2d3549]`}>
                   {detail?.description ??

@@ -1,6 +1,5 @@
-import React from "react";
-import { ArrowLeft, ArrowRight, MapPinned } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
@@ -35,7 +34,7 @@ const mapCards = [
 
 function Divider({ color = "#b99152" }) {
   return (
-    <div className="mx-auto my-6 flex w-32 items-center justify-center gap-3" style={{ color }}>
+    <div className="mx-auto my-[clamp(0.75rem,1.6cqw,1.5rem)] flex w-32 items-center justify-center gap-3" style={{ color }}>
       <span className="h-0.5 flex-1" style={{ backgroundColor: color }} />
       <span className="h-3 w-3 rotate-45 border-2" style={{ borderColor: color }} />
       <span className="h-0.5 flex-1" style={{ backgroundColor: color }} />
@@ -46,10 +45,10 @@ function Divider({ color = "#b99152" }) {
 function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: DiscoverLangCode }) {
   const displayFont = discoverDisplayFont(lang);
   return (
-    <article className="land-detail-card grid w-full min-h-0 flex-1 grid-cols-1 items-stretch overflow-hidden rounded-[20px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md sm:rounded-[24px] lg:grid-cols-[205px_1fr] lg:rounded-[26px]">
-      <div className="flex flex-col items-center justify-center border-b border-[#ead8b7] px-5 py-6 text-center sm:px-7 sm:py-8 lg:border-b-0 lg:border-r">
+    <article className="land-detail-card grid w-full grid-cols-[clamp(180px,14.6cqw,205px)_1fr] items-stretch overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
+      <div className="flex flex-col items-center justify-center border-r border-[#ead8b7] px-[clamp(1rem,1.5cqw,1.75rem)] py-[clamp(1.25rem,2cqw,2rem)] text-center">
         <div
-          className="grid h-16 w-16 place-items-center rounded-full border-[5px] border-white text-[28px] font-light text-white shadow-md sm:h-20 sm:w-20 sm:text-[34px]"
+          className="grid h-[clamp(3.5rem,5.7cqw,5rem)] w-[clamp(3.5rem,5.7cqw,5rem)] place-items-center rounded-full border-[5px] border-white text-[clamp(1.5rem,2.43cqw,34px)] font-light text-white shadow-md"
           style={{ backgroundColor: card.color }}
         >
           {localizeDigits(card.number, lang)}
@@ -57,24 +56,24 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
 
         <Divider color={card.color} />
 
-        <h3 className={`whitespace-pre-line ${displayFont} text-[20px] font-light leading-tight text-[#17233b] sm:text-[24px]`}>
+        <h3 className={`whitespace-pre-line ${displayFont} text-[clamp(1.1rem,1.71cqw,24px)] font-light leading-tight text-[#17233b]`}>
           {localizeDigits(card.title, lang)}
         </h3>
 
-        <p className="mt-4 text-[15px] font-light leading-[1.45] text-[#35435b] sm:mt-6 sm:text-[17px]">
+        <p className="mt-[clamp(0.75rem,1.4cqw,1.5rem)] text-[clamp(0.85rem,1.21cqw,17px)] font-light leading-[1.45] text-[#35435b]">
           {localizeDigits(card.text, lang)}
         </p>
 
         <button
           type="button"
-          className="mt-5 grid h-14 w-14 place-items-center rounded-full text-white shadow-md sm:mt-auto sm:h-16 sm:w-16"
+          className="mt-auto grid h-[clamp(3rem,4.57cqw,4rem)] w-[clamp(3rem,4.57cqw,4rem)] place-items-center rounded-full text-white shadow-md"
           style={{ backgroundColor: card.color }}
         >
-          <ArrowRight className="h-7 w-7 sm:h-[34px] sm:w-[34px] rtl:rotate-180" />
+          <ArrowRight className="h-[clamp(1.5rem,2.43cqw,34px)] w-[clamp(1.5rem,2.43cqw,34px)] rtl:rotate-180" />
         </button>
       </div>
 
-      <div className="relative w-full min-w-0 overflow-hidden bg-[#f7efe2] lg:flex lg:h-full lg:min-h-0 lg:items-stretch">
+      <div className="relative w-full min-w-0 overflow-hidden bg-[#f7efe2]">
         <img
           src={card.mapImage}
           alt={card.title.replace("\n", " ")}
@@ -111,82 +110,135 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           { ...mapCards[2], title: "بوونی کورد\nلە سەرانسەری وڵاتان", text: "ئەو ناوچە فراوانانەی کە کۆمەڵگە کوردییەکانی لێ نیشتەجێیە لە سەرانسەری ناوچەکەدا." },
         ]
       : mapCards;
+
+  // Fixed design canvas (1400px wide). We measure its natural height and scale
+  // the whole canvas to fit the viewport in BOTH dimensions, then center it, so
+  // the page looks identical on big screens and small phones (just smaller),
+  // instead of reflowing into a different mobile layout.
+  const DESIGN_WIDTH = 1400;
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState({ scale: 1, x: 0 });
+
+  useEffect(() => {
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
+    };
+
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, [lang]);
+
   return (
-    <main ref={rootRef} dir={dir} className={`m-0 min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#f8f1e7] text-[#17233b] ${isRtlScript ? "font-amiri" : ""}`}>
-      <section className="relative mx-auto flex min-h-0 w-full max-w-[1400px] flex-col gap-6 overflow-x-hidden overflow-y-auto rounded-[22px] bg-[#fbf5eb] p-4 sm:gap-8 sm:p-5 sm:rounded-[28px] lg:min-h-[calc(100vh-clamp(16px,2.6vh,32px))] lg:flex-row lg:gap-0 lg:overflow-hidden lg:rounded-[clamp(22px,2.4vw,34px)] lg:p-[clamp(10px,1.3vw,20px)]">
-        <button
-          type="button"
-          onClick={onBack}
-          className="land-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-14 sm:w-14 lg:left-[clamp(16px,2vw,30px)] lg:top-[clamp(16px,2vh,30px)] lg:h-[clamp(50px,4.8vw,64px)] lg:w-[clamp(50px,4.8vw,64px)] rtl:left-auto rtl:right-4 sm:rtl:right-6 lg:rtl:right-[clamp(16px,2vw,30px)]"
-          aria-label="Back to The Land and Future"
-        >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
-        </button>
-        <div className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:block rtl:left-auto rtl:right-0" />
+    <div
+      dir={dir}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div
+        ref={canvasRef}
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          containerType: "inline-size",
+        }}
+      >
+        <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+          <section className="relative mx-auto flex w-full flex-row overflow-hidden rounded-[clamp(22px,2.4cqw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]">
+            <button
+              type="button"
+              onClick={onBack}
+              className="land-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqw,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-[clamp(1rem,2cqw,2rem)]"
+              aria-label="Back to The Land and Future"
+            >
+              <ArrowLeft size={32} className="rtl:rotate-180" />
+            </button>
 
-        {/* Left scenic placeholder */}
-        <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 hidden h-[min(42vh,320px)] w-[min(52vw,220px)] overflow-hidden opacity-70 sm:block lg:h-[clamp(620px,70vh,980px)] lg:w-[clamp(260px,28vw,470px)] lg:opacity-100 rtl:left-auto rtl:right-0">
-          <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
-            <img
-              src={bg}
-              alt="Kurdistan landscape placeholder"
-              className="absolute inset-0 h-full w-full object-cover object-[center_35%] lg:object-center"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb] rtl:bg-gradient-to-l" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
-        </div>
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
-        {/* Left text */}
-        <aside className="land-detail-intro relative z-10 flex w-full shrink-0 flex-col px-1 pt-20 sm:px-2 sm:pt-24 lg:w-[clamp(300px,30vw,470px)] lg:pt-[clamp(64px,8vh,120px)] lg:pl-[clamp(8px,1.1vw,20px)]">
-          <h1 className={`${displayFont} text-[clamp(44px,12vw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]`}>
-            {isAr ? (
-              "الأرض"
-            ) : isKu ? (
-              "خاک"
-            ) : (
-              <>
-                The<br />Land
-              </>
-            )}
-          </h1>
+            {/* Left scenic backdrop */}
+            <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70cqw,980px)] w-[clamp(260px,28cqw,470px)] overflow-hidden rtl:left-auto rtl:right-0">
+              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+                <img
+                  src={bg}
+                  alt="Kurdistan landscape placeholder"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb] rtl:bg-gradient-to-l" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
+            </div>
 
-          <div className="mt-[clamp(24px,3.3vh,44px)] w-[clamp(160px,16vw,260px)]">
-            <Divider />
-          </div>
+            {/* Left text */}
+            <aside className="land-detail-intro relative z-10 flex w-[clamp(300px,30cqw,470px)] shrink-0 flex-col pl-[clamp(8px,1.1cqw,20px)] pt-[clamp(64px,8cqw,120px)]">
+              <h1 className={`${displayFont} text-[clamp(44px,7.7cqw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]`}>
+                {isAr ? (
+                  "الأرض"
+                ) : isKu ? (
+                  "خاک"
+                ) : (
+                  <>
+                    The<br />Land
+                  </>
+                )}
+              </h1>
 
-          <p className={`mt-[clamp(10px,1.5vh,22px)] ${displayFont} text-[clamp(24px,2.8vw,42px)] leading-tight text-[#9b6d35]`}>
-            {isAr ? (
-              "إقليم من الجمال والجغرافيا والتراث."
-            ) : isKu ? (
-              "ناوچەیەک لە جوانی، جوگرافیا، و کەلەپوور."
-            ) : (
-              <>
-                A region of beauty,<br />geography, and heritage.
-              </>
-            )}
-          </p>
+              <div className="mt-[clamp(24px,3.3cqw,44px)] w-[clamp(160px,16cqw,260px)]">
+                <Divider />
+              </div>
 
-          <p className="mt-[clamp(18px,2.8vh,40px)] max-w-none text-[clamp(15px,4vw,26px)] font-light leading-[1.55] text-[#35435b] lg:max-w-[clamp(250px,25vw,430px)]">
-            {isAr
-              ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
-              : isKu
-                ? "کوردستان خاکی چیاکان سەرکەشەکان، ڕووبارەکان، و مێژوویەکی دەوڵەمەندە. لە دڵی هەرێمی کوردستانی عێراق تا ناوچە فراوانەکانی تر کە کورد لێی نیشتەجێیە لە سەرانسەری ڕۆژهەڵاتی ناوەڕاست، ئەمە خاکێکە کە بە خۆڕاگری، کولتوور، و شکۆی خەڵکەکەی دەناسرێتەوە."
-              : "Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people."}
-          </p>
+              <p className={`mt-[clamp(10px,1.5cqw,22px)] ${displayFont} text-[clamp(24px,3cqw,42px)] leading-tight text-[#9b6d35]`}>
+                {isAr ? (
+                  "إقليم من الجمال والجغرافيا والتراث."
+                ) : isKu ? (
+                  "ناوچەیەک لە جوانی، جوگرافیا، و کەلەپوور."
+                ) : (
+                  <>
+                    A region of beauty,<br />geography, and heritage.
+                  </>
+                )}
+              </p>
 
-          <div className="mt-[clamp(18px,2.8vh,40px)] w-[clamp(110px,10vw,180px)]">
-            <Divider />
-          </div>
-        </aside>
+              <p className="mt-[clamp(18px,2.8cqw,40px)] max-w-[clamp(250px,25cqw,430px)] text-[clamp(15px,1.86cqw,26px)] font-light leading-[1.55] text-[#35435b]">
+                {isAr
+                  ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
+                  : isKu
+                    ? "کوردستان خاکی چیاکان سەرکەشەکان، ڕووبارەکان، و مێژوویەکی دەوڵەمەندە. لە دڵی هەرێمی کوردستانی عێراق تا ناوچە فراوانەکانی تر کە کورد لێی نیشتەجێیە لە سەرانسەری ڕۆژهەڵاتی ناوەڕاست، ئەمە خاکێکە کە بە خۆڕاگری، کولتوور، و شکۆی خەڵکەکەی دەناسرێتەوە."
+                  : "Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people."}
+              </p>
 
-        {/* Right maps */}
-        <section className="relative z-10 flex w-full min-w-0 flex-1 flex-col gap-4 pb-8 sm:gap-5 sm:pb-10 lg:gap-[clamp(14px,1.6vh,28px)] lg:pl-[clamp(6px,1vw,18px)] lg:pb-[clamp(4px,0.8vh,10px)]">
-          {localMapCards.map((card) => (
-            <MapCard key={card.number} card={card} lang={lang} />
-          ))}
-        </section>
-      </section>
-    </main>
+              <div className="mt-[clamp(18px,2.8cqw,40px)] w-[clamp(110px,10cqw,180px)]">
+                <Divider />
+              </div>
+            </aside>
+
+            {/* Right maps */}
+            <section className="relative z-10 flex w-full min-w-0 flex-1 flex-col gap-[clamp(14px,1.6cqw,28px)] pl-[clamp(6px,1cqw,18px)]">
+              {localMapCards.map((card) => (
+                <MapCard key={card.number} card={card} lang={lang} />
+              ))}
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
   );
 }
