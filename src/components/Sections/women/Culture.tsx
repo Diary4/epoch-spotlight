@@ -12,7 +12,6 @@ import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgHana from "@/assets/images/women/w-1.webp";
 import imgMaryam from "@/assets/images/womens/maryamkhan.jpg";
-import imgKurdistan from "@/assets/images/women/w-3.webp";
 
 type LangCode = "ku" | "en" | "ar";
 type ListIcon = "crown" | "flower";
@@ -147,7 +146,7 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       knownFor: "Negotiating on behalf of her people in wartime.",
       placeEra: "River region, First World War era.",
       quote: "Authority must speak with the language of wisdom.",
-      image: imgKurdistan,
+      image: imgMaryam,
       listIcon: "crown",
     },
   ],
@@ -292,11 +291,11 @@ function CultureListCard({
       type="button"
       data-culture-card="true"
       onClick={onSelect}
-      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[26px] sm:p-5 lg:p-6 ${
+      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[12px] border border-[#dfcdb7] bg-white/65 p-1.5 shadow-[0_8px_20px_rgba(67,35,45,0.1)] transition hover:border-[#d8b979] sm:rounded-[20px] sm:p-3 lg:p-4 ${
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative mx-auto aspect-[3/4] w-full overflow-hidden rounded-[10px] sm:rounded-[20px]">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[8px] sm:rounded-[14px]">
         <img
           src={woman.image}
           alt={woman.name}
@@ -304,22 +303,22 @@ function CultureListCard({
         />
       </div>
 
-      <h3 className={`mt-2 ${displayFont} text-[clamp(12px,3.2vw,28px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,28px)]`}>
+      <h3 className={`mt-1.5 ${displayFont} text-[clamp(11px,2.6vw,20px)] leading-tight text-[#2c1736] sm:mt-2 sm:text-[clamp(16px,1.8vw,20px)]`}>
         {woman.name}
       </h3>
 
-      <p className={`mt-0.5 ${displayFont} text-[clamp(10px,2.4vw,18px)] italic text-[#a75a69] sm:mt-1.5 sm:text-[clamp(15px,1.6vw,18px)]`}>
+      <p className={`mt-0.5 ${displayFont} text-[clamp(9px,2vw,14px)] italic text-[#a75a69] sm:mt-1 sm:text-[clamp(12px,1.3vw,14px)]`}>
         ({woman.role})
       </p>
 
-      <div className="my-1.5 flex w-12 items-center gap-1 text-[#b4864d] sm:my-3 sm:w-24 sm:gap-2">
+      <div className="my-1 flex w-10 items-center gap-1 text-[#b4864d] sm:my-2 sm:w-16 sm:gap-1.5">
         <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
+        <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
         <span className="h-px flex-1 bg-[#d4b98f]" />
       </div>
 
       <p
-        className={`hidden text-[clamp(13px,2.2vw,16px)] leading-relaxed text-[#4a3f50] sm:block ${
+        className={`hidden text-[clamp(11px,1.8vw,13px)] leading-relaxed text-[#4a3f50] sm:block ${
           dir === "rtl" ? "text-right" : "text-left"
         }`}
       >
@@ -486,30 +485,16 @@ export default function WomenCultureMemoryPage({
             </section>
 
             <section className="relative z-20 -mt-2 px-3 pb-6 sm:mt-0 sm:px-5 lg:px-10">
-              <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-3 sm:gap-5 lg:gap-6">
-                <div className="grid w-full grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6">
-                  {cultureWomen.slice(0, 3).map((woman) => (
-                    <CultureListCard
-                      key={woman.id}
-                      woman={woman}
-                      dir={dir}
-                      displayFont={displayFont}
-                      onSelect={() => setSelectedId(woman.id)}
-                    />
-                  ))}
-                </div>
-
-                <div className="grid w-full grid-cols-2 gap-2.5 sm:gap-5 lg:gap-6">
-                  {cultureWomen.slice(3).map((woman) => (
-                    <CultureListCard
-                      key={woman.id}
-                      woman={woman}
-                      dir={dir}
-                      displayFont={displayFont}
-                      onSelect={() => setSelectedId(woman.id)}
-                    />
-                  ))}
-                </div>
+              <div className="mx-auto grid w-full max-w-[1280px] grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
+                {cultureWomen.map((woman) => (
+                  <CultureListCard
+                    key={woman.id}
+                    woman={woman}
+                    dir={dir}
+                    displayFont={displayFont}
+                    onSelect={() => setSelectedId(woman.id)}
+                  />
+                ))}
               </div>
             </section>
           </>
