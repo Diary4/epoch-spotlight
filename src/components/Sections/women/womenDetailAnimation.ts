@@ -5,13 +5,16 @@ export function runWomenDetailIntroAnimation(sectionRef: React.RefObject<HTMLEle
   if (!sectionRef.current) return () => {};
 
   const ctx = gsap.context(() => {
-    gsap.set("[data-women-detail-portrait-fade='true']", { autoAlpha: 0, scale: 1.04 });
-    gsap.set("[data-women-detail-fade='true']", { autoAlpha: 0, y: 18 });
+    const fadeTargets = "[data-women-detail-fade='true']";
+    const portraitTargets = "[data-women-detail-portrait-fade='true']";
+
+    gsap.set(portraitTargets, { autoAlpha: 0, scale: 1.04 });
+    gsap.set(fadeTargets, { autoAlpha: 0, y: 18 });
 
     gsap
       .timeline({ defaults: { ease: "power2.out" } })
       .to(
-        "[data-women-detail-portrait-fade='true']",
+        portraitTargets,
         {
           autoAlpha: 1,
           scale: 1,
@@ -20,7 +23,7 @@ export function runWomenDetailIntroAnimation(sectionRef: React.RefObject<HTMLEle
         0,
       )
       .to(
-        "[data-women-detail-fade='true']",
+        fadeTargets,
         {
           autoAlpha: 1,
           y: 0,
@@ -28,7 +31,10 @@ export function runWomenDetailIntroAnimation(sectionRef: React.RefObject<HTMLEle
           stagger: 0.08,
         },
         0.18,
-      );
+      )
+      .eventCallback("onComplete", () => {
+        gsap.set([portraitTargets, fadeTargets], { clearProps: "opacity,visibility,transform" });
+      });
   }, sectionRef);
 
   return () => ctx.revert();

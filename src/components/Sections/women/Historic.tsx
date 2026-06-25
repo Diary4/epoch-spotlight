@@ -99,13 +99,13 @@ export default function WomenHistoricPage({
     <main
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "h-screen overflow-hidden bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
       } ${isRtlScript ? "font-amiri" : ""}`}
     >
       <section
         ref={sectionRef}
         className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "h-screen overflow-hidden bg-transparent" : "min-h-0 bg-[#fcf7ef]"
+          selectedId ? "min-h-screen bg-transparent" : "min-h-0 bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
@@ -131,11 +131,16 @@ export default function WomenHistoricPage({
             nameLine1={detail.nameLine1}
             nameLine2={detail.nameLine2}
             role={detail.role}
+            metaLine={detail.metaLine}
             intro={detail.intro}
             portraitSrc={historicDetailPortraits[selectedId]}
             portraitAlt={detail.portraitAlt}
             cards={historicDetailToPanelCards(detail, lang)}
             quote={detail.quote}
+            quoteAuthor={detail.quoteAuthor}
+            greatestAchievement={detail.greatestAchievement}
+            whySheMatters={detail.whySheMatters}
+            didYouKnow={detail.didYouKnow}
             listIcon={detail.listIcon}
           />
         ) : (
