@@ -182,6 +182,7 @@ type DiscoverKurdistanV2Props = {
   onStartExploring?: () => void;
   onSelectSection?: (section: DiscoverSectionId) => void;
   onBackToOriginal?: () => void;
+  onOpenDesignDraftV3?: () => void;
 };
 
 export default function DiscoverKurdistanV2({
@@ -189,6 +190,7 @@ export default function DiscoverKurdistanV2({
   onStartExploring,
   onSelectSection,
   onBackToOriginal,
+  onOpenDesignDraftV3,
 }: DiscoverKurdistanV2Props) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [introDone, setIntroDone] = React.useState(false);
@@ -310,6 +312,15 @@ export default function DiscoverKurdistanV2({
               className="rounded-full border border-[#c49b52]/60 bg-[#fffaf0]/90 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#9b6d35] shadow-sm backdrop-blur-sm transition-colors hover:bg-[#fff3dc] sm:px-4 sm:py-2 sm:text-xs"
             >
               Current design
+            </button>
+          )}
+          {onOpenDesignDraftV3 && (
+            <button
+              type="button"
+              onClick={onOpenDesignDraftV3}
+              className="rounded-full border border-[#c49b52]/60 bg-[#104231] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#f6d995] shadow-sm backdrop-blur-sm transition-colors hover:bg-[#145a47] sm:px-4 sm:py-2 sm:text-xs"
+            >
+              Draft 3
             </button>
           )}
         </div>

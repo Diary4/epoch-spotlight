@@ -202,11 +202,11 @@ export default function DiscoverKurdistan({
             Design draft
           </button>
         )}
-        {/* Paper texture background pattern */}
+        {/* Paper texture background pattern
         <div
           className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${backgroundPattern})` }}
-        />
+        /> */}
 
         {/* Light cream overlay */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[#fbf5ea]/55" />
