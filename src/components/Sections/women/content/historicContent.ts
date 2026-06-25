@@ -6,6 +6,7 @@ import adilaDetail from "@/assets/images/womens/adila.jpg";
 import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
 import khanzadDetail from "@/assets/images/womens/khanzad.jpg";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
+import meryemDetail from "@/assets/images/womens/maryamkhan.jpg";
 import najibaDetail from "@/assets/images/womens/najibakhan.jpg";
 
 export type HistoricFigureListItem = {
@@ -50,6 +51,7 @@ export const historicDetailPortraits: Record<string, string> = {
   "hafsa-khanum": hafsaDetail,
   "khanzada-khanum": khanzadDetail,
   "halima-khanum": halimaDetail,
+  "meryem-khan": meryemDetail,
   "najiba-jalizada": najibaDetail,
 };
 
@@ -67,7 +69,7 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     quotes: [
       { text: "She wrote herself into history.", author: "Mastura Ardalan" },
       { text: "True leadership can uplift a city and forge a nation.", author: "Adila Khanum" },
-      { text: "Every girl who studies opens a new door toward tomorrow.", author: "Hafsa Khanum" },
+      { text: "There is no difference between men and women... so I am going to continue.", author: "Hapsa Khan" },
     ],
   },
   ku: {
@@ -83,7 +85,7 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     quotes: [
       { text: "لە ناو جەرگەی مێژوودا، تەختێکی بۆ خۆی بونیاد نا.", author: "مەستورەی ئەردەڵان" },
       { text: " سەرکردایەتیی ڕاستەقینە دەتوانێت شارێک ئاوا بکات و نەتەوەیەک دروست بکات", author: "عادیلە خانم" },
-      { text: "هەر کچێک کە دەخوێنێت، دەرگایەکی نوێ بە ڕووی پاشەڕۆژدا دەکاتەوە.", author: "حەپسە خانم" },
+      { text: "هیچ جیاوازییەک لە نێوان پیاو و ژندا نییە... بۆیە بەردەوام دەبم.", author: "حەپسە خانم" },
     ],
   },
   ar: {
@@ -99,7 +101,7 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     quotes: [
       { text: "كتبت نفسها في التاريخ.", author: "مستورة أردلان" },
       { text: "القيادة الحقيقية ترفع المدينة وتصنع الأمة.", author: "عادلة خانم" },
-      { text: "كل فتاة تدرس تفتح باباً جديداً نحو الغد.", author: "حفصة خانم" },
+      { text: "لا فرق بين الرجال والنساء... لذلك سأواصل.", author: "حفصة خانم" },
     ],
   },
 };
@@ -124,26 +126,34 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     },
     {
       id: "hafsa-khanum",
-      name: "Hafsa Khanum",
-      role: "Education pioneer",
+      name: "Hapsa Khan",
+      role: "Educator · Activist · Founder of the First Girls' School in Kurdistan",
       teaser:
-        "Opened the door of learning to girls and showed that education is the foundation of national renewal.",
+        "She stayed in Sulaymaniyah when others fled the bombs — then opened the first girls' school and fought for Kurdish rights at the League of Nations.",
       icon: "flower",
     },
     {
       id: "khanzada-khanum",
-      name: "Khanzada Khanum",
-      role: "Ruler of Soran",
+      name: "Khanzad Khanum",
+      role: "Ruler of Soran · Commander of 50,000 Soldiers",
       teaser:
-        "A capable mir who defended her emirate with strategic skill, courage, and wide-ranging authority.",
-      icon: "flower",
+        "After her brother was murdered, she took the emirate, commanded its army for seven years, and built a fortress that still stands east of Erbil.",
+      icon: "crown",
     },
     {
       id: "halima-khanum",
-      name: "Halima Khanum",
-      role: "Leader of the Bashqal tribe",
+      name: "Halima Xanim",
+      role: "Ruler of Bash Kala · Kurdish Tribal Leader",
       teaser:
-        "A historical Kurdish leader who stood by her people with steady judgment in times of change.",
+        "She ruled Bash Kala in the Hakkari mountains until Ottoman suppression — one of several Kurdish women who stepped into power when the men around them fell.",
+      icon: "crown",
+    },
+    {
+      id: "meryem-khan",
+      name: "Meryem Khan",
+      role: "Tribal Leader · Diplomat · Negotiator",
+      teaser:
+        "During WWI, Russian commanders negotiated with her — not a sultan — granting passage through Kurdish tribal territory on her terms.",
       icon: "crown",
     },
     {
@@ -175,25 +185,33 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     {
       id: "hafsa-khanum",
       name: "حەپسە خانم",
-      role: "پێشەنگی پەروەردە",
+      role: "پەروەردەکار · چالاکوان · دامەزرێنەری یەکەم قوتابخانەی کچان لە کوردستان",
       teaser:
-        "دەرگای فێربوونی بۆ کچان کردەوە و نیشانی دا کە پەروەردە بنەمای نوێکردنەوەی نەتەوەییە.",
+        "لە کاتی ئەوەی کەس هەڵدەهات لە بۆمباردمانەکانی سلێمانی مایەوە — دواتر یەکەم قوتابخانەی کچان کردەوە و لە کۆماری نەتەوەکاندا داکۆکی لە مافەکانی کورد کرد.",
       icon: "flower",
     },
     {
       id: "khanzada-khanum",
       name: "خانزادە خانم",
-      role: "حاکمی سۆران",
+      role: "حاکمی سۆران · فەرماندەی ٥٠٬٠٠٠ سەرباز",
       teaser:
-        "میرێکی بەتوانا کە ئیمارەتەکەی بە شارەزایی ستراتیژی، ئازایەتی، و دەسەڵاتی فراوان بەرگری کرد.",
-      icon: "flower",
+        "دوای کوشتنی براکەی، ئیمارەتەکەی وەرگرت، حوکمی سەربازەکانی بۆ حەوت ساڵ کرد، و قەڵایەکی دروستکرد کە هێشتا لە ڕۆژھەڵاتی ھەولێر وەستاوە.",
+      icon: "crown",
     },
     {
       id: "halima-khanum",
       name: "حەلیمە خانم",
-      role: "سەرۆکی هۆزی باشقەڵا",
+      role: "حاکمی باش کالا · سەرۆکی هۆزی کوردی",
       teaser:
-        "سەرکردەیەکی مێژوویی کوردی کە لە کاتی گۆڕانکارییەکاندا بە حوکمڕانیی جێگیر لەگەڵ خەڵکەکەی وەستا.",
+        "حوکمی باش کالای لە شاخەکانی ھەکاری کرد تا داپێڕانی عوسمانی — یەکێک لە چەندین ژنی کوردی بوو کە کاتێک پیاوەکانیان کەوتن، دەسەڵات وەرگرتن.",
+      icon: "crown",
+    },
+    {
+      id: "meryem-khan",
+      name: "مەریەم خان",
+      role: "سەرۆکی هۆز · دیپلۆمات · دانوستانکار",
+      teaser:
+        "لە جەنگی جیهانی یەکەمدا، فەرماندەیانی ڕوسی لەگەڵ ئەو دانوستاندن — نەک لەگەڵ سلتان — و ڕێگای ناوچەی هۆزە کوردییەکان بە مەرجەکانی ئەو دانیان.",
       icon: "crown",
     },
     {
@@ -225,22 +243,33 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     {
       id: "hafsa-khanum",
       name: "حفصة خانم",
-      role: "رائدة التعليم",
-      teaser: "فتحت باب التعلم للفتيات وأظهرت أن التربية أساس التجديد الوطني.",
+      role: "مربية · ناشطة · مؤسسة أول مدرسة للبنات في كردستان",
+      teaser:
+        "بقيت في السليمانية حين هرب الآخرون من القصف — ثم أسست أول مدرسة للبنات ودافعت عن حقوق الأكراد في عصبة الأمم.",
       icon: "flower",
     },
     {
       id: "khanzada-khanum",
       name: "خانزاد خانم",
-      role: "حاكمة سوران",
-      teaser: "أميرة قادرة دافعت عن إمارتها بمهارة استراتيجية وشجاعة وسلطة واسعة.",
-      icon: "flower",
+      role: "حاكمة سوران · قائدة ٥٠٬٠٠٠ جندي",
+      teaser:
+        "بعد اغتيال أخيها، تولّت الإمارة، قادت جيشها سبع سنوات، وبنت حصناً لا يزال قائماً شرق أربيل.",
+      icon: "crown",
     },
     {
       id: "halima-khanum",
       name: "حليمة خانم",
-      role: "قائدة قبيلة باشقال",
-      teaser: "قائدة كردية تاريخية وقفت مع شعبها بحكم ثابت في أوقات التغيير.",
+      role: "حاكمة باش كالا · قائدة قبلية كردية",
+      teaser:
+        "حكمت باش كالا في جبال هكاري حتى القمع العثماني — إحدى عدة نساء كرديات تولّين السلطة حين سقط الرجال من حولهن.",
+      icon: "crown",
+    },
+    {
+      id: "meryem-khan",
+      name: "مريم خان",
+      role: "قائدة قبلية · دبلوماسية · مفاوضة",
+      teaser:
+        "خلال الحرب العالمية الأولى، تفاوض معها قادة روس — لا السلطان — ومنحت مروراً عبر أراضي القبائل الكردية بشروطها.",
       icon: "crown",
     },
     {
@@ -330,48 +359,151 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       quoteAuthor: "E.B. Soane, British officer, 1926",
     },
     "hafsa-khanum": {
-      nameLine1: "Hafsa",
-      nameLine2: "Khanum",
-      role: "Education Pioneer",
+      nameLine1: "Hepsexana",
+      nameLine2: "Neqib",
+      role: "Educator · Activist · Founder of the First Girls' School in Kurdistan",
+      metaLine: "1891 – April 12, 1953 | Sulaymaniyah, Iraqi Kurdistan",
       intro:
-        "A tireless advocate who widened access to learning for girls and treated schooling as the foundation of a stronger society.",
-      portraitAlt: "Hafsa Khanum",
+        "When the British bombed Sulaymaniyah in the early 1920s, everyone who could leave did. Hapsa Khan stayed. While others fled, she stayed with the families who had nowhere to go — and kept fighting for them after the bombs fell. She went door to door across the city to convince parents to send their daughters to school. If a family could not afford it, she paid herself. In 1926 she opened the first girls' school in Sulaymaniyah. In 1930 she wrote to the League of Nations to demand Kurdish rights.",
+      portraitAlt: "Hapsa Khan",
       listIcon: "flower",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She founded the Kurdish Women's Association — the first women's rights organization in Iraqi Kurdistan — and established the first school for girls in Sulaymaniyah, personally financing students whose families could not afford it.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Hapsa Khan understood that a nation is built one educated girl at a time. Everything she built — the school, the association, the letter to the League of Nations — still echoes in Kurdistan today.",
+      },
       cards: [
-        { icon: "✎", text: "Founding and expanding programmes for girls' education." },
-        { icon: "♛", text: "Demonstrated that literacy and schools reshape families and futures." },
-        { icon: "♜", text: "Sulaymaniyah • 20th century." },
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "Early 20th Century — 1920s to 1950s",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Sulaymaniyah, Iraqi Kurdistan",
+        },
       ],
-      quote: "Every girl who studies opens a new door toward tomorrow.",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "After Hapsa Khan died in 1953, her home was converted into a school — because the building that raised her became the building that raised others.",
+      },
+      quote: "There is no difference between men and women... so I am going to continue.",
+      quoteAuthor: "Hapsa Khan",
     },
     "khanzada-khanum": {
-      nameLine1: "Khanzad",
-      nameLine2: "Khanum",
-      role: "Leader of Soran",
-      intro: "A powerful Kurdish ruler known for strategic leadership, courage, and regional strength.",
-      portraitAlt: "Khanzada Khanum",
-      listIcon: "flower",
+      nameLine1: "Mîr Xanzad",
+      nameLine2: "a Soranê",
+      role: "Ruler of Soran · Commander of 50,000 Soldiers",
+      metaLine: "Early 17th Century | Soran Emirate, Erbil Region",
+      intro:
+        "When her brother, the ruler of the Soran Emirate, was murdered by a treacherous commander, Khanzad did not mourn in silence. She took control of the entire emirate, commanded its army, and governed its people for seven years. She lured the murderer into a meeting under the pretense of marriage — and had him executed along with all his men. Then she built roads, schools, mosques, and a fortress that still stands east of Erbil today.",
+      portraitAlt: "Khanzad Khanum",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She commanded an army of 50,000 soldiers, built Khanzad Castle on the Erbil–Shaqlawa road — a fortress that still stands — and expanded the Soran Emirate's territory by liberating areas from Ottoman and Safavid control.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Four centuries ago, a Kurdish woman commanded the largest army in the region and built a fortress that outlasted empires. Khanzad Castle still stands east of Erbil — visible proof that she was real.",
+      },
       cards: [
-        { icon: "⛨", text: "Safeguarding her principality and commanding respect." },
-        { icon: "♛", text: "A historic symbol of Kurdish women in power." },
-        { icon: "♜", text: "Soran • early 17th century." },
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "Early 1600s — Soran Emirate era",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Rawanduz (capital), Harir, Soran — Erbil Governorate, Iraqi Kurdistan",
+        },
       ],
-      quote: "Strength and strategy defined her rule.",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "The first all-female Kurdish rock band — formed in Erbil in 1980 — named themselves Khanzad in her honor. Their manager called it 'a radical step for the women's movement in Kurdistan.'",
+      },
+      quote:
+        "She proved that a woman could do her duties and confront all plots and plans her enemies designed for her.",
+      quoteAuthor: "Kurdish historical record",
     },
     "halima-khanum": {
-      nameLine1: "Halima",
-      nameLine2: "Khanum",
-      role: "Leader of the Bashqal Tribe",
+      nameLine1: "Halima Xanim",
+      nameLine2: "a Hekkariyê",
+      role: "Ruler of Bash Kala · Kurdish Tribal Leader",
+      metaLine: "Late 19th Century | Bash Kala, Hakkari — today's southeastern Turkey",
       intro:
-        "A Kurdish leader of memory who stood with her people through political upheaval, offering steadiness when the ground itself seemed to shift.",
-      portraitAlt: "Halima Khanum",
+        "In the late 19th century, as the Ottoman Empire moved to crush Kurdish autonomy and dismantle the Kurdish emirate system, Halima Xanim ruled Bashkala in the Hakkari mountains. She held her position until she was forced to surrender following the suppression of the Bedir Khan revolt in 1847. She was one of several Kurdish women who stepped into power when the men around them fell — and held it as long as they could.",
+      portraitAlt: "Halima Xanim",
       listIcon: "crown",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She governed the strategic mountain region of Bash Kala during one of the most turbulent periods of Kurdish history — resisting Ottoman consolidation of power until she was militarily overwhelmed.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Halima Xanim reminds us that Kurdish women's rule was not unusual — it was a pattern. When the men fell, the women governed. This is a history that deserves to be told.",
+      },
       cards: [
-        { icon: "⛨", text: "Defending her community and guiding the Bashqal through hardship." },
-        { icon: "♛", text: "A reminder that tribal leadership and counsel belonged to women too." },
-        { icon: "♜", text: "Bashqal • 19th century." },
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "Mid 1800s — Ottoman suppression era",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Bash Kala, Hakkari region (today's Van Province, southeastern Turkey)",
+        },
       ],
-      quote: "Leadership and guidance had women's share in them too.",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Kurdish historian Sharaf ad-Din Bitlisi documented that multiple Kurdish women assumed power in principalities after the death of their husbands, governing until their sons came of age. Halima Xanim is part of this remarkable pattern.",
+      },
+      quote:
+        "She exercised real political authority — not merely symbolic power — in a male-dominated political world.",
+      quoteAuthor: "Kurdish historical studies",
+    },
+    "meryem-khan": {
+      nameLine1: "Meryem",
+      nameLine2: "Xan",
+      role: "Tribal Leader · Diplomat · Negotiator",
+      metaLine: "Late 19th – Early 20th Century | Nehri region, Kurdistan",
+      intro:
+        "During World War I, Russian military forces needed to move through Kurdish tribal territory. They did not write to a sultan or a governor. They negotiated with Lady Maryam — a Kurdish woman from the prominent Nehri family. Russian commanders recognized her authority and dealt with her as a legitimate representative of her people. She granted passage. The war moved around her community. Her authority protected them.",
+      portraitAlt: "Meryem Khan",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She conducted direct diplomatic negotiations with Russian military forces during WWI — one of the first instances of a Kurdish woman being formally recognized by a foreign military power as a legitimate political authority.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Meryem Khan shows that Kurdish women's leadership was not created by modern politics — it already existed, recognized even by foreign armies, long before anyone asked for permission.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "World War I era — c. 1914–1918",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Nehri region, Ottoman–Safavid frontier (northern Iraq / southeastern Turkey border area)",
+        },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Meryem Khan was never elected, never appointed, and held no official title — yet a European military force treated her as a head of state. That is the measure of her true authority.",
+      },
+      quote:
+        "She wielded great authority among her followers — recognized even by foreign military commanders.",
+      quoteAuthor: "Basile Nikitine, documented account",
     },
     "najiba-jalizada": {
       nameLine1: "Najiba Khani",
@@ -465,48 +597,151 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       quoteAuthor: "ئی.بی. سۆان، ئەفسەری بەریتانی، ١٩٢٦",
     },
     "hafsa-khanum": {
-      nameLine1: "حەفسە",
-      nameLine2: "خانم",
-      role: "پێشەنگی پەروەردە",
+      nameLine1: "Hepsexana",
+      nameLine2: "Neqib",
+      role: "پەروەردەکار · چالاکوان · دامەزرێنەری یەکەم قوتابخانەی کچان لە کوردستان",
+      metaLine: "١٨٩١ – ١٢ی نیسانی ١٩٥٣ | سلێمانی، کوردستانی عێراق",
       intro:
-        "پاڵپشتێکی بێوەستان کە دەستگەیشتن بە فێربوون بۆ کچان فراوانکرد و قوتابخانەی وەک بنەمای کۆمەڵگایەکی بەهێزتر دید.",
-      portraitAlt: "حەفسە خانم",
+        "کاتێک بەریتانییەکان لە سەرەتای ساڵانی ١٩٢٠دا سلێمانییان بۆمبارد کرد، هەموو کەسێک کە دەتوانی هەڵی هات. حەپسە خانم مایەوە. لە کاتی هەڵاتنی کەسانی تر، لەگەڵ ئەو خێزانانە مایەوە کە شوێنیان نەبوو — و دوای کەوتنی بۆمبەکان بەردەوام بوو لە شەڕکردن بۆیان. لە شاردا لە دەرگایەکەوە بۆ دەرگایەکی تر چوو بۆ قەناعەتکردنی دایک و باوکان کە کچەکانیان بنێرنە قوتابخانە. ئەگەر خێزانێک نەیتوانی بیدایە، خۆی دەیدا. لە ١٩٢٦دا یەکەم قوتابخانەی کچان لە سلێمانی کردەوە. لە ١٩٣٠دا نامەیەکی بۆ کۆماری نەتەوەکان نووسی بۆ داواکردنی مافەکانی کورد.",
+      portraitAlt: "حەپسە خانم",
       listIcon: "flower",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "کۆمەڵەی ژنانی کورد دامەزراند — یەکەم ڕێکخراوی مافی ژنان لە کوردستانی عێراق — و یەکەم قوتابخانەی کچان لە سلێمانی دامەزراند، بە تایبەتی خوێندکاری ئەو خێزانانەی کە نەیتوانیان بیدایە.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "حەپسە خانم تێگەیشت کە نەتەوەیەک هەر کچێکی فێرکراو دروست دەکرێت. هەموو ئەوەی دروستی کرد — قوتابخانە، کۆمەڵە، نامەکە بۆ کۆماری نەتەوەکان — هێشتا لە کوردستاندا دەنگی دەداتەوە.",
+      },
       cards: [
-        { icon: "✎", text: "دامەزراندن و فراوانکردنی بەرنامەکانی پەروەردەی کچان." },
-        { icon: "♛", text: "نیشانی دا کە خوێندن و قوتابخانە خێزان و داهاتوو دەگۆڕن." },
-        { icon: "♜", text: "سلێمانی • سەدەی بیستەم." },
+        {
+          icon: "♜",
+          title: "شوێنی کاتی",
+          text: "سەرەتای سەدەی بیستەم — ١٩٢٠ەکان تا ١٩٥٠ەکان",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "سلێمانی، کوردستانی عێراق",
+        },
       ],
-      quote: "هەر کچێک کە فێر دەبێت دەرگایەکی نوێ بۆ سبەیین دەکاتەوە.",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "دوای مردنی حەپسە خانم لە ١٩٥٣دا، ماڵەکەی گۆڕدرا بۆ قوتابخانە — چونکە بینایەک کە ئەو تێیدا گەورە بوو، بوو بە بینایەک کە کەسانی تر تێیدا گەورە بوون.",
+      },
+      quote: "هیچ جیاوازییەک لە نێوان پیاو و ژندا نییە... بۆیە بەردەوام دەبم.",
+      quoteAuthor: "حەپسە خانم",
     },
     "khanzada-khanum": {
-      nameLine1: "خانزاد",
-      nameLine2: "خانم",
-      role: "سەرۆکی سۆران",
-      intro: "حاکمێکی بەهێزی کوردی کە بە سەرکردایەتی ستراتیژی، ئازایەتی، و هێزی ناوچەیی ناسراوە.",
+      nameLine1: "Mîr Xanzad",
+      nameLine2: "a Soranê",
+      role: "حاکمی سۆران · فەرماندەی ٥٠٬٠٠٠ سەرباز",
+      metaLine: "سەرەتای سەدەی حەڤدەهەم | ئیمارەتی سۆران، ناوچەی ھەولێر",
+      intro:
+        "کاتێک براکەی، حاکمی ئیمارەتی سۆران، لەلایەن فەرمانبەرێکی خیانەتکارەوە کوژرا، خانزاد بە بێدەنگی ماتم نەگرت. کۆنترۆڵی هەموو ئیمارەتەکەی وەرگرت، فەرمانی سوپاکەی کرد، و حەوت ساڵ خەڵکەکەی بەڕێوەبرد. کوژەرەکەی بە نیشانەی هاوسەرگیری بۆ کۆبوونەوەیەک ڕاکێشا — و لەگەڵ هەموو پیاوەکانی کوشت. دواتر ڕێگا، قوتابخانە، مزگەوت، و قەڵایەکی دروستکرد کە هێشتا لە ڕۆژھەڵاتی ھەولێر وەستاوە.",
       portraitAlt: "خانزادە خانم",
-      listIcon: "flower",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "فەرمانی سوپایەکی ٥٠٬٠٠٠ سەربازی کرد، قەڵای خانزاد لەسەر ڕێگای ھەولێر–شەقڵاوە دروستکرد — قەڵایەک کە هێشتا وەستاوە — و خاکی ئیمارەتی سۆرانی فراوانکرد بە ئازادکردنی ناوچەکان لە دەستی عوسمانی و سەفەوی.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "چوار سەدە لەمەوبەر، ژنێکی کوردی گەورەترین سوپای ناوچەکەی فەرماندەی کرد و قەڵایەکی دروستکرد کە لە سەردەمی ئیمپراتۆرییەکان مابووەوە. قەڵای خانزاد هێشتا لە ڕۆژھەڵاتی ھەولێر وەستاوە — بەڵگەیەکی ڕوونە کە ئەو ڕاستەقینە بوو.",
+      },
       cards: [
-        { icon: "⛨", text: "پاراستنی ئیمارەتەکەی و فەرمانڕەوایی ڕێزدار." },
-        { icon: "♛", text: "هێمایەکی مێژوویی بۆ ژنانی کوردی لە دەسەڵات." },
-        { icon: "♜", text: "سۆران • سەرەتای سەدەی حەڤدەهەم." },
+        {
+          icon: "♜",
+          title: "شوێنی کاتی",
+          text: "سەرەتای ١٦٠٠ەکان — سەردەمی ئیمارەتی سۆران",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "ڕەواندز (پایتەخت)، ھەریر، سۆران — پارێزگای ھەولێر، کوردستانی عێراق",
+        },
       ],
-      quote: "هێز و ستراتیژی حوکمی ئەو دیاری کرد.",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "یەکەم گرووپی ڕۆکی کوردی تەنها ژنان — لە ھەولێر لە ١٩٨٠دا دامەزرا — ناویان خانزاد نا بە ڕێزگرتن لە ئەو. بەڕێوەبەرەکەیان وای پێداچووەوە 'هەنگاوێکی ڕادیکاڵ بۆ بزووتنەوەی ژنان لە کوردستان'.",
+      },
+      quote:
+        "سەلماند کە ژنێک دەتوانێت ئەرکەکانی ئەنجام بدات و ڕووبەڕووی هەموو پلان و توێژینەوەکانی دوژمنەکانی ببێتەوە.",
+      quoteAuthor: "تۆمارە مێژوویییەکانی کوردی",
     },
     "halima-khanum": {
-      nameLine1: "حەلیمە",
-      nameLine2: "خانم",
-      role: "سەرۆکی هۆزی باشقاڵ",
+      nameLine1: "Halima Xanim",
+      nameLine2: "a Hekkariyê",
+      role: "حاکمی باش کالا · سەرۆکی هۆزی کوردی",
+      metaLine: "کۆتایی سەدەی نوزدەهەم | باش کالا، ھەکاری — باشووری ڕۆژھەڵاتی تورکیای ئەمڕۆ",
       intro:
-        "سەرکردەیەکی کوردی لە یادەوەری کە لەگەڵ خەڵکەکەی لە نێوان گۆڕانکاری سیاسی وەستا و جێگیربوونی دابینکرد کاتێک زەوی خۆی دەجوڵا.",
+        "لە کۆتایی سەدەی نوزدەهەمدا، کاتێک ئیمپراتۆریی عوسمانی هەوڵی داپێڕانی سەربەخۆیی کوردی و تێکدانی سیستەمی ئیمارەتی کوردی بدات، حەلیمە خانم حوکمی باشکالای لە شاخەکانی ھەکاری کرد. پێگەی خۆی هێشتا هەبوو تا ناچارکرا بە دەستنیشانکردن دوای داپێڕانی سەرهەڵدانی بدرخان لە ١٨٤٧دا. یەکێک بوو لە چەندین ژنی کوردی کە کاتێک پیاوەکانیان دەفتن، دەسەڵات وەرگرتن — و هەتا توانایان هەبوو بیگرتن.",
       portraitAlt: "حەلیمە خانم",
       listIcon: "crown",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "حوکمی ناوچەی شاخی ستراتیژی باش کالای کرد لە یەکێک لە نائارامترین سەردەمەکانی مێژووی کورد — بەرگری لە یەکگرتنی دەسەڵاتی عوسمانی تا بە زۆری سەربازی داپێڕدرا.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "حەلیمە خانم بیرمان دەخاتەوە کە حوکمی ژنانی کوردی ئاسایی نەبوو — شێوازێک بوو. کاتێک پیاوەکان دەفتن، ژنان حوکم دەکردن. ئەمە مێژوویەکە شایانی گێڕانەوەیە.",
+      },
       cards: [
-        { icon: "⛨", text: "بەرگریکردن لە کۆمەڵگاکەی و ڕێنمایی باشقاڵ لە سەختی." },
-        { icon: "♛", text: "بیرخستنەوەیەک کە سەرکردایەتی هۆزی و ڕاوێژکاری بەشێکی ژنان بوو." },
-        { icon: "♜", text: "باشقاڵ • سەدەی نوزدەهەم." },
+        {
+          icon: "♜",
+          title: "شوێنی کاتی",
+          text: "ناوەڕاستی ١٨٠٠ەکان — سەردەمی داپێڕانی عوسمانی",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "باش کالا، ناوچەی ھەکاری (پارێزگای ڤانەی ئەمڕۆ، باشووری ڕۆژھەڵاتی تورکیا)",
+        },
       ],
-      quote: "سەرکردایەتی و ڕێنمایی بەشێکی ژنان بوو لەواندا.",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "مێژوونووسی کوردی شەرەفەدینی بیتلیسی تۆمارکرد کە چەندین ژنی کوردی دوای مردنی مێردەکانیان دەسەڵاتیان وەرگرت لە ئیمارەتەکاندا، تا کوڕەکانیان گەورە دەبن. حەلیمە خانم بەشێکە لەم شێوازە سەرنجڕاکێشە.",
+      },
+      quote:
+        "دەسەڵاتی سیاسی ڕاستەقینەی بەکارهێنا — نەک تەنها دەسەڵاتێکی هێمایی — لە جیهانێکی سیاسی پیاوانی.",
+      quoteAuthor: "لێکۆڵینەوە مێژووییەکانی کوردی",
+    },
+    "meryem-khan": {
+      nameLine1: "Meryem",
+      nameLine2: "Xan",
+      role: "سەرۆکی هۆز · دیپلۆمات · دانوستانکار",
+      metaLine: "کۆتایی سەدەی نوزدەهەم – سەرەتای سەدەی بیستەم | ناوچەی نەهری، کوردستان",
+      intro:
+        "لە جەنگی جیهانی یەکەمدا، هێزە سەربازییەکانی ڕوسی پێویستیان بە تێپەڕبوون لە ناوچەی هۆزە کوردییەکان بوو. نامەیان نەنووسی بۆ سلتان یان والی. لەگەڵ خانم مەریەم — ژنێکی کوردی لە خێزانی بەناوبانگی نەهری — دانوستاندن. فەرماندەیانی ڕوسی دەسەڵاتی ئەو ناساند و وەک نوێنەری شاراوەی خەڵکەکەی مامەڵەیان لەگەڵ کرد. ڕێگای پێدا. جەنگەکە لە دەوری کۆمەڵگاکەی دەجوڵا. دەسەڵاتی ئەو پارێزگاریان کرد.",
+      portraitAlt: "مەریەم خان",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "دانوستانی دیپلۆماتی ڕاستەوخۆی لەگەڵ هێزە سەربازییەکانی ڕوسی ئەنجامدا لە جەنگی جیهانی یەکەم — یەکێک لە یەکەم جاران کە ژنێکی کوردی لەلایەن هێزێکی سەربازی بیانییەوە وەک دەسەڵاتێکی سیاسی شەرعی ناسراوە.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "مەریەم خان نیشان دەدات کە سەرکردایەتی ژنانی کوردی لەلایەن سیاسەتی مۆدێرنەوە دروست نەکراوە — پێشتر هەبووە، تەنانەت لەلایەن سوپای بیانییەوە ناسراوە، زۆر پێش ئەوەی کەس داوای مۆڵەت بکات.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "شوێنی کاتی",
+          text: "سەردەمی جەنگی جیهانی یەکەم — نز. ١٩١٤–١٩١٨",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "ناوچەی نەهری، سنووری عوسمانی–سەفەوی (باشووری عێراق / سنووری باشووری ڕۆژھەڵاتی تورکیا)",
+        },
+      ],
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "مەریەم خان هەرگیز هەڵبژێردراو نەبوو، هەرگیز دامەزراو نەبوو، و هیچ ناونیشانێکی فەرمی نەبوو — بەڵام هێزێکی سەربازی ئەوروپی وەک سەرۆکی وڵات مامەڵەی لەگەڵ دەکرد. ئەمە پێوانەی دەسەڵاتی ڕاستەقینەی ئەوەیە.",
+      },
+      quote:
+        "دەسەڵاتی گەورەی لە نێو شوێندارەکانی هەبوو — تەنانەت لەلایەن فەرماندەیانی سەربازی بیانییەوە ناسراوە.",
+      quoteAuthor: "باسیل نیکیتین، تۆمارێکی بەڵگەدار",
     },
     "najiba-jalizada": {
       nameLine1: "نەجیبە خانی",
@@ -599,46 +834,151 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       quoteAuthor: "إي. بي. سوان، ضابط بريطاني، ١٩٢٦",
     },
     "hafsa-khanum": {
-      nameLine1: "حفصة",
-      nameLine2: "خانم",
-      role: "رائدة التعليم",
-      intro: "مدافعة لا تكلّ عن توسيع التعلم للفتيات ورأت المدرسة أساس مجتمع أقوى.",
+      nameLine1: "Hepsexana",
+      nameLine2: "Neqib",
+      role: "مربية · ناشطة · مؤسسة أول مدرسة للبنات في كردستان",
+      metaLine: "١٨٩١ – ١٢ نيسان ١٩٥٣ | السليمانية، كردستان العراق",
+      intro:
+        "حين قصفت بريطانيا السليمانية في أوائل عشرينيات القرن الماضي، غادر كل من استطاع المغادرة. بقيت حفصة خانم. وبينما هرب الآخرون، بقيت مع العائلات التي لا مكان لها — وواصلت القتال من أجلهم بعد سقوط القنابل. ذهبت من باب إلى باب في المدينة لإقناع الآباء بإرسال بناتهم إلى المدرسة. وإذا لم تستطع عائلة تحمل التكلفة، دفعت هي بنفسها. في ١٩٢٦ افتتحت أول مدرسة للبنات في السليمانية. وفي ١٩٣٠ كتبت إلى عصبة الأمم مطالبة بحقوق الأكراد.",
       portraitAlt: "حفصة خانم",
       listIcon: "flower",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "أسست الجمعية الكردية للمرأة — أول منظمة لحقوق المرأة في كردستان العراق — وأنشأت أول مدرسة للبنات في السليمانية، مموّلة شخصياً الطالبات اللواتي لا تستطيع عائلاتهن تحمل التكاليف.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "فهمت حفصة خانم أن الأمة تُبنى فتاة متعلمة واحدة في كل مرة. كل ما بنته — المدرسة، الجمعية، الرسالة إلى عصبة الأمم — لا يزال يتردد صداه في كردستان اليوم.",
+      },
       cards: [
-        { icon: "✎", text: "تأسيس وتوسيع برامج تعليم الفتيات." },
-        { icon: "♛", text: "أظهرت أن القراءة والمدارس تعيد تشكيل العائلات والمستقبل." },
-        { icon: "♜", text: "السليمانية • القرن العشرين." },
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "أوائل القرن العشرين — من عشرينيات إلى خمسينيات القرن",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "السليمانية، كردستان العراق",
+        },
       ],
-      quote: "كل فتاة تدرس تفتح باباً جديداً نحو الغد.",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "بعد وفاة حفصة خانم عام ١٩٥٣، حُوّل منزلها إلى مدرسة — لأن المبنى الذي ربّاها أصبح المبنى الذي ربّى غيرها.",
+      },
+      quote: "لا فرق بين الرجال والنساء... لذلك سأواصل.",
+      quoteAuthor: "حفصة خانم",
     },
     "khanzada-khanum": {
-      nameLine1: "خانزاد",
-      nameLine2: "خانم",
-      role: "حاكمة سوران",
-      intro: "حاكمة كردية قوية عُرفت بالقيادة الاستراتيجية والشجاعة والقوة الإقليمية.",
+      nameLine1: "Mîr Xanzad",
+      nameLine2: "a Soranê",
+      role: "حاكمة سوران · قائدة ٥٠٬٠٠٠ جندي",
+      metaLine: "أوائل القرن السابع عشر | إمارة سوران، منطقة أربيل",
+      intro:
+        "حين قُتل أخوها، حاكم إمارة سوران، على يد قائد خائن، لم تحز خانزاد في صمت. تولّت السيطرة على الإمارة بأكملها، وأمرت جيشها، وحكمت شعبها سبع سنوات. استدرجت القاتل إلى لقاء تحت ذريعة الزواج — وأعدمته مع جميع رجاله. ثم بنت طرقاً ومدارس ومساجد وحصناً لا يزال قائماً شرق أربيل اليوم.",
       portraitAlt: "خانزاد خانم",
-      listIcon: "flower",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "قادت جيشاً من ٥٠٬٠٠٠ جندي، وبنت قلعة خانزاد على طريق أربيل–شقلاوة — حصن لا يزال قائماً — ووسّعت أراضي إمارة سوران بتحرير مناطق من السيطرة العثمانية والصفوية.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "منذ أربعة قرون، أمرت امرأة كردية بأكبر جيش في المنطقة وبنت حصناً فاقى الإمبراطوريات. لا تزال قلعة خانزاد قائمة شرق أربيل — دليل مرئي على أنها كانت حقيقية.",
+      },
       cards: [
-        { icon: "⛨", text: "حماية إمارتها وفرض الاحترام." },
-        { icon: "♛", text: "رمز تاريخي للمرأة الكردية في السلطة." },
-        { icon: "♜", text: "سوران • أوائل القرن السابع عشر." },
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "أوائل ١٦٠٠ — عصر إمارة سوران",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "راوندوز (العاصمة)، هرير، سوران — محافظة أربيل، كردستان العراق",
+        },
       ],
-      quote: "القوة والاستراتيجية حددتا حكمها.",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "أول فرقة روك كردية نسائية بالكامل — تشكّلت في أربيل عام ١٩٨٠ — سمّت نفسها خانزاد تكريماً لها. وصف مديرها ذلك بأنه 'خطوة جذرية لحركة المرأة في كردستان'.",
+      },
+      quote:
+        "أثبتت أن المرأة تستطيع أداء واجباتها ومواجهة جميع المؤامرات والخطط التي صممها أعداؤها لها.",
+      quoteAuthor: "السجل التاريخي الكردي",
     },
     "halima-khanum": {
-      nameLine1: "حليمة",
-      nameLine2: "خانم",
-      role: "قائدة قبيلة باشقال",
-      intro: "قائدة كردية في الذاكرة وقفت مع شعبها في اضطراب سياسي، مقدمة ثباتاً حين يبدو الأرض نفسها تتحرك.",
+      nameLine1: "Halima Xanim",
+      nameLine2: "a Hekkariyê",
+      role: "حاكمة باش كالا · قائدة قبلية كردية",
+      metaLine: "أواخر القرن التاسع عشر | باش كالا، هكاري — جنوب شرق تركيا اليوم",
+      intro:
+        "في أواخر القرن التاسع عشر، حين سعت الإمبراطورية العثمانية إلى سحق الاستقلال الكردي وتفكيك نظام الإمارات الكردية، حكمت حليمة خانم باشكالا في جبال هكاري. أبقت على منصبها حتى أُجبرت على الاستسلام بعد قمع ثورة بدر خان عام ١٨٤٧. كانت إحدى عدة نساء كرديات تولّين السلطة حين سقط الرجال من حولهن — وأبقينها ما استطعن.",
       portraitAlt: "حليمة خانم",
       listIcon: "crown",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "حكمت المنطقة الجبلية الاستراتيجية لباش كالا خلال أحد أكثر فترات التاريخ الكردي اضطراباً — مقاومة توحيد السلطة العثمانية حتى غُمرت عسكرياً.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "تذكّرنا حليمة خانم أن حكم النساء الكرديات لم يكن استثنائياً — بل كان نمطاً. حين سقط الرجال، حكمت النساء. هذا تاريخ يستحق أن يُروى.",
+      },
       cards: [
-        { icon: "⛨", text: "الدفاع عن مجتمعها وإرشاد باشقال في الشدة." },
-        { icon: "♛", text: "تذكير بأن القيادة القبلية والمشورة كان لهما نصيب من النساء." },
-        { icon: "♜", text: "باشقال • القرن التاسع عشر." },
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "منتصف ١٨٠٠ — عصر القمع العثماني",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "باش كالا، منطقة هكاري (محافظة وان اليوم، جنوب شرق تركيا)",
+        },
       ],
-      quote: "للقيادة والإرشاد نصيب من النساء أيضاً.",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "وثّق المؤرخ الكردي شرف الدين البتليسي أن عدة نساء كرديات تولّين السلطة في الإمارات بعد وفاة أزواجهن، محكمن حتى يبلغ أبناؤهن سن الرشد. حليمة خانم جزء من هذا النمط الرائع.",
+      },
+      quote:
+        "مارست سلطة سياسية حقيقية — لا سلطة رمزية فحسب — في عالم سياسي يهيمن عليه الرجال.",
+      quoteAuthor: "الدراسات التاريخية الكردية",
+    },
+    "meryem-khan": {
+      nameLine1: "Meryem",
+      nameLine2: "Xan",
+      role: "قائدة قبلية · دبلوماسية · مفاوضة",
+      metaLine: "أواخر القرن التاسع عشر – أوائل العشرين | منطقة نهري، كردستان",
+      intro:
+        "خلال الحرب العالمية الأولى، احتاجت القوات العسكرية الروسية إلى التحرك عبر أراضي القبائل الكردية. لم تكتب إلى سلطان أو حاكم. تفاوضت مع السيدة مريم — امرأة كردية من عائلة نهري البارزة. اعترف القادة الروس بسلطتها وتعاملوا معها كممثلة شرعية لشعبها. منحت المرور. تحركت الحرب حول مجتمعها. حمتها سلطتها.",
+      portraitAlt: "مريم خان",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "أجرت مفاوضات دبلوماسية مباشرة مع القوات العسكرية الروسية خلال الحرب العالمية الأولى — من أوائل الحالات التي اعترفت فيها قوة عسكرية أجنبية بامرأة كردية كسلطة سياسية شرعية.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "تُظهر مريم خان أن قيادة النساء الكرديات لم تُخلق بالسياسة الحديثة — بل كانت موجودة أصلاً، معترفاً بها حتى الجيوش الأجنبية، قبل أن يطلب أحد الإذن.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "عصر الحرب العالمية الأولى — نحو ١٩١٤–١٩١٨",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "منطقة نهري، الحدود العثمانية–الصفوية (شمال العراق / جنوب شرق تركيا)",
+        },
+      ],
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "لم تُنتخب مريم خان قط، ولم تُعيَّن، ولم تكن تحمل لقباً رسمياً — ومع ذلك عاملها جيش أوروبي كرئيس دولة. هذا هو مقياس سلطتها الحقيقية.",
+      },
+      quote:
+        "تمتعت بسلطة عظيمة بين أتباعها — معترف بها حتى من قادة عسكريين أجانب.",
+      quoteAuthor: "باسيل نيكيتين، رواية موثقة",
     },
     "najiba-jalizada": {
       nameLine1: "نجيبة خاني",

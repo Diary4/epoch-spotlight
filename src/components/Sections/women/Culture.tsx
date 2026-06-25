@@ -11,7 +11,6 @@ import cultureHero from "@/assets/images/women/c-1.webp";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgHana from "@/assets/images/women/w-1.webp";
-import imgMaryam from "@/assets/images/womens/maryamkhan.jpg";
 
 type LangCode = "ku" | "en" | "ar";
 type ListIcon = "crown" | "flower";
@@ -135,20 +134,6 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       image: imgHana,
       listIcon: "flower",
     },
-    {
-      id: "maryam-khan",
-      name: "Maryam Khan",
-      nameLine1: "Maryam",
-      nameLine2: "Khan",
-      role: "Negotiator and tribal leader",
-      teaser:
-        "A woman of authority known in an age of war and conflict for her intelligence and diplomacy.",
-      knownFor: "Negotiating on behalf of her people in wartime.",
-      placeEra: "River region, First World War era.",
-      quote: "Authority must speak with the language of wisdom.",
-      image: imgMaryam,
-      listIcon: "crown",
-    },
   ],
   ku: [
     {
@@ -193,20 +178,6 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       image: imgHana,
       listIcon: "flower",
     },
-    {
-      id: "maryam-khan",
-      name: "مەریەم خان",
-      nameLine1: "مەریەم",
-      nameLine2: "خان",
-      role: "دانوستانکار و سەرکردەی هۆز",
-      teaser:
-        "ژنێکی خاوەن دەسەڵات بوو کە بە ژیری و دیپلۆماسییەتەکەی لە سەردەمی جەنگ و ململانێدا ناسراو بوو.",
-      knownFor: "دانوستان بەناوی گەلەکەیەوە لە کاتی جەنگدا.",
-      placeEra: "ناوچەی نەهری، سەردەمی جەنگی جیهانی یەکەم.",
-      quote: "پێویستە دەسەڵات بە زمانی ژیری بدوێت.",
-      image: imgMaryam,
-      listIcon: "crown",
-    },
   ],
   ar: [
     {
@@ -250,20 +221,6 @@ const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
       quote: "قبل وجود الكتب، حملت الذاكرة والعقل القصص.",
       image: imgHana,
       listIcon: "flower",
-    },
-    {
-      id: "maryam-khan",
-      name: "مريم خان",
-      nameLine1: "مريم",
-      nameLine2: "خان",
-      role: "مفاوضة وقائدة قبيلة",
-      teaser:
-        "امرأة ذات سلطة عُرفت في عصر الحرب والصراع بذكائها ودبلوماسيتها.",
-      knownFor: "التفاوض نيابة عن شعبها في وقت الحرب.",
-      placeEra: "منطقة الأنهار، عصر الحرب العالمية الأولى.",
-      quote: "يجب أن تتحدث السلطة بلغة الحكمة.",
-      image: imgMaryam,
-      listIcon: "crown",
     },
   ],
 };
