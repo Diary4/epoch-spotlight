@@ -103,9 +103,9 @@ function WomenDetailHighlightSection({
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto mb-[clamp(12px,2vw,20px)] grid h-[clamp(48px,8vw,88px)] w-[clamp(48px,8vw,88px)] place-items-center rounded-full border-2 border-[#d7aa4e] bg-[#5a223f] text-[clamp(24px,5vw,48px)] text-[#d7aa4e] shadow-[0_4px_20px_rgba(90,34,63,0.3)]">
+      {/* <div className="relative z-10 mx-auto mb-[clamp(12px,2vw,20px)] grid h-[clamp(48px,8vw,88px)] w-[clamp(48px,8vw,88px)] place-items-center rounded-full border-2 border-[#d7aa4e] bg-[#5a223f] text-[clamp(24px,5vw,48px)] text-[#d7aa4e] shadow-[0_4px_20px_rgba(90,34,63,0.3)]">
         {icon}
-      </div>
+      </div> */}
 
       <h3
         className={`relative z-10 ${displayFont} text-[clamp(14px,2.4vw,26px)] font-medium uppercase tracking-[0.22em] text-[#5a223f]`}
@@ -198,12 +198,12 @@ export default function WomenDetailPanel({
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-[min(66%,300px)] break-words ${displayFont} text-[clamp(17px,4.2vw,48px)] italic leading-tight text-[#a75a69]`}>
+            <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-[min(70%,320px)] break-words ${displayFont} text-[clamp(17px,3vw,26px)] italic leading-tight text-[#a75a69]`}>
               {role}
             </h2>
 
             {metaLine && (
-              <p className="mt-[clamp(10px,2vw,16px)] max-w-[min(66%,360px)] text-[clamp(12px,1.5vw,18px)] leading-snug text-[#5a4a52]">
+              <p className="mt-[clamp(10px,2vw,16px)] max-w-[90%] text-[clamp(12px,1.5vw,18px)] leading-snug text-[#5a4a52]">
                 {metaLine}
               </p>
             )}
@@ -218,7 +218,7 @@ export default function WomenDetailPanel({
 
         <section
           data-women-detail-fade="true"
-          className="relative z-30 mx-[clamp(16px,3vw,56px)] mt-[clamp(20px,3vw,32px)] max-w-[760px] xl:mx-auto"
+          className="relative z-30 mt-[clamp(20px,3vw,32px)] w-full px-[clamp(16px,3vw,56px)]"
         >
           <p className="text-[clamp(14px,1.8vw,21px)] leading-[1.75] text-[#3f3b42]">
             {intro}
