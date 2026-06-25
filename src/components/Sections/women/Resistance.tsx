@@ -8,10 +8,12 @@ import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenD
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
-import { womenCardLabels, womenDir, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
+import { womenDir, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 import {
   getResistancePageCopy,
   getResistanceWomen,
+  getResistanceDetail,
+  resistanceDetailToPanelCards,
 } from "@/components/Sections/women/content/resistanceContent";
 
 import resistanceHero from "@/assets/images/women/w-2.webp";
@@ -81,11 +83,10 @@ export default function WomenResistancePage({
 
   const copy = getResistancePageCopy(lang);
   const resistanceWomen = getResistanceWomen(lang);
-  const selected = selectedId ? resistanceWomen.find((w) => w.id === selectedId) ?? null : null;
+  const detail = selectedId ? getResistanceDetail(selectedId, lang) : null;
   const dir = womenDir(lang);
   const displayFont = womenDisplayFont(lang);
   const isRtlScript = womenRtlScript(lang);
-  const cardLabels = womenCardLabels[lang];
 
   const handleLanguageChange = () => {
     if (onLanguageChange) {
@@ -96,22 +97,16 @@ export default function WomenResistancePage({
   };
 
   React.useLayoutEffect(() => {
-    const cleanup = selected
+    const cleanup = detail
       ? runWomenDetailIntroAnimation(sectionRef)
       : runResistanceListIntro(sectionRef);
     return cleanup;
-  }, [selectedId]);
+  }, [selectedId, detail]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
     else onBack?.();
   };
-
-  const detailCards = (w: (typeof resistanceWomen)[number]) => [
-    { icon: "⚔", title: cardLabels.knownFor, text: w.knownFor },
-    { icon: "♛", title: cardLabels.legacy, text: w.legacy },
-    { icon: "♜", title: cardLabels.placeEra, text: w.placeEra },
-  ];
 
   return (
     <main
@@ -143,18 +138,23 @@ export default function WomenResistancePage({
           <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
         </button>
 
-        {selected ? (
+        {detail && selectedId ? (
           <WomenDetailPanel
             dir={dir}
-            nameLine1={selected.nameLine1}
-            nameLine2={selected.nameLine2}
-            role={selected.role}
-            intro={selected.teaser}
-            portraitSrc={resistanceImages[selected.id] ?? selected.id}
-            portraitAlt={selected.name}
-            cards={detailCards(selected)}
-            quote={selected.quote}
-            listIcon={selected.listIcon}
+            nameLine1={detail.nameLine1}
+            nameLine2={detail.nameLine2}
+            role={detail.role}
+            metaLine={detail.metaLine}
+            intro={detail.intro}
+            portraitSrc={resistanceImages[selectedId]}
+            portraitAlt={detail.portraitAlt}
+            cards={resistanceDetailToPanelCards(detail, lang)}
+            quote={detail.quote}
+            quoteAuthor={detail.quoteAuthor}
+            greatestAchievement={detail.greatestAchievement}
+            whySheMatters={detail.whySheMatters}
+            didYouKnow={detail.didYouKnow}
+            listIcon={detail.listIcon}
           />
         ) : (
           <>

@@ -1,17 +1,39 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
+import { womenCardLabels } from "@/components/Sections/women/womenLanguage";
+import { resistanceDetailsByLang } from "@/components/Sections/women/content/resistanceDetails";
 
-export type ResistanceFigureCopy = {
+export type ResistanceFigureListItem = {
   id: string;
   name: string;
+  role: string;
+  teaser: string;
+  listIcon: "crown" | "flower";
+};
+
+export type ResistanceDetailContent = {
   nameLine1: string;
   nameLine2: string;
   role: string;
-  teaser: string;
+  metaLine?: string;
+  intro: string;
+  portraitAlt: string;
+  listIcon: "crown" | "flower";
+  cards: { icon: string; text: string; title?: string }[];
+  quote: string;
+  quoteAuthor?: string;
+  greatestAchievement?: { title: string; text: string };
+  whySheMatters?: { title: string; text: string };
+  didYouKnow?: { title: string; text: string };
+};
+
+/** @deprecated Use ResistanceFigureListItem for lists and ResistanceDetailContent for detail pages. */
+export type ResistanceFigureCopy = ResistanceFigureListItem & {
+  nameLine1: string;
+  nameLine2: string;
   knownFor: string;
   legacy: string;
   placeEra: string;
   quote: string;
-  listIcon: "crown" | "flower";
 };
 
 export type ResistancePageCopy = {
@@ -40,7 +62,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacyTitle: "Legacy of courage",
     legacySubtitle: "Defiance, sacrifice, and hope.",
     quotes: [
-      { text: "Kill me, and thousands of Kurds will rise.", author: "Layla Qasim" },
+      { text: "Kill me, but thousands of Kurds will wake up.", author: "Leyla Qasim" },
       { text: "Her voice carried a message of courage.", author: "Shifa Gardi" },
       { text: "She fought for a homeland greater than herself.", author: "Margaret George Shilo" },
     ],
@@ -57,7 +79,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacyTitle: "میراتی ئازایەتی",
     legacySubtitle: "سەرهەڵدان، قوربانی، و هیوا.",
     quotes: [
-      { text: "بمکوژە، هەزاران کورد هەڵدەستن.", author: "لەیلا قاسم" },
+      { text: "بمکوژە، بەڵام هەزاران کورد لە خەو هەستن.", author: "لەیلا قاسم" },
       { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شیفا گەردی" },
       { text: "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.", author: "مارگەریت جۆرج شیلۆ" },
     ],
@@ -74,95 +96,61 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     legacyTitle: "إرث الشجاعة",
     legacySubtitle: "التحدي والتضحية والأمل.",
     quotes: [
-      { text: "اقتلوني، وستنهض آلاف الكرد.", author: "ليلا قاسم" },
+      { text: "اقتلوني، لكن آلاف الكرد سيستيقظون.", author: "ليلى قاسم" },
       { text: "حمل صوتها رسالة شجاعة.", author: "شفا گردی" },
       { text: "قاتلت من أجل وطن أعظم من نفسها.", author: "مارغريت جورج شيلو" },
     ],
   },
 };
 
-const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
+const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
   en: [
     {
       id: "khaja-bawa",
       name: "Khaja Bawa",
-      nameLine1: "Khaja",
-      nameLine2: "Bawa",
       role: "Heroine of the 1991 uprising",
       teaser:
         "A courageous daughter of Erbil whose life was given during the city's uprising for freedom.",
-      knownFor: "Leadership and bravery during the 1991 uprising in Erbil.",
-      legacy: "Her sacrifice is woven into Erbil's memory of that spring.",
-      placeEra: "Erbil • 1991.",
-      quote: "Her courage shook a city.",
       listIcon: "crown",
     },
     {
       id: "qadam-kher",
-      name: "Qadam Kher",
-      nameLine1: "Qadam",
-      nameLine2: "Kher",
-      role: "Resistance leader",
+      name: "Qadem Xer",
+      role: "Tribal Leader · Military Commander · Patriot",
       teaser:
-        "A Kurdish lioness who led her tribes' uprising with unshakable resolve against Reza Shah's forces.",
-      knownFor: "Leading tribal resistance against Reza Shah's forces.",
-      legacy: "She held ground where others broke.",
-      placeEra: "Luristan • early 20th century.",
-      quote: "She resisted where others collapsed.",
-      listIcon: "flower",
+        "When her brothers fell fighting Reza Shah, she donned battle attire and led Luristan's tribes for years against the Iranian army.",
+      listIcon: "crown",
     },
     {
       id: "shifa-gardi",
       name: "Shifa Gardi",
-      nameLine1: "Shifa",
-      nameLine2: "Gardi",
-      role: "Field journalist",
+      role: "Field Journalist · Presenter · Output Manager at Rudaw",
       teaser:
-        "A pioneering, fearless reporter who brought truthful news from the front lines of the war against ISIS to the world.",
-      knownFor: "Frontline coverage of the war against ISIS.",
-      legacy: "Her reporting widened the world's view of Kurdish courage.",
-      placeEra: "Erbil and Mosul • 21st century.",
-      quote: "Her voice carried a message of courage.",
+        "A pioneering reporter martyred covering the war against ISIS — the first Kurdish female journalist to die on the front lines.",
       listIcon: "flower",
     },
     {
       id: "qara-fateme",
-      name: "Kara Fateme",
-      nameLine1: "Kara",
-      nameLine2: "Fateme",
-      role: "Military commander and tribal leader",
-      teaser: "A rare military leader remembered for courage in battle and skill in diplomacy.",
-      knownFor: "Command of mounted fighters and negotiation with state powers.",
-      legacy: "Her name is tied to courage that stayed with her at every step.",
-      placeEra: "Marash and Istanbul • 19th century.",
-      quote: "Courage accompanied her in every step.",
+      name: "Kara Fatima",
+      role: "Tribal Leader · Military Commander · Diplomat",
+      teaser:
+        "She marched to Istanbul with 500 fighters during the Crimean War — a \"Kurdish lioness\" whose portrait appeared in the Illustrated London News.",
       listIcon: "crown",
     },
     {
       id: "layla-qasim",
-      name: "Layla Qasim",
-      nameLine1: "Layla",
-      nameLine2: "Qasim",
-      role: "Symbol of resistance",
-      teaser: "A young fighter whose sacrifice became a beacon of dignity and national awakening.",
-      knownFor: "Defiance and sacrifice in the face of oppression.",
-      legacy: "Remembered as a national symbol of youth and resolve.",
-      placeEra: "Khanaqin and Baghdad • 1970s.",
-      quote: "Kill me, and thousands of Kurds will rise.",
+      name: "Leyla Qasim",
+      role: "Student Activist · Kurdish Martyr · National Symbol",
+      teaser:
+        "Executed at 22, her final words — \"Kill me, but thousands of Kurds will wake up\" — became among the most repeated in Kurdish history.",
       listIcon: "flower",
     },
     {
       id: "margaret-george-shilo",
-      name: "Margaret George Shilo",
-      nameLine1: "Margaret",
-      nameLine2: "George Shilo",
-      role: "First female Peshmerga",
+      name: "Margaret George Shello",
+      role: "First Female Peshmerga",
       teaser:
-        "A legendary Assyrian woman who fought for Kurdistan and became a symbol of coexistence and loyalty.",
-      knownFor: "The first woman to command in a Peshmerga military formation.",
-      legacy: "A living emblem of shared struggle for Kurdistan.",
-      placeEra: "Dohuk region • 1960s.",
-      quote: "She fought for a homeland greater than herself.",
+        "An Assyrian woman who picked up a weapon in 1963 and became commander of an all-male Peshmerga unit.",
       listIcon: "crown",
     },
   ],
@@ -170,79 +158,48 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
     {
       id: "khaja-bawa",
       name: "خەجە باوا",
-      nameLine1: "خەجە",
-      nameLine2: "باوا",
       role: "پاڵەوانی سەرهەڵدانی ١٩٩١",
       teaser: "کچێکی ئازای هەولێر کە ژیانی لە سەرهەڵدانی شارەکە بۆ ئازادی دا.",
-      knownFor: "سەرکردایەتی و ئازایەتی لە سەرهەڵدانی ١٩٩١ لە هەولێر.",
-      legacy: "قوربانییەکەی لە یادەوەی هەولێر بۆ ئەو بەهارە بەرگەیەکی.",
-      placeEra: "هەولێر • ١٩٩١.",
-      quote: "ئازایەتییەکەی شارێکی لە جێ هێنا.",
       listIcon: "crown",
     },
     {
       id: "qadam-kher",
       name: "قەدەم خێر",
-      nameLine1: "قەدەم",
-      nameLine2: "خێر",
-      role: "سەرکردەی بەرخۆدان",
-      teaser: "شێری کوردی کە سەرهەڵدانی هۆزەکەی بە بڕوای نەگۆڕاو بەرامبەر هێزەکانی ڕەزا شا بەڕێوەبرد.",
-      knownFor: "سەرکردایەتی بەرخۆدانی هۆزی بەرامبەر هێزەکانی ڕەزا شا.",
-      legacy: "لەو شوێنە جێگیر بوو کە ئەوانی تر شکان.",
-      placeEra: "لۆرستان • سەرەتای سەدەی بیستەم.",
-      quote: "لەو شوێنە بەرخۆی کە ئەوانی تر ڕووخان.",
-      listIcon: "flower",
+      role: "سەرۆکی هۆز · فەرماندەی سەربازی · وڵاتپارێز",
+      teaser:
+        "کاتێک براکانی لە شەڕی دژی ڕەزا شا کوژران، جلی شەڕی لەبەرکرد و ساڵان بە سەرکردایەتی هۆزەکانی لۆرستان بەرامبەر سوپای ئێران وەستا.",
+      listIcon: "crown",
     },
     {
       id: "shifa-gardi",
       name: "شیفا گەردی",
-      nameLine1: "شیفا",
-      nameLine2: "گەردی",
-      role: "ڕۆژنامەنووسی مەیدان",
-      teaser: "ڕۆژنامەنووسێکی پێشەنگ و بێترس کە هەواڵی ڕاستەقینە لە هێڵی پێشەوەی شەڕی دژی داعش بۆ جیهان گەیاند.",
-      knownFor: "ڕووماڵکردنی هێڵی پێشەوەی شەڕی دژی داعش.",
-      legacy: "ڕاپۆرتەکانی بینینی جیهان بۆ ئازایەتی کوردی فراوانکرد.",
-      placeEra: "هەولێر و مووسڵ • سەدەی بیست و یەکەم.",
-      quote: "دەنگی پەیامی ئازایەتی هەڵگرت.",
+      role: "ڕۆژنامەنووسی مەیدان · پێشکەشکار · بەڕێوەبەری بەرهەم لە ڕووداو",
+      teaser:
+        "ڕۆژنامەنووسێکی پێشەنگ کە لە کاتی ڕووماڵکردنی شەڕی دژی داعش شەهید بوو — یەکەم ژنانی ڕۆژنامەنووسی کوردی لە هێڵی پێشەوە.",
       listIcon: "flower",
     },
     {
       id: "qara-fateme",
       name: "قەرە فاتیمە",
-      nameLine1: "قەرە",
-      nameLine2: "فاتیمە",
-      role: "فەرماندەی سەربازی و سەرۆکی هۆز",
-      teaser: "سەرکردەیەکی سەربازی دەگمەن کە بە ئازایەتی لە شەڕ و شارەزایی لە دیپلۆماسی لە یادەوەری مایەوە.",
-      knownFor: "فەرماندەیی شەڕڤانان و دانوستاندن لەگەڵ دەسەڵاتەکانی دەوڵەت.",
-      legacy: "ناوی پەیوەستە بە ئازایەتی کە لە هەموو هەنگاوێکدا لەگەڵیدا بوو.",
-      placeEra: "مەڕەش و ئیستانبول • سەدەی نوزدەهەم.",
-      quote: "ئازایەتی لە هەموو هەنگاوێکدا لەگەڵیدا بوو.",
+      role: "سەرۆکی هۆز · فەرماندەی سەربازی · دیپلۆمات",
+      teaser:
+        "لە جەنگی قریمەدا بە ٥٠٠ شەڕڤان ڕۆیشتە ئیستانبول — «شێری کوردی» کە وێنەکەی لە Illustrated London News بڵاوکرایەوە.",
       listIcon: "crown",
     },
     {
       id: "layla-qasim",
       name: "لەیلا قاسم",
-      nameLine1: "لەیلا",
-      nameLine2: "قاسم",
-      role: "هێمای بەرخۆدان",
-      teaser: "شەڕڤانێکی گەنج کە قوربانییەکەی بووە بە چرای ڕێز و خۆهێنانەوەی نەتەوەیی.",
-      knownFor: "سەرهەڵدان و قوربانی بەرامبەر داپێڕان.",
-      legacy: "وەک هێمای نەتەوەیی گەنجی و بڕوای جێگیر لە یادەوەری مایەوە.",
-      placeEra: "خانەقین و بەغدا • ساڵانی ١٩٧٠.",
-      quote: "بمکوژە، هەزاران کورد هەڵدەستن.",
+      role: "چالاکوانی خوێندکار · شەهیدی کورد · هێمای نەتەوەیی",
+      teaser:
+        "لە تەمەنی ٢٢ ساڵیدا لە دەستدرا؛ وشەکانی کۆتایی — «بمکوژە، بەڵام هەزاران کورد لە خەو هەستن» — لە مێژووی کوردیدا زۆر دووبارە کراونەتەوە.",
       listIcon: "flower",
     },
     {
       id: "margaret-george-shilo",
       name: "مارگرێت جۆرج شیلۆ",
-      nameLine1: "مارگرێت",
-      nameLine2: "جۆرج شیلۆ",
       role: "یەکەم پێشمەرگەی ژن",
-      teaser: "ژنێکی ئاشوری ئەفسانەیی کە بۆ کوردستان شەڕی کرد و بووە هێمای پێکەوەژیان و وەفاداری.",
-      knownFor: "یەکەم ژن کە فەرماندەیی لە پێکهاتەیەکی سەربازی پێشمەرگەدا کرد.",
-      legacy: "هێمایەکی زیندوو بۆ تێکۆشانی هاوبەش بۆ کوردستان.",
-      placeEra: "ناوچەی دهۆک • ساڵانی ١٩٦٠.",
-      quote: "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.",
+      teaser:
+        "ژنێکی ئاشوری کە لە ساڵی ١٩٦٣ چەکی هەڵگرت و بووە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان.",
       listIcon: "crown",
     },
   ],
@@ -250,79 +207,48 @@ const womenByLang: Record<WomenLangCode, ResistanceFigureCopy[]> = {
     {
       id: "khaja-bawa",
       name: "خاجة باوا",
-      nameLine1: "خاجة",
-      nameLine2: "باوا",
       role: "بطلة انتفاضة ١٩٩١",
       teaser: "ابنة شجاعة لأربيل قدّمت حياتها في انتفاضة المدينة من أجل الحرية.",
-      knownFor: "القيادة والشجاعة في انتفاضة ١٩٩١ في أربيل.",
-      legacy: "تضحيتها منسوجة في ذاكرة أربيل لذلك الربيع.",
-      placeEra: "أربيل • ١٩٩١.",
-      quote: "هزت شجاعتها مدينة.",
       listIcon: "crown",
     },
     {
       id: "qadam-kher",
       name: "قدم خير",
-      nameLine1: "قدم",
-      nameLine2: "خير",
-      role: "قائدة مقاومة",
-      teaser: "أسد كردي قاد انتفاضة قبيلتها بعزم لا يلين ضد قوات رضا شاه.",
-      knownFor: "قيادة مقاومة قبلية ضد قوات رضا شاه.",
-      legacy: "ثبتت موقفها حيث انهار الآخرون.",
-      placeEra: "لورستان • أوائل القرن العشرين.",
-      quote: "قاومت حيث انهار الآخرون.",
-      listIcon: "flower",
+      role: "زعيمة قبلية · قائدة عسكرية · وطنية",
+      teaser:
+        "عندما سقط إخوتها في مواجهة رضا شاه، ارتدت لباس المعركة وقادت قبائل لورستان لسنوات ضد الجيش الإيراني.",
+      listIcon: "crown",
     },
     {
       id: "shifa-gardi",
       name: "شفا گردی",
-      nameLine1: "شفا",
-      nameLine2: "گردی",
-      role: "صحفية ميدانية",
-      teaser: "مراسلة رائدة لا تخاف نقلت الأخبار الحقيقية من خطوط المواجهة ضد داعش إلى العالم.",
-      knownFor: "تغطية خطوط المواجهة في الحرب ضد داعش.",
-      legacy: "وسّعت تقاريرها رؤية العالم لشجاعة الكرد.",
-      placeEra: "أربيل والموصل • القرن الحادي والعشرون.",
-      quote: "حمل صوتها رسالة شجاعة.",
+      role: "صحفية ميدانية · مقدمة · مديرة إنتاج في روداو",
+      teaser:
+        "مراسلة رائدة استشهدت أثناء تغطية الحرب ضد داعش — أول صحفية كردية تستشهد في خطوط المواجهة.",
       listIcon: "flower",
     },
     {
       id: "qara-fateme",
       name: "كارا فاطمة",
-      nameLine1: "كارا",
-      nameLine2: "فاطمة",
-      role: "قائدة عسكرية وقبلية",
-      teaser: "قائدة عسكرية نادرة تُذكر بشجاعتها في المعركة ومهارتها في الدبلوماسية.",
-      knownFor: "قيادة المقاتلين الفرسان والتفاوض مع سلطات الدولة.",
-      legacy: "اسمها مرتبط بشجاعة رافقتها في كل خطوة.",
-      placeEra: "مرعش وإسطنبول • القرن التاسع عشر.",
-      quote: "رافقتها الشجاعة في كل خطوة.",
+      role: "زعيمة قبلية · قائدة عسكرية · دبلوماسية",
+      teaser:
+        "سارت إلى إسطنبول بخمسمائة مقاتل في حرب القرم — «لبوة كردية» طُبعت صورتها في Illustrated London News.",
       listIcon: "crown",
     },
     {
       id: "layla-qasim",
-      name: "ليلا قاسم",
-      nameLine1: "ليلا",
-      nameLine2: "قاسم",
-      role: "رمز المقاومة",
-      teaser: "مقاتلة شابة أصبح تضحيتها منارة للكرامة والصحوة الوطنية.",
-      knownFor: "التحدي والتضحية في مواجهة القمع.",
-      legacy: "تُذكر رمزاً وطنياً للشباب والعزم.",
-      placeEra: "خانقين وبغداد • سبعينيات القرن العشرين.",
-      quote: "اقتلوني، وستنهض آلاف الكرد.",
+      name: "ليلى قاسم",
+      role: "ناشطة طالبة · شهيدة كردية · رمز وطني",
+      teaser:
+        "أُعدمت في الثانية والعشرين؛ كلماتها الأخيرة — «اقتلوني، لكن آلاف الكرد سيستيقظون» — من أكثر العبارات تكراراً في التاريخ الكردي.",
       listIcon: "flower",
     },
     {
       id: "margaret-george-shilo",
       name: "مارغريت جورج شيلو",
-      nameLine1: "مارغريت",
-      nameLine2: "جورج شيلو",
       role: "أول امرأة بيشمركة",
-      teaser: "امرأة آشورية أسطورية قاتلت من أجل كردستان وصارت رمز التعايش والوفاء.",
-      knownFor: "أول امرأة تقود في تشكيل عسكري بيشمركي.",
-      legacy: "رمز حي للنضال المشترك من أجل كردستان.",
-      placeEra: "منطقة دهوك • ستينيات القرن العشرين.",
-      quote: "قاتلت من أجل وطن أعظم من نفسها.",
+      teaser:
+        "امرأة آشورية حملت السلاح عام ١٩٦٣ وأصبحت قائدة لوحدة بيشمركية من الرجال فقط.",
       listIcon: "crown",
     },
   ],
@@ -332,6 +258,24 @@ export function getResistancePageCopy(lang: WomenLangCode): ResistancePageCopy {
   return pageCopy[lang];
 }
 
-export function getResistanceWomen(lang: WomenLangCode): ResistanceFigureCopy[] {
-  return womenByLang[lang];
+export function getResistanceWomen(lang: WomenLangCode): ResistanceFigureListItem[] {
+  return listByLang[lang];
+}
+
+export function getResistanceDetail(id: string, lang: WomenLangCode): ResistanceDetailContent | null {
+  const detail = resistanceDetailsByLang[lang][id];
+  return detail ? (detail as ResistanceDetailContent) : null;
+}
+
+export function resistanceDetailToPanelCards(
+  detail: ResistanceDetailContent,
+  lang: WomenLangCode,
+): { icon: string; title: string; text: string }[] {
+  const labels = womenCardLabels[lang];
+  const defaultTitles = [labels.knownFor, labels.legacy, labels.placeEra];
+  return detail.cards.map((card, index) => ({
+    icon: card.icon,
+    title: card.title ?? defaultTitles[index] ?? labels.knownFor,
+    text: card.text,
+  }));
 }

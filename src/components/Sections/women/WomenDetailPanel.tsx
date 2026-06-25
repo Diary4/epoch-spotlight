@@ -1,5 +1,7 @@
 import React from "react";
 
+import cardBg from "@/assets/images/patterns/card-bg.jpg";
+
 export type WomenDetailPanelCard = {
   icon: string;
   title: string;
@@ -73,63 +75,53 @@ function WomenDetailHighlightSection({
   variant: "plum" | "cream";
   displayFont: string;
 }) {
-  const isPlum = variant === "plum";
+  const isMatters = variant === "plum";
+  const texturedBackground = isMatters
+    ? `linear-gradient(180deg, rgba(246,242,236,0.88) 0%, rgba(254,165,165,0.88) 100%), url(${cardBg})`
+    : `linear-gradient(165deg, rgba(255,248,238,0.88) 0%, rgba(243,226,196,0.88) 100%), url(${cardBg})`;
 
   return (
     <div
       data-women-detail-fade="true"
       className={
-        isPlum
-          ? "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#c8a65c] bg-[#5a223f] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_16px_48px_rgba(45,20,54,0.32)]"
-          : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#5a223f] bg-[linear-gradient(165deg,#fff8ee_0%,#f3e2c4_100%)] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
+        isMatters
+          ? "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#e8a8a8] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(254,165,165,0.22)]"
+          : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#5a223f] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
       }
+      style={{
+        backgroundImage: texturedBackground,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <div
-        className={
-          isPlum
-            ? "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(215,170,78,0.22),transparent_55%),radial-gradient(circle_at_80%_100%,rgba(167,90,105,0.18),transparent_40%)]"
-            : "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(215,170,78,0.2),transparent_45%),radial-gradient(circle_at_80%_100%,rgba(167,90,105,0.1),transparent_40%)]"
-        }
+        className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] top-[clamp(12px,2vw,20px)] h-px ${isMatters ? "bg-[#5a223f]/20" : "bg-[#5a223f]/20"}`}
         aria-hidden
       />
       <div
-        className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] top-[clamp(12px,2vw,20px)] h-px ${isPlum ? "bg-[#d7aa4e]/40" : "bg-[#5a223f]/20"}`}
-        aria-hidden
-      />
-      <div
-        className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] bottom-[clamp(12px,2vw,20px)] h-px ${isPlum ? "bg-[#d7aa4e]/40" : "bg-[#5a223f]/20"}`}
+        className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] bottom-[clamp(12px,2vw,20px)] h-px ${isMatters ? "bg-[#5a223f]/20" : "bg-[#5a223f]/20"}`}
         aria-hidden
       />
 
-      <div
-        className={
-          isPlum
-            ? "relative z-10 mx-auto mb-[clamp(12px,2vw,20px)] grid h-[clamp(48px,8vw,88px)] w-[clamp(48px,8vw,88px)] place-items-center rounded-full border-2 border-[#d7aa4e]/60 bg-[#4a1a35] text-[clamp(24px,5vw,48px)] text-[#d7aa4e] shadow-[0_0_24px_rgba(215,170,78,0.25)]"
-            : "relative z-10 mx-auto mb-[clamp(12px,2vw,20px)] grid h-[clamp(48px,8vw,88px)] w-[clamp(48px,8vw,88px)] place-items-center rounded-full border-2 border-[#d7aa4e] bg-[#5a223f] text-[clamp(24px,5vw,48px)] text-[#d7aa4e] shadow-[0_4px_20px_rgba(90,34,63,0.3)]"
-        }
-      >
+      <div className="relative z-10 mx-auto mb-[clamp(12px,2vw,20px)] grid h-[clamp(48px,8vw,88px)] w-[clamp(48px,8vw,88px)] place-items-center rounded-full border-2 border-[#d7aa4e] bg-[#5a223f] text-[clamp(24px,5vw,48px)] text-[#d7aa4e] shadow-[0_4px_20px_rgba(90,34,63,0.3)]">
         {icon}
       </div>
 
       <h3
-        className={`relative z-10 ${displayFont} text-[clamp(14px,2.4vw,26px)] font-medium uppercase tracking-[0.22em] ${isPlum ? "text-[#d7aa4e]" : "text-[#5a223f]"}`}
+        className={`relative z-10 ${displayFont} text-[clamp(14px,2.4vw,26px)] font-medium uppercase tracking-[0.22em] text-[#5a223f]`}
       >
         {title}
       </h3>
 
-      <div
-        className={`relative z-10 mx-auto mt-[clamp(14px,2.4vw,24px)] flex w-[min(100%,280px)] items-center gap-3 ${isPlum ? "text-[#c8a65c]" : "text-[#a75a69]"}`}
-      >
-        <span className={`h-px flex-1 ${isPlum ? "bg-[#d7aa4e]/50" : "bg-[#5a223f]/25"}`} />
+      <div className="relative z-10 mx-auto mt-[clamp(14px,2.4vw,24px)] flex w-[min(100%,280px)] items-center gap-3 text-[#a75a69]">
+        <span className="h-px flex-1 bg-[#5a223f]/25" />
         <span aria-hidden className="text-[clamp(10px,1.4vw,14px)]">
           ❖
         </span>
-        <span className={`h-px flex-1 ${isPlum ? "bg-[#d7aa4e]/50" : "bg-[#5a223f]/25"}`} />
+        <span className="h-px flex-1 bg-[#5a223f]/25" />
       </div>
 
-      <p
-        className={`relative z-10 mx-auto mt-[clamp(16px,2.8vw,28px)] max-w-[min(100%,680px)] flex-1 text-[clamp(14px,2vw,22px)] leading-[1.65] ${isPlum ? "text-[#fff8ee]" : "text-[#2d1436]"}`}
-      >
+      <p className="relative z-10 mx-auto mt-[clamp(16px,2.8vw,28px)] max-w-[min(100%,680px)] flex-1 text-[clamp(14px,2vw,22px)] leading-[1.65] text-[#2d1436]">
         {text}
       </p>
     </div>
@@ -183,7 +175,7 @@ export default function WomenDetailPanel({
                   decoding="async"
                   // React 18 expects the lowercase DOM attribute name.
                   {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
-                  className="h-full w-full object-cover object-[22%_12%]"
+                  className="h-full w-full object-cover object-[60%_12%]"
                 />
               </div>
             </div>

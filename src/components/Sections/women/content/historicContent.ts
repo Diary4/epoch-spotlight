@@ -7,6 +7,7 @@ import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
 import khanzadDetail from "@/assets/images/womens/khanzad.jpg";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
 import meryemDetail from "@/assets/images/womens/maryamkhan.jpg";
+import minaDetail from "@/assets/images/women/historic.png";
 import najibaDetail from "@/assets/images/womens/najibakhan.jpg";
 
 export type HistoricFigureListItem = {
@@ -52,6 +53,7 @@ export const historicDetailPortraits: Record<string, string> = {
   "khanzada-khanum": khanzadDetail,
   "halima-khanum": halimaDetail,
   "meryem-khan": meryemDetail,
+  "mina-qazi": minaDetail,
   "najiba-jalizada": najibaDetail,
 };
 
@@ -157,11 +159,19 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
       icon: "crown",
     },
     {
-      id: "najiba-jalizada",
-      name: "Najiba Khani Jalizada",
-      role: "Intellectual and pioneer",
+      id: "mina-qazi",
+      name: "Mina Qazi",
+      role: "First Lady of the Republic of Kurdistan · Women's Rights Pioneer",
       teaser:
-        "A tireless advocate for girls' education, social awareness, and the preservation of culture.",
+        "Wife of Qazi Muhammad, she founded the first official Kurdish women's organization in 1946 and remained in Mahabad as a pillar of strength for decades.",
+      icon: "flower",
+    },
+    {
+      id: "najiba-jalizada",
+      name: "Najiba Khani Jelizadeh",
+      role: "Intellectual · Women's Rights Activist · Pioneer of Education",
+      teaser:
+        "The first girl in Koya to attend formal school in 1924 — an intellectual, activist, and keeper of Kurdish history who lit the path for thousands of girls.",
       icon: "flower",
     },
   ],
@@ -215,11 +225,19 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
       icon: "crown",
     },
     {
+      id: "mina-qazi",
+      name: "مینا قازی",
+      role: "خانمەی یەکەمی کۆماری کوردستان · پێشەنگی مافی ژنان",
+      teaser:
+        "هاوسەری قازی محەممەد، یەکەم ڕێکخراوی فەرمی ژنانی کوردی لە ١٩٤٦دا دامەزراند و بۆ چەندین سەدە لە مەهاباد وەک ستونێکی بەهێز مایەوە.",
+      icon: "flower",
+    },
+    {
       id: "najiba-jalizada",
       name: "نەجیبە خانی جەلیزادە",
-      role: "ڕۆشنبیر و پێشەنگ",
+      role: "ڕۆشنبیر · چالاکوانی مافی ژنان · پێشەنگی پەروەردە",
       teaser:
-        "داکۆکیکارێکی سەرسەختی خوێندنی کچان و باڵوکردنەوەی هۆشیاریی کۆمەڵایەتی و پاراستنی کولتوور بوو.",
+        "یەکەمین کچی کۆیە بوو کە لە ١٩٢٤دا چووە قوتابخانەی فەرمی — ڕۆشنبیر، چالاکوان، و پارێزەری مێژووی کورد کە ڕێگای هەزاران کچی ڕووناککرد.",
       icon: "flower",
     },
   ],
@@ -273,10 +291,19 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
       icon: "crown",
     },
     {
+      id: "mina-qazi",
+      name: "مينا قازي",
+      role: "السيدة الأولى لجمهورية كردستان · رائدة حقوق المرأة",
+      teaser:
+        "زوجة قازي محمد، أسست أول منظمة رسمية للمرأة الكردية عام ١٩٤٦ وبقيت في مهاباد ركيزة قوة لعقود.",
+      icon: "flower",
+    },
+    {
       id: "najiba-jalizada",
       name: "نجيبة خاني جليزادة",
-      role: "مثقفة ورائدة",
-      teaser: "مدافعة عن تعليم الفتيات ورفع الوعي المجتمعي والحفاظ على الثقافة.",
+      role: "مثقفة · ناشطة حقوق المرأة · رائدة التعليم",
+      teaser:
+        "أول فتاة في كويس تلتحق بالمدرسة الرسمية عام ١٩٢٤ — مثقفة وناشطة وحافظة للتاريخ الكردي أضاءت الطريق لآلاف الفتيات.",
       icon: "flower",
     },
   ],
@@ -505,20 +532,79 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         "She wielded great authority among her followers — recognized even by foreign military commanders.",
       quoteAuthor: "Basile Nikitine, documented account",
     },
-    "najiba-jalizada": {
-      nameLine1: "Najiba Khani",
-      nameLine2: "Jalizada",
-      role: "Intellectual and Pioneer",
+    "mina-qazi": {
+      nameLine1: "Mina",
+      nameLine2: "Qazi",
+      role: "First Lady of the Republic of Kurdistan · Women's Rights Pioneer",
+      metaLine: "1908 – 1998",
       intro:
-        "A tireless advocate for girls' education, raising social awareness, and preserving Kurdish culture.",
-      portraitAlt: "Najiba Khani Jalizada",
+        "She was a revolutionary leader and the wife of Qazi Muhammad, the President of the Republic of Kurdistan. Breaking deep-seated social traditions, she emerged as a prominent public figure and, in March 1946, established the first official Kurdish women's organization to promote education and political participation. Following the Republic's fall and her husband's execution in 1947, she endured decades of immense hardship and state pressure. Despite these challenges, she remained in Mahabad, refusing to yield to her oppressors. Throughout her life, she remained a steadfast pillar of strength, dedicated to preserving her husband's legacy and supporting the Kurdish nation.",
+      portraitAlt: "Mina Qazi",
       listIcon: "flower",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She founded the Kurdish Women's Union (Yekêtiya Jinên Kurdistan) in 1946. She successfully mobilized women to support the Republic's civic and military efforts, organized literacy classes for girls, and famously appeared in public alongside her husband without a traditional veil, shattering societal taboos and paving the way for modern Kurdish women's participation in politics.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Revered as the \"Mother of Kurdistan,\" Mina Qazi remains the ultimate symbol of resilience and female leadership in Kurdish history. She proved that the national struggle was not only the duty of men. Her unwavering dignity in the face of the Republic's collapse, and her lifelong commitment to her husband's democratic dream, continue to be the foundational inspiration for Kurdish women's movements today.",
+      },
       cards: [
-        { icon: "✎", text: "The first girl from Koya to attend formal school." },
-        { icon: "♛", text: "Championed learning, awareness, and cultural preservation." },
-        { icon: "♜", text: "Koya • 20th century." },
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "1908 until February 17, 1998 — lived through the declaration and fall of the 1946 Republic of Kurdistan",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Mahabad, Eastern Kurdistan (Iran), particularly the historic Chwar Chira Square where the Republic was declared",
+        },
       ],
-      quote: "She made education a path to changing the lives of future generations.",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Mina Qazi was not just a supportive spouse; she used her own inherited personal wealth and sold her jewelry to financially support the Republic of Kurdistan, fund the establishment of the women's union, and help sustain the families of the Peshmerga.",
+      },
+      quote:
+        "Do not weep for the Peshwa; he did not die for himself, he gave his life for the liberation and dignity of his people.",
+      quoteAuthor: "Mina Qazi",
+    },
+    "najiba-jalizada": {
+      nameLine1: "Nêjibê Xanî",
+      nameLine2: "Jelîzadê",
+      role: "Intellectual · Women's Rights Activist · Pioneer of Education",
+      metaLine: "Born September 8, 1917, Koya, Iraqi Kurdistan | Died June 12, 1999",
+      intro:
+        "She was born in Koya in 1917, the daughter of Mala Muhammed Koyi — one of the most respected religious scholars of the region. At a time when even sending boys to school was considered a burden, her father enrolled her alongside boys in Koya's primary school in 1924 — an act so unusual that other parents in the area were inspired to send their own daughters to school because of her success. In the 1940s she entered political life and became a supporter of the Hîwa Party, and later played an influential role in spreading national awareness during the era of the Republic of Kurdistan.",
+      portraitAlt: "Najiba Khani Jelizadeh",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She was the first girl in Koya to attend formal school, in 1924. In 1953 she was secretly elected as president of the Women's Union of Kurdistan, Koya branch. She was not only a political activist — she also published three volumes of her father's religious commentaries and left behind several important manuscripts on Kurdish history and folklore.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "She proved that a Kurdish woman could be an intellectual, a writer, a mother, and a political leader all at once. Her manuscripts on the history of Koya and the September Revolution are an irreplaceable historical source — written from the perspective of a woman who lived through it all.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "Early 20th Century to late — 1917 to 1999",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Koya, Sulaymaniyah, Erbil (Iraqi Kurdistan) — and exile in Iran",
+        },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "After the collapse of the revolution in 1975, Najiba Khani went into exile in Iran. When she returned to Sulaymaniyah, her high social standing and years of activism earned her an honorary title — she was called \"Hepsexana Naqib\" by those who knew her legacy.",
+      },
+      quote:
+        "She was not just a student — she was a flame that lit the path of education for thousands of other girls in the region.",
+      quoteAuthor: "Historical records of Koya city",
     },
   },
   ku: {
@@ -743,20 +829,79 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         "دەسەڵاتی گەورەی لە نێو شوێندارەکانی هەبوو — تەنانەت لەلایەن فەرماندەیانی سەربازی بیانییەوە ناسراوە.",
       quoteAuthor: "باسیل نیکیتین، تۆمارێکی بەڵگەدار",
     },
-    "najiba-jalizada": {
-      nameLine1: "نەجیبە خانی",
-      nameLine2: "جەلیزادە",
-      role: "ڕۆشنبیر و پێشەنگ",
+    "mina-qazi": {
+      nameLine1: "Mina",
+      nameLine2: "Qazi",
+      role: "خانمەی یەکەمی کۆماری کوردستان · پێشەنگی مافی ژنان",
+      metaLine: "١٩٠٨ – ١٩٩٨",
       intro:
-        "داکۆکیکارێکی سەرسەختی خوێندنی کچان و باڵوکردنەوەی هۆشیاریی کۆمەڵایەتی و پاراستنی کولتوور بوو.",
+        "سەرکردەیەکی شۆڕشگێڕ و هاوسەری قازی محەممەد، سەرۆکی کۆماری کوردستان بوو. نەریتە کۆنە کۆمەڵایەتییەکان شکاند، وەک کەسایەتییەکی گشتیی بەرچاو دەرکەوت، و لە ئازاری ١٩٤٦دا یەکەم ڕێکخراوی فەرمی ژنانی کوردی دامەزراند بۆ پەرەپێدانی پەروەردە و بەشداری سیاسی. دوای ڕووخانی کۆمار و دەستگیرکردنی مێردەکەی لە ١٩٤٧دا، چەندین سەدە سەختی و فشاری دەوڵەت بەسەریدا گوزەراند. سەرەڕای ئەم ئاستەنگانە، لە مەهاباد مایەوە و ڕەتی کردەوە لە پەسەندان. لە تەواوی ژیانیدا ستونێکی بەهێزی بەردەوام بوو، تەرخانکراو بۆ پاراستنی میراتی مێردەکەی و پشتگیری نەتەوەی کورد.",
+      portraitAlt: "مینا قازی",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "یەکێتیی ژنانی کوردستان (یەکێتییا ژنێن کوردستان) لە ١٩٤٦دا دامەزراند. بە سەرکەوتوویی ژنان بەکارخست بۆ پشتگیری هەوڵە شارستانی و سەربازییەکانی کۆمار، وانەکانی خوێندنەوەی بۆ کچان ڕێکخست، و بە ناوبانگی لە ناو خەڵکدا لە تەنیشت مێردەکەی دەرکەوت بەبێ پۆشینی نەریتی، تابوو کۆمەڵایەتییەکان شکاند و ڕێگای بەشداری ژنانی کوردی مۆدێرن لە سیاسەتدا کردەوە.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "وەک \"دایکی کوردستان\" ڕێزدارە، مینا قازی هێشتا هێمایەکی کۆتاییی خۆڕاگری و سەرکردایەتیی ژنانە لە مێژووی کوردستانە. سەلماند کە تێکۆشینی نەتەوەیی تەنها ئەرکی پیاوان نەبوو. ڕێزی نەگۆڕاوەکەی لە بەرامبەر ڕووخانی کۆمار و پابەندبوونی تەواوی ژیانی بە خەونە دیموکراتییەکەی مێردەکەی، هێشتا سەرچاوەی بنەڕەتیی هاندان بۆ بزووتنەوەکانی ژنانی کوردن.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "شوێنی کاتی",
+          text: "١٩٠٨ تا ١٧ی شوباتی ١٩٩٨ — لە ڕێگەی ڕاگەیاندن و ڕووخانی کۆماری کوردستان لە ١٩٤٦دا تێپەڕی",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "مەهاباد، ڕۆژھەڵاتی کوردستان (ئێران)، بەتایبەتی میدانی مێژوویی چوارچرا کە کۆمارەکە تێیدا ڕاگەیاندرا",
+        },
+      ],
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "مینا قازی تەنها هاوسەرێکی پشتگیر نەبوو؛ سامانی کەسی میراتگیرکراوی خۆی بەکارهێنا و خزێنەکانی فرۆشت بۆ پشتگیری دارایی کۆماری کوردستان، دامەزراندنی یەکێتیی ژنان، و یارمەتیدانی خێزانەکانی پێشمەرگە.",
+      },
+      quote:
+        "بۆ پێشوا گریان مەکەن؛ ئەو بۆ خۆی نەمر، ژیانی بۆ ئازادکردن و ڕێزی خەڵکەکەی دا.",
+      quoteAuthor: "مینا قازی",
+    },
+    "najiba-jalizada": {
+      nameLine1: "Nêjibê Xanî",
+      nameLine2: "Jelîzadê",
+      role: "ڕۆشنبیر · چالاکوانی مافی ژنان · پێشەنگی پەروەردە",
+      metaLine: "لەدایکبوون ٨ی ئەیلوولی ١٩١٧، کۆیە، کوردستانی عێراق | مردن ١٢ی حوزەیرانی ١٩٩٩",
+      intro:
+        "لە کۆیە لە ١٩١٧دا لەدایک بوو، کچی مەلا محەممەد کۆیی — یەکێک لە زانایانی ئایینی ناوەڕاستی ناوچەکە. لە کاتێکدا تەنانەت ناردنی کوڕان بۆ قوتابخانە بە بارێک دادەنرا، باوکی لە ١٩٢٤دا لەگەڵ کوڕاندا لە قوتابخانەی سەرەتایی کۆیە تۆماری کرد — کارێکی زۆر نائاسایی کە دایک و باوکانی تر لە ناوچەکە هانیان دا کچەکانیان بنێرنە قوتابخانە بەهۆی سەرکەوتنی ئەوەوە. لە ١٩٤٠ەکاندا چووە ژیانی سیاسی و پشتگیرێکی حیزبی ھێوا بوو، دواتر ڕۆڵێکی کاریگەر لە بڵاوکردنەوەی هۆشیاری نەتەوەیی لە سەردەمی کۆماری کوردستاندا گێڕا.",
       portraitAlt: "نەجیبە خانی جەلیزادە",
       listIcon: "flower",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "یەکەمین کچی کۆیە بوو کە لە ١٩٢٤دا چووە قوتابخانەی فەرمی. لە ١٩٥٣دا بە نهێنی وەک سەرۆکی لقی کۆیەی یەکێتیی ژنانی کوردستان هەڵبژێردرا. تەنها چالاکوانی سیاسی نەبوو — سێ بەرگی لێکۆڵینەوەی ئایینی باوکی بڵاوکردەوە و چەندین دەستنووسی گرنگی لەسەر مێژوو و فۆلکلۆری کورد بەجێی هێشت.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "سەلماند کە ژنێکی کوردی دەتوانێت ڕۆشنبیر، نووسەر، دایک، و سەرکردەی سیاسی بێت لە یەک کاتدا. دەستنووسەکانی لەسەر مێژووی کۆیە و شۆڕشی ئەیلوول سەرچاوەیەکی مێژوویی نەگۆڕاوە — لە ڕوانگەی ژنێکەوە نووسراوە کە هەمووی بەژێر بینی.",
+      },
       cards: [
-        { icon: "✎", text: "یەکەمین کچی کۆیە بوو کە چووە قوتابخانەی فەرمی." },
-        { icon: "♛", text: "داکۆکی لە فێربوون، هۆشیاری، و پاراستنی کولتوور کرد." },
-        { icon: "♜", text: "کۆیە • سەدەی بیستەم." },
+        {
+          icon: "♜",
+          title: "شوێنی کاتی",
+          text: "سەرەتای سەدەی بیستەم تا کۆتایی — ١٩١٧ تا ١٩٩٩",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "کۆیە، سلێمانی، ھەولێر (کوردستانی عێراق) — و نیشتەجێبوونەوە لە ئێران",
+        },
       ],
-      quote: "خوێندنی کردە ڕێگایەک بۆ گۆڕینی ژیانی نەوەکانی داهاتوو.",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "دوای ڕووخانی شۆڕش لە ١٩٧٥دا، نەجیبە خانی چووە نیشتەجێبوونەوە لە ئێران. کاتێک گەڕایەوە سلێمانی، پلەی کۆمەڵایەتی بەرز و ساڵانی چالاکی ناونیشانی ڕێزلێنەرەی بەدەستهێنا — ئەوانەی میراتی ئەو دەناسیان پێی دەوترا \"حەپسەخانە نەقیب\".",
+      },
+      quote:
+        "تەنها قوتابی نەبوو — ئەو گڕێک بوو کە ڕێگای پەروەردەی هەزاران کچی تر لە ناوچەکەدا ڕووناککرد.",
+      quoteAuthor: "تۆمارە مێژووییەکانی شاری کۆیە",
     },
   },
   ar: {
@@ -980,20 +1125,79 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         "تمتعت بسلطة عظيمة بين أتباعها — معترف بها حتى من قادة عسكريين أجانب.",
       quoteAuthor: "باسيل نيكيتين، رواية موثقة",
     },
-    "najiba-jalizada": {
-      nameLine1: "نجيبة خاني",
-      nameLine2: "جليزادة",
-      role: "مثقفة ورائدة",
+    "mina-qazi": {
+      nameLine1: "Mina",
+      nameLine2: "Qazi",
+      role: "السيدة الأولى لجمهورية كردستان · رائدة حقوق المرأة",
+      metaLine: "١٩٠٨ – ١٩٩٨",
       intro:
-        "مدافعة عن تعليم الفتيات ورفع الوعي المجتمعي والحفاظ على الثقافة الكردية.",
+        "كانت قائدة ثورية وزوجة قازي محمد، رئيس جمهورية كردستان. حطمت التقاليد الاجتماعية الراسخة، وبرزت كشخصية عامة بارزة، وفي آذار ١٩٤٦ أسست أول منظمة رسمية للمرأة الكردية لتعزيز التعليم والمشاركة السياسية. بعد سقوط الجمهورية وإعدام زوجها عام ١٩٤٧، تحملت عقوداً من المشقة الهائلة والضغط الحكومي. رغم ذلك، بقيت في مهاباد رافضة الخضوع لقمعها. طوال حياتها ظلت ركيزة ثابتة من القوة، مكرسة للحفاظ على إرث زوجها ودعم الأمة الكردية.",
+      portraitAlt: "مينا قازي",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "أسست اتحاد المرأة الكردية (Yekêtiya Jinên Kurdistan) عام ١٩٤٦. حشدت النساء بنجاح لدعم الجهود المدنية والعسكرية للجمهورية، ونظمت صفوف محو الأمية للفتيات، وظهرت علناً إلى جانب زوجها دون حجاب تقليدي، محطمةً المحظورات الاجتماعية وممهدةً الطريق لمشاركة المرأة الكردية الحديثة في السياسة.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "المُبجلة بـ \"أم كردستان\"، تبقى مينا قازي الرمز الأسمى للصمود والقيادة النسائية في التاريخ الكردي. أثبتت أن النضال الوطني لم يكن واجب الرجال وحدهم. كرامتها الثابتة أمام انهيار الجمهورية، والتزامها مدى الحياة بالحلم الديمقراطي لزوجها، يظلان مصدر الإلهام الأساسي لحركات المرأة الكردية اليوم.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "١٩٠٨ حتى ١٧ شباط ١٩٩٨ — عاشت إعلان وسقوط جمهورية كردستان عام ١٩٤٦",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "مهاباد، كردستان الشرقية (إيران)، ولا سيما ساحة تشوار تشيرا التاريخية حيث أُعلنت الجمهورية",
+        },
+      ],
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "لم تكن مينا قازي مجرد زوجة داعمة؛ استخدمت ثروتها الشخصية الموروثة وباعت مجوهراتها لدعم جمهورية كردستان مالياً، وتمويل تأسيس اتحاد المرأة، ومساعدة عائلات البيشمركة.",
+      },
+      quote:
+        "لا تبكوا على البيشوا؛ لم يمت لنفسه، بل أعطى حياته لتحرير شعبه وكرامته.",
+      quoteAuthor: "مينا قازي",
+    },
+    "najiba-jalizada": {
+      nameLine1: "Nêjibê Xanî",
+      nameLine2: "Jelîzadê",
+      role: "مثقفة · ناشطة حقوق المرأة · رائدة التعليم",
+      metaLine: "وُلدت ٨ أيلول ١٩١٧، كويس، كردستان العراق | توفيت ١٢ حزيران ١٩٩٩",
+      intro:
+        "وُلدت في كويس عام ١٩١٧، ابنة ملا محمد كويي — أحد أبرز العلماء الدينيين في المنطقة. في وقت كان إرسال الأولاد إلى المدرسة عبئاً، ألحقها والدها مع الأولاد في المدرسة الابتدائية في كويس عام ١٩٢٤ — فعل غير مألوف ألهم آباء آخرين في المنطقة لإرسال بناتهم إلى المدرسة بفضل نجاحها. في الأربعينيات دخلت الحياة السياسية وأصبحت داعمة لحزب هيوا، ولعبت لاحقاً دوراً مؤثراً في نشر الوعي الوطني خلال عصر جمهورية كردستان.",
       portraitAlt: "نجيبة خاني جليزادة",
       listIcon: "flower",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "كانت أول فتاة في كويس تلتحق بالمدرسة الرسمية عام ١٩٢٤. في ١٩٥٣ انتُخبت سراً رئيسة لفرع كويس في اتحاد المرأة الكردية. لم تكن ناشطة سياسية فحسب — بل نشرت ثلاثة مجلدات من شروح والدها الدينية وتركت عدة مخطوطات مهمة عن التاريخ والفولكلور الكردي.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "أثبتت أن المرأة الكردية تستطيع أن تكون مثقفة وكاتبة وأماً وقائدة سياسية في آن واحد. مخطوطاتها عن تاريخ كويس وثورة أيلول مصدر تاريخي لا يُعوَّض — مكتوبة من منظور امرأة عاشت كل ذلك.",
+      },
       cards: [
-        { icon: "✎", text: "أول فتاة من كويس تلتحق بالمدرسة الرسمية." },
-        { icon: "♛", text: "دافعت عن التعلم والوعي والحفاظ على الثقافة." },
-        { icon: "♜", text: "كويس • القرن العشرين." },
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "أوائل القرن العشرين حتى أواخره — ١٩١٧ إلى ١٩٩٩",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "كويس، السليمانية، أربيل (كردستان العراق) — والمنفى في إيران",
+        },
       ],
-      quote: "جعلت التعليم طريقاً لتغيير حياة الأجيال القادمة.",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "بعد انهيار الثورة عام ١٩٧٥، ذهبت نجيبة خاني إلى المنفى في إيران. حين عادت إلى السليمانية، أكسبها مكانتها الاجتماعية العالية وسنوات نشاطها لقباً فخرياً — كان يُدعى بها \"حفصة خانم النقيب\" من قبل من عرفوا إرثها.",
+      },
+      quote:
+        "لم تكن مجرد طالبة — بل كانت لهباً أضاء طريق التعليم لآلاف الفتيات الأخريات في المنطقة.",
+      quoteAuthor: "السجلات التاريخية لمدينة كويس",
     },
   },
 };
