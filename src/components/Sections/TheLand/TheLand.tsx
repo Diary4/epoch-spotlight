@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -45,7 +45,7 @@ function Divider({ color = "#b99152" }) {
 function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?: DiscoverLangCode }) {
   const displayFont = discoverDisplayFont(lang);
   return (
-    <article className="land-detail-card grid w-full grid-cols-[clamp(180px,14.6cqw,205px)_1fr] items-stretch overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
+    <article className="land-detail-card grid min-h-0 w-full flex-1 grid-cols-[clamp(180px,14.6cqw,205px)_1fr] items-stretch overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/72 shadow-[0_12px_32px_rgba(84,54,16,0.13)] backdrop-blur-md">
       <div className="flex flex-col items-center justify-center border-r border-[#ead8b7] px-[clamp(1rem,1.5cqw,1.75rem)] py-[clamp(1.25rem,2cqw,2rem)] text-center">
         <div
           className="grid h-[clamp(3.5rem,5.7cqw,5rem)] w-[clamp(3.5rem,5.7cqw,5rem)] place-items-center rounded-full border-[5px] border-white text-[clamp(1.5rem,2.43cqw,34px)] font-light text-white shadow-md"
@@ -73,11 +73,11 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
         </button>
       </div>
 
-      <div className="relative w-full min-w-0 overflow-hidden bg-[#f7efe2]">
+      <div className="relative h-full min-h-0 w-full min-w-0 overflow-hidden bg-[#f7efe2]">
         <img
           src={card.mapImage}
           alt={card.title.replace("\n", " ")}
-          className="block h-auto w-full max-w-none align-middle"
+          className="block h-full w-full max-w-none object-cover object-center align-middle"
         />
         <div className="pointer-events-none absolute inset-0 bg-[#fbf5eb]/20 mix-blend-multiply" />
       </div>
@@ -111,49 +111,41 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         ]
       : mapCards;
 
-  // Fixed design canvas (1400px wide). We measure its natural height and scale
-  // the whole canvas to fit the viewport in BOTH dimensions, then center it, so
-  // the page looks identical on big screens and small phones (just smaller),
-  // instead of reflowing into a different mobile layout.
+  // Fixed design width (1400). We scale the canvas uniformly so it always fills
+  // the viewport WIDTH, then let the design height stretch to whatever vertical
+  // space is available so the page always fills the full window height (no gap),
+  // without distorting or cropping the content.
   const DESIGN_WIDTH = 1400;
-  const canvasRef = useRef<HTMLDivElement>(null);
-  const [fit, setFit] = useState({ scale: 1, x: 0 });
+  const DESIGN_HEIGHT = 1000;
+  const [fit, setFit] = useState({ scale: 1, height: DESIGN_HEIGHT });
 
   useEffect(() => {
     const recompute = () => {
-      const el = canvasRef.current;
-      if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
       const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
-      const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
+      const vh =
+        parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--viewport-height"),
+        ) || window.innerHeight;
+      const scale = vw / DESIGN_WIDTH;
+      // Design-space height that, once scaled, exactly fills the viewport height.
+      const height = scale > 0 ? vh / scale : DESIGN_HEIGHT;
+      setFit({ scale, height });
     };
 
     recompute();
     window.addEventListener("resize", recompute);
-    const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
-    if (el && ro) ro.observe(el);
-    return () => {
-      window.removeEventListener("resize", recompute);
-      ro?.disconnect();
-    };
+    return () => window.removeEventListener("resize", recompute);
   }, [lang]);
 
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
-      style={{ width: "100vw", height: "100vh" }}
+      className={`relative h-[var(--viewport-height,100dvh)] w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
     >
       <div
-        ref={canvasRef}
         style={{
           width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+          transform: `scale(${fit.scale})`,
           transformOrigin: "top left",
           position: "absolute",
           top: 0,
@@ -162,7 +154,10 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         }}
       >
         <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
-          <section className="relative mx-auto flex w-full flex-row overflow-hidden rounded-[clamp(22px,2.4cqw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]">
+          <section
+            style={{ height: `${fit.height}px` }}
+            className="relative mx-auto flex w-full flex-row overflow-hidden rounded-[clamp(22px,2.4cqw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]"
+          >
             <button
               type="button"
               onClick={onBack}
@@ -231,7 +226,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
             </aside>
 
             {/* Right maps */}
-            <section className="relative z-10 flex w-full min-w-0 flex-1 flex-col gap-[clamp(14px,1.6cqw,28px)] pl-[clamp(6px,1cqw,18px)]">
+            <section className="relative z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col gap-[clamp(14px,1.6cqw,28px)] pl-[clamp(6px,1cqw,18px)]">
               {localMapCards.map((card) => (
                 <MapCard key={card.number} card={card} lang={lang} />
               ))}
