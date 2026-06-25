@@ -175,7 +175,7 @@ export default function WomenDetailPanel({
                   decoding="async"
                   // React 18 expects the lowercase DOM attribute name.
                   {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
-                  className="h-full w-full object-cover object-[60%_12%]"
+                  className="h-full w-full object-cover object-[10%_10%]"
                 />
               </div>
             </div>
@@ -213,11 +213,16 @@ export default function WomenDetailPanel({
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
-
-            <p className="mt-[clamp(16px,3vw,32px)] max-w-[min(66%,330px)] text-[clamp(13px,1.6vw,20px)] leading-[1.6] text-[#3f3b42]">
-              {intro}
-            </p>
           </div>
+        </section>
+
+        <section
+          data-women-detail-fade="true"
+          className="relative z-30 mx-[clamp(16px,3vw,56px)] mt-[clamp(20px,3vw,32px)] max-w-[760px] xl:mx-auto"
+        >
+          <p className="text-[clamp(14px,1.8vw,21px)] leading-[1.75] text-[#3f3b42]">
+            {intro}
+          </p>
         </section>
 
         {(greatestAchievement || whySheMatters) && (
