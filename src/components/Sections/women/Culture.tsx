@@ -1,228 +1,31 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Sparkles, TreePine } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { detailBackIconSize } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import { womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
+import {
+  cultureDetailToPanelCards,
+  getCultureDetail,
+  getCulturePageCopy,
+  getCulturePeople,
+  type CultureFigureListItem,
+} from "@/components/Sections/women/content/cultureContent";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
-import imgHana from "@/assets/images/women/w-1.webp";
+import culturePlaceholder from "@/assets/images/women/historic.png";
 
 type LangCode = "ku" | "en" | "ar";
-type ListIcon = "crown" | "flower";
 
-type CultureFigureCopy = {
-  name: string;
-  nameLine1: string;
-  nameLine2: string;
-  role: string;
-  teaser: string;
-  knownFor: string;
-  placeEra: string;
-  quote: string;
-};
-
-type CultureFigure = CultureFigureCopy & {
-  id: string;
-  image: string;
-  listIcon: ListIcon;
-};
-
-type CulturePageCopy = {
-  backToWomen: string;
-  backToList: string;
-  heroTitleLine1: string;
-  heroTitleLine2: string;
-  heroSubtitle: string;
-  heroIntro: string;
-  cardKnownFor: string;
-  cardPlaceEra: string;
-  livingMemoryTitle: string;
-  livingMemoryText: string;
-};
-
-const pageCopy: Record<LangCode, CulturePageCopy> = {
-  en: {
-    backToWomen: "Back to Women",
-    backToList: "Back to culture list",
-    heroTitleLine1: "Women of Culture",
-    heroTitleLine2: "and Memory",
-    heroSubtitle: "Poetry, oral tradition, and cultural preservation.",
-    heroIntro:
-      "Not every influential woman left official records. Some live on through song, poetry, oral tradition, and the memory of their communities.",
-    cardKnownFor: "Known for",
-    cardPlaceEra: "Place & era",
-    livingMemoryTitle: "Living memory",
-    livingMemoryText:
-      "Oral tradition carried Kurdish identity across generations. Where written records were few, women helped preserve memory.",
-  },
-  ku: {
-    backToWomen: "گەڕانەوە بۆ ژنان",
-    backToList: "گەڕانەوە بۆ لیستی کولتوور",
-    heroTitleLine1: "ژنانی کولتووری",
-    heroTitleLine2: "و یادەوەری",
-    heroSubtitle: "شیعر، میراتی دەمبێژ، و پاراستنی کولتوور.",
-    heroIntro:
-      "هەر ژنێکی کاریگەر تۆمارێکی فەرمی نەهێشت. هەندێک لە ڕێگەی گۆرانی، شیعر، میراتی دەمبێژ، و یادەوەی کۆمەڵەکەیان دەژین.",
-    cardKnownFor: "ناوبانگی",
-    cardPlaceEra: "شوێن و سەردەم",
-    livingMemoryTitle: "یادەوەیی زیندوو",
-    livingMemoryText:
-      "میراتی دەمبێژ ناسنامەی کوردی لە نەوەکان بۆ نەوەکان گواست. لە شوێنێکدا تۆمارە نووسراوەکان کەم بوون، ژنان یارمەتی پاراستنی یادەوەرییان دا.",
-  },
-  ar: {
-    backToWomen: "العودة إلى النساء",
-    backToList: "العودة إلى قائمة الثقافة",
-    heroTitleLine1: "نساء الثقافة",
-    heroTitleLine2: "والذاكرة",
-    heroSubtitle: "الشعر، التراث الشفهي، والحفاظ على الثقافة.",
-    heroIntro:
-      "لم تترك كل امرأة مؤثرة سجلات رسمية. بعضهن يعشن من خلال الأغنية والشعر والتراث الشفهي وذاكرة مجتمعاتهن.",
-    cardKnownFor: "اشتهرت بـ",
-    cardPlaceEra: "المكان والعصر",
-    livingMemoryTitle: "ذاكرة حية",
-    livingMemoryText:
-      "حمل التراث الشفهي الهوية الكردية عبر الأجيال. حيث كانت السجلات المكتوبة قليلة، ساعدت النساء في حفظ الذاكرة.",
-  },
-};
-
-const cultureWomenByLang: Record<LangCode, CultureFigure[]> = {
-  en: [
-    {
-      id: "aysha-shan",
-      name: "Aysha Shan",
-      nameLine1: "Aysha",
-      nameLine2: "Shan",
-      role: "Voice of Kurdish song",
-      teaser:
-        "A great artist who, through a voice full of feeling, preserved recognition of her people and care for their future.",
-      knownFor: "Keeping a sense of national belonging alive through song.",
-      placeEra: "Twentieth century, Kurdistan and the diaspora.",
-      quote: "She gave sharp voice to what others wished to silence.",
-      image: imgAysha,
-      listIcon: "flower",
-    },
-    {
-      id: "pakiza-refiq-hilmi",
-      name: "Pakiza Refiq Hilmi",
-      nameLine1: "Pakiza",
-      nameLine2: "Refiq Hilmi",
-      role: "Linguist and scholar",
-      teaser:
-        "A leading intellectual who served Kurdish deeply through language study and the defence of cultural identity.",
-      knownFor: "Advancing Kurdish linguistics and literature.",
-      placeEra: "Twentieth century, Sulaymaniyah and beyond.",
-      quote: "Science and knowledge can preserve identity.",
-      image: imgPakiza,
-      listIcon: "crown",
-    },
-    {
-      id: "hana-malan",
-      name: "Hana Malan",
-      nameLine1: "Hana",
-      nameLine2: "Malan",
-      role: "Folklore poet",
-      teaser:
-        "An oral poet who helped Kurdish folklore memory and stories from being lost.",
-      knownFor: "Preserving culture through oral poetry.",
-      placeEra: "Oral heritage and Kurdish cultural memory.",
-      quote: "Before there were books, memory and mind carried the stories.",
-      image: imgHana,
-      listIcon: "flower",
-    },
-  ],
-  ku: [
-    {
-      id: "aysha-shan",
-      name: "ئایشێ شان",
-      nameLine1: "ئایشێ",
-      nameLine2: "شان",
-      role: "دەنگی گۆرانیی کوردی",
-      teaser:
-        "هونەرمەندێکی مەزن بوو کە بە دەنگە پڕ لە سۆزەکەی شوناس و خەمی نەتەوەکەی پاراست.",
-      knownFor: "زیندووڕاگرتنی هەستی نەتەوایەتی لە ڕێگەی گۆرانییەوە.",
-      placeEra: "سەدەی بیستەم، کوردستان و تاراوگە.",
-      quote: "ئەو وشانەی چڕی کە ئەوانی تر دەیانویست بێدەنگی بکەن.",
-      image: imgAysha,
-      listIcon: "flower",
-    },
-    {
-      id: "pakiza-refiq-hilmi",
-      name: "پاکیزە ڕەفیق حیلمی",
-      nameLine1: "پاکیزە",
-      nameLine2: "ڕەفیق حیلمی",
-      role: "زمانناس و زانا",
-      teaser:
-        "ڕۆشنبیرێکی پێشەنگ بوو کە خزمەتێکی زۆری بە لێکۆڵینەوەی زمان و پاراستنی شوناسی کولتووری کرد.",
-      knownFor: "پەرەپێدانی زمانەوانی و ئەدەبیاتی کوردی.",
-      placeEra: "سەدەی بیستەم، سلێمانی و دەرەوە.",
-      quote: "زانست و زانین دەتوانێت شوناس بپارێزێت.",
-      image: imgPakiza,
-      listIcon: "crown",
-    },
-    {
-      id: "hana-malan",
-      name: "هانا مالان",
-      nameLine1: "هانا",
-      nameLine2: "ماالن",
-      role: "شاعیری فۆلکلۆر",
-      teaser:
-        "شاعیرێکی دەمبێژ بوو کە یادەوەری و چیرۆکە فۆلکلۆرییەکانی کوردستانی لە فەوتان پاراست.",
-      knownFor: "پاراستنی کولتوور لە ڕێگەی شیعری زارەکییەوە.",
-      placeEra: "میراتی زارەکی و یادەوەریی کولتووری کوردی.",
-      quote: "پێش ئەوەی کتێب هەبێت، یادە و هزر هەڵگری چیرۆکەکان بوون.",
-      image: imgHana,
-      listIcon: "flower",
-    },
-  ],
-  ar: [
-    {
-      id: "aysha-shan",
-      name: "عائشة شان",
-      nameLine1: "عائشة",
-      nameLine2: "شان",
-      role: "صوت الأغنية الكردية",
-      teaser:
-        "فنانة عظيمة حفظت من خلال صوت مليء بالشعور هوية شعبها واهتمامها بمستقبله.",
-      knownFor: "إبقاء الإحساس بالانتماء الوطني حياً من خلال الغناء.",
-      placeEra: "القرن العشرون، كردستان والشتات.",
-      quote: "أعطت صوتاً حاداً لما أراد الآخرون إسكاته.",
-      image: imgAysha,
-      listIcon: "flower",
-    },
-    {
-      id: "pakiza-refiq-hilmi",
-      name: "باكيزا رفيق حلمي",
-      nameLine1: "باكيزا",
-      nameLine2: "رفيق حلمي",
-      role: "لغوية وباحثة",
-      teaser:
-        "مثقفة رائدة خدمت اللغة الكردية بعمق من خلال دراسة اللغة والدفاع عن الهوية الثقافية.",
-      knownFor: "تطوير اللغويات والأدب الكردي.",
-      placeEra: "القرن العشرون، السليمانية وما وراءها.",
-      quote: "العلم والمعرفة يمكنهما أن يحفظا الهوية.",
-      image: imgPakiza,
-      listIcon: "crown",
-    },
-    {
-      id: "hana-malan",
-      name: "حنا مالان",
-      nameLine1: "حنا",
-      nameLine2: "مالان",
-      role: "شاعرة الفولكلور",
-      teaser:
-        "شاعرة شفوية ساعدت في حماية ذاكرة الفولكلور الكردي وقصصه من الضياع.",
-      knownFor: "الحفاظ على الثقافة من خلال الشعر الشفهي.",
-      placeEra: "التراث الشفهي والذاكرة الثقافية الكردية.",
-      quote: "قبل وجود الكتب، حملت الذاكرة والعقل القصص.",
-      image: imgHana,
-      listIcon: "flower",
-    },
-  ],
+const personImages: Record<string, string> = {
+  "eyse-san": imgAysha,
+  "pakize-rafik-hilmi": imgPakiza,
+  "roshan-bedirkhan": culturePlaceholder,
+  "nahida-sheikh-salam": culturePlaceholder,
 };
 
 type CulturePageProps = {
@@ -238,7 +41,7 @@ function CultureListCard({
   displayFont,
   onSelect,
 }: {
-  woman: CultureFigure;
+  woman: CultureFigureListItem;
   dir: "ltr" | "rtl";
   displayFont: string;
   onSelect: () => void;
@@ -252,9 +55,9 @@ function CultureListCard({
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[8px] sm:rounded-[14px]">
+      <div className="relative aspect-[5/3] w-full overflow-hidden rounded-[8px] sm:aspect-[4/3] sm:rounded-[14px]">
         <img
-          src={woman.image}
+          src={personImages[woman.id] ?? cultureHero}
           alt={woman.name}
           className="relative z-10 h-full w-full object-cover object-[center_22%]"
         />
@@ -320,28 +123,22 @@ export default function WomenCultureMemoryPage({
 
   const lang: LangCode =
     langProp === "en" || langProp === "ku" || langProp === "ar" ? langProp : "en";
-  const copy = pageCopy[lang];
-  const cultureWomen = cultureWomenByLang[lang];
+  const copy = getCulturePageCopy(lang);
+  const cultureWomen = getCulturePeople(lang);
+  const detail = selectedId ? getCultureDetail(selectedId, lang) : null;
   const dir = lang === "en" ? "ltr" : "rtl";
   const displayFont = womenDisplayFont(lang);
   const isRtlScript = womenRtlScript(lang);
 
-  const selected = selectedId ? cultureWomen.find((w) => w.id === selectedId) ?? null : null;
-
   React.useLayoutEffect(() => {
-    const cleanup = selected ? runWomenDetailIntroAnimation(sectionRef) : runCultureListIntro(sectionRef);
+    const cleanup = detail ? runWomenDetailIntroAnimation(sectionRef) : runCultureListIntro(sectionRef);
     return cleanup;
-  }, [selectedId]);
+  }, [selectedId, detail]);
 
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
     else onBack?.();
   };
-
-  const detailCards = (w: CultureFigure) => [
-    { icon: "✦", title: copy.cardKnownFor, text: w.knownFor },
-    { icon: "⛩", title: copy.cardPlaceEra, text: w.placeEra },
-  ];
 
   return (
     <main
@@ -379,18 +176,23 @@ export default function WomenCultureMemoryPage({
           </button>
         )}
 
-        {selected ? (
+        {detail && selectedId ? (
           <WomenDetailPanel
             dir={dir}
-            nameLine1={selected.nameLine1}
-            nameLine2={selected.nameLine2}
-            role={selected.role}
-            intro={selected.teaser}
-            portraitSrc={selected.image}
-            portraitAlt={selected.name}
-            cards={detailCards(selected)}
-            quote={selected.quote}
-            listIcon={selected.listIcon}
+            nameLine1={detail.nameLine1}
+            nameLine2={detail.nameLine2}
+            role={detail.role}
+            metaLine={detail.metaLine}
+            intro={detail.intro}
+            portraitSrc={personImages[selectedId] ?? cultureHero}
+            portraitAlt={detail.portraitAlt}
+            cards={cultureDetailToPanelCards(detail, lang)}
+            quote={detail.quote}
+            quoteAuthor={detail.quoteAuthor}
+            greatestAchievement={detail.greatestAchievement}
+            whySheMatters={detail.whySheMatters}
+            didYouKnow={detail.didYouKnow}
+            listIcon={detail.listIcon}
           />
         ) : (
           <>
@@ -434,10 +236,6 @@ export default function WomenCultureMemoryPage({
                   alt=""
                   className="pointer-events-none mx-auto block h-auto w-full max-w-[1400px] object-contain object-center"
                 />
-                {/* <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(36px,10vh,160px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/75 to-transparent"
-                  aria-hidden
-                /> */}
               </div>
             </section>
 

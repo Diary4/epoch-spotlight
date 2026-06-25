@@ -17,10 +17,11 @@ import {
 } from "@/components/Sections/women/content/knowledgeContent";
 
 import politicalHero from "@/assets/images/women/c-2.webp";
+import politicBg from "@/assets/images/patterns/politic.png";
 import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
-import leylaZanaImg from "@/assets/images/women/layla-zana.webp";
+import maryamKhanImg from "@/assets/images/womens/maryamkhan.jpg";
 import mayanPlaceholder from "@/assets/images/women/historic.png";
 
 type WomenPoliticalPageProps = WomenLanguageProps & {
@@ -28,7 +29,7 @@ type WomenPoliticalPageProps = WomenLanguageProps & {
 };
 
 const personImages: Record<string, string> = {
-  "leyla-zana": leylaZanaImg,
+  "maryam-khan": maryamKhanImg,
   "mayan-khatun": mayanPlaceholder,
 };
 
@@ -103,13 +104,13 @@ export default function WomenPoliticalPage({
     <main
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-transparent text-[#2a1534]"
       } ${isRtlScript ? "font-amiri" : ""}`}
     >
       <section
         ref={sectionRef}
         className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-screen bg-transparent" : "min-h-0 bg-[#fcf7ef]"
+          selectedId ? "min-h-screen bg-transparent" : "min-h-screen bg-transparent"
         }`}
       >
         <WomenLanguageButton
@@ -149,17 +150,22 @@ export default function WomenPoliticalPage({
           />
         ) : (
           <>
+            <div
+              data-political-hero="true"
+              className="pointer-events-none absolute inset-0 min-h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url(${politicBg})`,
+                minHeight: "100vh",
+              }}
+              aria-hidden
+            />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-            {/* Hero — side-by-side on every screen, matching the other women pages */}
-            <section
-              className={`relative z-10 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-center gap-2 pt-20 sm:gap-4 sm:pt-24 ${
-                dir === "rtl" ? "pl-0 pr-5 sm:pr-8 lg:pr-10" : "pl-5 pr-0 sm:pl-8 lg:pl-10"
-              }`}
-            >
+            {/* Hero — centered title */}
+            <section className="relative z-10 flex flex-col items-center px-5 pt-20 text-center sm:px-8 sm:pt-24 lg:px-10">
               <div
                 data-political-fade="true"
-                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-4 sm:pl-0" : "pr-4 sm:pr-0"}`}
+                className="relative z-20 mx-auto flex w-full max-w-[700px] flex-col items-center"
               >
                 <h1 className={`${displayFont} text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitle1}
@@ -187,36 +193,23 @@ export default function WomenPoliticalPage({
                   {copy.heroIntro}
                 </p>
               </div>
-
-              {/* Hero image — bleeds outward beneath the text like the sibling pages */}
-              <div
-                data-political-hero="true"
-                className={`pointer-events-none relative h-full w-[145%] self-stretch sm:w-[155%] md:w-[165%] lg:w-[175%] ${
-                  dir === "rtl"
-                    ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
-                    : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
-                }`}
-              >
-                <img
-                  src={politicalHero}
-                  alt={copy.heroTitle1}
-                  className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-[clamp(24px,5vh,110px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
-                  aria-hidden
-                />
-              </div>
             </section>
 
-            {/* People cards — portrait grid matching the other women pages */}
-            <section className="relative z-20 mt-6 grid grid-cols-2 gap-2 px-3 sm:gap-6 sm:px-5 lg:grid-cols-3 lg:px-10">
-              {people.map((person) => (
+            {/* People cards */}
+            <section
+              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10"
+              style={{ display: "grid", gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}
+            >
+              {people.map((person, index) => (
                 <button
                   type="button"
                   data-political-card="true"
                   key={person.id}
                   onClick={() => setSelectedId(person.id)}
+                  style={{
+                    gridColumn:
+                      people.length > 5 ? "span 2" : index < 3 ? "span 2" : "span 3",
+                  }}
                   className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
                     dir === "rtl" ? "text-right" : "text-left"
                   }`}
@@ -252,45 +245,6 @@ export default function WomenPoliticalPage({
                   </p>
                 </button>
               ))}
-            </section>
-
-            {/* Topics cards */}
-            <section className="relative z-20 mt-6 grid grid-cols-3 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10">
-              {topicImages.map((topic) => (
-                <article
-                  data-political-card="true"
-                  key={topic.key}
-                  className="flex min-w-0 flex-col items-center justify-center rounded-[14px] border border-[#dfcdb7] bg-white/65 p-3 text-center shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:rounded-[24px] sm:p-5"
-                >
-                  <img
-                    src={topic.imageSrc}
-                    alt={copy.topics[topic.key]}
-                    className="h-[clamp(80px,18vw,200px)] w-[clamp(80px,18vw,200px)] object-contain"
-                  />
-
-                  <h4 className={`mt-2 ${displayFont} text-[clamp(12px,3vw,32px)] text-[#43223d] sm:mt-4`}>
-                    {copy.topics[topic.key]}
-                  </h4>
-
-                  <div className="mt-2 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:mt-3 sm:max-w-[96px] sm:gap-2">
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                    <span className="h-2 w-2 rotate-45 border border-[#b4864d]" />
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                  </div>
-                </article>
-              ))}
-            </section>
-
-            {/* Impact box */}
-            <section
-              data-political-fade="true"
-              className="relative z-20 mx-3 mb-6 mt-6 flex min-h-[125px] flex-col items-center justify-center overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 px-5 py-6 text-center shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:mx-5 sm:rounded-[24px] lg:mx-10"
-            >
-              <h3 className={`${displayFont} text-[clamp(22px,5vw,42px)] leading-none text-[#43223d]`}>
-                {copy.impactTitle}
-              </h3>
-
-              <p className="mt-3 text-[clamp(16px,3vw,21px)] text-[#353445]">{copy.impactText}</p>
             </section>
           </>
         )}

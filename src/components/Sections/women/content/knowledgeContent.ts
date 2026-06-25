@@ -97,12 +97,12 @@ const listByLang: Record<WomenLangCode, PoliticalFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "leyla-zana",
-      name: "Leyla Zana",
-      role: "Political Leader · Human Rights Voice",
+      id: "maryam-khan",
+      name: "Maryam Khan",
+      role: "The Voice of Kurdistan · Pioneer of Kurdish Radio Singing",
       teaser:
-        "The first Kurdish woman in the Turkish parliament — a global symbol of political courage who carried her people's voice into public life.",
-      listIcon: "crown",
+        "The first Kurdish woman to record songs professionally for radio — she saved over 200 traditional songs and precious Kurdish maqams from being lost to history.",
+      listIcon: "flower",
     },
   ],
   ku: [
@@ -115,12 +115,12 @@ const listByLang: Record<WomenLangCode, PoliticalFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "leyla-zana",
-      name: "لەیلا زانا",
-      role: "سەرکردەی سیاسی · دەنگی مافی مرۆڤ",
+      id: "maryam-khan",
+      name: "مەریەم خان",
+      role: "دەنگی کوردستان · پێشەنگی گۆرانی ڕادیۆیی کوردی",
       teaser:
-        "یەکەم ژنانی کورد لە پەرلەمانی تورکیا — سمبولێکی جیهانی بۆ بوێری سیاسی کە دەنگی گەلەکەی گەیاندە ژیانی گشتی.",
-      listIcon: "crown",
+        "یەکەم ژنانی کورد بوو کە گۆرانی بە پیشەیی بۆ ڕادیۆ تۆمارکرد — زیاتر لە ٢٠٠ گۆرانی نەریتی و مەقامی کوردی لە مێژوودا ڕزگارکرد.",
+      listIcon: "flower",
     },
   ],
   ar: [
@@ -133,12 +133,12 @@ const listByLang: Record<WomenLangCode, PoliticalFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "leyla-zana",
-      name: "ليلى زانا",
-      role: "قائدة سياسية · صوت لحقوق الإنسان",
+      id: "maryam-khan",
+      name: "مريم خان",
+      role: "صوت كردستان · رائدة الغناء الكردي الإذاعي",
       teaser:
-        "أول امرأة كردية في البرلمان التركي — رمز عالمي للشجاعة السياسية حملت صوت شعبها إلى الحياة العامة.",
-      listIcon: "crown",
+        "أول امرأة كردية تسجّل الأغاني مهنةً للإذاعة — أنقذت أكثر من 200 أغنية تقليدية ومقامات كردية ثمينة من الضياع.",
+      listIcon: "flower",
     },
   ],
 };

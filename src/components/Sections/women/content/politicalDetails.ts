@@ -37,29 +37,42 @@ export const politicalDetailsByLang = {
         "A leader is not defined by their title, but by their ability to keep their people united in the face of the storm.",
       quoteAuthor: "Attributed to Mayan Khatun",
     },
-    "leyla-zana": {
-      nameLine1: "Leyla",
-      nameLine2: "Zana",
-      role: "Political Leader · Human Rights Voice",
-      metaLine: "Amed (Diyarbakır), North Kurdistan · from the 1990s to today",
+    "maryam-khan": {
+      nameLine1: "Maryam",
+      nameLine2: "Khan",
+      role: "The Voice of Kurdistan · Pioneer of Kurdish Radio Singing",
+      metaLine: "1904 – 1949",
       intro:
-        "A Kurdish political activist who brought her people's voice into parliament and became a global symbol of political courage. Leyla Zana turned political representation into a form of struggle — speaking for Kurds in spaces that had long excluded them.",
-      portraitAlt: "Leyla Zana",
-      listIcon: "crown" as const,
+        "She was a revolutionary Kurdish artist whose life was shaped by early 20th-century forced migrations. Despite enduring severe personal hardships, including the loss of her child and constant displacement, she refused to be silenced. Transforming her suffering into art, she became the first Kurdish woman to professionally record her voice in Baghdad. Her legacy endures as a powerful symbol of Kurdish cultural survival and artistic resilience.",
+      portraitAlt: "Maryam Khan",
+      listIcon: "flower" as const,
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She became the first Kurdish woman elected to the Turkish parliament, transforming political representation into an act of resistance and making Kurdish women's leadership visible on the world stage.",
+        text: "She was the first Kurdish woman to record songs professionally for radio broadcasts in the Kurdish language. Between 1937 and 1945, she recorded over 31 songs in Baghdad, and over her lifetime, she mastered and recorded over 200 traditional Kurdish songs. Her recordings with major international companies like \"His Master's Voice\" saved precious Kurdish maqams and folklore from being lost to history.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Leyla Zana proved that a Kurdish woman's voice in parliament could shake an entire political order. She remains a symbol of defiance, dignity, and the fight for Kurdish rights in the public sphere.",
+        text: "Maryam Khan remains the foundational pillar of modern Kurdish singing. She proved that Kurdish cultural identity could persist even in the face of political oppression and displacement. Her transition from the rural village life of Botan to the professional recording studios of Baghdad paved the way for generations of Kurdish female artists who followed in her footsteps.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1990s to today — era of Kurdish political struggle in Turkey" },
-        { icon: "⛩", title: "Map Location", text: "Amed (Diyarbakır), North Kurdistan" },
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "1904 until 1949 (Lived through the collapse of the Ottoman Empire and the formation of the modern states of Syria and Iraq).",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Born in the Botan region (Dergul village), migrated to Qamishlo (Rojava), Zakho, and eventually spent her final years in Baghdad.",
+        },
       ],
-      quote: "She carried her people's voice into parliament.",
-      quoteAuthor: "Remembered across Kurdistan",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "During her time in Zakho, Maryam Khan faced such severe poverty that she was forced to work as a servant, yet she maintained her dignity and musical identity. It is said that even while serving guests, her talent was so undeniable that her voice became the primary entertainment in the very homes where she labored.",
+      },
+      quote:
+        "When I sing, I do not just sing for myself; I sing for every Kurdish mother who has faced the hardships of displacement and loss.",
+      quoteAuthor: "Attributed to Maryam Khan",
     },
   },
   ku: {
@@ -100,29 +113,42 @@ export const politicalDetailsByLang = {
         "سەرکردە بە ناونیشانەکەی دیاری ناکرێت، بەڵکو بە توانای پاراستنی یەکگرتنی خەڵکەکەی لە بەرامبەر گەردەلوول.",
       quoteAuthor: "بە مەیان خاتوون دەگەڕێتەوە",
     },
-    "leyla-zana": {
-      nameLine1: "لەیلا",
-      nameLine2: "زانا",
-      role: "سەرکردەی سیاسی · دەنگی مافی مرۆڤ",
-      metaLine: "ئامەد، باکووری کوردستان · لە نەوەدەکانەوە تا ئەمڕۆ",
+    "maryam-khan": {
+      nameLine1: "مەریەم",
+      nameLine2: "خان",
+      role: "دەنگی کوردستان · پێشەنگی گۆرانی ڕادیۆیی کوردی",
+      metaLine: "١٩٠٤ – ١٩٤٩",
       intro:
-        "چالاکوانی سیاسی کوردە کە دەنگی گەلەکەی گەیاندە ناو پەرلەمان و بوو بە سمبولێکی جیهانی بۆ بوێری سیاسی. لەیلا زانا نوێنەرایەتی سیاسی کردە جۆرێک لە تێکۆشان — قسەی بۆ کوردەکان لە شوێنەکان کە زۆر کاتێک دەرکرابوون.",
-      portraitAlt: "لەیلا زانا",
-      listIcon: "crown" as const,
+        "هونەرمەندێکی شۆڕشگێڕی کورد بوو کە ژیانی بە گواستنەوەی ناچاریی سەرەتای سەدەی بیستەم شێوەپێدرا. سەرەڕای ئازارە کەسییە قورسەکان، لەوانە لەدەستدانی منداڵەکەی و گواستنەوەی بەردەوام، ڕەتی کردەوە بێدەنگ بمێنێتەوە. ئازارەکەی گۆڕی بۆ هونەر و بوو بە یەکەم ژنانی کورد کە دەنگی بە پیشەیی لە بەغدا تۆمارکرد. میراتەکەی وەک هێمایەکی بەهێز بۆ مانەوەی کلتووری کورد و بەرگری هونەری مایەوە.",
+      portraitAlt: "مەریەم خان",
+      listIcon: "flower" as const,
       greatestAchievement: {
         title: "گەورەترین دەستکەوت",
-        text: "یەکەم ژنانی کورد بوو کە هەڵبژێردرا بۆ پەرلەمانی تورکیا، نوێنەرایەتی سیاسی گۆڕی بۆ کارێکی بەرخۆدان و سەرکردایەتی ژنانی کورد لەسەر مێزەی جیهان دیارکرد.",
+        text: "یەکەم ژنانی کورد بوو کە گۆرانی بە پیشەیی بۆ پەخشی ڕادیۆیی بە زمانی کوردی تۆمارکرد. لە نێوان ١٩٣٧ و ١٩٤٥، زیاتر لە ٣١ گۆرانی لە بەغدا تۆمارکرد، و لە تەواوی ژیانیدا زیاتر لە ٢٠٠ گۆرانی نەریتی کوردی فێربوو و تۆماری کرد. تۆمارەکانی لەگەڵ کۆمپانیا نێودەوڵەتییەکانی وەک \"His Master's Voice\" مەقام و فۆلکلۆری بەنرخی کوردی لە لەدەستچوون ڕزگارکرد.",
       },
       whySheMatters: {
         title: "بۆچی هێشتا گرنگە",
-        text: "لەیلا زانا سەلماند کە دەنگی ژنێکی کورد لە پەرلەماندا دەتوانێت تەواوی ڕێکخستنی سیاسی بلەرزێنێت. هێشتا هێمای سەرهەڵدان، ڕێز، و تێکۆشان بۆ مافەکانی کوردە لە بواری گشتی.",
+        text: "مەریەم خان ستونی بنەڕەتی گۆرانی مۆدێرنی کوردە. سەلماند کە ناسنامەی کلتووری کورد دەتوانێت بمێنێتەوە تەنانەت لە بەرامبەر چەوساندنەوەی سیاسی و گواستنەوە. گواستنەوەکەی لە ژیانی گوندی بۆتانەوە بۆ ستۆدیۆی تۆمارکردنی پیشەیی لە بەغدا ڕێگا بۆ چەندین هونەرمەندی ژنی کورد کرایەوە کە لە دواییدا هاتن.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "ساڵانی ١٩٩٠ تا ئەمڕۆ — سەردەمی تێکۆشانی سیاسی کورد لە تورکیا" },
-        { icon: "⛩", title: "شوێنی نەخشە", text: "ئامەد، باکووری کوردستان" },
+        {
+          icon: "♜",
+          title: "شوێنی کات",
+          text: "١٩٠٤ تا ١٩٤٩ (ژیانی بەناو ڕووخانی ئیمپراتۆریەتی عوسمانی و دروستبوونی دەوڵەتە مۆدێرنەکانی سوریا و عێراق).",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "لە ناوچەی بۆتان (گوندی دێرگوڵ) لەدایکبووە، گواستراوەتەوە بۆ قامشلۆ (ڕۆژئاوا)، زاخۆ، و لە کۆتاییدا ساڵانی کۆتایی ژیانی لە بەغدا بەسەر بردووە.",
+        },
       ],
-      quote: "دەنگێک بوو کە گەلەکەی هێنا ناو پەرلەمان.",
-      quoteAuthor: "لە سەرانسەری کوردستان لە یادەوەری دەمێنرێتەوە",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "لە کاتی مانەوەی لە زاخۆ، مەریەم خان تووشی هەژارییەکی زۆر قورس بوو کە ناچار کرا وەک خزمەتکار کار بکات، بەڵام ڕێز و ناسنامەی میوزیکی خۆی پاراست. دەڵێرێت تەنانەت لەکاتی خزمەتکردنی میوانەکاندا، بەهرەکەی ئەوەندە بێجگە نەبوو کە دەنگی بووە سەرەکیترین کات بەسەربردن لە هەمان ماڵەکان کە تێیدا کار دەکرد.",
+      },
+      quote:
+        "کاتێک دەگۆڕم، تەنها بۆ خۆم ناگۆڕم؛ بۆ هەموو دایکێکی کورد دەگۆڕم کە ڕووبەڕووی سەختی گواستنەوە و لەدەستدان بووەتەوە.",
+      quoteAuthor: "بە مەریەم خان دەگەڕێتەوە",
     },
   },
   ar: {
@@ -163,29 +189,42 @@ export const politicalDetailsByLang = {
         "القائد لا يُعرَّف بلقبه، بل بقدرته على إبقاء شعبه متحداً في مواجهة العاصفة.",
       quoteAuthor: "منسوب إلى ميان خاتون",
     },
-    "leyla-zana": {
-      nameLine1: "ليلى",
-      nameLine2: "زانا",
-      role: "قائدة سياسية · صوت لحقوق الإنسان",
-      metaLine: "أمد (ديار بكر)، شمال كردستان · من التسعينيات حتى اليوم",
+    "maryam-khan": {
+      nameLine1: "مريم",
+      nameLine2: "خان",
+      role: "صوت كردستان · رائدة الغناء الكردي الإذاعي",
+      metaLine: "١٩٠٤ – ١٩٤٩",
       intro:
-        "ناشطة سياسية كردية حملت صوت شعبها إلى البرلمان وأصبحت رمزاً عالمياً للشجاعة السياسية. حوّلت ليلى زانا التمثيل السياسي إلى شكل من أشكال النضال — تتحدث عن الكرد في فضاءات استبعدتهم طويلاً.",
-      portraitAlt: "ليلى زانا",
-      listIcon: "crown" as const,
+        "كانت فنانة كردية ثورية شكّلت حياتها الهجرات القسرية في أوائل القرن العشرين. رغم المعاناة الشخصية الشديدة، بما في ذلك فقدان طفلها والنزوح المستمر، رفضت أن تُصمت. حوّلت معاناتها إلى فن، وأصبحت أول امرأة كردية تسجّل صوتها مهنةً في بغداد. يبقى إرثها رمزاً قوياً لبقاء الثقافة الكردية والصمود الفني.",
+      portraitAlt: "مريم خان",
+      listIcon: "flower" as const,
       greatestAchievement: {
         title: "أعظم إنجاز",
-        text: "أصبحت أول امرأة كردية تُنتخب في البرلمان التركي، محوّلة التمثيل السياسي إلى فعل مقاومة وجاعلة قيادة المرأة الكردية مرئية على الساحة العالمية.",
+        text: "كانت أول امرأة كردية تسجّل الأغاني مهنةً لبثوث الإذاعة باللغة الكردية. بين 1937 و1945، سجّلت أكثر من 31 أغنية في بغداد، وعلى مدى حياتها أتقنت وسجّلت أكثر من 200 أغنية كردية تقليدية. حفظت تسجيلاتها مع شركات دولية كبرى مثل \"His Master's Voice\" مقامات وفولكلور كردي ثمين من الضياع.",
       },
       whySheMatters: {
         title: "لماذا لا تزال مهمة",
-        text: "أثبتت ليلى زانا أن صوت امرأة كردية في البرلمان يمكن أن يهز نظاماً سياسياً بأكمله. لا تزال رمزاً للتحدي والكرامة والنضال من أجل حقوق الكرد في المجال العام.",
+        text: "تبقى مريم خان الركيزة الأساسية للغناء الكردي الحديث. أثبتت أن الهوية الثقافية الكردية يمكن أن تبقى حتى في مواجهة القمع السياسي والنزوح. انتقالها من حياة القرية الريفية في بوتان إلى استوديوهات التسجيل المهنية في بغداد مهد الطريق لأجيال من الفنانات الكرديات اللواتي تبعن خطاها.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "التسعينيات حتى اليوم — عصر النضال السياسي الكردي في تركيا" },
-        { icon: "⛩", title: "الموقع الجغرافي", text: "أمد (ديار بكر)، شمال كردستان" },
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "١٩٠٤ حتى ١٩٤٩ (عاشت عبر انهيار الإمبراطورية العثمانية وتشكيل الدول الحديثة لسوريا والعراق).",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "وُلدت في منطقة بوتان (قرية دركول)، هاجرت إلى القامشلي (روج آفا) وزاخو، وقضت سنواتها الأخيرة في بغداد.",
+        },
       ],
-      quote: "كان صوتاً حمل شعبها إلى البرلمان.",
-      quoteAuthor: "تُذكر في جميع أنحاء كردستان",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "خلال فترة إقامتها في زاخو، واجهت مريم خان فقراً شديداً اضطرها للعمل كخادمة، لكنها حافظت على كرامتها وهويتها الموسيقية. يُقال إنه حتى أثناء خدمة الضيوف، كانت موهبتها لا تُنكر لدرجة أن صوتها أصبح الترفيه الرئيسي في البيوت التي عملت فيها.",
+      },
+      quote:
+        "عندما أغني، لا أغني لنفسي فحسب؛ أغني لكل أم كردية واجهت مشاق النزوح والفقد.",
+      quoteAuthor: "منسوب إلى مريم خان",
     },
   },
 };
