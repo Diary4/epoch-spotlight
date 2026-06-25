@@ -14,7 +14,7 @@ import { hubCopy } from "@/components/Sections/women/content/hubContent";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
 import gsap from "gsap";
-import WomenKnowledgePage from "@/components/Sections/women/Knowledge";
+import WomenPoliticalPage from "@/components/Sections/women/Political";
 import WomenResistancePage from "@/components/Sections/women/Resistance";
 import WomenHistoricPage from "@/components/Sections/women/Historic";
 import legacyVideo from "@/assets/videos/women.webm";
@@ -148,7 +148,7 @@ export default function LegacyPage({
 
   if (activeSection === "knowledge") {
     return (
-      <WomenKnowledgePage
+      <WomenPoliticalPage
         lang={lang}
         languageLabel={languageLabel}
         onLanguageChange={handleLanguageChange}

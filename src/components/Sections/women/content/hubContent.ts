@@ -15,7 +15,7 @@ export type HubCopy = {
 export const hubCopy: Record<WomenLangCode, HubCopy> = {
   en: {
     title: "The Women of Kurdistan",
-    subtitle: "Leadership, knowledge,\nresistance, culture, and legacy.",
+    subtitle: "Leadership, politics,\nresistance, culture, and legacy.",
     description:
       "Kurdish women have shaped history through leadership, learning, courage, and culture.",
     quoteLine1: "Across generations,",
@@ -23,11 +23,11 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     quoteLine3: "voices of strength and continuity.",
     journeyTitle: "Continue the Journey",
     journeyDesc: "Explore the stories behind each name.",
-    cards: { historic: "Historic", knowledge: "Knowledge", resistance: "Resistance", culture: "Culture" },
+    cards: { historic: "Historic", knowledge: "Political", resistance: "Resistance", culture: "Culture" },
   },
   ku: {
     title: "ژنانی کوردستان",
-    subtitle: "سەرکردایەتی، زانین،\nبەرخۆدان، کولتوور، و میرات.",
+    subtitle: "سەرکردایەتی، سیاسەت،\nبەرخۆدان، کولتوور، و میرات.",
     description:
       "ژنانی کورد مێژوو شێوەداوە لە ڕێگەی سەرکردایەتی، فێربوون، ئازایەتی، و کولتوورەوە.",
     quoteLine1: "لە نەوەکان بۆ نەوەکان،",
@@ -35,11 +35,11 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     quoteLine3: "دەنگی هێز و بەردەوامی مایەوە.",
     journeyTitle: "بەردەوامبوون لە گەشت",
     journeyDesc: "چیرۆکەکانی پشت هەر ناوێک بگەڕێ.",
-    cards: { historic: "مێژوویی", knowledge: "زانین", resistance: "بەرخۆدان", culture: "کولتوور" },
+    cards: { historic: "مێژوویی", knowledge: "سیاسی", resistance: "بەرخۆدان", culture: "کولتوور" },
   },
   ar: {
     title: "نساء كردستان",
-    subtitle: "القيادة، المعرفة،\nالمقاومة، الثقافة، والإرث.",
+    subtitle: "القيادة، السياسة،\nالمقاومة، الثقافة، والإرث.",
     description:
       "شكّلت النساء الكرديات التاريخ عبر القيادة والتعلم والشجاعة والثقافة.",
     quoteLine1: "عبر الأجيال،",
@@ -47,6 +47,6 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     quoteLine3: "أصوات قوة واستمرارية.",
     journeyTitle: "تابع الرحلة",
     journeyDesc: "استكشف القصص وراء كل اسم.",
-    cards: { historic: "تاريخي", knowledge: "المعرفة", resistance: "المقاومة", culture: "الثقافة" },
+    cards: { historic: "تاريخي", knowledge: "السياسة", resistance: "المقاومة", culture: "الثقافة" },
   },
 };

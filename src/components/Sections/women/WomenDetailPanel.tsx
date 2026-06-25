@@ -128,7 +128,7 @@ function WomenDetailHighlightSection({
   );
 }
 
-/** Shared detail layout for Historic, Knowledge, Culture, and Resistance. */
+/** Shared detail layout for Historic, Political, Culture, and Resistance. */
 export default function WomenDetailPanel({
   nameLine1,
   nameLine2,
