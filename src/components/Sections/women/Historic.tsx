@@ -200,20 +200,13 @@ export default function WomenHistoricPage({
             </section>
 
             {/* Cards grid */}
-            <section
-              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10"
-              style={{ display: "grid", gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}
-            >
-              {historicWomen.map((woman, index) => (
+            <section className="relative z-20 mt-6 grid grid-cols-4 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10">
+              {historicWomen.map((woman) => (
                 <button
                   type="button"
                   data-hist-card="true"
                   key={woman.id}
                   onClick={() => setSelectedId(woman.id)}
-                  style={{
-                    gridColumn:
-                      historicWomen.length > 5 ? "span 2" : index < 3 ? "span 2" : "span 3",
-                  }}
                   className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
                     dir === "rtl" ? "text-right" : "text-left"
                   }`}
@@ -234,7 +227,7 @@ export default function WomenHistoricPage({
                     ({woman.role})
                   </p>
 
-                  <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
+                  {/* <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
                     <span className="h-px flex-1 bg-[#d4b98f]" />
                     <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
                     <span className="h-px flex-1 bg-[#d4b98f]" />
@@ -246,15 +239,14 @@ export default function WomenHistoricPage({
                     }`}
                   >
                     {woman.teaser}
-                  </p>
+                  </p> */}
                 </button>
               ))}
             </section>
 
             {/* Quotes grid */}
             <section
-              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
-              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+              className="relative z-20 mt-6 grid grid-cols-4 gap-2 px-3 pb-12 sm:gap-6 sm:px-5 sm:pb-16 md:gap-6 lg:px-10 lg:pb-20"
             >
               {copy.quotes.map(({ text, author }) => (
                 <article

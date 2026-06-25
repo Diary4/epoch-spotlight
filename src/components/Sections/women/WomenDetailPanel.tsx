@@ -154,10 +154,14 @@ export default function WomenDetailPanel({
   const heroFadeStyle = {
     backgroundImage: `linear-gradient(${dir === "rtl" ? "to left" : "to right"}, #fbf4e8 4%, rgba(251,244,232,0.6) 42%, transparent 100%)`,
   };
+  // Timeline Position / Map Location info cards are intentionally not shown.
+  const visibleCards = cards.filter(
+    (c) => c.title !== "Timeline Position" && c.title !== "Map Location",
+  );
   const cardGridClass =
-    cards.length === 2
+    visibleCards.length === 2
       ? "grid-cols-1 sm:grid-cols-2"
-      : cards.length === 4
+      : visibleCards.length === 4
         ? "grid-cols-1 sm:grid-cols-2"
         : "grid-cols-1 sm:grid-cols-3";
   const heroScrim =
@@ -218,21 +222,16 @@ export default function WomenDetailPanel({
               </p>
             )}
 
+            <p className="mt-[clamp(16px,3vw,24px)] max-w-full text-[clamp(13px,1.6vw,20px)] leading-[1.7] text-[#3f3b42]">
+              {intro}
+            </p>
+
             <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
           </div>
-        </section>
-
-        <section
-          data-women-detail-fade="true"
-          className="relative z-30 mt-[clamp(20px,3vw,32px)] w-full px-[clamp(16px,3vw,56px)]"
-        >
-          <p className="text-[clamp(14px,1.8vw,21px)] leading-[1.75] text-[#3f3b42]">
-            {intro}
-          </p>
         </section>
 
         {(greatestAchievement || whySheMatters) && (
@@ -261,51 +260,60 @@ export default function WomenDetailPanel({
           </section>
         )}
 
-        <section
-          className={`relative z-30 mt-[clamp(20px,3vw,32px)] grid ${cardGridClass} gap-[clamp(12px,1.6vw,20px)] px-[clamp(16px,3vw,56px)]`}
-        >
-          {cards.map((c) => (
-            <WomenDetailInfoCard key={c.title} {...c} displayFont={displayFont} />
-          ))}
-        </section>
-
-        {didYouKnow && (
+        {visibleCards.length > 0 && (
           <section
-            data-women-detail-fade="true"
-            className="relative z-30 mx-[clamp(16px,3vw,56px)] mt-[clamp(24px,3vw,36px)] max-w-[760px] rounded-[clamp(14px,2vw,18px)] border border-[#dfc997] bg-[#fff8ee]/85 px-[clamp(16px,2.4vw,28px)] py-[clamp(20px,2.8vw,32px)] xl:mx-auto"
+            className={`relative z-30 mt-[clamp(20px,3vw,32px)] grid ${cardGridClass} gap-[clamp(12px,1.6vw,20px)] px-[clamp(16px,3vw,56px)]`}
           >
-            <h3 className={`${displayFont} text-[clamp(12px,2vw,22px)] uppercase tracking-[0.18em] text-[#a75a69]`}>
-              {didYouKnow.title}
-            </h3>
-            <p className="mt-[clamp(10px,1.6vw,16px)] text-[clamp(13px,1.6vw,19px)] leading-[1.65] text-[#3f3b42]">
-              {didYouKnow.text}
-            </p>
+            {visibleCards.map((c) => (
+              <WomenDetailInfoCard key={c.title} {...c} displayFont={displayFont} />
+            ))}
           </section>
         )}
 
+        {/* Did You Know + quote, side by side */}
         <section
-          data-women-detail-fade="true"
-          className="relative z-30 mx-[clamp(16px,3vw,56px)] mb-[clamp(24px,3vw,40px)] mt-[clamp(32px,4vw,48px)] max-w-[760px] rounded-[clamp(14px,2vw,18px)] border border-[#d3ad65] bg-[#fff8ee]/75 p-[clamp(12px,1.4vw,20px)] xl:mx-auto"
+          className={`relative z-30 mx-[clamp(16px,3vw,56px)] mb-[clamp(24px,3vw,40px)] mt-[clamp(20px,3vw,32px)] grid items-stretch gap-[clamp(12px,1.6vw,20px)] ${
+            didYouKnow ? "grid-cols-1 sm:grid-cols-2 xl:mx-auto xl:max-w-[1200px]" : "max-w-[760px] xl:mx-auto"
+          }`}
         >
-          <div className="relative rounded-[14px] border border-[#e2c98f] px-[clamp(16px,2.4vw,32px)] py-[clamp(28px,3vw,40px)] text-center">
-            <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
-              ❖
-            </div>
-
-            <p className={`break-words ${displayFont} text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436]`}>
-              {quote}
-            </p>
-
-            {quoteAuthor && (
-              <p className={`mt-[clamp(12px,2vw,20px)] ${displayFont} text-[clamp(13px,1.8vw,20px)] italic text-[#a75a69]`}>
-                — {quoteAuthor}
+          {didYouKnow && (
+            <div
+              data-women-detail-fade="true"
+              className="flex h-full flex-col rounded-[clamp(14px,2vw,18px)] border border-[#dfc997] bg-[#fff8ee]/85 px-[clamp(16px,2.4vw,28px)] py-[clamp(20px,2.8vw,32px)]"
+            >
+              <h3 className={`${displayFont} text-[clamp(12px,2vw,22px)] uppercase tracking-[0.18em] text-[#a75a69]`}>
+                {didYouKnow.title}
+              </h3>
+              <p className="mt-[clamp(10px,1.6vw,16px)] text-[clamp(13px,1.6vw,19px)] leading-[1.65] text-[#3f3b42]">
+                {didYouKnow.text}
               </p>
-            )}
+            </div>
+          )}
 
-            <div className="mx-auto mt-[clamp(16px,2vw,24px)] flex w-[220px] max-w-full items-center gap-3 text-[#c7a45e]">
-              <span className="h-px flex-1 bg-[#c7a45e]" />
-              <span aria-hidden>❖</span>
-              <span className="h-px flex-1 bg-[#c7a45e]" />
+          <div
+            data-women-detail-fade="true"
+            className="h-full rounded-[clamp(14px,2vw,18px)] border border-[#d3ad65] bg-[#fff8ee]/75 p-[clamp(12px,1.4vw,20px)]"
+          >
+            <div className="relative flex h-full flex-col items-center justify-center rounded-[14px] border border-[#e2c98f] px-[clamp(16px,2.4vw,32px)] py-[clamp(28px,3vw,40px)] text-center">
+              <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
+                ❖
+              </div>
+
+              <p className={`break-words ${displayFont} text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436]`}>
+                {quote}
+              </p>
+
+              {quoteAuthor && (
+                <p className={`mt-[clamp(12px,2vw,20px)] ${displayFont} text-[clamp(13px,1.8vw,20px)] italic text-[#a75a69]`}>
+                  — {quoteAuthor}
+                </p>
+              )}
+
+              <div className="mx-auto mt-[clamp(16px,2vw,24px)] flex w-[220px] max-w-full items-center gap-3 text-[#c7a45e]">
+                <span className="h-px flex-1 bg-[#c7a45e]" />
+                <span aria-hidden>❖</span>
+                <span className="h-px flex-1 bg-[#c7a45e]" />
+              </div>
             </div>
           </div>
         </section>
