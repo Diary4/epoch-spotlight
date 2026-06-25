@@ -4,7 +4,7 @@ import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDet
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/mainImages/bg-2.webp";
-import mapImage from "@/assets/mainImages/theland/land-1.webp";
+import mapImage from "@/assets/images/land.png";
 import mapImage2 from "@/assets/mainImages/theland/land-2.webp";
 import mapImage3 from "@/assets/mainImages/theland/land-3.webp";
 

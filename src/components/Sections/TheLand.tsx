@@ -375,7 +375,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
           <div className="flex-1" />
 
           {/* Cards Section - forced responsive 3-column layout */}
-          <section className="relative z-10 mt-12 xs:mt-16 sm:mt-0 grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-7 lg:pb-5">
+          <section className="relative z-10 mt-12 xs:mt-16 sm:mt-0 lg:mt-[-200px] grid grid-cols-3 gap-1.5 xs:gap-2.5 sm:gap-5 pb-4 pt-4 lg:gap-7 lg:pb-5">
             {localTopCards.map((card) => (
               <SmallCard
                 key={card.id}
