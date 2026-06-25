@@ -151,8 +151,11 @@ export default function WomenDetailPanel({
   // side so the figure never sits under the text, at any screen width.
   const heroImageSide = dir === "rtl" ? "left-0" : "right-0";
   const heroFadeSide = dir === "rtl" ? "right-0" : "left-0";
+  // Fade to a *transparent cream* (rgba alpha 0) rather than the `transparent`
+  // keyword, which resolves to transparent black and leaves a gray fringe/seam
+  // along the gradient's edge — most visible when the panel narrows.
   const heroFadeStyle = {
-    backgroundImage: `linear-gradient(${dir === "rtl" ? "to left" : "to right"}, #fbf4e8 4%, rgba(251,244,232,0.6) 42%, transparent 100%)`,
+    backgroundImage: `linear-gradient(${dir === "rtl" ? "to left" : "to right"}, #fbf4e8 4%, rgba(251,244,232,0.6) 42%, rgba(251,244,232,0) 100%)`,
   };
   // Timeline Position / Map Location info cards are intentionally not shown.
   const visibleCards = cards.filter(
@@ -165,7 +168,7 @@ export default function WomenDetailPanel({
         ? "grid-cols-1 sm:grid-cols-2"
         : "grid-cols-1 sm:grid-cols-3";
   const heroScrim =
-    "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
+    "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(251,244,232,0)_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
 
   return (
     <div
