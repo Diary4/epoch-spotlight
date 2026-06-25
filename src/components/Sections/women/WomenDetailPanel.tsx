@@ -147,6 +147,13 @@ export default function WomenDetailPanel({
 }: WomenDetailPanelProps) {
   const displayFont = dir === "rtl" ? "font-amiri" : "font-serif";
   const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
+  // Hero portrait is pinned to the inline-end side; text stays on the inline-start
+  // side so the figure never sits under the text, at any screen width.
+  const heroImageSide = dir === "rtl" ? "left-0" : "right-0";
+  const heroFadeSide = dir === "rtl" ? "right-0" : "left-0";
+  const heroFadeStyle = {
+    backgroundImage: `linear-gradient(${dir === "rtl" ? "to left" : "to right"}, #fbf4e8 4%, rgba(251,244,232,0.6) 42%, transparent 100%)`,
+  };
   const cardGridClass =
     cards.length === 2
       ? "grid-cols-1 sm:grid-cols-2"
@@ -166,7 +173,7 @@ export default function WomenDetailPanel({
         <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
 
         <section className="relative z-10 w-full">
-          <div className="absolute inset-x-0 top-0 h-[50vh] overflow-hidden">
+          <div className={`absolute ${heroImageSide} top-0 h-full w-[62%] max-w-[760px] overflow-hidden sm:w-[56%]`}>
             <div data-women-detail-portrait-fade="true" className="absolute inset-0">
               <div className={`absolute inset-0 ${portraitFlip}`}>
                 <img
@@ -175,15 +182,18 @@ export default function WomenDetailPanel({
                   decoding="async"
                   // React 18 expects the lowercase DOM attribute name.
                   {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
-                  className="h-full w-full object-cover object-[10%_10%]"
+                  className="h-full w-full object-cover object-[42%_10%]"
                 />
               </div>
             </div>
+            {/* Blend the portrait's inner edge into the cream text area */}
+            <div className={`pointer-events-none absolute inset-y-0 ${heroFadeSide} w-[60%]`} style={heroFadeStyle} />
+            {/* Fade the portrait's bottom into the page */}
             <div data-women-detail-portrait-fade="true" className={heroScrim} />
           </div>
 
           <div
-            className="relative z-20 min-h-[50vh] px-[clamp(16px,3vw,56px)] pb-[clamp(24px,3vw,32px)] pt-[clamp(80px,12vw,112px)]"
+            className="relative z-20 flex min-h-[50vh] max-w-[min(52%,560px)] flex-col px-[clamp(16px,3vw,56px)] pb-[clamp(24px,3vw,32px)] pt-[clamp(80px,12vw,112px)]"
             data-women-detail-fade="true"
           >
             <h1 className={`break-words ${displayFont} text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>
@@ -192,23 +202,23 @@ export default function WomenDetailPanel({
               {nameLine2}
             </h1>
 
-            <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-[66%] items-center gap-3 text-[#c7a45e]">
+            <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-[min(70%,320px)] break-words ${displayFont} text-[clamp(17px,3vw,26px)] italic leading-tight text-[#a75a69]`}>
+            <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-full break-words ${displayFont} text-[clamp(17px,3vw,26px)] italic leading-tight text-[#a75a69]`}>
               {role}
             </h2>
 
             {metaLine && (
-              <p className="mt-[clamp(10px,2vw,16px)] max-w-[90%] text-[clamp(12px,1.5vw,18px)] leading-snug text-[#5a4a52]">
+              <p className="mt-[clamp(10px,2vw,16px)] max-w-full text-[clamp(12px,1.5vw,18px)] leading-snug text-[#5a4a52]">
                 {metaLine}
               </p>
             )}
 
-            <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-[66%] items-center gap-3 text-[#c7a45e]">
+            <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />

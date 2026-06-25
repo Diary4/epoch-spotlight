@@ -64,7 +64,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "Kill me, but thousands of Kurds will wake up.", author: "Leyla Qasim" },
       { text: "Her voice carried a message of courage.", author: "Shifa Gardi" },
-      { text: "She fought for a homeland greater than herself.", author: "Margaret George Shilo" },
+      { text: "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.", author: "Dayka Aisha" },
     ],
   },
   ku: {
@@ -81,7 +81,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "بمکوژە، بەڵام هەزاران کورد لە خەو هەستن.", author: "لەیلا قاسم" },
       { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شیفا گەردی" },
-      { text: "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.", author: "مارگەریت جۆرج شیلۆ" },
+      { text: "کوڕەکانم قوربانی خاک و نیشتمان بوون؛ مۆڕاڵەکانتان بەرز بهێڵنەوە و هەرگیز هێڵی پێشەوە مەهێڵن.", author: "دایکە عائشە" },
     ],
   },
   ar: {
@@ -98,7 +98,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "اقتلوني، لكن آلاف الكرد سيستيقظون.", author: "ليلى قاسم" },
       { text: "حمل صوتها رسالة شجاعة.", author: "شفا گردی" },
-      { text: "قاتلت من أجل وطن أعظم من نفسها.", author: "مارغريت جورج شيلو" },
+      { text: "ضُحي بأبنائي من أجل التربة والوطن؛ حافظوا على معنوياتكم مرتفعة ولا تغادروا خطوط المواجهة أبداً.", author: "الأم عائشة" },
     ],
   },
 };
@@ -108,9 +108,9 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
     {
       id: "khaja-bawa",
       name: "Khaja Bawa",
-      role: "Heroine of the 1991 uprising",
+      role: "First Female Peshmerga Fighter · Military Commander",
       teaser:
-        "A courageous daughter of Erbil whose life was given during the city's uprising for freedom.",
+        "Martyred on March 11, 1991 at the forefront of Erbil's uprising — she smuggled weapons, treated wounded revolutionaries, and never retreated.",
       listIcon: "crown",
     },
     {
@@ -148,18 +148,27 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
     {
       id: "margaret-george-shilo",
       name: "Margaret George Shello",
-      role: "First Female Peshmerga",
+      role: "First Female Peshmerga Fighter · Military Commander",
       teaser:
-        "An Assyrian woman who picked up a weapon in 1963 and became commander of an all-male Peshmerga unit.",
+        "A Christian Assyrian who became commander of an all-male Peshmerga unit — Western media called her the 'Joan of Arc of the Kurdish Revolution.'",
       listIcon: "crown",
+    },
+    {
+      id: "dayka-aisha",
+      name: "Dayka Aisha",
+      role: "Symbol of Resilience and Patriotism",
+      teaser:
+        "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",
+      listIcon: "flower",
     },
   ],
   ku: [
     {
       id: "khaja-bawa",
-      name: "خەجە باوا",
-      role: "پاڵەوانی سەرهەڵدانی ١٩٩١",
-      teaser: "کچێکی ئازای هەولێر کە ژیانی لە سەرهەڵدانی شارەکە بۆ ئازادی دا.",
+      name: "خەجە باوە",
+      role: "یەکەم شەڕڤانی پێشمەرگەی ژن · فەرماندەی سەربازی",
+      teaser:
+        "لە ١١ی ئازاری ١٩٩١ لە پێشەوەی سەرهەڵدانی هەولێر شەهید بوو — چەک قاچاخ دەکرد، شۆڕشگێڕانی بریندار چارەسەر دەکرد، و هەرگیز پاشگەز نەبوو.",
       listIcon: "crown",
     },
     {
@@ -197,18 +206,27 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
     {
       id: "margaret-george-shilo",
       name: "مارگرێت جۆرج شیلۆ",
-      role: "یەکەم پێشمەرگەی ژن",
+      role: "یەکەم شەڕڤانی پێشمەرگەی ژن · فەرماندەی سەربازی",
       teaser:
-        "ژنێکی ئاشوری کە لە ساڵی ١٩٦٣ چەکی هەڵگرت و بووە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان.",
+        "ئاشوری مەسیحی بوو کە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان بوو — میدیای ڕۆژئاوا ناوی «ژان دارکی شۆڕشی کورد»یان دا.",
       listIcon: "crown",
+    },
+    {
+      id: "dayka-aisha",
+      name: "دایکە عائشە",
+      role: "هێمای خۆڕاگری و وڵاتپارێزی",
+      teaser:
+        "دوای دۆڕانی سێ کوڕی پێشمەرگە لە یەک شەڕدا دژی داعش، خەمەکەی گۆڕی بۆ سەرهەڵدان و بووە دایکی ڕۆحی هەموو بەرگریکارێک.",
+      listIcon: "flower",
     },
   ],
   ar: [
     {
       id: "khaja-bawa",
       name: "خاجة باوا",
-      role: "بطلة انتفاضة ١٩٩١",
-      teaser: "ابنة شجاعة لأربيل قدّمت حياتها في انتفاضة المدينة من أجل الحرية.",
+      role: "أول مقاتلة بيشمركية · قائدة عسكرية",
+      teaser:
+        "استُشهدت في ١١ مارس ١٩٩١ في طليعة انتفاضة أربيل — هربّت الأسلحة، عالجت الثوار الجرحى، ولم تتراجع أبداً.",
       listIcon: "crown",
     },
     {
@@ -246,10 +264,18 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
     {
       id: "margaret-george-shilo",
       name: "مارغريت جورج شيلو",
-      role: "أول امرأة بيشمركة",
+      role: "أول مقاتلة بيشمركية · قائدة عسكرية",
       teaser:
-        "امرأة آشورية حملت السلاح عام ١٩٦٣ وأصبحت قائدة لوحدة بيشمركية من الرجال فقط.",
+        "آشورية مسيحية أصبحت قائدة لوحدة بيشمركية من الرجال فقط — أطلق عليها الإعلام الغربي لقب «جان دارك الثورة الكردية».",
       listIcon: "crown",
+    },
+    {
+      id: "dayka-aisha",
+      name: "الأم عائشة",
+      role: "رمز الصمود والوطنية",
+      teaser:
+        "بعد فقدان ثلاثة أبناء بيشمركة في معركة واحدة ضد داعش، حوّلت الحزن إلى تحدٍ وأصبحت أمّاً روحية لكل مدافع.",
+      listIcon: "flower",
     },
   ],
 };

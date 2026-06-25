@@ -23,6 +23,7 @@ import imgShifa from "@/assets/images/womens/shifagardi.jpg";
 import imgLayal from "@/assets/images/womens/laylaqasim.png";
 import imgMargaret from "@/assets/images/womens/margret.jpg";
 import imgKhaja from "@/assets/images/womens/khajabawa.jpg";
+import imgAisha from "@/assets/images/womens/ayshe.jpg";
 
 type WomenResistancePageProps = WomenLanguageProps & {
   onBack?: () => void;
@@ -35,6 +36,7 @@ const resistanceImages: Record<string, string> = {
   "layla-qasim": imgLayal,
   "margaret-george-shilo": imgMargaret,
   "khaja-bawa": imgKhaja,
+  "dayka-aisha": imgAisha,
 };
 
 function runResistanceListIntro(sectionRef: React.RefObject<HTMLElement | null>) {

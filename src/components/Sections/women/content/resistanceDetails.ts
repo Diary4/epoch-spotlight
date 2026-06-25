@@ -138,50 +138,109 @@ export const resistanceDetailsByLang = {
     "khaja-bawa": {
       nameLine1: "Khaja",
       nameLine2: "Bawa",
-      role: "Heroine of the 1991 uprising",
-      metaLine: "Erbil, Iraqi Kurdistan • 1991",
+      role: "First Female Peshmerga Fighter · Military Commander",
+      metaLine: "1945 – March 11, 1991 | Erbil, Iraqi Kurdistan",
       intro:
-        "Khaja Bawa was a courageous daughter of Erbil who gave her life during the city's 1991 uprising for freedom. In that spring, when the people of Kurdistan rose against oppression, she stood among them — and her sacrifice became part of Erbil's memory of that historic moment.",
+        "Khaja Bawa was a revolutionary woman from the Erbil plains whose name was recorded in history as a symbol of the 1991 uprising. From a young age, she joined the Aylul Revolution in 1962. Khaja Bawa was not just a housewife; she smuggled weapons for the Peshmerga and hid and treated wounded revolutionaries in the heart of Erbil city. On March 11, 1991, when Erbil rose against the Ba'ath regime, she inspired the masses toward freedom with a headband around her forehead, ululations, and applause. Even after being wounded by the bullets of the \"Jash\" (collaborators), she did not retreat; instead, she attacked and disarmed them.",
       portraitAlt: "Khaja Bawa",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "Leadership and bravery during the 1991 uprising in Erbil, when the people of Kurdistan rose for freedom.",
+        text: "She was the first woman to be martyred during the glorious Spring Uprising of 1991 in the city of Erbil. She was at the forefront of the crowds during the capture of the Governor's building and the Ba'ath security headquarters (Manzuma). Previously, as a female Peshmerga, she would strap Kalashnikov rifles to her back and secretly deliver them to the regions of Bli, Barzan, and Lolan.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Her sacrifice is woven into Erbil's memory of that spring — a reminder that the fight for Kurdish freedom has always been carried by ordinary people willing to give everything.",
+        text: "Khaja Bawa proved that the uprising was not only the duty of men. Despite her wounds, she continued to encourage the people not to retreat. When she was martyred by Ba'athist snipers in front of the Governor's building, her blood became the essence of freedom for the city of Erbil.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1991 — Kurdish uprising" },
-        { icon: "⛩", title: "Map Location", text: "Erbil, Iraqi Kurdistan" },
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "1945 until March 11, 1991 (The day of the Erbil Uprising)",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Mala Qara village (Erbil plains) and the neighborhoods of Bastapiyaza and Shahidan in Erbil city",
+        },
       ],
-      quote: "Her courage shook a city.",
-      quoteAuthor: "Remembered in Erbil",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Khaja Bawa was so occupied with the struggle and the movement that she never had time to take a proper photograph. There is only one photo of her — the one from her civil identity card — which was enlarged after her martyrdom and is now seen as an iconic image of the uprising.",
+      },
+      quote:
+        "My mother knew the uprising would happen; she said: 'Change your black clothes and wear bright, colorful ones, because tomorrow is our day.'",
+      quoteAuthor: "Farida, daughter of Martyr Khaja Bawa",
     },
     "margaret-george-shilo": {
       nameLine1: "Margaret",
       nameLine2: "George Shello",
-      role: "First Female Peshmerga",
-      metaLine: "Duhok region • 1960s",
+      role: "First Female Peshmerga Fighter · Military Commander",
+      metaLine: "January 21, 1942 – December 26, 1969 | Duhok, Iraqi Kurdistan",
       intro:
         "Margaret George Shello was a Christian Assyrian woman from a mountain village in Duhok. She was working in a hospital when her village was attacked by a pro-government militia in 1963. She picked up a weapon and joined the Peshmerga. Within a short time, she rose from hospital worker to commander of an all-male fighting unit. Photographs of her in uniform spread across Iraq and reached Europe — making her the most recognized female symbol of the Kurdish revolution in the world.",
       portraitAlt: "Margaret George Shello",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She became the first woman to command in a Peshmerga military formation — rising from hospital worker to commander of an all-male fighting unit during the Kurdish revolution.",
+        text: "She became the first woman to fight with Peshmerga forces and the first to command an all-male combat unit. Western media called her the 'Joan of Arc of the Kurdish Revolution.' Her images became global propaganda for the Kurdish cause.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Margaret George Shello is a living emblem of shared struggle for Kurdistan — proof that the fight for Kurdish freedom crossed religious and ethnic lines, and that women led on the battlefield when history demanded it.",
+        text: "Margaret Shello broke two barriers at once: she was a woman leading men in battle, and a Christian fighting alongside Muslims for a shared homeland. Her story is about what it means to belong.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1960s — Kurdish revolution era" },
-        { icon: "⛩", title: "Map Location", text: "Duhok region, Iraqi Kurdistan" },
+        { icon: "♜", title: "Timeline Position", text: "1960s — Era of the Kurdish Revolution" },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "Barwari region, Duhok Governorate — and Akre area, Iraqi Kurdistan",
+        },
       ],
-      quote: "She fought for a homeland greater than herself.",
-      quoteAuthor: "Remembered across Kurdistan",
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Margaret was not Kurdish — she was a Christian Assyrian woman. Yet she fought and died for Kurdistan, proving that the Kurdish cause belonged to everyone who shared its mountains.",
+      },
+      quote:
+        "In her time, photographs of her existed everywhere in Kurdistan — highlighting the equality of women within Kurdish society.",
+      quoteAuthor: "Kurdish photographer Zaher Rashid",
+    },
+    "dayka-aisha": {
+      nameLine1: "Dayka",
+      nameLine2: "Aisha",
+      role: "Symbol of Resilience and Patriotism",
+      metaLine: "1946 – July 2020 | Kirkuk & Soran, Iraqi Kurdistan",
+      intro:
+        "Dayka Aisha became an immovable mountain of resilience and ultimate sacrifice in the modern history of Kurdistan. In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons — Mawloud, Ahmed, and Nishtiman — were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
+      portraitAlt: "Dayka Aisha",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "Transforming the devastating loss of three sons in a single day into a historic message of defiance, single-handedly raising the morale of the entire Peshmerga forces against the world's most brutal terrorist organization.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Dayka Aisha redefined motherhood from a private emotion into a grand national pillar, proving that Kurdish women are the core foundation of endurance and courage during the nation's darkest hours.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "Timeline Position",
+          text: "1946 until July 2020 (The era of the War against ISIS and the modern defense of Kurdistan)",
+        },
+        {
+          icon: "⛩",
+          title: "Map Location",
+          text: "The frontline areas of Kirkuk Governorate (specifically the Tell Ward and Maktab Khalid sectors) and her residence in Soran (Erbil Province)",
+        },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Following her immense loss, Dayka Aisha refused to remain at home; she routinely traveled directly to the dangerous frontlines of Kirkuk, cooked meals for the soldiers with her own hands, and stayed in the trenches providing motherly love and strength to the troops.",
+      },
+      quote:
+        "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.",
+      quoteAuthor: "Dayka Aisha",
     },
   },
   ku: {
@@ -313,51 +372,110 @@ export const resistanceDetailsByLang = {
     },
     "khaja-bawa": {
       nameLine1: "خەجە",
-      nameLine2: "باوا",
-      role: "پاڵەوانی سەرهەڵدانی ١٩٩١",
-      metaLine: "هەولێر، کوردستانی عێراق • ١٩٩١",
+      nameLine2: "باوە",
+      role: "یەکەم شەڕڤانی پێشمەرگەی ژن · فەرماندەی سەربازی",
+      metaLine: "١٩٤٥ – ١١ی ئازاری ١٩٩١ | هەولێر، کوردستانی عێراق",
       intro:
-        "خەجە باوا کچێکی ئازای هەولێر بوو کە ژیانی لە سەرهەڵدانی ١٩٩١ی شارەکە بۆ ئازادی دا. لەو بەهارەدا، کاتێک خەڵکی کوردستان سەرهەڵدانیان بۆ دژی داپێڕان، لە نێوانیان وەستا — و قوربانییەکەی بەشێک بوو لە یادەوەی هەولێر بۆ ئەو ساتە مێژووییە.",
-      portraitAlt: "خەجە باوا",
+        "خەجە باوە ژنێکی شۆڕشگێڕ بوو لە داشتی هەولێر کە ناوی لە مێژوودا وەک هێمای سەرهەڵدانی ١٩٩١ تۆمار کرا. لە تەمەنێکی زۆر گەنجەوە بەشداری شۆڕشی ئەیلوولی ١٩٦٢ کرد. خەجە باوە تەنها ماڵخوێن نەبوو؛ چەک بۆ پێشمەرگە قاچاخ دەکرد و شۆڕشگێڕانی بریندار لە ناو دڵی شاری هەولێردا دەشارەوە و چارەسەریان دەکرد. لە ١١ی ئازاری ١٩٩١، کاتێک هەولێر سەرهەڵدا دژی ڕژێمی بەعس، بە پێچەوانەی سەر و هاوار و چەپڵە خەڵکی بۆ ئازادی هاندا. تەنانەت دوای برینداربوون لە گولەی «جاش»ەکان، پاشگەز نەبوو؛ بەڵکو هێرشی کرد و چەکەکانیان لە دەستیان دا.",
+      portraitAlt: "خەجە باوە",
       listIcon: "crown",
       greatestAchievement: {
         title: "گەورەترین دەستکەوت",
-        text: "سەرکردایەتی و ئازایەتی لە سەرهەڵدانی ١٩٩١ لە هەولێر، کاتێک خەڵکی کوردستان بۆ ئازادی سەرهەڵدانیان.",
+        text: "یەکەم ژن بوو کە لە سەرهەڵدانی بەهاری شکۆمەندی ١٩٩١ لە شاری هەولێر شەهید بوو. لە پێشەوەی قەیرانەکان بوو لە کاتی داگیرکردنی بینای پارێزگار و بنکەی ئاسایشی بەعس (مانزومە). پێشتر، وەک پێشمەرگەیەکی ژن، کلاشینکۆفەکان بە پشتی دەبەست و بە نهێنی دەگەیاندە ناوچەکانی بلی، بارزان، و لۆلان.",
       },
       whySheMatters: {
         title: "بۆچی هێشتا گرنگە",
-        text: "قوربانییەکەی لە یادەوەی هەولێر بۆ ئەو بەهارە بەرگەیەکی — بیرخستنەوەیەکە کە تێکۆشانی ئازادی کورد هەمیشە لەلایەن خەڵکی ئاساییەوە هەڵگیراوە کە ئامادەن هەموو شتێک بدەن.",
+        text: "خەجە باوە سەلماند کە سەرهەڵدان تەنها ئەرکی پیاوان نەبوو. سەرەڕای برینەکانی، بەردەوام خەڵکی هانی دەدا کە پاشگەز نەبن. کاتێک لەلایەن تەقەوانکەرانی بەعسەوە لە بەردەم بینای پارێزگار شەهید بوو، خوێنەکەی بووە جوهرەی ئازادی بۆ شاری هەولێر.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "١٩٩١ — سەرهەڵدانی کورد" },
-        { icon: "⛩", title: "شوێنی نەخشە", text: "هەولێر، کوردستانی عێراق" },
+        {
+          icon: "♜",
+          title: "شوێنی کات",
+          text: "١٩٤٥ تا ١١ی ئازاری ١٩٩١ (ڕۆژی سەرهەڵدانی هەولێر)",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "گوندی مەلا قەرا (داشتی هەولێر) و گەڕەکەکانی باستاپیازە و شاهیدان لە شاری هەولێر",
+        },
       ],
-      quote: "ئازایەتییەکەی شارێکی لە جێ هێنا.",
-      quoteAuthor: "لە یادەوەری هەولێردا",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "خەجە باوە ئەوەندە بە تێکۆشان و بزووتنەوە سەرقاڵ بوو کە هەرگیز کاتی وەرگرتنی وێنەیەکی گونجاو نەبوو. تەنها یەک وێنەی لێ مایە — ئەوەی لە کارتی ناسنامەی شارستانییەکەی — کە دوای شەهیدبوونەکەی گەورە کرا و ئێستا وەک وێنەیەکی ئایکۆنیکی سەرهەڵدان دادەنرێت.",
+      },
+      quote:
+        "دایکم دەزانی سەرهەڵدان ڕوودەدات؛ دەڵێ: «جلی ڕەشەکانت بگۆڕە و جلی ڕووناک و ڕەنگاوڕەنگ بپۆشە، چونکە سبەی ڕۆژی ئێمەیە.»",
+      quoteAuthor: "فەریدە، کچی شەهید خەجە باوە",
     },
     "margaret-george-shilo": {
       nameLine1: "مارگرێت",
       nameLine2: "جۆرج شیلۆ",
-      role: "یەکەم پێشمەرگەی ژن",
-      metaLine: "ناوچەی دهۆک • ساڵانی ١٩٦٠",
+      role: "یەکەم شەڕڤانی پێشمەرگەی ژن · فەرماندەی سەربازی",
+      metaLine: "٢١ی کانوونی دووەمی ١٩٤٢ – ٢٦ی کانوونی یەکەمی ١٩٦٩ | دهۆک، کوردستانی عێراق",
       intro:
         "مارگرێت جۆرج شیلۆ ژنێکی ئاشوری مەسیحی بوو لە گوندێکی شاخاوی لە دهۆک. لە نەخۆشخانە کار دەکرد کاتێک گوندەکەی لەلایەن میلیشیایەکی پشتیوانی حکومەتەوە لە ساڵی ١٩٦٣ هێرش کرا. چەکی هەڵگرت و بەشداری لە پێشمەرگە کرد. لە ماوەیەکی کورتدا، لە کارمەندی نەخۆشخانە بووە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان. وێنەکانی بە یونیفۆرم لە سەرانسەری عێراق بڵاوبوونەوە و گەیشتنە ئەوروپا — وەک ناسراوترین هێمای ژنانی شۆڕشی کورد لە جیهان.",
       portraitAlt: "مارگرێت جۆرج شیلۆ",
       listIcon: "crown",
       greatestAchievement: {
         title: "گەورەترین دەستکەوت",
-        text: "یەکەم ژن بوو کە فەرماندەیی لە پێکهاتەیەکی سەربازی پێشمەرگەدا کرد — لە کارمەندی نەخۆشخانە بووە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان لە کاتی شۆڕشی کورد.",
+        text: "یەکەم ژن بوو کە لەگەڵ هێزەکانی پێشمەرگە شەڕی کرد و یەکەم کە فەرماندەیی پێکهاتەیەکی شەڕی تەواو پیاوان کرد. میدیای ڕۆژئاوا ناوی «ژان دارکی شۆڕشی کورد»یان دا. وێنەکانی بوونە پرۆپاگەندەی جیهانی بۆ کێشی کورد.",
       },
       whySheMatters: {
         title: "بۆچی هێشتا گرنگە",
-        text: "مارگرێت جۆرج شیلۆ هێمایەکی زیندووە بۆ تێکۆشانی هاوبەش بۆ کوردستان — بەڵگەیە کە تێکۆشانی ئازادی کورد سنووری ئایین و نەتەوە تێپەڕاند و ژنان لە مەیدانی شەڕدا سەرکردایەتیان کرد کاتێک مێژوو داوای کرد.",
+        text: "مارگرێت شیلۆ دوو بەربەستی شکاند لە یەک کاتدا: ژنێک بوو کە پیاوان لە شەڕدا سەرکردایەتی دەکرد، و مەسیحییەک بوو کە لەگەڵ موسڵمانان بۆ نیشتمانێکی هاوبەش شەڕی کرد. چیرۆکەکەی دەربارەی واتای سەر بە ئێوە بوونە.",
       },
       cards: [
         { icon: "♜", title: "شوێنی کات", text: "ساڵانی ١٩٦٠ — سەردەمی شۆڕشی کورد" },
-        { icon: "⛩", title: "شوێنی نەخشە", text: "ناوچەی دهۆک، کوردستانی عێراق" },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "ناوچەی بارواری، پارێزگای دهۆک — و ناوچەی ئاکرێ، کوردستانی عێراق",
+        },
       ],
-      quote: "بۆ نیشتمانێکی گەورەتر لە خۆی شەڕی کرد.",
-      quoteAuthor: "لە سەرانسەری کوردستان لە یادەوەری دەمێنرێتەوە",
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "مارگرێت کورد نەبوو — ژنێکی ئاشوری مەسیحی بوو. بەڵام بۆ کوردستان شەڕی کرد و مرد، سەلماند کە کێشی کورد هی هەموو کەسێک بوو کە شاخەکانی هاوبەش بوون.",
+      },
+      quote:
+        "لە سەردەمی خۆیدا، وێنەکانی لە هەموو شوێنێکی کوردستان هەبوون — ڕووناککردنەوەی یەکسانی ژنان لە ناو کۆمەڵگەی کوردی.",
+      quoteAuthor: "وێنەگری کوردی زاهیر ڕەشید",
+    },
+    "dayka-aisha": {
+      nameLine1: "دایکە",
+      nameLine2: "عائشە",
+      role: "هێمای خۆڕاگری و وڵاتپارێزی",
+      metaLine: "١٩٤٦ – تەمموزی ٢٠٢٠ | کەرکووک و سۆران، کوردستانی عێراق",
+      intro:
+        "دایکە عائشە بووە کوێرایەکی بێجوڵەی خۆڕاگری و قوربانیی کۆتایی لە مێژووی مۆدێرنی کوردستان. لە کانوونی یەکەمی ٢٠١٤، لە کاتی بەرگری توند دژی تیرۆریستەکانی داعش لە هێڵی پێشەوەی کەرکووک، سێ کوڕی پێشمەرگەی — مەولود، ئەحمەد، و نیشتیمان — لە هەمان ڕۆژ و هەمان شەڕدا پێکەوە شەهید بوون. لە جیاتی شکان لە خەم کاتێک لەشەکانیان گەڕانەوە، بە شانبەرزی بێوێنە وەستا، ڕایگەیاند کە کوڕەکانی فیدای نیشتمان بوون. ساڵانی ماوەی ژیانی بە سەردانکردنی هێڵی پێشەوە، بەرزکردنەوەی مۆڕاڵی بەرگریکاران، و بوون بە دایکی ڕۆحی کۆتایی بۆ هەموو پێشمەرگەیەک بەسەربرد.",
+      portraitAlt: "دایکە عائشە",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "گەورەترین دەستکەوت",
+        text: "گۆڕینی دۆڕانی وێرانکەرەی سێ کوڕ لە یەک ڕۆژدا بۆ پەیامێکی مێژوویی سەرهەڵدان، بە تەنها بەرزکردنەوەی مۆڕاڵی هەموو هێزەکانی پێشمەرگە دژی توندترین ڕێکخراوی تیرۆریستی جیهان.",
+      },
+      whySheMatters: {
+        title: "بۆچی هێشتا گرنگە",
+        text: "دایکە عائشە دایکایەتی لە هەستێکی تایبەتەوە گۆڕی بۆ ستونێکی نەتەوەیی گەورە، سەلماند کە ژنانی کورد بنەڕەتی سەرەکیی خۆڕاگری و ئازایەتیان لە تاریکترین کاتەکانی نەتەوە.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "شوێنی کات",
+          text: "١٩٤٦ تا تەمموزی ٢٠٢٠ (سەردەمی شەڕی دژی داعش و بەرگری مۆدێرنی کوردستان)",
+        },
+        {
+          icon: "⛩",
+          title: "شوێنی نەخشە",
+          text: "ناوچەکانی هێڵی پێشەوەی پارێزگای کەرکووک (بەتایبەتی کەرتەکانی تەڵ وەرد و مەکتەب خالید) و نیشتەجێبوونی لە سۆران (پارێزگای هەولێر)",
+        },
+      ],
+      didYouKnow: {
+        title: "ئایا دەزانی؟",
+        text: "دوای دۆڕانی گەورەکەی، دایکە عائشە ڕەتیکردەوە لە ماڵ بمێنێتەوە؛ بە بەردەوامی ڕاستەوخۆ دەچووە هێڵی پێشەوەی مەترسیدار لە کەرکووک، خۆی خواردن بۆ سەربازەکان دەپێخت، و لە خەندقەکاندا دەمێنایەوە و خۆشەویستی و هێزی دایکی بۆ سەربازەکان دەبەخشێت.",
+      },
+      quote:
+        "کوڕەکانم قوربانی خاک و نیشتمان بوون؛ مۆڕاڵەکانتان بەرز بهێڵنەوە و هەرگیز هێڵی پێشەوە مەهێڵن.",
+      quoteAuthor: "دایکە عائشە",
     },
   },
   ar: {
@@ -490,50 +608,109 @@ export const resistanceDetailsByLang = {
     "khaja-bawa": {
       nameLine1: "خاجة",
       nameLine2: "باوا",
-      role: "بطلة انتفاضة ١٩٩١",
-      metaLine: "أربيل، كردستان العراق • ١٩٩١",
+      role: "أول مقاتلة بيشمركية · قائدة عسكرية",
+      metaLine: "١٩٤٥ – ١١ مارس ١٩٩١ | أربيل، كردستان العراق",
       intro:
-        "كانت خاجة باوا ابنة شجاعة لأربيل قدّمت حياتها خلال انتفاضة المدينة عام ١٩٩١ من أجل الحرية. في ذلك الربيع، عندما انتفض شعب كردستان ضد القمع، وقفت بينهم — وأصبحت تضحيتها جزءاً من ذاكرة أربيل لتلك اللحظة التاريخية.",
+        "كانت خاجة باوا امرأة ثورية من سهول أربيل سُجّل اسمها في التاريخ رمزاً لانتفاضة ١٩٩١. منذ صغرها انضمت إلى ثورة أيلول عام ١٩٦٢. لم تكن خاجة باوا مجرد ربة منزل؛ بل قامت بتهريب الأسلحة للبيشمركة وأخفت وعالجت الثوار الجرحى في قلب مدينة أربيل. في ١١ مارس ١٩٩١، عندما انتفضت أربيل ضد نظام البعث، ألهمت الجماهير نحو الحرية بعصابة على جبينها وتهليل وصفق. حتى بعد إصابتها برصاص «الجاش» (المتعاونين)، لم تتراجع؛ بل هاجمت وفككت سلاحهم.",
       portraitAlt: "خاجة باوا",
       listIcon: "crown",
       greatestAchievement: {
         title: "أعظم إنجاز",
-        text: "القيادة والشجاعة خلال انتفاضة ١٩٩١ في أربيل، عندما انتفض شعب كردستان من أجل الحرية.",
+        text: "كانت أول امرأة تستشهد خلال انتفاضة الربيع المجيد عام ١٩٩١ في مدينة أربيل. كانت في طليعة الحشود أثناء الاستيلاء على مبنى المحافظة ومقر أمن البعث (المنظومة). سابقاً، كبيشمركية، كانت تربط بنادق كلاشينكوف على ظهرها وتسلّمها سراً إلى مناطق بلي وبارزان ولولان.",
       },
       whySheMatters: {
         title: "لماذا لا تزال مهمة",
-        text: "تضحيتها منسوجة في ذاكرة أربيل لذلك الربيع — تذكير بأن النضال من أجل الحرية الكردية حمله دائماً أشخاص عاديون مستعدون لتقديم كل شيء.",
+        text: "أثبتت خاجة باوا أن الانتفاضة لم تكن واجب الرجال فحسب. رغم جروحها، واصلت تشجيع الناس على عدم التراجع. عندما استُشهدت على يد قناصي البعث أمام مبنى المحافظة، أصبح دمها جوهر الحرية لمدينة أربيل.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "١٩٩١ — انتفاضة كردية" },
-        { icon: "⛩", title: "الموقع الجغرافي", text: "أربيل، كردستان العراق" },
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "١٩٤٥ حتى ١١ مارس ١٩٩١ (يوم انتفاضة أربيل)",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "قرية ملا قرة (سهول أربيل) وأحياء باستابيازا وشاهيدان في مدينة أربيل",
+        },
       ],
-      quote: "هزت شجاعتها مدينة.",
-      quoteAuthor: "تُذكر في أربيل",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "كانت خاجة باوا منشغلة جداً بالنضال والحركة لدرجة أنها لم تجد وقتاً لالتقاط صورة مناسبة. توجد صورة واحدة فقط لها — من بطاقة هويتها المدنية — كُبّرت بعد استشهادها وتُعتبر الآن صورة أيقونية للانتفاضة.",
+      },
+      quote:
+        "أمي كانت تعلم أن الانتفاضة ستحدث؛ قالت: «غيّروا ملابسكم السوداء وارتدوا ملابس زاهية وملونة، لأن الغد يومنا.»",
+      quoteAuthor: "فريدة، ابنة الشهيدة خاجة باوا",
     },
     "margaret-george-shilo": {
       nameLine1: "مارغريت",
       nameLine2: "جورج شيلو",
-      role: "أول امرأة بيشمركة",
-      metaLine: "منطقة دهوك • ستينيات القرن العشرين",
+      role: "أول مقاتلة بيشمركية · قائدة عسكرية",
+      metaLine: "٢١ يناير ١٩٤٢ – ٢٦ ديسمبر ١٩٦٩ | دهوك، كردستان العراق",
       intro:
         "كانت مارغريت جورج شيلو امرأة آشورية مسيحية من قرية جبلية في دهوك. كانت تعمل في مستشفى عندما هُاجم قراها ميليشيا موالية للحكومة عام ١٩٦٣. حملت السلاح وانضمت إلى البيشمركة. في وقت قصير، ارتقت من عاملة في المستشفى إلى قائدة لوحدة قتالية من الرجال فقط. انتشرت صورها بالزي العسكري في أنحاء العراق ووصلت إلى أوروبا — مما جعلها الرمز الأنثوي الأكثر شهرة للثورة الكردية في العالم.",
       portraitAlt: "مارغريت جورج شيلو",
       listIcon: "crown",
       greatestAchievement: {
         title: "أعظم إنجاز",
-        text: "أصبحت أول امرأة تقود في تشكيل عسكري بيشمركي — ارتقت من عاملة في المستشفى إلى قائدة لوحدة قتالية من الرجال فقط خلال الثورة الكردية.",
+        text: "أصبحت أول امرأة تقاتل مع قوات البيشمركة وأول من تقود وحدة قتالية من الرجال فقط. أطلق عليها الإعلام الغربي لقب «جان دارك الثورة الكردية». أصبحت صورها دعاية عالمية للقضية الكردية.",
       },
       whySheMatters: {
         title: "لماذا لا تزال مهمة",
-        text: "مارغريت جورج شيلو رمز حي للنضال المشترك من أجل كردستان — دليل على أن النضال من أجل الحرية الكردية تجاوز الخطوط الدينية والعرقية، وأن النساء قددن في ساحة المعركة عندما تطلب التاريخ ذلك.",
+        text: "كسرت مارغريت شيلو حاجزين في آن واحد: كانت امرأة تقود الرجال في المعركة، ومسيحية تقاتل إلى جانب المسلمين من أجل وطن مشترك. قصتها عن معنى الانتماء.",
       },
       cards: [
         { icon: "♜", title: "الموقع الزمني", text: "ستينيات القرن العشرين — عصر الثورة الكردية" },
-        { icon: "⛩", title: "الموقع الجغرافي", text: "منطقة دهوك، كردستان العراق" },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "منطقة بارواري، محافظة دهوك — ومنطقة عقرة، كردستان العراق",
+        },
       ],
-      quote: "قاتلت من أجل وطن أعظم من نفسها.",
-      quoteAuthor: "تُذكر في جميع أنحاء كردستان",
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "لم تكن مارغريت كردية — بل امرأة آشورية مسيحية. ومع ذلك قاتلت وماتت من أجل كردستان، مما أثبت أن القضية الكردية تخص كل من يشارك جبالها.",
+      },
+      quote:
+        "في عصرها، كانت صورها موجودة في كل مكان في كردستان — مما يُبرز مساواة المرأة داخل المجتمع الكردي.",
+      quoteAuthor: "المصور الكردي زاهر رشيد",
+    },
+    "dayka-aisha": {
+      nameLine1: "الأم",
+      nameLine2: "عائشة",
+      role: "رمز الصمود والوطنية",
+      metaLine: "١٩٤٦ – يوليو ٢٠٢٠ | كركوك وسوران، كردستان العراق",
+      intro:
+        "أصبحت الأم عائشة جبلاً لا يتزعزع من الصمود والتضحية القصوى في التاريخ الحديث لكردستان. في ديسمبر ٢٠١٤، خلال الدفاع الشرس ضد إرهابيي داعش على جبهة كركوك، استُشهد ثلاثة من أبنائها البيشمركة — مولود وأحمد ونيشتيمان — معاً في اليوم نفسه وفي المعركة نفسها. بدلاً من الانهيار في الحزن عند عودة جثثهم، وقفت شامخة بفخر لا مثيل له، معلنة أن أبناءها فداء للوطن. قضت سنواتها المتبقية في زيارة خطوط المواجهة، ورفع معنويات المدافعين، وأصبحت الأم الروحية لكل بيشمركي.",
+      portraitAlt: "الأم عائشة",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "تحويل الخسارة المدمرة لثلاثة أبناء في يوم واحد إلى رسالة تاريخية من التحدي، ورفع معنويات قوات البيشمركة بأكملها بمفردها ضد أبشع تنظيم إرهابي في العالم.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "أعادت الأم عائشة تعريف الأمومة من عاطفة خاصة إلى ركيزة وطنية عظيمة، مثبتة أن النساء الكرديات هن الأساس الجوهري للصمود والشجاعة في أحلك ساعات الأمة.",
+      },
+      cards: [
+        {
+          icon: "♜",
+          title: "الموقع الزمني",
+          text: "١٩٤٦ حتى يوليو ٢٠٢٠ (عصر الحرب ضد داعش والدفاع الحديث عن كردستان)",
+        },
+        {
+          icon: "⛩",
+          title: "الموقع الجغرافي",
+          text: "مناطق خطوط المواجهة في محافظة كركوك (تحديداً قطاعات تل ورد ومكتب خالد) ومسكنها في سوران (محافظة أربيل)",
+        },
+      ],
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "بعد خسارتها الهائلة، رفضت الأم عائشة البقاء في المنزل؛ كانت تسافر بانتظام مباشرة إلى خطوط المواجهة الخطرة في كركوك، تطبخ الوجبات للجنود بيديها، وتبقى في الخنادق تقدم الحب الأمومي والقوة للجنود.",
+      },
+      quote:
+        "ضُحي بأبنائي من أجل التربة والوطن؛ حافظوا على معنوياتكم مرتفعة ولا تغادروا خطوط المواجهة أبداً.",
+      quoteAuthor: "الأم عائشة",
     },
   },
 };
