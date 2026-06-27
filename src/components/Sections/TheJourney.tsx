@@ -396,19 +396,19 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
               <img
                 ref={(el) => { imageRefs.current[0] = el; }}
                 src={bg}
-                className="journey-image absolute right-0 top-0 h-[900px] w-[96%] rounded-[58px] object-cover opacity-80 [mask-image:radial-gradient(circle,black_54%,transparent_79%)]"
+                className="journey-image absolute right-0 top-0 h-[900px] w-[104%] rounded-[58px] object-cover opacity-80 [mask-image:linear-gradient(to_right,transparent_0%,black_26%),radial-gradient(circle,black_54%,transparent_79%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
                 alt="1991 illustration"
               />
               <img
                 ref={(el) => { imageRefs.current[1] = el; }}
                 src={bg2}
-                className="journey-image absolute right-0 top-[800px] h-[800px] w-[96%] rounded-[58px] object-cover opacity-78 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+                className="journey-image absolute right-0 top-[800px] h-[800px] w-[104%] rounded-[58px] object-cover opacity-78 [mask-image:linear-gradient(to_right,transparent_0%,black_26%),radial-gradient(circle,black_54%,transparent_82%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
                 alt="1992 illustration"
               />
               <img
                 ref={(el) => { imageRefs.current[2] = el; }}
                 src={bg3}
-                className="journey-image absolute right-0 top-[1400px] h-[910px] w-[96%] rounded-[58px] object-cover opacity-76 [mask-image:radial-gradient(circle,black_54%,transparent_82%)]"
+                className="journey-image absolute right-0 top-[1400px] h-[910px] w-[104%] rounded-[58px] object-cover opacity-76 [mask-image:linear-gradient(to_right,transparent_0%,black_26%),radial-gradient(circle,black_54%,transparent_82%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
                 alt="building institutions illustration"
               />
             </div>
