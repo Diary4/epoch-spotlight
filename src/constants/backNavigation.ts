@@ -13,3 +13,9 @@ export const detailBackButtonClassName =
 export const detailBackIconSize = 32;
 
 export const detailBackIconClassName = "rtl:rotate-180";
+
+/** Scaled 1400px canvas pages (Government, Parliament, Presidency) */
+export const systemCanvasBackButtonClassName =
+  "system-detail-back absolute left-6 top-5 z-30 grid h-10 w-10 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-6";
+
+export const systemCanvasBackIconSize = 20;
