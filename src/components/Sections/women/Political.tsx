@@ -167,16 +167,10 @@ export default function WomenPoliticalPage({
                 data-political-fade="true"
                 className="relative z-20 mx-auto flex w-full max-w-[700px] flex-col items-center"
               >
-                <h1 className={`${displayFont} text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
-                  {copy.heroTitle1}
-                  <br />
-                  <span className="inline-flex items-center gap-3 text-[0.48em] leading-none">
-                    <span className="h-px w-[clamp(24px,6vw,80px)] bg-[#d4b98f]" />
-                    {heroConnector}
-                    <span className="h-px w-[clamp(24px,6vw,80px)] bg-[#d4b98f]" />
-                  </span>
-                  <br />
-                  {copy.heroTitle2}
+                <h1 className={`${displayFont} flex flex-wrap items-center justify-center gap-x-3 text-[clamp(20px,6vw,96px)] font-medium leading-none tracking-tight text-[#2c1337] sm:flex-nowrap sm:gap-x-4`}>
+                  <span>{copy.heroTitle1}</span>
+                  <span>{heroConnector}</span>
+                  <span>{copy.heroTitle2}</span>
                 </h1>
 
                 <div className="my-3 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] sm:my-6 lg:my-8">
@@ -196,21 +190,14 @@ export default function WomenPoliticalPage({
             </section>
 
             {/* People cards */}
-            <section
-              className="relative z-20 mt-6 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10"
-              style={{ display: "grid", gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}
-            >
-              {people.map((person, index) => (
+            <section className="relative z-20 mt-6 grid grid-cols-2 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10">
+              {people.map((person) => (
                 <button
                   type="button"
                   data-political-card="true"
                   key={person.id}
                   onClick={() => setSelectedId(person.id)}
-                  style={{
-                    gridColumn:
-                      people.length > 5 ? "span 2" : index < 3 ? "span 2" : "span 3",
-                  }}
-                  className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
+                  className={`relative flex min-w-0 w-full cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
                     dir === "rtl" ? "text-right" : "text-left"
                   }`}
                 >
