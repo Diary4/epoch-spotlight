@@ -10,7 +10,7 @@ import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
 import card3 from "@/assets/images/new/the-system.webp";
 import card4 from "@/assets/images/new/the-land-and-future.webp";
-import peopleVideo from "@/assets/videos/main.mp4";
+import peopleVideo from "@/assets/videos/main.webm";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 

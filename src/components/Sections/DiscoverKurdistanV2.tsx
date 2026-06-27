@@ -10,7 +10,7 @@ import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
 import card3 from "@/assets/images/new/the-system.webp";
 import card4 from "@/assets/images/new/the-land-and-future.webp";
-import peopleVideo from "@/assets/videos/main.mp4";
+import peopleVideo from "@/assets/videos/main.webm";
 import backgroundPattern from "@/assets/images/patterns/flower.webp";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
@@ -115,7 +115,7 @@ function SectionCard({
             loop
             playsInline
             preload="auto"
-            className="h-full w-full object-contain"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#fffaf0] to-transparent sm:h-16" />
           <GoldIcon className="absolute bottom-0 left-1/2 z-10 h-12 w-12 -translate-x-1/2 translate-y-1/2 xs:h-14 xs:w-14 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32">
