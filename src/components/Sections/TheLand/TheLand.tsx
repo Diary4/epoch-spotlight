@@ -175,11 +175,12 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
                 <img
                   src={bg}
                   alt="Kurdistan landscape placeholder"
-                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  className="absolute inset-0 h-full w-full object-cover object-left-bottom opacity-72 [mask-image:linear-gradient(to_right,black_0%,black_52%,rgba(0,0,0,0.78)_68%,rgba(0,0,0,0.38)_82%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_10%,black_76%,rgba(0,0,0,0.45)_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,black_0%,black_52%,rgba(0,0,0,0.78)_68%,rgba(0,0,0,0.38)_82%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_10%,black_76%,rgba(0,0,0,0.45)_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/25 to-[#fbf5eb] rtl:bg-gradient-to-l" />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5eb] via-transparent to-[#fbf5eb]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/18 to-[#fbf5eb] rtl:bg-gradient-to-l" />
+              <div className="absolute top-0 left-0 h-32 w-full bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/45 to-transparent" />
+              <div className="absolute bottom-0 left-0 h-36 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/50 to-[#fbf5eb]" />
             </div>
 
             {/* Left text */}
