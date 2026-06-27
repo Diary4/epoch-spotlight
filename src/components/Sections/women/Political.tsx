@@ -210,7 +210,7 @@ export default function WomenPoliticalPage({
                     gridColumn:
                       people.length > 5 ? "span 2" : index < 3 ? "span 2" : "span 3",
                   }}
-                  className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
+                  className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
                     dir === "rtl" ? "text-right" : "text-left"
                   }`}
                 >

@@ -246,7 +246,7 @@ export default function WomenHistoricPage({
 
             {/* Quotes grid */}
             <section
-              className="relative z-20 mt-6 grid grid-cols-4 gap-2 px-3 pb-12 sm:gap-6 sm:px-5 sm:pb-16 md:gap-6 lg:px-10 lg:pb-20"
+              className="relative z-20 mt-6 grid grid-cols-3 gap-2 px-3 pb-12 sm:gap-6 sm:px-5 sm:pb-16 md:gap-6 lg:px-10 lg:pb-20"
             >
               {copy.quotes.map(({ text, author }) => (
                 <article
