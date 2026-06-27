@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import bg from "@/assets/mainImages/system.webp"
+import bg from "@/assets/mainImages/thesystem/parlaman.jpg"
 
 function Logo() {
   return (
@@ -13,17 +13,6 @@ function Logo() {
       </div>
       <h2 className="font-serif text-[34px] text-[#17233b]">Gate of Kurdistan</h2>
     </div>
-  );
-}
-
-function HeaderButton({ icon, label }) {
-  return (
-    <button className="flex flex-col items-center gap-1 text-[#17233b]">
-      <span className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#d7bd8a] bg-white/55 shadow-sm">
-        {icon}
-      </span>
-      <span className="text-[18px]">{label}</span>
-    </button>
   );
 }
 
@@ -143,7 +132,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-system-bg='true']", { autoAlpha: 0, y: 18, scale: 1.04 });
+      gsap.set("[data-system-bg='true']", { clipPath: "inset(0 0 100% 0)", autoAlpha: 1 });
       gsap.set("[data-system-hero='true']", { autoAlpha: 0, y: 20 });
       gsap.set("[data-system-triangle='true']", { autoAlpha: 0, rotate: -14, scale: 0.94, transformOrigin: "50% 50%" });
       gsap.set("[data-system-node]", { autoAlpha: 0, y: 28, scale: 0.9 });
@@ -152,11 +141,16 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
       gsap.set("[data-system-prime-text='true']", { autoAlpha: 0, y: 12 });
 
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-      tl.to("[data-system-prime-border='true']", {
-        clipPath: "inset(0 0% 0 0 round 30px)",
-        duration: 0.95,
+      tl.to("[data-system-bg='true']", {
+        clipPath: "inset(0 0 0% 0)",
+        duration: 1.15,
         ease: "power3.out",
       })
+        .to("[data-system-prime-border='true']", {
+          clipPath: "inset(0 0% 0 0 round 30px)",
+          duration: 0.95,
+          ease: "power3.out",
+        }, "-=0.55")
         .to(
           "[data-system-prime-text='true']",
           { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.08 },
@@ -168,11 +162,6 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
           "-=0.05",
         )
         .to(
-          "[data-system-bg='true']",
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.9 },
-          "<+=0.1",
-        )
-        .to(
           "[data-system-node]",
           { autoAlpha: 1, y: 0, scale: 1, duration: 0.75, stagger: 0.14 },
           "-=0.7",
@@ -180,7 +169,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         .to(
           "[data-system-hero='true']",
           { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.1 },
-          "-=0.2",
+          "-=0.85",
         )
         .to(
           "[data-system-footer='true']",
@@ -195,7 +184,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-amiri" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -210,7 +199,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
           containerType: "inline-size",
         }}
       >
-        <main className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+        <main className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section
             ref={sectionRef}
             className="relative mx-auto flex w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]"
@@ -225,17 +214,20 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             </button>
             <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
-            {/* Hero illustration overlay */}
-            <div data-system-bg="true" className="pointer-events-none absolute right-0 top-0 z-0 h-[700px] w-full overflow-hidden rtl:right-auto rtl:left-0">
+            {/* Hero illustration overlay — explicit height + object-cover so the image fills and bottom fade applies */}
+            <div
+              data-system-bg="true"
+              className="pointer-events-none absolute right-0 top-0 z-0 h-[860px] w-[70%] overflow-hidden rtl:right-auto rtl:left-0"
+            >
               <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
                 <img
                   src={bg}
                   alt="System building placeholder"
-                  className="absolute inset-0 h-full w-full object-cover object-right opacity-72 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                  className="absolute inset-0 h-full w-full object-cover object-right-top opacity-72 [mask-image:linear-gradient(to_bottom,black_0%,black_68%,rgba(0,0,0,0.82)_78%,rgba(0,0,0,0.45)_88%,rgba(0,0,0,0.12)_96%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_68%,rgba(0,0,0,0.82)_78%,rgba(0,0,0,0.45)_88%,rgba(0,0,0,0.12)_96%,transparent_100%)]"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
-              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
+              <div className="absolute bottom-0 left-0 h-24 w-[70%] bg-gradient-to-b from-transparent via-[#fbf5eb]/55 to-[#fbf5eb]" />
             </div>
 
             <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
