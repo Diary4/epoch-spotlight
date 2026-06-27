@@ -10,8 +10,7 @@ import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
 import card3 from "@/assets/images/new/the-system.webp";
 import card4 from "@/assets/images/new/the-land-and-future.webp";
-import peopleVideo from "@/assets/videos/main.webm";
-import backgroundPattern from "@/assets/images/patterns/flower.webp";
+import peopleVideo from "@/assets/videos/main-compressed.mp4";
 
 type DiscoverSectionId = "people" | "journey" | "system" | "landFuture";
 
@@ -107,7 +106,7 @@ function SectionCard({
         onClick={() => onSelect?.(section.id)}
         className={`relative flex w-full flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#e1bf7a] sm:border-2 bg-[#fffaf0] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_12px_36px_rgba(84,54,16,0.18)] ${pressClass}`}
       >
-        <div className="relative flex min-h-[260px] w-full items-center justify-center bg-[#f3ead8] xs:min-h-[300px] sm:min-h-[400px] md:min-h-[460px] lg:min-h-[520px] xl:min-h-[580px]">
+        <div className="relative aspect-video w-full bg-[#f3ead8]">
           <video
             src={peopleVideo}
             autoPlay
