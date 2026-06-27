@@ -302,7 +302,7 @@ export default function WomenDetailPanel({
                 ❖
               </div>
 
-              <p className={`break-words ${displayFont} text-[clamp(20px,5.5vw,44px)] italic leading-snug text-[#2d1436]`}>
+              <p className={`break-words ${displayFont} text-[clamp(16px,3.5vw,30px)] italic leading-snug text-[#2d1436]`}>
                 {quote}
               </p>
 
