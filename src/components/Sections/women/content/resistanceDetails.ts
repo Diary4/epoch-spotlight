@@ -6,31 +6,31 @@ export const resistanceDetailsByLang = {
       role: "Tribal Leader · Military Commander · Diplomat",
       metaLine: "c. 1820 – 1865 | Maras / Elbistan, Northern Kurdistan",
       intro:
-        "Kara Fatima was the leader of the Olkan tribe in the Maras region. When her husband was imprisoned by Ottoman authorities, she did not fall — she rose. She became the leader of her tribe in his place. Her name reached the world when, during the Crimean War (1853–1856) against Russia, she marched to Istanbul with a force of 500 fighters under her own command to support the Ottoman army. The international press of the era — including the Illustrated London News — reported in amazement on this \"Kurdish lioness\" who rode on horseback, armed and in battle dress, commanding men in war.",
+        "Kara Fatima was the leader of the Olkan tribe in the Maras region. When her husband was imprisoned by Ottoman authorities, she did not fall, she rose. She became the leader of her tribe in his place. Her name reached the world when, during the Crimean War (1853–1856) against Russia, she marched to Istanbul with a force of 500 fighters under her own command to support the Ottoman army. The international press of the era, including the Illustrated London News, reported in amazement on this \"Kurdish lioness\" who rode on horseback, armed and in battle dress, commanding men in war.",
       portraitAlt: "Kara Fatima",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "In the 19th century, she formed her own private cavalry force from Kurdish horsemen. She was the first Kurdish woman to have her drawn portrait published in an international magazine — the Illustrated London News — presented as an effective military commander. She fought not only on the battlefield but also as a diplomat, negotiating with the state for the release of her husband and the protection of her people's rights.",
+        text: "In the 19th century, she formed her own private cavalry force from Kurdish horsemen. She was the first Kurdish woman to have her drawn portrait published in an international magazine, the Illustrated London News, presented as an effective military commander. She fought not only on the battlefield but also as a diplomat, negotiating with the state for the release of her husband and the protection of her people's rights.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Kara Fatima is proof that 170 years ago, a Kurdish woman rose to the height of military and political power within a tribal system. She did not just defend her tribe — she operated as a diplomatic force with the state itself, on equal terms. Her story was considered remarkable enough to be printed in the world's press. It still is.",
+        text: "Kara Fatima is proof that 170 years ago, a Kurdish woman rose to the height of military and political power within a tribal system. She did not just defend her tribe, she operated as a diplomatic force with the state itself, on equal terms. Her story was considered remarkable enough to be printed in the world's press. It still is.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "Mid 19th Century — Ottoman Empire era" },
+        { icon: "♜", title: "Timeline Position", text: "Mid 19th Century, Ottoman Empire era" },
         {
           icon: "⛩",
           title: "Map Location",
-          text: "Maras, Elbistan (Northern Kurdistan) — and Istanbul",
+          text: "Maras, Elbistan (Northern Kurdistan), and Istanbul",
         },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "The title \"Kara\" — meaning black or brave — was given in that era to people of exceptional boldness and fearlessness. When Kara Fatima arrived in Istanbul, crowds gathered just to see her, because it was extraordinary for a woman to hold military command in that way.",
+        text: "The title \"Kara\", meaning black or brave, was given in that era to people of exceptional boldness and fearlessness. When Kara Fatima arrived in Istanbul, crowds gathered just to see her, because it was extraordinary for a woman to hold military command in that way.",
       },
       quote:
-        "She was a tall and majestic woman — even the Ottoman Sultan received her with great respect.",
+        "She was a tall and majestic woman, even the Ottoman Sultan received her with great respect.",
       quoteAuthor: "European press, 1854",
     },
     "qadam-kher": {
@@ -76,7 +76,7 @@ export const resistanceDetailsByLang = {
       role: "Field Journalist · Presenter · Output Manager at Rudaw",
       metaLine: "July 1, 1986 – February 25, 2017",
       intro:
-        "Shifa Gardi was born in Piranshahr and grew into one of Kurdistan's most fearless field journalists. She helped build the Rudaw news team from its early days, presenting and reporting from the front lines of the war against ISIS. She went where few dared — into Mosul, into battle zones, into the heart of danger — to bring the truth home. On February 25, 2017, while covering operations against ISIS near Mosul, she was killed by a roadside bomb. She was 30 years old.",
+        "Shifa Gardi was born in Piranshahr and grew into one of Kurdistan's most fearless field journalists. She helped build the Rudaw news team from its early days, presenting and reporting from the front lines of the war against ISIS. She went where few dared, into Mosul, into battle zones, into the heart of danger, to bring the truth home. On February 25, 2017, while covering operations against ISIS near Mosul, she was killed by a roadside bomb. She was 30 years old.",
       portraitAlt: "Shifa Gardi",
       listIcon: "flower",
       greatestAchievement: {
@@ -113,7 +113,7 @@ export const resistanceDetailsByLang = {
       role: "Student Activist · Kurdish Martyr · National Symbol",
       metaLine: "1952 – May 12, 1974 | Khanaqin, Iraqi Kurdistan",
       intro:
-        "Leyla Qasim was 22 years old when they executed her. She was a sociology student in Baghdad who had joined the Kurdish resistance movement. When Saddam Hussein's government arrested her, she faced her trial with defiance, not fear. She was executed on May 12, 1974 — and her final words became some of the most repeated words in Kurdish history.",
+        "Leyla Qasim was 22 years old when they executed her. She was a sociology student in Baghdad who had joined the Kurdish resistance movement. When Saddam Hussein's government arrested her, she faced her trial with defiance, not fear. She was executed on May 12, 1974, and her final words became some of the most repeated words in Kurdish history.",
       portraitAlt: "Leyla Qasim",
       listIcon: "flower",
       greatestAchievement: {
@@ -122,15 +122,15 @@ export const resistanceDetailsByLang = {
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Leyla Qasim was not a general or a ruler. She was a young woman who believed in her people — and paid for that belief with her life. She proved that courage has no age, no rank, and no gender.",
+        text: "Leyla Qasim was not a general or a ruler. She was a young woman who believed in her people, and paid for that belief with her life. She proved that courage has no age, no rank, and no gender.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1970s — Era of Baathist repression" },
+        { icon: "♜", title: "Timeline Position", text: "1970s, Era of Baathist repression" },
         { icon: "⛩", title: "Map Location", text: "Khanaqin and Baghdad, Iraq" },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Leyla Qasim's execution date — May 12 — is remembered and commemorated annually across Kurdistan. Her name is given to schools, cultural centers, and streets throughout the region.",
+        text: "Leyla Qasim's execution date, May 12, is remembered and commemorated annually across Kurdistan. Her name is given to schools, cultural centers, and streets throughout the region.",
       },
       quote: "Kill me, but thousands of Kurds will wake up.",
       quoteAuthor: "Leyla Qasim, before her execution, 1974",
@@ -166,7 +166,7 @@ export const resistanceDetailsByLang = {
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Khaja Bawa was so occupied with the struggle and the movement that she never had time to take a proper photograph. There is only one photo of her — the one from her civil identity card — which was enlarged after her martyrdom and is now seen as an iconic image of the uprising.",
+        text: "Khaja Bawa was so occupied with the struggle and the movement that she never had time to take a proper photograph. There is only one photo of her, the one from her civil identity card, which was enlarged after her martyrdom and is now seen as an iconic image of the uprising.",
       },
       quote:
         "My mother knew the uprising would happen; she said: 'Change your black clothes and wear bright, colorful ones, because tomorrow is our day.'",
@@ -178,7 +178,7 @@ export const resistanceDetailsByLang = {
       role: "First Female Peshmerga Fighter · Military Commander",
       metaLine: "January 21, 1942 – December 26, 1969 | Duhok, Iraqi Kurdistan",
       intro:
-        "Margaret George Shello was a Christian Assyrian woman from a mountain village in Duhok. She was working in a hospital when her village was attacked by a pro-government militia in 1963. She picked up a weapon and joined the Peshmerga. Within a short time, she rose from hospital worker to commander of an all-male fighting unit. Photographs of her in uniform spread across Iraq and reached Europe — making her the most recognized female symbol of the Kurdish revolution in the world.",
+        "Margaret George Shello was a Christian Assyrian woman from a mountain village in Duhok. She was working in a hospital when her village was attacked by a pro-government militia in 1963. She picked up a weapon and joined the Peshmerga. Within a short time, she rose from hospital worker to commander of an all-male fighting unit. Photographs of her in uniform spread across Iraq and reached Europe, making her the most recognized female symbol of the Kurdish revolution in the world.",
       portraitAlt: "Margaret George Shello",
       listIcon: "crown",
       greatestAchievement: {
@@ -190,19 +190,19 @@ export const resistanceDetailsByLang = {
         text: "Margaret Shello broke two barriers at once: she was a woman leading men in battle, and a Christian fighting alongside Muslims for a shared homeland. Her story is about what it means to belong.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1960s — Era of the Kurdish Revolution" },
+        { icon: "♜", title: "Timeline Position", text: "1960s, Era of the Kurdish Revolution" },
         {
           icon: "⛩",
           title: "Map Location",
-          text: "Barwari region, Duhok Governorate — and Akre area, Iraqi Kurdistan",
+          text: "Barwari region, Duhok Governorate, and Akre area, Iraqi Kurdistan",
         },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Margaret was not Kurdish — she was a Christian Assyrian woman. Yet she fought and died for Kurdistan, proving that the Kurdish cause belonged to everyone who shared its mountains.",
+        text: "Margaret was not Kurdish, she was a Christian Assyrian woman. Yet she fought and died for Kurdistan, proving that the Kurdish cause belonged to everyone who shared its mountains.",
       },
       quote:
-        "In her time, photographs of her existed everywhere in Kurdistan — highlighting the equality of women within Kurdish society.",
+        "In her time, photographs of her existed everywhere in Kurdistan, highlighting the equality of women within Kurdish society.",
       quoteAuthor: "Kurdish photographer Zaher Rashid",
     },
     "dayka-aisha": {
@@ -211,7 +211,7 @@ export const resistanceDetailsByLang = {
       role: "Symbol of Resilience and Patriotism",
       metaLine: "1946 – July 2020 | Kirkuk & Soran, Iraqi Kurdistan",
       intro:
-        "Dayka Aisha became an immovable mountain of resilience and ultimate sacrifice in the modern history of Kurdistan. In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons — Mawloud, Ahmed, and Nishtiman — were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
+        "Dayka Aisha became an immovable mountain of resilience and ultimate sacrifice in the modern history of Kurdistan. In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons, Mawloud, Ahmed, and Nishtiman, were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
       portraitAlt: "Dayka Aisha",
       listIcon: "flower",
       greatestAchievement: {
@@ -250,30 +250,30 @@ export const resistanceDetailsByLang = {
       role: "سەرۆکی هۆز · فەرماندەی سەربازی · دیپلۆمات",
       metaLine: "نزیکەی ١٨٢٠ – ١٨٦٥ | مەڕەش / ئەلبستان، کوردستانی باکوور",
       intro:
-        "قەرە فاتیمە سەرۆکی هۆزی ئۆلکان لە ناوچەی مەڕەش بوو. کاتێک هاوسەرەکەی لەلایەن دەسەڵاتی عوسمانییەوە زیندانی کرا، نەگەیشت بە خوارەوە — بەرزبووەوە. شوێنی هاوسەرەکەی وەک سەرۆکی هۆزەکەی گرت. ناوی گەیشتە جیهان کاتێک لە جەنگی قریمە (١٨٥٣–١٨٥٦) دژی ڕووسیا، بە ٥٠٠ شەڕڤان لەژێر فەرماندەیی خۆی ڕۆیشتە ئیستانبول بۆ پشتیوانی لە سوپای عوسمانی. ڕۆژنامەکانی نێودەوڵەتی ئەو سەردەمە — لەوانە Illustrated London News — بە سەرسوڕمانەوە ڕاپۆرتیان کرد لەسەر ئەم «شێری کوردی» کە سواری ئەسپ بوو، چەکدار و بە جلی شەڕ، پیاوان لە جەنگدا فەرماندەیی دەکرد.",
+        "قەرە فاتیمە سەرۆکی هۆزی ئۆلکان لە ناوچەی مەڕەش بوو. کاتێک هاوسەرەکەی لەلایەن دەسەڵاتی عوسمانییەوە زیندانی کرا، نەگەیشت بە خوارەوە, بەرزبووەوە. شوێنی هاوسەرەکەی وەک سەرۆکی هۆزەکەی گرت. ناوی گەیشتە جیهان کاتێک لە جەنگی قریمە (١٨٥٣–١٨٥٦) دژی ڕووسیا، بە ٥٠٠ شەڕڤان لەژێر فەرماندەیی خۆی ڕۆیشتە ئیستانبول بۆ پشتیوانی لە سوپای عوسمانی. ڕۆژنامەکانی نێودەوڵەتی ئەو سەردەمە, لەوانە Illustrated London News, بە سەرسوڕمانەوە ڕاپۆرتیان کرد لەسەر ئەم «شێری کوردی» کە سواری ئەسپ بوو، چەکدار و بە جلی شەڕ، پیاوان لە جەنگدا فەرماندەیی دەکرد.",
       portraitAlt: "قەرە فاتیمە",
       listIcon: "crown",
       greatestAchievement: {
         title: "گەورەترین دەستکەوت",
-        text: "لە سەدەی نوزدەهەمدا، هێزی تایبەتی سوارچاکی خۆی لە سوارچاکانی کوردی دروستکرد. یەکەم ژنانی کوردی بوو کە وێنەی وێنەکێشکراوی لە گۆڤارێکی نێودەوڵەتیدا — Illustrated London News — وەک فەرماندەیەکی سەربازی کاریگەر بڵاوکرایەوە. نەک تەنها لە مەیدانی شەڕدا، بەڵکو وەک دیپلۆماتیش شەڕی کرد، دانوستاندن لەگەڵ دەوڵەت بۆ ئازادکردنی هاوسەرەکەی و پاراستنی مافەکانی خەڵکەکەی.",
+        text: "لە سەدەی نوزدەهەمدا، هێزی تایبەتی سوارچاکی خۆی لە سوارچاکانی کوردی دروستکرد. یەکەم ژنانی کوردی بوو کە وێنەی وێنەکێشکراوی لە گۆڤارێکی نێودەوڵەتیدا, Illustrated London News, وەک فەرماندەیەکی سەربازی کاریگەر بڵاوکرایەوە. نەک تەنها لە مەیدانی شەڕدا، بەڵکو وەک دیپلۆماتیش شەڕی کرد، دانوستاندن لەگەڵ دەوڵەت بۆ ئازادکردنی هاوسەرەکەی و پاراستنی مافەکانی خەڵکەکەی.",
       },
       whySheMatters: {
         title: "بۆچی هێشتا گرنگە",
-        text: "قەرە فاتیمە بەڵگەیە کە ١٧٠ ساڵ لەمەوبەر، ژنێکی کوردی گەیشتە بەرزترین ئاستی دەسەڵاتی سەربازی و سیاسی لە ناو سیستەمی هۆزی. تەنها هۆزەکەی بەرگری نەکرد — وەک هێزێکی دیپلۆماتی لەگەڵ دەوڵەت خۆی کاریکرد، لەسەر یەکسانی. چیرۆکەکەی بە شێوەیەکی سەرنجڕاکێش بەس بۆ چاپکرا لە ڕۆژنامەکانی جیهان. هێشتاش وایە.",
+        text: "قەرە فاتیمە بەڵگەیە کە ١٧٠ ساڵ لەمەوبەر، ژنێکی کوردی گەیشتە بەرزترین ئاستی دەسەڵاتی سەربازی و سیاسی لە ناو سیستەمی هۆزی. تەنها هۆزەکەی بەرگری نەکرد, وەک هێزێکی دیپلۆماتی لەگەڵ دەوڵەت خۆی کاریکرد، لەسەر یەکسانی. چیرۆکەکەی بە شێوەیەکی سەرنجڕاکێش بەس بۆ چاپکرا لە ڕۆژنامەکانی جیهان. هێشتاش وایە.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "ناوەڕاستی سەدەی نوزدەهەم — سەردەمی ئیمپراتۆریەتی عوسمانی" },
+        { icon: "♜", title: "شوێنی کات", text: "ناوەڕاستی سەدەی نوزدەهەم, سەردەمی ئیمپراتۆریەتی عوسمانی" },
         {
           icon: "⛩",
           title: "شوێنی نەخشە",
-          text: "مەڕەش، ئەلبستان (کوردستانی باکوور) — و ئیستانبول",
+          text: "مەڕەش، ئەلبستان (کوردستانی باکوور), و ئیستانبول",
         },
       ],
       didYouKnow: {
         title: "ئایا دەزانی؟",
-        text: "ناونیشانی «قەرە» — واتای ڕەش یان ئازا — لەو سەردەمەدا بە کەسانی ئازایەتی و بێترسی تایبەت دەدرا. کاتێک قەرە فاتیمە گەیشتە ئیستانبول، خەڵک کۆبوونەوە تەنها بۆ بینینی، چونکە زۆر نائاسایی بوو ژنێک بەم شێوەیە فەرماندەیی سەربازی بکات.",
+        text: "ناونیشانی «قەرە», واتای ڕەش یان ئازا, لەو سەردەمەدا بە کەسانی ئازایەتی و بێترسی تایبەت دەدرا. کاتێک قەرە فاتیمە گەیشتە ئیستانبول، خەڵک کۆبوونەوە تەنها بۆ بینینی، چونکە زۆر نائاسایی بوو ژنێک بەم شێوەیە فەرماندەیی سەربازی بکات.",
       },
-      quote: "ژنێکی بەرز و شکۆمەند بوو — تەنانەت سوڵتانی عوسمانیش بە ڕێزێکی زۆرەوە پێشوازی لێکرد.",
+      quote: "ژنێکی بەرز و شکۆمەند بوو, تەنانەت سوڵتانی عوسمانیش بە ڕێزێکی زۆرەوە پێشوازی لێکرد.",
       quoteAuthor: "ڕۆژنامەی ئەوروپی، ١٨٥٤",
     },
     "qadam-kher": {
@@ -311,7 +311,7 @@ export const resistanceDetailsByLang = {
       role: "ڕۆژنامەنووسی مەیدان · پێشکەشکار · بەڕێوەبەری بەرهەم لە ڕووداو",
       metaLine: "١ی تەمموزی ١٩٨٦ – ٢٥ی شوباتی ٢٠١٧",
       intro:
-        "شیفا گەردی لە پیرانشەهر لەدایکبوو و گەشی کرد بۆ یەکێک لە بێترسترین ڕۆژنامەنووسانی مەیدانی کوردستان. یارمەتی دا تیمە هەواڵی ڕووداو لە ڕۆژە سەرەتاییەکانی دروست بکات، پێشکەشکردن و ڕاپۆرتکردن لە هێڵی پێشەوەی شەڕی دژی داعش. ڕۆیشت بۆ شوێنەکانی کە کەم کەس دەچو — مووسڵ، ناوچەکانی شەڕ، ناوەڕاستی مەترسی — بۆ گەیاندنی ڕاستی بۆ ماڵەوە. لە ٢٥ی شوباتی ٢٠١٧، لە کاتی ڕووماڵکردنی کارەکان دژی داعش نزیک مووسڵ، لەلایەن بۆمبێکی ڕێگا شەهید بوو. تەمەنی ٣٠ ساڵ بوو.",
+        "شیفا گەردی لە پیرانشەهر لەدایکبوو و گەشی کرد بۆ یەکێک لە بێترسترین ڕۆژنامەنووسانی مەیدانی کوردستان. یارمەتی دا تیمە هەواڵی ڕووداو لە ڕۆژە سەرەتاییەکانی دروست بکات، پێشکەشکردن و ڕاپۆرتکردن لە هێڵی پێشەوەی شەڕی دژی داعش. ڕۆیشت بۆ شوێنەکانی کە کەم کەس دەچو, مووسڵ، ناوچەکانی شەڕ، ناوەڕاستی مەترسی, بۆ گەیاندنی ڕاستی بۆ ماڵەوە. لە ٢٥ی شوباتی ٢٠١٧، لە کاتی ڕووماڵکردنی کارەکان دژی داعش نزیک مووسڵ، لەلایەن بۆمبێکی ڕێگا شەهید بوو. تەمەنی ٣٠ ساڵ بوو.",
       portraitAlt: "شیفا گەردی",
       listIcon: "flower",
       greatestAchievement: {
@@ -348,7 +348,7 @@ export const resistanceDetailsByLang = {
       role: "چالاکوانی خوێندکار · شەهیدی کورد · هێمای نەتەوەیی",
       metaLine: "١٩٥٢ – ١٢ی ئایاری ١٩٧٤ | خانەقین، کوردستانی عێراق",
       intro:
-        "لەیلا قاسم تەمەنی ٢٢ ساڵ بوو کاتێک لە دەستیاندا. خوێندکاری سۆسیۆلۆژی لە بەغدا بوو کە بەشداری لە بزووتنەوەی بەرخۆدانی کوردی کردبوو. کاتێک حکومەتی سدام حوسێن دەستگیریکرد، ڕووبەڕووی دادگاکەی بە سەرهەڵدان و نەک ترس بووەوە. لە ١٢ی ئایاری ١٩٧٤ لە دەستدرا — و وشەکانی کۆتایی بوون بە هەندێک لە زۆرترین وشە دووبارەکراوەکان لە مێژووی کوردیدا.",
+        "لەیلا قاسم تەمەنی ٢٢ ساڵ بوو کاتێک لە دەستیاندا. خوێندکاری سۆسیۆلۆژی لە بەغدا بوو کە بەشداری لە بزووتنەوەی بەرخۆدانی کوردی کردبوو. کاتێک حکومەتی سدام حوسێن دەستگیریکرد، ڕووبەڕووی دادگاکەی بە سەرهەڵدان و نەک ترس بووەوە. لە ١٢ی ئایاری ١٩٧٤ لە دەستدرا, و وشەکانی کۆتایی بوون بە هەندێک لە زۆرترین وشە دووبارەکراوەکان لە مێژووی کوردیدا.",
       portraitAlt: "لەیلا قاسم",
       listIcon: "flower",
       greatestAchievement: {
@@ -357,15 +357,15 @@ export const resistanceDetailsByLang = {
       },
       whySheMatters: {
         title: "بۆچی هێشتا گرنگە",
-        text: "لەیلا قاسم سەرکردە یان فەرماندە نەبوو. ژنێکی گەنج بوو کە باوەڕی بە خەڵکەکەی هەبوو — و بەهای ئەو باوەڕە بە ژیانی دا. سەلماند کە ئازایەتی تەمەن و پلە و ڕەگەزی نییە.",
+        text: "لەیلا قاسم سەرکردە یان فەرماندە نەبوو. ژنێکی گەنج بوو کە باوەڕی بە خەڵکەکەی هەبوو, و بەهای ئەو باوەڕە بە ژیانی دا. سەلماند کە ئازایەتی تەمەن و پلە و ڕەگەزی نییە.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "ساڵانی ١٩٧٠ — سەردەمی داپێڕانی بەعس" },
+        { icon: "♜", title: "شوێنی کات", text: "ساڵانی ١٩٧٠, سەردەمی داپێڕانی بەعس" },
         { icon: "⛩", title: "شوێنی نەخشە", text: "خانەقین و بەغدا، عێراق" },
       ],
       didYouKnow: {
         title: "ئایا دەزانی؟",
-        text: "ڕۆژی لە دەستدانی لەیلا قاسم — ١٢ی ئایار — بە ساڵانە لە سەرانسەری کوردستان لە یادەوەری دەمێنرێتەوە. ناوی بە قوتابخانە و ناوەندە کلتووری و شەقامەکان لە هەموو ناوچەکەدا دەدرێت.",
+        text: "ڕۆژی لە دەستدانی لەیلا قاسم, ١٢ی ئایار, بە ساڵانە لە سەرانسەری کوردستان لە یادەوەری دەمێنرێتەوە. ناوی بە قوتابخانە و ناوەندە کلتووری و شەقامەکان لە هەموو ناوچەکەدا دەدرێت.",
       },
       quote: "بمکوژە، بەڵام هەزاران کورد لە خەو هەستن.",
       quoteAuthor: "لەیلا قاسم، پێش لە دەستدانی، ١٩٧٤",
@@ -401,7 +401,7 @@ export const resistanceDetailsByLang = {
       ],
       didYouKnow: {
         title: "ئایا دەزانی؟",
-        text: "خەجە باوە ئەوەندە بە تێکۆشان و بزووتنەوە سەرقاڵ بوو کە هەرگیز کاتی وەرگرتنی وێنەیەکی گونجاو نەبوو. تەنها یەک وێنەی لێ مایە — ئەوەی لە کارتی ناسنامەی شارستانییەکەی — کە دوای شەهیدبوونەکەی گەورە کرا و ئێستا وەک وێنەیەکی ئایکۆنیکی سەرهەڵدان دادەنرێت.",
+        text: "خەجە باوە ئەوەندە بە تێکۆشان و بزووتنەوە سەرقاڵ بوو کە هەرگیز کاتی وەرگرتنی وێنەیەکی گونجاو نەبوو. تەنها یەک وێنەی لێ مایە, ئەوەی لە کارتی ناسنامەی شارستانییەکەی, کە دوای شەهیدبوونەکەی گەورە کرا و ئێستا وەک وێنەیەکی ئایکۆنیکی سەرهەڵدان دادەنرێت.",
       },
       quote:
         "دایکم دەزانی سەرهەڵدان ڕوودەدات؛ دەڵێ: «جلی ڕەشەکانت بگۆڕە و جلی ڕووناک و ڕەنگاوڕەنگ بپۆشە، چونکە سبەی ڕۆژی ئێمەیە.»",
@@ -413,7 +413,7 @@ export const resistanceDetailsByLang = {
       role: "یەکەم شەڕڤانی پێشمەرگەی ژن · فەرماندەی سەربازی",
       metaLine: "٢١ی کانوونی دووەمی ١٩٤٢ – ٢٦ی کانوونی یەکەمی ١٩٦٩ | دهۆک، کوردستانی عێراق",
       intro:
-        "مارگرێت جۆرج شیلۆ ژنێکی ئاشوری مەسیحی بوو لە گوندێکی شاخاوی لە دهۆک. لە نەخۆشخانە کار دەکرد کاتێک گوندەکەی لەلایەن میلیشیایەکی پشتیوانی حکومەتەوە لە ساڵی ١٩٦٣ هێرش کرا. چەکی هەڵگرت و بەشداری لە پێشمەرگە کرد. لە ماوەیەکی کورتدا، لە کارمەندی نەخۆشخانە بووە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان. وێنەکانی بە یونیفۆرم لە سەرانسەری عێراق بڵاوبوونەوە و گەیشتنە ئەوروپا — وەک ناسراوترین هێمای ژنانی شۆڕشی کورد لە جیهان.",
+        "مارگرێت جۆرج شیلۆ ژنێکی ئاشوری مەسیحی بوو لە گوندێکی شاخاوی لە دهۆک. لە نەخۆشخانە کار دەکرد کاتێک گوندەکەی لەلایەن میلیشیایەکی پشتیوانی حکومەتەوە لە ساڵی ١٩٦٣ هێرش کرا. چەکی هەڵگرت و بەشداری لە پێشمەرگە کرد. لە ماوەیەکی کورتدا، لە کارمەندی نەخۆشخانە بووە فەرماندەی پێکهاتەیەکی تەواو پێشمەرگەی پیاوان. وێنەکانی بە یونیفۆرم لە سەرانسەری عێراق بڵاوبوونەوە و گەیشتنە ئەوروپا, وەک ناسراوترین هێمای ژنانی شۆڕشی کورد لە جیهان.",
       portraitAlt: "مارگرێت جۆرج شیلۆ",
       listIcon: "crown",
       greatestAchievement: {
@@ -425,19 +425,19 @@ export const resistanceDetailsByLang = {
         text: "مارگرێت شیلۆ دوو بەربەستی شکاند لە یەک کاتدا: ژنێک بوو کە پیاوان لە شەڕدا سەرکردایەتی دەکرد، و مەسیحییەک بوو کە لەگەڵ موسڵمانان بۆ نیشتمانێکی هاوبەش شەڕی کرد. چیرۆکەکەی دەربارەی واتای سەر بە ئێوە بوونە.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "ساڵانی ١٩٦٠ — سەردەمی شۆڕشی کورد" },
+        { icon: "♜", title: "شوێنی کات", text: "ساڵانی ١٩٦٠, سەردەمی شۆڕشی کورد" },
         {
           icon: "⛩",
           title: "شوێنی نەخشە",
-          text: "ناوچەی بارواری، پارێزگای دهۆک — و ناوچەی ئاکرێ، کوردستانی عێراق",
+          text: "ناوچەی بارواری، پارێزگای دهۆک, و ناوچەی ئاکرێ، کوردستانی عێراق",
         },
       ],
       didYouKnow: {
         title: "ئایا دەزانی؟",
-        text: "مارگرێت کورد نەبوو — ژنێکی ئاشوری مەسیحی بوو. بەڵام بۆ کوردستان شەڕی کرد و مرد، سەلماند کە کێشی کورد هی هەموو کەسێک بوو کە شاخەکانی هاوبەش بوون.",
+        text: "مارگرێت کورد نەبوو, ژنێکی ئاشوری مەسیحی بوو. بەڵام بۆ کوردستان شەڕی کرد و مرد، سەلماند کە کێشی کورد هی هەموو کەسێک بوو کە شاخەکانی هاوبەش بوون.",
       },
       quote:
-        "لە سەردەمی خۆیدا، وێنەکانی لە هەموو شوێنێکی کوردستان هەبوون — ڕووناککردنەوەی یەکسانی ژنان لە ناو کۆمەڵگەی کوردی.",
+        "لە سەردەمی خۆیدا، وێنەکانی لە هەموو شوێنێکی کوردستان هەبوون, ڕووناککردنەوەی یەکسانی ژنان لە ناو کۆمەڵگەی کوردی.",
       quoteAuthor: "وێنەگری کوردی زاهیر ڕەشید",
     },
     "dayka-aisha": {
@@ -446,7 +446,7 @@ export const resistanceDetailsByLang = {
       role: "هێمای خۆڕاگری و وڵاتپارێزی",
       metaLine: "١٩٤٦ – تەمموزی ٢٠٢٠ | کەرکووک و سۆران، کوردستانی عێراق",
       intro:
-        "دایکە عائشە بووە کوێرایەکی بێجوڵەی خۆڕاگری و قوربانیی کۆتایی لە مێژووی مۆدێرنی کوردستان. لە کانوونی یەکەمی ٢٠١٤، لە کاتی بەرگری توند دژی تیرۆریستەکانی داعش لە هێڵی پێشەوەی کەرکووک، سێ کوڕی پێشمەرگەی — مەولود، ئەحمەد، و نیشتیمان — لە هەمان ڕۆژ و هەمان شەڕدا پێکەوە شەهید بوون. لە جیاتی شکان لە خەم کاتێک لەشەکانیان گەڕانەوە، بە شانبەرزی بێوێنە وەستا، ڕایگەیاند کە کوڕەکانی فیدای نیشتمان بوون. ساڵانی ماوەی ژیانی بە سەردانکردنی هێڵی پێشەوە، بەرزکردنەوەی مۆڕاڵی بەرگریکاران، و بوون بە دایکی ڕۆحی کۆتایی بۆ هەموو پێشمەرگەیەک بەسەربرد.",
+        "دایکە عائشە بووە کوێرایەکی بێجوڵەی خۆڕاگری و قوربانیی کۆتایی لە مێژووی مۆدێرنی کوردستان. لە کانوونی یەکەمی ٢٠١٤، لە کاتی بەرگری توند دژی تیرۆریستەکانی داعش لە هێڵی پێشەوەی کەرکووک، سێ کوڕی پێشمەرگەی, مەولود، ئەحمەد، و نیشتیمان, لە هەمان ڕۆژ و هەمان شەڕدا پێکەوە شەهید بوون. لە جیاتی شکان لە خەم کاتێک لەشەکانیان گەڕانەوە، بە شانبەرزی بێوێنە وەستا، ڕایگەیاند کە کوڕەکانی فیدای نیشتمان بوون. ساڵانی ماوەی ژیانی بە سەردانکردنی هێڵی پێشەوە، بەرزکردنەوەی مۆڕاڵی بەرگریکاران، و بوون بە دایکی ڕۆحی کۆتایی بۆ هەموو پێشمەرگەیەک بەسەربرد.",
       portraitAlt: "دایکە عائشە",
       listIcon: "flower",
       greatestAchievement: {
@@ -485,30 +485,30 @@ export const resistanceDetailsByLang = {
       role: "زعيمة قبلية · قائدة عسكرية · دبلوماسية",
       metaLine: "حوالي ١٨٢٠ – ١٨٦٥ | مرعش / البستان، كردستان الشمالية",
       intro:
-        "كانت كارا فاطمة زعيمة قبيلة أولكان في منطقة مرعش. عندما سُجن زوجها على يد السلطات العثمانية، لم تسقط — بل قامت. أصبحت زعيمة قبيلتها مكانه. وصل اسمها إلى العالم عندما، خلال حرب القرم (١٨٥٣–١٨٥٦) ضد روسيا، سارت إلى إسطنبول بقوة من ٥٠٠ مقاتل تحت قيادتها الخاصة لدعم الجيش العثماني. أبلغت الصحافة الدولية في ذلك العصر — بما في ذلك Illustrated London News — بدهشة عن هذه «اللبؤة الكردية» التي ركبت على ظهر الحصان، مسلحة وبزي المعركة، تقود الرجال في الحرب.",
+        "كانت كارا فاطمة زعيمة قبيلة أولكان في منطقة مرعش. عندما سُجن زوجها على يد السلطات العثمانية، لم تسقط, بل قامت. أصبحت زعيمة قبيلتها مكانه. وصل اسمها إلى العالم عندما، خلال حرب القرم (١٨٥٣–١٨٥٦) ضد روسيا، سارت إلى إسطنبول بقوة من ٥٠٠ مقاتل تحت قيادتها الخاصة لدعم الجيش العثماني. أبلغت الصحافة الدولية في ذلك العصر, بما في ذلك Illustrated London News, بدهشة عن هذه «اللبؤة الكردية» التي ركبت على ظهر الحصان، مسلحة وبزي المعركة، تقود الرجال في الحرب.",
       portraitAlt: "كارا فاطمة",
       listIcon: "crown",
       greatestAchievement: {
         title: "أعظم إنجاز",
-        text: "في القرن التاسع عشر، شكّلت قوة فرسان خاصة بها من الفرسان الأكراد. كانت أول امرأة كردية تُنشر صورتها المرسومة في مجلة دولية — Illustrated London News — كقائدة عسكرية فعّالة. قاتلت ليس فقط في ساحة المعركة بل أيضاً كدبلوماسية، تتفاوض مع الدولة لإطلاق سراح زوجها وحماية حقوق شعبها.",
+        text: "في القرن التاسع عشر، شكّلت قوة فرسان خاصة بها من الفرسان الأكراد. كانت أول امرأة كردية تُنشر صورتها المرسومة في مجلة دولية, Illustrated London News, كقائدة عسكرية فعّالة. قاتلت ليس فقط في ساحة المعركة بل أيضاً كدبلوماسية، تتفاوض مع الدولة لإطلاق سراح زوجها وحماية حقوق شعبها.",
       },
       whySheMatters: {
         title: "لماذا لا تزال مهمة",
-        text: "كارا فاطمة دليل على أنه قبل ١٧٠ عاماً، ارتقت امرأة كردية إلى ذروة القوة العسكرية والسياسية ضمن نظام قبلي. لم تدافع عن قبيلتها فحسب — بل عملت كقوة دبلوماسية مع الدولة نفسها، على قدم المساواة. اعتُبرت قصتها مذهلة بما يكفي لطباعتها في صحافة العالم. ولا تزال كذلك.",
+        text: "كارا فاطمة دليل على أنه قبل ١٧٠ عاماً، ارتقت امرأة كردية إلى ذروة القوة العسكرية والسياسية ضمن نظام قبلي. لم تدافع عن قبيلتها فحسب, بل عملت كقوة دبلوماسية مع الدولة نفسها، على قدم المساواة. اعتُبرت قصتها مذهلة بما يكفي لطباعتها في صحافة العالم. ولا تزال كذلك.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "منتصف القرن التاسع عشر — عصر الإمبراطورية العثمانية" },
+        { icon: "♜", title: "الموقع الزمني", text: "منتصف القرن التاسع عشر, عصر الإمبراطورية العثمانية" },
         {
           icon: "⛩",
           title: "الموقع الجغرافي",
-          text: "مرعش، البستان (كردستان الشمالية) — وإسطنبول",
+          text: "مرعش، البستان (كردستان الشمالية), وإسطنبول",
         },
       ],
       didYouKnow: {
         title: "هل تعلم؟",
-        text: "لقب «كارا» — بمعنى أسود أو شجاع — كان يُمنح في ذلك العصر لأشخاص من جرأة ولا مبالاة استثنائية. عندما وصلت كارا فاطمة إلى إسطنبول، تجمعت الحشود فقط لرؤيتها، لأنه كان أمراً استثنائياً أن تمسك امرأة قيادة عسكرية بهذه الطريقة.",
+        text: "لقب «كارا», بمعنى أسود أو شجاع, كان يُمنح في ذلك العصر لأشخاص من جرأة ولا مبالاة استثنائية. عندما وصلت كارا فاطمة إلى إسطنبول، تجمعت الحشود فقط لرؤيتها، لأنه كان أمراً استثنائياً أن تمسك امرأة قيادة عسكرية بهذه الطريقة.",
       },
-      quote: "كانت امرأة طويلة ومهيبة — حتى السلطان العثماني استقبلها باحترام كبير.",
+      quote: "كانت امرأة طويلة ومهيبة, حتى السلطان العثماني استقبلها باحترام كبير.",
       quoteAuthor: "الصحافة الأوروبية، ١٨٥٤",
     },
     "qadam-kher": {
@@ -546,7 +546,7 @@ export const resistanceDetailsByLang = {
       role: "صحفية ميدانية · مقدمة · مديرة إنتاج في روداو",
       metaLine: "١ يوليو ١٩٨٦ – ٢٥ فبراير ٢٠١٧",
       intro:
-        "وُلدت شفا گردی في پیرانشهر ونمت لتصبح من أشجع الصحفيات الميدانيات في كردستان. ساعدت في بناء فريق أخبار روداو منذ أيامه الأولى، تقدم وتغطي من خطوط المواجهة في الحرب ضد داعش. ذهبت إلى حيث يجرؤ قليلون — الموصل، مناطق المعارك، قلب الخطر — لإيصال الحقيقة إلى الوطن. في ٢٥ فبراير ٢٠١٧، أثناء تغطية عمليات ضد داعش قرب الموصل، قُتلت بقنبلة على جانب الطريق. كان عمرها ٣٠ عاماً.",
+        "وُلدت شفا گردی في پیرانشهر ونمت لتصبح من أشجع الصحفيات الميدانيات في كردستان. ساعدت في بناء فريق أخبار روداو منذ أيامه الأولى، تقدم وتغطي من خطوط المواجهة في الحرب ضد داعش. ذهبت إلى حيث يجرؤ قليلون, الموصل، مناطق المعارك، قلب الخطر, لإيصال الحقيقة إلى الوطن. في ٢٥ فبراير ٢٠١٧، أثناء تغطية عمليات ضد داعش قرب الموصل، قُتلت بقنبلة على جانب الطريق. كان عمرها ٣٠ عاماً.",
       portraitAlt: "شفا گردی",
       listIcon: "flower",
       greatestAchievement: {
@@ -583,7 +583,7 @@ export const resistanceDetailsByLang = {
       role: "ناشطة طالبة · شهيدة كردية · رمز وطني",
       metaLine: "١٩٥٢ – ١٢ مايو ١٩٧٤ | خانقين، كردستان العراق",
       intro:
-        "كانت ليلى قاسم في الثانية والعشرين من عمرها عندما أعدموها. كانت طالبة علم اجتماع في بغداد انضمت إلى حركة المقاومة الكردية. عندما اعتقلتها حكومة صدام حسين، واجهت محاكمتها بالتحدي لا بالخوف. أُعدمت في ١٢ مايو ١٩٧٤ — وكلماتها الأخيرة أصبحت من أكثر العبارات تكراراً في التاريخ الكردي.",
+        "كانت ليلى قاسم في الثانية والعشرين من عمرها عندما أعدموها. كانت طالبة علم اجتماع في بغداد انضمت إلى حركة المقاومة الكردية. عندما اعتقلتها حكومة صدام حسين، واجهت محاكمتها بالتحدي لا بالخوف. أُعدمت في ١٢ مايو ١٩٧٤, وكلماتها الأخيرة أصبحت من أكثر العبارات تكراراً في التاريخ الكردي.",
       portraitAlt: "ليلى قاسم",
       listIcon: "flower",
       greatestAchievement: {
@@ -592,15 +592,15 @@ export const resistanceDetailsByLang = {
       },
       whySheMatters: {
         title: "لماذا لا تزال مهمة",
-        text: "لم تكن ليلى قاسم قائدة أو حاكمة. كانت شابة آمنت بشعبها — ودفعت ثمن ذلك الإيمان بحياتها. أثبتت أن الشجاعة لا عمر لها ولا رتبة ولا جنس.",
+        text: "لم تكن ليلى قاسم قائدة أو حاكمة. كانت شابة آمنت بشعبها, ودفعت ثمن ذلك الإيمان بحياتها. أثبتت أن الشجاعة لا عمر لها ولا رتبة ولا جنس.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "سبعينيات القرن العشرين — عصر قمع البعث" },
+        { icon: "♜", title: "الموقع الزمني", text: "سبعينيات القرن العشرين, عصر قمع البعث" },
         { icon: "⛩", title: "الموقع الجغرافي", text: "خانقين وبغداد، العراق" },
       ],
       didYouKnow: {
         title: "هل تعلم؟",
-        text: "تاريخ إعدام ليلى قاسم — ١٢ مايو — يُذكر ويُحتفى به سنوياً في جميع أنحاء كردستان. يُمنح اسمها للمدارس والمراكز الثقافية والشوارع في جميع أنحاء المنطقة.",
+        text: "تاريخ إعدام ليلى قاسم, ١٢ مايو, يُذكر ويُحتفى به سنوياً في جميع أنحاء كردستان. يُمنح اسمها للمدارس والمراكز الثقافية والشوارع في جميع أنحاء المنطقة.",
       },
       quote: "اقتلوني، لكن آلاف الكرد سيستيقظون.",
       quoteAuthor: "ليلى قاسم، قبل إعدامها، ١٩٧٤",
@@ -636,7 +636,7 @@ export const resistanceDetailsByLang = {
       ],
       didYouKnow: {
         title: "هل تعلم؟",
-        text: "كانت خاجة باوا منشغلة جداً بالنضال والحركة لدرجة أنها لم تجد وقتاً لالتقاط صورة مناسبة. توجد صورة واحدة فقط لها — من بطاقة هويتها المدنية — كُبّرت بعد استشهادها وتُعتبر الآن صورة أيقونية للانتفاضة.",
+        text: "كانت خاجة باوا منشغلة جداً بالنضال والحركة لدرجة أنها لم تجد وقتاً لالتقاط صورة مناسبة. توجد صورة واحدة فقط لها, من بطاقة هويتها المدنية, كُبّرت بعد استشهادها وتُعتبر الآن صورة أيقونية للانتفاضة.",
       },
       quote:
         "أمي كانت تعلم أن الانتفاضة ستحدث؛ قالت: «غيّروا ملابسكم السوداء وارتدوا ملابس زاهية وملونة، لأن الغد يومنا.»",
@@ -648,7 +648,7 @@ export const resistanceDetailsByLang = {
       role: "أول مقاتلة بيشمركية · قائدة عسكرية",
       metaLine: "٢١ يناير ١٩٤٢ – ٢٦ ديسمبر ١٩٦٩ | دهوك، كردستان العراق",
       intro:
-        "كانت مارغريت جورج شيلو امرأة آشورية مسيحية من قرية جبلية في دهوك. كانت تعمل في مستشفى عندما هُاجم قراها ميليشيا موالية للحكومة عام ١٩٦٣. حملت السلاح وانضمت إلى البيشمركة. في وقت قصير، ارتقت من عاملة في المستشفى إلى قائدة لوحدة قتالية من الرجال فقط. انتشرت صورها بالزي العسكري في أنحاء العراق ووصلت إلى أوروبا — مما جعلها الرمز الأنثوي الأكثر شهرة للثورة الكردية في العالم.",
+        "كانت مارغريت جورج شيلو امرأة آشورية مسيحية من قرية جبلية في دهوك. كانت تعمل في مستشفى عندما هُاجم قراها ميليشيا موالية للحكومة عام ١٩٦٣. حملت السلاح وانضمت إلى البيشمركة. في وقت قصير، ارتقت من عاملة في المستشفى إلى قائدة لوحدة قتالية من الرجال فقط. انتشرت صورها بالزي العسكري في أنحاء العراق ووصلت إلى أوروبا, مما جعلها الرمز الأنثوي الأكثر شهرة للثورة الكردية في العالم.",
       portraitAlt: "مارغريت جورج شيلو",
       listIcon: "crown",
       greatestAchievement: {
@@ -660,19 +660,19 @@ export const resistanceDetailsByLang = {
         text: "كسرت مارغريت شيلو حاجزين في آن واحد: كانت امرأة تقود الرجال في المعركة، ومسيحية تقاتل إلى جانب المسلمين من أجل وطن مشترك. قصتها عن معنى الانتماء.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "ستينيات القرن العشرين — عصر الثورة الكردية" },
+        { icon: "♜", title: "الموقع الزمني", text: "ستينيات القرن العشرين, عصر الثورة الكردية" },
         {
           icon: "⛩",
           title: "الموقع الجغرافي",
-          text: "منطقة بارواري، محافظة دهوك — ومنطقة عقرة، كردستان العراق",
+          text: "منطقة بارواري، محافظة دهوك, ومنطقة عقرة، كردستان العراق",
         },
       ],
       didYouKnow: {
         title: "هل تعلم؟",
-        text: "لم تكن مارغريت كردية — بل امرأة آشورية مسيحية. ومع ذلك قاتلت وماتت من أجل كردستان، مما أثبت أن القضية الكردية تخص كل من يشارك جبالها.",
+        text: "لم تكن مارغريت كردية, بل امرأة آشورية مسيحية. ومع ذلك قاتلت وماتت من أجل كردستان، مما أثبت أن القضية الكردية تخص كل من يشارك جبالها.",
       },
       quote:
-        "في عصرها، كانت صورها موجودة في كل مكان في كردستان — مما يُبرز مساواة المرأة داخل المجتمع الكردي.",
+        "في عصرها، كانت صورها موجودة في كل مكان في كردستان, مما يُبرز مساواة المرأة داخل المجتمع الكردي.",
       quoteAuthor: "المصور الكردي زاهر رشيد",
     },
     "dayka-aisha": {
@@ -681,7 +681,7 @@ export const resistanceDetailsByLang = {
       role: "رمز الصمود والوطنية",
       metaLine: "١٩٤٦ – يوليو ٢٠٢٠ | كركوك وسوران، كردستان العراق",
       intro:
-        "أصبحت الأم عائشة جبلاً لا يتزعزع من الصمود والتضحية القصوى في التاريخ الحديث لكردستان. في ديسمبر ٢٠١٤، خلال الدفاع الشرس ضد إرهابيي داعش على جبهة كركوك، استُشهد ثلاثة من أبنائها البيشمركة — مولود وأحمد ونيشتيمان — معاً في اليوم نفسه وفي المعركة نفسها. بدلاً من الانهيار في الحزن عند عودة جثثهم، وقفت شامخة بفخر لا مثيل له، معلنة أن أبناءها فداء للوطن. قضت سنواتها المتبقية في زيارة خطوط المواجهة، ورفع معنويات المدافعين، وأصبحت الأم الروحية لكل بيشمركي.",
+        "أصبحت الأم عائشة جبلاً لا يتزعزع من الصمود والتضحية القصوى في التاريخ الحديث لكردستان. في ديسمبر ٢٠١٤، خلال الدفاع الشرس ضد إرهابيي داعش على جبهة كركوك، استُشهد ثلاثة من أبنائها البيشمركة, مولود وأحمد ونيشتيمان, معاً في اليوم نفسه وفي المعركة نفسها. بدلاً من الانهيار في الحزن عند عودة جثثهم، وقفت شامخة بفخر لا مثيل له، معلنة أن أبناءها فداء للوطن. قضت سنواتها المتبقية في زيارة خطوط المواجهة، ورفع معنويات المدافعين، وأصبحت الأم الروحية لكل بيشمركي.",
       portraitAlt: "الأم عائشة",
       listIcon: "flower",
       greatestAchievement: {

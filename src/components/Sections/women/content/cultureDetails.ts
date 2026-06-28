@@ -6,7 +6,7 @@ export const cultureDetailsByLang = {
       role: "Singer · Voice of Kurdish Resistance · Cultural Icon",
       metaLine: "1938 – December 18, 1996 | Diyarbakir, Turkey",
       intro:
-        "Eyşe Şan was born into a musical family, but her family told her: singing is a sin for women. She left them. She left her husband. She moved to a new city alone and began to sing. Her voice carried the pain and resistance of Kurdish people across Turkey — at a time when even speaking Kurdish in public was illegal. After the 1971 military coup banned the Kurdish language entirely, she emigrated to Germany. Her daughter died there. She disappeared from public life for years. Then she came back, and sang again.",
+        "Eyşe Şan was born into a musical family, but her family told her: singing is a sin for women. She left them. She left her husband. She moved to a new city alone and began to sing. Her voice carried the pain and resistance of Kurdish people across Turkey, at a time when even speaking Kurdish in public was illegal. After the 1971 military coup banned the Kurdish language entirely, she emigrated to Germany. Her daughter died there. She disappeared from public life for years. Then she came back, and sang again.",
       portraitAlt: "Eyşe Şan",
       listIcon: "flower" as const,
       greatestAchievement: {
@@ -21,7 +21,7 @@ export const cultureDetailsByLang = {
         {
           icon: "♜",
           title: "Timeline Position",
-          text: "Mid 20th Century — 1960s to 1990s",
+          text: "Mid 20th Century, 1960s to 1990s",
         },
         {
           icon: "⛩",
@@ -31,7 +31,7 @@ export const cultureDetailsByLang = {
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Eyşe Şan performed in South Kurdistan (Erbil region) in 1979, years before it was common or safe to do so. She crossed borders — physical and political — with her voice.",
+        text: "Eyşe Şan performed in South Kurdistan (Erbil region) in 1979, years before it was common or safe to do so. She crossed borders, physical and political, with her voice.",
       },
       quote: "Her voice was banned. She sang anyway.",
       quoteAuthor: "Kurdish cultural history",
@@ -42,7 +42,7 @@ export const cultureDetailsByLang = {
       role: "Harvard Linguist · First Kurdish Woman in the Kurdish Academy of Sciences",
       metaLine: "1924 – August 13, 2003 | Sulaymaniyah, Iraqi Kurdistan",
       intro:
-        "In 1949, Pakize Rafik Hilmi was accepted by Harvard University's Department of Oriental Languages — becoming the first Iraqi student, male or female, to earn a master's degree there. She returned to Baghdad and became the first woman to head the Department of Kurdish Language at a major university. She taught at Berlin, Amman, and Baghdad. She wrote dictionaries. She gave lectures on Kurdish linguistics on Baghdad Radio. She worked until the last days of her life in 2003.",
+        "In 1949, Pakize Rafik Hilmi was accepted by Harvard University's Department of Oriental Languages, becoming the first Iraqi student, male or female, to earn a master's degree there. She returned to Baghdad and became the first woman to head the Department of Kurdish Language at a major university. She taught at Berlin, Amman, and Baghdad. She wrote dictionaries. She gave lectures on Kurdish linguistics on Baghdad Radio. She worked until the last days of her life in 2003.",
       portraitAlt: "Pakize Rafik Hilmi",
       listIcon: "crown" as const,
       greatestAchievement: {
@@ -51,13 +51,13 @@ export const cultureDetailsByLang = {
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Pakize Rafik Hilmi proved that Kurdish scholarship belonged on the world stage — at Harvard, in Berlin, in Amman, in the pages of academic journals. She opened a door that had never been opened before.",
+        text: "Pakize Rafik Hilmi proved that Kurdish scholarship belonged on the world stage, at Harvard, in Berlin, in Amman, in the pages of academic journals. She opened a door that had never been opened before.",
       },
       cards: [
         {
           icon: "♜",
           title: "Timeline Position",
-          text: "Mid to Late 20th Century — 1940s to 2003",
+          text: "Mid to Late 20th Century, 1940s to 2003",
         },
         {
           icon: "⛩",
@@ -67,7 +67,7 @@ export const cultureDetailsByLang = {
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Pakize's father was also a prominent Kurdish intellectual, and after his death she republished all his works — ensuring two generations of Kurdish scholarship survived.",
+        text: "Pakize's father was also a prominent Kurdish intellectual, and after his death she republished all his works, ensuring two generations of Kurdish scholarship survived.",
       },
       quote:
         "Until the day of her passing, she never ceased reading, writing, or engaging in intellectual and social activities.",
@@ -155,7 +155,7 @@ export const cultureDetailsByLang = {
       role: "گۆرانیبێژ · دەنگی بەرخۆدانی کورد · هێمای کولتووری",
       metaLine: "١٩٣٨ – ١٨ی کانوونی یەکەمی ١٩٩٦ | ئامەد، تورکیا",
       intro:
-        "ئایشە شان لە خانوازێکی میوزیکی لەدایکبوو، بەڵام خێزانەکەی پێیان وت: گۆرانی خوێندن تاوانە بۆ ژنان. جیانیان بەجێهێشت. هاوسەرەکەی جیابووەوە. بە تەنیا گواسترایەوە بۆ شارێکی نوێ و دەستی بە گۆرانی خوێندن کرد. دەنگی ئازاری و بەرخۆدانی گەلی کورد لە تورکیا گەیاند — لە کاتێکدا تەنانەت قسەکردن بە کوردی لە گشتی نایاسایی بوو. دوای کۆدەتا سەربازی ١٩٧١ کە زمانی کوردی بە تەواوی قەدەغەکرا، کۆچی کرد بۆ ئەڵمانیا. کچەکەی لەوێ مرد. بۆ ساڵان لە ژیانی گشتی ونبوو. پاشان گەڕایەوە و دووبارە گۆرانی خوێند.",
+        "ئایشە شان لە خانوازێکی میوزیکی لەدایکبوو، بەڵام خێزانەکەی پێیان وت: گۆرانی خوێندن تاوانە بۆ ژنان. جیانیان بەجێهێشت. هاوسەرەکەی جیابووەوە. بە تەنیا گواسترایەوە بۆ شارێکی نوێ و دەستی بە گۆرانی خوێندن کرد. دەنگی ئازاری و بەرخۆدانی گەلی کورد لە تورکیا گەیاند, لە کاتێکدا تەنانەت قسەکردن بە کوردی لە گشتی نایاسایی بوو. دوای کۆدەتا سەربازی ١٩٧١ کە زمانی کوردی بە تەواوی قەدەغەکرا، کۆچی کرد بۆ ئەڵمانیا. کچەکەی لەوێ مرد. بۆ ساڵان لە ژیانی گشتی ونبوو. پاشان گەڕایەوە و دووبارە گۆرانی خوێند.",
       portraitAlt: "ئایشە شان",
       listIcon: "flower" as const,
       greatestAchievement: {
@@ -167,12 +167,12 @@ export const cultureDetailsByLang = {
         text: "کاتێک حکومەت زمانێک قەدەغە دەکات، هەوڵ دەدات خەڵکێک بسڕێتەوە. ئایشە شان ئەو زمانە لە هۆڵی کۆنسێرت، لە تاراوگە، لە نێوان خەم و لەدەستداندا گۆڕی. زمان ناتوانرێت بسڕدرێتەوە کاتێک کەسێک بەردەوام دەبێت لە گۆرانی خوێندن.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "نیوەی سەدەی بیستەم — ١٩٦٠ەکان تا ١٩٩٠ەکان" },
+        { icon: "♜", title: "شوێنی کات", text: "نیوەی سەدەی بیستەم, ١٩٦٠ەکان تا ١٩٩٠ەکان" },
         { icon: "⛩", title: "شوێنی نەخشە", text: "ئامەد، ئێستەنبوڵ، ئەڵمانیا، و باشووری کوردستان" },
       ],
       didYouKnow: {
         title: "ئایا دەزانی؟",
-        text: "ئایشە شان لە باشووری کوردستان (ناوچەی هەولێر) لە ١٩٧٩ گۆرانی خوێند، ساڵان پێش ئەوەی ئەمە باو یان سەلامەت بێت. بە دەنگی خۆی سنوورەکان — فیزیکی و سیاسی — پەڕاند.",
+        text: "ئایشە شان لە باشووری کوردستان (ناوچەی هەولێر) لە ١٩٧٩ گۆرانی خوێند، ساڵان پێش ئەوەی ئەمە باو یان سەلامەت بێت. بە دەنگی خۆی سنوورەکان, فیزیکی و سیاسی, پەڕاند.",
       },
       quote: "دەنگی قەدەغە کرابوو. هەرچۆنێک بێت گۆرانی خوێند.",
       quoteAuthor: "مێژووی کولتووری کورد",
@@ -183,7 +183,7 @@ export const cultureDetailsByLang = {
       role: "زمانناسی هارڤارد · یەکەم ژنانی کورد لە ئەکادیمیای زانستی کورد",
       metaLine: "١٩٢٤ – ١٣ی ئابی ٢٠٠٣ | سلێمانی، کوردستانی عێراق",
       intro:
-        "لە ١٩٤٩، پاکیزە ڕەفیق حیلمی لە بەشی زمانە ڕۆژهەڵاتەکانی زانکۆی هارڤارد وەرگیرا — بوو بە یەکەم خوێندکاری عێراقی، نێر یان مێ، کە ماستەر لەوێ بەدەستهێنا. گەڕایەوە بۆ بەغدا و بوو بە یەکەم ژن کە سەرۆکایەتی بەشی زمانی کوردی لە زانکۆیەکی گەورە بکات. لە بەرلین، عەممان، و بەغدا وانە دەوت. فەرهەنگی نووسی. لە ڕادیۆی بەغدا وانەی زمانەوانی کوردی دا. تا ڕۆژی کۆتایی ژیانی لە ٢٠٠٣ کاریکرد.",
+        "لە ١٩٤٩، پاکیزە ڕەفیق حیلمی لە بەشی زمانە ڕۆژهەڵاتەکانی زانکۆی هارڤارد وەرگیرا, بوو بە یەکەم خوێندکاری عێراقی، نێر یان مێ، کە ماستەر لەوێ بەدەستهێنا. گەڕایەوە بۆ بەغدا و بوو بە یەکەم ژن کە سەرۆکایەتی بەشی زمانی کوردی لە زانکۆیەکی گەورە بکات. لە بەرلین، عەممان، و بەغدا وانە دەوت. فەرهەنگی نووسی. لە ڕادیۆی بەغدا وانەی زمانەوانی کوردی دا. تا ڕۆژی کۆتایی ژیانی لە ٢٠٠٣ کاریکرد.",
       portraitAlt: "پاکیزە ڕەفیق حیلمی",
       listIcon: "crown" as const,
       greatestAchievement: {
@@ -192,10 +192,10 @@ export const cultureDetailsByLang = {
       },
       whySheMatters: {
         title: "بۆچی هێشتا گرنگە",
-        text: "پاکیزە ڕەفیق حیلمی سەلماند کە زانستی کوردی شایانی مێزەی جیهانە — لە هارڤارد، بەرلین، عەممان، لە لاپەڕەکانی گۆڤارە ئەکادیمییەکان. دەرگایەکی کردەوە کە پێشتر هەرگیز نەکرابووەوە.",
+        text: "پاکیزە ڕەفیق حیلمی سەلماند کە زانستی کوردی شایانی مێزەی جیهانە, لە هارڤارد، بەرلین، عەممان، لە لاپەڕەکانی گۆڤارە ئەکادیمییەکان. دەرگایەکی کردەوە کە پێشتر هەرگیز نەکرابووەوە.",
       },
       cards: [
-        { icon: "♜", title: "شوێنی کات", text: "نیوەی دووەمی سەدەی بیستەم — ١٩٤٠ەکان تا ٢٠٠٣" },
+        { icon: "♜", title: "شوێنی کات", text: "نیوەی دووەمی سەدەی بیستەم, ١٩٤٠ەکان تا ٢٠٠٣" },
         {
           icon: "⛩",
           title: "شوێنی نەخشە",
@@ -204,7 +204,7 @@ export const cultureDetailsByLang = {
       ],
       didYouKnow: {
         title: "ئایا دەزانی؟",
-        text: "باوکی پاکیزەش ڕۆشنبیرێکی بەناوبانگی کورد بوو، و دوای مردنی دووبارە هەموو بەرهەمەکانی بڵاوکردەوە — دڵنیابوو لە مانەوەی دوو نەوەی زانستی کوردی.",
+        text: "باوکی پاکیزەش ڕۆشنبیرێکی بەناوبانگی کورد بوو، و دوای مردنی دووبارە هەموو بەرهەمەکانی بڵاوکردەوە, دڵنیابوو لە مانەوەی دوو نەوەی زانستی کوردی.",
       },
       quote:
         "تا ڕۆژی کۆتایی ژیانی، هەرگیز خوێندنەوە، نووسین، یان چالاکییە فیکری و کۆمەڵایەتییەکانی نەگرت.",
@@ -280,7 +280,7 @@ export const cultureDetailsByLang = {
       role: "مغنية · صوت المقاومة الكردية · أيقونة ثقافية",
       metaLine: "١٩٣٨ – ١٨ ديسمبر ١٩٩٦ | ديار بكر، تركيا",
       intro:
-        "وُلدت عائشة شان في عائلة موسيقية، لكن عائلتها قالت لها: الغناء حرام للنساء. تركتهم. تركت زوجها. انتقلت إلى مدينة جديدة وحدها وبدأت تغني. حملت صوت ألم ومقاومة الشعب الكردي في تركيا — في وقت كان التحدث بالكردية في العلن محظوراً. بعد انقلاب 1971 العسكري الذي حظر اللغة الكردية بالكامل، هاجرت إلى ألمانيا. توفيت ابنتها هناك. اختفت من الحياة العامة لسنوات. ثم عادت، وغنت من جديد.",
+        "وُلدت عائشة شان في عائلة موسيقية، لكن عائلتها قالت لها: الغناء حرام للنساء. تركتهم. تركت زوجها. انتقلت إلى مدينة جديدة وحدها وبدأت تغني. حملت صوت ألم ومقاومة الشعب الكردي في تركيا, في وقت كان التحدث بالكردية في العلن محظوراً. بعد انقلاب 1971 العسكري الذي حظر اللغة الكردية بالكامل، هاجرت إلى ألمانيا. توفيت ابنتها هناك. اختفت من الحياة العامة لسنوات. ثم عادت، وغنت من جديد.",
       portraitAlt: "عائشة شان",
       listIcon: "flower" as const,
       greatestAchievement: {
@@ -292,12 +292,12 @@ export const cultureDetailsByLang = {
         text: "عندما تحظر حكومة لغة، تحاول محو شعب. غنت عائشة شان تلك اللغة في قاعات الحفلات، في المنفى، عبر الحزن والفقد. لا يمكن محو اللغة عندما يواصل أحد الغناء بها.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "منتصف القرن العشرين — الستينيات إلى التسعينيات" },
+        { icon: "♜", title: "الموقع الزمني", text: "منتصف القرن العشرين, الستينيات إلى التسعينيات" },
         { icon: "⛩", title: "الموقع الجغرافي", text: "ديار بكر (أمد)، إسطنبول، ألمانيا، وجنوب كردستان" },
       ],
       didYouKnow: {
         title: "هل تعلم؟",
-        text: "أدت عائشة شان في جنوب كردستان (منطقة أربيل) عام 1979، قبل سنوات من أن يصبح ذلك شائعاً أو آمناً. عبرت الحدود — المادية والسياسية — بصوتها.",
+        text: "أدت عائشة شان في جنوب كردستان (منطقة أربيل) عام 1979، قبل سنوات من أن يصبح ذلك شائعاً أو آمناً. عبرت الحدود, المادية والسياسية, بصوتها.",
       },
       quote: "حُظر صوتها. غنت على أي حال.",
       quoteAuthor: "التاريخ الثقافي الكردي",
@@ -308,7 +308,7 @@ export const cultureDetailsByLang = {
       role: "لغوية هارفارد · أول امرأة كردية في الأكاديمية الكردية للعلوم",
       metaLine: "١٩٢٤ – ١٣ أغسطس ٢٠٠٣ | السليمانية، كردستان العراق",
       intro:
-        "في 1949، قُبلت باكيزة رفيق حلمي في قسم اللغات الشرقية بجامعة هارفارد — لتصبح أول طالبة عراقية، ذكراً أو أنثى، تحصل على درجة الماجستير هناك. عادت إلى بغداد وأصبحت أول امرأة ترأس قسم اللغة الكردية في جامعة كبرى. درّست في برلين وعمّان وبغداد. كتبت معاجم. ألقت محاضرات عن اللغويات الكردية في إذاعة بغداد. عملت حتى آخر أيام حياتها في 2003.",
+        "في 1949، قُبلت باكيزة رفيق حلمي في قسم اللغات الشرقية بجامعة هارفارد, لتصبح أول طالبة عراقية، ذكراً أو أنثى، تحصل على درجة الماجستير هناك. عادت إلى بغداد وأصبحت أول امرأة ترأس قسم اللغة الكردية في جامعة كبرى. درّست في برلين وعمّان وبغداد. كتبت معاجم. ألقت محاضرات عن اللغويات الكردية في إذاعة بغداد. عملت حتى آخر أيام حياتها في 2003.",
       portraitAlt: "باكيزة رفيق حلمي",
       listIcon: "crown" as const,
       greatestAchievement: {
@@ -317,10 +317,10 @@ export const cultureDetailsByLang = {
       },
       whySheMatters: {
         title: "لماذا لا تزال مهمة",
-        text: "أثبتت باكيزة رفيق حلمي أن البحث الكردي ينتمي إلى الساحة العالمية — في هارفارد، وبرلين، وعمّان، وفي صفحات المجلات الأكاديمية. فتحت باباً لم يُفتح من قبل.",
+        text: "أثبتت باكيزة رفيق حلمي أن البحث الكردي ينتمي إلى الساحة العالمية, في هارفارد، وبرلين، وعمّان، وفي صفحات المجلات الأكاديمية. فتحت باباً لم يُفتح من قبل.",
       },
       cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "منتصف إلى أواخر القرن العشرين — الأربعينيات إلى 2003" },
+        { icon: "♜", title: "الموقع الزمني", text: "منتصف إلى أواخر القرن العشرين, الأربعينيات إلى 2003" },
         {
           icon: "⛩",
           title: "الموقع الجغرافي",
@@ -329,7 +329,7 @@ export const cultureDetailsByLang = {
       ],
       didYouKnow: {
         title: "هل تعلم؟",
-        text: "كان والد باكيزة أيضاً مثقفاً كردياً بارزاً، وبعد وفاته أعادت نشر جميع أعماله — ضامنة بقاء جيلين من البحث الكردي.",
+        text: "كان والد باكيزة أيضاً مثقفاً كردياً بارزاً، وبعد وفاته أعادت نشر جميع أعماله, ضامنة بقاء جيلين من البحث الكردي.",
       },
       quote:
         "حتى يوم رحيلها، لم تتوقف عن القراءة والكتابة أو المشاركة في الأنشطة الفكرية والاجتماعية.",

@@ -62,6 +62,83 @@ function WomenDetailInfoCard({
   );
 }
 
+function WomenDetailQuoteCard({
+  quote,
+  quoteAuthor,
+  dir = "ltr",
+}: {
+  quote: string;
+  quoteAuthor?: string;
+  dir?: "rtl" | "ltr";
+}) {
+  const borderColor = "#7d4f56";
+  const textAlign = dir === "rtl" ? "text-right" : "text-left";
+  const quoteMarkSide =
+    dir === "rtl"
+      ? { open: "right-[clamp(18px,2.8vw,30px)]", close: "left-[clamp(18px,2.8vw,30px)]" }
+      : { open: "left-[clamp(18px,2.8vw,30px)]", close: "right-[clamp(18px,2.8vw,30px)]" };
+
+  return (
+    <div
+      data-women-detail-fade="true"
+      className="relative h-full overflow-hidden rounded-[clamp(14px,2vw,20px)]"
+      style={{
+        backgroundImage: `url(${cardBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Outer frame */}
+      <div
+        className="pointer-events-none absolute inset-[clamp(12px,2.2vw,22px)] rounded-[3px] border"
+        style={{ borderColor }}
+        aria-hidden
+      />
+
+      {/* Inner frame — side rails plus broken top/bottom segments */}
+      <div
+        className="pointer-events-none absolute inset-[clamp(18px,3vw,30px)]"
+        aria-hidden
+      >
+        <div className="absolute inset-y-0 left-0 w-px" style={{ backgroundColor: borderColor }} />
+        <div className="absolute inset-y-0 right-0 w-px" style={{ backgroundColor: borderColor }} />
+        <div className="absolute left-0 top-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
+        <div className="absolute right-0 top-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
+        <div className="absolute bottom-0 left-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
+        <div className="absolute bottom-0 right-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
+      </div>
+
+      <span
+        className={`pointer-events-none absolute top-[clamp(14px,2.4vw,24px)] ${quoteMarkSide.open} font-serif text-[clamp(40px,7vw,72px)] leading-none text-[#e89595]`}
+        aria-hidden
+      >
+        &ldquo;
+      </span>
+      <span
+        className={`pointer-events-none absolute bottom-[clamp(40px,6vw,56px)] ${quoteMarkSide.close} font-serif text-[clamp(40px,7vw,72px)] leading-none text-[#e89595]`}
+        aria-hidden
+      >
+        &rdquo;
+      </span>
+
+      <div
+        className={`relative flex h-full min-h-[220px] flex-col justify-between px-[clamp(28px,4.5vw,48px)] py-[clamp(28px,4vw,44px)] ${textAlign}`}
+      >
+        <p className="font-serif text-[clamp(14px,2vw,22px)] italic leading-[1.7] text-[#454545]">
+          {quote}
+        </p>
+
+        {quoteAuthor && (
+          <p className="mt-[clamp(16px,2.4vw,28px)] text-[clamp(11px,1.4vw,15px)] leading-snug text-[#7d4f56]">
+            {quoteAuthor}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function WomenDetailHighlightSection({
   title,
   text,
@@ -76,9 +153,6 @@ function WomenDetailHighlightSection({
   displayFont: string;
 }) {
   const isMatters = variant === "plum";
-  const texturedBackground = isMatters
-    ? `linear-gradient(180deg, rgba(246,242,236,0.88) 0%, rgba(254,165,165,0.88) 100%), url(${cardBg})`
-    : `linear-gradient(165deg, rgba(255,248,238,0.88) 0%, rgba(243,226,196,0.88) 100%), url(${cardBg})`;
 
   return (
     <div
@@ -89,9 +163,10 @@ function WomenDetailHighlightSection({
           : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#5a223f] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
       }
       style={{
-        backgroundImage: texturedBackground,
+        backgroundImage: `url(${cardBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div
@@ -293,32 +368,7 @@ export default function WomenDetailPanel({
             </div>
           )}
 
-          <div
-            data-women-detail-fade="true"
-            className="h-full rounded-[clamp(14px,2vw,18px)] border border-[#d3ad65] bg-[#fff8ee]/75 p-[clamp(12px,1.4vw,20px)]"
-          >
-            <div className="relative flex h-full flex-col items-center justify-center rounded-[14px] border border-[#e2c98f] px-[clamp(16px,2.4vw,32px)] py-[clamp(28px,3vw,40px)] text-center">
-              <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 bg-[#fbf4e8] px-3 text-[#c8a65c]">
-                ❖
-              </div>
-
-              <p className={`break-words ${displayFont} text-[clamp(16px,3.5vw,30px)] italic leading-snug text-[#2d1436]`}>
-                {quote}
-              </p>
-
-              {quoteAuthor && (
-                <p className={`mt-[clamp(12px,2vw,20px)] ${displayFont} text-[clamp(13px,1.8vw,20px)] italic text-[#a75a69]`}>
-                  — {quoteAuthor}
-                </p>
-              )}
-
-              <div className="mx-auto mt-[clamp(16px,2vw,24px)] flex w-[220px] max-w-full items-center gap-3 text-[#c7a45e]">
-                <span className="h-px flex-1 bg-[#c7a45e]" />
-                <span aria-hidden>❖</span>
-                <span className="h-px flex-1 bg-[#c7a45e]" />
-              </div>
-            </div>
-          </div>
+          <WomenDetailQuoteCard quote={quote} quoteAuthor={quoteAuthor} dir={dir} />
         </section>
       </div>
     </div>
