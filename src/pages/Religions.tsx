@@ -571,6 +571,7 @@ export default function ReligiousDiversityPage({
       return (
         <main
           dir={dir}
+          lang={lang}
           className="m-0 min-h-screen w-screen bg-[#faf8f5] p-0 text-[#302214]"
         >
           <section className="relative min-h-screen w-full overflow-hidden bg-[#faf8f5] px-8 py-10 sm:px-12 lg:px-20">
@@ -622,6 +623,7 @@ export default function ReligiousDiversityPage({
   return (
     <main
       dir={dir}
+      lang={lang}
       className="m-0 min-h-screen w-screen bg-[#faf8f5] p-0 text-[#302214]"
     >
       <section

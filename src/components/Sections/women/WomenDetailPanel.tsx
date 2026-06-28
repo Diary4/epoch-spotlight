@@ -212,7 +212,7 @@ export default function WomenDetailPanel({
   lang = "en",
 }: WomenDetailPanelProps) {
   const t = (value: string) => localizeDigits(value, lang);
-  const displayFont = dir === "rtl" ? "font-amiri" : "font-serif";
+  const displayFont = dir === "rtl" ? "font-noto-naskh" : "font-serif";
   const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
   // Hero portrait is pinned to the inline-end side; text stays on the inline-start
   // side so the figure never sits under the text, at any screen width.
@@ -240,7 +240,7 @@ export default function WomenDetailPanel({
 
   return (
     <div
-      className={`flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3] ${dir === "rtl" ? "font-amiri" : ""}`}
+      className={`flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3] ${dir === "rtl" ? "font-noto-naskh" : ""}`}
       dir={dir}
     >
       <div className="relative min-h-screen w-full overflow-x-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10 sm:pb-0">

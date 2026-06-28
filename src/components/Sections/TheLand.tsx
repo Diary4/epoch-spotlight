@@ -297,7 +297,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard }:
         ref={sectionRef}
         lang={lang}
         dir={dir}
-        className={`relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10 ${isRtlScript ? "font-amiri" : ""}`}
+        className={`relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10 ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
         
         {/* Responsive back button */}

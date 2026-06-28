@@ -182,11 +182,11 @@ export default function LegacyPage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e8] p-0 text-[#2a1534] overflow-x-hidden ${isRtlScript ? "font-amiri" : ""}`}
+      className={`m-0 flex min-h-screen w-full max-w-full justify-center bg-[#f9f3e8] p-0 text-[#2a1534] overflow-x-hidden ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-[#fcf7ef] pb-12 sm:pb-0 ${isRtlScript ? "font-amiri" : ""}`}
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-[#fcf7ef] pb-12 sm:pb-0 ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
         <WomenLanguageButton
           lang={lang}

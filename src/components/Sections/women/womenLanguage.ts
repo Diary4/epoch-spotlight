@@ -17,7 +17,7 @@ export function womenRtlScript(lang: WomenLangCode): boolean {
 }
 
 export function womenDisplayFont(lang: WomenLangCode): string {
-  return womenRtlScript(lang) ? "font-amiri" : "font-serif";
+  return womenRtlScript(lang) ? "font-noto-naskh" : "font-serif";
 }
 
 export type WomenLanguageProps = {

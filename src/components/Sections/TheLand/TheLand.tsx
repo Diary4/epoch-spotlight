@@ -140,7 +140,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
   return (
     <div
       dir={dir}
-      className={`relative h-[var(--viewport-height,100dvh)] w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-[var(--viewport-height,100dvh)] w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <div
         style={{

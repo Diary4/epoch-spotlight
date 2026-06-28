@@ -87,7 +87,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const peopleVideoRef = React.useRef<HTMLVideoElement | null>(null);
   const isRtlScript = lang === "ku" || lang === "ar";
-  const displayFont = isRtlScript ? "font-amiri" : "font-serif";
+  const displayFont = isRtlScript ? "font-noto-naskh" : "font-serif";
   const data = CONTENT[lang] as any;
   const people = data?.people ?? {};
   const items = people?.items ?? [];
@@ -237,7 +237,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         ref={sectionRef}
         lang={lang}
         dir={isRtlScript ? "rtl" : "ltr"}
-        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12 ${isRtlScript ? "font-amiri" : ""}`}
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12 ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
         <button
           type="button"

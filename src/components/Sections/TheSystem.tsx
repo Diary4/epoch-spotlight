@@ -184,7 +184,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div

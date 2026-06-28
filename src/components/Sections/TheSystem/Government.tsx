@@ -162,7 +162,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div

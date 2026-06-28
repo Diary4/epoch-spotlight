@@ -48,7 +48,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
 
   const dir = lang === "en" ? "ltr" : "rtl";
   const isRtlScript = lang === "ku" || lang === "ar";
-  const displayFont = isRtlScript ? "font-amiri" : "font-serif";
+  const displayFont = isRtlScript ? "font-noto-naskh" : "font-serif";
 
   const [scale, setScale] = useState(1);
   const [leftOffset, setLeftOffset] = useState(0);
@@ -75,7 +75,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
     <div
       dir={dir}
       lang={lang}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div

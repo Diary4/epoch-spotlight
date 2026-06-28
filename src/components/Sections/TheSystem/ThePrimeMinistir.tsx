@@ -184,7 +184,7 @@ export default function PrimeMinisterPage({ lang = "en", onBack }: PrimeMinister
     : vision;
 
   return (
-    <main className={`m-0 flex min-h-full w-full self-start justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b] ${isRtlScript ? "font-amiri" : ""}`}>
+    <main className={`m-0 flex min-h-full w-full self-start justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b] ${isRtlScript ? "font-noto-naskh" : ""}`}>
       <section className="relative flex min-h-full w-full max-w-[1400px] flex-col overflow-x-hidden bg-[#fbf5eb] px-3 pb-8 pt-4 xs:px-8 xs:py-9 lg:px-12 lg:py-12">
         <button
           type="button"
