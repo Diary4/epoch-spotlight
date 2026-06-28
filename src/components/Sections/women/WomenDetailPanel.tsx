@@ -1,6 +1,7 @@
 import React from "react";
 
-import cardBg from "@/assets/images/patterns/card-bg.jpg";
+import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
+import { localizeDigits } from "@/lib/utils";
 
 export type WomenDetailPanelCard = {
   icon: string;
@@ -28,6 +29,7 @@ export type WomenDetailPanelProps = {
   listIcon?: "crown" | "flower";
   /** Use `rtl` for Sorani / Arabic script detail copy. */
   dir?: "rtl" | "ltr";
+  lang?: WomenLangCode;
 };
 
 function WomenDetailInfoCard({
@@ -81,13 +83,7 @@ function WomenDetailQuoteCard({
   return (
     <div
       data-women-detail-fade="true"
-      className="relative h-full overflow-hidden rounded-[clamp(14px,2vw,20px)]"
-      style={{
-        backgroundImage: `url(${cardBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative h-full overflow-hidden rounded-[clamp(14px,2vw,20px)] bg-[linear-gradient(160deg,#fff8f2_0%,#fceee6_55%,#f5e1d8_100%)]"
     >
       {/* Outer frame */}
       <div
@@ -159,15 +155,9 @@ function WomenDetailHighlightSection({
       data-women-detail-fade="true"
       className={
         isMatters
-          ? "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#e8a8a8] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(254,165,165,0.22)]"
-          : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#5a223f] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
+          ? "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#e8a8a8] bg-[#fff5f3] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(254,165,165,0.22)]"
+          : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#5a223f] bg-[#fff8ee] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
       }
-      style={{
-        backgroundImage: `url(${cardBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
     >
       <div
         className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] top-[clamp(12px,2vw,20px)] h-px ${isMatters ? "bg-[#5a223f]/20" : "bg-[#5a223f]/20"}`}
@@ -219,7 +209,9 @@ export default function WomenDetailPanel({
   whySheMatters,
   didYouKnow,
   dir = "ltr",
+  lang = "en",
 }: WomenDetailPanelProps) {
+  const t = (value: string) => localizeDigits(value, lang);
   const displayFont = dir === "rtl" ? "font-amiri" : "font-serif";
   const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
   // Hero portrait is pinned to the inline-end side; text stays on the inline-start
@@ -232,10 +224,11 @@ export default function WomenDetailPanel({
   const heroFadeStyle = {
     backgroundImage: `linear-gradient(${dir === "rtl" ? "to left" : "to right"}, #fbf4e8 4%, rgba(251,244,232,0.6) 42%, rgba(251,244,232,0) 100%)`,
   };
-  // Timeline Position / Map Location info cards are intentionally not shown.
-  const visibleCards = cards.filter(
-    (c) => c.title !== "Timeline Position" && c.title !== "Map Location",
-  );
+  /** Timeline (♜) and map (⛩) cards are hidden in every language. */
+  const hiddenDetailCardIcons = new Set(["♜", "⛩"]);
+  const visibleCards = cards
+    .filter((c) => !hiddenDetailCardIcons.has(c.icon))
+    .map((c) => ({ ...c, title: t(c.title), text: t(c.text) }));
   const cardGridClass =
     visibleCards.length === 2
       ? "grid-cols-1 sm:grid-cols-2"
@@ -260,7 +253,7 @@ export default function WomenDetailPanel({
               <div className={`absolute inset-0 ${portraitFlip}`}>
                 <img
                   src={portraitSrc}
-                  alt={portraitAlt}
+                  alt={t(portraitAlt)}
                   decoding="async"
                   // React 18 expects the lowercase DOM attribute name.
                   {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
@@ -279,9 +272,9 @@ export default function WomenDetailPanel({
             data-women-detail-fade="true"
           >
             <h1 className={`break-words ${displayFont} text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>
-              {nameLine1}
+              {t(nameLine1)}
               <br />
-              {nameLine2}
+              {t(nameLine2)}
             </h1>
 
             <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
@@ -291,17 +284,17 @@ export default function WomenDetailPanel({
             </div>
 
             <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-full break-words ${displayFont} text-[clamp(17px,3vw,26px)] italic leading-tight text-[#a75a69]`}>
-              {role}
+              {t(role)}
             </h2>
 
             {metaLine && (
               <p className="mt-[clamp(10px,2vw,16px)] max-w-full text-[clamp(12px,1.5vw,18px)] leading-snug text-[#5a4a52]">
-                {metaLine}
+                {t(metaLine)}
               </p>
             )}
 
             <p className="mt-[clamp(16px,3vw,24px)] max-w-full text-[clamp(13px,1.6vw,20px)] leading-[1.7] text-[#3f3b42]">
-              {intro}
+              {t(intro)}
             </p>
 
             <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
@@ -318,8 +311,8 @@ export default function WomenDetailPanel({
           >
             {greatestAchievement && (
               <WomenDetailHighlightSection
-                title={greatestAchievement.title}
-                text={greatestAchievement.text}
+                title={t(greatestAchievement.title)}
+                text={t(greatestAchievement.text)}
                 icon="📖"
                 variant="cream"
                 displayFont={displayFont}
@@ -328,8 +321,8 @@ export default function WomenDetailPanel({
 
             {whySheMatters && (
               <WomenDetailHighlightSection
-                title={whySheMatters.title}
-                text={whySheMatters.text}
+                title={t(whySheMatters.title)}
+                text={t(whySheMatters.text)}
                 icon="♛"
                 variant="plum"
                 displayFont={displayFont}
@@ -360,15 +353,15 @@ export default function WomenDetailPanel({
               className="flex h-full flex-col rounded-[clamp(14px,2vw,18px)] border border-[#dfc997] bg-[#fff8ee]/85 px-[clamp(16px,2.4vw,28px)] py-[clamp(20px,2.8vw,32px)]"
             >
               <h3 className={`${displayFont} text-[clamp(12px,2vw,22px)] uppercase tracking-[0.18em] text-[#a75a69]`}>
-                {didYouKnow.title}
+                {t(didYouKnow.title)}
               </h3>
               <p className="mt-[clamp(10px,1.6vw,16px)] text-[clamp(13px,1.6vw,19px)] leading-[1.65] text-[#3f3b42]">
-                {didYouKnow.text}
+                {t(didYouKnow.text)}
               </p>
             </div>
           )}
 
-          <WomenDetailQuoteCard quote={quote} quoteAuthor={quoteAuthor} dir={dir} />
+          <WomenDetailQuoteCard quote={t(quote)} quoteAuthor={quoteAuthor ? t(quoteAuthor) : undefined} dir={dir} />
         </section>
       </div>
     </div>

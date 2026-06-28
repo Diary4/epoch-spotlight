@@ -128,6 +128,7 @@ export default function WomenHistoricPage({
         {detail && selectedId ? (
           <WomenDetailPanel
             dir={dir}
+            lang={lang}
             nameLine1={detail.nameLine1}
             nameLine2={detail.nameLine2}
             role={detail.role}
