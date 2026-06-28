@@ -7,7 +7,11 @@ export function discoverRtlScript(lang: DiscoverLangCode): boolean {
 }
 
 export function discoverDisplayFont(lang: DiscoverLangCode): string {
-  return discoverRtlScript(lang) ? "font-amiri" : "font-serif";
+  return discoverRtlScript(lang) ? "font-noto-naskh" : "font-serif";
+}
+
+export function discoverSectionFont(lang: DiscoverLangCode): string {
+  return discoverRtlScript(lang) ? "font-noto-naskh" : "";
 }
 
 export function discoverDir(lang: DiscoverLangCode): "ltr" | "rtl" {

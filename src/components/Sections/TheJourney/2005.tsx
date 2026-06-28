@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, BookOpen, Landmark, Scale } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
-import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -49,8 +49,8 @@ type Year2005PageProps = {
 export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
   const dir = lang === "en" ? "ltr" : "rtl";
-  const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
+  const sectionFont = discoverSectionFont(lang);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.["2005"] ?? data?.people?.sections?.["2005"] ?? {};
@@ -61,7 +61,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
   }));
 
   return (
-    <main ref={rootRef} dir={dir} className={`m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden ${isRtlScript ? "font-amiri" : ""}`}>
+    <main ref={rootRef} dir={dir} className={`m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden ${sectionFont}`}>
       <section className="relative mx-auto flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden sm:rounded-[22px] bg-[#fbf5eb]">
         
         {/* Back Button */}

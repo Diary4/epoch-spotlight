@@ -13,7 +13,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/images/new/theJourney/journey-1.webp";
 import bg2 from "@/assets/images/new/theJourney/journey-2.webp";
 import bg3 from "@/assets/images/new/theJourney/journey-3.webp";
@@ -153,8 +153,8 @@ function timelinePathThrough(points: { x: number; y: number }[]): string {
 }
 
 export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMilestone }: JourneyTimelinePageProps) {
-  const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
+  const sectionFont = discoverSectionFont(lang);
   const data = CONTENT[lang] as any;
   const journey = data?.journey ?? {};
   const journeyItems = Array.isArray(journey.items) ? journey.items : EMPTY_JOURNEY_ITEMS;
@@ -355,7 +355,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
 
   return (
     <div
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${sectionFont}`}
       style={{
         width: "100vw",
         height: "100vh",

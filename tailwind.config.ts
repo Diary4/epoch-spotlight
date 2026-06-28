@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         rudaw: ['"Rudaw Bold"', "sans-serif"],
         amiri: ['"Amiri"', "serif"],
+        "noto-naskh": ['"Noto Naskh Arabic"', "serif"],
         "ibm-arabic": ['"IBM Plex Sans Arabic"', "sans-serif"],
       },
       screens: {

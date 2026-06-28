@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
-import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -48,8 +48,8 @@ type Year1991PageProps = {
 export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps) {
   const rootRef = useJourneyDetailAnimation([lang]);
   const dir = lang === "en" ? "ltr" : "rtl";
-  const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
+  const sectionFont = discoverSectionFont(lang);
   const data = CONTENT[lang] as any;
   const section: JourneySection =
     data?.journey?.sections?.["1991"] ?? data?.people?.sections?.["1991"] ?? {};
@@ -88,7 +88,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-amiri" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${sectionFont}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div

@@ -5,6 +5,7 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import { withRudawGlyphFallback } from "@/lib/kurdishText";
+import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import gsap from "gsap";
 import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
@@ -198,7 +199,8 @@ export default function DiscoverKurdistanV2({
   const discover = data?.discover ?? {};
   const isKu = lang === "ku";
   const isRtlScript = lang === "ku" || lang === "ar";
-  const displayFont = isRtlScript ? "font-amiri" : "font-serif";
+  const displayFont = discoverDisplayFont(lang);
+  const sectionFont = discoverSectionFont(lang);
   const kuText = (text: string) => withRudawGlyphFallback(text, false);
   const bodyWeight = isKu ? "font-normal" : "font-light";
   const localizedSections = Array.isArray(discover.sections)
@@ -298,7 +300,7 @@ export default function DiscoverKurdistanV2({
         ref={sectionRef}
         lang={lang}
         dir={lang === "ar" || isKu ? "rtl" : "ltr"}
-        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea] ${isRtlScript ? "font-amiri" : ""}`}
+        className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea] ${sectionFont}`}
       >
         <div className="absolute start-3 top-3 z-20 flex items-center gap-2 sm:start-6 sm:top-6">
           <span className="rounded-full border border-[#c49b52]/60 bg-[#104231] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#f6d995] sm:px-4 sm:py-2 sm:text-xs">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -144,6 +144,11 @@ All colors MUST be HSL.
   .font-ku-glyph {
     font-family: "Noto Sans Arabic", sans-serif;
     font-weight: 700;
+  }
+
+  [lang="ku"].font-noto-naskh,
+  [lang="ar"].font-noto-naskh {
+    font-family: "Noto Naskh Arabic", serif;
   }
 }
 
