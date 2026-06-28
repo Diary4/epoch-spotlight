@@ -1,4 +1,5 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
+import { kuHubCopy } from "@/components/Sections/women/content/kuWomenContentData";
 
 export type HubCopy = {
   title: string;
@@ -25,18 +26,7 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     journeyDesc: "Explore the stories behind each name.",
     cards: { historic: "Historic", knowledge: "Political", resistance: "Resistance", culture: "Culture" },
   },
-  ku: {
-    title: "ژنانی کوردستان",
-    subtitle: "سەرکردایەتی، سیاسەت،\nبەرخۆدان، کولتوور، و میرات.",
-    description:
-      "ژنانی کورد مێژوو شێوەداوە لە ڕێگەی سەرکردایەتی، فێربوون، ئازایەتی، و کولتوورەوە.",
-    quoteLine1: "لە نەوەکان بۆ نەوەکان،",
-    quoteLine2: "ژنانی کورد وەک",
-    quoteLine3: "دەنگی هێز و بەردەوامی مایەوە.",
-    journeyTitle: "بەردەوامبوون لە گەشت",
-    journeyDesc: "چیرۆکەکانی پشت هەر ناوێک بگەڕێ.",
-    cards: { historic: "مێژوویی", knowledge: "سیاسی", resistance: "بەرخۆدان", culture: "کولتوور" },
-  },
+  ku: kuHubCopy,
   ar: {
     title: "نساء كردستان",
     subtitle: "القيادة، السياسة،\nالمقاومة، الثقافة، والإرث.",

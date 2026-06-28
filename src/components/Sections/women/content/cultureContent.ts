@@ -1,6 +1,7 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
 import { womenCardLabels } from "@/components/Sections/women/womenLanguage";
 import { cultureDetailsByLang } from "@/components/Sections/women/content/cultureDetails";
+import { kuCultureList, kuCulturePageCopy } from "@/components/Sections/women/content/kuWomenContentData";
 
 export type CultureFigureListItem = {
   id: string;

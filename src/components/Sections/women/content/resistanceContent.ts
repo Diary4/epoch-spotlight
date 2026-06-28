@@ -1,6 +1,7 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
 import { womenCardLabels } from "@/components/Sections/women/womenLanguage";
 import { resistanceDetailsByLang } from "@/components/Sections/women/content/resistanceDetails";
+import { kuResistanceList, kuResistancePageCopy } from "@/components/Sections/women/content/kuWomenContentData";
 
 export type ResistanceFigureListItem = {
   id: string;
@@ -74,8 +75,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     heroTitle1: "ژنانی",
     heroTitle2: "بەرخۆدان",
     heroSubtitle: "دەنگی ئازایەتی.",
-    heroIntro:
-      "فەرماندە، ڕۆژنامەنووس، و ژنانی گەنج کە ڕووبەڕووی سوپا، دیکتاتۆر، و داگیرکاری بوونەوە—و یارمەتی نووسینی بەرخۆدانی کوردیان دا لە سەدەی نوزدەهەم تا ئەمڕۆ.",
+    ...kuResistancePageCopy,
     legacyTitle: "میراتی ئازایەتی",
     legacySubtitle: "سەرهەڵدان، قوربانی، و هیوا.",
     quotes: [
