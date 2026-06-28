@@ -18,7 +18,7 @@ import cultureHero from "@/assets/images/women/c-1.webp";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgRoshan from "@/assets/images/womens/roshan.jpeg";
-import culturePlaceholder from "@/assets/images/women/historic.png";
+import imgNahida from "@/assets/images/womens/nadia-sheikh.png";
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -26,7 +26,7 @@ const personImages: Record<string, string> = {
   "eyse-san": imgAysha,
   "pakize-rafik-hilmi": imgPakiza,
   "roshan-bedirkhan": imgRoshan,
-  "nahida-sheikh-salam": culturePlaceholder,
+  "nahida-sheikh-salam": imgNahida,
 };
 
 type CulturePageProps = {
