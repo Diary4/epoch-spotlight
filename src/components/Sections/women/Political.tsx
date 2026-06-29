@@ -22,7 +22,7 @@ import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
 import maryamKhanImg from "@/assets/images/womens/maryamkhan.jpg";
-import mayanPlaceholder from "@/assets/images/women/historic.png";
+import mayanKhanImg from "@/assets/images/womens/mayankhan.jpg";
 
 type WomenPoliticalPageProps = WomenLanguageProps & {
   onBack?: () => void;
@@ -30,7 +30,7 @@ type WomenPoliticalPageProps = WomenLanguageProps & {
 
 const personImages: Record<string, string> = {
   "maryam-khan": maryamKhanImg,
-  "mayan-khatun": mayanPlaceholder,
+  "mayan-khatun": mayanKhanImg,
 };
 
 const topicImages = [

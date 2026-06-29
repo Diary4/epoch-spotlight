@@ -12,7 +12,7 @@ import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
 import khanzadDetail from "@/assets/images/womens/khanzad.jpg";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
 import meryemDetail from "@/assets/images/womens/maryamkhan.jpg";
-import minaDetail from "@/assets/images/women/historic.png";
+import minaDetail from "@/assets/images/womens/minaqazi.png";
 import najibaDetail from "@/assets/images/womens/najibakhan.jpg";
 
 export type HistoricFigureListItem = {
