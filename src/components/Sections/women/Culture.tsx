@@ -52,11 +52,11 @@ function CultureListCard({
       type="button"
       data-culture-card="true"
       onClick={onSelect}
-      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[12px] border border-[#dfcdb7] bg-white/65 p-1.5 shadow-[0_8px_20px_rgba(67,35,45,0.1)] transition hover:border-[#d8b979] sm:rounded-[20px] sm:p-3 lg:p-4 ${
+      className={`relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[clamp(8px,1.2vw,18px)] border border-[#dfcdb7] bg-white/65 p-[clamp(4px,0.8vw,14px)] shadow-[0_8px_20px_rgba(67,35,45,0.1)] transition hover:border-[#d8b979] ${
         dir === "rtl" ? "text-right" : "text-left"
       }`}
     >
-      <div className="relative aspect-[5/3] w-full overflow-hidden rounded-[8px] sm:aspect-[4/3] sm:rounded-[14px]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[clamp(6px,1vw,12px)]">
         <img
           src={personImages[woman.id] ?? cultureHero}
           alt={woman.name}
@@ -64,22 +64,22 @@ function CultureListCard({
         />
       </div>
 
-      <h3 className={`mt-1.5 ${displayFont} text-[clamp(11px,2.6vw,20px)] leading-tight text-[#2c1736] sm:mt-2 sm:text-[clamp(16px,1.8vw,20px)]`}>
+      <h3 className={`mt-[clamp(4px,0.6vw,8px)] ${displayFont} text-[clamp(11px,1.4vw,20px)] leading-tight text-[#2c1736]`}>
         {woman.name}
       </h3>
 
-      <p className={`mt-0.5 ${displayFont} text-[clamp(9px,2vw,14px)] italic text-[#a75a69] sm:mt-1 sm:text-[clamp(12px,1.3vw,14px)]`}>
+      <p className={`mt-[2px] ${displayFont} text-[clamp(9px,1vw,14px)] italic text-[#a75a69]`}>
         ({woman.role})
       </p>
 
-      <div className="my-1 flex w-10 items-center gap-1 text-[#b4864d] sm:my-2 sm:w-16 sm:gap-1.5">
+      <div className="my-[clamp(3px,0.5vw,8px)] flex w-[clamp(40px,4vw,64px)] items-center gap-1 text-[#b4864d]">
         <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+        <Sparkles className="h-3 w-3" />
         <span className="h-px flex-1 bg-[#d4b98f]" />
       </div>
 
       <p
-        className={`hidden text-[clamp(11px,1.8vw,13px)] leading-relaxed text-[#4a3f50] sm:block ${
+        className={`hidden text-[clamp(11px,0.95vw,13px)] leading-relaxed text-[#4a3f50] sm:block ${
           dir === "rtl" ? "text-right" : "text-left"
         }`}
       >
@@ -145,13 +145,13 @@ export default function WomenCultureMemoryPage({
     <main
       dir={dir}
       className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "h-screen overflow-hidden bg-[#f9f3e8] text-[#2a1534]"
       } ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-screen bg-transparent" : "min-h-screen bg-[#fcf7ef]"
+        className={`relative flex w-full max-w-full flex-col overflow-x-hidden scrollbar-hide sm:w-[min(100vw,1400px)] ${
+          selectedId ? "min-h-screen overflow-y-auto bg-transparent" : "h-screen overflow-hidden bg-[#fcf7ef]"
         }`}
       >
         <button
@@ -200,49 +200,49 @@ export default function WomenCultureMemoryPage({
           <>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_6%,rgba(205,143,151,0.15),transparent_30%),radial-gradient(circle_at_20%_48%,rgba(212,185,143,0.12),transparent_32%)]" />
 
-            <section data-culture-hero="true" className="relative z-10 shrink-0">
+            <section data-culture-hero="true" className="relative z-10 flex min-h-0 flex-1 flex-col">
               <div
                 data-culture-fade="true"
-                className="relative z-20 mx-auto max-w-[900px] px-4 pb-3 pt-16 text-center sm:px-6 sm:pb-5 sm:pt-20 lg:pt-14"
+                className="relative z-20 mx-auto w-full max-w-[900px] shrink-0 px-4 pb-[1vh] pt-[7vh] text-center"
               >
-                <div className="mx-auto mb-5 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d] sm:mb-6">
+                <div className="mx-auto mb-[1.5vh] flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d]">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-6 w-6 sm:h-8 sm:w-8" />
+                  <Sparkles className="h-[clamp(18px,3vh,32px)] w-[clamp(18px,3vh,32px)]" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h1 className={`${displayFont} text-[clamp(34px,8vw,80px)] font-medium leading-[1.05] tracking-tight text-[#2c1337]`}>
+                <h1 className={`${displayFont} text-[clamp(26px,5.5vh,72px)] font-medium leading-[1.05] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitleLine1}
                   <br />
                   {copy.heroTitleLine2}
                 </h1>
 
-                <h2 className={`mx-auto mt-5 max-w-[640px] ${displayFont} text-[clamp(17px,3.8vw,28px)] italic leading-snug text-[#a75a69] sm:mt-8`}>
+                <h2 className={`mx-auto mt-[1.5vh] max-w-[640px] ${displayFont} text-[clamp(15px,2.6vh,28px)] italic leading-snug text-[#a75a69]`}>
                   {copy.heroSubtitle}
                 </h2>
 
-                <div className="mx-auto my-5 flex w-full max-w-[270px] items-center justify-center gap-3 text-[#b4864d] sm:my-7">
+                <div className="mx-auto my-[1.5vh] flex w-full max-w-[270px] items-center justify-center gap-3 text-[#b4864d]">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                   <span className="h-3 w-3 rotate-45 bg-[#b4864d]" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <p className="mx-auto max-w-[680px] text-[clamp(15px,3.4vw,20px)] leading-relaxed text-[#55505a]">
+                <p className="mx-auto max-w-[680px] text-[clamp(13px,2vh,20px)] leading-relaxed text-[#55505a]">
                   {copy.heroIntro}
                 </p>
               </div>
 
-              <div className="relative z-10 w-full">
+              <div className="relative z-10 flex min-h-0 w-full flex-1 items-end justify-center">
                 <img
                   src={cultureHero}
                   alt=""
-                  className="pointer-events-none mx-auto block h-auto w-full max-w-[1400px] object-contain object-center"
+                  className="pointer-events-none block h-full max-w-[1400px] object-contain object-bottom"
                 />
               </div>
             </section>
 
-            <section className="relative z-20 -mt-2 px-3 pb-6 sm:mt-0 sm:px-5 lg:px-10">
-              <div className="mx-auto grid w-full max-w-[1280px] grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
+            <section className="relative z-20 shrink-0 px-3 pb-[2vh] pt-[1vh] sm:px-5 lg:px-10">
+              <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
                 {cultureWomen.map((woman) => (
                   <CultureListCard
                     key={woman.id}

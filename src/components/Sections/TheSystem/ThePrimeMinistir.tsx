@@ -14,7 +14,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
-import primeMinister from "@/assets/images/prime-minister.webp";
+import primeMinister from "@/assets/images/PrimeMinistir/pm.jpeg";
 import backgroundPattern from "@/assets/images/patterns/pattern.webp";
 
 const achievements = [
