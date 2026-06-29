@@ -41,23 +41,23 @@ function WomenDetailInfoCard({
   return (
     <div
       data-women-detail-fade="true"
-      className="flex min-h-0 min-w-0 flex-col items-center justify-start rounded-[clamp(12px,1.6vw,18px)] border border-[#dfc997] bg-[#fff8ee]/75 px-[clamp(8px,1.6vw,20px)] py-[clamp(12px,2.4vw,32px)] text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)]"
+      className="flex min-h-0 min-w-0 flex-col items-center justify-start rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/75 px-5 py-8 text-center shadow-[0_8px_20px_rgba(80,45,30,0.06)]"
     >
-      <div className="grid h-[clamp(36px,6vw,78px)] w-[clamp(36px,6vw,78px)] place-items-center rounded-full bg-[#5a223f] text-[clamp(16px,3vw,38px)] text-[#d7aa4e]">
+      <div className="grid h-[78px] w-[78px] place-items-center rounded-full bg-[#5a223f] text-[38px] text-[#d7aa4e]">
         {icon}
       </div>
 
-      <div className="mt-[clamp(6px,1.2vw,20px)] flex w-[clamp(48px,7vw,80px)] items-center gap-[clamp(4px,0.6vw,8px)] text-[#c8a765]">
+      <div className="mt-5 flex w-20 items-center gap-2 text-[#c8a765]">
         <span className="h-px flex-1 bg-[#d9bd81]" />
-        <span className="text-[clamp(10px,1.2vw,14px)]">❖</span>
+        <span className="text-[14px]">❖</span>
         <span className="h-px flex-1 bg-[#d9bd81]" />
       </div>
 
-      <h3 className={`mt-[clamp(4px,1vw,16px)] ${displayFont} text-[clamp(10px,3vw,30px)] leading-tight text-[#2d1436]`}>
+      <h3 className={`mt-4 ${displayFont} text-[30px] leading-tight text-[#2d1436]`}>
         {title}
       </h3>
 
-      <p className="mt-[clamp(6px,1.4vw,24px)] max-w-[min(100%,280px)] text-[clamp(9px,2.5vw,18px)] leading-snug text-[#3f3b42] sm:max-w-[min(100%,210px)]">
+      <p className="mt-6 max-w-[210px] text-[18px] leading-snug text-[#3f3b42]">
         {text}
       </p>
     </div>
@@ -77,24 +77,24 @@ function WomenDetailQuoteCard({
   const textAlign = dir === "rtl" ? "text-right" : "text-left";
   const quoteMarkSide =
     dir === "rtl"
-      ? { open: "right-[clamp(18px,2.8vw,30px)]", close: "left-[clamp(18px,2.8vw,30px)]" }
-      : { open: "left-[clamp(18px,2.8vw,30px)]", close: "right-[clamp(18px,2.8vw,30px)]" };
+      ? { open: "right-[30px]", close: "left-[30px]" }
+      : { open: "left-[30px]", close: "right-[30px]" };
 
   return (
     <div
       data-women-detail-fade="true"
-      className="relative h-full overflow-hidden rounded-[clamp(14px,2vw,20px)] bg-[linear-gradient(160deg,#fff8f2_0%,#fceee6_55%,#f5e1d8_100%)]"
+      className="relative h-full overflow-hidden rounded-[20px] bg-[linear-gradient(160deg,#fff8f2_0%,#fceee6_55%,#f5e1d8_100%)]"
     >
       {/* Outer frame */}
       <div
-        className="pointer-events-none absolute inset-[clamp(12px,2.2vw,22px)] rounded-[3px] border"
+        className="pointer-events-none absolute inset-[22px] rounded-[3px] border"
         style={{ borderColor }}
         aria-hidden
       />
 
       {/* Inner frame — side rails plus broken top/bottom segments */}
       <div
-        className="pointer-events-none absolute inset-[clamp(18px,3vw,30px)]"
+        className="pointer-events-none absolute inset-[30px]"
         aria-hidden
       >
         <div className="absolute inset-y-0 left-0 w-px" style={{ backgroundColor: borderColor }} />
@@ -106,27 +106,27 @@ function WomenDetailQuoteCard({
       </div>
 
       <span
-        className={`pointer-events-none absolute top-[clamp(14px,2.4vw,24px)] ${quoteMarkSide.open} font-serif text-[clamp(40px,7vw,72px)] leading-none text-[#e89595]`}
+        className={`pointer-events-none absolute top-[24px] ${quoteMarkSide.open} font-serif text-[72px] leading-none text-[#e89595]`}
         aria-hidden
       >
         &ldquo;
       </span>
       <span
-        className={`pointer-events-none absolute bottom-[clamp(40px,6vw,56px)] ${quoteMarkSide.close} font-serif text-[clamp(40px,7vw,72px)] leading-none text-[#e89595]`}
+        className={`pointer-events-none absolute bottom-[56px] ${quoteMarkSide.close} font-serif text-[72px] leading-none text-[#e89595]`}
         aria-hidden
       >
         &rdquo;
       </span>
 
       <div
-        className={`relative flex h-full min-h-[220px] flex-col justify-between px-[clamp(28px,4.5vw,48px)] py-[clamp(28px,4vw,44px)] ${textAlign}`}
+        className={`relative flex h-full min-h-[220px] flex-col justify-between px-12 py-11 ${textAlign}`}
       >
-        <p className="font-serif text-[clamp(14px,2vw,22px)] italic leading-[1.7] text-[#454545]">
+        <p className="font-serif text-[22px] italic leading-[1.7] text-[#454545]">
           {quote}
         </p>
 
         {quoteAuthor && (
-          <p className="mt-[clamp(16px,2.4vw,28px)] text-[clamp(11px,1.4vw,15px)] leading-snug text-[#7d4f56]">
+          <p className="mt-7 text-[15px] leading-snug text-[#7d4f56]">
             {quoteAuthor}
           </p>
         )}
@@ -155,38 +155,34 @@ function WomenDetailHighlightSection({
       data-women-detail-fade="true"
       className={
         isMatters
-          ? "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#e8a8a8] bg-[#fff5f3] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(254,165,165,0.22)]"
-          : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[clamp(16px,2.4vw,28px)] border-2 border-[#5a223f] bg-[#fff8ee] px-[clamp(16px,3vw,32px)] py-[clamp(28px,4vw,48px)] text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
+          ? "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[28px] border-2 border-[#e8a8a8] bg-[#fff5f3] px-8 py-12 text-center shadow-[0_12px_36px_rgba(254,165,165,0.22)]"
+          : "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[28px] border-2 border-[#5a223f] bg-[#fff8ee] px-8 py-12 text-center shadow-[0_12px_36px_rgba(80,45,30,0.14)]"
       }
     >
       <div
-        className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] top-[clamp(12px,2vw,20px)] h-px ${isMatters ? "bg-[#5a223f]/20" : "bg-[#5a223f]/20"}`}
+        className="pointer-events-none absolute inset-x-10 top-5 h-px bg-[#5a223f]/20"
         aria-hidden
       />
       <div
-        className={`pointer-events-none absolute inset-x-[clamp(16px,4vw,40px)] bottom-[clamp(12px,2vw,20px)] h-px ${isMatters ? "bg-[#5a223f]/20" : "bg-[#5a223f]/20"}`}
+        className="pointer-events-none absolute inset-x-10 bottom-5 h-px bg-[#5a223f]/20"
         aria-hidden
       />
 
-      {/* <div className="relative z-10 mx-auto mb-[clamp(12px,2vw,20px)] grid h-[clamp(48px,8vw,88px)] w-[clamp(48px,8vw,88px)] place-items-center rounded-full border-2 border-[#d7aa4e] bg-[#5a223f] text-[clamp(24px,5vw,48px)] text-[#d7aa4e] shadow-[0_4px_20px_rgba(90,34,63,0.3)]">
-        {icon}
-      </div> */}
-
       <h3
-        className={`relative z-10 ${displayFont} text-[clamp(14px,2.4vw,26px)] font-medium uppercase tracking-[0.22em] text-[#5a223f]`}
+        className={`relative z-10 ${displayFont} text-[26px] font-medium uppercase tracking-[0.22em] text-[#5a223f]`}
       >
         {title}
       </h3>
 
-      <div className="relative z-10 mx-auto mt-[clamp(14px,2.4vw,24px)] flex w-[min(100%,280px)] items-center gap-3 text-[#a75a69]">
+      <div className="relative z-10 mx-auto mt-6 flex w-[280px] max-w-full items-center gap-3 text-[#a75a69]">
         <span className="h-px flex-1 bg-[#5a223f]/25" />
-        <span aria-hidden className="text-[clamp(10px,1.4vw,14px)]">
+        <span aria-hidden className="text-[14px]">
           ❖
         </span>
         <span className="h-px flex-1 bg-[#5a223f]/25" />
       </div>
 
-      <p className="relative z-10 mx-auto mt-[clamp(16px,2.8vw,28px)] max-w-[min(100%,680px)] flex-1 text-[clamp(14px,2vw,22px)] leading-[1.65] text-[#2d1436]">
+      <p className="relative z-10 mx-auto mt-7 max-w-[680px] flex-1 text-[22px] leading-[1.65] text-[#2d1436]">
         {text}
       </p>
     </div>
@@ -211,6 +207,37 @@ export default function WomenDetailPanel({
   dir = "ltr",
   lang = "en",
 }: WomenDetailPanelProps) {
+  const canvasRef = React.useRef<HTMLDivElement | null>(null);
+  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
+
+  // Fixed design canvas (1400px wide) — same fit logic as the Women hub / list pages:
+  // measure the natural height and scale uniformly so the page looks identical on every screen.
+  const DESIGN_WIDTH = 1400;
+
+  React.useEffect(() => {
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
+    };
+
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, [dir, lang, nameLine1, nameLine2, intro, quote]);
+
   const t = (value: string) => localizeDigits(value, lang);
   const displayFont = dir === "rtl" ? "font-noto-naskh" : "font-serif";
   const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
@@ -231,24 +258,35 @@ export default function WomenDetailPanel({
     .map((c) => ({ ...c, title: t(c.title), text: t(c.text) }));
   const cardGridClass =
     visibleCards.length === 2
-      ? "grid-cols-1 sm:grid-cols-2"
+      ? "grid-cols-2"
       : visibleCards.length === 4
-        ? "grid-cols-1 sm:grid-cols-2"
-        : "grid-cols-1 sm:grid-cols-3";
+        ? "grid-cols-2"
+        : "grid-cols-3";
   const heroScrim =
     "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(251,244,232,0)_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
 
   return (
     <div
-      className={`flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#f7efe3] ${dir === "rtl" ? "font-noto-naskh" : ""}`}
       dir={dir}
+      className={`fixed inset-0 z-0 overflow-hidden bg-[#f7efe3] ${dir === "rtl" ? "font-noto-naskh" : ""}`}
     >
-      <div className="relative min-h-screen w-full overflow-x-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10 sm:pb-0">
-        <div className="pointer-events-none absolute left-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
-        <div className="pointer-events-none absolute right-4 top-0 hidden h-full w-px bg-[#d4b778]/45 sm:block" />
+      <div
+        ref={canvasRef}
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
+        <div className="relative w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10">
+          <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
+          <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
         <section className="relative z-10 w-full">
-          <div className={`absolute ${heroImageSide} top-0 h-full w-[62%] max-w-[760px] overflow-hidden sm:w-[56%]`}>
+          <div className={`absolute ${heroImageSide} top-0 h-full w-[56%] max-w-[760px] overflow-hidden`}>
             <div data-women-detail-portrait-fade="true" className="absolute inset-0">
               <div className={`absolute inset-0 ${portraitFlip}`}>
                 <img
@@ -268,36 +306,36 @@ export default function WomenDetailPanel({
           </div>
 
           <div
-            className="relative z-20 flex min-h-[50vh] max-w-[min(52%,560px)] flex-col px-[clamp(16px,3vw,56px)] pb-[clamp(24px,3vw,32px)] pt-[clamp(80px,12vw,112px)]"
+            className="relative z-20 flex min-h-[560px] max-w-[560px] flex-col px-14 pb-8 pt-28"
             data-women-detail-fade="true"
           >
-            <h1 className={`break-words ${displayFont} text-[clamp(24px,7vw,118px)] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>
+            <h1 className={`break-words ${displayFont} text-[118px] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>
               {t(nameLine1)}
               <br />
               {t(nameLine2)}
             </h1>
 
-            <div className="mt-[clamp(16px,3vw,32px)] flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
+            <div className="mt-8 flex w-[260px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
             </div>
 
-            <h2 className={`mt-[clamp(16px,3vw,32px)] max-w-full break-words ${displayFont} text-[clamp(17px,3vw,26px)] italic leading-tight text-[#a75a69]`}>
+            <h2 className={`mt-8 max-w-full break-words ${displayFont} text-[26px] italic leading-tight text-[#a75a69]`}>
               {t(role)}
             </h2>
 
             {metaLine && (
-              <p className="mt-[clamp(10px,2vw,16px)] max-w-full text-[clamp(12px,1.5vw,18px)] leading-snug text-[#5a4a52]">
+              <p className="mt-4 max-w-full text-[18px] leading-snug text-[#5a4a52]">
                 {t(metaLine)}
               </p>
             )}
 
-            <p className="mt-[clamp(16px,3vw,24px)] max-w-full text-[clamp(13px,1.6vw,20px)] leading-[1.7] text-[#3f3b42]">
+            <p className="mt-6 max-w-full text-[20px] leading-[1.7] text-[#3f3b42]">
               {t(intro)}
             </p>
 
-            <div className="mt-[clamp(16px,3vw,32px)] flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
+            <div className="mt-8 flex w-[190px] max-w-full items-center gap-3 text-[#c7a45e]">
               <span className="h-px flex-1 bg-[#c7a45e]" />
               <span aria-hidden>❖</span>
               <span className="h-px flex-1 bg-[#c7a45e]" />
@@ -307,7 +345,7 @@ export default function WomenDetailPanel({
 
         {(greatestAchievement || whySheMatters) && (
           <section
-            className={`relative z-30 mx-[clamp(12px,2.4vw,40px)] mt-[clamp(16px,3vw,24px)] grid grid-cols-1 gap-[clamp(12px,1.6vw,20px)] px-[clamp(4px,1vw,16px)] sm:grid-cols-2 xl:mx-auto xl:max-w-[1200px]`}
+            className="relative z-30 mx-auto mt-6 grid max-w-[1200px] grid-cols-2 gap-5 px-4"
           >
             {greatestAchievement && (
               <WomenDetailHighlightSection
@@ -333,7 +371,7 @@ export default function WomenDetailPanel({
 
         {visibleCards.length > 0 && (
           <section
-            className={`relative z-30 mt-[clamp(20px,3vw,32px)] grid ${cardGridClass} gap-[clamp(12px,1.6vw,20px)] px-[clamp(16px,3vw,56px)]`}
+            className={`relative z-30 mx-auto mt-8 grid max-w-[1200px] ${cardGridClass} gap-5 px-14`}
           >
             {visibleCards.map((c) => (
               <WomenDetailInfoCard key={c.title} {...c} displayFont={displayFont} />
@@ -343,19 +381,19 @@ export default function WomenDetailPanel({
 
         {/* Did You Know + quote, side by side */}
         <section
-          className={`relative z-30 mx-[clamp(16px,3vw,56px)] mb-[clamp(24px,3vw,40px)] mt-[clamp(20px,3vw,32px)] grid items-stretch gap-[clamp(12px,1.6vw,20px)] ${
-            didYouKnow ? "grid-cols-1 sm:grid-cols-2 xl:mx-auto xl:max-w-[1200px]" : "max-w-[760px] xl:mx-auto"
+          className={`relative z-30 mx-auto mb-10 mt-8 grid items-stretch gap-5 ${
+            didYouKnow ? "grid-cols-2 max-w-[1200px]" : "max-w-[760px]"
           }`}
         >
           {didYouKnow && (
             <div
               data-women-detail-fade="true"
-              className="flex h-full flex-col rounded-[clamp(14px,2vw,18px)] border border-[#dfc997] bg-[#fff8ee]/85 px-[clamp(16px,2.4vw,28px)] py-[clamp(20px,2.8vw,32px)]"
+              className="flex h-full flex-col rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/85 px-7 py-8"
             >
-              <h3 className={`${displayFont} text-[clamp(12px,2vw,22px)] uppercase tracking-[0.18em] text-[#a75a69]`}>
+              <h3 className={`${displayFont} text-[22px] uppercase tracking-[0.18em] text-[#a75a69]`}>
                 {t(didYouKnow.title)}
               </h3>
-              <p className="mt-[clamp(10px,1.6vw,16px)] text-[clamp(13px,1.6vw,19px)] leading-[1.65] text-[#3f3b42]">
+              <p className="mt-4 text-[19px] leading-[1.65] text-[#3f3b42]">
                 {t(didYouKnow.text)}
               </p>
             </div>
@@ -363,6 +401,7 @@ export default function WomenDetailPanel({
 
           <WomenDetailQuoteCard quote={t(quote)} quoteAuthor={quoteAuthor ? t(quoteAuthor) : undefined} dir={dir} />
         </section>
+        </div>
       </div>
     </div>
   );
