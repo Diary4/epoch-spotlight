@@ -79,9 +79,15 @@ export default function WomenResistancePage({
   onLanguageChange,
 }: WomenResistancePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const canvasRef = React.useRef<HTMLDivElement | null>(null);
+  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [internalLang, setInternalLang] = React.useState<AppLangCode>(() => getAppLanguage());
   const lang = langProp ?? internalLang;
+
+  // Fixed design canvas (1400px wide) — same fit logic as the Women hub / Historic:
+  // measure the natural height and scale uniformly so the page looks identical on every screen.
+  const DESIGN_WIDTH = 1400;
 
   const copy = getResistancePageCopy(lang);
   const resistanceWomen = getResistanceWomen(lang);
@@ -105,42 +111,100 @@ export default function WomenResistancePage({
     return cleanup;
   }, [selectedId, detail]);
 
+  React.useEffect(() => {
+    if (selectedId) return;
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
+    };
+
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, [selectedId, lang]);
+
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
     else onBack?.();
   };
 
-  return (
-    <main
-      dir={dir}
-      className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "bg-[#f7efe3] text-[#2d1436]" : "bg-[#f9f3e8] text-[#2a1534]"
-      } ${isRtlScript ? "font-noto-naskh" : ""}`}
+  const renderWomanCard = (woman: (typeof resistanceWomen)[number]) => (
+    <button
+      type="button"
+      data-resist-card="true"
+      key={woman.id}
+      onClick={() => setSelectedId(woman.id)}
+      className="relative flex w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-4 text-left shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979]"
     >
-      <section
-        ref={sectionRef}
-        className={`relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "bg-transparent" : "bg-[#fcf7ef]"
-        }`}
-      >
-        <WomenLanguageButton
-          lang={lang}
-          languageLabel={languageLabel}
-          onLanguageChange={handleLanguageChange}
+      <div className="relative mx-auto h-[260px] w-full overflow-hidden rounded-[20px]">
+        <img
+          src={resistanceImages[woman.id]}
+          alt={woman.name}
+          className="relative z-10 h-full w-full object-cover object-[center_20%]"
         />
+      </div>
 
-        <button
-          type="button"
-          onClick={handleBack}
-          className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
-            dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
-          }`}
-          aria-label={selectedId ? copy.backToList : copy.backToWomen}
+      <h3 className={`mt-2.5 ${displayFont} text-[32px] leading-tight text-[#2c1736]`}>
+        {woman.name}
+      </h3>
+
+      <p className={`mt-1 ${displayFont} text-[20px] italic text-[#a75a69]`}>
+        ({woman.role})
+      </p>
+
+      <div className="my-2 flex w-full max-w-[96px] items-center gap-2 text-[#b4864d]">
+        <span className="h-px flex-1 bg-[#d4b98f]" />
+        <Sparkles className="h-4 w-4" />
+        <span className="h-px flex-1 bg-[#d4b98f]" />
+      </div>
+
+      <p className="text-left text-[15px] leading-relaxed text-[#4a3f50]">
+        {woman.teaser}
+      </p>
+    </button>
+  );
+
+  // Detail view keeps its own scrolling full-screen layout.
+  if (detail && selectedId) {
+    return (
+      <main
+        dir={dir}
+        className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen bg-[#f7efe3] text-[#2d1436] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      >
+        <section
+          ref={sectionRef}
+          className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-transparent sm:w-[min(100vw,1400px)]"
         >
-          <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
-        </button>
+          <WomenLanguageButton
+            lang={lang}
+            languageLabel={languageLabel}
+            onLanguageChange={handleLanguageChange}
+          />
 
-        {detail && selectedId ? (
+          <button
+            type="button"
+            onClick={handleBack}
+            className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
+              dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
+            }`}
+            aria-label={copy.backToList}
+          >
+            <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+          </button>
+
           <WomenDetailPanel
             dir={dir}
             lang={lang}
@@ -159,119 +223,129 @@ export default function WomenResistancePage({
             didYouKnow={detail.didYouKnow}
             listIcon={detail.listIcon}
           />
-        ) : (
-          <>
+        </section>
+      </main>
+    );
+  }
+
+  // List view — fixed design canvas scaled uniformly so the page looks identical on every screen.
+  return (
+    <div
+      dir={dir}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f9f3e8] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div
+        ref={canvasRef}
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
+        <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
+          <section
+            ref={sectionRef}
+            className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-8"
+          >
+            <WomenLanguageButton
+              lang={lang}
+              languageLabel={languageLabel}
+              onLanguageChange={handleLanguageChange}
+            />
+
+            <button
+              type="button"
+              onClick={handleBack}
+              className={`absolute top-8 z-[60] flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white ${
+                dir === "rtl" ? "right-8" : "left-8"
+              }`}
+              aria-label={copy.backToWomen}
+            >
+              <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+            </button>
+
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
             {/* Hero — side-by-side on every screen with responsive grid splits and overlapping styles */}
             <section
-              className={`relative z-10 shrink-0 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-center gap-2 pt-14 sm:gap-4 sm:pt-16 ${
-                dir === "rtl" ? "pl-0 pr-5 sm:pr-8 lg:pr-10" : "pl-5 pr-0 sm:pl-8 lg:pl-10"
+              className={`relative z-10 shrink-0 grid grid-cols-[0.9fr_1.1fr] items-center gap-4 pt-16 ${
+                dir === "rtl" ? "pl-0 pr-10" : "pl-10 pr-0"
               }`}
             >
-              <div 
-                data-resist-fade="true" 
-                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-4 sm:pl-0" : "pr-4 sm:pr-0"}`}
+              <div
+                data-resist-fade="true"
+                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-0" : "pr-0"}`}
               >
-                <h1 className={`${displayFont} text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
+                <h1 className={`${displayFont} text-[96px] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-2 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] sm:my-3 lg:my-4">
+                <div className="my-4 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d]">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
+                  <Sparkles className="h-6 w-6" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className={`${displayFont} text-[clamp(11px,2.5vw,34px)] text-[#a75a69]`}>
+                <h2 className={`${displayFont} text-[34px] text-[#a75a69]`}>
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-1.5 max-w-[400px] text-[clamp(11px,2.2vw,24px)] leading-[1.4] text-[#56505a] sm:mt-2 lg:mt-3 lg:leading-[1.4]">
+                <p className="mt-3 max-w-[400px] text-[24px] leading-[1.4] text-[#56505a]">
                   {copy.heroIntro}
                 </p>
               </div>
 
-              {/* Hero image — overlapping layout expands horizontal bounds and shifts left to sitting underneath the text */}
-              <div 
-                data-resist-hero="true" 
-                className={`pointer-events-none relative self-stretch h-full w-[145%] sm:w-[155%] md:w-[165%] lg:w-[175%] ${
-                  dir === "rtl"
-                    ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
-                    : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
+              {/* Hero image bleeds under the text */}
+              <div
+                data-resist-hero="true"
+                className={`pointer-events-none relative self-stretch h-full w-[175%] ${
+                  dir === "rtl" ? "mr-[-75%]" : "ml-[-75%]"
                 }`}
               >
                 <img
                   src={resistanceHero}
                   alt="Women of Resistance"
-                  className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                  className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
                 />
                 <div
-                  className="absolute inset-x-0 bottom-0 h-[clamp(24px,5vh,110px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                  className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
                   aria-hidden
                 />
               </div>
             </section>
 
-            {/* Cards grid */}
-            <section
-              className="relative z-20 mt-3 gap-2 px-3 sm:gap-5 sm:px-5 lg:px-10"
-              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
-            >
-              {resistanceWomen.map((woman) => (
-                <button
-                  type="button"
-                  data-resist-card="true"
-                  key={woman.id}
-                  onClick={() => setSelectedId(woman.id)}
-                  className="relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 text-left shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-4"
-                >
-                  <div className="relative mx-auto h-[min(200px,15vh)] w-full overflow-hidden rounded-[10px] sm:h-[min(220px,17vh)] sm:rounded-[20px] lg:h-[min(260px,19vh)]">
-                    <img
-                      src={resistanceImages[woman.id]}
-                      alt={woman.name}
-                      className="relative z-10 h-full w-full object-cover object-[center_20%]"
-                    />
-                  </div>
-
-                  <h3 className={`mt-1.5 ${displayFont} text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-2.5 sm:text-[clamp(22px,2.4vw,32px)]`}>
-                    {woman.name}
-                  </h3>
-
-                  <p className={`mt-0.5 ${displayFont} text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-1 sm:text-[clamp(15px,1.6vw,20px)]`}>
-                    ({woman.role})
-                  </p>
-
-                  <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-2 sm:max-w-[96px] sm:gap-2">
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                    <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                  </div>
-
-                  <p className="hidden text-left text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px]">
-                    {woman.teaser}
-                  </p>
-                </button>
-              ))}
+            {/* Cards — 3 on the first row, 4 on the second; each row fills the full width */}
+            <section className="relative z-20 mt-3 flex flex-col gap-5 px-10">
+              <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+                {resistanceWomen.slice(0, 3).map(renderWomanCard)}
+              </div>
+              <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+                {resistanceWomen.slice(3).map(renderWomanCard)}
+              </div>
             </section>
 
             {/* Quotes grid */}
             <section
-              className="relative z-20 mt-3 grid grid-cols-4 gap-2 px-3 pb-4 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
+              className="relative z-20 mt-3 w-full gap-6 px-10 pb-4"
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
             >
               {copy.quotes.map(({ text, author }) => (
                 <article
                   data-resist-card="true"
                   key={text}
-                  className="relative flex min-h-[64px] min-w-0 flex-col justify-center overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 px-2 py-3 shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:min-h-[110px] sm:rounded-[24px] sm:px-8 sm:py-4"
+                  className="relative flex min-h-[110px] min-w-0 flex-col justify-center overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 px-8 py-4 shadow-[0_10px_25px_rgba(67,35,45,0.1)]"
                 >
-                  <Quote className="mb-1 h-4 w-4 shrink-0 fill-[#d98994]/70 text-[#d98994]/70 sm:mb-2 sm:h-8 sm:w-8" />
+                  <Quote className="mb-2 h-8 w-8 shrink-0 fill-[#d98994]/70 text-[#d98994]/70" />
 
-                  <p className={`${displayFont} text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(15px,2.4vw,20px)]`}>{text}</p>
+                  <p className={`${displayFont} text-[20px] leading-snug text-[#3a293f]`}>{text}</p>
 
-                  <p className={`mt-1.5 ${displayFont} text-[clamp(8px,2vw,16px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(14px,1.8vw,16px)]`}>
+                  <p className={`mt-2 ${displayFont} text-[16px] italic text-[#a75a69]`}>
                     — {author}
                   </p>
 
@@ -312,9 +386,9 @@ export default function WomenResistancePage({
                 <div className="h-full w-full bg-[radial-gradient(circle_at_60%_30%,rgba(151,97,126,0.28),transparent_22%),linear-gradient(135deg,transparent_35%,rgba(143,76,104,0.25)_36%_50%,transparent_51%)]" />
               </div>
             </section> */}
-          </>
-        )}
-      </section>
-    </main>
+          </section>
+        </main>
+      </div>
+    </div>
   );
 }

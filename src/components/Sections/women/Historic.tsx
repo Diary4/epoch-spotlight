@@ -301,7 +301,7 @@ export default function WomenHistoricPage({
             </section>
 
             {/* Quotes grid */}
-            <section className="relative z-20 mt-6 grid grid-cols-4 gap-6 px-10">
+            <section className="relative z-20 mt-6 grid w-full grid-cols-3 gap-6 px-10">
               {copy.quotes.map(({ text, author }) => (
                 <article
                   data-hist-card="true"
