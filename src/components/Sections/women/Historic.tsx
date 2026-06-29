@@ -98,14 +98,14 @@ export default function WomenHistoricPage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-[#f9f3e8] text-[#2a1534]"
+      className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
+        selectedId ? "bg-[#f7efe3] text-[#2d1436]" : "bg-[#f9f3e8] text-[#2a1534]"
       } ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-screen bg-transparent" : "min-h-0 bg-[#fcf7ef]"
+        className={`relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
+          selectedId ? "bg-transparent" : "bg-[#fcf7ef]"
         }`}
       >
         <WomenLanguageButton
@@ -247,7 +247,7 @@ export default function WomenHistoricPage({
 
             {/* Quotes grid */}
             <section
-              className="relative z-20 mt-6 grid grid-cols-3 gap-2 px-3 pb-12 sm:gap-6 sm:px-5 sm:pb-16 md:gap-6 lg:px-10 lg:pb-20"
+              className="relative z-20 mt-6 grid grid-cols-3 gap-2 px-3 pb-[200px] sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
             >
               {copy.quotes.map(({ text, author }) => (
                 <article

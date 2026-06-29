@@ -144,14 +144,14 @@ export default function WomenCultureMemoryPage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "h-screen overflow-hidden bg-[#f9f3e8] text-[#2a1534]"
+      className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
+        selectedId ? "bg-[#f7efe3] text-[#2d1436]" : "bg-[#f9f3e8] text-[#2a1534]"
       } ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-full max-w-full flex-col overflow-x-hidden scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-screen overflow-y-auto bg-transparent" : "h-screen overflow-hidden bg-[#fcf7ef]"
+        className={`relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
+          selectedId ? "bg-transparent" : "bg-[#fcf7ef]"
         }`}
       >
         <button
@@ -200,7 +200,7 @@ export default function WomenCultureMemoryPage({
           <>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_6%,rgba(205,143,151,0.15),transparent_30%),radial-gradient(circle_at_20%_48%,rgba(212,185,143,0.12),transparent_32%)]" />
 
-            <section data-culture-hero="true" className="relative z-10 flex min-h-0 flex-1 flex-col">
+            <section data-culture-hero="true" className="relative z-10 shrink-0">
               <div
                 data-culture-fade="true"
                 className="relative z-20 mx-auto w-full max-w-[900px] shrink-0 px-4 pb-[1vh] pt-[7vh] text-center"
@@ -232,16 +232,16 @@ export default function WomenCultureMemoryPage({
                 </p>
               </div>
 
-              <div className="relative z-10 flex min-h-0 w-full flex-1 items-end justify-center">
+              <div className="relative z-10 w-full">
                 <img
                   src={cultureHero}
                   alt=""
-                  className="pointer-events-none block h-full max-w-[1400px] object-contain object-bottom"
+                  className="pointer-events-none mx-auto block h-auto w-full max-w-[1400px] object-contain object-center"
                 />
               </div>
             </section>
 
-            <section className="relative z-20 shrink-0 px-3 pb-[2vh] pt-[1vh] sm:px-5 lg:px-10">
+            <section className="relative z-20 shrink-0 px-3 pb-[200px] pt-[1vh] sm:px-5 lg:px-10">
               <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
                 {cultureWomen.map((woman) => (
                   <CultureListCard

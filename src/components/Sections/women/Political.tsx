@@ -103,15 +103,13 @@ export default function WomenPoliticalPage({
   return (
     <main
       dir={dir}
-      className={`m-0 flex w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "min-h-screen bg-[#f7efe3] text-[#2d1436]" : "min-h-screen bg-transparent text-[#2a1534]"
+      className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-hidden p-0 sm:w-screen ${
+        selectedId ? "bg-[#f7efe3] text-[#2d1436]" : "bg-transparent text-[#2a1534]"
       } ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <section
         ref={sectionRef}
-        className={`relative flex w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "min-h-screen bg-transparent" : "min-h-screen bg-transparent"
-        }`}
+        className={`relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] bg-transparent`}
       >
         <WomenLanguageButton
           lang={lang}
@@ -191,7 +189,7 @@ export default function WomenPoliticalPage({
             </section>
 
             {/* People cards */}
-            <section className="relative z-20 mt-6 grid grid-cols-2 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10">
+            <section className="relative z-20 mt-6 grid grid-cols-2 gap-2 px-3 pb-[200px] sm:gap-6 sm:px-5 lg:px-10">
               {people.map((person) => (
                 <button
                   type="button"
