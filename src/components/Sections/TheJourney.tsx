@@ -13,7 +13,9 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverSectionFont, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
+import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
+import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import bg from "@/assets/images/new/theJourney/journey-1.webp";
 import bg2 from "@/assets/images/new/theJourney/journey-2.webp";
 import bg3 from "@/assets/images/new/theJourney/journey-3.webp";
@@ -51,7 +53,7 @@ const milestones = [
   },
 ];
 
-type LangCode = "ku" | "en" | "ar";
+type LangCode = DiscoverLangCode;
 const CONTENT = { en, ar, ku } as const;
 
 const EMPTY_JOURNEY_ITEMS: never[] = [];
@@ -82,6 +84,7 @@ type JourneyTimelinePageProps = {
   lang?: LangCode;
   onBack?: () => void;
   onSelectMilestone?: (milestone: JourneyMilestoneId) => void;
+  onLanguageChange?: (lang: LangCode) => void;
 };
 
 /** Horizontal wobble along the rail (offsets from viewBox center). */
@@ -152,9 +155,10 @@ function timelinePathThrough(points: { x: number; y: number }[]): string {
   return d;
 }
 
-export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMilestone }: JourneyTimelinePageProps) {
+export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMilestone, onLanguageChange }: JourneyTimelinePageProps) {
   const displayFont = discoverDisplayFont(lang);
   const sectionFont = discoverSectionFont(lang);
+  const [introDone, setIntroDone] = React.useState(false);
   const data = CONTENT[lang] as any;
   const journey = data?.journey ?? {};
   const journeyItems = Array.isArray(journey.items) ? journey.items : EMPTY_JOURNEY_ITEMS;
@@ -170,6 +174,12 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
   );
 
   const rootRef = useRef<HTMLElement | null>(null);
+  const handleLanguageSelect = useDiscoverLanguageTransition(
+    rootRef,
+    lang,
+    onLanguageChange,
+    introDone,
+  );
   const trackRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const cardColumnRef = useRef<HTMLDivElement | null>(null);
@@ -309,6 +319,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       if (reducedMotion) {
         gsap.set(pathEls, { strokeDashoffset: 0, strokeDasharray: pathLen });
         gsap.set([cards, images, dots, ".journey-intro > *", ".journey-back"], { autoAlpha: 1, clearProps: "transform" });
+        setIntroDone(true);
         return;
       }
 
@@ -320,7 +331,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       gsap.set(".journey-back", { autoAlpha: 0, scale: 0.85 });
 
       const lineDuration = 3.2;
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        onComplete: () => setIntroDone(true),
+      });
 
       tl.to(".journey-back", { autoAlpha: 1, scale: 1, duration: 0.55 }, 0).to(
         ".journey-intro > *",
@@ -361,6 +375,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         height: "100vh",
       }}
     >
+      <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
       <div
         style={{
           width: "1400px",
@@ -416,10 +431,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
             <div className="relative z-10 flex min-h-0 flex-1 flex-col px-20 pb-14 pt-20">
               {/* Title */}
               <section className="journey-intro max-w-[760px]">
-                <h1 className={`${displayFont} text-[clamp(34px,9cqw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]`}>
+                <h1 data-discover-lang="true" className={`${displayFont} text-[clamp(34px,9cqw,64px)] font-light leading-none text-[#17233b] sm:text-[88px] md:text-[102px] lg:text-[124px]`}>
                   {journey.title ?? "The Journey"}
                 </h1>
-                <h2 className="mt-6 text-[clamp(16px,4cqw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
+                <h2 data-discover-lang="true" className="mt-6 text-[clamp(16px,4cqw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
                   {localizeDigits(
                     lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
                     lang,
@@ -429,7 +444,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                   <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                 </div>
-                <p className="mt-8 max-w-[680px] text-[clamp(14px,3.5cqw,20px)] leading-snug text-[#2d3549] md:text-[32px] lg:text-[36px]">
+                <p data-discover-lang="true" className="mt-8 max-w-[680px] text-[clamp(14px,3.5cqw,20px)] leading-snug text-[#2d3549] md:text-[32px] lg:text-[36px]">
                   {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
                 </p>
               </section>
@@ -490,7 +505,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                         <button
                           type="button"
                           onClick={() => onSelectMilestone?.(item.id)}
-                          key={item.title}
+                          key={item.id}
                           ref={(el) => {
                             cardRefs.current[index] = el;
                           }}
@@ -508,10 +523,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                           <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
                           <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-7 py-6">
-                            <h3 className={`${displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]`}>
+                            <h3 data-discover-lang="true" className={`${displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]`}>
                               {item.title}
                             </h3>
-                            <p className="mt-2 max-w-[380px] text-[clamp(14px,3cqw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
+                            <p data-discover-lang="true" className="mt-2 max-w-[380px] text-[clamp(14px,3cqw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
                               {item.text}
                             </p>
                           </div>

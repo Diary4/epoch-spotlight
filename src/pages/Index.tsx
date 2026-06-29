@@ -590,6 +590,10 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <DiscoverKurdistan
             lang={activeLang}
+            onLanguageChange={(code) => {
+              setAppLanguage(code);
+              setLang(code);
+            }}
             onOpenDesignDraft={() => setView("discoverV2")}
             onStartExploring={() => {
               setView("people");

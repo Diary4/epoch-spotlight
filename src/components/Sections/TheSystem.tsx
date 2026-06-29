@@ -2,7 +2,9 @@ import React from "react";
 import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
-import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
+import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
+import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import bg from "@/assets/mainImages/thesystem/parlaman.jpg"
 
 function Logo() {
@@ -39,7 +41,7 @@ function InstitutionNode({
       <div className={`grid h-48 w-48 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55]`}>
         <Icon className="h-[92px] w-[92px]" strokeWidth={1.35} />
       </div>
-      <p className={`mt-6 rounded-full px-5 py-1.5 ${displayFont} text-[36px] font-light uppercase tracking-[0.06em] text-[#17233b]`}>
+      <p data-discover-lang="true" className={`mt-6 rounded-full px-5 py-1.5 ${displayFont} text-[36px] font-light uppercase tracking-[0.06em] text-[#17233b]`}>
         {label}
       </p>
     </>
@@ -66,18 +68,26 @@ function InstitutionNode({
 }
 
 type SystemPageProps = {
-  lang?: "ku" | "en" | "ar";
+  lang?: DiscoverLangCode;
   onBack?: () => void;
   onPrimeMinisterClick?: () => void;
   onParliamentClick?: () => void;
   onGovernmentClick?: () => void;
   onPresidencyClick?: () => void;
+  onLanguageChange?: (lang: DiscoverLangCode) => void;
 };
 
-export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick }: SystemPageProps) {
+export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick, onLanguageChange }: SystemPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const canvasRef = React.useRef<HTMLDivElement | null>(null);
   const [fit, setFit] = React.useState({ scale: 1, x: 0 });
+  const [introDone, setIntroDone] = React.useState(false);
+  const handleLanguageSelect = useDiscoverLanguageTransition(
+    sectionRef,
+    lang,
+    onLanguageChange,
+    introDone,
+  );
 
   // Fixed design canvas (1400px wide) — same fit logic as Parliament / Presidency.
   const DESIGN_WIDTH = 1400;
@@ -140,7 +150,10 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
       gsap.set("[data-system-prime-border='true']", { clipPath: "inset(0 100% 0 0 round 30px)" });
       gsap.set("[data-system-prime-text='true']", { autoAlpha: 0, y: 12 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        onComplete: () => setIntroDone(true),
+      });
       tl.to("[data-system-bg='true']", {
         clipPath: "inset(0 0 0% 0)",
         duration: 1.15,
@@ -187,6 +200,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
       className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
+      <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
       <div
         ref={canvasRef}
         style={{
@@ -232,11 +246,11 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
 
             <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
             <section className="max-w-[760px]">
-              <h1 data-system-hero="true" className={`break-words ${displayFont} text-[118px] font-light leading-[1.03] tracking-tight text-[#17233b]`}>
+              <h1 data-system-hero="true" data-discover-lang="true" className={`break-words ${displayFont} text-[118px] font-light leading-[1.03] tracking-tight text-[#17233b]`}>
                 {title}
               </h1>
 
-              <p data-system-hero="true" className="mt-8 break-words text-[46px] font-light leading-tight text-[#9b6d35]">
+              <p data-system-hero="true" data-discover-lang="true" className="mt-8 break-words text-[46px] font-light leading-tight text-[#9b6d35]">
                 {heading}
               </p>
 
@@ -245,7 +259,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                 <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
               </div>
 
-              <p data-system-hero="true" className="mt-6 max-w-[700px] break-words text-[36px] font-light leading-[1.5] text-[#2d3549]">
+              <p data-system-hero="true" data-discover-lang="true" className="mt-6 max-w-[700px] break-words text-[36px] font-light leading-[1.5] text-[#2d3549]">
                 {description}
               </p>
             </section>
@@ -311,7 +325,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                 className={`flex h-[150px] w-full items-center justify-between gap-2 rounded-[27px] px-16 ${displayFont} text-[55px] font-light text-[#17233b]`}
               >
                 <span data-system-prime-text="true" className="shrink-0 text-[#b99152] text-6xl">✥</span>
-                <span data-system-prime-text="true" className="text-center">{primeMinisterLabel}</span>
+                <span data-system-prime-text="true" data-discover-lang="true" className="text-center">{primeMinisterLabel}</span>
                 <ArrowRight data-system-prime-text="true" strokeWidth={1.6} className="h-14 w-14 shrink-0 text-[#b99152] rtl:rotate-180" />
               </button>
             </div>
@@ -321,7 +335,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               <div className="ms-12 me-14 grid h-28 w-28 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white">
                 <span className="text-5xl">✥</span>
               </div>
-              <p className={`p-4 text-start ${displayFont} font-light text-[34px] leading-tight text-[#17233b]`}>
+              <p data-system-footer="true" data-discover-lang="true" className={`p-4 text-start ${displayFont} font-light text-[34px] leading-tight text-[#17233b]`}>
                 {footerText}
               </p>
             </div>

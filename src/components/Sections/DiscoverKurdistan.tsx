@@ -6,6 +6,8 @@ import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import { withRudawGlyphFallback } from "@/lib/kurdishText";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
+import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
+import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import gsap from "gsap";
 import card1 from "@/assets/images/new/the-people.webp";
 import card2 from "@/assets/images/new/the-journey.webp";
@@ -74,6 +76,7 @@ type DiscoverKurdistanProps = {
   onStartExploring?: () => void;
   onSelectSection?: (section: DiscoverSectionId) => void;
   onOpenDesignDraft?: () => void;
+  onLanguageChange?: (lang: LangCode) => void;
 };
 
 export default function DiscoverKurdistan({
@@ -81,9 +84,16 @@ export default function DiscoverKurdistan({
   onStartExploring,
   onSelectSection,
   onOpenDesignDraft,
+  onLanguageChange,
 }: DiscoverKurdistanProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [introDone, setIntroDone] = React.useState(false);
+  const handleLanguageSelect = useDiscoverLanguageTransition(
+    sectionRef,
+    lang,
+    onLanguageChange,
+    introDone,
+  );
 
   const data = CONTENT[lang] as any;
   const discover = data?.discover ?? {};
@@ -195,6 +205,8 @@ export default function DiscoverKurdistan({
         dir={lang === "ar" || isKu ? "rtl" : "ltr"}
         className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col bg-[#fbf5ea] ${sectionFont}`}
       >
+        <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} placement="start" />
+
         {onOpenDesignDraft && (
           <button
             type="button"
@@ -236,6 +248,7 @@ export default function DiscoverKurdistan({
             {/* Responsive Main Title */}
             <h1
               data-intro-title="true"
+              data-discover-lang="true"
               className={`${displayFont} text-[24px] leading-tight tracking-tight text-[#18362d] xs:text-[30px] sm:text-[56px] md:text-[84px] lg:text-[102px] xl:text-[120px] 3xl:text-[150px] 4xl:text-[180px] kiosk-portrait:text-[110px]`}
             >
               {kuText(discover.title ?? "Discover Kurdistan")}
@@ -244,6 +257,7 @@ export default function DiscoverKurdistan({
             {/* Subtitle */}
             <p
               data-intro-rest="true"
+              data-discover-lang="true"
               className={`mx-auto mt-3 ${bodyWeight} max-w-[980px] px-1 text-[13px] leading-relaxed text-[#424c48] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:mt-10 lg:text-[33px] xl:max-w-[1200px] xl:text-[40px] 3xl:max-w-[1500px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[920px] kiosk-portrait:text-[40px]`}
             >
               {kuText(
@@ -265,6 +279,7 @@ export default function DiscoverKurdistan({
             {/* Description Paragraph */}
             <p
               data-intro-rest="true"
+              data-discover-lang="true"
               className={`mx-auto ${bodyWeight} mt-3 max-w-[880px] px-1 text-[13px] leading-relaxed text-[#4d5652] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px] xl:max-w-[1100px] xl:text-[40px] 3xl:max-w-[1400px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[860px] kiosk-portrait:text-[40px]`}
             >
               {kuText(
@@ -285,7 +300,7 @@ export default function DiscoverKurdistan({
                 const Icon = sectionIcons[section.id];
                 return (
                   <button
-                    key={section.title}
+                    key={section.id}
                     data-card-item
                     type="button"
                     onClick={() => onSelectSection?.(section.id)}
@@ -309,10 +324,10 @@ export default function DiscoverKurdistan({
                       </GoldIcon>
                     </div>
                     <div className={`relative flex flex-col justify-center ${bodyWeight} min-h-[95px] px-2 pb-3 pt-6 xs:min-h-[110px] xs:px-3 xs:pb-4 xs:pt-8 sm:min-h-[160px] sm:px-6 sm:pb-6 sm:pt-12 md:min-h-[190px] lg:min-h-[250px] xl:min-h-[300px] 3xl:min-h-[360px] 4xl:min-h-[420px] kiosk-portrait:min-h-[220px]`}>
-                      <h3 className={`${displayFont} text-[12px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[14px] sm:text-[34px] md:text-[44px] lg:text-[38px] xl:text-[46px] 3xl:text-[54px] 4xl:text-[60px] kiosk-portrait:text-[40px]`}>
+                      <h3 data-discover-lang="true" className={`${displayFont} text-[12px] leading-tight ${bodyWeight} text-[#18362d] xs:text-[14px] sm:text-[34px] md:text-[44px] lg:text-[38px] xl:text-[46px] 3xl:text-[54px] 4xl:text-[60px] kiosk-portrait:text-[40px]`}>
                         {kuText(localizeDigits(section.title, lang))}
                       </h3>
-                      <p className="mt-1 whitespace-nowrap text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[22px] md:text-[28px] lg:mt-3 lg:text-[42px] xl:text-[48px] 3xl:text-[58px] 4xl:text-[70px] kiosk-portrait:text-[26px]">
+                      <p data-discover-lang="true" className="mt-1 whitespace-nowrap text-[9px] leading-tight text-[#5f6662] xs:text-[11px] sm:text-[22px] md:text-[28px] lg:mt-3 lg:text-[42px] xl:text-[48px] 3xl:text-[58px] 4xl:text-[70px] kiosk-portrait:text-[26px]">
                         {kuText(localizeDigits(section.desc, lang))}
                       </p>
                     </div>

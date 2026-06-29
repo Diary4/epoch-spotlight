@@ -1,6 +1,9 @@
 import React from "react";
 import { ArrowLeft, Grid2X2, Landmark, Sparkles, Sun } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
+import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
+import type { DiscoverLangCode } from "@/components/Sections/discoverLanguage";
+import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import gsap from "gsap";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -47,12 +50,13 @@ const cards: {
 ];
 
 type ThePeopleCardId = "whoAreTheKurds" | "sharedIdentity" | "resilience";
-type LangCode = "ku" | "en" | "ar";
+type LangCode = DiscoverLangCode;
 
 type ThePeoplePageProps = {
   lang?: LangCode;
   onSelectCard?: (cardId: ThePeopleCardId) => void;
   onBack?: () => void;
+  onLanguageChange?: (lang: LangCode) => void;
 };
 
 function GoldButton({ children, active = false }) {
@@ -83,9 +87,16 @@ function CircleImage({ image }) {
 
 const CONTENT = { en, ar, ku } as const;
 
-export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: ThePeoplePageProps) {
+export default function ThePeoplePage({ lang = "en", onSelectCard, onBack, onLanguageChange }: ThePeoplePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const peopleVideoRef = React.useRef<HTMLVideoElement | null>(null);
+  const [introDone, setIntroDone] = React.useState(false);
+  const handleLanguageSelect = useDiscoverLanguageTransition(
+    sectionRef,
+    lang,
+    onLanguageChange,
+    introDone,
+  );
   const isRtlScript = lang === "ku" || lang === "ar";
   const displayFont = isRtlScript ? "font-noto-naskh" : "font-serif";
   const data = CONTENT[lang] as any;
@@ -116,7 +127,10 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
       gsap.set("[data-top-divider-part='true']", { scaleX: 0, autoAlpha: 0, transformOrigin: "center center" });
       gsap.set("[data-card-divider-part='true']", { scaleX: 0, autoAlpha: 0, transformOrigin: "center center" });
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        onComplete: () => setIntroDone(true),
+      });
 
       tl.to("[data-people-bg='true']", {
         autoAlpha: 1,
@@ -239,6 +253,8 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         dir={isRtlScript ? "rtl" : "ltr"}
         className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12 ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
+        <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
+
         <button
           type="button"
           onClick={onBack}
@@ -252,6 +268,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
         <header className="relative z-20 shrink-0 text-center pt-14 xs:pt-8 lg:pt-12">
           <h1
             data-people-hero="true"
+            data-discover-lang="true"
             className={`${displayFont} text-[32px] font-light leading-none tracking-tight text-[#1d342d] xs:text-[72px] md:text-[96px] lg:text-[132px] xl:text-[150px] 3xl:text-[170px] 4xl:text-[190px] kiosk-portrait:text-[130px]`}
           >
             {people?.title ?? "The People"}
@@ -268,6 +285,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
 
           <p
             data-people-hero="true"
+            data-discover-lang="true"
             className="mx-auto mt-3 max-w-[980px] px-1 text-[11px] font-light leading-relaxed text-[#49524e] xs:text-[22px] md:text-[30px] lg:mt-6 lg:max-w-[1100px] lg:text-[40px] xl:max-w-[1200px] xl:text-[48px] 3xl:max-w-[1400px] 3xl:text-[56px] 4xl:text-[64px] kiosk-portrait:max-w-[920px] kiosk-portrait:text-[42px]"
           >
             {people?.subtitle ??
@@ -294,7 +312,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
               <button
                 data-people-card="true"
                 type="button"
-                key={card.title}
+                key={card.id}
                 onClick={() => {
                   if (card.id === "whoAreTheKurds") {
                     onSelectCard?.("whoAreTheKurds");
@@ -317,7 +335,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
 
                 <CircleImage image={card.image} />
                 <div className="mt-[20px] lg:mt-[50px]  flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center min-[700px]:min-h-[220px] min-[700px]:px-6 min-[700px]:pb-8 min-[700px]:pt-12 lg:min-h-[300px]">
-                  <h3 className={`whitespace-pre-line ${displayFont} text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]`}>
+                  <h3 data-discover-lang="true" className={`whitespace-pre-line ${displayFont} text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]`}>
                     {card.title}
                   </h3>
 
@@ -327,7 +345,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack }: The
                     <span data-card-divider-part="true" data-card-divider-line="true" className="h-0.5 flex-1 bg-[#d7bc81]" />
                   </div>
 
-                  <p className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[10px] min-[700px]:text-[15px] lg:text-[24px] xl:text-[28px] 3xl:text-[34px] 4xl:text-[40px] kiosk-portrait:text-[1.85vw]">
+                  <p data-discover-lang="true" className="text-[8px] font-light leading-relaxed text-[#59625d] xs:text-[10px] min-[700px]:text-[15px] lg:text-[24px] xl:text-[28px] 3xl:text-[34px] 4xl:text-[40px] kiosk-portrait:text-[1.85vw]">
                     {card.description}
                   </p>
                 </div>
