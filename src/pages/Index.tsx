@@ -539,6 +539,11 @@ const Index = () => {
     }, 400);
   };
 
+  const handleAppLanguageChange = useCallback((code: LangCode) => {
+    setAppLanguage(code);
+    setLang(code);
+  }, []);
+
   return (
     <main
       role="button"
@@ -590,10 +595,7 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <DiscoverKurdistan
             lang={activeLang}
-            onLanguageChange={(code) => {
-              setAppLanguage(code);
-              setLang(code);
-            }}
+            onLanguageChange={handleAppLanguageChange}
             onOpenDesignDraft={() => setView("discoverV2")}
             onStartExploring={() => {
               setView("people");
@@ -656,6 +658,7 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <ThePeoplePage
             lang={activeLang}
+            onLanguageChange={handleAppLanguageChange}
             onBack={() => setView("discover")}
             onSelectCard={(cardId) => {
               if (cardId === "whoAreTheKurds") {
@@ -696,6 +699,7 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <JourneyTimelinePage
             lang={activeLang}
+            onLanguageChange={handleAppLanguageChange}
             onBack={() => setView("discover")}
             onSelectMilestone={(milestone) => {
               if (milestone === "1991") {
@@ -758,6 +762,7 @@ const Index = () => {
         >
           <SystemPage
             lang={activeLang}
+            onLanguageChange={handleAppLanguageChange}
             onBack={() => setView("discover")}
             onParliamentClick={() => setView("parliament")}
             onGovernmentClick={() => setView("government")}
@@ -804,6 +809,7 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <LandAndFuturePage
             lang={activeLang}
+            onLanguageChange={handleAppLanguageChange}
             onBack={() => setView("discover")}
             onSelectCard={(cardId) => {
               if (cardId === "land") {

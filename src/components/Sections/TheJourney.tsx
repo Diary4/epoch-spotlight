@@ -158,7 +158,7 @@ function timelinePathThrough(points: { x: number; y: number }[]): string {
 export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMilestone, onLanguageChange }: JourneyTimelinePageProps) {
   const displayFont = discoverDisplayFont(lang);
   const sectionFont = discoverSectionFont(lang);
-  const [introDone, setIntroDone] = React.useState(false);
+  const [introDone, setIntroDone] = useState(false);
   const data = CONTENT[lang] as any;
   const journey = data?.journey ?? {};
   const journeyItems = Array.isArray(journey.items) ? journey.items : EMPTY_JOURNEY_ITEMS;
