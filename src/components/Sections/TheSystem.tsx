@@ -232,20 +232,20 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
           >
             <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
-            {/* Hero illustration overlay — explicit height + object-cover so the image fills and bottom fade applies */}
+            {/* Hero illustration — right-anchored; building stays visible, left edge fades into text area */}
             <div
               data-system-bg="true"
-              className="pointer-events-none absolute right-0 top-0 z-0 h-[860px] w-[70%] overflow-hidden rtl:right-auto rtl:left-0"
+              className="pointer-events-none absolute right-0 top-0 z-0 h-[860px] w-[58%] overflow-hidden rtl:right-auto rtl:left-0"
             >
               <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
                 <img
                   src={bg}
-                  alt="System building placeholder"
-                  className="absolute inset-0 h-full w-full object-cover object-right-top opacity-72 [mask-image:linear-gradient(to_bottom,black_0%,black_68%,rgba(0,0,0,0.82)_78%,rgba(0,0,0,0.45)_88%,rgba(0,0,0,0.12)_96%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_68%,rgba(0,0,0,0.82)_78%,rgba(0,0,0,0.45)_88%,rgba(0,0,0,0.12)_96%,transparent_100%)]"
+                  alt="Kurdistan Regional Parliament building"
+                  className="absolute inset-0 h-full w-full object-cover object-right-top [mask-image:linear-gradient(to_bottom,black_0%,black_85%,rgba(0,0,0,0.6)_94%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_85%,rgba(0,0,0,0.6)_94%,transparent_100%)]"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
-              <div className="absolute bottom-0 left-0 h-24 w-[70%] bg-gradient-to-b from-transparent via-[#fbf5eb]/55 to-[#fbf5eb]" />
+              <div className="absolute left-0 top-0 h-full w-[22%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/70 to-transparent rtl:left-auto rtl:right-0 rtl:bg-gradient-to-l" />
+              <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-b from-transparent to-[#fbf5eb]" />
             </div>
 
             <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
