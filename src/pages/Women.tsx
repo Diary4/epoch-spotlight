@@ -9,6 +9,7 @@ import {
 import { WOMEN_LANGUAGE_LABELS, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 import { hubCopy } from "@/components/Sections/women/content/hubContent";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import WomenCultureMemoryPage from "@/components/Sections/women/Culture";
 import gsap from "gsap";
 import WomenPoliticalPage from "@/components/Sections/women/Political";
@@ -47,43 +48,12 @@ export default function LegacyPage({
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const canvasRef = React.useRef<HTMLDivElement | null>(null);
-  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
   const [activeSection, setActiveSection] = React.useState<"historic" | "knowledge" | "resistance" | "culture" | null>(null);
   const [lang, setLang] = React.useState<LangCode>(() => getAppLanguage());
-
-  // Fixed design canvas (1400px wide) — same fit logic as The System / Parliament:
-  // measure the natural height and scale uniformly so the page looks identical on every screen.
-  const DESIGN_WIDTH = 1400;
 
   React.useEffect(() => {
     setLang(getAppLanguage());
   }, [langProp]);
-
-  React.useEffect(() => {
-    if (activeSection !== null) return;
-    const recompute = () => {
-      const el = canvasRef.current;
-      if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
-      const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
-    };
-
-    recompute();
-    window.addEventListener("resize", recompute);
-    const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
-    if (el && ro) ro.observe(el);
-    return () => {
-      window.removeEventListener("resize", recompute);
-      ro?.disconnect();
-    };
-  }, [activeSection]);
 
   const languageLabel = WOMEN_LANGUAGE_LABELS[lang];
   const copy = hubCopy[lang];
@@ -208,27 +178,16 @@ export default function LegacyPage({
   }
 
   return (
-    <div
+    <WomenScaledCanvas
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f9f3e8] ${isRtlScript ? "font-noto-naskh" : ""}`}
-      style={{ width: "100vw", height: "100vh" }}
+      className={isRtlScript ? "font-noto-naskh" : ""}
+      fitDeps={[lang]}
     >
-      <div
-        ref={canvasRef}
-        style={{
-          width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
-          transformOrigin: "top left",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      >
-        <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
-          <section
-            ref={sectionRef}
-            className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-12"
-          >
+      <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
+        <section
+          ref={sectionRef}
+          className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-12"
+        >
             <WomenLanguageButton
               lang={lang}
               languageLabel={languageLabel}
@@ -386,9 +345,8 @@ export default function LegacyPage({
                 />
               </div>
             </section>
-          </section>
-        </main>
-      </div>
-    </div>
+        </section>
+      </main>
+    </WomenScaledCanvas>
   );
 }

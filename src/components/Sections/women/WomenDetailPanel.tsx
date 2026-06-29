@@ -2,6 +2,7 @@ import React from "react";
 
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
 import { localizeDigits } from "@/lib/utils";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 
 export type WomenDetailPanelCard = {
   icon: string;
@@ -207,37 +208,6 @@ export default function WomenDetailPanel({
   dir = "ltr",
   lang = "en",
 }: WomenDetailPanelProps) {
-  const canvasRef = React.useRef<HTMLDivElement | null>(null);
-  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
-
-  // Fixed design canvas (1400px wide) — same fit logic as the Women hub / list pages:
-  // measure the natural height and scale uniformly so the page looks identical on every screen.
-  const DESIGN_WIDTH = 1400;
-
-  React.useEffect(() => {
-    const recompute = () => {
-      const el = canvasRef.current;
-      if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
-      const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
-    };
-
-    recompute();
-    window.addEventListener("resize", recompute);
-    const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
-    if (el && ro) ro.observe(el);
-    return () => {
-      window.removeEventListener("resize", recompute);
-      ro?.disconnect();
-    };
-  }, [dir, lang, nameLine1, nameLine2, intro, quote]);
-
   const t = (value: string) => localizeDigits(value, lang);
   const displayFont = dir === "rtl" ? "font-noto-naskh" : "font-serif";
   const portraitFlip = dir === "rtl" ? "-scale-x-100" : "";
@@ -266,22 +236,13 @@ export default function WomenDetailPanel({
     "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(251,244,232,0)_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
 
   return (
-    <div
+    <WomenScaledCanvas
       dir={dir}
-      className={`fixed inset-0 z-0 overflow-hidden bg-[#f7efe3] ${dir === "rtl" ? "font-noto-naskh" : ""}`}
+      bgClassName="bg-[#f7efe3]"
+      className={dir === "rtl" ? "font-noto-naskh" : ""}
+      fitDeps={[dir, lang, nameLine1, nameLine2, intro, quote, didYouKnow?.text]}
     >
-      <div
-        ref={canvasRef}
-        style={{
-          width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
-          transformOrigin: "top left",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      >
-        <div className="relative w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10">
+      <div className="relative w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10">
           <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
           <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
@@ -401,8 +362,7 @@ export default function WomenDetailPanel({
 
           <WomenDetailQuoteCard quote={t(quote)} quoteAuthor={quoteAuthor ? t(quoteAuthor) : undefined} dir={dir} />
         </section>
-        </div>
       </div>
-    </div>
+    </WomenScaledCanvas>
   );
 }

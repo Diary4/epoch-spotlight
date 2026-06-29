@@ -7,6 +7,7 @@ import mainHero from "@/assets/images/women/historic.png";
 
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
@@ -64,15 +65,9 @@ export default function WomenHistoricPage({
   onLanguageChange,
 }: HistoricPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const canvasRef = React.useRef<HTMLDivElement | null>(null);
-  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [internalLang, setInternalLang] = React.useState<AppLangCode>(() => getAppLanguage());
   const lang = langProp ?? internalLang;
-
-  // Fixed design canvas (1400px wide) — same fit logic as The System / Women hub:
-  // measure the natural height and scale uniformly so the whole page fits the window on every screen.
-  const DESIGN_WIDTH = 1400;
 
   const copy = getHistoricPageCopy(lang);
   const historicWomen = getHistoricWomen(lang);
@@ -96,31 +91,6 @@ export default function WomenHistoricPage({
     return cleanup;
   }, [selectedId]);
 
-  React.useEffect(() => {
-    if (selectedId) return;
-    const recompute = () => {
-      const el = canvasRef.current;
-      if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
-      const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
-    };
-
-    recompute();
-    window.addEventListener("resize", recompute);
-    const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
-    if (el && ro) ro.observe(el);
-    return () => {
-      window.removeEventListener("resize", recompute);
-      ro?.disconnect();
-    };
-  }, [selectedId, lang]);
-
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
     else onBack?.();
@@ -131,12 +101,9 @@ export default function WomenHistoricPage({
     return (
       <main
         dir={dir}
-        className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen bg-[#f7efe3] text-[#2d1436] ${isRtlScript ? "font-noto-naskh" : ""}`}
+        className={`relative m-0 w-full bg-[#f7efe3] p-0 text-[#2d1436] ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
-        <section
-          ref={sectionRef}
-          className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-transparent sm:w-[min(100vw,1400px)]"
-        >
+        <section ref={sectionRef} className="relative">
           <WomenLanguageButton
             lang={lang}
             languageLabel={languageLabel}
@@ -146,7 +113,7 @@ export default function WomenHistoricPage({
           <button
             type="button"
             onClick={handleBack}
-            className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
+            className={`fixed top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
               dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
             }`}
             aria-label={copy.backToList}
@@ -179,27 +146,16 @@ export default function WomenHistoricPage({
 
   // List view — fixed design canvas scaled uniformly so everything fits the window.
   return (
-    <div
+    <WomenScaledCanvas
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f9f3e8] ${isRtlScript ? "font-noto-naskh" : ""}`}
-      style={{ width: "100vw", height: "100vh" }}
+      className={isRtlScript ? "font-noto-naskh" : ""}
+      fitDeps={[lang, selectedId]}
     >
-      <div
-        ref={canvasRef}
-        style={{
-          width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
-          transformOrigin: "top left",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      >
-        <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
-          <section
-            ref={sectionRef}
-            className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-12"
-          >
+      <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
+        <section
+          ref={sectionRef}
+          className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-12"
+        >
             <WomenLanguageButton
               lang={lang}
               languageLabel={languageLabel}
@@ -331,7 +287,6 @@ export default function WomenHistoricPage({
             </section>
           </section>
         </main>
-      </div>
-    </div>
+    </WomenScaledCanvas>
   );
 }
