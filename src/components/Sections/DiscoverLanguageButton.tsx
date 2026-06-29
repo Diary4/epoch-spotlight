@@ -22,7 +22,7 @@ export default function DiscoverLanguageButton({
   const [open, setOpen] = React.useState(false);
   const alignSide = placement === "start" ? "start" : "end";
   const positionClass =
-    placement === "start" ? "start-3 sm:start-6" : "end-3 sm:end-6";
+    placement === "start" ? "left-3 sm:left-6" : "right-3 sm:right-6";
 
   const handleSelect = (code: DiscoverLangCode) => {
     setOpen(false);

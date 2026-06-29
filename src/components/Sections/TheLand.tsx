@@ -312,9 +312,6 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
         dir={dir}
         className={`relative flex min-h-screen w-[min(96vw,1400px)] min-w-[100vw] flex-col overflow-y-auto overflow-x-hidden bg-[#fbf5eb] px-3 pb-6 pt-4 sm:px-9 sm:py-8 lg:px-14 lg:py-10 ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
-        <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
-
-        {/* Responsive back button */}
         <button
           type="button"
           onClick={onBack}
@@ -323,6 +320,12 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
         >
           <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
         </button>
+
+        <DiscoverLanguageButton
+          lang={lang}
+          onSelect={handleLanguageSelect}
+          placement={dir === "rtl" ? "start" : "end"}
+        />
         <div className="absolute start-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] hidden sm:block" />
 
         {/* Absolutely positioned background illustration layer — full width of the hero

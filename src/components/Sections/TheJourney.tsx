@@ -318,7 +318,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
 
       if (reducedMotion) {
         gsap.set(pathEls, { strokeDashoffset: 0, strokeDasharray: pathLen });
-        gsap.set([cards, images, dots, ".journey-intro > *", ".journey-back"], { autoAlpha: 1, clearProps: "transform" });
+        gsap.set([cards, images, dots, ".journey-intro > *"], { autoAlpha: 1, clearProps: "transform" });
         setIntroDone(true);
         return;
       }
@@ -328,7 +328,6 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       gsap.set(images, { autoAlpha: 0, scale: 1.07, transformOrigin: "center center" });
       gsap.set(dots, { scale: 0, opacity: 0, transformOrigin: "center center" });
       gsap.set(".journey-intro > *", { autoAlpha: 0, y: 28 });
-      gsap.set(".journey-back", { autoAlpha: 0, scale: 0.85 });
 
       const lineDuration = 3.2;
       const tl = gsap.timeline({
@@ -336,7 +335,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         onComplete: () => setIntroDone(true),
       });
 
-      tl.to(".journey-back", { autoAlpha: 1, scale: 1, duration: 0.55 }, 0).to(
+      tl.to(
         ".journey-intro > *",
         { autoAlpha: 1, y: 0, stagger: 0.07, duration: 0.75 },
         0,
@@ -376,6 +375,14 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       }}
     >
       <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
+      <button
+        type="button"
+        onClick={onBack}
+        className={sectionBackButtonClassName}
+        aria-label="Back to Discover"
+      >
+        <ArrowLeft className={sectionBackIconClassName} />
+      </button>
       <div
         style={{
           width: "1400px",
@@ -390,15 +397,6 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       >
         <main ref={rootRef} className="m-0 flex h-full w-full justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
           <section className="relative flex h-full w-full flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
-            <button
-              type="button"
-              onClick={onBack}
-              className={`journey-back ${sectionBackButtonClassName}`}
-              aria-label="Back to Discover"
-            >
-              <ArrowLeft className={sectionBackIconClassName} />
-            </button>
-            
             {/* Subtle paper patterns */}
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] block" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] block" />

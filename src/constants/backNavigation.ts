@@ -2,7 +2,7 @@
 
 /** Top-level section pages (e.g. back to Discover) */
 export const sectionBackButtonClassName =
-  "absolute left-3 top-3 z-30 grid h-9 w-9 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm xs:left-6 xs:top-6 xs:h-10 xs:w-10 xs:border-2 lg:h-11 lg:w-11";
+  "absolute left-3 top-3 z-[60] grid h-9 w-9 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm xs:left-6 xs:top-6 xs:h-10 xs:w-10 xs:border-2 lg:h-11 lg:w-11";
 
 export const sectionBackIconClassName = "h-4 w-4 xs:h-5 xs:w-5";
 

@@ -253,8 +253,6 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack, onLan
         dir={isRtlScript ? "rtl" : "ltr"}
         className={`relative flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden bg-[#fcf7ed] px-3 pb-6 pt-4 xs:px-10 xs:py-10 lg:overflow-hidden lg:px-14 lg:py-12 ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
-        <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
-
         <button
           type="button"
           onClick={onBack}
@@ -263,6 +261,12 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack, onLan
         >
           <ArrowLeft className={sectionBackIconClassName} />
         </button>
+
+        <DiscoverLanguageButton
+          lang={lang}
+          onSelect={handleLanguageSelect}
+          placement={isRtlScript ? "start" : "end"}
+        />
 
         {/* Hero Header */}
         <header className="relative z-20 shrink-0 text-center pt-14 xs:pt-8 lg:pt-12">

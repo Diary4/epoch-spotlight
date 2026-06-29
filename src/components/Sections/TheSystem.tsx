@@ -200,7 +200,19 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
       className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
-      <DiscoverLanguageButton lang={lang} onSelect={handleLanguageSelect} />
+      <DiscoverLanguageButton
+        lang={lang}
+        onSelect={handleLanguageSelect}
+        placement={dir === "rtl" ? "start" : "end"}
+      />
+      <button
+        type="button"
+        onClick={onBack}
+        className={`${sectionBackButtonClassName} rtl:left-auto rtl:right-6`}
+        aria-label="Back to Discover"
+      >
+        <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
+      </button>
       <div
         ref={canvasRef}
         style={{
@@ -218,14 +230,6 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             ref={sectionRef}
             className="relative mx-auto flex w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]"
           >
-            <button
-              type="button"
-              onClick={onBack}
-              className={sectionBackButtonClassName}
-              aria-label="Back to Discover"
-            >
-              <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
-            </button>
             <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
             {/* Hero illustration overlay — explicit height + object-cover so the image fills and bottom fade applies */}
