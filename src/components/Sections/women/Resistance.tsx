@@ -259,8 +259,7 @@ export default function WomenResistancePage({
 
             {/* Quotes grid */}
             <section
-              className="relative z-20 mt-3 gap-2 px-3 pb-4 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
-              style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+              className="relative z-20 mt-3 grid grid-cols-4 gap-2 px-3 pb-4 sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
             >
               {copy.quotes.map(({ text, author }) => (
                 <article

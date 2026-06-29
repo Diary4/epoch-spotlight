@@ -243,7 +243,7 @@ export default function LegacyPage({
                 dir === "rtl" ? "pl-0 pr-16" : "pl-16 pr-0"
               }`}
             >
-              <div data-legacy-fade="true" className="relative z-20 max-w-[700px] pt-16">
+              <div data-legacy-fade="true" className="relative z-20 max-w-[520px] pt-16">
                 <div className="mb-5 flex items-center gap-5 text-[#b4864d]">
                   <span className="h-px w-20 bg-[#d4b98f]" />
                   <Sparkles className="h-5 w-5" />
@@ -263,7 +263,7 @@ export default function LegacyPage({
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <p className="max-w-[420px] text-[20px] leading-[1.75] text-[#353445] drop-shadow-[0_1px_1px_rgba(252,247,239,0.9)]">
+                <p className="max-w-[300px] text-[18px] leading-[1.5] text-[#353445] drop-shadow-[0_1px_2px_rgba(252,247,239,0.95)]">
                   {copy.description}
                 </p>
               </div>
@@ -271,11 +271,19 @@ export default function LegacyPage({
               {/* Illustration bleeds under the text for a larger visual scale */}
               <div
                 data-legacy-hero="true"
-                className={`pointer-events-none relative self-stretch h-full w-[175%] ${
-                  dir === "rtl" ? "origin-top-left mr-[-75%]" : "origin-top-right ml-[-75%]"
+                className={`pointer-events-none relative self-stretch h-full w-[145%] ${
+                  dir === "rtl" ? "origin-top-left mr-[-45%]" : "origin-top-right ml-[-45%]"
                 }`}
               >
                 <div className="relative h-full w-full">
+                  <div
+                    className={`pointer-events-none absolute inset-y-0 z-10 w-[45%] ${
+                      dir === "rtl"
+                        ? "right-0 bg-gradient-to-l from-[#fcf7ef] via-[#fcf7ef]/85 to-transparent"
+                        : "left-0 bg-gradient-to-r from-[#fcf7ef] via-[#fcf7ef]/85 to-transparent"
+                    }`}
+                    aria-hidden
+                  />
                   <video
                     src={legacyVideo}
                     aria-label="Kurdish women legacy"

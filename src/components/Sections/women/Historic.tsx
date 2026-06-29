@@ -64,9 +64,15 @@ export default function WomenHistoricPage({
   onLanguageChange,
 }: HistoricPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const canvasRef = React.useRef<HTMLDivElement | null>(null);
+  const [fit, setFit] = React.useState({ scale: 1, x: 0 });
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [internalLang, setInternalLang] = React.useState<AppLangCode>(() => getAppLanguage());
   const lang = langProp ?? internalLang;
+
+  // Fixed design canvas (1400px wide) — same fit logic as The System / Women hub:
+  // measure the natural height and scale uniformly so the whole page fits the window on every screen.
+  const DESIGN_WIDTH = 1400;
 
   const copy = getHistoricPageCopy(lang);
   const historicWomen = getHistoricWomen(lang);
@@ -90,42 +96,64 @@ export default function WomenHistoricPage({
     return cleanup;
   }, [selectedId]);
 
+  React.useEffect(() => {
+    if (selectedId) return;
+    const recompute = () => {
+      const el = canvasRef.current;
+      if (!el) return;
+      const naturalHeight = el.offsetHeight;
+      if (!naturalHeight) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const x = (vw - DESIGN_WIDTH * scale) / 2;
+      setFit({ scale, x });
+    };
+
+    recompute();
+    window.addEventListener("resize", recompute);
+    const el = canvasRef.current;
+    const ro = el ? new ResizeObserver(recompute) : null;
+    if (el && ro) ro.observe(el);
+    return () => {
+      window.removeEventListener("resize", recompute);
+      ro?.disconnect();
+    };
+  }, [selectedId, lang]);
+
   const handleBack = () => {
     if (selectedId) setSelectedId(null);
     else onBack?.();
   };
 
-  return (
-    <main
-      dir={dir}
-      className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen ${
-        selectedId ? "bg-[#f7efe3] text-[#2d1436]" : "bg-[#f9f3e8] text-[#2a1534]"
-      } ${isRtlScript ? "font-noto-naskh" : ""}`}
-    >
-      <section
-        ref={sectionRef}
-        className={`relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide sm:w-[min(100vw,1400px)] ${
-          selectedId ? "bg-transparent" : "bg-[#fcf7ef]"
-        }`}
+  // Detail view keeps its own scrolling full-screen layout.
+  if (detail && selectedId) {
+    return (
+      <main
+        dir={dir}
+        className={`m-0 flex min-h-screen w-full max-w-full flex-col justify-start overflow-x-hidden p-0 sm:w-screen bg-[#f7efe3] text-[#2d1436] ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
-        <WomenLanguageButton
-          lang={lang}
-          languageLabel={languageLabel}
-          onLanguageChange={handleLanguageChange}
-        />
-
-        <button
-          type="button"
-          onClick={handleBack}
-          className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
-            dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
-          }`}
-          aria-label={selectedId ? copy.backToList : copy.backToWomen}
+        <section
+          ref={sectionRef}
+          className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-hidden overflow-y-auto scrollbar-hide bg-transparent sm:w-[min(100vw,1400px)]"
         >
-          <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
-        </button>
+          <WomenLanguageButton
+            lang={lang}
+            languageLabel={languageLabel}
+            onLanguageChange={handleLanguageChange}
+          />
 
-        {detail && selectedId ? (
+          <button
+            type="button"
+            onClick={handleBack}
+            className={`absolute top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
+              dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
+            }`}
+            aria-label={copy.backToList}
+          >
+            <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+          </button>
+
           <WomenDetailPanel
             dir={dir}
             lang={lang}
@@ -144,75 +172,116 @@ export default function WomenHistoricPage({
             didYouKnow={detail.didYouKnow}
             listIcon={detail.listIcon}
           />
-        ) : (
-          <>
+        </section>
+      </main>
+    );
+  }
+
+  // List view — fixed design canvas scaled uniformly so everything fits the window.
+  return (
+    <div
+      dir={dir}
+      className={`relative h-screen w-screen overflow-hidden bg-[#f9f3e8] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div
+        ref={canvasRef}
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
+        <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
+          <section
+            ref={sectionRef}
+            className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-12"
+          >
+            <WomenLanguageButton
+              lang={lang}
+              languageLabel={languageLabel}
+              onLanguageChange={handleLanguageChange}
+            />
+
+            <button
+              type="button"
+              onClick={handleBack}
+              className={`absolute top-8 z-[60] flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white ${
+                dir === "rtl" ? "right-8" : "left-8"
+              }`}
+              aria-label={copy.backToWomen}
+            >
+              <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+            </button>
+
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-            {/* Hero — side-by-side on every screen with adjusted grid splits and overlapping styles */}
+            {/* Hero — fixed side-by-side layout */}
             <section
-              className={`relative z-10 grid grid-cols-[1.1fr_0.9fr] sm:grid-cols-[1fr_1fr] lg:grid-cols-[0.95fr_1.05fr] xl:grid-cols-[0.9fr_1.1fr] items-center gap-2 pt-20 sm:gap-4 sm:pt-24 ${
-                dir === "rtl" ? "pl-0 pr-5 sm:pr-8 lg:pr-10" : "pl-5 pr-0 sm:pl-8 lg:pl-10"
+              className={`relative z-10 grid grid-cols-[0.9fr_1.1fr] items-center gap-4 pt-24 ${
+                dir === "rtl" ? "pl-0 pr-10" : "pl-10 pr-0"
               }`}
             >
-              <div 
-                data-hist-fade="true" 
-                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-4 sm:pl-0" : "pr-4 sm:pr-0"}`}
+              <div
+                data-hist-fade="true"
+                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-0" : "pr-0"}`}
               >
-                <h1 className={`${displayFont} text-[clamp(20px,6vw,96px)] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
+                <h1 className={`${displayFont} text-[96px] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-3 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] sm:my-6 lg:my-8">
+                <div className="my-8 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d]">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
+                  <Sparkles className="h-6 w-6" />
                   <span className="h-px flex-1 bg-[#d4b98f]" />
                 </div>
 
-                <h2 className={`whitespace-pre-line ${displayFont} text-[clamp(11px,2.5vw,34px)] text-[#a75a69]`}>
+                <h2 className={`whitespace-pre-line ${displayFont} text-[34px] text-[#a75a69]`}>
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-2 max-w-[400px] text-[clamp(11px,2.2vw,24px)] leading-[1.5] text-[#56505a] sm:mt-4 lg:mt-5 lg:leading-[1.45]">
+                <p className="mt-5 max-w-[400px] text-[24px] leading-[1.45] text-[#56505a]">
                   {copy.heroIntro}
                 </p>
               </div>
 
-              {/* Hero image — expanded width and negative margins allow the illustration to sitting underneath the text */}
-              <div 
-                data-hist-hero="true" 
-                className={`pointer-events-none relative self-stretch h-full w-[145%] sm:w-[155%] md:w-[165%] lg:w-[175%] ${
-                  dir === "rtl"
-                    ? "mr-[-45%] sm:mr-[-55%] md:mr-[-65%] lg:mr-[-75%]"
-                    : "ml-[-45%] sm:ml-[-55%] md:ml-[-65%] lg:ml-[-75%]"
+              {/* Hero image bleeds under the text */}
+              <div
+                data-hist-hero="true"
+                className={`pointer-events-none relative self-stretch h-full w-[175%] ${
+                  dir === "rtl" ? "mr-[-75%]" : "ml-[-75%]"
                 }`}
               >
                 <img
                   src={mainHero}
                   alt="Historic Women"
-                  className={`h-full w-full object-contain object-right-top sm:object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                  className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
                 />
                 <div
-                  className="absolute inset-x-0 bottom-0 h-[clamp(24px,5vh,110px)] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                  className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
                   aria-hidden
                 />
               </div>
             </section>
 
             {/* Cards grid */}
-            <section className="relative z-20 mt-6 grid grid-cols-4 gap-2 px-3 sm:gap-6 sm:px-5 lg:px-10">
+            <section className="relative z-20 mt-6 grid grid-cols-4 gap-6 px-10">
               {historicWomen.map((woman) => (
                 <button
                   type="button"
                   data-hist-card="true"
                   key={woman.id}
                   onClick={() => setSelectedId(woman.id)}
-                  className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 p-2 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] sm:rounded-[24px] sm:p-5 ${
+                  className={`relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 p-5 shadow-[0_10px_25px_rgba(67,35,45,0.12)] transition hover:border-[#d8b979] ${
                     dir === "rtl" ? "text-right" : "text-left"
                   }`}
                 >
-                  <div className="relative mx-auto h-[min(200px,38vw)] w-full overflow-hidden rounded-[10px] sm:h-[220px] sm:rounded-[20px] lg:h-[260px]">
+                  <div className="relative mx-auto h-[260px] w-full overflow-hidden rounded-[20px]">
                     <img
                       src={historicDetailPortraits[woman.id]}
                       alt={woman.name}
@@ -220,46 +289,30 @@ export default function WomenHistoricPage({
                     />
                   </div>
 
-                  <h3 className={`mt-1.5 ${displayFont} text-[clamp(10px,3vw,32px)] leading-tight text-[#2c1736] sm:mt-4 sm:text-[clamp(22px,2.4vw,32px)]`}>
+                  <h3 className={`mt-4 ${displayFont} text-[32px] leading-tight text-[#2c1736]`}>
                     {woman.name}
                   </h3>
 
-                  <p className={`mt-0.5 ${displayFont} text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]`}>
+                  <p className={`mt-2 ${displayFont} text-[20px] italic text-[#a75a69]`}>
                     ({woman.role})
                   </p>
-
-                  {/* <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                    <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                  </div>
-
-                  <p
-                    className={`hidden text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px] ${
-                      dir === "rtl" ? "text-right" : "text-left"
-                    }`}
-                  >
-                    {woman.teaser}
-                  </p> */}
                 </button>
               ))}
             </section>
 
             {/* Quotes grid */}
-            <section
-              className="relative z-20 mt-6 grid grid-cols-3 gap-2 px-3 pb-[200px] sm:gap-6 sm:px-5 md:gap-6 lg:px-10"
-            >
+            <section className="relative z-20 mt-6 grid grid-cols-4 gap-6 px-10">
               {copy.quotes.map(({ text, author }) => (
                 <article
                   data-hist-card="true"
                   key={text}
-                  className="relative flex min-h-[80px] min-w-0 flex-col justify-center overflow-hidden rounded-[14px] border border-[#dfcdb7] bg-white/65 px-2 py-3 shadow-[0_10px_25px_rgba(67,35,45,0.1)] sm:min-h-[160px] sm:rounded-[24px] sm:px-8 sm:py-6"
+                  className="relative flex min-h-[160px] min-w-0 flex-col justify-center overflow-hidden rounded-[24px] border border-[#dfcdb7] bg-white/65 px-8 py-6 shadow-[0_10px_25px_rgba(67,35,45,0.1)]"
                 >
-                  <Quote className="mb-1 h-4 w-4 shrink-0 fill-[#d98994]/70 text-[#d98994]/70 sm:mb-3 sm:h-9 sm:w-9" />
+                  <Quote className="mb-3 h-9 w-9 shrink-0 fill-[#d98994]/70 text-[#d98994]/70" />
 
-                  <p className={`${displayFont} text-[clamp(9px,2.5vw,22px)] leading-snug text-[#3a293f] sm:text-[clamp(17px,2.8vw,22px)]`}>{text}</p>
+                  <p className={`${displayFont} text-[22px] leading-snug text-[#3a293f]`}>{text}</p>
 
-                  <p className={`mt-2 ${displayFont} text-[clamp(8px,2vw,16px)] italic text-[#a75a69] sm:mt-3 sm:text-[clamp(14px,1.8vw,16px)]`}>
+                  <p className={`mt-3 ${displayFont} text-[16px] italic text-[#a75a69]`}>
                     — {author}
                   </p>
 
@@ -276,33 +329,9 @@ export default function WomenHistoricPage({
                 </article>
               ))}
             </section>
-
-            {/* Legacy banner
-            <section
-              data-hist-fade="true"
-              className="relative z-20 mx-5 mt-6 mb-10 flex min-h-[120px] flex-col items-start gap-4 overflow-hidden rounded-[24px] border border-[#d9bd7e] bg-white/55 px-6 py-6 shadow-[0_8px_22px_rgba(67,35,45,0.1)] sm:min-h-[145px] sm:flex-row sm:items-center sm:px-12 lg:mx-10"
-            >
-              <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#e4c78f] bg-[#fff8ed] sm:h-28 sm:w-28">
-                <div className="text-[40px] text-[#b4864d] sm:text-[58px]">♧</div>
-              </div>
-
-              <div className="min-w-0 sm:ml-12 lg:ml-20">
-                <h2 className={`${displayFont} text-[clamp(28px,5vw,44px)] leading-none text-[#2c1736]`}>
-                  {copy.legacyTitle}
-                </h2>
-
-                <p className={`mt-3 ${displayFont} text-[clamp(16px,3vw,28px)] text-[#a75a69] sm:mt-4`}>
-                  {copy.legacySubtitle}
-                </p>
-              </div>
-
-              <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-[min(100%,360px)] opacity-45 sm:h-32">
-                <div className="h-full w-full bg-[radial-gradient(circle_at_60%_30%,rgba(151,97,126,0.28),transparent_22%),linear-gradient(135deg,transparent_35%,rgba(143,76,104,0.25)_36%_50%,transparent_51%)]" />
-              </div>
-            </section> */}
-          </>
-        )}
-      </section>
-    </main>
+          </section>
+        </main>
+      </div>
+    </div>
   );
 }
