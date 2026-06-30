@@ -7,7 +7,7 @@ import {
   User,
   UsersRound,
 } from "lucide-react";
-import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { usePrimeMinisterAnimation } from "@/components/Sections/TheSystem/usePrimeMinisterAnimation";
 import { discoverDisplayFont } from "@/components/Sections/discoverLanguage";
 import {
   GoldOrnament,
@@ -61,7 +61,7 @@ type PrimeMinisterAchievementsProps = {
 };
 
 export default function PrimeMinisterAchievementsPage({ lang = "en", onBack }: PrimeMinisterAchievementsProps) {
-  const rootRef = useSystemDetailAnimation([lang]);
+  const rootRef = usePrimeMinisterAnimation([lang], "list");
   const displayFont = discoverDisplayFont(lang);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
@@ -92,11 +92,11 @@ export default function PrimeMinisterAchievementsPage({ lang = "en", onBack }: P
       : achievements;
 
   return (
-    <div ref={rootRef as React.RefObject<HTMLDivElement>}>
+    <div ref={rootRef}>
       <PrimeMinisterPageShell lang={lang} onBack={onBack}>
         <SectionHeader lang={lang} subtitle={selectedLabel} title={title} />
 
-        <div className="mt-2 flex justify-center">
+        <div className="pm-ornament mt-2 flex justify-center">
           <GoldOrnament />
         </div>
 
@@ -113,7 +113,7 @@ export default function PrimeMinisterAchievementsPage({ lang = "en", onBack }: P
           ))}
         </div>
 
-        <div className="system-detail-extra relative mt-6 h-48 overflow-hidden sm:h-56">
+        <div className="pm-footer-image system-detail-extra relative mt-8 h-[28vh] min-h-[200px] overflow-hidden sm:min-h-[240px] lg:min-h-[300px]">
           <img
             src={cityscape}
             alt=""

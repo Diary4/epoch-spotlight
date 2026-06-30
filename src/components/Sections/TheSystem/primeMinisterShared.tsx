@@ -42,7 +42,7 @@ export function GoldOrnament() {
 }
 
 export function TimelineConnector() {
-  return <div className="absolute left-[23px] top-12 bottom-0 w-px bg-[#d4b476] sm:left-[31px]" />;
+  return <div className="pm-timeline-line absolute left-[27px] top-14 bottom-0 w-px origin-top bg-[#d4b476] sm:left-[35px] lg:left-[43px]" />;
 }
 
 type PageShellProps = {
@@ -59,24 +59,24 @@ export function PrimeMinisterPageShell({ lang = "en", onBack, children, classNam
     <main
       className={`m-0 flex min-h-full w-full self-start justify-center overflow-x-hidden bg-[#f8f1e7] p-0 text-[#17233b] ${isRtlScript ? "font-noto-naskh" : ""} ${className}`}
     >
-      <section className="relative flex min-h-full w-full max-w-[900px] flex-col overflow-x-hidden bg-[#fbf5eb] px-5 pb-10 pt-4 sm:px-10 sm:pb-14 sm:pt-6">
+      <section className="relative flex min-h-full w-full max-w-[1400px] flex-col overflow-x-hidden bg-[#fbf5eb] px-3 pb-8 pt-4 xs:px-8 xs:py-9 lg:px-12 lg:py-12">
         <button
           type="button"
           onClick={onBack}
-          className="system-detail-back absolute left-4 top-4 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-6 sm:top-6 sm:h-12 sm:w-12"
+          className="system-detail-back absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:border-2 sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:left-8 lg:top-8 lg:h-14 lg:w-14"
           aria-label="Back"
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
         </button>
 
         <div
-          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40"
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${backgroundPattern})` }}
         />
-        <div className="absolute left-0 top-0 h-full w-12 opacity-12 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px] sm:w-16" />
-        <div className="absolute right-0 top-0 h-full w-12 opacity-12 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px] sm:w-16" />
+        <div className="absolute left-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
+        <div className="absolute right-0 top-0 h-full w-16 opacity-16 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] sm:w-24 sm:opacity-20" />
 
-        <div className="relative z-10 flex flex-col">{children}</div>
+        <div className="relative z-10 flex min-h-full flex-1 flex-col">{children}</div>
       </section>
     </main>
   );
@@ -99,20 +99,20 @@ export function SectionHeader({
   const governmentLabel = isAr ? "حكومة إقليم كوردستان" : isKu ? "حکومەتی هەرێمی کوردستان" : "Kurdistan Regional Government";
 
   return (
-    <header className="system-detail-intro flex flex-col items-center pt-14 text-center sm:pt-16">
-      <KrgEmblem className="h-16 w-16 sm:h-20 sm:w-20" />
-      <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.28em] text-[#17233b] sm:text-xs">
+    <header className="pm-page-header system-detail-intro flex flex-col items-center pt-14 text-center sm:pt-16 lg:pt-20">
+      <KrgEmblem className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28" />
+      <p className="mt-4 text-xs font-medium uppercase tracking-[0.28em] text-[#17233b] sm:text-sm lg:text-base">
         {eyebrow ?? governmentLabel}
       </p>
       {subtitle && (
-        <p className={`mt-1 ${displayFont} text-sm uppercase tracking-[0.35em] text-[#b99152] sm:text-base`}>
+        <p className={`mt-2 ${displayFont} text-base uppercase tracking-[0.35em] text-[#b99152] sm:text-lg lg:text-xl`}>
           {subtitle}
         </p>
       )}
-      <h1 className={`mt-2 ${displayFont} text-[clamp(2rem,7vw,3.5rem)] font-light leading-none tracking-tight text-[#17233b]`}>
+      <h1 className={`mt-3 ${displayFont} text-[clamp(2.5rem,6vw,5rem)] font-light leading-none tracking-tight text-[#17233b]`}>
         {title}
       </h1>
-      <div className="mt-4 w-full max-w-[220px]">
+      <div className="mt-5 w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[430px]">
         <GoldDiamondDivider />
       </div>
     </header>
@@ -134,21 +134,21 @@ export function ListItemRow({
 }) {
   return (
     <>
-      <article className="system-detail-panel grid grid-cols-[52px_1fr] gap-3 py-5 sm:grid-cols-[64px_1fr] sm:gap-4 sm:py-6">
-        <div className="grid h-12 w-12 place-items-center rounded-full border border-[#d4b476] bg-white text-[#b99152] sm:h-16 sm:w-16">
-          <Icon className="h-5 w-5 sm:h-7 sm:w-7" strokeWidth={1.6} />
+      <article className="pm-list-item system-detail-panel grid grid-cols-[64px_1fr] gap-4 py-5 sm:grid-cols-[78px_1fr] sm:gap-5 sm:py-6 lg:grid-cols-[92px_1fr] lg:gap-6 lg:py-7">
+        <div className="pm-list-icon grid h-14 w-14 place-items-center rounded-full border border-[#d4b476] bg-white text-[#b99152] sm:h-16 sm:w-16 lg:h-20 lg:w-20">
+          <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10" strokeWidth={1.6} />
         </div>
-        <div>
-          <h3 className={`${displayFont} text-[clamp(1rem,2.8vw,1.35rem)] font-medium leading-tight text-[#17233b]`}>
+        <div className="pm-list-copy">
+          <h3 className={`${displayFont} text-[clamp(1.15rem,2.4vw,2.05rem)] font-light leading-tight text-[#17233b]`}>
             {title}
           </h3>
-          <p className="mt-1.5 text-[clamp(0.85rem,2vw,1rem)] font-light leading-relaxed text-[#344052]">
+          <p className="mt-2 text-[clamp(0.95rem,1.8vw,1.45rem)] font-light leading-snug text-[#344052]">
             {text}
           </p>
         </div>
       </article>
       {showDivider && (
-        <div className="px-2">
+        <div className="pm-list-divider px-2">
           <GoldDiamondDivider />
         </div>
       )}

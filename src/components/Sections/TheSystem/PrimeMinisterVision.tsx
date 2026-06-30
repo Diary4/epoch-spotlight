@@ -1,5 +1,5 @@
 import { BarChart3, Bolt, Handshake, Leaf, UsersRound } from "lucide-react";
-import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { usePrimeMinisterAnimation } from "@/components/Sections/TheSystem/usePrimeMinisterAnimation";
 import { discoverDisplayFont } from "@/components/Sections/discoverLanguage";
 import {
   GoldOrnament,
@@ -43,7 +43,7 @@ type PrimeMinisterVisionProps = {
 };
 
 export default function PrimeMinisterVisionPage({ lang = "en", onBack }: PrimeMinisterVisionProps) {
-  const rootRef = useSystemDetailAnimation([lang]);
+  const rootRef = usePrimeMinisterAnimation([lang], "list");
   const displayFont = discoverDisplayFont(lang);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
@@ -76,19 +76,19 @@ export default function PrimeMinisterVisionPage({ lang = "en", onBack }: PrimeMi
       : pillars;
 
   return (
-    <div ref={rootRef as React.RefObject<HTMLDivElement>}>
+    <div ref={rootRef}>
       <PrimeMinisterPageShell lang={lang} onBack={onBack}>
         <SectionHeader lang={lang} subtitle={subtitle} title={title} />
 
-        <div className="mt-2 flex justify-center">
+        <div className="pm-ornament mt-2 flex justify-center">
           <GoldOrnament />
         </div>
 
-        <p className="system-detail-intro mx-auto mt-6 max-w-[640px] text-center text-[clamp(0.9rem,2.2vw,1.1rem)] font-light leading-relaxed text-[#17233b]">
+        <p className="pm-statement system-detail-intro mx-auto mt-8 max-w-[900px] text-center text-[clamp(1.1rem,2vw,1.75rem)] font-light leading-relaxed text-[#17233b]">
           {statement}
         </p>
 
-        <div className="system-detail-panel mt-10 flex items-center gap-4">
+        <div className="pm-section-label system-detail-panel mt-10 flex items-center gap-4">
           <span className="h-px flex-1 bg-[#b99152]" />
           <p className={`shrink-0 ${displayFont} text-xs uppercase tracking-[0.25em] text-[#b99152] sm:text-sm`}>
             {pillarsLabel}
@@ -109,7 +109,7 @@ export default function PrimeMinisterVisionPage({ lang = "en", onBack }: PrimeMi
           ))}
         </div>
 
-        <div className="system-detail-extra relative mt-6 h-52 overflow-hidden sm:h-64">
+        <div className="pm-footer-image system-detail-extra relative mt-8 h-[28vh] min-h-[200px] overflow-hidden sm:min-h-[240px] lg:min-h-[300px]">
           <img
             src={landscape}
             alt=""

@@ -8,7 +8,15 @@ export type WomenCanvasFit = {
   contentHeight: number;
 };
 
-export function useWomenCanvasFit(deps: React.DependencyList = []) {
+type WomenCanvasFitOptions = {
+  fitViewport?: boolean;
+};
+
+export function useWomenCanvasFit(
+  deps: React.DependencyList = [],
+  options: WomenCanvasFitOptions = {},
+) {
+  const { fitViewport = false } = options;
   const canvasRef = React.useRef<HTMLDivElement | null>(null);
   const [fit, setFit] = React.useState<WomenCanvasFit>({
     scale: 1,
@@ -23,9 +31,14 @@ export function useWomenCanvasFit(deps: React.DependencyList = []) {
       const naturalHeight = el.offsetHeight;
       if (!naturalHeight) return;
       const vw = window.innerWidth;
-      const scale = vw / WOMEN_DESIGN_WIDTH;
+      const vh = window.innerHeight;
+      const widthScale = vw / WOMEN_DESIGN_WIDTH;
+      const scale = fitViewport
+        ? Math.min(widthScale, vh / naturalHeight)
+        : widthScale;
       const x = Math.max(0, (vw - WOMEN_DESIGN_WIDTH * scale) / 2);
-      setFit({ scale, x, contentHeight: naturalHeight * scale });
+      const contentHeight = fitViewport ? vh : naturalHeight * scale;
+      setFit({ scale, x, contentHeight });
     };
 
     recompute();
@@ -38,7 +51,7 @@ export function useWomenCanvasFit(deps: React.DependencyList = []) {
       ro?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [...deps, fitViewport]);
 
   return { canvasRef, fit };
 }

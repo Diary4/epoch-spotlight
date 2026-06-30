@@ -1,5 +1,5 @@
 import { BookOpen, Building2, ChevronRight, Flag, Trophy, Compass } from "lucide-react";
-import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
+import { usePrimeMinisterAnimation } from "@/components/Sections/TheSystem/usePrimeMinisterAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
   GoldDiamondDivider,
@@ -41,7 +41,7 @@ export default function PrimeMinisterPage({
   onAchievementsClick,
   onVisionClick,
 }: PrimeMinisterPageProps) {
-  const rootRef = useSystemDetailAnimation([lang]);
+  const rootRef = usePrimeMinisterAnimation([lang], "main");
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const isRtlScript = discoverRtlScript(lang);
@@ -94,42 +94,42 @@ export default function PrimeMinisterPage({
       : timeline;
 
   return (
-    <div ref={rootRef as React.RefObject<HTMLDivElement>}>
+    <div ref={rootRef}>
       <PrimeMinisterPageShell lang={lang} onBack={onBack}>
         {/* Hero */}
-        <section className="system-detail-intro relative grid grid-cols-1 items-start gap-6 pt-14 sm:grid-cols-[1fr_auto] sm:gap-8 sm:pt-16">
-          <div className="flex flex-col">
-            <KrgEmblem className="h-12 w-12 sm:h-14 sm:w-14" />
+        <section className="system-detail-intro grid grid-cols-2 items-center gap-3 pt-14 xs:gap-5 sm:pt-16 lg:gap-10 lg:pt-20">
+          <div className="pm-hero-text flex w-full max-w-[680px] flex-col text-left">
+            <KrgEmblem className="h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20" />
 
-            <h1 className={`mt-4 ${displayFont} text-[clamp(1.8rem,6vw,3rem)] font-medium leading-none tracking-tight`}>
+            <h1 className={`mt-4 ${displayFont} text-[clamp(2rem,5.5vw,6.4rem)] font-medium leading-[1.02] tracking-tight`}>
               <span className="text-[#17233b]">{firstName}</span>{" "}
               <span className="text-[#b99152]">{lastName}</span>
             </h1>
 
-            <div className="mt-3 w-full max-w-[280px]">
+            <div className="mt-3 w-[110px] xs:w-[170px] sm:mt-6 sm:w-[300px] lg:w-[430px]">
               <GoldDiamondDivider />
             </div>
 
-            <p className="mt-3 text-xs font-medium uppercase tracking-[0.22em] text-[#17233b] sm:text-sm">
+            <p className="mt-3 text-[clamp(0.75rem,1.6vw,1.5rem)] font-medium uppercase tracking-[0.22em] text-[#17233b] sm:mt-4">
               {roleLine1}
             </p>
-            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#344052] sm:text-xs">
+            <p className="mt-1 text-[clamp(0.65rem,1.3vw,1.15rem)] font-medium uppercase tracking-[0.18em] text-[#344052]">
               {roleLine2}
             </p>
           </div>
 
-          <div className="relative mx-auto flex h-[240px] w-full max-w-[280px] items-end justify-center sm:mx-0 sm:h-[320px] sm:max-w-[320px]">
-            <div className="absolute bottom-[10%] left-1/2 h-[70%] w-[65%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,154,85,0.2),transparent_70%)] blur-xl" />
+          <div className="relative flex h-[28vh] min-h-[180px] w-full shrink-0 items-end justify-center xs:h-[34vh] sm:h-[46vh] lg:h-[58vh] kiosk-portrait:h-[40vh]">
+            <div className="absolute bottom-[8%] left-1/2 h-[78%] w-[62%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,154,85,0.22),transparent_68%)] blur-2xl" />
             <img
               src={primeMinister}
               alt="Masrour Barzani, Prime Minister of the Kurdistan Region"
-              className="system-detail-hero relative h-full w-auto max-w-full object-contain object-bottom drop-shadow-[0_20px_40px_rgba(31,40,53,0.25)]"
+              className="system-detail-hero relative h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_24px_50px_rgba(31,40,53,0.28)]"
             />
           </div>
         </section>
 
         {/* Citadel banner */}
-        <div className="system-detail-extra relative mt-6 h-36 overflow-hidden sm:mt-8 sm:h-44">
+        <div className="pm-citadel system-detail-extra relative mt-8 h-[22vh] min-h-[160px] overflow-hidden sm:mt-10 sm:min-h-[200px] lg:min-h-[260px]">
           <img
             src={citadel}
             alt=""
@@ -138,21 +138,21 @@ export default function PrimeMinisterPage({
         </div>
 
         {/* Biography timeline */}
-        <section className="relative mt-8 sm:mt-10">
+        <section className="pm-timeline relative mt-10 sm:mt-12 lg:mt-14">
           <TimelineConnector />
-          <div className="space-y-8 sm:space-y-10">
+          <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {localTimeline.map((item) => {
               const Icon = item.icon;
               return (
-                <article key={item.title} className="system-detail-panel relative grid grid-cols-[48px_1fr] gap-4 sm:grid-cols-[64px_1fr]">
-                  <div className="relative z-10 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d4b476] bg-white text-[#b99152] sm:h-16 sm:w-16">
-                    <Icon className="h-5 w-5 sm:h-7 sm:w-7" strokeWidth={1.6} />
+                <article key={item.title} className="pm-timeline-item system-detail-panel relative grid grid-cols-[56px_1fr] gap-4 sm:grid-cols-[72px_1fr] sm:gap-5 lg:grid-cols-[88px_1fr] lg:gap-6">
+                  <div className="pm-timeline-icon relative z-10 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d4b476] bg-white text-[#b99152] sm:h-16 sm:w-16 lg:h-20 lg:w-20">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-9 lg:w-9" strokeWidth={1.6} />
                   </div>
-                  <div>
-                    <h2 className={`${displayFont} text-[clamp(1.05rem,3vw,1.4rem)] font-medium uppercase tracking-wide text-[#17233b]`}>
+                  <div className="pm-timeline-copy">
+                    <h2 className={`${displayFont} text-[clamp(1.15rem,2.4vw,2.05rem)] font-light uppercase tracking-wide text-[#17233b]`}>
                       {item.title}
                     </h2>
-                    <p className="mt-2 text-[clamp(0.85rem,2vw,1rem)] font-light leading-relaxed text-[#344052]">
+                    <p className="mt-2 text-[clamp(0.95rem,1.8vw,1.45rem)] font-light leading-snug text-[#344052] sm:mt-3">
                       {item.text}
                     </p>
                   </div>
@@ -163,37 +163,37 @@ export default function PrimeMinisterPage({
         </section>
 
         {/* Navigation to sub-pages */}
-        <section className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5">
+        <section className="mt-10 grid w-full grid-cols-1 gap-5 pb-2 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:gap-8">
           <button
             type="button"
             onClick={onAchievementsClick}
-            className="system-detail-card group flex items-center gap-4 rounded-2xl border-2 border-[#ead8b7] bg-white/75 p-5 text-left shadow-[0_10px_28px_rgba(84,54,16,0.12)] backdrop-blur-sm transition hover:border-[#c69237] hover:bg-white/90"
+            className="system-detail-card group flex items-center gap-5 rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-5 py-5 text-left shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md transition hover:border-[#c69237] hover:bg-white/90 sm:rounded-[24px] sm:px-6 sm:py-6 lg:rounded-[26px] lg:px-8 lg:py-7"
           >
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#c69237] text-[#f8e5b8]">
-              <Trophy className="h-7 w-7" strokeWidth={1.5} />
+            <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c69237] text-[#f8e5b8] sm:h-20 sm:w-20">
+              <Trophy className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={1.45} />
             </div>
             <div className="min-w-0 flex-1">
-              <p className={`${displayFont} text-[clamp(1rem,2.5vw,1.25rem)] font-medium text-[#17233b]`}>
+              <p className={`${displayFont} text-[clamp(1.2rem,2.4vw,2.05rem)] font-light text-[#17233b]`}>
                 {achievementsLabel}
               </p>
             </div>
-            <ChevronRight className={`h-6 w-6 shrink-0 text-[#b99152] transition group-hover:translate-x-0.5 ${isRtlScript ? "rotate-180" : ""}`} />
+            <ChevronRight className={`h-8 w-8 shrink-0 text-[#b99152] transition group-hover:translate-x-0.5 sm:h-10 sm:w-10 ${isRtlScript ? "rotate-180" : ""}`} />
           </button>
 
           <button
             type="button"
             onClick={onVisionClick}
-            className="system-detail-card group flex items-center gap-4 rounded-2xl border-2 border-[#ead8b7] bg-white/75 p-5 text-left shadow-[0_10px_28px_rgba(84,54,16,0.12)] backdrop-blur-sm transition hover:border-[#5d7757] hover:bg-white/90"
+            className="system-detail-card group flex items-center gap-5 rounded-[20px] border-2 border-[#ead8b7] bg-white/78 px-5 py-5 text-left shadow-[0_18px_40px_rgba(84,54,16,0.16)] backdrop-blur-md transition hover:border-[#5d7757] hover:bg-white/90 sm:rounded-[24px] sm:px-6 sm:py-6 lg:rounded-[26px] lg:px-8 lg:py-7"
           >
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#5d7757] text-[#e8f0e6]">
-              <Compass className="h-7 w-7" strokeWidth={1.5} />
+            <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#5d7757] text-[#e8f0e6] sm:h-20 sm:w-20">
+              <Compass className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={1.45} />
             </div>
             <div className="min-w-0 flex-1">
-              <p className={`${displayFont} text-[clamp(1rem,2.5vw,1.25rem)] font-medium text-[#17233b]`}>
+              <p className={`${displayFont} text-[clamp(1.2rem,2.4vw,2.05rem)] font-light text-[#17233b]`}>
                 {visionLabel}
               </p>
             </div>
-            <ChevronRight className={`h-6 w-6 shrink-0 text-[#5d7757] transition group-hover:translate-x-0.5 ${isRtlScript ? "rotate-180" : ""}`} />
+            <ChevronRight className={`h-8 w-8 shrink-0 text-[#5d7757] transition group-hover:translate-x-0.5 sm:h-10 sm:w-10 ${isRtlScript ? "rotate-180" : ""}`} />
           </button>
         </section>
       </PrimeMinisterPageShell>

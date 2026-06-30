@@ -3,7 +3,7 @@ import { ArrowLeft, Sparkles, Quote } from "lucide-react";
 import { detailBackIconSize } from "@/constants/backNavigation";
 import gsap from "gsap";
 
-import mainHero from "@/assets/images/women/historic.png";
+import mainHeroVideo from "@/assets/videos/G1.webm";
 
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
@@ -175,53 +175,69 @@ export default function WomenHistoricPage({
 
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
 
-            {/* Hero — fixed side-by-side layout */}
+            {/* Hero — fixed side-by-side layout (matches Women hub) */}
             <section
-              className={`relative z-10 grid grid-cols-[0.9fr_1.1fr] items-center gap-4 pt-24 ${
-                dir === "rtl" ? "pl-0 pr-10" : "pl-10 pr-0"
+              className={`relative z-10 grid grid-cols-[0.9fr_1.1fr] items-start gap-4 ${
+                dir === "rtl" ? "pl-0 pr-16" : "pl-16 pr-0"
               }`}
             >
-              <div
-                data-hist-fade="true"
-                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-0" : "pr-0"}`}
-              >
-                <h1 className={`${displayFont} text-[96px] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
+              <div data-hist-fade="true" className="relative z-20 max-w-[520px] pt-16">
+                <div className="mb-5 flex items-center gap-5 text-[#b4864d]">
+                  <span className="h-px w-20 bg-[#d4b98f]" />
+                  <Sparkles className="h-5 w-5" />
+                </div>
+
+                <h1 className={`${displayFont} text-[104px] font-medium leading-[0.95] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]`}>
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
                 </h1>
 
-                <div className="my-8 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d]">
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-6 w-6" />
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                </div>
-
-                <h2 className={`whitespace-pre-line ${displayFont} text-[34px] text-[#a75a69]`}>
+                <h2 className={`mt-4 ${displayFont} font-light text-[34px] text-[#a75a69] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)] whitespace-pre-line`}>
                   {copy.heroSubtitle}
                 </h2>
 
-                <p className="mt-5 max-w-[400px] text-[24px] leading-[1.45] text-[#56505a]">
+                <div className="my-9 flex w-full max-w-[290px] items-center gap-3 text-[#b4864d]">
+                  <span className="h-px flex-1 bg-[#d4b98f]" />
+                  <Sparkles className="h-5 w-5" />
+                  <span className="h-px flex-1 bg-[#d4b98f]" />
+                </div>
+
+                <p className="max-w-[300px] text-[18px] leading-[1.5] text-[#353445] drop-shadow-[0_1px_2px_rgba(252,247,239,0.95)]">
                   {copy.heroIntro}
                 </p>
               </div>
 
-              {/* Hero image bleeds under the text */}
+              {/* Illustration bleeds under the text for a larger visual scale */}
               <div
                 data-hist-hero="true"
-                className={`pointer-events-none relative self-stretch h-full w-[175%] ${
-                  dir === "rtl" ? "mr-[-75%]" : "ml-[-75%]"
+                className={`pointer-events-none relative self-stretch h-full w-[145%] ${
+                  dir === "rtl" ? "origin-top-left mr-[-45%]" : "origin-top-right ml-[-45%]"
                 }`}
               >
-                <img
-                  src={mainHero}
-                  alt="Historic Women"
-                  className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
-                  aria-hidden
-                />
+                <div className="relative h-full w-full">
+                  <div
+                    className={`pointer-events-none absolute inset-y-0 z-10 w-[45%] ${
+                      dir === "rtl"
+                        ? "right-0 bg-gradient-to-l from-[#fcf7ef] via-[#fcf7ef]/85 to-transparent"
+                        : "left-0 bg-gradient-to-r from-[#fcf7ef] via-[#fcf7ef]/85 to-transparent"
+                    }`}
+                    aria-hidden
+                  />
+                  <video
+                    src={mainHeroVideo}
+                    aria-label="Historic Women"
+                    className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                  <div
+                    className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                    aria-hidden
+                  />
+                </div>
               </div>
             </section>
 
