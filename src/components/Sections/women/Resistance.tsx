@@ -35,7 +35,7 @@ const resistanceImages: Record<string, string> = {
   "layla-qasim": imgLayal,
   "margaret-george-shilo": imgMargaret,
   "khaja-bawa": imgKhaja,
-  "dayka-aisha": imgAisha,
+  "aisha-taha": imgAisha,
 };
 
 function runResistanceListIntro(sectionRef: React.RefObject<HTMLElement | null>) {
@@ -212,8 +212,6 @@ export default function WomenResistancePage({
               <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
             </button>
 
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
-
             {/* Hero — side-by-side on every screen with responsive grid splits and overlapping styles */}
             <section
               className={`relative z-10 shrink-0 grid grid-cols-[0.9fr_1.1fr] items-center gap-4 pt-16 ${
@@ -279,7 +277,7 @@ export default function WomenResistancePage({
               <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                 {resistanceWomen.slice(0, 3).map(renderWomanCard)}
               </div>
-              <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+              <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                 {resistanceWomen.slice(3).map(renderWomanCard)}
               </div>
             </section>

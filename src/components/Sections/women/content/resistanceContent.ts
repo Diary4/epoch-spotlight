@@ -65,7 +65,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "Kill me, but thousands of Kurds will wake up.", author: "Leyla Qasim" },
       { text: "Her voice carried a message of courage.", author: "Shifa Gardi" },
-      { text: "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.", author: "Dayka Aisha" },
+      { text: "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.", author: "Aisha Taha" },
     ],
   },
   ku: {
@@ -81,7 +81,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "بمکوژە، بەڵام هەزاران کورد لە خەو هەستن.", author: "لەیلا قاسم" },
       { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شیفا گەردی" },
-      { text: "کوڕەکانم قوربانی خاک و نیشتمان بوون؛ مۆڕاڵەکانتان بەرز بهێڵنەوە و هەرگیز هێڵی پێشەوە مەهێڵن.", author: "دایکە عائشە" },
+      { text: "کوڕەکانم قوربانی خاک و نیشتمان بوون؛ مۆڕاڵەکانتان بەرز بهێڵنەوە و هەرگیز هێڵی پێشەوە مەهێڵن.", author: "عائشە تاها" },
     ],
   },
   ar: {
@@ -98,7 +98,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "اقتلوني، لكن آلاف الكرد سيستيقظون.", author: "ليلى قاسم" },
       { text: "حمل صوتها رسالة شجاعة.", author: "شفا گردی" },
-      { text: "ضُحي بأبنائي من أجل التربة والوطن؛ حافظوا على معنوياتكم مرتفعة ولا تغادروا خطوط المواجهة أبداً.", author: "الأم عائشة" },
+      { text: "ضُحي بأبنائي من أجل التربة والوطن؛ حافظوا على معنوياتكم مرتفعة ولا تغادروا خطوط المواجهة أبداً.", author: "عائشة طه" },
     ],
   },
 };
@@ -114,12 +114,12 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "qadam-kher",
-      name: "Qadem Xer",
-      role: "Tribal Leader · Military Commander · Patriot",
+      id: "aisha-taha",
+      name: "Aisha Taha",
+      role: "Symbol of Resilience and Patriotism",
       teaser:
-        "When her brothers fell fighting Reza Shah, she donned battle attire and led Luristan's tribes for years against the Iranian army.",
-      listIcon: "crown",
+        "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",
+      listIcon: "flower",
     },
     {
       id: "shifa-gardi",
@@ -146,12 +146,12 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "dayka-aisha",
-      name: "Dayka Aisha",
-      role: "Symbol of Resilience and Patriotism",
+      id: "qadam-kher",
+      name: "Qadem Xer",
+      role: "Tribal Leader · Military Commander · Patriot",
       teaser:
-        "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",
-      listIcon: "flower",
+        "When her brothers fell fighting Reza Shah, she donned battle attire and led Luristan's tribes for years against the Iranian army.",
+      listIcon: "crown",
     },
   ],
   ku: kuResistanceList,
@@ -165,12 +165,12 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "qadam-kher",
-      name: "قدم خير",
-      role: "زعيمة قبلية · قائدة عسكرية · وطنية",
+      id: "aisha-taha",
+      name: "عائشة طه",
+      role: "رمز الصمود والوطنية",
       teaser:
-        "عندما سقط إخوتها في مواجهة رضا شاه، ارتدت لباس المعركة وقادت قبائل لورستان لسنوات ضد الجيش الإيراني.",
-      listIcon: "crown",
+        "بعد فقدان ثلاثة أبناء بيشمركة في معركة واحدة ضد داعش، حوّلت الحزن إلى تحدٍ وأصبحت أمّاً روحية لكل مدافع.",
+      listIcon: "flower",
     },
     {
       id: "shifa-gardi",
@@ -197,12 +197,12 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "dayka-aisha",
-      name: "الأم عائشة",
-      role: "رمز الصمود والوطنية",
+      id: "qadam-kher",
+      name: "قدم خير",
+      role: "زعيمة قبلية · قائدة عسكرية · وطنية",
       teaser:
-        "بعد فقدان ثلاثة أبناء بيشمركة في معركة واحدة ضد داعش، حوّلت الحزن إلى تحدٍ وأصبحت أمّاً روحية لكل مدافع.",
-      listIcon: "flower",
+        "عندما سقط إخوتها في مواجهة رضا شاه، ارتدت لباس المعركة وقادت قبائل لورستان لسنوات ضد الجيش الإيراني.",
+      listIcon: "crown",
     },
   ],
 };

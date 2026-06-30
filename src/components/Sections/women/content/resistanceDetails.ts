@@ -174,14 +174,14 @@ export const resistanceDetailsByLang = {
         "In her time, photographs of her existed everywhere in Kurdistan, highlighting the equality of women within Kurdish society.",
       quoteAuthor: "Kurdish photographer Zaher Rashid",
     },
-    "dayka-aisha": {
-      nameLine1: "Dayka",
-      nameLine2: "Aisha",
+    "aisha-taha": {
+      nameLine1: "Aisha",
+      nameLine2: "Taha",
       role: "Symbol of Resilience and Patriotism",
       metaLine: "1946 – July 2020 | Kirkuk & Soran, Iraqi Kurdistan",
       intro:
-        "Dayka Aisha became an immovable mountain of resilience and ultimate sacrifice in the modern history of Kurdistan. In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons, Mawloud, Ahmed, and Nishtiman, were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
-      portraitAlt: "Dayka Aisha",
+        "Aisha Taha became an immovable mountain of resilience and ultimate sacrifice in the modern history of Kurdistan. In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons, Mawloud, Ahmed, and Nishtiman, were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
+      portraitAlt: "Aisha Taha",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
@@ -189,7 +189,7 @@ export const resistanceDetailsByLang = {
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Dayka Aisha redefined motherhood from a private emotion into a grand national pillar, proving that Kurdish women are the core foundation of endurance and courage during the nation's darkest hours.",
+        text: "Aisha Taha redefined motherhood from a private emotion into a grand national pillar, proving that Kurdish women are the core foundation of endurance and courage during the nation's darkest hours.",
       },
       cards: [
         {
@@ -205,11 +205,11 @@ export const resistanceDetailsByLang = {
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Following her immense loss, Dayka Aisha refused to remain at home; she routinely traveled directly to the dangerous frontlines of Kirkuk, cooked meals for the soldiers with her own hands, and stayed in the trenches providing motherly love and strength to the troops.",
+        text: "Following her immense loss, Aisha Taha refused to remain at home; she routinely traveled directly to the dangerous frontlines of Kirkuk, cooked meals for the soldiers with her own hands, and stayed in the trenches providing motherly love and strength to the troops.",
       },
       quote:
         "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.",
-      quoteAuthor: "Dayka Aisha",
+      quoteAuthor: "Aisha Taha",
     },
   },
   ku: kuResistanceDetails,
