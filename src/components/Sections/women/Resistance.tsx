@@ -252,22 +252,22 @@ export default function WomenResistancePage({
                   dir === "rtl" ? "mr-[-62%] -translate-x-8" : "ml-[-62%] translate-x-10"
                 }`}
               >
-                <div className="relative h-full w-full">
+                <div className="relative h-full w-full overflow-hidden leading-[0]">
                   <video
                     src={resistanceHeroVideo}
                     aria-label="Women of Resistance"
-                    className={`h-full w-full object-contain ${dir === "rtl" ? "object-left-center -scale-x-100" : "object-[96%_center]"}`}
+                    className={`block h-full w-full object-contain [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] ${dir === "rtl" ? "object-left-center -scale-x-100" : "object-[96%_center]"}`}
                     autoPlay
                     loop
                     muted
                     playsInline
                   />
                   <div
-                    className="absolute inset-x-0 top-0 z-10 h-[120px] bg-gradient-to-b from-[#fcf7ef] via-[#fcf7ef]/70 to-transparent"
+                    className="absolute inset-x-0 top-0 z-10 h-[140px] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef] via-55% to-transparent to-100%"
                     aria-hidden
                   />
                   <div
-                    className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                    className="absolute inset-x-0 bottom-0 z-10 h-[160px] bg-gradient-to-t from-[#fcf7ef] from-0% via-[#fcf7ef] via-60% to-transparent to-100%"
                     aria-hidden
                   />
                 </div>
@@ -275,7 +275,7 @@ export default function WomenResistancePage({
             </section>
 
             {/* Cards — 3 on the first row, 4 on the second; each row fills the full width */}
-            <section className="relative z-20 mt-3 flex flex-col gap-5 px-10">
+            <section className="relative z-20 -mt-10 flex flex-col gap-5 px-10">
               <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                 {resistanceWomen.slice(0, 3).map(renderWomanCard)}
               </div>

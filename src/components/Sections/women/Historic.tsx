@@ -215,7 +215,7 @@ export default function WomenHistoricPage({
                   dir === "rtl" ? "origin-top-left mr-[-45%]" : "origin-top-right ml-[-45%]"
                 }`}
               >
-                <div className="relative h-full w-full">
+                <div className="relative h-full w-full overflow-hidden leading-[0]">
                   <div
                     className={`pointer-events-none absolute inset-y-0 z-10 w-[45%] ${
                       dir === "rtl"
@@ -227,14 +227,18 @@ export default function WomenHistoricPage({
                   <video
                     src={mainHeroVideo}
                     aria-label="Historic Women"
-                    className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                    className={`block h-full w-full object-contain object-right-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] ${dir === "rtl" ? "-scale-x-100" : ""}`}
                     autoPlay
                     loop
                     muted
                     playsInline
                   />
                   <div
-                    className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                    className="absolute inset-x-0 top-0 z-10 h-[140px] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef] via-55% to-transparent to-100%"
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute inset-x-0 bottom-0 z-10 h-[160px] bg-gradient-to-t from-[#fcf7ef] from-0% via-[#fcf7ef] via-60% to-transparent to-100%"
                     aria-hidden
                   />
                 </div>
@@ -242,7 +246,7 @@ export default function WomenHistoricPage({
             </section>
 
             {/* Cards grid */}
-            <section className="relative z-20 mt-6 grid grid-cols-4 gap-6 px-10">
+            <section className="relative z-20 -mt-10 grid grid-cols-4 gap-6 px-10">
               {historicWomen.map((woman) => (
                 <button
                   type="button"
