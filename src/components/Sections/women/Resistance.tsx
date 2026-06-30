@@ -272,7 +272,7 @@ export default function WomenResistancePage({
               </div>
             </section>
 
-            {/* Cards — 3 on the first row, 4 on the second; each row fills the full width */}
+            {/* Cards — 3 per row */}
             <section className="relative z-20 -mt-10 flex flex-col gap-5 px-10">
               <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                 {resistanceWomen.slice(0, 3).map(renderWomanCard)}
