@@ -130,14 +130,6 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       listIcon: "flower",
     },
     {
-      id: "qara-fateme",
-      name: "Kara Fatima",
-      role: "Tribal Leader · Military Commander · Diplomat",
-      teaser:
-        "She marched to Istanbul with 500 fighters during the Crimean War — a \"Kurdish lioness\" whose portrait appeared in the Illustrated London News.",
-      listIcon: "crown",
-    },
-    {
       id: "layla-qasim",
       name: "Leyla Qasim",
       role: "Student Activist · Kurdish Martyr · National Symbol",
@@ -187,14 +179,6 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       teaser:
         "مراسلة رائدة استشهدت أثناء تغطية الحرب ضد داعش — أول صحفية كردية تستشهد في خطوط المواجهة.",
       listIcon: "flower",
-    },
-    {
-      id: "qara-fateme",
-      name: "كارا فاطمة",
-      role: "زعيمة قبلية · قائدة عسكرية · دبلوماسية",
-      teaser:
-        "سارت إلى إسطنبول بخمسمائة مقاتل في حرب القرم — «لبوة كردية» طُبعت صورتها في Illustrated London News.",
-      listIcon: "crown",
     },
     {
       id: "layla-qasim",

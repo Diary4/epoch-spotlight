@@ -2,39 +2,6 @@ import { kuResistanceDetails } from "@/components/Sections/women/content/kuWomen
 
 export const resistanceDetailsByLang = {
   en: {
-    "qara-fateme": {
-      nameLine1: "Kara",
-      nameLine2: "Fatima",
-      role: "Tribal Leader · Military Commander · Diplomat",
-      metaLine: "c. 1820 – 1865 | Maras / Elbistan, Northern Kurdistan",
-      intro:
-        "Kara Fatima was the leader of the Olkan tribe in the Maras region. When her husband was imprisoned by Ottoman authorities, she did not fall, she rose. She became the leader of her tribe in his place. Her name reached the world when, during the Crimean War (1853–1856) against Russia, she marched to Istanbul with a force of 500 fighters under her own command to support the Ottoman army. The international press of the era, including the Illustrated London News, reported in amazement on this \"Kurdish lioness\" who rode on horseback, armed and in battle dress, commanding men in war.",
-      portraitAlt: "Kara Fatima",
-      listIcon: "crown",
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "In the 19th century, she formed her own private cavalry force from Kurdish horsemen. She was the first Kurdish woman to have her drawn portrait published in an international magazine, the Illustrated London News, presented as an effective military commander. She fought not only on the battlefield but also as a diplomat, negotiating with the state for the release of her husband and the protection of her people's rights.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Kara Fatima is proof that 170 years ago, a Kurdish woman rose to the height of military and political power within a tribal system. She did not just defend her tribe, she operated as a diplomatic force with the state itself, on equal terms. Her story was considered remarkable enough to be printed in the world's press. It still is.",
-      },
-      cards: [
-        { icon: "♜", title: "Timeline Position", text: "Mid 19th Century, Ottoman Empire era" },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Maras, Elbistan (Northern Kurdistan), and Istanbul",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "The title \"Kara\", meaning black or brave, was given in that era to people of exceptional boldness and fearlessness. When Kara Fatima arrived in Istanbul, crowds gathered just to see her, because it was extraordinary for a woman to hold military command in that way.",
-      },
-      quote:
-        "She was a tall and majestic woman, even the Ottoman Sultan received her with great respect.",
-      quoteAuthor: "European press, 1854",
-    },
     "qadam-kher": {
       nameLine1: "Qadem",
       nameLine2: "Xer",
@@ -247,38 +214,6 @@ export const resistanceDetailsByLang = {
   },
   ku: kuResistanceDetails,
   ar: {
-    "qara-fateme": {
-      nameLine1: "كارا",
-      nameLine2: "فاطمة",
-      role: "زعيمة قبلية · قائدة عسكرية · دبلوماسية",
-      metaLine: "حوالي ١٨٢٠ – ١٨٦٥ | مرعش / البستان، كردستان الشمالية",
-      intro:
-        "كانت كارا فاطمة زعيمة قبيلة أولكان في منطقة مرعش. عندما سُجن زوجها على يد السلطات العثمانية، لم تسقط, بل قامت. أصبحت زعيمة قبيلتها مكانه. وصل اسمها إلى العالم عندما، خلال حرب القرم (١٨٥٣–١٨٥٦) ضد روسيا، سارت إلى إسطنبول بقوة من ٥٠٠ مقاتل تحت قيادتها الخاصة لدعم الجيش العثماني. أبلغت الصحافة الدولية في ذلك العصر, بما في ذلك Illustrated London News, بدهشة عن هذه «اللبؤة الكردية» التي ركبت على ظهر الحصان، مسلحة وبزي المعركة، تقود الرجال في الحرب.",
-      portraitAlt: "كارا فاطمة",
-      listIcon: "crown",
-      greatestAchievement: {
-        title: "أعظم إنجاز",
-        text: "في القرن التاسع عشر، شكّلت قوة فرسان خاصة بها من الفرسان الأكراد. كانت أول امرأة كردية تُنشر صورتها المرسومة في مجلة دولية, Illustrated London News, كقائدة عسكرية فعّالة. قاتلت ليس فقط في ساحة المعركة بل أيضاً كدبلوماسية، تتفاوض مع الدولة لإطلاق سراح زوجها وحماية حقوق شعبها.",
-      },
-      whySheMatters: {
-        title: "لماذا لا تزال مهمة",
-        text: "كارا فاطمة دليل على أنه قبل ١٧٠ عاماً، ارتقت امرأة كردية إلى ذروة القوة العسكرية والسياسية ضمن نظام قبلي. لم تدافع عن قبيلتها فحسب, بل عملت كقوة دبلوماسية مع الدولة نفسها، على قدم المساواة. اعتُبرت قصتها مذهلة بما يكفي لطباعتها في صحافة العالم. ولا تزال كذلك.",
-      },
-      cards: [
-        { icon: "♜", title: "الموقع الزمني", text: "منتصف القرن التاسع عشر, عصر الإمبراطورية العثمانية" },
-        {
-          icon: "⛩",
-          title: "الموقع الجغرافي",
-          text: "مرعش، البستان (كردستان الشمالية), وإسطنبول",
-        },
-      ],
-      didYouKnow: {
-        title: "هل تعلم؟",
-        text: "لقب «كارا», بمعنى أسود أو شجاع, كان يُمنح في ذلك العصر لأشخاص من جرأة ولا مبالاة استثنائية. عندما وصلت كارا فاطمة إلى إسطنبول، تجمعت الحشود فقط لرؤيتها، لأنه كان أمراً استثنائياً أن تمسك امرأة قيادة عسكرية بهذه الطريقة.",
-      },
-      quote: "كانت امرأة طويلة ومهيبة, حتى السلطان العثماني استقبلها باحترام كبير.",
-      quoteAuthor: "الصحافة الأوروبية، ١٨٥٤",
-    },
     "qadam-kher": {
       nameLine1: "قدم",
       nameLine2: "خير",
