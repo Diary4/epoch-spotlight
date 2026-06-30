@@ -218,8 +218,6 @@ export default function WomenCultureMemoryPage({
               </button>
             )}
 
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_6%,rgba(205,143,151,0.15),transparent_30%),radial-gradient(circle_at_20%_48%,rgba(212,185,143,0.12),transparent_32%)]" />
-
             <section data-culture-hero="true" className="relative z-10 shrink-0">
               <div
                 data-culture-fade="true"
