@@ -33,11 +33,6 @@ export default function PrimeMinisterPage({
 
   const name = isAr ? "مەسرور بارزانی" : isKu ? "مەسرور بارزانی" : "Masrour Barzani";
   const role = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
-  const government = isAr
-    ? "حكومة إقليم كوردستان"
-    : isKu
-      ? "حکومەتی هەرێمی کوردستان"
-      : "Kurdistan Regional Government";
 
   const about = isAr
     ? "يقود رئيس الوزراء منذ عام 2019 أجندة من الإصلاح والاستقرار والتنمية المستدامة لكوردستان."
@@ -114,9 +109,6 @@ export default function PrimeMinisterPage({
           >
             {name}
           </h1>
-          <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-white/65 sm:text-sm">
-            {government}
-          </p>
 
           {/* About */}
           <p className="mt-5 text-sm leading-relaxed text-white/85 sm:text-base" style={{ lineHeight: 1.7 }}>

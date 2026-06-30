@@ -94,16 +94,15 @@ export function SectionHeader({
   subtitle?: string;
 }) {
   const displayFont = discoverDisplayFont(lang);
-  const isAr = lang === "ar";
-  const isKu = lang === "ku";
-  const governmentLabel = isAr ? "حكومة إقليم كوردستان" : isKu ? "حکومەتی هەرێمی کوردستان" : "Kurdistan Regional Government";
 
   return (
     <header className="pm-page-header system-detail-intro flex flex-col items-center pt-14 text-center sm:pt-16 lg:pt-20">
       <KrgEmblem className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28" />
-      <p className="mt-4 text-xs font-medium uppercase tracking-[0.28em] text-[#17233b] sm:text-sm lg:text-base">
-        {eyebrow ?? governmentLabel}
-      </p>
+      {eyebrow && (
+        <p className="mt-4 text-xs font-medium uppercase tracking-[0.28em] text-[#17233b] sm:text-sm lg:text-base">
+          {eyebrow}
+        </p>
+      )}
       {subtitle && (
         <p className={`mt-2 ${displayFont} text-base uppercase tracking-[0.35em] text-[#b99152] sm:text-lg lg:text-xl`}>
           {subtitle}

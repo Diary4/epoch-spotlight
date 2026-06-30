@@ -2,17 +2,31 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import citadel from "@/assets/mainImages/building.webp";
-import peshmarga from "@/assets/mainImages/peshmarga.webp";
-import government from "@/assets/mainImages/government.webp";
-import cityscape from "@/assets/mainImages/theland/progress-4.webp";
-import landscape from "@/assets/mainImages/theland/land-2.webp";
+import publicServiceImage from "@/assets/images/PrimeMinistir/p-2.png";
+import primeMinisterImage from "@/assets/images/PrimeMinistir/pm.jpeg";
+import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).jpeg";
+import economicImage from "@/assets/images/PrimeMinistir/economic.jpeg";
+import myAccountImage from "@/assets/images/PrimeMinistir/myaccount.jpeg";
+import runakiImage from "@/assets/images/PrimeMinistir/runaki.jpeg";
+import infrastructureImage from "@/assets/images/PrimeMinistir/infrastructure.jpeg";
+import digitalImage from "@/assets/images/PrimeMinistir/digital.jpeg";
+import agreementImage from "@/assets/images/PrimeMinistir/agreement.jpeg";
+import jobImage from "@/assets/images/PrimeMinistir/job.jpeg";
+
+type TimelineDetail =
+  | string
+  | {
+      title: string;
+      text: string;
+    };
 
 type TimelineEntry = {
+  id: string;
   era: string;
   title: string;
   description: string;
   image: string;
-  details: string[];
+  details: TimelineDetail[];
 };
 
 type PrimeMinisterTimelineProps = {
@@ -20,57 +34,271 @@ type PrimeMinisterTimelineProps = {
   onBack?: () => void;
 };
 
-const images = [citadel, peshmarga, government, cityscape, landscape];
+const timelineImages = {
+  "early-life": citadel,
+  "public-service": publicServiceImage,
+  "prime-minister": primeMinisterImage,
+  vision: visionImage,
+} as const;
+
+const achievementImages = {
+  "economic-reform": economicImage,
+  "my-account": myAccountImage,
+  "runaki-program": runakiImage,
+  "infrastructure-development": infrastructureImage,
+  "digital-transformation": digitalImage,
+  "investment-partnerships": agreementImage,
+  "youth-empowerment": jobImage,
+} as const;
+
+type AchievementId = keyof typeof achievementImages;
+
+const achievementCatalog: Record<
+  AchievementId,
+  Record<"en" | "ku" | "ar", { title: string; text: string }>
+> = {
+  "economic-reform": {
+    en: {
+      title: "Economic Reform",
+      text: "Diversified the economy and reduced dependence on oil revenues.",
+    },
+    ku: {
+      title: "چاکسازیی ئابووری",
+      text: "هەمەجۆرکردنی ئابووری و کەمکردنەوەی پشتبەستن بە داهاتی نەوت.",
+    },
+    ar: {
+      title: "الإصلاح الاقتصادي",
+      text: "تنويع الاقتصاد وتقليل الاعتماد على عائدات النفط.",
+    },
+  },
+  "my-account": {
+    en: {
+      title: "MyAccount",
+      text: "Launched MyAccount to modernize public sector payroll and ensure financial inclusion.",
+    },
+    ku: {
+      title: "هەژماری من",
+      text: "دەستپێکردنی هەژماری من بۆ نوێکردنەوەی مووچەی کەرتی گشتی و دڵنیابوون لە گشتگیریی دارایی.",
+    },
+    ar: {
+      title: "حسابي",
+      text: "إطلاق حسابي لتحديث رواتب القطاع العام وضمان الشمول المالي.",
+    },
+  },
+  "runaki-program": {
+    en: {
+      title: "Runaki Program",
+      text: "Expanded electricity production and improved the reliability of energy across the region.",
+    },
+    ku: {
+      title: "پڕۆژەی ڕووناکی",
+      text: "فراوانکردنی بەرهەمهێنانی کارەبا و باشترکردنی جێگیریی وزە لە سەرانسەری هەرێمدا.",
+    },
+    ar: {
+      title: "برنامج ڕووناکی",
+      text: "توسيع إنتاج الكهرباء وتحسين موثوقية الطاقة في جميع أنحاء الإقليم.",
+    },
+  },
+  "infrastructure-development": {
+    en: {
+      title: "Infrastructure Development",
+      text: "Invested in roads, bridges, airports, water projects, and urban development to connect communities.",
+    },
+    ku: {
+      title: "پەرەپێدانی ژێرخان",
+      text: "وەبەرهێنان لە ڕێگاوبان، پرد، فڕۆکەخانە، پڕۆژەی ئاو، و پەرەپێدانی شار.",
+    },
+    ar: {
+      title: "تطوير البنية التحتية",
+      text: "الاستثمار في الطرق والجسور والمطارات ومشاريع المياه والتنمية الحضرية.",
+    },
+  },
+  "digital-transformation": {
+    en: {
+      title: "Digital Transformation",
+      text: "Advanced digital services and e-government to make services faster, easier, and more transparent.",
+    },
+    ku: {
+      title: "گۆڕینی دیجیتاڵ",
+      text: "پێشخستنی خزمەتگوزارییە دیجیتاڵییەکان و حکومەتی ئەلیکترۆنی بۆ خزمەتگوزاری خێراتر و ئاسانتر.",
+    },
+    ar: {
+      title: "التحول الرقمي",
+      text: "تطوير الخدمات الرقمية والحكومة الإلكترونية لجعل الخدمات أسرع وأسهل وأكثر شفافية.",
+    },
+  },
+  "investment-partnerships": {
+    en: {
+      title: "Investment & Partnerships",
+      text: "Attracted international investment and strengthened partnerships to support sustainable growth.",
+    },
+    ku: {
+      title: "وەبەرهێنان و هاوبەشی",
+      text: "ڕاکێشانی وەبەرهێنانی نێودەوڵەتی و بەهێزکردنی هاوبەشی بۆ پشتگیری گەشەی بەردەوام.",
+    },
+    ar: {
+      title: "الاستثمار والشراكات",
+      text: "جذب الاستثمار الدولي وتعزيز الشراكات لدعم النمو المستدام.",
+    },
+  },
+  "youth-empowerment": {
+    en: {
+      title: "Job Creation & Youth Empowerment",
+      text: "Created more job opportunities and supported youth, entrepreneurship, and private sector development.",
+    },
+    ku: {
+      title: "دروستکردنی کار و توانادارکردنی گەنجان",
+      text: "دروستکردنی هەلی کاری زیاتر و پاڵپشتی گەنجان، کارسازی، و کەرتی تایبەت.",
+    },
+    ar: {
+      title: "خلق فرص العمل وتمكين الشباب",
+      text: "خلق المزيد من فرص العمل ودعم الشباب وريادة الأعمال والقطاع الخاص.",
+    },
+  },
+};
+
+const achievementOrder: AchievementId[] = [
+  "economic-reform",
+  "my-account",
+  "runaki-program",
+  "infrastructure-development",
+  "digital-transformation",
+  "investment-partnerships",
+  "youth-empowerment",
+];
+
+const visionDetails: Record<"en" | "ku" | "ar", TimelineDetail[]> = {
+  en: [
+    {
+      title: "A Strong & Diversified Economy",
+      text: "Building sustainable growth and creating opportunities for every citizen.",
+    },
+    {
+      title: "Reliable Energy & Infrastructure",
+      text: "Securing clean energy and world-class infrastructure for a better life.",
+    },
+    {
+      title: "Empowering People & Youth",
+      text: "Investing in education, skills, and innovation to unlock the potential of our people.",
+    },
+    {
+      title: "Good Governance & Partnerships",
+      text: "Upholding transparency and building strong partnerships for peace and prosperity.",
+    },
+    {
+      title: "Sustainable & Resilient Kurdistan",
+      text: "Protecting our environment and building a safe, inclusive, and future-ready Kurdistan.",
+    },
+  ],
+  ku: [
+    {
+      title: "ئابوورییەکی بەهێز و هەمەجۆر",
+      text: "بونیادنانی گەشەی بەردەوام و دروستکردنی دەرفەت بۆ هەموو هاوڵاتی.",
+    },
+    {
+      title: "وزە و ژێرخانی جێگیر",
+      text: "دڵنیابوون لە وزەی پاک و ژێرخانی ئاستی جیهانی بۆ ژیانێکی باشتر.",
+    },
+    {
+      title: "توانادارکردنی خەڵک و گەنجان",
+      text: "وەبەرهێنان لە پەروەردە، لێهاتوویی، و داهێنان بۆ ئاشکراکردنی توانای خەڵکمان.",
+    },
+    {
+      title: "حکومڕانی باش و هاوبەشی",
+      text: "پاراستنی شەفافیەت و بونیادنانی هاوبەشی بەهێز بۆ ئاشتی و گەشە.",
+    },
+    {
+      title: "کوردستانێکی بەردەوام و خۆڕاگر",
+      text: "پاراستنی ژینگە و بونیادنانی کوردستانێکی سەلامەت، گشتگیر، و ئامادە بۆ داهاتوو.",
+    },
+  ],
+  ar: [
+    {
+      title: "اقتصاد قوي ومتنوع",
+      text: "بناء نمو مستدام وخلق فرص لكل مواطن.",
+    },
+    {
+      title: "طاقة و بنية تحتية موثوقة",
+      text: "تأمين طاقة نظيفة وبنية تحتية عالمية المستوى لحياة أفضل.",
+    },
+    {
+      title: "تمكين الناس والشباب",
+      text: "الاستثمار في التعليم والمهارات والابتكار لإطلاق إمكانات شعبنا.",
+    },
+    {
+      title: "حوكمة رشيدة وشراكات",
+      text: "التمسك بالشفافية وبناء شراكات قوية من أجل السلام والازدهار.",
+    },
+    {
+      title: "كوردستان مستدامة ومرنة",
+      text: "حماية بيئتنا وبناء كوردستان آمنة وشاملة وجاهزة للمستقبل.",
+    },
+  ],
+};
+
+function detailKey(detail: TimelineDetail): string {
+  return typeof detail === "string" ? detail : detail.title;
+}
+
+function getAchievementEraLabel(lang: "ku" | "en" | "ar", index: number): string {
+  if (lang === "ar") return `إنجاز ${index + 1}`;
+  if (lang === "ku") return `دەستکەوت ${index + 1}`;
+  return `Achievement ${index + 1}`;
+}
+
+function getAchievementEntries(lang: "ku" | "en" | "ar"): TimelineEntry[] {
+  return achievementOrder.map((id, index) => {
+    const content = achievementCatalog[id][lang];
+    return {
+      id,
+      era: getAchievementEraLabel(lang, index),
+      title: content.title,
+      description: content.text,
+      image: achievementImages[id],
+      details: [],
+    };
+  });
+}
 
 function getTimeline(lang: "ku" | "en" | "ar"): TimelineEntry[] {
+  const achievementEntries = getAchievementEntries(lang);
+
   if (lang === "ar") {
     return [
       {
+        id: "early-life",
         era: "1969",
         title: "الحياة المبكرة والأصول",
         description:
           "وُلد مسرور بارزاني في منطقة بارزان، في عائلة لها دور تاريخي في الحركة الوطنية الكردية, ونشأ في بيئة تقوم على القيادة والانضباط والخدمة.",
-        image: images[0],
+        image: timelineImages["early-life"],
         details: ["وُلد عام 1969 في بارزان", "عائلة متجذرة في الحركة الوطنية", "التعليم والصمود في الجوهر"],
       },
       {
+        id: "public-service",
         era: "الخدمة العامة",
         title: "حياة من الخدمة",
         description:
           "دخل القيادة خلال فترات الصراع والتحول، وساهم في الأمن والتطوير المؤسسي في جميع أنحاء كوردستان.",
-        image: images[1],
+        image: timelineImages["public-service"],
         details: ["تعزيز مؤسسات الأمن", "دعم المصالحة الوطنية", "بناء هياكل أقوى"],
       },
       {
+        id: "prime-minister",
         era: "2019",
-        title: "رئيس وزراء الإقليم",
+        title: "رئيس الوزراء",
         description: "أصبح رئيسًا للوزراء بمهمة تركز على الإصلاح والاستقرار والتنمية المستدامة.",
-        image: images[2],
+        image: timelineImages["prime-minister"],
         details: ["حكومة تقودها الإصلاحات", "التركيز على الاستقرار", "أجندة تنمية مستدامة"],
       },
+      ...achievementEntries,
       {
-        era: "الإنجازات",
-        title: "الإنجازات المختارة",
-        description: "قاد إصلاحات واسعة حدّثت الحكومة وحسّنت الحياة اليومية للمواطنين.",
-        image: images[3],
-        details: [
-          "الإصلاح الاقتصادي والتنويع",
-          "برنامجا حسابي وڕووناکی",
-          "البنية التحتية والتحول الرقمي",
-          "الاستثمار وفرص العمل وتمكين الشباب",
-        ],
-      },
-      {
+        id: "vision",
         era: "المستقبل",
         title: "الرؤية المستقبلية",
         description: "كوردستان مزدهرة ومستقرة وجاهزة للمستقبل تضمن جودة حياة عالية لجميع المواطنين.",
-        image: images[4],
-        details: [
-          "اقتصاد قوي ومتنوع",
-          "طاقة و بنية تحتية موثوقة",
-          "تمكين الناس والشباب",
-          "كوردستان مستدامة ومرنة",
-        ],
+        image: timelineImages.vision,
+        details: visionDetails.ar,
       },
     ];
   }
@@ -78,102 +306,78 @@ function getTimeline(lang: "ku" | "en" | "ar"): TimelineEntry[] {
   if (lang === "ku") {
     return [
       {
+        id: "early-life",
         era: "١٩٦٩",
         title: "ژیانی سەرەتایی و ڕەگ",
         description:
           "مەسرور بارزانی لە ناوچەی بارزان لە دایکبوو، لە خێزانێک کە ڕۆڵێکی مێژوویی هەبوو لە بزووتنەوەی نەتەوەیی کوردیدا، لە ژینگەیەکی ڕابەرایەتی و ڕێکوپێکی و خزمەتدا گەورە بوو.",
-        image: images[0],
+        image: timelineImages["early-life"],
         details: ["لە ١٩٦٩ لە بارزان لە دایکبوو", "خێزانێکی ڕەگداکوتاو لە بزووتنەوەی نەتەوەیی", "پەروەردە و خۆڕاگری لە ناوەکدا"],
       },
       {
+        id: "public-service",
         era: "خزمەتی گشتی",
         title: "ژیانێک لە خزمەت",
         description:
           "لە کاتی ناکۆکی و گۆڕانکارییەکاندا چووە ناو ڕێبەرایەتی، بەشداری لە ئاسایش و پەرەپێدانی دامەزراوەیی کرد لە سەرانسەری کوردستاندا.",
-        image: images[1],
+        image: timelineImages["public-service"],
         details: ["بەهێزکردنی دامەزراوەکانی ئاسایش", "پاڵپشتی ئاشتەوایی نەتەوەیی", "بونیادنانی پێکهاتەی بەهێزتر"],
       },
       {
+        id: "prime-minister",
         era: "٢٠١٩",
-        title: "سەرۆک وەزیرانی هەرێم",
+        title: "سەرۆک وەزیران",
         description: "بوو بە سەرۆک وەزیران بە مانداتێک کە جەخت لەسەر چاکسازی، سەقامگیری، و گەشەی بەردەوام دەکات.",
-        image: images[2],
+        image: timelineImages["prime-minister"],
         details: ["حکومەتێکی چاکسازی-بنەما", "جەخت لەسەر سەقامگیری", "بەرنامەی گەشەی بەردەوام"],
       },
+      ...achievementEntries,
       {
-        era: "دەستکەوتەکان",
-        title: "دەستکەوتە هەڵبژێردراوەکان",
-        description: "ڕابەری چاکسازیی فراوان کرد کە حکومەتی نوێ کردەوە و ژیانی ڕۆژانەی هاوڵاتیانی باشتر کرد.",
-        image: images[3],
-        details: [
-          "چاکسازیی ئابووری و هەمەجۆری",
-          "پڕۆژەکانی هەژماری من و ڕووناکی",
-          "ژێرخان و گۆڕینی دیجیتاڵ",
-          "وەبەرهێنان، کار، و توانادارکردنی گەنجان",
-        ],
-      },
-      {
+        id: "vision",
         era: "داهاتوو",
         title: "ئامانجی داهاتوو",
         description: "کوردستانێکی گەشاوە، سەقامگیر، و ئامادە بۆ داهاتوو کە کوالیتیی ژیانێکی بەرز بۆ هەموو هاوڵاتییەکان دڵنیادەکاتەوە.",
-        image: images[4],
-        details: [
-          "ئابوورییەکی بەهێز و هەمەجۆر",
-          "وزە و ژێرخانی جێگیر",
-          "توانادارکردنی خەڵک و گەنجان",
-          "کوردستانێکی بەردەوام و خۆڕاگر",
-        ],
+        image: timelineImages.vision,
+        details: visionDetails.ku,
       },
     ];
   }
 
   return [
     {
+      id: "early-life",
       era: "1969",
       title: "Early Life & Origins",
       description:
         "Born in the Barzan region into a family with a historic role in the Kurdish national movement, raised in an environment of leadership, discipline, and service.",
-      image: images[0],
+      image: timelineImages["early-life"],
       details: ["Born in 1969 in Barzan", "Family rooted in the national movement", "Education and resilience at the core"],
     },
     {
+      id: "public-service",
       era: "Public Service",
       title: "A Life of Service",
       description:
         "Entered leadership during periods of conflict and transition, contributing to security and institutional development across Kurdistan.",
-      image: images[1],
+      image: timelineImages["public-service"],
       details: ["Strengthened security institutions", "Supported national reconciliation", "Built stronger structures"],
     },
     {
+      id: "prime-minister",
       era: "2019",
-      title: "Prime Minister of the KRG",
+      title: "Prime Minister",
       description: "Became Prime Minister with a mandate centered on reform, stability, and sustainable development.",
-      image: images[2],
+      image: timelineImages["prime-minister"],
       details: ["Reform-driven government", "Focus on stability", "Sustainable development agenda"],
     },
+    ...achievementEntries,
     {
-      era: "Achievements",
-      title: "Selected Achievements",
-      description: "Led far-reaching reforms that modernized government and improved daily life for citizens.",
-      image: images[3],
-      details: [
-        "Economic reform & diversification",
-        "MyAccount & Runaki programs",
-        "Infrastructure & digital transformation",
-        "Investment, jobs & youth empowerment",
-      ],
-    },
-    {
+      id: "vision",
       era: "The Future",
       title: "Vision for the Future",
       description: "A prosperous, stable, and future-ready Kurdistan that guarantees a high quality of life for all citizens.",
-      image: images[4],
-      details: [
-        "A strong & diversified economy",
-        "Reliable energy & infrastructure",
-        "Empowered people & youth",
-        "Sustainable & resilient Kurdistan",
-      ],
+      image: timelineImages.vision,
+      details: visionDetails.en,
     },
   ];
 }
@@ -226,18 +430,19 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
       dir={isRtl ? "rtl" : "ltr"}
       className={`relative h-full min-h-0 w-full overflow-hidden bg-black ${isRtl ? "font-noto-naskh" : ""}`}
     >
-      {/* Background with subtle blur */}
+      {/* Background — same portrait as Prime Minister page */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${citadel})`, filter: "brightness(0.3) blur(2px)", transform: "scale(1.1)" }}
+        className="absolute inset-0 bg-cover bg-no-repeat"
+        style={{
+          backgroundImage: `url(${publicServiceImage})`,
+          backgroundPosition: "center 18%",
+          filter: "blur(12px)",
+          transform: "scale(1.08)",
+        }}
       />
       <div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%)" }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.45) 100%)" }}
+        style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.8) 100%)" }}
       />
 
       {/* Back button */}
@@ -267,7 +472,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
           <div className="relative flex flex-col gap-12">
             {timeline.map((item, index) => (
               <button
-                key={item.title}
+                key={item.id}
                 onClick={() => scrollToSection(index)}
                 className={`group relative flex items-center gap-4 transition-all duration-300 ${
                   isRtl ? "flex-row-reverse text-right" : "text-left"
@@ -318,7 +523,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
         <div className="space-y-28">
           {timeline.map((item, index) => (
             <div
-              key={item.title}
+              key={item.id}
               ref={(el) => {
                 sectionRefs.current[index] = el;
               }}
@@ -367,15 +572,29 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
                       <h2 className={`mb-3 ${displayFont} text-2xl font-light tracking-tight text-white md:text-3xl`}>
                         {item.title}
                       </h2>
-                      <p className="mb-6 text-sm leading-relaxed text-white/80 md:text-base">{item.description}</p>
-                      <div className="space-y-2">
-                        {item.details.map((detail) => (
-                          <div key={detail} className={`flex items-start gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c69237]" />
-                            <span className="text-xs text-white/65 md:text-sm">{detail}</span>
-                          </div>
-                        ))}
-                      </div>
+                      <p className={`${item.details.length > 0 ? "mb-6" : ""} text-sm leading-relaxed text-white/80 md:text-base`}>
+                        {item.description}
+                      </p>
+                      {item.details.length > 0 && (
+                        <div className="space-y-4">
+                          {item.details.map((detail) => (
+                            <div
+                              key={detailKey(detail)}
+                              className={`flex items-start gap-2 ${isRtl ? "flex-row-reverse" : ""}`}
+                            >
+                              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c69237]" />
+                              {typeof detail === "string" ? (
+                                <span className="text-xs text-white/65 md:text-sm">{detail}</span>
+                              ) : (
+                                <div>
+                                  <p className="text-xs font-medium text-white/90 md:text-sm">{detail.title}</p>
+                                  <p className="mt-1 text-xs leading-relaxed text-white/65 md:text-sm">{detail.text}</p>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
