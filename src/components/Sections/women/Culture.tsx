@@ -73,20 +73,6 @@ function CultureListCard({
       <p className={`mt-[2px] ${displayFont} text-[14px] italic text-[#a75a69]`}>
         ({woman.role})
       </p>
-
-      <div className="my-2 flex w-16 items-center gap-1 text-[#b4864d]">
-        <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-3 w-3" />
-        <span className="h-px flex-1 bg-[#d4b98f]" />
-      </div>
-
-      <p
-        className={`block text-[13px] leading-relaxed text-[#4a3f50] ${
-          dir === "rtl" ? "text-right" : "text-left"
-        }`}
-      >
-        {woman.teaser}
-      </p>
     </button>
   );
 }

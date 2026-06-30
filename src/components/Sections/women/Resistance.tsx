@@ -132,16 +132,6 @@ export default function WomenResistancePage({
       <p className={`mt-1 ${displayFont} text-[20px] italic text-[#a75a69]`}>
         ({woman.role})
       </p>
-
-      <div className="my-2 flex w-full max-w-[96px] items-center gap-2 text-[#b4864d]">
-        <span className="h-px flex-1 bg-[#d4b98f]" />
-        <Sparkles className="h-4 w-4" />
-        <span className="h-px flex-1 bg-[#d4b98f]" />
-      </div>
-
-      <p className="text-left text-[15px] leading-relaxed text-[#4a3f50]">
-        {woman.teaser}
-      </p>
     </button>
   );
 
@@ -258,23 +248,29 @@ export default function WomenResistancePage({
               {/* Hero video bleeds under the text */}
               <div
                 data-resist-hero="true"
-                className={`pointer-events-none relative self-stretch h-full w-[175%] ${
-                  dir === "rtl" ? "mr-[-75%]" : "ml-[-75%]"
+                className={`pointer-events-none relative self-stretch h-full w-[185%] ${
+                  dir === "rtl" ? "mr-[-62%] -translate-x-8" : "ml-[-62%] translate-x-10"
                 }`}
               >
-                <video
-                  src={resistanceHeroVideo}
-                  aria-label="Women of Resistance"
-                  className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
-                  aria-hidden
-                />
+                <div className="relative h-full w-full">
+                  <video
+                    src={resistanceHeroVideo}
+                    aria-label="Women of Resistance"
+                    className={`h-full w-full object-contain ${dir === "rtl" ? "object-left-center -scale-x-100" : "object-[96%_center]"}`}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                  <div
+                    className="absolute inset-x-0 top-0 z-10 h-[120px] bg-gradient-to-b from-[#fcf7ef] via-[#fcf7ef]/70 to-transparent"
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"
+                    aria-hidden
+                  />
+                </div>
               </div>
             </section>
 

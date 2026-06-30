@@ -215,20 +215,6 @@ export default function WomenPoliticalPage({
                   <p className={`mt-0.5 ${displayFont} text-[clamp(8px,2.2vw,20px)] italic text-[#a75a69] sm:mt-2 sm:text-[clamp(15px,1.6vw,20px)]`}>
                     ({person.role})
                   </p>
-
-                  <div className="my-1.5 flex w-full max-w-[60px] items-center gap-1 text-[#b4864d] sm:my-3 sm:max-w-[96px] sm:gap-2">
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                    <Sparkles className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
-                    <span className="h-px flex-1 bg-[#d4b98f]" />
-                  </div>
-
-                  <p
-                    className={`hidden text-[14px] leading-relaxed text-[#4a3f50] sm:block sm:text-[15px] ${
-                      dir === "rtl" ? "text-right" : "text-left"
-                    }`}
-                  >
-                    {person.teaser}
-                  </p>
                 </button>
               ))}
             </section>
