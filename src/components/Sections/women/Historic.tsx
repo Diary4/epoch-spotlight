@@ -211,8 +211,8 @@ export default function WomenHistoricPage({
               {/* Illustration bleeds under the text for a larger visual scale */}
               <div
                 data-hist-hero="true"
-                className={`pointer-events-none relative self-stretch h-full w-[145%] ${
-                  dir === "rtl" ? "origin-top-left mr-[-45%]" : "origin-top-right ml-[-45%]"
+                className={`pointer-events-none relative self-stretch h-full w-[150%] ${
+                  dir === "rtl" ? "origin-top-left mr-[-40%] -translate-x-6" : "origin-top-right ml-[-40%] translate-x-6"
                 }`}
               >
                 <div className="relative h-full w-full overflow-hidden leading-[0]">
@@ -227,7 +227,7 @@ export default function WomenHistoricPage({
                   <video
                     src={mainHeroVideo}
                     aria-label="Historic Women"
-                    className={`block h-full w-full object-contain object-right-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                    className={`block h-full w-full object-contain [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] ${dir === "rtl" ? "object-left-center -scale-x-100" : "object-[94%_center]"}`}
                     autoPlay
                     loop
                     muted
