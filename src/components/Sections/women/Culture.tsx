@@ -16,6 +16,7 @@ import {
 } from "@/components/Sections/women/content/cultureContent";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
+import cultureHeroVideo from "@/assets/videos/goza.mp4";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgRoshan from "@/assets/images/womens/roshan.jpeg";
@@ -266,10 +267,14 @@ export default function WomenCultureMemoryPage({
               </div>
 
               <div className="relative z-10 w-full">
-                <img
-                  src={cultureHero}
-                  alt=""
+                <video
+                  src={cultureHeroVideo}
+                  aria-label={`${copy.heroTitleLine1} ${copy.heroTitleLine2}`}
                   className="pointer-events-none mx-auto block h-auto w-full max-w-[1400px] object-contain object-center"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                 />
               </div>
             </section>

@@ -65,9 +65,28 @@ export default function PrimeMinisterPage({
         style={{
           backgroundImage: `url(${primeMinister})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 22%",
+          backgroundPosition: "center 18%",
         }}
       />
+
+      {/* Cinematic gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(8,12,20,0.32) 0%, rgba(8,12,20,0.42) 50%, rgba(8,12,20,0.38) 100%)",
+        }}
+      />
+      {/* Bottom anchor gradient for legibility */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-2/3"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(5,8,14,0.95) 0%, rgba(5,8,14,0.5) 45%, transparent 100%)",
+        }}
+      />
+      {/* Subtle gold vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.4)_100%)]" />
 
       {/* Back button */}
       <button

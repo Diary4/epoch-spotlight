@@ -17,7 +17,7 @@ import {
   resistanceDetailToPanelCards,
 } from "@/components/Sections/women/content/resistanceContent";
 
-import resistanceHero from "@/assets/images/women/w-2.webp";
+import resistanceHeroVideo from "@/assets/videos/56.mp4";
 import imgKara from "@/assets/images/womens/karafateme.jpg";
 import imgQadam from "@/assets/images/womens/qadamkher.jpg";
 import imgShifa from "@/assets/images/womens/shifagardi.jpg";
@@ -257,17 +257,21 @@ export default function WomenResistancePage({
                 </p>
               </div>
 
-              {/* Hero image bleeds under the text */}
+              {/* Hero video bleeds under the text */}
               <div
                 data-resist-hero="true"
                 className={`pointer-events-none relative self-stretch h-full w-[175%] ${
                   dir === "rtl" ? "mr-[-75%]" : "ml-[-75%]"
                 }`}
               >
-                <img
-                  src={resistanceHero}
-                  alt="Women of Resistance"
+                <video
+                  src={resistanceHeroVideo}
+                  aria-label="Women of Resistance"
                   className={`h-full w-full object-contain object-right-center ${dir === "rtl" ? "-scale-x-100" : ""}`}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                 />
                 <div
                   className="absolute inset-x-0 bottom-0 h-[110px] bg-gradient-to-t from-[#fcf7ef] via-[#fcf7ef]/40 to-transparent"

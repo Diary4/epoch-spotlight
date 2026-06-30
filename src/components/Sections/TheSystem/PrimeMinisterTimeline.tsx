@@ -29,7 +29,7 @@ function getTimeline(lang: "ku" | "en" | "ar"): TimelineEntry[] {
         era: "1969",
         title: "الحياة المبكرة والأصول",
         description:
-          "وُلد مسرور بارزاني في منطقة بارزان، في عائلة لها دور تاريخي في الحركة الوطنية الكردية، ونشأ في بيئة تقوم على القيادة والانضباط والخدمة.",
+          "وُلد مسرور بارزاني في منطقة بارزان، في عائلة لها دور تاريخي في الحركة الوطنية الكردية, ونشأ في بيئة تقوم على القيادة والانضباط والخدمة.",
         image: images[0],
         details: ["وُلد عام 1969 في بارزان", "عائلة متجذرة في الحركة الوطنية", "التعليم والصمود في الجوهر"],
       },
@@ -193,11 +193,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
 
   const backLabel = isAr ? "رجوع" : isKu ? "گەڕانەوە" : "Back";
   const headerLabel = isAr ? "المسيرة" : isKu ? "گەشتەکە" : "The Journey";
-  const endLabel = isAr
-    ? "تستمر المسيرة..."
-    : isKu
-      ? "گەشتەکە بەردەوامە..."
-      : "The Journey Continues...";
+  const endLabel = isAr ? "تستمر المسيرة..." : isKu ? "گەشتەکە بەردەوامە..." : "The Journey Continues...";
 
   useEffect(() => {
     const t = window.setTimeout(() => setIsVisible(true), 60);
@@ -331,7 +327,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
             >
               <div className="relative">
                 {/* Era badge */}
-                <div className={`mb-6 inline-block`}>
+                <div className="mb-6 inline-block">
                   <div
                     className="rounded-full px-5 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-[#e6c98f]"
                     style={{
