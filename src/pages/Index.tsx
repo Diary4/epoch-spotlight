@@ -22,8 +22,7 @@ import kurdistan3Bg from "@/assets/images/kurdistan-3.webp";
 import Year1992Page from "@/components/Sections/TheJourney/1992";
 import SystemPage from "@/components/Sections/TheSystem";
 import PrimeMinisterPage from "@/components/Sections/TheSystem/ThePrimeMinistir";
-import PrimeMinisterAchievementsPage from "@/components/Sections/TheSystem/PrimeMinisterAchievements";
-import PrimeMinisterVisionPage from "@/components/Sections/TheSystem/PrimeMinisterVision";
+import PrimeMinisterTimeline from "@/components/Sections/TheSystem/PrimeMinisterTimeline";
 import ParliamentPage from "@/components/Sections/TheSystem/Parliment";
 import GovernmentPage from "@/components/Sections/TheSystem/Government";
 import PresidencyPage from "@/components/Sections/TheSystem/Presidency";
@@ -373,7 +372,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "primeMinisterAchievements" | "primeMinisterVision" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
+type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
 
 const SectionNav = ({
   ui,
@@ -522,8 +521,7 @@ const Index = () => {
     government: kurdistan3Bg,
     presidency: kurdistan3Bg,
     primeMinister: kurdistan3Bg,
-    primeMinisterAchievements: kurdistan3Bg,
-    primeMinisterVision: kurdistan3Bg,
+    primeMinisterTimeline: kurdistan3Bg,
     landFuture: bg2,
     land: bg2,
     peshmerga: bg2,
@@ -790,21 +788,14 @@ const Index = () => {
           <PrimeMinisterPage
             lang={activeLang}
             onBack={() => setView("system")}
-            onAchievementsClick={() => setView("primeMinisterAchievements")}
-            onVisionClick={() => setView("primeMinisterVision")}
+            onJourneyClick={() => setView("primeMinisterTimeline")}
           />
         </div>
       )}
 
-      {view === "primeMinisterAchievements" && (
-        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <PrimeMinisterAchievementsPage lang={activeLang} onBack={() => setView("primeMinister")} />
-        </div>
-      )}
-
-      {view === "primeMinisterVision" && (
-        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
-          <PrimeMinisterVisionPage lang={activeLang} onBack={() => setView("primeMinister")} />
+      {view === "primeMinisterTimeline" && (
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <PrimeMinisterTimeline lang={activeLang} onBack={() => setView("primeMinister")} />
         </div>
       )}
 
