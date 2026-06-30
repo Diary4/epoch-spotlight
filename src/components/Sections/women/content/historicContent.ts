@@ -75,7 +75,7 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     legacySubtitle: "Poetry, justice, and learning.",
     quotes: [
       { text: "She wrote herself into history.", author: "Mastura Ardalan" },
-      { text: "True leadership can uplift a city and forge a nation.", author: "Adila Khanum" },
+      { text: "True leadership can uplift a city and forge a nation.", author: "Adela Khanum" },
       { text: "There is no difference between men and women... so I am going to continue.", author: "Hapsa Khan" },
     ],
   },
@@ -91,7 +91,7 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
     quotes: [
       { text: "لە ناو جەرگەی مێژوودا، تەختێکی بۆ خۆی بونیاد نا.", author: "مەستورەی ئەردەڵان" },
       { text: " سەرکردایەتیی ڕاستەقینە دەتوانێت شارێک ئاوا بکات و نەتەوەیەک دروست بکات", author: "عادیلە خانم" },
-      { text: "هیچ جیاوازییەک لە نێوان پیاو و ژندا نییە... بۆیە بەردەوام دەبم.", author: "حەپسە خانم" },
+      { text: "هیچ جیاوازییەک لە نێوان پیاوان و ژناندا نییە... بۆیە من بەردەوام دەبم.", author: "حەپسەخانی نەقیب" },
     ],
   },
   ar: {
@@ -124,7 +124,7 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     },
     {
       id: "adela-khanum",
-      name: "Adila Khanum",
+      name: "Adela Khanum",
       role: "Ruler of Halabja · Leader of the Jaff Tribe",
       teaser:
         "When her husband died in 1909, she stepped forward to rule Halabja, transforming it into a center of trade, justice, and culture.",
@@ -261,7 +261,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She wrote Tarikh-e Ardalan, the history of the Ardalan dynasty, making her one of the earliest known women historians in Kurdistan. Alongside it, her Diwan of poetry remains a cornerstone of Kurdish literary heritage.",
+        text: "She wrote Tarikhi Ardalan, the history of the Ardalan dynasty, making her one of the earliest known women historians in Kurdistan. Alongside it, her Diwan of poetry remains a cornerstone of Kurdish literary heritage.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
@@ -293,8 +293,8 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       role: "Ruler of Halabja · Leader of the Jaff Tribe",
       metaLine: "c. 1847 – 1924 | Halabja, Iraqi Kurdistan",
       intro:
-        "When her husband died in 1909, Adila Khanum did not step aside. She stepped forward, and ruled Halabja in his place. Under her leadership, a modest settlement became a regional center of trade, justice, and culture. She built courts, markets, and prisons. She negotiated with Ottoman governors, British officers, and local tribes, on her own terms. British diplomat Gertrude Bell described her as a striking figure who behaved as great Kurdish ladies do behave.",
-      portraitAlt: "Adila Khanum",
+        "When her husband died in 1909, Adela Khanum did not step aside. She stepped forward and ruled Halabja in his place. Under her leadership, a modest settlement became a regional center of trade, justice, and culture. She built courts, markets, and prisons. She negotiated with Ottoman governors, British officers, and local tribes on her own terms.",
+      portraitAlt: "Adela Khanum",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
@@ -302,7 +302,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Adila Khanum proved that a Kurdish woman could govern a region, command respect from foreign powers, and build a city, at a time when the whole world said she couldn't.",
+        text: "Adela Khanum proved that a Kurdish woman could govern a region, command respect from foreign powers, and build a city, at a time when the whole world said she couldn't.",
       },
       cards: [
         {
@@ -318,7 +318,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Famous British traveler and diplomat Gertrude Bell personally visited Adila Khanum and wrote about her in letters that are preserved in the British Museum. Bell was not easily impressed.",
+        text: "Famous British traveler and diplomat Gertrude Bell personally visited Adela Khanum and wrote about her in letters that are preserved in the British Museum. Bell was not easily impressed.",
       },
       quote:
         "Her position was probably unique owing to a happy combination of rank and character.",
@@ -330,7 +330,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       role: "Educator · Activist · Founder of the First Girls' School in Kurdistan",
       metaLine: "1891 – April 12, 1953 | Sulaymaniyah, Iraqi Kurdistan",
       intro:
-        "When the British bombed Sulaymaniyah in the early 1920s, everyone who could leave did. Hapsa Khan stayed. While others fled, she stayed with the families who had nowhere to go, and kept fighting for them after the bombs fell. She went door to door across the city to convince parents to send their daughters to school. If a family could not afford it, she paid herself. In 1926 she opened the first girls' school in Sulaymaniyah. In 1930 she wrote to the League of Nations to demand Kurdish rights.",
+        "When the British bombed Sulaymaniyah in the early 1920s, everyone who could leave did. Hapsa Khan stayed. While others fled, she stayed with the families who had nowhere to go, and kept fighting for them after the bombs fell. She went door to door across the city to convince parents to send their daughters to school. If a family could not afford it, she paid herself. In 1930 she wrote to the League of Nations to demand Kurdish rights.",
       portraitAlt: "Hapsa Khan",
       listIcon: "flower",
       greatestAchievement: {
@@ -366,12 +366,12 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       role: "Ruler of Soran · Commander of 50,000 Soldiers",
       metaLine: "Early 17th Century | Soran Emirate, Erbil Region",
       intro:
-        "When her brother, the ruler of the Soran Emirate, was murdered by a treacherous commander, Khanzad did not mourn in silence. She took control of the entire emirate, commanded its army, and governed its people for seven years. She lured the murderer into a meeting under the pretense of marriage, and had him executed along with all his men. Then she built roads, schools, mosques, and a fortress that still stands east of Erbil today.",
+        "When her brother, the ruler of the Soran Emirate, was murdered by a treacherous commander, Khanzad did not mourn in silence. She took control of the entire emirate, commanded its army, and governed its people for seven years. She lured the murderer into a meeting under the pretense of marriage, and had him executed along with all his men. Then she built roads, schools, mosques, and a fortress.",
       portraitAlt: "Khanzad Khanum",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She commanded an army of 50,000 soldiers, built Khanzad Castle on the Erbil–Shaqlawa road, a fortress that still stands, and expanded the Soran Emirate's territory by liberating areas from Ottoman and Safavid control.",
+        text: "She commanded an army of 50,000 soldiers, built Khanzad Castle on the Erbil – Shaqlawa road, a fortress that still stands and expanded the Soran Emirate's territory by liberating areas from Ottoman and Safavid control.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
@@ -391,7 +391,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "The first all-female Kurdish rock band, formed in Erbil in 1980, named themselves Khanzad in her honor. Their manager called it 'a radical step for the women's movement in Kurdistan.'",
+        text: "The first all-female Kurdish band — formed in Erbil in 1980 — named themselves Khanzad in her honor. Their manager called it 'a radical step for the women's movement in Kurdistan.'",
       },
       quote:
         "She proved that a woman could do her duties and confront all plots and plans her enemies designed for her.",
@@ -408,7 +408,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She governed the strategic mountain region of Bash Kala during one of the most turbulent periods of Kurdish history, resisting Ottoman consolidation of power until she was militarily overwhelmed.",
+        text: "She governed the strategic mountain region of Bash Kala during one of the most turbulent periods of Kurdish history.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
@@ -428,10 +428,10 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Kurdish historian Sharaf ad-Din Bitlisi documented that multiple Kurdish women assumed power in principalities after the death of their husbands, governing until their sons came of age. Halima Xanim is part of this remarkable pattern.",
+        text: "Kurdish historian Sharaf ad-Din Bitlisi documented that multiple Kurdish women assumed power in principalities after the death of their husbands, governing until their sons came of age.",
       },
       quote:
-        "She exercised real political authority, not merely symbolic power, in a male-dominated political world.",
+        "She exercised real political authority not merely symbolic power, in a male-dominated political world.",
       quoteAuthor: "Kurdish historical studies",
     },
     "meryem-khan": {
@@ -477,22 +477,22 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       role: "First Lady of the Republic of Kurdistan · Women's Rights Pioneer",
       metaLine: "1908 – 1998",
       intro:
-        "She was a revolutionary leader and the wife of Qazi Muhammad, the President of the Republic of Kurdistan. Breaking deep-seated social traditions, she emerged as a prominent public figure and, in March 1946, established the first official Kurdish women's organization to promote education and political participation. Following the Republic's fall and her husband's execution in 1947, she endured decades of immense hardship and state pressure. Despite these challenges, she remained in Mahabad, refusing to yield to her oppressors. Throughout her life, she remained a steadfast pillar of strength, dedicated to preserving her husband's legacy and supporting the Kurdish nation.",
+        "She was a revolutionary leader and the wife of Qazi Muhammad, the President of the Republic of Kurdistan. Breaking deep-seated social traditions, she emerged as a prominent public figure and, in March 1946, established the first official Kurdish women's organization to promote education and political participation. Following Republic's fall and her husband's execution in 1947, she endured decades of immense hardship and state pressure. Despite these challenges, she remained in Mahabad, refusing to yield to her oppressors.",
       portraitAlt: "Mina Qazi",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She founded the Kurdish Women's Union (Yekêtiya Jinên Kurdistan) in 1946. She successfully mobilized women to support the Republic's civic and military efforts, organized literacy classes for girls, and famously appeared in public alongside her husband without a traditional veil, shattering societal taboos and paving the way for modern Kurdish women's participation in politics.",
+        text: 'She founded the "Kurdish Women\'s Union" (Yekêtiya Jinên Kurdistan) in 1946. She successfully mobilized women to support the Republic\'s civic life, paving the way for modern Kurdish women\'s participation in politics.',
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Revered as the \"Mother of Kurdistan,\" Mina Qazi remains the ultimate symbol of resilience and female leadership in Kurdish history. She proved that the national struggle was not only the duty of men. Her unwavering dignity in the face of the Republic's collapse, and her lifelong commitment to her husband's democratic dream, continue to be the foundational inspiration for Kurdish women's movements today.",
+        text: "Mina Qazi remains the ultimate symbol of resilience and female leadership in Kurdish history. She proved that the national struggle was not only the duty of men.",
       },
       cards: [
         {
           icon: "♜",
           title: "Timeline Position",
-          text: "1908 until February 17, 1998, lived through the declaration and fall of the 1946 Republic of Kurdistan",
+          text: "1908 until February 17, 1998",
         },
         {
           icon: "⛩",
@@ -514,16 +514,16 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       role: "Intellectual · Women's Rights Activist · Pioneer of Education",
       metaLine: "Born September 8, 1917, Koya, Iraqi Kurdistan | Died June 12, 1999",
       intro:
-        "She was born in Koya in 1917, the daughter of Mala Muhammed Koyi, one of the most respected religious scholars of the region. At a time when even sending boys to school was considered a burden, her father enrolled her alongside boys in Koya's primary school in 1924, an act so unusual that other parents in the area were inspired to send their own daughters to school because of her success. In the 1940s she entered political life and became a supporter of the Hîwa Party, and later played an influential role in spreading national awareness during the era of the Republic of Kurdistan.",
+        "She was born in Koya in 1917, the daughter of Mala Muhammed Koyi, one of the most respected religious scholars of the region. At a time when even sending boys to school was considered a burden, her father enrolled her alongside boys in Koya's primary school in 1924, an act so unusual that other parents in the area were inspired to send their own daughters to school because of her success. In the 1940s she entered political life.",
       portraitAlt: "Najiba Khani Jelizadeh",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She was the first girl in Koya to attend formal school, in 1924. In 1953 she was secretly elected as president of the Women's Union of Kurdistan, Koya branch. She was not only a political activist, she also published three volumes of her father's religious commentaries and left behind several important manuscripts on Kurdish history and folklore.",
+        text: "In 1953 she was secretly elected as president of the Women's Union of Kurdistan, Koya branch. She published three volumes of her father's religious commentaries and left behind several important manuscripts on Kurdish history and folklore.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "She proved that a Kurdish woman could be an intellectual, a writer, a mother, and a political leader all at once. Her manuscripts on the history of Koya and the September Revolution are an irreplaceable historical source, written from the perspective of a woman who lived through it all.",
+        text: "She proved that a Kurdish woman could be an intellectual, a writer, a mother, and a political leader all at once.",
       },
       cards: [
         {
@@ -534,12 +534,12 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         {
           icon: "⛩",
           title: "Map Location",
-          text: "Koya, Sulaymaniyah, Erbil (Iraqi Kurdistan), and exile in Iran",
+          text: "Koya, Sulaymaniyah, Erbil (Iraqi Kurdistan)",
         },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "After the collapse of the revolution in 1975, Najiba Khani went into exile in Iran. When she returned to Sulaymaniyah, her high social standing and years of activism earned her an honorary title, she was called \"Hepsexana Naqib\" by those who knew her legacy.",
+        text: "After the collapse of the revolution in 1975, Najiba Khani went into exile in Iran. When she returned to Sulaymaniyah, her high social standing and years of activism earned her an honorary title.",
       },
       quote:
         "She was not just a student, she was a flame that lit the path of education for thousands of other girls in the region.",

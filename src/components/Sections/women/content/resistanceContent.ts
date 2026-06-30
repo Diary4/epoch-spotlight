@@ -65,7 +65,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "Kill me, but thousands of Kurds will wake up.", author: "Leyla Qasim" },
       { text: "Her voice carried a message of courage.", author: "Shifa Gardi" },
-      { text: "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.", author: "Aisha Taha" },
+      { text: "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.", author: "Dayka Aisha" },
     ],
   },
   ku: {
@@ -81,7 +81,7 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
     quotes: [
       { text: "بمکوژە، بەڵام هەزاران کورد لە خەو هەستن.", author: "لەیلا قاسم" },
       { text: "دەنگی پەیامی ئازایەتی هەڵگرت.", author: "شیفا گەردی" },
-      { text: "کوڕەکانم قوربانی خاک و نیشتمان بوون؛ مۆڕاڵەکانتان بەرز بهێڵنەوە و هەرگیز هێڵی پێشەوە مەهێڵن.", author: "عائشە تاها" },
+      { text: "کوڕەکانم بۆ خاک و نیشتمان فیدا بوون؛ ورەتان بەرز بێت و هەرگیز بەرەکانی جەنگ جێ مەهێڵن.", author: "دایکە عائیشە" },
     ],
   },
   ar: {
@@ -108,14 +108,14 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
     {
       id: "khaja-bawa",
       name: "Khaja Bawa",
-      role: "First Female Peshmerga Fighter · Military Commander",
+      role: "Revolutionary · Martyr of the 1991 Uprising",
       teaser:
         "Martyred on March 11, 1991 at the forefront of Erbil's uprising — she smuggled weapons, treated wounded revolutionaries, and never retreated.",
       listIcon: "crown",
     },
     {
       id: "aisha-taha",
-      name: "Aisha Taha",
+      name: "Aisha Taha (Dayka Aisha)",
       role: "Symbol of Resilience and Patriotism",
       teaser:
         "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",

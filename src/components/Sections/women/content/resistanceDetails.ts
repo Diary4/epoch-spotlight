@@ -8,16 +8,16 @@ export const resistanceDetailsByLang = {
       role: "Tribal Leader · Military Commander · Patriot",
       metaLine: "1899 – 1941 | Luristan, Iraqi Kurdistan",
       intro:
-        "Qadim Xer was the daughter of Qani Khan and the sister of Shamshir Khan, members of a prominent and respected family among the Feyli and Laki tribes of Luristan. When Reza Shah sought to disarm the Kurdish tribes by force and dismantle their authority, Qadim Xer's brothers were killed in the struggle. Instead of surrendering, she donned battle attire and took up arms. For several years, she led her tribe's armed forces, standing firm against the heavily equipped Iranian army. Her bravery was so profound that even Iranian military commanders spoke of her with begrudging respect.",
+        "For several years, she led her tribe's armed forces, standing firm against the heavily equipped Iranian army. Her bravery was so profound that even Iranian military commanders spoke of her with begrudging respect.",
       portraitAlt: "Qadem Xer",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "Leading the uprising of the Luristan tribes against the Pahlavi regime for several years (1927–1930). Through her strategic military brilliance, she defeated Reza Shah's army on multiple occasions. Qadim Xer became the first woman in the modern history of East Kurdistan to be recognized as a high-ranking military commander.",
+        text: "Through her strategic military brilliance, she defeated Reza Shah's army on multiple occasions. Qadim Xer became the first woman in the modern history of East Kurdistan to be recognized as a high-ranking military commander.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Qadim Xer is the ultimate symbol of the resilience of Kurdish women in the Luristan and Feyli regions. She proved that when the homeland and its dignity are at stake, gender boundaries vanish. Her story continues to be told as a masterclass in courage to new generations across Luristan.",
+        text: "Qadim Xer is the ultimate symbol of the resilience of Kurdish women in the Luristan and Feyli regions. She proved that when the homeland and its dignity are at stake, gender boundaries vanish.",
       },
       cards: [
         {
@@ -94,8 +94,8 @@ export const resistanceDetailsByLang = {
         text: "Leyla Qasim was not a general or a ruler. She was a young woman who believed in her people, and paid for that belief with her life. She proved that courage has no age, no rank, and no gender.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1970s, Era of Baathist repression" },
-        { icon: "⛩", title: "Map Location", text: "Khanaqin and Baghdad, Iraq" },
+        { icon: "♜", title: "Timeline Position", text: "1970s — Era of Baathist repression" },
+        { icon: "⛩", title: "Map Location", text: "Khanaqin, Iraq" },
       ],
       didYouKnow: {
         title: "Did You Know?",
@@ -107,15 +107,15 @@ export const resistanceDetailsByLang = {
     "khaja-bawa": {
       nameLine1: "Khaja",
       nameLine2: "Bawa",
-      role: "First Female Peshmerga Fighter · Military Commander",
+      role: "Revolutionary · Martyr of the 1991 Uprising",
       metaLine: "1945 – March 11, 1991 | Erbil, Iraqi Kurdistan",
       intro:
-        "Khaja Bawa was a revolutionary woman from the Erbil plains whose name was recorded in history as a symbol of the 1991 uprising. From a young age, she joined the Aylul Revolution in 1962. Khaja Bawa was not just a housewife; she smuggled weapons for the Peshmerga and hid and treated wounded revolutionaries in the heart of Erbil city. On March 11, 1991, when Erbil rose against the Ba'ath regime, she inspired the masses toward freedom with a headband around her forehead, ululations, and applause. Even after being wounded by the bullets of the \"Jash\" (collaborators), she did not retreat; instead, she attacked and disarmed them.",
+        "Khaja Bawa was a revolutionary woman from the Erbil plains whose name was recorded in history as a symbol of the 1991 uprising. From a young age, she joined the Aylul Revolution in 1962. Khaja Bawa was not just a housewife, she smuggled weapons for the Peshmerga and hid and treated wounded revolutionaries in the heart of Erbil city. On March 11, 1991, when Erbil rose against the Ba'ath regime, she inspired the masses toward freedom with a headband around her forehead, ululations, and applause.",
       portraitAlt: "Khaja Bawa",
       listIcon: "crown",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "She was the first woman to be martyred during the glorious Spring Uprising of 1991 in the city of Erbil. She was at the forefront of the crowds during the capture of the Governor's building and the Ba'ath security headquarters (Manzuma). Previously, as a female Peshmerga, she would strap Kalashnikov rifles to her back and secretly deliver them to the regions of Bli, Barzan, and Lolan.",
+        text: "She was the first woman to be martyred during the glorious Spring Uprising of 1991 in the city of Erbil. She was at the forefront of the crowds during the capture of the Governor's building and the Ba'ath security headquarters. Previously, as a female Peshmerga, she would strap Kalashnikov rifles to her back and secretly deliver them to the regions of Bli, Barzan, and Lolan.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
@@ -130,15 +130,15 @@ export const resistanceDetailsByLang = {
         {
           icon: "⛩",
           title: "Map Location",
-          text: "Mala Qara village (Erbil plains) and the neighborhoods of Bastapiyaza and Shahidan in Erbil city",
+          text: "Erbil, Southern Kurdistan",
         },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Khaja Bawa was so occupied with the struggle and the movement that she never had time to take a proper photograph. There is only one photo of her, the one from her civil identity card, which was enlarged after her martyrdom and is now seen as an iconic image of the uprising.",
+        text: "Khaja Bawa was so occupied with the struggle and the movement that she never had time to take a proper photograph. There is only one photo of her, the one from her civil identity card which was enlarged after her martyrdom and is now seen as an iconic image of the uprising.",
       },
       quote:
-        "My mother knew the uprising would happen; she said: 'Change your black clothes and wear bright, colorful ones, because tomorrow is our day.'",
+        "My mother knew the uprising would happen, she said 'Change your black clothes and wear bright, colorful ones, because tomorrow is our day.'",
       quoteAuthor: "Farida, daughter of Martyr Khaja Bawa",
     },
     "margaret-george-shilo": {
@@ -163,7 +163,7 @@ export const resistanceDetailsByLang = {
         {
           icon: "⛩",
           title: "Map Location",
-          text: "Barwari region, Duhok Governorate, and Akre area, Iraqi Kurdistan",
+          text: "Barwari region, Duhok Governorate, Southern Kurdistan",
         },
       ],
       didYouKnow: {
@@ -178,10 +178,10 @@ export const resistanceDetailsByLang = {
       nameLine1: "Aisha",
       nameLine2: "Taha",
       role: "Symbol of Resilience and Patriotism",
-      metaLine: "1946 – July 2020 | Kirkuk & Soran, Iraqi Kurdistan",
+      metaLine: "1946 – July 2020 | Soran, Erbil, Southern Kurdistan",
       intro:
-        "Aisha Taha became an immovable mountain of resilience and ultimate sacrifice in the modern history of Kurdistan. In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons, Mawloud, Ahmed, and Nishtiman, were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
-      portraitAlt: "Aisha Taha",
+        "In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons, Mawloud, Ahmed, and Nishtiman were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
+      portraitAlt: "Aisha Taha (Dayka Aisha)",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
@@ -189,27 +189,27 @@ export const resistanceDetailsByLang = {
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Aisha Taha redefined motherhood from a private emotion into a grand national pillar, proving that Kurdish women are the core foundation of endurance and courage during the nation's darkest hours.",
+        text: "Dayka Aisha redefined motherhood from a private emotion into a grand national pillar, proving that Kurdish women are the core foundation of endurance and courage during the nation's darkest hours.",
       },
       cards: [
         {
           icon: "♜",
           title: "Timeline Position",
-          text: "1946 until July 2020 (The era of the War against ISIS and the modern defense of Kurdistan)",
+          text: "1946 until July 2020",
         },
         {
           icon: "⛩",
           title: "Map Location",
-          text: "The frontline areas of Kirkuk Governorate (specifically the Tell Ward and Maktab Khalid sectors) and her residence in Soran (Erbil Province)",
+          text: "Soran, Erbil, Southern Kurdistan",
         },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "Following her immense loss, Aisha Taha refused to remain at home; she routinely traveled directly to the dangerous frontlines of Kirkuk, cooked meals for the soldiers with her own hands, and stayed in the trenches providing motherly love and strength to the troops.",
+        text: "Following her immense loss, Dayka Aisha refused to remain at home, she routinely traveled directly to the dangerous frontlines of Kirkuk, cooked meals for the soldiers with her own hands, and stayed in the trenches providing motherly love and strength to the troops.",
       },
       quote:
         "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.",
-      quoteAuthor: "Aisha Taha",
+      quoteAuthor: "Dayka Aisha",
     },
   },
   ku: kuResistanceDetails,
