@@ -5,6 +5,7 @@ import citadel from "@/assets/mainImages/building.webp";
 import publicServiceImage from "@/assets/images/PrimeMinistir/p-2.png";
 import primeMinisterImage from "@/assets/images/PrimeMinistir/pm.jpeg";
 import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).jpeg";
+import educationImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.31.jpeg";
 import economicImage from "@/assets/images/PrimeMinistir/economic.jpeg";
 import myAccountImage from "@/assets/images/PrimeMinistir/myaccount.jpeg";
 import runakiImage from "@/assets/images/PrimeMinistir/runaki.jpeg";
@@ -34,12 +35,297 @@ type PrimeMinisterTimelineProps = {
   onBack?: () => void;
 };
 
-const timelineImages = {
-  "early-life": citadel,
-  "public-service": publicServiceImage,
-  "prime-minister": primeMinisterImage,
+const biographyImages = {
+  "origins-formation": citadel,
+  "youth-resistance": publicServiceImage,
+  "education-borders": educationImage,
+  "security-state-building": primeMinisterImage,
+  "isis-war": publicServiceImage,
+  "service-beyond-government": educationImage,
+  "prime-minister-cabinet": primeMinisterImage,
   vision: visionImage,
 } as const;
+
+type BiographyId = keyof Omit<typeof biographyImages, "vision">;
+
+const biographyOrder: BiographyId[] = [
+  "origins-formation",
+  "youth-resistance",
+  "education-borders",
+  "security-state-building",
+  "isis-war",
+  "service-beyond-government",
+  "prime-minister-cabinet",
+];
+
+const biographyCatalog: Record<
+  BiographyId,
+  Record<"en" | "ku" | "ar", { era: string; title: string; description: string; details: string[] }>
+> = {
+  "origins-formation": {
+    en: {
+      era: "1969",
+      title: "Origins & Formation",
+      description:
+        "Born in 1969, Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
+      details: [
+        "Born on 2 March 1969",
+        "Raised within the Barzani family's historic national legacy",
+        "Completed high school in Iran",
+        "Continued higher education in the United States",
+      ],
+    },
+    ku: {
+      era: "١٩٦٩",
+      title: "ڕەگ و پێکهاتە",
+      description:
+        "مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
+      details: [
+        "لە ٢ی ئازاری ١٩٦٩دا لە دایکبوو",
+        "لە میراتی نەتەوەیی مێژوویی خێزانی بارزانیدا گەورە بوو",
+        "قوتابخانەی ناوەندی لە ئێران تەواو کرد",
+        "پەروەردەی باڵا لە ویلایەتە یەکگرتووەکانی ئەمریکا بەردەوام بوو",
+      ],
+    },
+    ar: {
+      era: "1969",
+      title: "الأصول والنشأة",
+      description:
+        "وُلد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
+      details: [
+        "وُلد في 2 آذار 1969",
+        "نشأ ضمن الإرث الوطني التاريخي لعائلة بارزاني",
+        "أنهى المرحلة الثانوية في إيران",
+        "واصل التعليم العالي في الولايات المتحدة",
+      ],
+    },
+  },
+  "youth-resistance": {
+    en: {
+      era: "1985",
+      title: "From Youth to Resistance",
+      description:
+        "In 1985, at the age of sixteen, Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
+      details: [
+        "Joined the Peshmerga in 1985",
+        "Participated in the Battle of Khwakurk in 1988",
+        "Took part in the 1991 Kurdish uprising",
+        "Documented key moments of struggle through his camera",
+      ],
+    },
+    ku: {
+      era: "١٩٨٥",
+      title: "لە گەنجییەوە بۆ بەرخودان",
+      description:
+        "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
+      details: [
+        "لە ١٩٨٥دا بەشداری پێشمەرگە بوو",
+        "بەشداری لە شەڕی خەوەکورک لە ١٩٨٨دا کرد",
+        "بەشداری لە سەرهەڵدانی کوردستانی ١٩٩١دا کرد",
+        "ساتە گرنگەکانی بەرخودان بە کامێراکەی تۆمار کرد",
+      ],
+    },
+    ar: {
+      era: "1985",
+      title: "من الشباب إلى المقاومة",
+      description:
+        "في عام 1985، وفي سن السادسة عشرة، انضم مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
+      details: [
+        "انضم إلى پێشمەرگە عام 1985",
+        "شارك في معركة خاوەكورك عام 1988",
+        "شارك في انتفاضة كردستان 1991",
+        "وثّق لحظات النضال الرئيسية عبر كاميرته",
+      ],
+    },
+  },
+  "education-borders": {
+    en: {
+      era: "1993",
+      title: "Education Beyond Borders",
+      description:
+        "After years shaped by conflict, Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
+      details: [
+        "Moved to the United States in 1993",
+        "Earned a bachelor's degree in 1997",
+        "Studied peace and conflict resolution",
+        "Speaks Kurdish, Persian, English, and Arabic",
+      ],
+    },
+    ku: {
+      era: "١٩٩٣",
+      title: "پەروەردە لە دەرەوەی سنوورەکان",
+      description:
+        "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
+      details: [
+        "لە ١٩٩٣دا گواسترایەوە بۆ ویلایەتە یەکگرتووەکانی ئەمریکا",
+        "لە ١٩٩٧دا بڕوانامەی بەکالۆریۆسی بەدەست هێنا",
+        "خوێندنی ئاشتی و چارەسەرکردنی ناکۆکی",
+        "زمانی کوردی، فارسی، ئینگلیزی، و عەرەبی دەزانێت",
+      ],
+    },
+    ar: {
+      era: "1993",
+      title: "التعليم عبر الحدود",
+      description:
+        "بعد سنوات شكلها الصراع، واصل مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
+      details: [
+        "انتقل إلى الولايات المتحدة عام 1993",
+        "حصل على درجة البكالوريوس عام 1997",
+        "درس السلام وحل النزاعات",
+        "يتحدث الكردية والفارسية والإنجليزية والعربية",
+      ],
+    },
+  },
+  "security-state-building": {
+    en: {
+      era: "1998",
+      title: "Security & State-Building",
+      description:
+        "After returning to Kurdistan in 1998, Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
+      details: [
+        "Returned to Kurdistan in 1998",
+        "Headed the Kurdistan Region Security Agency in 2004",
+        "Appointed KRSC Chancellor in 2012",
+        "Contributed to security coordination and institutional development",
+      ],
+    },
+    ku: {
+      era: "١٩٩٨",
+      title: "ئاسایش و دامەزراندنی دەوڵەت",
+      description:
+        "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
+      details: [
+        "لە ١٩٩٨دا گەڕایەوە بۆ کوردستان",
+        "لە ٢٠٠٤دا سەرۆکایەتی ئاژانسی ئاسایشی هەرێمی کوردستان کرد",
+        "لە ٢٠١٢دا وەک کانسێری KRSC دامەزرا",
+        "بەشداری لە هاوکاریی ئاسایش و پەرەپێدانی دامەزراوەیی کرد",
+      ],
+    },
+    ar: {
+      era: "1998",
+      title: "الأمن وبناء الدولة",
+      description:
+        "بعد عودته إلى كردستان عام 1998، تولى مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
+      details: [
+        "عاد إلى كردستان عام 1998",
+        "ترأس وكالة أمن إقليم كردستان عام 2004",
+        "عُيّن مستشار KRSC عام 2012",
+        "ساهم في تنسيق الأمن والتطوير المؤسسي",
+      ],
+    },
+  },
+  "isis-war": {
+    en: {
+      era: "2014",
+      title: "The ISIS War",
+      description:
+        "During the ISIS attacks after 2014, Masrour Barzani played a major security role through the Kurdistan Region Security Council, coordinating with coalition forces and supporting field operations.",
+      details: [
+        "Helped form a joint operations room with the coalition",
+        "Supported airstrike coordination and field operations",
+        "Participated in operations against ISIS",
+        "Took part in the liberation process of Shingal / Sinjar",
+      ],
+    },
+    ku: {
+      era: "٢٠١٤",
+      title: "جەنگی داعش",
+      description:
+        "لە کاتی هێرشەکانی داعش دوای ٢٠١٤دا، مەسرور بارزانی ڕۆڵێکی گرنگی ئاسایشی لە ڕێگەی ئەنجومەنی ئاسایشی هەرێمی کوردستانەوە گرت، هاوکاری لەگەڵ هێزەکانی هاوپەیمان و پشتگیری لە کاروباری مەیدانی.",
+      details: [
+        "یارمەتی دروستکردنی ژووری کاروباری هاوبەش لەگەڵ هاوپەیمان",
+        "پشتگیری لە هاوکاریی هێرشی ئاسمانی و کاروباری مەیدانی",
+        "بەشداری لە کاروبارەکان دژی داعش",
+        "بەشداری لە پرۆسەی ئازادکردنی شنگال / سنجار",
+      ],
+    },
+    ar: {
+      era: "2014",
+      title: "حرب داعش",
+      description:
+        "خلال هجمات داعش بعد 2014، لعب مسرور بارزاني دورًا أمنيًا رئيسيًا عبر مجلس أمن إقليم كردستان، منسقًا مع قوات التحالف وداعمًا للعمليات الميدانية.",
+      details: [
+        "ساعد في تشكيل غرفة عمليات مشتركة مع التحالف",
+        "دعم تنسيق الغارات الجوية والعمليات الميدانية",
+        "شارك في العمليات ضد داعش",
+        "شارك في عملية تحرير شنكال / سنجار",
+      ],
+    },
+  },
+  "service-beyond-government": {
+    en: {
+      era: "2005",
+      title: "Service Beyond Government",
+      description:
+        "Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
+      details: [
+        "Founded Barzani Charity Foundation in 2005",
+        "Supported refugees, displaced people, and vulnerable families",
+        "Helped establish Kurdish academic initiatives abroad",
+        "Laid the foundation stone of the American University in Duhok in 2013",
+      ],
+    },
+    ku: {
+      era: "٢٠٠٥",
+      title: "خزمەت لە دەرەوەی حکومەت",
+      description:
+        "کاری گشتیی مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
+      details: [
+        "لە ٢٠٠٥دا دامەزراوەی خێرخوازی بارزانی دامەزراند",
+        "پشتگیری لە پەنابەران، جێگیربوونەوەکان، و خێزانە لاوازەکان",
+        "یارمەتی دامەزراندنی دەستپێشخەرییە ئەکادیمییە کوردییەکان لە دەرەوە",
+        "لە ٢٠١٣دا بنیادنانی زانکۆی ئەمریکی لە دهۆک",
+      ],
+    },
+    ar: {
+      era: "2005",
+      title: "خدمة خارج نطاق الحكومة",
+      description:
+        "امتد عمل مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
+      details: [
+        "أسس مؤسسة بارزاني الخيرية عام 2005",
+        "دعم اللاجئين والنازحين والعائلات الضعيفة",
+        "ساعد في إنشاء مبادرات أكاديمية كردية في الخارج",
+        "وضع حجر الأساس للجامعة الأمريكية في دهوك عام 2013",
+      ],
+    },
+  },
+  "prime-minister-cabinet": {
+    en: {
+      era: "2019",
+      title: "Prime Minister — The Ninth Cabinet",
+      description:
+        "In 2019, Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
+      details: [
+        "Nominated by KDP leadership in 2018",
+        "Elected by Kurdistan Parliament in 2019",
+        "Appointed to form the ninth cabinet",
+      ],
+    },
+    ku: {
+      era: "٢٠١٩",
+      title: "سەرۆک وەزیران — کابینەی نۆیەم",
+      description:
+        "لە ٢٠١٩دا، مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
+      details: [
+        "لە ٢٠١٨دا لەلایەن سەرکردایەتی KDPەوە پێشنیار کرا",
+        "لە ٢٠١٩دا لەلایەن پەرلەمانی کوردستانەوە هەڵبژێردرا",
+        "دامەزرا بۆ پێکهێنانی کابینەی نۆیەم",
+      ],
+    },
+    ar: {
+      era: "2019",
+      title: "رئيس الوزراء — الحكومة التاسعة",
+      description:
+        "في عام 2019، أصبح مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
+      details: [
+        "رُشّح من قيادة KDP عام 2018",
+        "انتُخب من قبل برلمان كردستان عام 2019",
+        "عُيّن لتشكيل الحكومة التاسعة",
+      ],
+    },
+  },
+};
 
 const achievementImages = {
   "economic-reform": economicImage,
@@ -260,126 +546,51 @@ function getAchievementEntries(lang: "ku" | "en" | "ar"): TimelineEntry[] {
   });
 }
 
-function getTimeline(lang: "ku" | "en" | "ar"): TimelineEntry[] {
-  const achievementEntries = getAchievementEntries(lang);
+function getBiographyEntries(lang: "ku" | "en" | "ar"): TimelineEntry[] {
+  return biographyOrder.map((id) => {
+    const content = biographyCatalog[id][lang];
+    return {
+      id,
+      era: content.era,
+      title: content.title,
+      description: content.description,
+      image: biographyImages[id],
+      details: content.details,
+    };
+  });
+}
 
-  if (lang === "ar") {
-    return [
-      {
-        id: "early-life",
-        era: "1969",
-        title: "الحياة المبكرة والأصول",
-        description:
-          "وُلد مسرور بارزاني في منطقة بارزان، في عائلة لها دور تاريخي في الحركة الوطنية الكردية, ونشأ في بيئة تقوم على القيادة والانضباط والخدمة.",
-        image: timelineImages["early-life"],
-        details: ["وُلد عام 1969 في بارزان", "عائلة متجذرة في الحركة الوطنية", "التعليم والصمود في الجوهر"],
-      },
-      {
-        id: "public-service",
-        era: "الخدمة العامة",
-        title: "حياة من الخدمة",
-        description:
-          "دخل القيادة خلال فترات الصراع والتحول، وساهم في الأمن والتطوير المؤسسي في جميع أنحاء كوردستان.",
-        image: timelineImages["public-service"],
-        details: ["تعزيز مؤسسات الأمن", "دعم المصالحة الوطنية", "بناء هياكل أقوى"],
-      },
-      {
-        id: "prime-minister",
-        era: "2019",
-        title: "رئيس الوزراء",
-        description: "أصبح رئيسًا للوزراء بمهمة تركز على الإصلاح والاستقرار والتنمية المستدامة.",
-        image: timelineImages["prime-minister"],
-        details: ["حكومة تقودها الإصلاحات", "التركيز على الاستقرار", "أجندة تنمية مستدامة"],
-      },
-      ...achievementEntries,
-      {
-        id: "vision",
-        era: "المستقبل",
-        title: "الرؤية المستقبلية",
-        description: "كوردستان مزدهرة ومستقرة وجاهزة للمستقبل تضمن جودة حياة عالية لجميع المواطنين.",
-        image: timelineImages.vision,
-        details: visionDetails.ar,
-      },
-    ];
-  }
-
-  if (lang === "ku") {
-    return [
-      {
-        id: "early-life",
-        era: "١٩٦٩",
-        title: "ژیانی سەرەتایی و ڕەگ",
-        description:
-          "مەسرور بارزانی لە ناوچەی بارزان لە دایکبوو، لە خێزانێک کە ڕۆڵێکی مێژوویی هەبوو لە بزووتنەوەی نەتەوەیی کوردیدا، لە ژینگەیەکی ڕابەرایەتی و ڕێکوپێکی و خزمەتدا گەورە بوو.",
-        image: timelineImages["early-life"],
-        details: ["لە ١٩٦٩ لە بارزان لە دایکبوو", "خێزانێکی ڕەگداکوتاو لە بزووتنەوەی نەتەوەیی", "پەروەردە و خۆڕاگری لە ناوەکدا"],
-      },
-      {
-        id: "public-service",
-        era: "خزمەتی گشتی",
-        title: "ژیانێک لە خزمەت",
-        description:
-          "لە کاتی ناکۆکی و گۆڕانکارییەکاندا چووە ناو ڕێبەرایەتی، بەشداری لە ئاسایش و پەرەپێدانی دامەزراوەیی کرد لە سەرانسەری کوردستاندا.",
-        image: timelineImages["public-service"],
-        details: ["بەهێزکردنی دامەزراوەکانی ئاسایش", "پاڵپشتی ئاشتەوایی نەتەوەیی", "بونیادنانی پێکهاتەی بەهێزتر"],
-      },
-      {
-        id: "prime-minister",
-        era: "٢٠١٩",
-        title: "سەرۆک وەزیران",
-        description: "بوو بە سەرۆک وەزیران بە مانداتێک کە جەخت لەسەر چاکسازی، سەقامگیری، و گەشەی بەردەوام دەکات.",
-        image: timelineImages["prime-minister"],
-        details: ["حکومەتێکی چاکسازی-بنەما", "جەخت لەسەر سەقامگیری", "بەرنامەی گەشەی بەردەوام"],
-      },
-      ...achievementEntries,
-      {
-        id: "vision",
-        era: "داهاتوو",
-        title: "ئامانجی داهاتوو",
-        description: "کوردستانێکی گەشاوە، سەقامگیر، و ئامادە بۆ داهاتوو کە کوالیتیی ژیانێکی بەرز بۆ هەموو هاوڵاتییەکان دڵنیادەکاتەوە.",
-        image: timelineImages.vision,
-        details: visionDetails.ku,
-      },
-    ];
-  }
-
-  return [
-    {
-      id: "early-life",
-      era: "1969",
-      title: "Early Life & Origins",
-      description:
-        "Born in the Barzan region into a family with a historic role in the Kurdish national movement, raised in an environment of leadership, discipline, and service.",
-      image: timelineImages["early-life"],
-      details: ["Born in 1969 in Barzan", "Family rooted in the national movement", "Education and resilience at the core"],
-    },
-    {
-      id: "public-service",
-      era: "Public Service",
-      title: "A Life of Service",
-      description:
-        "Entered leadership during periods of conflict and transition, contributing to security and institutional development across Kurdistan.",
-      image: timelineImages["public-service"],
-      details: ["Strengthened security institutions", "Supported national reconciliation", "Built stronger structures"],
-    },
-    {
-      id: "prime-minister",
-      era: "2019",
-      title: "Prime Minister",
-      description: "Became Prime Minister with a mandate centered on reform, stability, and sustainable development.",
-      image: timelineImages["prime-minister"],
-      details: ["Reform-driven government", "Focus on stability", "Sustainable development agenda"],
-    },
-    ...achievementEntries,
-    {
-      id: "vision",
+function getVisionEntry(lang: "ku" | "en" | "ar"): TimelineEntry {
+  const visionCopy = {
+    en: {
       era: "The Future",
       title: "Vision for the Future",
       description: "A prosperous, stable, and future-ready Kurdistan that guarantees a high quality of life for all citizens.",
-      image: timelineImages.vision,
-      details: visionDetails.en,
     },
-  ];
+    ku: {
+      era: "داهاتوو",
+      title: "ئامانجی داهاتوو",
+      description: "کوردستانێکی گەشاوە، سەقامگیر، و ئامادە بۆ داهاتوو کە کوالیتیی ژیانێکی بەرز بۆ هەموو هاوڵاتییەکان دڵنیادەکاتەوە.",
+    },
+    ar: {
+      era: "المستقبل",
+      title: "الرؤية المستقبلية",
+      description: "كوردستان مزدهرة ومستقرة وجاهزة للمستقبل تضمن جودة حياة عالية لجميع المواطنين.",
+    },
+  }[lang];
+
+  return {
+    id: "vision",
+    era: visionCopy.era,
+    title: visionCopy.title,
+    description: visionCopy.description,
+    image: biographyImages.vision,
+    details: visionDetails[lang],
+  };
+}
+
+function getTimeline(lang: "ku" | "en" | "ar"): TimelineEntry[] {
+  return [...getBiographyEntries(lang), ...getAchievementEntries(lang), getVisionEntry(lang)];
 }
 
 export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMinisterTimelineProps) {
