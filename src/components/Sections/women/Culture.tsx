@@ -16,7 +16,7 @@ import {
 } from "@/components/Sections/women/content/cultureContent";
 
 import cultureHero from "@/assets/images/women/c-1.webp";
-import cultureHeroVideo from "@/assets/videos/goza.mp4";
+import cultureHeroVideo from "@/assets/videos/culture.webm";
 import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgRoshan from "@/assets/images/womens/roshan.jpeg";

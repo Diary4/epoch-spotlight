@@ -17,7 +17,7 @@ import {
   resistanceDetailToPanelCards,
 } from "@/components/Sections/women/content/resistanceContent";
 
-import resistanceHeroVideo from "@/assets/videos/56.mp4";
+import resistanceHeroVideo from "@/assets/videos/resistance.webm";
 import imgQadam from "@/assets/images/womens/qadamkher.jpg";
 import imgShifa from "@/assets/images/womens/shifagardi.jpg";
 import imgLayal from "@/assets/images/womens/laylaqasim.png";
