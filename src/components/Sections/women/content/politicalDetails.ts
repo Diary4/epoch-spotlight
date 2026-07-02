@@ -3,43 +3,6 @@ import { kuPoliticalDetails } from "@/components/Sections/women/content/kuWomenC
 
 export const politicalDetailsByLang = {
   en: {
-    "leyla-zana": {
-      nameLine1: "Leyla",
-      nameLine2: "Zana",
-      role: "First Kurdish Woman in Turkish Parliament · Sakharov Prize Laureate",
-      metaLine: "Born May 3, 1961 | Diyarbakir, Turkey",
-      intro:
-        "In 1991, Leyla Zana stood in the Turkish parliament and took her oath of office. Then she said the last sentence in Kurdish — a language that was effectively banned. The chamber erupted in outrage. She was accused of treason. Three years later, she was sentenced to 15 years in prison. The European Parliament gave her the Sakharov Prize while she sat in a cell. She served 10 years, was released, re-elected to parliament, and was arrested again. She never stopped.",
-      portraitAlt: "Leyla Zana",
-      listIcon: "crown" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "She became the first Kurdish woman elected to the Turkish Grand National Assembly. She won the Sakharov Prize for Freedom of Thought in 1995 — while imprisoned. Her case led to a landmark European Court of Human Rights ruling against Turkey.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Leyla Zana turned a parliament into a stage for Kurdish rights. She paid with a decade of her life. Today she remains living proof that political courage cannot be sentenced away.",
-      },
-      cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "1990s – Present",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Diyarbakir (Amed), southeastern Turkey — Kurdish region",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "When Leyla Zana wore a headband with Kurdish colors in parliament, Turkish MPs demanded her immediate arrest. She responded with silence — and continued to speak.",
-      },
-      quote:
-        "I swear this oath for the brotherhood between the Turkish and Kurdish people.",
-      quoteAuthor: "Leyla Zana, spoken in Kurdish in the Turkish parliament, 1991",
-    },
     "mayan-khatun": {
       nameLine1: "Mayan",
       nameLine2: "Khatun",

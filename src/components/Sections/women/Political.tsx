@@ -21,7 +21,6 @@ import politicBg from "@/assets/images/patterns/politic.png";
 import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
-import leylaZanaImg from "@/assets/images/women/layla-zana.webp";
 import maryamKhanImg from "@/assets/images/womens/maryamkhan.jpg";
 import mayanKhanImg from "@/assets/images/womens/mayankhan.jpg";
 
@@ -30,7 +29,6 @@ type WomenPoliticalPageProps = WomenLanguageProps & {
 };
 
 const personImages: Record<string, string> = {
-  "leyla-zana": leylaZanaImg,
   "maryam-khan": maryamKhanImg,
   "mayan-khatun": mayanKhanImg,
 };
