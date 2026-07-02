@@ -3,9 +3,9 @@ import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, 
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/theland/progress-4.webp";
-import pattern1 from "@/assets/images/patterns/card-1.png";
-import pattern2 from "@/assets/images/patterns/card-2.png";
-import pattern3 from "@/assets/images/patterns/card-3.png";
+import pattern1 from "@/assets/images/patterns/card-1.webp";
+import pattern2 from "@/assets/images/patterns/card-2.webp";
+import pattern3 from "@/assets/images/patterns/card-3.webp";
 
 const cardPatterns = [pattern1, pattern2, pattern3];
 

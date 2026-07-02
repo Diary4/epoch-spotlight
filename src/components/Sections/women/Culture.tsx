@@ -17,10 +17,10 @@ import {
 
 import cultureHero from "@/assets/images/women/c-1.webp";
 import cultureHeroVideo from "@/assets/videos/culture.webm";
-import imgAysha from "@/assets/images/womens/ayshe.jpg";
-import imgPakiza from "@/assets/images/womens/pakiza.jpg";
-import imgRoshan from "@/assets/images/womens/roshan.jpeg";
-import imgNahida from "@/assets/images/womens/nadia-sheikh.png";
+import imgAysha from "@/assets/images/womens/ayshe.webp";
+import imgPakiza from "@/assets/images/womens/pakiza.webp";
+import imgRoshan from "@/assets/images/womens/roshan.webp";
+import imgNahida from "@/assets/images/womens/nadia-sheikh.webp";
 
 type LangCode = "ku" | "en" | "ar";
 

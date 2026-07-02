@@ -18,12 +18,12 @@ import {
 } from "@/components/Sections/women/content/resistanceContent";
 
 import resistanceHeroVideo from "@/assets/videos/resistance.webm";
-import imgQadam from "@/assets/images/womens/qadamkher.jpg";
-import imgShifa from "@/assets/images/womens/shifagardi.jpg";
-import imgLayal from "@/assets/images/womens/laylaqasim.png";
-import imgMargaret from "@/assets/images/womens/margret.jpg";
-import imgKhaja from "@/assets/images/womens/khajabawa.png";
-import imgAisha from "@/assets/images/womens/dayka-aisha.png";
+import imgQadam from "@/assets/images/womens/qadamkher.webp";
+import imgShifa from "@/assets/images/womens/shifagardi.webp";
+import imgLayal from "@/assets/images/womens/laylaqasim.webp";
+import imgMargaret from "@/assets/images/womens/margret.webp";
+import imgKhaja from "@/assets/images/womens/khajabawa.webp";
+import imgAisha from "@/assets/images/womens/dayka-aisha.webp";
 
 type WomenResistancePageProps = WomenLanguageProps & {
   onBack?: () => void;

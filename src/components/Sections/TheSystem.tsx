@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
-import bg from "@/assets/mainImages/thesystem/parlaman.jpg"
+import bg from "@/assets/mainImages/thesystem/parlaman.webp"
 
 function Logo() {
   return (

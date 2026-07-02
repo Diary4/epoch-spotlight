@@ -1,22 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import mainPrimeMinisterImage from "@/assets/images/PrimeMinistir/p-2.png";
-import primeMinisterImage from "@/assets/images/PrimeMinistir/2019.jpg";
-import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).jpeg";
-import formationImage from "@/assets/images/PrimeMinistir/formation.jpeg";
-import youthImage from "@/assets/images/PrimeMinistir/youth.jpeg";
-import educationImage from "@/assets/images/PrimeMinistir/education.jpeg";
-import securityImage from "@/assets/images/PrimeMinistir/security.jpeg";
-import isisImage from "@/assets/images/PrimeMinistir/isis.jpeg";
-import serviceImage from "@/assets/images/PrimeMinistir/service.jpeg";
-import economicImage from "@/assets/images/PrimeMinistir/economic.jpeg";
-import myAccountImage from "@/assets/images/PrimeMinistir/myaccount.jpeg";
-import runakiImage from "@/assets/images/PrimeMinistir/runaki.jpeg";
-import infrastructureImage from "@/assets/images/PrimeMinistir/infrastructure.jpeg";
-import digitalImage from "@/assets/images/PrimeMinistir/digital.jpeg";
-import agreementImage from "@/assets/images/PrimeMinistir/agreement.jpeg";
-import jobImage from "@/assets/images/PrimeMinistir/job.jpeg";
+import mainPrimeMinisterImage from "@/assets/images/PrimeMinistir/p-2.webp";
+import primeMinisterImage from "@/assets/images/PrimeMinistir/2019.webp";
+import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).webp";
+import formationImage from "@/assets/images/PrimeMinistir/formation.webp";
+import youthImage from "@/assets/images/PrimeMinistir/youth.webp";
+import educationImage from "@/assets/images/PrimeMinistir/education.webp";
+import securityImage from "@/assets/images/PrimeMinistir/security.webp";
+import isisImage from "@/assets/images/PrimeMinistir/isis.webp";
+import serviceImage from "@/assets/images/PrimeMinistir/service.webp";
+import economicImage from "@/assets/images/PrimeMinistir/economic.webp";
+import myAccountImage from "@/assets/images/PrimeMinistir/myaccount.webp";
+import runakiImage from "@/assets/images/PrimeMinistir/runaki.webp";
+import infrastructureImage from "@/assets/images/PrimeMinistir/infrastructure.webp";
+import digitalImage from "@/assets/images/PrimeMinistir/digital.webp";
+import agreementImage from "@/assets/images/PrimeMinistir/agreement.webp";
+import jobImage from "@/assets/images/PrimeMinistir/job.webp";
 
 type TimelineDetail =
   | string

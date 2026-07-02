@@ -17,12 +17,12 @@ import {
 } from "@/components/Sections/women/content/knowledgeContent";
 
 import politicalHero from "@/assets/images/women/c-2.webp";
-import politicBg from "@/assets/images/patterns/politic.png";
+import politicBg from "@/assets/images/patterns/politic.webp";
 import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
-import maryamKhanImg from "@/assets/images/womens/maryamkhan.jpg";
-import mayanKhanImg from "@/assets/images/womens/mayankhan.jpg";
+import maryamKhanImg from "@/assets/images/womens/maryamkhan.webp";
+import mayanKhanImg from "@/assets/images/womens/mayankhan.webp";
 
 type WomenPoliticalPageProps = WomenLanguageProps & {
   onBack?: () => void;

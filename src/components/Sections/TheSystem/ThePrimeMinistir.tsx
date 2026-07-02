@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import primeMinister from "@/assets/images/PrimeMinistir/p-2.png";
+import primeMinister from "@/assets/images/PrimeMinistir/p-2.webp";
 
 type PrimeMinisterPageProps = {
   lang?: "ku" | "en" | "ar";

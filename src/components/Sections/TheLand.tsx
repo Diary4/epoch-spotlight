@@ -9,7 +9,7 @@ import gsap from "gsap";
 import bg1 from "@/assets/mainImages/land-1.webp"
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
 import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
-import bg4 from "@/assets/images/new/discoverKurdistan/peshmarga.png"
+import bg4 from "@/assets/images/new/discoverKurdistan/peshmarga.webp"
 import bg5 from "@/assets/images/new/discoverKurdistan/land-5.webp"
 import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
 import treeIcon from "@/assets/icons/tree.webp";

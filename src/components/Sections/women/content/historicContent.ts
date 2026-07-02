@@ -10,14 +10,14 @@ import {
   kuHistoricPageCopy,
 } from "@/components/Sections/women/content/kuWomenContentData";
 
-import masturaDetail from "@/assets/images/womens/mastura.jpg";
-import adilaDetail from "@/assets/images/womens/adila.jpg";
-import hafsaDetail from "@/assets/images/womens/hapsaxan.jpg";
-import khanzadDetail from "@/assets/images/womens/khanzad.jpg";
+import masturaDetail from "@/assets/images/womens/mastura.webp";
+import adilaDetail from "@/assets/images/womens/adila.webp";
+import hafsaDetail from "@/assets/images/womens/hapsaxan.webp";
+import khanzadDetail from "@/assets/images/womens/khanzad.webp";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
-import meryemDetail from "@/assets/images/womens/maryamkhan.jpg";
-import minaDetail from "@/assets/images/womens/minaqazi.png";
-import najibaDetail from "@/assets/images/womens/najibakhan.jpg";
+import meryemDetail from "@/assets/images/womens/maryamkhan.webp";
+import minaDetail from "@/assets/images/womens/minaqazi.webp";
+import najibaDetail from "@/assets/images/womens/najibakhan.webp";
 
 export type HistoricFigureListItem = {
   id: string;
