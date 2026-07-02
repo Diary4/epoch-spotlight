@@ -216,62 +216,64 @@ export default function WomenCultureMemoryPage({
               </button>
             )}
 
-            <section data-culture-hero="true" className="relative z-10 shrink-0">
-              <div
-                data-culture-fade="true"
-                className="relative z-20 mx-auto w-full max-w-[900px] shrink-0 px-4 pb-2 pt-14 text-center"
-              >
-                <div className="mx-auto mb-3 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d]">
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <Sparkles className="h-8 w-8" />
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                </div>
+            {/* Hero: one square stage (the artwork is 1:1) holding both the video
+                and the overlaid text, so their relationship is fixed and the
+                canvas height never shifts while the video loads. */}
+            <section data-culture-hero="true" className="relative z-10 w-full shrink-0 overflow-hidden">
+              <div className="relative aspect-square w-full">
+                <video
+                  src={cultureHeroVideo}
+                  aria-label={`${copy.heroTitleLine1} ${copy.heroTitleLine2}`}
+                  className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[120px] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef]/70 via-45% to-transparent to-100%"
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[140px] bg-gradient-to-t from-[#fcf7ef] from-0% via-[#fcf7ef] via-60% to-transparent to-100%"
+                  aria-hidden
+                />
 
-                <h1 className={`${displayFont} text-[72px] font-medium leading-[1.05] tracking-tight text-[#2c1337]`}>
-                  {copy.heroTitleLine1}
-                  <br />
-                  {copy.heroTitleLine2}
-                </h1>
+                {/* Text sits on the artwork's open sky, inside the same container. */}
+                <div
+                  data-culture-fade="true"
+                  className="absolute inset-x-0 top-0 z-20 mx-auto w-full max-w-[900px] px-4 pt-14 text-center"
+                >
+                  <div className="mx-auto mb-3 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d]">
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                    <Sparkles className="h-8 w-8" />
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                  </div>
 
-                <h2 className={`mx-auto mt-3 max-w-[640px] ${displayFont} text-[28px] italic leading-snug text-[#a75a69]`}>
-                  {copy.heroSubtitle}
-                </h2>
+                  <h1 className={`${displayFont} text-[72px] font-medium leading-[1.05] tracking-tight text-[#2c1337]`}>
+                    {copy.heroTitleLine1}
+                    <br />
+                    {copy.heroTitleLine2}
+                  </h1>
 
-                <div className="mx-auto my-3 flex w-full max-w-[270px] items-center justify-center gap-3 text-[#b4864d]">
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                  <span className="h-3 w-3 rotate-45 bg-[#b4864d]" />
-                  <span className="h-px flex-1 bg-[#d4b98f]" />
-                </div>
+                  <h2 className={`mx-auto mt-3 max-w-[640px] ${displayFont} text-[28px] italic leading-snug text-[#a75a69]`}>
+                    {copy.heroSubtitle}
+                  </h2>
 
-                <p className="mx-auto max-w-[680px] text-[20px] leading-relaxed text-[#55505a]">
-                  {copy.heroIntro}
-                </p>
-              </div>
+                  <div className="mx-auto my-3 flex w-full max-w-[270px] items-center justify-center gap-3 text-[#b4864d]">
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                    <span className="h-3 w-3 rotate-45 bg-[#b4864d]" />
+                    <span className="h-px flex-1 bg-[#d4b98f]" />
+                  </div>
 
-              <div className="relative z-10 w-full overflow-hidden">
-                <div className="relative mx-auto w-full max-w-[1400px] overflow-hidden leading-[0]">
-                  <video
-                    src={cultureHeroVideo}
-                    aria-label={`${copy.heroTitleLine1} ${copy.heroTitleLine2}`}
-                    className="pointer-events-none mx-auto block h-auto w-full object-contain object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[100px] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef] via-55% to-transparent to-100%"
-                    aria-hidden
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[140px] bg-gradient-to-t from-[#fcf7ef] from-0% via-[#fcf7ef] via-60% to-transparent to-100%"
-                    aria-hidden
-                  />
+                  <p className="mx-auto max-w-[680px] text-[20px] leading-relaxed text-[#55505a]">
+                    {copy.heroIntro}
+                  </p>
                 </div>
               </div>
             </section>
 
-            <section className="relative z-20 -mt-10 shrink-0 px-10 pt-2">
+            <section className="relative z-20 -mt-24 shrink-0 px-10 pt-2">
               <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-4">
                 {cultureWomen.map((woman) => (
                   <CultureListCard
