@@ -53,7 +53,7 @@ const pageCopy: Record<WomenLangCode, KnowledgePageCopy> = {
     backToList: "Back to political list",
     heroTitle1: "Women",
     heroTitle2: "Political",
-    heroSubtitle: "Leaders and voices of power.",
+    heroSubtitle: "Leaders in parliament, governance, and civil society.",
     heroIntro:
       "Princesses, parliamentarians, and community leaders who carried their people through empire, mandate, and modern statehood.",
     impactTitle: "✤ Her Impact",
@@ -89,6 +89,14 @@ const pageCopy: Record<WomenLangCode, KnowledgePageCopy> = {
 const listByLang: Record<WomenLangCode, PoliticalFigureListItem[]> = {
   en: [
     {
+      id: "leyla-zana",
+      name: "Leyla Zana",
+      role: "First Kurdish Woman in Turkish Parliament · Sakharov Prize Laureate",
+      teaser:
+        "She took her parliamentary oath in Kurdish in 1991 — and paid with a decade in prison for turning parliament into a stage for Kurdish rights.",
+      listIcon: "crown",
+    },
+    {
       id: "mayan-khatun",
       name: "Mayan Khatun",
       role: "Yazidi Princess · Leader of the Yazidi Community",
@@ -107,6 +115,14 @@ const listByLang: Record<WomenLangCode, PoliticalFigureListItem[]> = {
   ],
   ku: [
     {
+      id: "leyla-zana",
+      name: "لەیلا زانا",
+      role: "یەکەم ژنانی کورد لە پەرلەمانی تورکیا · خاوەنی خەڵاتی ساخارۆڤ",
+      teaser:
+        "لە ساڵی ١٩٩١دا سوێندی پەرلەمانی بە کوردی خوێندەوە — و بە دە ساڵ زیندانی بۆ ئەوەی پەرلەمان بکاتە سەکۆیەک بۆ مافەکانی کورد.",
+      listIcon: "crown",
+    },
+    {
       id: "mayan-khatun",
       name: "مەیان خاتوون",
       role: "شازادەی ئێزیدییەکان · میری کۆمەڵگەی ئێزیدی",
@@ -124,6 +140,14 @@ const listByLang: Record<WomenLangCode, PoliticalFigureListItem[]> = {
     },
   ],
   ar: [
+    {
+      id: "leyla-zana",
+      name: "ليلى زانا",
+      role: "أول امرأة كردية في البرلمان التركي · حائزة جائزة ساخاروف",
+      teaser:
+        "أدّت القسم البرلماني باللغة الكردية عام 1991 — ودفعت عقداً من السجن لأنها حوّلت البرلمان إلى منصة لحقوق الكرد.",
+      listIcon: "crown",
+    },
     {
       id: "mayan-khatun",
       name: "ميان خاتون",

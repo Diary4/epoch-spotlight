@@ -18,7 +18,7 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     title: "The Women of Kurdistan",
     subtitle: "Leadership, politics,\nresistance, culture, and legacy.",
     description:
-      "Kurdish women have shaped history through leadership, learning, courage, and culture.",
+      "To celebrate Kurdish women in history, politics, literature, resistance, education, and culture — delivering powerful, emotional profiles that every visitor can connect with.",
     quoteLine1: "Across generations,",
     quoteLine2: "Kurdish women have remained",
     quoteLine3: "voices of strength and continuity.",

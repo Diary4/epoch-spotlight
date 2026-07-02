@@ -193,7 +193,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       nameLine1: "Mesture",
       nameLine2: "Erdelan",
       role: "Poet · Historian · First Kurdish Female Writer",
-      metaLine: "1805 – 1848 | Ardalan Principality, West Iran",
+      metaLine: "1805 – 1848 | Sanandaj, Eastern Kurdistan",
       intro:
         "Born into the educated ruling family of the Ardalan principality, Mastura was given access to learning at a time when most women were denied any education at all. She became a poet, a historian, and a chronicler of her dynasty, writing in both Kurdish and Persian. When political upheaval brought exile and loss to her life, she turned her pain into literature. She did not disappear into history. She wrote herself into it.",
       portraitAlt: "Mastura Ardalan",
@@ -230,9 +230,9 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       nameLine1: "Adile",
       nameLine2: "Xanî Jaff",
       role: "Ruler of Halabja · Leader of the Jaff Tribe",
-      metaLine: "c. 1847 – 1924 | Halabja, Iraqi Kurdistan",
+      metaLine: "c. 1847 – 1924 | Halabja, Kurdistan Region of Iraq",
       intro:
-        "When her husband died in 1909, Adela Khanum did not step aside. She stepped forward and ruled Halabja in his place. Under her leadership, a modest settlement became a regional center of trade, justice, and culture. She built courts, markets, and prisons. She negotiated with Ottoman governors, British officers, and local tribes on her own terms.",
+        "When her husband died in 1909, Adela Khanum did not step aside. She stepped forward and ruled Halabja in his place. Under her leadership, a modest settlement became a regional center of trade, justice, and culture. She built courts, markets, and prisons. She negotiated with Ottoman governors, British officers, and local tribes on her own terms. British diplomat Gertrude Bell described her as a striking personality who acted as great Kurdish ladies do.",
       portraitAlt: "Adela Khanum",
       listIcon: "crown",
       greatestAchievement: {
@@ -267,7 +267,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       nameLine1: "Hepsexana",
       nameLine2: "Neqib",
       role: "Educator · Activist · Founder of the First Girls' School in Kurdistan",
-      metaLine: "1891 – April 12, 1953 | Sulaymaniyah, Iraqi Kurdistan",
+      metaLine: "1891 – 1953 | Sulaymaniyah, Kurdistan Region of Iraq",
       intro:
         "When the British bombed Sulaymaniyah in the early 1920s, everyone who could leave did. Hapsa Khan stayed. While others fled, she stayed with the families who had nowhere to go, and kept fighting for them after the bombs fell. She went door to door across the city to convince parents to send their daughters to school. If a family could not afford it, she paid herself. In 1930 she wrote to the League of Nations to demand Kurdish rights.",
       portraitAlt: "Hapsa Khan",
@@ -303,7 +303,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       nameLine1: "Mîr Xanzad",
       nameLine2: "a Soranê",
       role: "Ruler of Soran · Commander of 50,000 Soldiers",
-      metaLine: "Early 17th Century | Soran Emirate, Erbil Region",
+      metaLine: "Early 17th Century | Erbil, Kurdistan Region of Iraq",
       intro:
         "When her brother, the ruler of the Soran Emirate, was murdered by a treacherous commander, Khanzad did not mourn in silence. She took control of the entire emirate, commanded its army, and governed its people for seven years. She lured the murderer into a meeting under the pretense of marriage, and had him executed along with all his men. Then she built roads, schools, mosques, and a fortress.",
       portraitAlt: "Khanzad Khanum",
@@ -340,7 +340,7 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       nameLine1: "Halima Xanim",
       nameLine2: "a Hekkariyê",
       role: "Ruler of Bash Kala · Kurdish Tribal Leader",
-      metaLine: "Late 19th Century | Bash Kala, Hakkari, today's southeastern Turkey",
+      metaLine: "Late 19th Century | Bash Kala, Hakkari — Northern Kurdistan",
       intro:
         "In the late 19th century, as the Ottoman Empire moved to crush Kurdish autonomy and dismantle the Kurdish emirate system, Halima Xanim ruled Bashkala in the Hakkari mountains. She held her position until she was forced to surrender following the suppression of the Bedir Khan revolt in 1847. She was one of several Kurdish women who stepped into power when the men around them fell, and held it as long as they could.",
       portraitAlt: "Halima Xanim",
@@ -414,14 +414,14 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       nameLine1: "Mina",
       nameLine2: "Qazi",
       role: "First Lady of the Republic of Kurdistan · Women's Rights Pioneer",
-      metaLine: "1908 – 1998",
+      metaLine: "1908 – 1998 | Mahabad, Eastern Kurdistan",
       intro:
         "She was a revolutionary leader and the wife of Qazi Muhammad, the President of the Republic of Kurdistan. Breaking deep-seated social traditions, she emerged as a prominent public figure and, in March 1946, established the first official Kurdish women's organization to promote education and political participation. Following Republic's fall and her husband's execution in 1947, she endured decades of immense hardship and state pressure. Despite these challenges, she remained in Mahabad, refusing to yield to her oppressors.",
       portraitAlt: "Mina Qazi",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: 'She founded the "Kurdish Women\'s Union" (Yekêtiya Jinên Kurdistan) in 1946. She successfully mobilized women to support the Republic\'s civic life, paving the way for modern Kurdish women\'s participation in politics.',
+        text: 'She founded the "Kurdish Women\'s Union" (Yekêtiya Jinên Kurdistan) in 1946. She successfully mobilized women to support the Republic\'s civic life and paved the way for modern Kurdish women\'s participation in politics.',
       },
       whySheMatters: {
         title: "Why She Still Matters",
@@ -448,10 +448,10 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       quoteAuthor: "Mina Qazi",
     },
     "najiba-jalizada": {
-      nameLine1: "Nêjibê Xanî",
-      nameLine2: "Jelîzadê",
+      nameLine1: "Najiba Khani",
+      nameLine2: "Jelizadeh",
       role: "Intellectual · Women's Rights Activist · Pioneer of Education",
-      metaLine: "Born September 8, 1917, Koya, Iraqi Kurdistan | Died June 12, 1999",
+      metaLine: "1917 – 1999 | Koya, Kurdistan Region of Iraq",
       intro:
         "She was born in Koya in 1917, the daughter of Mala Muhammed Koyi, one of the most respected religious scholars of the region. At a time when even sending boys to school was considered a burden, her father enrolled her alongside boys in Koya's primary school in 1924, an act so unusual that other parents in the area were inspired to send their own daughters to school because of her success. In the 1940s she entered political life.",
       portraitAlt: "Najiba Khani Jelizadeh",

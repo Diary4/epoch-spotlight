@@ -114,7 +114,7 @@ const listByLang: Record<WomenLangCode, CultureFigureListItem[]> = {
     {
       id: "hana-malan",
       name: "Hana Malan",
-      role: "Folklore Poet · Oral Tradition Heritage",
+      role: "Oral Tradition Poet · Dengbej Heritage",
       teaser:
         "Her poems survived for centuries through oral transmission — a voice for women who kept Kurdish culture alive without written records.",
       listIcon: "flower",

@@ -7,7 +7,7 @@ export const resistanceDetailsByLang = {
       nameLine1: "Qadem",
       nameLine2: "Xer",
       role: "Tribal Leader · Military Commander · Patriot",
-      metaLine: "1899 – 1941 | Luristan, Iraqi Kurdistan",
+      metaLine: "1899 – 1941 | Lorestan, Eastern Kurdistan",
       intro:
         "For several years, she led her tribe's armed forces, standing firm against the heavily equipped Iranian army. Her bravery was so profound that even Iranian military commanders spoke of her with begrudging respect.",
       portraitAlt: "Qadem Xer",
@@ -44,7 +44,7 @@ export const resistanceDetailsByLang = {
       nameLine1: "Shifa",
       nameLine2: "Gardi",
       role: "Field Journalist · Presenter · Output Manager at Rudaw",
-      metaLine: "July 1, 1986 – February 25, 2017",
+      metaLine: "1986 – 2017 | Piranshahr, Eastern Kurdistan",
       intro:
         "Shifa Gardi was born in Piranshahr and grew into one of Kurdistan's most fearless field journalists. She helped build the Rudaw news team from its early days, presenting and reporting from the front lines of the war against ISIS. She went where few dared, into Mosul, into battle zones, into the heart of danger, to bring the truth home. On February 25, 2017, while covering operations against ISIS near Mosul, she was killed by a roadside bomb. She was 30 years old.",
       portraitAlt: "Shifa Gardi",
@@ -83,7 +83,7 @@ export const resistanceDetailsByLang = {
       role: "Student Activist · Kurdish Martyr · National Symbol",
       metaLine: "1952 – May 12, 1974 | Khanaqin, Iraqi Kurdistan",
       intro:
-        "Leyla Qasim was 22 years old when they executed her. She was a sociology student in Baghdad who had joined the Kurdish resistance movement. When Saddam Hussein's government arrested her, she faced her trial with defiance, not fear. She was executed on May 12, 1974, and her final words became some of the most repeated words in Kurdish history.",
+        "Leyla Qasim was 22 years old when they executed her. She was a sociology student in Baghdad who had joined the Kurdish resistance movement. When Saddam Hussein's government arrested her, she faced her trial with defiance, not fear. She was executed on May 12, 1974 and her final words became some of the most repeated words in Kurdish history.",
       portraitAlt: "Leyla Qasim",
       listIcon: "flower",
       greatestAchievement: {
@@ -160,7 +160,7 @@ export const resistanceDetailsByLang = {
         text: "Margaret Shello broke two barriers at once: she was a woman leading men in battle, and a Christian fighting alongside Muslims for a shared homeland. Her story is about what it means to belong.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1960s, Era of the Kurdish Revolution" },
+        { icon: "♜", title: "Timeline Position", text: "1960s — Era of the Kurdish Revolution" },
         {
           icon: "⛩",
           title: "Map Location",
@@ -177,9 +177,9 @@ export const resistanceDetailsByLang = {
     },
     "aisha-taha": {
       nameLine1: "Aisha",
-      nameLine2: "Taha",
+      nameLine2: "Taha (Dayka Aisha)",
       role: "Symbol of Resilience and Patriotism",
-      metaLine: "1946 – July 2020 | Soran, Erbil, Southern Kurdistan",
+      metaLine: "1946 – 2020 | Erbil, Kurdistan Region of Iraq",
       intro:
         "In December 2014, during the fierce defense against ISIS terrorists on the Kirkuk front, her three Peshmerga sons, Mawloud, Ahmed, and Nishtiman were martyred together on the very same day and in the same battle. Instead of breaking in grief when their bodies returned, she stood tall with unparalleled pride, declaring that her sons were ransoms for the homeland. She spent her remaining years visiting the frontlines, boosting the morale of the defenders, and becoming the ultimate spiritual mother to every Peshmerga.",
       portraitAlt: "Aisha Taha (Dayka Aisha)",
