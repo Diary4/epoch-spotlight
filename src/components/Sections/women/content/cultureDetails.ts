@@ -150,63 +150,6 @@ export const cultureDetailsByLang = {
         "I was the first Kurdish woman to join the struggle... because I believed that a woman should be a partner to a man in building the nation.",
       quoteAuthor: "Attributed to Nahida Sheikh Salam",
     },
-    "hana-malan": {
-      nameLine1: "Hana",
-      nameLine2: "Malan",
-      role: "Oral Tradition Poet · Dengbej Heritage",
-      metaLine: "Dates Unknown | Kurdistan — oral tradition",
-      intro:
-        "No one recorded when Hana Malan was born or when she died. What was recorded and passed down from voice to voice, generation to generation, was her poetry. She was part of the Kurdish dengbej tradition: singer-poets who carried their people's history, grief, love, and identity in verse when there was no paper, no printing press, and no permission to write in Kurdish. Her poems speak of migration, of mountains, of loss, and of survival.",
-      portraitAlt: "Hana Malan",
-      listIcon: "flower" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "Her poems survived centuries of oral transmission and are recorded today in Kurdish literary heritage collections. She represents the countless Kurdish women whose art kept a culture alive without ever being written down.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "For centuries, Kurdistan had no right to write in its own language. Hana Malan and poets like her were the library — they memorized, recited, and carried forward the history others tried to silence.",
-      },
-      cards: [
-        { icon: "♜", title: "Timeline Position", text: "Unknown; oral literature, likely 18th or 19th century" },
-        { icon: "⛩", title: "Map Location", text: "Kurdish folklore; likely Northern Kurdistan (Kurmanji-speaking regions)" },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "The Kurdish dengbej tradition, oral singer-poets like Hana Malan, was declared by UNESCO as Intangible Cultural Heritage of Humanity. Her voice is part of that heritage.",
-      },
-      quote: "Malan bar kir le le, the loads were packed, they left for the pastures.",
-      quoteAuthor: "Hana Malan — Kurdish folk poem (Kurmanji dialect)",
-    },
-    "kurdistan-mukrayani": {
-      nameLine1: "Dr. Kurdistan",
-      nameLine2: "Mukrayani",
-      role: "Linguist · Academic · Writer & Translator",
-      metaLine: "1946 | Mahabad (Eastern Kurdistan) – Erbil (Southern Kurdistan)",
-      intro:
-        "Dr. Kurdistan Mukrayani is the daughter of the renowned intellectual and photographer Giw Mukrayani. She grew up in a family dedicated to the service of Kurdish language and culture. In 1977, she obtained her PhD in Comparative Linguistics from Moscow. She was not only a university professor but also a staunch defender of the Kurdish language. Throughout her life she wrote dozens of scholarly works on grammar, history of language, and Kurdish dialects, and played a significant role in organizing the Kurdish alphabet.",
-      portraitAlt: "Dr. Kurdistan Mukrayani",
-      listIcon: "crown" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "She was one of the first Kurdish women to earn a doctorate in Kurdish linguistics. She served as a member of the executive board of the Kurdish Academy and played a fundamental role in professionalizing linguistic research in Kurdistan's universities. She was also the author of dictionaries and profound studies on various Kurdish dialects.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "At a time when the Kurdish language faced the threat of erasure, Dr. Kurdistan defended it through scientific and academic methods. She proved that Kurdish is a rich language worthy of research at the level of world languages.",
-      },
-      cards: [
-        { icon: "♜", title: "Timeline Position", text: "Mid-20th century to 2024" },
-        { icon: "⛩", title: "Map Location", text: "Mahabad, Baghdad, Moscow, and Erbil" },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "In addition to linguistics, Dr. Kurdistan was a talented translator. She translated several Russian literary masterpieces (such as the works of Pushkin) and world literature directly from the original languages into Kurdish, demonstrating the richness of her intellectual horizon.",
-      },
-      quote:
-        "I opened my eyes within the Kurdish intellectual movement; for me, language is not just a tool for speaking, it is the identity of my nation.",
-      quoteAuthor: "Dr. Kurdistan Mukrayani",
-    },
     "danielle-mitterrand": {
       nameLine1: "Danielle",
       nameLine2: "Mitterrand",

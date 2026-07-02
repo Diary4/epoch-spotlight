@@ -8,7 +8,8 @@ export function runWomenDetailIntroAnimation(sectionRef: React.RefObject<HTMLEle
     const fadeTargets = "[data-women-detail-fade='true']";
     const portraitTargets = "[data-women-detail-portrait-fade='true']";
 
-    gsap.set(portraitTargets, { autoAlpha: 0, scale: 1.04 });
+    // Portrait gets only a brief fade — no zoom — so the image reads as static.
+    gsap.set(portraitTargets, { autoAlpha: 0 });
     gsap.set(fadeTargets, { autoAlpha: 0, y: 18 });
 
     gsap
@@ -17,8 +18,7 @@ export function runWomenDetailIntroAnimation(sectionRef: React.RefObject<HTMLEle
         portraitTargets,
         {
           autoAlpha: 1,
-          scale: 1,
-          duration: 0.85,
+          duration: 0.4,
         },
         0,
       )

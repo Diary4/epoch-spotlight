@@ -723,7 +723,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
       <div
         ref={scrollContainerRef}
         onScroll={handleScroll}
-        className={`relative z-10 mx-auto h-full max-w-5xl overflow-y-auto px-6 pb-20 pt-28 ${
+        className={`relative z-10 mx-auto h-full max-w-5xl overflow-y-auto scrollbar-hide px-6 pb-20 pt-28 ${
           isRtl ? "md:pl-8 md:pr-32" : "md:pl-32 md:pr-8"
         }`}
       >

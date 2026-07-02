@@ -112,22 +112,6 @@ const listByLang: Record<WomenLangCode, CultureFigureListItem[]> = {
       listIcon: "flower",
     },
     {
-      id: "hana-malan",
-      name: "Hana Malan",
-      role: "Oral Tradition Poet · Dengbej Heritage",
-      teaser:
-        "Her poems survived for centuries through oral transmission — a voice for women who kept Kurdish culture alive without written records.",
-      listIcon: "flower",
-    },
-    {
-      id: "kurdistan-mukrayani",
-      name: "Dr. Kurdistan Mukrayani",
-      role: "Linguist · Academic · Writer & Translator",
-      teaser:
-        "Among the first Kurdish women to earn a doctorate in Kurdish linguistics and defend the language through rigorous scholarship.",
-      listIcon: "crown",
-    },
-    {
       id: "danielle-mitterrand",
       name: "Danielle Mitterrand",
       role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",

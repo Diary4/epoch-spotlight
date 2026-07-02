@@ -159,9 +159,10 @@ export default function WomenDetailPanel({
         : "grid-cols-3";
   const heroScrim =
     "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(251,244,232,0)_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
-  // Keep the hero portrait at a stable design height so RTL scripts (Arabic/Kurdish)
-  // never shrink it when their copy wraps into fewer lines than English.
-  const heroPortraitHeight = "min-h-[760px] h-full";
+  // Fixed design height (not `h-full`) so the portrait is the same size in every
+  // language — with `h-full` it tracked the text column, shrinking when Arabic/
+  // Kurdish copy ran shorter than English.
+  const heroPortraitHeight = "h-[760px]";
   const portraitObjectPosition =
     dir === "rtl" ? "object-[58%_10%]" : "object-[42%_10%]";
 
