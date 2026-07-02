@@ -149,6 +149,91 @@ export const cultureDetailsByLang = {
         "I was the first Kurdish woman to join the struggle... because I believed that a woman should be a partner to a man in building the nation.",
       quoteAuthor: "Attributed to Nahida Sheikh Salam",
     },
+    "hana-malan": {
+      nameLine1: "Hana",
+      nameLine2: "Malan",
+      role: "Folklore Poet · Oral Tradition Heritage",
+      metaLine: "Birth and death dates unknown | Kurdistan, folklore and oral literature",
+      intro:
+        "No one recorded when Hana Malan was born or when she died. What was recorded — passed from voice to voice and generation to generation — is her poetry. She was part of the Kurdish dengbêj tradition: poet-singers who preserved history, grief, love, and national identity in verse, in an era when there was no paper, no printing press, and no permission to write in Kurdish. Her poems speak of migration, mountains, loss, and survival.",
+      portraitAlt: "Hana Malan",
+      listIcon: "flower" as const,
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "Her poems survived for centuries through oral transmission and are recorded today in collections of Kurdish literary heritage. She represents countless Kurdish women whose art kept culture alive without ever leaving a written record.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "For centuries, Kurdistan had no right to write in its own language. Hana Malan and poets like her were the library — they memorized, recited, and carried forward the history others tried to silence.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "Unknown; oral literature, likely 18th or 19th century" },
+        { icon: "⛩", title: "Map Location", text: "Kurdish folklore; likely Northern Kurdistan (Kurmanji-speaking regions)" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "The Kurdish dengbêj tradition, which includes poet-singers like Hana Malan, is recognized by UNESCO as intangible cultural heritage of humanity. Her voice is part of that global heritage.",
+      },
+      quote: "Malan loaded the donkey, the loads were tied, and they set off toward the mountains.",
+      quoteAuthor: "Hana Malan, Kurdish folk poetry (Kurmanji dialect)",
+    },
+    "kurdistan-mukrayani": {
+      nameLine1: "Dr. Kurdistan",
+      nameLine2: "Mukrayani",
+      role: "Linguist · Academic · Writer & Translator",
+      metaLine: "1946 | Mahabad (Eastern Kurdistan) – Erbil (Southern Kurdistan)",
+      intro:
+        "Dr. Kurdistan Mukrayani is the daughter of the renowned intellectual and photographer Gîvî Mukrayani. She grew up in a family that devoted its life to Kurdish language and culture. In 1977 she earned a doctorate in comparative linguistics in Moscow. She was not only a university professor but a fierce defender of the Kurdish language. Throughout her life she wrote dozens of scholarly works on Kurdish grammar, language history, and dialects, and played a role in standardizing the Kurdish alphabet.",
+      portraitAlt: "Dr. Kurdistan Mukrayani",
+      listIcon: "crown" as const,
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She was among the first Kurdish women to earn a doctorate in Kurdish linguistics. She was a member of the Kurdish Academy's executive board and played a foundational role in institutionalizing linguistic research at Kurdish universities. She authored dictionaries and deep studies of Kurdish dialects.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "At a time when the Kurdish language faced the threat of erasure, Dr. Kurdistan defended it through scientific and academic methods. She proved that Kurdish is a rich language worthy of research at the level of world languages.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "Mid-20th century to 2024" },
+        { icon: "⛩", title: "Map Location", text: "Mahabad, Baghdad, Moscow, and Erbil" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Beyond linguistics, Dr. Kurdistan was a gifted translator. She translated major Russian literary works (including Pushkin) and world classics directly into Kurdish, showing the breadth of her intellectual horizon.",
+      },
+      quote:
+        "I grew up within the Kurdish enlightenment movement; for me language is not merely a tool of speech, but the identity of a nation.",
+      quoteAuthor: "Dr. Kurdistan Mukrayani",
+    },
+    "danielle-mitterrand": {
+      nameLine1: "Danielle",
+      nameLine2: "Mitterrand",
+      role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",
+      metaLine: "1924 – 2011 | Verdun, France",
+      intro:
+        "Danielle Mitterrand, a prominent French human rights activist, participated in the anti-Nazi resistance in her youth. As First Lady of France, she used her position to advocate for the rights of oppressed peoples. After the Halabja chemical attack, she became one of Europe's most influential voices supporting the Kurdish people. Through her repeated visits to Kurdistan and tireless advocacy for the Kurdish cause internationally, she is remembered by Kurds as a symbol of humanitarianism and genuine friendship.",
+      portraitAlt: "Danielle Mitterrand",
+      listIcon: "crown" as const,
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "In 1986 she founded France Libertés, which became one of the most renowned human rights organizations. Through this foundation she supported oppressed peoples, especially the Kurds, and worked to bring their suffering to the attention of the international community.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "In the history of oppressed peoples, true allies are often those who stand in times of crisis, not only in calm. Danielle Mitterrand was a voice for the Kurds when much of the world was silent. Because of her humanitarian stance, she is still known among Kurds as the 'Friend of the Kurdish People,' and her name lives on in schools and institutions across Kurdistan.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "1924 to 2011" },
+        { icon: "⛩", title: "Map Location", text: "Verdun, France and Kurdistan" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "In 1992, while Danielle Mitterrand was participating in a humanitarian convoy in Iraqi Kurdistan, a bomb exploded near the convoy. The incident did not stop her support for the Kurdish people — she continued defending their rights.",
+      },
+      quote: "Defending human rights knows no national borders.",
+      quoteAuthor: "Danielle Mitterrand",
+    },
   },
   ku: kuCultureDetails,
   ar: {
@@ -274,6 +359,90 @@ export const cultureDetailsByLang = {
       quote:
         "كنت أول امرأة كردية تنضم إلى النضال... لأنني آمنت أن المرأة يجب أن تكون شريكة للرجل في بناء الأمة.",
       quoteAuthor: "منسوب إلى ناهيدة شيخ سلام",
+    },
+    "hana-malan": {
+      nameLine1: "هانا",
+      nameLine2: "مالان",
+      role: "شاعرة فولكلورية · تراث الإلقاء الشفهي",
+      metaLine: "تواريخ الميلاد والوفاة غير معروفة | كردستان، الفولكلور والأدب الشفهي",
+      intro:
+        "لم يسجل أحد متى وُلدت هانا مالان أو متى توفيت. ما سُجل — وانتقل من صوت إلى صوت ومن جيل إلى جيل — هو شعرها. كانت جزءاً من تقليد الدنغبيج الكردي: الشعراء-المغنون الذين حفظوا التاريخ والحزن والحب والهوية الوطنية في الأبيات، في عصر لم يكن فيه ورق ولا مطبعة ولا إذن بالكتابة بالكردية.",
+      portraitAlt: "هانا مالان",
+      listIcon: "flower" as const,
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "بقيت قصائدها قروناً عبر التراث الشفهي وهي مسجلة اليوم في مجموعات التراث الأدبي الكردي. تمثل عدداً لا يحصى من النساء الكرديات اللواتي أبقين الثقافة حية دون أن يتركن سجلاً مكتوباً.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "لقرون، لم يكن لكردستان حق الكتابة بلغتها. كانت هانا مالان والشعراء مثلها هي المكتبة — حفظوا التاريخ ورووه وحملوه؛ التاريخ الذي حاول آخرون إسكاته.",
+      },
+      cards: [
+        { icon: "♜", title: "الموقع الزمني", text: "غير معروف؛ أدب شفهي، يُرجح القرن الثامن عشر أو التاسع عشر" },
+        { icon: "⛩", title: "الموقع الجغرافي", text: "الفولكلور الكردي؛ يُرجح شمال كردستان (مناطق الكرمانجية)" },
+      ],
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "تقليد الدنغبيج الكردي، الذي يشمل شعراء-مغنين مثل هانا مالان، معترف به من قبل اليونسكو كتراث ثقافي غير مادي للبشرية.",
+      },
+      quote: "حملت مالان الحمار، رُبطت الأحمال، وانطلقوا نحو الجبال.",
+      quoteAuthor: "هانا مالان، شعر فولكلوري كردي (لهجة كرمانجية)",
+    },
+    "kurdistan-mukrayani": {
+      nameLine1: "د. كردستان",
+      nameLine2: "مكراني",
+      role: "لغوية · أكاديمية · كاتبة ومترجمة",
+      metaLine: "١٩٤٦ | مهاباد (شرق كردستان) – أربيل (جنوب كردستان)",
+      intro:
+        "الدكتورة كردستان مكراني هي ابنة المثقف والمصور الشهير گیڤی مكراني. نشأت في عائلة كرّست حياتها لخدمة اللغة والثقافة الكردية. حصلت عام ١٩٧٧ على الدكتوراه في اللغويات المقارنة في موسكو. لم تكن أستاذة جامعية فحسب، بل مدافعة شرسة عن اللغة الكردية.",
+      portraitAlt: "د. كردستان مكراني",
+      listIcon: "crown" as const,
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "كانت من أوائل النساء الكرديات اللواتي حصلن على الدكتوراه في اللغويات الكردية. كانت عضواً في الهيئة التنفيذية للأكاديمية الكردية ولعبت دوراً أساسياً في تأصيل البحث اللغوي في جامعات كردستان.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "في وقت واجهت فيه اللغة الكردية خطر المحو، دافعت الدكتورة كردستان عنها بمنهج علمي وأكاديمي. أثبتت أن الكردية لغة غنية تستحق البحث على مستوى اللغات العالمية.",
+      },
+      cards: [
+        { icon: "♜", title: "الموقع الزمني", text: "منتصف القرن العشرين حتى ٢٠٢٤" },
+        { icon: "⛩", title: "الموقع الجغرافي", text: "مهاباد، بغداد، موسكو، وأربيل" },
+      ],
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "إلى جانب اللغويات، كانت الدكتورة كردستان مترجمة موهوبة. ترجمت أعمالاً أدبية روسية كبرى (منها أعمال بوشكين) مباشرة إلى الكردية.",
+      },
+      quote: "نشأت في حركة التنوير الكردي؛ بالنسبة إلي اللغة ليست مجرد أداة للكلام، بل هوية الأمة.",
+      quoteAuthor: "د. كردستان مكراني",
+    },
+    "danielle-mitterrand": {
+      nameLine1: "دانييل",
+      nameLine2: "ميتران",
+      role: "ناشطة حقوق إنسان · زوجة رئيس فرنسا · صديقة الشعب الكردي",
+      metaLine: "١٩٢٤ – ٢٠١١ | فيردون، فرنسا",
+      intro:
+        "دانييل ميتران، الناشطة الفرنسية البارزة في حقوق الإنسان، شاركت في مقاومة النازيين في شبابها. بصفتها زوجة رئيس فرنسا، استخدمت منصبها للدفاع عن حقوق الشعوب المضطهدة. بعد مجزرة حلبجة الكيميائية، أصبحت من أقوى الأصوات الأوروبية الداعمة للشعب الكردي.",
+      portraitAlt: "دانييل ميتران",
+      listIcon: "crown" as const,
+      greatestAchievement: {
+        title: "أعظم إنجاز",
+        text: "أسست عام ١٩٨٦ مؤسسة فرنسا ليبرتيه، التي أصبحت من أشهر منظمات حقوق الإنسان. من خلال هذه المؤسسة دعمت الشعوب المضطهدة، ولا سيما الكرد، وسعت لإيصال معاناتهم إلى المجتمع الدولي.",
+      },
+      whySheMatters: {
+        title: "لماذا لا تزال مهمة",
+        text: "في تاريخ الشعوب المضطهدة، غالباً ما يكون الحلفاء الحقيقيون من يقفون في أوقات الأزمات. كانت دانييل ميتران صوتاً للكرد حين كان كثير من العالم صامتاً. ولا تزال معروفة بين الكرد باسم «صديقة الشعب الكردي».",
+      },
+      cards: [
+        { icon: "♜", title: "الموقع الزمني", text: "١٩٢٤ حتى ٢٠١١" },
+        { icon: "⛩", title: "الموقع الجغرافي", text: "فيردون، فرنسا وكردستان" },
+      ],
+      didYouKnow: {
+        title: "هل تعلم؟",
+        text: "في ١٩٩٢، أثناء مشاركة دانييل ميتران في قافلة إنسانية في كردستان العراق، انفجرت قنبلة قرب القافلة. لم يوقفها ذلك عن دعم الشعب الكردي.",
+      },
+      quote: "الدفاع عن حقوق الإنسان لا يعرف حدود الوطن.",
+      quoteAuthor: "دانييل ميتران",
     },
   },
 };

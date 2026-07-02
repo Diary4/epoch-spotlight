@@ -187,7 +187,7 @@ export default function WomenHistoricPage({
                   <Sparkles className="h-5 w-5" />
                 </div>
 
-                <h1 className={`${displayFont} text-[104px] font-medium leading-[0.95] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]`}>
+                <h1 className={`${displayFont} text-[104px] font-medium leading-[0.95] tracking-tight text-[#2c1337] ${isRtlScript ? "" : "drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]"}`}>
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}

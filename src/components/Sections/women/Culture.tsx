@@ -21,6 +21,7 @@ import imgAysha from "@/assets/images/womens/ayshe.jpg";
 import imgPakiza from "@/assets/images/womens/pakiza.jpg";
 import imgRoshan from "@/assets/images/womens/roshan.jpeg";
 import imgNahida from "@/assets/images/womens/nadia-sheikh.png";
+import imgKurdistan from "@/assets/images/women/kurdistan-mukryani.webp";
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -29,6 +30,7 @@ const personImages: Record<string, string> = {
   "pakize-rafik-hilmi": imgPakiza,
   "roshan-bedirkhan": imgRoshan,
   "nahida-sheikh-salam": imgNahida,
+  "kurdistan-mukrayani": imgKurdistan,
 };
 
 type CulturePageProps = {

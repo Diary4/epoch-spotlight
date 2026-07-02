@@ -105,10 +105,34 @@ const listByLang: Record<WomenLangCode, CultureFigureListItem[]> = {
     {
       id: "nahida-sheikh-salam",
       name: "Nahida Sheikh Salam",
-      role: "Writer · Cultural Pioneer · Activist",
+      role: "Writer · Cultural Pioneer · Cultural Activist",
       teaser:
         "Educator, poet, and nationalist who established a school for girls in Sulaymaniyah and mobilized youth for the Kurdish cause.",
       listIcon: "flower",
+    },
+    {
+      id: "hana-malan",
+      name: "Hana Malan",
+      role: "Folklore Poet · Oral Tradition Heritage",
+      teaser:
+        "Her poems survived for centuries through oral transmission — a voice for women who kept Kurdish culture alive without written records.",
+      listIcon: "flower",
+    },
+    {
+      id: "kurdistan-mukrayani",
+      name: "Dr. Kurdistan Mukrayani",
+      role: "Linguist · Academic · Writer & Translator",
+      teaser:
+        "Among the first Kurdish women to earn a doctorate in Kurdish linguistics and defend the language through rigorous scholarship.",
+      listIcon: "crown",
+    },
+    {
+      id: "danielle-mitterrand",
+      name: "Danielle Mitterrand",
+      role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",
+      teaser:
+        "After the Halabja chemical attack, she became one of Europe's most influential voices supporting the Kurdish people.",
+      listIcon: "crown",
     },
   ],
   ku: kuCultureList,
@@ -140,10 +164,34 @@ const listByLang: Record<WomenLangCode, CultureFigureListItem[]> = {
     {
       id: "nahida-sheikh-salam",
       name: "ناهيدة شيخ سلام",
-      role: "كاتبة · رائدة ثقافية · ناشطة",
+      role: "كاتبة · رائدة ثقافية · ناشطة ثقافية",
       teaser:
         "مربية وشاعرة ووطنية أسست مدرسة للفتيات في السليمانية وحشدت الشباب من أجل القضية الكردية.",
       listIcon: "flower",
+    },
+    {
+      id: "hana-malan",
+      name: "هانا مالان",
+      role: "شاعرة فولكلورية · تراث الإلقاء الشفهي",
+      teaser:
+        "بقيت قصائدها قروناً عبر التراث الشفهي — صوت لنساء حافظن على الثقافة الكردية دون سجلات مكتوبة.",
+      listIcon: "flower",
+    },
+    {
+      id: "kurdistan-mukrayani",
+      name: "د. كردستان مكراني",
+      role: "لغوية · أكاديمية · كاتبة ومترجمة",
+      teaser:
+        "من أوائل النساء الكرديات اللواتي حصلن على الدكتوراه في اللغويات الكردية ودافعن عن اللغة بمنهج علمي.",
+      listIcon: "crown",
+    },
+    {
+      id: "danielle-mitterrand",
+      name: "دانييل ميتران",
+      role: "ناشطة حقوق إنسان · زوجة رئيس فرنسا · صديقة الشعب الكردي",
+      teaser:
+        "بعد مجزرة حلبجة الكيميائية، أصبحت من أقوى الأصوات الأوروبية الداعمة للشعب الكردي.",
+      listIcon: "crown",
     },
   ],
 };
