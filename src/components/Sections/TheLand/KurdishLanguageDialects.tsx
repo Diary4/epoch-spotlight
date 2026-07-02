@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Feather, UsersRound } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import bg from "@/assets/mainImages/letter.webp"
+import heroVideo from "@/assets/videos/language.webm";
 
 const dialects = [
   {
@@ -128,7 +128,30 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
   // instead of reflowing into a different mobile layout.
   const DESIGN_WIDTH = 1400;
   const canvasRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [fit, setFit] = useState({ scale: 1, x: 0, y: 0 });
+
+  useEffect(() => {
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
+
+    const tryPlay = () => {
+      videoEl.play().catch(() => {
+        // Ignore autoplay promise rejections from browser policies.
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) tryPlay();
+    };
+
+    tryPlay();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   useEffect(() => {
     const recompute = () => {
@@ -194,9 +217,14 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             {/* Absolutely positioned background artwork container */}
             <div className="land-detail-hero pointer-events-none absolute right-0 top-0 z-0 h-[700px] w-[clamp(740px,58cqw,812px)] overflow-hidden rtl:right-auto rtl:left-0">
               <div className="absolute inset-0 rtl:-scale-x-100">
-                <img
-                  src={bg}
-                  alt="Kurdish language books placeholder"
+                <video
+                  ref={videoRef}
+                  src={heroVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
                   className="absolute inset-0 h-full w-full object-cover object-right-top opacity-72 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
                 />
               </div>

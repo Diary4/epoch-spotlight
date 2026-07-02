@@ -6,6 +6,8 @@ type PeopleDetailHeroVideoProps = {
   className?: string;
   /** Which side of the section the video is anchored to. */
   videoSide?: "left" | "right";
+  /** Mirror the video in LTR instead of the default RTL mirroring. */
+  mirrorOnLtr?: boolean;
 };
 
 export default function PeopleDetailHeroVideo({
@@ -13,6 +15,7 @@ export default function PeopleDetailHeroVideo({
   dir,
   className = "h-[min(100cqh,1400px)] w-full",
   videoSide = "right",
+  mirrorOnLtr = false,
 }: PeopleDetailHeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -44,12 +47,13 @@ export default function PeopleDetailHeroVideo({
       : "right-0 left-auto rtl:right-auto rtl:left-0";
 
   const objectPositionClass = videoSide === "left" ? "object-left" : "object-center";
+  const shouldMirror = mirrorOnLtr ? dir === "ltr" : dir === "rtl";
 
   return (
     <div
       className={`people-detail-hero pointer-events-none absolute top-0 ${positionClass} ${className}`}
     >
-      <div className={`absolute inset-0 overflow-hidden ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+      <div className={`absolute inset-0 overflow-hidden ${shouldMirror ? "-scale-x-100" : ""}`}>
         <video
           ref={videoRef}
           src={src}

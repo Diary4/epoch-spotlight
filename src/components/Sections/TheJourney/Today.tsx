@@ -118,13 +118,13 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
                 <img
                   src={bg}
                   alt="Today development"
-                  className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_60%_46%,black_0%,black_55%,transparent_84%)]"
+                  className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_38%_46%,black_0%,black_55%,transparent_84%)]"
                 />
               </div>
             </div>
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
-              <section className="journey-detail-intro max-w-[min(47cqw,740px)]">
+              <section className="journey-detail-intro ml-auto max-w-[min(47cqw,740px)] text-right rtl:text-right">
                 <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {localizeDigits(section.title ?? "Today", lang)}
                 </h1>
@@ -133,12 +133,12 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
                   {section.headline ?? "Kurdistan continues to grow through institutions, development, and vision."}
                 </p>
 
-                <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
+                <div className="ml-auto mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                   <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                 </div>
 
-                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(39cqw,620px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                <p className="ml-auto mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(39cqw,620px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
                   {section.description ?? "Kurdistan is building a stronger tomorrow through progress, unity, and opportunity."}
                 </p>
               </section>

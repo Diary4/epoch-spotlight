@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, Landmark, Mountain, SunMedium } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
+import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
+import heroVideo from "@/assets/videos/sharwal.webm";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg1 from "@/assets/mainImages/story-3.webp";
 
 const cards = [
   {
@@ -103,13 +104,13 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            <div className="pointer-events-none absolute right-0 top-0 h-[min(100cqh,1400px)] w-full rtl:-scale-x-100">
-              <img
-                src={bg1}
-                alt="Resilience background"
-                className="journey-detail-hero absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
-              />
-            </div>
+            <PeopleDetailHeroVideo
+              src={heroVideo}
+              dir={dir}
+              className="h-[min(82cqh,1150px)] w-full"
+              videoSide="right"
+              mirrorOnLtr
+            />
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className={`journey-detail-intro ${isRtlScript ? "max-w-[min(58cqw,900px)]" : "max-w-[min(46cqw,720px)]"}`}>
