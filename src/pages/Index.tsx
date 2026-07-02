@@ -19,6 +19,10 @@ import bg2 from "@/assets/images/bg-2.webp";
 import bg3 from "@/assets/images/bg-3.webp";
 import kurdistan2Bg from "@/assets/images/kurdistan-2.webp";
 import kurdistan3Bg from "@/assets/images/kurdistan-3.webp";
+import journey1991Bg from "@/assets/images/thejourney/1991.webp";
+import journey1992Bg from "@/assets/images/thejourney/1992.webp";
+import journey2005Bg from "@/assets/images/thejourney/2005.webp";
+import journeyTodayBg from "@/assets/images/thejourney/today.webp";
 import Year1992Page from "@/components/Sections/TheJourney/1992";
 import SystemPage from "@/components/Sections/TheSystem";
 import PrimeMinisterPage from "@/components/Sections/TheSystem/ThePrimeMinistir";
@@ -511,11 +515,11 @@ const Index = () => {
     sharedIdentity: bg2,
     resilience: bg2,
     journey: kurdistan2Bg,
-    journey1991: kurdistan2Bg,
-    journey1992: kurdistan2Bg,
+    journey1991: journey1991Bg,
+    journey1992: journey1992Bg,
     journeyBuildingInstitutions: kurdistan2Bg,
-    journey2005: kurdistan2Bg,
-    journeyToday: kurdistan2Bg,
+    journey2005: journey2005Bg,
+    journeyToday: journeyTodayBg,
     system: kurdistan3Bg,
     parliament: kurdistan3Bg,
     government: kurdistan3Bg,

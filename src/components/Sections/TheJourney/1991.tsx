@@ -6,7 +6,7 @@ import { localizeDigits } from "@/lib/utils";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/1991.webp";
+import bg from "@/assets/images/thejourney/1991.webp";
 
 const cards = [
   {

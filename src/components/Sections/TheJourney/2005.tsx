@@ -7,7 +7,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import bg from "@/assets/mainImages/2005.webp";
+import bg from "@/assets/images/thejourney/2005.webp";
 
 const rows = [
   {

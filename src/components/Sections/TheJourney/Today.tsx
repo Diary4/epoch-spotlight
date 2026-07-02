@@ -6,7 +6,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import bg from "@/assets/mainImages/today.webp";
+import bg from "@/assets/images/thejourney/today.webp";
 
 const rows = [
   {
