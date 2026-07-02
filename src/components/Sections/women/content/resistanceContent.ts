@@ -1,6 +1,7 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
 import { womenCardLabels } from "@/components/Sections/women/womenLanguage";
 import { resistanceDetailsByLang } from "@/components/Sections/women/content/resistanceDetails";
+import { arResistanceList } from "@/components/Sections/women/content/arWomenContentData";
 import { kuResistanceList, kuResistancePageCopy } from "@/components/Sections/women/content/kuWomenContentData";
 
 export type ResistanceFigureListItem = {
@@ -155,56 +156,7 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
     },
   ],
   ku: kuResistanceList,
-  ar: [
-    {
-      id: "khaja-bawa",
-      name: "خاجة باوا",
-      role: "أول مقاتلة بيشمركية · قائدة عسكرية",
-      teaser:
-        "استُشهدت في ١١ مارس ١٩٩١ في طليعة انتفاضة أربيل — هربّت الأسلحة، عالجت الثوار الجرحى، ولم تتراجع أبداً.",
-      listIcon: "crown",
-    },
-    {
-      id: "aisha-taha",
-      name: "عائشة طه",
-      role: "رمز الصمود والوطنية",
-      teaser:
-        "بعد فقدان ثلاثة أبناء بيشمركة في معركة واحدة ضد داعش، حوّلت الحزن إلى تحدٍ وأصبحت أمّاً روحية لكل مدافع.",
-      listIcon: "flower",
-    },
-    {
-      id: "shifa-gardi",
-      name: "شفا گردی",
-      role: "صحفية ميدانية · مقدمة · مديرة إنتاج في روداو",
-      teaser:
-        "مراسلة رائدة استشهدت أثناء تغطية الحرب ضد داعش — أول صحفية كردية تستشهد في خطوط المواجهة.",
-      listIcon: "flower",
-    },
-    {
-      id: "layla-qasim",
-      name: "ليلى قاسم",
-      role: "ناشطة طالبة · شهيدة كردية · رمز وطني",
-      teaser:
-        "أُعدمت في الثانية والعشرين؛ كلماتها الأخيرة — «اقتلوني، لكن آلاف الكرد سيستيقظون» — من أكثر العبارات تكراراً في التاريخ الكردي.",
-      listIcon: "flower",
-    },
-    {
-      id: "margaret-george-shilo",
-      name: "مارغريت جورج شيلو",
-      role: "أول مقاتلة بيشمركية · قائدة عسكرية",
-      teaser:
-        "آشورية مسيحية أصبحت قائدة لوحدة بيشمركية من الرجال فقط — أطلق عليها الإعلام الغربي لقب «جان دارك الثورة الكردية».",
-      listIcon: "crown",
-    },
-    {
-      id: "qadam-kher",
-      name: "قدم خير",
-      role: "زعيمة قبلية · قائدة عسكرية · وطنية",
-      teaser:
-        "عندما سقط إخوتها في مواجهة رضا شاه، ارتدت لباس المعركة وقادت قبائل لورستان لسنوات ضد الجيش الإيراني.",
-      listIcon: "crown",
-    },
-  ],
+  ar: arResistanceList,
 };
 
 export function getResistancePageCopy(lang: WomenLangCode): ResistancePageCopy {

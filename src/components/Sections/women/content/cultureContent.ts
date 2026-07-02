@@ -1,6 +1,7 @@
 import type { WomenLangCode } from "@/components/Sections/women/womenLanguage";
 import { womenCardLabels } from "@/components/Sections/women/womenLanguage";
 import { cultureDetailsByLang } from "@/components/Sections/women/content/cultureDetails";
+import { arCultureList } from "@/components/Sections/women/content/arWomenContentData";
 import { kuCultureList, kuCulturePageCopy } from "@/components/Sections/women/content/kuWomenContentData";
 
 export type CultureFigureListItem = {
@@ -136,64 +137,7 @@ const listByLang: Record<WomenLangCode, CultureFigureListItem[]> = {
     },
   ],
   ku: kuCultureList,
-  ar: [
-    {
-      id: "eyse-san",
-      name: "عائشة شان",
-      role: "مغنية · صوت المقاومة الكردية · أيقونة ثقافية",
-      teaser:
-        "حملت صوت الألم والمقاومة الكردية حين كان التحدث بالكردية في العلن محظوراً — غنت على أي حال.",
-      listIcon: "flower",
-    },
-    {
-      id: "pakize-rafik-hilmi",
-      name: "باكيزة رفيق حلمي",
-      role: "لغوية هارفارد · أول امرأة كردية في الأكاديمية الكردية للعلوم",
-      teaser:
-        "أول طالبة عراقية تحصل على ماجستير هارفارد — فتحت البحث الكردي أمام العالم.",
-      listIcon: "crown",
-    },
-    {
-      id: "roshan-bedirkhan",
-      name: "روشن بديرخان",
-      role: "كاتبة · رائدة ثقافية · ناشطة",
-      teaser:
-        "شريكة في نشر مجلتي هاوار وروناهي، دافعت عن تعليم الفتيات والحفاظ على اللغة الكردية.",
-      listIcon: "crown",
-    },
-    {
-      id: "nahida-sheikh-salam",
-      name: "ناهيدة شيخ سلام",
-      role: "كاتبة · رائدة ثقافية · ناشطة ثقافية",
-      teaser:
-        "مربية وشاعرة ووطنية أسست مدرسة للفتيات في السليمانية وحشدت الشباب من أجل القضية الكردية.",
-      listIcon: "flower",
-    },
-    {
-      id: "hana-malan",
-      name: "هانا مالان",
-      role: "شاعرة فولكلورية · تراث الإلقاء الشفهي",
-      teaser:
-        "بقيت قصائدها قروناً عبر التراث الشفهي — صوت لنساء حافظن على الثقافة الكردية دون سجلات مكتوبة.",
-      listIcon: "flower",
-    },
-    {
-      id: "kurdistan-mukrayani",
-      name: "د. كردستان مكراني",
-      role: "لغوية · أكاديمية · كاتبة ومترجمة",
-      teaser:
-        "من أوائل النساء الكرديات اللواتي حصلن على الدكتوراه في اللغويات الكردية ودافعن عن اللغة بمنهج علمي.",
-      listIcon: "crown",
-    },
-    {
-      id: "danielle-mitterrand",
-      name: "دانييل ميتران",
-      role: "ناشطة حقوق إنسان · زوجة رئيس فرنسا · صديقة الشعب الكردي",
-      teaser:
-        "بعد مجزرة حلبجة الكيميائية، أصبحت من أقوى الأصوات الأوروبية الداعمة للشعب الكردي.",
-      listIcon: "crown",
-    },
-  ],
+  ar: arCultureList,
 };
 
 export function getCulturePageCopy(lang: WomenLangCode): CulturePageCopy {
