@@ -159,6 +159,11 @@ export default function WomenDetailPanel({
         : "grid-cols-3";
   const heroScrim =
     "pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(251,244,232,0)_62%,rgba(251,244,232,0.55)_82%,#fbf4e8_100%)]";
+  // Keep the hero portrait at a stable design height so RTL scripts (Arabic/Kurdish)
+  // never shrink it when their copy wraps into fewer lines than English.
+  const heroPortraitHeight = "min-h-[760px] h-full";
+  const portraitObjectPosition =
+    dir === "rtl" ? "object-[58%_10%]" : "object-[42%_10%]";
 
   return (
     <WomenScaledCanvas
@@ -171,8 +176,10 @@ export default function WomenDetailPanel({
           <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
           <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
-        <section className="relative z-10 w-full">
-          <div className={`absolute ${heroImageSide} top-0 h-full w-[56%] max-w-[760px] overflow-hidden`}>
+        <section className="relative z-10 w-full min-h-[760px]">
+          <div
+            className={`absolute ${heroImageSide} top-0 ${heroPortraitHeight} w-[56%] max-w-[760px] overflow-hidden`}
+          >
             <div data-women-detail-portrait-fade="true" className="absolute inset-0">
               <div className={`absolute inset-0 ${portraitFlip}`}>
                 <img
@@ -181,7 +188,7 @@ export default function WomenDetailPanel({
                   decoding="async"
                   // React 18 expects the lowercase DOM attribute name.
                   {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
-                  className="h-full w-full object-cover object-[42%_10%]"
+                  className={`h-full w-full object-cover ${portraitObjectPosition}`}
                 />
               </div>
             </div>
@@ -192,7 +199,7 @@ export default function WomenDetailPanel({
           </div>
 
           <div
-            className="relative z-20 flex min-h-[560px] max-w-[560px] flex-col px-14 pb-8 pt-28"
+            className="relative z-20 flex min-h-[760px] max-w-[560px] flex-col px-14 pb-8 pt-28"
             data-women-detail-fade="true"
           >
             <h1 className={`break-words ${displayFont} text-[118px] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>

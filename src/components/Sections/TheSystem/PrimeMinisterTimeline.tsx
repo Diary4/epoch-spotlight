@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import mainPrimeMinisterImage from "@/assets/images/PrimeMinistir/p-2.png";
-import primeMinisterImage from "@/assets/images/PrimeMinistir/pm.jpeg";
+import primeMinisterImage from "@/assets/images/PrimeMinistir/2019.jpg";
 import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).jpeg";
 import formationImage from "@/assets/images/PrimeMinistir/formation.jpeg";
 import youthImage from "@/assets/images/PrimeMinistir/youth.jpeg";
@@ -651,7 +651,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
         style={{
           backgroundImage: `url(${mainPrimeMinisterImage})`,
           backgroundPosition: "center 18%",
-          filter: "blur(12px)",
+          filter: "blur(4px)",
           transform: "scale(1.08)",
         }}
       />
