@@ -212,13 +212,13 @@ export default function WomenResistancePage({
 
             {/* Hero — side-by-side on every screen with responsive grid splits and overlapping styles */}
             <section
-              className={`relative z-10 shrink-0 grid grid-cols-[0.9fr_1.1fr] items-center gap-4 pt-16 ${
+              className={`relative z-10 shrink-0 grid min-h-[620px] grid-cols-[0.8fr_1.2fr] items-start gap-4 pt-16 ${
                 dir === "rtl" ? "pl-0 pr-10" : "pl-10 pr-0"
               }`}
             >
               <div
                 data-resist-fade="true"
-                className={`relative z-20 max-w-[700px] ${dir === "rtl" ? "pl-0" : "pr-0"}`}
+                className={`relative z-20 max-w-[700px] pt-8 ${dir === "rtl" ? "pl-0" : "pr-0"}`}
               >
                 <h1 className={`${displayFont} text-[96px] font-medium leading-[0.95] tracking-tight text-[#2c1337]`}>
                   {copy.heroTitle1}
@@ -244,15 +244,15 @@ export default function WomenResistancePage({
               {/* Hero video bleeds under the text */}
               <div
                 data-resist-hero="true"
-                className={`pointer-events-none relative self-stretch h-full w-[185%] ${
-                  dir === "rtl" ? "mr-[-62%] -translate-x-8" : "ml-[-62%] translate-x-10"
+                className={`pointer-events-none relative min-h-[620px] w-[210%] self-stretch ${
+                  dir === "rtl" ? "origin-top-left mr-[-72%] -translate-x-10" : "origin-top-right ml-[-72%] translate-x-12"
                 }`}
               >
-                <div className="relative h-full w-full overflow-hidden leading-[0]">
+                <div className="relative h-full min-h-[620px] w-full overflow-hidden leading-[0]">
                   <video
                     src={resistanceHeroVideo}
                     aria-label="Women of Resistance"
-                    className={`block h-full w-full object-contain [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] ${dir === "rtl" ? "object-left-center -scale-x-100" : "object-[96%_center]"}`}
+                    className={`block h-full min-h-[620px] w-full object-contain [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] ${dir === "rtl" ? "object-left-center -scale-x-100" : "object-[96%_center]"}`}
                     autoPlay
                     loop
                     muted
