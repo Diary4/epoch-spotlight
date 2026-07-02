@@ -162,7 +162,7 @@ export default function WomenDetailPanel({
   // Fixed design height (not `h-full`) so the portrait is the same size in every
   // language — with `h-full` it tracked the text column, shrinking when Arabic/
   // Kurdish copy ran shorter than English.
-  const heroPortraitHeight = "h-[760px]";
+  const heroPortraitHeight = "h-[880px]";
   const portraitObjectPosition =
     dir === "rtl" ? "object-[58%_10%]" : "object-[42%_10%]";
 
@@ -177,9 +177,9 @@ export default function WomenDetailPanel({
           <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
           <div className="pointer-events-none absolute right-4 top-0 h-full w-px bg-[#d4b778]/45" />
 
-        <section className="relative z-10 w-full min-h-[760px]">
+        <section className="relative z-10 w-full min-h-[880px]">
           <div
-            className={`absolute ${heroImageSide} top-0 ${heroPortraitHeight} w-[56%] max-w-[760px] overflow-hidden`}
+            className={`absolute ${heroImageSide} top-0 ${heroPortraitHeight} w-[64%] max-w-[900px] overflow-hidden`}
           >
             <div data-women-detail-portrait-fade="true" className="absolute inset-0">
               <div className={`absolute inset-0 ${portraitFlip}`}>
@@ -200,7 +200,7 @@ export default function WomenDetailPanel({
           </div>
 
           <div
-            className="relative z-20 flex min-h-[760px] max-w-[560px] flex-col px-14 pb-8 pt-28"
+            className="relative z-20 flex min-h-[880px] max-w-[560px] flex-col px-14 pb-8 pt-28"
             data-women-detail-fade="true"
           >
             <h1 className={`break-words ${displayFont} text-[118px] leading-[0.92] tracking-[-0.04em] text-[#2d1436]`}>
