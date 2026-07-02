@@ -30,8 +30,14 @@ export default function WomenScaledCanvas({
       <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
         <div
           ref={canvasRef}
+          // Flex column + growing children stretch the page (and its background)
+          // to the full window height when the scaled content runs shorter.
+          // `grow` (basis auto) keeps the canvas's natural height measurable,
+          // unlike `flex-1` whose 0% basis can collapse it.
+          className="flex flex-col [&>*]:grow"
           style={{
             width: WOMEN_DESIGN_WIDTH,
+            minHeight: fit.minCanvasHeight || undefined,
             transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
             transformOrigin: "top left",
             position: "absolute",

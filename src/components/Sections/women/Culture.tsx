@@ -217,31 +217,9 @@ export default function WomenCultureMemoryPage({
             )}
 
             <section data-culture-hero="true" className="relative z-10 shrink-0">
-              <div className="relative z-10 w-full overflow-hidden">
-                <div className="relative mx-auto w-full max-w-[1400px] overflow-hidden leading-[0]">
-                  <video
-                    src={cultureHeroVideo}
-                    aria-label={`${copy.heroTitleLine1} ${copy.heroTitleLine2}`}
-                    className="pointer-events-none mx-auto block h-auto w-full object-contain object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[100px] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef] via-55% to-transparent to-100%"
-                    aria-hidden
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[140px] bg-gradient-to-t from-[#fcf7ef] from-0% via-[#fcf7ef] via-60% to-transparent to-100%"
-                    aria-hidden
-                  />
-                </div>
-              </div>
-
               <div
                 data-culture-fade="true"
-                className="relative z-20 mx-auto w-full max-w-[900px] shrink-0 px-4 pb-2 pt-4 text-center"
+                className="relative z-20 mx-auto w-full max-w-[900px] shrink-0 px-4 pb-2 pt-14 text-center"
               >
                 <div className="mx-auto mb-3 flex w-full max-w-[300px] items-center justify-center gap-3 text-[#b4864d]">
                   <span className="h-px flex-1 bg-[#d4b98f]" />
@@ -268,6 +246,28 @@ export default function WomenCultureMemoryPage({
                 <p className="mx-auto max-w-[680px] text-[20px] leading-relaxed text-[#55505a]">
                   {copy.heroIntro}
                 </p>
+              </div>
+
+              <div className="relative z-10 w-full overflow-hidden">
+                <div className="relative mx-auto w-full max-w-[1400px] overflow-hidden leading-[0]">
+                  <video
+                    src={cultureHeroVideo}
+                    aria-label={`${copy.heroTitleLine1} ${copy.heroTitleLine2}`}
+                    className="pointer-events-none mx-auto block h-auto w-full object-contain object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[100px] bg-gradient-to-b from-[#fcf7ef] from-0% via-[#fcf7ef] via-55% to-transparent to-100%"
+                    aria-hidden
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[140px] bg-gradient-to-t from-[#fcf7ef] from-0% via-[#fcf7ef] via-60% to-transparent to-100%"
+                    aria-hidden
+                  />
+                </div>
               </div>
             </section>
 
