@@ -171,7 +171,13 @@ export default function WomenHistoricPage({
               <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
             </button>
 
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]" />
+            <div
+              className={`pointer-events-none absolute inset-0 ${
+                dir === "rtl"
+                  ? "bg-[radial-gradient(circle_at_28%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_78%_52%,rgba(212,185,143,0.12),transparent_30%)]"
+                  : "bg-[radial-gradient(circle_at_72%_8%,rgba(205,143,151,0.18),transparent_34%),radial-gradient(circle_at_22%_52%,rgba(212,185,143,0.12),transparent_30%)]"
+              }`}
+            />
 
             {/* Hero — fixed side-by-side layout (matches Women hub) */}
             <section
@@ -185,7 +191,7 @@ export default function WomenHistoricPage({
                   <Sparkles className="h-5 w-5" />
                 </div>
 
-                <h1 className={`${displayFont} text-[104px] font-medium leading-[0.95] tracking-tight text-[#2c1337] ${isRtlScript ? "" : "drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]"}`}>
+                <h1 className={`${displayFont} text-[104px] font-medium leading-[0.95] tracking-tight text-[#2c1337] drop-shadow-[0_1px_2px_rgba(252,247,239,0.85)]`}>
                   {copy.heroTitle1}
                   <br />
                   {copy.heroTitle2}
