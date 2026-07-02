@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import citadel from "@/assets/mainImages/building.webp";
-import publicServiceImage from "@/assets/images/PrimeMinistir/p-2.png";
+import mainPrimeMinisterImage from "@/assets/images/PrimeMinistir/p-2.png";
 import primeMinisterImage from "@/assets/images/PrimeMinistir/pm.jpeg";
 import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).jpeg";
-import educationImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.31.jpeg";
+import formationImage from "@/assets/images/PrimeMinistir/formation.jpeg";
+import youthImage from "@/assets/images/PrimeMinistir/youth.jpeg";
+import educationImage from "@/assets/images/PrimeMinistir/education.jpeg";
+import securityImage from "@/assets/images/PrimeMinistir/security.jpeg";
+import isisImage from "@/assets/images/PrimeMinistir/isis.jpeg";
+import serviceImage from "@/assets/images/PrimeMinistir/service.jpeg";
 import economicImage from "@/assets/images/PrimeMinistir/economic.jpeg";
 import myAccountImage from "@/assets/images/PrimeMinistir/myaccount.jpeg";
 import runakiImage from "@/assets/images/PrimeMinistir/runaki.jpeg";
@@ -36,12 +40,12 @@ type PrimeMinisterTimelineProps = {
 };
 
 const biographyImages = {
-  "origins-formation": citadel,
-  "youth-resistance": publicServiceImage,
+  "origins-formation": formationImage,
+  "youth-resistance": youthImage,
   "education-borders": educationImage,
-  "security-state-building": primeMinisterImage,
-  "isis-war": publicServiceImage,
-  "service-beyond-government": educationImage,
+  "security-state-building": securityImage,
+  "isis-war": isisImage,
+  "service-beyond-government": serviceImage,
   "prime-minister-cabinet": primeMinisterImage,
   vision: visionImage,
 } as const;
@@ -645,7 +649,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
       <div
         className="absolute inset-0 bg-cover bg-no-repeat"
         style={{
-          backgroundImage: `url(${publicServiceImage})`,
+          backgroundImage: `url(${mainPrimeMinisterImage})`,
           backgroundPosition: "center 18%",
           filter: "blur(12px)",
           transform: "scale(1.08)",
