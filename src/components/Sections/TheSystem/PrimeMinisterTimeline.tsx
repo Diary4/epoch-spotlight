@@ -620,15 +620,23 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
   }, []);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const scrollPosition = e.currentTarget.scrollTop + 220;
+    const container = e.currentTarget;
+
+    // At (or near) the bottom the probe point can't reach the last sections,
+    // so force the final item active.
+    if (container.scrollTop + container.clientHeight >= container.scrollHeight - 8) {
+      setActiveSection(timeline.length - 1);
+      return;
+    }
+
+    const scrollPosition = container.scrollTop + container.clientHeight / 3;
+    let current = 0;
     sectionRefs.current.forEach((section, index) => {
-      if (!section) return;
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-      if (scrollPosition >= top && scrollPosition < bottom) {
-        setActiveSection(index);
+      if (section && section.offsetTop <= scrollPosition) {
+        current = index;
       }
     });
+    setActiveSection(current);
   };
 
   const scrollToSection = (index: number) => {
@@ -677,13 +685,6 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
       {/* Vertical timeline navigation */}
       <div className={`absolute bottom-0 top-0 z-20 hidden md:block ${isRtl ? "right-8" : "left-8"}`}>
         <div className="relative flex h-full flex-col justify-center">
-          <div
-            className="absolute left-1/2 h-[70%] w-px -translate-x-1/2"
-            style={{
-              background:
-                "linear-gradient(180deg, transparent 0%, rgba(201,154,85,0.5) 20%, rgba(201,154,85,0.5) 80%, transparent 100%)",
-            }}
-          />
           <div className="relative flex flex-col gap-12">
             {timeline.map((item, index) => (
               <button
