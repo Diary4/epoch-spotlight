@@ -173,8 +173,6 @@ export default function WomenCultureMemoryPage({
             portraitSrc={personImages[selectedId] ?? cultureHero}
             portraitAlt={detail.portraitAlt}
             cards={cultureDetailToPanelCards(detail, lang)}
-            quote={detail.quote}
-            quoteAuthor={detail.quoteAuthor}
             greatestAchievement={detail.greatestAchievement}
             whySheMatters={detail.whySheMatters}
             didYouKnow={detail.didYouKnow}

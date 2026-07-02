@@ -18,10 +18,8 @@ export type WomenDetailPanelProps = {
   portraitSrc: string;
   portraitAlt: string;
   cards: WomenDetailPanelCard[];
-  quote: string;
   /** Dates and region, e.g. "1805 – 1848 | Ardalan Principality". */
   metaLine?: string;
-  quoteAuthor?: string;
   greatestAchievement?: { title: string; text: string };
   /** Highlighted legacy section — rendered as a full-width banner. */
   whySheMatters?: { title: string; text: string };
@@ -61,77 +59,6 @@ function WomenDetailInfoCard({
       <p className="mt-6 max-w-[210px] text-[18px] leading-snug text-[#3f3b42]">
         {text}
       </p>
-    </div>
-  );
-}
-
-function WomenDetailQuoteCard({
-  quote,
-  quoteAuthor,
-  dir = "ltr",
-}: {
-  quote: string;
-  quoteAuthor?: string;
-  dir?: "rtl" | "ltr";
-}) {
-  const borderColor = "#7d4f56";
-  const textAlign = dir === "rtl" ? "text-right" : "text-left";
-  const quoteMarkSide =
-    dir === "rtl"
-      ? { open: "right-[30px]", close: "left-[30px]" }
-      : { open: "left-[30px]", close: "right-[30px]" };
-
-  return (
-    <div
-      data-women-detail-fade="true"
-      className="relative h-full overflow-hidden rounded-[20px] bg-[linear-gradient(160deg,#fff8f2_0%,#fceee6_55%,#f5e1d8_100%)]"
-    >
-      {/* Outer frame */}
-      <div
-        className="pointer-events-none absolute inset-[22px] rounded-[3px] border"
-        style={{ borderColor }}
-        aria-hidden
-      />
-
-      {/* Inner frame — side rails plus broken top/bottom segments */}
-      <div
-        className="pointer-events-none absolute inset-[30px]"
-        aria-hidden
-      >
-        <div className="absolute inset-y-0 left-0 w-px" style={{ backgroundColor: borderColor }} />
-        <div className="absolute inset-y-0 right-0 w-px" style={{ backgroundColor: borderColor }} />
-        <div className="absolute left-0 top-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
-        <div className="absolute right-0 top-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
-        <div className="absolute bottom-0 left-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
-        <div className="absolute bottom-0 right-0 h-px w-[30%]" style={{ backgroundColor: borderColor }} />
-      </div>
-
-      <span
-        className={`pointer-events-none absolute top-[24px] ${quoteMarkSide.open} font-serif text-[72px] leading-none text-[#e89595]`}
-        aria-hidden
-      >
-        &ldquo;
-      </span>
-      <span
-        className={`pointer-events-none absolute bottom-[56px] ${quoteMarkSide.close} font-serif text-[72px] leading-none text-[#e89595]`}
-        aria-hidden
-      >
-        &rdquo;
-      </span>
-
-      <div
-        className={`relative flex h-full min-h-[220px] flex-col justify-between px-12 py-11 ${textAlign}`}
-      >
-        <p className="font-serif text-[22px] italic leading-[1.7] text-[#454545]">
-          {quote}
-        </p>
-
-        {quoteAuthor && (
-          <p className="mt-7 text-[15px] leading-snug text-[#7d4f56]">
-            {quoteAuthor}
-          </p>
-        )}
-      </div>
     </div>
   );
 }
@@ -199,9 +126,7 @@ export default function WomenDetailPanel({
   portraitSrc,
   portraitAlt,
   cards,
-  quote,
   metaLine,
-  quoteAuthor,
   greatestAchievement,
   whySheMatters,
   didYouKnow,
@@ -240,7 +165,7 @@ export default function WomenDetailPanel({
       dir={dir}
       bgClassName="bg-[#f7efe3]"
       className={dir === "rtl" ? "font-noto-naskh" : ""}
-      fitDeps={[dir, lang, nameLine1, nameLine2, intro, quote, didYouKnow?.text]}
+      fitDeps={[dir, lang, nameLine1, nameLine2, intro, didYouKnow?.text]}
     >
       <div className="relative w-full overflow-hidden border-x border-[#d8bd83] bg-[#fbf4e8] pb-10">
           <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-[#d4b778]/45" />
@@ -340,13 +265,8 @@ export default function WomenDetailPanel({
           </section>
         )}
 
-        {/* Did You Know + quote, side by side */}
-        <section
-          className={`relative z-30 mx-auto mb-10 mt-8 grid items-stretch gap-5 ${
-            didYouKnow ? "grid-cols-2 max-w-[1200px]" : "max-w-[760px]"
-          }`}
-        >
-          {didYouKnow && (
+        {didYouKnow && (
+          <section className="relative z-30 mx-auto mb-10 mt-8 max-w-[760px] px-4">
             <div
               data-women-detail-fade="true"
               className="flex h-full flex-col rounded-[18px] border border-[#dfc997] bg-[#fff8ee]/85 px-7 py-8"
@@ -358,10 +278,8 @@ export default function WomenDetailPanel({
                 {t(didYouKnow.text)}
               </p>
             </div>
-          )}
-
-          <WomenDetailQuoteCard quote={t(quote)} quoteAuthor={quoteAuthor ? t(quoteAuthor) : undefined} dir={dir} />
-        </section>
+          </section>
+        )}
       </div>
     </WomenScaledCanvas>
   );

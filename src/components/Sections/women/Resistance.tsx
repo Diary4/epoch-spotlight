@@ -171,8 +171,6 @@ export default function WomenResistancePage({
             portraitSrc={resistanceImages[selectedId]}
             portraitAlt={detail.portraitAlt}
             cards={resistanceDetailToPanelCards(detail, lang)}
-            quote={detail.quote}
-            quoteAuthor={detail.quoteAuthor}
             greatestAchievement={detail.greatestAchievement}
             whySheMatters={detail.whySheMatters}
             didYouKnow={detail.didYouKnow}

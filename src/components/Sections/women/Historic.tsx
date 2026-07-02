@@ -132,8 +132,6 @@ export default function WomenHistoricPage({
             portraitSrc={historicDetailPortraits[selectedId]}
             portraitAlt={detail.portraitAlt}
             cards={historicDetailToPanelCards(detail, lang)}
-            quote={detail.quote}
-            quoteAuthor={detail.quoteAuthor}
             greatestAchievement={detail.greatestAchievement}
             whySheMatters={detail.whySheMatters}
             didYouKnow={detail.didYouKnow}

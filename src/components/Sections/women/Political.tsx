@@ -140,8 +140,6 @@ export default function WomenPoliticalPage({
             portraitSrc={personImages[selectedId] ?? politicalHero}
             portraitAlt={detail.portraitAlt}
             cards={politicalDetailToPanelCards(detail, lang)}
-            quote={detail.quote}
-            quoteAuthor={detail.quoteAuthor}
             greatestAchievement={detail.greatestAchievement}
             whySheMatters={detail.whySheMatters}
             didYouKnow={detail.didYouKnow}
