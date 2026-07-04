@@ -12,8 +12,9 @@ import heroImg from "@/assets/images/kurdistan.webp";
 import historyImg from "@/assets/images/thejourney/1991.webp";
 
 const PAPER = "#fbf5eb";
-const GOLD = "#a37b45";
-const NAVY = "#1a2f43";
+const GOLD = "#9b6d35";
+const INK = "#17233b";
+const BODY = "#35435b";
 const CARD_BG = "#f7f1e3";
 const CARD_BORDER = "#e7dcc4";
 
@@ -89,7 +90,7 @@ function HeritageSkyline({ className = "" }: { className?: string }) {
       <path d="M264 102 V76 H278 V66 H290 V76 H304 V102" />
       <path d="M308 102 V72 Q322 54 336 72 V102" />
       <path d="M352 102 V38 Q356 28 360 38 V102" />
-      <path d="M347 44 H365" />
+      <path d="M349 48 H363" />
       <path d="M364 102 L398 60 L434 102" />
       <path d="M0 102 H440" strokeWidth="1.5" />
     </svg>
@@ -113,8 +114,6 @@ type Copy = {
   intro: string;
   history: string;
   historyText: string;
-  meaning: string;
-  meaningText: string;
   colorsTitle: string;
   colors: { name: string; nameColor: string; swatch: "red" | "white" | "green" | "sun"; text: string }[];
   unity: string;
@@ -133,9 +132,6 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     history: "HISTORY",
     historyText:
       "The flag was adopted on 17 December 1946 in Mahabad (the Republic of Mahabad) as the official flag of Kurdistan.",
-    meaning: "MEANING",
-    meaningText:
-      "The sun emblem and the colors reflect the Kurdish people's deep connection to nature, life, and the pursuit of freedom.",
     colorsTitle: "COLORS & SYMBOLISM",
     colors: [
       { name: "RED", nameColor: "#c43a2c", swatch: "red", text: "Sacrifice and the struggle for freedom." },
@@ -159,9 +155,6 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     history: "مێژوو",
     historyText:
       "ئاڵاکە لە ١٧ی کانوونی یەکەمی ١٩٤٦ لە مەهاباد (کۆماری مەهاباد) وەک ئاڵای فەرمی کوردستان پەسەند کرا.",
-    meaning: "واتا",
-    meaningText:
-      "هێمای خۆر و ڕەنگەکان پەیوەندی قووڵی گەلی کورد بە سروشت و ژیان و بەدواداچوونی ئازادییەوە دەردەخەن.",
     colorsTitle: "ڕەنگەکان و هێماکانیان",
     colors: [
       { name: "سوور", nameColor: "#c43a2c", swatch: "red", text: "قوربانی و خەبات بۆ ئازادی." },
@@ -184,8 +177,6 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
       "يجسّد علم كوردستان تطلعات الشعب الكوردي وتاريخه وتراثه الثقافي، ويمثل السلام والحرية وروح أمةٍ لا تلين.",
     history: "التاريخ",
     historyText: "اعتُمد العلم في ١٧ كانون الأول ١٩٤٦ في مهاباد (جمهورية مهاباد) علمًا رسميًا لكوردستان.",
-    meaning: "المعنى",
-    meaningText: "يعكس شعار الشمس والألوان ارتباط الشعب الكوردي العميق بالطبيعة والحياة والسعي نحو الحرية.",
     colorsTitle: "الألوان والرموز",
     colors: [
       { name: "الأحمر", nameColor: "#c43a2c", swatch: "red", text: "التضحية والنضال من أجل الحرية." },
@@ -271,7 +262,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
           left: 0,
         }}
       >
-        <main className="m-0 w-full" style={{ backgroundColor: PAPER, color: NAVY }}>
+        <main className="m-0 w-full" style={{ backgroundColor: PAPER, color: INK }}>
           {/* ---------- Hero: flag photo with sweeping paper curve ---------- */}
           <section className="relative h-[640px] w-full overflow-hidden">
             <div className="land-detail-hero absolute inset-0">
@@ -295,7 +286,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
             </div>
 
             {/* Knot ornament on the curve */}
-            <div className="land-detail-extra absolute top-[218px] start-[440px] text-[#c8a35f]">
+            <div className="land-detail-extra absolute top-[218px] start-[450px] text-[#c8a35f]">
               <div className="relative h-10 w-10">
                 <span className="absolute inset-0 rotate-45 rounded-[4px] border-2 border-current" />
                 <span className="absolute inset-[7px] rotate-45 rounded-[3px] border-2 border-current" />
@@ -304,13 +295,13 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
 
             <div className="land-detail-intro relative z-10 flex h-full max-w-[470px] flex-col justify-start px-14 pt-14">
               {t.the && (
-                <span className={`${displayFont} text-[42px] leading-none`} style={{ color: NAVY }}>
+                <span className={`${displayFont} text-[42px] font-light leading-none`} style={{ color: INK }}>
                   {t.the}
                 </span>
               )}
               <h1
-                className={`${displayFont} mt-1 whitespace-pre-line text-[88px] font-bold leading-[0.98] tracking-tight`}
-                style={{ color: NAVY }}
+                className={`${displayFont} mt-1 whitespace-pre-line text-[82px] font-light leading-[0.98] tracking-tight`}
+                style={{ color: INK }}
               >
                 {t.title}
               </h1>
@@ -320,77 +311,69 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                 <Diamond size={11} fill="currentColor" />
               </div>
 
-              <h2 className="mt-5 text-[25px] font-semibold leading-snug" style={{ color: GOLD }}>
+              <h2 className={`mt-5 ${displayFont} text-[26px] font-light leading-snug`} style={{ color: GOLD }}>
                 {t.subtitle}
               </h2>
 
-              <p className="mt-5 max-w-[360px] text-[18px] leading-[1.65] text-[#3c4657]">{t.intro}</p>
+              <p className="mt-5 max-w-[360px] text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
+                {t.intro}
+              </p>
             </div>
           </section>
 
           {/* ---------- Content ---------- */}
-          <div className="relative px-12 pb-12 pt-8">
+          <div className="relative px-16 pb-12 pt-8">
             {/* Side lattice ornaments */}
             <div className="pointer-events-none absolute left-0 top-[430px] h-[560px] w-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
             <div className="pointer-events-none absolute right-0 top-[430px] h-[560px] w-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
 
-            {/* --- History & Meaning --- */}
-            <div className="grid grid-cols-[1.25fr_1fr] gap-7">
-              <article
-                className="land-detail-card rounded-2xl border p-8"
-                style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
+            {/* --- History --- */}
+            <article
+              className="land-detail-card rounded-2xl border p-9"
+              style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
+            >
+              <div
+                className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
+                style={{ color: GOLD }}
               >
-                <div
-                  className={`flex items-center gap-2.5 ${displayFont} text-[19px] font-bold tracking-[0.18em]`}
-                  style={{ color: GOLD }}
-                >
-                  <Diamond size={12} fill="currentColor" /> {t.history}
-                </div>
+                <Diamond size={12} fill="currentColor" /> {t.history}
+              </div>
 
-                <div className="mt-6 flex gap-7">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-3">
-                      <span className="grid h-12 w-12 place-items-center rounded-lg border bg-white/80" style={{ borderColor: CARD_BORDER }}>
-                        <Calendar size={26} style={{ color: "#b3543f" }} />
-                      </span>
-                      <span className={`${displayFont} text-[42px] font-bold leading-none`} style={{ color: NAVY }}>
-                        1946
-                      </span>
-                    </div>
-                    <p className="mt-5 text-[17px] leading-[1.65] text-[#3c4657]">{t.historyText}</p>
+              <div className="mt-6 flex items-center gap-10">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-4">
+                    <span
+                      className="grid h-14 w-14 place-items-center rounded-lg border bg-white/80"
+                      style={{ borderColor: CARD_BORDER }}
+                    >
+                      <Calendar size={30} style={{ color: "#b3543f" }} />
+                    </span>
+                    <span className={`${displayFont} text-[52px] font-light leading-none`} style={{ color: INK }}>
+                      1946
+                    </span>
                   </div>
-                  <div className="w-[280px] shrink-0 self-center overflow-hidden rounded-lg border bg-white shadow-sm" style={{ borderColor: CARD_BORDER }}>
-                    <img
-                      src={historyImg}
-                      alt="Kurds raising the flag in Mahabad, 1946"
-                      className="h-[210px] w-full object-cover grayscale contrast-110"
-                    />
-                  </div>
+                  <p className="mt-6 max-w-[460px] text-[19px] font-light leading-[1.65]" style={{ color: BODY }}>
+                    {t.historyText}
+                  </p>
                 </div>
-              </article>
-
-              <article
-                className="land-detail-card flex flex-col items-center rounded-2xl border p-8 text-center"
-                style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
-              >
                 <div
-                  className={`flex items-center gap-2.5 self-start ${displayFont} text-[19px] font-bold tracking-[0.18em]`}
-                  style={{ color: GOLD }}
+                  className="w-[380px] shrink-0 overflow-hidden rounded-lg border bg-white shadow-sm"
+                  style={{ borderColor: CARD_BORDER }}
                 >
-                  <Diamond size={12} fill="currentColor" /> {t.meaning}
+                  <img
+                    src={historyImg}
+                    alt="Kurds raising the flag in Mahabad, 1946"
+                    className="h-[240px] w-full object-cover grayscale contrast-110"
+                  />
                 </div>
-
-                <KurdishSun size={132} className="mt-8 drop-shadow-[0_6px_14px_rgba(221,154,38,0.35)]" />
-
-                <p className="mt-8 max-w-[300px] text-[17px] leading-[1.65] text-[#3c4657]">{t.meaningText}</p>
-              </article>
-            </div>
+              </div>
+            </article>
 
             {/* --- Colors & Symbolism --- */}
             <section className="land-detail-panel mt-12">
               <div className="flex items-center justify-center gap-5">
                 <span className="h-px flex-1 max-w-[190px] bg-[#d0c1a0]" />
-                <h3 className={`${displayFont} text-[26px] font-bold tracking-[0.14em]`} style={{ color: "#232f42" }}>
+                <h3 className={`${displayFont} text-[28px] font-light tracking-[0.14em]`} style={{ color: INK }}>
                   {t.colorsTitle}
                 </h3>
                 <span className="h-px flex-1 max-w-[190px] bg-[#d0c1a0]" />
@@ -415,13 +398,15 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                       />
                     )}
                     <h4
-                      className={`mt-5 ${displayFont} text-[21px] font-bold tracking-[0.16em]`}
+                      className={`mt-5 ${displayFont} text-[23px] font-light tracking-[0.16em]`}
                       style={{ color: c.nameColor }}
                     >
                       {c.name}
                     </h4>
                     <DiamondDivider className="mt-3" />
-                    <p className="mt-3 max-w-[190px] text-[16px] leading-[1.6] text-[#4a5468]">{c.text}</p>
+                    <p className="mt-3 max-w-[190px] text-[16px] font-light leading-[1.6]" style={{ color: BODY }}>
+                      {c.text}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -434,11 +419,13 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                 style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
               >
                 <div className="pointer-events-none absolute inset-x-10 top-14 h-40 opacity-15 [background-image:radial-gradient(#a37b45_1.6px,transparent_1.6px)] [background-size:15px_15px] [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
-                <h4 className={`${displayFont} text-[22px] font-bold tracking-[0.18em]`} style={{ color: GOLD }}>
+                <h4 className={`${displayFont} text-[24px] font-light tracking-[0.18em]`} style={{ color: GOLD }}>
                   {t.unity}
                 </h4>
                 <UnityFigures className="relative mt-7 h-[76px] w-[280px] text-[#b99152]" />
-                <p className="relative mt-6 max-w-[380px] text-[17px] leading-[1.65] text-[#3c4657]">{t.unityText}</p>
+                <p className="relative mt-6 max-w-[380px] text-[17px] font-light leading-[1.65]" style={{ color: BODY }}>
+                  {t.unityText}
+                </p>
               </article>
 
               <article
@@ -446,14 +433,16 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                 style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
               >
                 <div
-                  className={`flex items-center gap-3 ${displayFont} text-[22px] font-bold tracking-[0.18em]`}
+                  className={`flex items-center gap-3 ${displayFont} text-[24px] font-light tracking-[0.18em]`}
                   style={{ color: GOLD }}
                 >
                   {t.heritage}
                 </div>
                 <Diamond size={10} fill="currentColor" className="mt-2 text-[#c8a35f]" />
                 <HeritageSkyline className="mt-5 h-[92px] w-[350px] text-[#c9a975]" />
-                <p className="mt-5 max-w-[400px] text-[17px] leading-[1.65] text-[#3c4657]">{t.heritageText}</p>
+                <p className="mt-5 max-w-[400px] text-[17px] font-light leading-[1.65]" style={{ color: BODY }}>
+                  {t.heritageText}
+                </p>
               </article>
             </div>
           </div>
