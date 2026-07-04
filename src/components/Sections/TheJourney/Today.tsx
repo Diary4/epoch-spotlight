@@ -102,7 +102,7 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
         }}
       >
         <main ref={rootRef} className="m-0 h-full w-full bg-[#f8f1e7] text-[#17233b]">
-          <section className="relative mx-auto flex h-full w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]">
+          <section className="relative mx-auto flex h-full w-full flex-col overflow-hidden bg-[#fbf5eb]">
             <button
               type="button"
               onClick={onBack}

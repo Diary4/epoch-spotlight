@@ -228,7 +228,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         <main className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section
             ref={sectionRef}
-            className="relative mx-auto flex w-full flex-col overflow-hidden rounded-[22px] bg-[#fbf5eb]"
+            className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb]"
           >
             <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 

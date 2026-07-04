@@ -157,7 +157,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
           <section
             style={{ height: `${fit.height}px` }}
-            className="relative mx-auto flex w-full flex-row overflow-hidden rounded-[clamp(22px,2.4cqw,34px)] bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]"
+            className="relative mx-auto flex w-full flex-row overflow-hidden bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]"
           >
             <button
               type="button"

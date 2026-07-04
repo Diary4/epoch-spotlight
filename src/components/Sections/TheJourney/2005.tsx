@@ -62,7 +62,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
 
   return (
     <main ref={rootRef} dir={dir} className={`m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden ${sectionFont}`}>
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden sm:rounded-[22px] bg-[#fbf5eb]">
+      <section className="relative mx-auto flex min-h-screen w-full max-w-[1400px] flex-col overflow-hidden bg-[#fbf5eb]">
         
         {/* Back Button */}
         <button
