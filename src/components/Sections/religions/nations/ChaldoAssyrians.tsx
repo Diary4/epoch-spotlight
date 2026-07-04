@@ -207,6 +207,7 @@ export default function ChaldoAssyriansPage({
         <FaithDetailControls
           controlsAttr="data-chaldo-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

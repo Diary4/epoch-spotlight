@@ -171,6 +171,7 @@ export default function ZoroastrianismPage({
         <FaithDetailControls
           controlsAttr="data-zoro-controls"
           backLabel="Back"
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

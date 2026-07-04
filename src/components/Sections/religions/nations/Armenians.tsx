@@ -207,6 +207,7 @@ export default function ArmeniansPage({
         <FaithDetailControls
           controlsAttr="data-armenians-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

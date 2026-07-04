@@ -211,7 +211,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(dir)}`}
         aria-label="Back to Discover"
       >
-        <ArrowLeft className={sectionBackIconClassName} />
+        <ArrowLeft className={sectionBackIconClassName(dir)} />
       </button>
       <div
         ref={canvasRef}

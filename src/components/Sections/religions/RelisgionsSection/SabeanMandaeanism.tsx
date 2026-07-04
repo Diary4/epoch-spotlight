@@ -171,6 +171,7 @@ export default function SabeanMandaeanismPage({
         <FaithDetailControls
           controlsAttr="data-sabean-controls"
           backLabel="Back"
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

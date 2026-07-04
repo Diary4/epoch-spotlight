@@ -8,7 +8,7 @@ import {
   Waves,
   UsersRound,
 } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import yarsanism from "@/assets/images/religions/k-1.webp";
 import zoroastrianism from "@/assets/mainImages/story-2.webp";
@@ -135,7 +135,7 @@ export default function OtherFaithTraditionsPage({
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
         >
-          <ArrowLeft size={detailBackIconSize} />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
         </button>
 
         <button

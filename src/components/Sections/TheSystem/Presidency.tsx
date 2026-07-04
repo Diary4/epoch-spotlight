@@ -117,7 +117,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
               className={`${systemCanvasBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
               aria-label="Back to The System"
             >
-              <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName} />
+              <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />

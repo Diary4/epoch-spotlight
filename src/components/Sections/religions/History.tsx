@@ -10,7 +10,7 @@ import {
   Quote,
   type LucideIcon,
 } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import bg from "@/assets/images/religions/r-1.webp";
 import ancientRootsImg from "@/assets/images/religions/faiths.webp";
@@ -372,7 +372,7 @@ export default function HistoryPage({
             className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm"
             aria-label={c.back}
           >
-            <ArrowLeft size={detailBackIconSize} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
         )}
 

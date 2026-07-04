@@ -681,7 +681,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
         className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
         aria-label="Back to Prime Minister"
       >
-        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
       </button>
 
       {/* Vertical timeline navigation */}

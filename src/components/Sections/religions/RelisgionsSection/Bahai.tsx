@@ -172,6 +172,7 @@ export default function BahaiPage({
         <FaithDetailControls
           controlsAttr="data-bahai-controls"
           backLabel="Back"
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

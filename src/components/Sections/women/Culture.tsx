@@ -1,7 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
@@ -145,7 +145,7 @@ export default function WomenCultureMemoryPage({
             className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
             aria-label={copy.backToList}
           >
-            <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
 
           {onLanguageChange && languageLabel && (
@@ -199,7 +199,7 @@ export default function WomenCultureMemoryPage({
               className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
               aria-label={copy.backToWomen}
             >
-              <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             {onLanguageChange && languageLabel && (

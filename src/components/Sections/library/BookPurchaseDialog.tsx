@@ -86,7 +86,7 @@ export default function BookPurchaseDialog({
             onClick={handleBack}
             className="absolute left-4 top-4 flex items-center gap-1 text-sm text-[#8B7355] lg:text-base 3xl:left-6 3xl:top-6 3xl:text-lg"
           >
-            <ArrowLeft className={sectionBackIconClassName} />
+            <ArrowLeft className={sectionBackIconClassName("ltr")} />
             Back
           </button>
         )}

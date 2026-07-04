@@ -185,6 +185,7 @@ export default function ChristianityPage({
         <FaithDetailControls
           controlsAttr="data-christian-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

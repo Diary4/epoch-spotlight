@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
-import { detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 
 import mainHeroVideo from "@/assets/videos/G1.webm";
@@ -116,7 +116,7 @@ export default function WomenHistoricPage({
             className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
             aria-label={copy.backToList}
           >
-            <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
 
           <WomenDetailPanel
@@ -164,7 +164,7 @@ export default function WomenHistoricPage({
               className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
               aria-label={copy.backToWomen}
             >
-              <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             <div

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
-import { detailBackButtonClassName, detailBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/mainImages/bg-2.webp";
@@ -165,7 +165,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
               className={`land-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
               aria-label="Back to The Land and Future"
             >
-              <ArrowLeft size={32} className="rtl:rotate-180" />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             <div className="pointer-events-none absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />

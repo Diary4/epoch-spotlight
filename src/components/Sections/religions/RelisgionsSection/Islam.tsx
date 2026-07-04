@@ -187,6 +187,7 @@ export default function IslamPage({
         <FaithDetailControls
           controlsAttr="data-islam-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

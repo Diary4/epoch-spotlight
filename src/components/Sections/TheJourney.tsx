@@ -381,7 +381,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(lang === "en" ? "ltr" : "rtl")}`}
         aria-label="Back to Discover"
       >
-        <ArrowLeft className={sectionBackIconClassName} />
+        <ArrowLeft className={sectionBackIconClassName(lang === "en" ? "ltr" : "rtl")} />
       </button>
       <div
         style={{

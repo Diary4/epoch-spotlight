@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
@@ -123,7 +123,7 @@ export default function WomenPoliticalPage({
           className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
           aria-label={selectedId ? copy.backToList : copy.backToWomen}
         >
-          <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
         </button>
 
         {detail && selectedId ? (

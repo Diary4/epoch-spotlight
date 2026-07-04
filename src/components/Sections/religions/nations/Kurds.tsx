@@ -215,6 +215,7 @@ export default function KurdsPage({
         <FaithDetailControls
           controlsAttr="data-kurds-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

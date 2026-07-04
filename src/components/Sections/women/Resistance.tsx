@@ -1,7 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles, Quote } from "lucide-react";
-import { detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
@@ -155,7 +155,7 @@ export default function WomenResistancePage({
             className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
             aria-label={copy.backToList}
           >
-            <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
 
           <WomenDetailPanel
@@ -203,7 +203,7 @@ export default function WomenResistancePage({
               className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
               aria-label={copy.backToWomen}
             >
-              <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             {/* Hero — side-by-side on every screen with responsive grid splits and overlapping styles */}

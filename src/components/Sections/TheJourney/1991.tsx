@@ -3,7 +3,7 @@ import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
-import { detailBackButtonClassName, detailBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -112,7 +112,7 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
               className={`journey-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
               aria-label="Back to The Journey"
             >
-              <ArrowLeft size={32} className="rtl:rotate-180" />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
-import { detailBackButtonClassName, detailBackButtonSideClassName } from "@/constants/backNavigation";
+import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -109,7 +109,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
               className={`journey-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
               aria-label="Back to The Journey"
             >
-              <ArrowLeft size={32} className="rtl:rotate-180" />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
             <div className="absolute left-0 top-0 h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-0 h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />

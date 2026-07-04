@@ -220,7 +220,7 @@ export default function TouristicPlaceDetailPage({
           className="journey-detail-back absolute left-4 top-4 z-30 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:left-8 sm:top-8 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
           aria-label="Back"
         >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
         </button>
 
         {/* Paper texture columns (Desktop Only) */}

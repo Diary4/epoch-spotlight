@@ -77,7 +77,7 @@ export default function PrimeMinisterPage({
         className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
         aria-label="Back to The System"
       >
-        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
       </button>
 
       {/* Elegant content box */}

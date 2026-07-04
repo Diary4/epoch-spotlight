@@ -188,6 +188,7 @@ export default function YazidismPage({
         <FaithDetailControls
           controlsAttr="data-yazidi-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

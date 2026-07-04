@@ -318,7 +318,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
           className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(dir)}`}
           aria-label="Back to Discover"
         >
-          <ArrowLeft className={sectionBackIconClassName} />
+          <ArrowLeft className={sectionBackIconClassName(dir)} />
         </button>
 
         <DiscoverLanguageButton

@@ -207,6 +207,7 @@ export default function TurkmensPage({
         <FaithDetailControls
           controlsAttr="data-turkmens-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

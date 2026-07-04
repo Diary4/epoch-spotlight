@@ -12,7 +12,7 @@ import {
   Flag,
   Award,
 } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
@@ -332,7 +332,7 @@ export default function ReligiousDiversityPage({
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<SubPage>(null);
   const content = pageContent[lang];
-  const dir = "ltr";
+  const dir = lang === "en" ? "ltr" : "rtl";
 
   const handleLanguageChange = () => {
     setLang((prev) => (prev === "en" ? "ku" : prev === "ku" ? "ar" : "en"));
@@ -589,7 +589,7 @@ export default function ReligiousDiversityPage({
               className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border border-[#d7b77e] bg-white/80 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
               aria-label={content.detailBack}
             >
-              <ArrowLeft size={detailBackIconSize} />
+              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             <button

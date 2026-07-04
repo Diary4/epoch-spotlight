@@ -11,7 +11,7 @@ import {
   Sunrise,
   type LucideIcon,
 } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import bg from "@/assets/images/religions/c-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
@@ -278,7 +278,7 @@ export default function ClosingPage({
             className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border border-[#d7b77e] bg-white/75 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md sm:left-8 sm:top-8 sm:h-14 sm:w-14"
             aria-label={c.back}
           >
-            <ArrowLeft size={detailBackIconSize} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
         )}
 

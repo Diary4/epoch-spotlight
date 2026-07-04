@@ -1,7 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, BookOpen, Globe2, MapPin, Sparkles } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import bg from "@/assets/images/religions/r-3.webp";
 import en from "@/data/en.json";
@@ -153,7 +153,7 @@ export default function LanguagesOfKurdistanPage({
           className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
           aria-label="Back"
         >
-          <ArrowLeft size={detailBackIconSize} />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
         </button>
 
         <button

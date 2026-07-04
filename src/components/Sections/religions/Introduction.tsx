@@ -12,7 +12,7 @@ import {
   Scale,
   UsersRound,
 } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import bg from "@/assets/images/religions/main.webp";
 import bg2 from "@/assets/images/religions/r-3.webp";
@@ -404,7 +404,7 @@ export default function IntroductionPage({
             className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border border-stone-200 bg-white/85 text-stone-800 shadow-sm transition hover:bg-stone-50 sm:left-8 sm:top-8 sm:h-14 sm:w-14"
             aria-label={c.back}
           >
-            <ArrowLeft size={detailBackIconSize} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
         )}
 

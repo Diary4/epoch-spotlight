@@ -67,7 +67,7 @@ export function PrimeMinisterPageShell({ lang = "en", onBack, children, classNam
           className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
           aria-label="Back"
         >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
         </button>
 
         <div

@@ -259,7 +259,7 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack, onLan
           className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(isRtlScript ? "rtl" : "ltr")}`}
           aria-label="Back to Discover"
         >
-          <ArrowLeft className={sectionBackIconClassName} />
+          <ArrowLeft className={sectionBackIconClassName(isRtlScript ? "rtl" : "ltr")} />
         </button>
 
         <DiscoverLanguageButton

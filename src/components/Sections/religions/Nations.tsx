@@ -1,7 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import bg from "@/assets/images/religions/nations.webp";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
@@ -294,7 +294,7 @@ export default function NationsPage({
             className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm transition hover:bg-[#fff7ea] sm:left-8 sm:top-8 sm:h-14 sm:w-14"
             aria-label={c.back}
           >
-            <ArrowLeft size={detailBackIconSize} />
+            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
           </button>
         )}
 

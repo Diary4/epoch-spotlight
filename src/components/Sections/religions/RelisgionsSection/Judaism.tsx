@@ -172,6 +172,7 @@ export default function JudaismPage({
         <FaithDetailControls
           controlsAttr="data-judaism-controls"
           backLabel="Back"
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}

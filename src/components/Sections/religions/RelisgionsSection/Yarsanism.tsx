@@ -188,6 +188,7 @@ export default function YarsanismPage({
         <FaithDetailControls
           controlsAttr="data-yarsan-controls"
           backLabel={c.back}
+          dir={dir}
           onBack={onBack}
           onLanguageChange={onLanguageChange}
           languageLabel={languageLabel}
