@@ -369,17 +369,7 @@ export default function DiscoverKurdistanV2({
                   "A short journey through the people, identity, history, institutions, and future of the Kurdistan Region.",
               )}
             </p>
-
-            <div
-              data-intro-rest="true"
-              className="mx-auto mt-4 flex max-w-[180px] items-center gap-2 text-[#c49b52] xs:max-w-[240px] sm:mt-8 sm:gap-5 md:mt-10 md:gap-6 lg:mt-12 lg:max-w-[520px]"
-            >
-              <span className="h-0.5 flex-1 bg-[#d6bd83]" />
-              <span className="h-2 w-2 rotate-45 bg-[#c49b52] sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
-              <span className="h-0.5 flex-1 bg-[#d6bd83]" />
-            </div>
-
-            <p
+            {/* <p
               data-intro-rest="true"
               className={`mx-auto ${bodyWeight} mt-3 max-w-[880px] px-1 text-[13px] leading-relaxed text-[#4d5652] xs:text-[15px] sm:mt-6 sm:text-[22px] md:mt-8 md:px-0 md:text-[28px] lg:text-[33px] xl:max-w-[1100px] xl:text-[40px] 3xl:max-w-[1400px] 3xl:text-[52px] 4xl:text-[64px] kiosk-portrait:max-w-[860px] kiosk-portrait:text-[40px]`}
             >
@@ -387,7 +377,7 @@ export default function DiscoverKurdistanV2({
                 discover.description ??
                   "This interactive experience offers visitors a simple introduction to Kurdistan and its story.",
               )}
-            </p>
+            </p> */}
           </div>
 
           <div

@@ -378,6 +378,9 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
 
 type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
 
+/** Active Discover Kurdistan hub — V2 is the default entry point */
+const DISCOVER_HUB_VIEW = "discoverV2" satisfies SectionView;
+
 const SectionNav = ({
   ui,
   onPrevious,
@@ -466,10 +469,10 @@ const Index = () => {
       return;
     }
     if (view === "hero") {
-      setView("discover");
+      setView(DISCOVER_HUB_VIEW);
       return;
     }
-    if (view === "discover") {
+    if (view === DISCOVER_HUB_VIEW) {
       setView("people");
       return;
     }
@@ -538,7 +541,7 @@ const Index = () => {
     setLang(code);
     setLangClosing(true);
     // Move content first so the overlay fades into Discover Kurdistan.
-    setView("discover");
+    setView(DISCOVER_HUB_VIEW);
     window.setTimeout(() => {
       setShowLangPrompt(false);
       setLangClosing(false);
@@ -665,7 +668,7 @@ const Index = () => {
           <ThePeoplePage
             lang={activeLang}
             onLanguageChange={handleAppLanguageChange}
-            onBack={() => setView("discover")}
+            onBack={() => setView(DISCOVER_HUB_VIEW)}
             onSelectCard={(cardId) => {
               if (cardId === "whoAreTheKurds") {
                 setView("whoAreTheKurds");
@@ -706,7 +709,7 @@ const Index = () => {
           <JourneyTimelinePage
             lang={activeLang}
             onLanguageChange={handleAppLanguageChange}
-            onBack={() => setView("discover")}
+            onBack={() => setView(DISCOVER_HUB_VIEW)}
             onSelectMilestone={(milestone) => {
               if (milestone === "1991") {
                 setView("journey1991");
@@ -769,7 +772,7 @@ const Index = () => {
           <SystemPage
             lang={activeLang}
             onLanguageChange={handleAppLanguageChange}
-            onBack={() => setView("discover")}
+            onBack={() => setView(DISCOVER_HUB_VIEW)}
             onParliamentClick={() => setView("parliament")}
             onGovernmentClick={() => setView("government")}
             onPresidencyClick={() => setView("presidency")}
@@ -826,7 +829,7 @@ const Index = () => {
           <LandAndFuturePage
             lang={activeLang}
             onLanguageChange={handleAppLanguageChange}
-            onBack={() => setView("discover")}
+            onBack={() => setView(DISCOVER_HUB_VIEW)}
             onSelectCard={(cardId) => {
               if (cardId === "land") {
                 setView("land");
