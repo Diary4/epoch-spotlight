@@ -1,7 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
@@ -142,9 +142,7 @@ export default function WomenCultureMemoryPage({
           <button
             type="button"
             onClick={handleBack}
-            className={`fixed top-4 z-50 grid h-12 w-12 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-sm backdrop-blur-sm transition-all hover:bg-white sm:top-8 sm:h-14 sm:w-14 ${
-              dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8"
-            }`}
+            className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
             aria-label={copy.backToList}
           >
             <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />
@@ -198,9 +196,7 @@ export default function WomenCultureMemoryPage({
             <button
               type="button"
               onClick={handleBack}
-              className={`absolute top-8 z-50 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-sm backdrop-blur-sm transition-all hover:bg-white ${
-                dir === "rtl" ? "right-8" : "left-8"
-              }`}
+              className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
               aria-label={copy.backToWomen}
             >
               <ArrowLeft size={detailBackIconSize} className={dir === "rtl" ? "rotate-180" : ""} />

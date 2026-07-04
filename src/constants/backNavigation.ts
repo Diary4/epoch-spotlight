@@ -14,6 +14,14 @@ export const detailBackIconSize = 32;
 
 export const detailBackIconClassName = "rtl:rotate-180";
 
+/** Women section pages — back button vertically centered on the screen edge */
+export const womenBackButtonClassName =
+  "fixed top-1/2 z-[60] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:h-14 sm:w-14";
+
+export function womenBackButtonSideClassName(dir: "ltr" | "rtl") {
+  return dir === "rtl" ? "right-4 sm:right-8" : "left-4 sm:left-8";
+}
+
 /** Scaled 1400px canvas pages (Government, Parliament, Presidency) */
 export const systemCanvasBackButtonClassName =
   "system-detail-back absolute left-6 top-5 z-30 grid h-10 w-10 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-6";
