@@ -21,6 +21,7 @@ import imgAysha from "@/assets/images/womens/ayshe.webp";
 import imgPakiza from "@/assets/images/womens/pakiza.webp";
 import imgRoshan from "@/assets/images/womens/roshan.webp";
 import imgNahida from "@/assets/images/womens/nadia-sheikh.webp";
+import imgDanielle from "@/assets/images/womens/danielle.png";
 
 type LangCode = "ku" | "en" | "ar";
 
@@ -29,6 +30,7 @@ const personImages: Record<string, string> = {
   "pakize-rafik-hilmi": imgPakiza,
   "roshan-bedirkhan": imgRoshan,
   "nahida-sheikh-salam": imgNahida,
+  "danielle-mitterrand": imgDanielle,
 };
 
 type CulturePageProps = {
