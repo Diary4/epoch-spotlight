@@ -35,6 +35,7 @@ import TheLandPage from "@/components/Sections/TheLand/TheLand";
 import PeshmergaPage from "@/components/Sections/TheLand/Peshmarga";
 import ProgressPage from "@/components/Sections/TheLand/Progress";
 import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
+import KurdistanFlagPage from "@/components/Sections/TheLand/KurdistanFlagPage";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -331,7 +332,7 @@ const LAND_FUTURE_CONTENT: Record<
 > = {
   en: {
     title: "The Land and Future",
-    subtitle: "Explore Kurdistan's geography, symbols, protection, development, and future vision.",
+    subtitle: "Explore Kurdistan's geography, symbols, protection, development, and the Kurdistan flag.",
     mapTitle: "Kurdistan",
     mapCities: ["Duhok", "Erbil", "Sulaymaniyah", "Halabja"],
     items: [
@@ -339,12 +340,12 @@ const LAND_FUTURE_CONTENT: Record<
       { id: "symbols", title: "Identity and Symbols", description: "The flag, anthem, language, and heritage reflect the spirit of Kurdistan.", image: peshmargaBg, icon: "☀" },
       { id: "peshmarga", title: "Peshmerga", description: "A symbol of courage, protection, and service.", image: peshmargaBg, icon: "★" },
       { id: "progress", title: "Progress", description: "Development continues in infrastructure, education, economy, and tourism.", image: bg2, icon: "📈" },
-      { id: "future", title: "Future Vision", description: "Kurdistan looks ahead with ambition, opportunity, and confidence.", image: bg3, icon: "☼" },
+      { id: "flag", title: "The Kurdistan Flag", description: "A symbol of identity, unity, and hope for the Kurdish people.", image: bg3, icon: "☼" },
     ],
   },
   ku: {
     title: "خاک و داهاتوو",
-    subtitle: "جوگرافیا، نیشانەکان، پاراستن، پێشکەوتن، و بینینی داهاتووی کوردستان بگەڕێ.",
+    subtitle: "جوگرافیا، نیشانەکان، پاراستن، پێشکەوتن، و ئاڵای کوردستان بگەڕێ.",
     mapTitle: "کوردستان",
     mapCities: ["دهۆک", "هەولێر", "سلێمانی", "هەڵەبجە"],
     items: [
@@ -352,12 +353,12 @@ const LAND_FUTURE_CONTENT: Record<
       { id: "symbols", title: "ناسنامە و نیشانەکان", description: "ئاڵا، سروود، زمان و میرات ڕووحی کوردستان پیشان دەدەن.", image: peshmargaBg, icon: "☀" },
       { id: "peshmarga", title: "پێشمەرگە", description: "هێمای ئازایەتی، پاراستن و خزمەت.", image: peshmargaBg, icon: "★" },
       { id: "progress", title: "پێشکەوتن", description: "گەشەپێدان بەردەوامە لە ژێرخان، خوێندن، ئابووری و گەشتیاری.", image: bg2, icon: "📈" },
-      { id: "future", title: "بینینی داهاتوو", description: "کوردستان بە هیوا و دەرفەت و متمانەوە بۆ داهاتوو دەڕوات.", image: bg3, icon: "☼" },
+      { id: "flag", title: "ئاڵای کوردستان", description: "هێمای ناسنامە، یەکگرتن، و هیوا بۆ گەلی کورد.", image: bg3, icon: "☼" },
     ],
   },
   ar: {
     title: "الأرض والمستقبل",
-    subtitle: "استكشف جغرافية كوردستان ورموزها وحمايتها وتطورها ورؤيتها للمستقبل.",
+    subtitle: "استكشف جغرافية كوردستان ورموزها وحمايتها وتطورها وعلمها.",
     mapTitle: "كوردستان",
     mapCities: ["دهوك", "أربيل", "السليمانية", "حلبجة"],
     items: [
@@ -365,7 +366,7 @@ const LAND_FUTURE_CONTENT: Record<
       { id: "symbols", title: "الهوية والرموز", description: "العلم والنشيد واللغة والتراث تعكس روح كوردستان.", image: peshmargaBg, icon: "☀" },
       { id: "peshmarga", title: "البيشمركة", description: "رمز للشجاعة والحماية والخدمة.", image: peshmargaBg, icon: "★" },
       { id: "progress", title: "التقدم", description: "يتواصل التطور في البنية التحتية والتعليم والاقتصاد والسياحة.", image: bg2, icon: "📈" },
-      { id: "future", title: "رؤية المستقبل", description: "تنظر كوردستان إلى المستقبل بطموح وفرص وثقة.", image: bg3, icon: "☼" },
+      { id: "flag", title: "علم كوردستان", description: "رمز للهوية والوحدة والأمل لدى الشعب الكردي.", image: bg3, icon: "☼" },
     ],
   },
 };
@@ -376,7 +377,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols";
+type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag";
 
 /** Active Discover Kurdistan hub — V2 is the default entry point */
 const DISCOVER_HUB_VIEW = "discoverV2" satisfies SectionView;
@@ -534,6 +535,7 @@ const Index = () => {
     peshmerga: bg2,
     progress: bg2,
     identitySymbols: bg2,
+    kurdistanFlag: bg2,
   };
 
   const handleSelectLang = (code: LangCode) => {
@@ -839,6 +841,8 @@ const Index = () => {
                 setView("progress");
               } else if (cardId === "identitySymbols") {
                 setView("identitySymbols");
+              } else if (cardId === "kurdistanFlag") {
+                setView("kurdistanFlag");
               }
             }}
           />
@@ -866,6 +870,12 @@ const Index = () => {
       {view === "identitySymbols" && (
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <KurdishLanguageDialectsPage lang={activeLang} onBack={() => setView("landFuture")} />
+        </div>
+      )}
+
+      {view === "kurdistanFlag" && (
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <KurdistanFlagPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 

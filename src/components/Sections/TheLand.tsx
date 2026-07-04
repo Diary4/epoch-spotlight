@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, BarChart3, Mountain, Shield, Star, SunMedium, type LucideIcon } from "lucide-react";
+import { ArrowLeft, BarChart3, Flag, Mountain, Shield, SunMedium, type LucideIcon } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
 import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -14,7 +14,7 @@ import bg5 from "@/assets/images/new/discoverKurdistan/land-5.webp"
 import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
 import treeIcon from "@/assets/icons/tree.webp";
 
-type LandCardId = "land" | "identitySymbols" | "peshmerga" | "progress" | "futureVision";
+type LandCardId = "land" | "identitySymbols" | "peshmerga" | "progress" | "kurdistanFlag";
 
 type LandCard = {
   id: LandCardId;
@@ -65,10 +65,10 @@ const bottomCards: LandCard[] = [
     image: bg5,
   },
   {
-    id: "futureVision",
-    title: "Future Vision",
-    text: "Kurdistan looks ahead with ambition, opportunity, and confidence.",
-    icon: Star,
+    id: "kurdistanFlag",
+    title: "The Kurdistan Flag",
+    text: "A symbol of identity, unity, and hope for the Kurdish people.",
+    icon: Flag,
     image: bg6,
   },
 ];
@@ -205,7 +205,7 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
 type LandAndFuturePageProps = {
   lang?: DiscoverLangCode;
   onBack?: () => void;
-  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga" | "progress") => void;
+  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga" | "progress" | "kurdistanFlag") => void;
   onLanguageChange?: (lang: DiscoverLangCode) => void;
 };
 
@@ -239,12 +239,12 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
   const localBottomCards = isAr
     ? [
         { ...bottomCards[0], title: "التقدم", text: "التنمية مستمرة في البنية التحتية والتعليم والاقتصاد والسياحة." },
-        { ...bottomCards[1], title: "الرؤية المستقبلية", text: "تتطلع كوردستان إلى الأمام بطموح وفرص وثقة." },
+        { ...bottomCards[1], title: "علم كوردستان", text: "رمز للهوية والوحدة والأمل لدى الشعب الكردي." },
       ]
     : isKu
       ? [
           { ...bottomCards[0], title: "پێشکەوتن", text: "گەشەپێدان لە ژێرخان، پەروەردە، ئابووری، و گەشتیاریدا بەردەوامە." },
-          { ...bottomCards[1], title: "دیدگای داهاتوو", text: "کوردستان بە هیوا، دەرفەت، و متمانەوە دەڕوانێتە داهاتوو." },
+          { ...bottomCards[1], title: "ئاڵای کوردستان", text: "هێمای ناسنامە، یەکگرتن، و هیوا بۆ گەلی کورد." },
         ]
       : bottomCards;
 
@@ -418,7 +418,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
                   key={card.id}
                   card={card}
                   lang={lang}
-                  onClick={card.id === "progress" ? () => onSelectCard?.("progress") : undefined}
+                  onClick={
+                    card.id === "progress"
+                      ? () => onSelectCard?.("progress")
+                      : card.id === "kurdistanFlag"
+                        ? () => onSelectCard?.("kurdistanFlag")
+                        : undefined
+                  }
                 />
               );
             })}
