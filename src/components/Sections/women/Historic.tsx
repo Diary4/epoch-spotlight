@@ -1,6 +1,5 @@
 import React from "react";
-import { ArrowLeft, Sparkles, Quote } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { Sparkles, Quote } from "lucide-react";
 import gsap from "gsap";
 
 import mainHeroVideo from "@/assets/videos/G1.webm";
@@ -8,6 +7,7 @@ import mainHeroVideo from "@/assets/videos/G1.webm";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import WomenBackButton from "@/components/Sections/women/WomenBackButton";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
@@ -110,14 +110,7 @@ export default function WomenHistoricPage({
             onLanguageChange={handleLanguageChange}
           />
 
-          <button
-            type="button"
-            onClick={handleBack}
-            className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-            aria-label={copy.backToList}
-          >
-            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-          </button>
+          <WomenBackButton onClick={handleBack} ariaLabel={copy.backToList} dir={dir} />
 
           <WomenDetailPanel
             dir={dir}
@@ -158,15 +151,6 @@ export default function WomenHistoricPage({
               onLanguageChange={handleLanguageChange}
             />
 
-            <button
-              type="button"
-              onClick={handleBack}
-              className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-              aria-label={copy.backToWomen}
-            >
-              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-            </button>
-
             <div
               className={`pointer-events-none absolute inset-0 ${
                 dir === "rtl"
@@ -206,6 +190,13 @@ export default function WomenHistoricPage({
                 <p className="max-w-[300px] text-[18px] leading-[1.5] text-[#353445] drop-shadow-[0_1px_2px_rgba(252,247,239,0.95)]">
                   {copy.heroIntro}
                 </p>
+
+                <WomenBackButton
+                  variant="inline"
+                  onClick={handleBack}
+                  ariaLabel={copy.backToWomen}
+                  dir={dir}
+                />
               </div>
 
               {/* Illustration bleeds under the text for a larger visual scale */}

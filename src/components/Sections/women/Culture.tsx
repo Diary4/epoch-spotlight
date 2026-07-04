@@ -1,10 +1,11 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Sparkles } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { Sparkles } from "lucide-react";
+import { womenPagePadClassName } from "@/constants/backNavigation";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import WomenBackButton from "@/components/Sections/women/WomenBackButton";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import { womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
 import {
@@ -139,14 +140,7 @@ export default function WomenCultureMemoryPage({
         className={`relative m-0 w-full bg-[#f7efe3] p-0 text-[#2d1436] ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
         <section ref={sectionRef} className="relative">
-          <button
-            type="button"
-            onClick={handleBack}
-            className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-            aria-label={copy.backToList}
-          >
-            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-          </button>
+          <WomenBackButton onClick={handleBack} ariaLabel={copy.backToList} dir={dir} />
 
           {onLanguageChange && languageLabel && (
             <button
@@ -187,21 +181,13 @@ export default function WomenCultureMemoryPage({
       dir={dir}
       className={isRtlScript ? "font-noto-naskh" : ""}
       fitDeps={[lang, selectedId]}
+      overlay={<WomenBackButton onClick={handleBack} ariaLabel={copy.backToWomen} dir={dir} />}
     >
       <main className={`m-0 w-full bg-[#fcf7ef] text-[#2a1534] ${isRtlScript ? "font-noto-naskh" : ""}`}>
         <section
           ref={sectionRef}
           className="relative flex w-full flex-col overflow-hidden bg-[#fcf7ef] pb-8"
         >
-            <button
-              type="button"
-              onClick={handleBack}
-              className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-              aria-label={copy.backToWomen}
-            >
-              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-            </button>
-
             {onLanguageChange && languageLabel && (
               <button
                 type="button"
@@ -271,7 +257,7 @@ export default function WomenCultureMemoryPage({
               </div>
             </section>
 
-            <section className="relative z-20 -mt-24 shrink-0 px-10 pt-2">
+            <section className={`relative z-20 -mt-24 shrink-0 pt-2 ${womenPagePadClassName(dir)}`}>
               <div className="mx-auto grid w-full max-w-[1280px] grid-cols-6 gap-4">
                 {cultureWomen.map((woman, index) => (
                   <div

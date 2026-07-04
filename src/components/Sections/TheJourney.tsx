@@ -442,10 +442,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                   <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                 </div>
-                <p data-discover-lang="true" className="mt-8 max-w-[680px] text-[clamp(14px,3.5cqw,20px)] leading-snug text-[#2d3549] md:text-[32px] lg:text-[36px]">
+                <p data-discover-lang="true" className="mt-8 max-w-[680px] text-[clamp(14px,3.5cqw,20px)] font-light leading-snug text-[#2d3549] md:text-[32px] lg:text-[36px]">
                   {localizeDigits(journey.subtitle ?? "Explore the key milestones that shaped the Kurdistan Region.", lang)}
                 </p>
-              </section>
+              </section>  
 
               {/* Timeline */}
               <section className="relative mt-20 flex min-h-0 flex-1 flex-col">

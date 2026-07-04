@@ -1,10 +1,10 @@
 import React from "react";
 import gsap from "gsap";
-import { ArrowLeft, Sparkles, Quote } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { Sparkles, Quote } from "lucide-react";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import WomenBackButton from "@/components/Sections/women/WomenBackButton";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
@@ -149,14 +149,7 @@ export default function WomenResistancePage({
             onLanguageChange={handleLanguageChange}
           />
 
-          <button
-            type="button"
-            onClick={handleBack}
-            className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-            aria-label={copy.backToList}
-          >
-            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-          </button>
+          <WomenBackButton onClick={handleBack} ariaLabel={copy.backToList} dir={dir} />
 
           <WomenDetailPanel
             dir={dir}
@@ -197,15 +190,6 @@ export default function WomenResistancePage({
               onLanguageChange={handleLanguageChange}
             />
 
-            <button
-              type="button"
-              onClick={handleBack}
-              className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-              aria-label={copy.backToWomen}
-            >
-              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-            </button>
-
             {/* Hero — side-by-side on every screen with responsive grid splits and overlapping styles */}
             <section
               className={`relative z-10 shrink-0 grid min-h-[620px] grid-cols-[0.8fr_1.2fr] items-start gap-4 pt-16 ${
@@ -235,6 +219,13 @@ export default function WomenResistancePage({
                 <p className="mt-3 max-w-[400px] text-[24px] leading-[1.4] text-[#56505a]">
                   {copy.heroIntro}
                 </p>
+
+                <WomenBackButton
+                  variant="inline"
+                  onClick={handleBack}
+                  ariaLabel={copy.backToWomen}
+                  dir={dir}
+                />
               </div>
 
               {/* Hero video bleeds under the text */}

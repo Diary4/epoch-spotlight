@@ -1,11 +1,12 @@
 import React from "react";
-import { ArrowLeft, Sparkles } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize, womenBackButtonClassName, womenBackButtonSideClassName } from "@/constants/backNavigation";
+import { Sparkles } from "lucide-react";
+import { womenPagePadClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 
 import WomenDetailPanel from "@/components/Sections/women/WomenDetailPanel";
 import { runWomenDetailIntroAnimation } from "@/components/Sections/women/womenDetailAnimation";
 import WomenLanguageButton from "@/components/Sections/women/WomenLanguageButton";
+import WomenBackButton from "@/components/Sections/women/WomenBackButton";
 import { getAppLanguage, type AppLangCode } from "@/lib/appLanguage";
 import type { WomenLanguageProps } from "@/components/Sections/women/womenLanguage";
 import { womenDir, womenDisplayFont, womenRtlScript } from "@/components/Sections/women/womenLanguage";
@@ -117,14 +118,11 @@ export default function WomenPoliticalPage({
           onLanguageChange={handleLanguageChange}
         />
 
-        <button
-          type="button"
+        <WomenBackButton
           onClick={handleBack}
-          className={`${womenBackButtonClassName} ${womenBackButtonSideClassName(dir)}`}
-          aria-label={selectedId ? copy.backToList : copy.backToWomen}
-        >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-        </button>
+          ariaLabel={selectedId ? copy.backToList : copy.backToWomen}
+          dir={dir}
+        />
 
         {detail && selectedId ? (
           <WomenDetailPanel
@@ -185,7 +183,7 @@ export default function WomenPoliticalPage({
             </section>
 
             {/* People cards */}
-            <section className="relative z-20 mt-6 grid grid-cols-2 gap-2 px-3 pb-[200px] sm:gap-6 sm:px-5 lg:px-10">
+            <section className={`relative z-20 mt-6 grid grid-cols-2 gap-2 pb-[200px] sm:gap-6 ${womenPagePadClassName(dir)}`}>
               {people.map((person) => (
                 <button
                   type="button"

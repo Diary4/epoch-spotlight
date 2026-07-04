@@ -8,6 +8,8 @@ type WomenScaledCanvasProps = {
   fitDeps?: React.DependencyList;
   /** Scale down further so the full canvas height fits within the viewport (no scroll). */
   fitViewport?: boolean;
+  /** Fixed overlays (e.g. back button) rendered outside the scaled canvas transform. */
+  overlay?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -18,6 +20,7 @@ export default function WomenScaledCanvas({
   bgClassName = "bg-[#f9f3e8]",
   fitDeps = [],
   fitViewport = false,
+  overlay,
   children,
 }: WomenScaledCanvasProps) {
   const { canvasRef, fit } = useWomenCanvasFit(fitDeps, { fitViewport });
@@ -27,6 +30,7 @@ export default function WomenScaledCanvas({
       dir={dir}
       className={`relative w-full overflow-x-hidden ${fitViewport ? "h-screen overflow-y-hidden" : "min-h-screen overflow-y-auto"} ${bgClassName} ${className}`}
     >
+      {overlay}
       <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
         <div
           ref={canvasRef}
