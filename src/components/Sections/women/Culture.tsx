@@ -276,15 +276,19 @@ export default function WomenCultureMemoryPage({
             </section>
 
             <section className="relative z-20 -mt-24 shrink-0 px-10 pt-2">
-              <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-4">
-                {cultureWomen.map((woman) => (
-                  <CultureListCard
+              <div className="mx-auto grid w-full max-w-[1280px] grid-cols-6 gap-4">
+                {cultureWomen.map((woman, index) => (
+                  <div
                     key={woman.id}
-                    woman={woman}
-                    dir={dir}
-                    displayFont={displayFont}
-                    onSelect={() => setSelectedId(woman.id)}
-                  />
+                    className={index < 3 ? "col-span-2" : "col-span-3"}
+                  >
+                    <CultureListCard
+                      woman={woman}
+                      dir={dir}
+                      displayFont={displayFont}
+                      onSelect={() => setSelectedId(woman.id)}
+                    />
+                  </div>
                 ))}
               </div>
             </section>
