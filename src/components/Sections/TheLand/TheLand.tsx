@@ -141,7 +141,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
   return (
     <div
       dir={dir}
-      className={`relative h-[var(--viewport-height,100dvh)] w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      className={`relative h-[var(--viewport-height,100dvh)] w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
     >
       <div
         style={{
@@ -154,7 +154,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
           containerType: "inline-size",
         }}
       >
-        <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+        <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section
             style={{ height: `${fit.height}px` }}
             className="relative mx-auto flex w-full flex-row overflow-hidden bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]"

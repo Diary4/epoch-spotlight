@@ -83,7 +83,7 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${sectionFont}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${sectionFont}`}
       style={{
         width: "100vw",
         height: "100vh",
@@ -101,7 +101,7 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
           containerType: "size",
         }}
       >
-        <main ref={rootRef} className="m-0 h-full w-full bg-[#f8f1e7] text-[#17233b]">
+        <main ref={rootRef} className="m-0 h-full w-full bg-[#fbf5eb] text-[#17233b]">
           <section className="relative mx-auto flex h-full w-full flex-col overflow-hidden bg-[#fbf5eb]">
             <button
               type="button"

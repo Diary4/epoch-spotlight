@@ -163,7 +163,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
   return (
     <div
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -178,7 +178,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
           containerType: "inline-size",
         }}
       >
-        <main ref={rootRef} className="m-0 w-full bg-[#f8f1e7] text-[#17233b]">
+        <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb]">
             <button
               type="button"
