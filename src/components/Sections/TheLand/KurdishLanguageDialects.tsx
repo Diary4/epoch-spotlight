@@ -216,7 +216,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
             <div className="pointer-events-none absolute right-0 top-0 h-full w-28 opacity-18 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Absolutely positioned background artwork container */}
-            <div className="land-detail-hero pointer-events-none absolute right-0 top-0 z-0 h-[700px] w-[clamp(740px,58cqw,812px)] overflow-hidden rtl:right-auto rtl:left-0">
+            <div className="land-detail-hero pointer-events-none absolute right-0 top-0 z-0 h-[700px] w-full overflow-hidden rtl:right-auto rtl:left-0">
               <div className="absolute inset-0 rtl:-scale-x-100">
                 <video
                   ref={videoRef}
@@ -229,7 +229,7 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
                   className="absolute inset-0 h-full w-full object-cover object-right-top opacity-72 [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#fbf5eb_0%,rgba(251,245,235,0.92)_12%,rgba(251,245,235,0.7)_28%,rgba(251,245,235,0.38)_42%,rgba(251,245,235,0.12)_56%,transparent_68%)] rtl:bg-[linear-gradient(to_left,#fbf5eb_0%,rgba(251,245,235,0.92)_12%,rgba(251,245,235,0.7)_28%,rgba(251,245,235,0.38)_42%,rgba(251,245,235,0.12)_56%,transparent_68%)]" />
               <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/55 to-[#fbf5eb]" />
             </div>
 

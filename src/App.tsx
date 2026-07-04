@@ -27,6 +27,12 @@ import LibraryBookDetail from "./pages/LibraryBookDetail.tsx";
 import LibraryBookReader from "./pages/LibraryBookReader.tsx";
 
 import { useViewportHeight } from "@/hooks/useViewportHeight";
+import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
+
+const DevDialects = () => {
+  const lang = (new URLSearchParams(window.location.search).get("lang") ?? "en") as "ku" | "en" | "ar";
+  return <KurdishLanguageDialectsPage lang={lang} onBack={() => {}} />;
+};
 
 const queryClient = new QueryClient();
 const Router = Capacitor.isNativePlatform() ? HashRouter : BrowserRouter;
@@ -60,6 +66,9 @@ const AppRoutes = () => {
           <Route path="/library/writers/:writerId/featured" element={<LibraryFeaturedWriter />} />
           <Route path="/library/books/:bookId" element={<LibraryBookDetail />} />
           <Route path="/library/books/:bookId/read" element={<LibraryBookReader />} />
+          {import.meta.env.DEV && (
+            <Route path="/__dev/dialects" element={<DevDialects />} />
+          )}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
