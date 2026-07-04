@@ -117,7 +117,7 @@ export default function Year1992Page({ lang = "en", onBack }: Year1992PageProps)
 
             {/* Main visual placeholder: replace later with your generated 1992 image */}
             <div className="journey-detail-hero pointer-events-none absolute right-0 top-0 h-[min(100cqh,1500px)] w-full overflow-hidden rtl:right-auto rtl:left-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+              <div className="absolute inset-0">
                 <img
                   src={bg}
                   alt="1992 parliament placeholder"

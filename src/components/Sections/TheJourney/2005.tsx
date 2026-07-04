@@ -115,7 +115,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             <div className="journey-detail-hero pointer-events-none absolute right-0 top-0 h-[min(100cqh,1500px)] w-full overflow-hidden rtl:right-auto rtl:left-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+              <div className="absolute inset-0">
                 <img
                   src={bg}
                   alt="2005 recognition"
