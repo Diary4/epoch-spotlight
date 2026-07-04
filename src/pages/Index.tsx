@@ -105,7 +105,7 @@ const PEOPLE_CONTENT: Record<
     subtitle: "Discover who the Kurds are and the values, identity, and resilience that shape their story.",
     heroImage: bg3,
     items: [
-      { id: "who", title: "Who Are the Kurds?", description: "An ancient people of the Middle East known for courage, hospitality, and cultural richness.", image: bg2, icon: "🏛" },
+      { id: "who", title: "Who Are\nthe Kurds?", description: "An ancient people of the Middle East known for courage, hospitality, and cultural richness.", image: bg2, icon: "🏛" },
       { id: "identity", title: "A Shared Identity", description: "A people connected by language, history, tradition, and collective memory.", image: peshmargaBg, icon: "❖" },
       { id: "resilience", title: "A Story of Resilience", description: "A history shaped by endurance, dignity, and hope.", image: bg3, icon: "☀" },
     ],

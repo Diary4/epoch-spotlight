@@ -28,10 +28,16 @@ import LibraryBookReader from "./pages/LibraryBookReader.tsx";
 
 import { useViewportHeight } from "@/hooks/useViewportHeight";
 import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
+import KurdistanFlagPage from "@/components/Sections/TheLand/KurdistanFlagPage";
 
 const DevDialects = () => {
   const lang = (new URLSearchParams(window.location.search).get("lang") ?? "en") as "ku" | "en" | "ar";
   return <KurdishLanguageDialectsPage lang={lang} onBack={() => {}} />;
+};
+
+const DevFlag = () => {
+  const lang = (new URLSearchParams(window.location.search).get("lang") ?? "en") as "ku" | "en" | "ar";
+  return <KurdistanFlagPage lang={lang} onBack={() => {}} />;
 };
 
 const queryClient = new QueryClient();
@@ -67,7 +73,10 @@ const AppRoutes = () => {
           <Route path="/library/books/:bookId" element={<LibraryBookDetail />} />
           <Route path="/library/books/:bookId/read" element={<LibraryBookReader />} />
           {import.meta.env.DEV && (
-            <Route path="/__dev/dialects" element={<DevDialects />} />
+            <>
+              <Route path="/__dev/dialects" element={<DevDialects />} />
+              <Route path="/__dev/flag" element={<DevFlag />} />
+            </>
           )}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

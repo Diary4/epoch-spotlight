@@ -112,7 +112,14 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack, onLan
 
     return {
       ...card,
-      title: (source?.title ?? card.title).replace(" ", "\n"),
+      title: (() => {
+        const raw = source?.title ?? card.title;
+        if (raw.includes("\n")) return raw;
+        if (card.id === "whoAreTheKurds") return raw.replace(/^Who Are /, "Who Are\n");
+        if (card.id === "sharedIdentity") return raw.replace(/^A Shared /, "A Shared\n");
+        if (card.id === "resilience") return raw.replace(/^A Story of /, "A Story of\n");
+        return raw;
+      })(),
       description: source?.description ?? card.description,
     };
   });
@@ -339,8 +346,12 @@ export default function ThePeoplePage({ lang = "en", onSelectCard, onBack, onLan
 
                 <CircleImage image={card.image} />
                 <div className="mt-[20px] lg:mt-[50px]  flex min-h-[100px] flex-1 flex-col px-1 pb-2 pt-6 text-center min-[700px]:min-h-[220px] min-[700px]:px-6 min-[700px]:pb-8 min-[700px]:pt-12 lg:min-h-[300px]">
-                  <h3 data-discover-lang="true" className={`whitespace-pre-line ${displayFont} text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]`}>
-                    {card.title}
+                  <h3 data-discover-lang="true" className={`${displayFont} text-[9px] font-light leading-tight text-[#1f352d] xs:text-[12px] min-[700px]:text-[22px] lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px] kiosk-portrait:text-[3vw]`}>
+                    {card.title.split("\n").map((line, i) => (
+                      <span key={i} className="block whitespace-nowrap">
+                        {line}
+                      </span>
+                    ))}
                   </h3>
 
                   <div className="mx-auto my-1.5 flex max-w-[50px] items-center justify-center gap-1 text-[#c7a04e] xs:my-5 xs:max-w-[140px] xs:gap-2">

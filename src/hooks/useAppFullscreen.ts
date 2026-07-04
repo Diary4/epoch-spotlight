@@ -11,7 +11,7 @@ function isWebPlatform() {
 export function useAppFullscreen(pathname = "/") {
   const [showGate, setShowGate] = useState(false);
   const gateDismissedRef = useRef(false);
-  const skipGate = pathname === "/";
+  const skipGate = pathname === "/" || pathname.startsWith("/__dev/");
 
   const dismissGate = useCallback(() => {
     gateDismissedRef.current = true;

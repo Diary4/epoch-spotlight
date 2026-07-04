@@ -41,6 +41,13 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
   const data = CONTENT[lang] as any;
   const detail = data?.people?.detailPages?.whoAreTheKurds ?? {};
 
+  const rawTitle = detail?.title ?? "Who Are the Kurds?";
+  const heroTitle = rawTitle.includes("\n")
+    ? rawTitle
+    : lang === "en"
+      ? rawTitle.replace(/^Who Are /, "Who Are\n")
+      : rawTitle;
+
   const localizedCards = infoCards.map((card, i) => ({
     ...card,
     title: detail?.cards?.[i]?.title ?? card.title,
@@ -115,13 +122,17 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className={`journey-detail-intro ${isRtlScript ? "max-w-[min(58cqw,900px)]" : "max-w-[min(46cqw,720px)]"}`}>
                 <h1
-                  className={`${displayFont} ${isRtlScript ? "font-medium" : "font-light"} whitespace-nowrap leading-none tracking-tight text-[#00604f] ${
+                  className={`${displayFont} ${isRtlScript ? "font-medium" : "font-light"} leading-none tracking-tight text-[#00604f] ${
                     isRtlScript
                       ? "text-[clamp(4.25rem,8.5cqw,8.5rem)]"
                       : "text-[clamp(6rem,11cqw,10rem)]"
                   }`}
                 >
-                  {detail?.title ?? "Who Are the Kurds?"}
+                  {heroTitle.split("\n").map((line, i) => (
+                    <span key={i} className="block whitespace-nowrap">
+                      {line}
+                    </span>
+                  ))}
                 </h1>
 
                 <p
