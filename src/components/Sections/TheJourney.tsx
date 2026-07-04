@@ -8,7 +8,7 @@ import {
   Scale,
   SunMedium,
 } from "lucide-react";
-import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
+import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -378,7 +378,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       <button
         type="button"
         onClick={onBack}
-        className={sectionBackButtonClassName}
+        className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(lang === "en" ? "ltr" : "rtl")}`}
         aria-label="Back to Discover"
       >
         <ArrowLeft className={sectionBackIconClassName} />

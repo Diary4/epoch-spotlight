@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
-import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
+import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
@@ -208,10 +208,10 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
       <button
         type="button"
         onClick={onBack}
-        className={`${sectionBackButtonClassName} rtl:left-auto rtl:right-6`}
+        className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(dir)}`}
         aria-label="Back to Discover"
       >
-        <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
+        <ArrowLeft className={sectionBackIconClassName} />
       </button>
       <div
         ref={canvasRef}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
+import { detailBackButtonClassName, detailBackButtonSideClassName } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/theland/progress-4.webp";
 import pattern1 from "@/assets/images/patterns/card-1.webp";
@@ -193,7 +194,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
             <button
               type="button"
               onClick={onBack}
-              className="land-detail-back absolute left-[clamp(1rem,2cqw,2rem)] top-[clamp(1rem,2cqh,2rem)] z-30 grid h-[clamp(2.8rem,4.4cqw,3.8rem)] w-[clamp(2.8rem,4.4cqw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm rtl:left-auto rtl:right-[clamp(1rem,2cqw,2rem)]"
+              className={`land-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
               aria-label="Back to The Land and Future"
             >
               <ArrowLeft size={32} className="rtl:rotate-180" />

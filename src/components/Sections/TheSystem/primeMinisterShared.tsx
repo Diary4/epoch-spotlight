@@ -1,7 +1,7 @@
 import type { ElementType, ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import backgroundPattern from "@/assets/images/patterns/pattern.webp";
 
 export const PM_COLORS = {
@@ -54,6 +54,7 @@ type PageShellProps = {
 
 export function PrimeMinisterPageShell({ lang = "en", onBack, children, className = "" }: PageShellProps) {
   const isRtlScript = discoverRtlScript(lang);
+  const dir = lang === "en" ? "ltr" : "rtl";
 
   return (
     <main
@@ -63,7 +64,7 @@ export function PrimeMinisterPageShell({ lang = "en", onBack, children, classNam
         <button
           type="button"
           onClick={onBack}
-          className="system-detail-back absolute left-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm sm:border-2 sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:left-8 lg:top-8 lg:h-14 lg:w-14"
+          className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
           aria-label="Back"
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />

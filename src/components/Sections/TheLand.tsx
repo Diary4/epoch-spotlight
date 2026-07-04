@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, BarChart3, Mountain, Shield, Star, SunMedium, type LucideIcon } from "lucide-react";
-import { sectionBackButtonClassName, sectionBackIconClassName } from "@/constants/backNavigation";
+import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
 import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
@@ -315,10 +315,10 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
         <button
           type="button"
           onClick={onBack}
-          className={`${sectionBackButtonClassName} rtl:left-auto rtl:right-3 xs:rtl:right-6`}
+          className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(dir)}`}
           aria-label="Back to Discover"
         >
-          <ArrowLeft className={`${sectionBackIconClassName} rtl:rotate-180`} />
+          <ArrowLeft className={sectionBackIconClassName} />
         </button>
 
         <DiscoverLanguageButton

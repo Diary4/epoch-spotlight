@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft, BookOpen, Landmark, Scale } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import en from "@/data/en.json";
@@ -68,7 +68,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
         <button
           type="button"
           onClick={onBack}
-          className="journey-detail-back absolute left-4 top-4 sm:left-[clamp(1rem,2vw,2rem)] sm:top-[clamp(1rem,2vh,2rem)] z-30 grid h-10 w-10 sm:h-[clamp(2.8rem,4.4vw,3.8rem)] sm:w-[clamp(2.8rem,4.4vw,3.8rem)] place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#17233b] shadow-sm transition-transform active:scale-95 rtl:left-auto rtl:right-4 sm:rtl:right-[clamp(1rem,2vw,2rem)]"
+          className={`journey-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
           aria-label="Back to Journey"
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />

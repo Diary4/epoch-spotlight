@@ -14,6 +14,7 @@ import {
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
+  detailBackButtonSideClassName,
   detailBackIconClassName,
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
@@ -182,7 +183,7 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             <button
               type="button"
               onClick={onBack}
-              className={systemCanvasBackButtonClassName}
+              className={`${systemCanvasBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
               aria-label="Back to The System"
             >
               <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName} />
