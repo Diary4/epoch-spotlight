@@ -122,6 +122,10 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
                   className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_38%_46%,black_0%,black_55%,transparent_84%)]"
                 />
               </div>
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[clamp(5rem,18cqh,14rem)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/80 to-transparent"
+                aria-hidden
+              />
             </div>
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
@@ -139,7 +143,7 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
                   <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                 </div>
 
-                <p className="ml-auto mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(39cqw,620px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
+                <p className="ml-auto mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(39cqw,620px)] rounded-[18px] border border-[#ead8b7]/80 bg-white/90 px-[clamp(1rem,1.8cqw,1.6rem)] py-[clamp(0.85rem,1.6cqh,1.4rem)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549] shadow-[0_8px_24px_rgba(84,54,16,0.12)] backdrop-blur-md">
                   {section.description ?? "Kurdistan is building a stronger tomorrow through progress, unity, and opportunity."}
                 </p>
               </section>

@@ -126,6 +126,10 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
                   className="absolute inset-0 h-full w-full object-cover opacity-78 [mask-image:radial-gradient(circle_at_58%_48%,black_0%,black_55%,transparent_84%)]"
                 />
               </div>
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[clamp(5rem,18cqh,14rem)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/80 to-transparent"
+                aria-hidden
+              />
             </div>
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
