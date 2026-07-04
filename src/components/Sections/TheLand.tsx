@@ -305,7 +305,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
   }, []);
 
   return (
-    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
+    <main className="m-0 flex min-h-screen w-screen justify-center bg-[#fbf5eb] p-0 text-[#17233b] overflow-x-hidden">
       <section
         ref={sectionRef}
         lang={lang}

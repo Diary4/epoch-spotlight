@@ -211,7 +211,7 @@ export default function TouristicPlaceDetailPage({
   const detailCards = categoryHighlightCards[lang]?.[categoryId] ?? categoryHighlightCards[lang].nature;
 
   return (
-    <main ref={rootRef} dir={dir} className="m-0 min-h-screen w-full max-w-none bg-[#f8f1e7] text-[#17233b] overflow-x-hidden">
+    <main ref={rootRef} dir={dir} className="m-0 min-h-screen w-full max-w-none bg-[#fbf5eb] text-[#17233b] overflow-x-hidden">
       <section className="relative mx-auto flex min-h-screen w-[min(100vw,1400px)] flex-col overflow-y-auto overflow-x-hidden md:overflow-hidden rounded-[22px] bg-[#fbf5eb]">
         {/* Responsive Back Button */}
         <button

@@ -79,7 +79,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
     <div
       dir={dir}
       lang={lang}
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
@@ -94,7 +94,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
           containerType: "size",
         }}
       >
-        <main ref={rootRef} className="m-0 h-full w-full bg-[#f8f1e7] text-[#17233b]">
+        <main ref={rootRef} className="m-0 h-full w-full bg-[#fbf5eb] text-[#17233b]">
           <section className="relative mx-auto flex h-full w-full flex-col overflow-hidden bg-[#fbf5eb]">
             <button
               type="button"

@@ -368,7 +368,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
 
   return (
     <div
-      className={`relative h-screen w-screen overflow-hidden bg-[#f8f1e7] ${sectionFont}`}
+      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${sectionFont}`}
       style={{
         width: "100vw",
         height: "100vh",
@@ -395,7 +395,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
           containerType: "size",
         }}
       >
-        <main ref={rootRef} className="m-0 flex h-full w-full justify-center bg-[#f8f1e7] p-0 text-[#17233b] overflow-x-hidden">
+        <main ref={rootRef} className="m-0 flex h-full w-full justify-center bg-[#fbf5eb] p-0 text-[#17233b] overflow-x-hidden">
           <section className="relative flex h-full w-full flex-col overflow-x-hidden overflow-y-visible bg-[#fbf5eb]">
             {/* Subtle paper patterns */}
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] block" />
