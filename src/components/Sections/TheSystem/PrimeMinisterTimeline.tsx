@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import {
+  detailBackButtonClassName,
+  detailBackButtonSideClassName,
+  detailBackIconClassName,
+  detailBackIconSize,
+} from "@/constants/backNavigation";
 import mainPrimeMinisterImage from "@/assets/images/PrimeMinistir/p-2.webp";
 import primeMinisterImage from "@/assets/images/PrimeMinistir/2019.webp";
 import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).webp";
@@ -599,6 +605,7 @@ function getTimeline(lang: "ku" | "en" | "ar"): TimelineEntry[] {
 
 export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMinisterTimelineProps) {
   const isRtl = discoverRtlScript(lang);
+  const dir = lang === "en" ? "ltr" : "rtl";
   const displayFont = discoverDisplayFont(lang);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
@@ -610,7 +617,6 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
 
   const timeline = getTimeline(lang);
 
-  const backLabel = isAr ? "رجوع" : isKu ? "گەڕانەوە" : "Back";
   const headerLabel = isAr ? "المسيرة" : isKu ? "گەشتەکە" : "The Journey";
   const endLabel = isAr ? "تستمر المسيرة..." : isKu ? "گەشتەکە بەردەوامە..." : "The Journey Continues...";
 
@@ -672,14 +678,10 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
       <button
         type="button"
         onClick={onBack}
-        className={`absolute top-5 z-30 flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:gap-3 sm:top-8 ${
-          isRtl ? "right-4 sm:right-8" : "left-4 sm:left-8"
-        }`}
-        style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", border: "1px solid rgba(201,154,85,0.3)" }}
-        aria-label={backLabel}
+        className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
+        aria-label="Back to Prime Minister"
       >
-        <ArrowLeft className={`h-4 w-4 ${isRtl ? "rotate-180" : ""}`} />
-        <span>{backLabel}</span>
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
       </button>
 
       {/* Vertical timeline navigation */}

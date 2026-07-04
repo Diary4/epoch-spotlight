@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import {
+  detailBackButtonClassName,
+  detailBackButtonSideClassName,
+  detailBackIconClassName,
+  detailBackIconSize,
+} from "@/constants/backNavigation";
 import primeMinister from "@/assets/images/PrimeMinistir/p-2.webp";
 
 type PrimeMinisterPageProps = {
@@ -17,6 +23,7 @@ export default function PrimeMinisterPage({
   const isAr = lang === "ar";
   const isKu = lang === "ku";
   const isRtl = discoverRtlScript(lang);
+  const dir = lang === "en" ? "ltr" : "rtl";
   const displayFont = discoverDisplayFont(lang);
 
   const [pageReady, setPageReady] = useState(false);
@@ -45,7 +52,6 @@ export default function PrimeMinisterPage({
     : isKu
       ? "گەشتە تەواوەکە ببینە"
       : "Explore the Full Journey";
-  const backLabel = isAr ? "رجوع" : isKu ? "گەڕانەوە" : "Back";
 
   return (
     <main
@@ -68,18 +74,10 @@ export default function PrimeMinisterPage({
       <button
         type="button"
         onClick={onBack}
-        className={`absolute top-5 z-20 flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:gap-3 sm:top-8 ${
-          isRtl ? "right-4 sm:right-8" : "left-4 sm:left-8"
-        }`}
-        style={{
-          background: "rgba(0,0,0,0.5)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid rgba(255,255,255,0.2)",
-        }}
-        aria-label={backLabel}
+        className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
+        aria-label="Back to The System"
       >
-        <ArrowLeft className={`h-4 w-4 ${isRtl ? "rotate-180" : ""}`} />
-        <span>{backLabel}</span>
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName} />
       </button>
 
       {/* Elegant content box */}
