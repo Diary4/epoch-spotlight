@@ -32,33 +32,40 @@ const dialects = [
   },
 ];
 
+// [English value, Letter name, Isolated, Final, Medial, Initial]
+// Blank medial/initial = letter does not connect to the following letter.
 const letters = [
-  ["[ o ]", "Oo", "Oo", "Oo", "ۆ", "-", "ۆ", "و"],
-  ["[ p ]", "Pp", "Pp", "Пп", "پ", "پ", "پ", "پ"],
-  ["[ q ]", "Qq", "Qq", "Qq", "ق", "قـ", "ـقـ", "ق"],
-  ["[ r ]", "Rr", "Rr", "Рр", "ر", "-", "-", "ر"],
-  ["[ s ]", "Ss", "Ss", "Cc", "س", "سـ", "ـسـ", "س"],
-  ["[ ʃ ]", "Shsh", "Şş", "Шш", "ش", "شـ", "ـشـ", "ش"],
-  ["[ t ]", "Tt", "Tt", "Тт", "ت", "تـ", "ـتـ", "ت"],
-  ["[ u ]", "Uu", "Uu", "Ӧӧ", "و", "-", "نو", "و"],
-  ["[ y ]", "Ûû", "Ûû", "Yy", "وو", "-", "نو", "وو"],
-  ["[ v ]", "Vv", "Vv", "Вв", "ڤ", "ڤـ", "ـڤـ", "ڤ"],
-  ["[ x ]", "Xx", "Xx", "Хх", "خ", "خـ", "ـخـ", "خ"],
-  ["[ z ]", "Zz", "Zz", "Зз", "ز", "-", "-", "ز"],
-  ["[ e ]", "Aa", "Aa", "Aa", "ا", "ـا", "نا", "ا"],
-  ["[ b ]", "Bb", "Bb", "Бб", "ب", "بـ", "ـبـ", "ب"],
-  ["[ c ]", "Cc", "Çç", "Чч", "ج", "جـ", "ـجـ", "ج"],
-  ["[ d ]", "Dd", "Dd", "Дд", "د", "-", "-", "د"],
-  ["[ e ]", "Ee", "Ee", "Ээ", "ە", "ە", "ە", "ە"],
-  ["[ f ]", "Ff", "Ff", "Фф", "ف", "فـ", "ـفـ", "ف"],
-  ["[ g ]", "Gg", "Gg", "Гг", "گ", "گـ", "ـگـ", "گ"],
-  ["[ h ]", "Hh", "Hh", "Һһ", "ه", "هـ", "ـهـ", "ه"],
-  ["[ i ]", "Ii", "Ii", "Ыы", "ی", "ـی", "ـیـ", "ی"],
-  ["[ j ]", "Jj", "Jj", "Жж", "ژ", "-", "-", "ز"],
-  ["[ k ]", "Kk", "Kk", "Кк", "ک", "کـ", "ـکـ", "ک"],
-  ["[ l ]", "Ll", "Ll", "Лл", "ل", "لـ", "ـلـ", "ل"],
-  ["[ m ]", "Mm", "Mm", "Мм", "م", "مـ", "ـمـ", "م"],
-  ["[ n ]", "Nn", "Nn", "Нн", "ن", "نـ", "ـنـ", "ن"],
+  ["a", "alef", "ا", "ـا", "", ""],
+  ["b", "bē", "ب", "ـب", "ـبـ", "بـ"],
+  ["p", "pē", "پ", "ـپ", "ـپـ", "پـ"],
+  ["t", "tē", "ت", "ـت", "ـتـ", "تـ"],
+  ["j", "jīm", "ج", "ـج", "ـجـ", "جـ"],
+  ["č", "čē", "چ", "ـچ", "ـچـ", "چـ"],
+  ["ḥ", "ḥē", "ح", "ـح", "ـحـ", "حـ"],
+  ["ḥ = x", "ḥē", "خ", "ـخ", "ـخـ", "خـ"],
+  ["d", "dāl", "د", "ـد", "", ""],
+  ["r", "rē", "ر", "ـر", "", ""],
+  ["ṛ", "ṛē", "ڕ", "ـڕ", "", ""],
+  ["z", "zē", "ز", "ـز", "", ""],
+  ["ž", "žē", "ژ", "ـژ", "", ""],
+  ["s", "sīn", "س", "ـس", "ـسـ", "سـ"],
+  ["š", "šīn", "ش", "ـش", "ـشـ", "شـ"],
+  ["ʿ", "ʿeyn", "ع", "ـع", "ـعـ", "عـ"],
+  ["ɣ", "ɣēyn", "غ", "ـغ", "ـغـ", "غـ"],
+  ["f", "fē", "ف", "ـف", "ـفـ", "فـ"],
+  ["v", "vē", "ڤ", "ـڤ", "ـڤـ", "ڤـ"],
+  ["q", "qāf", "ق", "ـق", "ـقـ", "قـ"],
+  ["k", "kāf", "ك", "ـك", "ـکـ", "کـ"],
+  ["g", "gāf", "گ", "ـگ", "ـگـ", "گـ"],
+  ["l", "lām", "ل", "ـل", "ـلـ", "لـ"],
+  ["ḷ", "ḷām", "ڵ", "ـڵ", "ـڵـ", "ڵـ"],
+  ["m", "mīm", "م", "ـم", "ـمـ", "مـ"],
+  ["n", "nūn", "ن", "ـن", "ـنـ", "نـ"],
+  ["w", "wāw", "و", "ـو", "", ""],
+  ["o", "oāo", "ۆ", "ـۆ", "", ""],
+  ["h", "hē", "ه", "ـه", "ـهـ", "هـ"],
+  ["y", "yē", "ی", "ـی", "ـیـ", "یـ"],
+  ["ê", "êē", "ێ", "ـێ", "ـێـ", "ێـ"],
 ];
 
 function Divider({ className = "" }) {
@@ -282,47 +289,38 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
 
                   <Divider className="mx-auto mt-4 w-56" />
 
-                  <div className="mt-5 grid flex-1 grid-cols-2 gap-5">
-                    {[letters.slice(0, 13), letters.slice(13)].map((group, groupIndex) => (
-                      <div key={groupIndex} className="min-w-0">
-                        <table className="w-full table-fixed border-collapse text-[#17233b]">
-                          <thead>
-                            <tr className="text-[clamp(0.4rem,0.71cqw,10px)] uppercase text-[#35435b]">
-                              <th className="w-[13%] px-1 py-2 text-left">IPA</th>
-                              <th className="w-[12%] px-1 py-2">Latin1</th>
-                              <th className="w-[12%] px-1 py-2">Latin2</th>
-                              <th className="w-[14%] px-1 py-2">Cyrillic</th>
-                              <th className="w-[12%] px-1 py-2">Final</th>
-                              <th className="w-[12%] px-1 py-2">Medial</th>
-                              <th className="w-[13%] px-1 py-2">Initial</th>
-                              <th className="w-[12%] px-1 py-2">Isol.</th>
-                            </tr>
-                          </thead>
+                  <div dir="ltr" className="mt-5 flex-1 overflow-hidden rounded-[14px] border border-[#ead8b7]">
+                    <table className="w-full table-fixed border-collapse text-[#17233b]">
+                      <thead>
+                        <tr className={`${displayFont} bg-[#fdf8ee] text-[clamp(0.55rem,1cqw,14px)] font-semibold text-[#17233b]`}>
+                          <th className="w-[15%] border-b border-l border-[#ead8b7] px-1 py-2.5 first:border-l-0">English<br />Value</th>
+                          <th className="w-[18%] border-b border-l border-[#ead8b7] px-1 py-2.5">Letter<br />Name</th>
+                          <th className="w-[17%] border-b border-l border-[#ead8b7] px-1 py-2.5">Isolated<br />Form</th>
+                          <th className="w-[17%] border-b border-l border-[#ead8b7] px-1 py-2.5">Final<br />Form</th>
+                          <th className="w-[17%] border-b border-l border-[#ead8b7] px-1 py-2.5">Medial<br />Form</th>
+                          <th className="w-[16%] border-b border-l border-[#ead8b7] px-1 py-2.5">Initial<br />Form</th>
+                        </tr>
+                      </thead>
 
-                          <tbody>
-                            {group.map((row, idx) => (
-                              <tr
-                                key={idx}
-                                className="h-[78px] last:border-0"
+                      <tbody>
+                        {letters.map((row, idx) => (
+                          <tr key={idx} className="border-b border-[#f2e6cc] last:border-0">
+                            {row.map((cell, i) => (
+                              <td
+                                key={i}
+                                className={`px-1 py-1 text-center align-middle leading-none ${
+                                  i < 2
+                                    ? `${displayFont} text-[clamp(0.55rem,1cqw,14px)] font-semibold`
+                                    : "text-[clamp(0.65rem,1.21cqw,17px)] font-medium"
+                                }`}
                               >
-                                {row.map((cell, i) => (
-                                  <td
-                                    key={i}
-                                    className={`px-1 py-2 text-center align-middle text-[clamp(0.6rem,1.07cqw,15px)] font-bold leading-none ${
-                                      i === 0
-                                        ? "text-left text-[clamp(0.5rem,0.86cqw,12px)] font-semibold text-[#35435b]"
-                                        : ""
-                                    }`}
-                                  >
-                                    {cell}
-                                  </td>
-                                ))}
-                              </tr>
+                                {cell}
+                              </td>
                             ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </section>
               </section>

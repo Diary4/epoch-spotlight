@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, 
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import bg from "@/assets/mainImages/theland/progress-4.webp";
+import bg from "@/assets/images/theLand/progress.png";
 import pattern1 from "@/assets/images/patterns/card-1.webp";
 import pattern2 from "@/assets/images/patterns/card-2.webp";
 import pattern3 from "@/assets/images/patterns/card-3.webp";
@@ -96,7 +96,7 @@ function ProgressCard({
           className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-[clamp(2rem,4cqh,4.5rem)] w-full object-cover opacity-[0.15] [mask-image:linear-gradient(to_top,black_45%,transparent_100%)]"
         />
       ) : (
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-0 [background-size:18px_18px]" />
       )}
     </article>
   );
@@ -209,7 +209,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
                 <img
                   src={bg}
                   alt="Progress city portrait"
-                  className="absolute inset-0 h-full w-full object-cover object-[center_top] opacity-[0.82] [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
+                  className="absolute inset-0 h-full w-full object-cover object-[center_top] [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
