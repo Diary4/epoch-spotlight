@@ -10,7 +10,7 @@ import {
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import heroImg from "@/assets/images/kurdistan.webp";
 import historyImg from "@/assets/images/thejourney/1991.webp";
-import flagPatternImg from "@/assets/images/patterns/the-flag-pattern.png";
+import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
 import unityImg from "@/assets/images/patterns/unity.png";
 
 const PAPER = "#fbf5eb";
