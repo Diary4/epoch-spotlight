@@ -229,22 +229,6 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
               />
             </div>
 
-            {/* Paper panel with gold-edged curve */}
-            <div className="pointer-events-none absolute inset-y-0 start-0 h-full w-[600px] rtl:-scale-x-100">
-              <svg viewBox="0 0 600 640" preserveAspectRatio="none" className="h-full w-full" aria-hidden="true">
-                <path d="M0 0 H462 C572 92 408 310 536 640 H0 Z" fill={PAPER} />
-                <path d="M462 0 C572 92 408 310 536 640" fill="none" stroke="#d9b477" strokeWidth="2.5" />
-              </svg>
-            </div>
-
-            {/* Knot ornament on the curve */}
-            <div className="land-detail-extra absolute top-[218px] start-[450px] text-[#c8a35f]">
-              <div className="relative h-10 w-10">
-                <span className="absolute inset-0 rotate-45 rounded-[4px] border-2 border-current" />
-                <span className="absolute inset-[7px] rotate-45 rounded-[3px] border-2 border-current" />
-              </div>
-            </div>
-
             <div className="land-detail-intro relative z-10 flex h-full max-w-[470px] flex-col justify-start px-14 pt-14">
               {t.the && (
                 <span className={`${displayFont} text-[42px] font-light leading-none`} style={{ color: INK }}>
