@@ -10,6 +10,8 @@ import {
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import heroImg from "@/assets/images/kurdistan.webp";
 import historyImg from "@/assets/images/thejourney/1991.webp";
+import flagPatternImg from "@/assets/images/patterns/the-flag-pattern.png";
+import unityImg from "@/assets/images/patterns/unity.png";
 
 const PAPER = "#fbf5eb";
 const GOLD = "#9b6d35";
@@ -43,56 +45,6 @@ function KurdishSun({ size, className = "" }: { size: number; className?: string
       </defs>
       <polygon points={SUN_POINTS} fill={`url(#${gradientId})`} />
       <circle cx="50" cy="50" r="27.5" fill={`url(#${gradientId})`} />
-    </svg>
-  );
-}
-
-/* Row of five linked figures for the Unity card */
-function UnityFigures({ className = "" }: { className?: string }) {
-  const xs = [26, 73, 120, 167, 214];
-  return (
-    <svg viewBox="0 0 240 66" className={className} aria-hidden="true">
-      {xs.slice(0, -1).map((x, i) => (
-        <path
-          key={x}
-          d={`M${x + 10} 33 Q${(x + xs[i + 1]) / 2} 46 ${xs[i + 1] - 10} 33`}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="4.5"
-          strokeLinecap="round"
-        />
-      ))}
-      {xs.map((x) => (
-        <g key={x} transform={`translate(${x} 0)`} fill="currentColor">
-          <circle cx="0" cy="12" r="8" />
-          <path d="M0 23 C7 23 11.5 27 12.5 33 L9 62 H3.5 L1.6 42 H-1.6 L-3.5 62 H-9 L-12.5 33 C-11.5 27 -7 23 0 23 Z" />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-/* Line drawing of mountains, citadel, and minaret for the Heritage card */
-function HeritageSkyline({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 440 116"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M4 102 L46 48 L74 80 L112 32 L152 92 L184 58 L214 94" />
-      <path d="M214 94 L240 68 L264 94" />
-      <path d="M264 102 V76 H278 V66 H290 V76 H304 V102" />
-      <path d="M308 102 V72 Q322 54 336 72 V102" />
-      <path d="M352 102 V38 Q356 28 360 38 V102" />
-      <path d="M349 48 H363" />
-      <path d="M364 102 L398 60 L434 102" />
-      <path d="M0 102 H440" strokeWidth="1.5" />
     </svg>
   );
 }
@@ -415,32 +367,47 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
             {/* --- Unity & Heritage --- */}
             <div className="mt-12 grid grid-cols-2 gap-7">
               <article
-                className="land-detail-card relative flex flex-col items-center overflow-hidden rounded-2xl border p-9 text-center"
+                className="land-detail-card relative flex min-h-[280px] flex-col items-center justify-between overflow-hidden rounded-2xl border p-9 text-center"
                 style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
               >
-                <div className="pointer-events-none absolute inset-x-10 top-14 h-40 opacity-15 [background-image:radial-gradient(#a37b45_1.6px,transparent_1.6px)] [background-size:15px_15px] [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
-                <h4 className={`${displayFont} text-[24px] font-light tracking-[0.18em]`} style={{ color: GOLD }}>
+                <div
+                  className="pointer-events-none absolute inset-0 bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(${unityImg})`,
+                    backgroundSize: "88% auto",
+                  }}
+                  aria-hidden
+                />
+                <h4 className={`relative z-10 ${displayFont} text-[24px] font-light tracking-[0.18em]`} style={{ color: GOLD }}>
                   {t.unity}
                 </h4>
-                <UnityFigures className="relative mt-7 h-[76px] w-[280px] text-[#b99152]" />
-                <p className="relative mt-6 max-w-[380px] text-[17px] font-light leading-[1.65]" style={{ color: BODY }}>
+                <p className="relative z-10 max-w-[380px] text-[17px] font-light leading-[1.65]" style={{ color: BODY }}>
                   {t.unityText}
                 </p>
               </article>
 
               <article
-                className="land-detail-card flex flex-col items-center rounded-2xl border p-9 text-center"
+                className="land-detail-card relative flex min-h-[280px] flex-col items-center justify-between overflow-hidden rounded-2xl border p-9 text-center"
                 style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
               >
                 <div
-                  className={`flex items-center gap-3 ${displayFont} text-[24px] font-light tracking-[0.18em]`}
-                  style={{ color: GOLD }}
-                >
-                  {t.heritage}
+                  className="pointer-events-none absolute inset-0 bg-[center_55%] bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(${flagPatternImg})`,
+                    backgroundSize: "95% auto",
+                  }}
+                  aria-hidden
+                />
+                <div className="relative z-10 flex flex-col items-center">
+                  <div
+                    className={`flex items-center gap-3 ${displayFont} text-[24px] font-light tracking-[0.18em]`}
+                    style={{ color: GOLD }}
+                  >
+                    {t.heritage}
+                  </div>
+                  <Diamond size={10} fill="currentColor" className="mt-2 text-[#c8a35f]" />
                 </div>
-                <Diamond size={10} fill="currentColor" className="mt-2 text-[#c8a35f]" />
-                <HeritageSkyline className="mt-5 h-[92px] w-[350px] text-[#c9a975]" />
-                <p className="mt-5 max-w-[400px] text-[17px] font-light leading-[1.65]" style={{ color: BODY }}>
+                <p className="relative z-10 max-w-[400px] text-[17px] font-light leading-[1.65]" style={{ color: BODY }}>
                   {t.heritageText}
                 </p>
               </article>
