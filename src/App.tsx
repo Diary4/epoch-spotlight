@@ -41,7 +41,8 @@ const DevFlag = () => {
 };
 
 const queryClient = new QueryClient();
-const Router = Capacitor.isNativePlatform() ? HashRouter : BrowserRouter;
+const isFileProtocol = typeof window !== "undefined" && window.location.protocol === "file:";
+const Router = Capacitor.isNativePlatform() || isFileProtocol ? HashRouter : BrowserRouter;
 
 const AppRoutes = () => {
   const { pathname } = useLocation();
