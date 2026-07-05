@@ -8,7 +8,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/mainImages/parliment.webp";
+import bg from "@/assets/images/parliment/parliment.jpg";
 
 const mainCards = [
   {

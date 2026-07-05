@@ -8,8 +8,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/mainImages/presidency-1.webp";
-import bg2 from "@/assets/mainImages/presidency-2.webp";
+import bg from "@/assets/images/parliment/presidency.jpg";
 
 const cards = [
   {
@@ -123,25 +122,19 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            {/* Main portrait — top-right, fading into the paper */}
-            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden sm:w-[min(70cqw,880px)] sm:max-w-[min(92cqw,880px)] rtl:right-auto rtl:left-0">
+            {/* Main portrait — full bleed, character framed center-right */}
+            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden rtl:right-auto rtl:left-0">
               <div className="absolute inset-0 rtl:-scale-x-100">
                 <img
                   src={bg}
-                  alt="Presidency building portrait"
-                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                  alt="Presidency portrait"
+                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-[-100%_0%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_12%,rgba(0,0,0,0.45)_28%,rgba(0,0,0,0.8)_44%,black_68%)]"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent rtl:bg-gradient-to-l" />
-            </div>
-
-            {/* Secondary landscape layer below the header */}
-            <div className="pointer-events-none absolute left-0 right-0 top-[720px] z-[1] hidden h-[200px] sm:block">
-              <img
-                src={bg2}
-                alt=""
-                className="system-detail-hero h-full w-full object-cover [mask-image:linear-gradient(to_bottom,transparent_0%,black_35%,black_70%,transparent_100%)]"
+              <div
+                className="absolute inset-0 [background:linear-gradient(to_right,#fbf5eb_0%,#fbf5eb_20%,rgba(251,245,235,0.96)_34%,rgba(251,245,235,0.78)_46%,rgba(251,245,235,0.42)_58%,transparent_74%)] rtl:[background:linear-gradient(to_left,#fbf5eb_0%,#fbf5eb_20%,rgba(251,245,235,0.96)_34%,rgba(251,245,235,0.78)_46%,rgba(251,245,235,0.42)_58%,transparent_74%)]"
               />
+              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
             </div>
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(3.5rem,6cqh,5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
