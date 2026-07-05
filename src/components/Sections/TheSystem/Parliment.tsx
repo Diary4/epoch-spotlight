@@ -160,10 +160,12 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
                 <img
                   src={bg}
                   alt="Parliament building portrait"
-                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-[72%_28%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_12%,rgba(0,0,0,0.45)_28%,rgba(0,0,0,0.8)_44%,black_68%),linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)] [-webkit-mask-composite:source-in] [mask-composite:intersect]"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
+              <div
+                className="absolute inset-0 [background:linear-gradient(to_right,#fbf5eb_0%,#fbf5eb_22%,rgba(251,245,235,0.96)_36%,rgba(251,245,235,0.78)_48%,rgba(251,245,235,0.42)_60%,transparent_74%)] rtl:[background:linear-gradient(to_left,#fbf5eb_0%,#fbf5eb_22%,rgba(251,245,235,0.96)_36%,rgba(251,245,235,0.78)_48%,rgba(251,245,235,0.42)_60%,transparent_74%)]"
+              />
               <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
             </div>
 
