@@ -289,8 +289,8 @@ export default function KurdishLanguageDialectsPage({ lang = "en", onBack }: Kur
 
                   <Divider className="mx-auto mt-4 w-56" />
 
-                  <div dir="ltr" className="mt-5 flex-1 overflow-hidden rounded-[14px] border border-[#ead8b7]">
-                    <table className="w-full table-fixed border-collapse text-[#17233b]">
+                  <div dir="ltr" className="mt-5 flex w-full flex-1 overflow-hidden rounded-[14px] border border-[#ead8b7]">
+                    <table className="h-full w-full flex-1 table-fixed border-collapse text-[#17233b]">
                       <thead>
                         <tr className={`${displayFont} bg-[#fdf8ee] text-[clamp(0.55rem,1cqw,14px)] font-semibold text-[#17233b]`}>
                           <th className="w-[15%] border-b border-l border-[#ead8b7] px-1 py-2.5 first:border-l-0">English<br />Value</th>

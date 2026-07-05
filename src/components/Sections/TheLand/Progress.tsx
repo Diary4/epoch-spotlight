@@ -239,7 +239,7 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
               </section>
             </div>
 
-            <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+            <div className="relative z-10 mt-[clamp(3.5rem,9cqh,8rem)] px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               {/* Top 3 cards */}
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localTopCards.map((card, index) => (
