@@ -6,7 +6,7 @@ import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangC
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import gsap from "gsap";
-import bg1 from "@/assets/mainImages/land-1.webp"
+import heroVideo from "@/assets/videos/hawler.mp4";
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
 import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
 import bg4 from "@/assets/images/new/discoverKurdistan/peshmarga.webp"
@@ -211,6 +211,7 @@ type LandAndFuturePageProps = {
 
 export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, onLanguageChange }: LandAndFuturePageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const [introDone, setIntroDone] = React.useState(false);
   const handleLanguageSelect = useDiscoverLanguageTransition(
     sectionRef,
@@ -304,6 +305,28 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
     return () => ctx.revert();
   }, []);
 
+  React.useEffect(() => {
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
+
+    const tryPlay = () => {
+      videoEl.play().catch(() => {
+        // Ignore autoplay promise rejections from browser policies.
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) tryPlay();
+    };
+
+    tryPlay();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
     <main className="m-0 flex min-h-screen w-screen justify-center bg-[#fbf5eb] p-0 text-[#17233b] overflow-x-hidden">
       <section
@@ -332,9 +355,14 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
             on every breakpoint (mobile keeps the same structure as large screens). */}
         <div data-land-bg="true" className="pointer-events-none absolute end-0 top-0 h-[56vh] sm:top-0 sm:h-[min(72vh,900px)] md:min-w-0 lg:h-[min(92vh,1150px)] w-full z-0 overflow-hidden">
           <div className={`absolute inset-0 ${isRtlScript ? "-scale-x-100" : ""}`}>
-            <img
-              src={bg1}
-              alt="Land and Future placeholder"
+            <video
+              ref={videoRef}
+              src={heroVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
           </div>
