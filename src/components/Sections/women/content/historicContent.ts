@@ -10,14 +10,14 @@ import {
   kuHistoricPageCopy,
 } from "@/components/Sections/women/content/kuWomenContentData";
 
-import masturaDetail from "@/assets/images/womens/mastura.webp";
 import adilaDetail from "@/assets/images/womens/adila.webp";
-import hafsaDetail from "@/assets/images/womens/hapsaxan.webp";
 import khanzadDetail from "@/assets/images/womens/khanzad.webp";
 import halimaDetail from "@/assets/images/women/historic-detail/halima-khanum-detail.webp";
 import meryemDetail from "@/assets/images/womens/maryamkhan.webp";
 import minaDetail from "@/assets/images/womens/minaqazi.webp";
-import najibaDetail from "@/assets/images/womens/najibakhan.webp";
+import mayanDetail from "@/assets/images/womens/mayankhan.webp";
+import nahidaDetail from "@/assets/images/womens/nadia-sheikh.webp";
+import danielleDetail from "@/assets/images/womens/danielle.png";
 
 export type HistoricFigureListItem = {
   id: string;
@@ -56,31 +56,31 @@ export type HistoricDetailContent = {
 };
 
 export const historicDetailPortraits: Record<string, string> = {
-  "mastura-ardalan": masturaDetail,
   "adela-khanum": adilaDetail,
-  "hafsa-khanum": hafsaDetail,
   "khanzada-khanum": khanzadDetail,
   "halima-khanum": halimaDetail,
   "meryem-khan": meryemDetail,
+  "mayan-khatun": mayanDetail,
   "mina-qazi": minaDetail,
-  "najiba-jalizada": najibaDetail,
+  "nahida-sheikh-salam": nahidaDetail,
+  "danielle-mitterrand": danielleDetail,
 };
 
 const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
   en: {
     backToWomen: "Back to Women",
     backToList: "Back to list",
-    heroTitle1: "Historic",
-    heroTitle2: "Women",
-    heroSubtitle: "Rulers, leaders, writers,\nand activists who shaped Kurdish history.",
+    heroTitle1: "Stateswomen &",
+    heroTitle2: "Political Leaders",
+    heroSubtitle: "Rulers, diplomats, advocates, and leaders who shaped Kurdish political life.",
     heroIntro:
-      "Figures from Kurdish history who led, wrote, taught, and defended their communities, each remembered for a distinct legacy.",
-    legacyTitle: "Legacy of wisdom",
-    legacySubtitle: "Poetry, justice, and learning.",
+      "Princesses, parliamentarians, tribal leaders, and international allies who carried their people through empire, mandate, and modern statehood.",
+    legacyTitle: "Legacy of leadership",
+    legacySubtitle: "Governance, diplomacy, and courage.",
     quotes: [
-      { text: "She wrote herself into history.", author: "Mastura Ardalan" },
       { text: "True leadership can uplift a city and forge a nation.", author: "Adela Khanum" },
-      { text: "There is no difference between men and women... so I am going to continue.", author: "Hapsa Khan" },
+      { text: "A leader is not defined by their title, but by their ability to keep their people united.", author: "Mayan Khatun" },
+      { text: "Defending human rights knows no national borders.", author: "Danielle Mitterrand" },
     ],
   },
   ku: {
@@ -119,28 +119,12 @@ const pageCopy: Record<WomenLangCode, HistoricPageCopy> = {
 const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
   en: [
     {
-      id: "mastura-ardalan",
-      name: "Mastura Ardalan",
-      role: "Poet · Historian · First Kurdish Female Writer",
-      teaser:
-        "Born into the Ardalan ruling family, she became one of Kurdistan's earliest women historians, writing herself into history from exile.",
-      icon: "flower",
-    },
-    {
       id: "adela-khanum",
       name: "Adela Khanum",
       role: "Ruler of Halabja · Leader of the Jaff Tribe",
       teaser:
         "When her husband died in 1909, she stepped forward to rule Halabja, transforming it into a center of trade, justice, and culture.",
       icon: "crown",
-    },
-    {
-      id: "hafsa-khanum",
-      name: "Hapsa Khan",
-      role: "Educator · Activist · Founder of the First Girls' School in Kurdistan",
-      teaser:
-        "She stayed in Sulaymaniyah when others fled the bombs, then opened the first girls' school and fought for Kurdish rights at the League of Nations.",
-      icon: "flower",
     },
     {
       id: "khanzada-khanum",
@@ -167,6 +151,14 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
       icon: "crown",
     },
     {
+      id: "mayan-khatun",
+      name: "Mayan Khatun",
+      role: "Yazidi Princess · Leader of the Yazidi Community",
+      teaser:
+        "She led the Yazidi Supreme Spiritual Council for decades — navigating Ottoman collapse, British rule, and the birth of modern Iraq.",
+      icon: "crown",
+    },
+    {
       id: "mina-qazi",
       name: "Mina Qazi",
       role: "First Lady of the Republic of Kurdistan · Women's Rights Pioneer",
@@ -175,12 +167,20 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
       icon: "flower",
     },
     {
-      id: "najiba-jalizada",
-      name: "Najiba Khani Jelizadeh",
-      role: "Intellectual · Women's Rights Activist · Pioneer of Education",
+      id: "nahida-sheikh-salam",
+      name: "Nahida Sheikh Salam",
+      role: "Writer · Cultural Pioneer · Activist",
       teaser:
-        "The first girl in Koya to attend formal school in 1924, an intellectual, activist, and keeper of Kurdish history who lit the path for thousands of girls.",
+        "Educator, poet, and nationalist who established a school for girls in Sulaymaniyah and mobilized youth for the Kurdish cause.",
       icon: "flower",
+    },
+    {
+      id: "danielle-mitterrand",
+      name: "Danielle Mitterrand",
+      role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",
+      teaser:
+        "After the Halabja chemical attack, she became one of Europe's most influential voices supporting the Kurdish people.",
+      icon: "crown",
     },
   ],
   ku: kuHistoricList,
@@ -189,43 +189,6 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
 
 const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>> = {
   en: {
-    "mastura-ardalan": {
-      nameLine1: "Mesture",
-      nameLine2: "Erdelan",
-      role: "Poet · Historian · First Kurdish Female Writer",
-      metaLine: "1805 – 1848 | Sanandaj, Eastern Kurdistan",
-      intro:
-        "Born into the educated ruling family of the Ardalan principality, Mastura was given access to learning at a time when most women were denied any education at all. She became a poet, a historian, and a chronicler of her dynasty, writing in both Kurdish and Persian. When political upheaval brought exile and loss to her life, she turned her pain into literature. She did not disappear into history. She wrote herself into it.",
-      portraitAlt: "Mastura Ardalan",
-      listIcon: "flower",
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "She wrote Tarikhi Ardalan, the history of the Ardalan dynasty, making her one of the earliest known women historians in Kurdistan. Alongside it, her Diwan of poetry remains a cornerstone of Kurdish literary heritage.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Without Mastura, a major chapter of Kurdistan's 19th-century history would exist only through male eyes. She gave the Ardalan dynasty its own voice, and that voice belonged to a woman.",
-      },
-      cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "1800s, Early 19th Century",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Sanandaj region, Ardalan Principality (western Iran / Kurdistan)",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "Mastura wrote her historical chronicle in the 1840s, at a time when women across the world were largely excluded from academic and literary life. She did it anyway, from exile.",
-      },
-      quote:
-        "Her poetic voice combines personal sorrow with broader reflections on society and fate, a voice that still speaks across centuries.",
-      quoteAuthor: "Kurdish literary historians",
-    },
     "adela-khanum": {
       nameLine1: "Adile",
       nameLine2: "Xanî Jaff",
@@ -262,42 +225,6 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
       quote:
         "Her position was probably unique owing to a happy combination of rank and character.",
       quoteAuthor: "E.B. Soane, British officer, 1926",
-    },
-    "hafsa-khanum": {
-      nameLine1: "Hepsexana",
-      nameLine2: "Neqib",
-      role: "Educator · Activist · Founder of the First Girls' School in Kurdistan",
-      metaLine: "1891 – 1953 | Sulaymaniyah, Kurdistan Region of Iraq",
-      intro:
-        "When the British bombed Sulaymaniyah in the early 1920s, everyone who could leave did. Hapsa Khan stayed. While others fled, she stayed with the families who had nowhere to go, and kept fighting for them after the bombs fell. She went door to door across the city to convince parents to send their daughters to school. If a family could not afford it, she paid herself. In 1930 she wrote to the League of Nations to demand Kurdish rights.",
-      portraitAlt: "Hapsa Khan",
-      listIcon: "flower",
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "She founded the Kurdish Women's Association, the first women's rights organization in Iraqi Kurdistan, and established the first school for girls in Sulaymaniyah, personally financing students whose families could not afford it.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Hapsa Khan understood that a nation is built one educated girl at a time. Everything she built, the school, the association, the letter to the League of Nations, still echoes in Kurdistan today.",
-      },
-      cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "Early 20th Century, 1920s to 1950s",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Sulaymaniyah, Iraqi Kurdistan",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "After Hapsa Khan died in 1953, her home was converted into a school, because the building that raised her became the building that raised others.",
-      },
-      quote: "There is no difference between men and women... so I am going to continue.",
-      quoteAuthor: "Hapsa Khan",
     },
     "khanzada-khanum": {
       nameLine1: "Mîr Xanzad",
@@ -410,6 +337,35 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         "She wielded great authority among her followers, recognized even by foreign military commanders.",
       quoteAuthor: "Basile Nikitine, documented account",
     },
+    "mayan-khatun": {
+      nameLine1: "Mayan",
+      nameLine2: "Khatun",
+      role: "First Lady of the Republic · The Great Yazidi Princess · Leader of the Yazidi Community",
+      metaLine: "1874 – 1957 | Shekhan, Nineveh, Kurdistan Region of Iraq",
+      intro:
+        "Mayan Khatun was the influential supreme leader and princess of the Yazidi community, navigating her people through a highly turbulent era in history. As a member of the noble house of Yazidi Mirs, she became the de facto ruler following her husband's death and headed the Yazidi Supreme Spiritual Council for decades. Renowned for her exceptional diplomatic acumen, she expertly mediated inter-tribal disputes and fought fiercely to protect the Yazidi faith and community during the complex political shifts of early 20th-century Mesopotamia.",
+      portraitAlt: "Mayan Khatun",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She was the first woman in modern Yazidi history to lead the community's Supreme Spiritual Council for over four decades. Her greatest achievement was maintaining the cultural and religious integrity of the Yazidis during the transition from the Ottoman Empire to the modern state of Iraq.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Mayan Khatun remains an unparalleled figure of female authority in Yazidi history. She proved that even in the most insular and traditional environments, a woman could rise to become the absolute protector and voice of her people.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "1874 until 1957" },
+        { icon: "⛩", title: "Map Location", text: "Shekhan district, Nineveh Governorate" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Mayan Khatun exercised authority that went beyond the spiritual; she held the final say in matters of community law and tribal governance, often issuing decrees that were respected across the entire Yazidi diaspora.",
+      },
+      quote:
+        "A leader is not defined by their title, but by their ability to keep their people united in the face of the storm.",
+      quoteAuthor: "Attributed to Mayan Khatun",
+    },
     "mina-qazi": {
       nameLine1: "Mina",
       nameLine2: "Qazi",
@@ -447,42 +403,62 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
         "Do not weep for the Peshwa; he did not die for himself, he gave his life for the liberation and dignity of his people.",
       quoteAuthor: "Mina Qazi",
     },
-    "najiba-jalizada": {
-      nameLine1: "Najiba Khani",
-      nameLine2: "Jelizadeh",
-      role: "Intellectual · Women's Rights Activist · Pioneer of Education",
-      metaLine: "1917 – 1999 | Koya, Kurdistan Region of Iraq",
+    "nahida-sheikh-salam": {
+      nameLine1: "Nahida",
+      nameLine2: "Sheikh Salam",
+      role: "Writer · Cultural Pioneer · Activist",
+      metaLine: "1922 – September 16, 1999 | Sulaymaniyah, Kurdistan Region of Iraq",
       intro:
-        "She was born in Koya in 1917, the daughter of Mala Muhammed Koyi, one of the most respected religious scholars of the region. At a time when even sending boys to school was considered a burden, her father enrolled her alongside boys in Koya's primary school in 1924, an act so unusual that other parents in the area were inspired to send their own daughters to school because of her success. In the 1940s she entered political life.",
-      portraitAlt: "Najiba Khani Jelizadeh",
+        "She was a prominent Kurdish educator, poet, and writer from Sulaymaniyah who devoted her life to women's rights, national awareness, and the Kurdish cause. A member of Komeley Hiwa from 1935, she combined teaching with activism, supported the Mala Mustafa Barzani movement, mobilized youth, and made her home a refuge for those committed to Kurdish culture and liberation.",
+      portraitAlt: "Nahida Sheikh Salam",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "In 1953 she was secretly elected as president of the Women's Union of Kurdistan, Koya branch. She published three volumes of her father's religious commentaries and left behind several important manuscripts on Kurdish history and folklore.",
+        text: "Her primary legacy lies in pioneering girls' education and nationalist activism. After completing her studies at the Teachers' House in Baghdad in 1940, she established a school for girls in Sulaymaniyah, significantly advancing women's education in the city.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "She proved that a Kurdish woman could be an intellectual, a writer, a mother, and a political leader all at once.",
+        text: "Nahida Sheikh Salam remains an essential figure in Kurdish intellectual history. She proved that Kurdish women could simultaneously be pillars of the education system and frontline national activists. Her life serves as an enduring bridge between the early 20th-century movements for Kurdish consciousness and the modern era.",
       },
       cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "Early 20th Century to late, 1917 to 1999",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Koya, Sulaymaniyah, Erbil (Iraqi Kurdistan)",
-        },
+        { icon: "♜", title: "Timeline Position", text: "1922 until September 16, 1999." },
+        { icon: "⛩", title: "Map Location", text: "Sulaymaniyah, Kurdistan Region of Iraq." },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "After the collapse of the revolution in 1975, Najiba Khani went into exile in Iran. When she returned to Sulaymaniyah, her high social standing and years of activism earned her an honorary title.",
+        text: "She was deeply committed to the belief that the national struggle was not exclusively the domain of men and that women were equally capable of bearing the burden of national responsibility.",
       },
       quote:
-        "She was not just a student, she was a flame that lit the path of education for thousands of other girls in the region.",
-      quoteAuthor: "Historical records of Koya city",
+        "I was the first Kurdish woman to join the struggle... because I believed that a woman should be a partner to a man in building the nation.",
+      quoteAuthor: "Attributed to Nahida Sheikh Salam",
+    },
+    "danielle-mitterrand": {
+      nameLine1: "Danielle",
+      nameLine2: "Mitterrand",
+      role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",
+      metaLine: "1924 – 2011 | Verdun, France",
+      intro:
+        "A renowned human rights activist, Danielle Mitterrand began her journey as a member of the French Resistance against the Nazis. As First Lady of France, she championed the rights of marginalized peoples worldwide. Following the Halabja chemical attack, she became the Kurdish people's most influential voice in Europe. Through her frequent visits to Kurdistan and relentless international advocacy, she became a symbol of humanitarianism and a cherished friend of the Kurdish people.",
+      portraitAlt: "Danielle Mitterrand",
+      listIcon: "crown",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "In 1986, she founded the France Libertés foundation, which grew into a globally recognized human rights organization. Through this institution, she championed the cause of oppressed peoples—particularly the Kurds—working tirelessly to bring their struggles and tragedies to the attention of the international community.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "True allies stand by the oppressed in their darkest hours, not just in times of peace. Danielle Mitterrand became a powerful voice for the Kurds when the world was silent. Her unwavering humanitarian legacy lives on today, remembered across Kurdistan as the \"Friend of the Kurdish People.\"",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "1924 to 2011" },
+        { icon: "⛩", title: "Map Location", text: "Verdun, France and Kurdistan" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "In 1992, while participating in a humanitarian aid convoy in Iraqi Kurdistan, a bomb exploded near her motorcade. Rather than deterring her, this assassination attempt only strengthened her resolve, and she continued to fearlessly defend the rights of the Kurdish people.",
+      },
+      quote: "Defending human rights knows no national borders.",
+      quoteAuthor: "Danielle Mitterrand",
     },
   },
   ku: kuHistoricDetails,

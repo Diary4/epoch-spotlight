@@ -10,13 +10,13 @@ export type HubCopy = {
   quoteLine3: string;
   journeyTitle: string;
   journeyDesc: string;
-  cards: { historic: string; knowledge: string; resistance: string; culture: string };
+  cards: { stateswomen: string; scholars: string; literary: string; commanders: string };
 };
 
 export const hubCopy: Record<WomenLangCode, HubCopy> = {
   en: {
     title: "The Women of Kurdistan",
-    subtitle: "Leadership, politics,\nresistance, culture, and legacy.",
+    subtitle: "Leadership, scholarship,\nliterature, and resistance.",
     description:
       "To celebrate Kurdish women in history, politics, literature, resistance, education, and culture — delivering powerful, emotional profiles that every visitor can connect with.",
     quoteLine1: "Across generations,",
@@ -24,7 +24,12 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     quoteLine3: "voices of strength and continuity.",
     journeyTitle: "Continue the Journey",
     journeyDesc: "Explore the stories behind each name.",
-    cards: { historic: "Historic", knowledge: "Political", resistance: "Resistance", culture: "Culture" },
+    cards: {
+      stateswomen: "Stateswomen & Political Leaders",
+      scholars: "Scholars & Educational Pioneers",
+      literary: "Literary & Cultural Figures",
+      commanders: "Commanders & Resistance Martyrs",
+    },
   },
   ku: kuHubCopy,
   ar: {
@@ -37,6 +42,11 @@ export const hubCopy: Record<WomenLangCode, HubCopy> = {
     quoteLine3: "أصوات قوة واستمرارية.",
     journeyTitle: "تابع الرحلة",
     journeyDesc: "استكشف القصص وراء كل اسم.",
-    cards: { historic: "تاريخي", knowledge: "السياسة", resistance: "المقاومة", culture: "الثقافة" },
+    cards: {
+      stateswomen: "السياسيات والقائدات",
+      scholars: "العالمات ورواد التعليم",
+      literary: "الأدبيات والثقافة",
+      commanders: "القائدات وشهداء المقاومة",
+    },
   },
 };

@@ -42,12 +42,12 @@ export type CulturePageCopy = {
 const pageCopy: Record<WomenLangCode, CulturePageCopy> = {
   en: {
     backToWomen: "Back to Women",
-    backToList: "Back to culture list",
-    heroTitleLine1: "Women of Culture",
-    heroTitleLine2: "and Memory",
-    heroSubtitle: "Poetry, oral tradition, and cultural preservation.",
+    backToList: "Back to literary list",
+    heroTitleLine1: "Literary &",
+    heroTitleLine2: "Cultural Figures",
+    heroSubtitle: "Poets, singers, writers, and voices that preserved Kurdish culture.",
     heroIntro:
-      "Not every influential woman left official records. Some live on through song, poetry, oral tradition, and the memory of their communities.",
+      "Women who carried Kurdish identity through poetry, song, journalism, and the written word across generations.",
     livingMemoryTitle: "Living memory",
     livingMemoryText:
       "Oral tradition carried Kurdish identity across generations. Where written records were few, women helped preserve memory.",
@@ -80,44 +80,36 @@ const pageCopy: Record<WomenLangCode, CulturePageCopy> = {
 const listByLang: Record<WomenLangCode, CultureFigureListItem[]> = {
   en: [
     {
+      id: "mastura-ardalan",
+      name: "Mastura Ardalan",
+      role: "Poet · Historian · First Kurdish Female Writer",
+      teaser:
+        "Born into the Ardalan ruling family, she became one of Kurdistan's earliest women historians, writing herself into history from exile.",
+      listIcon: "flower",
+    },
+    {
+      id: "shifa-gardi",
+      name: "Shifa Gardi",
+      role: "Field Journalist · Presenter · Output Manager at Rudaw",
+      teaser:
+        "A pioneering reporter martyred covering the war against ISIS — the first Kurdish female journalist to die on the front lines.",
+      listIcon: "flower",
+    },
+    {
+      id: "maryam-khan",
+      name: "Maryam Khan",
+      role: "The Voice of Kurdistan · Pioneer of Kurdish Radio Singing",
+      teaser:
+        "The first Kurdish woman to record songs professionally for radio — she saved over 200 traditional songs and precious Kurdish maqams from being lost to history.",
+      listIcon: "flower",
+    },
+    {
       id: "eyse-san",
       name: "Eyşe Şan",
       role: "Singer · Voice of Kurdish Resistance · Cultural Icon",
       teaser:
         "Her voice carried Kurdish pain and resistance when speaking Kurdish in public was illegal — she sang anyway.",
       listIcon: "flower",
-    },
-    {
-      id: "pakize-rafik-hilmi",
-      name: "Pakize Rafik Hilmi",
-      role: "Harvard Linguist · First Kurdish Woman in the Kurdish Academy of Sciences",
-      teaser:
-        "The first Iraqi student to earn a Harvard master's degree — she opened Kurdish scholarship to the world stage.",
-      listIcon: "crown",
-    },
-    {
-      id: "roshan-bedirkhan",
-      name: "Roshan Bedirkhan",
-      role: "Writer · Cultural Pioneer · Activist",
-      teaser:
-        "Partner in publishing Hawar and Ronahî, she championed girls' education and the preservation of the Kurdish language.",
-      listIcon: "crown",
-    },
-    {
-      id: "nahida-sheikh-salam",
-      name: "Nahida Sheikh Salam",
-      role: "Writer · Cultural Pioneer · Cultural Activist",
-      teaser:
-        "Educator, poet, and nationalist who established a school for girls in Sulaymaniyah and mobilized youth for the Kurdish cause.",
-      listIcon: "flower",
-    },
-    {
-      id: "danielle-mitterrand",
-      name: "Danielle Mitterrand",
-      role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",
-      teaser:
-        "After the Halabja chemical attack, she became one of Europe's most influential voices supporting the Kurdish people.",
-      listIcon: "crown",
     },
   ],
   ku: kuCultureList,

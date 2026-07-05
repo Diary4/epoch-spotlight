@@ -23,15 +23,20 @@ import topicPoetryImg from "@/assets/images/women/icons/k-2.webp";
 import topicHistoryImg from "@/assets/images/women/icons/k-3.webp";
 import topicPoliticalImg from "@/assets/images/women/icons/k-1.webp";
 import maryamKhanImg from "@/assets/images/womens/maryamkhan.webp";
-import mayanKhanImg from "@/assets/images/womens/mayankhan.webp";
+import hapsaKhanImg from "@/assets/images/womens/hapsaxan.webp";
+import najibaKhanImg from "@/assets/images/womens/najibakhan.webp";
+import pakizeImg from "@/assets/images/womens/pakiza.webp";
+import roshanImg from "@/assets/images/womens/roshan.webp";
 
 type WomenPoliticalPageProps = WomenLanguageProps & {
   onBack?: () => void;
 };
 
 const personImages: Record<string, string> = {
-  "maryam-khan": maryamKhanImg,
-  "mayan-khatun": mayanKhanImg,
+  "hafsa-khanum": hapsaKhanImg,
+  "najiba-jalizada": najibaKhanImg,
+  "pakize-rafik-hilmi": pakizeImg,
+  "roshan-bedirkhan": roshanImg,
 };
 
 const topicImages = [

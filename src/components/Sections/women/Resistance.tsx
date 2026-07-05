@@ -19,7 +19,6 @@ import {
 
 import resistanceHeroVideo from "@/assets/videos/resistance.webm";
 import imgQadam from "@/assets/images/womens/qadamkher.webp";
-import imgShifa from "@/assets/images/womens/shifagardi.webp";
 import imgLayal from "@/assets/images/womens/laylaqasim.webp";
 import imgMargaret from "@/assets/images/womens/margret.webp";
 import imgKhaja from "@/assets/images/womens/khajabawa.webp";
@@ -31,7 +30,6 @@ type WomenResistancePageProps = WomenLanguageProps & {
 
 const resistanceImages: Record<string, string> = {
   "qadam-kher": imgQadam,
-  "shifa-gardi": imgShifa,
   "layla-qasim": imgLayal,
   "margaret-george-shilo": imgMargaret,
   "khaja-bawa": imgKhaja,

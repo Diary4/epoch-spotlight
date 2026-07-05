@@ -3,6 +3,93 @@ import { kuCultureDetails } from "@/components/Sections/women/content/kuWomenCon
 
 export const cultureDetailsByLang = {
   en: {
+    "mastura-ardalan": {
+      nameLine1: "Mesture",
+      nameLine2: "Erdelan",
+      role: "Poet · Historian · First Kurdish Female Writer",
+      metaLine: "1805 – 1848 | Sanandaj, Eastern Kurdistan",
+      intro:
+        "Born into the educated ruling family of the Ardalan principality, Mastura was given access to learning at a time when most women were denied any education at all. She became a poet, a historian, and a chronicler of her dynasty, writing in both Kurdish and Persian. When political upheaval brought exile and loss to her life, she turned her pain into literature. She did not disappear into history. She wrote herself into it.",
+      portraitAlt: "Mastura Ardalan",
+      listIcon: "flower" as const,
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She wrote Tarikhi Ardalan, the history of the Ardalan dynasty, making her one of the earliest known women historians in Kurdistan. Alongside it, her Diwan of poetry remains a cornerstone of Kurdish literary heritage.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Without Mastura, a major chapter of Kurdistan's 19th-century history would exist only through male eyes. She gave the Ardalan dynasty its own voice, and that voice belonged to a woman.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "1800s, Early 19th Century" },
+        { icon: "⛩", title: "Map Location", text: "Sanandaj region, Ardalan Principality (western Iran / Kurdistan)" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "Mastura wrote her historical chronicle in the 1840s, at a time when women across the world were largely excluded from academic and literary life. She did it anyway, from exile.",
+      },
+      quote:
+        "Her poetic voice combines personal sorrow with broader reflections on society and fate, a voice that still speaks across centuries.",
+      quoteAuthor: "Kurdish literary historians",
+    },
+    "shifa-gardi": {
+      nameLine1: "Shifa",
+      nameLine2: "Gardi",
+      role: "Field Journalist · Presenter · Output Manager at Rudaw",
+      metaLine: "1986 – 2017 | Piranshahr, Eastern Kurdistan",
+      intro:
+        "Shifa Gardi was born in Piranshahr and grew into one of Kurdistan's most fearless field journalists. She helped build the Rudaw news team from its early days, presenting and reporting from the front lines of the war against ISIS. She went where few dared, into Mosul, into battle zones, into the heart of danger, to bring the truth home. On February 25, 2017, while covering operations against ISIS near Mosul, she was killed by a roadside bomb. She was 30 years old.",
+      portraitAlt: "Shifa Gardi",
+      listIcon: "flower" as const,
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "She was one of the founders of the Rudaw news team and became the first Kurdish female journalist to be martyred while covering the war against ISIS. Due to her exceptional work, the international Committee to Protect Journalists (CPJ) award and several other global awards were dedicated in her name.",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "Shifa Gardi proved that the pen and the camera can be as effective as a weapon. She became an inspiration for a new generation of female journalists in Kurdistan to not fear reaching the truth, even in the most difficult circumstances.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "Late twentieth century until 2017 (The era of the war against terror)" },
+        { icon: "⛩", title: "Map Location", text: "Piranshahr (Birthplace), Erbil (Workplace), and Mosul (Place of martyrdom)" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "A few days before her martyrdom, Shifa Gardi rescued a wounded rabbit in a dangerous war zone and brought it back to Erbil for treatment. This humanitarian scene, amidst the cruelty of war, remains in people's memories as one of her most compassionate messages.",
+      },
+      quote:
+        "Shifa was not just a journalist; she was a pioneer in breaking the barriers that sought to confine women behind the screens.",
+      quoteAuthor: "Her colleagues at Rudaw Media Network",
+    },
+    "maryam-khan": {
+      nameLine1: "Maryam",
+      nameLine2: "Khan",
+      role: "The Voice of Kurdistan · Pioneer of Kurdish Radio Singing",
+      metaLine: "1904 – 1949 | Botan, Northern Kurdistan",
+      intro:
+        "She was a revolutionary Kurdish artist whose life was shaped by early 20th-century forced migrations. Despite enduring severe personal hardships, including the loss of her child and constant displacement, she refused to be silenced. Transforming her suffering into art, she became the first Kurdish woman to professionally record her voice in Baghdad. Her legacy endures as a powerful symbol of Kurdish cultural survival and artistic resilience.",
+      portraitAlt: "Maryam Khan",
+      listIcon: "flower" as const,
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: 'Between 1937 and 1945, she recorded over 31 songs in Baghdad, and over her lifetime, she recorded over 200 traditional Kurdish songs with major international companies like "His Master\'s Voice".',
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "She proved that Kurdish cultural identity could persist even in the face of political oppression and displacement. Her transition from the rural village life of Botan to the professional recording studios of Baghdad paved the way for generations of Kurdish female artists who followed in her footsteps.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "1904 until 1949" },
+        { icon: "⛩", title: "Map Location", text: "Botan, Northern Kurdistan" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "During her time in Zakho, Maryam Khan faced such severe poverty that she was forced to work as a servant, yet she maintained her dignity and musical identity.",
+      },
+      quote:
+        "When I sing, I do not just sing for myself, I sing for every Kurdish mother who has faced the hardships of displacement and loss.",
+      quoteAuthor: "Attributed to Maryam Khan",
+    },
     "eyse-san": {
       nameLine1: "Eyşe",
       nameLine2: "Şan",
@@ -21,16 +108,8 @@ export const cultureDetailsByLang = {
         text: "When a government bans a language, it tries to erase a people. Eyşe Şan sang that language in concert halls, in exile, through grief and loss. Language cannot be erased when someone keeps singing it.",
       },
       cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "Mid 20th Century, 1960s to 1990s",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Diyarbakir (Amed), Istanbul, Germany, and South Kurdistan",
-        },
+        { icon: "♜", title: "Timeline Position", text: "Mid 20th Century, 1960s to 1990s" },
+        { icon: "⛩", title: "Map Location", text: "Diyarbakir (Amed), Istanbul, Germany, and South Kurdistan" },
       ],
       didYouKnow: {
         title: "Did You Know?",
@@ -38,145 +117,6 @@ export const cultureDetailsByLang = {
       },
       quote: "Her voice was banned. She sang anyway.",
       quoteAuthor: "Kurdish cultural history",
-    },
-    "pakize-rafik-hilmi": {
-      nameLine1: "Pakize",
-      nameLine2: "Rafik Hilmi",
-      role: "Harvard Linguist · First Kurdish Woman in the Kurdish Academy of Sciences",
-      metaLine: "1924 – August 13, 2003 | Sulaymaniyah, Iraqi Kurdistan",
-      intro:
-        "In 1949, Pakize Rafik Hilmi was accepted by Harvard University's Department of Oriental Languages, becoming the first Iraqi student, male or female, to earn a master's degree there. She returned to Baghdad and became the first woman to head the Department of Kurdish Language at a major university. She taught at Berlin, Amman, and Baghdad. She wrote dictionaries. She gave lectures on Kurdish linguistics on Baghdad Radio. She worked until the last days of her life in 2003.",
-      portraitAlt: "Pakize Rafik Hilmi",
-      listIcon: "crown" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "First Iraqi student to earn a Harvard master's degree (1951). First woman to head the Kurdish Language Department at Baghdad University (1958). First Kurdish woman elected to the Kurdish Academy of Sciences (1970). First Kurdish woman in the British Royal Asiatic Society.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Pakize Rafik Hilmi proved that Kurdish scholarship belonged on the world stage, at Harvard, in Berlin, in Amman, in the pages of academic journals. She opened a door that had never been opened before.",
-      },
-      cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "Mid to Late 20th Century, 1940s to 2003",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Sulaymaniyah, Baghdad, Harvard (USA), Berlin (Germany), Amman (Jordan)",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "Pakize's father was also a prominent Kurdish intellectual, and after his death she republished all his works, ensuring two generations of Kurdish scholarship survived.",
-      },
-      quote:
-        "Until the day of her passing, she never ceased reading, writing, or engaging in intellectual and social activities.",
-      quoteAuthor: "Kurdish Women's Library, Archive and Research Center",
-    },
-    "roshan-bedirkhan": {
-      nameLine1: "Roshan",
-      nameLine2: "Bedirkhan",
-      role: "Writer · Cultural Pioneer · Activist",
-      metaLine: "1909 – 1992 | Kayseri, Northern Kurdistan",
-      intro:
-        "A prominent Kurdish intellectual and writer, she was shaped by forced displacement from Kayseri to Istanbul and Damascus. As the wife and partner of Prince Jaladet Bedirkhan, she devoted her life to preserving Kurdish language and culture, promoting girls' education, and strengthening national identity through her writing and activism.",
-      portraitAlt: "Roshan Bedirkhan",
-      listIcon: "crown" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "She played a pivotal role as a partner in the publication of the journals Hawar and Ronahî, where she oversaw numerous editorial and administrative activities essential to preserving the Kurdish language. She was a prominent member of the \"Kurdish Women's Union\" beginning in 1934, consistently fighting for the rights of Kurdish women and the development of their educational and social capabilities. Additionally, she left a rich literary legacy through her memoirs and writings, which have been documented in numerous books and literary studies.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Roshan Bedirkhan remains an enduring symbol of the intellectual woman who did not just write, but took a leadership role in the cultural and political arena. Her legacy in preserving the Kurdish language and raising generations to value their national identity makes her one of the pillars of modern Kurdish thought, continuing to inspire activists and writers today.",
-      },
-      cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "July 11, 1909, until June 1, 1992.",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Born in Kayseri (Northern Kurdistan), she lived in Istanbul and Damascus; she passed away in Damascus and was laid to rest in the Sheikh Khalid Naqshbandi cemetery.",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "Although she was fluent in Turkish, Arabic, and French, she always insisted on speaking and writing in Kurdish, emphasizing that \"language is the essence of national identity, which must never be compromised under any circumstances\".",
-      },
-      quote:
-        "The woman is the fundamental pillar of a nation's renaissance, and no people can be truly liberated unless their women are conscious and educated.",
-      quoteAuthor: "Attributed to Roshan Bedirkhan",
-    },
-    "nahida-sheikh-salam": {
-      nameLine1: "Nahida",
-      nameLine2: "Sheikh Salam",
-      role: "Writer · Cultural Pioneer · Activist",
-      metaLine: "1922 – September 16, 1999 | Sulaymaniyah, Kurdistan Region of Iraq",
-      intro:
-        "She was a prominent Kurdish educator, poet, and writer from Sulaymaniyah who devoted her life to women's rights, national awareness, and the Kurdish cause. A member of Komeley Hiwa from 1935, she combined teaching with activism, supported the Mala Mustafa Barzani movement, mobilized youth, and made her home a refuge for those committed to Kurdish culture and liberation.",
-      portraitAlt: "Nahida Sheikh Salam",
-      listIcon: "flower" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "Her primary legacy lies in pioneering girls' education and nationalist activism. After completing her studies at the Teachers' House in Baghdad in 1940, she established a school for girls in Sulaymaniyah, significantly advancing women's education in the city.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "Nahida Sheikh Salam remains an essential figure in Kurdish intellectual history. She proved that Kurdish women could simultaneously be pillars of the education system and frontline national activists. Her life serves as an enduring bridge between the early 20th-century movements for Kurdish consciousness and the modern era.",
-      },
-      cards: [
-        {
-          icon: "♜",
-          title: "Timeline Position",
-          text: "1922 until September 16, 1999.",
-        },
-        {
-          icon: "⛩",
-          title: "Map Location",
-          text: "Sulaymaniyah, Kurdistan Region of Iraq.",
-        },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "She was deeply committed to the belief that the national struggle was not exclusively the domain of men and that women were equally capable of bearing the burden of national responsibility.",
-      },
-      quote:
-        "I was the first Kurdish woman to join the struggle... because I believed that a woman should be a partner to a man in building the nation.",
-      quoteAuthor: "Attributed to Nahida Sheikh Salam",
-    },
-    "danielle-mitterrand": {
-      nameLine1: "Danielle",
-      nameLine2: "Mitterrand",
-      role: "Human Rights Activist · First Lady of France · Friend of the Kurdish People",
-      metaLine: "1924 – 2011 | Verdun, France",
-      intro:
-        "A renowned human rights activist, Danielle Mitterrand began her journey as a member of the French Resistance against the Nazis. As First Lady of France, she championed the rights of marginalized peoples worldwide. Following the Halabja chemical attack, she became the Kurdish people's most influential voice in Europe. Through her frequent visits to Kurdistan and relentless international advocacy, she became a symbol of humanitarianism and a cherished friend of the Kurdish people.",
-      portraitAlt: "Danielle Mitterrand",
-      listIcon: "crown" as const,
-      greatestAchievement: {
-        title: "Greatest Achievement",
-        text: "In 1986, she founded the France Libertés foundation, which grew into a globally recognized human rights organization. Through this institution, she championed the cause of oppressed peoples—particularly the Kurds—working tirelessly to bring their struggles and tragedies to the attention of the international community.",
-      },
-      whySheMatters: {
-        title: "Why She Still Matters",
-        text: "True allies stand by the oppressed in their darkest hours, not just in times of peace. Danielle Mitterrand became a powerful voice for the Kurds when the world was silent. Her unwavering humanitarian legacy lives on today, remembered across Kurdistan as the \"Friend of the Kurdish People.\"",
-      },
-      cards: [
-        { icon: "♜", title: "Timeline Position", text: "1924 to 2011" },
-        { icon: "⛩", title: "Map Location", text: "Verdun, France and Kurdistan" },
-      ],
-      didYouKnow: {
-        title: "Did You Know?",
-        text: "In 1992, while participating in a humanitarian aid convoy in Iraqi Kurdistan, a bomb exploded near her motorcade. Rather than deterring her, this assassination attempt only strengthened her resolve, and she continued to fearlessly defend the rights of the Kurdish people.",
-      },
-      quote: "Defending human rights knows no national borders.",
-      quoteAuthor: "Danielle Mitterrand",
     },
   },
   ku: kuCultureDetails,

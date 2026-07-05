@@ -32,15 +32,15 @@ type LegacyPageProps = {
 };
 
 type LegacyCard = {
-  id: "historic" | "knowledge" | "resistance" | "culture";
+  id: "stateswomen" | "scholars" | "literary" | "commanders";
   imageSrc: string;
 };
 
 const legacyCards: LegacyCard[] = [
-  { id: "historic", imageSrc: crownIcon },
-  { id: "knowledge", imageSrc: bookIcon },
-  { id: "resistance", imageSrc: handIcon },
-  { id: "culture", imageSrc: guitarIcon },
+  { id: "stateswomen", imageSrc: crownIcon },
+  { id: "scholars", imageSrc: bookIcon },
+  { id: "literary", imageSrc: guitarIcon },
+  { id: "commanders", imageSrc: handIcon },
 ];
 
 export default function LegacyPage({
@@ -48,7 +48,7 @@ export default function LegacyPage({
   onExploreMore,
 }: LegacyPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const [activeSection, setActiveSection] = React.useState<"historic" | "knowledge" | "resistance" | "culture" | null>(null);
+  const [activeSection, setActiveSection] = React.useState<"stateswomen" | "scholars" | "literary" | "commanders" | null>(null);
   const [lang, setLang] = React.useState<LangCode>(() => getAppLanguage());
 
   React.useEffect(() => {
@@ -69,7 +69,7 @@ export default function LegacyPage({
     });
   };
 
-  const openSection = (section: "historic" | "knowledge" | "resistance" | "culture") => {
+  const openSection = (section: "stateswomen" | "scholars" | "literary" | "commanders") => {
     setLang(getAppLanguage());
     setActiveSection(section);
   };
@@ -133,7 +133,7 @@ export default function LegacyPage({
     return () => ctx.revert();
   }, [activeSection]);
 
-  if (activeSection === "historic") {
+  if (activeSection === "stateswomen") {
     return (
       <WomenHistoricPage
         lang={lang}
@@ -144,7 +144,7 @@ export default function LegacyPage({
     );
   }
 
-  if (activeSection === "knowledge") {
+  if (activeSection === "scholars") {
     return (
       <WomenPoliticalPage
         lang={lang}
@@ -155,7 +155,7 @@ export default function LegacyPage({
     );
   }
 
-  if (activeSection === "culture") {
+  if (activeSection === "literary") {
     return (
       <WomenCultureMemoryPage
         lang={lang}
@@ -166,7 +166,7 @@ export default function LegacyPage({
     );
   }
 
-  if (activeSection === "resistance") {
+  if (activeSection === "commanders") {
     return (
       <WomenResistancePage
         lang={lang}

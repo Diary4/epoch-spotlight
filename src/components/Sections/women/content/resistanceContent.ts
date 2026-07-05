@@ -54,19 +54,19 @@ export type ResistancePageCopy = {
 const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
   en: {
     backToWomen: "Back to Women",
-    backToList: "Back to resistance list",
+    backToList: "Back to commanders list",
     partLabel: "Part two",
-    heroTitle1: "Women of",
-    heroTitle2: "Resistance",
+    heroTitle1: "Commanders &",
+    heroTitle2: "Resistance Martyrs",
     heroSubtitle: "Voices of courage.",
     heroIntro:
-      "Commanders, journalists, and young women who faced armies, dictators, and occupation—and helped write Kurdish resistance across the nineteenth century to today.",
+      "Commanders, fighters, and young women who faced armies, dictators, and occupation—and helped write Kurdish resistance across the nineteenth century to today.",
     legacyTitle: "Legacy of courage",
     legacySubtitle: "Defiance, sacrifice, and hope.",
     quotes: [
       { text: "Kill me, but thousands of Kurds will wake up.", author: "Leyla Qasim" },
-      { text: "Her voice carried a message of courage.", author: "Shifa Gardi" },
       { text: "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.", author: "Dayka Aisha" },
+      { text: "She was not just a woman, but a lioness who never bowed to any occupier.", author: "Qadem Xer" },
     ],
   },
   ku: {
@@ -107,36 +107,12 @@ const pageCopy: Record<WomenLangCode, ResistancePageCopy> = {
 const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
   en: [
     {
-      id: "khaja-bawa",
-      name: "Khaja Bawa",
-      role: "Revolutionary · Martyr of the 1991 Uprising",
+      id: "qadam-kher",
+      name: "Qadem Xer",
+      role: "Tribal Leader · Military Commander · Patriot",
       teaser:
-        "Martyred on March 11, 1991 at the forefront of Erbil's uprising — she smuggled weapons, treated wounded revolutionaries, and never retreated.",
+        "When her brothers fell fighting Reza Shah, she donned battle attire and led Luristan's tribes for years against the Iranian army.",
       listIcon: "crown",
-    },
-    {
-      id: "aisha-taha",
-      name: "Aisha Taha (Dayka Aisha)",
-      role: "Symbol of Resilience and Patriotism",
-      teaser:
-        "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",
-      listIcon: "flower",
-    },
-    {
-      id: "shifa-gardi",
-      name: "Shifa Gardi",
-      role: "Field Journalist · Presenter · Output Manager at Rudaw",
-      teaser:
-        "A pioneering reporter martyred covering the war against ISIS — the first Kurdish female journalist to die on the front lines.",
-      listIcon: "flower",
-    },
-    {
-      id: "layla-qasim",
-      name: "Leyla Qasim",
-      role: "Student Activist · Kurdish Martyr · National Symbol",
-      teaser:
-        "Executed at 22, her final words — \"Kill me, but thousands of Kurds will wake up\" — became among the most repeated in Kurdish history.",
-      listIcon: "flower",
     },
     {
       id: "margaret-george-shilo",
@@ -147,12 +123,28 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
       listIcon: "crown",
     },
     {
-      id: "qadam-kher",
-      name: "Qadem Xer",
-      role: "Tribal Leader · Military Commander · Patriot",
+      id: "khaja-bawa",
+      name: "Khaja Bawa",
+      role: "Revolutionary · Martyr of the 1991 Uprising",
       teaser:
-        "When her brothers fell fighting Reza Shah, she donned battle attire and led Luristan's tribes for years against the Iranian army.",
+        "Martyred on March 11, 1991 at the forefront of Erbil's uprising — she smuggled weapons, treated wounded revolutionaries, and never retreated.",
       listIcon: "crown",
+    },
+    {
+      id: "layla-qasim",
+      name: "Leyla Qasim",
+      role: "Student Activist · Kurdish Martyr · National Symbol",
+      teaser:
+        "Executed at 22, her final words — \"Kill me, but thousands of Kurds will wake up\" — became among the most repeated in Kurdish history.",
+      listIcon: "flower",
+    },
+    {
+      id: "aisha-taha",
+      name: "Aisha Taha (Dayka Aisha)",
+      role: "Symbol of Resilience and Patriotism",
+      teaser:
+        "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",
+      listIcon: "flower",
     },
   ],
   ku: kuResistanceList,
