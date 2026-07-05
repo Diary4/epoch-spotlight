@@ -6,7 +6,7 @@ import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangC
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import gsap from "gsap";
-import heroVideo from "@/assets/videos/hawler.mp4";
+import heroVideo from "@/assets/videos/hawler.webm";
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
 import bg3 from "@/assets/images/new/discoverKurdistan/land-3.webp"
 import bg4 from "@/assets/images/new/discoverKurdistan/peshmarga.webp"
