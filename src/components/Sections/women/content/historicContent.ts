@@ -169,9 +169,9 @@ const listByLang: Record<WomenLangCode, HistoricFigureListItem[]> = {
     {
       id: "nahida-sheikh-salam",
       name: "Nahida Sheikh Salam",
-      role: "Writer · Cultural Pioneer · Activist",
+      role: "Writer · Cultural Pioneer · Activist · KDP Central Committee Member",
       teaser:
-        "Educator, poet, and nationalist who established a school for girls in Sulaymaniyah and mobilized youth for the Kurdish cause.",
+        "First Kurdish woman in Hiwa and Zhêkaf, first female writer in Gelawêj, and the first woman elected to the KDP Central Committee.",
       icon: "flower",
     },
     {
@@ -406,27 +406,27 @@ const detailsByLang: Record<WomenLangCode, Record<string, HistoricDetailContent>
     "nahida-sheikh-salam": {
       nameLine1: "Nahida",
       nameLine2: "Sheikh Salam",
-      role: "Writer · Cultural Pioneer · Activist",
-      metaLine: "1922 – September 16, 1999 | Sulaymaniyah, Kurdistan Region of Iraq",
+      role: "Writer · Cultural Pioneer · Activist · KDP Central Committee Member",
+      metaLine: "1922 – 2006 | Sulaymaniyah, Kurdistan Region of Iraq",
       intro:
-        "She was a prominent Kurdish educator, poet, and writer from Sulaymaniyah who devoted her life to women's rights, national awareness, and the Kurdish cause. A member of Komeley Hiwa from 1935, she combined teaching with activism, supported the Mala Mustafa Barzani movement, mobilized youth, and made her home a refuge for those committed to Kurdish culture and liberation.",
+        "Born in 1922, Nahida was a fearless pioneer who broke into the male-dominated spheres of both literature and politics. She was the first Kurdish woman in the Hiwa Party and Zhêkaf, and the first female writer in Gelawêj magazine. Known for her rebellious spirit, she worked directly with historic leaders like Mulla Mustafa Barzani.",
       portraitAlt: "Nahida Sheikh Salam",
       listIcon: "flower",
       greatestAchievement: {
         title: "Greatest Achievement",
-        text: "Her primary legacy lies in pioneering girls' education and nationalist activism. After completing her studies at the Teachers' House in Baghdad in 1940, she established a school for girls in Sulaymaniyah, significantly advancing women's education in the city.",
+        text: "During the 1960 KDP Congress, Mulla Mustafa Barzani personally supported her historic election. She became the very first Kurdish woman elected to the Central Committee, reaching an unprecedented political position for women at the time.",
       },
       whySheMatters: {
         title: "Why She Still Matters",
-        text: "Nahida Sheikh Salam remains an essential figure in Kurdish intellectual history. She proved that Kurdish women could simultaneously be pillars of the education system and frontline national activists. Her life serves as an enduring bridge between the early 20th-century movements for Kurdish consciousness and the modern era.",
+        text: "Nahida shattered the boundaries of a traditional 20th-century society. She proved that a Kurdish woman could seamlessly blend education, literature, and high-level politics, sitting as an equal at the ultimate decision-making tables of the nation.",
       },
       cards: [
-        { icon: "♜", title: "Timeline Position", text: "1922 until September 16, 1999." },
-        { icon: "⛩", title: "Map Location", text: "Sulaymaniyah, Kurdistan Region of Iraq." },
+        { icon: "♜", title: "Timeline Position", text: "1922 – 2006" },
+        { icon: "⛩", title: "Map Location", text: "Sulaymaniyah, Kurdistan Region of Iraq" },
       ],
       didYouKnow: {
         title: "Did You Know?",
-        text: "She was deeply committed to the belief that the national struggle was not exclusively the domain of men and that women were equally capable of bearing the burden of national responsibility.",
+        text: "Nahida held many meaningful titles: she wrote under the pen name \"Kurdish Girl N.S.\", her students lovingly called her \"Sit Nahi\" (Teacher Nahi), and the revolution's leadership respectfully referred to her as \"Daya Nahi\" (Mother Nahi).",
       },
       quote:
         "I was the first Kurdish woman to join the struggle... because I believed that a woman should be a partner to a man in building the nation.",
