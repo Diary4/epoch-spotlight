@@ -10,7 +10,7 @@ import {
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import heroImg from "@/assets/images/Kurdistan-flag.jpeg";
-import historyImg from "@/assets/images/thejourney/1991.webp";
+import historyImg from "@/assets/images/mahabad.webp";
 import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
 import unityImg from "@/assets/images/patterns/unity.png";
 import redTreeIcon from "@/assets/icons/theflag/tree.jpeg";
