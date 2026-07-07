@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Landmark, Building2, Bird } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -7,6 +7,9 @@ import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import heroImg from "@/assets/mainImages/thesystem/parlaman.webp";
 import pmImg from "@/assets/mainImages/thesystem/system-1.webp";
+import parliamentIcon from "@/assets/icons/thesystem/parliment.jpg";
+import governmentIcon from "@/assets/icons/thesystem/government.jpg";
+import presidencyIcon from "@/assets/icons/thesystem/presidency.jpg";
 
 function OrnamentDivider({ dataAttr }: { dataAttr?: string }) {
   return (
@@ -24,7 +27,7 @@ function InstitutionCard({
   numeral,
   label,
   sub,
-  icon,
+  iconSrc,
   accent,
   onClick,
   displayFont,
@@ -32,12 +35,11 @@ function InstitutionCard({
   numeral: string;
   label: string;
   sub: string;
-  icon: React.ElementType;
+  iconSrc: string;
   accent: string;
   onClick?: () => void;
   displayFont: string;
 }) {
-  const Icon = icon;
   return (
     <button
       type="button"
@@ -45,10 +47,10 @@ function InstitutionCard({
       className="group flex h-full w-full flex-col items-center rounded-b-[28px] rounded-t-[999px] border border-[#d9c194] bg-[#fdf8ee] px-8 pb-12 pt-16 text-center shadow-[0_18px_45px_rgba(84,54,16,0.14)] transition-transform duration-300 active:scale-[0.985]"
     >
       <span
-        className="grid h-36 w-36 shrink-0 place-items-center rounded-full text-[#f8e5b8] shadow-[0_10px_24px_rgba(84,54,16,0.22)] ring-1 ring-[#c49a55] ring-offset-[6px] ring-offset-[#fdf8ee]"
+        className="grid h-48 w-48 shrink-0 overflow-hidden rounded-full shadow-[0_10px_24px_rgba(84,54,16,0.22)] ring-1 ring-[#c49a55] ring-offset-[8px] ring-offset-[#fdf8ee]"
         style={{ backgroundColor: accent }}
       >
-        <Icon className="h-[70px] w-[70px]" strokeWidth={1.3} />
+        <img src={iconSrc} alt="" className="h-full w-full scale-110 object-cover" />
       </span>
       <span className="mt-8 font-serif text-[22px] tracking-[0.35em] text-[#b99152]">{numeral}</span>
       <span data-discover-lang="true" className={`mt-3 block w-full break-words ${displayFont} text-[44px] font-light leading-tight text-[#17233b]`}>
@@ -244,7 +246,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   numeral="I"
                   label={parliamentLabel}
                   sub={parliamentSub}
-                  icon={Landmark}
+                  iconSrc={parliamentIcon}
                   accent="#13213b"
                   onClick={onParliamentClick}
                   displayFont={displayFont}
@@ -256,7 +258,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   numeral="II"
                   label={governmentLabel}
                   sub={governmentSub}
-                  icon={Building2}
+                  iconSrc={governmentIcon}
                   accent="#405846"
                   onClick={onGovernmentClick}
                   displayFont={displayFont}
@@ -292,7 +294,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   numeral="III"
                   label={presidencyLabel}
                   sub={presidencySub}
-                  icon={Bird}
+                  iconSrc={presidencyIcon}
                   accent="#9d3637"
                   onClick={onPresidencyClick}
                   displayFont={displayFont}
