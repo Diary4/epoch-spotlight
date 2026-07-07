@@ -29,6 +29,7 @@ function InstitutionCard({
   sub,
   iconSrc,
   iconObjectPosition = "object-center",
+  iconScale = "scale-[1.15]",
   onClick,
   displayFont,
   children,
@@ -38,6 +39,7 @@ function InstitutionCard({
   sub: string;
   iconSrc: string;
   iconObjectPosition?: string;
+  iconScale?: string;
   onClick?: () => void;
   displayFont: string;
   children?: React.ReactNode;
@@ -60,7 +62,7 @@ function InstitutionCard({
           <img
             src={iconSrc}
             alt=""
-            className={`h-full w-full scale-[1.15] object-cover ${iconObjectPosition}`}
+            className={`h-full w-full object-cover ${iconScale} ${iconObjectPosition}`}
           />
         </span>
       </div>
@@ -255,6 +257,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   label={parliamentLabel}
                   sub={parliamentSub}
                   iconSrc={parliamentIcon}
+                  iconScale="scale-[1.25]"
                   onClick={onParliamentClick}
                   displayFont={displayFont}
                 />
@@ -266,6 +269,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   label={governmentLabel}
                   sub={governmentSub}
                   iconSrc={governmentIcon}
+                  iconScale="scale-[1.25]"
                   onClick={onGovernmentClick}
                   displayFont={displayFont}
                 >
@@ -300,7 +304,8 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   label={presidencyLabel}
                   sub={presidencySub}
                   iconSrc={presidencyIcon}
-                  iconObjectPosition="object-[50%_50%]"
+                  iconScale="scale-[1.55]"
+                  iconObjectPosition="object-[48%_50%]"
                   onClick={onPresidencyClick}
                   displayFont={displayFont}
                 />
