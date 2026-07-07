@@ -455,7 +455,7 @@ const Index = () => {
   const [showLangPrompt, setShowLangPrompt] = useState(false);
   const [langClosing, setLangClosing] = useState(false);
   const [introPlaying, setIntroPlaying] = useState(false);
-  const [view, setView] = useState<SectionView>("hero");
+  const [view, setView] = useState<SectionView>("system"); // TEMP: screenshot verification
 
   const advance = useCallback(() => {
     if (showLangPrompt || langClosing || introPlaying) return;
