@@ -116,15 +116,17 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
 
             {/* Right-side visual: image and fade share the same entrance animation */}
             <div className="journey-detail-hero pointer-events-none absolute inset-y-0 right-0 h-[min(100cqh,1600px)] w-full overflow-hidden rtl:right-auto rtl:left-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+              <div
+                className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100 translate-x-[10%]" : "-translate-x-[10%]"}`}
+              >
                 <img
                   src={bg}
                   alt="Building institutions in Kurdistan"
-                  className="h-full w-full object-cover object-right-top [mask-image:radial-gradient(circle_at_72%_42%,black_0%,black_58%,transparent_92%)]"
+                  className="h-full w-full object-cover object-[0%_42%] [mask-image:radial-gradient(circle_at_0%_42%,black_0%,black_55%,transparent_86%)] [-webkit-mask-image:radial-gradient(circle_at_0%_42%,black_0%,black_55%,transparent_86%)]"
                 />
               </div>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-[#fbf5eb]/95 via-[#fbf5eb]/35 to-transparent rtl:left-auto rtl:right-0 rtl:bg-gradient-to-l" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(6rem,16cqh,14rem)] bg-gradient-to-b from-transparent via-[#fbf5eb]/45 to-[#fbf5eb]/90" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-[26%] bg-gradient-to-r from-[#fbf5eb] from-0% via-[#fbf5eb]/70 via-48% to-transparent to-100% rtl:left-auto rtl:right-0 rtl:bg-gradient-to-l" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(6rem,16cqh,14rem)] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/50 via-40% to-transparent to-100%" />
             </div>
 
             <div className="relative z-10 flex flex-1 flex-col">

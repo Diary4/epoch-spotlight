@@ -187,6 +187,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
   const pathBgRef = useRef<SVGPathElement | null>(null);
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
   const imageColumnRef = useRef<HTMLDivElement | null>(null);
+  const introPlayedRef = useRef(false);
 
   const [timelineLayout, setTimelineLayout] = useState<{
     pathD: string;
@@ -294,6 +295,25 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
     };
   }, [localizedMilestones]);
 
+  // After a language switch, clear any leftover GSAP transforms so text/cards
+  // don't stay off-screen while the copy cross-fade runs.
+  useLayoutEffect(() => {
+    if (!introDone || !rootRef.current) return;
+
+    const cards = cardRefs.current.filter(Boolean) as HTMLButtonElement[];
+    const images = imageRefs.current.filter(Boolean) as HTMLImageElement[];
+    const dots = rootRef.current.querySelectorAll<SVGGElement>(".journey-dot");
+
+    gsap.set(cards, { autoAlpha: 1, x: 0, clearProps: "transform" });
+    gsap.set(images, { autoAlpha: 1, scale: 1, clearProps: "transform" });
+    gsap.set(dots, { scale: 1, opacity: 1, clearProps: "transform" });
+    gsap.set(rootRef.current.querySelectorAll(".journey-intro > *"), {
+      autoAlpha: 1,
+      y: 0,
+      clearProps: "transform",
+    });
+  }, [lang, introDone]);
+
   useLayoutEffect(() => {
     if (!timelineLayout || !pathStrokeRef.current || !rootRef.current) return;
 
@@ -316,9 +336,19 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
         Math.min(1, Math.max(0.05, (top + 280) / timelineLayout.height)),
       );
 
+      if (introPlayedRef.current) {
+        gsap.set(pathEls, { strokeDashoffset: 0, strokeDasharray: pathLen });
+        gsap.set(cards, { autoAlpha: 1, x: 0, clearProps: "transform" });
+        gsap.set(images, { autoAlpha: 1, scale: 1, clearProps: "transform" });
+        gsap.set(dots, { scale: 1, opacity: 1, clearProps: "transform" });
+        gsap.set(".journey-intro > *", { autoAlpha: 1, y: 0, clearProps: "transform" });
+        return;
+      }
+
       if (reducedMotion) {
         gsap.set(pathEls, { strokeDashoffset: 0, strokeDasharray: pathLen });
         gsap.set([cards, images, dots, ".journey-intro > *"], { autoAlpha: 1, clearProps: "transform" });
+        introPlayedRef.current = true;
         setIntroDone(true);
         return;
       }
@@ -332,7 +362,10 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
       const lineDuration = 3.2;
       const tl = gsap.timeline({
         defaults: { ease: "power2.out" },
-        onComplete: () => setIntroDone(true),
+        onComplete: () => {
+          introPlayedRef.current = true;
+          setIntroDone(true);
+        },
       });
 
       tl.to(
