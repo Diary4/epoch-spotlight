@@ -111,6 +111,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
               className="h-[min(82cqh,1150px)] w-full"
               videoSide="right"
               mirrorOnLtr
+              showContentFade
             />
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">

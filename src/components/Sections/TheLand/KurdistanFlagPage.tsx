@@ -194,7 +194,7 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
       "The Kurdistan Flag embodies the aspirations, history, and cultural heritage of the Kurdish people. It represents peace, freedom, and the enduring spirit of a nation.",
     history: "HISTORY",
     historyText:
-      "The flag was adopted on 17 December 1946 in Mahabad (the Republic of Mahabad) as the official flag of Kurdistan.",
+      "The flag traces its modern roots to its proud hoisting on 17 December, 1946 in Mahabad prior to the declaration of the Republic of Mahabad. Today's standardized design was officially adopted by the Kurdistan Parliament on 11 November 1999 as the official flag of the Kurdistan Region.",
     colorsTitle: "COLORS & SYMBOLISM",
     colors: [
       { name: "RED", nameColor: "#c43a2c", swatch: "red", text: "Sacrifice and the struggle for freedom." },

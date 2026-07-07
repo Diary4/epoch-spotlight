@@ -8,6 +8,8 @@ type PeopleDetailHeroVideoProps = {
   videoSide?: "left" | "right";
   /** Mirror the video in LTR instead of the default RTL mirroring. */
   mirrorOnLtr?: boolean;
+  /** White fade over the video so overlaid text stays readable. */
+  showContentFade?: boolean;
 };
 
 export default function PeopleDetailHeroVideo({
@@ -16,6 +18,7 @@ export default function PeopleDetailHeroVideo({
   className = "h-[min(100cqh,1400px)] w-full",
   videoSide = "right",
   mirrorOnLtr = false,
+  showContentFade = false,
 }: PeopleDetailHeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -65,6 +68,17 @@ export default function PeopleDetailHeroVideo({
           className={`absolute inset-0 h-full w-full object-cover ${objectPositionClass}`}
         />
       </div>
+
+      {showContentFade ? (
+        <div
+          className={`pointer-events-none absolute inset-y-0 z-10 w-[48%] from-[#fbf5eb] from-0% via-[#fbf5eb] via-42% to-transparent to-100% ${
+            videoSide === "right"
+              ? "left-0 bg-gradient-to-r rtl:left-auto rtl:right-0 rtl:bg-gradient-to-l"
+              : "right-0 bg-gradient-to-l rtl:right-auto rtl:left-0 rtl:bg-gradient-to-r"
+          }`}
+          aria-hidden
+        />
+      ) : null}
 
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[clamp(2rem,10cqh,12rem)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent"
