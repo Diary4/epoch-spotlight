@@ -6,7 +6,7 @@ import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import heroImg from "@/assets/mainImages/thesystem/parlaman.webp";
-import pmImg from "@/assets/mainImages/thesystem/system-1.webp";
+import pmImg from "@/assets/images/PrimeMinistir/p-4.jpeg";
 import parliamentIcon from "@/assets/icons/thesystem/parliment.jpg";
 import governmentIcon from "@/assets/icons/thesystem/government.jpg";
 import presidencyIcon from "@/assets/icons/thesystem/presidency.jpg";
