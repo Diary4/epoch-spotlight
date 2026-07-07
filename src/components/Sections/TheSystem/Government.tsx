@@ -19,7 +19,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/mainImages/government.webp";
+import bg from "@/assets/images/PrimeMinistir/government.jpg";
 import bg2 from "@/assets/mainImages/government-2.webp";
 
 const mainCards = [
@@ -192,17 +192,19 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            {/* Main portrait — top-right, fading into the paper */}
+            {/* Main portrait — centered subject shifted right for visibility */}
             <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden rtl:right-auto rtl:left-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+              <div className="absolute inset-0 translate-x-[24%] rtl:-scale-x-100 rtl:translate-x-[-24%]">
                 <img
                   src={bg}
-                  alt="Government building portrait"
-                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-right [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                  alt="Government portrait"
+                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-[center_8%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_14%,rgba(0,0,0,0.7)_30%,rgba(0,0,0,0.95)_48%,black_68%)]"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
-              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
+              <div
+                className="absolute inset-0 [background:linear-gradient(to_right,rgba(251,245,235,0.22)_0%,rgba(251,245,235,0.08)_6%,transparent_14%)] rtl:[background:linear-gradient(to_left,rgba(251,245,235,0.22)_0%,rgba(251,245,235,0.08)_6%,transparent_14%)]"
+              />
+              <div className="absolute bottom-0 left-0 h-12 w-full bg-gradient-to-b from-transparent to-[#fbf5eb]/20" />
             </div>
 
             <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(3.5rem,6cqh,5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
