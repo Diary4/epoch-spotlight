@@ -9,7 +9,7 @@ import {
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
-import heroImg from "@/assets/images/Kurdistan-flag.jpeg";
+import heroVideo from "@/assets/videos/theflag.mp4";
 import historyImg from "@/assets/images/mahabad.webp";
 import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
 import unityImg from "@/assets/images/patterns/unity.png";
@@ -157,7 +157,7 @@ function FlagColorCard({
 
       <div className="relative z-10 flex min-w-0 flex-1 flex-col justify-center px-6 py-5">
         <h4
-          className={`${displayFont} text-[22px] font-semibold leading-tight tracking-[0.04em]`}
+          className={`${displayFont} text-[22px] font-light uppercase leading-tight tracking-[0.16em]`}
           style={{ color: nameColor }}
         >
           {name}
@@ -272,6 +272,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
   // 1:1 on a 1080x1920 portrait screen and scales cleanly everywhere else.
   const DESIGN_WIDTH = 1080;
   const canvasRef = useRef<HTMLDivElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const [fit, setFit] = useState({ scale: 1, x: 0 });
 
   useEffect(() => {
@@ -297,6 +298,28 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
       ro?.disconnect();
     };
   }, [lang]);
+
+  useEffect(() => {
+    const videoEl = heroVideoRef.current;
+    if (!videoEl) return;
+
+    const tryPlay = () => {
+      videoEl.play().catch(() => {
+        // Ignore autoplay promise rejections from browser policies.
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) tryPlay();
+    };
+
+    tryPlay();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   return (
     <div
@@ -332,10 +355,16 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
               <div
                 className={`absolute inset-y-0 ${dir === "rtl" ? "left-0" : "right-0"} w-[62%] overflow-hidden`}
               >
-                <img
-                  src={heroImg}
-                  alt="The Kurdistan flag flying at sunset"
+                <video
+                  ref={heroVideoRef}
+                  src={heroVideo}
+                  aria-label="The Kurdistan flag"
                   className="h-full w-full object-cover object-center"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
                 />
                 <div
                   className={`pointer-events-none absolute inset-y-0 ${dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} w-[42%] from-[#fbf5eb] via-[#fbf5eb]/75 to-transparent`}
@@ -404,7 +433,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                       <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                     </span>
                     <span
-                      className={`${lang === "en" ? "font-amiri" : displayFont} text-[72px] font-normal leading-[0.88] tracking-[-0.03em]`}
+                      className={`${displayFont} text-[72px] font-light leading-[0.88] tracking-tight`}
                       style={{ color: INK }}
                     >
                       {localizeDigits("1946", lang)}

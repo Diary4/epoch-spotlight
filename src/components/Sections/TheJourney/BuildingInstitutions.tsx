@@ -6,7 +6,7 @@ import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIco
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/mainImages/building.webp";
+import bg from "@/assets/images/thejourney/building.jpg";
 
 const rows = [
   {
@@ -119,7 +119,7 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
               <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
                 <img
                   src={bg}
-                  alt="Institutions placeholder"
+                  alt="Building institutions in Kurdistan"
                   className="h-full w-full object-cover object-right-top [mask-image:radial-gradient(circle_at_72%_42%,black_0%,black_58%,transparent_92%)]"
                 />
               </div>
