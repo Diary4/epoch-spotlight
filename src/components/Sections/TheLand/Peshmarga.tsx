@@ -155,7 +155,7 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
                 <img
                   src={bg}
                   alt="Peshmerga portrait"
-                  className="absolute inset-0 h-full w-full object-cover object-right opacity-[0.82] [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                  className="absolute inset-0 h-full w-full object-cover object-[center_0%] [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
