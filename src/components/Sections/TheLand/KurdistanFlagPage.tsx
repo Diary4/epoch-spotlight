@@ -9,7 +9,7 @@ import {
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
-import heroImg from "@/assets/images/kurdistan.webp";
+import heroImg from "@/assets/images/Kurdistan-flag.jpeg";
 import historyImg from "@/assets/images/thejourney/1991.webp";
 import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
 import unityImg from "@/assets/images/patterns/unity.png";
@@ -329,11 +329,19 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
           {/* ---------- Hero: flag photo with sweeping paper curve ---------- */}
           <section className="relative h-[640px] w-full overflow-hidden">
             <div className="land-detail-hero absolute inset-0">
-              <img
-                src={heroImg}
-                alt="The Kurdistan flag flying at sunset"
-                className="h-full w-full object-cover object-[72%_30%] rtl:object-[28%_30%]"
-              />
+              <div
+                className={`absolute inset-y-0 ${dir === "rtl" ? "left-0" : "right-0"} w-[62%] overflow-hidden`}
+              >
+                <img
+                  src={heroImg}
+                  alt="The Kurdistan flag flying at sunset"
+                  className="h-full w-full object-cover object-center"
+                />
+                <div
+                  className={`pointer-events-none absolute inset-y-0 ${dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} w-[42%] from-[#fbf5eb] via-[#fbf5eb]/75 to-transparent`}
+                  aria-hidden
+                />
+              </div>
               <div
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
                 style={{ background: `linear-gradient(to bottom, transparent, ${PAPER})` }}
