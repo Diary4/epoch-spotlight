@@ -1,28 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, Bird, Shield, UsersRound } from "lucide-react";
+import { ArrowLeft, History, ScrollText, Shield } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/peshmarga.webp"
 
+const ICON_BG = "#963538";
+
 const cards = [
   {
-    title: "Defending\nthe Region",
-    text: "Standing in defense of Kurdistan and its people.",
+    title: "What Does It\nMean?",
+    text: 'The term "Peshmerga" literally translates to "those who face death." It is derived from the Kurdish words pêş (in front of) and merg (death).',
+    icon: ScrollText,
+  },
+  {
+    title: "The Story\nBehind It",
+    text: "While Kurdish armed resistance has existed for centuries, the term was officially adopted in 1946 as the name for the military forces of the Republic of Mahabad. Leadership at the time sought a name that embodied the bravery and self-sacrifice of those fighting for Kurdish rights and identity, choosing a term that reflected a warrior's readiness to die for their cause.",
+    icon: History,
+  },
+  {
+    title: "Peshmerga\nToday",
+    text: "Today, the Peshmerga serve as the official security forces of the Kurdistan Region of Iraq. After decades of evolving from guerrilla movements, they are now institutionalized under the Ministry of Peshmerga Affairs, undergoing modernization and integration efforts to function as a professional, unified national military force.",
     icon: Shield,
-    color: "#963538",
-  },
-  {
-    title: "Protecting\nCivilians",
-    text: "Supporting safety during times of crisis.",
-    icon: UsersRound,
-    color: "#405846",
-  },
-  {
-    title: "Standing Against\nTerrorism",
-    text: "Playing an important role against extremism.",
-    icon: Bird,
-    color: "#13213b",
   },
 ];
 
@@ -50,15 +49,39 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
   const displayFont = discoverDisplayFont(lang);
   const localCards = isAr
     ? [
-        { title: "الدفاع عن\nالإقليم", text: "الوقوف في وجه كل من يهدد كوردستان وشعبها.", icon: Shield, color: "#963538" },
-        { title: "حماية\nالمدنيين", text: "تأمين السلامة في أوقات الأزمات.", icon: UsersRound, color: "#405846" },
-        { title: "التصدي للإرهاب", text: "أداء دور محوري في مواجهة التطرف.", icon: Bird, color: "#13213b" },
+        {
+          title: "ماذا يعني\nالمصطلح؟",
+          text: 'تعني كلمة "بيشمركة" (Peshmerga) حرفياً "أولئك الذين يواجهون الموت"، وهي مشتقة من كلمتين كرديتين: "بيش" وتعني أمام أو مواجهة، و"مرگ" وتعني الموت.',
+          icon: ScrollText,
+        },
+        {
+          title: "قصة التسمية\nوالنشأة",
+          text: 'رغم أن جذور المقاومة الكردية المسلحة تعود إلى فترات تاريخية قديمة وتشكيلات قبلية، إلا أن المصطلح اعتمد رسمياً كاسم للقوات المسلحة في "جمهورية مهاباد" عام 1946. تشير الروايات إلى أن القادة في ذلك الوقت كانوا يبحثون عن اسم يعبر عن شجاعة المقاتلين وتضحيتهم، فتم اختيار هذا الاسم ليعكس استعدادهم الدائم للموت في سبيل الدفاع عن حقوق الكرد وهويتهم.',
+          icon: History,
+        },
+        {
+          title: "واقع البيشمركة\nاليوم",
+          text: "تعد البيشمركة اليوم القوات الأمنية الرسمية لإقليم كوردستان العراق. بعد عقود من العمل كحركات تحرر وجماعات مسلحة، تحولت إلى قوة مؤسساتية تخضع لوزارة شؤون البيشمركة في حكومة الإقليم. حالياً، تجري عمليات إصلاح وتوحيد واسعة لهذه القوات لتكون جيشاً وطنياً موحداً ومهنياً تحت مظلة مؤسسات الإقليم.",
+          icon: Shield,
+        },
       ]
     : isKu
       ? [
-          { title: "بەرگریکردن لە هەرێم", text: "وەستان بۆ بەرگری لە کوردستان و گەلەکەی.", icon: Shield, color: "#963538" },
-          { title: "پاراستنی مەدەنییەکان", text: "پاڵپشتیکردنی ئاسایش لە کاتی قەیرانەکاندا.", icon: UsersRound, color: "#405846" },
-          { title: "وەستانەوە دژی تیرۆر", text: "گێڕانی ڕۆڵێکی سەرەکی لە ڕووبەڕووبوونەوەی توندڕەویدا.", icon: Bird, color: "#13213b" },
+          {
+            title: "واتای ئەم ناوە چییە؟",
+            text: 'پێشمەرگە لە دوو بڕگەی "پێش" (بە واتای ڕووبەڕوو بوونەوە) و "مەرگ" (مردن) پێکهاتووە. بە گشتی واتە "ئەوانەی ڕووبەڕووی مەرگ دەبنەوە".',
+            icon: ScrollText,
+          },
+          {
+            title: "چیرۆکی پێشمەرگە",
+            text: 'هەرچەندە خەباتی چەکداری کورد مێژوویەکی کۆنی هەیە، بەڵام ئەم ناوە بە شێوەیەکی فەرمی لە سەردەمی کۆماری مەهاباد (١٩٤٦) وەک ناوی سوپای کۆمارەکە دەستنیشانکرا. سەرکردایەتی ئەو سەردەمە بەدوای ناوێکی شایستەدا دەگەڕان بۆ ئەو جەنگاوەرانەی کە بە گیانفیدایی لە پێناو خاک و نەتەوەکەیاندا تێدەکۆشان، بۆیە ناوی "پێشمەرگە" هەڵبژێردرا و بوو بە هێمایەکی نیشتمانی بۆ بەرگری و ئازادیخوازی.',
+            icon: History,
+          },
+          {
+            title: "پێشمەرگە لە ئێستادا",
+            text: "ئەمڕۆ پێشمەرگە هێزی فەرمی بەرگری و ئاسایشی هەرێمی کوردستانە. دوای قۆناغێکی دوورودرێژی خەباتی شاخ و بەرگری، ئێستا پێشمەرگە وەک هێزێکی دامەزراوەیی لە چوارچێوەی وەزارەتی پێشمەرگەی حکومەتی هەرێمی کوردستان ڕێکخراوە و پڕۆسەیەکی فراوانی یەکخستنەوە و پیشەییکردن بۆ دروستکردنی هێزێکی نیشتمانیی یەکگرتوو بەڕێوەدەچێت.",
+            icon: Shield,
+          },
         ]
       : cards;
 
@@ -173,14 +196,13 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
                     >
                       <div
                         className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496]"
-                        style={{ backgroundColor: card.color }}
+                        style={{ backgroundColor: ICON_BG }}
                       >
                         <Icon className="h-[clamp(2rem,3.5cqw,3.5rem)] w-[clamp(2rem,3.5cqw,3.5rem)]" strokeWidth={1.45} />
                       </div>
 
                       <h3
-                        className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[1.02]`}
-                        style={{ color: card.color }}
+                        className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[1.02] text-[#17233b]`}
                       >
                         {card.title}
                       </h3>
@@ -192,14 +214,6 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
                       <p className="text-[clamp(1.02rem,1.58cqw,1.5rem)] font-light leading-[1.45] text-[#35435b]">
                         {card.text}
                       </p>
-
-                      <button
-                        type="button"
-                        className="mt-auto grid h-[clamp(3rem,5cqw,4.8rem)] w-[clamp(3rem,5cqw,4.8rem)] place-items-center rounded-full text-white shadow-md ring-4 ring-white"
-                        style={{ backgroundColor: card.color }}
-                      >
-                        <ArrowRight className="h-[clamp(1.5rem,2.5cqw,2rem)] w-[clamp(1.5rem,2.5cqw,2rem)] rtl:rotate-180" />
-                      </button>
 
                       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
                     </article>
