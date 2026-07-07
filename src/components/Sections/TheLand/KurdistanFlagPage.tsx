@@ -126,6 +126,19 @@ function FlagColorCard({
         <WavyDecor waves={theme.waves} />
       </div>
 
+      <div
+        className="pointer-events-none absolute -bottom-10 -right-6 h-36 w-44 rounded-full opacity-40 blur-3xl"
+        style={{ backgroundColor: theme.waves[2] }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 h-full w-[55%] opacity-25"
+        style={{
+          background: `radial-gradient(ellipse 85% 75% at 100% 100%, ${theme.waves[1]} 0%, transparent 68%)`,
+        }}
+        aria-hidden
+      />
+
       <div className="relative z-10 ms-5 flex shrink-0 items-center justify-center">
         <div
           className="absolute inset-0 scale-110 rounded-full blur-md"
