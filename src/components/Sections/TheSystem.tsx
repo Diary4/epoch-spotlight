@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -28,43 +28,51 @@ function InstitutionCard({
   label,
   sub,
   iconSrc,
-  accent,
+  iconObjectPosition = "object-center",
   onClick,
   displayFont,
+  children,
 }: {
   numeral: string;
   label: string;
   sub: string;
   iconSrc: string;
-  accent: string;
+  iconObjectPosition?: string;
   onClick?: () => void;
   displayFont: string;
+  children?: React.ReactNode;
 }) {
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
-      className="group flex h-full w-full flex-col items-center rounded-b-[28px] rounded-t-[999px] border border-[#d9c194] bg-[#fdf8ee] px-8 pb-12 pt-16 text-center shadow-[0_18px_45px_rgba(84,54,16,0.14)] transition-transform duration-300 active:scale-[0.985]"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+      className="flex h-full w-full cursor-pointer flex-col items-center rounded-b-[28px] rounded-t-[999px] bg-white px-8 pb-12 pt-10 text-center shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.985]"
     >
-      <span
-        className="grid h-48 w-48 shrink-0 overflow-hidden rounded-full shadow-[0_10px_24px_rgba(84,54,16,0.22)] ring-1 ring-[#c49a55] ring-offset-[8px] ring-offset-[#fdf8ee]"
-        style={{ backgroundColor: accent }}
-      >
-        <img src={iconSrc} alt="" className="h-full w-full scale-110 object-cover" />
-      </span>
-      <span className="mt-8 font-serif text-[22px] tracking-[0.35em] text-[#b99152]">{numeral}</span>
-      <span data-discover-lang="true" className={`mt-3 block w-full break-words ${displayFont} text-[44px] font-light leading-tight text-[#17233b]`}>
+      <div className="flex h-[240px] w-full shrink-0 items-center justify-center">
+        <span className="grid h-56 w-56 shrink-0 place-items-center overflow-hidden rounded-full ring-1 ring-[#e6d5ac]">
+          <img
+            src={iconSrc}
+            alt=""
+            className={`h-full w-full scale-[1.15] object-cover ${iconObjectPosition}`}
+          />
+        </span>
+      </div>
+      <span className="mt-6 font-serif text-[28px] text-[#1d2a45]">{numeral}</span>
+      <span data-discover-lang="true" className={`mt-1 block w-full break-words ${displayFont} text-[44px] font-light leading-tight text-[#17233b]`}>
         {label}
       </span>
       <span data-discover-lang="true" className="mt-3 block w-full break-words text-[23px] font-light leading-snug text-[#9b6d35]">
         {sub}
       </span>
-      <span className="mt-auto pt-9">
-        <span className="grid h-14 w-14 place-items-center rounded-full border border-[#b99152] text-[#b99152] transition-colors duration-300 group-active:bg-[#b99152] group-active:text-[#fbf5eb]">
-          <ArrowRight strokeWidth={1.3} className="h-7 w-7 rtl:rotate-180" />
-        </span>
-      </span>
-    </button>
+      {children}
+    </div>
   );
 }
 
@@ -240,14 +248,13 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             </figure>
 
             {/* Three institutions — arched cards overlapping the banner */}
-            <div className="relative z-10 -mt-28 flex items-stretch gap-9 px-6 pb-16">
+            <div className="relative z-10 -mt-28 flex items-start gap-9 px-6">
               <div data-sys-card="true" className="relative flex min-w-0 flex-1">
                 <InstitutionCard
                   numeral="I"
                   label={parliamentLabel}
                   sub={parliamentSub}
                   iconSrc={parliamentIcon}
-                  accent="#13213b"
                   onClick={onParliamentClick}
                   displayFont={displayFont}
                 />
@@ -259,34 +266,32 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   label={governmentLabel}
                   sub={governmentSub}
                   iconSrc={governmentIcon}
-                  accent="#405846"
                   onClick={onGovernmentClick}
                   displayFont={displayFont}
-                />
-
-                {/* Prime Minister — small label pinned to the Government card */}
-                <button
-                  data-sys-pm="true"
-                  type="button"
-                  onClick={onPrimeMinisterClick}
-                  className="group absolute inset-x-0 -bottom-12 z-20 mx-auto flex w-max max-w-[440px] items-center gap-4 rounded-full border border-[#cfae72] bg-[#17233b] py-2.5 ps-2.5 pe-8 shadow-[0_14px_32px_rgba(23,35,59,0.35)] transition-transform duration-300 active:scale-[0.97]"
                 >
-                  <img
-                    src={pmImg}
-                    alt="Prime Minister of the Kurdistan Region"
-                    className="h-[74px] w-[74px] shrink-0 rounded-full border border-[#cfae72] object-cover"
-                    style={{ objectPosition: "68% 12%" }}
-                  />
-                  <span className="min-w-0 text-start">
-                    <span data-discover-lang="true" className={`block break-words ${displayFont} text-[30px] font-light leading-tight text-[#f8ecd2]`}>
-                      {primeMinisterLabel}
+                  {/* Prime Minister — label inside the Government card */}
+                  <button
+                    data-sys-pm="true"
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onPrimeMinisterClick?.();
+                    }}
+                    className="mt-9 flex cursor-pointer appearance-none flex-col items-center gap-5 border-0 bg-transparent p-0 transition-transform duration-300 active:scale-[0.96]"
+                  >
+                    <span className="block h-[150px] w-[150px] rounded-full bg-[#f7edd7] p-2 ring-1 ring-[#e6d5ac]">
+                      <img
+                        src={pmImg}
+                        alt="Prime Minister of the Kurdistan Region"
+                        className="h-full w-full rounded-full object-cover"
+                        style={{ objectPosition: "68% 12%" }}
+                      />
                     </span>
-                    <span data-discover-lang="true" className="mt-0.5 block break-words text-[17px] font-light leading-snug text-[#c9a45f]">
-                      {primeMinisterSub}
+                    <span data-discover-lang="true" className={`block max-w-[320px] break-words ${displayFont} text-[24px] font-light leading-snug text-[#17233b]`}>
+                      {primeMinisterLabel} — {primeMinisterSub}
                     </span>
-                  </span>
-                  <ArrowRight strokeWidth={1.4} className="h-7 w-7 shrink-0 text-[#c9a45f] rtl:rotate-180" />
-                </button>
+                  </button>
+                </InstitutionCard>
               </div>
 
               <div data-sys-card="true" className="relative flex min-w-0 flex-1">
@@ -295,7 +300,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   label={presidencyLabel}
                   sub={presidencySub}
                   iconSrc={presidencyIcon}
-                  accent="#9d3637"
+                  iconObjectPosition="object-[50%_50%]"
                   onClick={onPresidencyClick}
                   displayFont={displayFont}
                 />
@@ -303,7 +308,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
             </div>
 
             {/* Closing line */}
-            <footer data-sys-footer="true" className="mt-4 flex flex-col items-center gap-6 text-center">
+            <footer data-sys-footer="true" className="mt-14 flex flex-col items-center gap-6 text-center">
               <p data-discover-lang="true" className={`max-w-[980px] break-words ${displayFont} text-[30px] font-light leading-snug text-[#2d3549]`}>
                 {footerText}
               </p>

@@ -50,7 +50,7 @@ const AppRoutes = () => {
 
   return (
     <>
-      <FullscreenGate visible={false} onActivate={onGateActivate} /> {/* TEMP: screenshot verification */}
+      <FullscreenGate visible={showGate} onActivate={onGateActivate} />
       <Routes>
           <Route path="/" element={<StartMenu />} />
           <Route path="/screen" element={<Index />} />
