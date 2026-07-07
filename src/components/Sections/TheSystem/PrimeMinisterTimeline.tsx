@@ -68,6 +68,10 @@ const biographyOrder: BiographyId[] = [
   "prime-minister-cabinet",
 ];
 
+const imageObjectPositions: Partial<Record<string, string>> = {
+  "security-state-building": "object-[28%_26%]",
+};
+
 const biographyCatalog: Record<
   BiographyId,
   Record<"en" | "ku" | "ar", { era: string; title: string; description: string; details: string[] }>
@@ -778,7 +782,7 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
+                        className={`h-full w-full object-cover transition-transform duration-700 hover:scale-110 ${imageObjectPositions[item.id] ?? ""}`}
                       />
                       <div
                         className="absolute inset-0 md:hidden"
