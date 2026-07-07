@@ -436,8 +436,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                       <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                     </span>
                     <span
-                      className={`${displayFont} text-[72px] font-light leading-[0.88] tracking-tight`}
-                      style={{ color: INK }}
+                      className={`${displayFont} text-[80px] font-light leading-none tracking-tight text-[#17233b]`}
                     >
                       {localizeDigits("1946", lang)}
                     </span>

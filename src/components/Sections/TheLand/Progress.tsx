@@ -203,16 +203,18 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
             <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
             <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
-            {/* Main portrait — top-right, fading into the paper */}
+            {/* Main portrait — soft-edged, shifted right */}
             <div className="land-detail-hero pointer-events-none absolute right-0 top-0 z-0 h-[840px] w-full overflow-hidden rtl:right-auto rtl:left-0">
               <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
                 <img
                   src={bg}
                   alt="Progress city portrait"
-                  className="absolute inset-0 h-full w-full object-cover object-[center_top] [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
+                  className={`absolute top-1/2 h-[82%] w-[82%] max-w-none -translate-y-1/2 object-cover object-center ${
+                    dir === "rtl" ? "left-[34%] -translate-x-1/2" : "left-[74%] -translate-x-1/2"
+                  } [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.45)_9%,black_20%,black_66%,rgba(0,0,0,0.45)_88%,transparent_100%),linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.45)_9%,black_18%,black_68%,rgba(0,0,0,0.45)_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.45)_9%,black_20%,black_66%,rgba(0,0,0,0.45)_88%,transparent_100%),linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.45)_9%,black_18%,black_68%,rgba(0,0,0,0.45)_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]`}
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/25 to-transparent rtl:bg-gradient-to-l" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/20 to-transparent rtl:bg-gradient-to-l" />
             </div>
 
             <div className="relative z-10 flex h-[760px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
