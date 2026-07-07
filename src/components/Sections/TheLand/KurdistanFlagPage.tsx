@@ -360,7 +360,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                   ref={heroVideoRef}
                   src={heroVideo}
                   aria-label="The Kurdistan flag"
-                  className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
+                  className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
                   autoPlay
                   muted
                   loop
@@ -368,13 +368,15 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                   preload="auto"
                 />
                 <div
-                  className={`pointer-events-none absolute inset-y-0 ${dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} w-[42%] from-[#fbf5eb] via-[#fbf5eb]/75 to-[#fbf5eb]/0`}
+                  className={`absolute inset-y-0 z-10 w-[46%] ${
+                    dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"
+                  } from-[#fbf5eb] from-0% via-[#fbf5eb]/75 via-45% to-transparent to-100%`}
                   aria-hidden
                 />
               </div>
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
-                style={{ background: `linear-gradient(to bottom, rgba(251,245,235,0), ${PAPER})` }}
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[150px] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/60 via-45% to-transparent to-100%"
+                aria-hidden
               />
             </div>
 
