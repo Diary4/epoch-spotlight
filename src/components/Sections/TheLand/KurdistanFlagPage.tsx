@@ -8,6 +8,7 @@ import {
   detailBackIconSize,
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { localizeDigits } from "@/lib/utils";
 import heroImg from "@/assets/images/kurdistan.webp";
 import historyImg from "@/assets/images/thejourney/1991.webp";
 import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
@@ -37,10 +38,10 @@ const SWATCH_THEMES: Record<
     waves: ["#f5ddd9", "#efb8b0", "#e07a6e", "#c43a2c"],
   },
   white: {
-    border: "#e2d3b2",
-    glow: "rgba(201, 180, 136, 0.42)",
-    ring: "rgba(232, 220, 200, 0.55)",
-    waves: ["#f8f2e8", "#efe5d5", "#ddd0b4", "#c9b896"],
+    border: "#ddcda8",
+    glow: "rgba(185, 161, 115, 0.42)",
+    ring: "rgba(226, 213, 186, 0.6)",
+    waves: ["#f6eedd", "#eadec2", "#d6c49c", "#b9a173"],
   },
   green: {
     border: "#a8d5b5",
@@ -96,7 +97,7 @@ function FlagColorIcon({ swatch }: { swatch: FlagSwatch }) {
     <img
       src={FLAG_ICON_IMAGES[swatch]}
       alt=""
-      className="h-full w-full rounded-full object-cover"
+      className="h-full w-full rounded-full bg-[#fdfaf5] object-cover"
     />
   );
 }
@@ -374,15 +375,18 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
 
               <div className="mt-6 flex items-center gap-10">
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-5">
                     <span
-                      className="grid h-14 w-14 place-items-center rounded-lg border bg-white/80"
+                      className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-[10px] border bg-white shadow-[0_1px_4px_rgba(67,35,45,0.06)]"
                       style={{ borderColor: CARD_BORDER }}
                     >
-                      <Calendar size={30} style={{ color: "#b3543f" }} />
+                      <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                     </span>
-                    <span className={`${displayFont} text-[52px] font-light leading-none`} style={{ color: INK }}>
-                      1946
+                    <span
+                      className={`${lang === "en" ? "font-amiri" : displayFont} text-[72px] font-normal leading-[0.88] tracking-[-0.03em]`}
+                      style={{ color: INK }}
+                    >
+                      {localizeDigits("1946", lang)}
                     </span>
                   </div>
                   <p className="mt-6 max-w-[460px] text-[19px] font-light leading-[1.65]" style={{ color: BODY }}>
