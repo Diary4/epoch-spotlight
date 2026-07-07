@@ -146,6 +146,14 @@ const listByLang: Record<WomenLangCode, ResistanceFigureListItem[]> = {
         "After losing three Peshmerga sons in a single battle against ISIS, she turned grief into defiance and became a spiritual mother to every defender.",
       listIcon: "flower",
     },
+    {
+      id: "amina-ana",
+      name: "Amina (Ana)",
+      role: "Symbol of Kurdish Women's Resilience and Sacrifice",
+      teaser:
+        "After losing eight children and grandchildren in the 1985 Zewê camp bombing, she declared with iron resolve: \"I will sacrifice my remaining children for Kurdistan.\"",
+      listIcon: "flower",
+    },
   ],
   ku: kuResistanceList,
   ar: arResistanceList,

@@ -212,6 +212,34 @@ export const resistanceDetailsByLang = {
         "My sons were sacrificed for the soil and the homeland; keep your morale high and never leave the frontlines.",
       quoteAuthor: "Dayka Aisha",
     },
+    "amina-ana": {
+      nameLine1: "Amina",
+      nameLine2: "(Ana)",
+      role: "Symbol of Kurdish Women's Resilience and Sacrifice",
+      metaLine: "1935 – 2015 | Zewê Camp, Iraqi Kurdistan",
+      intro:
+        "Amina, known as \"Ana,\" was the wife of the martyr leader Naji Beg Berokhi and a supreme example of Kurdish women's resilience. She was not just the wife of a martyr but a courageous Peshmerga fighter herself. In the 1985 Zewê camp tragedy, she lost eight of her children and grandchildren in a single moment. Despite this immense pain, she maintained iron resolve, stating: \"I have other children remaining, and I will sacrifice them for Kurdistan.\"",
+      portraitAlt: "Amina (Ana)",
+      listIcon: "flower",
+      greatestAchievement: {
+        title: "Greatest Achievement",
+        text: "Her active participation in the Kurdish liberation struggle as a Peshmerga and her demonstration of the strength of Kurdish women's resolve during the darkest moments, leading President Barzani to hail her as the \"supreme example of resilience.\"",
+      },
+      whySheMatters: {
+        title: "Why She Still Matters",
+        text: "She is the immortal symbol of Kurdish women's patriotism. Her story remains a timeless lesson in resilience that continues to live on in national memory today.",
+      },
+      cards: [
+        { icon: "♜", title: "Timeline Position", text: "1935 – 2015 (Era of Kurdish liberation struggle)" },
+        { icon: "⛩", title: "Map Location", text: "Zewê Camp region, Iraqi Kurdistan" },
+      ],
+      didYouKnow: {
+        title: "Did You Know?",
+        text: "When President Barzani reached the scene of the tragedy, he found that Ana had already gathered the remains of four of her loved ones into a sack; instead of weeping, she provided strength and morale to the President and the Peshmerga.",
+      },
+      quote: "I have other children remaining, and I will sacrifice them for Kurdistan.",
+      quoteAuthor: "Amina (Ana)",
+    },
   },
   ku: kuResistanceDetails,
   ar: arResistanceDetails,
