@@ -24,7 +24,7 @@ import journey1992Bg from "@/assets/images/thejourney/1992.webp";
 import journey2005Bg from "@/assets/images/thejourney/2005.webp";
 import journeyTodayBg from "@/assets/images/thejourney/today.webp";
 import Year1992Page from "@/components/Sections/TheJourney/1992";
-import SystemPage from "@/components/Sections/TheSystemV2";
+import SystemPage from "@/components/Sections/TheSystem";
 import PrimeMinisterPage from "@/components/Sections/TheSystem/ThePrimeMinistir";
 import PrimeMinisterTimeline from "@/components/Sections/TheSystem/PrimeMinisterTimeline";
 import ParliamentPage from "@/components/Sections/TheSystem/Parliment";

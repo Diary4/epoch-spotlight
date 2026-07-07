@@ -5,64 +5,63 @@ import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
-import bg from "@/assets/mainImages/thesystem/parlaman.webp"
+import heroImg from "@/assets/mainImages/thesystem/parlaman.webp";
+import pmImg from "@/assets/mainImages/thesystem/system-1.webp";
 
-function Logo() {
+function OrnamentDivider({ dataAttr }: { dataAttr?: string }) {
   return (
-    <div className="flex items-center gap-5">
-      <div className="grid h-18 w-18 place-items-center rounded-t-[28px] border-2 border-[#bd9650] text-[#bd9650]">
-        <Landmark size={42} strokeWidth={1.4} />
-      </div>
-      <h2 className="font-serif text-[34px] text-[#17233b]">Gate of Kurdistan</h2>
+    <div data-sys-ornament={dataAttr ? "true" : undefined} className="flex items-center justify-center gap-4 text-[#b99152]">
+      <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#b99152]" />
+      <span className="h-2 w-2 rotate-45 border border-[#b99152]" />
+      <span className="text-2xl leading-none">✥</span>
+      <span className="h-2 w-2 rotate-45 border border-[#b99152]" />
+      <span className="h-px w-24 bg-gradient-to-l from-transparent to-[#b99152]" />
     </div>
   );
 }
 
-function InstitutionNode({
+function InstitutionCard({
+  numeral,
   label,
+  sub,
   icon,
-  color,
-  className = "",
+  accent,
   onClick,
-  nodeId,
-  displayFont = "font-serif",
+  displayFont,
 }: {
+  numeral: string;
   label: string;
+  sub: string;
   icon: React.ElementType;
-  color: string;
-  className?: string;
+  accent: string;
   onClick?: () => void;
-  nodeId?: string;
-  displayFont?: string;
+  displayFont: string;
 }) {
   const Icon = icon;
-  const content = (
-    <>
-      <div className={`grid h-48 w-48 place-items-center rounded-full border-[7px] border-white ${color} text-[#f8e5b8] shadow-[0_10px_28px_rgba(84,54,16,0.2)] ring-2 ring-[#c49a55]`}>
-        <Icon className="h-[92px] w-[92px]" strokeWidth={1.35} />
-      </div>
-      <p data-discover-lang="true" className={`mt-6 rounded-full px-5 py-1.5 ${displayFont} text-[36px] font-light uppercase tracking-[0.06em] text-[#17233b]`}>
-        {label}
-      </p>
-    </>
-  );
-
-  if (!onClick) {
-    return (
-      <div data-system-node={nodeId} className={`absolute flex flex-col items-center ${className}`}>
-        {content}
-      </div>
-    );
-  }
-
   return (
     <button
-      data-system-node={nodeId}
       type="button"
       onClick={onClick}
-      className={`absolute flex flex-col items-center appearance-none border-0 bg-transparent p-0 text-inherit cursor-pointer ${className}`}
+      className="group flex h-full w-full flex-col items-center rounded-b-[28px] rounded-t-[999px] border border-[#d9c194] bg-[#fdf8ee] px-8 pb-12 pt-16 text-center shadow-[0_18px_45px_rgba(84,54,16,0.14)] transition-transform duration-300 active:scale-[0.985]"
     >
-      {content}
+      <span
+        className="grid h-36 w-36 shrink-0 place-items-center rounded-full text-[#f8e5b8] shadow-[0_10px_24px_rgba(84,54,16,0.22)] ring-1 ring-[#c49a55] ring-offset-[6px] ring-offset-[#fdf8ee]"
+        style={{ backgroundColor: accent }}
+      >
+        <Icon className="h-[70px] w-[70px]" strokeWidth={1.3} />
+      </span>
+      <span className="mt-8 font-serif text-[22px] tracking-[0.35em] text-[#b99152]">{numeral}</span>
+      <span data-discover-lang="true" className={`mt-3 block w-full break-words ${displayFont} text-[44px] font-light leading-tight text-[#17233b]`}>
+        {label}
+      </span>
+      <span data-discover-lang="true" className="mt-3 block w-full break-words text-[23px] font-light leading-snug text-[#9b6d35]">
+        {sub}
+      </span>
+      <span className="mt-auto pt-9">
+        <span className="grid h-14 w-14 place-items-center rounded-full border border-[#b99152] text-[#b99152] transition-colors duration-300 group-active:bg-[#b99152] group-active:text-[#fbf5eb]">
+          <ArrowRight strokeWidth={1.3} className="h-7 w-7 rtl:rotate-180" />
+        </span>
+      </span>
     </button>
   );
 }
@@ -97,6 +96,7 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
   const dir = lang === "en" ? "ltr" : "rtl";
+
   const title = isAr ? "النظام" : isKu ? "سیستەمەکە" : "The System";
   const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : isKu ? "چۆنیەتی کارکردنی دامەزراوەکانی کوردستان پێکەوە." : "How Kurdistan’s institutions work together.";
   const description = isAr
@@ -108,6 +108,10 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   const governmentLabel = isAr ? "الحكومة" : isKu ? "حکومەت" : "Government";
   const presidencyLabel = isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency";
   const primeMinisterLabel = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
+  const parliamentSub = isAr ? "التشريع والرقابة" : isKu ? "یاسادانان و چاودێری" : "Legislation & oversight";
+  const governmentSub = isAr ? "التنفيذ والخدمات العامة" : isKu ? "جێبەجێکردن و خزمەتگوزارییە گشتییەکان" : "Executive & public services";
+  const presidencySub = isAr ? "رئاسة الإقليم" : isKu ? "سەرۆکایەتی هەرێم" : "Head of the Region";
+  const primeMinisterSub = isAr ? "رئيس مجلس الوزراء" : isKu ? "سەرۆکی ئەنجومەنی وەزیران" : "Head of the Council of Ministers";
   const footerText = isAr
     ? "تدعم هذه المؤسسات مجتمعةً الحوكمة والقانون والإدارة العامة."
     : isKu
@@ -142,53 +146,23 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-system-bg='true']", { clipPath: "inset(0 0 100% 0)", autoAlpha: 1 });
-      gsap.set("[data-system-hero='true']", { autoAlpha: 0, y: 20 });
-      gsap.set("[data-system-triangle='true']", { autoAlpha: 0, rotate: -14, scale: 0.94, transformOrigin: "50% 50%" });
-      gsap.set("[data-system-node]", { autoAlpha: 0, y: 28, scale: 0.9 });
-      gsap.set("[data-system-footer='true']", { autoAlpha: 0, y: 24 });
-      gsap.set("[data-system-prime-border='true']", { clipPath: "inset(0 100% 0 0 round 30px)" });
-      gsap.set("[data-system-prime-text='true']", { autoAlpha: 0, y: 12 });
+      gsap.set("[data-sys-ornament='true']", { autoAlpha: 0, scaleX: 0.4, transformOrigin: "50% 50%" });
+      gsap.set("[data-sys-title]", { autoAlpha: 0, y: 34 });
+      gsap.set("[data-sys-banner='true']", { clipPath: "inset(0 0 100% 0)" });
+      gsap.set("[data-sys-card='true']", { autoAlpha: 0, y: 44 });
+      gsap.set("[data-sys-pm='true']", { autoAlpha: 0, y: 18, scale: 0.9 });
+      gsap.set("[data-sys-footer='true']", { autoAlpha: 0, y: 20 });
 
       const tl = gsap.timeline({
         defaults: { ease: "power2.out" },
         onComplete: () => setIntroDone(true),
       });
-      tl.to("[data-system-bg='true']", {
-        clipPath: "inset(0 0 0% 0)",
-        duration: 1.15,
-        ease: "power3.out",
-      })
-        .to("[data-system-prime-border='true']", {
-          clipPath: "inset(0 0% 0 0 round 30px)",
-          duration: 0.95,
-          ease: "power3.out",
-        }, "-=0.55")
-        .to(
-          "[data-system-prime-text='true']",
-          { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.08 },
-          "-=0.08",
-        )
-        .to(
-          "[data-system-triangle='true']",
-          { autoAlpha: 1, rotate: 0, scale: 1, duration: 1.15, ease: "power3.out" },
-          "-=0.05",
-        )
-        .to(
-          "[data-system-node]",
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.75, stagger: 0.14 },
-          "-=0.7",
-        )
-        .to(
-          "[data-system-hero='true']",
-          { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.1 },
-          "-=0.85",
-        )
-        .to(
-          "[data-system-footer='true']",
-          { autoAlpha: 1, y: 0, duration: 0.8 },
-          "-=0.2",
-        );
+      tl.to("[data-sys-ornament='true']", { autoAlpha: 1, scaleX: 1, duration: 0.9, ease: "power3.out" })
+        .to("[data-sys-title]", { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.12 }, "-=0.5")
+        .to("[data-sys-banner='true']", { clipPath: "inset(0 0 0% 0)", duration: 1.25, ease: "power3.inOut" }, "-=0.55")
+        .to("[data-sys-card='true']", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.16 }, "-=0.6")
+        .to("[data-sys-pm='true']", { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, "-=0.15")
+        .to("[data-sys-footer='true']", { autoAlpha: 1, y: 0, duration: 0.8 }, "-=0.2");
     }, sectionRef);
 
     return () => ctx.revert();
@@ -228,122 +202,111 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
         <main className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section
             ref={sectionRef}
-            className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb]"
+            className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb] px-20 pb-16 pt-16"
           >
-            <div className="absolute left-0 top-[120px] block h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
+            {/* Faint corner motifs */}
+            <div className="pointer-events-none absolute -end-24 -top-24 h-72 w-72 rounded-full border border-[#e3d3b3]" />
+            <div className="pointer-events-none absolute -end-16 -top-16 h-72 w-72 rounded-full border border-[#e3d3b3]" />
+            <div className="pointer-events-none absolute -bottom-28 -start-28 h-80 w-80 rounded-full border border-[#e3d3b3]" />
 
-            {/* Hero illustration — right-anchored; building stays visible, left edge fades into text area */}
-            <div
-              data-system-bg="true"
-              className="pointer-events-none absolute right-0 top-0 z-0 h-[860px] w-[58%] overflow-hidden rtl:right-auto rtl:left-0"
-            >
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
-                <img
-                  src={bg}
-                  alt="Kurdistan Regional Parliament building"
-                  className="absolute inset-0 h-full w-full object-cover object-right-top [mask-image:linear-gradient(to_bottom,black_0%,black_85%,rgba(0,0,0,0.6)_94%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_85%,rgba(0,0,0,0.6)_94%,transparent_100%)]"
-                />
-              </div>
-              <div className="absolute left-0 top-0 h-full w-[22%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/70 to-transparent rtl:left-auto rtl:right-0 rtl:bg-gradient-to-l" />
-              <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-b from-transparent to-[#fbf5eb]" />
-            </div>
-
-            <div className="relative z-10 flex flex-col px-20 pb-14 pt-20">
-            <section className="max-w-[760px]">
-              <h1 data-system-hero="true" data-discover-lang="true" className={`break-words ${displayFont} text-[118px] font-light leading-[1.03] tracking-tight text-[#17233b]`}>
+            {/* Monumental centered header */}
+            <header className="relative z-10 flex flex-col items-center text-center">
+              <OrnamentDivider dataAttr="true" />
+              <h1 data-sys-title="true" data-discover-lang="true" className={`mt-8 break-words ${displayFont} text-[112px] font-light leading-[1.02] tracking-tight text-[#17233b]`}>
                 {title}
               </h1>
-
-              <p data-system-hero="true" data-discover-lang="true" className="mt-8 break-words text-[46px] font-light leading-tight text-[#9b6d35]">
+              <p data-sys-title="true" data-discover-lang="true" className="mt-5 max-w-[1000px] break-words text-[40px] font-light leading-tight text-[#9b6d35]">
                 {heading}
               </p>
-
-              <div data-system-hero="true" className="mt-10 flex w-full max-w-[280px] items-center gap-4 text-[#b99152]">
-                <span className="h-0.5 flex-1 bg-[#b99152]" />
-                <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
-              </div>
-
-              <p data-system-hero="true" data-discover-lang="true" className="mt-6 max-w-[700px] break-words text-[36px] font-light leading-[1.5] text-[#2d3549]">
+              <p data-sys-title="true" data-discover-lang="true" className="mt-6 max-w-[1060px] break-words text-[30px] font-light leading-[1.55] text-[#2d3549]">
                 {description}
               </p>
-            </section>
+            </header>
 
-            {/* Diagram (fixed 900×710, scales with the page) */}
-            <div className="relative mx-auto mt-20 h-[710px] w-[900px]">
-              <section data-system-triangle="true" className="relative h-full w-full">
-                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 900 710" fill="none">
-                  <circle cx="450" cy="350" r="318" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
-                  <circle cx="450" cy="350" r="242" stroke="#d8c09a" strokeWidth="1" strokeDasharray="4 7" />
-                  <path d="M450 116 C330 180 234 288 210 458" stroke="#b99152" strokeWidth="4" fill="none" />
-                  <path d="M450 116 C575 180 670 288 700 458" stroke="#b99152" strokeWidth="4" fill="none" />
-                  <path d="M210 458 C330 528 570 528 700 458" stroke="#b99152" strokeWidth="4" fill="none" />
-                  <path d="M450 302 L450 370 M315 458 L450 370 M585 458 L450 370" stroke="#b99152" strokeWidth="4" />
-                  {[450, 210, 700, 315, 585, 450].map((x, i) => (
-                    <circle key={i} cx={x} cy={i === 0 ? 116 : i === 1 || i === 2 ? 458 : i === 5 ? 370 : 458} r="12" fill="#c59a4b" />
-                  ))}
-                </svg>
-
-                <InstitutionNode
-                  label={parliamentLabel}
-                  icon={Landmark}
-                  color="bg-[#13213b]"
-                  className="left-1/2 top-1 -translate-x-1/2"
-                  onClick={onParliamentClick}
-                  nodeId="parliament"
-                  displayFont={displayFont}
-                />
-                <InstitutionNode
-                  label={governmentLabel}
-                  icon={Building2}
-                  color="bg-[#405846]"
-                  className="left-[28px] top-[346px]"
-                  onClick={onGovernmentClick}
-                  nodeId="government"
-                  displayFont={displayFont}
-                />
-                <InstitutionNode
-                  label={presidencyLabel}
-                  icon={Bird}
-                  color="bg-[#9d3637]"
-                  className="right-[28px] top-[346px]"
-                  onClick={onPresidencyClick}
-                  nodeId="presidency"
-                  displayFont={displayFont}
-                />
-
-                <div className="absolute left-1/2 top-[350px] grid h-24 w-24 -translate-x-1/2 place-items-center rounded-full border-2 border-[#d4b476] bg-[#fbf5eb] text-[#b99152] shadow-sm">
-                  <span className="text-5xl">✥</span>
+            {/* Framed panoramic banner of parliament */}
+            <figure data-sys-banner="true" className="relative mt-12 w-full">
+              <div className="rounded-[40px] border border-[#cfae72] p-2.5 shadow-[0_24px_60px_rgba(84,54,16,0.16)]">
+                <div className="relative overflow-hidden rounded-[32px]">
+                  <img
+                    src={heroImg}
+                    alt="Kurdistan Regional Parliament building"
+                    className="h-[470px] w-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#17233b]/50 via-[#17233b]/10 to-transparent" />
                 </div>
-              </section>
-            </div>
-
-            {/* Prime Minister card */}
-            <div
-              data-system-prime="true"
-              data-system-prime-border="true"
-              className="mx-auto mt-10 w-full max-w-[780px] rounded-[30px] border-4 border-[#ead8b7] bg-white/62 p-[3px] shadow-[0_12px_30px_rgba(84,54,16,0.14)]"
-            >
-              <button
-                type="button"
-                onClick={onPrimeMinisterClick}
-                className={`flex h-[150px] w-full items-center justify-between gap-2 rounded-[27px] px-16 ${displayFont} text-[55px] font-light text-[#17233b]`}
-              >
-                <span data-system-prime-text="true" className="shrink-0 text-[#b99152] text-6xl">✥</span>
-                <span data-system-prime-text="true" data-discover-lang="true" className="text-center">{primeMinisterLabel}</span>
-                <ArrowRight data-system-prime-text="true" strokeWidth={1.6} className="h-14 w-14 shrink-0 text-[#b99152] rtl:rotate-180" />
-              </button>
-            </div>
-
-            {/* System Footer info */}
-            <div data-system-footer="true" className="mt-10 flex min-h-[132px] flex-row items-center rounded-[20px] border-2 border-[#ead8b7] bg-white/62 shadow-[0_10px_25px_rgba(84,54,16,0.1)]">
-              <div className="ms-12 me-14 grid h-28 w-28 shrink-0 place-items-center rounded-full bg-[#c59a4b] text-[#f8e5b8] ring-4 ring-white">
-                <span className="text-5xl">✥</span>
               </div>
-              <p data-system-footer="true" data-discover-lang="true" className={`p-4 text-start ${displayFont} font-light text-[34px] leading-tight text-[#17233b]`}>
+            </figure>
+
+            {/* Three institutions — arched cards overlapping the banner */}
+            <div className="relative z-10 -mt-28 flex items-stretch gap-9 px-6 pb-16">
+              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                <InstitutionCard
+                  numeral="I"
+                  label={parliamentLabel}
+                  sub={parliamentSub}
+                  icon={Landmark}
+                  accent="#13213b"
+                  onClick={onParliamentClick}
+                  displayFont={displayFont}
+                />
+              </div>
+
+              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                <InstitutionCard
+                  numeral="II"
+                  label={governmentLabel}
+                  sub={governmentSub}
+                  icon={Building2}
+                  accent="#405846"
+                  onClick={onGovernmentClick}
+                  displayFont={displayFont}
+                />
+
+                {/* Prime Minister — small label pinned to the Government card */}
+                <button
+                  data-sys-pm="true"
+                  type="button"
+                  onClick={onPrimeMinisterClick}
+                  className="group absolute inset-x-0 -bottom-12 z-20 mx-auto flex w-max max-w-[440px] items-center gap-4 rounded-full border border-[#cfae72] bg-[#17233b] py-2.5 ps-2.5 pe-8 shadow-[0_14px_32px_rgba(23,35,59,0.35)] transition-transform duration-300 active:scale-[0.97]"
+                >
+                  <img
+                    src={pmImg}
+                    alt="Prime Minister of the Kurdistan Region"
+                    className="h-[74px] w-[74px] shrink-0 rounded-full border border-[#cfae72] object-cover"
+                    style={{ objectPosition: "68% 12%" }}
+                  />
+                  <span className="min-w-0 text-start">
+                    <span data-discover-lang="true" className={`block break-words ${displayFont} text-[30px] font-light leading-tight text-[#f8ecd2]`}>
+                      {primeMinisterLabel}
+                    </span>
+                    <span data-discover-lang="true" className="mt-0.5 block break-words text-[17px] font-light leading-snug text-[#c9a45f]">
+                      {primeMinisterSub}
+                    </span>
+                  </span>
+                  <ArrowRight strokeWidth={1.4} className="h-7 w-7 shrink-0 text-[#c9a45f] rtl:rotate-180" />
+                </button>
+              </div>
+
+              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                <InstitutionCard
+                  numeral="III"
+                  label={presidencyLabel}
+                  sub={presidencySub}
+                  icon={Bird}
+                  accent="#9d3637"
+                  onClick={onPresidencyClick}
+                  displayFont={displayFont}
+                />
+              </div>
+            </div>
+
+            {/* Closing line */}
+            <footer data-sys-footer="true" className="mt-4 flex flex-col items-center gap-6 text-center">
+              <p data-discover-lang="true" className={`max-w-[980px] break-words ${displayFont} text-[30px] font-light leading-snug text-[#2d3549]`}>
                 {footerText}
               </p>
-            </div>
-            </div>
+              <OrnamentDivider />
+            </footer>
           </section>
         </main>
       </div>

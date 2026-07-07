@@ -86,7 +86,6 @@ export default function WomenPoliticalPage({
   const dir = womenDir(lang);
   const displayFont = womenDisplayFont(lang);
   const isRtlScript = womenRtlScript(lang);
-  const heroConnector = lang === "en" ? "of" : lang === "ku" ? "ی" : "ـ";
 
   const handleLanguageChange = () => {
     if (onLanguageChange) {
@@ -165,10 +164,10 @@ export default function WomenPoliticalPage({
                 data-political-fade="true"
                 className="relative z-20 mx-auto flex w-full max-w-[700px] flex-col items-center"
               >
-                <h1 className={`${displayFont} flex flex-wrap items-center justify-center gap-x-3 text-[clamp(20px,6vw,96px)] font-medium leading-none tracking-tight text-[#2c1337] sm:flex-nowrap sm:gap-x-4`}>
-                  <span>{copy.heroTitle1}</span>
-                  <span>{heroConnector}</span>
-                  <span>{copy.heroTitle2}</span>
+                <h1 className={`${displayFont} text-[clamp(40px,8vw,96px)] font-medium leading-[1.02] tracking-tight text-[#2c1337]`}>
+                  {copy.heroTitle1}
+                  <br />
+                  {copy.heroTitle2}
                 </h1>
 
                 <div className="my-3 flex w-full max-w-[285px] items-center gap-3 text-[#b4864d] sm:my-6 lg:my-8">

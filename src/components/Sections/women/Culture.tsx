@@ -21,7 +21,7 @@ import cultureHeroVideo from "@/assets/videos/culture.webm";
 import imgAysha from "@/assets/images/womens/ayshe.webp";
 import imgMastura from "@/assets/images/womens/mastura.webp";
 import imgShifa from "@/assets/images/womens/shifagardi.webp";
-import imgMaryam from "@/assets/images/womens/maryamkhan.webp";
+import imgMaryam from "@/assets/images/womens/maryam.jpg";
 
 type LangCode = "ku" | "en" | "ar";
 
