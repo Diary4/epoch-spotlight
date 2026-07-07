@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Calendar, Diamond } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import {
@@ -91,61 +91,14 @@ function WavyDecor({ waves }: { waves: string[] }) {
   );
 }
 
-function FlagDoveIcon() {
-  return (
-    <svg viewBox="0 0 80 80" className="h-[52px] w-[52px]" aria-hidden="true">
-      <ellipse cx="40" cy="62" rx="28" ry="8" fill="none" stroke="#c9a86c" strokeWidth="1.2" opacity="0.7" />
-      <path
-        d="M18,48 C22,38 30,32 40,30 C48,28 56,30 62,36 C58,34 52,34 48,36 C44,38 42,42 44,46 C40,44 34,44 30,48 C26,52 22,54 18,48 Z"
-        fill="#e8e4dc"
-        stroke="#c9b896"
-        strokeWidth="1"
-      />
-      <path d="M40,30 L40,22 M36,24 L40,20 L44,24" stroke="#c9b896" strokeWidth="1.2" fill="none" />
-      <path
-        d="M12,58 C16,52 22,50 28,52 M52,52 C58,50 64,52 68,58"
-        fill="none"
-        stroke="#c9a86c"
-        strokeWidth="1"
-        opacity="0.6"
-      />
-    </svg>
-  );
-}
-
-function FlagMountainIcon() {
-  return (
-    <svg viewBox="0 0 80 80" className="h-[52px] w-[52px]" aria-hidden="true">
-      <ellipse cx="40" cy="64" rx="26" ry="7" fill="none" stroke="#5cb87a" strokeWidth="1.2" opacity="0.6" />
-      <path
-        d="M8,58 L24,28 L36,42 L48,22 L72,58 Z"
-        fill="#4a9e62"
-        stroke="#2f8a46"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-      <path d="M24,28 L36,42 L48,22" fill="#3d8a54" />
-      <circle cx="56" cy="26" r="5" fill="#f0e8c8" opacity="0.85" />
-    </svg>
-  );
-}
-
 function FlagColorIcon({ swatch }: { swatch: FlagSwatch }) {
-  const iconSrc = FLAG_ICON_IMAGES[swatch];
-
-  if (iconSrc) {
-    return <img src={iconSrc} alt="" className="h-[58px] w-[58px] object-contain" />;
-  }
-
-  if (swatch === "sun") {
-    return <KurdishSun size={54} />;
-  }
-
-  if (swatch === "white") {
-    return <FlagDoveIcon />;
-  }
-
-  return <FlagMountainIcon />;
+  return (
+    <img
+      src={FLAG_ICON_IMAGES[swatch]}
+      alt=""
+      className="h-full w-full rounded-full object-cover"
+    />
+  );
 }
 
 function FlagColorCard({
@@ -182,7 +135,7 @@ function FlagColorCard({
           className="relative grid h-[92px] w-[92px] place-items-center rounded-full p-[5px]"
           style={{ backgroundColor: theme.ring }}
         >
-          <div className="grid h-[78px] w-[78px] place-items-center overflow-hidden rounded-full bg-white shadow-[inset_0_1px_4px_rgba(0,0,0,0.06)]">
+          <div className="relative h-[78px] w-[78px] overflow-hidden rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)]">
             <FlagColorIcon swatch={swatch} />
           </div>
         </div>
