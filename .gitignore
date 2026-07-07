@@ -26,4 +26,5 @@ release
 
 # Video (use WebM in repo)
 *.mp4
+!src/assets/videos/theflag.mp4
 

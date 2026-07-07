@@ -134,7 +134,7 @@ function FlagColorCard({
       <div
         className="pointer-events-none absolute bottom-0 right-0 h-full w-[55%] opacity-25"
         style={{
-          background: `radial-gradient(ellipse 85% 75% at 100% 100%, ${theme.waves[1]} 0%, transparent 68%)`,
+          background: `radial-gradient(ellipse 85% 75% at 100% 100%, ${theme.waves[1]} 0%, ${theme.waves[1]}00 68%)`,
         }}
         aria-hidden
       />
@@ -346,20 +346,21 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
           position: "absolute",
           top: 0,
           left: 0,
+          backgroundColor: PAPER,
         }}
       >
         <main className="m-0 w-full" style={{ backgroundColor: PAPER, color: INK }}>
           {/* ---------- Hero: flag photo with sweeping paper curve ---------- */}
           <section className="relative h-[640px] w-full overflow-hidden">
-            <div className="land-detail-hero absolute inset-0">
+            <div className="land-detail-hero absolute inset-0 isolate overflow-hidden">
               <div
-                className={`absolute inset-y-0 ${dir === "rtl" ? "left-0" : "right-0"} w-[62%] overflow-hidden`}
+                className={`absolute inset-y-0 overflow-hidden ${dir === "rtl" ? "left-0" : "right-0"} w-[62%]`}
               >
                 <video
                   ref={heroVideoRef}
                   src={heroVideo}
                   aria-label="The Kurdistan flag"
-                  className="h-full w-full object-cover object-center"
+                  className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
                   autoPlay
                   muted
                   loop
@@ -367,13 +368,13 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                   preload="auto"
                 />
                 <div
-                  className={`pointer-events-none absolute inset-y-0 ${dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} w-[42%] from-[#fbf5eb] via-[#fbf5eb]/75 to-transparent`}
+                  className={`pointer-events-none absolute inset-y-0 ${dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} w-[42%] from-[#fbf5eb] via-[#fbf5eb]/75 to-[#fbf5eb]/0`}
                   aria-hidden
                 />
               </div>
               <div
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
-                style={{ background: `linear-gradient(to bottom, transparent, ${PAPER})` }}
+                style={{ background: `linear-gradient(to bottom, rgba(251,245,235,0), ${PAPER})` }}
               />
             </div>
 
@@ -406,7 +407,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
           </section>
 
           {/* ---------- Content ---------- */}
-          <div className="relative px-16 pb-12 pt-8">
+          <div className="relative -mt-px px-16 pb-12 pt-8">
             {/* Side lattice ornaments */}
             <div className="pointer-events-none absolute left-0 top-[430px] h-[560px] w-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
             <div className="pointer-events-none absolute right-0 top-[430px] h-[560px] w-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />

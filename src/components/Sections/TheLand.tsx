@@ -253,7 +253,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-land-bg='true']", { autoAlpha: 0, scale: 1.05, y: 20 });
+      gsap.set("[data-land-bg='true']", { autoAlpha: 0, y: 20 });
       gsap.set("[data-land-hero='true']", { autoAlpha: 0, y: 26 });
       gsap.set("[data-land-divider='true']", { autoAlpha: 0, scaleX: 0, transformOrigin: "center center" });
       gsap.set("[data-land-card='true']", { autoAlpha: 0, y: 42, rotateX: -9, transformOrigin: "center top" });
@@ -265,7 +265,6 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
 
       tl.to("[data-land-bg='true']", {
         autoAlpha: 1,
-        scale: 1,
         y: 0,
         duration: 1.5,
       })
@@ -353,7 +352,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
 
         {/* Absolutely positioned background illustration layer — full width of the hero
             on every breakpoint (mobile keeps the same structure as large screens). */}
-        <div data-land-bg="true" className="pointer-events-none absolute end-0 top-0 h-[56vh] sm:top-0 sm:h-[min(72vh,900px)] md:min-w-0 lg:h-[min(92vh,1150px)] w-full z-0 overflow-hidden">
+        <div data-land-bg="true" className="pointer-events-none absolute end-0 top-0 isolate z-0 h-[56vh] w-full overflow-hidden sm:top-0 sm:h-[min(72vh,900px)] md:min-w-0 lg:h-[min(92vh,1150px)]">
           <div className={`absolute inset-0 ${isRtlScript ? "-scale-x-100" : ""}`}>
             <video
               ref={videoRef}
@@ -363,17 +362,17 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
               loop
               playsInline
               preload="auto"
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
             />
           </div>
           {/* Start-side fade — keeps the hero text readable over the full-width image */}
           <div
-            className="absolute inset-y-0 start-0 w-[70%] sm:w-[60%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/85 sm:via-[#fbf5eb]/80 to-transparent rtl:bg-gradient-to-l block"
+            className="absolute inset-y-0 start-0 block w-[70%] bg-gradient-to-r from-[#fbf5eb] via-[#fbf5eb]/85 sm:w-[60%] sm:via-[#fbf5eb]/80 to-[#fbf5eb]/0 rtl:bg-gradient-to-l"
             aria-hidden
           />
-          {/* Bottom blend into section bg (#fbf5eb) — same tone as the “paper” background */}
+          {/* Bottom blend into section bg (#fbf5eb) — cream alpha 0, not transparent black */}
           <div
-            className="absolute inset-x-0 bottom-0 h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent block"
+            className="absolute inset-x-0 bottom-0 block h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-[#fbf5eb]/0"
             aria-hidden
           />
         </div>

@@ -31,7 +31,7 @@ export function useLandDetailAnimation(deps: unknown[] = []) {
       }
 
       gsap.set(back, { autoAlpha: 0, scale: 0.85 });
-      gsap.set(hero, { autoAlpha: 0, scale: 1.07, transformOrigin: "center center" });
+      gsap.set(hero, { autoAlpha: 0 });
       gsap.set(intro, { autoAlpha: 0, y: 28 });
       gsap.set(cards, { autoAlpha: 0, y: 48 });
       gsap.set(panels, { autoAlpha: 0, y: 40 });
@@ -40,7 +40,7 @@ export function useLandDetailAnimation(deps: unknown[] = []) {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       tl.to(back, { autoAlpha: 1, scale: 1, duration: 0.55 }, 0)
-        .to(hero, { autoAlpha: 1, scale: 1, duration: 1.25, stagger: 0.12 }, 0)
+        .to(hero, { autoAlpha: 1, duration: 1.25, stagger: 0.12 }, 0)
         .to(intro, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.75 }, 0)
         .to(cards, { autoAlpha: 1, y: 0, stagger: 0.16, duration: 0.8 }, 0.18)
         .to(panels, { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.14 }, 0.32)
