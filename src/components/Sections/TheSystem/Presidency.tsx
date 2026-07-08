@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, BookOpenCheck, Building2, UsersRound } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
@@ -9,25 +9,25 @@ import {
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/parliment/presidency.jpg";
+import constitutionalRoleIcon from "@/assets/icons/thesystem/presidency/const-role.jpg";
+import nationalRoleIcon from "@/assets/icons/thesystem/presidency/national-role.jpg";
+import institutionalBalanceIcon from "@/assets/icons/thesystem/presidency/inst-balance.jpg";
 
 const cards = [
   {
     title: "Constitutional Role",
     text: "Supports the institutional framework of the Region.",
-    icon: BookOpenCheck,
-    color: "bg-[#963538]",
+    iconSrc: constitutionalRoleIcon,
   },
   {
     title: "National Role",
     text: "Represents unity, continuity, and public dignity.",
-    icon: UsersRound,
-    color: "bg-[#13213b]",
+    iconSrc: nationalRoleIcon,
   },
   {
     title: "Institutional Balance",
     text: "Works within the wider governance system.",
-    icon: Building2,
-    color: "bg-[#405846]",
+    iconSrc: institutionalBalanceIcon,
   },
 ];
 
@@ -46,15 +46,15 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
 
   const localCards = isAr
     ? [
-        { title: "الدور الدستوري", text: "دعم الإطار المؤسسي للإقليم.", icon: BookOpenCheck, color: "bg-[#963538]" },
-        { title: "الدور الوطني", text: "تمثيل الوحدة والاستمرارية والكرامة الوطنية.", icon: UsersRound, color: "bg-[#13213b]" },
-        { title: "التوازن المؤسسي", text: "العمل ضمن منظومة الحوكمة الأشمل.", icon: Building2, color: "bg-[#405846]" },
+        { title: "الدور الدستوري", text: "دعم الإطار المؤسسي للإقليم.", iconSrc: constitutionalRoleIcon },
+        { title: "الدور الوطني", text: "تمثيل الوحدة والاستمرارية والكرامة الوطنية.", iconSrc: nationalRoleIcon },
+        { title: "التوازن المؤسسي", text: "العمل ضمن منظومة الحوكمة الأشمل.", iconSrc: institutionalBalanceIcon },
       ]
     : isKu
       ? [
-          { title: "ڕۆڵی دەستووری", text: "پاڵپشتی چوارچێوەی دامەزراوەیی هەرێم دەکات.", icon: BookOpenCheck, color: "bg-[#963538]" },
-          { title: "ڕۆڵی نیشتمانی", text: "نوێنەرایەتی یەکڕیزی، بەردەوامی، و شکۆی گشتی دەکات.", icon: UsersRound, color: "bg-[#13213b]" },
-          { title: "هاوسەنگی دامەزراوەیی", text: "لەناو سیستەمێكی حکومڕانی فراوانتردا کاردەکات.", icon: Building2, color: "bg-[#405846]" },
+          { title: "ڕۆڵی دەستووری", text: "پاڵپشتی چوارچێوەی دامەزراوەیی هەرێم دەکات.", iconSrc: constitutionalRoleIcon },
+          { title: "ڕۆڵی نیشتمانی", text: "نوێنەرایەتی یەکڕیزی، بەردەوامی، و شکۆی گشتی دەکات.", iconSrc: nationalRoleIcon },
+          { title: "هاوسەنگی دامەزراوەیی", text: "لەناو سیستەمێكی حکومڕانی فراوانتردا کاردەکات.", iconSrc: institutionalBalanceIcon },
         ]
       : cards;
 
@@ -166,16 +166,17 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
             <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localCards.map((card) => {
-                  const Icon = card.icon;
                   return (
                     <article
                       key={card.title}
                       className="system-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div
-                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                      >
-                        <Icon size={56} strokeWidth={1.5} />
+                      <div className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] shrink-0 place-items-center overflow-hidden rounded-full border-[6px] border-white shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-1 ring-[#e6d5ac]">
+                        <img
+                          src={card.iconSrc}
+                          alt=""
+                          className="h-full w-full object-cover scale-[1.15]"
+                        />
                       </div>
 
                       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
