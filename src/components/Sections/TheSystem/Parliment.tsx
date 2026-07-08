@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, FilePenLine, MessageCircleMore, Scale, Search, UsersRound } from "lucide-react";
+import { ArrowLeft, FilePenLine, MessageCircleMore, UsersRound } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
@@ -9,25 +9,25 @@ import {
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/parliment/parliment.jpg";
+import lawmakingIcon from "@/assets/icons/thesystem/parliment/lawmaking.jpg";
+import representationIcon from "@/assets/icons/thesystem/parliment/representation.jpg";
+import oversightIcon from "@/assets/icons/thesystem/parliment/oversight.jpg";
 
 const mainCards = [
   {
     title: "Lawmaking",
     text: "Reviews and passes laws for public life.",
-    icon: Scale,
-    color: "bg-[#13213b]",
+    iconSrc: lawmakingIcon,
   },
   {
     title: "Representation",
     text: "Reflects the voice and interests of the people.",
-    icon: UsersRound,
-    color: "bg-[#405846]",
+    iconSrc: representationIcon,
   },
   {
     title: "Oversight",
     text: "Monitors public affairs and institutional accountability.",
-    icon: Search,
-    color: "bg-[#963538]",
+    iconSrc: oversightIcon,
   },
 ];
 
@@ -64,15 +64,15 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
 
   const localMainCards = isAr
     ? [
-        { title: "التشريع", text: "يراجع القوانين ويُقرّها لخدمة الحياة العامة.", icon: Scale, color: "bg-[#13213b]" },
-        { title: "التمثيل", text: "يعكس صوت الشعب ومصالحه.", icon: UsersRound, color: "bg-[#405846]" },
-        { title: "الرقابة", text: "يراقب الشؤون العامة ويحاسب المؤسسات.", icon: Search, color: "bg-[#963538]" },
+        { title: "التشريع", text: "يراجع القوانين ويُقرّها لخدمة الحياة العامة.", iconSrc: lawmakingIcon },
+        { title: "التمثيل", text: "يعكس صوت الشعب ومصالحه.", iconSrc: representationIcon },
+        { title: "الرقابة", text: "يراقب الشؤون العامة ويحاسب المؤسسات.", iconSrc: oversightIcon },
       ]
     : isKu
       ? [
-          { title: "یاسادانان", text: "پێداچوونەوە و پەسەندکردنی یاساکان بۆ ژیانی گشتی.", icon: Scale, color: "bg-[#13213b]" },
-          { title: "نوێنەرایەتیکردن", text: "ڕەنگدانەوەی دەنگ و بەرژەوەندییەکانی گەل.", icon: UsersRound, color: "bg-[#405846]" },
-          { title: "چاودێری", text: "چاودێریکردنی کاروباری گشتی و لێپرسینەوەی دامەزراوەیی.", icon: Search, color: "bg-[#963538]" },
+          { title: "یاسادانان", text: "پێداچوونەوە و پەسەندکردنی یاساکان بۆ ژیانی گشتی.", iconSrc: lawmakingIcon },
+          { title: "نوێنەرایەتیکردن", text: "ڕەنگدانەوەی دەنگ و بەرژەوەندییەکانی گەل.", iconSrc: representationIcon },
+          { title: "چاودێری", text: "چاودێریکردنی کاروباری گشتی و لێپرسینەوەی دامەزراوەیی.", iconSrc: oversightIcon },
         ]
       : mainCards;
 
@@ -198,16 +198,17 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
             <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localMainCards.map((card) => {
-                  const Icon = card.icon;
                   return (
                     <article
                       key={card.title}
                       className="system-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div
-                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                      >
-                        <Icon size={56} strokeWidth={1.5} />
+                      <div className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] shrink-0 place-items-center overflow-hidden rounded-full border-[6px] border-white shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-1 ring-[#e6d5ac]">
+                        <img
+                          src={card.iconSrc}
+                          alt=""
+                          className="h-full w-full object-cover scale-[1.15]"
+                        />
                       </div>
 
                       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
