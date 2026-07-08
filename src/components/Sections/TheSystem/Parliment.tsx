@@ -203,11 +203,11 @@ export default function ParliamentPage({ lang = "en", onBack }: ParliamentPagePr
                       key={card.title}
                       className="system-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] shrink-0 place-items-center overflow-hidden rounded-full border-[6px] border-white shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-1 ring-[#e6d5ac]">
+                      <div className="grid h-[clamp(8rem,14cqw,14rem)] w-[clamp(8rem,14cqw,14rem)] shrink-0 place-items-center overflow-hidden rounded-full">
                         <img
                           src={card.iconSrc}
                           alt=""
-                          className="h-full w-full object-cover scale-[1.15]"
+                          className="h-full w-full object-cover scale-[1.25]"
                         />
                       </div>
 
