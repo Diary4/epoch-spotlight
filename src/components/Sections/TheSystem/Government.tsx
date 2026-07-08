@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   ArrowLeft,
-  Building2,
-  ClipboardCheck,
   FileText,
   Handshake,
   Landmark,
@@ -21,25 +19,25 @@ import {
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/PrimeMinistir/government.jpg";
 import bg2 from "@/assets/mainImages/government-2.webp";
+import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.jpg";
+import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.jpg";
+import administrationIcon from "@/assets/icons/thesystem/government/administration.jpg";
 
 const mainCards = [
   {
     title: "Public Services",
     text: "Supports education, health, water, electricity, and daily services.",
-    icon: UsersRound,
-    color: "bg-[#13213b]",
+    iconSrc: publicServicesIcon,
   },
   {
     title: "Policy Implementation",
     text: "Turns plans and decisions into action.",
-    icon: ClipboardCheck,
-    color: "bg-[#405846]",
+    iconSrc: policyImplementationIcon,
   },
   {
     title: "Administration",
     text: "Coordinates ministries and institutional work.",
-    icon: Building2,
-    color: "bg-[#963538]",
+    iconSrc: administrationIcon,
   },
 ];
 
@@ -97,15 +95,15 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
 
   const localMainCards = isAr
     ? [
-        { title: "الخدمات العامة", text: "دعم التعليم والصحة والمياه والكهرباء والخدمات اليومية.", icon: UsersRound, color: "bg-[#13213b]" },
-        { title: "تنفيذ السياسات", text: "تحويل الخطط والقرارات إلى واقع ملموس.", icon: ClipboardCheck, color: "bg-[#405846]" },
-        { title: "الإدارة", text: "تنسيق عمل الوزارات والمؤسسات.", icon: Building2, color: "bg-[#963538]" },
+        { title: "الخدمات العامة", text: "دعم التعليم والصحة والمياه والكهرباء والخدمات اليومية.", iconSrc: publicServicesIcon },
+        { title: "تنفيذ السياسات", text: "تحويل الخطط والقرارات إلى واقع ملموس.", iconSrc: policyImplementationIcon },
+        { title: "الإدارة", text: "تنسيق عمل الوزارات والمؤسسات.", iconSrc: administrationIcon },
       ]
     : isKu
       ? [
-          { title: "خزمەتگوزارییە گشتییەکان", text: "پاڵپشتی پەروەردە، تەندروستی، ئاو، کارەبا، و خزمەتگوزارییەکانی ڕۆژانەکان دەکات.", icon: UsersRound, color: "bg-[#13213b]" },
-          { title: "جێبەجێکردنی سیاسەت", text: "پلان و بڕیارەکان دەگۆڕێت بۆ کردار.", icon: ClipboardCheck, color: "bg-[#405846]" },
-          { title: "کارگێڕی", text: "هەماهەنگی لەنێوان وەزارەتەکان و کارە دامەزراوەیییەکان دەکات.", icon: Building2, color: "bg-[#963538]" },
+          { title: "خزمەتگوزارییە گشتییەکان", text: "پاڵپشتی پەروەردە، تەندروستی، ئاو، کارەبا، و خزمەتگوزارییەکانی ڕۆژانەکان دەکات.", iconSrc: publicServicesIcon },
+          { title: "جێبەجێکردنی سیاسەت", text: "پلان و بڕیارەکان دەگۆڕێت بۆ کردار.", iconSrc: policyImplementationIcon },
+          { title: "کارگێڕی", text: "هەماهەنگی لەنێوان وەزارەتەکان و کارە دامەزراوەیییەکان دەکات.", iconSrc: administrationIcon },
         ]
       : mainCards;
 
@@ -236,16 +234,17 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
             <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localMainCards.map((card) => {
-                  const Icon = card.icon;
                   return (
                     <article
                       key={card.title}
                       className="system-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div
-                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                      >
-                        <Icon size={56} strokeWidth={1.5} />
+                      <div className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] shrink-0 place-items-center overflow-hidden rounded-full border-[6px] border-white shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-1 ring-[#e6d5ac]">
+                        <img
+                          src={card.iconSrc}
+                          alt=""
+                          className="h-full w-full object-cover scale-[1.15]"
+                        />
                       </div>
 
                       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
