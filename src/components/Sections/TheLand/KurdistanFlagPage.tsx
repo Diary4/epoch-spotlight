@@ -360,7 +360,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                   ref={heroVideoRef}
                   src={heroVideo}
                   aria-label="The Kurdistan flag"
-                  className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_74%,transparent_100%)]"
+                  className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
                   autoPlay
                   muted
                   loop
@@ -374,8 +374,10 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                   aria-hidden
                 />
               </div>
+              {/* Bottom blend replaces the old video mask-image fade, which caused
+                  black compositing lines while the GSAP opacity intro ran */}
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[150px] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/60 via-45% to-transparent to-100%"
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[175px] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/70 via-40% to-transparent to-100%"
                 aria-hidden
               />
             </div>

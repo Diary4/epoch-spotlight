@@ -362,7 +362,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
               loop
               playsInline
               preload="auto"
-              className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_76%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_76%,transparent_100%)]"
+              className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
             />
           </div>
           {/* Start-side fade — keeps the hero text readable over the full-width image */}
@@ -370,9 +370,10 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
             className="absolute inset-y-0 start-0 block w-[70%] bg-gradient-to-r from-[#fbf5eb] from-0% via-[#fbf5eb]/85 via-45% sm:w-[60%] sm:via-[#fbf5eb]/80 to-transparent to-100% rtl:bg-gradient-to-l"
             aria-hidden
           />
-          {/* Bottom blend into section bg — women-pages style opaque cream overlay */}
+          {/* Bottom blend into section bg — replaces the old video mask-image fade,
+              which caused black compositing lines while the GSAP opacity intro ran */}
           <div
-            className="absolute inset-x-0 bottom-0 block h-[clamp(72px,14vh,200px)] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/60 via-45% to-transparent to-100%"
+            className="absolute inset-x-0 bottom-0 block h-[24%] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/70 via-40% to-transparent to-100%"
             aria-hidden
           />
         </div>
