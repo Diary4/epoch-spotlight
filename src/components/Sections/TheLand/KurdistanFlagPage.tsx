@@ -354,28 +354,25 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
           <section className="relative h-[640px] w-full overflow-hidden">
             <div className="land-detail-hero absolute inset-0 isolate overflow-hidden">
               <div
-                className={`absolute inset-y-0 overflow-hidden ${dir === "rtl" ? "left-0" : "right-0"} w-[62%]`}
+                className={`absolute inset-y-0 ${dir === "rtl" ? "left-0" : "right-0"} w-[62%]`}
               >
                 <video
                   ref={heroVideoRef}
                   src={heroVideo}
                   aria-label="The Kurdistan flag"
-                  className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
+                  className={`absolute inset-0 h-full w-full object-cover object-center ${
+                    dir === "rtl"
+                      ? "[mask-image:linear-gradient(to_left,transparent_0%,rgba(0,0,0,0.1)_20%,rgba(0,0,0,0.5)_42%,black_62%),linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_left,transparent_0%,rgba(0,0,0,0.1)_20%,rgba(0,0,0,0.5)_42%,black_62%),linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                      : "[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.1)_20%,rgba(0,0,0,0.5)_42%,black_62%),linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.1)_20%,rgba(0,0,0,0.5)_42%,black_62%),linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
+                  } [mask-composite:intersect] [-webkit-mask-composite:source-in]`}
                   autoPlay
                   muted
                   loop
                   playsInline
                   preload="auto"
                 />
-                <div
-                  className={`absolute inset-y-0 z-10 w-[46%] ${
-                    dir === "rtl" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"
-                  } from-[#fbf5eb] from-0% via-[#fbf5eb]/75 via-45% to-transparent to-100%`}
-                  aria-hidden
-                />
               </div>
-              {/* Bottom blend replaces the old video mask-image fade, which caused
-                  black compositing lines while the GSAP opacity intro ran */}
+              {/* Extra full-width bottom blend for a soft transition into the content */}
               <div
                 className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[175px] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/70 via-40% to-transparent to-100%"
                 aria-hidden
