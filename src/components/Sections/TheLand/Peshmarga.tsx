@@ -1,27 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, History, ScrollText, Shield } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import bg from "@/assets/mainImages/peshmarga.webp"
-
-const ICON_BG = "#963538";
+import bg from "@/assets/mainImages/peshmarga.webp";
+import whatMeanIcon from "@/assets/icons/theland/peshmarga/what-mean.jpg";
+import storyIcon from "@/assets/icons/theland/peshmarga/story.jpg";
+import todayIcon from "@/assets/icons/theland/peshmarga/today.jpg";
 
 const cards = [
   {
     title: "What Does It\nMean?",
     text: 'The term "Peshmerga" literally translates to "those who face death." It is derived from the Kurdish words pêş (in front of) and merg (death).',
-    icon: ScrollText,
+    iconSrc: whatMeanIcon,
   },
   {
     title: "The Story\nBehind It",
     text: "While Kurdish armed resistance has existed for centuries, the term was officially adopted in 1946 as the name for the military forces of the Republic of Mahabad. Leadership at the time sought a name that embodied the bravery and self-sacrifice of those fighting for Kurdish rights and identity, choosing a term that reflected a warrior's readiness to die for their cause.",
-    icon: History,
+    iconSrc: storyIcon,
   },
   {
     title: "Peshmerga\nToday",
     text: "Today, the Peshmerga serve as the official security forces of the Kurdistan Region of Iraq. After decades of evolving from guerrilla movements, they are now institutionalized under the Ministry of Peshmerga Affairs, undergoing modernization and integration efforts to function as a professional, unified national military force.",
-    icon: Shield,
+    iconSrc: todayIcon,
   },
 ];
 
@@ -52,17 +53,17 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
         {
           title: "ماذا يعني\nالمصطلح؟",
           text: 'تعني كلمة "بيشمركة" (Peshmerga) حرفياً "أولئك الذين يواجهون الموت"، وهي مشتقة من كلمتين كرديتين: "بيش" وتعني أمام أو مواجهة، و"مرگ" وتعني الموت.',
-          icon: ScrollText,
+          iconSrc: whatMeanIcon,
         },
         {
           title: "قصة التسمية\nوالنشأة",
           text: 'رغم أن جذور المقاومة الكردية المسلحة تعود إلى فترات تاريخية قديمة وتشكيلات قبلية، إلا أن المصطلح اعتمد رسمياً كاسم للقوات المسلحة في "جمهورية مهاباد" عام 1946. تشير الروايات إلى أن القادة في ذلك الوقت كانوا يبحثون عن اسم يعبر عن شجاعة المقاتلين وتضحيتهم، فتم اختيار هذا الاسم ليعكس استعدادهم الدائم للموت في سبيل الدفاع عن حقوق الكرد وهويتهم.',
-          icon: History,
+          iconSrc: storyIcon,
         },
         {
           title: "واقع البيشمركة\nاليوم",
           text: "تعد البيشمركة اليوم القوات الأمنية الرسمية لإقليم كوردستان العراق. بعد عقود من العمل كحركات تحرر وجماعات مسلحة، تحولت إلى قوة مؤسساتية تخضع لوزارة شؤون البيشمركة في حكومة الإقليم. حالياً، تجري عمليات إصلاح وتوحيد واسعة لهذه القوات لتكون جيشاً وطنياً موحداً ومهنياً تحت مظلة مؤسسات الإقليم.",
-          icon: Shield,
+          iconSrc: todayIcon,
         },
       ]
     : isKu
@@ -70,17 +71,17 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
           {
             title: "واتای ئەم ناوە چییە؟",
             text: 'پێشمەرگە لە دوو بڕگەی "پێش" (بە واتای ڕووبەڕوو بوونەوە) و "مەرگ" (مردن) پێکهاتووە. بە گشتی واتە "ئەوانەی ڕووبەڕووی مەرگ دەبنەوە".',
-            icon: ScrollText,
-          },
-          {
-            title: "چیرۆکی پێشمەرگە",
-            text: 'هەرچەندە خەباتی چەکداری کورد مێژوویەکی کۆنی هەیە، بەڵام ئەم ناوە بە شێوەیەکی فەرمی لە سەردەمی کۆماری مەهاباد (١٩٤٦) وەک ناوی سوپای کۆمارەکە دەستنیشانکرا. سەرکردایەتی ئەو سەردەمە بەدوای ناوێکی شایستەدا دەگەڕان بۆ ئەو جەنگاوەرانەی کە بە گیانفیدایی لە پێناو خاک و نەتەوەکەیاندا تێدەکۆشان، بۆیە ناوی "پێشمەرگە" هەڵبژێردرا و بوو بە هێمایەکی نیشتمانی بۆ بەرگری و ئازادیخوازی.',
-            icon: History,
-          },
-          {
-            title: "پێشمەرگە لە ئێستادا",
-            text: "ئەمڕۆ پێشمەرگە هێزی فەرمی بەرگری و ئاسایشی هەرێمی کوردستانە. دوای قۆناغێکی دوورودرێژی خەباتی شاخ و بەرگری، ئێستا پێشمەرگە وەک هێزێکی دامەزراوەیی لە چوارچێوەی وەزارەتی پێشمەرگەی حکومەتی هەرێمی کوردستان ڕێکخراوە و پڕۆسەیەکی فراوانی یەکخستنەوە و پیشەییکردن بۆ دروستکردنی هێزێکی نیشتمانیی یەکگرتوو بەڕێوەدەچێت.",
-            icon: Shield,
+          iconSrc: whatMeanIcon,
+        },
+        {
+          title: "چیرۆکی پێشمەرگە",
+          text: 'هەرچەندە خەباتی چەکداری کورد مێژوویەکی کۆنی هەیە، بەڵام ئەم ناوە بە شێوەیەکی فەرمی لە سەردەمی کۆماری مەهاباد (١٩٤٦) وەک ناوی سوپای کۆمارەکە دەستنیشانکرا. سەرکردایەتی ئەو سەردەمە بەدوای ناوێکی شایستەدا دەگەڕان بۆ ئەو جەنگاوەرانەی کە بە گیانفیدایی لە پێناو خاک و نەتەوەکەیاندا تێدەکۆشان، بۆیە ناوی "پێشمەرگە" هەڵبژێردرا و بوو بە هێمایەکی نیشتمانی بۆ بەرگری و ئازادیخوازی.',
+          iconSrc: storyIcon,
+        },
+        {
+          title: "پێشمەرگە لە ئێستادا",
+          text: "ئەمڕۆ پێشمەرگە هێزی فەرمی بەرگری و ئاسایشی هەرێمی کوردستانە. دوای قۆناغێکی دوورودرێژی خەباتی شاخ و بەرگری، ئێستا پێشمەرگە وەک هێزێکی دامەزراوەیی لە چوارچێوەی وەزارەتی پێشمەرگەی حکومەتی هەرێمی کوردستان ڕێکخراوە و پڕۆسەیەکی فراوانی یەکخستنەوە و پیشەییکردن بۆ دروستکردنی هێزێکی نیشتمانیی یەکگرتوو بەڕێوەدەچێت.",
+          iconSrc: todayIcon,
           },
         ]
       : cards;
@@ -188,17 +189,17 @@ export default function PeshmergaPage({ lang = "en", onBack }: PeshmergaPageProp
             <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localCards.map((card) => {
-                  const Icon = card.icon;
                   return (
                     <article
                       key={card.title}
                       className="land-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/82 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md"
                     >
-                      <div
-                        className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496]"
-                        style={{ backgroundColor: ICON_BG }}
-                      >
-                        <Icon className="h-[clamp(2rem,3.5cqw,3.5rem)] w-[clamp(2rem,3.5cqw,3.5rem)]" strokeWidth={1.45} />
+                      <div className="grid h-[clamp(8rem,14cqw,14rem)] w-[clamp(8rem,14cqw,14rem)] shrink-0 place-items-center overflow-hidden rounded-full">
+                        <img
+                          src={card.iconSrc}
+                          alt=""
+                          className="h-full w-full object-cover scale-[1.25]"
+                        />
                       </div>
 
                       <h3
