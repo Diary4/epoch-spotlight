@@ -253,7 +253,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-land-cover='true']", { autoAlpha: 1 });
+      gsap.set("[data-land-bg='true']", { autoAlpha: 0, y: 20 });
       gsap.set("[data-land-hero='true']", { autoAlpha: 0, y: 26 });
       gsap.set("[data-land-divider='true']", { autoAlpha: 0, scaleX: 0, transformOrigin: "center center" });
       gsap.set("[data-land-card='true']", { autoAlpha: 0, y: 42, rotateX: -9, transformOrigin: "center top" });
@@ -263,8 +263,9 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
         onComplete: () => setIntroDone(true),
       });
 
-      tl.to("[data-land-cover='true']", {
-        autoAlpha: 0,
+      tl.to("[data-land-bg='true']", {
+        autoAlpha: 1,
+        y: 0,
         duration: 1.5,
       })
         .to(
@@ -361,7 +362,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
               loop
               playsInline
               preload="auto"
-              className="absolute -inset-0.5 h-[calc(100%+4px)] w-[calc(100%+4px)] object-cover object-center"
+              className="absolute inset-0 h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_72%,rgba(0,0,0,0.75)_82%,rgba(0,0,0,0.35)_92%,transparent_100%)]"
             />
           </div>
           {/* Start-side fade — keeps the hero text readable over the full-width image */}
@@ -372,14 +373,6 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
           {/* Bottom blend into section bg — softens the transition into the content */}
           <div
             className="absolute inset-x-0 bottom-0 block h-[24%] bg-gradient-to-t from-[#fbf5eb] from-0% via-[#fbf5eb]/70 via-40% to-transparent to-100%"
-            aria-hidden
-          />
-          {/* Paper reveal cover — the intro fades THIS overlay out instead of animating
-              the video's own opacity, which avoids black compositing lines on the
-              video's clipped edges while the GSAP intro runs */}
-          <div
-            data-land-cover="true"
-            className="pointer-events-none absolute inset-0 z-30 bg-[#fbf5eb]"
             aria-hidden
           />
         </div>
