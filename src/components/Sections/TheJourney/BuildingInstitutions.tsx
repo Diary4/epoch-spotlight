@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, BarChart3, Building2, Landmark } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
@@ -7,25 +7,25 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import bg from "@/assets/images/thejourney/building.jpg";
+import publicIcon from "@/assets/icons/thejourney/building/public.png";
+import parlimentIcon from "@/assets/icons/thejourney/building/parliment.png";
+import growthIcon from "@/assets/icons/thejourney/building/growth.png";
 
 const rows = [
   {
     title: "Public Institutions",
     text: "Over time, Kurdistan developed institutions that helped organize governance and public life.",
-    icon: Landmark,
-    color: "bg-[#13213b]",
+    icon: publicIcon,
   },
   {
     title: "Parliament, Government, Presidency",
     text: "These institutions became essential parts of the regional political system.",
-    icon: Building2,
-    color: "bg-[#405846]",
+    icon: parlimentIcon,
   },
   {
     title: "Institutional Growth",
     text: "Together, they helped shape a more structured and functioning regional administration.",
-    icon: BarChart3,
-    color: "bg-[#943134]",
+    icon: growthIcon,
   },
 ];
 
@@ -152,16 +152,18 @@ export default function BuildingInstitutionsPage({ lang = "en", onBack }: Buildi
               {/* Rows */}
               <section className="space-y-[clamp(0.75rem,1.6cqh,1.6rem)] pb-[clamp(0.3rem,1.4cqh,1rem)]">
                 {localizedRows.map((row) => {
-                  const Icon = row.icon;
                   return (
                     <article
                       key={row.title}
                       className="journey-detail-card relative flex min-h-[clamp(9.2rem,15.8cqh,13.2rem)] items-center rounded-[24px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1cqw,2.5rem)] py-[clamp(0.9rem,1.9cqh,1.8rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                     >
                       <div className="flex w-[clamp(5.6rem,13cqw,11.5rem)] justify-center">
-                        <div className={`grid h-[clamp(4.1rem,7.5cqw,7rem)] w-[clamp(4.1rem,7.5cqw,7rem)] place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
-                          <Icon size={54} strokeWidth={1.5} />
-                        </div>
+                        <img
+                          src={row.icon}
+                          alt=""
+                          aria-hidden
+                          className="h-[clamp(4.1rem,7.5cqw,7rem)] w-[clamp(4.1rem,7.5cqw,7rem)] object-contain"
+                        />
                       </div>
 
                       <div className="h-[clamp(4.5rem,8.8cqh,6.8rem)] w-px bg-[#e2c99b]" />
