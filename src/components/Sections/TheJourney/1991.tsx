@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, BarChart3, Landmark, UsersRound } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
@@ -8,25 +8,25 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import bg from "@/assets/images/thejourney/1991.webp";
+import uprisingIcon from "@/assets/icons/thejourney/1991/uprising.png";
+import realityIcon from "@/assets/icons/thejourney/1991/reality.png";
+import futureIcon from "@/assets/icons/thejourney/1991/future.png";
 
 const cards = [
   {
     title: "Historic\nUprising",
     text: "In 1991, a major uprising marked a turning point in Kurdish history in Iraq.",
-    icon: UsersRound,
-    color: "bg-[#c59a4b]",
+    icon: uprisingIcon,
   },
   {
     title: "A New\nReality",
     text: "This moment opened the way for a new political and administrative reality in the Kurdistan Region.",
-    icon: Landmark,
-    color: "bg-[#5d6a50]",
+    icon: realityIcon,
   },
   {
     title: "A Foundation\nfor the Future",
     text: "The developments of 1991 laid the groundwork for modern self-governance.",
-    icon: BarChart3,
-    color: "bg-[#9d3637]",
+    icon: futureIcon,
   },
 ];
 
@@ -161,17 +161,17 @@ export default function Year1991Page({ lang = "en", onBack }: Year1991PageProps)
 
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localizedCards.map((card) => {
-                  const Icon = card.icon;
                   return (
                     <article
                       key={card.title}
                       className="journey-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div
-                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                      >
-                        <Icon size={56} strokeWidth={1.5} />
-                      </div>
+                      <img
+                        src={card.icon}
+                        alt=""
+                        aria-hidden
+                        className="h-[clamp(6rem,11cqw,10.5rem)] w-[clamp(6rem,11cqw,10.5rem)] object-contain"
+                      />
 
                       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
                         {card.title}

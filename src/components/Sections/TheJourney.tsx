@@ -1,13 +1,6 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
-import {
-  ArrowLeft,
-  BarChart3,
-  Landmark,
-  Network,
-  Scale,
-  SunMedium,
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -19,37 +12,37 @@ import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscover
 import bg from "@/assets/images/new/theJourney/journey-1.webp";
 import bg2 from "@/assets/images/new/theJourney/journey-2.webp";
 import bg3 from "@/assets/images/new/theJourney/journey-3.webp";
+import icon1991 from "@/assets/icons/thejourney/1991.png";
+import icon1992 from "@/assets/icons/thejourney/1992.png";
+import iconBuilding from "@/assets/icons/thejourney/building.png";
+import icon2005 from "@/assets/icons/thejourney/2005.png";
+import iconToday from "@/assets/icons/thejourney/today.png";
 
 const milestones = [
   {
     title: "1991",
     text: "A historic turning point that opened the path to a new reality.",
-    icon: SunMedium,
-    color: "#c29242",
+    icon: icon1991,
   },
   {
     title: "1992",
     text: "The first parliament and government marked the beginning of self-rule.",
-    icon: Landmark,
-    color: "#425b42",
+    icon: icon1992,
   },
   {
     title: "Building Institutions",
     text: "Public institutions gradually formed the structure of modern governance.",
-    icon: Network,
-    color: "#963438",
+    icon: iconBuilding,
   },
   {
     title: "2005",
     text: "Federal recognition gave constitutional status to the Kurdistan Region.",
-    icon: Scale,
-    color: "#0f203a",
+    icon: icon2005,
   },
   {
     title: "Today",
     text: "Kurdistan continues to grow through institutions, development, and vision.",
-    icon: BarChart3,
-    color: "#c29242",
+    icon: iconToday,
   },
 ];
 
@@ -531,7 +524,6 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                   */}
                   <div ref={cardColumnRef} className="flex min-h-0 flex-1 flex-col justify-between gap-5 pl-0">
                     {localizedMilestones.map((item, index) => {
-                      const Icon = item.icon;
                       return (
                         <button
                           type="button"
@@ -543,12 +535,11 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                           className="journey-card relative z-10 flex min-h-[148px] w-full max-w-[640px] flex-1 basis-0 items-stretch rounded-[22px] border border-[#ead8b7] bg-white/80 shadow-[0_8px_20px_rgba(84,54,16,0.08)] backdrop-blur-sm md:w-[clamp(480px,48cqw,640px)]"
                         >
                           <div className="flex w-[168px] shrink-0 items-center justify-center py-4">
-                            <div
-                              className="grid h-28 w-28 shrink-0 place-items-center rounded-full border-[5px] border-white text-[#f7e3b5] shadow-[0_6px_16px_rgba(0,0,0,0.16)]"
-                              style={{ backgroundColor: item.color }}
-                            >
-                              <Icon className="h-[52px] w-[52px]" strokeWidth={1.5} />
-                            </div>
+                            <img
+                              src={item.icon}
+                              alt=""
+                              className="h-[128px] w-[128px] shrink-0 object-contain"
+                            />
                           </div>
 
                           <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
