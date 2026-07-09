@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, BookOpen, Landmark, Scale } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
@@ -8,25 +8,25 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/images/thejourney/today.webp";
+import developmentIcon from "@/assets/icons/thejourney/today/development.png";
+import economyIcon from "@/assets/icons/thejourney/today/economy.png";
+import youthIcon from "@/assets/icons/thejourney/today/youth.png";
 
 const rows = [
   {
-    title: "Institutional Growth",
-    text: "Today, Kurdistan continues strengthening institutions to serve society and public life.",
-    icon: Landmark,
-    color: "bg-[#13213b]",
+    title: "Development",
+    text: "Today, the Kurdistan Region continues to advance in infrastructure, education, and public services.",
+    icon: developmentIcon,
   },
   {
-    title: "Development and Services",
-    text: "Ongoing reforms and projects aim to improve services, infrastructure, and opportunities.",
-    icon: Scale,
-    color: "bg-[#405846]",
+    title: "Economy and Investment",
+    text: "Economic growth, business activity, and investment remain important parts of the Region's future.",
+    icon: economyIcon,
   },
   {
-    title: "Future Vision",
-    text: "The Region moves forward with a long-term vision for stability, prosperity, and innovation.",
-    icon: BookOpen,
-    color: "bg-[#9d3637]",
+    title: "Youth and Opportunity",
+    text: "A new generation is helping shape Kurdistan through learning, work, and innovation.",
+    icon: youthIcon,
   },
 ];
 
@@ -152,16 +152,18 @@ export default function TodayPage({ lang = "en", onBack }: TodayPageProps) {
 
               <section className="space-y-[clamp(0.8rem,1.7cqh,1.9rem)]">
                 {localizedRows.map((row) => {
-                  const Icon = row.icon;
                   return (
                     <article
                       key={row.title}
                       className="journey-detail-card relative flex min-h-[clamp(9.2rem,16cqh,13.5rem)] items-center rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(1rem,2.1cqw,2.5rem)] py-[clamp(0.9rem,1.9cqh,1.8rem)] shadow-[0_14px_35px_rgba(84,54,16,0.13)] backdrop-blur-md"
                     >
                       <div className="flex w-[clamp(5.6rem,13cqw,11.5rem)] justify-center">
-                        <div className={`grid h-[clamp(4.1rem,7.5cqw,7rem)] w-[clamp(4.1rem,7.5cqw,7rem)] place-items-center rounded-full border-[6px] border-white ${row.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}>
-                          <Icon size={54} strokeWidth={1.5} />
-                        </div>
+                        <img
+                          src={row.icon}
+                          alt=""
+                          aria-hidden
+                          className="h-[clamp(4.1rem,7.5cqw,7rem)] w-[clamp(4.1rem,7.5cqw,7rem)] object-contain"
+                        />
                       </div>
 
                       <div className="h-[clamp(4.5rem,9cqh,7rem)] w-px bg-[#e2c99b]" />
