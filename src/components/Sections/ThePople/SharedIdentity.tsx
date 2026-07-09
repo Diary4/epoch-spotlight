@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, MessageSquareText, Music2, UsersRound } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
 import heroVideo from "@/assets/videos/diy.webm";
+import languageIcon from "@/assets/icons/thepeople/sharedidentity/language.png";
+import traditionsIcon from "@/assets/icons/thepeople/sharedidentity/traditions.png";
+import memoryIcon from "@/assets/icons/thepeople/sharedidentity/memory.png";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -12,21 +15,17 @@ const identityCards = [
   {
     title: "Language",
     text: "Kurdish language is a central part of identity and remains a living connection between generations and communities.",
-    icon: MessageSquareText,
-    iconText: "کوردی",
-    color: "bg-[#c9903f]",
+    icon: languageIcon,
   },
   {
     title: "Traditions",
     text: "Music, dance, clothing, celebrations, and hospitality help preserve a shared sense of belonging.",
-    icon: Music2,
-    color: "bg-[#00604f]",
+    icon: traditionsIcon,
   },
   {
     title: "Collective\nMemory",
     text: "Across different places and borders, Kurds remain connected through shared history, stories, and cultural memory.",
-    icon: UsersRound,
-    color: "bg-[#9d3637]",
+    icon: memoryIcon,
   },
 ];
 
@@ -154,27 +153,16 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
               <div className="flex-[0.85]" />
 
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
-                {localizedCards.map((card, i) => {
-                  const Icon = card.icon;
-                  return (
+                {localizedCards.map((card, i) => (
                     <article
                       key={i}
                       className="journey-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div
-                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                      >
-                        {card.iconText ? (
-                          <div className="relative">
-                            <MessageSquareText size={56} strokeWidth={1.5} />
-                            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%] text-[clamp(0.65rem,1.1cqw,1.1rem)] font-bold">
-                              {card.iconText}
-                            </span>
-                          </div>
-                        ) : (
-                          <Icon size={56} strokeWidth={1.5} />
-                        )}
-                      </div>
+                      <img
+                        src={card.icon}
+                        alt=""
+                        className="h-[clamp(6.5rem,12cqw,11rem)] w-[clamp(6.5rem,12cqw,11rem)] object-contain"
+                      />
 
                       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#214439]`}>
                         {card.title}
@@ -192,8 +180,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
 
                       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
                     </article>
-                  );
-                })}
+                ))}
               </section>
             </div>
           </section>

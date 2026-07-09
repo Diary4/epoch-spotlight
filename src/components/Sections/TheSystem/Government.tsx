@@ -19,9 +19,9 @@ import {
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/PrimeMinistir/government.jpg";
 import bg2 from "@/assets/mainImages/government-2.webp";
-import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.jpg";
-import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.jpg";
-import administrationIcon from "@/assets/icons/thesystem/government/administration.jpg";
+import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.png";
+import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.png";
+import administrationIcon from "@/assets/icons/thesystem/government/administration.png";
 
 const mainCards = [
   {

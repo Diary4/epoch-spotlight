@@ -4,9 +4,9 @@ import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDet
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import bg from "@/assets/mainImages/peshmarga.webp";
-import whatMeanIcon from "@/assets/icons/theland/peshmarga/what-mean.jpg";
-import storyIcon from "@/assets/icons/theland/peshmarga/story.jpg";
-import todayIcon from "@/assets/icons/theland/peshmarga/today.jpg";
+import whatMeanIcon from "@/assets/icons/theland/peshmarga/what-mean.png";
+import storyIcon from "@/assets/icons/theland/peshmarga/story.png";
+import todayIcon from "@/assets/icons/theland/peshmarga/today.png";
 
 const cards = [
   {

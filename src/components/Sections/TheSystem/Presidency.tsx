@@ -9,9 +9,9 @@ import {
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/parliment/presidency.jpg";
-import constitutionalRoleIcon from "@/assets/icons/thesystem/presidency/const-role.jpg";
-import nationalRoleIcon from "@/assets/icons/thesystem/presidency/national-role.jpg";
-import institutionalBalanceIcon from "@/assets/icons/thesystem/presidency/inst-balance.jpg";
+import constitutionalRoleIcon from "@/assets/icons/thesystem/presidency/const-role.png";
+import nationalRoleIcon from "@/assets/icons/thesystem/presidency/national-role.png";
+import institutionalBalanceIcon from "@/assets/icons/thesystem/presidency/inst-balance.png";
 
 const cards = [
   {

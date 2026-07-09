@@ -9,9 +9,9 @@ import {
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/parliment/parliment.jpg";
-import lawmakingIcon from "@/assets/icons/thesystem/parliment/lawmaking.jpg";
-import representationIcon from "@/assets/icons/thesystem/parliment/representation.jpg";
-import oversightIcon from "@/assets/icons/thesystem/parliment/oversight.jpg";
+import lawmakingIcon from "@/assets/icons/thesystem/parliment/lawmaking.png";
+import representationIcon from "@/assets/icons/thesystem/parliment/representation.png";
+import oversightIcon from "@/assets/icons/thesystem/parliment/oversight.png";
 
 const mainCards = [
   {
