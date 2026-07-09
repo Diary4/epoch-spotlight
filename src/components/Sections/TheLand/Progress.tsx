@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, BarChart3, GraduationCap, MonitorCog, Mountain, Route } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
@@ -7,6 +7,11 @@ import bg from "@/assets/images/theLand/progress.png";
 import pattern1 from "@/assets/images/patterns/card-1.webp";
 import pattern2 from "@/assets/images/patterns/card-2.webp";
 import pattern3 from "@/assets/images/patterns/card-3.webp";
+import infrastructureIcon from "@/assets/icons/theland/progress/infrastructure.png";
+import educationIcon from "@/assets/icons/theland/progress/education.png";
+import economyIcon from "@/assets/icons/theland/progress/economy.png";
+import tourismIcon from "@/assets/icons/theland/progress/tourism.png";
+import digitalIcon from "@/assets/icons/theland/progress/digital.png";
 
 const cardPatterns = [pattern1, pattern2, pattern3];
 
@@ -14,20 +19,17 @@ const topCards = [
   {
     title: "Infrastructure",
     text: "Building modern roads, utilities, and public services.",
-    icon: Route,
-    color: "#13213b",
+    icon: infrastructureIcon,
   },
   {
     title: "Education",
     text: "Investing in knowledge and empowering future generations.",
-    icon: GraduationCap,
-    color: "#405846",
+    icon: educationIcon,
   },
   {
     title: "Economy",
     text: "Driving sustainable growth and job creation.",
-    icon: BarChart3,
-    color: "#963538",
+    icon: economyIcon,
   },
 ];
 
@@ -35,14 +37,12 @@ const bottomCards = [
   {
     title: "Tourism",
     text: "Showcasing Kurdistan's beauty and cultural heritage.",
-    icon: Mountain,
-    color: "#c69237",
+    icon: tourismIcon,
   },
   {
     title: "Digital Transformation",
     text: "Embracing technology and innovation for a smarter future.",
-    icon: MonitorCog,
-    color: "#13213b",
+    icon: digitalIcon,
   },
 ];
 
@@ -65,16 +65,13 @@ function ProgressCard({
   pattern?: string;
   displayFont?: string;
 }) {
-  const Icon = card.icon;
-
   return (
     <article className="land-detail-card relative flex min-h-[clamp(24rem,40cqh,36rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/82 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
-      <div
-        className="grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)] ring-2 ring-[#e1c496]"
-        style={{ backgroundColor: card.color }}
-      >
-        <Icon className="h-[clamp(2rem,3.5cqw,3.5rem)] w-[clamp(2rem,3.5cqw,3.5rem)]" strokeWidth={1.45} />
-      </div>
+      <img
+        src={card.icon}
+        alt=""
+        className="h-[clamp(6rem,11cqw,10rem)] w-[clamp(6rem,11cqw,10rem)] object-contain"
+      />
 
       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-tight text-[#17233b]`}>
         {card.title}
@@ -116,26 +113,26 @@ export default function ProgressPage({ lang = "en", onBack }: ProgressPageProps)
   const displayFont = discoverDisplayFont(lang);
   const localTopCards = isAr
     ? [
-        { title: "البنية التحتية", text: "بناء الطرق الحديثة والمرافق والخدمات العامة.", icon: Route, color: "#13213b" },
-        { title: "التعليم", text: "الاستثمار في المعرفة وتمكين الأجيال القادمة.", icon: GraduationCap, color: "#405846" },
-        { title: "الاقتصاد", text: "تحقيق النمو المستدام وخلق فرص العمل.", icon: BarChart3, color: "#963538" },
+        { title: "البنية التحتية", text: "بناء الطرق الحديثة والمرافق والخدمات العامة.", icon: infrastructureIcon },
+        { title: "التعليم", text: "الاستثمار في المعرفة وتمكين الأجيال القادمة.", icon: educationIcon },
+        { title: "الاقتصاد", text: "تحقيق النمو المستدام وخلق فرص العمل.", icon: economyIcon },
       ]
     : isKu
       ? [
-          { title: "ژێرخان", text: "بونیادنانی ڕێگاوبانی مۆدێرن، پێداویستییە سەرەکییەکان و خزمەتگوزارییە گشتییەکان.", icon: Route, color: "#13213b" },
-          { title: "پەروەردە", text: "وەبەرهێنان لە زانیاری و بەهێزکردنی نەوەکانی داهاتوو.", icon: GraduationCap, color: "#405846" },
-          { title: "ئابووری", text: "هاندانی گەشەی بەردەوام و ڕەخساندنی هەلی کار.", icon: BarChart3, color: "#963538" },
+          { title: "ژێرخان", text: "بونیادنانی ڕێگاوبانی مۆدێرن، پێداویستییە سەرەکییەکان و خزمەتگوزارییە گشتییەکان.", icon: infrastructureIcon },
+          { title: "پەروەردە", text: "وەبەرهێنان لە زانیاری و بەهێزکردنی نەوەکانی داهاتوو.", icon: educationIcon },
+          { title: "ئابووری", text: "هاندانی گەشەی بەردەوام و ڕەخساندنی هەلی کار.", icon: economyIcon },
         ]
       : topCards;
   const localBottomCards = isAr
     ? [
-        { title: "السياحة", text: "إبراز جمال كوردستان وتراثها الثقافي.", icon: Mountain, color: "#c69237" },
-        { title: "التحول الرقمي", text: "تبنّي التكنولوجيا والابتكار لمستقبل أكثر ذكاءً.", icon: MonitorCog, color: "#13213b" },
+        { title: "السياحة", text: "إبراز جمال كوردستان وتراثها الثقافي.", icon: tourismIcon },
+        { title: "التحول الرقمي", text: "تبنّي التكنولوجيا والابتكار لمستقبل أكثر ذكاءً.", icon: digitalIcon },
       ]
     : isKu
       ? [
-          { title: "گەشتیاری", text: "نیشاندانی جوانیی کوردستان و کەلەپوورە کولتوورییەکەی.", icon: Mountain, color: "#c69237" },
-          { title: "گۆڕانی دیجیتاڵی", text: "لەئامێزگرتنی تەکنەلۆژیا و داهێنان بۆ داهاتوویەکی زیرەکتر.", icon: MonitorCog, color: "#13213b" },
+          { title: "گەشتیاری", text: "نیشاندانی جوانیی کوردستان و کەلەپوورە کولتوورییەکەی.", icon: tourismIcon },
+          { title: "گۆڕانی دیجیتاڵی", text: "لەئامێزگرتنی تەکنەلۆژیا و داهێنان بۆ داهاتوویەکی زیرەکتر.", icon: digitalIcon },
         ]
       : bottomCards;
 
