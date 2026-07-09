@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft, Calendar, Diamond } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import {
@@ -13,10 +13,6 @@ import heroVideo from "@/assets/videos/theflag.mp4";
 import historyImg from "@/assets/images/mahabad.webp";
 import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
 import unityImg from "@/assets/images/patterns/unity.png";
-import redTreeIcon from "@/assets/icons/theflag/tree.jpeg";
-import whitePigeonIcon from "@/assets/icons/theflag/pigeon.png";
-import greenMountainIcon from "@/assets/icons/theflag/mountain.png";
-import sunIcon from "@/assets/icons/theflag/sun.png";
 
 const PAPER = "#fbf5eb";
 const GOLD = "#9b6d35";
@@ -25,148 +21,42 @@ const BODY = "#35435b";
 const CARD_BG = "#f7f1e3";
 const CARD_BORDER = "#e7dcc4";
 
-type FlagSwatch = "red" | "white" | "green" | "sun";
+/* 21-ray sun of the Kurdistan flag */
+const SUN_POINTS = (() => {
+  const rays = 21;
+  const pts: string[] = [];
+  for (let i = 0; i < rays * 2; i++) {
+    const r = i % 2 === 0 ? 50 : 27;
+    const a = (Math.PI * i) / rays - Math.PI / 2;
+    pts.push(`${(50 + r * Math.cos(a)).toFixed(2)},${(50 + r * Math.sin(a)).toFixed(2)}`);
+  }
+  return pts.join(" ");
+})();
 
-const SWATCH_THEMES: Record<
-  FlagSwatch,
-  { border: string; glow: string; ring: string; waves: string[] }
-> = {
-  red: {
-    border: "#e8b4ae",
-    glow: "rgba(196, 58, 44, 0.38)",
-    ring: "rgba(232, 164, 156, 0.5)",
-    waves: ["#f5ddd9", "#efb8b0", "#e07a6e", "#c43a2c"],
-  },
-  white: {
-    border: "#ddcda8",
-    glow: "rgba(185, 161, 115, 0.42)",
-    ring: "rgba(226, 213, 186, 0.6)",
-    waves: ["#f6eedd", "#eadec2", "#d6c49c", "#b9a173"],
-  },
-  green: {
-    border: "#a8d5b5",
-    glow: "rgba(47, 138, 70, 0.36)",
-    ring: "rgba(168, 213, 181, 0.5)",
-    waves: ["#dff0e3", "#b8dfc4", "#6ec48a", "#2f8a46"],
-  },
-  sun: {
-    border: "#f0d08a",
-    glow: "rgba(208, 139, 31, 0.4)",
-    ring: "rgba(245, 208, 138, 0.5)",
-    waves: ["#fdf0d4", "#f8dfa0", "#f0c060", "#d08b1f"],
-  },
-};
-
-const FLAG_ICON_IMAGES: Record<FlagSwatch, string> = {
-  red: redTreeIcon,
-  white: whitePigeonIcon,
-  green: greenMountainIcon,
-  sun: sunIcon,
-};
-
-function WavyDecor({ waves }: { waves: string[] }) {
+function KurdishSun({ size, className = "" }: { size: number; className?: string }) {
+  const gradientId = useId().replace(/:/g, "");
   return (
-    <svg
-      className="absolute inset-0 h-full w-full"
-      viewBox="0 0 130 140"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <rect width="130" height="140" fill={waves[0]} />
-      <path
-        d="M0,55 C25,35 55,48 80,38 C100,30 115,42 130,32 L130,140 L0,140 Z"
-        fill={waves[1]}
-        opacity="0.9"
-      />
-      <path
-        d="M0,88 C30,68 65,82 95,72 C110,66 120,78 130,68 L130,140 L0,140 Z"
-        fill={waves[2]}
-        opacity="0.75"
-      />
-      <path
-        d="M0,112 C40,96 75,108 130,98 L130,140 L0,140 Z"
-        fill={waves[3]}
-        opacity="0.6"
-      />
+    <svg width={size} height={size} viewBox="0 0 100 100" className={className} aria-hidden="true">
+      <defs>
+        <radialGradient id={gradientId}>
+          <stop offset="0%" stopColor="#f7ce6d" />
+          <stop offset="55%" stopColor="#efb23c" />
+          <stop offset="100%" stopColor="#dd9a26" />
+        </radialGradient>
+      </defs>
+      <polygon points={SUN_POINTS} fill={`url(#${gradientId})`} />
+      <circle cx="50" cy="50" r="27.5" fill={`url(#${gradientId})`} />
     </svg>
   );
 }
 
-function FlagColorIcon({ swatch }: { swatch: FlagSwatch }) {
+function DiamondDivider({ className = "" }: { className?: string }) {
   return (
-    <img
-      src={FLAG_ICON_IMAGES[swatch]}
-      alt=""
-      className="h-full w-full rounded-full bg-[#fdfaf5] object-cover"
-    />
-  );
-}
-
-function FlagColorCard({
-  name,
-  nameColor,
-  text,
-  swatch,
-  displayFont,
-}: {
-  name: string;
-  nameColor: string;
-  text: string;
-  swatch: FlagSwatch;
-  displayFont: string;
-}) {
-  const theme = SWATCH_THEMES[swatch];
-
-  return (
-    <article
-      className="relative flex min-h-[132px] items-center overflow-hidden rounded-[26px] border bg-[#fdfaf5] shadow-[0_6px_20px_rgba(67,35,45,0.07)]"
-      style={{ borderColor: theme.border }}
-    >
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-[130px] overflow-hidden rounded-l-[26px]">
-        <WavyDecor waves={theme.waves} />
-      </div>
-
-      <div
-        className="pointer-events-none absolute -bottom-10 -right-6 h-36 w-44 rounded-full opacity-40 blur-3xl"
-        style={{ backgroundColor: theme.waves[2] }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 right-0 h-full w-[55%] opacity-25"
-        style={{
-          background: `radial-gradient(ellipse 85% 75% at 100% 100%, ${theme.waves[1]} 0%, ${theme.waves[1]}00 68%)`,
-        }}
-        aria-hidden
-      />
-
-      <div className="relative z-10 ms-5 flex shrink-0 items-center justify-center">
-        <div
-          className="absolute inset-0 scale-110 rounded-full blur-md"
-          style={{ backgroundColor: theme.glow }}
-          aria-hidden
-        />
-        <div
-          className="relative grid h-[92px] w-[92px] place-items-center rounded-full p-[5px]"
-          style={{ backgroundColor: theme.ring }}
-        >
-          <div className="relative h-[78px] w-[78px] overflow-hidden rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)]">
-            <FlagColorIcon swatch={swatch} />
-          </div>
-        </div>
-      </div>
-
-      <div className="relative z-10 flex min-w-0 flex-1 flex-col justify-center px-6 py-5">
-        <h4
-          className={`${displayFont} text-[22px] font-light uppercase leading-tight tracking-[0.16em]`}
-          style={{ color: nameColor }}
-        >
-          {name}
-        </h4>
-        <p className="mt-1.5 text-[15px] font-light leading-[1.55]" style={{ color: BODY }}>
-          {text}
-        </p>
-      </div>
-    </article>
+    <div className={`flex items-center justify-center gap-2 text-[#cbb488] ${className}`}>
+      <span className="h-px w-8 bg-[#d9c9a6]" />
+      <Diamond size={9} fill="currentColor" />
+      <span className="h-px w-8 bg-[#d9c9a6]" />
+    </div>
   );
 }
 
@@ -467,16 +357,35 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                 <span className="h-px flex-1 max-w-[190px] bg-[#d0c1a0]" />
               </div>
 
-              <div className="mt-10 grid grid-cols-2 gap-5">
+              <div className="mt-10 grid grid-cols-4 divide-x divide-[#e6dcc4] rtl:divide-x-reverse">
                 {t.colors.map((c) => (
-                  <FlagColorCard
-                    key={c.name}
-                    name={c.name}
-                    nameColor={c.nameColor}
-                    text={c.text}
-                    swatch={c.swatch}
-                    displayFont={displayFont}
-                  />
+                  <div key={c.name} className="flex flex-col items-center px-4 text-center">
+                    {c.swatch === "sun" ? (
+                      <KurdishSun size={92} />
+                    ) : (
+                      <span
+                        className="h-[88px] w-[88px] rounded-full shadow-sm"
+                        style={{
+                          backgroundColor:
+                            c.swatch === "red" ? "#d13a2c" : c.swatch === "green" ? "#2f8a46" : "#ffffff",
+                          boxShadow:
+                            c.swatch === "white"
+                              ? "inset 0 0 0 3px #e2d3b2, 0 1px 3px rgba(0,0,0,0.08)"
+                              : "inset 0 0 0 3px rgba(255,255,255,0.28), 0 1px 3px rgba(0,0,0,0.12)",
+                        }}
+                      />
+                    )}
+                    <h4
+                      className={`mt-5 ${displayFont} text-[23px] font-light tracking-[0.16em]`}
+                      style={{ color: c.nameColor }}
+                    >
+                      {c.name}
+                    </h4>
+                    <DiamondDivider className="mt-3" />
+                    <p className="mt-3 max-w-[190px] text-[16px] font-light leading-[1.6]" style={{ color: BODY }}>
+                      {c.text}
+                    </p>
+                  </div>
                 ))}
               </div>
             </section>
