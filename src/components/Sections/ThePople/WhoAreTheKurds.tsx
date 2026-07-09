@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { ArrowLeft, KeyRound, Sparkles, TreePine } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
 import heroVideo from "@/assets/videos/kch3.webm";
+import rootsIcon from "@/assets/icons/thepeople/whoarethekurds/roots.jpg";
+import cultureIcon from "@/assets/icons/thepeople/whoarethekurds/culture.jpg";
+import identityIcon from "@/assets/icons/thepeople/whoarethekurds/identity.jpg";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
@@ -12,20 +15,17 @@ const infoCards = [
   {
     title: "Ancient Roots",
     text: "The Kurds are among the ancient peoples of the Middle East, with a long and rich historical presence in the region.",
-    icon: TreePine,
-    color: "bg-[#00604f]",
+    icon: rootsIcon,
   },
   {
     title: "Culture and Values",
     text: "Kurdish society is widely associated with courage, hospitality, family bonds, and a strong love of freedom and culture.",
-    icon: Sparkles,
-    color: "bg-[#c9903f]",
+    icon: cultureIcon,
   },
   {
     title: "A Living Identity",
     text: "Today, Kurdish identity continues through language, music, traditions, literature, and everyday life across generations.",
-    icon: KeyRound,
-    color: "bg-[#00604f]",
+    icon: identityIcon,
   },
 ];
 
@@ -160,18 +160,16 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
               <div className="flex-[0.85]" />
 
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
-                {localizedCards.map((card) => {
-                  const Icon = card.icon;
-                  return (
+                {localizedCards.map((card) => (
                     <article
                       key={card.title}
                       className="journey-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
                     >
-                      <div
-                        className={`grid h-[clamp(4.1rem,7.5cqw,7.2rem)] w-[clamp(4.1rem,7.5cqw,7.2rem)] place-items-center rounded-full border-[6px] border-white ${card.color} text-[#f8e5b8] shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                      >
-                        <Icon size={56} strokeWidth={1.5} />
-                      </div>
+                      <img
+                        src={card.icon}
+                        alt=""
+                        className="h-[clamp(6.5rem,12cqw,11rem)] w-[clamp(6.5rem,12cqw,11rem)] object-contain"
+                      />
 
                       <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#00604f]`}>
                         {card.title}
@@ -189,8 +187,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
 
                       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
                     </article>
-                  );
-                })}
+                ))}
               </section>
             </div>
           </section>
