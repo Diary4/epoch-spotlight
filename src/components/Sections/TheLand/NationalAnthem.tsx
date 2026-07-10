@@ -7,7 +7,7 @@ import {
   detailBackIconClassName,
   detailBackIconSize,
 } from "@/constants/backNavigation";
-import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverRtlScript, discoverYearFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import historyImg from "@/assets/images/mahabad.webp";
 
@@ -129,7 +129,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const displayFont = discoverDisplayFont(lang);
   const t = COPY[lang];
   const localize = (value: string) => localizeDigits(value, lang);
-  const yearFont = lang === "en" ? "font-serif tabular-nums" : "font-noto-naskh";
+  const yearFont = discoverYearFont(lang);
 
   // Fixed 1080px-wide portrait design canvas, scaled to fit the viewport in both
   // dimensions — identical approach to the Kurdistan Flag detail page.

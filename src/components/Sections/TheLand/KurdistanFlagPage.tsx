@@ -7,7 +7,7 @@ import {
   detailBackIconClassName,
   detailBackIconSize,
 } from "@/constants/backNavigation";
-import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverRtlScript, discoverYearFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import heroVideo from "@/assets/videos/theflag.mp4";
 import historyImg from "@/assets/images/mahabad.webp";
@@ -325,7 +325,7 @@ export default function KurdistanFlagPage({ lang = "en", onBack }: KurdistanFlag
                       <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                     </span>
                     <span
-                      className={`${displayFont} text-[80px] font-light leading-none tracking-tight text-[#17233b]`}
+                      className={`${discoverYearFont(lang)} text-[80px] font-light leading-none tracking-tight text-[#17233b]`}
                     >
                       {localizeDigits("1946", lang)}
                     </span>

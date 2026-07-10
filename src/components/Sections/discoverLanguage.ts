@@ -21,6 +21,13 @@ export function discoverDisplayFont(lang: DiscoverLangCode): string {
   return discoverRtlScript(lang) ? "font-noto-naskh" : "font-serif";
 }
 
+/** Clean lining figures for large year/date numerals in land detail pages. */
+export function discoverYearFont(lang: DiscoverLangCode): string {
+  return lang === "en"
+    ? "font-display-num lining-nums tabular-nums"
+    : "font-noto-naskh";
+}
+
 export function discoverSectionFont(lang: DiscoverLangCode): string {
   return discoverRtlScript(lang) ? "font-noto-naskh" : "";
 }

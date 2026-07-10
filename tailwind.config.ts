@@ -18,6 +18,7 @@ export default {
         amiri: ['"Amiri"', "serif"],
         "noto-naskh": ['"Noto Naskh Arabic"', "serif"],
         "ibm-arabic": ['"IBM Plex Sans Arabic"', "sans-serif"],
+        "display-num": ['"Inter"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
       screens: {
         xs: "450px",
