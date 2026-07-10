@@ -6,6 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function localizeDigits(value: string, lang: "ku" | "en" | "ar") {
-  if (lang !== "ar") return value;
+  if (lang === "en") return value;
   return value.replace(/\d/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[Number(digit)]);
 }

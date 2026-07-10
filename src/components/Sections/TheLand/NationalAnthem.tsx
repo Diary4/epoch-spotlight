@@ -8,7 +8,11 @@ import {
   detailBackIconSize,
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
+import { localizeDigits } from "@/lib/utils";
 import historyImg from "@/assets/images/mahabad.webp";
+
+const WRITER_YEAR = "1938";
+const ROLE_YEAR = "1946";
 
 const PAPER = "#fbf5eb";
 const GOLD = "#9b6d35";
@@ -40,10 +44,8 @@ type Copy = {
   writerTitle: string;
   writerName: string;
   writerSub: string;
-  writerYear: string;
   writerText: string;
   roleTitle: string;
-  roleYear: string;
   roleText: string;
   adopted: string;
 };
@@ -64,8 +66,6 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     writerTitle: "THE WRITER",
     writerName: "Dildar",
     writerSub: "Pen name of Yûnis Rauf",
-    writerYear: "1938",
-    roleYear: "1946",
     writerText:
       "The lyrics were written by Dildar, the pen name of Yûnis Rauf, a Kurdish poet and patriot. He composed Ey Reqîb in 1938 while in prison, transforming hardship into one of the most enduring songs of Kurdish national identity.",
     roleTitle: "HISTORICAL ROLE",
@@ -79,7 +79,7 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     anthemName: "ئەی ڕەقیب",
     subtitle: "هێمایەکی نەمر بۆ ناسنامە، خۆڕاگری، و ئازادی.",
     intro:
-      "«ئەی ڕەقیب» سروودی نیشتمانیی گەلی کورد و سروودی فەرمیی هەرێمی کوردستانە. لە ساڵی ١٩٣٨ لەلایەن شاعیر (دڵدار)ەوە نووسراوە و بووەتە هێمایەکی نەمر بۆ ناسنامە، خۆڕاگری، ئازادی و شکۆی نەتەوەیی.",
+      "«ئەی ڕەقیب» سروودی نیشتمانیی گەلی کورد و سروودی فەرمیی هەرێمی کوردستانە. لە ساڵی 1938 لەلایەن شاعیر (دڵدار)ەوە نووسراوە و بووەتە هێمایەکی نەمر بۆ ناسنامە، خۆڕاگری، ئازادی و شکۆی نەتەوەیی.",
     meaningTitle: "ناو و واتا",
     meaningPhrase: "«ئەی دوژمن!»",
     meaningText:
@@ -87,13 +87,11 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     writerTitle: "نووسەر",
     writerName: "دڵدار",
     writerSub: "نازناوی یونس ڕەئووف",
-    writerYear: "١٩٣٨",
-    roleYear: "١٩٤٦",
     writerText:
-      "ئەم هۆنراوەییە لەلایەن (دڵدار)ەوە نووسراوە، کە نازناوی شاعیر و نیشتمانپەروەری کورد (یونس ڕەئووف)ـە. دڵدار ئەم سروودەی لە ساڵی ١٩٣٨ و لە کاتی زینداندا هۆنیوەتەوە. بەم جۆرەش ئازارەکانی زیندانی گۆڕی بۆ یەکێک لە نەمرترین سروودەکانی گوزارشتکردن لە ناسنامەی نەتەوەیی کورد.",
+      "ئەم هۆنراوەییە لەلایەن (دڵدار)ەوە نووسراوە، کە نازناوی شاعیر و نیشتمانپەروەری کورد (یونس ڕەئووف)ـە. دڵدار ئەم سروودەی لە ساڵی 1938 و لە کاتی زینداندا هۆنیوەتەوە. بەم جۆرەش ئازارەکانی زیندانی گۆڕی بۆ یەکێک لە نەمرترین سروودەکانی گوزارشتکردن لە ناسنامەی نەتەوەیی کورد.",
     roleTitle: "ڕۆڵی مێژوویی",
     roleText:
-      "لە ساڵی ١٩٤٦، کۆماری کوردستان لە مەهاباد «ئەی ڕەقیب»ی وەک سروودی نیشتمانی پەسەند کرد و دواتریش بوو بە سروودی فەرمیی هەرێمی کوردستان. بە تێپەڕبوونی کات، ئەم سروودە بووەتە نوێنەری ناسنامەی کوردی، کۆڵنەدان و گیانی هاوبەشی نەتەوەیی لە نێوان کوردانی سەرتاسەری جیهاندا.",
+      "لە ساڵی 1946، کۆماری کوردستان لە مەهاباد «ئەی ڕەقیب»ی وەک سروودی نیشتمانی پەسەند کرد و دواتریش بوو بە سروودی فەرمیی هەرێمی کوردستان. بە تێپەڕبوونی کات، ئەم سروودە بووەتە نوێنەری ناسنامەی کوردی، کۆڵنەدان و گیانی هاوبەشی نەتەوەیی لە نێوان کوردانی سەرتاسەری جیهاندا.",
     adopted: "لەلایەن کۆماری مەهابادەوە پەسەند کرا",
   },
   ar: {
@@ -102,7 +100,7 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     anthemName: "أي رقيب",
     subtitle: "رمز خالد للهوية والصمود والحرية.",
     intro:
-      "«أي رقيب» هو النشيد الوطني للشعب الكردي والنشيد الرسمي لإقليم كردستان. كُتب عام ١٩٣٨ بقلم الشاعر (دلدار)، وأصبح رمزاً خالداً للهوية، والصمود، والحرية، والكرامة الوطنية.",
+      "«أي رقيب» هو النشيد الوطني للشعب الكردي والنشيد الرسمي لإقليم كردستان. كُتب عام 1938 بقلم الشاعر (دلدار)، وأصبح رمزاً خالداً للهوية، والصمود، والحرية، والكرامة الوطنية.",
     meaningTitle: "العنوان والمعنى",
     meaningPhrase: "«أيها العدو!»",
     meaningText:
@@ -110,13 +108,11 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     writerTitle: "المؤلف",
     writerName: "دلدار",
     writerSub: "الاسم المستعار ليونس رؤوف",
-    writerYear: "١٩٣٨",
-    roleYear: "١٩٤٦",
     writerText:
-      "كُتبت هذه القصيدة بقلم (دلدار)، وهو الاسم المستعار للشاعر والوطني الكردي (يونس رؤوف). نظم دلدار هذا النشيد عام ١٩٣٨ أثناء فترة سجنه. وبذلك، حوّل آلام السجن إلى واحد من أخلد الأناشيد التي تعبر عن الهوية الوطنية الكردية.",
+      "كُتبت هذه القصيدة بقلم (دلدار)، وهو الاسم المستعار للشاعر والوطني الكردي (يونس رؤوف). نظم دلدار هذا النشيد عام 1938 أثناء فترة سجنه. وبذلك، حوّل آلام السجن إلى واحد من أخلد الأناشيد التي تعبر عن الهوية الوطنية الكردية.",
     roleTitle: "الدور التاريخي",
     roleText:
-      "في عام ١٩٤٦، اعتمدت جمهورية كردستان في مهاباد «أي رقيب» كنشيداً وطنياً لها، وأصبح لاحقاً النشيد الرسمي لإقليم كردستان. وبمرور الوقت، غدا هذا النشيد ممثلاً للهوية الكردية، والمثابرة، والروح الوطنية المشتركة بين الكرد في جميع أنحاء العالم.",
+      "في عام 1946، اعتمدت جمهورية كردستان في مهاباد «أي رقيب» كنشيداً وطنياً لها، وأصبح لاحقاً النشيد الرسمي لإقليم كردستان. وبمرور الوقت، غدا هذا النشيد ممثلاً للهوية الكردية، والمثابرة، والروح الوطنية المشتركة بين الكرد في جميع أنحاء العالم.",
     adopted: "اعتمدته جمهورية مهاباد",
   },
 };
@@ -132,6 +128,8 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
   const t = COPY[lang];
+  const localize = (value: string) => localizeDigits(value, lang);
+  const yearFont = lang === "en" ? "font-serif tabular-nums" : "font-noto-naskh";
 
   // Fixed 1080px-wide portrait design canvas, scaled to fit the viewport in both
   // dimensions — identical approach to the Kurdistan Flag detail page.
@@ -166,6 +164,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   return (
     <div
       ref={rootRef as React.RefObject<HTMLDivElement>}
+      lang={lang}
       dir={dir}
       className={`relative h-screen w-screen overflow-hidden ${isRtlScript ? "font-noto-naskh" : ""}`}
       style={{ width: "100vw", height: "100vh", backgroundColor: PAPER }}
@@ -220,7 +219,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                 </h2>
 
                 <p className="mt-5 max-w-[430px] text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {t.intro}
+                  {localize(t.intro)}
                 </p>
               </div>
 
@@ -264,7 +263,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   <Diamond size={12} fill="currentColor" /> {t.meaningTitle}
                 </div>
                 <p className="mt-6 text-[19px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {t.meaningText}
+                  {localize(t.meaningText)}
                 </p>
               </div>
               <div
@@ -314,12 +313,12 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   >
                     <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                   </span>
-                  <span className={`${displayFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
-                    {t.writerYear}
+                  <span className={`${yearFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
+                    {localize(WRITER_YEAR)}
                   </span>
                 </div>
                 <p className="mt-5 text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {t.writerText}
+                  {localize(t.writerText)}
                 </p>
               </div>
             </article>
@@ -343,12 +342,12 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   >
                     <Calendar size={26} strokeWidth={1.5} style={{ color: "#2f7d4f" }} />
                   </span>
-                  <span className={`${displayFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
-                    {t.roleYear}
+                  <span className={`${yearFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
+                    {localize(ROLE_YEAR)}
                   </span>
                 </div>
                 <p className="mt-5 max-w-[460px] text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {t.roleText}
+                  {localize(t.roleText)}
                 </p>
               </div>
               <div
