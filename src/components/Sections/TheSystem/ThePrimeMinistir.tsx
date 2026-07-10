@@ -75,7 +75,7 @@ export default function PrimeMinisterPage({
         type="button"
         onClick={onBack}
         className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
-        aria-label="Back to The System"
+        aria-label="Back to Government"
       >
         <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
       </button>

@@ -20,6 +20,8 @@ import {
 } from "@/constants/backNavigation";
 import bg from "@/assets/images/PrimeMinistir/government.jpg";
 import bg2 from "@/assets/mainImages/government-2.webp";
+import pmImg from "@/assets/images/PrimeMinistir/p-4.jpeg";
+import presidencyIcon from "@/assets/icons/thesystem/presidency.png";
 import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.png";
 import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.png";
 import administrationIcon from "@/assets/icons/thesystem/government/administration.png";
@@ -84,10 +86,12 @@ const keyAreas = [
 type GovernmentPageProps = {
   lang?: "ku" | "en" | "ar";
   onBack?: () => void;
+  onPrimeMinisterClick?: () => void;
+  onPresidencyClick?: () => void;
   onCabinetClick?: () => void;
 };
 
-export default function GovernmentPage({ lang = "en", onBack, onCabinetClick }: GovernmentPageProps) {
+export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterClick, onPresidencyClick, onCabinetClick }: GovernmentPageProps) {
   const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
@@ -234,6 +238,87 @@ export default function GovernmentPage({ lang = "en", onBack, onCabinetClick }: 
             </div>
 
             <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
+              {/* Executive branches — Prime Minister, Presidency & Cabinet */}
+              <section className="system-detail-panel mb-[clamp(1rem,2cqh,2rem)] grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
+                <button
+                  type="button"
+                  onClick={onPrimeMinisterClick}
+                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                >
+                  <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                    <img
+                      src={pmImg}
+                      alt=""
+                      className="h-full w-full object-cover"
+                      style={{ objectPosition: "68% 12%" }}
+                    />
+                  </span>
+                  <div className="flex-1">
+                    <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
+                      {isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister"}
+                    </h3>
+                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                      {isAr
+                        ? "تعرّف على رئيس مجلس الوزراء."
+                        : isKu
+                          ? "سەرۆکی ئەنجومەنی وەزیران بناسە."
+                          : "Meet the Head of the Council of Ministers."}
+                    </p>
+                  </div>
+                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onPresidencyClick}
+                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                >
+                  <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                    <img
+                      src={presidencyIcon}
+                      alt=""
+                      className="h-full w-full object-cover scale-[1.55] object-[48%_50%]"
+                    />
+                  </span>
+                  <div className="flex-1">
+                    <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
+                      {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
+                    </h3>
+                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                      {isAr
+                        ? "تعرّف على رئاسة الإقليم."
+                        : isKu
+                          ? "سەرۆکایەتی هەرێم بناسە."
+                          : "Meet the Head of the Region."}
+                    </p>
+                  </div>
+                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onCabinetClick}
+                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                >
+                  <span className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f] text-[#e6c877]">
+                    <UsersRound size={36} strokeWidth={1.45} />
+                  </span>
+                  <div className="flex-1">
+                    <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
+                      {isAr ? "مجلس الوزراء" : isKu ? "ئەنجومەنی وەزیران" : "The Cabinet"}
+                    </h3>
+                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                      {isAr
+                        ? "تعرّف على مجلس الوزراء الذي يقود العمل التنفيذي."
+                        : isKu
+                          ? "ئەنجومەنی وەزیران بناسە کە ڕێبەری کاری جێبەجێکردن دەکات."
+                          : "Meet the Council of Ministers that leads the executive."}
+                    </p>
+                  </div>
+                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                </button>
+              </section>
+
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localMainCards.map((card) => {
                   return (
@@ -314,30 +399,6 @@ export default function GovernmentPage({ lang = "en", onBack, onCabinetClick }: 
                   className="hidden h-[clamp(5rem,10cqh,8rem)] w-[clamp(8rem,14cqw,12rem)] shrink-0 object-cover object-center sm:block"
                 />
               </section>
-
-              {/* Cabinet — the Council of Ministers sits within the government */}
-              <button
-                type="button"
-                onClick={onCabinetClick}
-                className="system-detail-panel mt-[clamp(1rem,2cqh,2rem)] flex w-full cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
-              >
-                <div className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f] text-[#e6c877]">
-                  <UsersRound size={36} strokeWidth={1.45} />
-                </div>
-                <div className="flex-1">
-                  <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
-                    {isAr ? "مجلس الوزراء" : isKu ? "ئەنجومەنی وەزیران" : "The Cabinet"}
-                  </h3>
-                  <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
-                    {isAr
-                      ? "تعرّف على مجلس الوزراء الذي يقود العمل التنفيذي."
-                      : isKu
-                        ? "ئەنجومەنی وەزیران بناسە کە ڕێبەری کاری جێبەجێکردن دەکات."
-                        : "Meet the Council of Ministers that leads the executive."}
-                  </p>
-                </div>
-                <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
-              </button>
             </div>
           </section>
         </main>

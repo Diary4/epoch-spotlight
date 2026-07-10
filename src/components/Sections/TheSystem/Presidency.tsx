@@ -114,7 +114,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
               type="button"
               onClick={onBack}
               className={`${systemCanvasBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
-              aria-label="Back to The System"
+              aria-label="Back to Government"
             >
               <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
