@@ -8,7 +8,6 @@ import {
   detailBackIconSize,
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import { localizeDigits } from "@/lib/utils";
 import historyImg from "@/assets/images/mahabad.webp";
 
 const PAPER = "#fbf5eb";
@@ -41,8 +40,10 @@ type Copy = {
   writerTitle: string;
   writerName: string;
   writerSub: string;
+  writerYear: string;
   writerText: string;
   roleTitle: string;
+  roleYear: string;
   roleText: string;
   adopted: string;
 };
@@ -63,6 +64,8 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     writerTitle: "THE WRITER",
     writerName: "Dildar",
     writerSub: "Pen name of Yûnis Rauf",
+    writerYear: "1938",
+    roleYear: "1946",
     writerText:
       "The lyrics were written by Dildar, the pen name of Yûnis Rauf, a Kurdish poet and patriot. He composed Ey Reqîb in 1938 while in prison, transforming hardship into one of the most enduring songs of Kurdish national identity.",
     roleTitle: "HISTORICAL ROLE",
@@ -84,6 +87,8 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     writerTitle: "نووسەر",
     writerName: "دڵدار",
     writerSub: "نازناوی یونس ڕەئووف",
+    writerYear: "١٩٣٨",
+    roleYear: "١٩٤٦",
     writerText:
       "ئەم هۆنراوەییە لەلایەن (دڵدار)ەوە نووسراوە، کە نازناوی شاعیر و نیشتمانپەروەری کورد (یونس ڕەئووف)ـە. دڵدار ئەم سروودەی لە ساڵی ١٩٣٨ و لە کاتی زینداندا هۆنیوەتەوە. بەم جۆرەش ئازارەکانی زیندانی گۆڕی بۆ یەکێک لە نەمرترین سروودەکانی گوزارشتکردن لە ناسنامەی نەتەوەیی کورد.",
     roleTitle: "ڕۆڵی مێژوویی",
@@ -105,6 +110,8 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     writerTitle: "المؤلف",
     writerName: "دلدار",
     writerSub: "الاسم المستعار ليونس رؤوف",
+    writerYear: "١٩٣٨",
+    roleYear: "١٩٤٦",
     writerText:
       "كُتبت هذه القصيدة بقلم (دلدار)، وهو الاسم المستعار للشاعر والوطني الكردي (يونس رؤوف). نظم دلدار هذا النشيد عام ١٩٣٨ أثناء فترة سجنه. وبذلك، حوّل آلام السجن إلى واحد من أخلد الأناشيد التي تعبر عن الهوية الوطنية الكردية.",
     roleTitle: "الدور التاريخي",
@@ -308,7 +315,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                     <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                   </span>
                   <span className={`${displayFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
-                    {localizeDigits("1938", lang)}
+                    {t.writerYear}
                   </span>
                 </div>
                 <p className="mt-5 text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
@@ -337,7 +344,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                     <Calendar size={26} strokeWidth={1.5} style={{ color: "#2f7d4f" }} />
                   </span>
                   <span className={`${displayFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
-                    {localizeDigits("1946", lang)}
+                    {t.roleYear}
                   </span>
                 </div>
                 <p className="mt-5 max-w-[460px] text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>

@@ -40,15 +40,6 @@ const DevFlag = () => {
   return <KurdistanFlagPage lang={lang} onBack={() => {}} />;
 };
 
-const DevAnthem = () => {
-  const lang = (new URLSearchParams(window.location.search).get("lang") ?? "en") as "ku" | "en" | "ar";
-  return <DevAnthemPage lang={lang} onBack={() => {}} />;
-};
-
-const DevLandHub = () => {
-  const lang = (new URLSearchParams(window.location.search).get("lang") ?? "en") as "ku" | "en" | "ar";
-  return <DevLandHubPage lang={lang} onBack={() => {}} onSelectCard={() => {}} />;
-};
 
 const queryClient = new QueryClient();
 const isFileProtocol = typeof window !== "undefined" && window.location.protocol === "file:";
