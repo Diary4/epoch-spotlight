@@ -72,11 +72,11 @@ function InstitutionCard({
           )}
         </span>
       </div>
-      <span className="mt-6 font-serif text-[28px] text-[#1d2a45]">{numeral}</span>
-      <span data-discover-lang="true" className={`mt-1 block w-full break-words ${displayFont} text-[44px] font-light leading-tight text-[#17233b]`}>
+      <span className="mt-6 font-serif text-[26px] text-[#1d2a45]">{numeral}</span>
+      <span data-discover-lang="true" className={`mt-1 block w-full ${displayFont} text-[37px] font-light leading-tight text-[#17233b]`}>
         {label}
       </span>
-      <span data-discover-lang="true" className="mt-3 block w-full break-words text-[23px] font-light leading-snug text-[#9b6d35]">
+      <span data-discover-lang="true" className="mt-3 block w-full break-words text-[21px] font-light leading-snug text-[#9b6d35]">
         {sub}
       </span>
       {children}
