@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, BarChart3, Flag, Mountain, Shield, SunMedium, type LucideIcon } from "lucide-react";
+import { ArrowLeft, BarChart3, Flag, Mountain, Music2, Shield, SunMedium, type LucideIcon } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
 import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -14,7 +14,7 @@ import bg5 from "@/assets/images/new/discoverKurdistan/land-5.webp"
 import bg6 from "@/assets/images/new/discoverKurdistan/land-6.webp"
 import treeIcon from "@/assets/icons/tree.webp";
 
-type LandCardId = "land" | "identitySymbols" | "peshmerga" | "progress" | "kurdistanFlag";
+type LandCardId = "land" | "identitySymbols" | "peshmerga" | "progress" | "kurdistanFlag" | "nationalAnthem";
 
 type LandCard = {
   id: LandCardId;
