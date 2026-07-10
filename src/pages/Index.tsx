@@ -872,6 +872,8 @@ const Index = () => {
                 setView("identitySymbols");
               } else if (cardId === "kurdistanFlag") {
                 setView("kurdistanFlag");
+              } else if (cardId === "nationalAnthem") {
+                setView("nationalAnthem");
               }
             }}
           />
@@ -905,6 +907,12 @@ const Index = () => {
       {view === "kurdistanFlag" && (
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <KurdistanFlagPage lang={activeLang} onBack={() => setView("landFuture")} />
+        </div>
+      )}
+
+      {view === "nationalAnthem" && (
+        <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
+          <NationalAnthemPage lang={activeLang} onBack={() => setView("landFuture")} />
         </div>
       )}
 
