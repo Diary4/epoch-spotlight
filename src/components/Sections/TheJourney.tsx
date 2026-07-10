@@ -6,7 +6,7 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
-import { discoverDisplayFont, discoverSectionFont, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverSectionFont, discoverYearFont, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import bg from "@/assets/images/new/theJourney/journey-1.webp";
@@ -52,6 +52,8 @@ const CONTENT = { en, ar, ku } as const;
 const EMPTY_JOURNEY_ITEMS: never[] = [];
 
 type JourneyMilestoneId = "1991" | "1992" | "buildingInstitutions" | "2005" | "today";
+
+const YEAR_MILESTONE_IDS = new Set<JourneyMilestoneId>(["1991", "1992", "2005"]);
 
 const DEFAULT_MILESTONE_IDS: JourneyMilestoneId[] = [
   "1991",
@@ -459,9 +461,18 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                   {journey.title ?? "The Journey"}
                 </h1>
                 <h2 data-discover-lang="true" className="mt-6 text-[clamp(16px,4cqw,24px)] font-light text-[#9b6d35] sm:mt-5 sm:text-[34px] md:mt-6 md:text-[40px] lg:text-[46px]">
-                  {localizeDigits(
-                    lang === "ar" ? "من عام 1991 حتى الوقت الحاضر" : lang === "ku" ? "لە ساڵی ١٩٩١ تا ئێستا" : "From 1991 to the present.",
-                    lang,
+                  {lang === "en" ? (
+                    <>
+                      From <span className={discoverYearFont(lang)}>{localizeDigits("1991", lang)}</span> to the present.
+                    </>
+                  ) : lang === "ku" ? (
+                    <>
+                      لە ساڵی <span className={discoverYearFont(lang)}>{localizeDigits("1991", lang)}</span> تا ئێستا
+                    </>
+                  ) : (
+                    <>
+                      من عام <span className={discoverYearFont(lang)}>{localizeDigits("1991", lang)}</span> حتى الوقت الحاضر
+                    </>
                   )}
                 </h2>
                 <div className="mt-8 flex w-full max-w-[290px] items-center gap-5 text-[#b99152]">
@@ -545,7 +556,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                           <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
                           <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-7 py-6">
-                            <h3 data-discover-lang="true" className={`${displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]`}>
+                            <h3 data-discover-lang="true" className={`${YEAR_MILESTONE_IDS.has(item.id) ? discoverYearFont(lang) : displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]`}>
                               {item.title}
                             </h3>
                             <p data-discover-lang="true" className="mt-2 max-w-[380px] text-[clamp(14px,3cqw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">

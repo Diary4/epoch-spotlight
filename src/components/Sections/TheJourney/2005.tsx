@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJourneyDetailAnimation";
-import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
+import { discoverDisplayFont, discoverSectionFont, discoverYearFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import en from "@/data/en.json";
@@ -130,7 +130,7 @@ export default function Year2005Page({ lang = "en", onBack }: Year2005PageProps)
 
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className="journey-detail-intro ml-auto max-w-[min(47cqw,740px)] text-right rtl:text-right">
-                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
+                <h1 className={`${discoverYearFont(lang)} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#17233b]`}>
                   {localizeDigits(section.title ?? "2005", lang)}
                 </h1>
 
