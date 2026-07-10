@@ -38,6 +38,7 @@ import PeshmergaPage from "@/components/Sections/TheLand/Peshmarga";
 import ProgressPage from "@/components/Sections/TheLand/Progress";
 import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
 import KurdistanFlagPage from "@/components/Sections/TheLand/KurdistanFlagPage";
+import NationalAnthemPage from "@/components/Sections/TheLand/NationalAnthem";
 
 
 type LangCode = "ku" | "en" | "ar";
@@ -379,7 +380,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "judiciary" | "cabinet" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag";
+type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "judiciary" | "cabinet" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag" | "nationalAnthem";
 
 /** Active Discover Kurdistan hub — V2 is the default entry point */
 const DISCOVER_HUB_VIEW = "discoverV2" satisfies SectionView;
@@ -540,6 +541,7 @@ const Index = () => {
     progress: bg2,
     identitySymbols: bg2,
     kurdistanFlag: bg2,
+    nationalAnthem: bg2,
   };
 
   const handleSelectLang = (code: LangCode) => {

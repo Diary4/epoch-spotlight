@@ -71,6 +71,13 @@ const bottomCards: LandCard[] = [
     icon: Flag,
     image: bg6,
   },
+  {
+    id: "nationalAnthem",
+    title: "The National Anthem",
+    text: "“Ey Reqîb” — the enduring anthem of Kurdish identity and resilience.",
+    icon: Music2,
+    image: bg3,
+  },
 ];
 
 function Divider({ className = "" }) {
@@ -205,7 +212,7 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
 type LandAndFuturePageProps = {
   lang?: DiscoverLangCode;
   onBack?: () => void;
-  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga" | "progress" | "kurdistanFlag") => void;
+  onSelectCard?: (cardId: "land" | "identitySymbols" | "peshmerga" | "progress" | "kurdistanFlag" | "nationalAnthem") => void;
   onLanguageChange?: (lang: DiscoverLangCode) => void;
 };
 
@@ -241,11 +248,13 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
     ? [
         { ...bottomCards[0], title: "التقدم", text: "التنمية مستمرة في البنية التحتية والتعليم والاقتصاد والسياحة." },
         { ...bottomCards[1], title: "علم كوردستان", text: "رمز للهوية والوحدة والأمل لدى الشعب الكردي." },
+        { ...bottomCards[2], title: "النشيد الوطني", text: "«أي رقيب» — النشيد الخالد للهوية الكردية والصمود." },
       ]
     : isKu
       ? [
           { ...bottomCards[0], title: "پێشکەوتن", text: "گەشەپێدان لە ژێرخان، پەروەردە، ئابووری، و گەشتیاریدا بەردەوامە." },
           { ...bottomCards[1], title: "ئاڵای کوردستان", text: "هێمای ناسنامە، یەکگرتن، و هیوا بۆ گەلی کورد." },
+          { ...bottomCards[2], title: "سروودی نیشتمانی", text: "«ئەی ڕەقیب» — سروودی نەمری ناسنامە و خۆڕاگری کوردی." },
         ]
       : bottomCards;
 
@@ -438,7 +447,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
             ))}
           </section>
 
-          <section className="grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 lg:gap-7">
+          <section className="grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
             {localBottomCards.map((card) => {
               return (
                 <WideCard
@@ -450,7 +459,9 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
                       ? () => onSelectCard?.("progress")
                       : card.id === "kurdistanFlag"
                         ? () => onSelectCard?.("kurdistanFlag")
-                        : undefined
+                        : card.id === "nationalAnthem"
+                          ? () => onSelectCard?.("nationalAnthem")
+                          : undefined
                   }
                 />
               );
