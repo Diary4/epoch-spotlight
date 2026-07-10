@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Scale } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -28,6 +28,7 @@ function InstitutionCard({
   label,
   sub,
   iconSrc,
+  iconNode,
   iconObjectPosition = "object-center",
   iconScale = "scale-[1.15]",
   onClick,
@@ -37,7 +38,8 @@ function InstitutionCard({
   numeral: string;
   label: string;
   sub: string;
-  iconSrc: string;
+  iconSrc?: string;
+  iconNode?: React.ReactNode;
   iconObjectPosition?: string;
   iconScale?: string;
   onClick?: () => void;
@@ -59,11 +61,15 @@ function InstitutionCard({
     >
       <div className="flex h-[240px] w-full shrink-0 items-center justify-center">
         <span className="grid h-56 w-56 shrink-0 place-items-center overflow-hidden rounded-full ring-1 ring-[#e6d5ac]">
-          <img
-            src={iconSrc}
-            alt=""
-            className={`h-full w-full object-cover ${iconScale} ${iconObjectPosition}`}
-          />
+          {iconNode ? (
+            iconNode
+          ) : (
+            <img
+              src={iconSrc}
+              alt=""
+              className={`h-full w-full object-cover ${iconScale} ${iconObjectPosition}`}
+            />
+          )}
         </span>
       </div>
       <span className="mt-6 font-serif text-[28px] text-[#1d2a45]">{numeral}</span>
@@ -85,10 +91,11 @@ type SystemPageProps = {
   onParliamentClick?: () => void;
   onGovernmentClick?: () => void;
   onPresidencyClick?: () => void;
+  onJudiciaryClick?: () => void;
   onLanguageChange?: (lang: DiscoverLangCode) => void;
 };
 
-export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick, onLanguageChange }: SystemPageProps) {
+export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, onParliamentClick, onGovernmentClick, onPresidencyClick, onJudiciaryClick, onLanguageChange }: SystemPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const canvasRef = React.useRef<HTMLDivElement | null>(null);
   const [fit, setFit] = React.useState({ scale: 1, x: 0 });
@@ -119,6 +126,8 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
   const parliamentLabel = isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament";
   const governmentLabel = isAr ? "الحكومة" : isKu ? "حکومەت" : "Government";
   const presidencyLabel = isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency";
+  const judiciaryLabel = isAr ? "القضاء" : isKu ? "دادوەری" : "Judiciary";
+  const judiciarySub = isAr ? "العدالة وسيادة القانون" : isKu ? "دادپەروەری و فەرمانڕەوایی یاسا" : "Justice & rule of law";
   const primeMinisterLabel = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
   const parliamentSub = isAr ? "التشريع والرقابة" : isKu ? "یاسادانان و چاودێری" : "Legislation & oversight";
   const governmentSub = isAr ? "التنفيذ والخدمات العامة" : isKu ? "جێبەجێکردن و خزمەتگوزارییە گشتییەکان" : "Executive & public services";
@@ -249,8 +258,8 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
               </div>
             </figure>
 
-            {/* Three institutions — arched cards overlapping the banner */}
-            <div className="relative z-10 -mt-28 flex items-start gap-9 px-6">
+            {/* Institutions — arched cards overlapping the banner */}
+            <div className="relative z-10 -mt-28 flex items-start gap-6 px-6">
               <div data-sys-card="true" className="relative flex min-w-0 flex-1">
                 <InstitutionCard
                   numeral="I"
@@ -307,6 +316,21 @@ export default function SystemPage({ lang = "en", onBack, onPrimeMinisterClick, 
                   iconScale="scale-[1.55]"
                   iconObjectPosition="object-[48%_50%]"
                   onClick={onPresidencyClick}
+                  displayFont={displayFont}
+                />
+              </div>
+
+              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                <InstitutionCard
+                  numeral="IV"
+                  label={judiciaryLabel}
+                  sub={judiciarySub}
+                  iconNode={
+                    <span className="grid h-full w-full place-items-center bg-[#13213b] text-[#e6c877]">
+                      <Scale size={104} strokeWidth={1.35} />
+                    </span>
+                  }
+                  onClick={onJudiciaryClick}
                   displayFont={displayFont}
                 />
               </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   ArrowLeft,
+  ArrowRight,
   FileText,
   Handshake,
   Landmark,
@@ -83,9 +84,10 @@ const keyAreas = [
 type GovernmentPageProps = {
   lang?: "ku" | "en" | "ar";
   onBack?: () => void;
+  onCabinetClick?: () => void;
 };
 
-export default function GovernmentPage({ lang = "en", onBack }: GovernmentPageProps) {
+export default function GovernmentPage({ lang = "en", onBack, onCabinetClick }: GovernmentPageProps) {
   const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
@@ -312,6 +314,30 @@ export default function GovernmentPage({ lang = "en", onBack }: GovernmentPagePr
                   className="hidden h-[clamp(5rem,10cqh,8rem)] w-[clamp(8rem,14cqw,12rem)] shrink-0 object-cover object-center sm:block"
                 />
               </section>
+
+              {/* Cabinet — the Council of Ministers sits within the government */}
+              <button
+                type="button"
+                onClick={onCabinetClick}
+                className="system-detail-panel mt-[clamp(1rem,2cqh,2rem)] flex w-full cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+              >
+                <div className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f] text-[#e6c877]">
+                  <UsersRound size={36} strokeWidth={1.45} />
+                </div>
+                <div className="flex-1">
+                  <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
+                    {isAr ? "مجلس الوزراء" : isKu ? "ئەنجومەنی وەزیران" : "The Cabinet"}
+                  </h3>
+                  <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                    {isAr
+                      ? "تعرّف على مجلس الوزراء الذي يقود العمل التنفيذي."
+                      : isKu
+                        ? "ئەنجومەنی وەزیران بناسە کە ڕێبەری کاری جێبەجێکردن دەکات."
+                        : "Meet the Council of Ministers that leads the executive."}
+                  </p>
+                </div>
+                <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+              </button>
             </div>
           </section>
         </main>

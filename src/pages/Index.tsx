@@ -30,6 +30,8 @@ import PrimeMinisterTimeline from "@/components/Sections/TheSystem/PrimeMinister
 import ParliamentPage from "@/components/Sections/TheSystem/Parliment";
 import GovernmentPage from "@/components/Sections/TheSystem/Government";
 import PresidencyPage from "@/components/Sections/TheSystem/Presidency";
+import JudiciaryPage from "@/components/Sections/TheSystem/TheJudiciary";
+import CabinetPage from "@/components/Sections/TheSystem/TheCabinet";
 import LandAndFuturePage from "@/components/Sections/TheLand";
 import TheLandPage from "@/components/Sections/TheLand/TheLand";
 import PeshmergaPage from "@/components/Sections/TheLand/Peshmarga";
@@ -377,7 +379,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag";
+type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "judiciary" | "cabinet" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag";
 
 /** Active Discover Kurdistan hub — V2 is the default entry point */
 const DISCOVER_HUB_VIEW = "discoverV2" satisfies SectionView;
@@ -528,6 +530,8 @@ const Index = () => {
     parliament: kurdistan3Bg,
     government: kurdistan3Bg,
     presidency: kurdistan3Bg,
+    judiciary: kurdistan3Bg,
+    cabinet: kurdistan3Bg,
     primeMinister: kurdistan3Bg,
     primeMinisterTimeline: kurdistan3Bg,
     landFuture: bg2,
@@ -778,6 +782,7 @@ const Index = () => {
             onParliamentClick={() => setView("parliament")}
             onGovernmentClick={() => setView("government")}
             onPresidencyClick={() => setView("presidency")}
+            onJudiciaryClick={() => setView("judiciary")}
             onPrimeMinisterClick={() => setView("primeMinister")}
           />
         </div>
@@ -813,7 +818,20 @@ const Index = () => {
           className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
-          <GovernmentPage lang={activeLang} onBack={() => setView("system")} />
+          <GovernmentPage
+            lang={activeLang}
+            onBack={() => setView("system")}
+            onCabinetClick={() => setView("cabinet")}
+          />
+        </div>
+      )}
+
+      {view === "cabinet" && (
+        <div
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <CabinetPage lang={activeLang} onBack={() => setView("government")} />
         </div>
       )}
 
@@ -823,6 +841,15 @@ const Index = () => {
           onClick={(e) => e.stopPropagation()}
         >
           <PresidencyPage lang={activeLang} onBack={() => setView("system")} />
+        </div>
+      )}
+
+      {view === "judiciary" && (
+        <div
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <JudiciaryPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
