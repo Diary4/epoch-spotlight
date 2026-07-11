@@ -8,8 +8,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import judiciaryHeroIcon from "@/assets/icons/thesystem/judiciary.webp";
-// TODO: replace this placeholder with the final Judiciary background artwork.
+// TODO: replace this placeholder with the final Judiciary hero/background artwork.
 import judiciaryBackground from "@/assets/icons/thesystem/judiciary.webp";
 import councilIcon from "@/assets/icons/thesystem/judiciary/council.webp";
 import courtIcon from "@/assets/icons/thesystem/judiciary/court.webp";
@@ -166,13 +165,6 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
       >
         <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb] px-20 pb-14 pt-14">
-            {/* Background image layer — swap `judiciaryBackground` for the final artwork.
-                The overlay keeps the cream theme and text readable; adjust its opacity as needed. */}
-            <div className="pointer-events-none absolute inset-0 z-0">
-              <img src={judiciaryBackground} alt="" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-[#fbf5eb]/88" />
-            </div>
-
             <button
               type="button"
               onClick={onBack}
@@ -182,16 +174,23 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
               <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
+            {/* Hero image band — swap `judiciaryBackground` for the final artwork.
+                Styled like the People detail pages (Who Are the Kurds / A Shared Identity):
+                full-bleed image with a fade into the cream page and a gold divider. */}
+            <div className="system-detail-intro relative z-10 -mx-20 -mt-14 mb-4 h-[420px] overflow-hidden">
+              <img src={judiciaryBackground} alt="" className="h-full w-full object-cover object-center" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-[10%] bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#d9b477] to-transparent opacity-90" />
+              <div className="pointer-events-none absolute bottom-[-5px] left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-2 border-[#d9b477] bg-[#fbf5eb]" />
+            </div>
+
             {/* Faint lattice motifs at the sides */}
-            <div className="pointer-events-none absolute left-0 top-40 h-[70%] w-20 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-            <div className="pointer-events-none absolute right-0 top-40 h-[70%] w-20 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="pointer-events-none absolute left-0 top-[480px] h-[55%] w-20 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="pointer-events-none absolute right-0 top-[480px] h-[55%] w-20 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Monumental centered header */}
             <header className="system-detail-intro relative z-10 flex flex-col items-center text-center">
-              <span className="grid h-[130px] w-[130px] place-items-center overflow-hidden rounded-full border-2 border-[#cfae72] bg-white shadow-[0_16px_40px_rgba(84,54,16,0.18)] ring-4 ring-[#f1e2c1]">
-                <img src={judiciaryHeroIcon} alt="" className="h-full w-full object-cover scale-[1.2]" />
-              </span>
-              <h1 className={`mt-7 ${displayFont} text-[104px] font-light leading-none tracking-tight text-[#17233b]`}>
+              <h1 className={`${displayFont} text-[104px] font-light leading-none tracking-tight text-[#17233b]`}>
                 {c.title}
               </h1>
               <p className="mt-5 max-w-[980px] text-[36px] font-light leading-tight text-[#9b6d35]">{c.subtitle}</p>
