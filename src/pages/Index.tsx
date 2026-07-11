@@ -782,7 +782,9 @@ const Index = () => {
             onLanguageChange={handleAppLanguageChange}
             onBack={() => setView(DISCOVER_HUB_VIEW)}
             onParliamentClick={() => setView("parliament")}
-            onGovernmentClick={() => setView("government")}
+            onPrimeMinisterClick={() => setView("primeMinister")}
+            onPresidencyClick={() => setView("presidency")}
+            onCabinetClick={() => setView("cabinet")}
             onJudiciaryClick={() => setView("judiciary")}
           />
         </div>
@@ -801,7 +803,7 @@ const Index = () => {
         <div className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
           <PrimeMinisterPage
             lang={activeLang}
-            onBack={() => setView("government")}
+            onBack={() => setView("system")}
             onJourneyClick={() => setView("primeMinisterTimeline")}
           />
         </div>
@@ -833,7 +835,7 @@ const Index = () => {
           className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
-          <CabinetPage lang={activeLang} onBack={() => setView("government")} />
+          <CabinetPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 
@@ -842,7 +844,7 @@ const Index = () => {
           className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
-          <PresidencyPage lang={activeLang} onBack={() => setView("government")} />
+          <PresidencyPage lang={activeLang} onBack={() => setView("system")} />
         </div>
       )}
 

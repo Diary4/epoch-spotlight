@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight, UsersRound } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -9,6 +9,8 @@ import heroImg from "@/assets/mainImages/thesystem/parlaman.webp";
 import parliamentIcon from "@/assets/icons/thesystem/parliment.webp";
 import governmentIcon from "@/assets/icons/thesystem/government.webp";
 import judiciaryIcon from "@/assets/icons/thesystem/judiciary.webp";
+import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
+import presidencyIcon from "@/assets/icons/thesystem/presidency.webp";
 
 function OrnamentDivider({ dataAttr }: { dataAttr?: string }) {
   return (
@@ -84,16 +86,19 @@ type SystemPageProps = {
   lang?: DiscoverLangCode;
   onBack?: () => void;
   onParliamentClick?: () => void;
-  onGovernmentClick?: () => void;
   onJudiciaryClick?: () => void;
+  onPrimeMinisterClick?: () => void;
+  onPresidencyClick?: () => void;
+  onCabinetClick?: () => void;
   onLanguageChange?: (lang: DiscoverLangCode) => void;
 };
 
-export default function SystemPage({ lang = "en", onBack, onParliamentClick, onGovernmentClick, onJudiciaryClick, onLanguageChange }: SystemPageProps) {
+export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJudiciaryClick, onPrimeMinisterClick, onPresidencyClick, onCabinetClick, onLanguageChange }: SystemPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const canvasRef = React.useRef<HTMLDivElement | null>(null);
   const [fit, setFit] = React.useState({ scale: 1, x: 0 });
   const [introDone, setIntroDone] = React.useState(false);
+  const [govExpanded, setGovExpanded] = React.useState(false);
   const handleLanguageSelect = useDiscoverLanguageTransition(
     sectionRef,
     lang,
@@ -128,6 +133,25 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onG
     : isKu
       ? "ئەم دامەزراوانە پێکەوە پاڵپشتیی حکومەت, یاسا، و کارگێڕی گشتی دەکەن."
       : "Together, these institutions support governance, law, and public administration.";
+
+  const govMenuTitle = isAr ? "الجهاز التنفيذي" : isKu ? "دەستەی جێبەجێکار" : "Executive Branch";
+  const govMenuSub = isAr
+    ? "اختر مؤسسة لعرض تفاصيلها"
+    : isKu
+      ? "دامەزراوەیەک هەڵبژێرە بۆ بینینی وردەکارییەکان"
+      : "Choose an institution to explore";
+  const primeMinisterLabel = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
+  const primeMinisterSub = isAr ? "رئيس مجلس الوزراء" : isKu ? "سەرۆکی ئەنجومەنی وەزیران" : "Head of the Council of Ministers";
+  const presidencyLabel = isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency";
+  const presidencySub = isAr ? "رئاسة الإقليم" : isKu ? "سەرۆکایەتی هەرێم" : "Head of the Region";
+  const cabinetLabel = isAr ? "مجلس الوزراء" : isKu ? "ئەنجومەنی وەزیران" : "The Cabinet";
+  const cabinetSub = isAr ? "يقود العمل التنفيذي" : isKu ? "ڕێبەری کاری جێبەجێکردن دەکات" : "Leads the executive work";
+
+  const govMenuItems = [
+    { key: "pm", label: primeMinisterLabel, sub: primeMinisterSub, iconSrc: pmImg, iconObjectPosition: "68% 12%", onClick: onPrimeMinisterClick },
+    { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyIcon, iconObjectPosition: "48% 50%", iconScale: "scale-[1.55]", onClick: onPresidencyClick },
+    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconNode: <UsersRound size={30} strokeWidth={1.45} className="text-[#e6c877]" />, onClick: onCabinetClick },
+  ];
 
   React.useEffect(() => {
     const recompute = () => {
@@ -261,13 +285,85 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onG
               </div>
 
               <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                {govMenuOpen && (
+                  <>
+                    {/* Click-away backdrop */}
+                    <div
+                      className="fixed inset-0 z-40"
+                      onClick={() => setGovMenuOpen(false)}
+                      aria-hidden
+                    />
+                    {/* Executive branch chooser popover, anchored above the card */}
+                    <div
+                      role="dialog"
+                      aria-label={govMenuTitle}
+                      className="absolute bottom-full left-1/2 z-50 mb-6 w-[420px] max-w-[90cqw] -translate-x-1/2 rounded-[24px] border-2 border-[#cfae72] bg-[#fbf5eb] p-5 shadow-[0_28px_70px_rgba(84,54,16,0.35)]"
+                    >
+                      <div className="mb-4 flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <h3 className={`${displayFont} text-[26px] font-light leading-tight text-[#17233b]`}>
+                            {govMenuTitle}
+                          </h3>
+                          <p className="mt-0.5 text-[16px] font-light leading-snug text-[#9b6d35]">
+                            {govMenuSub}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setGovMenuOpen(false)}
+                          aria-label="Close"
+                          className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#cfae72] text-[#9b6d35] transition-colors hover:bg-[#f0e4c9]"
+                        >
+                          <X size={18} strokeWidth={1.8} />
+                        </button>
+                      </div>
+
+                      <div className="flex flex-col gap-3">
+                        {govMenuItems.map((item) => (
+                          <button
+                            key={item.key}
+                            type="button"
+                            onClick={() => {
+                              setGovMenuOpen(false);
+                              item.onClick?.();
+                            }}
+                            className="group flex items-center gap-4 rounded-[18px] border-2 border-[#cfae72] bg-[#13213b] px-4 py-3 text-start text-[#f7edd7] transition-transform duration-200 active:scale-[0.99]"
+                          >
+                            <span className="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full border-[3px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                              {item.iconNode ?? (
+                                <img
+                                  src={item.iconSrc}
+                                  alt=""
+                                  className={`h-full w-full object-cover ${item.iconScale ?? ""}`}
+                                  style={item.iconObjectPosition ? { objectPosition: item.iconObjectPosition } : undefined}
+                                />
+                              )}
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className={`block ${displayFont} text-[22px] font-light leading-tight`}>
+                                {item.label}
+                              </span>
+                              <span className="mt-0.5 block text-[15px] font-light leading-snug text-[#e7d6ab]">
+                                {item.sub}
+                              </span>
+                            </span>
+                            <ArrowRight size={24} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Pointer arrow toward the card */}
+                      <span className="absolute left-1/2 top-full h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b-2 border-e-2 border-[#cfae72] bg-[#fbf5eb]" />
+                    </div>
+                  </>
+                )}
                 <InstitutionCard
                   numeral="II"
                   label={governmentLabel}
                   sub={governmentSub}
                   iconSrc={governmentIcon}
                   iconScale="scale-[1.25]"
-                  onClick={onGovernmentClick}
+                  onClick={() => setGovMenuOpen((open) => !open)}
                   displayFont={displayFont}
                 />
               </div>
