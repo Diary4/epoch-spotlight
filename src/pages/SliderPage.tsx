@@ -505,45 +505,6 @@ export default function VerticalTourismShowcase() {
             </div>
           </article>
         </div>
-
-        <footer data-slider-footer="true" className="hidden items-end justify-between pb-2 pt-6 [@media(min-height:820px)]:flex shrink-0">
-          <button
-            className="group flex flex-col items-center gap-4 text-[#f1d28b]"
-            onClick={(e) => {
-              e.stopPropagation();
-              previousSlide();
-            }}
-          >
-            <span className="grid h-20 w-20 place-items-center rounded-full border border-[#d7ae56]/70 bg-white/5 text-4xl backdrop-blur-md transition group-active:scale-95">
-              ♧
-            </span>
-            <span className="text-2xl font-semibold uppercase">{copy.map}</span>
-          </button>
-
-          <button
-            className="flex flex-col items-center gap-5 text-center"
-            onClick={(e) => {
-              e.stopPropagation();
-              nextSlide();
-            }}
-          >
-            <FlowerIcon />
-            <span className="h-px w-28 bg-[#d7ae56]" />
-            <span className="text-2xl tracking-[0.55em]">{copy.swipe}</span>
-            <span className="text-4xl tracking-[-0.2em] text-[#d7ae56]">━━━━›››</span>
-          </button>
-
-          <Link
-            to={`/touristic/${place.categoryId}/${place.id}`}
-            className="group flex flex-col items-center gap-4 text-[#f1d28b]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="grid h-20 w-20 place-items-center rounded-full border border-[#d7ae56]/70 bg-white/5 text-4xl backdrop-blur-md transition group-active:scale-95">
-              ⓘ
-            </span>
-            <span className="text-2xl font-semibold uppercase">{copy.info}</span>
-          </Link>
-        </footer>
       </section>
     </main>
   );
