@@ -117,7 +117,7 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
   const iconColor = "#f8e5b8";
 
   return (
-    <article data-land-card="true" className="relative flex min-h-[140px] xs:min-h-[180px] sm:min-h-[300px] lg:min-h-[440px] kiosk-portrait:min-h-[50vw] flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 bg-white/80 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:p-6 lg:p-7 kiosk-portrait:p-[2.4vw] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
+    <article data-land-card="true" className="relative flex min-h-[120px] xs:min-h-[150px] sm:min-h-[250px] lg:min-h-[360px] kiosk-portrait:min-h-[42vw] flex-col overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 bg-white/80 px-1.5 py-4 xs:px-2.5 xs:py-5 sm:p-5 lg:p-6 kiosk-portrait:p-[2.4vw] text-center shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.16)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
@@ -173,7 +173,7 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
   const Icon = card.icon;
   const displayFont = discoverDisplayFont(lang);
   return (
-    <article data-land-card="true" className="relative min-h-[90px] xs:min-h-[110px] sm:min-h-[180px] lg:min-h-[210px] kiosk-portrait:min-h-[21.5vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-7 sm:py-6 lg:px-8 lg:py-7 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
+    <article data-land-card="true" className="relative min-h-[80px] xs:min-h-[95px] sm:min-h-[150px] lg:min-h-[175px] kiosk-portrait:min-h-[19vw] overflow-hidden rounded-[12px] sm:rounded-[24px] border border-[#ead8b7] sm:border-2 px-3 py-3 xs:px-4 xs:py-4 sm:px-7 sm:py-5 lg:px-8 lg:py-6 kiosk-portrait:px-[3.2vw] kiosk-portrait:py-[3.2vw] shadow-[0_4px_12px_rgba(84,54,16,0.1)] sm:shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md">
       {onClick && (
         <button
           type="button"
@@ -387,7 +387,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section className="me-auto max-w-[66%] sm:max-w-[46%] lg:max-w-[600px] kiosk-portrait:max-w-[48%] text-start pt-12 sm:pt-16 lg:pt-24 kiosk-portrait:pt-[10vh]">
+          <section className="me-auto max-w-[66%] sm:max-w-[46%] lg:max-w-[600px] kiosk-portrait:max-w-[48%] text-start pt-6 sm:pt-8 lg:pt-12 kiosk-portrait:pt-[6vh]">
             <h1 data-land-hero="true" data-discover-lang="true" className={`${displayFont} text-[clamp(30px,9vw,52px)] sm:text-[clamp(34px,5vw,64px)] kiosk-portrait:text-[8.5vw] font-light leading-[1.05] tracking-tight text-[#17233b]`}>
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
