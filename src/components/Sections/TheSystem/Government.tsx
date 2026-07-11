@@ -25,6 +25,7 @@ import presidencyIcon from "@/assets/icons/thesystem/presidency.webp";
 import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.webp";
 import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.webp";
 import administrationIcon from "@/assets/icons/thesystem/government/administration.webp";
+import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
 
 const mainCards = [
   {
@@ -300,8 +301,12 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                   onClick={onCabinetClick}
                   className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-white px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#17233b] shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.99]"
                 >
-                  <span className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] text-[#b8873c] ring-1 ring-[#e6d5ac]">
-                    <UsersRound size={36} strokeWidth={1.45} />
+                  <span className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center overflow-hidden rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] ring-1 ring-[#e6d5ac]">
+                    <img
+                      src={cabinetIcon}
+                      alt=""
+                      className="h-full w-full object-cover scale-[1.05]"
+                    />
                   </span>
                   <div className="flex-1">
                     <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>

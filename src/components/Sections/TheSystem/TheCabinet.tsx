@@ -18,7 +18,6 @@ import {
   Swords,
   TrainFront,
   TrendingUp,
-  UsersRound,
   Wheat,
   Zap,
   type LucideIcon,
@@ -31,6 +30,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
+import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
 
 type Lang = "ku" | "en" | "ar";
 
@@ -236,8 +236,8 @@ export default function CabinetPage({ lang = "en", onBack }: CabinetPageProps) {
 
             {/* Header */}
             <header className="system-detail-intro relative z-10 flex shrink-0 flex-col items-center text-center">
-              <span className="grid h-[100px] w-[100px] place-items-center rounded-full border-2 border-[#cfae72] bg-[#13213b] text-[#e6c877] shadow-[0_16px_40px_rgba(84,54,16,0.18)]">
-                <UsersRound size={48} strokeWidth={1.4} />
+              <span className="grid h-[180px] w-[320px] place-items-center overflow-hidden">
+                <img src={cabinetIcon} alt="" className="h-full w-full object-contain" />
               </span>
               <h1 className={`mt-5 ${displayFont} ${lang === "en" ? "uppercase tracking-[0.03em]" : ""} text-[80px] font-medium leading-none text-[#17233b]`}>
                 {c.title}

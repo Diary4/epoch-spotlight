@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, UsersRound, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -11,6 +11,7 @@ import governmentIcon from "@/assets/icons/thesystem/government.webp";
 import judiciaryIcon from "@/assets/icons/thesystem/judiciary.webp";
 import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
 import presidencyIcon from "@/assets/icons/thesystem/presidency.webp";
+import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
 
 function OrnamentDivider({ dataAttr }: { dataAttr?: string }) {
   return (
@@ -145,7 +146,7 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
   const govMenuItems = [
     { key: "pm", label: primeMinisterLabel, sub: primeMinisterSub, iconSrc: pmImg, iconObjectPosition: "68% 12%", onClick: onPrimeMinisterClick },
     { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyIcon, iconObjectPosition: "48% 50%", iconScale: "scale-[1.55]", onClick: onPresidencyClick },
-    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconNode: <UsersRound size={36} strokeWidth={1.45} className="text-[#b8873c]" />, onClick: onCabinetClick },
+    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconSrc: cabinetIcon, iconScale: "scale-[1.05]", onClick: onCabinetClick },
   ];
 
   React.useEffect(() => {
