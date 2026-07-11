@@ -63,7 +63,8 @@ const AppRoutes = () => {
           <Route path="/slider" element={<SliderPage />} />
           <Route path="/religions" element={<Religions />} />
           <Route path="/women" element={<WomenPage />} />
-          <Route path="/touristic" element={<Touristic />} />
+          <Route path="/touristic" element={<SliderPage />} />
+          <Route path="/touristic-v2" element={<Touristic />} />
           <Route path="/touristic/:category/:id" element={<TouristicDetail />} />
           <Route path="/touristic/:id" element={<TouristicDetail />} />
           <Route path="/library" element={<Library />} />

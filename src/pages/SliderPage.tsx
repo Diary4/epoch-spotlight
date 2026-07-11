@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useLayoutEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
 import { ALL_PLACES, CITY_CATEGORIES } from "@/data/touristicPlaces";
@@ -139,11 +139,21 @@ function FlowerIcon({ small = false }) {
 }
 
 export default function VerticalTourismShowcase() {
-  const [active, setActive] = useState(0);
+  const [searchParams] = useSearchParams();
+  // When returning from a place detail (`/touristic?place=<id>`), reopen the
+  // slider on that place instead of resetting to the first slide.
+  const initialActive = useMemo(() => {
+    const placeId = searchParams.get("place");
+    if (!placeId) return 0;
+    const index = places.findIndex((item) => item.id === placeId);
+    return index >= 0 ? index : 0;
+  }, [searchParams]);
+  const [active, setActive] = useState(initialActive);
   const [lang, setLang] = useState<AppLangCode>(() => getAppLanguage());
   const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>("all");
   const mainRef = useRef<HTMLElement | null>(null);
   const isMounted = useRef(false);
+  const categoryInitialized = useRef(false);
 
   const copy = sliderCopy[lang];
   const filteredPlaces = useMemo(
@@ -165,6 +175,12 @@ export default function VerticalTourismShowcase() {
   const dir = lang === "en" ? "ltr" : "rtl";
 
   useEffect(() => {
+    // Skip the mount run so a restored place (from ?place=) is preserved; only
+    // reset to the first slide when the user actually switches category.
+    if (!categoryInitialized.current) {
+      categoryInitialized.current = true;
+      return;
+    }
     setActive(0);
   }, [activeCategoryId]);
 

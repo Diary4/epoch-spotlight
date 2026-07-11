@@ -244,7 +244,7 @@ const NaturalPlaces = () => {
                   className="timeline-item relative group w-full scroll-mt-24"
                 >
                   <Link
-                    to={`/touristic/${activeCategory.id}/${place.id}`}
+                    to={`/touristic/${activeCategory.id}/${place.id}?from=v2`}
                     onClick={() => handleOpenPlace(place.id)}
                     className="relative flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-16 items-center w-full"
                   >
@@ -333,7 +333,7 @@ const NaturalPlaces = () => {
                   {/* Mobile-only Image Preview */}
                   <div data-animate-mobile-image="true" className="mt-4 ml-16 mr-4 block md:hidden">
                     <Link
-                      to={`/touristic/${activeCategory.id}/${place.id}`}
+                      to={`/touristic/${activeCategory.id}/${place.id}?from=v2`}
                       onClick={() => handleOpenPlace(place.id)}
                       className="relative block w-full h-[200px] overflow-hidden rounded-xl border border-stone-200"
                     >

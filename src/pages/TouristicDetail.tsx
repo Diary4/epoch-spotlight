@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
 import { gsap } from "gsap";
 import { getCityCategory, getPlaceById, getPlacesByCity } from "@/data/touristicPlaces";
 
@@ -15,10 +15,21 @@ const gallerySizes = ["large", "small", "small", "medium", "small", "small", "me
 
 const TouristicDetail = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const rootRef = useRef<HTMLElement | null>(null);
   const [selectedGalleryId, setSelectedGalleryId] = useState<string | null>(null);
   const place = getPlaceById(id);
   const activeCategory = getCityCategory(place?.cityId);
+  // The slider (`/touristic`) is the primary browse experience; the classic grid
+  // is kept as a second version at `/touristic-v2` and flags itself via `from`.
+  // Pass the place id back so the slider reopens on the place the user viewed
+  // instead of resetting to the first slide.
+  const backTo =
+    searchParams.get("from") === "v2"
+      ? "/touristic-v2"
+      : place
+        ? `/touristic?place=${place.id}`
+        : "/touristic";
   const ownGallery = (place?.gallery ?? []) as string[];
   const hasOwnGallery = ownGallery.length > 1;
   const galleryImages = useMemo(() => {
@@ -131,7 +142,7 @@ const TouristicDetail = () => {
   }, [place]);
 
   if (!place) {
-    return <Navigate to="/touristic" replace />;
+    return <Navigate to={backTo} replace />;
   }
 
   return (
@@ -158,7 +169,7 @@ const TouristicDetail = () => {
           className="absolute left-6 top-8 z-20 sm:left-10 lg:left-14"
         >
           <Link
-            to={`/touristic?category=${activeCategory.id}`}
+            to={backTo}
             state={{ restoreTouristicScroll: true }}
             className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white/80 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-stone-700 backdrop-blur-md transition hover:bg-stone-50 hover:text-stone-900"
           >

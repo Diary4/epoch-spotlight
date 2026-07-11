@@ -216,7 +216,7 @@ export default function CabinetPage({ lang = "en", onBack }: CabinetPageProps) {
         }}
       >
         <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
-          <section className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb] px-20 pb-12 pt-12">
+          <section className="relative mx-auto flex h-[940px] w-full flex-col overflow-hidden bg-[#fbf5eb] px-20 pb-12 pt-12">
             <button
               type="button"
               onClick={onBack}
