@@ -8,10 +8,7 @@ import {
 } from "@/lib/listScrollRestoration";
 import { ArrowUp } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
-import { NATURAL_PLACES } from "@/data/naturalPlaces";
-import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
-import { RELIGIOUS_SITES } from "@/data/religousSites";
-import { MUSEUM_CENTERS } from "@/data/museumCenters";
+import { CITY_CATEGORIES, getCityCategory, getPlacesByCity } from "@/data/touristicPlaces";
 
 // GSAP Imports
 import gsap from "gsap";
@@ -20,32 +17,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-const placeCategories = [
-  {
-    id: "nature",
-    label: "Nature",
-    title: "Natural Places",
-    places: NATURAL_PLACES,
-  },
-  {
-    id: "religious",
-    label: "Religious",
-    title: "Religious Sites",
-    places: RELIGIOUS_SITES,
-  },
-  {
-    id: "historical",
-    label: "Historical",
-    title: "Historical Places",
-    places: HISTORICAL_PLACES,
-  },
-  {
-    id: "museums",
-    label: "Museums",
-    title: "Museum Centers",
-    places: MUSEUM_CENTERS,
-  },
-];
+const placeCategories = CITY_CATEGORIES;
 
 const NaturalPlaces = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -67,18 +39,9 @@ const NaturalPlaces = () => {
     [activeCategoryId],
   );
 
-  const activeCategory =
-    placeCategories.find((category) => category.id === activeCategoryId) ??
-    placeCategories[0];
+  const activeCategory = getCityCategory(activeCategoryId);
 
-  const places = useMemo(
-    () =>
-      activeCategory.places.map((place) => ({
-        ...place,
-        locationLabel: place.location.split(",")[0],
-      })),
-    [activeCategory],
-  );
+  const places = useMemo(() => getPlacesByCity(activeCategoryId), [activeCategoryId]);
 
   // GSAP Page Load & Category Transition Entrance Animation
   useLayoutEffect(() => {
@@ -230,7 +193,7 @@ const NaturalPlaces = () => {
               Kurdistan
             </p>
             <h1 data-places-title="true" className="mt-2 font-serif text-3xl uppercase tracking-[0.2em] text-stone-900 sm:text-4xl">
-              {activeCategory.title}
+              {activeCategory.en}
             </h1>
             <div className="mt-5 flex flex-wrap gap-2">
               {placeCategories.map((category) => {
@@ -248,7 +211,7 @@ const NaturalPlaces = () => {
                         : "border-stone-200 bg-white/55 text-stone-600 hover:border-[#c89b52]/50 hover:text-stone-800"
                     }`}
                   >
-                    {category.label}
+                    {category.en}
                   </button>
                 );
               })}
@@ -296,7 +259,7 @@ const NaturalPlaces = () => {
                       {isEven ? (
                         <div data-animate-text="true" className="max-w-md">
                           <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#d6a45b]">
-                            {place.locationLabel}
+                            {place.role}
                           </span>
                           <h2 className="mt-1 font-serif text-xl uppercase tracking-[0.15em] text-stone-900 transition duration-300 group-hover:text-[#d6a45b] sm:text-2xl">
                             {place.name}
@@ -342,7 +305,7 @@ const NaturalPlaces = () => {
                       {!isEven ? (
                         <div data-animate-text="true" className="max-w-md">
                           <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#d6a45b]">
-                            {place.locationLabel}
+                            {place.role}
                           </span>
                           <h2 className="mt-1 font-serif text-xl uppercase tracking-[0.15em] text-stone-900 transition duration-300 group-hover:text-[#d6a45b] sm:text-2xl">
                             {place.name}
@@ -392,7 +355,7 @@ const NaturalPlaces = () => {
 
         {/* Footer */}
         <footer className="relative z-20 pb-10 text-center text-[11px] uppercase tracking-[0.28em] text-[#d6a45b] font-medium">
-          {places.length} {activeCategory.title}
+          {places.length} places in {activeCategory.en}
         </footer>
 
         {/* Scroll To Top */}

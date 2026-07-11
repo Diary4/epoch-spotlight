@@ -1,29 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { gsap } from "gsap";
-import { NATURAL_PLACES } from "@/data/naturalPlaces";
-import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
-import { RELIGIOUS_SITES } from "@/data/religousSites";
-import { MUSEUM_CENTERS } from "@/data/museumCenters";
-
-const placeCategories = [
-  {
-    id: "nature",
-    places: NATURAL_PLACES,
-  },
-  {
-    id: "religious",
-    places: RELIGIOUS_SITES,
-  },
-  {
-    id: "historical",
-    places: HISTORICAL_PLACES,
-  },
-  {
-    id: "museums",
-    places: MUSEUM_CENTERS,
-  },
-];
+import { getCityCategory, getPlaceById, getPlacesByCity } from "@/data/touristicPlaces";
 
 const detailFields = [
   ["Distance from Erbil", "distanceFromErbil"],
@@ -36,22 +14,21 @@ const detailFields = [
 const gallerySizes = ["large", "small", "small", "medium"] as const;
 
 const TouristicDetail = () => {
-  const { category, id } = useParams();
+  const { id } = useParams();
   const rootRef = useRef<HTMLElement | null>(null);
   const [selectedGalleryId, setSelectedGalleryId] = useState<string | null>(null);
-  const categoryId = category ?? "nature";
-  const activeCategory =
-    placeCategories.find((item) => item.id === categoryId) ?? placeCategories[0];
-  const place = activeCategory.places.find((item) => item.id === id);
+  const place = getPlaceById(id);
+  const activeCategory = getCityCategory(place?.cityId);
   const galleryImages = useMemo(() => {
     if (!place) return [];
 
-    const currentIndex = activeCategory.places.findIndex((item) => item.id === place.id);
+    const cityPlaces = getPlacesByCity(place.cityId);
+    const currentIndex = cityPlaces.findIndex((item) => item.id === place.id);
     const orderedPlaces = [
       place,
-      ...activeCategory.places
+      ...cityPlaces
         .slice(currentIndex + 1)
-        .concat(activeCategory.places.slice(0, currentIndex))
+        .concat(cityPlaces.slice(0, currentIndex))
         .filter((item) => item.id !== place.id),
     ];
 
@@ -62,7 +39,7 @@ const TouristicDetail = () => {
       location: item.location,
       size: gallerySizes[index],
     }));
-  }, [activeCategory.places, place]);
+  }, [place]);
   const selectedGalleryImage =
     galleryImages.find((image) => image.id === selectedGalleryId) ?? null;
 
@@ -87,7 +64,7 @@ const TouristicDetail = () => {
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  }, [category, id]);
+  }, [id]);
 
   useLayoutEffect(() => {
     if (!rootRef.current || !place) return;
@@ -214,7 +191,7 @@ const TouristicDetail = () => {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-stone-500">
-              A visual path through {activeCategory.id === "museums" ? "nearby cultural stops" : "related destinations"} in this collection.
+              A visual path through related destinations in {activeCategory.en}.
             </p>
           </div>
 

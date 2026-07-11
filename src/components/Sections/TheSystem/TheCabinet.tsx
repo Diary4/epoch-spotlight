@@ -250,21 +250,21 @@ export default function CabinetPage({ lang = "en", onBack }: CabinetPageProps) {
             </header>
 
             {/* Ministries grid */}
-            <section className="relative z-10 mt-9 grid grid-cols-4 gap-x-8 gap-y-5">
+            <section className="relative z-10 mt-9 grid grid-cols-4 gap-x-10 gap-y-3">
               {c.ministries.map((name, i) => {
                 const Icon = MINISTRY_ICONS[i];
                 const num = String(i + 1).padStart(2, "0");
                 return (
                   <article
                     key={name}
-                    className="system-detail-card flex items-center gap-4 rounded-[18px] border border-[#ead8b7] bg-white/70 px-4 py-4 text-start shadow-[0_10px_24px_rgba(84,54,16,0.08)]"
+                    className="system-detail-card flex items-center gap-3.5 border-b border-[#e7d6b4]/70 px-1 py-3 text-start"
                   >
-                    <span className="grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full border-2 border-[#d9b477] bg-[#fffaf0] text-[#b8873c]">
-                      <Icon size={34} strokeWidth={1.5} />
+                    <span className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-full border border-[#d9b477] bg-[#fbf5eb] text-[#b8873c]">
+                      <Icon size={26} strokeWidth={1.5} />
                     </span>
                     <div className="min-w-0">
-                      <span className="block font-serif text-[24px] font-medium leading-none text-[#c39a4e]">{num}</span>
-                      <span className={`mt-1 block ${displayFont} text-[21px] font-light leading-[1.2] text-[#17233b]`}>
+                      <span className="block font-serif text-[19px] font-medium leading-none text-[#c39a4e]">{num}</span>
+                      <span className={`mt-1 block ${displayFont} text-[17px] font-light leading-[1.2] text-[#17233b]`}>
                         {name}
                       </span>
                     </div>

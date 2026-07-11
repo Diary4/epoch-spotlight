@@ -2,10 +2,7 @@ import React, { useEffect, useMemo, useState, useLayoutEffect, useRef } from "re
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
-import { HISTORICAL_PLACES } from "@/data/historicalPlaces";
-import { MUSEUM_CENTERS } from "@/data/museumCenters";
-import { NATURAL_PLACES } from "@/data/naturalPlaces";
-import { RELIGIOUS_SITES } from "@/data/religousSites";
+import { ALL_PLACES, CITY_CATEGORIES } from "@/data/touristicPlaces";
 import {
   getAppLanguage,
   nextAppLanguage,
@@ -35,36 +32,16 @@ type SliderPlace = TouristicPlace & {
   category: string;
 };
 
-const placeCategories = [
-  {
-    id: "nature",
-    category: { en: "Nature", ku: "سروشت", ar: "الطبيعة" },
-    places: NATURAL_PLACES,
-  },
-  {
-    id: "religious",
-    category: { en: "Religious", ku: "ئایینی", ar: "دينية" },
-    places: RELIGIOUS_SITES,
-  },
-  {
-    id: "historical",
-    category: { en: "Historical", ku: "مێژوویی", ar: "تاريخية" },
-    places: HISTORICAL_PLACES,
-  },
-  {
-    id: "museums",
-    category: { en: "Museums", ku: "مۆزەخانەکان", ar: "المتاحف" },
-    places: MUSEUM_CENTERS,
-  },
-];
+const placeCategories = CITY_CATEGORIES.map((city) => ({
+  id: city.id,
+  category: { en: city.en, ku: city.ku, ar: city.ar },
+}));
 
-const places: SliderPlace[] = placeCategories.flatMap(({ id, category, places }) =>
-  (places as TouristicPlace[]).map((place) => ({
-    ...place,
-    categoryId: id,
-    category: category.en,
-  })),
-);
+const places: SliderPlace[] = (ALL_PLACES as (TouristicPlace & { cityId: string })[]).map((place) => ({
+  ...place,
+  categoryId: place.cityId,
+  category: placeCategories.find((c) => c.id === place.cityId)?.category.en ?? "",
+}));
 
 type CategoryId = "all" | (typeof placeCategories)[number]["id"];
 
