@@ -53,7 +53,7 @@ const AppRoutes = () => {
     <>
       <FullscreenGate visible={showGate} onActivate={onGateActivate} />
       <Routes>
-          <Route path="/" element={<StartMenu />} />
+          <Route path="/" element={import.meta.env.DEV ? <StartMenu /> : <Navigate to="/screen-1" replace />} />
           <Route path="/screen" element={<Index />} />
           <Route path="/screen-1" element={<Index />} />
           <Route path="/screen-2" element={<SecondScreen />} />
