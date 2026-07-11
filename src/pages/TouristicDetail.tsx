@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
 import { gsap } from "gsap";
 import { getCityCategory, getPlaceById, getPlacesByCity } from "@/data/touristicPlaces";
+import { DESIGN_WIDTH, useDesignCanvasFit } from "@/hooks/useDesignCanvasFit";
 
 const detailFields = [
   ["Distance from Erbil", "distanceFromErbil"],
@@ -16,7 +17,6 @@ const gallerySizes = ["large", "small", "small", "medium", "small", "small", "me
 const TouristicDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
-  const rootRef = useRef<HTMLElement | null>(null);
   const [selectedGalleryId, setSelectedGalleryId] = useState<string | null>(null);
   const place = getPlaceById(id);
   const activeCategory = getCityCategory(place?.cityId);
@@ -67,6 +67,9 @@ const TouristicDetail = () => {
   }, [place, hasOwnGallery, ownGallery]);
   const selectedGalleryImage =
     galleryImages.find((image) => image.id === selectedGalleryId) ?? null;
+  const { canvasRef, fit } = useDesignCanvasFit([place?.id, galleryImages.length], {
+    fitViewport: false,
+  });
 
   useEffect(() => {
     if (!selectedGalleryImage) return;
@@ -92,7 +95,7 @@ const TouristicDetail = () => {
   }, [id]);
 
   useLayoutEffect(() => {
-    if (!rootRef.current || !place) return;
+    if (!canvasRef.current || !place) return;
 
     const reducedMotion =
       typeof window !== "undefined" &&
@@ -136,7 +139,7 @@ const TouristicDetail = () => {
         .to(gallery, { autoAlpha: 1, y: 0, duration: 0.7 }, 0.58)
         .to(galleryItems, { autoAlpha: 1, scale: 1, stagger: 0.1, duration: 0.65 }, 0.68)
         .to(cards, { autoAlpha: 1, y: 0, stagger: 0.12, duration: 0.75 }, 0.92);
-    }, rootRef);
+    }, canvasRef);
 
     return () => ctx.revert();
   }, [place]);
@@ -146,137 +149,145 @@ const TouristicDetail = () => {
   }
 
   return (
-    <main
-      ref={rootRef}
-      className="min-h-screen w-screen overflow-x-hidden bg-[#faf8f5] text-stone-800 selection:bg-[#c89b52]/30"
-    >
-      <section className="relative h-[50vh] min-h-[500px] w-full overflow-hidden">
-        <img
-          data-place-hero-image="true"
-          src={place.image}
-          alt={place.name}
-          className="absolute inset-0 h-full w-full object-cover will-change-transform"
-        />
-
-        {/* Top edge vignette for header contrast */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/45 to-transparent" />
-        
-        {/* Soft bottom edge fade transitioning into off-white */}
-        <div className="absolute bottom-[-1px] left-0 right-0 h-44 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/90 to-transparent" />
-
-        <div
-          data-place-back="true"
-          className="absolute left-6 top-8 z-20 sm:left-10 lg:left-14"
-        >
-          <Link
-            to={backTo}
-            state={{ restoreTouristicScroll: true }}
-            className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white/80 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-stone-700 backdrop-blur-md transition hover:bg-stone-50 hover:text-stone-900"
+    <>
+      <div className="relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5]">
+        <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
+          <main
+            ref={canvasRef}
+            className="bg-[#faf8f5] text-stone-800 selection:bg-[#c89b52]/30"
+            style={{
+              width: DESIGN_WIDTH,
+              minHeight: fit.minCanvasHeight || undefined,
+              transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+              transformOrigin: "top left",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
           >
-            <span>←</span> Back
-          </Link>
-        </div>
+            <section className="relative h-[960px] w-full overflow-hidden">
+              <img
+                data-place-hero-image="true"
+                src={place.image}
+                alt={place.name}
+                className="absolute inset-0 h-full w-full object-cover will-change-transform"
+              />
 
-        <div
-          data-place-hero-text="true"
-          className="absolute bottom-0 left-0 w-full px-6 pb-12 sm:px-12 md:px-20 lg:px-32"
-        >
-          <p className="text-[12px] uppercase tracking-[0.38em] text-[#d6a45b] font-semibold">
-            {place.role}
-          </p>
-          <h1 className="mt-4 font-serif text-4xl uppercase tracking-[0.15em] text-stone-900 sm:text-5xl md:text-6xl lg:text-7xl">
-            {place.name}
-          </h1>
-          <div className="mt-6 flex items-center gap-4">
-            <span className="h-px w-12 bg-[#d6a45b]" />
-            <p className="text-sm uppercase tracking-[0.25em] text-stone-600">
-              {place.location}
-            </p>
-          </div>
-        </div>
-      </section>
+              <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/45 to-transparent" />
+              <div className="absolute bottom-[-1px] left-0 right-0 h-44 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/90 to-transparent" />
 
-      <section className="relative mx-auto max-w-[1200px] px-6 py-16 sm:px-12 md:px-20 lg:px-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(186,140,84,0.06),transparent_40%)]" />
+              <div data-place-back="true" className="absolute left-14 top-8 z-20">
+                <Link
+                  to={backTo}
+                  state={{ restoreTouristicScroll: true }}
+                  className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white/80 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-stone-700 backdrop-blur-md transition hover:bg-stone-50 hover:text-stone-900"
+                >
+                  <span>←</span> Back
+                </Link>
+              </div>
 
-        <div data-place-intro="true" className="relative z-10 max-w-3xl">
-          <p className="text-lg font-light leading-relaxed text-stone-700 sm:text-xl sm:leading-loose">
-            {place.description}
-          </p>
-        </div>
-
-        <section data-place-gallery="true" className="relative z-10 mt-14">
-          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.34em] text-[#d6a45b] font-semibold">
-                Gallery
-              </p>
-              <h2 className="mt-2 font-serif text-2xl uppercase tracking-[0.16em] text-stone-900 sm:text-3xl">
-                Artistic Flow
-              </h2>
-            </div>
-            <p className="max-w-md text-sm leading-relaxed text-stone-500">
-              {hasOwnGallery
-                ? `More views of ${place.name}.`
-                : `A visual path through related destinations in ${activeCategory.en}.`}
-            </p>
-          </div>
-
-          <div className="grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] md:grid-cols-4 md:auto-rows-[170px] lg:auto-rows-[190px]">
-            {galleryImages.map((image) => (
-              <button
-                key={image.id}
-                type="button"
-                data-place-gallery-item="true"
-                onClick={() => setSelectedGalleryId(image.id)}
-                className={`group relative overflow-hidden rounded-2xl border border-stone-200 bg-white/70 text-left shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition duration-500 hover:z-10 hover:scale-[1.025] hover:border-[#d6a45b]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] ${
-                  image.size === "large"
-                    ? "col-span-2 row-span-2"
-                    : image.size === "medium"
-                      ? "col-span-2"
-                      : ""
-                }`}
+              <div
+                data-place-hero-text="true"
+                className="absolute bottom-0 left-0 w-full px-32 pb-12"
               >
-                <img
-                  src={image.url}
-                  alt={image.name}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent opacity-85 transition-opacity duration-300 group-hover:opacity-95" />
-                <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <p className="font-serif text-lg uppercase tracking-[0.12em] text-white">
-                    {image.name}
-                  </p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-[#d6a45b]">
-                    {image.location}
+                <p className="text-[12px] font-semibold uppercase tracking-[0.38em] text-[#d6a45b]">
+                  {place.role}
+                </p>
+                <h1 className="mt-4 font-serif text-7xl uppercase tracking-[0.15em] text-stone-900">
+                  {place.name}
+                </h1>
+                <div className="mt-6 flex items-center gap-4">
+                  <span className="h-px w-12 bg-[#d6a45b]" />
+                  <p className="text-sm uppercase tracking-[0.25em] text-stone-600">
+                    {place.location}
                   </p>
                 </div>
-              </button>
-            ))}
-          </div>
-        </section>
+              </div>
+            </section>
 
-        {/* Updated Detail Cards */}
-        <div className="relative z-10 mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {detailFields.map(([label, key]) => (
-            <div
-              key={key}
-              data-place-card="true"
-              className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white/70 p-6 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
-            >
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#d6a45b]">
-                {label}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
-                {place[key]}
-              </p>
-            </div>
-          ))}
+            <section className="relative px-32 py-16">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(186,140,84,0.06),transparent_40%)]" />
+
+              <div data-place-intro="true" className="relative z-10 max-w-3xl">
+                <p className="text-xl font-light leading-loose text-stone-700">
+                  {place.description}
+                </p>
+              </div>
+
+              <section data-place-gallery="true" className="relative z-10 mt-14">
+                <div className="mb-6 flex items-end justify-between gap-2">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[#d6a45b]">
+                      Gallery
+                    </p>
+                    <h2 className="mt-2 font-serif text-3xl uppercase tracking-[0.16em] text-stone-900">
+                      Artistic Flow
+                    </h2>
+                  </div>
+                  <p className="max-w-md text-sm leading-relaxed text-stone-500">
+                    {hasOwnGallery
+                      ? `More views of ${place.name}.`
+                      : `A visual path through related destinations in ${activeCategory.en}.`}
+                  </p>
+                </div>
+
+                <div className="grid auto-rows-[190px] grid-cols-4 gap-3">
+                  {galleryImages.map((image) => (
+                    <button
+                      key={image.id}
+                      type="button"
+                      data-place-gallery-item="true"
+                      onClick={() => setSelectedGalleryId(image.id)}
+                      className={`group relative overflow-hidden rounded-2xl border border-stone-200 bg-white/70 text-left shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition duration-500 hover:z-10 hover:scale-[1.025] hover:border-[#d6a45b]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] ${
+                        image.size === "large"
+                          ? "col-span-2 row-span-2"
+                          : image.size === "medium"
+                            ? "col-span-2"
+                            : ""
+                      }`}
+                    >
+                      <img
+                        src={image.url}
+                        alt={image.name}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent opacity-85 transition-opacity duration-300 group-hover:opacity-95" />
+                      <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        <p className="font-serif text-lg uppercase tracking-[0.12em] text-white">
+                          {image.name}
+                        </p>
+                        <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-[#d6a45b]">
+                          {image.location}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </section>
+
+              <div className="relative z-10 mt-16 grid grid-cols-3 gap-6">
+                {detailFields.map(([label, key]) => (
+                  <div
+                    key={key}
+                    data-place-card="true"
+                    className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white/70 p-6 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
+                  >
+                    <h3 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#d6a45b]">
+                      {label}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-stone-600">
+                      {place[key]}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </main>
         </div>
-      </section>
+      </div>
 
-      {/* Full-Screen Dark Overlay Lightbox */}
+      {/* Full-Screen Dark Overlay Lightbox — outside scaled canvas */}
       <div
         className={`fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm transition duration-300 sm:p-8 ${
           selectedGalleryImage
@@ -318,7 +329,7 @@ const TouristicDetail = () => {
           </div>
         ) : null}
       </div>
-    </main>
+    </>
   );
 };
 

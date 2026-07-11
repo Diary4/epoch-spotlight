@@ -9,6 +9,7 @@ import {
   setAppLanguage,
   type AppLangCode,
 } from "@/lib/appLanguage";
+import { DESIGN_WIDTH, useDesignCanvasFit } from "@/hooks/useDesignCanvasFit";
 
 type TouristicPlace = {
   id: string;
@@ -176,7 +177,6 @@ export default function VerticalTourismShowcase() {
   const [lang, setLang] = useState<AppLangCode>(() => getAppLanguage());
   const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>("all");
   const [dataScope, setDataScope] = useState<DataScope>("all");
-  const mainRef = useRef<HTMLElement | null>(null);
   const isMounted = useRef(false);
   const filtersInitialized = useRef(false);
 
@@ -197,6 +197,10 @@ export default function VerticalTourismShowcase() {
   const currentNumber = String(active + 1).padStart(2, "0");
   const totalNumber = String(total).padStart(2, "0");
   const dir = lang === "en" ? "ltr" : "rtl";
+  const { canvasRef, fit } = useDesignCanvasFit(
+    [lang, activeCategoryId, dataScope, total, place.id],
+    { fitViewport: true },
+  );
 
   useEffect(() => {
     // Skip the mount run so a restored place (from ?place=) is preserved; only
@@ -223,7 +227,7 @@ export default function VerticalTourismShowcase() {
 
   // Mount Intro Timeline Animation
   useLayoutEffect(() => {
-    if (!mainRef.current) return;
+    if (!canvasRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.set("[data-slider-bg='true']", { scale: 1.1, autoAlpha: 0 });
@@ -251,14 +255,14 @@ export default function VerticalTourismShowcase() {
         .to("[data-slider-explore='true']", { autoAlpha: 1, scale: 1, duration: 0.65 }, "-=0.45")
         .to("[data-slider-counter='true']", { autoAlpha: 1, y: 0, duration: 0.55 }, "-=0.45")
         .to("[data-slider-footer='true']", { autoAlpha: 1, y: 0, duration: 0.85 }, "-=0.45");
-    }, mainRef);
+    }, canvasRef);
 
     return () => ctx.revert();
   }, []);
 
   // Slide Switch cinematic animation
   useLayoutEffect(() => {
-    if (!mainRef.current) return;
+    if (!canvasRef.current) return;
     if (!isMounted.current) {
       isMounted.current = true;
       return;
@@ -280,109 +284,114 @@ export default function VerticalTourismShowcase() {
       gsap.to("[data-slider-loc='true']", { autoAlpha: 1, y: 0, duration: 0.65, delay: 0.25, ease: "power2.out" });
       gsap.to("[data-slider-explore='true']", { autoAlpha: 1, scale: 1, duration: 0.65, delay: 0.25, ease: "back.out(1.15)" });
       gsap.to("[data-slider-counter='true']", { autoAlpha: 1, y: 0, duration: 0.6, delay: 0.3, ease: "power2.out" });
-    }, mainRef);
+    }, canvasRef);
 
     return () => ctx.revert();
   }, [place.id]);
 
   return (
-    <main
-      ref={mainRef}
-      dir="ltr"
-      className="relative min-h-screen w-full overflow-hidden bg-black text-white"
-      onClick={nextSlide}
-    >
-      <img
-        key={place.id}
-        data-slider-bg="true"
-        src={place.image}
-        alt={placeName}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-{/* 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent animate-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 animate-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)] animate-none" /> */}
+    <div dir="ltr" className="relative h-screen w-screen overflow-hidden bg-black">
+      <div style={{ height: fit.contentHeight || "100vh", position: "relative" }}>
+        <main
+          ref={canvasRef}
+          onClick={nextSlide}
+          className="relative min-h-[1920px] text-white"
+          style={{
+            width: DESIGN_WIDTH,
+            transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+            transformOrigin: "top left",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        >
+          <img
+            key={place.id}
+            data-slider-bg="true"
+            src={place.image}
+            alt={placeName}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
 
-      {/* Center-edge navigation between places */}
-      <button
-        type="button"
-        aria-label={copy.previous}
-        onClick={(e) => {
-          e.stopPropagation();
-          previousSlide();
-        }}
-        className="group absolute left-3 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-2 sm:left-6"
-      >
-        <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d7ae56]/70 bg-black/30 text-[#f1d28b] backdrop-blur-md transition group-hover:bg-[#f1d28b] group-hover:text-black group-active:scale-95 sm:h-16 sm:w-16">
-          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f1d28b] sm:text-xs">
-          {copy.previous}
-        </span>
-      </button>
+          {/* Center-edge navigation between places — inside scaled canvas */}
+          <button
+            type="button"
+            aria-label={copy.previous}
+            onClick={(e) => {
+              e.stopPropagation();
+              previousSlide();
+            }}
+            className="group absolute left-6 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-2"
+          >
+            <span className="grid h-16 w-16 place-items-center rounded-full border border-[#d7ae56]/70 bg-black/30 text-[#f1d28b] backdrop-blur-md transition group-hover:bg-[#f1d28b] group-hover:text-black group-active:scale-95">
+              <ArrowLeft className="h-7 w-7" />
+            </span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f1d28b]">
+              {copy.previous}
+            </span>
+          </button>
 
-      <button
-        type="button"
-        aria-label={copy.next}
-        onClick={(e) => {
-          e.stopPropagation();
-          nextSlide();
-        }}
-        className="group absolute right-3 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-2 sm:right-6"
-      >
-        <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d7ae56]/70 bg-black/30 text-[#f1d28b] backdrop-blur-md transition group-hover:bg-[#f1d28b] group-hover:text-black group-active:scale-95 sm:h-16 sm:w-16">
-          <ArrowRight className="h-5 w-5 sm:h-7 sm:w-7" />
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f1d28b] sm:text-xs">
-          {copy.next}
-        </span>
-      </button>
+          <button
+            type="button"
+            aria-label={copy.next}
+            onClick={(e) => {
+              e.stopPropagation();
+              nextSlide();
+            }}
+            className="group absolute right-6 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-2"
+          >
+            <span className="grid h-16 w-16 place-items-center rounded-full border border-[#d7ae56]/70 bg-black/30 text-[#f1d28b] backdrop-blur-md transition group-hover:bg-[#f1d28b] group-hover:text-black group-active:scale-95">
+              <ArrowRight className="h-7 w-7" />
+            </span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f1d28b]">
+              {copy.next}
+            </span>
+          </button>
 
-      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1080px] flex-col px-4 sm:px-10 lg:px-14 py-6 lg:py-8">
-        <header data-slider-header="true" className="flex items-start justify-between">
-          <div className="flex items-center gap-4 sm:gap-7">
-            <FlowerIcon />
-            <div dir={dir}>
-              <p className="tracking-[0.2em] sm:tracking-[0.45em] text-[#d7ae56] text-xs sm:text-base lg:text-xl uppercase">
-                {copy.titleKicker}
-              </p>
-              <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl tracking-[0.1em] sm:tracking-[0.18em] text-[#f1d28b]">
-                {copy.titleMain}
-              </h1>
-            </div>
-          </div>
+          <section className="relative z-10 flex min-h-[1920px] w-full flex-col px-14 py-8">
+            <header data-slider-header="true" className="flex items-start justify-between">
+              <div className="flex items-center gap-7">
+                <FlowerIcon />
+                <div dir={dir}>
+                  <p className="text-xl uppercase tracking-[0.45em] text-[#d7ae56]">
+                    {copy.titleKicker}
+                  </p>
+                  <h1 className="font-serif text-5xl tracking-[0.18em] text-[#f1d28b]">
+                    {copy.titleMain}
+                  </h1>
+                </div>
+              </div>
 
-          <div className="flex items-center gap-4 sm:gap-7 pt-1 sm:pt-3 text-lg sm:text-2xl lg:text-3xl shrink-0">
-            <button
-              type="button"
-              aria-label="Switch language"
-              className="text-sm sm:text-base lg:text-lg transition hover:text-[#f1d28b]"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleLanguageChange();
-              }}
-            >
-              {languageLabels[lang]}
-            </button>
-            <span className="h-6 sm:h-12 w-px bg-[#d7ae56]" />
-            <button
-              type="button"
-              className="grid h-10 w-10 sm:h-16 sm:w-16 lg:h-20 lg:w-20 place-items-center rounded-full border border-[#d7ae56]/70 bg-white/5 backdrop-blur-md"
+              <div className="flex shrink-0 items-center gap-7 pt-3 text-3xl">
+                <button
+                  type="button"
+                  aria-label="Switch language"
+                  className="text-lg transition hover:text-[#f1d28b]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleLanguageChange();
+                  }}
+                >
+                  {languageLabels[lang]}
+                </button>
+                <span className="h-12 w-px bg-[#d7ae56]" />
+                <button
+                  type="button"
+                  className="grid h-20 w-20 place-items-center rounded-full border border-[#d7ae56]/70 bg-white/5 backdrop-blur-md"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FlowerIcon small />
+                </button>
+              </div>
+            </header>
+
+            {/* Data scope toggle: all places vs. only those with real photos */}
+            <div
+              data-slider-nav="true"
+              dir={dir}
+              className="mt-4 flex shrink-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#f1d28b]"
               onClick={(e) => e.stopPropagation()}
             >
-              <FlowerIcon small />
-            </button>
-          </div>
-        </header>
-
-        {/* Data scope toggle: all places vs. only those with real photos */}
-        <div
-          data-slider-nav="true"
-          dir={dir}
-          className="mt-4 flex items-center gap-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#f1d28b] shrink-0"
-          onClick={(e) => e.stopPropagation()}
-        >
           <span className="mr-2 text-[#d7ae56]/80 shrink-0">{copy.dataScope}</span>
           {[
             { id: "all" as const, label: copy.allData },
@@ -407,12 +416,12 @@ export default function VerticalTourismShowcase() {
           })}
         </div>
 
-        {/* Responsive Category bar - horizontal scrolls on mobile, wraps on desktop */}
+        {/* Category bar */}
         <nav
           data-slider-nav="true"
           aria-label={copy.categoryBrowse}
           dir={dir}
-          className="mt-5 flex items-center gap-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#f1d28b] overflow-x-auto scrollbar-none pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap shrink-0"
+          className="mt-5 flex shrink-0 flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#f1d28b]"
           onClick={(e) => e.stopPropagation()}
         >
           <span className="mr-2 text-[#d7ae56]/80 shrink-0">{copy.categoryBrowse}</span>
@@ -442,11 +451,11 @@ export default function VerticalTourismShowcase() {
           })}
         </nav>
 
-        {/* Grid Area: stacks on mobile, splits on desktop */}
-        <div className="grid flex-1 grid-cols-1 sm:grid-cols-[90px_1fr] pt-[clamp(1rem,4vh,8rem)]">
-          <aside data-slider-aside="true" className="flex flex-col items-center text-[#d7ae56] hidden sm:flex">
+        {/* Grid Area */}
+        <div className="grid flex-1 grid-cols-[90px_1fr] pt-32">
+          <aside data-slider-aside="true" className="flex flex-col items-center text-[#d7ae56]">
             <span className="mb-5 text-3xl">01</span>
-            <div className="relative flex h-[clamp(240px,48vh,650px)] flex-col items-center justify-between">
+            <div className="relative flex h-[650px] flex-col items-center justify-between">
               <span className="absolute top-0 h-full w-px bg-[#d7ae56]/60" />
               {dots.map((dot) => (
                 <button
@@ -467,45 +476,59 @@ export default function VerticalTourismShowcase() {
             <span className="mt-5 text-3xl">{totalNumber}</span>
           </aside>
 
-          <article dir={dir} className="max-w-[650px] pt-[clamp(0rem,2vh,7rem)] flex flex-col justify-center sm:justify-start">
-            <h2 data-slider-title="true" className="whitespace-pre-line font-serif text-[clamp(30px,5.8vw,82px)] leading-[1] sm:leading-[0.98] tracking-wide drop-shadow-2xl">
+          <article dir={dir} className="flex max-w-[650px] flex-col justify-start pt-28">
+            <h2
+              data-slider-title="true"
+              className="whitespace-pre-line font-serif text-[82px] leading-[0.98] tracking-wide drop-shadow-2xl"
+            >
               {formatSlideTitle(placeName)}
             </h2>
 
-            <div data-slider-cat="true" className="mt-4 sm:mt-5 inline-flex items-center gap-3 sm:gap-4 rounded-xl sm:rounded-2xl border border-[#d7ae56]/70 bg-black/40 px-4 py-2 sm:px-6 sm:py-3 text-[#f1d28b] backdrop-blur-md self-start">
+            <div
+              data-slider-cat="true"
+              className="mt-5 inline-flex items-center gap-4 self-start rounded-2xl border border-[#d7ae56]/70 bg-black/40 px-6 py-3 text-[#f1d28b] backdrop-blur-md"
+            >
               <FlowerIcon small />
-              <span className="text-sm sm:text-xl font-semibold uppercase tracking-[0.25em]">
+              <span className="text-xl font-semibold uppercase tracking-[0.25em]">
                 {placeCategoryLabel}
               </span>
             </div>
 
-            <p data-slider-desc="true" className="mt-4 sm:mt-5 line-clamp-3 sm:line-clamp-4 max-w-[520px] text-[clamp(14px,1.7vw,22px)] leading-relaxed text-white/90 drop-shadow-lg">
+            <p
+              data-slider-desc="true"
+              className="mt-5 line-clamp-4 max-w-[520px] text-[22px] leading-relaxed text-white/90 drop-shadow-lg"
+            >
               {placeDescription}
             </p>
 
-            <p data-slider-loc="true" className="mt-3 sm:mt-4 text-xs sm:text-base uppercase tracking-[0.18em] text-[#f1d28b]/85">
+            <p
+              data-slider-loc="true"
+              className="mt-4 text-base uppercase tracking-[0.18em] text-[#f1d28b]/85"
+            >
               {placeLocation}
             </p>
 
             {/* Explore Button */}
-            <div data-slider-explore="true" className="mt-5 sm:mt-6">
+            <div data-slider-explore="true" className="mt-6">
               <Link
                 to={`/touristic/${place.categoryId}/${place.id}`}
                 onClick={(e) => e.stopPropagation()}
-                className="group inline-flex items-center gap-2 sm:gap-3 rounded-full border border-[#f1d28b] bg-[#f1d28b]/15 px-6 py-2.5 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold tracking-[0.12em] sm:tracking-[0.18em] text-[#f1d28b] backdrop-blur-md transition-all duration-300 hover:bg-[#f1d28b] hover:text-black hover:shadow-[0_0_20px_rgba(241,210,139,0.5)]"
+                className="group inline-flex items-center gap-3 rounded-full border border-[#f1d28b] bg-[#f1d28b]/15 px-8 py-3.5 text-base font-semibold tracking-[0.18em] text-[#f1d28b] backdrop-blur-md transition-all duration-300 hover:bg-[#f1d28b] hover:text-black hover:shadow-[0_0_20px_rgba(241,210,139,0.5)]"
               >
                 <span className="uppercase">{copy.explore}</span>
-                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
               </Link>
             </div>
 
-            <div data-slider-counter="true" dir="ltr" className="mt-5 sm:mt-6 flex items-end gap-4 font-serif">
-              <span className="text-3xl sm:text-5xl text-[#f1d28b]">{currentNumber}</span>
-              <span className="pb-1 sm:pb-2 text-xl sm:text-3xl text-white">/ {totalNumber}</span>
+            <div data-slider-counter="true" dir="ltr" className="mt-6 flex items-end gap-4 font-serif">
+              <span className="text-5xl text-[#f1d28b]">{currentNumber}</span>
+              <span className="pb-2 text-3xl text-white">/ {totalNumber}</span>
             </div>
           </article>
         </div>
-      </section>
-    </main>
+          </section>
+        </main>
+      </div>
+    </div>
   );
 }
