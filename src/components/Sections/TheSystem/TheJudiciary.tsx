@@ -9,6 +9,8 @@ import {
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
 import judiciaryHeroIcon from "@/assets/icons/thesystem/judiciary.webp";
+// TODO: replace this placeholder with the final Judiciary background artwork.
+import judiciaryBackground from "@/assets/icons/thesystem/judiciary.webp";
 import councilIcon from "@/assets/icons/thesystem/judiciary/council.webp";
 import courtIcon from "@/assets/icons/thesystem/judiciary/court.webp";
 import appealIcon from "@/assets/icons/thesystem/judiciary/appeal.webp";
@@ -164,6 +166,13 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
       >
         <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
           <section className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb] px-20 pb-14 pt-14">
+            {/* Background image layer — swap `judiciaryBackground` for the final artwork.
+                The overlay keeps the cream theme and text readable; adjust its opacity as needed. */}
+            <div className="pointer-events-none absolute inset-0 z-0">
+              <img src={judiciaryBackground} alt="" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-[#fbf5eb]/88" />
+            </div>
+
             <button
               type="button"
               onClick={onBack}
