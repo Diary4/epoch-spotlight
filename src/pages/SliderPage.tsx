@@ -30,17 +30,21 @@ type TouristicPlace = {
 type SliderPlace = TouristicPlace & {
   categoryId: string;
   category: string;
+  completed: boolean;
 };
+
+type DataScope = "all" | "completed";
 
 const placeCategories = CITY_CATEGORIES.map((city) => ({
   id: city.id,
   category: { en: city.en, ku: city.ku, ar: city.ar },
 }));
 
-const places: SliderPlace[] = (ALL_PLACES as (TouristicPlace & { cityId: string })[]).map((place) => ({
+const places: SliderPlace[] = (ALL_PLACES as (TouristicPlace & { cityId: string; completed?: boolean })[]).map((place) => ({
   ...place,
   categoryId: place.cityId,
   category: placeCategories.find((c) => c.id === place.cityId)?.category.en ?? "",
+  completed: Boolean(place.completed),
 }));
 
 type CategoryId = "all" | (typeof placeCategories)[number]["id"];
@@ -62,6 +66,9 @@ const sliderCopy: Record<
     titleKicker: string;
     titleMain: string;
     explore: string;
+    dataScope: string;
+    allData: string;
+    completedData: string;
   }
 > = {
   en: {
@@ -73,6 +80,9 @@ const sliderCopy: Record<
     titleKicker: "Touristic Places of",
     titleMain: "Kurdistan",
     explore: "Explore",
+    dataScope: "Data",
+    allData: "All Data",
+    completedData: "Completed",
   },
   ku: {
     all: "هەموو",
@@ -83,6 +93,9 @@ const sliderCopy: Record<
     titleKicker: "شوێنە گەشتیارییەکانی",
     titleMain: "کوردستان",
     explore: "بگەڕێ",
+    dataScope: "داتا",
+    allData: "هەموو داتا",
+    completedData: "تەواوکراو",
   },
   ar: {
     all: "الكل",
@@ -93,6 +106,9 @@ const sliderCopy: Record<
     titleKicker: "الأماكن السياحية في",
     titleMain: "كوردستان",
     explore: "استكشف",
+    dataScope: "البيانات",
+    allData: "كل البيانات",
+    completedData: "المكتملة",
   },
 };
 
@@ -151,18 +167,18 @@ export default function VerticalTourismShowcase() {
   const [active, setActive] = useState(initialActive);
   const [lang, setLang] = useState<AppLangCode>(() => getAppLanguage());
   const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>("all");
+  const [dataScope, setDataScope] = useState<DataScope>("all");
   const mainRef = useRef<HTMLElement | null>(null);
   const isMounted = useRef(false);
-  const categoryInitialized = useRef(false);
+  const filtersInitialized = useRef(false);
 
   const copy = sliderCopy[lang];
-  const filteredPlaces = useMemo(
-    () =>
-      activeCategoryId === "all"
-        ? places
-        : places.filter((item) => item.categoryId === activeCategoryId),
-    [activeCategoryId],
-  );
+  const filteredPlaces = useMemo(() => {
+    const scoped = dataScope === "completed" ? places.filter((item) => item.completed) : places;
+    return activeCategoryId === "all"
+      ? scoped
+      : scoped.filter((item) => item.categoryId === activeCategoryId);
+  }, [activeCategoryId, dataScope]);
   const total = filteredPlaces.length;
   const place = filteredPlaces[active] ?? filteredPlaces[0] ?? places[0];
   const placeName = getLocalizedPlaceValue(place, "name", lang);
@@ -176,13 +192,13 @@ export default function VerticalTourismShowcase() {
 
   useEffect(() => {
     // Skip the mount run so a restored place (from ?place=) is preserved; only
-    // reset to the first slide when the user actually switches category.
-    if (!categoryInitialized.current) {
-      categoryInitialized.current = true;
+    // reset to the first slide when the user actually switches a filter.
+    if (!filtersInitialized.current) {
+      filtersInitialized.current = true;
       return;
     }
     setActive(0);
-  }, [activeCategoryId]);
+  }, [activeCategoryId, dataScope]);
 
   const dots = useMemo(() => Array.from({ length: Math.min(total, 20) }, (_, i) => i), [total]);
   const activeDot = Math.round((active / Math.max(total - 1, 1)) * Math.max(dots.length - 1, 0));
@@ -316,6 +332,37 @@ export default function VerticalTourismShowcase() {
             </button>
           </div>
         </header>
+
+        {/* Data scope toggle: all places vs. only those with real photos */}
+        <div
+          data-slider-nav="true"
+          dir={dir}
+          className="mt-4 flex items-center gap-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#f1d28b] shrink-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <span className="mr-2 text-[#d7ae56]/80 shrink-0">{copy.dataScope}</span>
+          {[
+            { id: "all" as const, label: copy.allData },
+            { id: "completed" as const, label: copy.completedData },
+          ].map((scope) => {
+            const isActive = scope.id === dataScope;
+
+            return (
+              <button
+                key={scope.id}
+                type="button"
+                onClick={() => setDataScope(scope.id)}
+                className={`rounded-full border px-4 py-2 backdrop-blur-md transition shrink-0 ${
+                  isActive
+                    ? "border-[#f1d28b] bg-[#f1d28b]/20 text-white"
+                    : "border-[#d7ae56]/45 bg-black/15 text-[#f1d28b]/80 hover:border-[#f1d28b]/80 hover:text-white"
+                }`}
+              >
+                {scope.label}
+              </button>
+            );
+          })}
+        </div>
 
         {/* Responsive Category bar - horizontal scrolls on mobile, wraps on desktop */}
         <nav

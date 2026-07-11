@@ -117,6 +117,9 @@ export const ALL_PLACES = SOURCES.flatMap(({ type, typeEn, typeKu, typeAr, place
       cityId: cityIdFromLocation(place.location),
       image: gallery[0] ?? place.image,
       gallery,
+      // "Completed" places are the ones with real photographs supplied under the
+      // TouristicPlace folder; everything else is still using stock imagery.
+      completed: gallery.length > 0,
     };
   }),
 );
