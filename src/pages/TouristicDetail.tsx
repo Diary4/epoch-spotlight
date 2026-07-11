@@ -11,7 +11,7 @@ const detailFields = [
   ["Accommodation", "accommodation"],
 ];
 
-const gallerySizes = ["large", "small", "small", "medium"] as const;
+const gallerySizes = ["large", "small", "small", "medium", "small", "small", "medium", "small"] as const;
 
 const TouristicDetail = () => {
   const { id } = useParams();
@@ -19,9 +19,23 @@ const TouristicDetail = () => {
   const [selectedGalleryId, setSelectedGalleryId] = useState<string | null>(null);
   const place = getPlaceById(id);
   const activeCategory = getCityCategory(place?.cityId);
+  const ownGallery = (place?.gallery ?? []) as string[];
+  const hasOwnGallery = ownGallery.length > 1;
   const galleryImages = useMemo(() => {
     if (!place) return [];
 
+    // When a place ships more than one real photo, show its own gallery.
+    if (hasOwnGallery) {
+      return ownGallery.slice(0, 8).map((url, index) => ({
+        id: `${place.id}-${index}`,
+        url,
+        name: place.name,
+        location: place.location,
+        size: gallerySizes[index % gallerySizes.length],
+      }));
+    }
+
+    // Otherwise fall back to a visual path through nearby places in the city.
     const cityPlaces = getPlacesByCity(place.cityId);
     const currentIndex = cityPlaces.findIndex((item) => item.id === place.id);
     const orderedPlaces = [
@@ -39,7 +53,7 @@ const TouristicDetail = () => {
       location: item.location,
       size: gallerySizes[index],
     }));
-  }, [place]);
+  }, [place, hasOwnGallery, ownGallery]);
   const selectedGalleryImage =
     galleryImages.find((image) => image.id === selectedGalleryId) ?? null;
 
@@ -191,7 +205,9 @@ const TouristicDetail = () => {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-stone-500">
-              A visual path through related destinations in {activeCategory.en}.
+              {hasOwnGallery
+                ? `More views of ${place.name}.`
+                : `A visual path through related destinations in ${activeCategory.en}.`}
             </p>
           </div>
 

@@ -3,46 +3,55 @@ import { HISTORICAL_PLACES } from "./historicalPlaces";
 import { RELIGIOUS_SITES } from "./religousSites";
 import { MUSEUM_CENTERS } from "./museumCenters";
 
-// Real photographs supplied under src/assets/images/TouristicPlace/<Place>/.
-// Each folder is mapped to the matching place id below; places without a
-// dedicated folder keep their existing stock image.
-import ahmedAwaImg from "@/assets/images/TouristicPlace/AhmedAwa/1000140566.webp";
-import biaraImg from "@/assets/images/TouristicPlace/Biara/DSC_6811.webp";
-import doliAlanaImg from "@/assets/images/TouristicPlace/DoliAlana/8.webp";
-import erbilCastleImg from "@/assets/images/TouristicPlace/ErbilCastle/DSC_5315.webp";
-import galiAliBagImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import gomyFelawImg from "@/assets/images/TouristicPlace/GomyFelaw/1000140541.webp";
-import halgurdImg from "@/assets/images/TouristicPlace/Halgurd/DSC04490.webp";
-import kaniRashImg from "@/assets/images/TouristicPlace/KaniRash/1000140547.webp";
-import lalishImg from "@/assets/images/TouristicPlace/Lalish/DSC_4018.webp";
-import sakranImg from "@/assets/images/TouristicPlace/Sakran/DSC_3019 copy.webp";
-import sheledzeImg from "@/assets/images/TouristicPlace/Vin-Shiledze/DSC04039.webp";
-import xanzadCastleImg from "@/assets/images/TouristicPlace/XanzadCastle/IMG_8529 copy 3.webp";
-import zaxoImg from "@/assets/images/TouristicPlace/Zaxo/IMG_9943 copy 3.webp";
-import xarandiImg from "@/assets/images/TouristicPlace/XarandiRwanduz/IMG_0249 copy.webp";
-import safinImg from "@/assets/images/TouristicPlace/SafinMountain/50560984651_d1bde10089_o.webp";
-import mazariShahidanImg from "@/assets/images/TouristicPlace/MazariShahidan/1000140591.webp";
-import monomentImg from "@/assets/images/TouristicPlace/Monoment/1000140549.webp";
-
-const PLACE_IMAGE_OVERRIDES = {
-  "ahmad-awa-resort": ahmedAwaImg,
-  "byara-shrines": biaraImg,
-  "alana-valley": doliAlanaImg,
-  "erbil-citadel": erbilCastleImg,
-  "gali-ali-begg-waterfall-valley": galiAliBagImg,
-  "gomi-felaw-alpine-lake": gomyFelawImg,
-  "halgurd-mountain": halgurdImg,
-  "kani-rash-black-spring": kaniRashImg,
-  "lalish-temple-yazidi-holy-site": lalishImg,
-  "sakran-valley": sakranImg,
-  sheladeze: sheledzeImg,
-  "khanzad-citadel": xanzadCastleImg,
-  "dalal-bridge-zakho": zaxoImg,
-  "rawanduz-canyon": xarandiImg,
-  "shaqlawa-resort-town": safinImg,
-  "barzan-graveyard-of-martyrs": mazariShahidanImg,
-  "halabja-martyrs-monument-cemetery": monomentImg,
+// Real photographs supplied under src/assets/images/TouristicPlace/<Folder>/.
+// Every image in a folder is loaded via a glob so newly added photos are picked
+// up automatically. Each folder maps to a place id below; the first image
+// becomes the place's main photo and the rest form its detail-page gallery.
+const FOLDER_TO_PLACE = {
+  AhmedAwa: "ahmad-awa-resort",
+  Biara: "byara-shrines",
+  DoliAlana: "alana-valley",
+  ErbilCastle: "erbil-citadel",
+  GaliAliBag: "gali-ali-begg-waterfall-valley",
+  GomyFelaw: "gomi-felaw-alpine-lake",
+  Halgurd: "halgurd-mountain",
+  KaniRash: "kani-rash-black-spring",
+  Lalish: "lalish-temple-yazidi-holy-site",
+  Sakran: "sakran-valley",
+  "Vin-Shiledze": "sheladeze",
+  XanzadCastle: "khanzad-citadel",
+  Zaxo: "dalal-bridge-zakho",
+  XarandiRwanduz: "rawanduz-canyon",
+  SafinMountain: "shaqlawa-resort-town",
+  MazariShahidan: "barzan-graveyard-of-martyrs",
+  Monoment: "halabja-martyrs-monument-cemetery",
 };
+
+const touristicPhotoModules = import.meta.glob(
+  "../assets/images/TouristicPlace/*/*.{webp,jpg,jpeg,png}",
+  { eager: true, import: "default" },
+);
+
+// folder name -> array of image urls (sorted for a stable order)
+const FOLDER_IMAGES = {};
+for (const [path, url] of Object.entries(touristicPhotoModules)) {
+  const match = path.match(/TouristicPlace\/([^/]+)\//);
+  if (!match) continue;
+  const folder = match[1];
+  (FOLDER_IMAGES[folder] ??= []).push({ path, url });
+}
+Object.values(FOLDER_IMAGES).forEach((list) =>
+  list.sort((a, b) => a.path.localeCompare(b.path)),
+);
+
+// place id -> ordered array of photo urls
+const PLACE_GALLERIES = {};
+for (const [folder, placeId] of Object.entries(FOLDER_TO_PLACE)) {
+  const images = FOLDER_IMAGES[folder];
+  if (images && images.length) {
+    PLACE_GALLERIES[placeId] = images.map((item) => item.url);
+  }
+}
 
 // Primary browse dimension: the Kurdistan city / area a place belongs to.
 export const CITY_CATEGORIES = [
@@ -99,13 +108,17 @@ const SOURCES = [
 // Flattened list of every place, augmented with `cityId`, `type` and (where
 // available) a real photograph. Ids are unique across the source datasets.
 export const ALL_PLACES = SOURCES.flatMap(({ type, typeEn, typeKu, typeAr, places }) =>
-  places.map((place) => ({
-    ...place,
-    type,
-    typeLabel: { en: typeEn, ku: typeKu, ar: typeAr },
-    cityId: cityIdFromLocation(place.location),
-    image: PLACE_IMAGE_OVERRIDES[place.id] ?? place.image,
-  })),
+  places.map((place) => {
+    const gallery = PLACE_GALLERIES[place.id] ?? [];
+    return {
+      ...place,
+      type,
+      typeLabel: { en: typeEn, ku: typeKu, ar: typeAr },
+      cityId: cityIdFromLocation(place.location),
+      image: gallery[0] ?? place.image,
+      gallery,
+    };
+  }),
 );
 
 export function getCityCategory(cityId) {
