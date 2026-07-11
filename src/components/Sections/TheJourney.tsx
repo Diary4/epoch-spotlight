@@ -12,11 +12,11 @@ import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscover
 import bg from "@/assets/images/new/theJourney/journey-1.webp";
 import bg2 from "@/assets/images/new/theJourney/journey-2.webp";
 import bg3 from "@/assets/images/new/theJourney/journey-3.webp";
-import icon1991 from "@/assets/icons/thejourney/1991.png";
-import icon1992 from "@/assets/icons/thejourney/1992.png";
-import iconBuilding from "@/assets/icons/thejourney/building.png";
-import icon2005 from "@/assets/icons/thejourney/2005.png";
-import iconToday from "@/assets/icons/thejourney/today.png";
+import icon1991 from "@/assets/icons/thejourney/1991.webp";
+import icon1992 from "@/assets/icons/thejourney/1992.webp";
+import iconBuilding from "@/assets/icons/thejourney/building.webp";
+import icon2005 from "@/assets/icons/thejourney/2005.webp";
+import iconToday from "@/assets/icons/thejourney/today.webp";
 
 const milestones = [
   {

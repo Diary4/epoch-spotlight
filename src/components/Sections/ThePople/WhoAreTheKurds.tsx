@@ -4,9 +4,9 @@ import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJ
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
 import heroVideo from "@/assets/videos/kch3.webm";
-import rootsIcon from "@/assets/icons/thepeople/whoarethekurds/roots.png";
-import cultureIcon from "@/assets/icons/thepeople/whoarethekurds/culture.png";
-import identityIcon from "@/assets/icons/thepeople/whoarethekurds/identity.png";
+import rootsIcon from "@/assets/icons/thepeople/whoarethekurds/roots.webp";
+import cultureIcon from "@/assets/icons/thepeople/whoarethekurds/culture.webp";
+import identityIcon from "@/assets/icons/thepeople/whoarethekurds/identity.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";

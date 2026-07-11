@@ -8,9 +8,9 @@ import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import { localizeDigits } from "@/lib/utils";
 import bg from "@/assets/images/thejourney/today.webp";
-import developmentIcon from "@/assets/icons/thejourney/today/development.png";
-import economyIcon from "@/assets/icons/thejourney/today/economy.png";
-import youthIcon from "@/assets/icons/thejourney/today/youth.png";
+import developmentIcon from "@/assets/icons/thejourney/today/development.webp";
+import economyIcon from "@/assets/icons/thejourney/today/economy.webp";
+import youthIcon from "@/assets/icons/thejourney/today/youth.webp";
 
 const rows = [
   {

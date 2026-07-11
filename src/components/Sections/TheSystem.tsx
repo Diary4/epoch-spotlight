@@ -6,9 +6,9 @@ import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
 import heroImg from "@/assets/mainImages/thesystem/parlaman.webp";
-import parliamentIcon from "@/assets/icons/thesystem/parliment.png";
-import governmentIcon from "@/assets/icons/thesystem/government.png";
-import judiciaryIcon from "@/assets/icons/thesystem/judiciary.png";
+import parliamentIcon from "@/assets/icons/thesystem/parliment.webp";
+import governmentIcon from "@/assets/icons/thesystem/government.webp";
+import judiciaryIcon from "@/assets/icons/thesystem/judiciary.webp";
 
 function OrnamentDivider({ dataAttr }: { dataAttr?: string }) {
   return (

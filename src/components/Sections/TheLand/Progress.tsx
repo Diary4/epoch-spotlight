@@ -3,15 +3,15 @@ import { ArrowLeft } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
-import bg from "@/assets/images/theLand/progress.png";
+import bg from "@/assets/images/theLand/progress.webp";
 import pattern1 from "@/assets/images/patterns/card-1.webp";
 import pattern2 from "@/assets/images/patterns/card-2.webp";
 import pattern3 from "@/assets/images/patterns/card-3.webp";
-import infrastructureIcon from "@/assets/icons/theland/progress/infrastructure.png";
-import educationIcon from "@/assets/icons/theland/progress/education.png";
-import economyIcon from "@/assets/icons/theland/progress/economy.png";
-import tourismIcon from "@/assets/icons/theland/progress/tourism.png";
-import digitalIcon from "@/assets/icons/theland/progress/digital.png";
+import infrastructureIcon from "@/assets/icons/theland/progress/infrastructure.webp";
+import educationIcon from "@/assets/icons/theland/progress/education.webp";
+import economyIcon from "@/assets/icons/theland/progress/economy.webp";
+import tourismIcon from "@/assets/icons/theland/progress/tourism.webp";
+import digitalIcon from "@/assets/icons/theland/progress/digital.webp";
 
 const cardPatterns = [pattern1, pattern2, pattern3];
 

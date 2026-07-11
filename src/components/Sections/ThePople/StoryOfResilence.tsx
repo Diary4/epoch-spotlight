@@ -4,9 +4,9 @@ import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJ
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
 import heroVideo from "@/assets/videos/sharwal.webm";
-import enduranceIcon from "@/assets/icons/thepeople/storyofresilience/endurance.png";
-import dignityIcon from "@/assets/icons/thepeople/storyofresilience/dignity.png";
-import hopeIcon from "@/assets/icons/thepeople/storyofresilience/hope.png";
+import enduranceIcon from "@/assets/icons/thepeople/storyofresilience/endurance.webp";
+import dignityIcon from "@/assets/icons/thepeople/storyofresilience/dignity.webp";
+import hopeIcon from "@/assets/icons/thepeople/storyofresilience/hope.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";

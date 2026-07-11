@@ -23,7 +23,7 @@ import imgLayal from "@/assets/images/womens/laylaqasim.webp";
 import imgMargaret from "@/assets/images/womens/margret.webp";
 import imgKhaja from "@/assets/images/womens/khajabawa.webp";
 import imgAisha from "@/assets/images/womens/dayka-aisha.webp";
-import imgAmina from "@/assets/images/womens/amina.jpeg";
+import imgAmina from "@/assets/images/womens/amina.webp";
 
 type WomenResistancePageProps = WomenLanguageProps & {
   onBack?: () => void;

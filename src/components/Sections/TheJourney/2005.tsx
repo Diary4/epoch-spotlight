@@ -8,9 +8,9 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import bg from "@/assets/images/thejourney/2005.webp";
-import recognitionIcon from "@/assets/icons/thejourney/2005/recognition.png";
-import legalIcon from "@/assets/icons/thejourney/2005/legal.png";
-import chapterIcon from "@/assets/icons/thejourney/2005/chapter.png";
+import recognitionIcon from "@/assets/icons/thejourney/2005/recognition.webp";
+import legalIcon from "@/assets/icons/thejourney/2005/legal.webp";
+import chapterIcon from "@/assets/icons/thejourney/2005/chapter.webp";
 
 const rows = [
   {

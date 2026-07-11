@@ -8,10 +8,10 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/images/parliment/presidency.jpg";
-import constitutionalRoleIcon from "@/assets/icons/thesystem/presidency/const-role.png";
-import nationalRoleIcon from "@/assets/icons/thesystem/presidency/national-role.png";
-import institutionalBalanceIcon from "@/assets/icons/thesystem/presidency/inst-balance.png";
+import bg from "@/assets/images/parliment/presidency.webp";
+import constitutionalRoleIcon from "@/assets/icons/thesystem/presidency/const-role.webp";
+import nationalRoleIcon from "@/assets/icons/thesystem/presidency/national-role.webp";
+import institutionalBalanceIcon from "@/assets/icons/thesystem/presidency/inst-balance.webp";
 
 const cards = [
   {

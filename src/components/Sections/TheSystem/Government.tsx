@@ -18,13 +18,13 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/images/PrimeMinistir/government.jpg";
+import bg from "@/assets/images/PrimeMinistir/government.webp";
 import bg2 from "@/assets/mainImages/government-2.webp";
-import pmImg from "@/assets/images/PrimeMinistir/p-4.jpeg";
-import presidencyIcon from "@/assets/icons/thesystem/presidency.png";
-import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.png";
-import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.png";
-import administrationIcon from "@/assets/icons/thesystem/government/administration.png";
+import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
+import presidencyIcon from "@/assets/icons/thesystem/presidency.webp";
+import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.webp";
+import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.webp";
+import administrationIcon from "@/assets/icons/thesystem/government/administration.webp";
 
 const mainCards = [
   {

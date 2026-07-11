@@ -8,9 +8,9 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import bg from "@/assets/images/thejourney/1991.webp";
-import uprisingIcon from "@/assets/icons/thejourney/1991/uprising.png";
-import realityIcon from "@/assets/icons/thejourney/1991/reality.png";
-import futureIcon from "@/assets/icons/thejourney/1991/future.png";
+import uprisingIcon from "@/assets/icons/thejourney/1991/uprising.webp";
+import realityIcon from "@/assets/icons/thejourney/1991/reality.webp";
+import futureIcon from "@/assets/icons/thejourney/1991/future.webp";
 
 const cards = [
   {

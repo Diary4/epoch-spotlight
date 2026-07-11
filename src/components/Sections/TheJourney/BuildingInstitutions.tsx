@@ -6,10 +6,10 @@ import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIco
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
-import bg from "@/assets/images/thejourney/building.jpg";
-import publicIcon from "@/assets/icons/thejourney/building/public.png";
-import parlimentIcon from "@/assets/icons/thejourney/building/parliment.png";
-import growthIcon from "@/assets/icons/thejourney/building/growth.png";
+import bg from "@/assets/images/thejourney/building.webp";
+import publicIcon from "@/assets/icons/thejourney/building/public.webp";
+import parlimentIcon from "@/assets/icons/thejourney/building/parliment.webp";
+import growthIcon from "@/assets/icons/thejourney/building/growth.webp";
 
 const rows = [
   {

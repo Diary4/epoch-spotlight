@@ -17,7 +17,7 @@ import meryemDetail from "@/assets/images/womens/maryamkhan.webp";
 import minaDetail from "@/assets/images/womens/minaqazi.webp";
 import mayanDetail from "@/assets/images/womens/mayankhan.webp";
 import nahidaDetail from "@/assets/images/womens/nadia-sheikh.webp";
-import danielleDetail from "@/assets/images/womens/danielle.png";
+import danielleDetail from "@/assets/images/womens/danielle.webp";
 
 export type HistoricFigureListItem = {
   id: string;

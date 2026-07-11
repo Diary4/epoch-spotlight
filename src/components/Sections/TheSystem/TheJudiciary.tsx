@@ -8,14 +8,14 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import judiciaryHeroIcon from "@/assets/icons/thesystem/judiciary.png";
-import councilIcon from "@/assets/icons/thesystem/judiciary/council.jpg";
-import courtIcon from "@/assets/icons/thesystem/judiciary/court.jpg";
-import appealIcon from "@/assets/icons/thesystem/judiciary/appeal.jpg";
-import instantIcon from "@/assets/icons/thesystem/judiciary/instant.jpg";
-import fairIcon from "@/assets/icons/thesystem/judiciary/fair.jpg";
-import legalIcon from "@/assets/icons/thesystem/judiciary/legal.jpg";
-import rightsIcon from "@/assets/icons/thesystem/judiciary/rights.jpg";
+import judiciaryHeroIcon from "@/assets/icons/thesystem/judiciary.webp";
+import councilIcon from "@/assets/icons/thesystem/judiciary/council.webp";
+import courtIcon from "@/assets/icons/thesystem/judiciary/court.webp";
+import appealIcon from "@/assets/icons/thesystem/judiciary/appeal.webp";
+import instantIcon from "@/assets/icons/thesystem/judiciary/instant.webp";
+import fairIcon from "@/assets/icons/thesystem/judiciary/fair.webp";
+import legalIcon from "@/assets/icons/thesystem/judiciary/legal.webp";
+import rightsIcon from "@/assets/icons/thesystem/judiciary/rights.webp";
 
 type Lang = "ku" | "en" | "ar";
 

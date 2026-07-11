@@ -4,9 +4,9 @@ import { useJourneyDetailAnimation } from "@/components/Sections/TheJourney/useJ
 import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import PeopleDetailHeroVideo from "@/components/Sections/ThePople/PeopleDetailHeroVideo";
 import heroVideo from "@/assets/videos/diy.webm";
-import languageIcon from "@/assets/icons/thepeople/sharedidentity/language.png";
-import traditionsIcon from "@/assets/icons/thepeople/sharedidentity/traditions.png";
-import memoryIcon from "@/assets/icons/thepeople/sharedidentity/memory.png";
+import languageIcon from "@/assets/icons/thepeople/sharedidentity/language.webp";
+import traditionsIcon from "@/assets/icons/thepeople/sharedidentity/traditions.webp";
+import memoryIcon from "@/assets/icons/thepeople/sharedidentity/memory.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";

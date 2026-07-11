@@ -8,7 +8,7 @@ import { withRudawGlyphFallback } from "@/lib/kurdishText";
 import { discoverDisplayFont, discoverSectionFont } from "@/components/Sections/discoverLanguage";
 import gsap from "gsap";
 import card1 from "@/assets/images/new/the-people.webp";
-import card2 from "@/assets/images/the-journey.jpg";
+import card2 from "@/assets/images/the-journey.webp";
 import card3 from "@/assets/images/new/the-system.webp";
 import card4 from "@/assets/images/new/the-land-and-future.webp";
 import peopleVideo from "@/assets/videos/main.webm";

@@ -8,10 +8,10 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/images/parliment/parliment.jpg";
-import lawmakingIcon from "@/assets/icons/thesystem/parliment/lawmaking.png";
-import representationIcon from "@/assets/icons/thesystem/parliment/representation.png";
-import oversightIcon from "@/assets/icons/thesystem/parliment/oversight.png";
+import bg from "@/assets/images/parliment/parliment.webp";
+import lawmakingIcon from "@/assets/icons/thesystem/parliment/lawmaking.webp";
+import representationIcon from "@/assets/icons/thesystem/parliment/representation.webp";
+import oversightIcon from "@/assets/icons/thesystem/parliment/oversight.webp";
 
 const mainCards = [
   {

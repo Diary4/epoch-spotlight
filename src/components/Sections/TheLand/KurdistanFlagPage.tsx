@@ -11,8 +11,8 @@ import { discoverDisplayFont, discoverRtlScript, discoverYearFont } from "@/comp
 import { localizeDigits } from "@/lib/utils";
 import heroVideo from "@/assets/videos/theflag.mp4";
 import historyImg from "@/assets/images/mahabad.webp";
-import flagPatternImg from "@/assets/images/patterns/living-heritage.png";
-import unityImg from "@/assets/images/patterns/unity.png";
+import flagPatternImg from "@/assets/images/patterns/living-heritage.webp";
+import unityImg from "@/assets/images/patterns/unity.webp";
 
 const PAPER = "#fbf5eb";
 const GOLD = "#9b6d35";

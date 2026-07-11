@@ -8,9 +8,9 @@ import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 import ku from "@/data/ku.json";
 import bg from "@/assets/images/thejourney/1992.webp";
-import electionIcon from "@/assets/icons/thejourney/1992/election.png";
-import parlimentIcon from "@/assets/icons/thejourney/1992/parliment.png";
-import milestoneIcon from "@/assets/icons/thejourney/1992/milestone.png";
+import electionIcon from "@/assets/icons/thejourney/1992/election.webp";
+import parlimentIcon from "@/assets/icons/thejourney/1992/parliment.webp";
+import milestoneIcon from "@/assets/icons/thejourney/1992/milestone.webp";
 
 const rows = [
   {
