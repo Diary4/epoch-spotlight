@@ -1,16 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ArrowLeft,
-  BookOpenText,
-  Building2,
-  Gavel,
-  Landmark,
-  Scale,
-  ScrollText,
-  ShieldCheck,
-  UsersRound,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeft, Building2, Landmark, ScrollText } from "lucide-react";
 import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
@@ -19,13 +8,21 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
+import judiciaryHeroIcon from "@/assets/icons/thesystem/judiciary.png";
+import councilIcon from "@/assets/icons/thesystem/judiciary/council.jpg";
+import courtIcon from "@/assets/icons/thesystem/judiciary/court.jpg";
+import appealIcon from "@/assets/icons/thesystem/judiciary/appeal.jpg";
+import instantIcon from "@/assets/icons/thesystem/judiciary/instant.jpg";
+import fairIcon from "@/assets/icons/thesystem/judiciary/fair.jpg";
+import legalIcon from "@/assets/icons/thesystem/judiciary/legal.jpg";
+import rightsIcon from "@/assets/icons/thesystem/judiciary/rights.jpg";
 
 type Lang = "ku" | "en" | "ar";
 
-type Item = { title: string; text: string; icon: LucideIcon };
+type Item = { title: string; text: string; iconSrc: string };
 
-const STRUCTURE_ICONS: LucideIcon[] = [UsersRound, Scale, Building2, Gavel];
-const FUNCTION_ICONS: LucideIcon[] = [ShieldCheck, BookOpenText, Landmark];
+const STRUCTURE_ICONS = [councilIcon, courtIcon, appealIcon, instantIcon];
+const FUNCTION_ICONS = [fairIcon, legalIcon, rightsIcon];
 
 const CONTENT: Record<
   Lang,
@@ -114,8 +111,8 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
   const displayFont = discoverDisplayFont(lang);
   const c = CONTENT[lang];
 
-  const structure: Item[] = c.structure.map((s, i) => ({ ...s, icon: STRUCTURE_ICONS[i] }));
-  const functions: Item[] = c.functions.map((f, i) => ({ ...f, icon: FUNCTION_ICONS[i] }));
+  const structure: Item[] = c.structure.map((s, i) => ({ ...s, iconSrc: STRUCTURE_ICONS[i] }));
+  const functions: Item[] = c.functions.map((f, i) => ({ ...f, iconSrc: FUNCTION_ICONS[i] }));
 
   // Fixed 1400px design canvas scaled to fit the viewport in both dimensions —
   // same approach used by the Government / Parliament / Presidency detail pages.
@@ -182,8 +179,8 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
 
             {/* Monumental centered header */}
             <header className="system-detail-intro relative z-10 flex flex-col items-center text-center">
-              <span className="grid h-[130px] w-[130px] place-items-center rounded-full border-2 border-[#cfae72] bg-[#13213b] text-[#e6c877] shadow-[0_16px_40px_rgba(84,54,16,0.18)]">
-                <Scale size={64} strokeWidth={1.4} />
+              <span className="grid h-[130px] w-[130px] place-items-center overflow-hidden rounded-full border-2 border-[#cfae72] bg-white shadow-[0_16px_40px_rgba(84,54,16,0.18)] ring-4 ring-[#f1e2c1]">
+                <img src={judiciaryHeroIcon} alt="" className="h-full w-full object-cover scale-[1.2]" />
               </span>
               <h1 className={`mt-7 ${displayFont} text-[104px] font-light leading-none tracking-tight text-[#17233b]`}>
                 {c.title}
@@ -210,14 +207,13 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
 
               <div className="grid grid-cols-4 gap-6">
                 {structure.map((item) => {
-                  const Icon = item.icon;
                   return (
                     <article
                       key={item.title}
                       className="system-detail-card relative flex min-h-[300px] flex-col items-center overflow-hidden rounded-[24px] border-2 border-[#ead8b7] bg-white/80 px-6 py-8 text-center shadow-[0_14px_35px_rgba(84,54,16,0.14)] backdrop-blur-md"
                     >
-                      <span className="grid h-[104px] w-[104px] shrink-0 place-items-center rounded-full bg-[#13213b] text-[#e6c877] ring-4 ring-[#f1e2c1]">
-                        <Icon size={48} strokeWidth={1.5} />
+                      <span className="grid h-[104px] w-[104px] shrink-0 place-items-center overflow-hidden rounded-full ring-4 ring-[#f1e2c1]">
+                        <img src={item.iconSrc} alt="" className="h-full w-full object-cover scale-[1.2]" />
                       </span>
                       <h3 className={`mt-5 ${displayFont} text-[30px] font-light leading-tight text-[#17233b]`}>
                         {item.title}
@@ -246,14 +242,13 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
 
               <div className="grid grid-cols-3 gap-6">
                 {functions.map((item) => {
-                  const Icon = item.icon;
                   return (
                     <article
                       key={item.title}
                       className="system-detail-panel flex items-center gap-6 rounded-[24px] border-2 border-[#ead8b7] bg-white/70 px-7 py-7 text-start shadow-[0_14px_35px_rgba(84,54,16,0.1)] backdrop-blur-md"
                     >
-                      <span className="grid h-[92px] w-[92px] shrink-0 place-items-center rounded-full border-[5px] border-white bg-[#c59a4b] text-[#f8e5b8] shadow-md">
-                        <Icon size={42} strokeWidth={1.5} />
+                      <span className="grid h-[92px] w-[92px] shrink-0 place-items-center overflow-hidden rounded-full border-[5px] border-white shadow-md ring-2 ring-[#e6d5ac]">
+                        <img src={item.iconSrc} alt="" className="h-full w-full object-cover scale-[1.2]" />
                       </span>
                       <div>
                         <h3 className={`${displayFont} text-[28px] font-light leading-tight text-[#17233b]`}>
