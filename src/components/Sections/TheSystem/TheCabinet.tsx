@@ -171,19 +171,20 @@ export default function CabinetPage({ lang = "en", onBack }: CabinetPageProps) {
   // same approach used by the Government / Parliament / Presidency detail pages.
   const DESIGN_WIDTH = 1400;
   const canvasRef = useRef<HTMLDivElement>(null);
-  const [fit, setFit] = useState({ scale: 1, x: 0 });
+  const [fit, setFit] = useState({ scale: 1, x: 0, minCanvasHeight: 0 });
 
   useEffect(() => {
     const recompute = () => {
       const el = canvasRef.current;
       if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
+      const widthScale = vw / DESIGN_WIDTH;
+      const minCanvasHeight = vh / widthScale;
+      const naturalHeight = Math.max(el.offsetHeight, minCanvasHeight);
+      const scale = Math.min(widthScale, vh / naturalHeight);
       const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
+      setFit({ scale, x, minCanvasHeight });
     };
 
     recompute();

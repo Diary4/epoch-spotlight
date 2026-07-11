@@ -135,22 +135,18 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
       : "Together, these institutions support governance, law, and public administration.";
 
   const govMenuTitle = isAr ? "الجهاز التنفيذي" : isKu ? "دەستەی جێبەجێکار" : "Executive Branch";
-  const govMenuSub = isAr
-    ? "اختر مؤسسة لعرض تفاصيلها"
-    : isKu
-      ? "دامەزراوەیەک هەڵبژێرە بۆ بینینی وردەکارییەکان"
-      : "Choose an institution to explore";
+  const govBackLabel = isAr ? "العودة إلى المؤسسات" : isKu ? "گەڕانەوە بۆ دامەزراوەکان" : "Back to institutions";
   const primeMinisterLabel = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
-  const primeMinisterSub = isAr ? "رئيس مجلس الوزراء" : isKu ? "سەرۆکی ئەنجومەنی وەزیران" : "Head of the Council of Ministers";
+  const primeMinisterSub = isAr ? "تعرّف على رئيس مجلس الوزراء." : isKu ? "سەرۆکی ئەنجومەنی وەزیران بناسە." : "Meet the Head of the Council of Ministers.";
   const presidencyLabel = isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency";
-  const presidencySub = isAr ? "رئاسة الإقليم" : isKu ? "سەرۆکایەتی هەرێم" : "Head of the Region";
+  const presidencySub = isAr ? "تعرّف على رئاسة الإقليم." : isKu ? "سەرۆکایەتی هەرێم بناسە." : "Meet the Head of the Region.";
   const cabinetLabel = isAr ? "مجلس الوزراء" : isKu ? "ئەنجومەنی وەزیران" : "The Cabinet";
-  const cabinetSub = isAr ? "يقود العمل التنفيذي" : isKu ? "ڕێبەری کاری جێبەجێکردن دەکات" : "Leads the executive work";
+  const cabinetSub = isAr ? "تعرّف على مجلس الوزراء الذي يقود العمل التنفيذي." : isKu ? "ئەنجومەنی وەزیران بناسە کە ڕێبەری کاری جێبەجێکردن دەکات." : "Meet the Council of Ministers that leads the executive.";
 
   const govMenuItems = [
     { key: "pm", label: primeMinisterLabel, sub: primeMinisterSub, iconSrc: pmImg, iconObjectPosition: "68% 12%", onClick: onPrimeMinisterClick },
     { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyIcon, iconObjectPosition: "48% 50%", iconScale: "scale-[1.55]", onClick: onPresidencyClick },
-    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconNode: <UsersRound size={30} strokeWidth={1.45} className="text-[#e6c877]" />, onClick: onCabinetClick },
+    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconNode: <UsersRound size={36} strokeWidth={1.45} className="text-[#e6c877]" />, onClick: onCabinetClick },
   ];
 
   React.useEffect(() => {
@@ -175,7 +171,7 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
       window.removeEventListener("resize", recompute);
       ro?.disconnect();
     };
-  }, []);
+  }, [govExpanded]);
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -271,115 +267,89 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
             </figure>
 
             {/* Institutions — arched cards overlapping the banner */}
-            <div className="relative z-10 -mt-28 flex items-start gap-6 px-6">
-              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
-                <InstitutionCard
-                  numeral="I"
-                  label={parliamentLabel}
-                  sub={parliamentSub}
-                  iconSrc={parliamentIcon}
-                  iconScale="scale-[1.25]"
-                  onClick={onParliamentClick}
-                  displayFont={displayFont}
-                />
-              </div>
-
-              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
-                {govMenuOpen && (
-                  <>
-                    {/* Click-away backdrop */}
-                    <div
-                      className="fixed inset-0 z-40"
-                      onClick={() => setGovMenuOpen(false)}
-                      aria-hidden
-                    />
-                    {/* Executive branch chooser popover, anchored above the card */}
-                    <div
-                      role="dialog"
-                      aria-label={govMenuTitle}
-                      className="absolute bottom-full left-1/2 z-50 mb-6 w-[420px] max-w-[90cqw] -translate-x-1/2 rounded-[24px] border-2 border-[#cfae72] bg-[#fbf5eb] p-5 shadow-[0_28px_70px_rgba(84,54,16,0.35)]"
+            {govExpanded ? (
+              <div className="relative z-10 -mt-28 px-6">
+                <div className="mb-6 flex items-center justify-between gap-4">
+                  <h2 className={`${displayFont} text-[34px] font-light text-[#17233b]`}>{govMenuTitle}</h2>
+                  <button
+                    type="button"
+                    onClick={() => setGovExpanded(false)}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#cfae72] px-5 py-2 text-[15px] font-light uppercase tracking-[0.14em] text-[#9b6d35] transition-colors hover:bg-[#f0e4c9]"
+                  >
+                    <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                    {govBackLabel}
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 gap-6">
+                  {govMenuItems.map((item) => (
+                    <button
+                      key={item.key}
+                      type="button"
+                      onClick={() => item.onClick?.()}
+                      className="flex cursor-pointer items-center gap-5 overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-6 py-5 text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
                     >
-                      <div className="mb-4 flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <h3 className={`${displayFont} text-[26px] font-light leading-tight text-[#17233b]`}>
-                            {govMenuTitle}
-                          </h3>
-                          <p className="mt-0.5 text-[16px] font-light leading-snug text-[#9b6d35]">
-                            {govMenuSub}
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setGovMenuOpen(false)}
-                          aria-label="Close"
-                          className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#cfae72] text-[#9b6d35] transition-colors hover:bg-[#f0e4c9]"
-                        >
-                          <X size={18} strokeWidth={1.8} />
-                        </button>
-                      </div>
-
-                      <div className="flex flex-col gap-3">
-                        {govMenuItems.map((item) => (
-                          <button
-                            key={item.key}
-                            type="button"
-                            onClick={() => {
-                              setGovMenuOpen(false);
-                              item.onClick?.();
-                            }}
-                            className="group flex items-center gap-4 rounded-[18px] border-2 border-[#cfae72] bg-[#13213b] px-4 py-3 text-start text-[#f7edd7] transition-transform duration-200 active:scale-[0.99]"
-                          >
-                            <span className="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full border-[3px] border-[#e6c877]/40 bg-[#0f1a2f]">
-                              {item.iconNode ?? (
-                                <img
-                                  src={item.iconSrc}
-                                  alt=""
-                                  className={`h-full w-full object-cover ${item.iconScale ?? ""}`}
-                                  style={item.iconObjectPosition ? { objectPosition: item.iconObjectPosition } : undefined}
-                                />
-                              )}
-                            </span>
-                            <span className="min-w-0 flex-1">
-                              <span className={`block ${displayFont} text-[22px] font-light leading-tight`}>
-                                {item.label}
-                              </span>
-                              <span className="mt-0.5 block text-[15px] font-light leading-snug text-[#e7d6ab]">
-                                {item.sub}
-                              </span>
-                            </span>
-                            <ArrowRight size={24} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
-                          </button>
-                        ))}
-                      </div>
-
-                      {/* Pointer arrow toward the card */}
-                      <span className="absolute left-1/2 top-full h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b-2 border-e-2 border-[#cfae72] bg-[#fbf5eb]" />
-                    </div>
-                  </>
-                )}
-                <InstitutionCard
-                  numeral="II"
-                  label={governmentLabel}
-                  sub={governmentSub}
-                  iconSrc={governmentIcon}
-                  iconScale="scale-[1.25]"
-                  onClick={() => setGovMenuOpen((open) => !open)}
-                  displayFont={displayFont}
-                />
+                      <span className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                        {item.iconNode ?? (
+                          <img
+                            src={item.iconSrc}
+                            alt=""
+                            className={`h-full w-full object-cover ${item.iconScale ?? ""}`}
+                            style={item.iconObjectPosition ? { objectPosition: item.iconObjectPosition } : undefined}
+                          />
+                        )}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className={`block ${displayFont} text-[26px] font-light leading-tight`}>
+                          {item.label}
+                        </span>
+                        <span className="mt-1 block text-[16px] font-light leading-snug text-[#e7d6ab]">
+                          {item.sub}
+                        </span>
+                      </span>
+                      <ArrowRight size={28} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                    </button>
+                  ))}
+                </div>
               </div>
+            ) : (
+              <div className="relative z-10 -mt-28 flex items-start gap-6 px-6">
+                <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                  <InstitutionCard
+                    numeral="I"
+                    label={parliamentLabel}
+                    sub={parliamentSub}
+                    iconSrc={parliamentIcon}
+                    iconScale="scale-[1.25]"
+                    onClick={onParliamentClick}
+                    displayFont={displayFont}
+                  />
+                </div>
 
-              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
-                <InstitutionCard
-                  numeral="III"
-                  label={judiciaryLabel}
-                  sub={judiciarySub}
-                  iconSrc={judiciaryIcon}
-                  iconScale="scale-[1.25]"
-                  onClick={onJudiciaryClick}
-                  displayFont={displayFont}
-                />
+                <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                  <InstitutionCard
+                    numeral="II"
+                    label={governmentLabel}
+                    sub={governmentSub}
+                    iconSrc={governmentIcon}
+                    iconScale="scale-[1.25]"
+                    onClick={() => setGovExpanded(true)}
+                    displayFont={displayFont}
+                  />
+                </div>
+
+                <div data-sys-card="true" className="relative flex min-w-0 flex-1">
+                  <InstitutionCard
+                    numeral="III"
+                    label={judiciaryLabel}
+                    sub={judiciarySub}
+                    iconSrc={judiciaryIcon}
+                    iconScale="scale-[1.25]"
+                    onClick={onJudiciaryClick}
+                    displayFont={displayFont}
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Closing line */}
             <footer data-sys-footer="true" className="mt-14 flex flex-col items-center gap-6 text-center">
