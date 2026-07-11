@@ -44,13 +44,31 @@ Object.values(FOLDER_IMAGES).forEach((list) =>
   list.sort((a, b) => a.path.localeCompare(b.path)),
 );
 
-// place id -> ordered array of photo urls
+// Hand-picked main photo per place (by filename fragment). The chosen image is
+// promoted to the front of the gallery so it becomes the place's cover image.
+const PLACE_MAIN_OVERRIDES = {
+  "rawanduz-canyon": "IMG_0252 copy 2",
+  "gomi-felaw-alpine-lake": "DSC04519 copy",
+  "erbil-citadel": "IMG_8636 copy",
+  sheladeze: "Untitled_Panorama1- ven - 2-Recovered -5",
+  "lalish-temple-yazidi-holy-site": "DSC_4103 -3",
+  "byara-shrines": "peshraw mahdi1 (42)",
+};
+
+// place id -> ordered array of photo urls (chosen main image first)
 const PLACE_GALLERIES = {};
 for (const [folder, placeId] of Object.entries(FOLDER_TO_PLACE)) {
   const images = FOLDER_IMAGES[folder];
-  if (images && images.length) {
-    PLACE_GALLERIES[placeId] = images.map((item) => item.url);
-  }
+  if (!images || !images.length) continue;
+
+  const urls = images.map((item) => item.url);
+  const mainKey = PLACE_MAIN_OVERRIDES[placeId];
+  const mainIndex = mainKey ? images.findIndex((item) => item.path.includes(mainKey)) : -1;
+
+  PLACE_GALLERIES[placeId] =
+    mainIndex > 0
+      ? [urls[mainIndex], ...urls.slice(0, mainIndex), ...urls.slice(mainIndex + 1)]
+      : urls;
 }
 
 // Primary browse dimension: the Kurdistan city / area a place belongs to.

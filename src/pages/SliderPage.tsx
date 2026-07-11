@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, useLayoutEffect, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { gsap } from "gsap";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ALL_PLACES, CITY_CATEGORIES } from "@/data/touristicPlaces";
 import {
   getAppLanguage,
@@ -69,6 +69,8 @@ const sliderCopy: Record<
     dataScope: string;
     allData: string;
     completedData: string;
+    next: string;
+    previous: string;
   }
 > = {
   en: {
@@ -83,6 +85,8 @@ const sliderCopy: Record<
     dataScope: "Data",
     allData: "All Data",
     completedData: "Completed",
+    next: "Next",
+    previous: "Back",
   },
   ku: {
     all: "هەموو",
@@ -96,6 +100,8 @@ const sliderCopy: Record<
     dataScope: "داتا",
     allData: "هەموو داتا",
     completedData: "تەواوکراو",
+    next: "دواتر",
+    previous: "پێشتر",
   },
   ar: {
     all: "الكل",
@@ -109,6 +115,8 @@ const sliderCopy: Record<
     dataScope: "البيانات",
     allData: "كل البيانات",
     completedData: "المكتملة",
+    next: "التالي",
+    previous: "السابق",
   },
 };
 
@@ -295,6 +303,41 @@ export default function VerticalTourismShowcase() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent animate-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 animate-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)] animate-none" /> */}
+
+      {/* Center-edge navigation between places */}
+      <button
+        type="button"
+        aria-label={copy.previous}
+        onClick={(e) => {
+          e.stopPropagation();
+          previousSlide();
+        }}
+        className="group absolute left-3 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-2 sm:left-6"
+      >
+        <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d7ae56]/70 bg-black/30 text-[#f1d28b] backdrop-blur-md transition group-hover:bg-[#f1d28b] group-hover:text-black group-active:scale-95 sm:h-16 sm:w-16">
+          <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" />
+        </span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f1d28b] sm:text-xs">
+          {copy.previous}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        aria-label={copy.next}
+        onClick={(e) => {
+          e.stopPropagation();
+          nextSlide();
+        }}
+        className="group absolute right-3 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-2 sm:right-6"
+      >
+        <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d7ae56]/70 bg-black/30 text-[#f1d28b] backdrop-blur-md transition group-hover:bg-[#f1d28b] group-hover:text-black group-active:scale-95 sm:h-16 sm:w-16">
+          <ArrowRight className="h-5 w-5 sm:h-7 sm:w-7" />
+        </span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f1d28b] sm:text-xs">
+          {copy.next}
+        </span>
+      </button>
 
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1080px] flex-col px-4 sm:px-10 lg:px-14 py-6 lg:py-8">
         <header data-slider-header="true" className="flex items-start justify-between">
