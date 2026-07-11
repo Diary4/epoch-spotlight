@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
 import { gsap } from "gsap";
-import { getCityCategory, getPlaceById, getPlacesByCity } from "@/data/touristicPlaces";
+import { getPlaceById } from "@/data/touristicPlaces";
 import { DESIGN_WIDTH, useDesignCanvasFit } from "@/hooks/useDesignCanvasFit";
 
 const detailFields = [
@@ -19,7 +19,6 @@ const TouristicDetail = () => {
   const [searchParams] = useSearchParams();
   const [selectedGalleryId, setSelectedGalleryId] = useState<string | null>(null);
   const place = getPlaceById(id);
-  const activeCategory = getCityCategory(place?.cityId);
   // The slider (`/touristic`) is the primary browse experience; the classic grid
   // is kept as a second version at `/touristic-v2` and flags itself via `from`.
   // Pass the place id back so the slider reopens on the place the user viewed
@@ -31,40 +30,25 @@ const TouristicDetail = () => {
         ? `/touristic?place=${place.id}`
         : "/touristic";
   const ownGallery = (place?.gallery ?? []) as string[];
-  const hasOwnGallery = ownGallery.length > 1;
   const galleryImages = useMemo(() => {
     if (!place) return [];
 
-    // When a place ships more than one real photo, show its own gallery.
-    if (hasOwnGallery) {
-      return ownGallery.slice(0, 8).map((url, index) => ({
-        id: `${place.id}-${index}`,
-        url,
-        name: place.name,
-        location: place.location,
-        size: gallerySizes[index % gallerySizes.length],
-      }));
-    }
+    // Only ever show the place's own photos — never images from other
+    // destinations. Places that ship a single real photo (or only a hero
+    // image) simply render that one image instead of borrowing unrelated ones.
+    const sources = ownGallery.length ? ownGallery : place.image ? [place.image] : [];
 
-    // Otherwise fall back to a visual path through nearby places in the city.
-    const cityPlaces = getPlacesByCity(place.cityId);
-    const currentIndex = cityPlaces.findIndex((item) => item.id === place.id);
-    const orderedPlaces = [
-      place,
-      ...cityPlaces
-        .slice(currentIndex + 1)
-        .concat(cityPlaces.slice(0, currentIndex))
-        .filter((item) => item.id !== place.id),
-    ];
-
-    return orderedPlaces.slice(0, 4).map((item, index) => ({
-      id: item.id,
-      url: item.image,
-      name: item.name,
-      location: item.location,
-      size: gallerySizes[index],
+    return sources.slice(0, 8).map((url, index, all) => ({
+      id: `${place.id}-${index}`,
+      url,
+      name: place.name,
+      location: place.location,
+      // A lone image spans the full row so it reads as an intentional feature
+      // rather than a stranded tile.
+      size: all.length === 1 ? "full" : gallerySizes[index % gallerySizes.length],
     }));
-  }, [place, hasOwnGallery, ownGallery]);
+  }, [place, ownGallery]);
+  const hasOwnGallery = ownGallery.length > 1;
   const selectedGalleryImage =
     galleryImages.find((image) => image.id === selectedGalleryId) ?? null;
   const { canvasRef, fit } = useDesignCanvasFit([place?.id, galleryImages.length], {
@@ -227,7 +211,7 @@ const TouristicDetail = () => {
                   <p className="max-w-md text-sm leading-relaxed text-stone-500">
                     {hasOwnGallery
                       ? `More views of ${place.name}.`
-                      : `A visual path through related destinations in ${activeCategory.en}.`}
+                      : `A closer look at ${place.name}.`}
                   </p>
                 </div>
 
@@ -239,11 +223,13 @@ const TouristicDetail = () => {
                       data-place-gallery-item="true"
                       onClick={() => setSelectedGalleryId(image.id)}
                       className={`group relative overflow-hidden rounded-2xl border border-stone-200 bg-white/70 text-left shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition duration-500 hover:z-10 hover:scale-[1.025] hover:border-[#d6a45b]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] ${
-                        image.size === "large"
-                          ? "col-span-2 row-span-2"
-                          : image.size === "medium"
-                            ? "col-span-2"
-                            : ""
+                        image.size === "full"
+                          ? "col-span-4 row-span-2"
+                          : image.size === "large"
+                            ? "col-span-2 row-span-2"
+                            : image.size === "medium"
+                              ? "col-span-2"
+                              : ""
                       }`}
                     >
                       <img

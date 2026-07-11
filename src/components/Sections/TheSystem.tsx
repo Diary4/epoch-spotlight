@@ -146,7 +146,7 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
   const govMenuItems = [
     { key: "pm", label: primeMinisterLabel, sub: primeMinisterSub, iconSrc: pmImg, iconObjectPosition: "68% 12%", onClick: onPrimeMinisterClick },
     { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyIcon, iconObjectPosition: "48% 50%", iconScale: "scale-[1.55]", onClick: onPresidencyClick },
-    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconNode: <UsersRound size={36} strokeWidth={1.45} className="text-[#e6c877]" />, onClick: onCabinetClick },
+    { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconNode: <UsersRound size={36} strokeWidth={1.45} className="text-[#b8873c]" />, onClick: onCabinetClick },
   ];
 
   React.useEffect(() => {
@@ -286,9 +286,9 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
                       key={item.key}
                       type="button"
                       onClick={() => item.onClick?.()}
-                      className="flex cursor-pointer items-center gap-5 overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-6 py-5 text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                      className="flex cursor-pointer items-center gap-5 overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-white px-6 py-5 text-start text-[#17233b] shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.99]"
                     >
-                      <span className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                      <span className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] ring-1 ring-[#e6d5ac]">
                         {item.iconNode ?? (
                           <img
                             src={item.iconSrc}
@@ -299,14 +299,14 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
                         )}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className={`block ${displayFont} text-[26px] font-light leading-tight`}>
+                        <span className={`block ${displayFont} text-[26px] font-light leading-tight text-[#17233b]`}>
                           {item.label}
                         </span>
-                        <span className="mt-1 block text-[16px] font-light leading-snug text-[#e7d6ab]">
+                        <span className="mt-1 block text-[16px] font-light leading-snug text-[#9b6d35]">
                           {item.sub}
                         </span>
                       </span>
-                      <ArrowRight size={28} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                      <ArrowRight size={28} strokeWidth={1.6} className="shrink-0 text-[#b99152] rtl:rotate-180" />
                     </button>
                   ))}
                 </div>

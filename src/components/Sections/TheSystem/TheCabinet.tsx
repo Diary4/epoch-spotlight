@@ -217,55 +217,58 @@ export default function CabinetPage({ lang = "en", onBack }: CabinetPageProps) {
         }}
       >
         <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
-          <section className="relative mx-auto flex h-[940px] w-full flex-col overflow-hidden bg-[#fbf5eb] px-20 pb-12 pt-12">
+          <section
+            className="relative mx-auto flex w-full flex-col bg-[#fbf5eb] px-20 pb-14 pt-12"
+            style={{ minHeight: fit.minCanvasHeight || undefined }}
+          >
             <button
               type="button"
               onClick={onBack}
               className={`${systemCanvasBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
-              aria-label="Back to Government"
+              aria-label="Back to The System"
             >
               <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
             {/* Faint lattice motifs at the sides */}
-            <div className="pointer-events-none absolute left-0 top-40 h-[70%] w-16 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-            <div className="pointer-events-none absolute right-0 top-40 h-[70%] w-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="pointer-events-none absolute left-0 top-32 bottom-24 w-16 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="pointer-events-none absolute right-0 top-32 bottom-24 w-16 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Header */}
-            <header className="system-detail-intro relative z-10 flex flex-col items-center text-center">
-              <span className="grid h-[112px] w-[112px] place-items-center rounded-full border-2 border-[#cfae72] bg-[#13213b] text-[#e6c877] shadow-[0_16px_40px_rgba(84,54,16,0.18)]">
-                <UsersRound size={54} strokeWidth={1.4} />
+            <header className="system-detail-intro relative z-10 flex shrink-0 flex-col items-center text-center">
+              <span className="grid h-[100px] w-[100px] place-items-center rounded-full border-2 border-[#cfae72] bg-[#13213b] text-[#e6c877] shadow-[0_16px_40px_rgba(84,54,16,0.18)]">
+                <UsersRound size={48} strokeWidth={1.4} />
               </span>
-              <h1 className={`mt-6 ${displayFont} ${lang === "en" ? "uppercase tracking-[0.03em]" : ""} text-[92px] font-medium leading-none text-[#17233b]`}>
+              <h1 className={`mt-5 ${displayFont} ${lang === "en" ? "uppercase tracking-[0.03em]" : ""} text-[80px] font-medium leading-none text-[#17233b]`}>
                 {c.title}
               </h1>
-              <p className="mt-4 max-w-[1000px] text-[34px] font-light leading-tight text-[#9b6d35]">{c.subtitle}</p>
+              <p className="mt-3 max-w-[1000px] text-[30px] font-light leading-tight text-[#9b6d35]">{c.subtitle}</p>
 
-              <div className="mt-5 flex w-[260px] items-center gap-4 text-[#b99152]">
+              <div className="mt-4 flex w-[260px] items-center gap-4 text-[#b99152]">
                 <span className="h-0.5 flex-1 bg-gradient-to-r from-transparent to-[#b99152]" />
                 <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
                 <span className="h-0.5 flex-1 bg-gradient-to-l from-transparent to-[#b99152]" />
               </div>
 
-              <p className="mt-5 max-w-[1040px] text-[25px] font-light leading-[1.5] text-[#2d3549]">{c.intro}</p>
+              <p className="mt-4 max-w-[1040px] text-[24px] font-light leading-[1.45] text-[#2d3549]">{c.intro}</p>
             </header>
 
-            {/* Ministries grid */}
-            <section className="relative z-10 mt-9 grid flex-1 grid-cols-4 grid-rows-5 gap-x-10 gap-y-2 content-stretch">
+            {/* Ministries grid — grows to fill remaining viewport height */}
+            <section className="relative z-10 mt-8 grid min-h-0 flex-1 grid-cols-4 grid-rows-5 gap-x-8">
               {c.ministries.map((name, i) => {
                 const Icon = MINISTRY_ICONS[i];
                 const num = String(i + 1).padStart(2, "0");
                 return (
                   <article
                     key={name}
-                    className="system-detail-card flex items-center gap-4 border-b border-[#e7d6b4]/70 px-1 text-start"
+                    className="system-detail-card flex h-full items-center gap-5 border-b border-[#e7d6b4]/70 px-2 py-2 text-start"
                   >
-                    <span className="grid h-[62px] w-[62px] shrink-0 place-items-center rounded-full border border-[#d9b477] bg-[#fbf5eb] text-[#b8873c]">
-                      <Icon size={30} strokeWidth={1.5} />
+                    <span className="grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full border border-[#d9b477] bg-[#fbf5eb] text-[#b8873c]">
+                      <Icon size={34} strokeWidth={1.5} />
                     </span>
                     <div className="min-w-0">
-                      <span className="block font-serif text-[21px] font-medium leading-none text-[#c39a4e]">{num}</span>
-                      <span className={`mt-1 block ${displayFont} text-[19px] font-light leading-[1.2] text-[#17233b]`}>
+                      <span className="block font-serif text-[26px] font-medium leading-none text-[#c39a4e]">{num}</span>
+                      <span className={`mt-1.5 block ${displayFont} text-[24px] font-light leading-[1.25] text-[#17233b]`}>
                         {name}
                       </span>
                     </div>
@@ -275,8 +278,8 @@ export default function CabinetPage({ lang = "en", onBack }: CabinetPageProps) {
             </section>
 
             {/* Closing banner */}
-            <footer className="system-detail-extra relative z-10 mt-8 rounded-[24px] border-2 border-[#ead8b7] bg-white/60 px-10 py-7 text-center shadow-[0_14px_35px_rgba(84,54,16,0.1)] backdrop-blur-md">
-              <p className={`mx-auto max-w-[1080px] ${displayFont} text-[25px] font-light leading-snug text-[#2d3549]`}>
+            <footer className="system-detail-extra relative z-10 mt-6 shrink-0 rounded-[24px] border-2 border-[#ead8b7] bg-white/60 px-10 py-6 text-center shadow-[0_14px_35px_rgba(84,54,16,0.1)] backdrop-blur-md">
+              <p className={`mx-auto max-w-[1080px] ${displayFont} text-[24px] font-light leading-snug text-[#2d3549]`}>
                 {c.footer}
               </p>
             </footer>

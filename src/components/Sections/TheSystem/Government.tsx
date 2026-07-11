@@ -243,9 +243,9 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                 <button
                   type="button"
                   onClick={onPrimeMinisterClick}
-                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-white px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#17233b] shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.99]"
                 >
-                  <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                  <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] ring-1 ring-[#e6d5ac]">
                     <img
                       src={pmImg}
                       alt=""
@@ -257,7 +257,7 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                     <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
                       {isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister"}
                     </h3>
-                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#9b6d35]">
                       {isAr
                         ? "تعرّف على رئيس مجلس الوزراء."
                         : isKu
@@ -265,15 +265,15 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                           : "Meet the Head of the Council of Ministers."}
                     </p>
                   </div>
-                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#b99152] rtl:rotate-180" />
                 </button>
 
                 <button
                   type="button"
                   onClick={onPresidencyClick}
-                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-white px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#17233b] shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.99]"
                 >
-                  <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f]">
+                  <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] ring-1 ring-[#e6d5ac]">
                     <img
                       src={presidencyIcon}
                       alt=""
@@ -284,7 +284,7 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                     <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
                       {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
                     </h3>
-                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#9b6d35]">
                       {isAr
                         ? "تعرّف على رئاسة الإقليم."
                         : isKu
@@ -292,22 +292,22 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                           : "Meet the Head of the Region."}
                     </p>
                   </div>
-                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#b99152] rtl:rotate-180" />
                 </button>
 
                 <button
                   type="button"
                   onClick={onCabinetClick}
-                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-[#13213b] px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#f7edd7] shadow-[0_18px_45px_rgba(84,54,16,0.2)] transition-transform duration-300 active:scale-[0.99]"
+                  className="flex cursor-pointer items-center gap-[clamp(1rem,2cqw,2rem)] overflow-hidden rounded-[26px] border-2 border-[#cfae72] bg-white px-[clamp(1.2rem,2.4cqw,2.8rem)] py-[clamp(1rem,2.2cqh,2rem)] text-start text-[#17233b] shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.99]"
                 >
-                  <span className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center rounded-full border-[5px] border-[#e6c877]/40 bg-[#0f1a2f] text-[#e6c877]">
+                  <span className="grid h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 place-items-center rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] text-[#b8873c] ring-1 ring-[#e6d5ac]">
                     <UsersRound size={36} strokeWidth={1.45} />
                   </span>
                   <div className="flex-1">
                     <h3 className={`${displayFont} text-[clamp(1.5rem,2.6cqw,2.3rem)] font-light leading-tight`}>
                       {isAr ? "مجلس الوزراء" : isKu ? "ئەنجومەنی وەزیران" : "The Cabinet"}
                     </h3>
-                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#e7d6ab]">
+                    <p className="mt-1 text-[clamp(1rem,1.7cqw,1.4rem)] font-light leading-tight text-[#9b6d35]">
                       {isAr
                         ? "تعرّف على مجلس الوزراء الذي يقود العمل التنفيذي."
                         : isKu
@@ -315,7 +315,7 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                           : "Meet the Council of Ministers that leads the executive."}
                     </p>
                   </div>
-                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#e6c877] rtl:rotate-180" />
+                  <ArrowRight size={34} strokeWidth={1.6} className="shrink-0 text-[#b99152] rtl:rotate-180" />
                 </button>
               </section>
 
