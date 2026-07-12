@@ -302,9 +302,6 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
                 data-sys-panel="true"
                 className="relative z-20 mx-auto mt-12 w-[820px] max-w-[86%] px-6 text-center"
               >
-                <span className="mx-auto grid h-[86px] w-[86px] place-items-center rounded-[20px] border border-[#cfae72] bg-transparent text-[#b99152]">
-                  <Sunburst className="h-11 w-11" />
-                </span>
                 <h2 data-discover-lang="true" className={`mt-6 break-words ${displayFont} text-[40px] font-normal leading-tight text-[#9b6d35]`}>
                   {panelTitle}
                 </h2>
