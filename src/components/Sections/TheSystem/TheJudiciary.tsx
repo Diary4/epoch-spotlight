@@ -22,6 +22,29 @@ type Lang = "ku" | "en" | "ar";
 
 type Item = { title: string; text: string; iconSrc: string };
 
+/** Radiating sun motif used in the hero ornament divider. */
+function Sunburst({ className = "" }: { className?: string }) {
+  const rays = Array.from({ length: 16 }, (_, i) => {
+    const a = (i / 16) * Math.PI * 2;
+    const inner = 15;
+    const outer = i % 2 === 0 ? 32 : 23;
+    return {
+      x1: 50 + Math.cos(a) * inner,
+      y1: 50 + Math.sin(a) * inner,
+      x2: 50 + Math.cos(a) * outer,
+      y2: 50 + Math.sin(a) * outer,
+    };
+  });
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round">
+      <circle cx="50" cy="50" r="9" />
+      {rays.map((r, i) => (
+        <line key={i} x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2} />
+      ))}
+    </svg>
+  );
+}
+
 const STRUCTURE_ICONS = [councilIcon, courtIcon, appealIcon, instantIcon];
 const FUNCTION_ICONS = [fairIcon, legalIcon, rightsIcon];
 
@@ -174,35 +197,33 @@ export default function JudiciaryPage({ lang = "en", onBack }: JudiciaryPageProp
               <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName(dir)} />
             </button>
 
-            {/* Hero image band — swap `judiciaryBackground` for the final artwork.
-                Styled like the People detail pages (Who Are the Kurds / A Shared Identity):
-                full-bleed image with a fade into the cream page and a gold divider. */}
-            <div className="system-detail-intro relative z-10 -mx-20 -mt-14 mb-4 h-[420px] overflow-hidden">
-              <img src={judiciaryBackground} alt="" className="h-full w-full object-cover object-center" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#fbf5eb] via-[#fbf5eb]/55 to-transparent" />
-              <div className="pointer-events-none absolute inset-x-[10%] bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#d9b477] to-transparent opacity-90" />
-              <div className="pointer-events-none absolute bottom-[-5px] left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-2 border-[#d9b477] bg-[#fbf5eb]" />
-            </div>
-
             {/* Faint lattice motifs at the sides */}
-            <div className="pointer-events-none absolute left-0 top-[480px] h-[55%] w-20 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-            <div className="pointer-events-none absolute right-0 top-[480px] h-[55%] w-20 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="pointer-events-none absolute left-0 top-[520px] h-[45%] w-20 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="pointer-events-none absolute right-0 top-[520px] h-[45%] w-20 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
 
             {/* Monumental centered header */}
             <header className="system-detail-intro relative z-10 flex flex-col items-center text-center">
-              <h1 className={`${displayFont} text-[104px] font-light leading-none tracking-tight text-[#17233b]`}>
+              <h1 className={`${displayFont} text-[104px] font-medium leading-none tracking-tight text-[#17233b]`}>
                 {c.title}
               </h1>
               <p className="mt-5 max-w-[980px] text-[36px] font-light leading-tight text-[#9b6d35]">{c.subtitle}</p>
 
-              <div className="mt-6 flex w-[280px] items-center gap-4 text-[#b99152]">
-                <span className="h-0.5 flex-1 bg-gradient-to-r from-transparent to-[#b99152]" />
-                <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
-                <span className="h-0.5 flex-1 bg-gradient-to-l from-transparent to-[#b99152]" />
+              <div className="mt-7 flex items-center justify-center gap-6 text-[#b99152]">
+                <span className="h-px w-36 bg-gradient-to-r from-transparent to-[#cfae72]" />
+                <Sunburst className="h-9 w-9" />
+                <span className="h-px w-36 bg-gradient-to-l from-transparent to-[#cfae72]" />
               </div>
-
-              <p className="mt-6 max-w-[1040px] text-[27px] font-light leading-[1.55] text-[#2d3549]">{c.intro}</p>
             </header>
+
+            {/* Hero split — intro text beside the emblem artwork bleeding off the edge */}
+            <div className="relative z-10 mt-8 grid grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] items-center gap-8">
+              <div className="system-detail-intro">
+                <p className="max-w-[540px] text-[30px] font-light leading-[1.6] text-[#2d3549]">{c.intro}</p>
+              </div>
+              <div className="system-detail-hero relative -me-20 h-[440px]">
+                <img src={judiciaryBackground} alt="" className="h-full w-full object-contain object-center" />
+              </div>
+            </div>
 
             {/* Institutional Structure — four courts */}
             <section className="relative z-10 mt-12">
