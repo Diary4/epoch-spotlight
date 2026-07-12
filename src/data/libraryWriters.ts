@@ -39,7 +39,6 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     roles: ["Novelist", "Writer"],
     born: "1966",
     birthplace: "Sulaymaniyah, Kurdistan",
-    lifespan: "1966 –",
     portrait: bakhtyarAli,
     portraitDark: bakhtyarAli,
     bio: "Bakhtyar Ali is celebrated for his visionary novels that blend surrealism with Kurdish political and cultural history. His work has earned international recognition and brought Kurdish fiction to global audiences.",

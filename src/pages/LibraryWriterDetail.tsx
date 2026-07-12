@@ -14,7 +14,7 @@ import DesignScaledCanvas from "@/components/DesignScaledCanvas";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
 import { KioskBookCard } from "@/components/Sections/library/kioskCards";
 import { getWriterById } from "@/data/libraryWriters";
-import { getBooksByAuthor, getFeaturedBooks } from "@/data/libraryBooks";
+import { getBooksByAuthor } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
@@ -38,10 +38,7 @@ export default function LibraryWriterDetail() {
     return <Navigate to="/library/writers" replace />;
   }
 
-  const books = getBooksByAuthor(writer.id);
-  // Every profile should surface at least one book; fall back to example
-  // titles from the collection for writers whose catalogue isn't loaded yet.
-  const sampleBooks = books.length > 0 ? books : getFeaturedBooks();
+  const sampleBooks = getBooksByAuthor(writer.id);
 
   return (
     <DesignScaledCanvas fitViewport bgClassName="bg-[#F5F2ED]" fitDeps={[writerId]}>
@@ -140,9 +137,15 @@ export default function LibraryWriterDetail() {
               <div className="col-span-2 rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-8">
                 <h3 className="font-serif text-3xl text-[#2D4635]">Selected Works</h3>
                 <div className="mt-8 flex flex-col items-center gap-8">
-                  {sampleBooks.slice(0, 2).map((book) => (
-                    <KioskBookCard key={book.id} book={book} />
-                  ))}
+                  {sampleBooks.length > 0 ? (
+                    sampleBooks.slice(0, 2).map((book) => (
+                      <KioskBookCard key={book.id} book={book} />
+                    ))
+                  ) : (
+                    <p className="mt-4 text-center text-lg text-[#8B7355]">
+                      Books by {writer.name} coming soon.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -150,9 +153,17 @@ export default function LibraryWriterDetail() {
 
           {activeTab === "books" && (
             <div className="flex flex-wrap gap-8">
-              {sampleBooks.map((book) => (
-                <KioskBookCard key={book.id} book={book} />
-              ))}
+              {sampleBooks.length > 0 ? (
+                sampleBooks.map((book) => (
+                  <KioskBookCard key={book.id} book={book} />
+                ))
+              ) : (
+                <div className="flex h-full w-full items-center justify-center">
+                  <p className="text-xl text-[#5C4A3A]">
+                    Books by {writer.name} will be featured here.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
@@ -191,20 +202,22 @@ export default function LibraryWriterDetail() {
           )}
         </section>
 
-        <footer data-library-section className="mt-auto pt-8">
-          <div className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-8 py-6">
-            <span className="text-3xl text-[#C5A059]">✦</span>
-            <p className="flex-1 text-lg text-[#5C4A3A]">
-              Explore his words, feel his world. Dive deeper into the works of {writer.name}.
-            </p>
-            <Link
-              to={`/library/books/${sampleBooks[0]?.id ?? ""}`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#0B1C14] px-8 py-4 text-lg text-[#C5A059]"
-            >
-              Explore Books →
-            </Link>
-          </div>
-        </footer>
+        {sampleBooks.length > 0 && (
+          <footer data-library-section className="mt-auto pt-8">
+            <div className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-8 py-6">
+              <span className="text-3xl text-[#C5A059]">✦</span>
+              <p className="flex-1 text-lg text-[#5C4A3A]">
+                Explore his words, feel his world. Dive deeper into the works of {writer.name}.
+              </p>
+              <Link
+                to={`/library/books/${sampleBooks[0].id}`}
+                className="inline-flex items-center gap-2 rounded-full bg-[#0B1C14] px-8 py-4 text-lg text-[#C5A059]"
+              >
+                Explore Books →
+              </Link>
+            </div>
+          </footer>
+        )}
       </div>
     </DesignScaledCanvas>
   );

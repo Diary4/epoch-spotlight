@@ -9,7 +9,7 @@ import {
   getFeaturedWriters,
   FEATURED_HERO_BACKGROUND,
 } from "@/data/libraryWriters";
-import { getBooksByAuthor, getFeaturedBooks } from "@/data/libraryBooks";
+import { getBooksByAuthor } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
@@ -28,8 +28,7 @@ export default function LibraryFeaturedWriter() {
   }
 
   const otherWriters = getFeaturedWriters().filter((w) => w.id !== writer.id);
-  const ownBooks = getBooksByAuthor(writer.id);
-  const books = (ownBooks.length > 0 ? ownBooks : getFeaturedBooks()).slice(0, 2);
+  const books = getBooksByAuthor(writer.id).slice(0, 2);
 
   return (
     <DesignScaledCanvas fitViewport bgClassName="bg-[#0A0A0A]" fitDeps={[writerId]}>
