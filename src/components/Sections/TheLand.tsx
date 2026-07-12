@@ -160,10 +160,6 @@ function SmallCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: (
         </h3>
 
         <Divider className="mx-auto my-1.5 xs:my-3 sm:my-3 kiosk-portrait:my-[1.6vw] w-12 xs:w-16 sm:w-28 kiosk-portrait:w-[14.8vw]" />
-
-        <p data-discover-lang="true" className="mx-auto mb-2 sm:mb-4 max-w-[255px] text-[8px] xs:text-[9.5px] sm:text-[clamp(14px,3.4vw,16px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[320px] lg:text-[18px] kiosk-portrait:max-w-[32vw] kiosk-portrait:text-[2.2vw]">
-          {localizeDigits(card.text, lang)}
-        </p>
       </div>
     </article>
   );
@@ -200,9 +196,6 @@ function WideCard({ card, onClick, lang = "en" }: { card: LandCard; onClick?: ()
         </div> */}
         <div className="min-w-0">
           <h3 data-discover-lang="true" className={`${displayFont} text-[12px] xs:text-[14px] sm:text-[clamp(22px,5vw,30px)] font-light text-[#17233b] lg:text-[34px] kiosk-portrait:text-[4.25vw]`}>{localizeDigits(card.title, lang)}</h3>
-          <p data-discover-lang="true" className="mt-1 xs:mt-2 sm:mt-3 max-w-[330px] text-[10px] xs:text-[11.5px] sm:text-[clamp(14px,3.4vw,17px)] font-light leading-[1.45] text-[#35435b] lg:max-w-[460px] lg:text-[20px] kiosk-portrait:max-w-[46vw] kiosk-portrait:text-[2.4vw]">
-            {localizeDigits(card.text, lang)}
-          </p>
         </div>
       </div>
     </article>
