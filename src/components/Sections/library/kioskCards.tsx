@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import type { LibraryBook, LibraryWriter } from "@/data/libraryTypes";
+import { BookOpen, Feather, Mountain, Leaf, Users, Star } from "lucide-react";
+import type { LibraryBook, LibraryCategory, LibraryWriter } from "@/data/libraryTypes";
 import { getWriterById } from "@/data/libraryWriters";
 import { cn } from "@/lib/utils";
 
@@ -142,6 +143,50 @@ export function KioskBookCard({ book }: { book: LibraryBook }) {
       <p className="text-sm text-[#8B7355]">
         {book.genre} • {book.year}
       </p>
+    </Link>
+  );
+}
+
+const categoryIconMap = {
+  poetry: Feather,
+  novels: BookOpen,
+  history: Mountain,
+  philosophy: Leaf,
+  biographies: Users,
+  culture: Star,
+} as const;
+
+export function KioskCategoryCard({ category }: { category: LibraryCategory }) {
+  const Icon = categoryIconMap[category.icon];
+
+  return (
+    <button
+      type="button"
+      className="flex w-[150px] shrink-0 flex-col items-center gap-3 rounded-2xl bg-[#F0EBE3] px-3 py-6"
+    >
+      <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-[#C5A059]/30">
+        <Icon className="h-8 w-8 text-[#C5A059]" strokeWidth={1.5} />
+      </div>
+      <span className="text-center text-base text-[#2D4635]">{category.label}</span>
+    </button>
+  );
+}
+
+export function KioskShelfBook({ book }: { book: LibraryBook }) {
+  const author = getWriterById(book.authorId);
+
+  return (
+    <Link
+      to={`/library/books/${book.id}`}
+      data-library-item
+      className="flex flex-col items-center"
+    >
+      <div className="relative h-[280px] w-[180px] overflow-hidden rounded-sm shadow-[4px_4px_12px_rgba(0,0,0,0.25)]">
+        <img src={book.cover} alt={book.title} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
+      </div>
+      <p className="mt-3 text-center font-serif text-lg text-[#0B1C14]">{book.title}</p>
+      <p className="text-center text-sm text-[#8B7355]">{author?.name}</p>
     </Link>
   );
 }

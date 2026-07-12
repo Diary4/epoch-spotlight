@@ -10,26 +10,12 @@ import {
   Clock,
   ChevronRight,
 } from "lucide-react";
+import DesignScaledCanvas from "@/components/DesignScaledCanvas";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
-import LibraryPageShell from "@/components/Sections/library/LibraryPageShell";
-import BookCard from "@/components/Sections/library/BookCard";
-import {
-  libraryBody,
-  libraryBodySmall,
-  libraryBtnPrimary,
-  libraryDisplayTitle,
-  libraryHeaderPad,
-  libraryBackIconClassName,
-  libraryIconSm,
-  libraryNavText,
-  libraryPad,
-  librarySectionTitle,
-  libraryViewAll,
-} from "@/components/Sections/library/libraryLayout";
+import { KioskBookCard } from "@/components/Sections/library/kioskCards";
 import { getBookById, getBooksByAuthor } from "@/data/libraryBooks";
 import { getWriterById } from "@/data/libraryWriters";
 import { FREE_PREVIEW_PAGES } from "@/lib/libraryPreview";
-import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
 const quickActions = [
@@ -39,7 +25,7 @@ const quickActions = [
 export default function LibraryBookDetail() {
   const { bookId } = useParams();
   const book = bookId ? getBookById(bookId) : undefined;
-  const rootRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useLibraryPageAnimation(rootRef, [bookId]);
 
@@ -51,128 +37,128 @@ export default function LibraryBookDetail() {
   const authorBooks = getBooksByAuthor(book.authorId, book.id);
 
   return (
-    <main ref={rootRef} className="min-h-screen overflow-x-hidden bg-[#F5F1E6] pb-6 lg:pb-8 3xl:pb-10">
-      <header
-        data-library-header
-        className={cn(libraryHeaderPad, "flex items-center justify-between border-b border-[#E8E0D4]")}
-      >
-        <LibraryPageShell className="flex w-full items-center justify-between">
-          <Link to="/library/books" className={cn(libraryNavText, "flex items-center gap-2")}>
-            <ArrowLeft className={libraryBackIconClassName} />
+    <DesignScaledCanvas fitViewport bgClassName="bg-[#F5F1E6]" fitDeps={[bookId]}>
+      <div ref={rootRef} className="flex min-h-[1920px] w-full flex-col bg-[#F5F1E6] px-12 pb-12">
+        <header
+          data-library-header
+          className="flex items-center justify-between border-b border-[#E8E0D4] py-8"
+        >
+          <Link to="/library/books" className="flex items-center gap-2 text-lg text-[#5C4A3A]">
+            <ArrowLeft className="h-6 w-6" />
             Back to Books
           </Link>
           <LibraryLogo variant="light" size="md" />
           {author ? (
             <Link
               to={`/library/writers/${author.id}`}
-              className={cn(libraryNavText, "flex items-center gap-2 text-[#C5A059]")}
+              className="flex items-center gap-2 text-lg text-[#C5A059]"
             >
               {author.name}
-              <ArrowRight className={libraryIconSm} />
+              <ArrowRight className="h-6 w-6" />
             </Link>
           ) : (
-            <div className={cn(libraryNavText, "invisible flex items-center gap-2")} aria-hidden>
-              <ArrowLeft className={libraryBackIconClassName} />
+            <div className="invisible flex items-center gap-2 text-lg" aria-hidden>
+              <ArrowLeft className="h-6 w-6" />
               Back
             </div>
           )}
-        </LibraryPageShell>
-      </header>
+        </header>
 
-      <section data-library-section className={cn("py-8 lg:py-12 3xl:py-16", libraryPad)}>
-        <LibraryPageShell>
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12 3xl:gap-16">
-            <div data-library-hero-image className="mx-auto shrink-0 lg:mx-0">
-              <div className="relative h-72 w-48 overflow-hidden rounded-lg shadow-[8px_8px_24px_rgba(11,28,20,0.2)] sm:h-80 sm:w-56 lg:h-96 lg:w-64 xl:h-[28rem] xl:w-72 3xl:h-[32rem] 3xl:w-80">
+        <section data-library-section className="py-10">
+          <div className="flex items-start gap-12">
+            <div data-library-hero-image className="shrink-0">
+              <div className="relative h-[440px] w-[300px] overflow-hidden rounded-lg shadow-[8px_8px_24px_rgba(11,28,20,0.2)]">
                 <img src={book.cover} alt={book.title} className="h-full w-full object-cover" />
               </div>
             </div>
 
             <div data-library-hero-text className="flex-1">
-              <span className="inline-block rounded-full bg-[#0B1C14] px-3 py-1 text-[10px] uppercase tracking-wider text-white lg:text-xs 3xl:px-4 3xl:py-1.5 3xl:text-sm">
+              <span className="inline-block rounded-full bg-[#0B1C14] px-4 py-1.5 text-xs uppercase tracking-wider text-white">
                 {book.genre}
               </span>
-              <h1 className={cn(libraryDisplayTitle, "mt-3")}>{book.title}</h1>
+              <h1 className="mt-3 font-serif text-6xl text-[#0B1C14]">{book.title}</h1>
               {author && (
                 <Link
                   to={`/library/writers/${author.id}`}
-                  className="mt-1 inline-block text-base text-[#B0926A] lg:text-lg 3xl:text-2xl"
+                  className="mt-1 inline-block text-xl text-[#B0926A]"
                 >
                   {author.name}
                 </Link>
               )}
 
-              <div className={cn(libraryBody, "mt-5 flex flex-wrap gap-5 lg:gap-8")}>
-                <span className="flex items-center gap-1.5">
-                  <Calendar className={libraryIconSm + " text-[#C5A059]"} />
+              <div className="mt-6 flex flex-wrap gap-8 text-lg text-[#5C4A3A]">
+                <span className="flex items-center gap-2">
+                  <Calendar className="h-6 w-6 text-[#C5A059]" />
                   Year {book.year}
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <Globe className={libraryIconSm + " text-[#C5A059]"} />
+                <span className="flex items-center gap-2">
+                  <Globe className="h-6 w-6 text-[#C5A059]" />
                   Language {book.language}
                 </span>
                 {book.readingTime && (
-                  <span className="flex items-center gap-1.5">
-                    <Clock className={libraryIconSm + " text-[#C5A059]"} />
+                  <span className="flex items-center gap-2">
+                    <Clock className="h-6 w-6 text-[#C5A059]" />
                     Reading Time {book.readingTime}
                   </span>
                 )}
               </div>
 
-              <p className={cn(libraryBody, "mt-5 max-w-xl lg:max-w-2xl 3xl:max-w-3xl")}>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#5C4A3A]">
                 {book.description}
               </p>
 
-              <p className={cn(libraryBodySmall, "mt-4")}>
+              <p className="mt-4 text-base text-[#8B7355]">
                 Free preview: first {FREE_PREVIEW_PAGES} pages · Full book available for purchase
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-3 lg:mt-6 lg:gap-4">
-                <Link to={`/library/books/${bookId}/read`} className={libraryBtnPrimary}>
-                  <BookOpen className={libraryIconSm} />
+              <div className="mt-6 flex flex-wrap gap-4">
+                <Link
+                  to={`/library/books/${bookId}/read`}
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#0B1C14] px-7 py-3.5 text-lg text-white"
+                >
+                  <BookOpen className="h-6 w-6" />
                   Read Sample
                 </Link>
+                {quickActions.map((action) => (
+                  <button
+                    key={action.title}
+                    type="button"
+                    data-library-item
+                    className="inline-flex items-center gap-3 rounded-lg border border-[#E8E0D4] bg-[#FAF8F5] px-7 py-3.5 text-left"
+                  >
+                    <action.icon className="h-6 w-6 text-[#C5A059]" />
+                    <span>
+                      <span className="block text-lg font-medium text-[#0B1C14]">{action.title}</span>
+                      <span className="block text-base text-[#8B7355]">{action.subtitle}</span>
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
-        </LibraryPageShell>
-      </section>
+        </section>
 
-      <section data-library-section className={libraryPad}>
-        <LibraryPageShell className="grid gap-3 sm:max-w-md lg:gap-4">
-          {quickActions.map((action) => (
-            <button
-              key={action.title}
-              type="button"
-              data-library-item
-              className="flex flex-col items-start rounded-xl border border-[#E8E0D4] bg-[#FAF8F5] px-4 py-4 text-left lg:px-6 lg:py-6 3xl:px-8 3xl:py-8"
-            >
-              <action.icon className="h-5 w-5 text-[#C5A059] lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
-              <p className="mt-2 text-sm font-medium text-[#0B1C14] lg:text-base 3xl:text-xl">{action.title}</p>
-              <p className={libraryBodySmall}>{action.subtitle}</p>
-            </button>
-          ))}
-        </LibraryPageShell>
-      </section>
-
-      <section data-library-section className={cn("mt-8 3xl:mt-12", libraryPad)}>
-        <LibraryPageShell className="grid gap-6 lg:grid-cols-2 lg:gap-8 3xl:gap-12">
-          <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6 lg:p-8 3xl:p-10">
-            <h2 className={librarySectionTitle}>About the Book</h2>
-            <p className={cn(libraryBody, "mt-4")}>{book.aboutText ?? book.description}</p>
+        <section data-library-section className="mt-2 grid grid-cols-2 gap-8">
+          <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-8">
+            <h2 className="font-serif text-3xl text-[#2D4635]">About the Book</h2>
+            <p className="mt-4 text-lg leading-relaxed text-[#5C4A3A]">
+              {book.aboutText ?? book.description}
+            </p>
           </div>
 
-          <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-6 lg:p-8 3xl:p-10">
-            <h2 className={librarySectionTitle}>Book Details</h2>
-            <dl className={cn(libraryBody, "mt-4 space-y-3 lg:space-y-4")}>
-              {[
-                ["Genre", book.genre],
-                ["Pages", book.pages?.toString()],
-                ["Publisher", book.publisher],
-                ["First Published", book.year.toString()],
-                ["ISBN", book.isbn],
-                ["Language", `${book.language} - Sorani`],
-              ]
+          <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-8">
+            <h2 className="font-serif text-3xl text-[#2D4635]">Book Details</h2>
+            <dl className="mt-4 space-y-4 text-lg text-[#5C4A3A]">
+              {(
+                [
+                  ["Genre", book.genre],
+                  ["Pages", book.pages?.toString()],
+                  ["Publisher", book.publisher],
+                  ["First Published", book.year.toString()],
+                  ["ISBN", book.isbn],
+                  ["Language", `${book.language} - Sorani`],
+                ] as [string, string | undefined][]
+              )
                 .filter(([, value]) => value)
                 .map(([label, value]) => (
                   <div key={label} className="flex justify-between border-b border-[#E8E0D4]/60 pb-2">
@@ -182,61 +168,60 @@ export default function LibraryBookDetail() {
                 ))}
             </dl>
 
-            <div className="mt-6 flex items-center justify-between rounded-xl bg-[#E8E0D4]/50 px-4 py-3 lg:px-6 lg:py-4 3xl:px-8 3xl:py-5">
-              <div className="flex items-center gap-3 lg:gap-4">
-                <BookOpen className="h-5 w-5 text-[#C5A059] lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
+            <div className="mt-6 flex items-center justify-between rounded-xl bg-[#E8E0D4]/50 px-6 py-4">
+              <div className="flex items-center gap-4">
+                <BookOpen className="h-7 w-7 text-[#C5A059]" />
                 <div>
-                  <p className="text-sm font-medium text-[#0B1C14] lg:text-base 3xl:text-xl">Available in Library</p>
-                  <p className={libraryBodySmall}>Read at your local cultural center</p>
+                  <p className="text-lg font-medium text-[#0B1C14]">Available in Library</p>
+                  <p className="text-base text-[#8B7355]">Read at your local cultural center</p>
                 </div>
               </div>
-              <ChevronRight className="h-5 w-5 text-[#C5A059] lg:h-6 lg:w-6 3xl:h-8 3xl:w-8" />
+              <ChevronRight className="h-7 w-7 text-[#C5A059]" />
             </div>
           </div>
-        </LibraryPageShell>
-      </section>
+        </section>
 
-      {author && authorBooks.length > 0 && (
-        <section
-          data-library-section
-          className={cn("mt-10 border-t border-[#E8E0D4] py-8 lg:py-12 3xl:mt-14 3xl:py-16", libraryPad)}
-        >
-          <LibraryPageShell>
+        {author && authorBooks.length > 0 && (
+          <section data-library-section className="mt-10 border-t border-[#E8E0D4] pt-8">
             <div className="flex items-end justify-between gap-4">
               <div>
-                <h2 className={librarySectionTitle}>More Books by {author.name}</h2>
-                <p className={cn(libraryBodySmall, "mt-1")}>
+                <h2 className="font-serif text-3xl text-[#2D4635]">More Books by {author.name}</h2>
+                <p className="mt-1 text-base text-[#8B7355]">
                   {authorBooks.length} more {authorBooks.length === 1 ? "title" : "titles"} in our collection
                 </p>
               </div>
-              <Link to={`/library/writers/${author.id}`} className={libraryViewAll}>
+              <Link
+                to={`/library/writers/${author.id}`}
+                className="inline-flex items-center gap-1.5 text-base text-[#8B7355]"
+              >
                 View writer
-                <ArrowRight className="h-3 w-3 lg:h-4 lg:w-4" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:mt-8 lg:grid-cols-4 lg:gap-6 3xl:gap-8">
+            <div className="mt-8 flex flex-wrap gap-8">
               {authorBooks.map((relatedBook) => (
-                <div key={relatedBook.id} data-library-item className="flex justify-center">
-                  <BookCard book={relatedBook} variant="compact" />
-                </div>
+                <KioskBookCard key={relatedBook.id} book={relatedBook} />
               ))}
             </div>
-          </LibraryPageShell>
-        </section>
-      )}
+          </section>
+        )}
 
-      <footer data-library-section className={cn("mt-6 lg:mt-8", libraryPad)}>
-        <LibraryPageShell className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-6 py-5 lg:px-8 lg:py-7 3xl:px-12 3xl:py-10">
-          <span className="text-2xl text-[#C5A059] lg:text-3xl 3xl:text-4xl">✦</span>
-          <p className={cn(libraryBody, "flex-1")}>
-            Step into the world of words. Explore the beauty of Kurdish literature.
-          </p>
-          <Link to="/library/books" className={libraryBtnPrimary + " shrink-0 !rounded-full text-[#C5A059] !bg-[#0B1C14]"}>
-            Explore More Books →
-          </Link>
-        </LibraryPageShell>
-      </footer>
-    </main>
+        <footer data-library-section className="mt-auto pt-8">
+          <div className="flex items-center gap-4 rounded-2xl bg-[#E8E0D4]/60 px-8 py-6">
+            <span className="text-3xl text-[#C5A059]">✦</span>
+            <p className="flex-1 text-lg text-[#5C4A3A]">
+              Step into the world of words. Explore the beauty of Kurdish literature.
+            </p>
+            <Link
+              to="/library/books"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0B1C14] px-8 py-4 text-lg text-[#C5A059]"
+            >
+              Explore More Books →
+            </Link>
+          </div>
+        </footer>
+      </div>
+    </DesignScaledCanvas>
   );
 }
