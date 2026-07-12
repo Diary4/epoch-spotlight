@@ -29,20 +29,6 @@ const SAMPLE_PAGES: Record<string, string[]> = {
     "Politics entered the story the way winter enters a valley — slowly, then all at once. The personal and the political were never separate in Kurdistan. They were two rivers flowing into the same sea.",
     "What you have read so far is only the threshold. Beyond these five pages, the garden grows stranger, the mirror cracks, and love learns its true name. The full journey awaits those who choose to continue.",
   ],
-  "zindiyan": [
-    "Living ones — zindîyan — we are the living ones. Not the martyrs carved in stone, not the names in history books, but the breath in our lungs and the fire in our songs.",
-    "I wrote these verses for my people when the world tried to name us only by our suffering. We are more than struggle. We are laughter in the tea house, wheat in the field, a child's first word in Kurdish.",
-    "The tree on the cover stands alone against the sunset. It has stood through every storm. So have we. This is what I want every reader to feel in the opening pages — rooted, upright, alive.",
-    "Poetry was never decoration for me. It was survival. When the pen moves, a nation breathes. When the verse is sung, the young learn who they are. These lines are seeds.",
-    "You have tasted the first fruits. The orchard is vast — generations of verse waiting in the full edition. But even these five pages carry the scent of the homeland on the wind.",
-  ],
-  "mem-u-zin": [
-    "In the name of God, the Most Merciful. This is the tale of Mem and Zîn — two souls bound by love and torn apart by the cruelty of those who feared what love could unite.",
-    "Mem was young and fair, with a heart open as the spring. Zîn was grace itself, daughter of a noble house. When their eyes met at the festival, every poet in Kurdistan should have been there to witness it.",
-    "But love that shines too brightly casts a shadow. Beko, the jealous soul, saw what he could not possess and set in motion a tragedy that would echo through centuries.",
-    "Ehmedê Xanî wrote not only a love story but a mirror for a people. In Mem's devotion and Zîn's dignity, Kurds saw themselves — passionate, proud, unbroken by betrayal.",
-    "These opening cantos set the stage for the greatest Kurdish epic. The full poem spans lifetimes of longing. What you have read is the door. The complete tale lies beyond, waiting to be unlocked.",
-  ],
 };
 
 function buildFallbackPages(book: LibraryBook): string[] {

@@ -1,15 +1,11 @@
 import dwemCover from "@/assets/images/new/dwem.webp";
 import card2 from "@/assets/mainImages/card-2.webp";
 import card3 from "@/assets/mainImages/card-3.webp";
-import card4 from "@/assets/mainImages/discoverkurdistan/card-1.webp";
-import card5 from "@/assets/mainImages/discoverkurdistan/card-2.webp";
 import card6 from "@/assets/mainImages/discoverkurdistan/card-3.webp";
-import card7 from "@/assets/mainImages/discoverkurdistan/card-4.webp";
 import card1 from "@/assets/mainImages/card-1.webp";
 import story1 from "@/assets/mainImages/story-1.webp";
 import story2 from "@/assets/mainImages/story-2.webp";
 import story3 from "@/assets/mainImages/story-3.webp";
-import letter from "@/assets/mainImages/letter.webp";
 import type { LibraryBook, LibraryCategory } from "./libraryTypes";
 
 export const LIBRARY_BOOKS: LibraryBook[] = [
@@ -71,40 +67,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     popular: true,
   },
   {
-    id: "zindiyan",
-    title: "Zindîyan",
-    authorId: "cegerxwin",
-    cover: card4,
-    genre: "Poetry",
-    year: 1970,
-    language: "Kurdish",
-    readingTime: "3h",
-    pages: 180,
-    publisher: "Kurdish Literary House",
-    description:
-      "Living ones — verses that pulse with the heartbeat of a nation and the enduring fire of Kurdish identity.",
-    rating: 4.9,
-    popular: true,
-  },
-  {
-    id: "mem-u-zin",
-    title: "Mem u Zîn",
-    authorId: "ehmede-khani",
-    cover: card5,
-    genre: "Epic Poetry",
-    year: 1692,
-    language: "Kurdish",
-    readingTime: "8h",
-    pages: 450,
-    publisher: "Classical Editions",
-    description:
-      "The greatest Kurdish love epic — a timeless tale of passion, tragedy, and the soul of a people.",
-    aboutText:
-      "Mem û Zîn stands as the cornerstone of Kurdish literature, a poem of love and loss that has shaped Kurdish identity for centuries.",
-    rating: 5.0,
-    popular: true,
-  },
-  {
     id: "ghazalnus",
     title: "Ghazalnus and the Gardens",
     authorId: "bakhtyar-ali",
@@ -116,19 +78,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     pages: 380,
     description: "A surreal journey through metaphysical gardens and the fractured landscapes of memory.",
     rating: 4.6,
-  },
-  {
-    id: "kine-em",
-    title: "Kîne Em?",
-    authorId: "cegerxwin",
-    cover: card7,
-    genre: "Poetry",
-    year: 1960,
-    language: "Kurdish",
-    readingTime: "2h 30m",
-    pages: 140,
-    description: "Who are we? — revolutionary verses that ask the defining question of Kurdish identity.",
-    rating: 4.8,
   },
   {
     id: "deng-u-bal",
@@ -185,48 +134,6 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     publisher: "Kurdistan Press",
     description: "City and soul — poems that move between urban life and the enduring Kurdish spirit.",
     rating: 4.6,
-  },
-  {
-    id: "tu",
-    title: "Tu",
-    authorId: "mehmed-uzun",
-    cover: card6,
-    genre: "Novel",
-    year: 1993,
-    language: "Kurdish",
-    readingTime: "5h 45m",
-    pages: 280,
-    publisher: "Avesta",
-    description: "You — a novel of identity and exile that helped revive modern Kurdish fiction.",
-    rating: 4.7,
-  },
-  {
-    id: "rov",
-    title: "Rov",
-    authorId: "mehmed-uzun",
-    cover: letter,
-    genre: "Novel",
-    year: 1999,
-    language: "Kurdish",
-    readingTime: "6h",
-    pages: 320,
-    publisher: "Avesta",
-    description: "The plain — a sweeping narrative of Kurdish life, migration, and cultural survival.",
-    rating: 4.8,
-  },
-  {
-    id: "nubihar",
-    title: "Nûbihar",
-    authorId: "ehmede-khani",
-    cover: card4,
-    genre: "Poetry",
-    year: 1688,
-    language: "Kurdish",
-    readingTime: "4h",
-    pages: 220,
-    publisher: "Classical Editions",
-    description: "New spring — philosophical and lyrical poems preceding the epic Mem û Zîn.",
-    rating: 4.9,
   },
 ];
 

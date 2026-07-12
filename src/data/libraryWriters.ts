@@ -1,10 +1,7 @@
-import benjaminfranklin from "@/assets/images/benjaminfranklin.webp";
-import napoleon from "@/assets/images/napel.webp";
-import trump from "@/assets/images/trump.webp";
-import firstPerson from "@/assets/firstperson.webp";
-import laylaZana from "@/assets/images/women/layla-zana.webp";
-import najibaKhan from "@/assets/images/women/najiba-khan.webp";
-import kurdistanMukryani from "@/assets/images/women/kurdistan-mukryani.webp";
+import farhadPirbal from "@/assets/images/library/writers/farhad-pirbal.jpg";
+import bakhtyarAli from "@/assets/images/library/writers/bakhtiar-ali.jpg";
+import rebwarSiwayli from "@/assets/images/library/writers/rebwar-siwayli.jpg";
+import taalatTahir from "@/assets/images/library/writers/taalat-tahir.jpg";
 import office from "@/assets/office.webp";
 import natureBg from "@/assets/images/nature.webp";
 import kurdistan from "@/assets/images/kurdistan.webp";
@@ -17,8 +14,8 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     roles: ["Poet", "Writer", "Thinker"],
     born: "1961",
     birthplace: "Erbil, Kurdistan",
-    portrait: benjaminfranklin,
-    portraitDark: benjaminfranklin,
+    portrait: farhadPirbal,
+    portraitDark: farhadPirbal,
     portraitLibrary: office,
     bio: "Farhad Pirbal is one of the most influential voices in modern Kurdish literature. His poetry and prose explore identity, exile, love, and the enduring spirit of Kurdistan. Through decades of writing, he has shaped how Kurdish readers see themselves and their place in the world.",
     quote: "A word that comes from the heart, reaches another heart.",
@@ -40,8 +37,8 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     born: "1966",
     birthplace: "Sulaymaniyah, Kurdistan",
     lifespan: "1966 –",
-    portrait: napoleon,
-    portraitDark: napoleon,
+    portrait: bakhtyarAli,
+    portraitDark: bakhtyarAli,
     bio: "Bakhtyar Ali is celebrated for his visionary novels that blend surrealism with Kurdish political and cultural history. His work has earned international recognition and brought Kurdish fiction to global audiences.",
     quote: "Literature is the only homeland that cannot be taken away.",
     timeline: [
@@ -59,8 +56,8 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     roles: ["Poet", "Writer"],
     born: "1970",
     birthplace: "Kurdistan",
-    portrait: trump,
-    portraitDark: trump,
+    portrait: rebwarSiwayli,
+    portraitDark: rebwarSiwayli,
     bio: "Rebwar Siwayli is known for lyrical poetry rooted in Kurdish landscape and memory. His verses capture the beauty of mountains, rivers, and the quiet resilience of everyday life.",
     quote: "The mountain remembers what the city forgets.",
     timeline: [
@@ -76,8 +73,8 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     id: "taalat-tahir",
     name: "Taalat Tahir",
     roles: ["Writer", "Poet"],
-    portrait: firstPerson,
-    portraitDark: firstPerson,
+    portrait: taalatTahir,
+    portraitDark: taalatTahir,
     bio: "Taalat Tahir writes with clarity and warmth, exploring themes of belonging, language, and cultural heritage through poetry and prose.",
     quote: "Every poem is a bridge between what was lost and what must be kept.",
     timeline: [
@@ -87,62 +84,6 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     ],
     bookIds: [],
     featured: true,
-  },
-  {
-    id: "cegerxwin",
-    name: "Cegerxwîn",
-    roles: ["Poet", "Writer"],
-    lifespan: "1903 – 1984",
-    birthplace: "Mardin",
-    portrait: laylaZana,
-    portraitDark: laylaZana,
-    bio: "Cegerxwîn is one of the greatest Kurdish poets of the 20th century. His epic verses celebrate Kurdish identity, resistance, and the beauty of the homeland.",
-    quote: "We are the living ones — our language is our weapon and our shield.",
-    timeline: [
-      { year: "1903", text: "Born in Mardin" },
-      { year: "1930s", text: "Published early revolutionary poetry" },
-      { year: "1960s", text: "Wrote landmark works including Kîne Em?" },
-      { year: "1984", text: "Passed away, leaving a lasting literary legacy" },
-    ],
-    bookIds: ["zindiyan", "kine-em"],
-    featured: true,
-  },
-  {
-    id: "mehmed-uzun",
-    name: "Mehmed Uzun",
-    roles: ["Writer", "Novelist"],
-    lifespan: "1953 – 2007",
-    birthplace: "Siverek, Turkey",
-    portrait: najibaKhan,
-    portraitDark: najibaKhan,
-    bio: "Mehmed Uzun was a pioneering Kurdish novelist whose works explored exile, identity, and the Kurdish struggle for cultural survival.",
-    quote: "To write in Kurdish is an act of courage, memory, and love.",
-    timeline: [
-      { year: "1953", text: "Born in Siverek" },
-      { year: "1970s", text: "Began writing in exile" },
-      { year: "1990s", text: "Published acclaimed novels in Kurdish" },
-      { year: "2007", text: "Passed away in Diyarbakır" },
-    ],
-    bookIds: ["tu", "rov"],
-    featured: true,
-  },
-  {
-    id: "ehmede-khani",
-    name: "Ehmedê Xanî",
-    roles: ["Poet", "Philosopher"],
-    lifespan: "1650 – 1707",
-    birthplace: "Hakkari",
-    portrait: kurdistanMukryani,
-    portraitDark: kurdistanMukryani,
-    bio: "Ehmedê Xanî is the author of Mem û Zîn, the greatest Kurdish epic poem. His work remains central to Kurdish literary and cultural identity.",
-    quote: "Love is a boundary that no power on earth can ever cross.",
-    timeline: [
-      { year: "1650", text: "Born in Hakkari region" },
-      { year: "1692", text: "Completed Mem û Zîn" },
-      { year: "1707", text: "Passed away, leaving the Kurdish national epic" },
-    ],
-    bookIds: ["mem-u-zin", "nubihar"],
-    featured: false,
   },
 ];
 
