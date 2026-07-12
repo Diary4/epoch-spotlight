@@ -12,6 +12,7 @@ import { localizeDigits } from "@/lib/utils";
 import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
+import { getAnthemLyricAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
 
 const WRITER_YEAR = "1938";
 const ROLE_YEAR = "1946";
@@ -153,6 +154,10 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  const activeLyrics = getAnthemLyricAt(currentTime, lang as AnthemLang);
+  const showLyrics = currentTime >= 8 && activeLyrics !== null;
 
   useEffect(() => {
     const recompute = () => {
@@ -186,8 +191,12 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
     const onEnded = () => {
       setIsPlaying(false);
       setProgress(0);
+      setCurrentTime(0);
     };
-    const onTime = () => setProgress(a.duration ? a.currentTime / a.duration : 0);
+    const onTime = () => {
+      setCurrentTime(a.currentTime);
+      setProgress(a.duration ? a.currentTime / a.duration : 0);
+    };
     a.addEventListener("play", onPlay);
     a.addEventListener("pause", onPause);
     a.addEventListener("ended", onEnded);
@@ -214,6 +223,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
     a.pause();
     a.currentTime = 0;
     setProgress(0);
+    setCurrentTime(0);
   };
 
   const restart = () => {
@@ -221,6 +231,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
     if (!a) return;
     a.currentTime = 0;
     setProgress(0);
+    setCurrentTime(0);
     void a.play().catch(() => {});
   };
 
@@ -273,6 +284,41 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
               className="pointer-events-none absolute inset-x-0 bottom-0 h-40"
               style={{ background: `linear-gradient(to top, ${PAPER} 0%, rgba(251,245,235,0) 100%)` }}
             />
+
+            {/* Synced lyrics overlay */}
+            <div
+              className={`pointer-events-none absolute left-1/2 top-[38%] z-20 w-full max-w-[780px] -translate-x-1/2 -translate-y-1/2 px-10 transition-opacity duration-500 ${
+                showLyrics ? "opacity-100" : "opacity-0"
+              }`}
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {activeLyrics && (
+                <div
+                  className={`max-w-[720px] rounded-xl px-8 py-5 text-center shadow-2xl ${
+                    isRtlScript ? "font-noto-naskh" : displayFont
+                  }`}
+                  style={{
+                    background: "rgba(6,9,15,0.78)",
+                    backdropFilter: "blur(14px)",
+                    border: "1px solid rgba(201,154,85,0.35)",
+                  }}
+                >
+                  <p
+                    className="text-[22px] font-light leading-snug text-white"
+                    dir={lang === "en" ? "ltr" : "rtl"}
+                  >
+                    {activeLyrics[0]}
+                  </p>
+                  <p
+                    className="mt-2 text-[19px] font-light leading-snug text-[#e6c98f]"
+                    dir={lang === "en" ? "ltr" : "rtl"}
+                  >
+                    {activeLyrics[1]}
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* Glass identity card */}
             <div
