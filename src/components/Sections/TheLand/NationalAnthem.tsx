@@ -11,6 +11,7 @@ import { discoverDisplayFont, discoverRtlScript, discoverYearFont } from "@/comp
 import { localizeDigits } from "@/lib/utils";
 import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
+import anthemVideo from "@/assets/videos/flag.mp4";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
 import { getAnthemLyricAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
 
@@ -157,7 +158,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const [currentTime, setCurrentTime] = useState(0);
 
   const activeLyrics = getAnthemLyricAt(currentTime, lang as AnthemLang);
-  const showLyrics = currentTime >= 8 && activeLyrics !== null;
+  const showLyrics = currentTime >= 6 && activeLyrics !== null;
 
   useEffect(() => {
     const recompute = () => {
@@ -267,9 +268,15 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
         <main className="m-0 w-full" style={{ backgroundColor: PAPER, color: INK }}>
           {/* ---------- Cinematic hero (Prime-Minister style) ---------- */}
           <section className="relative w-full overflow-hidden" style={{ height: "660px" }}>
-            <div
-              className="land-detail-hero absolute inset-0"
-              style={{ backgroundImage: `url(${anthemBg})`, backgroundSize: "cover", backgroundPosition: "center 30%" }}
+            <video
+              className="land-detail-hero absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: "center 30%" }}
+              src={anthemVideo}
+              poster={anthemBg}
+              autoPlay
+              loop
+              muted
+              playsInline
             />
             {/* Cinematic scrim + fade into the cream content below */}
             <div
