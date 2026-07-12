@@ -395,13 +395,13 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                       className="animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out"
                     >
                       <p
-                        className="text-[20px] font-light leading-snug text-white"
+                        className="text-[28px] font-normal leading-snug text-white"
                         dir={lang === "en" ? "ltr" : "rtl"}
                       >
                         {activeLyrics[0]}
                       </p>
                       <p
-                        className="mt-2.5 text-[20px] font-light leading-snug text-white"
+                        className="mt-3 text-[28px] font-normal leading-snug text-white"
                         dir={lang === "en" ? "ltr" : "rtl"}
                       >
                         {activeLyrics[1]}

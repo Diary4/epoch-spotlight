@@ -1,6 +1,6 @@
-import dwemCover from "@/assets/images/new/dwem.webp";
-import card3 from "@/assets/mainImages/card-3.webp";
-import story1 from "@/assets/mainImages/story-1.webp";
+import potatoEatersCover from "@/assets/images/library/books/the-potato-eater.webp";
+import hotelEuropaCover from "@/assets/images/library/books/hotel-europa.jpeg";
+import triangleTombCover from "@/assets/images/library/books/triangle-tomb.jpeg";
 import type { LibraryBook, LibraryCategory } from "./libraryTypes";
 
 export const LIBRARY_BOOKS: LibraryBook[] = [
@@ -8,7 +8,7 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     id: "the-potato-eaters",
     title: "The Potato Eaters: Stories",
     authorId: "farhad-pirbal",
-    cover: story1,
+    cover: potatoEatersCover,
     genre: "Short Stories",
     year: 2024,
     language: "English",
@@ -28,7 +28,7 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "هوتێل ئەوروپا",
     originalTitle: "هوتێل ئەوروپا",
     authorId: "farhad-pirbal",
-    cover: dwemCover,
+    cover: hotelEuropaCover,
     genre: "Literature",
     year: 2010,
     language: "Kurdish",
@@ -74,7 +74,7 @@ export const LIBRARY_BOOKS: LibraryBook[] = [
     title: "قەبرێکی سێگۆشە",
     originalTitle: "قەبرێکی سێگۆشە",
     authorId: "farhad-pirbal",
-    cover: card3,
+    cover: triangleTombCover,
     genre: "Novel",
     year: 2013,
     language: "Kurdish",
