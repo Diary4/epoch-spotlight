@@ -158,7 +158,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const [currentTime, setCurrentTime] = useState(0);
 
   const activeLyrics = getAnthemLyricAt(currentTime, lang as AnthemLang);
-  const showLyrics = currentTime >= 6 && activeLyrics !== null;
+  const showLyrics = currentTime >= 7.4 && activeLyrics !== null;
 
   useEffect(() => {
     const recompute = () => {

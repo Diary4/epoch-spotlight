@@ -1,8 +1,9 @@
 /**
  * Ey Reqîb — official Sorani lyrics (Wikipedia / KRG), with English and Arabic translations.
- * Timings tuned to src/assets/audio/national-anthem.mp3 (53.75s). The vocal starts at
- * ~6.2s and is sung as 10 evenly spaced phrases of ~4.46s each, ending ~50.8s before the
- * outro fade (derived from the recording's harmonic repetition period).
+ * Timings synced to src/assets/audio/national-anthem.mp3 (53.75s) via onset analysis of the
+ * recording: the instrumental intro runs to ~7.4s, the vocal is sung across ~7.44s–50.78s at a
+ * steady ~1.3s pulse, and is structured as 5 stanzas of (verse couplet + refrain) = 10 phrases
+ * of ~4.33s each. The outro fade begins ~51s.
  */
 
 export type AnthemLang = "ku" | "en" | "ar";
@@ -22,8 +23,8 @@ const CHORUS: Record<AnthemLang, [string, string]> = {
 /** Verse + chorus pairs, five stanzas. */
 export const ANTHEM_LYRIC_CUES: AnthemLyricCue[] = [
   {
-    start: 6.2,
-    end: 10.7,
+    start: 7.44,
+    end: 11.77,
     lines: {
       ku: ["ئەی ڕەقیب، ھەر ماوە قەومی کورد زمان،", "نایشکێنێ دانەری تۆپی زەمان."],
       en: [
@@ -34,13 +35,13 @@ export const ANTHEM_LYRIC_CUES: AnthemLyricCue[] = [
     },
   },
   {
-    start: 10.7,
-    end: 15.1,
+    start: 11.77,
+    end: 16.11,
     lines: CHORUS,
   },
   {
-    start: 15.1,
-    end: 19.6,
+    start: 16.11,
+    end: 20.44,
     lines: {
       ku: ["ئێمە ڕۆڵەی ڕەنگی سوور و شۆڕشین،", "سەیری کە، خوێناوییە ڕابردوومان."],
       en: ["We are the sons of the red colour of revolution", "Our history is one filled with blood"],
@@ -48,13 +49,13 @@ export const ANTHEM_LYRIC_CUES: AnthemLyricCue[] = [
     },
   },
   {
-    start: 19.6,
-    end: 24.1,
+    start: 20.44,
+    end: 24.78,
     lines: CHORUS,
   },
   {
-    start: 24.1,
-    end: 28.5,
+    start: 24.78,
+    end: 29.11,
     lines: {
       ku: ["ئێمە ڕۆڵەی میدیا و کەیخوسرەوین،", "دینمان، ئایینمان، ھەر نیشتمان"],
       en: ["We are the sons of the Medes and Kai Khosrow", "Our homeland is our faith and religion"],
@@ -62,13 +63,13 @@ export const ANTHEM_LYRIC_CUES: AnthemLyricCue[] = [
     },
   },
   {
-    start: 28.5,
-    end: 33.0,
+    start: 29.11,
+    end: 33.44,
     lines: CHORUS,
   },
   {
-    start: 33.0,
-    end: 37.4,
+    start: 33.44,
+    end: 37.78,
     lines: {
       ku: ["لاوی کورد ھەستایە سەر پێ وەک دلێر،", "تا بە خوێن نەخشی بکا تاجی ژیان."],
       en: ["The Kurdish youth has risen like noble warriors", "To draw the crown of life with blood"],
@@ -76,13 +77,13 @@ export const ANTHEM_LYRIC_CUES: AnthemLyricCue[] = [
     },
   },
   {
-    start: 37.4,
-    end: 41.9,
+    start: 37.78,
+    end: 42.11,
     lines: CHORUS,
   },
   {
-    start: 41.9,
-    end: 46.4,
+    start: 42.11,
+    end: 46.45,
     lines: {
       ku: ["لاوی کورد ھەر حازر و ئامادەیە،", "گیانفیدایە، گیانفیدا، ھەر گیانفیدا."],
       en: [
@@ -93,8 +94,8 @@ export const ANTHEM_LYRIC_CUES: AnthemLyricCue[] = [
     },
   },
   {
-    start: 46.4,
-    end: 50.8,
+    start: 46.45,
+    end: 50.78,
     lines: CHORUS,
   },
 ];
