@@ -401,7 +401,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                         {activeLyrics[0]}
                       </p>
                       <p
-                        className="mt-2.5 text-[17px] font-light leading-snug text-[#e6c98f]"
+                        className="mt-2.5 text-[20px] font-light leading-snug text-white"
                         dir={lang === "en" ? "ltr" : "rtl"}
                       >
                         {activeLyrics[1]}
