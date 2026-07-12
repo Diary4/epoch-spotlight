@@ -150,7 +150,7 @@ export default function SharedIdentityPage({ lang = "en", onBack }: SharedIdenti
                 </p>
               </section>
 
-              <div className="flex-[0.3]" />
+              <div className="flex-[0.5]" />
 
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localizedCards.map((card, i) => (
