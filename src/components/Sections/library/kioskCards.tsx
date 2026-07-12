@@ -136,7 +136,7 @@ export function KioskBookCard({ book }: { book: LibraryBook }) {
       data-library-item
       className="flex w-[200px] flex-col"
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-md">
+      <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-md">
         <img src={book.cover} alt={book.title} className="h-full w-full object-cover" />
       </div>
       <p className="mt-3 line-clamp-1 font-serif text-lg text-[#0B1C14]">{book.title}</p>
