@@ -14,7 +14,7 @@ import DesignScaledCanvas from "@/components/DesignScaledCanvas";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
 import { KioskBookCard } from "@/components/Sections/library/kioskCards";
 import { getWriterById } from "@/data/libraryWriters";
-import { getBooksByAuthor } from "@/data/libraryBooks";
+import { getBooksByAuthor, getFeaturedBooks } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
@@ -39,6 +39,9 @@ export default function LibraryWriterDetail() {
   }
 
   const books = getBooksByAuthor(writer.id);
+  // Every profile should surface at least one book; fall back to example
+  // titles from the collection for writers whose catalogue isn't loaded yet.
+  const sampleBooks = books.length > 0 ? books : getFeaturedBooks();
 
   return (
     <DesignScaledCanvas fitViewport bgClassName="bg-[#F5F2ED]" fitDeps={[writerId]}>
@@ -64,7 +67,7 @@ export default function LibraryWriterDetail() {
               <img
                 src={writer.portrait}
                 alt={writer.name}
-                className="w-full object-cover grayscale"
+                className="h-[420px] w-full object-cover object-top grayscale"
                 style={{
                   maskImage: "linear-gradient(to right, black 70%, transparent 100%)",
                   WebkitMaskImage: "linear-gradient(to right, black 70%, transparent 100%)",
@@ -119,8 +122,8 @@ export default function LibraryWriterDetail() {
 
         <section data-library-section className="mt-8 h-[980px] overflow-hidden">
           {activeTab === "overview" && (
-            <div className="grid h-full grid-cols-2 gap-8">
-              <div className="rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-8">
+            <div className="grid h-full grid-cols-5 gap-8">
+              <div className="col-span-3 rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-8">
                 <h3 className="font-serif text-3xl text-[#2D4635]">Life Journey</h3>
                 <div className="relative mt-8 space-y-7 pl-6">
                   <div className="absolute bottom-2 left-[7px] top-2 w-px bg-[#C5A059]/40" />
@@ -134,40 +137,24 @@ export default function LibraryWriterDetail() {
                 </div>
               </div>
 
-              {writer.portraitLibrary ? (
-                <div className="overflow-hidden rounded-2xl">
-                  <img
-                    src={writer.portraitLibrary}
-                    alt={`${writer.name} in library`}
-                    className="h-full w-full object-cover grayscale"
-                  />
+              <div className="col-span-2 rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-8">
+                <h3 className="font-serif text-3xl text-[#2D4635]">Selected Works</h3>
+                <div className="mt-8 flex flex-col items-center gap-8">
+                  {sampleBooks.slice(0, 2).map((book) => (
+                    <KioskBookCard key={book.id} book={book} />
+                  ))}
                 </div>
-              ) : (
-                <div className="flex flex-col justify-center rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] p-10">
-                  <span className="font-serif text-6xl text-[#C5A059]/40">&ldquo;</span>
-                  <p className="mt-2 font-serif text-3xl italic leading-relaxed text-[#0B1C14]">
-                    {writer.quote}
-                  </p>
-                  <p className="mt-6 text-lg text-[#8B7355]">— {writer.name}</p>
-                </div>
-              )}
+              </div>
             </div>
           )}
 
-          {activeTab === "books" &&
-            (books.length > 0 ? (
-              <div className="flex flex-wrap gap-8">
-                {books.map((book) => (
-                  <KioskBookCard key={book.id} book={book} />
-                ))}
-              </div>
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <p className="text-xl text-[#8B7355]">
-                  Books by {writer.name} will be featured here soon.
-                </p>
-              </div>
-            ))}
+          {activeTab === "books" && (
+            <div className="flex flex-wrap gap-8">
+              {sampleBooks.map((book) => (
+                <KioskBookCard key={book.id} book={book} />
+              ))}
+            </div>
+          )}
 
           {activeTab === "quotes" && writer.quote && (
             <div className="flex h-full items-center justify-center">
@@ -211,7 +198,7 @@ export default function LibraryWriterDetail() {
               Explore his words, feel his world. Dive deeper into the works of {writer.name}.
             </p>
             <Link
-              to={`/library/books/${books[0]?.id ?? ""}`}
+              to={`/library/books/${sampleBooks[0]?.id ?? ""}`}
               className="inline-flex items-center gap-2 rounded-full bg-[#0B1C14] px-8 py-4 text-lg text-[#C5A059]"
             >
               Explore Books →
