@@ -556,7 +556,7 @@ export default function JourneyTimelinePage({ lang = "en", onBack, onSelectMiles
                           <div className="min-h-[96px] w-px shrink-0 self-stretch bg-[#e2c99b]" />
 
                           <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center px-7 py-6">
-                            <h3 data-discover-lang="true" className={`${YEAR_MILESTONE_IDS.has(item.id) ? discoverYearFont(lang) : displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] font-light leading-tight text-[#17233b]`}>
+                            <h3 data-discover-lang="true" className={`${YEAR_MILESTONE_IDS.has(item.id) ? discoverYearFont(lang) : displayFont} text-[clamp(18px,4cqw,26px)] sm:text-[32px] md:text-[38px] ${YEAR_MILESTONE_IDS.has(item.id) && lang === "en" ? "font-medium" : "font-light"} leading-tight text-[#17233b]`}>
                               {item.title}
                             </h3>
                             <p data-discover-lang="true" className="mt-2 max-w-[380px] text-[clamp(14px,3cqw,18px)] sm:text-[19px] md:text-[23px] leading-snug text-[#303a50] font-light">
