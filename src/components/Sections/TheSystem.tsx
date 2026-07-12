@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, X } from "lucide-react";
 import { sectionBackButtonClassName, sectionBackButtonSideClassName, sectionBackIconClassName } from "@/constants/backNavigation";
 import gsap from "gsap";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
@@ -13,72 +13,93 @@ import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
 import presidencyIcon from "@/assets/icons/thesystem/presidency.webp";
 import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
 
+/** Radiating sun motif used in the ornament dividers and the panel emblem. */
+function Sunburst({ className = "" }: { className?: string }) {
+  const rays = Array.from({ length: 16 }, (_, i) => {
+    const a = (i / 16) * Math.PI * 2;
+    const inner = 15;
+    const outer = i % 2 === 0 ? 32 : 23;
+    return {
+      x1: 50 + Math.cos(a) * inner,
+      y1: 50 + Math.sin(a) * inner,
+      x2: 50 + Math.cos(a) * outer,
+      y2: 50 + Math.sin(a) * outer,
+    };
+  });
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round">
+      <circle cx="50" cy="50" r="9" />
+      {rays.map((r, i) => (
+        <line key={i} x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2} />
+      ))}
+    </svg>
+  );
+}
+
 function OrnamentDivider({ dataAttr }: { dataAttr?: string }) {
   return (
-    <div data-sys-ornament={dataAttr ? "true" : undefined} className="flex items-center justify-center gap-4 text-[#b99152]">
-      <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#b99152]" />
-      <span className="h-2 w-2 rotate-45 border border-[#b99152]" />
-      <span className="text-2xl leading-none">✥</span>
-      <span className="h-2 w-2 rotate-45 border border-[#b99152]" />
-      <span className="h-px w-24 bg-gradient-to-l from-transparent to-[#b99152]" />
+    <div data-sys-ornament={dataAttr ? "true" : undefined} className="flex items-center justify-center gap-6 text-[#b99152]">
+      <span className="h-px w-40 bg-gradient-to-r from-transparent to-[#cfae72]" />
+      <Sunburst className="h-9 w-9" />
+      <span className="h-px w-40 bg-gradient-to-l from-transparent to-[#cfae72]" />
     </div>
   );
 }
 
-function InstitutionCard({
+function InstitutionColumn({
   numeral,
   label,
-  sub,
+  tag,
+  desc,
   iconSrc,
-  iconNode,
-  iconObjectPosition = "object-center",
-  iconScale = "scale-[1.15]",
+  iconScale = "scale-[1.25]",
   onClick,
   displayFont,
+  latin,
+  withDivider,
 }: {
   numeral: string;
   label: string;
-  sub: string;
-  iconSrc?: string;
-  iconNode?: React.ReactNode;
-  iconObjectPosition?: string;
+  tag: string;
+  desc: string;
+  iconSrc: string;
   iconScale?: string;
   onClick?: () => void;
   displayFont: string;
+  latin: boolean;
+  withDivider: boolean;
 }) {
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick?.();
-        }
-      }}
-      className="flex h-full w-full cursor-pointer flex-col items-center rounded-b-[28px] rounded-t-[999px] bg-white px-8 pb-12 pt-10 text-center shadow-[0_18px_45px_rgba(84,54,16,0.14)] ring-1 ring-[#eee2c8] transition-transform duration-300 active:scale-[0.985]"
-    >
-      <div className="flex h-[240px] w-full shrink-0 items-center justify-center">
-        <span className="grid h-56 w-56 shrink-0 place-items-center overflow-hidden rounded-full ring-1 ring-[#e6d5ac]">
-          {iconNode ? (
-            iconNode
-          ) : (
-            <img
-              src={iconSrc}
-              alt=""
-              className={`h-full w-full object-cover ${iconScale} ${iconObjectPosition}`}
-            />
-          )}
+    <div className={`flex ${withDivider ? "border-s border-[#e6d5ac]" : ""}`}>
+      <button
+        type="button"
+        onClick={onClick}
+        className="group flex w-full flex-col items-center px-10 text-center outline-none"
+      >
+        <span className="grid h-[150px] w-[150px] shrink-0 place-items-center overflow-hidden rounded-full bg-white shadow-[0_16px_36px_rgba(84,54,16,0.16)] ring-1 ring-[#e6d5ac] transition-transform duration-300 group-hover:scale-[1.04] group-active:scale-95">
+          <img src={iconSrc} alt="" className={`h-full w-full object-cover ${iconScale}`} />
         </span>
-      </div>
-      <span className="mt-6 font-serif text-[26px] text-[#1d2a45]">{numeral}</span>
-      <span data-discover-lang="true" className={`mt-1 block w-full ${displayFont} text-[37px] font-light leading-tight text-[#17233b]`}>
-        {label}
-      </span>
-      <span data-discover-lang="true" className="mt-3 block w-full break-words text-[21px] font-light leading-snug text-[#9b6d35]">
-        {sub}
-      </span>
+
+        <span className="mt-7 font-serif text-[30px] leading-none text-[#1d2a45]">{numeral}</span>
+        <span className="mt-5 h-px w-4/5 bg-[#dcc79c]" />
+
+        <span data-discover-lang="true" className={`mt-5 block break-words ${displayFont} text-[42px] font-normal leading-tight text-[#17233b]`}>
+          {label}
+        </span>
+        <span data-discover-lang="true" className={`mt-2 block text-[22px] text-[#9b6d35] ${latin ? "font-serif italic" : displayFont}`}>
+          {tag}
+        </span>
+
+        <span className="my-6 h-2.5 w-2.5 rotate-45 border border-[#cfae72]" />
+
+        <p data-discover-lang="true" className="max-w-[300px] break-words text-[21px] font-light leading-snug text-[#5c6473]">
+          {desc}
+        </p>
+
+        <span className="mt-7 grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#cfae72] text-[#b99152] transition-colors duration-300 group-hover:bg-[#b99152] group-hover:text-[#fbf5eb] group-active:bg-[#b99152] group-active:text-[#fbf5eb]">
+          <ChevronRight className="h-6 w-6 rtl:rotate-180" strokeWidth={1.4} />
+        </span>
+      </button>
     </div>
   );
 }
@@ -112,23 +133,33 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
 
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const isEn = lang === "en";
   const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
   const dir = lang === "en" ? "ltr" : "rtl";
 
   const title = isAr ? "النظام" : isKu ? "سیستەمەکە" : "The System";
-  const heading = isAr ? "كيف تعمل مؤسسات كوردستان معًا." : isKu ? "چۆنیەتی کارکردنی دامەزراوەکانی کوردستان پێکەوە." : "How Kurdistan’s institutions work together.";
-  const description = isAr
-    ? "يعمل إقليم كوردستان وفق نظام برلماني تتعاون فيه المؤسسات لخدمة الحياة العامة."
+  const heading = isAr ? "كيف تُنظَّم حوكمة كوردستان" : isKu ? "چۆنیەتی پێکهاتنی حکومەتی کوردستان" : "How Kurdistan government is structured";
+
+  const panelTitle = isAr ? "النظام الإقليمي" : isKu ? "سیستەمی هەرێم" : "The Regional System";
+  const panelDescription = isAr
+    ? "يعمل إقليم كوردستان كإقليم فيدرالي شبه مستقل تسنده ثلاث سلطات مستقلة — التشريعية والتنفيذية والقضائية — تعمل معًا لترسيخ سيادة القانون والإدارة العامة."
     : isKu
-      ? "هەرێمی کوردستان لە ڕێگەی سیستەمێکی پەرلەمانییەوە بەڕێوە دەبرێت کە تێیدا دامەزراوەکان پێکەوە کاردەکەن بۆ پاڵپشتیکردنی ژیانی گشتی."
-      : "The Kurdistan Region operates through a parliamentary system in which institutions work together to support public life.";
+      ? "هەرێمی کوردستان وەک هەرێمێکی فیدراڵی نیمچە خۆسەر کاردەکات کە لەلایەن سێ دەسەڵاتی سەربەخۆوە — یاسادانان، جێبەجێکردن، و دادوەری — پاڵپشتی دەکرێت، کە پێکەوە کاردەکەن بۆ پاراستنی فەرمانڕەوایی یاسا و کارگێڕی گشتی."
+      : "The Kurdistan Region operates as a semi-autonomous federal region sustained by three independent branches — the Legislature, the Executive, and the Judiciary — working collectively to uphold the rule of law and public administration.";
+
   const parliamentLabel = isAr ? "البرلمان" : isKu ? "پەرلەمان" : "Parliament";
   const governmentLabel = isAr ? "الحكومة" : isKu ? "حکومەت" : "Government";
   const judiciaryLabel = isAr ? "القضاء" : isKu ? "دادوەری" : "Judiciary";
-  const judiciarySub = isAr ? "العدالة وسيادة القانون" : isKu ? "دادپەروەری و فەرمانڕەوایی یاسا" : "Justice & rule of law";
-  const parliamentSub = isAr ? "التشريع والرقابة" : isKu ? "یاسادانان و چاودێری" : "Legislation & oversight";
-  const governmentSub = isAr ? "التنفيذ والخدمات العامة" : isKu ? "جێبەجێکردن و خزمەتگوزارییە گشتییەکان" : "Executive & public services";
+
+  const legislationTag = isAr ? "(تشريعية)" : isKu ? "(یاسادانان)" : "(Legislation)";
+  const executiveTag = isAr ? "(تنفيذية)" : isKu ? "(جێبەجێکردن)" : "(Executive)";
+  const judicialTag = isAr ? "(قضائية)" : isKu ? "(دادوەری)" : "(Judicial)";
+
+  const parliamentDesc = isAr ? "التشريع، وإقرار الموازنة، والرقابة على الحكومة." : isKu ? "یاسادانان، بودجەبەندی، و چاودێری حکومەت." : "Legislation, budgeting, and government oversight.";
+  const governmentDesc = isAr ? "تنفيذ السياسات، والأمن الداخلي، والخدمات العامة." : isKu ? "جێبەجێکردنی سیاسەت، ئاسایشی ناوخۆ، و خزمەتگوزارییە گشتییەکان." : "Policy implementation, internal security, and public services.";
+  const judiciaryDesc = isAr ? "تفسير القوانين، وحسم النزاعات القانونية، وإقامة العدل." : isKu ? "لێکدانەوەی یاساکان، کێشە یاساییەکان، و جێبەجێکردنی دادپەروەری." : "Interpretation of laws, legal disputes, and administration of justice.";
+
   const footerText = isAr
     ? "تدعم هذه المؤسسات مجتمعةً الحوكمة والقانون والإدارة العامة."
     : isKu
@@ -180,6 +211,7 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
       gsap.set("[data-sys-ornament='true']", { autoAlpha: 0, scaleX: 0.4, transformOrigin: "50% 50%" });
       gsap.set("[data-sys-title]", { autoAlpha: 0, y: 34 });
       gsap.set("[data-sys-banner='true']", { clipPath: "inset(0 0 100% 0)" });
+      gsap.set("[data-sys-panel='true']", { autoAlpha: 0, y: 44 });
       gsap.set("[data-sys-card='true']", { autoAlpha: 0, y: 44 });
       gsap.set("[data-sys-footer='true']", { autoAlpha: 0, y: 20 });
 
@@ -190,7 +222,8 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
       tl.to("[data-sys-ornament='true']", { autoAlpha: 1, scaleX: 1, duration: 0.9, ease: "power3.out" })
         .to("[data-sys-title]", { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.12 }, "-=0.5")
         .to("[data-sys-banner='true']", { clipPath: "inset(0 0 0% 0)", duration: 1.25, ease: "power3.inOut" }, "-=0.55")
-        .to("[data-sys-card='true']", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.16 }, "-=0.6")
+        .to("[data-sys-panel='true']", { autoAlpha: 1, y: 0, duration: 0.85 }, "-=0.7")
+        .to("[data-sys-card='true']", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.16 }, "-=0.45")
         .to("[data-sys-footer='true']", { autoAlpha: 1, y: 0, duration: 0.8 }, "-=0.2");
     }, sectionRef);
 
@@ -240,73 +273,92 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
 
             {/* Monumental centered header */}
             <header className="relative z-10 flex flex-col items-center text-center">
-              <OrnamentDivider dataAttr="true" />
-              <h1 data-sys-title="true" data-discover-lang="true" className={`mt-8 break-words ${displayFont} text-[112px] font-light leading-[1.02] tracking-tight text-[#17233b]`}>
+              <h1 data-sys-title="true" data-discover-lang="true" className={`break-words ${displayFont} text-[104px] font-medium leading-[1.02] tracking-tight text-[#17233b]`}>
                 {title}
               </h1>
-              <p data-sys-title="true" data-discover-lang="true" className="mt-5 max-w-[1000px] break-words text-[40px] font-light leading-tight text-[#9b6d35]">
+              <p data-sys-title="true" data-discover-lang="true" className="mt-4 max-w-[1000px] break-words text-[38px] font-light leading-tight text-[#9b6d35]">
                 {heading}
               </p>
-              <p data-sys-title="true" data-discover-lang="true" className="mt-6 max-w-[1060px] break-words text-[30px] font-light leading-[1.55] text-[#2d3549]">
-                {description}
-              </p>
+              <div data-sys-title="true" className="mt-8">
+                <OrnamentDivider dataAttr="true" />
+              </div>
             </header>
 
-            {/* Framed panoramic banner of parliament */}
-            <figure data-sys-banner="true" className="relative mt-12 w-full">
-              <div className="rounded-[40px] border border-[#cfae72] p-2.5 shadow-[0_24px_60px_rgba(84,54,16,0.16)]">
-                <div className="relative overflow-hidden rounded-[32px]">
+            {/* Panoramic banner + overlapping regional-system panel */}
+            <div className="relative z-10 mt-12 w-full">
+              <figure data-sys-banner="true" className="relative w-full">
+                <div className="overflow-hidden rounded-[36px] border border-[#cfae72]/50 shadow-[0_24px_60px_rgba(84,54,16,0.16)]">
                   <img
                     src={heroImg}
-                    alt="Kurdistan Regional Parliament building"
-                    className="h-[470px] w-full object-cover object-center"
+                    alt="Kurdistan Region"
+                    className="h-[440px] w-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#17233b]/50 via-[#17233b]/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#17233b]/45 via-[#17233b]/5 to-transparent" />
                 </div>
-              </div>
-            </figure>
+              </figure>
 
-            {/* Institutions — arched cards overlapping the banner */}
-            <div className="relative z-10 -mt-28 flex items-start gap-6 px-6">
-              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
-                <InstitutionCard
+              {/* The Regional System — heading + description on the cream backdrop */}
+              <div
+                data-sys-panel="true"
+                className="relative z-20 mx-auto mt-12 w-[820px] max-w-[86%] px-6 text-center"
+              >
+                <span className="mx-auto grid h-[86px] w-[86px] place-items-center rounded-[20px] border border-[#cfae72] bg-transparent text-[#b99152]">
+                  <Sunburst className="h-11 w-11" />
+                </span>
+                <h2 data-discover-lang="true" className={`mt-6 break-words ${displayFont} text-[40px] font-normal leading-tight text-[#9b6d35]`}>
+                  {panelTitle}
+                </h2>
+                <p data-discover-lang="true" className="mx-auto mt-4 max-w-[640px] break-words text-[24px] font-light leading-[1.6] text-[#2d3549]">
+                  {panelDescription}
+                </p>
+              </div>
+            </div>
+
+            {/* Three branches */}
+            <div className="relative z-10 mt-14 grid grid-cols-3">
+              <div data-sys-card="true">
+                <InstitutionColumn
                   numeral="I"
                   label={parliamentLabel}
-                  sub={parliamentSub}
+                  tag={legislationTag}
+                  desc={parliamentDesc}
                   iconSrc={parliamentIcon}
-                  iconScale="scale-[1.25]"
                   onClick={onParliamentClick}
                   displayFont={displayFont}
+                  latin={isEn}
+                  withDivider={false}
                 />
               </div>
-
-              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
-                <InstitutionCard
+              <div data-sys-card="true">
+                <InstitutionColumn
                   numeral="II"
                   label={governmentLabel}
-                  sub={governmentSub}
+                  tag={executiveTag}
+                  desc={governmentDesc}
                   iconSrc={governmentIcon}
-                  iconScale="scale-[1.25]"
                   onClick={() => setGovExpanded(true)}
                   displayFont={displayFont}
+                  latin={isEn}
+                  withDivider
                 />
               </div>
-
-              <div data-sys-card="true" className="relative flex min-w-0 flex-1">
-                <InstitutionCard
+              <div data-sys-card="true">
+                <InstitutionColumn
                   numeral="III"
                   label={judiciaryLabel}
-                  sub={judiciarySub}
+                  tag={judicialTag}
+                  desc={judiciaryDesc}
                   iconSrc={judiciaryIcon}
-                  iconScale="scale-[1.25]"
                   onClick={onJudiciaryClick}
                   displayFont={displayFont}
+                  latin={isEn}
+                  withDivider
                 />
               </div>
             </div>
 
             {/* Closing line */}
-            <footer data-sys-footer="true" className="mt-14 flex flex-col items-center gap-6 text-center">
+            <footer data-sys-footer="true" className="mt-16 flex flex-col items-center gap-6 text-center">
               <p data-discover-lang="true" className={`max-w-[980px] break-words ${displayFont} text-[30px] font-light leading-snug text-[#2d3549]`}>
                 {footerText}
               </p>
@@ -352,14 +404,12 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
                   className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-[18px] border-2 border-[#cfae72] bg-white px-5 py-4 text-start text-[#17233b] shadow-[0_14px_35px_rgba(84,54,16,0.14)] transition-transform duration-200 active:scale-[0.99]"
                 >
                   <span className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] ring-1 ring-[#e6d5ac]">
-                    {item.iconNode ?? (
-                      <img
-                        src={item.iconSrc}
-                        alt=""
-                        className={`h-full w-full object-cover ${item.iconScale ?? ""}`}
-                        style={item.iconObjectPosition ? { objectPosition: item.iconObjectPosition } : undefined}
-                      />
-                    )}
+                    <img
+                      src={item.iconSrc}
+                      alt=""
+                      className={`h-full w-full object-cover ${item.iconScale ?? ""}`}
+                      style={item.iconObjectPosition ? { objectPosition: item.iconObjectPosition } : undefined}
+                    />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className={`block ${displayFont} text-[22px] font-light leading-tight text-[#17233b]`}>
