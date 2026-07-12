@@ -1,5 +1,7 @@
 export type LangCode = "en" | "ku" | "ar";
 
+export type LocalizedText = Partial<Record<LangCode, string>>;
+
 export type LibraryWriter = {
   id: string;
   name: string;
@@ -32,8 +34,14 @@ export type LibraryBook = {
   isbn?: string;
   description: string;
   aboutText?: string;
+  originalTitle?: string;
+  titleLocalized?: LocalizedText;
+  genreLocalized?: LocalizedText;
+  descriptionLocalized?: LocalizedText;
+  aboutTextLocalized?: LocalizedText;
   quoteKurdish?: string;
   quoteEnglish?: string;
+  quoteArabic?: string;
   rating?: number;
   popular?: boolean;
 };

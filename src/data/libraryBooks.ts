@@ -1,139 +1,119 @@
 import dwemCover from "@/assets/images/new/dwem.webp";
-import card2 from "@/assets/mainImages/card-2.webp";
 import card3 from "@/assets/mainImages/card-3.webp";
-import card6 from "@/assets/mainImages/discoverkurdistan/card-3.webp";
-import card1 from "@/assets/mainImages/card-1.webp";
 import story1 from "@/assets/mainImages/story-1.webp";
-import story2 from "@/assets/mainImages/story-2.webp";
-import story3 from "@/assets/mainImages/story-3.webp";
 import type { LibraryBook, LibraryCategory } from "./libraryTypes";
 
 export const LIBRARY_BOOKS: LibraryBook[] = [
   {
-    id: "dwem-aseman",
-    title: "Dwem Aseman",
-    authorId: "farhad-pirbal",
-    cover: dwemCover,
-    genre: "Poetry",
-    year: 1991,
-    language: "Kurdish",
-    readingTime: "2h 15m",
-    pages: 128,
-    publisher: "Sangar Publications",
-    isbn: "978-9957-448-10-4",
-    description:
-      "A luminous collection of poems that gaze upward — toward sky, longing, and the words that bridge hearts across distance.",
-    aboutText:
-      "Dwem Aseman gathers Farhad Pirbal's most beloved poems on love, exile, and the Kurdish sky. Each verse is a meditation on what it means to search for home in language and memory.",
-    quoteKurdish: "لە ئاسماندا گەڕام، لە وشەکاندا دۆزیومەتەوە",
-    quoteEnglish: "I looked for you in the sky, found you in the words.",
-    rating: 4.9,
-    popular: true,
-  },
-  {
-    id: "kaniya-spi",
-    title: "Kaniya Spî",
-    authorId: "rebwar-siwayli",
-    cover: card2,
-    genre: "Poetry",
-    year: 1998,
-    language: "Kurdish",
-    readingTime: "1h 45m",
-    pages: 96,
-    publisher: "Kurdistan Press",
-    description:
-      "Poems of white springs and mountain paths — a lyrical journey through Kurdish landscape and longing.",
-    aboutText:
-      "Kaniya Spî draws on the imagery of Kurdistan's mountains and rivers, weaving personal memory with collective heritage.",
-    rating: 4.7,
-    popular: true,
-  },
-  {
-    id: "sinore-evine",
-    title: "Sînorê Evînê",
-    authorId: "bakhtyar-ali",
-    cover: card3,
-    genre: "Novel",
-    year: 2004,
-    language: "Kurdish",
-    readingTime: "6h 30m",
-    pages: 312,
-    publisher: "Avesta",
-    description:
-      "A boundary of love — a novel that explores the edges of desire, politics, and the surreal landscapes of Kurdish life.",
-    aboutText:
-      "Sînorê Evînê is one of Bakhtyar Ali's most celebrated works, blending dreamlike narrative with the harsh realities of modern Kurdistan.",
-    rating: 4.8,
-    popular: true,
-  },
-  {
-    id: "ghazalnus",
-    title: "Ghazalnus and the Gardens",
-    authorId: "bakhtyar-ali",
-    cover: card6,
-    genre: "Novel",
-    year: 2008,
-    language: "Kurdish",
-    readingTime: "7h",
-    pages: 380,
-    description: "A surreal journey through metaphysical gardens and the fractured landscapes of memory.",
-    rating: 4.6,
-  },
-  {
-    id: "deng-u-bal",
-    title: "Deng û Bal",
-    authorId: "farhad-pirbal",
-    cover: card1,
-    genre: "Poetry",
-    year: 1988,
-    language: "Kurdish",
-    readingTime: "1h 50m",
-    pages: 112,
-    publisher: "Sangar Publications",
-    description: "Voice and honey — early poems of tenderness, exile, and the Kurdish homeland.",
-    rating: 4.6,
-  },
-  {
-    id: "wesfekani-evin",
-    title: "Wesfekanî Evîn",
+    id: "the-potato-eaters",
+    title: "The Potato Eaters: Stories",
     authorId: "farhad-pirbal",
     cover: story1,
-    genre: "Poetry",
-    year: 2003,
-    language: "Kurdish",
-    readingTime: "2h",
-    pages: 136,
-    publisher: "Sangar Publications",
-    description: "Descriptions of love — lyrical meditations on passion, loss, and the language of the heart.",
-    rating: 4.7,
+    genre: "Short Stories",
+    year: 2024,
+    language: "English",
+    readingTime: "5h",
+    pages: 179,
+    publisher: "Deep Vellum Publishing",
+    isbn: "9781646052912",
+    description:
+      "From Kurdish poet and writer Farhad Pirbal, a heartbreaking collection of short stories about isolation, displacement, and otherness in contemporary society.",
+    aboutText:
+      "Translated by Alana Marie Levinson-Labrosse and Jiyar Homer. Each tale in The Potato Eaters underlines otherness — isolation and displacement in contemporary society. Pirbal's characters are at once resonant and shocking, his ability to decry trauma reminiscent of American greats like Morrison and Hurston. The title story is one of the most acclaimed Kurdish short stories: a famine-stricken town survives on potatoes alone, abandoning currency for their coveted starch. When the protagonist returns from his travels with gold, he is met with utter apathy — a stranger in his own country. Also included are \"Lamartine,\" about a poetry scholar who imagines a world where artists are paid by the line, and \"The Deserter,\" in which a forgetful soldier searches for his lost leg before war calls him back.",
+    rating: 3.93,
+    popular: true,
   },
   {
-    id: "baran-u-ciya",
-    title: "Baran û Çiya",
-    authorId: "rebwar-siwayli",
-    cover: story2,
-    genre: "Poetry",
-    year: 2001,
-    language: "Kurdish",
-    readingTime: "1h 30m",
-    pages: 88,
-    publisher: "Kurdistan Press",
-    description: "Rain and mountains — verses rooted in the rhythms of Kurdish nature and memory.",
-    rating: 4.5,
-  },
-  {
-    id: "shar-u-giyan",
-    title: "Shar û Giyan",
-    authorId: "rebwar-siwayli",
-    cover: story3,
-    genre: "Poetry",
+    id: "hotel-europe",
+    title: "هوتێل ئەوروپا",
+    originalTitle: "هوتێل ئەوروپا",
+    authorId: "farhad-pirbal",
+    cover: dwemCover,
+    genre: "Literature",
     year: 2010,
     language: "Kurdish",
-    readingTime: "2h 10m",
-    pages: 104,
-    publisher: "Kurdistan Press",
-    description: "City and soul — poems that move between urban life and the enduring Kurdish spirit.",
+    readingTime: "6h",
+    pages: 212,
+    publisher: "کولتوور",
+    isbn: "B0DLZSVWM2",
+    description:
+      "Hotel Europe narrates stories of Kurdish migrants living in Europe — displaced, far from homeland, and immersed in the loneliness of the West.",
+    aboutText:
+      "Farhad Pirbal has sought to forge from his intensely formalist literature a tool to portray the many facets of Eastern migrants' lives. First published in 2010; 2020 paperback edition by کولتوور.",
+    titleLocalized: {
+      en: "Hotel Europe",
+      ku: "هوتێل ئەوروپا",
+      ar: "فندق أوروبا",
+    },
+    genreLocalized: {
+      en: "Literature",
+      ku: "ئەدەبیات",
+      ar: "أدب",
+    },
+    descriptionLocalized: {
+      en: "Hotel Europe narrates stories of Kurdish migrants living in Europe — displaced, far from homeland, and immersed in the loneliness of the West.",
+      ku: "هوتێل ئەوروپا چیرۆکەکانی کۆچبەرە کوردەکانی نیشتەجێبووی ئەوروپایە؛ دوور لە نیشتمان و لە تەنهایی ڕۆژئاوادا نوقوم.",
+      ar: "فندق أوروبا يروي قصصاً للمهاجرين الأكراد المقيمين في أوروبا؛ بلا وطن وبعيدين عن الديار وغرقى في وحدة الغرب.",
+    },
+    aboutTextLocalized: {
+      en: "Farhad Pirbal has sought to forge from his intensely formalist literature a tool to portray the many facets of Eastern migrants' lives. First published in 2010; 2020 paperback edition by کولتوور.",
+      ku: "فرهاد پیربال هەوڵی داوە لە ئەدەبیەتە فۆرمالیستەکەیەوە ئامرازێک دروست بکات بۆ وێناکردنی لایە جیاوازەکانی ژیانی کۆچبەرانی ڕۆژھەڵات. یەکەم جار لە ٢٠١٠ بڵاوکراوەتەوە؛ چاپی ٢٠٢٠ لەلایەن کولتوور.",
+      ar: "حاول فرهاد پيربال أن يصنع من أدبه الرسمي المكثف أداة لتصوير وجوه الحياة المختلفة للمهاجرين الشرقيين. نُشر لأول مرة عام ٢٠١٠؛ طبعة ورقية ٢٠٢٠ من كولتوور.",
+    },
+    quoteKurdish:
+      "کاتێک گەڕامەوە ماڵەوە، دەمویست بچم بۆ ئەوە کە چەمپت و کۆڵەم بخەمە سەر بۆ ئەوەی سبەی بەیانی ڕاوەم بۆ جبه.",
+    quoteEnglish:
+      "When I returned home, I wanted to pack my suitcase and backpack to leave for the front tomorrow morning.",
+    quoteArabic:
+      "عندما عدت إلى البيت، أردت أن أذهب لأحزم حقيبتي وحقيبة ظهري لأغادر إلى الجبهة صباح الغد.",
+    rating: 4.5,
+    popular: true,
+  },
+  {
+    id: "triangular-tomb",
+    title: "قەبرێکی سێگۆشە",
+    originalTitle: "قەبرێکی سێگۆشە",
+    authorId: "farhad-pirbal",
+    cover: card3,
+    genre: "Novel",
+    year: 2013,
+    language: "Kurdish",
+    readingTime: "7h",
+    pages: 264,
+    publisher: "کولتوور",
+    isbn: "B0DM2589XJ",
+    description:
+      "Fereidun's father vanished when he was fourteen. Trapped in a cave with seven strangers who have forgotten time itself, he sets out to find his father's triangular tomb.",
+    aboutText:
+      "Farhad Pirbal's novel follows Fereidun as he emerges from the cave, discovers he is in northern Kurdistan, falls in love with Rendan, and is imprisoned — all while searching for the tomb that holds the key to his past. Published February 1, 2013 by کولتوور.",
+    titleLocalized: {
+      en: "A Triangular Tomb",
+      ku: "قەبرێکی سێگۆشە",
+      ar: "قبر مثلث",
+    },
+    genreLocalized: {
+      en: "Novel",
+      ku: "ڕۆمان",
+      ar: "رواية",
+    },
+    descriptionLocalized: {
+      en: "Fereidun's father vanished when he was fourteen. Trapped in a cave with seven strangers who have forgotten time itself, he sets out to find his father's triangular tomb.",
+      ku: "لەم ڕۆمانەدا پاڵەوانەکە فەرەیدونە؛ باوکی لە ڕووداوێکدا بێسەروشوێن کراوە کاتێک تەمەنی ١٤ ساڵ بووە. لەگەڵ حەوت کەسی تر لە ناو ئەشکەوتێک دەژین کە نازانن کەوتۆتە کوێ و تەمەن و کاتیان لەبیرچۆتەوە.",
+      ar: "اختفى والد فريدون في حادث عندما كان في الرابعة عشرة. يعيش مع سبعة غرباء في كهف لا يعرفون أين سقطوا، وقد نسوا أعمارهم وزمانهم، وينطلق بحثاً عن قبر والده المثلث.",
+    },
+    aboutTextLocalized: {
+      en: "Farhad Pirbal's novel follows Fereidun as he emerges from the cave, discovers he is in northern Kurdistan, falls in love with Rendan, and is imprisoned — all while searching for the tomb that holds the key to his past. Published February 1, 2013 by کولتوور.",
+      ku: "فەرەیدون لە ئەشکەوتەکە دەردەچێت، لە ڕێگادا دووچاری خێزانێک دەبێت و بۆی دەردەکەوێت کەوتۆتە باکوری کوردستان. عاشقی ڕەندان دەبێت کە بەڵێنی پێدەدا یارمەتی بدات بۆ دۆزینەوەی قەبرە سێگۆشەکەی باوکی، هەرچەندە فەرەیدون دەستگیر دەکرێت و لە زیندان دەمینێتەوە. ڕۆمانەکە کۆمەڵێک ڕووداو و بەسەرهاتی لەخۆدەگرێت.",
+      ar: "يتبع فرهاد پيربال فريدون وهو يخرج من الكهف، ويلتقي بعائلة فيدرك أنهم في شمال كردستان. يقع في حب رندان التي وعدته بمساعدته في العثور على قبر والده، بينما يُعتقل ويبقى في السجن. الرواية تضم مجموعة من الأحداث والمغامرات.",
+    },
+    quoteKurdish:
+      "لێرە لەگەڵ حەوت کەسی تر لە نێو ئەشکەوتێک دەژین کە نازانن کەوتۆتە کوێ، هەروەها تەمەن و کاتیان لەبیرچۆتەوە.",
+    quoteEnglish:
+      "Here we live with seven others inside a cave, not knowing where we have landed — our age and sense of time forgotten.",
+    quoteArabic:
+      "هنا نعيش مع سبعة آخرين في كهف، لا نعرف أين سقطنا، وقد نُسي عمرنا وزماننا.",
     rating: 4.6,
+    popular: true,
   },
 ];
 

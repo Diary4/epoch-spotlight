@@ -24,8 +24,8 @@ const SCREEN_OPTIONS: ScreenOption[] = [
   { id: "14", label: "Screen 14 - Library Writers", path: "/library/writers" },
   { id: "15", label: "Screen 15 - Writer Detail (Farhad Pirbal)", path: "/library/writers/farhad-pirbal" },
   { id: "16", label: "Screen 16 - Featured Writer (Dark)", path: "/library/writers/farhad-pirbal/featured" },
-  { id: "17", label: "Screen 17 - Book Detail (Dwem Aseman)", path: "/library/books/dwem-aseman" },
-  { id: "18", label: "Screen 18 - Book Reader (Preview)", path: "/library/books/dwem-aseman/read" },
+  { id: "17", label: "Screen 17 - Book Detail (The Potato Eaters)", path: "/library/books/the-potato-eaters" },
+  { id: "18", label: "Screen 18 - Book Reader (Preview)", path: "/library/books/the-potato-eaters/read" },
 ];
 
 export default function StartMenu() {

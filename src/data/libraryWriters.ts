@@ -23,11 +23,14 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     timeline: [
       { year: "1961", text: "Born in Erbil, Kurdistan" },
       { year: "1980s", text: "Began publishing poetry and essays during a turbulent era" },
-      { year: "1990s", text: "Released landmark collections including Dwem Aseman" },
+      { year: "1990s", text: "Published poetry and short fiction during a turbulent era" },
       { year: "2000s", text: "Became a leading voice in Kurdish intellectual life" },
+      { year: "2010", text: "Hotel Europe (هوتێل ئەوروپا) published — stories of Kurdish migrants in Europe" },
+      { year: "2013", text: "A Triangular Tomb (قەبرێکی سێگۆشە) published by کولتوور" },
+      { year: "2024", text: "The Potato Eaters: Stories published in English by Deep Vellum" },
       { year: "Today", text: "Continues to write, speak, and inspire new generations" },
     ],
-    bookIds: ["dwem-aseman", "deng-u-bal", "wesfekani-evin"],
+    bookIds: ["the-potato-eaters", "hotel-europe", "triangular-tomb"],
     featured: true,
   },
   {
@@ -47,7 +50,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "2000s", text: "Gained international acclaim for Ghazalnus and the Gardens of the Metaphysical" },
       { year: "Today", text: "One of the most translated Kurdish novelists" },
     ],
-    bookIds: ["sinore-evine", "ghazalnus"],
+    bookIds: [],
     featured: true,
   },
   {
@@ -66,7 +69,7 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
       { year: "2000s", text: "Established as a leading contemporary Kurdish poet" },
       { year: "Today", text: "Continues to publish and perform poetry" },
     ],
-    bookIds: ["kaniya-spi", "baran-u-ciya", "shar-u-giyan"],
+    bookIds: [],
     featured: true,
   },
   {

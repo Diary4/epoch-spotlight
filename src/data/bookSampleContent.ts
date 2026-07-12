@@ -8,26 +8,26 @@ export type BookPage = {
 };
 
 const SAMPLE_PAGES: Record<string, string[]> = {
-  "dwem-aseman": [
-    "I looked for you in the sky and found you in the words. The evening settled over the mountains like a soft shawl, and the city below breathed in the language of poets who had walked these streets before me.",
-    "Every poem in this collection begins with a question: where does the self end and the homeland begin? I write not to answer, but to keep the question alive — to let it echo between heart and horizon.",
-    "The moon over Erbil does not know borders. It shines on rooftops and rivers alike, on letters written in exile and songs sung in the marketplace. Dwem Aseman — the second sky — is the sky we carry inside us.",
-    "Love, in these pages, is never only personal. It is a bridge between generations, between those who stayed and those who left, between the word spoken aloud and the word held silently in the chest.",
-    "I dedicate this opening to every reader who has ever opened a book and found a piece of home inside it. Turn the page, and you will hear the wind moving through Kurdish verse — patient, enduring, alive.",
+  "the-potato-eaters": [
+    "The town had learned to live on potatoes alone. Famine had stripped away everything else — coin, commerce, the old hunger for gold. What remained was the starch that kept them breathing, and a quiet agreement that survival was enough.",
+    "When he returned from his travels, his pockets heavy with gold, he expected astonishment. Instead he found indifference. The streets smelled of boiled potatoes. Faces turned away. He had become a stranger in the country he had left behind.",
+    "In \"Lamartine,\" a poetry scholar with a doctorate on Lamartine's lines visits a career agency and asks, in plain verse, for a livelihood. He imagines a world where poets are paid by the line rather than the hour — and then tells the statue of his hero that artists and poets live pitifully, nursed on misfortune from the beginning of time.",
+    "In \"The Deserter,\" a forgetful soldier hobbles for nearly ten days searching for his lost leg. When his Corporal orders him to prepare for war, the two scavenge through piles of human body parts. \"My generation and I,\" he reflects, \"we are the sacrifice of our era — the sacrifice to war and the dirty battles of those fools and frauds we call today's leaders.\"",
+    "Each story in this collection ends without easy resolution — lives cut short, questions left unanswered. Pirbal writes of otherness and displacement with a voice that is at once Kurdish and universal. The full collection awaits beyond this preview.",
   ],
-  "kaniya-spi": [
-    "The white spring runs cold and clear through the high valleys. I came here as a boy, carrying questions I could not yet name. The water answered with silence, and in that silence I learned to listen.",
-    "Kaniya Spî — the white spring — is more than a place. It is a memory that returns whenever the world grows too loud. In these poems, the mountain path is both journey and destination.",
-    "My father told me that every Kurd carries a spring inside the heart. Some find it in exile, some in the old village, some only in the act of writing. I found mine in the rhythm of verse.",
-    "The horse and rider on the cover are not symbols of war but of passage — the long crossing from one season of life to another. Poetry is the hoofbeat that keeps time with the soul.",
-    "These opening verses invite you into a landscape of snow, stone, and longing. The full collection waits beyond this spring — but even these first pages hold enough water to quench a thirsty heart.",
+  "hotel-europe": [
+    "کاتێک گەڕامەوە ماڵەوە، دەمویست بچم بۆ ئەوە کە چەمپت و کۆڵەم بخەمە سەر بۆ ئەوەی سبەی بەیانی ڕاوەم بۆ جبه.",
+    "ناکاو تێبینی ئەوەم کرد کە پێی ڕاستی ونبووم نامەیەکم بۆ ناردبێت. بە شێوەیەکی سەرپێچی نامەکەم کردەوە. لە خۆشحاڵییەوە پڕ دەبووم.",
+    "پێی ڕاستی ونبووم لە نامەکەدا نووسیبوو، چەند ڕۆژێک پێشتر پۆلیس لە بازاڕ کەڵکی ناسنامەی خوێ کردۆتەوە. ئەویش کە هیچ ناسنامەیەکی نەبوو، بە دەرچوویەک دادەنرێت؛ گوتبوون چونکە کوردە و دەرچووە دەبێت یەکسەر بنێرن بۆ جبه.",
+    "When I returned home, I wanted to pack my suitcase and backpack to leave for the front tomorrow morning. Suddenly I noticed that my missing right leg had sent me a letter.",
+    "My missing right leg had written that the police in the market had asked him for identification. With none to show, they called him a fugitive — Kurdish, they said, and on the run — and must be sent to the front at once. He fled through the market, ran without stopping to Baghdad, forged papers, boarded a minibus at Kani garage, and returned to Hewler.",
   ],
-  "sinore-evine": [
-    "The boundary of love is not drawn on any map. It exists in the space between two people who cannot fully reach each other — and yet cannot turn away. This novel begins at such a border.",
-    "He walked through the city as though it were a dream he had once had and half forgotten. The streets curved back on themselves. Faces repeated. Time moved like water over stone — always forward, always returning.",
-    "She told him that love was a country without a flag. He did not believe her until he tried to leave. Every road led back to her voice, to the particular way she pronounced his name.",
-    "Politics entered the story the way winter enters a valley — slowly, then all at once. The personal and the political were never separate in Kurdistan. They were two rivers flowing into the same sea.",
-    "What you have read so far is only the threshold. Beyond these five pages, the garden grows stranger, the mirror cracks, and love learns its true name. The full journey awaits those who choose to continue.",
+  "triangular-tomb": [
+    "لەم ڕۆمانەدا پاڵەوانەکە فەرەیدونە. باوکی لە ڕووداوێکدا بێسەروشوێن کراوە کاتێک تەمەنی تەنها ١٤ ساڵ بوو. ئەوەندە دوور بووەوە کە هەرگیز نەزانی چی ڕوویدا.",
+    "لێرە لەگەڵ حەوت کەسی تر لە نێو ئەشکەوتێک دەژین کە نازانن کەوتۆتە کوێ. تەمەن و کاتیان لەبیرچۆتەوە — ڕۆژ و شەو و ساڵ وەک یەکێکن، وەک ئەوەی هیچ شتێک لە دەرەوە بوونی نییە.",
+    "گەڕان بەدوای قەبرە سێگۆشەکەی باوکی فەرەیدون لە ئەشکەوتەکە دەردەهێنێت. لە ڕێگادا دووچاری خێزانێک دەبێت و بۆی دەردەکەوێت کەوتۆتە باکوری کوردستان.",
+    "Fereidun falls in love with Rendan, a girl who promises to help him find his father's triangular tomb. But the world outside the cave is unforgiving — and Fereidun is arrested, held in prison, while the search continues.",
+    "Beyond this central quest, the novel gathers a constellation of events and adventures — memory, love, imprisonment, and the slow uncovering of where the cave-dwellers truly belong.",
   ],
 };
 
