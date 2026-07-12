@@ -1,11 +1,9 @@
 import { useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import DesignScaledCanvas from "@/components/DesignScaledCanvas";
 import LibraryLogo from "@/components/Sections/library/LibraryLogo";
-import LibraryPageShell from "@/components/Sections/library/LibraryPageShell";
-import WriterCard from "@/components/Sections/library/WriterCard";
-import BookCard from "@/components/Sections/library/BookCard";
-import { libraryIconMd, librarySectionLabel } from "@/components/Sections/library/libraryLayout";
+import { KioskBookCard, KioskWriterAvatar } from "@/components/Sections/library/kioskCards";
 import {
   getWriterById,
   getFeaturedWriters,
@@ -15,10 +13,13 @@ import { getBooksByAuthor } from "@/data/libraryBooks";
 import { cn } from "@/lib/utils";
 import { useLibraryPageAnimation } from "@/components/Sections/library/useLibraryPageAnimation";
 
+const STAR_PATTERN =
+  "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z' fill='%23C5A059'/%3E%3C/svg%3E\")";
+
 export default function LibraryFeaturedWriter() {
   const { writerId } = useParams();
   const writer = writerId ? getWriterById(writerId) : undefined;
-  const rootRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useLibraryPageAnimation(rootRef, [writerId]);
 
@@ -30,126 +31,101 @@ export default function LibraryFeaturedWriter() {
   const books = getBooksByAuthor(writer.id).slice(0, 2);
 
   return (
-    <main ref={rootRef} className="min-h-screen bg-[#0A0A0A] text-white">
-      <section
-        data-library-section
-        className="relative min-h-[55vh] overflow-hidden lg:min-h-[60vh] xl:min-h-[65vh] 3xl:min-h-[70vh]"
-      >
-        <img
-          src={FEATURED_HERO_BACKGROUND}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[#0A0A0A]" />
+    <DesignScaledCanvas fitViewport bgClassName="bg-[#0A0A0A]" fitDeps={[writerId]}>
+      <div ref={rootRef} className="flex min-h-[1920px] w-full flex-col bg-[#0A0A0A] text-white">
+        <section
+          data-library-section
+          className="relative flex flex-col items-center overflow-hidden"
+        >
+          <img
+            src={FEATURED_HERO_BACKGROUND}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[#0A0A0A]" />
 
-        <div
-          className="pointer-events-none absolute left-0 top-0 h-32 w-32 opacity-10 lg:h-48 lg:w-48"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z' fill='%23C5A059'/%3E%3C/svg%3E")`,
-            backgroundSize: "30px 30px",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute right-0 top-0 h-32 w-32 opacity-10 lg:h-48 lg:w-48"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z' fill='%23C5A059'/%3E%3C/svg%3E")`,
-            backgroundSize: "30px 30px",
-          }}
-        />
+          <div
+            className="pointer-events-none absolute left-0 top-0 h-48 w-48 opacity-10"
+            style={{ backgroundImage: STAR_PATTERN, backgroundSize: "30px 30px" }}
+          />
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-48 w-48 opacity-10"
+            style={{ backgroundImage: STAR_PATTERN, backgroundSize: "30px 30px" }}
+          />
 
-        <div className="relative z-10 flex flex-col items-center px-6 pt-8 lg:pt-12 3xl:pt-16">
-          <div data-library-header>
-            <LibraryLogo variant="gold" size="lg" />
-          </div>
+          <div className="relative z-10 flex w-full flex-col items-center px-12 pt-14">
+            <div data-library-header>
+              <LibraryLogo variant="gold" size="lg" />
+            </div>
 
-          <LibraryPageShell className="mt-6 flex flex-col items-center lg:mt-10 3xl:mt-14">
-            <div
-              data-library-hero-image
-              className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl 3xl:max-w-2xl"
-            >
+            <div data-library-hero-image className="relative mt-12 w-full max-w-[560px]">
               <img
                 src={writer.portraitDark ?? writer.portrait}
                 alt={writer.name}
-                className="mx-auto h-64 w-auto object-cover object-top sm:h-80 lg:h-96 xl:h-[28rem] 3xl:h-[32rem]"
+                className="mx-auto h-[620px] w-auto object-cover object-top"
               />
               <div
                 data-library-hero-text
-                className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0A0A0A] to-transparent pt-16 text-center lg:pt-24"
+                className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0A0A0A] to-transparent pt-24 text-center"
               >
-                <h1 className="font-serif text-2xl uppercase tracking-[0.15em] text-[#C5A059] sm:text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl">
+                <h1 className="font-serif text-5xl uppercase tracking-[0.15em] text-[#C5A059]">
                   {writer.name}
                 </h1>
-                <p className="mt-1 text-sm text-[#C5A059]/70 lg:text-base 3xl:text-xl">
-                  {writer.roles.join(". ")}.
-                </p>
+                <p className="mt-2 text-xl text-[#C5A059]/70">{writer.roles.join(". ")}.</p>
               </div>
             </div>
 
             <div data-library-hero-text>
               <Link
                 to={`/library/writers/${writer.id}`}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#C5A059] bg-[#0B1C14]/80 px-8 py-3 text-sm uppercase tracking-wider text-[#C5A059] backdrop-blur-sm lg:px-10 lg:py-4 lg:text-base 3xl:px-12 3xl:py-5 3xl:text-xl"
+                className="mt-10 inline-flex items-center gap-2 rounded-full border border-[#C5A059] bg-[#0B1C14]/80 px-10 py-4 text-lg uppercase tracking-wider text-[#C5A059] backdrop-blur-sm"
               >
                 Explore Writer
-                <ArrowRight className={libraryIconMd} />
+                <ArrowRight className="h-6 w-6" />
               </Link>
             </div>
-          </LibraryPageShell>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <section data-library-section className="px-6 py-10 lg:px-12 lg:py-14 3xl:px-24 3xl:py-20">
-        <LibraryPageShell>
-          <div className="flex items-center gap-4 lg:gap-6">
+        <section data-library-section className="px-12 py-14">
+          <div className="flex items-center gap-6">
             <div className="h-px flex-1 bg-[#C5A059]/30" />
-            <h2 className={librarySectionLabel + " text-[#C5A059]"}>Other Writers</h2>
+            <h2 className="text-base uppercase tracking-[0.3em] text-[#C5A059]">Other Writers</h2>
             <div className="h-px flex-1 bg-[#C5A059]/30" />
           </div>
 
-          <div className="mt-6 flex justify-center gap-6 overflow-x-auto pb-4 lg:mt-10 lg:gap-10 3xl:gap-14">
+          <div className="mt-12 flex justify-center gap-14">
             {otherWriters.map((w) => (
-              <div key={w.id} data-library-item>
-                <WriterCard writer={w} variant="avatar" />
-              </div>
+              <KioskWriterAvatar key={w.id} writer={w} />
             ))}
           </div>
+        </section>
 
-          <div className="mx-auto mt-4 h-0.5 w-24 rounded-full bg-[#C5A059]/20 lg:mt-6 lg:w-32">
-            <div className="h-full w-1/3 rounded-full bg-[#C5A059]" />
-          </div>
-        </LibraryPageShell>
-      </section>
-
-      {books.length > 0 && (
-        <section data-library-section className="px-6 py-10 lg:px-12 lg:py-14 3xl:px-24 3xl:py-20">
-          <LibraryPageShell>
-            <div className="flex items-center gap-4 lg:gap-6">
+        {books.length > 0 && (
+          <section data-library-section className="px-12 py-12">
+            <div className="flex items-center gap-6">
               <div className="h-px flex-1 bg-[#C5A059]/30" />
-              <h2 className={librarySectionLabel + " text-[#C5A059]"}>Selected Books</h2>
+              <h2 className="text-base uppercase tracking-[0.3em] text-[#C5A059]">Selected Books</h2>
               <div className="h-px flex-1 bg-[#C5A059]/30" />
             </div>
 
-            <div className="mt-8 flex justify-center gap-10 lg:mt-12 lg:gap-16 3xl:gap-24">
+            <div className="mt-12 flex justify-center gap-16">
               {books.map((book) => (
-                <div key={book.id} data-library-item>
-                  <BookCard book={book} variant="shelf" />
-                </div>
+                <KioskBookCard key={book.id} book={book} />
               ))}
             </div>
-          </LibraryPageShell>
-        </section>
-      )}
+          </section>
+        )}
 
-      <footer className="px-6 py-10 text-center lg:py-14 3xl:py-20">
-        <LibraryPageShell>
+        <footer className="mt-auto px-12 py-14 text-center">
           <Link to="/library/writers" className="block">
-            <p className={cn(librarySectionLabel, "text-[#C5A059]/60")}>
+            <p className={cn("text-base uppercase tracking-[0.3em] text-[#C5A059]/60")}>
               Touch anywhere to begin your journey
             </p>
-            <p className="mt-2 text-[#C5A059]/40 lg:text-2xl 3xl:text-3xl">👆</p>
+            <p className="mt-3 text-3xl text-[#C5A059]/40">👆</p>
           </Link>
-        </LibraryPageShell>
-      </footer>
-    </main>
+        </footer>
+      </div>
+    </DesignScaledCanvas>
   );
 }

@@ -285,55 +285,22 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
               style={{ background: `linear-gradient(to top, ${PAPER} 0%, rgba(251,245,235,0) 100%)` }}
             />
 
-            {/* Synced lyrics overlay */}
+            {/* Music card + synced lyrics */}
             <div
-              className={`pointer-events-none absolute left-1/2 top-[38%] z-20 w-full max-w-[780px] -translate-x-1/2 -translate-y-1/2 px-10 transition-opacity duration-500 ${
-                showLyrics ? "opacity-100" : "opacity-0"
+              className={`absolute bottom-16 z-10 flex w-[calc(100%-7rem)] items-stretch gap-5 ${
+                isRtlScript ? "right-14 flex-row-reverse" : "left-14"
               }`}
-              aria-live="polite"
-              aria-atomic="true"
             >
-              {activeLyrics && (
+              {/* Glass identity card */}
+              <div className={`land-detail-intro w-[480px] shrink-0 ${isRtlScript ? "text-right" : "text-left"}`}>
                 <div
-                  className={`max-w-[720px] rounded-xl px-8 py-5 text-center shadow-2xl ${
-                    isRtlScript ? "font-noto-naskh" : displayFont
-                  }`}
+                  className="rounded-2xl p-8 shadow-2xl"
                   style={{
-                    background: "rgba(6,9,15,0.78)",
-                    backdropFilter: "blur(14px)",
-                    border: "1px solid rgba(201,154,85,0.35)",
+                    background: "rgba(10,14,22,0.68)",
+                    backdropFilter: "blur(18px)",
+                    border: "1px solid rgba(201,154,85,0.28)",
                   }}
                 >
-                  <p
-                    className="text-[22px] font-light leading-snug text-white"
-                    dir={lang === "en" ? "ltr" : "rtl"}
-                  >
-                    {activeLyrics[0]}
-                  </p>
-                  <p
-                    className="mt-2 text-[19px] font-light leading-snug text-[#e6c98f]"
-                    dir={lang === "en" ? "ltr" : "rtl"}
-                  >
-                    {activeLyrics[1]}
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Glass identity card */}
-            <div
-              className={`land-detail-intro absolute bottom-16 z-10 max-w-[560px] ${
-                isRtlScript ? "right-14 text-right" : "left-14 text-left"
-              }`}
-            >
-              <div
-                className="rounded-2xl p-8 shadow-2xl"
-                style={{
-                  background: "rgba(10,14,22,0.68)",
-                  backdropFilter: "blur(18px)",
-                  border: "1px solid rgba(201,154,85,0.28)",
-                }}
-              >
                 {/* Eyebrow */}
                 <div className={`flex items-center gap-2 ${isRtlScript ? "flex-row-reverse" : ""}`}>
                   <span className="h-px w-8 bg-[#c69237]/70" />
@@ -401,6 +368,47 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                     <Square className="h-4 w-4 text-[#e6c98f]" fill="currentColor" />
                   </button>
                 </div>
+              </div>
+              </div>
+
+              {/* Synced lyrics */}
+              <div
+                className={`flex min-w-0 flex-1 items-center transition-opacity duration-500 ${
+                  showLyrics ? "opacity-100" : "pointer-events-none opacity-0"
+                }`}
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {activeLyrics && (
+                  <div
+                    className={`w-full rounded-2xl px-7 py-6 shadow-2xl ${
+                      isRtlScript ? "font-noto-naskh text-right" : `${displayFont} text-left`
+                    }`}
+                    style={{
+                      background: "rgba(10,14,22,0.68)",
+                      backdropFilter: "blur(18px)",
+                      border: "1px solid rgba(201,154,85,0.28)",
+                    }}
+                  >
+                    <div
+                      key={activeLyrics[0]}
+                      className="animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out"
+                    >
+                      <p
+                        className="text-[20px] font-light leading-snug text-white"
+                        dir={lang === "en" ? "ltr" : "rtl"}
+                      >
+                        {activeLyrics[0]}
+                      </p>
+                      <p
+                        className="mt-2.5 text-[17px] font-light leading-snug text-[#e6c98f]"
+                        dir={lang === "en" ? "ltr" : "rtl"}
+                      >
+                        {activeLyrics[1]}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </section>

@@ -1,0 +1,147 @@
+import { Link } from "react-router-dom";
+import type { LibraryBook, LibraryWriter } from "@/data/libraryTypes";
+import { getWriterById } from "@/data/libraryWriters";
+import { cn } from "@/lib/utils";
+
+/**
+ * Fixed-size (non-responsive) card variants used only inside the library
+ * writer screens, which render on a fixed 1080px design canvas that is scaled
+ * to fit the viewport. Sizes are absolute px so every screen looks identical.
+ */
+
+export function KioskWriterTile({ writer }: { writer: LibraryWriter }) {
+  return (
+    <Link
+      to={`/library/writers/${writer.id}`}
+      data-library-item
+      className="flex w-[228px] flex-col overflow-hidden rounded-2xl border border-[#E8E0D4] bg-[#FAF8F5] shadow-sm"
+    >
+      <div className="relative overflow-hidden">
+        <img
+          src={writer.portrait}
+          alt={writer.name}
+          className="aspect-[3/4] w-full object-cover sepia-[0.3]"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1C14]/50 to-transparent" />
+      </div>
+      <div className="px-3 py-5 text-center">
+        <p className="font-serif text-xl text-[#0B1C14]">{writer.name}</p>
+        {writer.lifespan && <p className="mt-0.5 text-sm text-[#8B7355]">{writer.lifespan}</p>}
+        <p className="mt-0.5 text-sm text-[#A68A64]">{writer.roles[0]}</p>
+      </div>
+    </Link>
+  );
+}
+
+export function KioskWriterAvatar({ writer }: { writer: LibraryWriter }) {
+  return (
+    <Link
+      to={`/library/writers/${writer.id}`}
+      data-library-item
+      className="flex w-[150px] flex-col items-center gap-3"
+    >
+      <div className="h-[130px] w-[130px] overflow-hidden rounded-full border-2 border-[#C5A059]">
+        <img
+          src={writer.portrait}
+          alt={writer.name}
+          className="h-full w-full object-cover grayscale"
+        />
+      </div>
+      <p className="text-center text-base text-white/90">{writer.name}</p>
+    </Link>
+  );
+}
+
+export function KioskQuoteCard({
+  writer,
+  variant = "light",
+  className,
+}: {
+  writer: LibraryWriter;
+  variant?: "light" | "dark";
+  className?: string;
+}) {
+  if (!writer.quote) return null;
+  const isDark = variant === "dark";
+
+  return (
+    <Link
+      to={`/library/writers/${writer.id}`}
+      data-library-item
+      className={cn(
+        "flex w-[440px] flex-col justify-between rounded-3xl border p-8",
+        isDark
+          ? "border-[#C5A059]/20 bg-[#0B1C14]/80 backdrop-blur-sm"
+          : "border-[#E8E0D4] bg-[#FAF8F5]",
+        className,
+      )}
+    >
+      <div>
+        <span
+          className={cn(
+            "font-serif text-6xl leading-none",
+            isDark ? "text-[#C5A059]/30" : "text-[#C5A059]/40",
+          )}
+        >
+          &ldquo;
+        </span>
+        <p
+          className={cn(
+            "mt-2 font-serif text-2xl italic leading-relaxed",
+            isDark ? "text-[#F5F2ED]/90" : "text-[#0B1C14]",
+          )}
+        >
+          {writer.quote}
+        </p>
+      </div>
+
+      <div className="mt-8 flex items-center gap-4">
+        <div
+          className={cn(
+            "h-14 w-14 overflow-hidden rounded-full border-2",
+            isDark ? "border-[#C5A059]/60" : "border-[#C5A059]",
+          )}
+        >
+          <img
+            src={writer.portrait}
+            alt={writer.name}
+            className="h-full w-full object-cover grayscale"
+          />
+        </div>
+        <div>
+          <p
+            className={cn(
+              "font-serif text-lg",
+              isDark ? "text-[#C5A059]" : "text-[#2D4635]",
+            )}
+          >
+            {writer.name}
+          </p>
+          <p className={cn("text-base", isDark ? "text-[#B0926A]/70" : "text-[#8B7355]")}>
+            {writer.roles[0]}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export function KioskBookCard({ book }: { book: LibraryBook }) {
+  const author = getWriterById(book.authorId);
+
+  return (
+    <Link
+      to={`/library/books/${book.id}`}
+      data-library-item
+      className="flex w-[200px] flex-col"
+    >
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-md">
+        <img src={book.cover} alt={book.title} className="h-full w-full object-cover" />
+      </div>
+      <p className="mt-3 line-clamp-1 font-serif text-lg text-[#0B1C14]">{book.title}</p>
+      <p className="text-sm text-[#8B7355]">
+        {book.genre} • {book.year}
+      </p>
+    </Link>
+  );
+}
