@@ -148,7 +148,7 @@ export default function StoryOfResilience({ lang = "en", onBack }: StoryOfResili
                 </p>
               </section>
 
-              <div className="flex-[0.85]" />
+              <div className="flex-[0.3]" />
 
               <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
                 {localizedCards.map((card) => (
