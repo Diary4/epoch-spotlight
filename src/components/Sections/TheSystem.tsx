@@ -286,15 +286,15 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
 
             {/* Panoramic banner + overlapping regional-system panel */}
             <div className="relative z-10 mt-12 w-full">
-              <figure data-sys-banner="true" className="relative w-full">
-                <div className="overflow-hidden rounded-[36px] border border-[#cfae72]/50 shadow-[0_24px_60px_rgba(84,54,16,0.16)]">
-                  <img
-                    src={heroImg}
-                    alt="Kurdistan Region"
-                    className="h-[440px] w-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#17233b]/45 via-[#17233b]/5 to-transparent" />
-                </div>
+              <figure data-sys-banner="true" className="relative -mx-20 w-[calc(100%+10rem)]">
+                <img
+                  src={heroImg}
+                  alt="Kurdistan Region"
+                  className="h-[440px] w-full object-cover object-center"
+                />
+                {/* Top & bottom edges fade into the cream backdrop */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#fbf5eb] to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fbf5eb] to-transparent" />
               </figure>
 
               {/* The Regional System — heading + description on the cream backdrop */}
