@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-2.webp";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
@@ -270,8 +272,7 @@ export default function ReligionsKurdistan({
             data-religion-animate="true"
             className="mt-[calc(30vh-160px)] grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {localizedReligions.map((item) => {
-              const Icon = item.icon;
+            {localizedReligions.map((item, index) => {
               const isChristianity = item.id === "christianity";
               const isYazidism = item.id === "yazidism";
               const isOtherFaith = item.id === "otherFaith";
@@ -285,53 +286,26 @@ export default function ReligionsKurdistan({
               const isNavCard = subPageTarget !== null;
 
               return (
-                <article
+                <ReligionInfoCard
                   key={item.title}
-                  role={isNavCard ? "button" : undefined}
-                  tabIndex={isNavCard ? 0 : undefined}
+                  title={item.title}
+                  body={item.text}
+                  image={bg}
+                  accent={item.color}
+                  accentIndex={index}
+                  align="center"
+                  titleClassName="uppercase min-h-[72px]"
                   onClick={isNavCard ? () => setSubPage(subPageTarget) : undefined}
-                  onKeyDown={
-                    isNavCard
-                      ? (e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setSubPage(subPageTarget);
-                          }
-                        }
-                      : undefined
-                  }
-                  aria-label={
+                  ariaLabel={
                     isChristianity
                       ? "Open Christianity page"
                       : isYazidism
                         ? "Open Yazidism page"
                         : isOtherFaith
                           ? "Open Other Faith page"
-                        : undefined
+                        : item.title
                   }
-                  className={`flex min-h-[360px] flex-col items-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/88 px-6 py-8 text-center shadow-[0_12px_24px_rgba(75,45,12,0.13)] backdrop-blur-sm ${isNavCard ? "cursor-pointer outline-none transition focus-visible:ring-2 focus-visible:ring-[#c3923a]" : ""}`}
-                >
-                  <Icon
-                    className="mb-8 h-20 w-20"
-                    strokeWidth={1.65}
-                    style={{ color: item.color }}
-                  />
-
-                  <h3
-                    className="min-h-[72px] font-serif text-[25px] font-semibold uppercase leading-tight"
-                    style={{ color: item.color }}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <div className="my-5 w-[150px]">
-                    <DecorativeLine color="#d1a14f" />
-                  </div>
-
-                  <p className="text-[18px] font-semibold leading-relaxed text-[#3f3528]">
-                    {item.text}
-                  </p>
-                </article>
+                />
               );
             })}
           </section>

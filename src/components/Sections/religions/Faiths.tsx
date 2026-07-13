@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/new/religions/faiths/islam.webp";
 import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
@@ -458,49 +460,17 @@ export default function FaithsPage({
           <div
             className="mx-auto mt-[18vh] sm:mt-[clamp(120px,48vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in"
           >
-            {c.faiths.map((faith) => (
-              <div 
-                key={faith.id} 
-                data-f-card="true" 
-                className="w-full"
-              >
-                <article
-                  role="button"
-                  tabIndex={0}
+            {c.faiths.map((faith, index) => (
+              <div key={faith.id} data-f-card="true" className="w-full">
+                <ReligionInfoCard
+                  title={faith.title}
+                  body={faith.shortIntro}
+                  image={faith.image}
+                  accentIndex={index}
                   onClick={() => setActiveId(faith.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setActiveId(faith.id);
-                    }
-                  }}
-                  aria-label={faith.title}
-                  className="relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[16px] sm:rounded-[32px] border border-stone-200/60 bg-[#faf8f5] p-2.5 sm:p-4 text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
-                >
-                  {/* Framed Image Container with responsive aspect ratio */}
-                  <div className="relative h-[110px] xs:h-[135px] sm:h-[180px] md:h-[210px] w-full overflow-x-hidden rounded-xl sm:rounded-2xl bg-stone-100">
-                    <img
-                      src={faith.image}
-                      alt={faith.title}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                    {/* Soft inner shadow for recess depth */}
-                    <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.04)]" />
-                  </div>
-
-                  {/* Content Area */}
-                  <div className="flex flex-1 flex-col pt-2.5 sm:pt-4">
-                    <h3 className="break-words font-serif text-[13px] xs:text-[15px] sm:text-[18px] md:text-[20px] font-semibold uppercase leading-tight text-stone-900">
-                      {faith.title}
-                    </h3>
-                    <div className="mb-2 mt-1 w-[30px] sm:mb-3 sm:mt-2 sm:w-[45px]">
-                      <span className="block h-[1px] sm:h-[1.5px] w-full bg-[#c3923a]" />
-                    </div>
-                    <p className="text-[11px] xs:text-[12px] sm:text-[13px] font-medium leading-relaxed text-stone-600">
-                      {faith.shortIntro}
-                    </p>
-                  </div>
-                </article>
+                  ariaLabel={faith.title}
+                  titleClassName="uppercase"
+                />
               </div>
             ))}
           </div>

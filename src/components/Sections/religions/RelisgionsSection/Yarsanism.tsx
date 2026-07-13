@@ -9,8 +9,7 @@ import OtherFaithTraditionsPage from "@/components/Sections/religions/Relisgions
 import bg from "@/assets/images/religions/k-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FAITH_IMAGE_SIDE_AVATAR_CLASS,
-  FAITH_IMAGE_SIDE_CARD_CLASS,
+  FaithDetailCard,
   FAITH_CONTENT_PADDING,
   FAITH_MAIN_CLASS,
   FAITH_SECTION_CLASS,
@@ -220,36 +219,14 @@ export default function YarsanismPage({
 
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
             {c.cards.map((card, i) => (
-              <article
+              <FaithDetailCard
                 key={card.title}
-                data-yarsan-animate="true"
-                className={FAITH_IMAGE_SIDE_CARD_CLASS}
-              >
-                <div className={FAITH_IMAGE_SIDE_AVATAR_CLASS}>
-                  <img
-                    src={cardImages[i]}
-                    alt={card.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-serif text-[22px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[27px]">
-                      {card.title}
-                    </h3>
-                    <Sparkles className="h-7 w-7 shrink-0 text-[#c58b16] sm:h-8 sm:w-8" />
-                  </div>
-
-                  <div className="my-3 w-[130px]">
-                    <DecorativeLine color="#d1a14f" />
-                  </div>
-
-                  <p className="whitespace-pre-line text-[15px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[17px]">
-                    {card.text}
-                  </p>
-                </div>
-              </article>
+                title={card.title}
+                text={card.text}
+                image={cardImages[i]}
+                index={i}
+                animateAttr="data-yarsan-animate"
+              />
             ))}
           </section>
 

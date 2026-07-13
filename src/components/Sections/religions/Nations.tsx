@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/nations.webp";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
 import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
@@ -332,44 +334,17 @@ export default function NationsPage({
 
           {/* Cards Grid — Dynamic spacing pushes layout below the hero overlay area */}
           <div className="mx-auto mt-[18vh] sm:mt-[clamp(160px,46vh,960px)] grid w-full max-w-[1320px] grid-cols-2 gap-3 sm:gap-8 md:grid-cols-3 lg:grid-cols-4 animate-fade-in">
-            {c.nations.map((nation) => (
+            {c.nations.map((nation, index) => (
               <div key={nation.id} data-n-card="true" className="w-full">
-                <article
-                  role="button"
-                  tabIndex={0}
+                <ReligionInfoCard
+                  title={nation.title}
+                  body={nation.shortIntro}
+                  image={nation.image}
+                  accentIndex={index}
                   onClick={() => setActiveId(nation.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setActiveId(nation.id);
-                    }
-                  }}
-                  aria-label={nation.title}
-                  className="relative flex w-full cursor-pointer flex-col overflow-x-hidden rounded-[16px] sm:rounded-[32px] border border-[#f3dfb5] bg-white p-2.5 sm:p-5 text-left shadow-[0_8px_30px_rgba(69,43,14,0.06)] outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
-                >
-                  {/* Framed Image Container with responsive aspect ratio */}
-                  <div className="relative h-[110px] xs:h-[135px] sm:h-[220px] md:h-[260px] w-full overflow-x-hidden rounded-xl sm:rounded-2xl bg-[#f3e7d2]">
-                    <img
-                      src={nation.image}
-                      alt={nation.title}
-                      className="absolute inset-0 h-full w-full object-cover object-center"
-                    />
-                    <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.04)]" />
-                  </div>
-
-                  {/* Content Area */}
-                  <div className="flex flex-1 flex-col pt-2.5 sm:pt-5">
-                    <h3 className="break-words font-serif text-[13px] xs:text-[15px] sm:text-[21px] md:text-[24px] font-semibold uppercase leading-tight text-[#3b2410]">
-                      {nation.title}
-                    </h3>
-                    <div className="mb-2 mt-1 w-[30px] sm:mb-3 sm:mt-2.5 sm:w-[52px]">
-                      <span className="block h-[1px] sm:h-[1.5px] w-full bg-[#c3923a]" />
-                    </div>
-                    <p className="text-[11px] xs:text-[12px] sm:text-[15px] font-medium leading-relaxed text-[#5a4a30]">
-                      {nation.shortIntro}
-                    </p>
-                  </div>
-                </article>
+                  ariaLabel={nation.title}
+                  titleClassName="uppercase"
+                />
               </div>
             ))}
           </div>

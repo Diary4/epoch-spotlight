@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 
 export const FAITH_MAIN_CLASS =
   "m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-[#3d2b18] sm:w-screen";
@@ -12,6 +13,39 @@ export const FAITH_CONTENT_PADDING = "px-4 sm:px-0";
 
 export const FAITH_ICON_CARD_CLASS =
   "min-h-0 rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-4 py-5 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm sm:min-h-[335px] sm:px-5 sm:py-7";
+
+/** Grid info card used across faith and nation detail pages. */
+export function FaithDetailCard({
+  title,
+  text,
+  image,
+  index,
+  accent,
+  animateAttr,
+}: {
+  title: string;
+  text: string;
+  image?: string;
+  index: number;
+  accent?: string;
+  animateAttr?: string;
+}) {
+  const wrapperProps = animateAttr ? { [animateAttr]: "true" } : {};
+
+  return (
+    <div {...wrapperProps}>
+      <ReligionInfoCard
+        title={title}
+        body={text}
+        image={image}
+        accent={accent}
+        accentIndex={index}
+        align="center"
+        titleClassName="uppercase"
+      />
+    </div>
+  );
+}
 
 export const FAITH_ICON_CARD_ICON_WRAP_CLASS =
   "mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner sm:mb-5 sm:h-20 sm:w-20";

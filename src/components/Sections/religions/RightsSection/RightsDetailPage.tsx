@@ -3,8 +3,9 @@ import gsap from "gsap";
 import { ArrowLeft, Globe2, LucideIcon } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-7.webp";
-import bg2 from "@/assets/images/religions/r-3.webp";
 import bg3 from "@/assets/mainImages/parliment.webp";
 
 type LangCode = "en" | "ku" | "ar";
@@ -141,45 +142,18 @@ export default function RightsDetailPage({
             data-rd-animate="true"
             className="mx-auto mt-[30vh] grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
           >
-            {c.cards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <article
-                  key={card.id}
-                  className="group relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-[#fffaf2]/95 shadow-[0_16px_32px_rgba(69,43,14,0.16)]"
-                >
-                  <div className="relative mx-3 mt-3 overflow-x-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
-                    <div className="relative h-[132px] w-full overflow-x-hidden rounded-[14px]">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${bg2})` }}
-                      />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2d2114]/58 via-[#f8f0e4]/18 to-[#fff7e8]/22" />
-                      <div className="absolute inset-0 flex items-end justify-between gap-4 px-5 py-4">
-                        <p className="max-w-[calc(100%-72px)] rounded-[14px] border border-[#ead3a3]/80 bg-[#fff7e7]/92 px-4 py-2.5 font-serif text-[18px] font-light uppercase leading-tight tracking-[0.03em] text-[#3b2410] shadow-[0_8px_18px_rgba(69,43,14,0.18)] backdrop-blur-md sm:text-[20px]">
-                          {card.eyebrow}
-                        </p>
-                        <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-[#ecd8ad]/80 bg-[#fff7e7]/90 text-[#7a4a12] shadow-[0_6px_16px_rgba(69,43,14,0.18)] backdrop-blur-md">
-                          <Icon className="h-6 w-6" strokeWidth={1.7} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-1 flex-col px-6 py-6">
-                    <h3 className="font-serif text-[30px] font-light uppercase leading-tight text-[#3b2410] sm:text-[34px]">
-                      {card.title}
-                    </h3>
-                    <div className="mb-4 mt-3 w-[72px]">
-                      <span className="block h-[2px] bg-[#c3923a]" />
-                    </div>
-                    <p className="text-[16px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[17px]">
-                      {card.body}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
+            {c.cards.map((card, index) => (
+              <ReligionInfoCard
+                key={card.id}
+                eyebrow={card.eyebrow}
+                title={card.title}
+                body={card.body}
+                image={bg3}
+                accent={card.accent}
+                accentIndex={index}
+                titleClassName="uppercase text-[30px] sm:text-[34px] font-light"
+              />
+            ))}
           </div>
 
           <div

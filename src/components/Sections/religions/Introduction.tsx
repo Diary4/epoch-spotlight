@@ -14,8 +14,24 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/main.webp";
-import bg2 from "@/assets/images/religions/r-3.webp";
+import faithsImg from "@/assets/images/religions/faiths.webp";
+import nationsImg from "@/assets/images/religions/nations.webp";
+import lawsImg from "@/assets/images/religions/nl-1.webp";
+import valleyImg from "@/assets/images/religions/b-1.webp";
+
+const cardImages: Record<string, string> = {
+  religions: faithsImg,
+  nationalities: nationsImg,
+  laws: lawsImg,
+  coexistence: valleyImg,
+  acceptance: bg,
+  respect: nationsImg,
+  humanity: valleyImg,
+  "living-identity": faithsImg,
+};
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -461,61 +477,16 @@ export default function IntroductionPage({
               </div>
 
               <div className="mx-auto mt-8 grid w-full max-w-[1180px] grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-                {group.cards.map((card) => {
-                  const Icon = card.icon;
-                  return (
-                    <div 
-                      key={card.id} 
-                      data-intro-card="true" 
-                      className="w-full"
-                    >
-                      <article className="group bg-[#faf8f5] border border-stone-200/60 p-3 sm:p-4 relative flex w-full flex-col overflow-x-hidden rounded-[32px] text-left shadow-[0_8px_30px_rgba(28,24,20,0.03)] hover:shadow-[0_16px_40px_rgba(214,164,91,0.06)] hover:border-[#d6a45b]/30 transition-all duration-500">
-                        {/* Framed Banner Area */}
-                        <div 
-                          className="relative h-[110px] w-full overflow-x-hidden rounded-xl bg-stone-100"
-                          style={{
-                            background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
-                          }}
-                        >
-                          {/* Mixed Overlay Background Pattern */}
-                          <div
-                            className="pointer-events-none absolute inset-0 opacity-[0.14]"
-                            style={{
-                              backgroundImage: `url(${bg2})`,
-                              backgroundSize: "cover",
-                              backgroundPosition: "center",
-                              mixBlendMode: "overlay",
-                            }}
-                          />
-                          {/* Floating Icon Container */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/20 bg-white/10 backdrop-blur-sm">
-                              <Icon className="h-6 w-6 text-white" />
-                            </div>
-                          </div>
-                          {/* Inner shadow for recess visual depth */}
-                          <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.05)]" />
-                        </div>
-
-                        {/* Content Area */}
-                        <div className="flex flex-1 flex-col pt-3 sm:pt-4">
-                          <h3 className="font-serif text-[18px] sm:text-[1.1rem] leading-tight text-stone-900 transition duration-300 group-hover:text-[#d6a45b]">
-                            {card.title}
-                          </h3>
-                          <div className="mt-2.5 mb-2.5 w-[45px]">
-                            <span
-                              className="block h-[1.5px] transition-all duration-300 group-hover:w-[65px]"
-                              style={{ backgroundColor: card.accent }}
-                            />
-                          </div>
-                          <p className="text-[13px] leading-relaxed text-stone-600 font-medium">
-                            {card.body}
-                          </p>
-                        </div>
-                      </article>
-                    </div>
-                  );
-                })}
+                {group.cards.map((card, idx) => (
+                  <div key={card.id} data-intro-card="true" className="w-full">
+                    <ReligionInfoCard
+                      title={card.title}
+                      body={card.body}
+                      image={cardImages[card.id] ?? bg}
+                      accentIndex={idx}
+                    />
+                  </div>
+                ))}
               </div>
 
               {/* Tagline Container updated to match off-white card design */}

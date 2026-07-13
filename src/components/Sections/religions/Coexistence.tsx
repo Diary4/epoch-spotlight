@@ -14,6 +14,8 @@ import {
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-2.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -251,38 +253,27 @@ export default function StoriesOfCoexistencePage({
             data-story-animate="true"
             className="mt-6 grid grid-cols-1 gap-4 sm:mt-7 sm:gap-5 md:grid-cols-2 xl:grid-cols-4"
           >
-            {localizedStoryCards.map((card) => {
-              const Icon = card.icon;
-
-              return (
-                <article
-                  key={card.title}
-                  className="flex min-h-[280px] flex-col items-center rounded-[20px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-4 py-6 text-center shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm sm:min-h-[310px] sm:rounded-[22px] sm:px-5 sm:py-7"
-                >
-                  <div
-                    className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#e4c47e] text-white sm:h-20 sm:w-20"
-                    style={{ backgroundColor: card.color }}
+            {localizedStoryCards.map((card, index) => (
+              <ReligionInfoCard
+                key={card.title}
+                title={card.title}
+                body={card.text}
+                image={bg}
+                accent={card.color}
+                accentIndex={index}
+                align="center"
+                titleClassName="uppercase"
+                footer={
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 font-serif text-[13px] font-semibold uppercase text-[#6a4a25] sm:gap-3 sm:text-[15px]"
                   >
-                    <Icon className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={1.7} />
-                  </div>
-
-                  <h3 className="mt-4 min-h-[52px] font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:mt-5 sm:min-h-[62px] sm:text-[23px]">
-                    {card.title}
-                  </h3>
-
-                  <p className="mt-2 flex-1 text-[15px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[16px]">
-                    {card.text}
-                  </p>
-
-                  <div className="my-4 h-px w-[120px] bg-[#d1a14f]" />
-
-                  <button className="flex items-center gap-2 font-serif text-[13px] font-semibold uppercase text-[#6a4a25] sm:gap-3 sm:text-[15px]">
                     {readStoryLabel}
                     <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                   </button>
-                </article>
-              );
-            })}
+                }
+              />
+            ))}
           </section>
 
           <section data-story-animate="true" className="mt-7 sm:mt-8">

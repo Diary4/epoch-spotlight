@@ -686,7 +686,7 @@ export default function ReligiousDiversityPage({
             style={{ top: "min(70vh, 1280px)" }}
           >
             <div className="grid w-full grid-cols-4 gap-2 sm:gap-6">
-              {content.cards.map((card) => (
+              {content.cards.map((card, index) => (
                 <div 
                   key={card.id} 
                   data-rd-card="true" 
@@ -696,6 +696,7 @@ export default function ReligiousDiversityPage({
                     title={card.title}
                     image={card.image}
                     ctaLabel={content.openLabel}
+                    accentIndex={index}
                     onClick={() => openSectionCard(card.id)}
                     ariaLabel={card.title}
                   />

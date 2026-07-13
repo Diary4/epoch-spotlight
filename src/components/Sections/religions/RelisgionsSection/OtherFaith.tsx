@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import yarsanism from "@/assets/images/religions/k-1.webp";
 import zoroastrianism from "@/assets/mainImages/story-2.webp";
 import judaism from "@/assets/mainImages/2005.webp";
@@ -184,54 +186,19 @@ export default function OtherFaithTraditionsPage({
             </p>
           </header>
 
-          <section className="mt-9 space-y-5">
-            {localizedFaiths.map((faith) => {
-              const Icon = faith.icon;
-
-              return (
-                <article
-                  key={faith.title}
-                  data-faith-animate="true"
-                  className="relative grid min-h-[210px] overflow-x-hidden rounded-[20px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm lg:grid-cols-[420px_1fr]"
-                >
-                  <div className="relative z-10 flex gap-6 px-7 py-6">
-                    <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc]/70 text-[#c58b16]">
-                      <Icon className="h-12 w-12" strokeWidth={1.45} />
-                    </div>
-
-                    <div>
-                      <h3 className="font-serif text-[33px] font-semibold uppercase leading-tight text-[#3b2410]">
-                        {faith.title}
-                      </h3>
-
-                      <div className="my-3 w-[160px]">
-                        <DecorativeLine color="#d1a14f" />
-                      </div>
-
-                      <p className="text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                        {faith.text}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="relative min-h-[210px]">
-                    <img
-                      src={faith.image}
-                      alt={faith.title}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-
-                    <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#fff8e9] to-transparent" />
-
-                    {faith.label && (
-                      <span className="absolute bottom-3 right-3 rounded-full bg-black/45 px-4 py-1.5 font-serif text-[14px] italic text-white backdrop-blur-sm">
-                        {faith.label}
-                      </span>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
+          <section className="mt-9 grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {localizedFaiths.map((faith, index) => (
+              <div key={faith.title} data-faith-animate="true">
+                <ReligionInfoCard
+                  title={faith.title}
+                  body={faith.text}
+                  image={faith.image}
+                  eyebrow={faith.label}
+                  accentIndex={index}
+                  titleClassName="uppercase"
+                />
+              </div>
+            ))}
           </section>
 
           <section

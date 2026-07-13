@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-3.webp";
 import LanguagesOfKurdistanPage from "@/components/Sections/religions/Languages/KurdistanLanguages";
 import en from "@/data/en.json";
@@ -225,36 +227,18 @@ export default function Nationalities({
 
           <section
             data-nationality-animate="true"
-            className="mx-auto space-y-4"
+            className="mx-auto grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {localizedCommunities.map((item) => (
-              <article
+            {localizedCommunities.map((item, index) => (
+              <ReligionInfoCard
                 key={item.title}
-                className="flex min-h-[118px] items-center gap-7 rounded-[22px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-7 py-5 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
-              >
-                <div
-                  className="grid h-20 w-20 shrink-0 place-items-center"
-                  style={{ color: item.color }}
-                >
-                  <Sparkles className="h-16 w-16" strokeWidth={1.4} />
-                </div>
-
-                <div className="flex-1">
-                  <h3 className="font-serif text-[33px] font-semibold uppercase leading-tight text-[#3b2410]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-[19px] font-semibold leading-snug text-[#4d3c2a]">
-                    {item.text}
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
-                >
-                  <ChevronRight className="h-8 w-8" />
-                </button>
-              </article>
+                title={item.title}
+                body={item.text}
+                image={bg}
+                accent={item.color}
+                accentIndex={index}
+                titleClassName="uppercase"
+              />
             ))}
           </section>
 

@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-7.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import placeImg from "@/assets/mainImages/story-1.webp";
@@ -227,33 +229,17 @@ export default function DiversityMapPage({
           </section>
 
           <section className="mx-auto mt-4 grid max-w-[960px] grid-cols-1 gap-6 sm:grid-cols-3">
-            {localizedInfoCards.map((card) => {
-              const Icon = card.icon;
-
-              return (
-                <article
-                  key={card.title}
-                  data-map-animate="true"
-                  className="min-h-[255px] rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff6e1]/92 px-7 py-7 shadow-[0_12px_28px_rgba(75,45,12,0.13)] backdrop-blur-md"
-                >
-                  <div className="mb-5 grid h-16 w-16 place-items-center rounded-full bg-gradient-to-b from-[#dba437] to-[#b27612] text-white">
-                    <Icon className="h-8 w-8" strokeWidth={1.8} />
-                  </div>
-
-                  <h3 className="font-serif text-[23px] font-semibold uppercase leading-tight text-[#3b2410]">
-                    {card.title}
-                  </h3>
-
-                  <p className="mt-4 text-[15px] font-semibold leading-relaxed text-[#4d3c2a]">
-                    {card.text}
-                  </p>
-
-                  <div className="mx-auto mt-5 w-[150px]">
-                    <DecorativeLine color="#c3923a" />
-                  </div>
-                </article>
-              );
-            })}
+            {localizedInfoCards.map((card, index) => (
+              <div key={card.title} data-map-animate="true">
+                <ReligionInfoCard
+                  title={card.title}
+                  body={card.text}
+                  image={bg}
+                  accentIndex={index}
+                  titleClassName="uppercase"
+                />
+              </div>
+            ))}
           </section>
 
           <section

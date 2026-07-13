@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ArrowLeft, BookOpen, Globe2, MapPin, Sparkles } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-3.webp";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -212,52 +214,27 @@ export default function LanguagesOfKurdistanPage({
             data-language-animate="true"
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {localizedLanguages.map((item) => (
-              <article
+            {localizedLanguages.map((item, index) => (
+              <ReligionInfoCard
                 key={item.title}
-                className="flex min-h-[315px] flex-col items-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-7 text-center shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
-              >
-                <div
-                  className="mb-5 grid h-24 w-24 place-items-center rounded-full border-2 border-[#e4c47e] text-white"
-                  style={{ backgroundColor: item.color }}
-                >
-                  <span className="font-serif text-[28px] font-semibold">
-                    {item.script}
-                  </span>
-                </div>
-
-                <h3
-                  className="font-serif text-[28px] font-semibold uppercase leading-tight"
-                  style={{ color: item.color }}
-                >
-                  {item.title}
-                </h3>
-
-                <div className="my-4 w-[150px]">
-                  <DecorativeLine color="#d1a14f" />
-                </div>
-
-                <p className="text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                  {item.text}
-                </p>
-              </article>
+                title={item.title}
+                body={item.text}
+                image={bg}
+                accent={item.color}
+                accentIndex={index}
+                align="center"
+                titleClassName="uppercase"
+              />
             ))}
 
-            <article className="flex min-h-[315px] flex-col items-center justify-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-7 text-center shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm">
-              <BookOpen className="mb-6 h-24 w-24 text-[#c58b16]" strokeWidth={1.4} />
-
-              <h3 className="font-serif text-[24px] font-semibold uppercase leading-tight text-[#3b2410]">
-                {heritageTitle}
-              </h3>
-
-              <div className="my-4 w-[150px]">
-                <DecorativeLine color="#d1a14f" />
-              </div>
-
-              <p className="text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                {heritageText}
-              </p>
-            </article>
+            <ReligionInfoCard
+              title={heritageTitle}
+              body={heritageText}
+              image={bg}
+              accentIndex={localizedLanguages.length}
+              align="center"
+              titleClassName="uppercase"
+            />
           </section>
 
           <section

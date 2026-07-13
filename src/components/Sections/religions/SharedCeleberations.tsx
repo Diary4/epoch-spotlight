@@ -12,6 +12,8 @@ import {
   UsersRound,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 
@@ -182,38 +184,17 @@ export default function SharedCelebrationsPage({
             data-celebration-animate="true"
             className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {localizedCelebrations.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <article
-                  key={item.title}
-                  className="flex min-h-[330px] flex-col items-center rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/90 px-6 py-7 text-center shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm"
-                >
-                  <div className="mb-6 grid h-32 w-32 place-items-center rounded-full border border-[#d6b06b]/70 bg-[#fff4dc]/60">
-                    <div className="grid h-24 w-24 place-items-center rounded-full border border-[#d6b06b]/45">
-                      <Icon
-                        className="h-16 w-16"
-                        strokeWidth={1.5}
-                        style={{ color: item.color }}
-                      />
-                    </div>
-                  </div>
-
-                  <h3 className="font-serif text-[27px] font-semibold uppercase leading-tight text-[#3b2410]">
-                    {item.title}
-                  </h3>
-
-                  <div className="my-4 w-[140px]">
-                    <DecorativeLine color="#d1a14f" />
-                  </div>
-
-                  <p className="text-[17px] font-semibold leading-relaxed text-[#4d3c2a]">
-                    {item.text}
-                  </p>
-                </article>
-              );
-            })}
+            {localizedCelebrations.map((item, index) => (
+              <ReligionInfoCard
+                key={item.title}
+                title={item.title}
+                body={item.text}
+                accent={item.color}
+                accentIndex={index}
+                align="center"
+                titleClassName="uppercase"
+              />
+            ))}
           </section>
 
           <section

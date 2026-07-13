@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/r-1.webp";
 import ancientRootsImg from "@/assets/images/religions/faiths.webp";
 import jewishCommunityImg from "@/assets/images/religions/j-1.webp";
@@ -232,73 +234,19 @@ function DecorativeLine({ color = "#c99a55" }) {
   );
 }
 
-function HistoryOverviewCard({ card }: { card: SlideCard }) {
-  const Icon = card.icon;
-  const imageSrc = CARD_IMAGES[card.id];
-
+function HistoryOverviewCard({ card, index }: { card: SlideCard; index: number }) {
   return (
-    <article
-      data-h-animate="true"
-      className="relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)]"
-    >
-      <div className="relative mx-3 mt-3 overflow-x-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
-        <div className="relative h-[min(148px,32vw)] overflow-x-hidden rounded-[14px] sm:h-[160px]">
-          <img
-            src={imageSrc}
-            alt=""
-            className="h-full w-full object-cover object-center"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1f140c]/70 via-[#1f140c]/20 to-[#f8f0e4]/10" />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background: `linear-gradient(145deg, ${card.accent}88 0%, transparent 52%)`,
-            }}
-          />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
-            aria-hidden
-          />
-
-          <div className="absolute bottom-3 left-3">
-            <div
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/45 shadow-[0_4px_14px_rgba(0,0,0,0.25)] backdrop-blur-md"
-              style={{ backgroundColor: `${card.accent}dd` }}
-            >
-              <Icon className="h-5 w-5 text-white drop-shadow-sm" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-        <h3 className="font-serif text-[18px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[20px]">
-          {card.title}
-        </h3>
-        <div className="mb-2.5 mt-3 flex w-full max-w-[72px] items-center gap-2">
-          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
-          <span className="text-[10px]" style={{ color: card.accent }}>
-            ◆
-          </span>
-          <span className="h-[2px] flex-1 rounded-full" style={{ backgroundColor: card.accent }} />
-        </div>
-        {card.isQuote ? (
-          <div className="relative pt-1">
-            <Quote
-              className="absolute -top-0.5 left-0 h-5 w-5 opacity-50"
-              style={{ color: card.accent }}
-            />
-            <p className="pl-7 text-[14px] font-medium italic leading-relaxed text-[#4d3c2a] sm:text-[14.5px]">
-              {card.body}
-            </p>
-          </div>
-        ) : (
-          <p className="text-[14px] font-medium leading-relaxed text-[#4d3c2a] sm:text-[14.5px]">
-            {card.body}
-          </p>
-        )}
-      </div>
-    </article>
+    <div data-h-animate="true">
+      <ReligionInfoCard
+        title={card.title}
+        body={card.body}
+        image={CARD_IMAGES[card.id]}
+        accent={card.accent}
+        accentIndex={index}
+        italicBody={card.isQuote}
+        titleClassName="uppercase"
+      />
+    </div>
   );
 }
 
@@ -429,8 +377,8 @@ export default function HistoryPage({
               </div>
 
               <div className="mx-auto mt-10 grid w-full max-w-[1280px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {slide.cards.map((card) => (
-                  <HistoryOverviewCard key={card.id} card={card} />
+                {slide.cards.map((card, index) => (
+                  <HistoryOverviewCard key={card.id} card={card} index={index} />
                 ))}
               </div>
 

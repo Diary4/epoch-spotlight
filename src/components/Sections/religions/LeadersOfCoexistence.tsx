@@ -11,8 +11,14 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg from "@/assets/images/religions/nc-1.webp";
-import bg2 from "@/assets/images/religions/r-3.webp";
+import mustafaBarzaniImg from "@/assets/images/malaMustafa/mustafa-barzani.jpg";
+
+const cardImages: Record<string, string> = {
+  "mustafa-barzani": mustafaBarzaniImg,
+};
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -294,64 +300,18 @@ export default function LeadersOfCoexistencePage({
             className="absolute inset-x-0 top-[60vh] z-10 w-full pb-[200px]"
           >
             <div className="mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {c.cards.map((card) => {
-                const Icon = card.icon;
-                return (
-                  <article
-                    key={card.id}
-                    className="group relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#f3dfb5] bg-white/90 shadow-[0_16px_32px_rgba(69,43,14,0.18)] transition"
-                  >
-                    <div
-                      className="relative h-[120px] w-full"
-                      style={{
-                        background: `linear-gradient(135deg, ${card.accent} 0%, ${card.accent}cc 100%)`,
-                      }}
-                    >
-                      <div
-                        className="pointer-events-none absolute inset-0 opacity-[0.18]"
-                        style={{
-                          backgroundImage: `url(${bg2})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          mixBlendMode: "overlay",
-                        }}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-white/40 bg-white/15 backdrop-blur-sm">
-                          <Icon className="h-7 w-7 text-white" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-1 flex-col px-6 py-6">
-                      <h3 className="font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[22px]">
-                        {card.title}
-                      </h3>
-                      <div className="mt-3 mb-4 w-[60px]">
-                        <span
-                          className="block h-[2px]"
-                          style={{ backgroundColor: card.accent }}
-                        />
-                      </div>
-                      {card.isQuote ? (
-                        <div className="relative pt-2">
-                          <Quote
-                            className="absolute -top-1 left-0 h-5 w-5 opacity-50"
-                            style={{ color: card.accent }}
-                          />
-                          <p className="pl-7 text-[15px] font-medium italic leading-relaxed text-[#4d3c2a]">
-                            {card.body}
-                          </p>
-                        </div>
-                      ) : (
-                        <p className="text-[15px] font-medium leading-relaxed text-[#4d3c2a]">
-                          {card.body}
-                        </p>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
+              {c.cards.map((card, index) => (
+                <ReligionInfoCard
+                  key={card.id}
+                  title={card.title}
+                  body={card.body}
+                  image={cardImages[card.id] ?? bg}
+                  accent={card.accent}
+                  accentIndex={index}
+                  italicBody={card.isQuote}
+                  titleClassName="uppercase"
+                />
+              ))}
             </div>
 
             <div className="mx-auto mt-10 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">

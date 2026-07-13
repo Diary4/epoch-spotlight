@@ -10,9 +10,7 @@ import {
 import bg from "@/assets/images/religions/z-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FAITH_ICON_CARD_CLASS,
-  FAITH_ICON_CARD_ICON_CLASS,
-  FAITH_ICON_CARD_ICON_WRAP_CLASS,
+  FaithDetailCard,
   FAITH_CONTENT_PADDING,
   FAITH_MAIN_CLASS,
   FAITH_SECTION_CLASS,
@@ -206,33 +204,16 @@ export default function ZoroastrianismPage({
           <FaithDetailSpacer desktopHeight="h-[820px]" />
 
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-            {c.cards.map((card) => {
-              const Icon = card.icon;
-
-              return (
-                <article
-                  key={card.title}
-                  data-zoro-animate="true"
-                  className={FAITH_ICON_CARD_CLASS}
-                >
-                  <div className={FAITH_ICON_CARD_ICON_WRAP_CLASS}>
-                    <Icon className={FAITH_ICON_CARD_ICON_CLASS} strokeWidth={1.7} />
-                  </div>
-
-                  <h3 className="font-serif text-[19px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[21px]">
-                    {card.title}
-                  </h3>
-
-                  <div className="mx-auto my-3 w-[140px] sm:my-4">
-                    <DecorativeLine color="#d1a14f" />
-                  </div>
-
-                  <p className="text-[15px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[16px]">
-                    {card.text}
-                  </p>
-                </article>
-              );
-            })}
+            {c.cards.map((card, index) => (
+              <FaithDetailCard
+                key={card.title}
+                title={card.title}
+                text={card.text}
+                image={bg}
+                index={index}
+                animateAttr="data-zoro-animate"
+              />
+            ))}
           </section>
 
           <section data-zoro-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>

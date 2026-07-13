@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
+import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+
 import bg3 from "@/assets/images/religions/r-8.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import parliamentImg from "@/assets/mainImages/parliment.webp";
@@ -249,58 +251,26 @@ function DecorativeLine({ color = "#c99a55" }: { color?: string }) {
 function RightsOverviewCardButton({
   card,
   imageSrc,
+  index,
   onOpen,
 }: {
   card: RightsOverviewCard;
   imageSrc: string;
+  index: number;
   onOpen: () => void;
 }) {
-  const Icon = card.icon;
-
   return (
-    <button
-      type="button"
-      data-rts-animate="true"
-      onClick={onOpen}
-      className="relative flex flex-col overflow-x-hidden rounded-[24px] border-2 border-[#e8cfa0] bg-[#fffaf2] text-start shadow-[0_14px_28px_rgba(69,43,14,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c3923a]"
-    >
-      <div className="relative mx-3 mt-3 overflow-x-hidden rounded-[18px] border border-[#dcc99a]/70 bg-[#f5e8d0] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
-        <div className="relative h-[min(148px,32vw)] overflow-x-hidden rounded-[14px] sm:h-[160px]">
-          <img
-            src={imageSrc}
-            alt=""
-            className="h-full w-full object-cover object-center"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2d2114]/62 via-[#f8f0e4]/18 to-[#fff7e8]/22" />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
-            aria-hidden
-          />
-
-          <div className="absolute bottom-3 left-3">
-            <div className="grid h-12 w-12 place-items-center rounded-full border border-[#ecd8ad]/80 bg-[#fff7e7]/90 text-[#7a4a12] shadow-[0_6px_16px_rgba(69,43,14,0.18)] backdrop-blur-md">
-              <Icon className="h-6 w-6" strokeWidth={1.7} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-        <h3 className="font-serif text-[26px] font-light uppercase leading-tight text-[#3b2410] sm:text-[30px]">
-          {card.title}
-        </h3>
-        <div className="mb-3 mt-3 flex w-full max-w-[84px] items-center gap-2 text-[#c3923a]">
-          <span className="h-[2px] flex-1 rounded-full bg-[#c3923a]" />
-          <span className="text-[10px]">
-            ◆
-          </span>
-          <span className="h-[2px] flex-1 rounded-full bg-[#c3923a]" />
-        </div>
-        <p className="text-[15px] font-light leading-relaxed text-[#4d3c2a] sm:text-[16px]">
-          {card.subtitle}
-        </p>
-      </div>
-    </button>
+    <div data-rts-animate="true">
+      <ReligionInfoCard
+        title={card.title}
+        body={card.subtitle}
+        image={imageSrc}
+        accentIndex={index}
+        onClick={onOpen}
+        titleClassName="uppercase text-[26px] sm:text-[30px] font-light"
+        bodyClassName="text-[15px] sm:text-[16px] font-light"
+      />
+    </div>
   );
 }
 
@@ -405,11 +375,12 @@ export default function RightsPage({
           </header>
 
           <div className="mx-auto mt-[clamp(80px,50vh,700px)] grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {c.cards.map((card) => (
+            {c.cards.map((card, index) => (
               <RightsOverviewCardButton
                 key={card.id}
                 card={card}
                 imageSrc={CARD_IMAGES[card.id]}
+                index={index}
                 onOpen={() => onOpenCard?.(card.id)}
               />
             ))}
