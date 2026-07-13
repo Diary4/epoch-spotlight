@@ -419,7 +419,7 @@ export default function FaithsPage({
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-4 top-4 z-30 grid h-11 w-11 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50 sm:left-8 sm:top-8 sm:h-14 sm:w-14"
+          className="absolute left-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50 sm:left-8 sm:h-14 sm:w-14"
           aria-label={c.back}
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
