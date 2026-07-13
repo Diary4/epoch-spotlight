@@ -648,7 +648,7 @@ export default function ReligiousDiversityPage({
           {content.languageLabel}
         </button>
 
-        <div className="relative z-10 mx-auto min-h-screen w-full max-w-[1500px] px-10 pb-10 pt-24 lg:px-16 lg:pt-28">
+        <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-10 pb-10 pt-24 lg:px-16 lg:pt-28">
           <div className="shrink-0">
             <div className="relative max-w-[min(100%,720px)]">
               <h1 className="font-serif text-[clamp(38px,5.2vw,76px)] font-black uppercase leading-[0.9] tracking-wider text-[#332315]">
@@ -681,10 +681,7 @@ export default function ReligiousDiversityPage({
             </p>
           </div>
 
-          <section
-            className="absolute inset-x-10 z-10 pb-10 lg:inset-x-16"
-            style={{ top: "min(70vh, 1280px)" }}
-          >
+          <section className="z-10 mt-auto pt-10 sm:pt-16">
             <div className="grid w-full grid-cols-4 gap-2 sm:gap-6">
               {content.cards.map((card, index) => (
                 <div 

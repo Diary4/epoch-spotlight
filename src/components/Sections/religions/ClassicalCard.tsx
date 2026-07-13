@@ -24,8 +24,8 @@ export default function ClassicalCard({
       onClick={onClick}
       ariaLabel={ariaLabel}
       titleClassName="uppercase tracking-[0.04em]"
-      className="min-h-[340px] sm:min-h-[420px]"
-      imageHeightClass="h-[220px] sm:h-[280px]"
+      className="min-h-[clamp(240px,32vh,420px)]"
+      imageHeightClass="h-[clamp(150px,21vh,280px)]"
     />
   );
 }
