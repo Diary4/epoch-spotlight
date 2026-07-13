@@ -586,7 +586,7 @@ export default function ReligiousDiversityPage({
             <button
               type="button"
               onClick={() => setSubPage(null)}
-              className="absolute left-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full border border-[#d7b77e] bg-white/80 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+              className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-[#d7b77e] bg-white/80 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
               aria-label={content.detailBack}
             >
               <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
