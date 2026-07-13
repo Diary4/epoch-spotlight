@@ -52,7 +52,7 @@ const TouristicDetail = () => {
   const selectedGalleryImage =
     galleryImages.find((image) => image.id === selectedGalleryId) ?? null;
   const { canvasRef, fit } = useDesignCanvasFit([place?.id, galleryImages.length], {
-    fitViewport: false,
+    fitViewport: true,
   });
 
   useEffect(() => {
@@ -160,7 +160,7 @@ const TouristicDetail = () => {
               <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/45 to-transparent" />
               <div className="absolute bottom-[-1px] left-0 right-0 h-44 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/90 to-transparent" />
 
-              <div data-place-back="true" className="absolute left-14 top-8 z-20">
+              <div data-place-back="true" className="absolute left-1/2 top-8 z-20 -translate-x-1/2">
                 <Link
                   to={backTo}
                   state={{ restoreTouristicScroll: true }}

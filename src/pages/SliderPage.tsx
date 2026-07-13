@@ -477,7 +477,7 @@ export default function VerticalTourismShowcase() {
           </aside>
 
           <article dir={dir} className="flex max-w-[720px] flex-col justify-start pt-28">
-            <div className="flex flex-col self-start rounded-[2rem] border border-white/15 bg-black/15 p-10 shadow-[0_20px_70px_rgba(0,0,0,0.35)] backdrop-blur-[5px]">
+            <div className="flex flex-col self-start rounded-[2rem] bg-black/15 p-10 shadow-[0_20px_70px_rgba(0,0,0,0.35)] backdrop-blur-[5px]">
             <h2
               data-slider-title="true"
               className="whitespace-pre-line font-serif text-[82px] leading-[0.98] tracking-wide drop-shadow-2xl"
