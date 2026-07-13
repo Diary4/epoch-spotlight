@@ -28,7 +28,7 @@ const FOLDER_TO_PLACE = {
 };
 
 const touristicPhotoModules = import.meta.glob(
-  "../assets/images/TouristicPlace/*/*.{webp,jpg,jpeg,png}",
+  "../assets/images/TouristicPlace/*/*.{webp,jpg,jpeg,png,WEBP,JPG,JPEG,PNG}",
   { eager: true, import: "default" },
 );
 
@@ -48,7 +48,7 @@ Object.values(FOLDER_IMAGES).forEach((list) =>
 // promoted to the front of the gallery so it becomes the place's cover image.
 const PLACE_MAIN_OVERRIDES = {
   "rawanduz-canyon": "IMG_0252 copy 2",
-  "gomi-felaw-alpine-lake": "DSC04519 copy",
+  "gomi-felaw-alpine-lake": "IMG_0595",
   "erbil-citadel": "IMG_8636 copy",
   sheladeze: "Untitled_Panorama1- ven - 2-Recovered -5",
   "lalish-temple-yazidi-holy-site": "DSC_4103 -3",

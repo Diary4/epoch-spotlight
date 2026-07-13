@@ -174,17 +174,19 @@ const TouristicDetail = () => {
                 data-place-hero-text="true"
                 className="absolute bottom-0 left-0 w-full px-32 pb-12"
               >
-                <p className="text-[12px] font-semibold uppercase tracking-[0.38em] text-[#d6a45b]">
-                  {place.role}
-                </p>
-                <h1 className="mt-4 font-serif text-7xl uppercase tracking-[0.15em] text-stone-900">
-                  {place.name}
-                </h1>
-                <div className="mt-6 flex items-center gap-4">
-                  <span className="h-px w-12 bg-[#d6a45b]" />
-                  <p className="text-sm uppercase tracking-[0.25em] text-stone-600">
-                    {place.location}
+                <div className="inline-block max-w-full rounded-3xl border border-white/40 bg-white/35 px-10 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-md">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.38em] text-[#b07f2c]">
+                    {place.role}
                   </p>
+                  <h1 className="mt-4 font-serif text-7xl uppercase tracking-[0.15em] text-stone-900">
+                    {place.name}
+                  </h1>
+                  <div className="mt-6 flex items-center gap-4">
+                    <span className="h-px w-12 bg-[#b07f2c]" />
+                    <p className="text-sm uppercase tracking-[0.25em] text-stone-700">
+                      {place.location}
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
