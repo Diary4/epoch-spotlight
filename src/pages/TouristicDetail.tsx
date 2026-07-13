@@ -174,7 +174,7 @@ const TouristicDetail = () => {
                 data-place-hero-text="true"
                 className="absolute bottom-0 left-0 w-full px-32 pb-12"
               >
-                <div className="inline-block max-w-full rounded-3xl border border-white/40 bg-white/35 px-10 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-md">
+                <div className="inline-block max-w-full rounded-3xl px-10 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-[5px]">
                   <p className="text-[12px] font-semibold uppercase tracking-[0.38em] text-[#b07f2c]">
                     {place.role}
                   </p>
