@@ -46,7 +46,7 @@ import Rights2014 from "@/components/Sections/religions/RightsSection/Rights2014
 import RightsRefuge from "@/components/Sections/religions/RightsSection/RightsRefuge";
 import RightsMedia from "@/components/Sections/religions/RightsSection/RightsMedia";
 import ClassicalCard from "@/components/Sections/religions/ClassicalCard";
-import DesignScaledCanvas from "@/components/DesignScaledCanvas";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -570,22 +570,17 @@ export default function ReligiousDiversityPage({
 
     if (card) {
       return (
-        <DesignScaledCanvas
-          dir={dir}
-          fitViewport
-          bgClassName="bg-[#faf8f5]"
-          fitDeps={[lang, card.id]}
-        >
+        <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang, card.id]}>
           <div
             lang={lang}
-            className="relative flex min-h-[1920px] w-full flex-col bg-[#faf8f5] px-12 pb-14 text-[#302214]"
+            className="relative flex min-h-full w-full flex-col bg-[#faf8f5] px-16 pb-16 text-[#302214]"
           >
             <img
               src={card.image}
               alt={card.title}
-              className="absolute inset-x-0 top-0 h-[1100px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+              className="absolute inset-x-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
             />
-            <div className="absolute inset-x-0 top-0 h-[1100px] bg-gradient-to-b from-[#faf8f5]/75 via-[#faf8f5]/45 to-[#faf8f5]" />
+            <div className="absolute inset-x-0 top-0 h-[720px] bg-gradient-to-b from-[#faf8f5]/75 via-[#faf8f5]/45 to-[#faf8f5]" />
 
             <button
               type="button"
@@ -605,7 +600,7 @@ export default function ReligiousDiversityPage({
               {content.languageLabel}
             </button>
 
-            <div className="relative z-10 mx-auto flex flex-1 flex-col items-center justify-center text-center">
+            <div className="relative z-10 mx-auto flex min-h-[900px] flex-1 flex-col items-center justify-center text-center">
               <div className="w-[220px]">
                 <DecorativeLine color="#bd8a3c" />
               </div>
@@ -619,28 +614,23 @@ export default function ReligiousDiversityPage({
               </p>
             </div>
           </div>
-        </DesignScaledCanvas>
+        </WomenScaledCanvas>
       );
     }
   }
 
   return (
-    <DesignScaledCanvas
-      dir={dir}
-      fitViewport
-      bgClassName="bg-[#faf8f5]"
-      fitDeps={[lang]}
-    >
+    <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang]}>
       <section
         ref={sectionRef}
         lang={lang}
-        className="relative flex min-h-[1920px] w-full flex-col overflow-hidden bg-[#faf8f5] text-[#302214]"
+        className="relative flex w-full flex-col overflow-x-hidden bg-[#faf8f5] pb-14 text-[#302214]"
       >
         <img
           data-rd-hero="true"
           src={bg2}
           alt=""
-          className="absolute inset-x-0 top-0 h-[900px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+          className="absolute inset-x-0 top-0 h-[1100px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_68%,transparent_100%)]"
         />
         <div className="absolute inset-x-0 top-0 h-[900px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
@@ -648,16 +638,16 @@ export default function ReligiousDiversityPage({
           data-rd-lang-btn="true"
           type="button"
           onClick={handleLanguageChange}
-          className="absolute right-10 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+          className="absolute right-12 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
         >
           <Globe2 className="h-5 w-5" />
           {content.languageLabel}
         </button>
 
-        <div className="relative z-10 flex min-h-[1920px] w-full flex-col px-12 pb-14 pt-28">
+        <div className="relative z-10 flex w-full flex-col px-16 pt-24">
           <div className="shrink-0">
-            <div className="relative max-w-[720px]">
-              <h1 className="font-serif text-[56px] font-black uppercase leading-[0.9] tracking-wider text-[#332315]">
+            <div className="relative max-w-[820px]">
+              <h1 className="font-serif text-[64px] font-black uppercase leading-[0.92] tracking-wider text-[#332315]">
                 {content.title.map((line, index) => (
                   <span
                     key={`${line}-${index}`}
@@ -671,7 +661,7 @@ export default function ReligiousDiversityPage({
 
               <h2
                 data-rd-subtitle="true"
-                className="mt-6 max-w-[640px] font-serif text-[18px] font-light uppercase leading-snug tracking-[0.14em] text-[#b98222]"
+                className="mt-6 max-w-[720px] font-serif text-[20px] font-light uppercase leading-snug tracking-[0.14em] text-[#b98222]"
               >
                 {content.subtitle}
               </h2>
@@ -682,13 +672,13 @@ export default function ReligiousDiversityPage({
             data-rd-desc="true"
             className="mt-6 border-t border-[#c9973e]/30 pt-6"
           >
-            <p className="max-w-[560px] font-sans text-[18px] font-normal leading-[1.65] text-[#332315]/90">
+            <p className="max-w-[620px] font-sans text-[18px] font-normal leading-[1.65] text-[#332315]/90">
               {content.description}
             </p>
           </div>
 
-          <section className="z-10 mt-auto pb-48 pt-16">
-            <div className="grid w-full grid-cols-4 gap-5">
+          <section className="z-10 mt-[28rem]">
+            <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-5">
               {content.cards.map((card, index) => (
                 <div key={card.id} data-rd-card="true" className="w-full">
                   <ClassicalCard
@@ -705,6 +695,6 @@ export default function ReligiousDiversityPage({
           </section>
         </div>
       </section>
-    </DesignScaledCanvas>
+    </WomenScaledCanvas>
   );
 }

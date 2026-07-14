@@ -10,8 +10,8 @@ type ClassicalCardProps = {
 };
 
 /**
- * Fixed-size card for the Religions overview, rendered inside a 1080px
- * design canvas that scales to fit the viewport.
+ * Hub cards for the Religions overview — sized for the shared 1400px
+ * WomenScaledCanvas artboard (same responsiveness as Women.tsx).
  */
 export default function ClassicalCard({
   title,
@@ -27,9 +27,9 @@ export default function ClassicalCard({
       accentIndex={accentIndex}
       onClick={onClick}
       ariaLabel={ariaLabel}
-      titleClassName="uppercase tracking-[0.04em]"
-      className="min-h-[480px]"
-      imageHeightClass="h-[280px]"
+      titleClassName="uppercase tracking-[0.04em] text-[22px]"
+      className="min-h-[360px]"
+      imageHeightClass="h-[200px]"
     />
   );
 }

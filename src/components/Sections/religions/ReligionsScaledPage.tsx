@@ -1,8 +1,5 @@
 import React from "react";
-import DesignScaledCanvas from "@/components/DesignScaledCanvas";
-import { RELIGIONS_OFFWHITE } from "@/components/Sections/religions/religionsLayout";
-
-export { RELIGIONS_OFFWHITE };
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 
 type ReligionsScaledPageProps = {
   dir?: "ltr" | "rtl";
@@ -10,10 +7,15 @@ type ReligionsScaledPageProps = {
   fitDeps?: React.DependencyList;
   sectionRef?: React.RefObject<HTMLElement | null>;
   className?: string;
+  /** Kept for call-site compatibility — religions now follow Women width-scaling. */
+  fitViewport?: boolean;
   children: React.ReactNode;
 };
 
-/** Fixed 1080×1920 religions artboard that scales to fit any window with no scroll. */
+/**
+ * Religions pages use the same width-scaled canvas as Women.tsx so layout
+ * stays consistent across window sizes (always fills width, may scroll).
+ */
 export default function ReligionsScaledPage({
   dir,
   lang,
@@ -23,19 +25,14 @@ export default function ReligionsScaledPage({
   children,
 }: ReligionsScaledPageProps) {
   return (
-    <DesignScaledCanvas
-      dir={dir}
-      fitViewport
-      bgClassName="bg-[#faf8f5]"
-      fitDeps={fitDeps}
-    >
+    <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={fitDeps}>
       <section
         ref={sectionRef}
         lang={lang}
-        className={`relative flex min-h-[1920px] w-full flex-col overflow-hidden bg-[#faf8f5] text-[#3d2b18] ${className}`}
+        className={`relative flex w-full flex-col overflow-x-hidden bg-[#faf8f5] text-[#3d2b18] ${className}`}
       >
         {children}
       </section>
-    </DesignScaledCanvas>
+    </WomenScaledCanvas>
   );
 }

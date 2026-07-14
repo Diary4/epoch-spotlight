@@ -43,7 +43,7 @@ export function useDesignCanvasFit(
       const scale = fitViewport
         ? Math.min(widthScale, vh / naturalHeight)
         : widthScale;
-      const x = (vw - designWidth * scale) / 2;
+      const x = Math.max(0, (vw - designWidth * scale) / 2);
       const minCanvasHeight = fitViewport ? 0 : vh / scale;
       const contentHeight = fitViewport
         ? vh

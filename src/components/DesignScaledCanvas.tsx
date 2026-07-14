@@ -60,7 +60,9 @@ function ScaledCanvasInner({
     <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
       <div
         ref={canvasRef}
-        className={fitViewport ? undefined : "flex flex-col [&>*]:grow"}
+        // Match WomenScaledCanvas: flex + grow keeps short pages filling the
+        // window while still measuring natural height for scale.
+        className="flex flex-col [&>*]:grow"
         style={{
           width: DESIGN_WIDTH,
           minHeight: fit.minCanvasHeight || undefined,
