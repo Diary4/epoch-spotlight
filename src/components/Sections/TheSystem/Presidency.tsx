@@ -47,18 +47,24 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
       dir={isRtl ? "rtl" : "ltr"}
       className={`relative h-full min-h-0 w-full overflow-hidden bg-black ${isRtl ? "font-noto-naskh" : ""}`}
     >
-      {/* Full-bleed portrait — height fills so he stays fully visible; frame him center */}
+      {/* Full-height portrait — character focal point (~35%) pinned to viewport center */}
       <div
-        className={`absolute inset-0 bg-black transition-all duration-700 ease-out ${
+        className={`absolute inset-0 overflow-hidden bg-black transition-all duration-700 ease-out ${
           pageReady ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
         }`}
-        style={{
-          backgroundImage: `url(${presidencyPortrait})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "auto 100%",
-          backgroundPosition: "22% center",
-        }}
-      />
+      >
+        <img
+          src={presidencyPortrait}
+          alt=""
+          aria-hidden
+          className="absolute top-0 h-full w-auto max-w-none"
+          style={{
+            left: "50%",
+            // Subject sits ~35% from the left in the source photo — pin that point to center.
+            transform: "translateX(-35%)",
+          }}
+        />
+      </div>
 
       {/* Back button */}
       <button

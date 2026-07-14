@@ -279,7 +279,7 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                       src={presidencyImg}
                       alt=""
                       className="h-full w-full object-cover"
-                      style={{ objectPosition: "22% 32%" }}
+                      style={{ objectPosition: "35% 28%" }}
                     />
                   </span>
                   <div className="flex-1">
