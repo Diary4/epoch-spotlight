@@ -687,7 +687,7 @@ export default function ReligiousDiversityPage({
             </p>
           </div>
 
-          <section className="z-10 mt-auto pb-28 pt-16">
+          <section className="z-10 mt-auto pb-48 pt-16">
             <div className="grid w-full grid-cols-4 gap-5">
               {content.cards.map((card, index) => (
                 <div key={card.id} data-rd-card="true" className="w-full">
