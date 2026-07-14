@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import waterVideo from "@/assets/videos/water.webm?url";
+import bg from "@/assets/images/religions/sabean-water.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FaithDetailCard,
@@ -196,7 +197,7 @@ export default function SabeanMandaeanismPage({
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
+          <FaithDetailSpacer desktopHeight="h-[1220px]" />
 
           <section className="grid grid-cols-4 gap-6">
             {c.cards.map((card, index) => (
