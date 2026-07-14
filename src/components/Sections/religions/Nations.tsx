@@ -4,6 +4,7 @@ import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg from "@/assets/images/religions/nations.webp";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
@@ -271,87 +272,74 @@ export default function NationsPage({
   }
 
   return (
-    <main
-      dir={dir}
-      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-[#3d2b18]"
-    >
-      <section
-        ref={sectionRef}
-        className="relative w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
-      >
-        {/* Cinematic Absolute hero background overlay (Unifies mobile and desktop visually) */}
-        <img
-          data-n-hero="true"
-          src={bg}
-          alt=""
-          className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)] sm:h-[65vh]"
-        />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:h-[55vh]" />
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+      <img
+        data-n-hero="true"
+        src={bg}
+        alt=""
+        className="pointer-events-none absolute inset-x-0 top-0 h-[900px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[900px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
-        {/* Action Controls */}
-        {onBack && (
-          <button
-            type="button"
-            onClick={onBack}
-            className="absolute left-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm transition hover:bg-[#fff7ea] sm:left-8 sm:h-14 sm:w-14"
-            aria-label={c.back}
-          >
-            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-          </button>
-        )}
+      {onBack && (
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm transition hover:bg-[#fff7ea]"
+          aria-label={c.back}
+        >
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+        </button>
+      )}
 
-        {onLanguageChange && (
-          <button
-            type="button"
-            onClick={onLanguageChange}
-            className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-[#d9b477] bg-white px-3 py-2 font-serif text-xs font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-[#fff7ea] sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
-          >
-            <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
-            {languageLabel}
-          </button>
-        )}
+      {onLanguageChange && (
+        <button
+          type="button"
+          onClick={onLanguageChange}
+          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-[#fff7ea]"
+        >
+          <Globe2 className="h-5 w-5" />
+          {languageLabel}
+        </button>
+      )}
 
-        {/* Page Content layout wrapper */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col px-4 sm:px-0">
-          {/* Header - Overlaps seamlessly over the hero background */}
-          <header
-            data-n-animate="true"
-            className="mx-auto max-w-[850px] pt-20 text-center sm:pt-28 lg:pt-32"
-          >
-            <div className="mx-auto mb-3 mt-1 w-[260px] max-w-full sm:mt-3">
-              <DecorativeLine color="#c3923a" />
-            </div>
-            <h1 className="break-words font-serif text-4xl xs:text-5xl sm:text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] lg:text-[84px]">
-              {c.pageTitle}
-            </h1>
-            <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
-              <DecorativeLine color="#c3923a" />
-            </div>
-            <p className="mx-auto mt-4 max-w-[620px] text-[15px] sm:text-[18px] lg:text-[20px] font-semibold leading-relaxed text-[#4d3c2a] sm:mt-5">
-              {c.pageDescription}
-            </p>
-          </header>
-
-          {/* Cards Grid — Dynamic spacing pushes layout below the hero overlay area */}
-          <div className="mx-auto mt-[18vh] sm:mt-[clamp(160px,46vh,960px)] grid w-full max-w-[1320px] grid-cols-2 gap-3 sm:gap-8 md:grid-cols-3 lg:grid-cols-4 animate-fade-in">
-            {c.nations.map((nation, index) => (
-              <div key={nation.id} data-n-card="true" className="w-full">
-                <ReligionInfoCard
-                  title={nation.title}
-                  body={nation.shortIntro}
-                  image={nation.image}
-                  accentIndex={index}
-                  onClick={() => setActiveId(nation.id)}
-                  ariaLabel={nation.title}
-                  titleClassName="uppercase"
-                />
-              </div>
-            ))}
+      <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+        <header
+          data-n-animate="true"
+          className="mx-auto max-w-[850px] pt-32 text-center"
+        >
+          <div className="mx-auto mb-3 mt-3 w-[260px]">
+            <DecorativeLine color="#c3923a" />
           </div>
-        </div>
+          <h1 className="break-words font-serif text-[84px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
+            {c.pageTitle}
+          </h1>
+          <div className="mx-auto mt-5 w-[180px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <p className="mx-auto mt-5 max-w-[620px] text-[20px] font-semibold leading-relaxed text-[#4d3c2a]">
+            {c.pageDescription}
+          </p>
+        </header>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
-      </section>
-    </main>
+        <div className="mx-auto mt-[480px] grid w-full max-w-[1320px] grid-cols-4 gap-8">
+          {c.nations.map((nation, index) => (
+            <div key={nation.id} data-n-card="true" className="w-full">
+              <ReligionInfoCard
+                title={nation.title}
+                body={nation.shortIntro}
+                image={nation.image}
+                accentIndex={index}
+                onClick={() => setActiveId(nation.id)}
+                ariaLabel={nation.title}
+                titleClassName="uppercase"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
+    </ReligionsScaledPage>
   );
 }

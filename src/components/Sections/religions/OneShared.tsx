@@ -14,6 +14,7 @@ import {
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg from "@/assets/images/religions/nl-1.webp";
 
@@ -344,110 +345,102 @@ export default function OneSharedHomelandPage({
   }, [lang]);
 
   return (
-    <main
-      dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]"
-    >
-      <section
-        ref={sectionRef}
-        className="relative w-full overflow-x-hidden bg-[#faf8f5] px-6 pb-20 pt-10 sm:px-12 lg:px-20"
-      >
-        <img
-          data-sh-hero="true"
-          src={bg}
-          alt=""
-          className="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
-        />
-        <div className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+      <img
+        data-sh-hero="true"
+        src={bg}
+        alt=""
+        className="absolute inset-x-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+      />
+      <div className="absolute inset-x-0 top-0 h-[720px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
-        {onBack && (
-          <button
-            type="button"
-            onClick={onBack}
-            className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
-            aria-label={c.back}
-          >
-            <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-          </button>
-        )}
+      {onBack && (
+        <button
+          type="button"
+          onClick={onBack}
+          className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
+          aria-label={c.back}
+        >
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+        </button>
+      )}
 
-        {onLanguageChange && (
-          <button
-            type="button"
-            onClick={onLanguageChange}
-            className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
-          >
-            <Globe2 className="h-5 w-5" />
-            {languageLabel}
-          </button>
-        )}
+      {onLanguageChange && (
+        <button
+          type="button"
+          onClick={onLanguageChange}
+          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition"
+        >
+          <Globe2 className="h-5 w-5" />
+          {languageLabel}
+        </button>
+      )}
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
-          <header
+      <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+        <header
+          data-sh-animate="true"
+          className="mx-auto max-w-[850px] pt-14 text-center"
+        >
+          <div className="mx-auto mb-3 w-[260px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <h1 className="font-serif text-[88px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
+            {c.pageTitle}
+          </h1>
+          <div className="mx-auto mt-5 w-[180px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <p className="mx-auto mt-5 max-w-[620px] text-[22px] font-semibold leading-relaxed text-[#4d3c2a]">
+            {c.pageDescription}
+          </p>
+        </header>
+
+        {c.groups.map((group) => (
+          <section
+            key={group.id}
             data-sh-animate="true"
-            className="mx-auto max-w-[850px] pt-14 text-center"
+            className="mt-24 first:mt-20"
+            aria-labelledby={`sh-group-${group.id}`}
           >
-            <div className="mx-auto mb-3 w-[260px]">
-              <DecorativeLine color="#c3923a" />
+            <div className="mx-auto max-w-[860px] text-center">
+              <h2
+                id={`sh-group-${group.id}`}
+                className="font-serif text-[48px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#3b2410]"
+              >
+                {group.title}
+              </h2>
+              <div className="mx-auto mt-4 w-[200px]">
+                <DecorativeLine color="#c3923a" />
+              </div>
+              <p className="mx-auto mt-4 max-w-[640px] font-serif text-[20px] italic text-[#6a4a25]">
+                {group.subtitle}
+              </p>
             </div>
-            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] sm:text-[76px] lg:text-[88px]">
-              {c.pageTitle}
-            </h1>
-            <div className="mx-auto mt-5 w-[180px]">
-              <DecorativeLine color="#c3923a" />
+
+            <div className="mx-auto mt-10 grid w-full max-w-[1180px] grid-cols-4 gap-6">
+              {group.cards.map((card, index) => (
+                <ReligionInfoCard
+                  key={card.id}
+                  title={card.title}
+                  body={card.body}
+                  image={bg}
+                  accent={card.accent}
+                  accentIndex={index}
+                  titleClassName="uppercase"
+                />
+              ))}
             </div>
-            <p className="mx-auto mt-5 max-w-[620px] text-[19px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[22px]">
-              {c.pageDescription}
-            </p>
-          </header>
 
-          {c.groups.map((group) => (
-            <section
-              key={group.id}
-              data-sh-animate="true"
-              className="mt-24 first:mt-20"
-              aria-labelledby={`sh-group-${group.id}`}
-            >
-              <div className="mx-auto max-w-[860px] text-center">
-                <h2
-                  id={`sh-group-${group.id}`}
-                  className="font-serif text-[36px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#3b2410] sm:text-[48px]"
-                >
-                  {group.title}
-                </h2>
-                <div className="mx-auto mt-4 w-[200px]">
-                  <DecorativeLine color="#c3923a" />
-                </div>
-                <p className="mx-auto mt-4 max-w-[640px] font-serif text-[18px] italic text-[#6a4a25] sm:text-[20px]">
-                  {group.subtitle}
-                </p>
-              </div>
+            <div className="mx-auto mt-10 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
+              <p className="font-serif text-[19px] font-semibold italic leading-snug text-[#6a4a25]">
+                {group.tagline}
+              </p>
+            </div>
+          </section>
+        ))}
+      </div>
 
-              <div className="mx-auto mt-10 grid w-full max-w-[1180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {group.cards.map((card, index) => (
-                  <ReligionInfoCard
-                    key={card.id}
-                    title={card.title}
-                    body={card.body}
-                    image={bg}
-                    accent={card.accent}
-                    accentIndex={index}
-                    titleClassName="uppercase"
-                  />
-                ))}
-              </div>
-
-              <div className="mx-auto mt-10 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
-                <p className="font-serif text-[17px] font-semibold italic leading-snug text-[#6a4a25] sm:text-[19px]">
-                  {group.tagline}
-                </p>
-              </div>
-            </section>
-          ))}
-        </div>
-
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
-      </section>
-    </main>
+      <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
+    </ReligionsScaledPage>
   );
 }

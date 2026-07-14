@@ -9,6 +9,10 @@ type ClassicalCardProps = {
   accentIndex?: number;
 };
 
+/**
+ * Fixed-size card for the Religions overview, rendered inside a 1080px
+ * design canvas that scales to fit the viewport.
+ */
 export default function ClassicalCard({
   title,
   image,
@@ -24,8 +28,8 @@ export default function ClassicalCard({
       onClick={onClick}
       ariaLabel={ariaLabel}
       titleClassName="uppercase tracking-[0.04em]"
-      className="min-h-[clamp(240px,32vh,420px)]"
-      imageHeightClass="h-[clamp(150px,21vh,280px)]"
+      className="min-h-[360px]"
+      imageHeightClass="h-[200px]"
     />
   );
 }

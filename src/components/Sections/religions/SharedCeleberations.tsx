@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
@@ -127,129 +128,124 @@ export default function SharedCelebrationsPage({
   }, []);
 
   return (
-    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]">
-      <section
-        ref={sectionRef}
-        className="relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-7 py-9 sm:px-10 lg:px-16"
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+      <div className="absolute inset-0 bg-[#faf8f5]" />
+      <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />
+
+      <button
+        type="button"
+        onClick={onBack}
+        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+        aria-label="Back"
       >
-        <div className="absolute inset-0 bg-[#faf8f5]" />
-        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(#d7b56c_1px,transparent_1px)] [background-size:24px_24px]" />
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+      </button>
 
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+      <button
+        type="button"
+        onClick={onLanguageChange}
+        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+      >
+        <Globe2 className="h-5 w-5" />
+        {languageLabel}
+      </button>
+
+      <div className="relative z-10 mx-auto max-w-[980px]">
+        <header
+          data-celebration-animate="true"
+          className="mx-auto max-w-[760px] pt-12 text-center"
         >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-        </button>
+          <div className="mx-auto mb-4 w-[430px] max-w-full">
+            <DecorativeLine color="#c3923a" />
+          </div>
 
-        <button
-          type="button"
-          onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
-        >
-          <Globe2 className="h-5 w-5" />
-          {languageLabel}
-        </button>
-
-        <div className="relative z-10 mx-auto max-w-[980px]">
-          <header
-            data-celebration-animate="true"
-            className="mx-auto max-w-[760px] pt-12 text-center"
-          >
-            <div className="mx-auto mb-4 w-[430px] max-w-full">
-              <DecorativeLine color="#c3923a" />
-            </div>
-
-            <h1 className="font-serif text-[58px] font-semibold uppercase leading-[1.03] tracking-[0.08em] text-[#2f1f12] sm:text-[78px] lg:text-[92px]">
-              {pageTitleLines.map((line, idx) => (
-                <React.Fragment key={`${line}-${idx}`}>
-                  {line}
-                  {idx < pageTitleLines.length - 1 ? <br /> : null}
-                </React.Fragment>
-              ))}
-            </h1>
-
-            <p className="mt-4 font-serif text-[23px] font-semibold uppercase tracking-[0.1em] text-[#a46f22] sm:text-[29px]">
-              {pageSubtitle}
-            </p>
-
-            <div className="mx-auto mt-7 w-[190px]">
-              <DecorativeLine color="#c3923a" />
-            </div>
-          </header>
-
-          <section
-            data-celebration-animate="true"
-            className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {localizedCelebrations.map((item, index) => (
-              <ReligionInfoCard
-                key={item.title}
-                title={item.title}
-                body={item.text}
-                accent={item.color}
-                accentIndex={index}
-                align="center"
-                titleClassName="uppercase"
-              />
+          <h1 className="font-serif text-[92px] font-semibold uppercase leading-[1.03] tracking-[0.08em] text-[#2f1f12]">
+            {pageTitleLines.map((line, idx) => (
+              <React.Fragment key={`${line}-${idx}`}>
+                {line}
+                {idx < pageTitleLines.length - 1 ? <br /> : null}
+              </React.Fragment>
             ))}
-          </section>
+          </h1>
 
-          <section
-            data-celebration-animate="true"
-            className="mt-8 grid items-center gap-8 rounded-[26px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-8 py-7 shadow-[0_12px_26px_rgba(75,45,12,0.14)] backdrop-blur-sm sm:grid-cols-[230px_1fr]"
-          >
-            <div className="grid h-52 w-52 place-items-center rounded-full border border-[#d6b06b]/45 text-[#b8862e]">
-              <Sparkles className="h-32 w-32" strokeWidth={1.2} />
+          <p className="mt-4 font-serif text-[29px] font-semibold uppercase tracking-[0.1em] text-[#a46f22]">
+            {pageSubtitle}
+          </p>
+
+          <div className="mx-auto mt-7 w-[190px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+        </header>
+
+        <section
+          data-celebration-animate="true"
+          className="mt-12 grid grid-cols-3 gap-6"
+        >
+          {localizedCelebrations.map((item, index) => (
+            <ReligionInfoCard
+              key={item.title}
+              title={item.title}
+              body={item.text}
+              accent={item.color}
+              accentIndex={index}
+              align="center"
+              titleClassName="uppercase"
+            />
+          ))}
+        </section>
+
+        <section
+          data-celebration-animate="true"
+          className="mt-8 grid items-center gap-8 rounded-[26px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-8 py-7 shadow-[0_12px_26px_rgba(75,45,12,0.14)] backdrop-blur-sm grid-cols-[230px_1fr]"
+        >
+          <div className="grid h-52 w-52 place-items-center rounded-full border border-[#d6b06b]/45 text-[#b8862e]">
+            <Sparkles className="h-32 w-32" strokeWidth={1.2} />
+          </div>
+
+          <div>
+            <h2 className="font-serif text-[31px] font-semibold uppercase leading-tight text-[#3b2410]">
+              {togetherTitle}
+            </h2>
+
+            <div className="my-4 w-[170px]">
+              <DecorativeLine color="#d1a14f" />
             </div>
 
-            <div>
-              <h2 className="font-serif text-[31px] font-semibold uppercase leading-tight text-[#3b2410]">
-                {togetherTitle}
-              </h2>
-
-              <div className="my-4 w-[170px]">
-                <DecorativeLine color="#d1a14f" />
-              </div>
-
-              <p className="text-[18px] font-semibold leading-relaxed text-[#4d3c2a]">
-                {togetherParagraph1}
-              </p>
-
-              <p className="mt-4 text-[18px] font-semibold leading-relaxed text-[#4d3c2a]">
-                {togetherParagraph2}
-              </p>
-            </div>
-          </section>
-
-          <section
-            data-celebration-animate="true"
-            className="mx-auto mt-7 flex items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
-          >
-            <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
-              <UsersRound className="h-12 w-12" strokeWidth={1.8} />
-            </div>
-
-            <p className="flex-1 font-serif text-[28px] font-semibold uppercase leading-tight text-[#3b2410]">
-              {footerTitle}
-              <br />
-              <span className="text-[18px] normal-case font-semibold text-[#6a4a25]">
-                {footerText}
-              </span>
+            <p className="text-[18px] font-semibold leading-relaxed text-[#4d3c2a]">
+              {togetherParagraph1}
             </p>
 
-            <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
-              <ChevronRight className="h-9 w-9" />
-            </button>
-          </section>
+            <p className="mt-4 text-[18px] font-semibold leading-relaxed text-[#4d3c2a]">
+              {togetherParagraph2}
+            </p>
+          </div>
+        </section>
 
-          <Sparkles className="mx-auto mt-5 h-12 w-12 text-[#c58b16]" />
-        </div>
+        <section
+          data-celebration-animate="true"
+          className="mx-auto mt-7 flex items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+        >
+          <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
+            <UsersRound className="h-12 w-12" strokeWidth={1.8} />
+          </div>
 
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-      </section>
-    </main>
+          <p className="flex-1 font-serif text-[28px] font-semibold uppercase leading-tight text-[#3b2410]">
+            {footerTitle}
+            <br />
+            <span className="text-[18px] normal-case font-semibold text-[#6a4a25]">
+              {footerText}
+            </span>
+          </p>
+
+          <button className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]">
+            <ChevronRight className="h-9 w-9" />
+          </button>
+        </section>
+
+        <Sparkles className="mx-auto mt-5 h-12 w-12 text-[#c58b16]" />
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+    </ReligionsScaledPage>
   );
 }

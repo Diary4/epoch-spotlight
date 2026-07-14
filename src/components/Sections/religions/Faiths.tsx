@@ -4,6 +4,7 @@ import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/new/religions/faiths/islam.webp";
@@ -394,90 +395,74 @@ export default function FaithsPage({
   }
 
   return (
-    <main
-      dir={dir}
-      className="m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-stone-800"
-    >
-      <section
-        ref={sectionRef}
-        className="relative w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-10 lg:px-20"
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+      <video
+        data-f-hero="true"
+        src={faithsVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[900px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[900px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
+
+      <button
+        type="button"
+        onClick={onBack}
+        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50"
+        aria-label={c.back}
       >
-        {/* Cinematic Absolute Video Background overlay (Unifies mobile and desktop visually) */}
-        <video
-          data-f-hero="true"
-          src={faithsVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] sm:h-[65vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
-        />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] sm:h-[55vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+      </button>
 
-        {/* Action Controls */}
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute left-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50 sm:left-8 sm:h-14 sm:w-14"
-          aria-label={c.back}
+      <button
+        type="button"
+        onClick={onLanguageChange}
+        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-stone-200 bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50"
+      >
+        <Globe2 className="h-5 w-5" />
+        {languageLabel}
+      </button>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
+        <header
+          data-f-animate="true"
+          className="mx-auto max-w-[850px] pt-32 text-center"
         >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-        </button>
-
-        <button
-          type="button"
-          onClick={onLanguageChange}
-          className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-stone-200 bg-white/75 px-3 py-2 font-serif text-xs font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50 sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
-        >
-          <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
-          {languageLabel}
-        </button>
-
-        {/* Page Content layout wrapper */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col px-4 sm:px-0">
-          
-          {/* Header - Overlaps seamlessly over the background video */}
-          <header
-            data-f-animate="true"
-            className="mx-auto max-w-[850px] pt-20 text-center sm:pt-28 lg:pt-32"
-          >
-            <div className="mx-auto mb-3 mt-1 w-[260px] max-w-full sm:mt-3">
-              <DecorativeLine color="#c3923a" />
-            </div>
-            <h1 className="text-[#F5EDD6] [@media(min-height:1600px)]:!text-black break-words font-serif text-4xl xs:text-5xl sm:text-[clamp(36px,10vw,84px)] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-stone-900 lg:text-[84px]">
-              {c.pageTitle}
-            </h1>
-            <div className="mx-auto mt-4 w-[180px] max-w-full sm:mt-5">
-              <DecorativeLine color="#c3923a" />
-            </div>
-            <p className="text-[#F5EDD6] [@media(min-height:1600px)]:!text-black mx-auto mt-4 max-w-[620px] text-[15px] sm:text-[18px] lg:text-[20px] font-semibold leading-relaxed text-stone-600 sm:mt-5">
-              {c.pageDescription}
-            </p>
-          </header>
-
-          {/* Cards Grid — Dynamic spacing pushes layout below overlay video area */}
-          <div
-            className="mx-auto mt-[18vh] sm:mt-[clamp(120px,48vh,960px)] grid w-full max-w-[1180px] grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in"
-          >
-            {c.faiths.map((faith, index) => (
-              <div key={faith.id} data-f-card="true" className="w-full">
-                <ReligionInfoCard
-                  title={faith.title}
-                  body={faith.shortIntro}
-                  image={faith.image}
-                  accentIndex={index}
-                  onClick={() => setActiveId(faith.id)}
-                  ariaLabel={faith.title}
-                  titleClassName="uppercase"
-                />
-              </div>
-            ))}
+          <div className="mx-auto mb-3 mt-3 w-[260px]">
+            <DecorativeLine color="#c3923a" />
           </div>
-        </div>
+          <h1 className="break-words font-serif text-[84px] font-semibold uppercase leading-[1.04] tracking-[0.04em] text-[#F5EDD6]">
+            {c.pageTitle}
+          </h1>
+          <div className="mx-auto mt-5 w-[180px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <p className="mx-auto mt-5 max-w-[620px] text-[20px] font-semibold leading-relaxed text-[#F5EDD6]">
+            {c.pageDescription}
+          </p>
+        </header>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#faf8f5]/20 to-transparent" />
-      </section>
-    </main>
+        <div className="mx-auto mt-[480px] grid w-full max-w-[1180px] grid-cols-4 gap-7">
+          {c.faiths.map((faith, index) => (
+            <div key={faith.id} data-f-card="true" className="w-full">
+              <ReligionInfoCard
+                title={faith.title}
+                body={faith.shortIntro}
+                image={faith.image}
+                accentIndex={index}
+                onClick={() => setActiveId(faith.id)}
+                ariaLabel={faith.title}
+                titleClassName="uppercase"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#faf8f5]/20 to-transparent" />
+    </ReligionsScaledPage>
   );
 }

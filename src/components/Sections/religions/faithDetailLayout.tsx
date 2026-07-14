@@ -2,17 +2,19 @@ import React from "react";
 import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
+/** @deprecated Prefer FaithDetailPageShell — kept for gradual migration */
 export const FAITH_MAIN_CLASS =
-  "m-0 flex min-h-screen w-full max-w-full justify-center overflow-x-hidden bg-[#faf8f5] p-0 text-[#3d2b18] sm:w-screen";
+  "m-0 flex min-h-[1920px] w-full flex-col overflow-hidden bg-[#faf8f5] p-0 text-[#3d2b18]";
 
 export const FAITH_SECTION_CLASS =
-  "relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-0 pb-12 pt-0 sm:px-7 sm:py-9 sm:pb-0 lg:px-16";
+  "relative flex min-h-[1920px] w-full flex-col overflow-hidden bg-[#faf8f5] px-7 pb-14 pt-0";
 
-export const FAITH_CONTENT_PADDING = "px-4 sm:px-0";
+export const FAITH_CONTENT_PADDING = "px-0";
 
 export const FAITH_ICON_CARD_CLASS =
-  "min-h-0 rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-4 py-5 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm sm:min-h-[335px] sm:px-5 sm:py-7";
+  "min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm";
 
 /** Grid info card used across faith and nation detail pages. */
 export function FaithDetailCard({
@@ -42,33 +44,63 @@ export function FaithDetailCard({
         accentIndex={index}
         align="center"
         titleClassName="uppercase"
+        imageHeightClass="h-[120px]"
       />
     </div>
   );
 }
 
 export const FAITH_ICON_CARD_ICON_WRAP_CLASS =
-  "mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner sm:mb-5 sm:h-20 sm:w-20";
+  "mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner";
 
-export const FAITH_ICON_CARD_ICON_CLASS = "h-8 w-8 sm:h-10 sm:w-10";
+export const FAITH_ICON_CARD_ICON_CLASS = "h-10 w-10";
 
 export const FAITH_IMAGE_SIDE_CARD_CLASS =
-  "grid min-h-0 grid-cols-1 gap-4 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-4 py-5 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm sm:grid-cols-[135px_1fr] sm:gap-5 sm:min-h-[255px] sm:px-6 sm:py-6";
+  "grid min-h-[255px] grid-cols-[135px_1fr] gap-5 rounded-[24px] border-2 border-[#d8b875]/55 bg-[#fff8e9]/92 px-6 py-6 shadow-[0_10px_22px_rgba(75,45,12,0.12)] backdrop-blur-sm";
 
 export const FAITH_IMAGE_SIDE_AVATAR_CLASS =
-  "mx-auto h-[100px] w-[100px] overflow-x-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb] sm:mx-0 sm:h-[135px] sm:w-[135px]";
+  "mx-0 h-[135px] w-[135px] overflow-x-hidden rounded-full border-2 border-[#d8b875] bg-[#f4e1bb]";
 
 export const FAITH_TAGLINE_SECTION_CLASS =
-  "mx-auto mt-6 flex max-w-[820px] flex-col items-center justify-center gap-4 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-5 py-4 text-center shadow-[0_12px_28px_rgba(75,45,12,0.16)] sm:mt-8 sm:flex-row sm:gap-8 sm:px-8 sm:py-5";
+  "mx-auto mt-8 flex max-w-[820px] flex-row items-center justify-center gap-8 rounded-[26px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-5 text-center shadow-[0_12px_28px_rgba(75,45,12,0.16)]";
 
 export const FAITH_TAGLINE_ICON_WRAP_CLASS =
-  "grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#b9822d] text-white sm:h-20 sm:w-20";
+  "grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[#b9822d] text-white";
 
 export const FAITH_TAGLINE_TEXT_CLASS =
-  "break-words font-serif text-[clamp(20px,5vw,34px)] font-semibold leading-snug text-[#3b2410] sm:leading-tight";
+  "break-words font-serif text-[28px] font-semibold leading-tight text-[#3b2410]";
 
 export const FAITH_TAGLINE_ACTION_SECTION_CLASS =
-  "mx-auto mt-6 flex flex-col items-stretch gap-4 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-5 py-4 shadow-[0_12px_28px_rgba(75,45,12,0.16)] sm:mt-7 sm:flex-row sm:items-center sm:gap-7 sm:px-8 sm:py-5";
+  "mx-auto mt-7 flex flex-row items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]";
+
+type FaithDetailPageShellProps = {
+  dir?: "ltr" | "rtl";
+  lang?: string;
+  fitDeps?: React.DependencyList;
+  sectionRef?: React.RefObject<HTMLElement | null>;
+  children: React.ReactNode;
+};
+
+/** Scales faith/nation detail screens to fit the viewport with no scroll. */
+export function FaithDetailPageShell({
+  dir = "ltr",
+  lang,
+  fitDeps = [],
+  sectionRef,
+  children,
+}: FaithDetailPageShellProps) {
+  return (
+    <ReligionsScaledPage
+      dir={dir}
+      lang={lang}
+      fitDeps={fitDeps}
+      sectionRef={sectionRef}
+      className="px-7 pb-14"
+    >
+      {children}
+    </ReligionsScaledPage>
+  );
+}
 
 type FaithDetailControlsProps = {
   controlsAttr: string;
@@ -95,7 +127,7 @@ export function FaithDetailControls({
         type="button"
         onClick={onBack}
         {...controlProps}
-        className="absolute left-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm sm:left-8 sm:h-14 sm:w-14"
+        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
         aria-label={backLabel}
       >
         <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -105,9 +137,9 @@ export function FaithDetailControls({
         type="button"
         onClick={onLanguageChange}
         {...controlProps}
-        className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-[#d9b477] bg-white/75 px-3 py-2 font-serif text-xs font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
+        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
       >
-        <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
+        <Globe2 className="h-5 w-5" />
         {languageLabel}
       </button>
     </>
@@ -118,7 +150,8 @@ type FaithDetailHeroImageProps = {
   heroAttr: string;
   src: string;
   alt?: string;
-  desktopClassName: string;
+  /** Kept for call-site compatibility; kiosk uses a fixed hero height. */
+  desktopClassName?: string;
   children?: React.ReactNode;
 };
 
@@ -126,29 +159,19 @@ export function FaithDetailHeroImage({
   heroAttr,
   src,
   alt = "",
-  desktopClassName,
   children,
 }: FaithDetailHeroImageProps) {
   const heroProps = { [heroAttr]: "true" };
 
   return (
     <>
-      <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
-        <img
-          src={src}
-          alt={alt}
-          {...heroProps}
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
-      </div>
-
       <img
         src={src}
         alt={alt}
         {...heroProps}
-        className={`hidden sm:block ${desktopClassName}`}
+        className="absolute inset-x-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
       />
+      <div className="absolute inset-x-0 top-0 h-[720px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
       {children}
     </>
   );
@@ -157,34 +180,19 @@ export function FaithDetailHeroImage({
 type FaithDetailHeroVideoProps = {
   heroAttr: string;
   src: string;
-  desktopClassName: string;
+  desktopClassName?: string;
   children?: React.ReactNode;
 };
 
 export function FaithDetailHeroVideo({
   heroAttr,
   src,
-  desktopClassName,
   children,
 }: FaithDetailHeroVideoProps) {
   const heroProps = { [heroAttr]: "true" };
 
   return (
     <>
-      <div className="relative h-[min(38vh,300px)] min-h-[200px] w-screen max-w-[100vw] overflow-x-hidden sm:hidden">
-        <video
-          src={src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          {...heroProps}
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
-      </div>
-
       <video
         src={src}
         autoPlay
@@ -193,13 +201,15 @@ export function FaithDetailHeroVideo({
         playsInline
         preload="auto"
         {...heroProps}
-        className={`hidden sm:block ${desktopClassName}`}
+        className="absolute inset-x-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
       />
+      <div className="absolute inset-x-0 top-0 h-[720px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
       {children}
     </>
   );
 }
 
-export function FaithDetailSpacer({ desktopHeight }: { desktopHeight: string }) {
-  return <div className={`hidden sm:block ${desktopHeight}`} />;
+/** Fixed spacer between hero header and card grid on the 1920px artboard. */
+export function FaithDetailSpacer({ desktopHeight }: { desktopHeight?: string }) {
+  return <div className={desktopHeight ?? "h-[280px]"} />;
 }

@@ -11,12 +11,11 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_MAIN_CLASS,
-  FAITH_SECTION_CLASS,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
   FAITH_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
+  FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
 import meaningImg from "@/assets/mainImages/letter.webp";
@@ -168,21 +167,11 @@ export default function YarsanismPage({
   }
 
   return (
-    <main dir={dir} className={FAITH_MAIN_CLASS}>
-      <section ref={sectionRef} className={FAITH_SECTION_CLASS}>
+    <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
         <FaithDetailHeroImage
           heroAttr="data-yarsan-hero"
           src={bg}
-          desktopClassName="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
-        >
-          <div
-            className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] hidden h-24 -translate-y-full blur-[2px] sm:block"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
-            }}
-          />
-        </FaithDetailHeroImage>
+        />
 
         <FaithDetailControls
           controlsAttr="data-yarsan-controls"
@@ -196,28 +185,28 @@ export default function YarsanismPage({
         <div className={`relative z-10 mx-auto max-w-[1020px] ${FAITH_CONTENT_PADDING}`}>
           <header
             data-yarsan-animate="true"
-            className="mx-auto max-w-[820px] pt-4 text-center sm:pt-12"
+            className="mx-auto max-w-[820px] pt-12 text-center"
           >
             <div className="mx-auto mb-4 w-[440px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className="break-words font-serif text-[clamp(32px,9vw,104px)] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12] sm:text-[86px] lg:text-[104px]">
+            <h1 className="break-words font-serif text-[104px] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12]">
               {c.pageTitle}
             </h1>
 
-            <p className="mt-3 font-serif text-[clamp(18px,4.5vw,31px)] font-semibold text-[#a46f22] sm:mt-4 sm:text-[31px]">
+            <p className="mt-4 font-serif text-[31px] font-semibold text-[#a46f22]">
               {c.subtitle}
             </p>
 
-            <div className="mx-auto mt-5 w-[190px] max-w-full sm:mt-6">
+            <div className="mx-auto mt-6 w-[190px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[560px]" />
+          <FaithDetailSpacer desktopHeight="h-[280px]" />
 
-          <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+          <section className="grid grid-cols-2 gap-6">
             {c.cards.map((card, i) => (
               <FaithDetailCard
                 key={card.title}
@@ -231,28 +220,27 @@ export default function YarsanismPage({
           </section>
 
           <section data-yarsan-animate="true" className={FAITH_TAGLINE_ACTION_SECTION_CLASS}>
-            <div className="grid h-16 w-16 shrink-0 place-items-center self-center text-[#c58b16] sm:self-auto">
-              <HeartHandshake className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={1.8} />
+            <div className="grid h-16 w-16 shrink-0 place-items-center self-auto text-[#c58b16]">
+              <HeartHandshake className="h-12 w-12" strokeWidth={1.8} />
             </div>
 
-            <p className={`flex-1 text-center ${FAITH_TAGLINE_TEXT_CLASS} sm:text-left`}>
+            <p className={`flex-1 text-left ${FAITH_TAGLINE_TEXT_CLASS}`}>
               {c.tagline}
             </p>
 
             <button
               type="button"
               onClick={() => setSubPage("otherFaith")}
-              className="grid h-16 w-16 shrink-0 place-items-center self-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] sm:self-auto"
+              className="grid h-16 w-16 shrink-0 place-items-center self-auto rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
             >
               <ChevronRight className="h-9 w-9" />
             </button>
           </section>
 
-          <Sparkles className="mx-auto mt-5 h-10 w-10 text-[#c58b16] sm:h-12 sm:w-12" />
+          <Sparkles className="mx-auto mt-5 h-12 w-12 text-[#c58b16]" />
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 right-0 hidden h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
-      </section>
-    </main>
+        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+    </FaithDetailPageShell>
   );
 }

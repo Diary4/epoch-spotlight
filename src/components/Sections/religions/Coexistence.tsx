@@ -15,6 +15,7 @@ import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNav
 import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg from "@/assets/images/religions/r-2.webp";
 import en from "@/data/en.json";
@@ -68,9 +69,9 @@ const timeline = [
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
-    <div className="flex items-center justify-center gap-2 sm:gap-4">
+    <div className="flex items-center justify-center gap-4">
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
-      <span className="text-xl sm:text-2xl" style={{ color }}>
+      <span className="text-2xl" style={{ color }}>
         ✥
       </span>
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
@@ -168,170 +169,164 @@ export default function StoriesOfCoexistencePage({
   }
 
   return (
-    <main dir={dir} className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]">
-      <section
-        ref={sectionRef}
-        className="relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-4 py-6 sm:px-8 sm:py-9 lg:px-16"
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+      <img
+        data-story-hero="true"
+        src={bg}
+        alt=""
+        className="absolute left-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5] via-[#faf8f5]/15 to-[#faf8f5]" />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-[720px] z-[1] h-24 -translate-y-full blur-[2px]"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
+        }}
+      />
+
+      <button
+        type="button"
+        onClick={onBack}
+        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+        aria-label="Back"
       >
-        <img
-          data-story-hero="true"
-          src={bg}
-          alt=""
-          className="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
-        />
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+      </button>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5] via-[#faf8f5]/15 to-[#faf8f5]" />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] h-24 -translate-y-full blur-[2px]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
-          }}
-        />
+      <button
+        type="button"
+        onClick={onLanguageChange}
+        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+      >
+        <Globe2 className="h-5 w-5" />
+        {languageLabel}
+      </button>
 
-
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute left-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm sm:left-8 sm:h-14 sm:w-14"
-          aria-label="Back"
+      <div className="relative z-10 mx-auto max-w-[1060px]">
+        <header
+          data-story-animate="true"
+          className="mx-auto max-w-[820px] pt-10 text-center"
         >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-        </button>
+          <div className="mx-auto mb-4 w-full max-w-[430px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
 
-        <button
-          type="button"
-          onClick={onLanguageChange}
-          className="absolute right-4 top-4 z-30 flex items-center gap-2 rounded-full border border-[#d9b477] bg-white/75 px-3 py-2 font-serif text-xs font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] sm:right-8 sm:top-8 sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
-        >
-          <Globe2 className="h-4 w-4 sm:h-5 sm:w-5" />
-          {languageLabel}
-        </button>
-
-        <div className="relative z-10 mx-auto max-w-[1060px]">
-          <header
-            data-story-animate="true"
-            className="mx-auto max-w-[820px] pt-16 text-center sm:pt-10"
-          >
-            <div className="mx-auto mb-3 w-full max-w-[430px] sm:mb-4">
-              <DecorativeLine color="#c3923a" />
-            </div>
-
-            <h1 className="font-serif text-[36px] font-semibold uppercase leading-[1.06] tracking-[0.04em] text-[#2f1f12] sm:text-[58px] sm:leading-[1.02] sm:tracking-[0.06em] lg:text-[90px]">
-              {pageTitleLines.map((line, idx) => (
-                <React.Fragment key={`${line}-${idx}`}>
-                  {line}
-                  {idx < pageTitleLines.length - 1 ? <br /> : null}
-                </React.Fragment>
-              ))}
-            </h1>
-
-            <p className="mt-3 font-serif text-[18px] font-semibold text-[#a46f22] sm:mt-4 sm:text-[25px] lg:text-[31px]">
-              {pageSubtitle}
-            </p>
-          </header>
-
-          <div className="h-[min(48vh,35rem)] min-h-[16rem] sm:min-h-[18rem]" />
-
-          <section
-            data-story-animate="true"
-            className="relative mx-auto rounded-[18px] border-2 border-[#d8b875]/60 bg-[#fff8e9]/88 px-4 py-5 text-center shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-sm sm:rounded-[22px] sm:px-8 sm:py-6"
-          >
-            <Quote className="absolute left-3 top-3 h-7 w-7 text-[#c58b16] sm:left-8 sm:top-5 sm:h-10 sm:w-10" />
-            <Quote className="absolute bottom-3 right-3 h-7 w-7 rotate-180 text-[#c58b16] sm:bottom-5 sm:right-8 sm:h-10 sm:w-10" />
-
-            <p className="mx-auto max-w-[760px] px-5 font-serif text-[18px] italic leading-relaxed text-[#3b2b1e] sm:px-0 sm:text-[24px]">
-              {quoteText}
-            </p>
-
-            <p className="mt-2 font-serif text-[12px] font-semibold uppercase tracking-[0.12em] text-[#b27a22] sm:mt-3 sm:text-[15px] sm:tracking-[0.16em]">
-              {quoteAuthor}
-            </p>
-          </section>
-
-          <section
-            data-story-animate="true"
-            className="mt-6 grid grid-cols-1 gap-4 sm:mt-7 sm:gap-5 md:grid-cols-2 xl:grid-cols-4"
-          >
-            {localizedStoryCards.map((card, index) => (
-              <ReligionInfoCard
-                key={card.title}
-                title={card.title}
-                body={card.text}
-                image={bg}
-                accent={card.color}
-                accentIndex={index}
-                align="center"
-                titleClassName="uppercase"
-                footer={
-                  <button
-                    type="button"
-                    className="flex items-center gap-2 font-serif text-[13px] font-semibold uppercase text-[#6a4a25] sm:gap-3 sm:text-[15px]"
-                  >
-                    {readStoryLabel}
-                    <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-                  </button>
-                }
-              />
+          <h1 className="font-serif text-[90px] font-semibold uppercase leading-[1.02] tracking-[0.06em] text-[#2f1f12]">
+            {pageTitleLines.map((line, idx) => (
+              <React.Fragment key={`${line}-${idx}`}>
+                {line}
+                {idx < pageTitleLines.length - 1 ? <br /> : null}
+              </React.Fragment>
             ))}
-          </section>
+          </h1>
 
-          <section data-story-animate="true" className="mt-7 sm:mt-8">
-            <div className="mx-auto flex max-w-[760px] items-center gap-3 sm:gap-5">
-              <span className="h-px flex-1 bg-[#c3923a]" />
-              <h2 className="text-center font-serif text-[18px] font-semibold uppercase tracking-[0.05em] text-[#8d611f] sm:text-[25px] sm:tracking-[0.07em]">
-                {timelineTitle}
-              </h2>
-              <span className="h-px flex-1 bg-[#c3923a]" />
-            </div>
+          <p className="mt-4 font-serif text-[31px] font-semibold text-[#a46f22]">
+            {pageSubtitle}
+          </p>
+        </header>
 
-            <div className="relative mt-5 grid grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 xl:grid-cols-4">
-              <div className="absolute left-0 right-0 top-4 hidden h-px bg-[#c3923a] xl:block" />
+        <div className="h-[420px]" />
 
-              {localizedTimeline.map((item) => (
-                <article key={item.year} className="relative text-center">
-                  <div className="mx-auto mb-3 h-7 w-7 rounded-full border-4 border-[#f5e2b6] bg-[#c58b16] shadow-sm" />
+        <section
+          data-story-animate="true"
+          className="relative mx-auto rounded-[22px] border-2 border-[#d8b875]/60 bg-[#fff8e9]/88 px-8 py-6 text-center shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-sm"
+        >
+          <Quote className="absolute left-8 top-5 h-10 w-10 text-[#c58b16]" />
+          <Quote className="absolute bottom-5 right-8 h-10 w-10 rotate-180 text-[#c58b16]" />
 
-                  <h3 className="font-serif text-[24px] font-semibold uppercase text-[#a8751f] sm:text-[28px]">
-                    {item.year}
-                  </h3>
+          <p className="mx-auto max-w-[760px] font-serif text-[24px] italic leading-relaxed text-[#3b2b1e]">
+            {quoteText}
+          </p>
 
-                  <p className="mx-auto mt-2 max-w-[200px] text-[15px] font-semibold leading-snug text-[#4d3c2a] sm:max-w-[180px] sm:text-[16px]">
-                    {item.text}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </section>
+          <p className="mt-3 font-serif text-[15px] font-semibold uppercase tracking-[0.16em] text-[#b27a22]">
+            {quoteAuthor}
+          </p>
+        </section>
 
-          <section
-            data-story-animate="true"
-            className="mx-auto mt-8 flex max-w-[760px] flex-col items-start gap-4 rounded-[22px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-5 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)] sm:mt-9 sm:flex-row sm:items-center sm:gap-7 sm:rounded-[26px] sm:px-8"
+        <section
+          data-story-animate="true"
+          className="mt-7 grid grid-cols-4 gap-5"
+        >
+          {localizedStoryCards.map((card, index) => (
+            <ReligionInfoCard
+              key={card.title}
+              title={card.title}
+              body={card.text}
+              image={bg}
+              accent={card.color}
+              accentIndex={index}
+              align="center"
+              titleClassName="uppercase"
+              footer={
+                <button
+                  type="button"
+                  className="flex items-center gap-3 font-serif text-[15px] font-semibold uppercase text-[#6a4a25]"
+                >
+                  {readStoryLabel}
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              }
+            />
+          ))}
+        </section>
+
+        <section data-story-animate="true" className="mt-8">
+          <div className="mx-auto flex max-w-[760px] items-center gap-5">
+            <span className="h-px flex-1 bg-[#c3923a]" />
+            <h2 className="text-center font-serif text-[25px] font-semibold uppercase tracking-[0.07em] text-[#8d611f]">
+              {timelineTitle}
+            </h2>
+            <span className="h-px flex-1 bg-[#c3923a]" />
+          </div>
+
+          <div className="relative mt-6 grid grid-cols-4 gap-5">
+            <div className="absolute left-0 right-0 top-4 h-px bg-[#c3923a]" />
+
+            {localizedTimeline.map((item) => (
+              <article key={item.year} className="relative text-center">
+                <div className="mx-auto mb-3 h-7 w-7 rounded-full border-4 border-[#f5e2b6] bg-[#c58b16] shadow-sm" />
+
+                <h3 className="font-serif text-[28px] font-semibold uppercase text-[#a8751f]">
+                  {item.year}
+                </h3>
+
+                <p className="mx-auto mt-2 max-w-[180px] text-[16px] font-semibold leading-snug text-[#4d3c2a]">
+                  {item.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          data-story-animate="true"
+          className="mx-auto mt-9 flex max-w-[760px] items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+        >
+          <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
+            <UsersRound className="h-12 w-12" strokeWidth={1.8} />
+          </div>
+
+          <p className="flex-1 font-serif text-[25px] font-semibold uppercase leading-tight text-[#3b2410]">
+            {footerTitle}
+            <br />
+            <span className="text-[17px] normal-case font-semibold text-[#6a4a25]">
+              {footerText}
+            </span>
+          </p>
+
+          <button
+            type="button"
+            onClick={() => setSubPage("timeline")}
+            className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
           >
-            <div className="grid h-14 w-14 shrink-0 place-items-center text-[#c58b16] sm:h-16 sm:w-16">
-              <UsersRound className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={1.8} />
-            </div>
+            <ChevronRight className="h-9 w-9" />
+          </button>
+        </section>
+      </div>
 
-            <p className="flex-1 font-serif text-[20px] font-semibold uppercase leading-tight text-[#3b2410] sm:text-[25px]">
-              {footerTitle}
-              <br />
-              <span className="text-[15px] normal-case font-semibold text-[#6a4a25] sm:text-[17px]">
-                {footerText}
-              </span>
-            </p>
-
-            <button
-              type="button"
-              onClick={() => setSubPage("timeline")}
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] sm:h-16 sm:w-16"
-            >
-              <ChevronRight className="h-8 w-8 sm:h-9 sm:w-9" />
-            </button>
-          </section>
-        </div>
-
-        <div className="pointer-events-none absolute bottom-0 right-0 h-28 w-28 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:h-52 sm:w-52" />
-      </section>
-    </main>
+      <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+    </ReligionsScaledPage>
   );
 }

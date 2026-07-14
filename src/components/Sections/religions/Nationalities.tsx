@@ -10,6 +10,7 @@ import {
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg from "@/assets/images/religions/r-3.webp";
 import LanguagesOfKurdistanPage from "@/components/Sections/religions/Languages/KurdistanLanguages";
@@ -150,128 +151,118 @@ export default function Nationalities({
   }
 
   return (
-    <main
-      dir={dir}
-      className="m-0 flex min-h-screen w-screen justify-center bg-[#faf8f5] p-0 text-[#3d2b18]"
-    >
-      <section
-        ref={sectionRef}
-        className="relative min-h-screen w-full overflow-x-hidden bg-[#faf8f5] px-7 py-9 sm:px-10 lg:px-16"
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+      <img
+        data-nationality-hero="true"
+        src={bg}
+        alt=""
+        className="pointer-events-none absolute left-0 top-0 z-[1] h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-[720px] z-[1] h-24 -translate-y-full blur-[2px]"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
+        }}
+      />
+
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#faf8f5]/15 via-[#faf8f5]/58 to-[#faf8f5]" />
+
+      <button
+        type="button"
+        onClick={onBack}
+        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+        aria-label="Back"
       >
-        <img
-          data-nationality-hero="true"
-          src={bg}
-          alt=""
-          className="pointer-events-none absolute left-0 top-0 z-[1] h-[max(14rem,calc(50vh-10rem))] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-[max(14rem,calc(50vh-10rem))] z-[1] h-24 -translate-y-full blur-[2px]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
-          }}
-        />
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+      </button>
 
-        <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#faf8f5]/15 via-[#faf8f5]/58 to-[#faf8f5]" />
+      <button
+        type="button"
+        onClick={onLanguageChange}
+        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+      >
+        <Globe2 className="h-5 w-5" />
+        {languageLabel}
+      </button>
 
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
-          aria-label="Back"
+      <div className="relative z-10 mx-auto max-w-[1040px]">
+        <header
+          data-nationality-animate="true"
+          className="mx-auto max-w-[850px] pt-16 text-center"
         >
-          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-        </button>
+          <div className="mx-auto mb-4 w-[420px] max-w-full">
+            <DecorativeLine color="#c3923a" />
+          </div>
 
-        <button
-          type="button"
-          onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
-        >
-          <Globe2 className="h-5 w-5" />
-          {languageLabel}
-        </button>
-
-        <div className="relative z-10 mx-auto max-w-[1040px]">
-          <header
-            data-nationality-animate="true"
-            className="mx-auto max-w-[850px] pt-16 text-center"
-          >
-            <div className="mx-auto mb-4 w-[420px] max-w-full">
-              <DecorativeLine color="#c3923a" />
-            </div>
-
-            <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12] sm:text-[76px] lg:text-[88px]">
-              {pageTitleLines.map((line, idx) => (
-                <React.Fragment key={`${line}-${idx}`}>
-                  {line}
-                  {idx < pageTitleLines.length - 1 ? <br /> : null}
-                </React.Fragment>
-              ))}
-            </h1>
-
-            <p className="mt-4 font-serif text-[24px] font-semibold uppercase tracking-[0.13em] text-[#a46f22] sm:text-[30px]">
-              {pageSubtitle}
-            </p>
-
-            <div className="mx-auto mt-6 w-[190px]">
-              <DecorativeLine color="#c3923a" />
-            </div>
-
-            <p className="mx-auto mt-5 max-w-[610px] text-[20px] font-semibold leading-relaxed text-[#4d3c2a] sm:text-[24px]">
-              {pageDescription}
-            </p>
-          </header>
-
-          <div className="h-[230px]" />
-
-          <section
-            data-nationality-animate="true"
-            className="mx-auto grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {localizedCommunities.map((item, index) => (
-              <ReligionInfoCard
-                key={item.title}
-                title={item.title}
-                body={item.text}
-                image={bg}
-                accent={item.color}
-                accentIndex={index}
-                titleClassName="uppercase"
-              />
+          <h1 className="font-serif text-[88px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12]">
+            {pageTitleLines.map((line, idx) => (
+              <React.Fragment key={`${line}-${idx}`}>
+                {line}
+                {idx < pageTitleLines.length - 1 ? <br /> : null}
+              </React.Fragment>
             ))}
-          </section>
+          </h1>
 
-          <section
-            data-nationality-animate="true"
-            className="mx-auto mt-6 flex items-center gap-7 rounded-[24px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+          <p className="mt-4 font-serif text-[30px] font-semibold uppercase tracking-[0.13em] text-[#a46f22]">
+            {pageSubtitle}
+          </p>
+
+          <div className="mx-auto mt-6 w-[190px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+
+          <p className="mx-auto mt-5 max-w-[610px] text-[24px] font-semibold leading-relaxed text-[#4d3c2a]">
+            {pageDescription}
+          </p>
+        </header>
+
+        <section
+          data-nationality-animate="true"
+          className="mx-auto mt-[420px] grid grid-cols-3 gap-5"
+        >
+          {localizedCommunities.map((item, index) => (
+            <ReligionInfoCard
+              key={item.title}
+              title={item.title}
+              body={item.text}
+              image={bg}
+              accent={item.color}
+              accentIndex={index}
+              titleClassName="uppercase"
+            />
+          ))}
+        </section>
+
+        <section
+          data-nationality-animate="true"
+          className="mx-auto mt-6 flex items-center gap-7 rounded-[24px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]"
+        >
+          <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
+            <UsersRound className="h-12 w-12" strokeWidth={1.8} />
+          </div>
+
+          <p className="flex-1 font-serif text-[29px] font-semibold uppercase leading-tight text-[#3b2410]">
+            {footerTitle}
+            <br />
+            <span className="text-[20px] normal-case font-semibold text-[#6a4a25]">
+              {footerText}
+            </span>
+          </p>
+
+          <button
+            type="button"
+            onClick={() => setSubPage("languages")}
+            className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)]"
           >
-            <div className="grid h-16 w-16 shrink-0 place-items-center text-[#c58b16]">
-              <UsersRound className="h-12 w-12" strokeWidth={1.8} />
-            </div>
+            <ChevronRight className="h-9 w-9" />
+          </button>
+        </section>
 
-            <p className="flex-1 font-serif text-[29px] font-semibold uppercase leading-tight text-[#3b2410]">
-              {footerTitle}
-              <br />
-              <span className="text-[20px] normal-case font-semibold text-[#6a4a25]">
-                {footerText}
-              </span>
-            </p>
+        <Sparkles className="mx-auto mt-5 h-12 w-12 text-[#c58b16]" />
+      </div>
 
-            <button
-              type="button"
-              onClick={() => setSubPage("languages")}
-              className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)]"
-            >
-              <ChevronRight className="h-9 w-9" />
-            </button>
-          </section>
-
-          <Sparkles className="mx-auto mt-5 h-12 w-12 text-[#c58b16]" />
-        </div>
-
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-      </section>
-    </main>
+      <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+    </ReligionsScaledPage>
   );
 }

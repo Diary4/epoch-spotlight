@@ -12,13 +12,12 @@ import bg from "@/assets/images/religions/a-1.webp";
 import {
   FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_MAIN_CLASS,
-  FAITH_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
+  FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
 
@@ -192,15 +191,11 @@ export default function ArmeniansPage({
   }, [lang]);
 
   return (
-    <main dir={dir} className={FAITH_MAIN_CLASS}>
-      <section ref={sectionRef} className={FAITH_SECTION_CLASS}>
+    <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
         <FaithDetailHeroImage
           heroAttr="data-armenians-hero"
           src={bg}
-          desktopClassName="absolute inset-0 h-[60vh] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
-        >
-          <div className="absolute inset-x-0 top-0 hidden h-[60vh] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95 sm:block" />
-        </FaithDetailHeroImage>
+        />
 
         <FaithDetailControls
           controlsAttr="data-armenians-controls"
@@ -214,34 +209,34 @@ export default function ArmeniansPage({
         <div className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}>
           <header
             data-armenians-animate="true"
-            className="mx-auto max-w-[900px] pt-4 text-center sm:pt-28 lg:pt-32"
+            className="mx-auto max-w-[900px] pt-32 text-center"
           >
-            <div className="mx-auto mb-4 grid h-16 w-16 place-items-center text-[48px] text-[#b9822d] sm:mb-6 sm:h-24 sm:w-24 sm:text-[68px]">
+            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
               ✥
             </div>
 
-            <div className="mx-auto mb-4 w-[480px] max-w-full sm:mb-5">
+            <div className="mx-auto mb-5 w-[480px] max-w-full">
               <DecorativeLine />
             </div>
 
-            <h1 className="whitespace-nowrap font-serif text-[clamp(28px,8.5vw,118px)] font-semibold uppercase leading-[1] tracking-[0.12em] text-[#2f1f12] sm:text-[94px] sm:tracking-[0.16em] lg:text-[118px]">
+            <h1 className="whitespace-nowrap font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
               {c.pageTitle}
             </h1>
 
-            <p className="mt-3 font-serif text-[clamp(20px,5vw,40px)] font-semibold text-[#7d5a2d] sm:mt-4 sm:text-[40px]">
+            <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
               {c.subtitle}
             </p>
 
-            <div className="mx-auto mt-5 w-[210px] max-w-full sm:mt-8">
+            <div className="mx-auto mt-8 w-[210px] max-w-full">
               <DecorativeLine />
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[820px]" />
+          <FaithDetailSpacer desktopHeight="h-[280px]" />
 
           <section
             data-armenians-animate="true"
-            className="mt-10 grid grid-cols-1 gap-4 sm:mt-0 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
+            className="mt-0 grid grid-cols-4 gap-6"
           >
             {c.cards.map((card, index) => (
               <FaithDetailCard
@@ -256,21 +251,20 @@ export default function ArmeniansPage({
           </section>
 
           <section data-armenians-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
-            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[32px] sm:text-[42px]`}>
+            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>
               ✺
             </div>
 
             <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
-            <Sparkles className="h-7 w-7 shrink-0 text-[#c58b16] sm:h-8 sm:w-8" />
+            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>
 
-          <div className="mt-6 text-center text-[40px] text-[#b9822d] sm:mt-8 sm:text-[58px]">✥</div>
+          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 hidden h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
-        <div className="pointer-events-none absolute bottom-0 right-0 hidden h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
-      </section>
-    </main>
+        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+    </FaithDetailPageShell>
   );
 }

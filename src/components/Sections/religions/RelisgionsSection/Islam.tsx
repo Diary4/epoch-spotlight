@@ -11,13 +11,12 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_MAIN_CLASS,
-  FAITH_SECTION_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
+  FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
 
@@ -128,7 +127,7 @@ function DecorativeLine({ color = "#c3923a" }) {
   return (
     <div className="flex items-center justify-center gap-4">
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
-      <span className="text-xl sm:text-2xl" style={{ color }}>
+      <span className="text-2xl" style={{ color }}>
         ✥
       </span>
       <span className="h-px flex-1" style={{ backgroundColor: color }} />
@@ -164,23 +163,11 @@ export default function IslamPage({
   );
 
   return (
-    <main dir={dir} className={FAITH_MAIN_CLASS}>
-      <section ref={sectionRef} className={FAITH_SECTION_CLASS}>
-        
-        {/* Original Hero Image Layout */}
+    <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
         <FaithDetailHeroImage
           heroAttr="data-islam-hero"
           src={bg}
-          desktopClassName="absolute left-0 top-0 h-[calc(50vh-160px)] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
-        >
-          <div
-            className="pointer-events-none absolute inset-x-0 top-[calc(50vh-160px)] z-[1] hidden h-24 -translate-y-full blur-[2px] sm:block"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
-            }}
-          />
-        </FaithDetailHeroImage>
+        />
 
         <FaithDetailControls
           controlsAttr="data-islam-controls"
@@ -194,33 +181,32 @@ export default function IslamPage({
         <div className={`relative z-10 mx-auto max-w-[1040px] ${FAITH_CONTENT_PADDING}`}>
           <header
             data-islam-animate="true"
-            className="mx-auto max-w-[820px] pt-4 text-center sm:pt-10"
+            className="mx-auto max-w-[820px] pt-10 text-center"
           >
-            <div className="mx-auto mb-4 grid h-16 w-16 place-items-center text-[48px] text-[#b9822d] sm:mb-6 sm:h-24 sm:w-24 sm:text-[68px]">
+            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
               ✥
             </div>
 
-            <div className="mx-auto mb-4 w-[480px] max-w-full sm:mb-5">
+            <div className="mx-auto mb-5 w-[480px] max-w-full">
               <DecorativeLine />
             </div>
 
-            <h1 className="break-words font-serif text-[clamp(36px,10vw,118px)] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12] sm:text-[94px] lg:text-[118px]">
+            <h1 className="break-words font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
               {c.pageTitle}
             </h1>
 
-            <p className="mt-3 font-serif text-[clamp(20px,5vw,40px)] font-semibold text-[#7d5a2d] sm:mt-4 sm:text-[40px]">
+            <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
               {c.subtitle}
             </p>
 
-            <div className="mx-auto mt-5 w-[210px] max-w-full sm:mt-8">
+            <div className="mx-auto mt-8 w-[210px] max-w-full">
               <DecorativeLine />
             </div>
           </header>
 
-          {/* Original spacing configuration — preserved to cleanly separate header and card contents */}
-          <FaithDetailSpacer desktopHeight="h-[720px]" />
+          <FaithDetailSpacer desktopHeight="h-[280px]" />
 
-          <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+          <section className="grid grid-cols-4 gap-6">
             {c.cards.map((card, index) => (
               <FaithDetailCard
                 key={card.title}
@@ -233,23 +219,21 @@ export default function IslamPage({
             ))}
           </section>
 
-          {/* Tagline section */}
           <section data-islam-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
-            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[32px] sm:text-[42px]`}>
+            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>
               ☾
             </div>
 
             <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
-            <Sparkles className="h-7 w-7 shrink-0 text-[#c58b16] sm:h-8 sm:w-8" />
+            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>
 
-          <div className="mt-6 text-center text-[40px] text-[#b9822d] sm:mt-8 sm:text-[58px]">✥</div>
+          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 hidden h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
-        <div className="pointer-events-none absolute bottom-0 right-0 hidden h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70 sm:block" />
-      </section>
-    </main>
+        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+    </FaithDetailPageShell>
   );
 }

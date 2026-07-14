@@ -59,7 +59,7 @@ export default function ReligionInfoCard({
   footer,
   italicBody = false,
   eyebrow,
-  imageHeightClass = "h-[96px] sm:h-[104px]",
+  imageHeightClass = "h-[104px]",
 }: ReligionInfoCardProps) {
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
   const resolvedImage = getReligionCardImage(accentIndex, image);
@@ -68,14 +68,14 @@ export default function ReligionInfoCard({
 
   const content = (
     <>
-      <div className={`relative z-10 flex flex-1 flex-col px-5 pt-6 sm:px-6 sm:pt-7 ${alignClass}`}>
+      <div className={`relative z-10 flex flex-1 flex-col px-6 pt-7 ${alignClass}`}>
         {eyebrow ? (
-          <p className="mb-2 font-serif text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500 sm:text-[12px]">
+          <p className="mb-2 font-serif text-[12px] font-semibold uppercase tracking-[0.14em] text-stone-500">
             {eyebrow}
           </p>
         ) : null}
         <h3
-          className={`break-words font-serif text-[19px] font-semibold leading-tight text-stone-900 sm:text-[20px] ${titleClassName}`}
+          className={`break-words font-serif text-[20px] font-semibold leading-tight text-stone-900 ${titleClassName}`}
         >
           {title}
         </h3>
@@ -85,7 +85,7 @@ export default function ReligionInfoCard({
         />
         {body ? (
           <p
-            className={`mt-3 text-[13px] font-medium leading-relaxed text-stone-600 sm:text-[14px] ${italicBody ? "italic" : ""} ${bodyClassName}`}
+            className={`mt-3 text-[14px] font-medium leading-relaxed text-stone-600 ${italicBody ? "italic" : ""} ${bodyClassName}`}
           >
             {body}
           </p>
