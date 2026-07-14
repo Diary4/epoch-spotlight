@@ -10,7 +10,7 @@ import parliamentIcon from "@/assets/icons/thesystem/parliment.webp";
 import governmentIcon from "@/assets/icons/thesystem/government.webp";
 import judiciaryIcon from "@/assets/icons/thesystem/judiciary.webp";
 import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
-import presidencyImg from "@/assets/images/parliment/presidency.webp";
+import presidencyImg from "@/assets/images/parliment/presidency-centered.webp";
 import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
 
 /** Radiating sun motif used in the ornament dividers and the panel emblem. */
@@ -176,7 +176,7 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
 
   const govMenuItems = [
     { key: "pm", label: primeMinisterLabel, sub: primeMinisterSub, iconSrc: pmImg, iconObjectPosition: "68% 12%", onClick: onPrimeMinisterClick },
-    { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyImg, iconObjectPosition: "35% 28%", iconScale: "scale-[1.25]", onClick: onPresidencyClick },
+    { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyImg, iconObjectPosition: "center center", iconScale: "scale-[1.1]", onClick: onPresidencyClick },
     { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconSrc: cabinetIcon, iconScale: "scale-[1.05]", onClick: onCabinetClick },
   ];
 

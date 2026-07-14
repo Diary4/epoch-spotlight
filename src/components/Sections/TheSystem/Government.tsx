@@ -21,7 +21,7 @@ import {
 import bg from "@/assets/images/PrimeMinistir/government.webp";
 import bg2 from "@/assets/mainImages/government-2.webp";
 import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
-import presidencyImg from "@/assets/images/parliment/presidency.webp";
+import presidencyImg from "@/assets/images/parliment/presidency-centered.webp";
 import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.webp";
 import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.webp";
 import administrationIcon from "@/assets/icons/thesystem/government/administration.webp";
@@ -279,7 +279,7 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                       src={presidencyImg}
                       alt=""
                       className="h-full w-full object-cover"
-                      style={{ objectPosition: "35% 28%" }}
+                      style={{ objectPosition: "center center" }}
                     />
                   </span>
                   <div className="flex-1">

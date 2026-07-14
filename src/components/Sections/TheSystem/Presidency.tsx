@@ -7,7 +7,7 @@ import {
   detailBackIconClassName,
   detailBackIconSize,
 } from "@/constants/backNavigation";
-import presidencyPortrait from "@/assets/images/parliment/presidency.webp";
+import presidencyPortrait from "@/assets/images/parliment/presidency-centered.webp";
 
 type PresidencyPageProps = {
   lang?: "ku" | "en" | "ar";
@@ -47,26 +47,18 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
       dir={isRtl ? "rtl" : "ltr"}
       className={`relative h-full min-h-0 w-full overflow-hidden bg-black ${isRtl ? "font-noto-naskh" : ""}`}
     >
-      {/* Full-height portrait — character focal point (~35%) pinned to viewport center */}
+      {/* Portrait already cropped so the character is centered */}
       <div
-        className={`absolute inset-0 overflow-hidden bg-black transition-all duration-700 ease-out ${
+        className={`absolute inset-0 transition-all duration-700 ease-out ${
           pageReady ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
         }`}
-      >
-        <img
-          src={presidencyPortrait}
-          alt=""
-          aria-hidden
-          className="absolute top-0 h-full w-auto max-w-none"
-          style={{
-            left: "50%",
-            // Subject sits ~35% from the left in the source photo — pin that point to center.
-            transform: "translateX(-35%)",
-          }}
-        />
-      </div>
+        style={{
+          backgroundImage: `url(${presidencyPortrait})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      />
 
-      {/* Back button */}
       <button
         type="button"
         onClick={onBack}
@@ -76,7 +68,6 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
         <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
       </button>
 
-      {/* Elegant content box — same structure as Prime Minister page */}
       <div
         className={`absolute bottom-0 z-10 w-full transition-all duration-700 ease-out sm:bottom-8 sm:w-auto sm:max-w-xl ${
           isRtl ? "right-0 sm:right-8" : "left-0 sm:left-8"
