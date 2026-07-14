@@ -41,7 +41,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: "roots-formation",
     era: "1966",
-    title: "Chapter 1 | Roots & Formation",
+    title: "Roots & Formation",
     description:
       "Born in 1966 in Barzan, Nechirvan Barzani grew up during one of the most significant periods in modern Kurdish history. His childhood was shaped by the Kurdish national movement and the enduring legacy of the Barzani family.",
     image: PLACEHOLDER_IMAGE,
@@ -54,7 +54,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: "education-beginnings",
     era: "1989",
-    title: "Chapter 2 | Education & Political Beginnings",
+    title: "Education & Political Beginnings",
     description:
       "His academic experience and early political engagement helped shape his understanding of diplomacy, governance, and regional affairs.",
     image: PLACEHOLDER_IMAGE,
@@ -68,7 +68,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: "building-institutions",
     era: "2006–2019",
-    title: "Chapter 3 | Building Institutions",
+    title: "Building Institutions",
     description:
       "As one of the longest-serving Prime Ministers of the Kurdistan Regional Government, Nechirvan Barzani focused on institution-building, economic development, and expanding educational and media sectors.",
     image: PLACEHOLDER_IMAGE,
@@ -90,7 +90,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: "facing-challenges",
     era: "2014",
-    title: "Chapter 4 | Facing Regional Challenges",
+    title: "Facing Regional Challenges",
     description:
       "During the war against ISIS and a period of severe economic pressure, the Kurdistan Region faced unprecedented challenges.",
     image: PLACEHOLDER_IMAGE,
@@ -105,7 +105,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: "the-presidency",
     era: "2019–Present",
-    title: "Chapter 5 | The Presidency",
+    title: "The Presidency",
     description:
       "In 2019, Nechirvan Barzani was elected President of the Kurdistan Region, assuming responsibility for strengthening political cooperation and expanding diplomatic relations.",
     image: PLACEHOLDER_IMAGE,
