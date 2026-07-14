@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
   detailBackButtonClassName,
@@ -12,11 +12,10 @@ import presidencyPortrait from "@/assets/images/parliment/presidency-centered.we
 type PresidencyPageProps = {
   lang?: "ku" | "en" | "ar";
   onBack?: () => void;
+  onJourneyClick?: () => void;
 };
 
-export default function PresidencyPage({ lang = "en", onBack }: PresidencyPageProps) {
-  const isAr = lang === "ar";
-  const isKu = lang === "ku";
+export default function PresidencyPage({ lang = "en", onBack, onJourneyClick }: PresidencyPageProps) {
   const isRtl = discoverRtlScript(lang);
   const dir = lang === "en" ? "ltr" : "rtl";
   const displayFont = discoverDisplayFont(lang);
@@ -33,21 +32,18 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
     };
   }, []);
 
-  const name = isAr ? "نيجيرفان بارزاني" : isKu ? "نێچیرڤان بارزانی" : "Nechirvan Barzani";
-  const role = isAr ? "رئيس إقليم كوردستان" : isKu ? "سەرۆکی هەرێمی کوردستان" : "President of the Kurdistan Region";
-
-  const about = isAr
-    ? "يمثل الرئيس الوحدة والاستمرارية والكرامة الوطنية، ويساهم في الإطار الدستوري والتوازن المؤسسي لإقليم كوردستان."
-    : isKu
-      ? "سەرۆک نوێنەرایەتی یەکڕیزی و بەردەوامی و شکۆی نیشتمانی دەکات، و بەشدارە لە چوارچێوەی دەستووری و هاوسەنگی دامەزراوەیی هەرێمی کوردستان."
-      : "The President represents unity, continuity, and national dignity — contributing to the constitutional framework and institutional balance of the Kurdistan Region.";
+  // English-only for now — Kurdish / Arabic to be provided later.
+  const name = "Nechirvan Barzani";
+  const role = "President of the Kurdistan Region (2019–Present)";
+  const about =
+    "Since 2019, President Nechirvan Barzani has led efforts to strengthen political unity, expand international relations, and preserve constitutional stability in the Kurdistan Region.";
+  const journeyLabel = "Explore the Journey";
 
   return (
     <main
       dir={isRtl ? "rtl" : "ltr"}
       className={`relative h-full min-h-0 w-full overflow-hidden bg-black ${isRtl ? "font-noto-naskh" : ""}`}
     >
-      {/* Portrait already cropped so the character is centered */}
       <div
         className={`absolute inset-0 transition-all duration-700 ease-out ${
           pageReady ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
@@ -98,6 +94,23 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
           </p>
 
           <div className="my-6 h-px w-full bg-gradient-to-r from-[#c69237]/60 via-white/30 to-transparent" />
+
+          {onJourneyClick && (
+            <button
+              type="button"
+              onClick={onJourneyClick}
+              className="group flex w-full items-center justify-center gap-3 rounded-full px-6 py-3.5 text-sm font-medium uppercase tracking-[0.15em] text-white transition-all duration-300 hover:scale-[1.02] sm:w-auto"
+              style={{
+                background: "rgba(198,146,55,0.2)",
+                border: "1px solid rgba(201,154,85,0.5)",
+              }}
+            >
+              <span>{journeyLabel}</span>
+              <ArrowRight
+                className={`h-4 w-4 text-[#e6c98f] transition group-hover:translate-x-1 ${isRtl ? "rotate-180" : ""}`}
+              />
+            </button>
+          )}
         </div>
       </div>
     </main>

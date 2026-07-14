@@ -30,6 +30,7 @@ import PrimeMinisterTimeline from "@/components/Sections/TheSystem/PrimeMinister
 import ParliamentPage from "@/components/Sections/TheSystem/Parliment";
 import GovernmentPage from "@/components/Sections/TheSystem/Government";
 import PresidencyPage from "@/components/Sections/TheSystem/Presidency";
+import PresidencyTimeline from "@/components/Sections/TheSystem/PresidencyTimeline";
 import JudiciaryPage from "@/components/Sections/TheSystem/TheJudiciary";
 import CabinetPage from "@/components/Sections/TheSystem/TheCabinet";
 import LandAndFuturePage from "@/components/Sections/TheLand";
@@ -380,7 +381,7 @@ const SECTION_STEP_LABELS: Record<LangCode, string[]> = {
   ar: ["الشعب", "الرحلة", "النظام", "الأرض والمستقبل"],
 };
 
-type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "judiciary" | "cabinet" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag" | "nationalAnthem";
+type SectionView = "hero" | "discover" | "discoverV2" | "discoverV3" | "people" | "whoAreTheKurds" | "sharedIdentity" | "resilience" | "journey" | "journey1991" | "journey1992" | "journeyBuildingInstitutions" | "journey2005" | "journeyToday" | "system" | "parliament" | "government" | "presidency" | "presidencyTimeline" | "judiciary" | "cabinet" | "primeMinister" | "primeMinisterTimeline" | "landFuture" | "land" | "peshmerga" | "progress" | "identitySymbols" | "kurdistanFlag" | "nationalAnthem";
 
 /** Active Discover Kurdistan hub — V2 is the default entry point */
 const DISCOVER_HUB_VIEW = "discoverV2" satisfies SectionView;
@@ -531,6 +532,7 @@ const Index = () => {
     parliament: kurdistan3Bg,
     government: kurdistan3Bg,
     presidency: kurdistan3Bg,
+    presidencyTimeline: kurdistan3Bg,
     judiciary: kurdistan3Bg,
     cabinet: kurdistan3Bg,
     primeMinister: kurdistan3Bg,
@@ -844,7 +846,20 @@ const Index = () => {
           className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-y-auto overflow-x-hidden animate-fade-in"
           onClick={(e) => e.stopPropagation()}
         >
-          <PresidencyPage lang={activeLang} onBack={() => setView("system")} />
+          <PresidencyPage
+            lang={activeLang}
+            onBack={() => setView("system")}
+            onJourneyClick={() => setView("presidencyTimeline")}
+          />
+        </div>
+      )}
+
+      {view === "presidencyTimeline" && (
+        <div
+          className="relative z-10 flex h-full min-h-0 w-full max-w-none flex-1 self-stretch overflow-hidden animate-fade-in"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <PresidencyTimeline lang={activeLang} onBack={() => setView("presidency")} />
         </div>
       )}
 
