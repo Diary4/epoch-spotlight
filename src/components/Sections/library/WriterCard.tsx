@@ -7,6 +7,10 @@ type WriterCardProps = {
 };
 
 export default function WriterCard({ writer, variant = "featured" }: WriterCardProps) {
+  const portraitStyle = writer.portraitObjectPosition
+    ? { objectPosition: writer.portraitObjectPosition }
+    : undefined;
+
   if (variant === "avatar") {
     return (
       <Link
@@ -18,6 +22,7 @@ export default function WriterCard({ writer, variant = "featured" }: WriterCardP
             src={writer.portrait}
             alt={writer.name}
             className="h-full w-full object-cover grayscale"
+            style={portraitStyle}
           />
         </div>
         <p className="max-w-[80px] text-center text-[10px] text-white/90 sm:text-xs lg:text-sm 3xl:text-base">
@@ -38,6 +43,7 @@ export default function WriterCard({ writer, variant = "featured" }: WriterCardP
             src={writer.portrait}
             alt={writer.name}
             className="aspect-[3/4] w-full object-cover sepia-[0.3]"
+            style={portraitStyle}
           />
           <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 lg:-bottom-4">
             <span className="text-[#C5A059] lg:text-xl 3xl:text-2xl">✦</span>
@@ -64,6 +70,7 @@ export default function WriterCard({ writer, variant = "featured" }: WriterCardP
           src={writer.portrait}
           alt={writer.name}
           className="aspect-[3/4] w-full object-cover grayscale"
+          style={portraitStyle}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1C14]/60 via-transparent to-transparent opacity-80" />
       </div>

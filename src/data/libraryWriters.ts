@@ -77,6 +77,8 @@ export const LIBRARY_WRITERS: LibraryWriter[] = [
     roles: ["Writer", "Poet"],
     portrait: taalatTahir,
     portraitDark: taalatTahir,
+    // Subject sits on the right; prefer upper framing so the head is not cropped.
+    portraitObjectPosition: "72% 12%",
     bio: "Taalat Tahir writes with clarity and warmth, exploring themes of belonging, language, and cultural heritage through poetry and prose.",
     quote: "Every poem is a bridge between what was lost and what must be kept.",
     timeline: [

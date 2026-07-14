@@ -62,7 +62,10 @@ export default function LibraryFeaturedWriter() {
               <img
                 src={writer.portraitDark ?? writer.portrait}
                 alt={writer.name}
-                className="mx-auto h-[620px] w-auto object-cover object-top"
+                className="mx-auto h-[620px] w-auto object-cover"
+                style={{
+                  objectPosition: writer.portraitObjectPosition ?? "center top",
+                }}
               />
               <div
                 data-library-hero-text

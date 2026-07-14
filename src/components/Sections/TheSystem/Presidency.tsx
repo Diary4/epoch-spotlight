@@ -47,15 +47,16 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
       dir={isRtl ? "rtl" : "ltr"}
       className={`relative h-full min-h-0 w-full overflow-hidden bg-black ${isRtl ? "font-noto-naskh" : ""}`}
     >
-      {/* Full-bleed portrait background */}
+      {/* Full-bleed portrait — height fills so he stays fully visible; frame him center */}
       <div
-        className={`absolute inset-0 transition-all duration-700 ease-out ${
+        className={`absolute inset-0 bg-black transition-all duration-700 ease-out ${
           pageReady ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
         }`}
         style={{
           backgroundImage: `url(${presidencyPortrait})`,
-          backgroundSize: "cover",
-          backgroundPosition: "20% 100%",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "auto 100%",
+          backgroundPosition: "22% center",
         }}
       />
 

@@ -64,8 +64,9 @@ export default function LibraryWriterDetail() {
               <img
                 src={writer.portrait}
                 alt={writer.name}
-                className="h-[420px] w-full object-cover object-top grayscale"
+                className="h-[420px] w-full object-cover grayscale"
                 style={{
+                  objectPosition: writer.portraitObjectPosition ?? "center top",
                   maskImage: "linear-gradient(to right, black 70%, transparent 100%)",
                   WebkitMaskImage: "linear-gradient(to right, black 70%, transparent 100%)",
                 }}

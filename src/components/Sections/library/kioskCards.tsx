@@ -22,6 +22,11 @@ export function KioskWriterTile({ writer }: { writer: LibraryWriter }) {
           src={writer.portrait}
           alt={writer.name}
           className="aspect-[3/4] w-full object-cover sepia-[0.3]"
+          style={
+            writer.portraitObjectPosition
+              ? { objectPosition: writer.portraitObjectPosition }
+              : undefined
+          }
         />
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1C14]/50 to-transparent" />
       </div>
@@ -46,6 +51,11 @@ export function KioskWriterAvatar({ writer }: { writer: LibraryWriter }) {
           src={writer.portrait}
           alt={writer.name}
           className="h-full w-full object-cover grayscale"
+          style={
+            writer.portraitObjectPosition
+              ? { objectPosition: writer.portraitObjectPosition }
+              : undefined
+          }
         />
       </div>
       <p className="text-center text-base text-white/90">{writer.name}</p>
@@ -107,6 +117,11 @@ export function KioskQuoteCard({
             src={writer.portrait}
             alt={writer.name}
             className="h-full w-full object-cover grayscale"
+            style={
+              writer.portraitObjectPosition
+                ? { objectPosition: writer.portraitObjectPosition }
+                : undefined
+            }
           />
         </div>
         <div>

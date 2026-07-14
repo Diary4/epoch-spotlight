@@ -59,6 +59,11 @@ export default function WriterQuoteCard({
             src={writer.portrait}
             alt={writer.name}
             className="h-full w-full object-cover grayscale"
+            style={
+              writer.portraitObjectPosition
+                ? { objectPosition: writer.portraitObjectPosition }
+                : undefined
+            }
           />
         </div>
         <div>

@@ -12,6 +12,8 @@ export type LibraryWriter = {
   portrait: string;
   portraitDark?: string;
   portraitLibrary?: string;
+  /** CSS object-position for cropped portrait (e.g. "70% 15%"). */
+  portraitObjectPosition?: string;
   bio: string;
   quote?: string;
   quoteTranslation?: string;
