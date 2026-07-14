@@ -104,7 +104,7 @@ export default function ReligionInfoCard({
     </>
   );
 
-  const sharedClassName = `group relative flex h-full min-h-[420px] w-full flex-col overflow-hidden rounded-[26px] border border-stone-200/70 bg-white shadow-[0_10px_30px_rgba(28,24,20,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(28,24,20,0.10)] ${isInteractive ? "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className}`;
+  const sharedClassName = `group relative flex h-full w-full flex-col overflow-hidden rounded-[26px] border border-stone-200/70 bg-white shadow-[0_10px_30px_rgba(28,24,20,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(28,24,20,0.10)] ${isInteractive ? "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? className : `min-h-[420px] ${className}`}`;
 
 
   if (isInteractive) {

@@ -261,15 +261,17 @@ function RightsOverviewCardButton({
   onOpen: () => void;
 }) {
   return (
-    <div data-rts-animate="true">
+    <div data-rts-animate="true" className="min-h-0">
       <ReligionInfoCard
         title={card.title}
         body={card.subtitle}
         image={imageSrc}
         accentIndex={index}
         onClick={onOpen}
-        titleClassName="uppercase text-[30px] font-light"
-        bodyClassName="text-[16px] font-light"
+        className="min-h-[340px]"
+        titleClassName="uppercase text-[22px] font-light leading-tight"
+        bodyClassName="text-[14px] font-light"
+        imageHeightClass="h-[150px]"
       />
     </div>
   );
@@ -315,20 +317,20 @@ export default function RightsPage({
   }, [lang]);
 
   return (
-    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-12 pb-14">
+    <ReligionsScaledPage dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef} className="px-10 pb-10">
       <img
         data-rts-hero="true"
         src={bg3}
         alt=""
-        className="absolute inset-x-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+        className="absolute inset-x-0 top-0 h-[560px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
       />
-      <div className="absolute inset-x-0 top-0 h-[720px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
+      <div className="absolute inset-x-0 top-0 h-[560px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
       {onBack && (
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
+          className="absolute left-6 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm transition"
           aria-label={c.back}
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -346,29 +348,27 @@ export default function RightsPage({
         </button>
       )}
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col">
-        <header
-          data-rts-animate="true"
-          className="mx-auto max-w-[900px] pt-40 text-center"
-        >
-          <div className="mx-auto mb-3 w-[260px]">
+      <div className="relative z-10 mx-auto flex w-full flex-col">
+        <header data-rts-animate="true" className="mx-auto max-w-[900px] pt-24 text-center">
+          <div className="mx-auto mb-3 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>
-          <h1 className="font-serif text-[76px] font-semibold uppercase leading-[1.06] tracking-[0.04em] text-[#3b2410]">
+          <h1 className="font-serif text-[56px] font-semibold uppercase leading-[1.06] tracking-[0.04em] text-[#3b2410]">
             {c.pageTitle}
           </h1>
-          <div className="mx-auto mt-5 w-[180px]">
+          <div className="mx-auto mt-4 w-[160px]">
             <DecorativeLine color="#c3923a" />
           </div>
-          <p className="mx-auto mt-5 max-w-[700px] font-serif text-[22px] italic text-[#6a4a25]">
+          <p className="mx-auto mt-4 max-w-[640px] font-serif text-[20px] italic text-[#6a4a25]">
             {c.pageSubtitle}
           </p>
-          <p className="mx-auto mt-4 max-w-[720px] text-[17px] font-medium leading-relaxed text-[#4d3c2a]">
+          <p className="mx-auto mt-3 max-w-[680px] text-[16px] font-medium leading-relaxed text-[#4d3c2a]">
             {c.pageDescription}
           </p>
         </header>
 
-        <div className="mx-auto mt-[420px] grid w-full max-w-[1200px] grid-cols-3 gap-6">
+        {/* Compact offset under the hero so both card rows stay on the 1920 artboard */}
+        <div className="mx-auto mt-[280px] grid w-full grid-cols-3 gap-5">
           {c.cards.map((card, index) => (
             <RightsOverviewCardButton
               key={card.id}
@@ -382,15 +382,13 @@ export default function RightsPage({
 
         <div
           data-rts-animate="true"
-          className="mx-auto mt-12 max-w-[860px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-7 py-5 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]"
+          className="mx-auto mt-8 max-w-[820px] rounded-[20px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-6 py-4 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]"
         >
-          <p className="font-serif text-[19px] font-semibold italic leading-snug text-[#6a4a25]">
+          <p className="font-serif text-[17px] font-semibold italic leading-snug text-[#6a4a25]">
             {c.tagline}
           </p>
         </div>
       </div>
-
-      <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-t from-[#b9893d]/20 to-transparent" />
     </ReligionsScaledPage>
   );
 }
