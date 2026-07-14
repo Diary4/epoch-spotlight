@@ -298,11 +298,9 @@ export default function LeadersOfCoexistencePage({
               <ReligionInfoCard
                 key={card.id}
                 title={card.title}
-                body={card.body}
                 image={cardImages[card.id] ?? bg}
                 accent={card.accent}
                 accentIndex={index}
-                italicBody={card.isQuote}
                 titleClassName="uppercase"
               />
             ))}
