@@ -176,7 +176,7 @@ export default function SystemPage({ lang = "en", onBack, onParliamentClick, onJ
 
   const govMenuItems = [
     { key: "pm", label: primeMinisterLabel, sub: primeMinisterSub, iconSrc: pmImg, iconObjectPosition: "68% 12%", onClick: onPrimeMinisterClick },
-    { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyImg, iconObjectPosition: "center center", iconScale: "scale-[1.1]", onClick: onPresidencyClick },
+    { key: "presidency", label: presidencyLabel, sub: presidencySub, iconSrc: presidencyImg, iconObjectPosition: "28% 30%", iconScale: "scale-[1.15]", onClick: onPresidencyClick },
     { key: "cabinet", label: cabinetLabel, sub: cabinetSub, iconSrc: cabinetIcon, iconScale: "scale-[1.05]", onClick: onCabinetClick },
   ];
 

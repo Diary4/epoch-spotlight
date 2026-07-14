@@ -55,7 +55,7 @@ export default function PresidencyPage({ lang = "en", onBack }: PresidencyPagePr
         style={{
           backgroundImage: `url(${presidencyPortrait})`,
           backgroundSize: "cover",
-          backgroundPosition: "28% 35%",
+          backgroundPosition: "20% 100%",
         }}
       />
 
