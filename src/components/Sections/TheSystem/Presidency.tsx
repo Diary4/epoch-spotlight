@@ -1,35 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { useSystemDetailAnimation } from "@/components/Sections/TheSystem/useSystemDetailAnimation";
 import { discoverDisplayFont, discoverRtlScript } from "@/components/Sections/discoverLanguage";
 import {
+  detailBackButtonClassName,
   detailBackButtonSideClassName,
   detailBackIconClassName,
-  systemCanvasBackButtonClassName,
-  systemCanvasBackIconSize,
+  detailBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/images/parliment/presidency.webp";
-import constitutionalRoleIcon from "@/assets/icons/thesystem/presidency/const-role.webp";
-import nationalRoleIcon from "@/assets/icons/thesystem/presidency/national-role.webp";
-import institutionalBalanceIcon from "@/assets/icons/thesystem/presidency/inst-balance.webp";
-
-const cards = [
-  {
-    title: "Constitutional Role",
-    text: "Supports the institutional framework of the Region.",
-    iconSrc: constitutionalRoleIcon,
-  },
-  {
-    title: "National Role",
-    text: "Represents unity, continuity, and public dignity.",
-    iconSrc: nationalRoleIcon,
-  },
-  {
-    title: "Institutional Balance",
-    text: "Works within the wider governance system.",
-    iconSrc: institutionalBalanceIcon,
-  },
-];
+import presidencyPortrait from "@/assets/images/parliment/presidency.webp";
 
 type PresidencyPageProps = {
   lang?: "ku" | "en" | "ar";
@@ -37,171 +15,93 @@ type PresidencyPageProps = {
 };
 
 export default function PresidencyPage({ lang = "en", onBack }: PresidencyPageProps) {
-  const rootRef = useSystemDetailAnimation([lang]);
   const isAr = lang === "ar";
   const isKu = lang === "ku";
+  const isRtl = discoverRtlScript(lang);
   const dir = lang === "en" ? "ltr" : "rtl";
-  const isRtlScript = discoverRtlScript(lang);
   const displayFont = discoverDisplayFont(lang);
 
-  const localCards = isAr
-    ? [
-        { title: "الدور الدستوري", text: "دعم الإطار المؤسسي للإقليم.", iconSrc: constitutionalRoleIcon },
-        { title: "الدور الوطني", text: "تمثيل الوحدة والاستمرارية والكرامة الوطنية.", iconSrc: nationalRoleIcon },
-        { title: "التوازن المؤسسي", text: "العمل ضمن منظومة الحوكمة الأشمل.", iconSrc: institutionalBalanceIcon },
-      ]
-    : isKu
-      ? [
-          { title: "ڕۆڵی دەستووری", text: "پاڵپشتی چوارچێوەی دامەزراوەیی هەرێم دەکات.", iconSrc: constitutionalRoleIcon },
-          { title: "ڕۆڵی نیشتمانی", text: "نوێنەرایەتی یەکڕیزی، بەردەوامی، و شکۆی گشتی دەکات.", iconSrc: nationalRoleIcon },
-          { title: "هاوسەنگی دامەزراوەیی", text: "لەناو سیستەمێكی حکومڕانی فراوانتردا کاردەکات.", iconSrc: institutionalBalanceIcon },
-        ]
-      : cards;
-
-  // Fixed design canvas (1400px wide). We measure its natural height and scale
-  // the whole canvas to fit the viewport in BOTH dimensions, then center it
-  // horizontally and anchor it to the top, so all content stays visible without
-  // scrolling on any screen (e.g. 1080x1920) and the hero stays flush to the top.
-  const DESIGN_WIDTH = 1400;
-  const canvasRef = useRef<HTMLDivElement>(null);
-  const [fit, setFit] = useState({ scale: 1, x: 0 });
+  const [pageReady, setPageReady] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    const recompute = () => {
-      const el = canvasRef.current;
-      if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
-      const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
-    };
-
-    recompute();
-    window.addEventListener("resize", recompute);
-    const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
-    if (el && ro) ro.observe(el);
+    const t1 = window.setTimeout(() => setPageReady(true), 40);
+    const t2 = window.setTimeout(() => setShowContent(true), 360);
     return () => {
-      window.removeEventListener("resize", recompute);
-      ro?.disconnect();
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
     };
-  }, [lang]);
+  }, []);
+
+  const name = isAr ? "نيجيرفان بارزاني" : isKu ? "نێچیرڤان بارزانی" : "Nechirvan Barzani";
+  const role = isAr ? "رئيس إقليم كوردستان" : isKu ? "سەرۆکی هەرێمی کوردستان" : "President of the Kurdistan Region";
+
+  const about = isAr
+    ? "يمثل الرئيس الوحدة والاستمرارية والكرامة الوطنية، ويساهم في الإطار الدستوري والتوازن المؤسسي لإقليم كوردستان."
+    : isKu
+      ? "سەرۆک نوێنەرایەتی یەکڕیزی و بەردەوامی و شکۆی نیشتمانی دەکات، و بەشدارە لە چوارچێوەی دەستووری و هاوسەنگی دامەزراوەیی هەرێمی کوردستان."
+      : "The President represents unity, continuity, and national dignity — contributing to the constitutional framework and institutional balance of the Kurdistan Region.";
 
   return (
-    <div
-      dir={dir}
-      className={`relative h-screen w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
-      style={{ width: "100vw", height: "100vh" }}
+    <main
+      dir={isRtl ? "rtl" : "ltr"}
+      className={`relative h-full min-h-0 w-full overflow-hidden bg-black ${isRtl ? "font-noto-naskh" : ""}`}
     >
+      {/* Full-bleed portrait background */}
       <div
-        ref={canvasRef}
+        className={`absolute inset-0 transition-all duration-700 ease-out ${
+          pageReady ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
+        }`}
         style={{
-          width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
-          transformOrigin: "top left",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          containerType: "inline-size",
+          backgroundImage: `url(${presidencyPortrait})`,
+          backgroundSize: "cover",
+          backgroundPosition: "28% 35%",
         }}
+      />
+
+      {/* Back button */}
+      <button
+        type="button"
+        onClick={onBack}
+        className={`system-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
+        aria-label="Back to Government"
       >
-        <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
-          <section className="relative mx-auto flex w-full flex-col overflow-hidden bg-[#fbf5eb]">
-            <button
-              type="button"
-              onClick={onBack}
-              className={`${systemCanvasBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
-              aria-label="Back to Government"
-            >
-              <ArrowLeft size={systemCanvasBackIconSize} className={detailBackIconClassName(dir)} />
-            </button>
+        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+      </button>
 
-            <div className="absolute left-0 top-[120px] h-full w-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
-            <div className="absolute right-0 top-[120px] h-full w-24 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px]" />
+      {/* Elegant content box — same structure as Prime Minister page */}
+      <div
+        className={`absolute bottom-0 z-10 w-full transition-all duration-700 ease-out sm:bottom-8 sm:w-auto sm:max-w-xl ${
+          isRtl ? "right-0 sm:right-8" : "left-0 sm:left-8"
+        } ${showContent ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+      >
+        <div
+          className={`rounded-t-2xl p-6 shadow-2xl sm:rounded-2xl sm:p-8 ${isRtl ? "text-right" : "text-left"}`}
+          style={{
+            background: "rgba(10,14,22,0.72)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(201,154,85,0.28)",
+          }}
+        >
+          <div className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
+            <div className="h-px w-8 bg-[#c69237]/70" />
+            <p className="text-xs font-light uppercase tracking-[0.25em] text-[#e6c98f]">{role}</p>
+          </div>
 
-            {/* Main portrait — full bleed, character framed center-right */}
-            <div className="pointer-events-none absolute right-0 top-0 z-0 h-[940px] w-full overflow-hidden rtl:right-auto rtl:left-0">
-              <div className="absolute inset-0 rtl:-scale-x-100">
-                <img
-                  src={bg}
-                  alt="Presidency portrait"
-                  className="system-detail-hero absolute inset-0 h-full w-full object-cover object-[-100%_0%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_12%,rgba(0,0,0,0.45)_28%,rgba(0,0,0,0.8)_44%,black_68%)]"
-                />
-              </div>
-              <div
-                className="absolute inset-0 [background:linear-gradient(to_right,#fbf5eb_0%,#fbf5eb_20%,rgba(251,245,235,0.96)_34%,rgba(251,245,235,0.78)_46%,rgba(251,245,235,0.42)_58%,transparent_74%)] rtl:[background:linear-gradient(to_left,#fbf5eb_0%,#fbf5eb_20%,rgba(251,245,235,0.96)_34%,rgba(251,245,235,0.78)_46%,rgba(251,245,235,0.42)_58%,transparent_74%)]"
-              />
-              <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/40 to-[#fbf5eb]" />
-            </div>
+          <h1
+            className={`mt-3 ${displayFont} text-4xl font-light tracking-tight text-white sm:text-5xl lg:text-6xl`}
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}
+          >
+            {name}
+          </h1>
 
-            <div className="relative z-10 flex h-[940px] min-h-0 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(3.5rem,6cqh,5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
-              <section className="system-detail-intro max-w-[min(46cqw,720px)]">
-                <h1 className={`${displayFont} text-[clamp(6rem,11cqw,10rem)] font-light leading-none tracking-tight text-[#943134]`}>
-                  {isAr ? "الرئاسة" : isKu ? "سەرۆکایەتی" : "Presidency"}
-                </h1>
+          <p className="mt-5 text-sm leading-relaxed text-white/85 sm:text-base" style={{ lineHeight: 1.7 }}>
+            {about}
+          </p>
 
-                <p className="mt-[clamp(1rem,2.2cqh,2rem)] text-[clamp(1.65rem,2.75cqw,2.7rem)] font-light leading-tight text-[#9b6d35]">
-                  {isAr ? "مؤسسة دستورية وطنية في المنظومة الإقليمية." : isKu ? "دامەزراوەیەکی دەستووری و نیشتمانی لەناو سیستەمی هەرێمیدا." : "A constitutional and national institution within the regional system."}
-                </p>
-
-                <div className="mt-[clamp(1rem,2.3cqh,2rem)] flex w-[clamp(9rem,18cqw,14.5rem)] items-center gap-4 text-[#b99152]">
-                  <span className="h-0.5 flex-1 bg-[#b99152]" />
-                  <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
-                  <span className="h-0.5 flex-1 bg-[#b99152]" />
-                </div>
-
-                <p className="mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] font-light leading-[1.55] text-[#2d3549]">
-                  {isAr
-                    ? "تُسهم الرئاسة في الإطار الدستوري والحياة العامة والتوازن المؤسسي الأشمل لإقليم كوردستان."
-                    : isKu
-                      ? "سەرۆکایەتی کۆڵەکەیەکی بنەڕەتییە لە چوارچێوەی دەستووری، ژیانی گشتی و پاراستنی هاوسەنگیی دامەزراوەیی لە هەرێمی کوردستان."
-                      : "The Presidency contributes to the constitutional framework, public life, and the broader institutional balance of the Kurdistan Region."}
-                </p>
-              </section>
-            </div>
-
-            <div className="relative z-10 px-[clamp(1.4rem,4cqw,4rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
-              <section className="grid grid-cols-3 gap-[clamp(0.85rem,1.8cqw,2.1rem)]">
-                {localCards.map((card) => {
-                  return (
-                    <article
-                      key={card.title}
-                      className="system-detail-card relative flex min-h-[clamp(27rem,44cqh,40rem)] flex-col items-center overflow-hidden rounded-[26px] border-2 border-[#ead8b7] bg-white/76 px-[clamp(0.95rem,1.9cqw,2rem)] py-[clamp(1rem,2.2cqh,2rem)] text-center shadow-[0_14px_35px_rgba(84,54,16,0.15)] backdrop-blur-md"
-                    >
-                      <div className="grid h-[clamp(8rem,14cqw,14rem)] w-[clamp(8rem,14cqw,14rem)] shrink-0 place-items-center overflow-hidden rounded-full">
-                        <img
-                          src={card.iconSrc}
-                          alt=""
-                          className="h-full w-full object-cover scale-[1.25]"
-                        />
-                      </div>
-
-                      <h3 className={`mt-[clamp(0.8rem,1.8cqh,1.9rem)] whitespace-pre-line ${displayFont} text-[clamp(1.5rem,2.7cqw,2.5rem)] font-light leading-[0.98] text-[#17233b]`}>
-                        {card.title}
-                      </h3>
-
-                      <div className="my-[clamp(0.75rem,1.6cqh,1.7rem)] flex w-[clamp(4.8rem,10cqw,8rem)] items-center justify-center gap-3 text-[#b99152]">
-                        <span className="h-0.5 flex-1 bg-[#d2b475]" />
-                        <span className="h-3 w-3 rotate-45 border-2 border-[#b99152]" />
-                        <span className="h-0.5 flex-1 bg-[#d2b475]" />
-                      </div>
-
-                      <p className="text-[clamp(1.02rem,1.58cqw,1.5rem)] font-light leading-[1.5] text-[#303a50]">
-                        {card.text}
-                      </p>
-
-                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-25 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:18px_18px]" />
-                    </article>
-                  );
-                })}
-              </section>
-            </div>
-          </section>
-        </main>
+          <div className="my-6 h-px w-full bg-gradient-to-r from-[#c69237]/60 via-white/30 to-transparent" />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

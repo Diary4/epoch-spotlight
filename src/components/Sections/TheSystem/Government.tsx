@@ -21,7 +21,7 @@ import {
 import bg from "@/assets/images/PrimeMinistir/government.webp";
 import bg2 from "@/assets/mainImages/government-2.webp";
 import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
-import presidencyIcon from "@/assets/icons/thesystem/presidency.webp";
+import presidencyImg from "@/assets/images/parliment/presidency.webp";
 import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.webp";
 import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.webp";
 import administrationIcon from "@/assets/icons/thesystem/government/administration.webp";
@@ -276,9 +276,10 @@ export default function GovernmentPage({ lang = "en", onBack, onPrimeMinisterCli
                 >
                   <span className="block h-[clamp(4rem,7cqw,6rem)] w-[clamp(4rem,7cqw,6rem)] shrink-0 overflow-hidden rounded-full border-2 border-[#d9b477] bg-[#fbf5eb] ring-1 ring-[#e6d5ac]">
                     <img
-                      src={presidencyIcon}
+                      src={presidencyImg}
                       alt=""
-                      className="h-full w-full object-cover scale-[1.55] object-[48%_50%]"
+                      className="h-full w-full object-cover"
+                      style={{ objectPosition: "center center" }}
                     />
                   </span>
                   <div className="flex-1">
