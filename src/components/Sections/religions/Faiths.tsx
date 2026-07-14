@@ -456,6 +456,8 @@ export default function FaithsPage({
                 onClick={() => setActiveId(faith.id)}
                 ariaLabel={faith.title}
                 titleClassName="uppercase"
+                className="min-h-[520px]"
+                imageHeightClass="h-[320px]"
               />
             </div>
           ))}

@@ -333,6 +333,8 @@ export default function NationsPage({
                 onClick={() => setActiveId(nation.id)}
                 ariaLabel={nation.title}
                 titleClassName="uppercase"
+                className="min-h-[520px]"
+                imageHeightClass="h-[320px]"
               />
             </div>
           ))}

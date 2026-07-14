@@ -44,7 +44,7 @@ export function FaithDetailCard({
         accentIndex={index}
         align="center"
         titleClassName="uppercase"
-        imageHeightClass="h-[120px]"
+        imageHeightClass="h-[220px]"
       />
     </div>
   );

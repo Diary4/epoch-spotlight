@@ -28,8 +28,8 @@ export default function ClassicalCard({
       onClick={onClick}
       ariaLabel={ariaLabel}
       titleClassName="uppercase tracking-[0.04em]"
-      className="min-h-[360px]"
-      imageHeightClass="h-[200px]"
+      className="min-h-[480px]"
+      imageHeightClass="h-[280px]"
     />
   );
 }
