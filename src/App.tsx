@@ -14,6 +14,7 @@ import PortraitTimeline from "./pages/PortraitTimeline.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import SliderPage from "./pages/SliderPage.tsx";
 import Religions from "./pages/Religions.tsx";
+import ReligionsV2 from "./pages/ReligionsV2.tsx";
 import WomenPage from "./pages/Women.tsx";
 import StartMenu from "./pages/StartMenu.tsx";
 import Touristic from "./pages/Touristic.tsx";
@@ -62,6 +63,7 @@ const AppRoutes = () => {
           <Route path="/portraits/:id/timeline" element={<PortraitTimeline />} />
           <Route path="/slider" element={<SliderPage />} />
           <Route path="/religions" element={<Religions />} />
+          <Route path="/religions-v2" element={<ReligionsV2 />} />
           <Route path="/women" element={<WomenPage />} />
           <Route path="/touristic" element={<SliderPage />} />
           <Route path="/touristic-v2" element={<Touristic />} />

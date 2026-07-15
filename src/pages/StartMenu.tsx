@@ -15,6 +15,7 @@ const SCREEN_OPTIONS: ScreenOption[] = [
   { id: "05", label: "Screen 5 - Portrait Timeline (ID 1)", path: "/portraits/1/timeline" },
   { id: "06", label: "Screen 6 - Touristic (v2 Grid)", path: "/touristic-v2" },
   { id: "07", label: "Screen 7 - Religions", path: "/religions" },
+  { id: "07b", label: "Screen 7b - Religions V2", path: "/religions-v2" },
   { id: "08", label: "Screen 8 - Women", path: "/women" },
   { id: "09", label: "Screen 9 - Portrait Detail (ID 2)", path: "/portraits/2" },
   { id: "10", label: "Screen 10 - Portrait Timeline (ID 2)", path: "/portraits/2/timeline" },
