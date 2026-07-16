@@ -14,7 +14,7 @@ import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNav
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
 import cradleImg from "@/assets/images/religions/main.webp";
-import sharedImg from "@/assets/images/religions/nl-1.webp";
+import sharedImg from "@/assets/mainImages/shared.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
 
