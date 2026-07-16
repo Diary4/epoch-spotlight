@@ -8,12 +8,15 @@ import {
   detailBackIconSize,
 } from "@/constants/backNavigation";
 import presidencyPortrait from "@/assets/images/parliment/presidency-centered.webp";
-
-/**
- * Placeholder image for chapter cards — replace with final photography later.
- * Using the centered presidency portrait as a temporary stand-in.
- */
-const PLACEHOLDER_IMAGE = presidencyPortrait;
+import president1 from "@/assets/images/president/1.jpeg";
+import president2 from "@/assets/images/president/2.jpeg";
+import president3 from "@/assets/images/president/3.jpeg";
+import president4 from "@/assets/images/president/4.jpeg";
+import president5 from "@/assets/images/president/5.jpeg";
+import president6 from "@/assets/images/president/6.jpeg";
+import president7 from "@/assets/images/president/7.jpeg";
+import president8 from "@/assets/images/president/8.jpeg";
+import president9 from "@/assets/images/president/9.jpeg";
 
 type TimelineDetail =
   | string
@@ -44,7 +47,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Roots & Formation",
     description:
       "Born in 1966 in Barzan, Nechirvan Barzani grew up during one of the most significant periods in modern Kurdish history. His childhood was shaped by the Kurdish national movement and the enduring legacy of the Barzani family.",
-    image: PLACEHOLDER_IMAGE,
+    image: president1,
     details: [
       "Born in Barzan, Kurdistan Region.",
       "Grandson of Mustafa Barzani, founder of the Kurdistan Democratic Party (KDP).",
@@ -57,7 +60,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Education & Political Beginnings",
     description:
       "His academic experience and early political engagement helped shape his understanding of diplomacy, governance, and regional affairs.",
-    image: PLACEHOLDER_IMAGE,
+    image: president2,
     details: [
       "Studied politics and international relations at the University of Tehran, Iran.",
       "Became a member of the leadership of the Kurdistan Democratic Party.",
@@ -71,7 +74,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Building Institutions",
     description:
       "As one of the longest-serving Prime Ministers of the Kurdistan Regional Government, Nechirvan Barzani focused on institution-building, economic development, and expanding educational and media sectors.",
-    image: PLACEHOLDER_IMAGE,
+    image: president3,
     details: [
       {
         title: "Government Leadership",
@@ -93,7 +96,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Facing Regional Challenges",
     description:
       "During the war against ISIS and a period of severe economic pressure, the Kurdistan Region faced unprecedented challenges.",
-    image: PLACEHOLDER_IMAGE,
+    image: president4,
     details: [
       "Coordinated with Baghdad and international coalition partners.",
       "Supported the Peshmerga forces in the fight against terrorism.",
@@ -108,7 +111,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "The Presidency",
     description:
       "In 2019, Nechirvan Barzani was elected President of the Kurdistan Region, assuming responsibility for strengthening political cooperation and expanding diplomatic relations.",
-    image: PLACEHOLDER_IMAGE,
+    image: president5,
     details: [
       "Elected by the Kurdistan Parliament on 28 May 2019.",
       "Officially sworn in on 10 June 2019.",
@@ -122,7 +125,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Diplomacy & International Relations",
     description:
       "Strengthened relations with regional and international partners, representing the Kurdistan Region on the global stage and encouraging foreign cooperation.",
-    image: PLACEHOLDER_IMAGE,
+    image: president6,
     details: [],
   },
   {
@@ -131,7 +134,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Higher Education",
     description:
       "Founded the University of Kurdistan Hewlêr (UKH), supporting academic excellence and future generations.",
-    image: PLACEHOLDER_IMAGE,
+    image: president7,
     details: [],
   },
   {
@@ -140,7 +143,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Economic & Energy Development",
     description:
       "Led major economic initiatives and energy agreements aimed at increasing stability and long-term growth.",
-    image: PLACEHOLDER_IMAGE,
+    image: president8,
     details: [],
   },
   {
@@ -149,7 +152,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Unity & Federalism",
     description:
       "Advocated for political cohesion, constitutional rights, and the protection of the achievements secured since the 1991 Uprising.",
-    image: PLACEHOLDER_IMAGE,
+    image: president9,
     details: [],
   },
   {
@@ -158,7 +161,7 @@ const TIMELINE: TimelineEntry[] = [
     title: "Vision for the Future",
     description:
       "A Stable and Prosperous Kurdistan — a future built on democratic values, peaceful coexistence, and strong institutions that improve the quality of life for all citizens.",
-    image: PLACEHOLDER_IMAGE,
+    image: presidencyPortrait,
     details: [
       {
         title: "Political Unity",
@@ -363,10 +366,6 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
                         alt=""
                         className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-110"
                       />
-                      {/* Temporary template badge until final photos are added */}
-                      <div className="absolute inset-x-0 bottom-0 bg-black/50 px-4 py-2 text-[10px] uppercase tracking-[0.18em] text-white/70">
-                        Image placeholder
-                      </div>
                       <div
                         className="absolute inset-0 md:hidden"
                         style={{
