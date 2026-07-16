@@ -313,13 +313,12 @@ export default function LeadersOfCoexistencePage({
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-lc-hero='true']", { autoAlpha: 0, scale: 1.04 });
+      gsap.set("[data-lc-hero='true']", { autoAlpha: 0 });
       gsap.set("[data-lc-animate='true']", { autoAlpha: 0, y: 24 });
 
       const tl = gsap.timeline();
       tl.to("[data-lc-hero='true']", {
         autoAlpha: 1,
-        scale: 1,
         duration: 0.8,
         ease: "power2.out",
       }).to(
@@ -346,16 +345,13 @@ export default function LeadersOfCoexistencePage({
       sectionRef={sectionRef}
       className="min-h-full px-12 pb-12"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-[220px] h-[900px]">
-        <img
-          data-lc-hero="true"
-          src={coexistenceHero}
-          alt=""
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#faf8f5] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#faf8f5] to-transparent" />
-      </div>
+      <img
+        data-lc-hero="true"
+        src={coexistenceHero}
+        alt=""
+        className="pointer-events-none absolute inset-x-0 top-[220px] z-0 h-[900px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)]"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-[220px] z-[1] h-[900px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
       {onBack && (
         <button
           type="button"
