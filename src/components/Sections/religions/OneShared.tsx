@@ -446,7 +446,7 @@ export default function OneSharedHomelandPage({
                 accent={card.accent}
                 accentIndex={index}
                 titleClassName="uppercase"
-                imageHeightClass="min-h-[320px] flex-1"
+                imageHeightClass="min-h-[420px] flex-1"
                 className="min-h-full"
               />
             ))}

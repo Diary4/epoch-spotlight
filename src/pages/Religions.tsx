@@ -512,12 +512,18 @@ export default function ReligiousDiversityPage({
         lang={lang}
         className="relative flex w-full flex-col overflow-x-hidden bg-[#faf8f5] pb-14 text-[#302214]"
       >
-        <img
-          data-rd-hero="true"
-          src={bg2}
-          alt=""
-          className="absolute inset-x-0 top-0 h-[1100px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_68%,transparent_100%)]"
-        />
+        <div
+          className={`absolute inset-x-0 top-0 h-[1100px] overflow-hidden ${
+            dir === "rtl" ? "-scale-x-100" : ""
+          }`}
+        >
+          <img
+            data-rd-hero="true"
+            src={bg2}
+            alt=""
+            className="h-full w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_68%,transparent_100%)]"
+          />
+        </div>
         <div className="absolute inset-x-0 top-0 h-[900px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
 
         <button

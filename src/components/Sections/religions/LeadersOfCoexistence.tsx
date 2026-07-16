@@ -13,7 +13,7 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg from "@/assets/images/religions/nc-1.webp";
-import coexistenceHero from "@/assets/images/coexistence/coexistence.jpeg";
+import coexistenceHero from "@/assets/images/religions/coexistence/coexistence.jpeg";
 import cradleImg from "@/assets/images/religions/main.webp";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
