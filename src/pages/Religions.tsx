@@ -3,13 +3,10 @@ import gsap from "gsap";
 import {
   ArrowLeft,
   Globe2,
-  Church,
-  UsersRound,
   HeartHandshake,
   Sparkles,
   ScrollText,
   Scale,
-  Flag,
   Award,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
@@ -18,11 +15,8 @@ import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
 import cradleImg from "@/assets/images/religions/main.webp";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
-import nationsImg from "@/assets/images/religions/nations.webp";
-import buildingImg from "@/assets/mainImages/building.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
-import faithsImg from "@/assets/images/religions/faiths.webp";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
@@ -31,11 +25,8 @@ import SharedCelebrationsPage from "@/components/Sections/religions/SharedCelebe
 import DiversityMapPage from "@/components/Sections/religions/RelisgionsSection/Diversities";
 import HistoryPage from "@/components/Sections/religions/History";
 import LeadersOfCoexistencePage from "@/components/Sections/religions/LeadersOfCoexistence";
-import NationsPage from "@/components/Sections/religions/Nations";
-import FaithsPage from "@/components/Sections/religions/Faiths";
 import OneSharedHomelandPage from "@/components/Sections/religions/OneShared";
 import IntroductionPage from "@/components/Sections/religions/Introduction";
-import ClosingPage from "@/components/Sections/religions/Closing";
 import RightsPage, {
   type RightsCardId,
 } from "@/components/Sections/religions/Rights";
@@ -54,17 +45,14 @@ type SectionCardId =
   | "introduction"
   | "history"
   | "leaders"
-  | "nations"
-  | "faiths"
   | "sharedLife"
-  | "rights"
-  | "closing";
+  | "rights";
 
 type SectionCard = {
   id: SectionCardId;
   title: string;
   image: string;
-  icon: typeof Church;
+  icon: typeof Sparkles;
   color: string;
 };
 
@@ -111,20 +99,6 @@ const pageContent: Record<
         color: "#52351a",
       },
       {
-        id: "nations",
-        title: "Nations",
-        image: nationsImg,
-        icon: UsersRound,
-        color: "#16466b",
-      },
-      {
-        id: "faiths",
-        title: "Faiths",
-        image: faithsImg,
-        icon: Church,
-        color: "#244b1f",
-      },
-      {
         id: "sharedLife",
         title: "Shared Life",
         image: sharedImg,
@@ -137,13 +111,6 @@ const pageContent: Record<
         image: governmentImg,
         icon: Scale,
         color: "#52235f",
-      },
-      {
-        id: "closing",
-        title: "Closing",
-        image: buildingImg,
-        icon: Flag,
-        color: "#6b1d1d",
       },
     ],
     detailComingSoon: "Detailed content for this section is coming soon.",
@@ -182,20 +149,6 @@ const pageContent: Record<
         color: "#52351a",
       },
       {
-        id: "nations",
-        title: "نەتەوەکان",
-        image: nationsImg,
-        icon: UsersRound,
-        color: "#16466b",
-      },
-      {
-        id: "faiths",
-        title: "ئاینەکان",
-        image: faithsImg,
-        icon: Church,
-        color: "#244b1f",
-      },
-      {
         id: "sharedLife",
         title: "ژیانی هاوبەش",
         image: sharedImg,
@@ -208,13 +161,6 @@ const pageContent: Record<
         image: governmentImg,
         icon: Scale,
         color: "#52235f",
-      },
-      {
-        id: "closing",
-        title: "کۆتایی",
-        image: buildingImg,
-        icon: Flag,
-        color: "#6b1d1d",
       },
     ],
     detailComingSoon: "ناوەڕۆکی ورد بۆ ئەم بەشە بەزووی دێت.",
@@ -251,20 +197,6 @@ const pageContent: Record<
         color: "#52351a",
       },
       {
-        id: "nations",
-        title: "القوميات",
-        image: nationsImg,
-        icon: UsersRound,
-        color: "#16466b",
-      },
-      {
-        id: "faiths",
-        title: "الأديان",
-        image: faithsImg,
-        icon: Church,
-        color: "#244b1f",
-      },
-      {
         id: "sharedLife",
         title: "الحياة المشتركة",
         image: sharedImg,
@@ -277,13 +209,6 @@ const pageContent: Record<
         image: governmentImg,
         icon: Scale,
         color: "#52235f",
-      },
-      {
-        id: "closing",
-        title: "الخاتمة",
-        image: buildingImg,
-        icon: Flag,
-        color: "#6b1d1d",
       },
     ],
     detailComingSoon: "المحتوى التفصيلي لهذا القسم قادم قريباً.",
@@ -317,11 +242,8 @@ type SubPage =
   | "diversityMap"
   | "history"
   | "leaders"
-  | "nations"
-  | "faiths"
   | "sharedLife"
   | "introduction"
-  | "closing"
   | "rights"
   | { kind: "rightsDetail"; cardId: RightsCardId }
   | { kind: "sectionDetail"; cardId: SectionCardId };
@@ -343,10 +265,7 @@ export default function ReligiousDiversityPage({
     if (id === "introduction") return setSubPage("introduction");
     if (id === "history") return setSubPage("history");
     if (id === "leaders") return setSubPage("leaders");
-    if (id === "nations") return setSubPage("nations");
-    if (id === "faiths") return setSubPage("faiths");
     if (id === "sharedLife") return setSubPage("sharedLife");
-    if (id === "closing") return setSubPage("closing");
     if (id === "rights") return setSubPage("rights");
 
     setSubPage({ kind: "sectionDetail", cardId: id });
@@ -467,28 +386,6 @@ export default function ReligiousDiversityPage({
     );
   }
 
-  if (subPage === "nations") {
-    return (
-      <NationsPage
-        lang={lang}
-        languageLabel={content.languageLabel}
-        onLanguageChange={handleLanguageChange}
-        onBack={() => setSubPage(null)}
-      />
-    );
-  }
-
-  if (subPage === "faiths") {
-    return (
-      <FaithsPage
-        lang={lang}
-        languageLabel={content.languageLabel}
-        onLanguageChange={handleLanguageChange}
-        onBack={() => setSubPage(null)}
-      />
-    );
-  }
-
   if (subPage === "sharedLife") {
     return (
       <OneSharedHomelandPage
@@ -503,17 +400,6 @@ export default function ReligiousDiversityPage({
   if (subPage === "introduction") {
     return (
       <IntroductionPage
-        lang={lang}
-        languageLabel={content.languageLabel}
-        onLanguageChange={handleLanguageChange}
-        onBack={() => setSubPage(null)}
-      />
-    );
-  }
-
-  if (subPage === "closing") {
-    return (
-      <ClosingPage
         lang={lang}
         languageLabel={content.languageLabel}
         onLanguageChange={handleLanguageChange}
