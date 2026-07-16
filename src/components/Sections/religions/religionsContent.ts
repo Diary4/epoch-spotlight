@@ -186,7 +186,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: Award,
         color: "#52351a",
         number: "03",
-        line: "Voices of unity",
+        line: "Definition · leaders · values",
       },
       {
         id: "nations",

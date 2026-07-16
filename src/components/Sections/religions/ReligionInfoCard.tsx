@@ -65,17 +65,18 @@ export default function ReligionInfoCard({
   const resolvedImage = getReligionCardImage(accentIndex, image);
   const isInteractive = Boolean(onClick);
   const alignClass = align === "center" ? "text-center items-center" : "text-left";
+  const imageGrows = imageHeightClass.includes("flex-1");
 
   const content = (
     <>
-      <div className={`relative z-10 flex flex-1 flex-col px-6 pt-7 ${alignClass}`}>
+      <div className={`relative z-10 flex shrink-0 flex-col px-5 pt-6 ${alignClass}`}>
         {eyebrow ? (
           <p className="mb-2 font-serif text-[12px] font-semibold uppercase tracking-[0.14em] text-stone-500">
             {eyebrow}
           </p>
         ) : null}
         <h3
-          className={`break-words font-serif text-[20px] font-semibold leading-tight text-stone-900 ${titleClassName}`}
+          className={`break-words font-serif text-[20px] font-semibold leading-tight text-[#2f1f12] ${titleClassName}`}
         >
           {title}
         </h3>
@@ -90,22 +91,29 @@ export default function ReligionInfoCard({
             {body}
           </p>
         ) : null}
-        {footer ? <div className={`mt-4 w-full ${align === "center" ? "flex justify-center" : ""}`}>{footer}</div> : null}
+        {footer ? (
+          <div className={`mt-4 w-full ${align === "center" ? "flex justify-center" : ""}`}>
+            {footer}
+          </div>
+        ) : null}
       </div>
 
-      <div className={`relative mt-4 w-full overflow-hidden ${imageHeightClass}`}>
-        <img src={resolvedImage} alt="" className="h-full w-full object-cover saturate-[0.85]" />
-        <div
-          className="pointer-events-none absolute inset-0 mix-blend-multiply"
-          style={{ backgroundColor: resolvedAccent, opacity: 0.32 }}
+      <div
+        className={`relative mt-5 w-full overflow-hidden ${
+          imageGrows ? "min-h-[360px] flex-1" : imageHeightClass
+        }`}
+      >
+        <img
+          src={resolvedImage}
+          alt=""
+          className="h-full w-full object-cover saturate-[0.9] transition-transform duration-500 group-hover:scale-[1.03]"
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-3/5 bg-gradient-to-b from-white via-white/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-white via-white/55 to-transparent" />
       </div>
     </>
   );
 
-  const sharedClassName = `group relative flex h-full w-full flex-col overflow-hidden rounded-[26px] border border-stone-200/70 bg-white shadow-[0_10px_30px_rgba(28,24,20,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(28,24,20,0.10)] ${isInteractive ? "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? className : `min-h-[420px] ${className}`}`;
-
+  const sharedClassName = `group relative flex h-full w-full flex-col overflow-hidden rounded-[24px] border border-[#d7b77e]/45 bg-white shadow-[0_10px_28px_rgba(75,45,12,0.06)] transition-all duration-500 hover:-translate-y-1 hover:border-[#d7b77e] hover:shadow-[0_16px_36px_rgba(75,45,12,0.1)] ${isInteractive ? "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? className : `min-h-[420px] ${className}`}`;
 
   if (isInteractive) {
     return (
