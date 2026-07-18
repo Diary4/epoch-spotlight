@@ -20,7 +20,7 @@ const identityCards = [
   {
     title: "Traditions",
     text: "Music, dance, clothing, celebrations, and hospitality help preserve a shared sense of belonging.",
-    icon: traditionsIcon,
+    icon: traditionsIcon, 
   },
   {
     title: "Collective\nMemory",
