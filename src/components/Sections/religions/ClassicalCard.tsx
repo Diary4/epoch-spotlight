@@ -1,4 +1,5 @@
-import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
+import React from "react";
+import type { LucideIcon } from "lucide-react";
 
 type ClassicalCardProps = {
   title: string;
@@ -6,30 +7,65 @@ type ClassicalCardProps = {
   ctaLabel?: string;
   onClick?: () => void;
   ariaLabel?: string;
-  accentIndex?: number;
+  accent?: string;
+  icon?: LucideIcon;
+  index?: number;
+  /** Wide lead chapter vs compact companion */
+  variant?: "featured" | "companion";
 };
 
 /**
- * Hub cards for the Religions overview — sized for the shared 1400px
- * WomenScaledCanvas artboard (same responsiveness as Women.tsx).
+ * Hub chapter tile — featured lead or compact companion.
  */
 export default function ClassicalCard({
   title,
   image,
+  ctaLabel = "Explore",
   onClick,
   ariaLabel,
-  accentIndex = 0,
+  accent = "#b98222",
+  variant = "companion",
 }: ClassicalCardProps) {
+  const isFeatured = variant === "featured";
+
   return (
-    <ReligionInfoCard
-      title={title}
-      image={image}
-      accentIndex={accentIndex}
+    <button
+      type="button"
       onClick={onClick}
-      ariaLabel={ariaLabel}
-      titleClassName="uppercase tracking-[0.04em] text-[22px]"
-      className="min-h-[360px]"
-      imageHeightClass="h-[200px]"
-    />
+      aria-label={ariaLabel ?? title}
+      className={`flex w-full appearance-none flex-col gap-3 text-start outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5] ${
+        isFeatured ? "min-h-[360px]" : "min-h-[300px]"
+      }`}
+    >
+      <span
+        className={`relative block w-full overflow-hidden rounded-[22px] ${
+          isFeatured ? "h-[340px]" : "h-[220px]"
+        }`}
+      >
+        <img
+          src={image}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-center saturate-[0.92]"
+        />
+        <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a120a]/55 via-transparent to-[#faf8f5]/25" />
+        <span
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px]"
+          style={{ backgroundColor: accent }}
+        />
+      </span>
+
+      <span className="flex flex-col gap-1.5 px-1">
+        <span
+          className={`font-serif font-semibold uppercase leading-tight tracking-[0.04em] text-[#2f1f12] ${
+            isFeatured ? "text-[36px]" : "text-[22px]"
+          }`}
+        >
+          {title}
+        </span>
+        <span className="font-serif text-[15px] font-medium tracking-[0.08em] text-[#8a6a45]">
+          {ctaLabel}
+        </span>
+      </span>
+    </button>
   );
 }

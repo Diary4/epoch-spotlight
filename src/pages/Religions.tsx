@@ -13,7 +13,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
-import cradleImg from "@/assets/images/religions/main.webp";
+import cradleImg from "@/assets/images/religions/cradle.webp";
 import sharedImg from "@/assets/mainImages/shared.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
@@ -570,20 +570,41 @@ export default function ReligiousDiversityPage({
             </p>
           </div>
 
-          <section className="z-10 mt-[28rem]">
-            <div className="mx-auto grid w-full max-w-[1280px] grid-cols-4 gap-5">
-              {content.cards.map((card, index) => (
-                <div key={card.id} data-rd-card="true" className="w-full">
+          <section className="z-10 mt-[35rem]">
+            <div className="mx-auto flex w-full max-w-[1220px] flex-col gap-8">
+              {content.cards[0] ? (
+                <div data-rd-card="true" className="w-full">
                   <ClassicalCard
-                    title={card.title}
-                    image={card.image}
+                    title={content.cards[0].title}
+                    image={content.cards[0].image}
                     ctaLabel={content.openLabel}
-                    accentIndex={index}
-                    onClick={() => openSectionCard(card.id)}
-                    ariaLabel={card.title}
+                    accent={content.cards[0].color}
+                    icon={content.cards[0].icon}
+                    index={0}
+                    variant="featured"
+                    onClick={() => openSectionCard(content.cards[0].id)}
+                    ariaLabel={content.cards[0].title}
                   />
                 </div>
-              ))}
+              ) : null}
+
+              <div className="grid grid-cols-4 gap-5">
+                {content.cards.slice(1).map((card, index) => (
+                  <div key={card.id} data-rd-card="true" className="w-full">
+                    <ClassicalCard
+                      title={card.title}
+                      image={card.image}
+                      ctaLabel={content.openLabel}
+                      accent={card.color}
+                      icon={card.icon}
+                      index={index + 1}
+                      variant="companion"
+                      onClick={() => openSectionCard(card.id)}
+                      ariaLabel={card.title}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </div>
