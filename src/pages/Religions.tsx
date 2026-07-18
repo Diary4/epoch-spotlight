@@ -13,7 +13,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
-import cradleImg from "@/assets/images/religions/cradle.webp";
+import cradleImg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import sharedImg from "@/assets/mainImages/shared.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";

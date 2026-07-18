@@ -11,7 +11,7 @@ import {
 
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
-import cradleImg from "@/assets/images/religions/main.webp";
+import cradleImg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
