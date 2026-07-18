@@ -607,8 +607,6 @@ export default function IntroductionPage({
                       ariaLabel={card.title}
                       titleClassName="uppercase"
                       imageHeightClass="min-h-[360px] flex-1"
-                      imageClassName="object-top"
-                      imageFadeClass="h-[14%] bg-gradient-to-b from-white/50 to-transparent"
                       className="min-h-full"
                     />
                   ))
