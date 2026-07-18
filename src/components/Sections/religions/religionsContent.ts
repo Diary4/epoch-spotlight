@@ -181,7 +181,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       },
       {
         id: "leaders",
-        title: "Leaders of Coexistence",
+        title: "Coexistence",
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -320,7 +320,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       },
       {
         id: "leaders",
-        title: "ڕابەرانی پێکەوەژیان",
+        title: "پێکەوەژیان",
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -459,7 +459,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       },
       {
         id: "leaders",
-        title: "قادة التعايش",
+        title: "التعايش",
         image: leadersImg,
         icon: Award,
         color: "#52351a",

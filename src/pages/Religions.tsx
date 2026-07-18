@@ -93,7 +93,7 @@ const pageContent: Record<
       },
       {
         id: "leaders",
-        title: "Leaders of Coexistence",
+        title: "Coexistence",
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -143,7 +143,7 @@ const pageContent: Record<
       },
       {
         id: "leaders",
-        title: "ڕابەرانی پێکەوەژیان",
+        title: "پێکەوەژیان",
         image: leadersImg,
         icon: Award,
         color: "#52351a",
@@ -191,7 +191,7 @@ const pageContent: Record<
       },
       {
         id: "leaders",
-        title: "قادة التعايش",
+        title: "التعايش",
         image: leadersImg,
         icon: Award,
         color: "#52351a",
