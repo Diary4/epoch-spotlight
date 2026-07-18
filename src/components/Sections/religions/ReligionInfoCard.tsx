@@ -45,6 +45,7 @@ type ReligionInfoCardProps = {
   /** Soften or shorten the white fade over the image top. */
   imageFadeClass?: string;
   imageClassName?: string;
+  imageWrapClassName?: string;
 };
 
 export default function ReligionInfoCard({
@@ -63,8 +64,9 @@ export default function ReligionInfoCard({
   italicBody = false,
   eyebrow,
   imageHeightClass = "h-[260px]",
-  imageFadeClass = "h-2/5 bg-gradient-to-b from-white via-white/55 to-transparent",
-  imageClassName = "",
+  imageFadeClass = "h-[16%] bg-gradient-to-b from-white via-white/35 to-transparent",
+  imageClassName = "[mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]",
+  imageWrapClassName = "mt-0",
 }: ReligionInfoCardProps) {
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
   const resolvedImage = getReligionCardImage(accentIndex, image);
@@ -104,7 +106,7 @@ export default function ReligionInfoCard({
       </div>
 
       <div
-        className={`relative mt-5 w-full overflow-hidden ${
+        className={`relative w-full overflow-hidden ${imageWrapClassName} ${
           imageGrows ? "min-h-[360px] flex-1" : imageHeightClass
         }`}
       >
@@ -118,17 +120,29 @@ export default function ReligionInfoCard({
     </>
   );
 
-  // Inset ring instead of CSS border — avoids the 1px dark hairline on rounded
-  // button/overflow cards in WebKit/Chromium.
-  const sharedClassName = `relative flex h-full w-full flex-col overflow-hidden rounded-[24px] border-0 bg-white text-left shadow-[inset_0_0_0_1px_#e6d2a8,0_10px_28px_rgba(75,45,12,0.06)] ${isInteractive ? "cursor-pointer appearance-none outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? className : `min-h-[420px] ${className}`}`;
+  // Outer shell paints the gold edge; inner surface stays borderless.
+  // Avoids the WebKit/Chromium 1px dark hairline on rounded bordered buttons.
+  const shellClassName = `h-full w-full rounded-[24px] bg-[#e6d2a8] p-px shadow-[0_10px_28px_rgba(75,45,12,0.06)] ${className.includes("min-h-") ? className : ""}`;
+  const surfaceClassName = `relative flex h-full w-full flex-col overflow-hidden rounded-[23px] border-0 bg-white text-left ${isInteractive ? "cursor-pointer appearance-none outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? "min-h-full" : "min-h-[420px]"}`;
 
   if (isInteractive) {
     return (
-      <button type="button" onClick={onClick} aria-label={ariaLabel ?? title} className={sharedClassName}>
-        {content}
-      </button>
+      <div className={shellClassName}>
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={ariaLabel ?? title}
+          className={surfaceClassName}
+        >
+          {content}
+        </button>
+      </div>
     );
   }
 
-  return <article className={sharedClassName}>{content}</article>;
+  return (
+    <div className={shellClassName}>
+      <article className={surfaceClassName}>{content}</article>
+    </div>
+  );
 }
