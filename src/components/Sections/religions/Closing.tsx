@@ -11,7 +11,7 @@ import {
   Sunrise,
   type LucideIcon,
 } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 import bg from "@/assets/images/religions/c-1.webp";
 
@@ -257,7 +257,7 @@ export default function ClosingPage({
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-[#d7b77e] bg-white/75 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+          className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-[#d7b77e] bg-white/75 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md ${religionsOverlayStartClassName(dir)}`}
           aria-label={c.back}
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -268,7 +268,7 @@ export default function ClosingPage({
         <button
           type="button"
           onClick={onLanguageChange}
-          className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+          className={`absolute top-8 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md ${religionsOverlayEndClassName(dir)}`}
         >
           <Globe2 className="h-5 w-5" />
           {languageLabel}

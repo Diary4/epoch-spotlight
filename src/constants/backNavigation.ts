@@ -33,6 +33,21 @@ export function detailBackIconClassName(dir: "ltr" | "rtl"): string {
   return backIconRotateClassName(dir);
 }
 
+/** Absolute horizontal edge for religions overlay controls (back button = start side) */
+export function religionsOverlayStartClassName(dir: "ltr" | "rtl") {
+  return dir === "rtl" ? "right-8" : "left-8";
+}
+
+/** Absolute horizontal edge for religions overlay controls (language = end side) */
+export function religionsOverlayEndClassName(dir: "ltr" | "rtl") {
+  return dir === "rtl" ? "left-8" : "right-8";
+}
+
+/** Absolute horizontal edge with slightly larger inset (hub language chip) */
+export function religionsOverlayEndWideClassName(dir: "ltr" | "rtl") {
+  return dir === "rtl" ? "left-12" : "right-12";
+}
+
 /** Women section pages — back button vertically centered on the viewport edge */
 export const womenBackButtonClassName =
   "fixed top-1/2 z-[60] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#2c1337] shadow-md backdrop-blur-sm transition-all hover:bg-white sm:h-14 sm:w-14";

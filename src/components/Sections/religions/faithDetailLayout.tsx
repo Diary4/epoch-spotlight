@@ -1,6 +1,11 @@
 import React from "react";
 import { ArrowLeft, Globe2 } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import {
+  detailBackIconClassName,
+  detailBackIconSize,
+  religionsOverlayEndClassName,
+  religionsOverlayStartClassName,
+} from "@/constants/backNavigation";
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
@@ -127,7 +132,7 @@ export function FaithDetailControls({
         type="button"
         onClick={onBack}
         {...controlProps}
-        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+        className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm ${religionsOverlayStartClassName(dir)}`}
         aria-label={backLabel}
       >
         <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -137,7 +142,7 @@ export function FaithDetailControls({
         type="button"
         onClick={onLanguageChange}
         {...controlProps}
-        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+        className={`absolute top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] ${religionsOverlayEndClassName(dir)}`}
       >
         <Globe2 className="h-5 w-5" />
         {languageLabel}

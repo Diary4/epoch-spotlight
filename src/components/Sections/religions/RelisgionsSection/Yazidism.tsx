@@ -224,7 +224,7 @@ export default function YazidismPage({
               <HeartHandshake className="h-12 w-12" strokeWidth={1.8} />
             </div>
 
-            <p className={`flex-1 text-left ${FAITH_TAGLINE_TEXT_CLASS}`}>
+            <p className={`flex-1 text-start ${FAITH_TAGLINE_TEXT_CLASS}`}>
               {c.tagline}
             </p>
 

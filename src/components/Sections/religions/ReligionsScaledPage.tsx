@@ -29,6 +29,7 @@ export default function ReligionsScaledPage({
       <section
         ref={sectionRef}
         lang={lang}
+        dir={dir}
         className={`relative flex min-h-full w-full flex-col overflow-x-hidden bg-[#faf8f5] text-[#3d2b18] ${className}`}
       >
         {children}

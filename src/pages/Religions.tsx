@@ -9,7 +9,7 @@ import {
   Scale,
   Award,
 } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName, religionsOverlayEndWideClassName } from "@/constants/backNavigation";
 
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
@@ -471,7 +471,7 @@ export default function ReligiousDiversityPage({
             <button
               type="button"
               onClick={() => setSubPage(null)}
-              className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-[#d7b77e] bg-white/80 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+              className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-[#d7b77e] bg-white/80 text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md ${religionsOverlayStartClassName(dir)}`}
               aria-label={content.detailBack}
             >
               <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -480,7 +480,7 @@ export default function ReligiousDiversityPage({
             <button
               type="button"
               onClick={handleLanguageChange}
-              className="absolute right-8 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+              className={`absolute top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md ${religionsOverlayEndClassName(dir)}`}
             >
               <Globe2 className="h-5 w-5" />
               {content.languageLabel}
@@ -510,6 +510,7 @@ export default function ReligiousDiversityPage({
       <section
         ref={sectionRef}
         lang={lang}
+        dir={dir}
         className="relative flex w-full flex-col overflow-x-hidden bg-[#faf8f5] pb-14 text-[#302214]"
       >
         <div
@@ -530,7 +531,7 @@ export default function ReligiousDiversityPage({
           data-rd-lang-btn="true"
           type="button"
           onClick={handleLanguageChange}
-          className="absolute right-12 top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md"
+          className={`absolute top-10 z-30 flex items-center gap-3 rounded-full border border-[#d7b77e] bg-white/80 px-5 py-3 font-serif text-sm font-light text-[#3f2b17] shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-md ${religionsOverlayEndWideClassName(dir)}`}
         >
           <Globe2 className="h-5 w-5" />
           {content.languageLabel}

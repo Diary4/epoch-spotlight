@@ -1,7 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import { ArrowLeft, Globe2 } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
@@ -411,7 +411,7 @@ export default function FaithsPage({
       <button
         type="button"
         onClick={onBack}
-        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50"
+        className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-800 shadow-sm transition hover:bg-stone-50 ${religionsOverlayStartClassName(dir)}`}
         aria-label={c.back}
       >
         <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -420,7 +420,7 @@ export default function FaithsPage({
       <button
         type="button"
         onClick={onLanguageChange}
-        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-stone-200 bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50"
+        className={`absolute top-8 z-30 flex items-center gap-3 rounded-full border border-stone-200 bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-stone-800 shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition hover:bg-stone-50 ${religionsOverlayEndClassName(dir)}`}
       >
         <Globe2 className="h-5 w-5" />
         {languageLabel}

@@ -116,7 +116,7 @@ export default function ReligionsV2Hub({
               onFocus={() => onActiveIndexChange(index)}
               onPointerEnter={() => onActiveIndexChange(index)}
               onClick={() => onOpenChapter(index)}
-              className={`flex min-h-[250px] flex-col overflow-hidden rounded-[22px] border text-left transition-all duration-300 ${
+              className={`flex min-h-[250px] flex-col overflow-hidden rounded-[22px] border text-start transition-all duration-300 ${
                 isActive
                   ? "border-[#b98222] bg-white shadow-[0_14px_32px_rgba(75,45,12,0.14)]"
                   : "border-[#d7b77e]/40 bg-white/70 hover:border-[#d7b77e] hover:bg-white"

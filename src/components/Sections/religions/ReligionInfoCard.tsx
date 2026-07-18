@@ -71,7 +71,7 @@ export default function ReligionInfoCard({
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
   const resolvedImage = getReligionCardImage(accentIndex, image);
   const isInteractive = Boolean(onClick);
-  const alignClass = align === "center" ? "text-center items-center" : "text-left";
+  const alignClass = align === "center" ? "text-center items-center" : "text-start";
   const imageGrows = imageHeightClass.includes("flex-1");
 
   const content = (
@@ -123,7 +123,7 @@ export default function ReligionInfoCard({
   // Outer shell paints the gold edge; inner surface stays borderless.
   // Avoids the WebKit/Chromium 1px dark hairline on rounded bordered buttons.
   const shellClassName = `h-full w-full rounded-[24px] bg-[#e6d2a8] p-px shadow-[0_10px_28px_rgba(75,45,12,0.06)] ${className.includes("min-h-") ? className : ""}`;
-  const surfaceClassName = `relative flex h-full w-full flex-col overflow-hidden rounded-[23px] border-0 bg-white text-left ${isInteractive ? "cursor-pointer appearance-none outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? "min-h-full" : "min-h-[420px]"}`;
+  const surfaceClassName = `relative flex h-full w-full flex-col overflow-hidden rounded-[23px] border-0 bg-white text-start ${isInteractive ? "cursor-pointer appearance-none outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? "min-h-full" : "min-h-[420px]"}`;
 
   if (isInteractive) {
     return (

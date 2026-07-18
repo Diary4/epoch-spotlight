@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Quote,
 } from "lucide-react";
-import { detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
 import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexistence/TimelineCoexistence";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
@@ -189,7 +189,7 @@ export default function StoriesOfCoexistencePage({
       <button
         type="button"
         onClick={onBack}
-        className="absolute left-8 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm"
+        className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/70 text-[#5a3a18] shadow-sm ${religionsOverlayStartClassName(dir)}`}
         aria-label="Back"
       >
         <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -198,7 +198,7 @@ export default function StoriesOfCoexistencePage({
       <button
         type="button"
         onClick={onLanguageChange}
-        className="absolute right-8 top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)]"
+        className={`absolute top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white/75 px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] ${religionsOverlayEndClassName(dir)}`}
       >
         <Globe2 className="h-5 w-5" />
         {languageLabel}
@@ -233,8 +233,8 @@ export default function StoriesOfCoexistencePage({
           data-story-animate="true"
           className="relative mx-auto rounded-[22px] border-2 border-[#d8b875]/60 bg-[#fff8e9]/88 px-8 py-6 text-center shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-sm"
         >
-          <Quote className="absolute left-8 top-5 h-10 w-10 text-[#c58b16]" />
-          <Quote className="absolute bottom-5 right-8 h-10 w-10 rotate-180 text-[#c58b16]" />
+          <Quote className={`absolute top-5 h-10 w-10 text-[#c58b16] ${religionsOverlayStartClassName(dir)}`} />
+          <Quote className={`absolute bottom-5 h-10 w-10 rotate-180 text-[#c58b16] ${religionsOverlayEndClassName(dir)}`} />
 
           <p className="mx-auto max-w-[760px] font-serif text-[24px] italic leading-relaxed text-[#3b2b1e]">
             {quoteText}
