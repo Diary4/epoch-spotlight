@@ -356,7 +356,7 @@ export default function LeadersOfCoexistencePage({
         <button
           type="button"
           onClick={onBack}
-          className={`absolute top-8 z-30 grid h-14 w-14 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm ${religionsOverlayStartClassName(dir)}`}
+          className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white/80 text-[#5a3a18] shadow-sm ${religionsOverlayStartClassName(dir)}`}
           aria-label={c.back}
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
