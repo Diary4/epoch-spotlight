@@ -498,9 +498,9 @@ export default function IntroductionPage({
         data-intro-hero="true"
         src={bg}
         alt=""
-        className="pointer-events-none absolute inset-x-0 top-[220px] z-0 h-[900px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1180px] w-full object-cover object-[center_28%] [mask-image:linear-gradient(to_bottom,black_0%,black_12%,black_86%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_12%,black_86%,transparent_100%)]"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-[220px] z-[1] h-[900px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[1180px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_14%,transparent_84%,#faf8f5_100%)]" />
 
       {onBack && (
         <button
@@ -525,7 +525,7 @@ export default function IntroductionPage({
       )}
 
       <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[1220px] flex-col">
-        <header data-intro-animate="true" className="mx-auto max-w-[850px] shrink-0 pt-8 text-center">
+        <header data-intro-animate="true" className="mx-auto max-w-[850px] shrink-0 pt-[200px] text-center">
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>
@@ -540,7 +540,7 @@ export default function IntroductionPage({
           </p>
         </header>
 
-        <section data-intro-animate="true" className="mt-[920px] flex flex-1 flex-col pb-4">
+        <section data-intro-animate="true" className="mt-[780px] flex flex-1 flex-col pb-4">
           <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
             <div className="flex gap-2">
               {tabs.map((tab) => {
