@@ -122,7 +122,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
             <div className="relative z-10 flex flex-1 flex-col px-[clamp(1.4rem,4cqw,4rem)] pt-[clamp(1.2rem,4cqh,3.5rem)] pb-[clamp(1.2rem,3cqh,2.6rem)]">
               <section className={`journey-detail-intro ${isRtlScript ? "max-w-[min(58cqw,900px)]" : "max-w-[min(46cqw,720px)]"}`}>
                 <h1
-                  className={`${displayFont} ${isRtlScript ? "font-medium" : "font-light"} leading-none tracking-tight text-[#00604f] ${
+                  className={`${displayFont} ${isRtlScript ? "font-medium" : "font-light"} leading-none tracking-tight text-[#00604f] [text-shadow:0_0_14px_rgba(255,255,255,1),0_0_28px_rgba(255,255,255,0.95),0_0_40px_rgba(255,255,255,0.8),0_1px_3px_rgba(255,255,255,1)] ${
                     isRtlScript
                       ? "text-[clamp(4.25rem,8.5cqw,8.5rem)]"
                       : "text-[clamp(6rem,11cqw,10rem)]"
@@ -136,7 +136,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
                 </h1>
 
                 <p
-                  className={`mt-[clamp(1rem,2.2cqh,2rem)] ${isRtlScript ? "font-medium" : "font-light"} leading-tight text-[#9b6d35] ${
+                  className={`mt-[clamp(1rem,2.2cqh,2rem)] ${isRtlScript ? "font-medium" : "font-light"} leading-tight text-[#9b6d35] [text-shadow:0_0_14px_rgba(255,255,255,1),0_0_28px_rgba(255,255,255,0.95),0_0_40px_rgba(255,255,255,0.8),0_1px_3px_rgba(255,255,255,1)] ${
                     isRtlScript
                       ? "whitespace-nowrap text-[clamp(1.35rem,2.35cqw,2.35rem)]"
                       : "text-[clamp(1.65rem,2.75cqw,2.7rem)]"
@@ -151,7 +151,7 @@ export default function WhoAreTheKurdsSection({ lang = "en", onBack }: WhoAreThe
                   <span className="h-0.5 flex-1 bg-[#b99152]" />
                 </div> */}
 
-                <p className={`mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] ${isRtlScript ? "font-bold" : "font-light"} leading-[1.55] text-[#2d3549]`}>
+                <p className={`mt-[clamp(1rem,2.4cqh,2rem)] max-w-[min(38cqw,590px)] text-[clamp(1.2rem,2cqw,1.95rem)] ${isRtlScript ? "font-bold" : "font-light"} leading-[1.55] text-[#2d3549] [text-shadow:0_0_14px_rgba(255,255,255,1),0_0_28px_rgba(255,255,255,0.95),0_0_40px_rgba(255,255,255,0.8),0_1px_3px_rgba(255,255,255,1)]`}>
                   {detail?.description ??
                     "The Kurds have lived in these mountains and plains for thousands of years, shaping the region with their strength, spirit, and culture."}
                 </p>
