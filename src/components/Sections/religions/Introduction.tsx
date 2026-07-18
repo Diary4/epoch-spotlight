@@ -25,6 +25,10 @@ import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastriani
 import imgJudaism from "@/assets/images/new/religions/faiths/judaism.webp";
 import imgBahai from "@/assets/images/new/religions/faiths/bahai.webp";
 import imgSabean from "@/assets/images/new/religions/faiths/sabean-mandaeanism.webp";
+import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
+import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
+import nationChaldo from "@/assets/images/new/religions/nations/assyrian.webp";
+import nationArmenians from "@/assets/images/new/religions/nations/armenian.webp";
 
 import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
@@ -34,6 +38,10 @@ import ZoroastrianismPage from "@/components/Sections/religions/RelisgionsSectio
 import JudaismPage from "@/components/Sections/religions/RelisgionsSection/Judaism";
 import BahaiPage from "@/components/Sections/religions/RelisgionsSection/Bahai";
 import SabeanMandaeanismPage from "@/components/Sections/religions/RelisgionsSection/SabeanMandaeanism";
+import KurdsPage from "@/components/Sections/religions/nations/Kurds";
+import TurkmensPage from "@/components/Sections/religions/nations/Turkmens";
+import ChaldoAssyriansPage from "@/components/Sections/religions/nations/ChaldoAssyrians";
+import ArmeniansPage from "@/components/Sections/religions/nations/Armenians";
 
 type LangCode = "en" | "ku" | "ar";
 type TabId = "religions" | "nations" | "laws";
@@ -48,11 +56,21 @@ type FaithId =
   | "bahai"
   | "sabean-mandaeanism";
 
+type NationId = "kurds" | "turkmens" | "chaldo-assyrians" | "armenians";
+
 type FaithCard = {
   id: FaithId;
   title: string;
   body: string;
   image: string;
+};
+
+type NationCard = {
+  id: NationId;
+  title: string;
+  body: string;
+  image: string;
+  accent: string;
 };
 
 type TabCard = {
@@ -81,7 +99,11 @@ type IntroductionContent = {
     tagline: string;
     cards: FaithCard[];
   };
-  nations: TabContent;
+  nations: {
+    subtitle: string;
+    tagline: string;
+    cards: NationCard[];
+  };
   laws: TabContent;
 };
 
@@ -111,35 +133,35 @@ const content: Record<LangCode, IntroductionContent> = {
       ],
     },
     nations: {
-      subtitle: "Kurds, Assyrians, Armenians, Turkmen, and more.",
+      subtitle: "Tap a people to open their story.",
       tagline: "Different languages. One shared homeland.",
       cards: [
         {
           id: "kurds",
           title: "Kurds",
           body: "The majority people of the Region, carrying language, culture, and hospitality.",
-          image: nationsImg,
+          image: nationKurds,
           accent: "#7a4a12",
         },
         {
-          id: "assyrians",
-          title: "Assyrians & Chaldeans",
+          id: "chaldo-assyrians",
+          title: "Chaldo-Assyrians",
           body: "Historic Christian communities whose Syriac heritage remains active.",
-          image: bg,
+          image: nationChaldo,
           accent: "#a05a18",
         },
         {
           id: "armenians",
           title: "Armenians",
           body: "A community shaped by sanctuary, memory, and lasting belonging.",
-          image: valleyImg,
+          image: nationArmenians,
           accent: "#b9822d",
         },
         {
-          id: "turkmen",
-          title: "Turkmen",
+          id: "turkmens",
+          title: "Turkmens",
           body: "A long-standing community with its own language, culture, and public life.",
-          image: nationsImg,
+          image: nationTurkmens,
           accent: "#c58b16",
         },
       ],
@@ -201,35 +223,35 @@ const content: Record<LangCode, IntroductionContent> = {
       ],
     },
     nations: {
-      subtitle: "کورد، ئاشووری، ئەرمەن، تورکمان، و زۆرتر.",
+      subtitle: "دەست لێبدە بۆ کردنەوەی چیرۆکی گەلەکە.",
       tagline: "زمانە جیاوازەکان. یەک وڵاتی هاوبەش.",
       cards: [
         {
           id: "kurds",
           title: "کورد",
           body: "زۆرینەی هەرێم، خاوەنی زمان و کلتوور و میوانداری.",
-          image: nationsImg,
+          image: nationKurds,
           accent: "#7a4a12",
         },
         {
-          id: "assyrians",
-          title: "ئاشووری و کلدانی",
+          id: "chaldo-assyrians",
+          title: "کلدۆ-ئاشووری",
           body: "کۆمەڵگەی مەسیحی مێژوویی کە میراتی سریانیان زیندووە.",
-          image: bg,
+          image: nationChaldo,
           accent: "#a05a18",
         },
         {
           id: "armenians",
           title: "ئەرمەن",
           body: "کۆمەڵگەیەک دروستبوو لە پەنا و یادەوەری و سەر بە یەکبوون.",
-          image: valleyImg,
+          image: nationArmenians,
           accent: "#b9822d",
         },
         {
-          id: "turkmen",
+          id: "turkmens",
           title: "تورکمان",
           body: "کۆمەڵگەیەکی دێرین بە زمان و کلتوور و ژیانی گشتی خۆیەوە.",
-          image: nationsImg,
+          image: nationTurkmens,
           accent: "#c58b16",
         },
       ],
@@ -291,35 +313,35 @@ const content: Record<LangCode, IntroductionContent> = {
       ],
     },
     nations: {
-      subtitle: "الكورد، الآشوريون، الأرمن، التركمان، وغيرهم.",
+      subtitle: "المس شعباً لفتح قصته.",
       tagline: "لغات مختلفة. وطن واحد مشترك.",
       cards: [
         {
           id: "kurds",
           title: "الكورد",
           body: "غالبية الإقليم، يحملون اللغة والثقافة وكرم الضيافة.",
-          image: nationsImg,
+          image: nationKurds,
           accent: "#7a4a12",
         },
         {
-          id: "assyrians",
-          title: "الآشوريون والكلدان",
+          id: "chaldo-assyrians",
+          title: "الكلدو-آشوريون",
           body: "مجتمعات مسيحية تاريخية يبقى تراثها السرياني حياً.",
-          image: bg,
+          image: nationChaldo,
           accent: "#a05a18",
         },
         {
           id: "armenians",
           title: "الأرمن",
           body: "مجتمع تشكّل باللجوء والذاكرة والانتماء الدائم.",
-          image: valleyImg,
+          image: nationArmenians,
           accent: "#b9822d",
         },
         {
-          id: "turkmen",
+          id: "turkmens",
           title: "التركمان",
           body: "مجتمع عريق بلغته وثقافته وحضوره في الحياة العامة.",
-          image: nationsImg,
+          image: nationTurkmens,
           accent: "#c58b16",
         },
       ],
@@ -386,7 +408,7 @@ type IntroductionPageProps = {
   onBack?: () => void;
 };
 
-const faithDetailProps = (
+const detailProps = (
   lang: LangCode,
   languageLabel: string,
   onLanguageChange: (() => void) | undefined,
@@ -407,12 +429,13 @@ export default function IntroductionPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const [activeTab, setActiveTab] = React.useState<TabId>("religions");
   const [activeFaith, setActiveFaith] = React.useState<FaithId | null>(null);
+  const [activeNation, setActiveNation] = React.useState<NationId | null>(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
   const tabPanel = c[activeTab];
 
   React.useLayoutEffect(() => {
-    if (!sectionRef.current || activeFaith) return;
+    if (!sectionRef.current || activeFaith || activeNation) return;
 
     const reducedMotion =
       typeof window !== "undefined" &&
@@ -441,19 +464,27 @@ export default function IntroductionPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [lang, activeFaith]);
+  }, [lang, activeFaith, activeNation]);
 
-  const closeFaith = () => setActiveFaith(null);
-  const detailProps = faithDetailProps(lang, languageLabel, onLanguageChange, closeFaith);
+  const closeDetail = () => {
+    setActiveFaith(null);
+    setActiveNation(null);
+  };
+  const pageDetailProps = detailProps(lang, languageLabel, onLanguageChange, closeDetail);
 
-  if (activeFaith === "islam") return <IslamPage {...detailProps} />;
-  if (activeFaith === "christianity") return <ChristianityPage {...detailProps} />;
-  if (activeFaith === "yazidism") return <YazidismPage {...detailProps} />;
-  if (activeFaith === "yarsanism") return <YarsanismPage {...detailProps} />;
-  if (activeFaith === "zoroastrianism") return <ZoroastrianismPage {...detailProps} />;
-  if (activeFaith === "judaism") return <JudaismPage {...detailProps} />;
-  if (activeFaith === "bahai") return <BahaiPage {...detailProps} />;
-  if (activeFaith === "sabean-mandaeanism") return <SabeanMandaeanismPage {...detailProps} />;
+  if (activeFaith === "islam") return <IslamPage {...pageDetailProps} />;
+  if (activeFaith === "christianity") return <ChristianityPage {...pageDetailProps} />;
+  if (activeFaith === "yazidism") return <YazidismPage {...pageDetailProps} />;
+  if (activeFaith === "yarsanism") return <YarsanismPage {...pageDetailProps} />;
+  if (activeFaith === "zoroastrianism") return <ZoroastrianismPage {...pageDetailProps} />;
+  if (activeFaith === "judaism") return <JudaismPage {...pageDetailProps} />;
+  if (activeFaith === "bahai") return <BahaiPage {...pageDetailProps} />;
+  if (activeFaith === "sabean-mandaeanism") return <SabeanMandaeanismPage {...pageDetailProps} />;
+
+  if (activeNation === "kurds") return <KurdsPage {...pageDetailProps} />;
+  if (activeNation === "turkmens") return <TurkmensPage {...pageDetailProps} />;
+  if (activeNation === "chaldo-assyrians") return <ChaldoAssyriansPage {...pageDetailProps} />;
+  if (activeNation === "armenians") return <ArmeniansPage {...pageDetailProps} />;
 
   return (
     <ReligionsScaledPage
@@ -563,18 +594,36 @@ export default function IntroductionPage({
                     className="min-h-full"
                   />
                 ))
-              : tabPanel.cards.map((card, index) => (
-                  <ReligionInfoCard
-                    key={card.id}
-                    title={card.title}
-                    body={card.body}
-                    image={card.image}
-                    accent={"accent" in card ? card.accent : faithAccents[index]}
-                    accentIndex={index}
-                    imageHeightClass="min-h-[360px] flex-1"
-                    className="min-h-full"
-                  />
-                ))}
+              : activeTab === "nations"
+                ? c.nations.cards.map((card, index) => (
+                    <ReligionInfoCard
+                      key={card.id}
+                      title={card.title}
+                      body={card.body}
+                      image={card.image}
+                      accent={card.accent}
+                      accentIndex={index}
+                      onClick={() => setActiveNation(card.id)}
+                      ariaLabel={card.title}
+                      titleClassName="uppercase"
+                      imageHeightClass="min-h-[360px] flex-1"
+                      imageClassName="object-top"
+                      imageFadeClass="h-[14%] bg-gradient-to-b from-white/50 to-transparent"
+                      className="min-h-full"
+                    />
+                  ))
+                : c.laws.cards.map((card, index) => (
+                    <ReligionInfoCard
+                      key={card.id}
+                      title={card.title}
+                      body={card.body}
+                      image={card.image}
+                      accent={card.accent}
+                      accentIndex={index}
+                      imageHeightClass="min-h-[360px] flex-1"
+                      className="min-h-full"
+                    />
+                  ))}
           </div>
 
           <div className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">

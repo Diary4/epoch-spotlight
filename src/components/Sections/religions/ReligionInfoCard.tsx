@@ -42,6 +42,9 @@ type ReligionInfoCardProps = {
   italicBody?: boolean;
   eyebrow?: string;
   imageHeightClass?: string;
+  /** Soften or shorten the white fade over the image top. */
+  imageFadeClass?: string;
+  imageClassName?: string;
 };
 
 export default function ReligionInfoCard({
@@ -60,6 +63,8 @@ export default function ReligionInfoCard({
   italicBody = false,
   eyebrow,
   imageHeightClass = "h-[260px]",
+  imageFadeClass = "h-2/5 bg-gradient-to-b from-white via-white/55 to-transparent",
+  imageClassName = "",
 }: ReligionInfoCardProps) {
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
   const resolvedImage = getReligionCardImage(accentIndex, image);
@@ -81,7 +86,7 @@ export default function ReligionInfoCard({
           {title}
         </h3>
         <span
-          className={`mt-3 block h-[2px] w-[42px] transition-all duration-300 group-hover:w-[64px] ${align === "center" ? "mx-auto" : ""}`}
+          className={`mt-3 block h-[2px] w-[42px] ${align === "center" ? "mx-auto" : ""}`}
           style={{ backgroundColor: resolvedAccent }}
         />
         {body ? (
@@ -106,14 +111,16 @@ export default function ReligionInfoCard({
         <img
           src={resolvedImage}
           alt=""
-          className="h-full w-full object-cover saturate-[0.9] transition-transform duration-500 group-hover:scale-[1.03]"
+          className={`h-full w-full object-cover saturate-[0.9] ${imageClassName}`}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-white via-white/55 to-transparent" />
+        <div className={`pointer-events-none absolute inset-x-0 top-0 ${imageFadeClass}`} />
       </div>
     </>
   );
 
-  const sharedClassName = `group relative flex h-full w-full flex-col overflow-hidden rounded-[24px] border border-[#d7b77e]/45 bg-white shadow-[0_10px_28px_rgba(75,45,12,0.06)] transition-all duration-500 hover:-translate-y-1 hover:border-[#d7b77e] hover:shadow-[0_16px_36px_rgba(75,45,12,0.1)] ${isInteractive ? "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? className : `min-h-[420px] ${className}`}`;
+  // Inset ring instead of CSS border — avoids the 1px dark hairline on rounded
+  // button/overflow cards in WebKit/Chromium.
+  const sharedClassName = `relative flex h-full w-full flex-col overflow-hidden rounded-[24px] border-0 bg-white text-left shadow-[inset_0_0_0_1px_#e6d2a8,0_10px_28px_rgba(75,45,12,0.06)] ${isInteractive ? "cursor-pointer appearance-none outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? className : `min-h-[420px] ${className}`}`;
 
   if (isInteractive) {
     return (
