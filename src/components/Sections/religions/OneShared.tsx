@@ -18,9 +18,9 @@ import mosquesImg from "@/assets/images/religions/sharedlife/mosques.jpeg";
 import churchesImg from "@/assets/images/religions/sharedlife/churches.jpeg";
 import lalishImg from "@/assets/images/religions/sharedlife/lalish.jpeg";
 import zoroImg from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
-import eidImg from "@/assets/images/new/religions/faiths/islam.webp";
+import eidImg from "@/assets/images/religions/sharedlife/mosques.jpeg";
 import christmasImg from "@/assets/images/new/religions/faiths/christianity.webp";
-import yazidiFestImg from "@/assets/images/religions/r-5.webp";
+import yazidiFestImg from "@/assets/images/religions/sharedlife/lalish.jpeg";
 import kakaiImg from "@/assets/images/new/religions/faiths/yarsanism.webp";
 
 type LangCode = "en" | "ku" | "ar";
