@@ -1,5 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Calendar, Diamond, Feather, Music2, Pause, Play, RotateCcw, Square } from "lucide-react";
+import React, { useEffect, useId, useRef, useState } from "react";
+import {
+  ArrowLeft,
+  Calendar,
+  Diamond,
+  Feather,
+  Landmark,
+  Music2,
+  Pause,
+  Play,
+  RotateCcw,
+  Square,
+} from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
 import {
   detailBackButtonClassName,
@@ -11,7 +22,6 @@ import { discoverDisplayFont, discoverRtlScript, discoverYearFont } from "@/comp
 import { localizeDigits } from "@/lib/utils";
 import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
-import anthemVideo from "@/assets/videos/flag.mp4";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
 import { getAnthemLyricAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
 
@@ -24,6 +34,35 @@ const INK = "#17233b";
 const BODY = "#35435b";
 const CARD_BG = "#f7f1e3";
 const CARD_BORDER = "#e7dcc4";
+
+/* 21-ray sun of the Kurdistan flag */
+const SUN_POINTS = (() => {
+  const rays = 21;
+  const pts: string[] = [];
+  for (let i = 0; i < rays * 2; i++) {
+    const r = i % 2 === 0 ? 50 : 27;
+    const a = (Math.PI * i) / rays - Math.PI / 2;
+    pts.push(`${(50 + r * Math.cos(a)).toFixed(2)},${(50 + r * Math.sin(a)).toFixed(2)}`);
+  }
+  return pts.join(" ");
+})();
+
+function KurdishSun({ size, className = "" }: { size: number; className?: string }) {
+  const gradientId = useId().replace(/:/g, "");
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" className={className} aria-hidden="true">
+      <defs>
+        <radialGradient id={gradientId}>
+          <stop offset="0%" stopColor="#f7ce6d" />
+          <stop offset="55%" stopColor="#efb23c" />
+          <stop offset="100%" stopColor="#dd9a26" />
+        </radialGradient>
+      </defs>
+      <polygon points={SUN_POINTS} fill={`url(#${gradientId})`} />
+      <circle cx="50" cy="50" r="27.5" fill={`url(#${gradientId})`} />
+    </svg>
+  );
+}
 
 function DiamondDivider({ className = "" }: { className?: string }) {
   return (
@@ -40,7 +79,6 @@ type Copy = {
   anthemName: string;
   anthemLatin?: string;
   subtitle: string;
-  intro: string;
   meaningTitle: string;
   meaningPhrase: string;
   meaningText: string;
@@ -62,9 +100,7 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
     eyebrow: "National Anthem",
     anthemName: "ئەی ڕەقیب",
     anthemLatin: "Ey Reqîb",
-    subtitle: "A lasting symbol of identity, resilience, and freedom.",
-    intro:
-      "Ey Reqîb is the national anthem of the Kurdish people and the official anthem of the Kurdistan Region. Written in 1938 by the poet Dildar, it became a lasting symbol of identity, resilience, freedom, and national dignity.",
+    subtitle: "A lasting symbol of identity, resilience, freedom, and national dignity.",
     meaningTitle: "TITLE & MEANING",
     meaningPhrase: "“O Enemy!”",
     meaningText:
@@ -86,9 +122,7 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
   ku: {
     eyebrow: "سروودی نیشتمانی",
     anthemName: "ئەی ڕەقیب",
-    subtitle: "هێمایەکی نەمر بۆ ناسنامە، خۆڕاگری، و ئازادی.",
-    intro:
-      "«ئەی ڕەقیب» سروودی نیشتمانیی گەلی کورد و سروودی فەرمیی هەرێمی کوردستانە. لە ساڵی 1938 لەلایەن شاعیر (دڵدار)ەوە نووسراوە و بووەتە هێمایەکی نەمر بۆ ناسنامە، خۆڕاگری، ئازادی و شکۆی نەتەوەیی.",
+    subtitle: "هێمایەکی نەمر بۆ ناسنامە، خۆڕاگری، ئازادی و شکۆی نەتەوەیی.",
     meaningTitle: "ناو و واتا",
     meaningPhrase: "«ئەی دوژمن!»",
     meaningText:
@@ -110,9 +144,7 @@ const COPY: Record<"en" | "ku" | "ar", Copy> = {
   ar: {
     eyebrow: "النشيد الوطني",
     anthemName: "أي رقيب",
-    subtitle: "رمز خالد للهوية والصمود والحرية.",
-    intro:
-      "«أي رقيب» هو النشيد الوطني للشعب الكردي والنشيد الرسمي لإقليم كردستان. كُتب عام 1938 بقلم الشاعر (دلدار)، وأصبح رمزاً خالداً للهوية، والصمود، والحرية، والكرامة الوطنية.",
+    subtitle: "رمز خالد للهوية والصمود والحرية والكرامة الوطنية.",
     meaningTitle: "العنوان والمعنى",
     meaningPhrase: "«أيها العدو!»",
     meaningText:
@@ -147,7 +179,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const localize = (value: string) => localizeDigits(value, lang);
   const yearFont = discoverYearFont(lang);
 
-  // Fixed 1080px-wide portrait design canvas, scaled to fit the viewport in both dimensions.
+  // Fixed 1080px-wide portrait design canvas, scaled to fit every viewport 1:1.
   const DESIGN_WIDTH = 1080;
   const canvasRef = useRef<HTMLDivElement>(null);
   const [fit, setFit] = useState({ scale: 1, x: 0 });
@@ -158,7 +190,8 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const [currentTime, setCurrentTime] = useState(0);
 
   const activeLyrics = getAnthemLyricAt(currentTime, lang as AnthemLang);
-  const showLyrics = currentTime >= 7.4 && activeLyrics !== null;
+  // Once playback has started, titles yield to synced lyric subtitles.
+  const showSubtitles = currentTime > 0.05 || isPlaying;
 
   useEffect(() => {
     const recompute = () => {
@@ -266,173 +299,204 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
         }}
       >
         <main className="m-0 w-full" style={{ backgroundColor: PAPER, color: INK }}>
-          {/* ---------- Cinematic hero (Prime-Minister style) ---------- */}
-          <section className="relative w-full overflow-hidden" style={{ height: "660px" }}>
-            <video
-              className="land-detail-hero absolute inset-0 h-full w-full object-cover"
-              style={{ objectPosition: "center 30%" }}
-              src={anthemVideo}
-              poster={anthemBg}
-              autoPlay
-              loop
-              muted
-              playsInline
+          {/* ---------- Soft parchment hero ---------- */}
+          <section className="land-detail-hero relative w-full overflow-hidden" style={{ height: "720px" }}>
+            <img
+              src={anthemBg}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: "center 35%", opacity: 0.38 }}
             />
-            {/* Cinematic scrim + fade into the cream content below */}
             <div
               className="pointer-events-none absolute inset-0"
               style={{
-                background: isRtlScript
-                  ? "linear-gradient(to left, rgba(6,9,15,0.82) 0%, rgba(6,9,15,0.45) 42%, rgba(6,9,15,0.12) 100%)"
-                  : "linear-gradient(to right, rgba(6,9,15,0.82) 0%, rgba(6,9,15,0.45) 42%, rgba(6,9,15,0.12) 100%)",
+                background:
+                  "linear-gradient(180deg, rgba(251,245,235,0.55) 0%, rgba(251,245,235,0.72) 42%, rgba(251,245,235,0.96) 78%, #fbf5eb 100%)",
               }}
             />
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-40"
+              className="pointer-events-none absolute -right-8 top-10 opacity-[0.55]"
+              aria-hidden
+            >
+              <KurdishSun size={280} />
+            </div>
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
               style={{ background: `linear-gradient(to top, ${PAPER} 0%, rgba(251,245,235,0) 100%)` }}
             />
 
-            {/* Music card + synced lyrics */}
-            <div
-              className={`absolute bottom-16 z-10 flex w-[calc(100%-7rem)] items-stretch gap-5 ${
-                isRtlScript ? "right-14 flex-row-reverse" : "left-14"
-              }`}
-            >
-              {/* Glass identity card */}
-              <div className={`land-detail-intro w-[480px] shrink-0 ${isRtlScript ? "text-right" : "text-left"}`}>
+            {/* Centered identity + player */}
+            <div className="land-detail-intro relative z-10 flex h-full flex-col items-center px-16 pt-16 text-center">
+              <Music2 size={28} strokeWidth={1.4} style={{ color: GOLD }} />
+              <p
+                className={`mt-3 ${displayFont} text-[15px] font-light uppercase tracking-[0.28em]`}
+                style={{ color: GOLD }}
+              >
+                {t.eyebrow}
+              </p>
+
+              {/* Title ↔ subtitle (lyrics) swap */}
+              <div className="relative mt-6 flex w-full max-w-[820px] flex-col items-center" style={{ minHeight: 210 }}>
                 <div
-                  className="rounded-2xl p-8 shadow-2xl"
+                  className="absolute inset-x-0 top-0 flex flex-col items-center transition-all duration-700 ease-out"
                   style={{
-                    background: "rgba(10,14,22,0.68)",
-                    backdropFilter: "blur(18px)",
-                    border: "1px solid rgba(201,154,85,0.28)",
+                    opacity: showSubtitles ? 0 : 1,
+                    transform: showSubtitles ? "translateY(-12px)" : "translateY(0)",
+                    pointerEvents: showSubtitles ? "none" : "auto",
                   }}
                 >
-                {/* Eyebrow */}
-                <div className={`flex items-center gap-2 ${isRtlScript ? "flex-row-reverse" : ""}`}>
-                  <span className="h-px w-8 bg-[#c69237]/70" />
-                  <Music2 size={16} className="text-[#e6c98f]" strokeWidth={1.6} />
-                  <p className={`${displayFont} text-[15px] font-light uppercase tracking-[0.22em] text-[#e6c98f]`}>
-                    {t.eyebrow}
+                  <h1
+                    className="font-noto-naskh text-[72px] font-light leading-none tracking-tight"
+                    style={{ color: INK }}
+                    dir="rtl"
+                  >
+                    {t.anthemName}
+                  </h1>
+                  {t.anthemLatin && (
+                    <p className={`mt-3 ${displayFont} text-[26px] font-light italic tracking-wide`} style={{ color: GOLD }}>
+                      {t.anthemLatin}
+                    </p>
+                  )}
+                  <p className={`mt-4 max-w-[560px] ${displayFont} text-[18px] font-light leading-snug`} style={{ color: BODY }}>
+                    {t.subtitle}
                   </p>
                 </div>
 
-                {/* Anthem name */}
-                <h1
-                  className="mt-3 font-noto-naskh text-[64px] font-light leading-none tracking-tight text-white"
-                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}
-                  dir="rtl"
+                <div
+                  className="absolute inset-x-0 top-0 flex flex-col items-center justify-center px-4 transition-all duration-700 ease-out"
+                  style={{
+                    opacity: showSubtitles ? 1 : 0,
+                    transform: showSubtitles ? "translateY(0)" : "translateY(16px)",
+                    pointerEvents: showSubtitles ? "auto" : "none",
+                    minHeight: 210,
+                  }}
+                  aria-live="polite"
+                  aria-atomic="true"
                 >
-                  {t.anthemName}
-                </h1>
-                {t.anthemLatin && (
-                  <p className="mt-2 text-[22px] font-light italic tracking-wide text-[#d9c093]">{t.anthemLatin}</p>
-                )}
-
-                <p className={`mt-3 ${displayFont} text-[19px] font-light leading-snug text-white/90`}>{t.subtitle}</p>
-
-                <div className="my-5 h-px w-full bg-gradient-to-r from-[#c69237]/60 via-white/25 to-transparent" />
-
-                {/* Progress bar */}
-                <div className="mb-4 h-1 w-full overflow-hidden rounded-full bg-white/15">
-                  <div
-                    className="h-full rounded-full bg-[#e6c98f] transition-[width] duration-150 ease-linear"
-                    style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
-                  />
-                </div>
-
-                {/* Audio controls */}
-                <div className={`flex items-center gap-3 ${isRtlScript ? "flex-row-reverse" : ""}`}>
-                  <button
-                    type="button"
-                    onClick={togglePlay}
-                    className="group flex items-center justify-center gap-3 rounded-full px-6 py-3 text-[14px] font-medium uppercase tracking-[0.15em] text-white transition-all duration-300 hover:scale-[1.02]"
-                    style={{ background: "rgba(198,146,55,0.22)", border: "1px solid rgba(201,154,85,0.5)" }}
-                  >
-                    {isPlaying ? <Pause className="h-4 w-4 text-[#e6c98f]" /> : <Play className="h-4 w-4 text-[#e6c98f]" />}
-                    <span>{isPlaying ? t.pause : t.play}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={restart}
-                    aria-label={t.restart}
-                    title={t.restart}
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white transition-all duration-300 hover:scale-[1.05]"
-                    style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(201,154,85,0.4)" }}
-                  >
-                    <RotateCcw className="h-4 w-4 text-[#e6c98f]" />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={stop}
-                    aria-label={t.stop}
-                    title={t.stop}
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white transition-all duration-300 hover:scale-[1.05]"
-                    style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(201,154,85,0.4)" }}
-                  >
-                    <Square className="h-4 w-4 text-[#e6c98f]" fill="currentColor" />
-                  </button>
-                </div>
-              </div>
-              </div>
-
-              {/* Synced lyrics */}
-              <div
-                className={`flex min-w-0 flex-1 items-center transition-opacity duration-500 ${
-                  showLyrics ? "opacity-100" : "pointer-events-none opacity-0"
-                }`}
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                {activeLyrics && (
-                  <div
-                    className={`w-full rounded-2xl px-7 py-6 shadow-2xl ${
-                      isRtlScript ? "font-noto-naskh text-right" : `${displayFont} text-left`
-                    }`}
-                    style={{
-                      background: "rgba(10,14,22,0.68)",
-                      backdropFilter: "blur(18px)",
-                      border: "1px solid rgba(201,154,85,0.28)",
-                    }}
-                  >
+                  {activeLyrics ? (
                     <div
                       key={activeLyrics[0]}
-                      className="animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out"
+                      className={`w-full max-w-[760px] animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out ${
+                        isRtlScript ? "font-noto-naskh" : displayFont
+                      }`}
                     >
                       <p
-                        className="text-[28px] font-normal leading-snug text-white"
+                        className="text-[34px] font-normal leading-snug"
+                        style={{ color: INK }}
                         dir={lang === "en" ? "ltr" : "rtl"}
                       >
                         {activeLyrics[0]}
                       </p>
                       <p
-                        className="mt-3 text-[28px] font-normal leading-snug text-white"
+                        className="mt-4 text-[34px] font-normal leading-snug"
+                        style={{ color: INK }}
                         dir={lang === "en" ? "ltr" : "rtl"}
                       >
                         {activeLyrics[1]}
                       </p>
                     </div>
-                  </div>
-                )}
+                  ) : (
+                    <div className="flex flex-col items-center gap-3 opacity-70">
+                      <div className="h-1 w-40 overflow-hidden rounded-full bg-[#e7dcc4]">
+                        <div
+                          className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
+                          style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+                        />
+                      </div>
+                      <p className={`${displayFont} text-[18px] font-light italic`} style={{ color: GOLD }}>
+                        …
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Progress */}
+              <div className="mt-2 h-1 w-48 overflow-hidden rounded-full bg-[#e7dcc4]/80">
+                <div
+                  className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
+                  style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+                />
+              </div>
+
+              {/* Play controls */}
+              <div className="mt-7 flex flex-col items-center">
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  aria-label={isPlaying ? t.pause : t.play}
+                  className="grid h-[92px] w-[92px] place-items-center rounded-full bg-white shadow-[0_8px_28px_rgba(155,109,53,0.18)] transition-transform duration-300 hover:scale-[1.04]"
+                  style={{ border: "2px solid rgba(155,109,53,0.55)" }}
+                >
+                  {isPlaying ? (
+                    <Pause className="h-9 w-9" style={{ color: GOLD }} strokeWidth={1.6} />
+                  ) : (
+                    <Play className="ml-1 h-9 w-9" style={{ color: GOLD }} strokeWidth={1.6} fill="currentColor" />
+                  )}
+                </button>
+                <p
+                  className={`mt-3 ${displayFont} text-[13px] font-light uppercase tracking-[0.22em]`}
+                  style={{ color: GOLD }}
+                >
+                  {isPlaying ? t.pause : t.play}
+                </p>
+
+                <div className="mt-5 flex items-center gap-10">
+                  <button
+                    type="button"
+                    onClick={restart}
+                    className="flex flex-col items-center gap-1.5 transition-opacity hover:opacity-80"
+                    aria-label={t.restart}
+                  >
+                    <span
+                      className="grid h-11 w-11 place-items-center rounded-full bg-white/70"
+                      style={{ border: "1px solid rgba(155,109,53,0.35)" }}
+                    >
+                      <RotateCcw className="h-4 w-4" style={{ color: GOLD }} />
+                    </span>
+                    <span className={`${displayFont} text-[11px] font-light uppercase tracking-[0.16em]`} style={{ color: GOLD }}>
+                      {t.restart}
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={stop}
+                    className="flex flex-col items-center gap-1.5 transition-opacity hover:opacity-80"
+                    aria-label={t.stop}
+                  >
+                    <span
+                      className="grid h-11 w-11 place-items-center rounded-full bg-white/70"
+                      style={{ border: "1px solid rgba(155,109,53,0.35)" }}
+                    >
+                      <Square className="h-4 w-4" style={{ color: GOLD }} fill="currentColor" />
+                    </span>
+                    <span className={`${displayFont} text-[11px] font-light uppercase tracking-[0.16em]`} style={{ color: GOLD }}>
+                      {t.stop}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* ---------- Content ---------- */}
-          <div className="relative px-16 pb-14 pt-6">
+          {/* Decorative gold arcs */}
+          <div className="relative z-10 -mt-2 flex justify-center px-16" aria-hidden>
+            <svg width="920" height="28" viewBox="0 0 920 28" fill="none" className="opacity-70">
+              <path d="M40 22 C 220 2, 700 2, 880 22" stroke="#d4b57a" strokeWidth="1.2" />
+              <path d="M80 26 C 260 8, 660 8, 840 26" stroke="#e2c89a" strokeWidth="1" />
+            </svg>
+          </div>
+
+          {/* ---------- Content cards ---------- */}
+          <div className="relative px-16 pb-14 pt-4">
             <div className="pointer-events-none absolute left-0 top-4 h-[720px] w-14 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
             <div className="pointer-events-none absolute right-0 top-4 h-[720px] w-14 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
 
-            {/* Intro paragraph */}
-            <p className="land-detail-intro mx-auto max-w-[820px] text-center text-[19px] font-light leading-[1.7]" style={{ color: BODY }}>
-              {localize(t.intro)}
-            </p>
-
             {/* --- Title & Meaning --- */}
             <article
-              className="land-detail-card mt-10 flex items-center gap-10 rounded-2xl border p-9"
+              className="land-detail-card mt-6 flex items-center gap-10 rounded-2xl border p-9"
               style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
             >
               <div className="min-w-0 flex-1">
@@ -447,16 +511,25 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                 </p>
               </div>
               <div
-                className="flex h-[190px] w-[300px] shrink-0 flex-col items-center justify-center rounded-xl border text-center"
-                style={{ backgroundColor: "#fff", borderColor: CARD_BORDER }}
+                className="relative flex h-[210px] w-[300px] shrink-0 flex-col items-center justify-center overflow-hidden rounded-xl border text-center"
+                style={{ borderColor: CARD_BORDER }}
               >
-                <span className="font-noto-naskh text-[46px] font-light leading-none text-[#17233b]" dir="rtl">
-                  ئەی ڕەقیب
-                </span>
-                <DiamondDivider className="my-4" />
-                <span className={`${displayFont} text-[30px] font-light`} style={{ color: "#b3543f" }}>
-                  {t.meaningPhrase}
-                </span>
+                <img
+                  src={anthemBg}
+                  alt=""
+                  aria-hidden
+                  className="absolute inset-0 h-full w-full object-cover opacity-30"
+                />
+                <div className="absolute inset-0 bg-[#fbf5eb]/75" />
+                <div className="relative z-10 flex flex-col items-center px-4">
+                  <span className="font-noto-naskh text-[46px] font-light leading-none text-[#17233b]" dir="rtl">
+                    ئەی ڕەقیب
+                  </span>
+                  <DiamondDivider className="my-4" />
+                  <span className={`${displayFont} text-[30px] font-light`} style={{ color: "#b3543f" }}>
+                    {t.meaningPhrase}
+                  </span>
+                </div>
               </div>
             </article>
 
@@ -466,16 +539,19 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
               style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
             >
               <div
-                className="flex h-[190px] w-[300px] shrink-0 flex-col items-center justify-center rounded-xl border text-center"
-                style={{ backgroundColor: "#fff", borderColor: CARD_BORDER }}
+                className="flex h-[210px] w-[220px] shrink-0 flex-col items-center justify-center rounded-xl border bg-white text-center"
+                style={{ borderColor: CARD_BORDER }}
               >
-                <span className="grid h-[64px] w-[64px] place-items-center rounded-full border" style={{ borderColor: CARD_BORDER }}>
-                  <Feather size={30} strokeWidth={1.5} style={{ color: GOLD }} />
+                <span
+                  className="grid h-[72px] w-[72px] place-items-center rounded-full border"
+                  style={{ borderColor: CARD_BORDER }}
+                >
+                  <Feather size={34} strokeWidth={1.4} style={{ color: GOLD }} />
                 </span>
-                <span className={`mt-4 ${displayFont} text-[34px] font-light leading-none`} style={{ color: INK }}>
+                <span className={`mt-4 ${displayFont} text-[32px] font-light leading-none`} style={{ color: INK }}>
                   {t.writerName}
                 </span>
-                <span className="mt-2 text-[16px] font-light" style={{ color: BODY }}>
+                <span className="mt-2 px-3 text-[14px] font-light" style={{ color: BODY }}>
                   {t.writerSub}
                 </span>
               </div>
@@ -484,7 +560,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
                   style={{ color: GOLD }}
                 >
-                  <Diamond size={12} fill="currentColor" /> {t.writerTitle}
+                  <Feather size={16} strokeWidth={1.5} /> {t.writerTitle}
                 </div>
                 <div className="mt-5 flex items-center gap-4">
                   <span
@@ -513,7 +589,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
                   style={{ color: GOLD }}
                 >
-                  <Diamond size={12} fill="currentColor" /> {t.roleTitle}
+                  <Landmark size={18} strokeWidth={1.5} /> {t.roleTitle}
                 </div>
                 <div className="mt-5 flex items-center gap-4">
                   <span
@@ -537,11 +613,15 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                 <img
                   src={historyImg}
                   alt="The Republic of Mahabad"
-                  className="h-[230px] w-full object-cover grayscale contrast-110"
+                  className="h-[210px] w-full object-cover grayscale contrast-110"
                 />
-                <p className="px-4 py-3 text-center text-[14px] font-light" style={{ color: BODY }}>
-                  {t.adopted}
-                </p>
+                <div className="flex items-center justify-center gap-2 px-4 py-3">
+                  <KurdishSun size={14} />
+                  <p className={`${displayFont} text-[13px] font-light uppercase tracking-[0.12em]`} style={{ color: BODY }}>
+                    {t.adopted}
+                  </p>
+                  <KurdishSun size={14} />
+                </div>
               </div>
             </article>
           </div>
