@@ -20,6 +20,7 @@ import {
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript, discoverYearFont } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
@@ -179,11 +180,6 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const localize = (value: string) => localizeDigits(value, lang);
   const yearFont = discoverYearFont(lang);
 
-  // Fixed 1080px-wide portrait design canvas, scaled to fit every viewport 1:1.
-  const DESIGN_WIDTH = 1080;
-  const canvasRef = useRef<HTMLDivElement>(null);
-  const [fit, setFit] = useState({ scale: 1, x: 0 });
-
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -192,30 +188,6 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const activeLyrics = getAnthemLyricAt(currentTime, lang as AnthemLang);
   // Once playback has started, titles yield to synced lyric subtitles.
   const showSubtitles = currentTime > 0.05 || isPlaying;
-
-  useEffect(() => {
-    const recompute = () => {
-      const el = canvasRef.current;
-      if (!el) return;
-      const naturalHeight = el.offsetHeight;
-      if (!naturalHeight) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_WIDTH, vh / naturalHeight);
-      const x = (vw - DESIGN_WIDTH * scale) / 2;
-      setFit({ scale, x });
-    };
-
-    recompute();
-    window.addEventListener("resize", recompute);
-    const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
-    if (el && ro) ro.observe(el);
-    return () => {
-      window.removeEventListener("resize", recompute);
-      ro?.disconnect();
-    };
-  }, [lang]);
 
   useEffect(() => {
     const a = audioRef.current;
@@ -270,365 +242,353 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   };
 
   return (
-    <div
-      ref={rootRef as React.RefObject<HTMLDivElement>}
-      lang={lang}
+    <WomenScaledCanvas
       dir={dir}
-      className={`relative h-screen w-screen overflow-hidden ${isRtlScript ? "font-noto-naskh" : ""}`}
-      style={{ width: "100vw", height: "100vh", backgroundColor: PAPER }}
+      fitDeps={[lang]}
+      bgClassName={`bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      overlay={
+        <button
+          type="button"
+          onClick={onBack}
+          className={`land-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
+          aria-label="Back to The Land and Future"
+        >
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+        </button>
+      }
     >
-      <button
-        type="button"
-        onClick={onBack}
-        className={`land-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
-        aria-label="Back to The Land and Future"
+      <main
+        ref={rootRef}
+        lang={lang}
+        className={`m-0 w-full ${isRtlScript ? "font-noto-naskh" : ""}`}
+        style={{ backgroundColor: PAPER, color: INK }}
       >
-        <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-      </button>
+        {/* ---------- Soft parchment hero ---------- */}
+        <section className="land-detail-hero relative w-full overflow-hidden" style={{ height: "760px" }}>
+          <img
+            src={anthemBg}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: "center 35%", opacity: 0.38 }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(251,245,235,0.55) 0%, rgba(251,245,235,0.72) 42%, rgba(251,245,235,0.96) 78%, #fbf5eb 100%)",
+            }}
+          />
+          <div className="pointer-events-none absolute -right-8 top-10 opacity-[0.55]" aria-hidden>
+            <KurdishSun size={300} />
+          </div>
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+            style={{ background: `linear-gradient(to top, ${PAPER} 0%, rgba(251,245,235,0) 100%)` }}
+          />
 
-      <div
-        ref={canvasRef}
-        style={{
-          width: `${DESIGN_WIDTH}px`,
-          transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
-          transformOrigin: "top left",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          backgroundColor: PAPER,
-        }}
-      >
-        <main className="m-0 w-full" style={{ backgroundColor: PAPER, color: INK }}>
-          {/* ---------- Soft parchment hero ---------- */}
-          <section className="land-detail-hero relative w-full overflow-hidden" style={{ height: "720px" }}>
-            <img
-              src={anthemBg}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 h-full w-full object-cover"
-              style={{ objectPosition: "center 35%", opacity: 0.38 }}
-            />
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(251,245,235,0.55) 0%, rgba(251,245,235,0.72) 42%, rgba(251,245,235,0.96) 78%, #fbf5eb 100%)",
-              }}
-            />
-            <div
-              className="pointer-events-none absolute -right-8 top-10 opacity-[0.55]"
-              aria-hidden
+          {/* Centered identity + player */}
+          <div className="land-detail-intro relative z-10 flex h-full flex-col items-center px-20 pt-16 text-center">
+            <Music2 size={28} strokeWidth={1.4} style={{ color: GOLD }} />
+            <p
+              className={`mt-3 ${displayFont} text-[15px] font-light uppercase tracking-[0.28em]`}
+              style={{ color: GOLD }}
             >
-              <KurdishSun size={280} />
-            </div>
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-              style={{ background: `linear-gradient(to top, ${PAPER} 0%, rgba(251,245,235,0) 100%)` }}
-            />
+              {t.eyebrow}
+            </p>
 
-            {/* Centered identity + player */}
-            <div className="land-detail-intro relative z-10 flex h-full flex-col items-center px-16 pt-16 text-center">
-              <Music2 size={28} strokeWidth={1.4} style={{ color: GOLD }} />
+            {/* Title ↔ subtitle (lyrics) swap */}
+            <div className="relative mt-6 flex w-full max-w-[920px] flex-col items-center" style={{ minHeight: 210 }}>
+              <div
+                className="absolute inset-x-0 top-0 flex flex-col items-center transition-all duration-700 ease-out"
+                style={{
+                  opacity: showSubtitles ? 0 : 1,
+                  transform: showSubtitles ? "translateY(-12px)" : "translateY(0)",
+                  pointerEvents: showSubtitles ? "none" : "auto",
+                }}
+              >
+                <h1
+                  className="font-noto-naskh text-[76px] font-light leading-none tracking-tight"
+                  style={{ color: INK }}
+                  dir="rtl"
+                >
+                  {t.anthemName}
+                </h1>
+                {t.anthemLatin && (
+                  <p className={`mt-3 ${displayFont} text-[28px] font-light italic tracking-wide`} style={{ color: GOLD }}>
+                    {t.anthemLatin}
+                  </p>
+                )}
+                <p className={`mt-4 max-w-[640px] ${displayFont} text-[19px] font-light leading-snug`} style={{ color: BODY }}>
+                  {t.subtitle}
+                </p>
+              </div>
+
+              <div
+                className="absolute inset-x-0 top-0 flex flex-col items-center justify-center px-4 transition-all duration-700 ease-out"
+                style={{
+                  opacity: showSubtitles ? 1 : 0,
+                  transform: showSubtitles ? "translateY(0)" : "translateY(16px)",
+                  pointerEvents: showSubtitles ? "auto" : "none",
+                  minHeight: 210,
+                }}
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {activeLyrics ? (
+                  <div
+                    key={activeLyrics[0]}
+                    className={`w-full max-w-[860px] animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out ${
+                      isRtlScript ? "font-noto-naskh" : displayFont
+                    }`}
+                  >
+                    <p
+                      className="text-[36px] font-normal leading-snug"
+                      style={{ color: INK }}
+                      dir={lang === "en" ? "ltr" : "rtl"}
+                    >
+                      {activeLyrics[0]}
+                    </p>
+                    <p
+                      className="mt-4 text-[36px] font-normal leading-snug"
+                      style={{ color: INK }}
+                      dir={lang === "en" ? "ltr" : "rtl"}
+                    >
+                      {activeLyrics[1]}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-3 opacity-70">
+                    <div className="h-1 w-40 overflow-hidden rounded-full bg-[#e7dcc4]">
+                      <div
+                        className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
+                        style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+                      />
+                    </div>
+                    <p className={`${displayFont} text-[18px] font-light italic`} style={{ color: GOLD }}>
+                      …
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Progress */}
+            <div className="mt-2 h-1 w-48 overflow-hidden rounded-full bg-[#e7dcc4]/80">
+              <div
+                className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
+                style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+              />
+            </div>
+
+            {/* Play controls */}
+            <div className="mt-7 flex flex-col items-center">
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? t.pause : t.play}
+                className="grid h-[92px] w-[92px] place-items-center rounded-full bg-white shadow-[0_8px_28px_rgba(155,109,53,0.18)] transition-transform duration-300 hover:scale-[1.04]"
+                style={{ border: "2px solid rgba(155,109,53,0.55)" }}
+              >
+                {isPlaying ? (
+                  <Pause className="h-9 w-9" style={{ color: GOLD }} strokeWidth={1.6} />
+                ) : (
+                  <Play className="ml-1 h-9 w-9" style={{ color: GOLD }} strokeWidth={1.6} fill="currentColor" />
+                )}
+              </button>
               <p
-                className={`mt-3 ${displayFont} text-[15px] font-light uppercase tracking-[0.28em]`}
+                className={`mt-3 ${displayFont} text-[13px] font-light uppercase tracking-[0.22em]`}
                 style={{ color: GOLD }}
               >
-                {t.eyebrow}
+                {isPlaying ? t.pause : t.play}
               </p>
 
-              {/* Title ↔ subtitle (lyrics) swap */}
-              <div className="relative mt-6 flex w-full max-w-[820px] flex-col items-center" style={{ minHeight: 210 }}>
-                <div
-                  className="absolute inset-x-0 top-0 flex flex-col items-center transition-all duration-700 ease-out"
-                  style={{
-                    opacity: showSubtitles ? 0 : 1,
-                    transform: showSubtitles ? "translateY(-12px)" : "translateY(0)",
-                    pointerEvents: showSubtitles ? "none" : "auto",
-                  }}
-                >
-                  <h1
-                    className="font-noto-naskh text-[72px] font-light leading-none tracking-tight"
-                    style={{ color: INK }}
-                    dir="rtl"
-                  >
-                    {t.anthemName}
-                  </h1>
-                  {t.anthemLatin && (
-                    <p className={`mt-3 ${displayFont} text-[26px] font-light italic tracking-wide`} style={{ color: GOLD }}>
-                      {t.anthemLatin}
-                    </p>
-                  )}
-                  <p className={`mt-4 max-w-[560px] ${displayFont} text-[18px] font-light leading-snug`} style={{ color: BODY }}>
-                    {t.subtitle}
-                  </p>
-                </div>
-
-                <div
-                  className="absolute inset-x-0 top-0 flex flex-col items-center justify-center px-4 transition-all duration-700 ease-out"
-                  style={{
-                    opacity: showSubtitles ? 1 : 0,
-                    transform: showSubtitles ? "translateY(0)" : "translateY(16px)",
-                    pointerEvents: showSubtitles ? "auto" : "none",
-                    minHeight: 210,
-                  }}
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-                  {activeLyrics ? (
-                    <div
-                      key={activeLyrics[0]}
-                      className={`w-full max-w-[760px] animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out ${
-                        isRtlScript ? "font-noto-naskh" : displayFont
-                      }`}
-                    >
-                      <p
-                        className="text-[34px] font-normal leading-snug"
-                        style={{ color: INK }}
-                        dir={lang === "en" ? "ltr" : "rtl"}
-                      >
-                        {activeLyrics[0]}
-                      </p>
-                      <p
-                        className="mt-4 text-[34px] font-normal leading-snug"
-                        style={{ color: INK }}
-                        dir={lang === "en" ? "ltr" : "rtl"}
-                      >
-                        {activeLyrics[1]}
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center gap-3 opacity-70">
-                      <div className="h-1 w-40 overflow-hidden rounded-full bg-[#e7dcc4]">
-                        <div
-                          className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
-                          style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
-                        />
-                      </div>
-                      <p className={`${displayFont} text-[18px] font-light italic`} style={{ color: GOLD }}>
-                        …
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Progress */}
-              <div className="mt-2 h-1 w-48 overflow-hidden rounded-full bg-[#e7dcc4]/80">
-                <div
-                  className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
-                  style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
-                />
-              </div>
-
-              {/* Play controls */}
-              <div className="mt-7 flex flex-col items-center">
+              <div className="mt-5 flex items-center gap-10">
                 <button
                   type="button"
-                  onClick={togglePlay}
-                  aria-label={isPlaying ? t.pause : t.play}
-                  className="grid h-[92px] w-[92px] place-items-center rounded-full bg-white shadow-[0_8px_28px_rgba(155,109,53,0.18)] transition-transform duration-300 hover:scale-[1.04]"
-                  style={{ border: "2px solid rgba(155,109,53,0.55)" }}
+                  onClick={restart}
+                  className="flex flex-col items-center gap-1.5 transition-opacity hover:opacity-80"
+                  aria-label={t.restart}
                 >
-                  {isPlaying ? (
-                    <Pause className="h-9 w-9" style={{ color: GOLD }} strokeWidth={1.6} />
-                  ) : (
-                    <Play className="ml-1 h-9 w-9" style={{ color: GOLD }} strokeWidth={1.6} fill="currentColor" />
-                  )}
+                  <span
+                    className="grid h-11 w-11 place-items-center rounded-full bg-white/70"
+                    style={{ border: "1px solid rgba(155,109,53,0.35)" }}
+                  >
+                    <RotateCcw className="h-4 w-4" style={{ color: GOLD }} />
+                  </span>
+                  <span className={`${displayFont} text-[11px] font-light uppercase tracking-[0.16em]`} style={{ color: GOLD }}>
+                    {t.restart}
+                  </span>
                 </button>
-                <p
-                  className={`mt-3 ${displayFont} text-[13px] font-light uppercase tracking-[0.22em]`}
-                  style={{ color: GOLD }}
+
+                <button
+                  type="button"
+                  onClick={stop}
+                  className="flex flex-col items-center gap-1.5 transition-opacity hover:opacity-80"
+                  aria-label={t.stop}
                 >
-                  {isPlaying ? t.pause : t.play}
-                </p>
-
-                <div className="mt-5 flex items-center gap-10">
-                  <button
-                    type="button"
-                    onClick={restart}
-                    className="flex flex-col items-center gap-1.5 transition-opacity hover:opacity-80"
-                    aria-label={t.restart}
+                  <span
+                    className="grid h-11 w-11 place-items-center rounded-full bg-white/70"
+                    style={{ border: "1px solid rgba(155,109,53,0.35)" }}
                   >
-                    <span
-                      className="grid h-11 w-11 place-items-center rounded-full bg-white/70"
-                      style={{ border: "1px solid rgba(155,109,53,0.35)" }}
-                    >
-                      <RotateCcw className="h-4 w-4" style={{ color: GOLD }} />
-                    </span>
-                    <span className={`${displayFont} text-[11px] font-light uppercase tracking-[0.16em]`} style={{ color: GOLD }}>
-                      {t.restart}
-                    </span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={stop}
-                    className="flex flex-col items-center gap-1.5 transition-opacity hover:opacity-80"
-                    aria-label={t.stop}
-                  >
-                    <span
-                      className="grid h-11 w-11 place-items-center rounded-full bg-white/70"
-                      style={{ border: "1px solid rgba(155,109,53,0.35)" }}
-                    >
-                      <Square className="h-4 w-4" style={{ color: GOLD }} fill="currentColor" />
-                    </span>
-                    <span className={`${displayFont} text-[11px] font-light uppercase tracking-[0.16em]`} style={{ color: GOLD }}>
-                      {t.stop}
-                    </span>
-                  </button>
-                </div>
+                    <Square className="h-4 w-4" style={{ color: GOLD }} fill="currentColor" />
+                  </span>
+                  <span className={`${displayFont} text-[11px] font-light uppercase tracking-[0.16em]`} style={{ color: GOLD }}>
+                    {t.stop}
+                  </span>
+                </button>
               </div>
             </div>
-          </section>
-
-          {/* Decorative gold arcs */}
-          <div className="relative z-10 -mt-2 flex justify-center px-16" aria-hidden>
-            <svg width="920" height="28" viewBox="0 0 920 28" fill="none" className="opacity-70">
-              <path d="M40 22 C 220 2, 700 2, 880 22" stroke="#d4b57a" strokeWidth="1.2" />
-              <path d="M80 26 C 260 8, 660 8, 840 26" stroke="#e2c89a" strokeWidth="1" />
-            </svg>
           </div>
+        </section>
 
-          {/* ---------- Content cards ---------- */}
-          <div className="relative px-16 pb-14 pt-4">
-            <div className="pointer-events-none absolute left-0 top-4 h-[720px] w-14 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
-            <div className="pointer-events-none absolute right-0 top-4 h-[720px] w-14 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
+        {/* Decorative gold arcs */}
+        <div className="relative z-10 -mt-2 flex justify-center px-20" aria-hidden>
+          <svg width="1100" height="28" viewBox="0 0 1100 28" fill="none" className="opacity-70">
+            <path d="M40 22 C 280 2, 820 2, 1060 22" stroke="#d4b57a" strokeWidth="1.2" />
+            <path d="M90 26 C 320 8, 780 8, 1010 26" stroke="#e2c89a" strokeWidth="1" />
+          </svg>
+        </div>
 
-            {/* --- Title & Meaning --- */}
-            <article
-              className="land-detail-card mt-6 flex items-center gap-10 rounded-2xl border p-9"
-              style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
-            >
-              <div className="min-w-0 flex-1">
-                <div
-                  className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
-                  style={{ color: GOLD }}
-                >
-                  <Diamond size={12} fill="currentColor" /> {t.meaningTitle}
-                </div>
-                <p className="mt-6 text-[19px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {localize(t.meaningText)}
-                </p>
-              </div>
+        {/* ---------- Content cards ---------- */}
+        <div className="relative px-20 pb-16 pt-4">
+          <div className="pointer-events-none absolute left-0 top-4 h-[720px] w-14 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
+          <div className="pointer-events-none absolute right-0 top-4 h-[720px] w-14 opacity-20 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:20px_20px]" />
+
+          {/* --- Title & Meaning --- */}
+          <article
+            className="land-detail-card mt-6 flex items-center gap-12 rounded-2xl border p-10"
+            style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
+          >
+            <div className="min-w-0 flex-1">
               <div
-                className="relative flex h-[210px] w-[300px] shrink-0 flex-col items-center justify-center overflow-hidden rounded-xl border text-center"
+                className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
+                style={{ color: GOLD }}
+              >
+                <Diamond size={12} fill="currentColor" /> {t.meaningTitle}
+              </div>
+              <p className="mt-6 text-[20px] font-light leading-[1.65]" style={{ color: BODY }}>
+                {localize(t.meaningText)}
+              </p>
+            </div>
+            <div
+              className="relative flex h-[220px] w-[340px] shrink-0 flex-col items-center justify-center overflow-hidden rounded-xl border text-center"
+              style={{ borderColor: CARD_BORDER }}
+            >
+              <img
+                src={anthemBg}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 h-full w-full object-cover opacity-30"
+              />
+              <div className="absolute inset-0 bg-[#fbf5eb]/75" />
+              <div className="relative z-10 flex flex-col items-center px-4">
+                <span className="font-noto-naskh text-[48px] font-light leading-none text-[#17233b]" dir="rtl">
+                  ئەی ڕەقیب
+                </span>
+                <DiamondDivider className="my-4" />
+                <span className={`${displayFont} text-[32px] font-light`} style={{ color: "#b3543f" }}>
+                  {t.meaningPhrase}
+                </span>
+              </div>
+            </div>
+          </article>
+
+          {/* --- The Writer --- */}
+          <article
+            className="land-detail-panel mt-10 flex items-center gap-12 rounded-2xl border p-10"
+            style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
+          >
+            <div
+              className="flex h-[220px] w-[240px] shrink-0 flex-col items-center justify-center rounded-xl border bg-white text-center"
+              style={{ borderColor: CARD_BORDER }}
+            >
+              <span
+                className="grid h-[72px] w-[72px] place-items-center rounded-full border"
                 style={{ borderColor: CARD_BORDER }}
               >
-                <img
-                  src={anthemBg}
-                  alt=""
-                  aria-hidden
-                  className="absolute inset-0 h-full w-full object-cover opacity-30"
-                />
-                <div className="absolute inset-0 bg-[#fbf5eb]/75" />
-                <div className="relative z-10 flex flex-col items-center px-4">
-                  <span className="font-noto-naskh text-[46px] font-light leading-none text-[#17233b]" dir="rtl">
-                    ئەی ڕەقیب
-                  </span>
-                  <DiamondDivider className="my-4" />
-                  <span className={`${displayFont} text-[30px] font-light`} style={{ color: "#b3543f" }}>
-                    {t.meaningPhrase}
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            {/* --- The Writer --- */}
-            <article
-              className="land-detail-panel mt-10 flex items-center gap-10 rounded-2xl border p-9"
-              style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
-            >
+                <Feather size={34} strokeWidth={1.4} style={{ color: GOLD }} />
+              </span>
+              <span className={`mt-4 ${displayFont} text-[34px] font-light leading-none`} style={{ color: INK }}>
+                {t.writerName}
+              </span>
+              <span className="mt-2 px-3 text-[15px] font-light" style={{ color: BODY }}>
+                {t.writerSub}
+              </span>
+            </div>
+            <div className="min-w-0 flex-1">
               <div
-                className="flex h-[210px] w-[220px] shrink-0 flex-col items-center justify-center rounded-xl border bg-white text-center"
-                style={{ borderColor: CARD_BORDER }}
+                className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
+                style={{ color: GOLD }}
               >
+                <Feather size={16} strokeWidth={1.5} /> {t.writerTitle}
+              </div>
+              <div className="mt-5 flex items-center gap-4">
                 <span
-                  className="grid h-[72px] w-[72px] place-items-center rounded-full border"
+                  className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-[10px] border bg-white"
                   style={{ borderColor: CARD_BORDER }}
                 >
-                  <Feather size={34} strokeWidth={1.4} style={{ color: GOLD }} />
+                  <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
                 </span>
-                <span className={`mt-4 ${displayFont} text-[32px] font-light leading-none`} style={{ color: INK }}>
-                  {t.writerName}
-                </span>
-                <span className="mt-2 px-3 text-[14px] font-light" style={{ color: BODY }}>
-                  {t.writerSub}
+                <span className={`${yearFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
+                  {localize(WRITER_YEAR)}
                 </span>
               </div>
-              <div className="min-w-0 flex-1">
-                <div
-                  className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
-                  style={{ color: GOLD }}
-                >
-                  <Feather size={16} strokeWidth={1.5} /> {t.writerTitle}
-                </div>
-                <div className="mt-5 flex items-center gap-4">
-                  <span
-                    className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-[10px] border bg-white"
-                    style={{ borderColor: CARD_BORDER }}
-                  >
-                    <Calendar size={26} strokeWidth={1.5} style={{ color: "#b3543f" }} />
-                  </span>
-                  <span className={`${yearFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
-                    {localize(WRITER_YEAR)}
-                  </span>
-                </div>
-                <p className="mt-5 text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {localize(t.writerText)}
-                </p>
-              </div>
-            </article>
+              <p className="mt-5 text-[19px] font-light leading-[1.65]" style={{ color: BODY }}>
+                {localize(t.writerText)}
+              </p>
+            </div>
+          </article>
 
-            {/* --- Historical Role --- */}
-            <article
-              className="land-detail-card mt-10 flex items-center gap-10 rounded-2xl border p-9"
-              style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
-            >
-              <div className="min-w-0 flex-1">
-                <div
-                  className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
-                  style={{ color: GOLD }}
-                >
-                  <Landmark size={18} strokeWidth={1.5} /> {t.roleTitle}
-                </div>
-                <div className="mt-5 flex items-center gap-4">
-                  <span
-                    className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-[10px] border bg-white"
-                    style={{ borderColor: CARD_BORDER }}
-                  >
-                    <Calendar size={26} strokeWidth={1.5} style={{ color: "#2f7d4f" }} />
-                  </span>
-                  <span className={`${yearFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
-                    {localize(ROLE_YEAR)}
-                  </span>
-                </div>
-                <p className="mt-5 max-w-[460px] text-[18px] font-light leading-[1.65]" style={{ color: BODY }}>
-                  {localize(t.roleText)}
-                </p>
-              </div>
+          {/* --- Historical Role --- */}
+          <article
+            className="land-detail-card mt-10 flex items-center gap-12 rounded-2xl border p-10"
+            style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
+          >
+            <div className="min-w-0 flex-1">
               <div
-                className="w-[340px] shrink-0 overflow-hidden rounded-lg border bg-white shadow-sm"
-                style={{ borderColor: CARD_BORDER }}
+                className={`flex items-center gap-2.5 ${displayFont} text-[20px] font-light tracking-[0.18em]`}
+                style={{ color: GOLD }}
               >
-                <img
-                  src={historyImg}
-                  alt="The Republic of Mahabad"
-                  className="h-[210px] w-full object-cover grayscale contrast-110"
-                />
-                <div className="flex items-center justify-center gap-2 px-4 py-3">
-                  <KurdishSun size={14} />
-                  <p className={`${displayFont} text-[13px] font-light uppercase tracking-[0.12em]`} style={{ color: BODY }}>
-                    {t.adopted}
-                  </p>
-                  <KurdishSun size={14} />
-                </div>
+                <Landmark size={18} strokeWidth={1.5} /> {t.roleTitle}
               </div>
-            </article>
-          </div>
-        </main>
-      </div>
+              <div className="mt-5 flex items-center gap-4">
+                <span
+                  className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-[10px] border bg-white"
+                  style={{ borderColor: CARD_BORDER }}
+                >
+                  <Calendar size={26} strokeWidth={1.5} style={{ color: "#2f7d4f" }} />
+                </span>
+                <span className={`${yearFont} text-[64px] font-light leading-none tracking-tight`} style={{ color: INK }}>
+                  {localize(ROLE_YEAR)}
+                </span>
+              </div>
+              <p className="mt-5 max-w-[560px] text-[19px] font-light leading-[1.65]" style={{ color: BODY }}>
+                {localize(t.roleText)}
+              </p>
+            </div>
+            <div
+              className="w-[380px] shrink-0 overflow-hidden rounded-lg border bg-white shadow-sm"
+              style={{ borderColor: CARD_BORDER }}
+            >
+              <img
+                src={historyImg}
+                alt="The Republic of Mahabad"
+                className="h-[220px] w-full object-cover grayscale contrast-110"
+              />
+              <div className="flex items-center justify-center gap-2 px-4 py-3">
+                <KurdishSun size={14} />
+                <p className={`${displayFont} text-[13px] font-light uppercase tracking-[0.12em]`} style={{ color: BODY }}>
+                  {t.adopted}
+                </p>
+                <KurdishSun size={14} />
+              </div>
+            </div>
+          </article>
+        </div>
 
-      <audio ref={audioRef} src={anthemAudio} preload="metadata" />
-    </div>
+        <audio ref={audioRef} src={anthemAudio} preload="metadata" />
+      </main>
+    </WomenScaledCanvas>
   );
 }

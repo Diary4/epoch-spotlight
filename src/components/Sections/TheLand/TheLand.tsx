@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLandDetailAnimation } from "@/components/Sections/TheLand/useLandDetailAnimation";
-import { detailBackButtonClassName, detailBackButtonSideClassName, detailBackIconClassName, detailBackIconSize } from "@/constants/backNavigation";
+import {
+  detailBackButtonClassName,
+  detailBackButtonSideClassName,
+  detailBackIconClassName,
+  detailBackIconSize,
+} from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import bg from "@/assets/mainImages/bg-2.webp";
 import mapImage from "@/assets/mainImages/theland/land-1.webp";
 import mapImage2 from "@/assets/mainImages/theland/land-2.webp";
@@ -102,7 +108,7 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
     ? [
         { ...mapCards[0], title: "إقليم كوردستان العراق", text: "استكشف إقليم كوردستان المعترف به رسميًا في العراق، محافظاته ومدنه الكبرى وحدوده." },
         { ...mapCards[1], title: "المناطق المتنازع عليها", text: "استكشف المناطق المتنازع عليها بين كوردستان والعراق، الموضحة باللون الوردي." },
-        { ...mapCards[2], title: "الوجود الكوردي\nعبر الدول", text: "تعرّف على المناطق الأوسع التي تعيش فيها المجتمعات الكوردية في المنطقة." },
+        { ...mapCards[2], title: "الوجود الكوردي\nعبر الدول", text: "تعرّف على المناطق الأوسع التي يعيش فيها المجتمعات الكوردية في المنطقة." },
       ]
     : isKu
       ? [
@@ -112,130 +118,99 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
         ]
       : mapCards;
 
-  // Fixed design width (1400). We scale the canvas uniformly so it always fills
-  // the viewport WIDTH, then let the design height stretch to whatever vertical
-  // space is available so the page always fills the full window height (no gap),
-  // without distorting or cropping the content.
-  const DESIGN_WIDTH = 1400;
-  const DESIGN_HEIGHT = 1000;
-  const [fit, setFit] = useState({ scale: 1, height: DESIGN_HEIGHT });
-
-  useEffect(() => {
-    const recompute = () => {
-      const vw = window.innerWidth;
-      const vh =
-        parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue("--viewport-height"),
-        ) || window.innerHeight;
-      const scale = vw / DESIGN_WIDTH;
-      // Design-space height that, once scaled, exactly fills the viewport height.
-      const height = scale > 0 ? vh / scale : DESIGN_HEIGHT;
-      setFit({ scale, height });
-    };
-
-    recompute();
-    window.addEventListener("resize", recompute);
-    return () => window.removeEventListener("resize", recompute);
-  }, [lang]);
-
   return (
-    <div
+    <WomenScaledCanvas
       dir={dir}
-      className={`relative h-[var(--viewport-height,100dvh)] w-screen overflow-hidden bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      fitDeps={[lang]}
+      bgClassName={`bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
+      overlay={
+        <button
+          type="button"
+          onClick={onBack}
+          className={`land-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
+          aria-label="Back to The Land and Future"
+        >
+          <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
+        </button>
+      }
     >
-      <div
-        style={{
-          width: `${DESIGN_WIDTH}px`,
-          transform: `scale(${fit.scale})`,
-          transformOrigin: "top left",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          containerType: "inline-size",
-        }}
+      <main
+        ref={rootRef}
+        className={`m-0 flex min-h-full w-full flex-col bg-[#fbf5eb] text-[#17233b] ${isRtlScript ? "font-noto-naskh" : ""}`}
+        style={{ containerType: "inline-size" }}
       >
-        <main ref={rootRef} className="m-0 w-full bg-[#fbf5eb] text-[#17233b]">
-          <section
-            style={{ height: `${fit.height}px` }}
-            className="relative mx-auto flex w-full flex-row overflow-hidden bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]"
-          >
-            <button
-              type="button"
-              onClick={onBack}
-              className={`land-detail-back ${detailBackButtonClassName} ${detailBackButtonSideClassName(dir)}`}
-              aria-label="Back to The Land and Future"
-            >
-              <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
-            </button>
+        <section className="relative mx-auto flex min-h-full w-full flex-1 flex-row overflow-hidden bg-[#fbf5eb] p-[clamp(10px,1.3cqw,20px)]">
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
 
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-28 opacity-22 [background-image:linear-gradient(45deg,#d6b56e_1px,transparent_1px),linear-gradient(-45deg,#d6b56e_1px,transparent_1px)] [background-size:22px_22px] rtl:left-auto rtl:right-0" />
+          {/* Left scenic backdrop */}
+          <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70cqw,980px)] w-[clamp(260px,28cqw,470px)] overflow-hidden rtl:left-auto rtl:right-0">
+            <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
+              <img
+                src={bg}
+                alt="Kurdistan landscape placeholder"
+                className="absolute inset-0 h-full w-full object-cover object-left-bottom opacity-72 [mask-image:linear-gradient(to_right,black_0%,black_52%,rgba(0,0,0,0.78)_68%,rgba(0,0,0,0.38)_82%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_10%,black_76%,rgba(0,0,0,0.45)_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,black_0%,black_52%,rgba(0,0,0,0.78)_68%,rgba(0,0,0,0.38)_82%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_10%,black_76%,rgba(0,0,0,0.45)_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/18 to-[#fbf5eb] rtl:bg-gradient-to-l" />
+            <div className="absolute top-0 left-0 h-32 w-full bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/45 to-transparent" />
+            <div className="absolute bottom-0 left-0 h-36 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/50 to-[#fbf5eb]" />
+          </div>
 
-            {/* Left scenic backdrop */}
-            <div className="land-detail-hero pointer-events-none absolute bottom-0 left-0 h-[clamp(620px,70cqw,980px)] w-[clamp(260px,28cqw,470px)] overflow-hidden rtl:left-auto rtl:right-0">
-              <div className={`absolute inset-0 ${dir === "rtl" ? "-scale-x-100" : ""}`}>
-                <img
-                  src={bg}
-                  alt="Kurdistan landscape placeholder"
-                  className="absolute inset-0 h-full w-full object-cover object-left-bottom opacity-72 [mask-image:linear-gradient(to_right,black_0%,black_52%,rgba(0,0,0,0.78)_68%,rgba(0,0,0,0.38)_82%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_10%,black_76%,rgba(0,0,0,0.45)_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,black_0%,black_52%,rgba(0,0,0,0.78)_68%,rgba(0,0,0,0.38)_82%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_10%,black_76%,rgba(0,0,0,0.45)_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbf5eb]/18 to-[#fbf5eb] rtl:bg-gradient-to-l" />
-              <div className="absolute top-0 left-0 h-32 w-full bg-gradient-to-b from-[#fbf5eb] via-[#fbf5eb]/45 to-transparent" />
-              <div className="absolute bottom-0 left-0 h-36 w-full bg-gradient-to-b from-transparent via-[#fbf5eb]/50 to-[#fbf5eb]" />
+          {/* Left text */}
+          <aside className="land-detail-intro relative z-10 flex w-[clamp(300px,30cqw,470px)] shrink-0 flex-col pl-[clamp(8px,1.1cqw,20px)] pt-[clamp(64px,8cqw,120px)]">
+            <h1 className={`${displayFont} text-[clamp(44px,7.7cqw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]`}>
+              {isAr ? (
+                "الأرض"
+              ) : isKu ? (
+                "خاک"
+              ) : (
+                <>
+                  The
+                  <br />
+                  Land
+                </>
+              )}
+            </h1>
+
+            <div className="mt-[clamp(24px,3.3cqw,44px)] w-[clamp(160px,16cqw,260px)]">
+              <Divider />
             </div>
 
-            {/* Left text */}
-            <aside className="land-detail-intro relative z-10 flex w-[clamp(300px,30cqw,470px)] shrink-0 flex-col pl-[clamp(8px,1.1cqw,20px)] pt-[clamp(64px,8cqw,120px)]">
-              <h1 className={`${displayFont} text-[clamp(44px,7.7cqw,108px)] font-light leading-[0.98] tracking-tight text-[#17233b]`}>
-                {isAr ? (
-                  "الأرض"
-                ) : isKu ? (
-                  "خاک"
-                ) : (
-                  <>
-                    The<br />Land
-                  </>
-                )}
-              </h1>
+            <p className={`mt-[clamp(10px,1.5cqw,22px)] ${displayFont} text-[clamp(24px,3cqw,42px)] leading-tight text-[#9b6d35]`}>
+              {isAr ? (
+                "إقليم من الجمال والجغرافيا والتراث."
+              ) : isKu ? (
+                "ناوچەیەک لە جوانی، جوگرافیا، و کەلەپوور."
+              ) : (
+                <>
+                  A region of beauty,
+                  <br />
+                  geography, and heritage.
+                </>
+              )}
+            </p>
 
-              <div className="mt-[clamp(24px,3.3cqw,44px)] w-[clamp(160px,16cqw,260px)]">
-                <Divider />
-              </div>
-
-              <p className={`mt-[clamp(10px,1.5cqw,22px)] ${displayFont} text-[clamp(24px,3cqw,42px)] leading-tight text-[#9b6d35]`}>
-                {isAr ? (
-                  "إقليم من الجمال والجغرافيا والتراث."
-                ) : isKu ? (
-                  "ناوچەیەک لە جوانی، جوگرافیا، و کەلەپوور."
-                ) : (
-                  <>
-                    A region of beauty,<br />geography, and heritage.
-                  </>
-                )}
-              </p>
-
-              <p className="mt-[clamp(18px,2.8cqw,40px)] max-w-[clamp(250px,25cqw,430px)] text-[clamp(15px,1.86cqw,26px)] font-light leading-[1.55] text-[#35435b]">
-                {isAr
-                  ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
-                  : isKu
-                    ? "کوردستان خاکی چیاکان سەرکەشەکان، ڕووبارەکان، و مێژوویەکی دەوڵەمەندە. لە دڵی هەرێمی کوردستانی عێراق تا ناوچە فراوانەکانی تر کە کورد لێی نیشتەجێیە لە سەرانسەری ڕۆژهەڵاتی ناوەڕاست، ئەمە خاکێکە کە بە خۆڕاگری، کولتوور، و شکۆی خەڵکەکەی دەناسرێتەوە."
+            <p className="mt-[clamp(18px,2.8cqw,40px)] max-w-[clamp(250px,25cqw,430px)] text-[clamp(15px,1.86cqw,26px)] font-light leading-[1.55] text-[#35435b]">
+              {isAr
+                ? "كوردستان أرض الجبال والأنهار والتاريخ العريق. من قلبها في شمال العراق إلى المناطق الأوسع التي يعيش فيها الكورد في أرجاء الشرق الأوسط، هذه أرض تتجسد فيها الصلابة والثقافة والإنسان."
+                : isKu
+                  ? "کوردستان خاکی چیاکان سەرکەشەکان، ڕووبارەکان، و مێژوویەکی دەوڵەمەندە. لە دڵی هەرێمی کوردستانی عێراق تا ناوچە فراوانەکانی تر کە کورد لێی نیشتەجێیە لە سەرانسەری ڕۆژهەڵاتی ناوەڕاست، ئەمە خاکێکە کە بە خۆڕاگری، کولتوور، و شکۆی خەڵکەکەی دەناسرێتەوە."
                   : "Kurdistan is a land of mountains, rivers, and rich history. From its heart in northern Iraq to the wider regions where Kurds live across the Middle East, this is a land defined by resilience, culture, and people."}
-              </p>
+            </p>
 
-              <div className="mt-[clamp(18px,2.8cqw,40px)] w-[clamp(110px,10cqw,180px)]">
-                <Divider />
-              </div>
-            </aside>
+            <div className="mt-[clamp(18px,2.8cqw,40px)] w-[clamp(110px,10cqw,180px)]">
+              <Divider />
+            </div>
+          </aside>
 
-            {/* Right maps */}
-            <section className="relative z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col gap-[clamp(14px,1.6cqw,28px)] pl-[clamp(6px,1cqw,18px)]">
-              {localMapCards.map((card) => (
-                <MapCard key={card.number} card={card} lang={lang} />
-              ))}
-            </section>
+          {/* Right maps */}
+          <section className="relative z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col gap-[clamp(14px,1.6cqw,28px)] pl-[clamp(6px,1cqw,18px)]">
+            {localMapCards.map((card) => (
+              <MapCard key={card.number} card={card} lang={lang} />
+            ))}
           </section>
-        </main>
-      </div>
-    </div>
+        </section>
+      </main>
+    </WomenScaledCanvas>
   );
 }
