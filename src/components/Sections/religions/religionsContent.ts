@@ -15,7 +15,7 @@ import cradleImg from "@/assets/images/religions/cradle.jpeg";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
-import governmentImg from "@/assets/mainImages/government.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
 
@@ -135,7 +135,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "Rights",
         body: "Recognition made durable by law.",
-        image: governmentImg,
+        image: parliamentImg,
       },
     ],
     introCta: "Begin the journey",
@@ -218,7 +218,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "rights",
         title: "Rights & Recognition",
-        image: governmentImg,
+        image: parliamentImg,
         icon: Scale,
         color: "#52235f",
         number: "07",
@@ -274,7 +274,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "مافەکان",
         body: "ناسینەوە بە یاسا بەهێز دەبێت.",
-        image: governmentImg,
+        image: parliamentImg,
       },
     ],
     introCta: "دەستپێکردنی گەشت",
@@ -357,7 +357,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "rights",
         title: "ماف و ناسینەوە",
-        image: governmentImg,
+        image: parliamentImg,
         icon: Scale,
         color: "#52235f",
         number: "07",
@@ -413,7 +413,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "الحقوق",
         body: "اعتراف يحفظه القانون.",
-        image: governmentImg,
+        image: parliamentImg,
       },
     ],
     introCta: "ابدأ الرحلة",
@@ -496,7 +496,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "rights",
         title: "الحقوق والاعتراف",
-        image: governmentImg,
+        image: parliamentImg,
         icon: Scale,
         color: "#52235f",
         number: "07",

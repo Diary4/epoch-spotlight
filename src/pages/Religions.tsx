@@ -15,7 +15,7 @@ import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
 import cradleImg from "@/assets/images/religions/cradle.jpeg";
 import sharedImg from "@/assets/mainImages/shared.webp";
-import governmentImg from "@/assets/mainImages/government.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
@@ -108,7 +108,7 @@ const pageContent: Record<
       {
         id: "rights",
         title: "Rights & Recognition",
-        image: governmentImg,
+        image: parliamentImg,
         icon: Scale,
         color: "#52235f",
       },
@@ -158,7 +158,7 @@ const pageContent: Record<
       {
         id: "rights",
         title: "ماف و ناسینەوە",
-        image: governmentImg,
+        image: parliamentImg,
         icon: Scale,
         color: "#52235f",
       },
@@ -206,7 +206,7 @@ const pageContent: Record<
       {
         id: "rights",
         title: "الحقوق والاعتراف",
-        image: governmentImg,
+        image: parliamentImg,
         icon: Scale,
         color: "#52235f",
       },

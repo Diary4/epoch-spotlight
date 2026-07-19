@@ -220,7 +220,9 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   useEffect(() => {
     if (!isPlaying) return;
     let raf = 0;
+    let alive = true;
     const tick = () => {
+      if (!alive) return;
       const a = audioRef.current;
       if (a) {
         setCurrentTime(a.currentTime);
@@ -229,7 +231,10 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      alive = false;
+      cancelAnimationFrame(raf);
+    };
   }, [isPlaying]);
 
   const togglePlay = () => {
@@ -358,19 +363,20 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   >
                     {karaoke.map((line, lineIndex) => (
                       <p
-                        key={`${lineIndex}-${line.words.map((w) => w.text).join("-")}`}
+                        key={`line-${lineIndex}`}
                         className={`flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2 text-[36px] font-normal leading-snug ${
                           lineIndex > 0 ? "mt-4" : ""
                         }`}
                       >
                         {line.words.map((word, wordIndex) => (
                           <span
-                            key={`${wordIndex}-${word.text}`}
+                            key={`w-${lineIndex}-${wordIndex}`}
                             className="inline-block animate-in fade-in slide-in-from-bottom-1 duration-300"
                             style={{
-                              color: word.current ? GOLD : INK,
+                              color: word.current ? GOLD : word.isPast ? BODY : INK,
                               fontWeight: word.current ? 500 : 300,
-                              transition: "color 200ms ease, font-weight 200ms ease",
+                              opacity: word.current ? 1 : word.isPast ? 0.72 : 1,
+                              transition: "color 200ms ease, font-weight 200ms ease, opacity 200ms ease",
                             }}
                           >
                             {word.text}

@@ -47,7 +47,6 @@ export default function ClassicalCard({
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center saturate-[0.92]"
         />
-        <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a120a]/55 via-transparent to-[#faf8f5]/25" />
         <span
           className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px]"
           style={{ backgroundColor: accent }}
