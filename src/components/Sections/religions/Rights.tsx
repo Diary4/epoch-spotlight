@@ -19,7 +19,7 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 
 import bg3 from "@/assets/images/religions/r-8.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
-import parliamentImg from "@/assets/mainImages/parliment.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import letterImg from "@/assets/mainImages/letter.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
 import sharedImg from "@/assets/mainImages/shared.webp";

@@ -13,7 +13,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/nc-1.webp";
-import cradleImg from "@/assets/images/religions/thecradle/cradle.jpeg";
+import cradleImg from "@/assets/images/religions/cradle.jpeg";
 import sharedImg from "@/assets/mainImages/shared.webp";
 import governmentImg from "@/assets/mainImages/government.webp";
 import presidencyImg from "@/assets/mainImages/presidency-1.webp";
@@ -464,7 +464,9 @@ export default function ReligiousDiversityPage({
             <img
               src={card.image}
               alt={card.title}
-              className="absolute inset-x-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]"
+              className={`absolute inset-x-0 top-0 h-[720px] w-full bg-[#faf8f5] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ${
+                card.id === "introduction" ? "object-contain object-center" : "object-cover"
+              }`}
             />
             <div className="absolute inset-x-0 top-0 h-[720px] bg-gradient-to-b from-[#faf8f5]/75 via-[#faf8f5]/45 to-[#faf8f5]" />
 
