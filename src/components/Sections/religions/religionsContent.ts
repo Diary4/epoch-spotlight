@@ -10,13 +10,13 @@ import {
 } from "lucide-react";
 
 import bg2 from "@/assets/images/religions/r-8.webp";
-import leadersImg from "@/assets/images/religions/nc-1.webp";
+import leadersImg from "@/assets/images/religions/coexistence/coexistence.jpeg";
 import cradleImg from "@/assets/images/religions/cradle.jpeg";
-import sharedImg from "@/assets/images/religions/nl-1.webp";
+import sharedImg from "@/assets/images/religions/sharedlife/cover.jpeg";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
 import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
-import presidencyImg from "@/assets/mainImages/presidency-1.webp";
+import presidencyImg from "@/assets/images/religions/history/history.jpeg";
 import faithsImg from "@/assets/images/religions/faiths.webp";
 
 export type ReligionsLangCode = "en" | "ku" | "ar";

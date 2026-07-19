@@ -12,11 +12,11 @@ import {
 import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName, religionsOverlayEndWideClassName } from "@/constants/backNavigation";
 
 import bg2 from "@/assets/images/religions/r-8.webp";
-import leadersImg from "@/assets/images/religions/nc-1.webp";
+import leadersImg from "@/assets/images/religions/coexistence/coexistence.jpeg";
 import cradleImg from "@/assets/images/religions/cradle.jpeg";
-import sharedImg from "@/assets/mainImages/shared.webp";
+import sharedImg from "@/assets/images/religions/sharedlife/cover.jpeg";
 import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
-import presidencyImg from "@/assets/mainImages/presidency-1.webp";
+import historyImg from "@/assets/images/religions/history/history.jpeg";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
@@ -87,7 +87,7 @@ const pageContent: Record<
       {
         id: "history",
         title: "History",
-        image: presidencyImg,
+        image: historyImg,
         icon: ScrollText,
         color: "#3a2f12",
       },
@@ -137,7 +137,7 @@ const pageContent: Record<
       {
         id: "history",
         title: "مێژوو",
-        image: presidencyImg,
+        image: historyImg,
         icon: ScrollText,
         color: "#3a2f12",
       },
@@ -185,7 +185,7 @@ const pageContent: Record<
       {
         id: "history",
         title: "التاريخ",
-        image: presidencyImg,
+        image: historyImg,
         icon: ScrollText,
         color: "#3a2f12",
       },

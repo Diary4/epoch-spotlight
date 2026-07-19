@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
-import sharedHero from "@/assets/mainImages/shared.webp";
+import sharedHero from "@/assets/images/religions/sharedlife/cover.jpeg";
 import mosquesImg from "@/assets/images/religions/sharedlife/mosques.jpeg";
 import churchesImg from "@/assets/images/religions/sharedlife/churches.jpeg";
 import lalishImg from "@/assets/images/religions/sharedlife/lalish.jpeg";
