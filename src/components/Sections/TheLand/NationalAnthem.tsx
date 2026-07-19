@@ -24,7 +24,7 @@ import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
-import { getAnthemLyricAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
+import { getAnthemKaraokeAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
 
 const WRITER_YEAR = "1938";
 const ROLE_YEAR = "1946";
@@ -185,7 +185,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const activeLyrics = getAnthemLyricAt(currentTime, lang as AnthemLang);
+  const karaoke = getAnthemKaraokeAt(currentTime, lang as AnthemLang);
   // Once playback has started, titles yield to synced lyric subtitles.
   const showSubtitles = currentTime > 0.05 || isPlaying;
 
@@ -215,6 +215,22 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
       a.pause();
     };
   }, []);
+
+  // Smooth word-level karaoke updates while playing (timeupdate alone is too coarse).
+  useEffect(() => {
+    if (!isPlaying) return;
+    let raf = 0;
+    const tick = () => {
+      const a = audioRef.current;
+      if (a) {
+        setCurrentTime(a.currentTime);
+        setProgress(a.duration ? a.currentTime / a.duration : 0);
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isPlaying]);
 
   const togglePlay = () => {
     const a = audioRef.current;
@@ -335,27 +351,33 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                 aria-live="polite"
                 aria-atomic="true"
               >
-                {activeLyrics ? (
+                {karaoke ? (
                   <div
-                    key={activeLyrics[0]}
-                    className={`w-full max-w-[860px] animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out ${
-                      isRtlScript ? "font-noto-naskh" : displayFont
-                    }`}
+                    className={`w-full max-w-[900px] ${isRtlScript ? "font-noto-naskh" : displayFont}`}
+                    dir={lang === "en" ? "ltr" : "rtl"}
                   >
-                    <p
-                      className="text-[36px] font-normal leading-snug"
-                      style={{ color: INK }}
-                      dir={lang === "en" ? "ltr" : "rtl"}
-                    >
-                      {activeLyrics[0]}
-                    </p>
-                    <p
-                      className="mt-4 text-[36px] font-normal leading-snug"
-                      style={{ color: INK }}
-                      dir={lang === "en" ? "ltr" : "rtl"}
-                    >
-                      {activeLyrics[1]}
-                    </p>
+                    {karaoke.map((line, lineIndex) => (
+                      <p
+                        key={`${lineIndex}-${line.words.map((w) => w.text).join("-")}`}
+                        className={`flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2 text-[36px] font-normal leading-snug ${
+                          lineIndex > 0 ? "mt-4" : ""
+                        }`}
+                      >
+                        {line.words.map((word, wordIndex) => (
+                          <span
+                            key={`${wordIndex}-${word.text}`}
+                            className="inline-block animate-in fade-in slide-in-from-bottom-1 duration-300"
+                            style={{
+                              color: word.current ? GOLD : INK,
+                              fontWeight: word.current ? 500 : 300,
+                              transition: "color 200ms ease, font-weight 200ms ease",
+                            }}
+                          >
+                            {word.text}
+                          </span>
+                        ))}
+                      </p>
+                    ))}
                   </div>
                 ) : (
                   <div className="flex flex-col items-center gap-3 opacity-70">

@@ -7,6 +7,7 @@ import {
   detailBackIconClassName,
   detailBackIconSize,
 } from "@/constants/backNavigation";
+import { localizeDigits } from "@/lib/utils";
 import presidencyPortrait from "@/assets/images/parliment/presidency-centered.webp";
 
 type PresidencyPageProps = {
@@ -19,6 +20,7 @@ export default function PresidencyPage({ lang = "en", onBack, onJourneyClick }: 
   const isRtl = discoverRtlScript(lang);
   const dir = lang === "en" ? "ltr" : "rtl";
   const displayFont = discoverDisplayFont(lang);
+  const t = (value: string) => localizeDigits(value, lang);
 
   const [pageReady, setPageReady] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -34,9 +36,10 @@ export default function PresidencyPage({ lang = "en", onBack, onJourneyClick }: 
 
   // English-only for now — Kurdish / Arabic to be provided later.
   const name = "Nechirvan Barzani";
-  const role = "President of the Kurdistan Region (2019–Present)";
-  const about =
-    "Since 2019, President Nechirvan Barzani has led efforts to strengthen political unity, expand international relations, and preserve constitutional stability in the Kurdistan Region.";
+  const role = t("President of the Kurdistan Region (2019–Present)");
+  const about = t(
+    "Since 2019, President Nechirvan Barzani has led efforts to strengthen political unity, expand international relations, and preserve constitutional stability in the Kurdistan Region.",
+  );
   const journeyLabel = "Explore the Journey";
 
   return (

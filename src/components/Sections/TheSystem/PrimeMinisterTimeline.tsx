@@ -7,6 +7,7 @@ import {
   detailBackIconClassName,
   detailBackIconSize,
 } from "@/constants/backNavigation";
+import { localizeDigits } from "@/lib/utils";
 import mainPrimeMinisterImage from "@/assets/images/PrimeMinistir/p-2.webp";
 import primeMinisterImage from "@/assets/images/PrimeMinistir/2019.webp";
 import visionImage from "@/assets/images/PrimeMinistir/WhatsApp Image 2026-06-30 at 20.16.30 (1).webp";
@@ -541,9 +542,10 @@ function detailKey(detail: TimelineDetail): string {
 }
 
 function getAchievementEraLabel(lang: "ku" | "en" | "ar", index: number): string {
-  if (lang === "ar") return `إنجاز ${index + 1}`;
-  if (lang === "ku") return `دەستکەوت ${index + 1}`;
-  return `Achievement ${index + 1}`;
+  const n = localizeDigits(String(index + 1), lang);
+  if (lang === "ar") return `إنجاز ${n}`;
+  if (lang === "ku") return `دەستکەوت ${n}`;
+  return `Achievement ${n}`;
 }
 
 function getAchievementEntries(lang: "ku" | "en" | "ar"): TimelineEntry[] {
@@ -552,8 +554,8 @@ function getAchievementEntries(lang: "ku" | "en" | "ar"): TimelineEntry[] {
     return {
       id,
       era: getAchievementEraLabel(lang, index),
-      title: content.title,
-      description: content.text,
+      title: localizeDigits(content.title, lang),
+      description: localizeDigits(content.text, lang),
       image: achievementImages[id],
       details: [],
     };
@@ -565,11 +567,11 @@ function getBiographyEntries(lang: "ku" | "en" | "ar"): TimelineEntry[] {
     const content = biographyCatalog[id][lang];
     return {
       id,
-      era: content.era,
-      title: content.title,
-      description: content.description,
+      era: localizeDigits(content.era, lang),
+      title: localizeDigits(content.title, lang),
+      description: localizeDigits(content.description, lang),
       image: biographyImages[id],
-      details: content.details,
+      details: content.details.map((detail) => localizeDigits(detail, lang)),
     };
   });
 }
@@ -599,7 +601,14 @@ function getVisionEntry(lang: "ku" | "en" | "ar"): TimelineEntry {
     title: visionCopy.title,
     description: visionCopy.description,
     image: biographyImages.vision,
-    details: visionDetails[lang],
+    details: visionDetails[lang].map((detail) =>
+      typeof detail === "string"
+        ? localizeDigits(detail, lang)
+        : {
+            title: localizeDigits(detail.title, lang),
+            text: localizeDigits(detail.text, lang),
+          },
+    ),
   };
 }
 

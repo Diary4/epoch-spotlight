@@ -7,6 +7,7 @@ import {
   detailBackIconClassName,
   detailBackIconSize,
 } from "@/constants/backNavigation";
+import { localizeDigits } from "@/lib/utils";
 import presidencyPortrait from "@/assets/images/parliment/presidency-centered.webp";
 import president1 from "@/assets/images/president/1.jpeg";
 import president2 from "@/assets/images/president/2.jpeg";
@@ -202,6 +203,7 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const timeline = TIMELINE;
+  const t = (value: string) => localizeDigits(value, lang);
 
   useEffect(() => {
     const t = window.setTimeout(() => setIsVisible(true), 60);
@@ -295,7 +297,7 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
                   }`}
                 >
                   <p className="whitespace-nowrap text-sm font-light uppercase tracking-[0.2em] text-white/70">
-                    {item.era}
+                    {t(item.era)}
                   </p>
                 </div>
               </button>
@@ -317,7 +319,7 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
             Nechirvan Barzani
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
-            President of the Kurdistan Region (2019–Present)
+            {t("President of the Kurdistan Region (2019–Present)")}
           </p>
         </div>
 
@@ -343,7 +345,7 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
                       border: "1px solid rgba(201,154,85,0.35)",
                     }}
                   >
-                    {item.era}
+                    {t(item.era)}
                   </div>
                 </div>
 
@@ -383,12 +385,12 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
                       <h2
                         className={`mb-3 ${displayFont} text-2xl font-light tracking-tight text-white md:text-3xl`}
                       >
-                        {item.title}
+                        {t(item.title)}
                       </h2>
                       <p
                         className={`${item.details.length > 0 ? "mb-6" : ""} text-sm leading-relaxed text-white/80 md:text-base`}
                       >
-                        {item.description}
+                        {t(item.description)}
                       </p>
                       {item.details.length > 0 && (
                         <div className="space-y-4">
@@ -399,14 +401,14 @@ export default function PresidencyTimeline({ lang = "en", onBack }: PresidencyTi
                             >
                               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c69237]" />
                               {typeof detail === "string" ? (
-                                <span className="text-xs text-white/65 md:text-sm">{detail}</span>
+                                <span className="text-xs text-white/65 md:text-sm">{t(detail)}</span>
                               ) : (
                                 <div>
                                   <p className="text-xs font-medium text-white/90 md:text-sm">
-                                    {detail.title}
+                                    {t(detail.title)}
                                   </p>
                                   <p className="mt-1 text-xs leading-relaxed text-white/65 md:text-sm">
-                                    {detail.text}
+                                    {t(detail.text)}
                                   </p>
                                 </div>
                               )}
