@@ -5,7 +5,7 @@ import { localizeDigits } from "@/lib/utils";
 import { discoverDisplayFont, discoverDir, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import DiscoverLanguageButton from "@/components/Sections/DiscoverLanguageButton";
 import { useDiscoverLanguageTransition } from "@/components/Sections/useDiscoverLanguageTransition";
-import DesignScaledCanvas from "@/components/DesignScaledCanvas";
+import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import gsap from "gsap";
 import heroVideo from "@/assets/videos/hawler.webm";
 import bg2 from "@/assets/images/new/discoverKurdistan/land-2.webp"
@@ -284,28 +284,25 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
   }, []);
 
   return (
-    <DesignScaledCanvas
+    <WomenScaledCanvas
       dir={dir}
-      fitViewport
       fitDeps={[lang]}
       bgClassName={`bg-[#fbf5eb] ${isRtlScript ? "font-noto-naskh" : ""}`}
       overlay={
-        <>
-          <button
-            type="button"
-            onClick={onBack}
-            className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(dir)}`}
-            aria-label="Back to Discover"
-          >
-            <ArrowLeft className={sectionBackIconClassName(dir)} />
-          </button>
-        </>
+        <button
+          type="button"
+          onClick={onBack}
+          className={`${sectionBackButtonClassName} ${sectionBackButtonSideClassName(dir)}`}
+          aria-label="Back to Discover"
+        >
+          <ArrowLeft className={sectionBackIconClassName(dir)} />
+        </button>
       }
     >
       <section
         ref={sectionRef}
         lang={lang}
-        className={`relative flex min-h-[1920px] w-full flex-col overflow-hidden bg-[#fbf5eb] px-12 pb-14 pt-10 text-[#17233b] ${isRtlScript ? "font-noto-naskh" : ""}`}
+        className={`relative flex w-full flex-col overflow-x-hidden bg-[#fbf5eb] px-16 pb-14 pt-10 text-[#17233b] ${isRtlScript ? "font-noto-naskh" : ""}`}
       >
         <DiscoverLanguageButton
           lang={lang}
@@ -342,11 +339,11 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <section className="me-auto max-w-[520px] text-start pt-8">
+          <section className="me-auto max-w-[640px] text-start pt-8">
             <h1
               data-land-hero="true"
               data-discover-lang="true"
-              className={`${displayFont} text-[56px] font-light leading-[1.05] tracking-tight text-[#17233b]`}
+              className={`${displayFont} text-[72px] font-light leading-[1.05] tracking-tight text-[#17233b]`}
             >
               {isAr ? "الأرض والمستقبل" : isKu ? "خاک و داهاتوو" : "The Land"}
               {!isAr && !isKu && <br />}
@@ -356,7 +353,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
             <p
               data-land-hero="true"
               data-discover-lang="true"
-              className={`z-10 mt-5 ${displayFont} text-[26px] leading-tight text-[#9b6d35]`}
+              className={`z-10 mt-5 ${displayFont} text-[30px] leading-tight text-[#9b6d35]`}
             >
               {isAr ? (
                 <>
@@ -382,7 +379,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
             <p
               data-land-hero="true"
               data-discover-lang="true"
-              className="mt-6 max-w-[480px] text-[17px] leading-[1.6] text-[#2d3549]"
+              className="mt-6 max-w-[560px] text-[19px] leading-[1.6] text-[#2d3549]"
             >
               {isAr
                 ? "كوردستان أرض حضارات عريقة وهوية فخورة وروح لا تُقهر. نصون تراثنا ونبني بالرؤية ونسير معًا نحو مستقبل أكثر إشراقًا."
@@ -393,7 +390,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
           </section>
 
           {/* Move cards down: raise this mt- value. Same on every screen via scaled canvas. */}
-          <section className="relative z-10 mt-[420px] grid grid-cols-3 gap-6 pb-4">
+          <section className="relative z-10 mt-[380px] grid grid-cols-3 gap-7 pb-4">
             {localTopCards.map((card) => (
               <SmallCard
                 key={card.id}
@@ -412,7 +409,7 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
             ))}
           </section>
 
-          <section className="mt-6 grid grid-cols-3 gap-6 pb-4">
+          <section className="mt-7 grid grid-cols-3 gap-7 pb-4">
             {localBottomCards.map((card) => (
               <WideCard
                 key={card.id}
@@ -432,6 +429,6 @@ export default function LandAndFuturePage({ lang = "en", onBack, onSelectCard, o
           </section>
         </div>
       </section>
-    </DesignScaledCanvas>
+    </WomenScaledCanvas>
   );
 }
