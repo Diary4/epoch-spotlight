@@ -23,6 +23,7 @@ import { localizeDigits } from "@/lib/utils";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
+import heroVideo from "@/assets/videos/natural.webm";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
 import { getAnthemKaraokeAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
 
@@ -181,6 +182,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const yearFont = discoverYearFont(lang);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -213,6 +215,28 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
       a.removeEventListener("ended", onEnded);
       a.removeEventListener("timeupdate", onTime);
       a.pause();
+    };
+  }, []);
+
+  useEffect(() => {
+    const videoEl = heroVideoRef.current;
+    if (!videoEl) return;
+
+    const tryPlay = () => {
+      videoEl.play().catch(() => {
+        // Ignore autoplay promise rejections from browser policies.
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) tryPlay();
+    };
+
+    tryPlay();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 
@@ -286,26 +310,19 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
       >
         {/* ---------- Soft parchment hero ---------- */}
         <section className="land-detail-hero relative w-full overflow-hidden" style={{ height: "760px" }}>
-          <img
-            src={anthemBg}
-            alt=""
+          <video
+            ref={heroVideoRef}
+            src={heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
             aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: "center 35%", opacity: 0.38 }}
+            className="absolute inset-0 h-full w-full object-cover object-[center_35%] [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)]"
           />
           <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(251,245,235,0.55) 0%, rgba(251,245,235,0.72) 42%, rgba(251,245,235,0.96) 78%, #fbf5eb 100%)",
-            }}
-          />
-          <div className="pointer-events-none absolute -right-8 top-10 opacity-[0.55]" aria-hidden>
-            <KurdishSun size={300} />
-          </div>
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-            style={{ background: `linear-gradient(to top, ${PAPER} 0%, rgba(251,245,235,0) 100%)` }}
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#fbf5eb_100%)]"
           />
 
           {/* Centered identity + player */}
@@ -507,9 +524,9 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                 src={anthemBg}
                 alt=""
                 aria-hidden
-                className="absolute inset-0 h-full w-full object-cover opacity-30"
+                className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-[#fbf5eb]/75" />
+              <div className="absolute inset-0 bg-[#fbf5eb]/40" />
               <div className="relative z-10 flex flex-col items-center px-4">
                 <span className="font-noto-naskh text-[48px] font-light leading-none text-[#17233b]" dir="rtl">
                   ئەی ڕەقیب
