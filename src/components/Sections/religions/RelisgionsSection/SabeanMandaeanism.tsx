@@ -13,6 +13,7 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FaithDetailCard,
   FAITH_CONTENT_PADDING,
+  FAITH_DETAIL_CARD_GRID_4,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_TEXT_CLASS,
@@ -199,7 +200,7 @@ export default function SabeanMandaeanismPage({
 
           <FaithDetailSpacer desktopHeight="h-[1220px]" />
 
-          <section className="grid grid-cols-4 gap-6">
+          <section className={FAITH_DETAIL_CARD_GRID_4}>
             {c.cards.map((card, index) => (
               <FaithDetailCard
                 key={card.title}

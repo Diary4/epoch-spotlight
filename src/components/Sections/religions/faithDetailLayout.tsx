@@ -40,7 +40,7 @@ export function FaithDetailCard({
   const wrapperProps = animateAttr ? { [animateAttr]: "true" } : {};
 
   return (
-    <div {...wrapperProps}>
+    <div {...wrapperProps} className="h-full">
       <ReligionInfoCard
         title={title}
         body={text}
@@ -49,11 +49,18 @@ export function FaithDetailCard({
         accentIndex={index}
         align="center"
         titleClassName="uppercase"
-        imageHeightClass="h-[220px]"
+        bodyClassName="line-clamp-6"
+        className="min-h-[480px] h-full"
+        textSectionClassName="min-h-[210px] flex-1"
+        imageHeightClass="h-[240px]"
+        imageWrapClassName="mt-auto shrink-0"
       />
     </div>
   );
 }
+
+export const FAITH_DETAIL_CARD_GRID_4 = "grid grid-cols-4 items-stretch gap-6";
+export const FAITH_DETAIL_CARD_GRID_2 = "grid grid-cols-2 items-stretch gap-6";
 
 export const FAITH_ICON_CARD_ICON_WRAP_CLASS =
   "mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border-4 border-[#f4dfb7] bg-[#b9822d] text-white shadow-inner";
@@ -224,6 +231,8 @@ export function FaithDetailHeroVideo({
 }
 
 /** Fixed spacer between hero header and card grid on the 1920px artboard. */
-export function FaithDetailSpacer({ desktopHeight }: { desktopHeight?: string }) {
-  return <div className={desktopHeight ?? "h-[280px]"} />;
+export const FAITH_DETAIL_HEADER_SPACER = "h-[420px]";
+
+export function FaithDetailSpacer({ desktopHeight = FAITH_DETAIL_HEADER_SPACER }: { desktopHeight?: string }) {
+  return <div className={desktopHeight} />;
 }

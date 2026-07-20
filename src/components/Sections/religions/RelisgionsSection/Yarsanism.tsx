@@ -11,6 +11,7 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FaithDetailCard,
   FAITH_CONTENT_PADDING,
+  FAITH_DETAIL_CARD_GRID_2,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
   FAITH_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
@@ -204,9 +205,9 @@ export default function YarsanismPage({
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
+          <FaithDetailSpacer />
 
-          <section className="grid grid-cols-2 gap-6">
+          <section className={FAITH_DETAIL_CARD_GRID_2}>
             {c.cards.map((card, i) => (
               <FaithDetailCard
                 key={card.title}

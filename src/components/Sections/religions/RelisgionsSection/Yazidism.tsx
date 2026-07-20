@@ -11,6 +11,7 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FaithDetailCard,
   FAITH_CONTENT_PADDING,
+  FAITH_DETAIL_CARD_GRID_2,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
   FAITH_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
@@ -20,7 +21,7 @@ import {
 } from "@/components/Sections/religions/faithDetailLayout";
 import lalish from "@/assets/mainImages/story-1.webp";
 import peacock from "@/assets/mainImages/story-2.webp";
-import festival from "@/assets/mainImages/2005.webp";
+import jemayiImg from "@/assets/images/religions/yazidism/jemayi.jpg";
 import candle from "@/assets/images/bg-2.webp";
 
 type LangCode = "en" | "ku" | "ar";
@@ -113,7 +114,7 @@ const content: Record<LangCode, YazidismContent> = {
   },
 };
 
-const cardImages = [lalish, peacock, festival, candle];
+const cardImages = [lalish, peacock, jemayiImg, candle];
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
@@ -204,9 +205,9 @@ export default function YazidismPage({
             </div>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
+          <FaithDetailSpacer />
 
-          <section className="grid grid-cols-2 gap-6">
+          <section className={FAITH_DETAIL_CARD_GRID_2}>
             {c.cards.map((card, i) => (
               <FaithDetailCard
                 key={card.title}

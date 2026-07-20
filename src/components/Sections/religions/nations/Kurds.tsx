@@ -4,8 +4,8 @@ import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/nations/kurds.jpeg";
 import languageImg from "@/assets/images/religions/k-1.webp";
-import newrozImg from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
-import cultureImg from "@/assets/images/new/religions/nations/kurd.webp";
+import newrozImg from "@/assets/images/religions/kurds/newroz.jpg";
+import cultureImg from "@/assets/images/religions/kurds/culture.jpeg";
 import citiesImg from "@/assets/images/religions/cradle.jpeg";
 import {
   FAITH_CONTENT_PADDING,

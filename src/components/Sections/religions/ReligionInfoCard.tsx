@@ -46,6 +46,7 @@ type ReligionInfoCardProps = {
   imageFadeClass?: string;
   imageClassName?: string;
   imageWrapClassName?: string;
+  textSectionClassName?: string;
 };
 
 export default function ReligionInfoCard({
@@ -67,16 +68,20 @@ export default function ReligionInfoCard({
   imageFadeClass = "h-[16%] bg-gradient-to-b from-white via-white/35 to-transparent",
   imageClassName = "[mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]",
   imageWrapClassName = "mt-0",
+  textSectionClassName = "",
 }: ReligionInfoCardProps) {
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
   const resolvedImage = getReligionCardImage(accentIndex, image);
   const isInteractive = Boolean(onClick);
   const alignClass = align === "center" ? "text-center items-center" : "text-start";
   const imageGrows = imageHeightClass.includes("flex-1");
+  const textSectionFlexes = textSectionClassName.includes("flex-1");
 
   const content = (
     <>
-      <div className={`relative z-10 flex shrink-0 flex-col px-5 pt-6 ${alignClass}`}>
+      <div
+        className={`relative z-10 flex flex-col px-5 pt-6 ${textSectionFlexes ? "flex-1" : "shrink-0"} ${alignClass} ${textSectionClassName}`}
+      >
         {eyebrow ? (
           <p className="mb-2 font-serif text-[12px] font-semibold uppercase tracking-[0.14em] text-stone-500">
             {eyebrow}

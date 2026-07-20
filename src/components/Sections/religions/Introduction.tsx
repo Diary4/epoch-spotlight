@@ -548,7 +548,7 @@ export default function IntroductionPage({
           </p>
         </header>
 
-        <section data-intro-animate="true" className="mt-[820px] flex flex-1 flex-col pb-4">
+        <section data-intro-animate="true" className="mt-[920px] flex flex-1 flex-col pb-4">
           <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
             <div className="flex gap-2">
               {tabs.map((tab) => {
