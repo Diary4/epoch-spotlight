@@ -1,16 +1,13 @@
 import React from "react";
 import gsap from "gsap";
-import {
-  Church,
-  Crown,
-  Landmark,
-  Languages,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/a-2.webp";
+import heroBg from "@/assets/images/religions/a-2.webp";
+import languageImg from "@/assets/images/new/religions/faiths/christianity.webp";
+import ankawaImg from "@/assets/images/religions/sharedlife/churches.jpeg";
+import patriarchImg from "@/assets/images/new/religions/nations/assyrian.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
@@ -20,21 +17,30 @@ import {
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "language" | "ankawa" | "patriarch" | "parliament";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
-  icon: typeof Landmark;
 };
 
 type ChaldoContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  language: languageImg,
+  ankawa: ankawaImg,
+  patriarch: patriarchImg,
+  parliament: parliamentImg,
 };
 
 const content: Record<LangCode, ChaldoContent> = {
@@ -42,25 +48,25 @@ const content: Record<LangCode, ChaldoContent> = {
     back: "Back",
     pageTitle: "CHALDO-ASSYRIANS",
     subtitle: "An ancient nationality with an unbroken heritage",
-    cards: [
+    topics: [
       {
+        id: "language",
         title: "SYRIAC LANGUAGE",
-        icon: Languages,
         text: "One of the world's oldest living languages. A form of Eastern Aramaic. Used in daily life, liturgy, and officially recognized by the KRG.",
       },
       {
+        id: "ankawa",
         title: "ANKAWA",
-        icon: Church,
         text: "The main Christian district of Erbil. Home to the Chaldean Archdiocese, seminary, and Babel College of Philosophy and Theology.",
       },
       {
+        id: "patriarch",
         title: "PATRIARCH RETURNS",
-        icon: Crown,
         text: "The Assyrian Church of the East returned its patriarchal seat to Erbil in 2015 after 83 years of exile. Patriarchal complex inaugurated in 2022 with support from President Masoud Barzani.",
       },
       {
+        id: "parliament",
         title: "5 PARLIAMENT SEATS",
-        icon: Landmark,
         text: "The Chaldo-Assyrian community holds 5 reserved seats in the Kurdistan Parliament — more than any other minority.",
       },
     ],
@@ -70,25 +76,25 @@ const content: Record<LangCode, ChaldoContent> = {
     back: "گەڕانەوە",
     pageTitle: "کلدو ئاشوورییەکان",
     subtitle: "نەتەوەیەکی دێرین بە میراتێکی بێ پچڕان",
-    cards: [
+    topics: [
       {
+        id: "language",
         title: "زمانی سریانی",
-        icon: Languages,
         text: "یەکێکە لە دێرینترین زمانە زیندووەکانی جیهان. لقێکە لە ئارامی ڕۆژهەڵاتی. لە ژیانی ڕۆژانە و ڕێوڕەسمە ئایینییەکاندا بەکاردێت و بە فەرمی لەلایەن حکومەتی هەرێمی کوردستانەوە ناسێنراوە.",
       },
       {
+        id: "ankawa",
         title: "عەنکاوە",
-        icon: Church,
         text: "گەڕەکی سەرەکی مەسیحییەکانە لە هەولێر. ناوەندی ئەپەرشیەی کلدانی و پەیمانگای بابل بۆ فەلسەفە و خوداناسییە.",
       },
       {
+        id: "patriarch",
         title: "گەڕانەوەی پاتریارک",
-        icon: Crown,
         text: "کەنیسەی ڕۆژهەڵاتی ئاشووری کورسی پاتریارکی خۆی لە ساڵی ٢٠١٥دا گەڕاندەوە هەولێر دوای ٨٣ ساڵ لە مەنفا. کۆمەڵگەی پاتریارکی لە ٢٠٢٢ بە پاڵپشتی سەرۆک بارزانی کرایەوە.",
       },
       {
+        id: "parliament",
         title: "٥ کورسی پەرلەمان",
-        icon: Landmark,
         text: "کلدو ئاشوورییەکان ٥ کورسی کۆتایان لە پەرلەمان هەیە.",
       },
     ],
@@ -98,25 +104,25 @@ const content: Record<LangCode, ChaldoContent> = {
     back: "العودة",
     pageTitle: "الكلدو-آشوريون",
     subtitle: "قومية عريقة بإرث متصل لا انقطاع فيه",
-    cards: [
+    topics: [
       {
+        id: "language",
         title: "اللغة السريانية",
-        icon: Languages,
         text: "إحدى أقدم اللغات الحيّة في العالم، وفرع من الآرامية الشرقية. تُستخدم في الحياة اليومية والطقوس الدينية، ومُعترف بها رسمياً من حكومة إقليم كوردستان.",
       },
       {
+        id: "ankawa",
         title: "عنكاوة",
-        icon: Church,
         text: "الحي المسيحي الرئيسي في أربيل. مقر أبرشية الكلدان والكلية الإكليريكية وكلية بابل للفلسفة واللاهوت.",
       },
       {
+        id: "patriarch",
         title: "عودة البطريرك",
-        icon: Crown,
         text: "أعادت كنيسة المشرق الآشورية كرسيها البطريركي إلى أربيل عام ٢٠١٥ بعد ٨٣ عاماً من المنفى، وافتُتح المجمع البطريركي عام ٢٠٢٢ بدعم من الرئيس مسعود بارزاني.",
       },
       {
+        id: "parliament",
         title: "٥ مقاعد برلمانية",
-        icon: Landmark,
         text: "يحظى الكلدو-آشوريون بـ ٥ مقاعد مخصصة في برلمان كوردستان — أكثر من أي مكوّن آخر.",
       },
     ],
@@ -152,23 +158,19 @@ export default function ChaldoAssyriansPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+  const fontStyle =
+    lang === "ar"
+      ? { fontFamily: "'Almarai', 'Oxygen', sans-serif" }
+      : undefined;
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-chaldo-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
-
-      gsap.set("[data-chaldo-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
+      gsap.set("[data-chaldo-hero='true']", { autoAlpha: 0, scale: 1.04 });
+      gsap.set("[data-chaldo-animate='true']", { autoAlpha: 0, y: 24 });
 
       const tl = gsap.timeline();
-
       tl.to("[data-chaldo-hero='true']", {
         autoAlpha: 1,
         scale: 1,
@@ -192,79 +194,64 @@ export default function ChaldoAssyriansPage({
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
-        <FaithDetailHeroImage
-          heroAttr="data-chaldo-hero"
-          src={bg}
+      <FaithDetailHeroImage heroAttr="data-chaldo-hero" src={heroBg} />
+
+      <FaithDetailControls
+        controlsAttr="data-chaldo-controls"
+        backLabel={c.back}
+        dir={dir}
+        onBack={onBack}
+        onLanguageChange={onLanguageChange}
+        languageLabel={languageLabel}
+      />
+
+      <div
+        style={fontStyle}
+        className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}
+      >
+        <header
+          data-chaldo-animate="true"
+          className="mx-auto max-w-[900px] pt-32 text-center"
+        >
+          <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
+            ✥
+          </div>
+          <div className="mx-auto mb-5 w-[480px] max-w-full">
+            <DecorativeLine />
+          </div>
+          <h1 className="break-words font-serif text-[96px] font-semibold uppercase leading-[1] tracking-[0.14em] text-[#2f1f12]">
+            {c.pageTitle}
+          </h1>
+          <p className="mt-4 font-serif text-[34px] font-semibold text-[#7d5a2d]">
+            {c.subtitle}
+          </p>
+          <div className="mx-auto mt-8 w-[210px] max-w-full">
+            <DecorativeLine />
+          </div>
+        </header>
+
+        <FaithDetailSpacer desktopHeight="h-[420px]" />
+
+        <NationTopicSwitcher
+          pageTitle={c.pageTitle}
+          topics={c.topics}
+          images={TOPIC_IMAGES}
+          animateAttr="data-chaldo-animate"
+          ariaLabel="Chaldo-Assyrians topics"
+          langKey={lang}
         />
 
-        <FaithDetailControls
-          controlsAttr="data-chaldo-controls"
-          backLabel={c.back}
-          dir={dir}
-          onBack={onBack}
-          onLanguageChange={onLanguageChange}
-          languageLabel={languageLabel}
-        />
+        <section data-chaldo-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
+          <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>✺</div>
+          <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+          <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
+        </section>
 
-        <div className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}>
-          <header
-            data-chaldo-animate="true"
-            className="mx-auto max-w-[900px] pt-32 text-center"
-          >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-              ✥
-            </div>
+        <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
+      </div>
 
-            <div className="mx-auto mb-5 w-[480px] max-w-full">
-              <DecorativeLine />
-            </div>
-
-            <h1 className="break-words font-serif text-[96px] font-semibold uppercase leading-[1] tracking-[0.14em] text-[#2f1f12]">
-              {c.pageTitle}
-            </h1>
-
-            <p className="mt-4 font-serif text-[34px] font-semibold text-[#7d5a2d]">
-              {c.subtitle}
-            </p>
-
-            <div className="mx-auto mt-8 w-[210px] max-w-full">
-              <DecorativeLine />
-            </div>
-          </header>
-
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
-
-          <section
-            data-chaldo-animate="true"
-            className="mt-0 grid grid-cols-4 gap-6"
-          >
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-chaldo-animate"
-              />
-            ))}
-          </section>
-
-          <section data-chaldo-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
-            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>
-              ✺
-            </div>
-
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
-
-            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
-          </section>
-
-          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
-        </div>
-
-        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
     </FaithDetailPageShell>
   );
 }

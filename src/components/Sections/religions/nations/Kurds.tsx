@@ -1,16 +1,13 @@
 import React from "react";
 import gsap from "gsap";
-import {
-  Languages,
-  Flame,
-  Music,
-  Landmark,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/k-2.webp";
+import heroBg from "@/assets/images/religions/k-2.webp";
+import languageImg from "@/assets/images/religions/k-1.webp";
+import newrozImg from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
+import cultureImg from "@/assets/images/new/religions/nations/kurd.webp";
+import citiesImg from "@/assets/images/religions/cradle.jpeg";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
@@ -20,21 +17,30 @@ import {
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "language" | "newroz" | "culture" | "cities";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
-  icon: typeof Landmark;
 };
 
 type KurdsContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  language: languageImg,
+  newroz: newrozImg,
+  culture: cultureImg,
+  cities: citiesImg,
 };
 
 const content: Record<LangCode, KurdsContent> = {
@@ -42,25 +48,25 @@ const content: Record<LangCode, KurdsContent> = {
     back: "Back",
     pageTitle: "KURDS",
     subtitle: "Language, heritage, and living identity",
-    cards: [
+    topics: [
       {
+        id: "language",
         title: "LANGUAGE",
-        icon: Languages,
         text: "Sorani and Kurmanji are the two main Kurdish dialects. Both are official languages of the Kurdistan Region alongside Arabic.",
       },
       {
+        id: "newroz",
         title: "NEWROZ",
-        icon: Flame,
         text: "The Kurdish New Year celebrated on March 21 with fire and renewal. One of the most celebrated cultural events of the year with ancient Zoroastrian roots.",
       },
       {
+        id: "culture",
         title: "CULTURE",
-        icon: Music,
         text: "Traditional dress, the Halparke dance, poetry, and hospitality define Kurdish cultural identity. Sufi orders shaped Kurdish society and spirituality for centuries.",
       },
       {
+        id: "cities",
         title: "CITIES",
-        icon: Landmark,
         text: "Erbil, Duhok, and Sulaymaniyah are the three governorates and cultural hearts of the Kurdistan Region.",
       },
     ],
@@ -70,25 +76,25 @@ const content: Record<LangCode, KurdsContent> = {
     back: "گەڕانەوە",
     pageTitle: "کورد",
     subtitle: "زمان، کەلەپوور و ناسنامەیەکی زیندوو",
-    cards: [
+    topics: [
       {
+        id: "language",
         title: "زمان",
-        icon: Languages,
         text: "سۆرانی و بادینی هەردووکیان دوو شێوەزاری سەرەکین لە هەرێمی کوردستان.",
       },
       {
+        id: "newroz",
         title: "نەورۆز",
-        icon: Flame,
         text: "جەژنی سەرکەوتن و نوێبوونەوەیە، لوتکەی شکۆی نەتەوەیی کورد و دەسپێکی ساڵی نوێیە لە ٢١ی ئازاردا. ئەم یادە مێژووییە بە داگیرساندنی مەشخەڵی ئاگر و جلی ڕەنگینی کوردی، گوزارشت لە ڕەسەنایەتی و ئاشتیخوازیی ئەم گەلە دەکات.",
       },
       {
+        id: "culture",
         title: "کلتوور",
-        icon: Music,
         text: "جلوبەرگی ڕەسەن، هەڵپەڕکێ، شیعر و میواندۆستی ناسنامەی نەتەوەی کوردن. ئەم میراتە دەوڵەمەندە ڕۆحییە، بە درێژایی سەدەکان کۆمەڵگەی کوردی بونیاد ناوە و وەک سیمبولی شکۆ و ڕەسەنایەتی ماوەتەوە.",
       },
       {
+        id: "cities",
         title: "پارێزگاکان",
-        icon: Landmark,
         text: "سێ پارێزگا سەرەکییەکانی هەرێمی کوردستان: هەولێر، دهۆک و سلێمانی.",
       },
     ],
@@ -98,25 +104,25 @@ const content: Record<LangCode, KurdsContent> = {
     back: "العودة",
     pageTitle: "الكورد",
     subtitle: "اللغة، التراث، وهوية حيّة",
-    cards: [
+    topics: [
       {
+        id: "language",
         title: "اللغة",
-        icon: Languages,
         text: "السورانية والكرمانجية هما اللهجتان الرئيسيتان في إقليم كوردستان.",
       },
       {
+        id: "newroz",
         title: "نوروز",
-        icon: Flame,
         text: "عيد النصر والتجدد، وذروة المجد القومي الكوردي وبداية السنة الجديدة في ٢١ آذار. تُجسَّد هذه الذكرى التاريخية بإيقاد المشاعل وارتداء الزي الكوردي الزاهي، تعبيراً عن أصالة هذا الشعب ومحبته للسلام.",
       },
       {
+        id: "culture",
         title: "الثقافة",
-        icon: Music,
         text: "الزي التقليدي ورقصة الهلپَركێ والشعر وحُسن الضيافة من معالم الهوية القومية الكوردية. هذا الإرث الروحي الغني صاغ المجتمع الكوردي عبر القرون وبقي رمزاً للمجد والأصالة.",
       },
       {
+        id: "cities",
         title: "المحافظات",
-        icon: Landmark,
         text: "محافظات إقليم كوردستان الرئيسية الثلاث: أربيل، دهوك، والسليمانية.",
       },
     ],
@@ -161,18 +167,10 @@ export default function KurdsPage({
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-kurds-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
-
-      gsap.set("[data-kurds-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
+      gsap.set("[data-kurds-hero='true']", { autoAlpha: 0, scale: 1.04 });
+      gsap.set("[data-kurds-animate='true']", { autoAlpha: 0, y: 24 });
 
       const tl = gsap.timeline();
-
       tl.to("[data-kurds-hero='true']", {
         autoAlpha: 1,
         scale: 1,
@@ -196,82 +194,64 @@ export default function KurdsPage({
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
-        <FaithDetailHeroImage
-          heroAttr="data-kurds-hero"
-          src={bg}
-        />
+      <FaithDetailHeroImage heroAttr="data-kurds-hero" src={heroBg} />
 
-        <FaithDetailControls
-          controlsAttr="data-kurds-controls"
-          backLabel={c.back}
-          dir={dir}
-          onBack={onBack}
-          onLanguageChange={onLanguageChange}
-          languageLabel={languageLabel}
-        />
+      <FaithDetailControls
+        controlsAttr="data-kurds-controls"
+        backLabel={c.back}
+        dir={dir}
+        onBack={onBack}
+        onLanguageChange={onLanguageChange}
+        languageLabel={languageLabel}
+      />
 
-        <div
-          style={fontStyle}
-          className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}
+      <div
+        style={fontStyle}
+        className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}
+      >
+        <header
+          data-kurds-animate="true"
+          className="mx-auto max-w-[900px] pt-32 text-center"
         >
-          <header
-            data-kurds-animate="true"
-            className="mx-auto max-w-[900px] pt-32 text-center"
-          >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-              ✥
-            </div>
+          <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
+            ✥
+          </div>
+          <div className="mx-auto mb-5 w-[480px] max-w-full">
+            <DecorativeLine />
+          </div>
+          <h1 className="break-words font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
+            {c.pageTitle}
+          </h1>
+          <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
+            {c.subtitle}
+          </p>
+          <div className="mx-auto mt-8 w-[210px] max-w-full">
+            <DecorativeLine />
+          </div>
+        </header>
 
-            <div className="mx-auto mb-5 w-[480px] max-w-full">
-              <DecorativeLine />
-            </div>
+        <FaithDetailSpacer desktopHeight="h-[420px]" />
 
-            <h1 className="break-words font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
-              {c.pageTitle}
-            </h1>
+        <NationTopicSwitcher
+          pageTitle={c.pageTitle}
+          topics={c.topics}
+          images={TOPIC_IMAGES}
+          animateAttr="data-kurds-animate"
+          ariaLabel="Kurds topics"
+          langKey={lang}
+        />
 
-            <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
-              {c.subtitle}
-            </p>
+        <section data-kurds-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
+          <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>✺</div>
+          <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+          <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
+        </section>
 
-            <div className="mx-auto mt-8 w-[210px] max-w-full">
-              <DecorativeLine />
-            </div>
-          </header>
+        <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
+      </div>
 
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
-
-          <section
-            data-kurds-animate="true"
-            className="mt-0 grid grid-cols-4 gap-6"
-          >
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-kurds-animate"
-              />
-            ))}
-          </section>
-
-          <section data-kurds-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
-            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>
-              ✺
-            </div>
-
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
-
-            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
-          </section>
-
-          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
-        </div>
-
-        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
     </FaithDetailPageShell>
   );
 }

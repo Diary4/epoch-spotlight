@@ -1,16 +1,13 @@
 import React from "react";
 import gsap from "gsap";
-import {
-  GraduationCap,
-  Landmark,
-  Languages,
-  Music,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/turkmen.webp";
+import heroBg from "@/assets/images/religions/turkmen.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
+import languageImg from "@/assets/images/new/religions/nations/turkmen.webp";
+import cultureImg from "@/assets/images/religions/nc-1.webp";
+import educationImg from "@/assets/images/religions/nations.webp";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
@@ -20,21 +17,30 @@ import {
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "parliament" | "language" | "culture" | "education";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
-  icon: typeof Landmark;
 };
 
 type TurkmensContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  parliament: parliamentImg,
+  language: languageImg,
+  culture: cultureImg,
+  education: educationImg,
 };
 
 const content: Record<LangCode, TurkmensContent> = {
@@ -42,25 +48,25 @@ const content: Record<LangCode, TurkmensContent> = {
     back: "Back",
     pageTitle: "TURKMENS",
     subtitle: "Language, heritage, and community life",
-    cards: [
+    topics: [
       {
+        id: "parliament",
         title: "5 PARLIAMENT SEATS",
-        icon: Landmark,
         text: "Turkmens hold 5 reserved seats in the Kurdistan Parliament under the 2005 amendment — equal to the Chaldo-Assyrian allocation.",
       },
       {
+        id: "language",
         title: "OFFICIAL LANGUAGE",
-        icon: Languages,
         text: "Turkmen is recognized as an official language in areas where Turkmens form the majority under Official Languages Law No. 6 of 2014.",
       },
       {
+        id: "culture",
         title: "CULTURE & ARTS",
-        icon: Music,
         text: "The Ministry of Culture established a dedicated General Directorate for Turkmen Culture and Arts. Turkmen Language and Culture Day is celebrated on November 17 each year.",
       },
       {
+        id: "education",
         title: "EDUCATION",
-        icon: GraduationCap,
         text: "A General Directorate for Turkmen Education ensures Turkmen children receive education in their mother tongue across the Kurdistan Region.",
       },
     ],
@@ -70,25 +76,25 @@ const content: Record<LangCode, TurkmensContent> = {
     back: "گەڕانەوە",
     pageTitle: "تورکمان",
     subtitle: "زمان، کەلەپوور و ژیانی کۆمەاڵیەتی",
-    cards: [
+    topics: [
       {
+        id: "parliament",
         title: "٥ کورسی پەرلەمان",
-        icon: Landmark,
         text: "تورکمانەکان خاوەنی ٥ کورسی کۆتان لە پەرلەمانی کوردستان بەپێی هەموارکردنەوەی ٢٠٠٥، یەکسان بە بەشی کلدان و ئاشورییەکان.",
       },
       {
+        id: "language",
         title: "زمانی فەرمی",
-        icon: Languages,
         text: "زمانی تورکمانی وەک زمانێکی فەرمی لەو ناوچانەی زۆرینەی تورکمانن دەناسرێت بەپێی یاسای زمانە فەرمییەکان ژمارە ٦ی ساڵی ٢٠١٤.",
       },
       {
+        id: "culture",
         title: "کلتوور و هونەر",
-        icon: Music,
         text: "وەزارەتی ڕۆشنبیری بەڕێوەبەرایەتییەکی گشتی تایبەتی بۆ کلتوور و هونەری تورکمانی دامەزراندووە. ١٧ی تشرینی دووەمی هەموو ساڵێک ڕۆژی زمان و کلتووری تورکمانییە.",
       },
       {
+        id: "education",
         title: "پەروەردە",
-        icon: GraduationCap,
         text: "بەڕێوەبەرایەتی گشتی خوێندنی تورکمانی دڵنیایی دەدات کە مندااڵنی تورکمان بە زمانی دایکی خۆیان لە هەرێم دەخوێنن.",
       },
     ],
@@ -98,25 +104,25 @@ const content: Record<LangCode, TurkmensContent> = {
     back: "العودة",
     pageTitle: "التركمان",
     subtitle: "اللغة والتراث وحياة المجتمع",
-    cards: [
+    topics: [
       {
+        id: "parliament",
         title: "٥ مقاعد برلمانية",
-        icon: Landmark,
         text: "يحتل التركمان ٥ مقاعد مخصصة في برلمان كوردستان بموجب تعديل ٢٠٠٥ — مساوياً لحصة الكلدو آشوريين.",
       },
       {
+        id: "language",
         title: "لغة رسمية",
-        icon: Languages,
         text: "تُعترف باللغة التركمانية لغةً رسميةً في المناطق ذات الغالبية التركمانية بموجب قانون اللغات الرسمية رقم ٦ لسنة ٢٠١٤.",
       },
       {
+        id: "culture",
         title: "الثقافة والفنون",
-        icon: Music,
         text: "أسست وزارة الثقافة مديريةً عامةً مخصصةً للثقافة والفنون التركمانية. ويُحتفل بيوم اللغة والثقافة التركمانية في ١٧ نوفمبر من كل عام.",
       },
       {
+        id: "education",
         title: "التعليم",
-        icon: GraduationCap,
         text: "تضمن المديرية العامة للتربية التركمانية تلقّي أبناء التركمان تعليمهم بلغتهم الأم في مختلف أنحاء إقليم كوردستان.",
       },
     ],
@@ -152,23 +158,19 @@ export default function TurkmensPage({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+  const fontStyle =
+    lang === "ar"
+      ? { fontFamily: "'Almarai', 'Oxygen', sans-serif" }
+      : undefined;
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-turkmens-hero='true']", {
-        autoAlpha: 0,
-        scale: 1.04,
-      });
-
-      gsap.set("[data-turkmens-animate='true']", {
-        autoAlpha: 0,
-        y: 24,
-      });
+      gsap.set("[data-turkmens-hero='true']", { autoAlpha: 0, scale: 1.04 });
+      gsap.set("[data-turkmens-animate='true']", { autoAlpha: 0, y: 24 });
 
       const tl = gsap.timeline();
-
       tl.to("[data-turkmens-hero='true']", {
         autoAlpha: 1,
         scale: 1,
@@ -192,79 +194,64 @@ export default function TurkmensPage({
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
-        <FaithDetailHeroImage
-          heroAttr="data-turkmens-hero"
-          src={bg}
+      <FaithDetailHeroImage heroAttr="data-turkmens-hero" src={heroBg} />
+
+      <FaithDetailControls
+        controlsAttr="data-turkmens-controls"
+        backLabel={c.back}
+        dir={dir}
+        onBack={onBack}
+        onLanguageChange={onLanguageChange}
+        languageLabel={languageLabel}
+      />
+
+      <div
+        style={fontStyle}
+        className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}
+      >
+        <header
+          data-turkmens-animate="true"
+          className="mx-auto max-w-[900px] pt-32 text-center"
+        >
+          <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
+            ✥
+          </div>
+          <div className="mx-auto mb-5 w-[480px] max-w-full">
+            <DecorativeLine />
+          </div>
+          <h1 className="whitespace-nowrap font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
+            {c.pageTitle}
+          </h1>
+          <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
+            {c.subtitle}
+          </p>
+          <div className="mx-auto mt-8 w-[210px] max-w-full">
+            <DecorativeLine />
+          </div>
+        </header>
+
+        <FaithDetailSpacer desktopHeight="h-[420px]" />
+
+        <NationTopicSwitcher
+          pageTitle={c.pageTitle}
+          topics={c.topics}
+          images={TOPIC_IMAGES}
+          animateAttr="data-turkmens-animate"
+          ariaLabel="Turkmens topics"
+          langKey={lang}
         />
 
-        <FaithDetailControls
-          controlsAttr="data-turkmens-controls"
-          backLabel={c.back}
-          dir={dir}
-          onBack={onBack}
-          onLanguageChange={onLanguageChange}
-          languageLabel={languageLabel}
-        />
+        <section data-turkmens-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
+          <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>✺</div>
+          <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+          <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
+        </section>
 
-        <div className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}>
-          <header
-            data-turkmens-animate="true"
-            className="mx-auto max-w-[900px] pt-32 text-center"
-          >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-              ✥
-            </div>
+        <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
+      </div>
 
-            <div className="mx-auto mb-5 w-[480px] max-w-full">
-              <DecorativeLine />
-            </div>
-
-            <h1 className="whitespace-nowrap font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
-              {c.pageTitle}
-            </h1>
-
-            <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
-              {c.subtitle}
-            </p>
-
-            <div className="mx-auto mt-8 w-[210px] max-w-full">
-              <DecorativeLine />
-            </div>
-          </header>
-
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
-
-          <section
-            data-turkmens-animate="true"
-            className="mt-0 grid grid-cols-4 gap-6"
-          >
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-turkmens-animate"
-              />
-            ))}
-          </section>
-
-          <section data-turkmens-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
-            <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>
-              ✺
-            </div>
-
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
-
-            <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
-          </section>
-
-          <div className="mt-8 text-center text-[58px] text-[#b9822d]">✥</div>
-        </div>
-
-        <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-52 w-52 rounded-tr-full border-r-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-52 w-52 rounded-tl-full border-l-2 border-t-2 border-[#d2a35a]/30 opacity-70" />
     </FaithDetailPageShell>
   );
 }
