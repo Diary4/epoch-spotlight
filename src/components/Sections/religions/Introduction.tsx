@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
-import bg from "@/assets/images/religions/cradle.jpeg";
+import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import lawsImg from "@/assets/images/religions/nl-1.webp";
