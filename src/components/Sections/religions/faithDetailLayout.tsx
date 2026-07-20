@@ -157,6 +157,8 @@ type FaithDetailHeroImageProps = {
   alt?: string;
   /** Kept for call-site compatibility; kiosk uses a fixed hero height. */
   desktopClassName?: string;
+  imageClassName?: string;
+  overlayClassName?: string;
   children?: React.ReactNode;
 };
 
@@ -164,6 +166,8 @@ export function FaithDetailHeroImage({
   heroAttr,
   src,
   alt = "",
+  imageClassName = "",
+  overlayClassName = "bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95",
   children,
 }: FaithDetailHeroImageProps) {
   const heroProps = { [heroAttr]: "true" };
@@ -174,9 +178,11 @@ export function FaithDetailHeroImage({
         src={src}
         alt={alt}
         {...heroProps}
-        className="absolute inset-x-0 top-0 h-[900px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_72%,transparent_100%)]"
+        className={`absolute inset-x-0 top-0 h-[900px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] ${imageClassName}`}
       />
-      <div className="absolute inset-x-0 top-0 h-[900px] bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95" />
+      <div
+        className={`pointer-events-none absolute inset-x-0 top-0 h-[900px] ${overlayClassName}`}
+      />
       {children}
     </>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import gsap from "gsap";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/k-2.webp";
+import heroBg from "@/assets/images/religions/nations/kurds.jpeg";
 import languageImg from "@/assets/images/religions/k-1.webp";
 import newrozImg from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import cultureImg from "@/assets/images/new/religions/nations/kurd.webp";
@@ -194,7 +194,12 @@ export default function KurdsPage({
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
-      <FaithDetailHeroImage heroAttr="data-kurds-hero" src={heroBg} />
+      <FaithDetailHeroImage
+        heroAttr="data-kurds-hero"
+        src={heroBg}
+        imageClassName="object-[28%_center]"
+        overlayClassName="bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]"
+      />
 
       <FaithDetailControls
         controlsAttr="data-kurds-controls"
@@ -211,26 +216,23 @@ export default function KurdsPage({
       >
         <header
           data-kurds-animate="true"
-          className="mx-auto max-w-[900px] pt-32 text-center"
+          className="mx-auto max-w-[850px] pt-[140px] text-center"
         >
-          <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-            ✥
+          <div className="mx-auto mb-2 w-[220px]">
+            <DecorativeLine color="#c3923a" />
           </div>
-          <div className="mx-auto mb-5 w-[480px] max-w-full">
-            <DecorativeLine />
-          </div>
-          <h1 className="break-words font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
+          <h1 className="break-words font-serif text-[84px] font-semibold uppercase leading-[1.02] tracking-[0.04em] text-[#3b2410]">
             {c.pageTitle}
           </h1>
-          <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
+          <div className="mx-auto mt-4 w-[160px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <p className="mx-auto mt-4 max-w-[640px] font-serif text-[22px] font-medium leading-relaxed text-[#4d3c2a]">
             {c.subtitle}
           </p>
-          <div className="mx-auto mt-8 w-[210px] max-w-full">
-            <DecorativeLine />
-          </div>
         </header>
 
-        <FaithDetailSpacer desktopHeight="h-[420px]" />
+        <FaithDetailSpacer desktopHeight="h-[540px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}
