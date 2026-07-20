@@ -69,7 +69,7 @@ const content: Record<LangCode, SabeanContent> = {
         text: "Mandaean Cultural Association headquartered in Erbil. Rights protected under Law No. 5 of 2015 and the Iraqi Constitution 2005.",
       },
     ],
-  }
+  },
   ku: {
     title: "سابیی-مەندەیی",
     subtitle: "ئاوی زیندوو، پاکی، و بەردەوامی",
@@ -96,7 +96,7 @@ const content: Record<LangCode, SabeanContent> = {
         text: "بارەگای کۆمەڵەی کولتووری مەندەیی لە هەولێرە. مافەکانیان بە دەستووری عێراقی 2005 و یاسای ژمارە 5ی ساڵی 2015 پارێزراون.",
       },
     ],
-  }
+  },
   ar: {
     title: "الصابئة المندائيون",
     subtitle: "الماء الحي والطهارة والاستمرارية",
