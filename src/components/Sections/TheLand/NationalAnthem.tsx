@@ -36,6 +36,16 @@ const INK = "#17233b";
 const BODY = "#35435b";
 const CARD_BG = "#f7f1e3";
 const CARD_BORDER = "#e7dcc4";
+/** Keep karaoke lines short so words stay clear of the hero edges. */
+const KARAOKE_WORDS_PER_LINE = 5;
+
+function chunkWords<T>(words: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < words.length; i += size) {
+    chunks.push(words.slice(i, i + size));
+  }
+  return chunks;
+}
 
 /* 21-ray sun of the Kurdistan flag */
 const SUN_POINTS = (() => {
@@ -378,29 +388,31 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                     className={`w-full max-w-[900px] ${isRtlScript ? "font-noto-naskh" : displayFont}`}
                     dir={lang === "en" ? "ltr" : "rtl"}
                   >
-                    {karaoke.map((line, lineIndex) => (
-                      <p
-                        key={`line-${lineIndex}`}
-                        className={`flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2 text-[36px] font-normal leading-snug ${
-                          lineIndex > 0 ? "mt-4" : ""
-                        }`}
-                      >
-                        {line.words.map((word, wordIndex) => (
-                          <span
-                            key={`w-${lineIndex}-${wordIndex}`}
-                            className="inline-block animate-in fade-in slide-in-from-bottom-1 duration-300"
-                            style={{
-                              color: word.current ? GOLD : word.isPast ? BODY : INK,
-                              fontWeight: word.current ? 500 : 300,
-                              opacity: word.current ? 1 : word.isPast ? 0.72 : 1,
-                              transition: "color 200ms ease, font-weight 200ms ease, opacity 200ms ease",
-                            }}
-                          >
-                            {word.text}
-                          </span>
-                        ))}
-                      </p>
-                    ))}
+                    {karaoke.flatMap((line, lineIndex) =>
+                      chunkWords(line.words, KARAOKE_WORDS_PER_LINE).map((row, rowIndex) => (
+                        <p
+                          key={`line-${lineIndex}-row-${rowIndex}`}
+                          className={`flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2 text-[36px] font-normal leading-snug ${
+                            lineIndex > 0 || rowIndex > 0 ? "mt-4" : ""
+                          }`}
+                        >
+                          {row.map((word, wordIndex) => (
+                            <span
+                              key={`w-${lineIndex}-${rowIndex}-${wordIndex}`}
+                              className="inline-block animate-in fade-in slide-in-from-bottom-1 duration-300"
+                              style={{
+                                color: word.current ? GOLD : word.isPast ? BODY : INK,
+                                fontWeight: word.current ? 500 : 300,
+                                opacity: word.current ? 1 : word.isPast ? 0.72 : 1,
+                                transition: "color 200ms ease, font-weight 200ms ease, opacity 200ms ease",
+                              }}
+                            >
+                              {word.text}
+                            </span>
+                          ))}
+                        </p>
+                      )),
+                    )}
                   </div>
                 ) : (
                   <div className="flex flex-col items-center gap-3 opacity-70">
