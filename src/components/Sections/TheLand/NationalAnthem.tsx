@@ -309,7 +309,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
         style={{ backgroundColor: PAPER, color: INK }}
       >
         {/* ---------- Soft parchment hero ---------- */}
-        <section className="land-detail-hero relative w-full overflow-hidden" style={{ height: "760px" }}>
+        <section className="land-detail-hero relative w-full overflow-hidden" style={{ height: "900px" }}>
           <video
             ref={heroVideoRef}
             src={heroVideo}
