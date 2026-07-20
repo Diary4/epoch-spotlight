@@ -1,62 +1,67 @@
 import React from "react";
-import {
-  Flower2,
-  Handshake,
-  Heart,
-  MapPin,
-  Scale,
-  Sparkles,
-} from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 
 import bg from "@/assets/images/religions/b-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_DETAIL_CARD_GRID_4,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "bahaullah-kurdistan" | "core-principles" | "free-kurdistan" | "festival-ridvan";
 
-const content: Record<
-  LangCode,
-  {
-    title: string;
-    subtitle: string;
-    tagline: string;
-    cards: { title: string; icon: typeof MapPin; text: string }[];
-  }
-> = {
+type TopicContent = {
+  id: TopicId;
+  title: string;
+  text: string;
+};
+
+type BahaiContent = {
+  title: string;
+  subtitle: string;
+  tagline: string;
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  "bahaullah-kurdistan": bg,
+  "core-principles": bg,
+  "free-kurdistan": bg,
+  "festival-ridvan": bg,
+};
+
+const content: Record<LangCode, BahaiContent> = {
   en: {
     title: "Baha'i Faith",
     subtitle: "Unity, peace, and one humanity",
     tagline: "One humanity. One future.",
-    cards: [
+    topics: [
       {
+        id: "bahaullah-kurdistan",
         title: "Baha'u'llah in Kurdistan",
-        icon: MapPin,
         text: "Chose Kurdistan for seclusion. Resided in Sargalu then Sulaymaniyah for two years. Sent \"The Four Valleys\" to Kurdish Sufi leader Sheikh Abdul Rahman Talabani and \"The Seven Valleys\" to Sheikh Mohiuddin.",
       },
       {
+        id: "core-principles",
         title: "Core Principles",
-        icon: Scale,
         text: "Oneness of God, unity of humanity, gender equality, harmony of religion and science, and justice for all.",
       },
       {
+        id: "free-kurdistan",
         title: "Free in Kurdistan",
-        icon: Handshake,
         text: "Since 2015 represented in the Ministry of Endowments and Religious Affairs. Practice rituals freely. Baha'u'llah described Kurdistan as a refuge of peace.",
       },
       {
+        id: "festival-ridvan",
         title: "Festival of Ridvan",
-        icon: Flower2,
         text: "Most important Baha'i holiday, April 20 to May 2. Commemorates Baha'u'llah's announcement of his message in Baghdad.",
       },
     ],
@@ -65,25 +70,25 @@ const content: Record<
     title: "ئاینی بەهایی",
     subtitle: "یەکگرتوویی و ئاشتی و یەک مرۆڤایەتی",
     tagline: "یەک مرۆڤایەتی. یەک داهاتوو.",
-    cards: [
+    topics: [
       {
+        id: "bahaullah-kurdistan",
         title: "بەهاءوڵڵا لە کوردستان",
-        icon: MapPin,
         text: "کوردستانی بۆ گۆشەگیری ڕۆحانی هەڵبژارد. دوو ساڵ لە سەرگەلوو و پاشان لە سلێمانی ژیا. \"چوار دۆڵ\"ی پێشکەش بە شێخ عەبدولڕەحمان تاڵەبانی کرد و \"حەوت دۆڵ\"ی بۆ شێخ محییەدین نووسی.",
       },
       {
+        id: "core-principles",
         title: "بنەما سەرەکییەکان",
-        icon: Scale,
         text: "یەکتایی خودا، یەکگرتوویی مرۆڤایەتی، یەکسانی نێوان ڕەگەزەکان، هاوئاهەنگی نێوان ئاین و زانست، و دادپەروەری بۆ هەمووان.",
       },
       {
+        id: "free-kurdistan",
         title: "ئازادی لە کوردستان",
-        icon: Handshake,
-        text: "لە ساڵی 2015ەوە نوێنەریان لە وەزارەتی ئەوقاف و کاروباری ئاینی هەیە. بە ئازادی ڕێوڕەسمەکانیان ئەنجام دەدەن. بەهاءوڵڵا کوردستانی وەک پەناگەی ئاشتی وەسف کردووە.",
+        text: "لە ساڵی 2015ەوە نوێنەریان لە وەزارەتی ئەوقاف و کاروباری ئایینی هەیە. بە ئازادی ڕێوڕەسمەکانیان ئەنجام دەدەن. بەهاءوڵڵا کوردستانی وەک پەناگەی ئاشتی وەسف کردووە.",
       },
       {
+        id: "festival-ridvan",
         title: "جەژنی ڕەزوان",
-        icon: Flower2,
         text: "گرنگترین جەژنی بەهاییە، لە 20-21ی نیسانەوە تا 2ی ئایار. یادکردنەوەی ڕاگەیاندنی پەیامی بەهاءوڵڵا لە بەغدادە.",
       },
     ],
@@ -92,25 +97,25 @@ const content: Record<
     title: "الديانة البهائية",
     subtitle: "الوحدة والسلام وإنسانية واحدة",
     tagline: "إنسانية واحدة. مستقبل واحد.",
-    cards: [
+    topics: [
       {
+        id: "bahaullah-kurdistan",
         title: "بهاء الله في كوردستان",
-        icon: MapPin,
         text: "اختار كوردستان للعزلة الروحية. أقام في سرجلو ثم السليمانية لمدة عامين. أهدى \"الأودية الأربعة\" للشيخ عبد الرحمن الطالباني، و\"الأودية السبعة\" للشيخ محيي الدين.",
       },
       {
+        id: "core-principles",
         title: "المبادئ الأساسية",
-        icon: Scale,
         text: "وحدانية الله، ووحدة البشرية، والمساواة بين الجنسين، والتناغم بين الدين والعلم، والعدل للجميع.",
       },
       {
+        id: "free-kurdistan",
         title: "حرية في كوردستان",
-        icon: Handshake,
         text: "ممثَّلون في وزارة الأوقاف والشؤون الدينية منذ 2015. يمارسون شعائرهم بحرية. ووصف بهاء الله كوردستان بأنها ملاذ للسلام.",
       },
       {
+        id: "festival-ridvan",
         title: "عيد الرضوان",
-        icon: Flower2,
         text: "أهم الأعياد البهائية، من 20-21 أبريل حتى 2 مايو. يُحيي ذكرى إعلان بهاء الله رسالته في بغداد.",
       },
     ],
@@ -200,25 +205,21 @@ export default function BahaiPage({
 
           <FaithDetailSpacer />
 
-          <section className={FAITH_DETAIL_CARD_GRID_4}>
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-bahai-animate"
-              />
-            ))}
-          </section>
+          <NationTopicSwitcher
+            pageTitle={c.title}
+            topics={c.topics}
+            images={TOPIC_IMAGES}
+            animateAttr="data-bahai-animate"
+            ariaLabel="Baha'i Faith topics"
+            langKey={lang}
+          />
 
           <section data-bahai-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
             <div className={FAITH_TAGLINE_ICON_WRAP_CLASS}>
               <Heart className="h-10 w-10" />
             </div>
 
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+            <p className={NATION_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>

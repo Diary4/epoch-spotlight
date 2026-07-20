@@ -1,40 +1,46 @@
 import React from "react";
 import {
-  Church,
-  Crown,
   Cross,
   Sparkles,
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-5.webp";
+import popeImg from "@/assets/images/religions/christianity/pope.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_DETAIL_CARD_GRID_4,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "historical-presence" | "churches" | "easter-christmas" | "pope-francis";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
-  icon: typeof Cross;
 };
 
 type ChristianityContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  "historical-presence": bg,
+  churches: bg,
+  "easter-christmas": bg,
+  "pope-francis": popeImg,
 };
 
 const content: Record<LangCode, ChristianityContent> = {
@@ -42,25 +48,25 @@ const content: Record<LangCode, ChristianityContent> = {
     back: "Back",
     pageTitle: "CHRISTIANITY",
     subtitle: "Ancient roots, steadfast faith, and a united community",
-    cards: [
+    topics: [
       {
+        id: "historical-presence",
         title: "HISTORICAL PRESENCE",
-        icon: Cross,
         text: "Christianity reached Erbil (Adiabene) in the 1st century CE. By the 3rd century, Erbil had become a major Christian center.",
       },
       {
+        id: "churches",
         title: "CHURCHES",
-        icon: Church,
         text: "All four main traditions are present: Catholic, Orthodox, Eastern, and Evangelical. Dozens of active churches and monasteries stand in Erbil, Duhok, Zakho, and Sulaymaniyah.",
       },
       {
+        id: "easter-christmas",
         title: "EASTER & CHRISTMAS",
-        icon: Sparkles,
         text: "Both Easter and Christmas are official public holidays across the Kurdistan Region.",
       },
       {
+        id: "pope-francis",
         title: "POPE FRANCIS",
-        icon: Crown,
         text: "On 7 March 2021 he visited Erbil and said: \u201CFreedom is deeply rooted in Kurdistan. Thank you for what you offer to every religion and community.\u201D",
       },
     ],
@@ -70,25 +76,25 @@ const content: Record<LangCode, ChristianityContent> = {
     back: "گەڕانەوە",
     pageTitle: "مەسیحییەت",
     subtitle: "ڕەگی دێرین، باوەڕی چەسپاو و کۆمەڵگەی یەکگرتوو",
-    cards: [
+    topics: [
       {
+        id: "historical-presence",
         title: "بوونی مێژوویی",
-        icon: Cross,
         text: "مەسیحییەت لە سەدەی یەکەمی زایینی گەیشتە هەولێر (حەدیاب). هەولێر لە سەدەی سێیەمەوە مەڵبەندێکی گەورەی مەسیحی بووە.",
       },
       {
+        id: "churches",
         title: "کەنیسەکان",
-        icon: Church,
         text: "هەر چوار جۆری سەرەکی: کاسۆلیک، ئۆرسۆدۆکس، ڕۆژهەڵاتی و ئینجیلی. دەیان کەنیسە و دێری چالاک لە هەولێر، دهۆک، زاخۆ و سلێمانی هەن.",
       },
       {
+        id: "easter-christmas",
         title: "جەژنی قیامەت و لەدایکبوون",
-        icon: Sparkles,
         text: "هەردووکیان پشووی فەرمین لە هەرێمی کوردستان.",
       },
       {
+        id: "pope-francis",
         title: "پاپا فرانسیس",
-        icon: Crown,
         text: "لە ٧ی ئاداری ٢٠٢١ سەردانی هەولێری کرد و وتی: «ئازادی لە کوردستان ڕەگی داکوتاوە. سوپاس بۆ ئەوەی پێشکەشی هەموو ئایین و پێکهاتەکانی دەکەن».",
       },
     ],
@@ -98,25 +104,25 @@ const content: Record<LangCode, ChristianityContent> = {
     back: "العودة",
     pageTitle: "المسيحية",
     subtitle: "جذور عريقة، وإيمان راسخ، ومجتمع متّحد",
-    cards: [
+    topics: [
       {
+        id: "historical-presence",
         title: "حضور تاريخي",
-        icon: Cross,
         text: "وصلت المسيحية إلى أربيل (حدياب) في القرن الأول الميلادي. وأصبحت أربيل مركزاً مسيحياً كبيراً منذ القرن الثالث.",
       },
       {
+        id: "churches",
         title: "الكنائس",
-        icon: Church,
         text: "تحضر جميع الطوائف الأربع الرئيسية: الكاثوليكية والأرثوذكسية والمشرقية والإنجيلية. وتنتشر عشرات الكنائس والأديرة النشطة في أربيل ودهوك وزاخو والسليمانية.",
       },
       {
+        id: "easter-christmas",
         title: "عيدا الفصح والميلاد",
-        icon: Sparkles,
         text: "كلاهما عطلتان رسميتان في إقليم كوردستان.",
       },
       {
+        id: "pope-francis",
         title: "البابا فرنسيس",
-        icon: Crown,
         text: "في ٧ آذار ٢٠٢١ زار أربيل وقال: «الحرية متجذرة عميقاً في كوردستان. شكراً لما تقدّمونه لكل الأديان والمكوّنات».",
       },
     ],
@@ -205,25 +211,21 @@ export default function ChristianityPage({
 
           <FaithDetailSpacer />
 
-          <section className={FAITH_DETAIL_CARD_GRID_4}>
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-christian-animate"
-              />
-            ))}
-          </section>
+          <NationTopicSwitcher
+            pageTitle={c.pageTitle}
+            topics={c.topics}
+            images={TOPIC_IMAGES}
+            animateAttr="data-christian-animate"
+            ariaLabel="Christianity topics"
+            langKey={lang}
+          />
 
           <section data-christian-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
             <div className={FAITH_TAGLINE_ICON_WRAP_CLASS}>
               <Cross className="h-10 w-10" strokeWidth={1.7} />
             </div>
 
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+            <p className={NATION_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>

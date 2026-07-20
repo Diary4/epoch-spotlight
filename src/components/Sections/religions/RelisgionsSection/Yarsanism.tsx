@@ -9,16 +9,15 @@ import OtherFaithTraditionsPage from "@/components/Sections/religions/Relisgions
 import bg from "@/assets/images/religions/k-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_DETAIL_CARD_GRID_2,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 import meaningImg from "@/assets/mainImages/letter.webp";
 import principlesImg from "@/assets/mainImages/story-2.webp";
 import jamkhanaImg from "@/assets/mainImages/shared.webp";
@@ -26,7 +25,8 @@ import bookImg from "@/assets/mainImages/story-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
 };
@@ -35,32 +35,52 @@ type YarsanismContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
 };
+
+type TopicId = "meaning" | "four-principles" | "jamkhana" | "sacred-book";
+
+type TopicContent = {
+  id: TopicId;
+  title: string;
+  text: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  meaning: meaningImg,
+  "four-principles": principlesImg,
+  jamkhana: jamkhanaImg,
+  "sacred-book": bookImg,
+};
+
 
 const content: Record<LangCode, YarsanismContent> = {
   en: {
     back: "Back",
     pageTitle: "YARSANISM (KAKAI)",
     subtitle: "Inner truth, devotion, and community",
-    cards: [
+    topics: [
       {
+        id: "meaning",
         title: "MEANING",
         text: "\u201CYarsan\u201D means \u201Cthe companions of God.\u201D In Kurdistan they are known as Kakais, from the Kurdish word \u201CKaka.\u201D",
       },
       {
+        id: "four-principles",
         title: "FOUR PRINCIPLES",
         text: "Purity, Truth, Selflessness (Nisti), and Religiosity (Rada). Three principles govern human relationships, and one governs the relationship with God.",
       },
       {
+        id: "jamkhana",
         title: "JAMKHANA",
         text: "The sacred gathering place where rites are performed. Music and the tambour hold a uniquely elevated spiritual role.",
       },
       {
+        id: "sacred-book",
         title: "SACRED BOOK",
         text: "The Sernjam — written in verse in the Gorani and Sorani Kurdish dialects.",
-      },
+      }
     ],
     tagline: "A quiet path of faith.",
   },
@@ -68,23 +88,27 @@ const content: Record<LangCode, YarsanismContent> = {
     back: "گەڕانەوە",
     pageTitle: "یارسانی (کاکەیی)",
     subtitle: "ڕاستی ناخ، باوەڕداری و کۆمەڵگە",
-    cards: [
+    topics: [
       {
+        id: "meaning",
         title: "واتا",
         text: "«یارسان» واتە یارانی خودا. لە کوردستان بە «کاکەیی» دەناسرێن کە لە وشەی «کاکا»ی کوردییەوە هاتووە.",
       },
       {
+        id: "four-principles",
         title: "چوار بنەماکە",
         text: "پاکی، ڕاستی، بێفیزی (خۆبچووککردنەوە) و دینداری. سێ بنەمایان پەیوەندییە مرۆییەکان ڕێکدەخەن و یەکێکیان پەیوەندی لەگەڵ خودا.",
       },
       {
+        id: "jamkhana",
         title: "جەمخانە",
         text: "شوێنی پیرۆزی کۆبوونەوە و ئەنجامدانی ڕێوڕەسمەکانە. مۆسیقا و ئامێری تەمبوور لای ئەوان پێگەیەکی ڕۆحی بالای هەیە.",
       },
       {
+        id: "sacred-book",
         title: "کتێبی پیرۆز",
         text: "(سەرەنجام) کە بە شێوەزاری گۆران و سۆرانی بە شیعر نووسراوەتەوە.",
-      },
+      }
     ],
     tagline: "ڕێگایەکی ئارام بۆ باوەڕ.",
   },
@@ -92,29 +116,32 @@ const content: Record<LangCode, YarsanismContent> = {
     back: "العودة",
     pageTitle: "اليارسانية (الكاكائية)",
     subtitle: "حقيقة الباطن، والإخلاص، والمجتمع",
-    cards: [
+    topics: [
       {
+        id: "meaning",
         title: "المعنى",
         text: "«يارسان» تعني أصحاب الله. ويُعرفون في كوردستان بالكاكائيين، نسبةً إلى الكلمة الكوردية «كاكا».",
       },
       {
+        id: "four-principles",
         title: "المبادئ الأربعة",
         text: "الطهارة، والصدق، والتجرّد (نِستي)، والتديّن (رَدا). ثلاثة منها تنظّم العلاقات بين الناس، والرابع ينظّم العلاقة مع الله.",
       },
       {
+        id: "jamkhana",
         title: "جمخانە",
         text: "المكان المقدّس للاجتماع وأداء الطقوس. وللموسيقى وآلة الطنبور مكانة روحية رفيعة عندهم.",
       },
       {
+        id: "sacred-book",
         title: "الكتاب المقدّس",
         text: "«السرنجام» المكتوب شعراً باللهجتين الكورديتين الكورانية والسورانية.",
-      },
+      }
     ],
     tagline: "طريقٌ هادئ للإيمان.",
   },
 };
 
-const cardImages = [meaningImg, principlesImg, jamkhanaImg, bookImg];
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
@@ -207,25 +234,21 @@ export default function YarsanismPage({
 
           <FaithDetailSpacer />
 
-          <section className={FAITH_DETAIL_CARD_GRID_2}>
-            {c.cards.map((card, i) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={cardImages[i]}
-                index={i}
-                animateAttr="data-yarsan-animate"
-              />
-            ))}
-          </section>
+          <NationTopicSwitcher
+            pageTitle={c.pageTitle}
+            topics={c.topics}
+            images={TOPIC_IMAGES}
+            animateAttr="data-yarsan-animate"
+            ariaLabel="Yarsanism topics"
+            langKey={lang}
+          />
 
           <section data-yarsan-animate="true" className={FAITH_TAGLINE_ACTION_SECTION_CLASS}>
             <div className="grid h-16 w-16 shrink-0 place-items-center self-auto text-[#c58b16]">
               <HeartHandshake className="h-12 w-12" strokeWidth={1.8} />
             </div>
 
-            <p className={`flex-1 text-start ${FAITH_TAGLINE_TEXT_CLASS}`}>
+            <p className={`flex-1 text-start ${NATION_TAGLINE_TEXT_CLASS}`}>
               {c.tagline}
             </p>
 

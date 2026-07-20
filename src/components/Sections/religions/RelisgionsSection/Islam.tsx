@@ -1,40 +1,43 @@
 import React from "react";
-import {
-  BookOpen,
-  MoonStar,
-  Landmark,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 import bg from "@/assets/images/religions/r-9.webp";
+import shafiImg from "@/assets/images/religions/islam/shafi.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_DETAIL_CARD_GRID_4,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "shafii-school" | "sufism" | "ministry" | "ramadan-eid";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
-  icon: typeof Landmark;
 };
 
 type IslamContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  "shafii-school": shafiImg,
+  sufism: bg,
+  ministry: bg,
+  "ramadan-eid": bg,
 };
 
 const content: Record<LangCode, IslamContent> = {
@@ -42,25 +45,25 @@ const content: Record<LangCode, IslamContent> = {
     back: "Back",
     pageTitle: "ISLAM",
     subtitle: "Faith, worship, and living tradition",
-    cards: [
+    topics: [
       {
+        id: "shafii-school",
         title: "SHAFI'I SCHOOL",
-        icon: BookOpen,
         text: "The majority of Kurds follow the Shafi'i school of thought, embraced since the 7th century CE during the caliphate of Umar ibn al-Khattab.",
       },
       {
+        id: "sufism",
         title: "SUFISM",
-        icon: Sparkles,
         text: "189 registered Sufi lodges across the KRI. The Qadiriyya and Naqshbandiyya orders shaped Kurdish society and culture for centuries through dhikr, poetry, and spiritual guidance.",
       },
       {
+        id: "ministry",
         title: "MINISTRY",
-        icon: Landmark,
         text: "The Ministry of Endowments and Religious Affairs supervises 6,103 mosques, 121,112 staff, and serves all religions — not only Islam. Includes directorates for Christian and Yazidi affairs.",
       },
       {
+        id: "ramadan-eid",
         title: "RAMADAN & EID",
-        icon: MoonStar,
         text: "Shared seasons of fasting, prayer, and generosity. Christians in Erbil prepare iftar tables during Ramadan as a gesture of solidarity with Muslims.",
       },
     ],
@@ -70,25 +73,25 @@ const content: Record<LangCode, IslamContent> = {
     back: "گەڕانەوە",
     pageTitle: "ئیسلام",
     subtitle: "باوەڕ، پەرستن و نەریتە زیندووەکان",
-    cards: [
+    topics: [
       {
+        id: "shafii-school",
         title: "مەزهەبی شافعی",
-        icon: BookOpen,
         text: "زۆربەی کوردان پەیڕەوی مەزهەبی شافعی دەکەن. هەرچەندە ئیسلام لە سەدەی حەوتەمی زایینییەوە گەیشتووەتە کوردستان، بەڵام ئەم مەزهەبە بە درێژایی سەدەکان بووەتە ناسنامەی سەرەکی و ڕێچکەی فقهی و ڕۆحیی زۆربەی کۆمەڵگەی کوردی.",
       },
       {
+        id: "sufism",
         title: "سۆفیگەری",
-        icon: Sparkles,
         text: "١٨٩ تەکیەی سۆفیگەری تۆمارکراو لە هەرێم هەن. تەریقەتی قادری و نەقشبەندی ڕۆڵیان هەبووە لە پەروەردەی ڕۆحی و کلتووری کۆمەڵگەدا.",
       },
       {
+        id: "ministry",
         title: "وەزارەت",
-        icon: Landmark,
         text: "وەزارەتی ئەوقاف و کاروباری ئایینی سەرپەرشتی ٦١٠٣ مزگەوت دەکات. ئەم وەزارەتە خزمەتی هەموو ئایینەکان دەکات و بەڕێوەبەرایەتی تایبەتی بۆ مەسیحی و ئێزیدییەکان هەیە.",
       },
       {
+        id: "ramadan-eid",
         title: "ڕەمەزان و جەژن",
-        icon: MoonStar,
         text: "وەرزی ڕۆژوو و نزا و بەخشندەییە. مەسیحییەکانی هەولێر لە ڕەمەزاندا خوانی بەربانگ بۆ نیشاندانی هاوسۆزی ئامادە دەکەن.",
       },
     ],
@@ -98,25 +101,25 @@ const content: Record<LangCode, IslamContent> = {
     back: "العودة",
     pageTitle: "الإسلام",
     subtitle: "إيمان وعبادة وتقاليد حيّة",
-    cards: [
+    topics: [
       {
+        id: "shafii-school",
         title: "المذهب الشافعي",
-        icon: BookOpen,
         text: "تتبع غالبية الكورد المذهب الشافعي. ومع أن الإسلام بلغ كوردستان منذ القرن السابع الميلادي، فقد غدا هذا المذهب على مرّ القرون عنوان الهوية الرئيسية والطريق الفقهي والروحي لمعظم المجتمع الكوردي.",
       },
       {
+        id: "sufism",
         title: "التصوّف",
-        icon: Sparkles,
         text: "١٨٩ تكية صوفية مسجلة في الإقليم. أدت الطريقتان القادرية والنقشبندية دوراً بارزاً في التربية الروحية وثقافة المجتمع.",
       },
       {
+        id: "ministry",
         title: "الوزارة",
-        icon: Landmark,
         text: "تشرف وزارة الأوقاف والشؤون الدينية على ٦١٠٣ مساجد. وتخدم هذه الوزارة جميع الأديان، ولها مديريات خاصة بالشؤون المسيحية والإيزيدية.",
       },
       {
+        id: "ramadan-eid",
         title: "رمضان والعيد",
-        icon: MoonStar,
         text: "موسم للصيام والصلاة والعطاء. ويُعدّ المسيحيون في أربيل موائد الإفطار في رمضان تعبيراً عن التضامن.",
       },
     ],
@@ -207,25 +210,21 @@ export default function IslamPage({
 
           <FaithDetailSpacer />
 
-          <section className={FAITH_DETAIL_CARD_GRID_4}>
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-islam-animate"
-              />
-            ))}
-          </section>
+          <NationTopicSwitcher
+            pageTitle={c.pageTitle}
+            topics={c.topics}
+            images={TOPIC_IMAGES}
+            animateAttr="data-islam-animate"
+            ariaLabel="Islam topics"
+            langKey={lang}
+          />
 
           <section data-islam-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
             <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>
               ☾
             </div>
 
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+            <p className={NATION_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>

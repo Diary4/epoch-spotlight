@@ -1,117 +1,127 @@
 import React from "react";
 import {
   Flame,
-  Leaf,
-  Scale,
   Sparkles,
-  Sun,
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/z-1.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_DETAIL_CARD_GRID_4,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
 
-const content: Record<
-  LangCode,
-  {
-    title: string;
-    subtitle: string;
-    tagline: string;
-    cards: { title: string; icon: typeof Scale; text: string }[];
-  }
-> = {
+type PageContent = {
+  title: string;
+  subtitle: string;
+  tagline: string;
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
+};
+
+type TopicId = "history" | "three-pillars" | "environment" | "nowruz";
+
+type TopicContent = {
+  id: TopicId;
+  title: string;
+  text: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  history: bg,
+  "three-pillars": bg,
+  environment: bg,
+  nowruz: bg,
+};
+
+const content: Record<LangCode, PageContent> = {
   en: {
     title: "Zoroastrianism",
     subtitle: "Light, truth, and ancient wisdom",
     tagline: "An ancient flame of wisdom.",
-    cards: [
+    topics: [
       {
+        id: "history",
         title: "History",
-        icon: Scale,
         text: "Dominant religion in Kurdistan before Islam. Flourished during Achaemenid and Sassanian empires. First fire temple in Iraqi Kurdistan opened in Sulaymaniyah in 2016.",
       },
       {
+        id: "three-pillars",
         title: "Three Pillars",
-        icon: Sparkles,
         text: "Good Thoughts, Good Words, Good Deeds. Work and diligence are religious duties. Respecting the beliefs of others is a core principle.",
       },
       {
+        id: "environment",
         title: "Environment",
-        icon: Leaf,
         text: "Fire, air, water, and earth are sacred. Environmental protection is the most crucial religious duty. Both spouses must plant a tree upon marriage and with the birth of each child.",
       },
       {
+        id: "nowruz",
         title: "Nowruz",
-        icon: Sun,
         text: "The most prominent Zoroastrian festival, celebrated March 21. Since 2015 the Atashgah has provided over 10,000 job opportunities to people of all backgrounds in Kurdistan.",
-      },
+      }
     ],
   },
   ku: {
     title: "زەردەشتیەتی",
     subtitle: "ڕووناکی و ڕاستی و دانایی دێرین",
     tagline: "بڵێسەی داناییەکی دێرین کە ناکوژێتەوە.",
-    cards: [
+    topics: [
       {
+        id: "history",
         title: "مێژوو",
-        icon: Scale,
         text: "پێش ئیسلام ئاینی باڵادەست بوو لە کوردستان. لە سەردەمی هەخامەنشی و ساسانییەکاندا گەشەی کرد. یەکەم پەرستگای ئاگر لە کوردستانی عێراق ساڵی 2016 لە سلێمانی کرایەوە.",
       },
       {
+        id: "three-pillars",
         title: "سێ بنەما",
-        icon: Sparkles,
         text: "بیرۆکەی باش، وشەی باش، کردەوەی باش. کار و هەوڵدان ئەرکی ئاینییە. ڕێزگرتن لە باوەڕی ئەوانی تر بنەمایەکی سەرەکییە.",
       },
       {
+        id: "environment",
         title: "ژینگە",
-        icon: Leaf,
         text: "ئاگر و هەوا و ئاو و خاک توخمە پیرۆزەکانن. پاراستنی ژینگە لە گرنگترین ئەرکە ئاینییەکانە. هەر ژن و مێردێک دەبێت لە کاتی هاوسەرگیری و لەدایکبوونی هەر منداڵێکدا دارێک بچێنن.",
       },
       {
+        id: "nowruz",
         title: "نەورۆز",
-        icon: Sun,
         text: "گرنگترین جەژنی زەردەشتییە و لە 21ی ئازاردا دەگیرێت. لە ساڵی 2015ەوە ئاتەشگا زیاتر لە 10,000 هەلی کار بۆ خەڵکی ئاین و نەتەوە جیاوازەکانی کوردستان دابین کردووە.",
-      },
+      }
     ],
   },
   ar: {
     title: "الزرادشتية",
     subtitle: "النور والحقيقة والحكمة العريقة",
     tagline: "شعلة حكمة عريقة لا تنطفئ.",
-    cards: [
+    topics: [
       {
+        id: "history",
         title: "التاريخ",
-        icon: Scale,
         text: "كانت الديانة السائدة في كوردستان قبل الإسلام. ازدهرت في عهدَي الأخمينيين والساسانيين. افتُتح أول معبد للنار في كوردستان العراق بالسليمانية عام 2016.",
       },
       {
+        id: "three-pillars",
         title: "الركائز الثلاث",
-        icon: Sparkles,
         text: "الأفكار الحسنة والكلمات الحسنة والأفعال الحسنة. العمل والاجتهاد فريضة دينية. واحترام معتقدات الآخرين مبدأ أساسي.",
       },
       {
+        id: "environment",
         title: "البيئة",
-        icon: Leaf,
         text: "النار والهواء والماء والأرض عناصر مقدسة. وحماية البيئة أهم الواجبات الدينية. ويلزم كل زوجين زرع شجرة عند الزواج وعند ولادة كل طفل.",
       },
       {
+        id: "nowruz",
         title: "نوروز",
-        icon: Sun,
         text: "أبرز الأعياد الزرادشتية، يُحتفل به في 21 مارس. ومنذ عام 2015 وفّر معبد النار أكثر من 10,000 فرصة عمل لأبناء مختلف الأديان والقوميات في كوردستان.",
-      },
+      }
     ],
   },
 };
@@ -199,25 +209,21 @@ export default function ZoroastrianismPage({
 
           <FaithDetailSpacer />
 
-          <section className={FAITH_DETAIL_CARD_GRID_4}>
-            {c.cards.map((card, index) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={bg}
-                index={index}
-                animateAttr="data-zoro-animate"
-              />
-            ))}
-          </section>
+          <NationTopicSwitcher
+            pageTitle={c.title}
+            topics={c.topics}
+            images={TOPIC_IMAGES}
+            animateAttr="data-zoro-animate"
+            ariaLabel="Zoroastrianism topics"
+            langKey={lang}
+          />
 
           <section data-zoro-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
             <div className={FAITH_TAGLINE_ICON_WRAP_CLASS}>
               <Flame className="h-10 w-10" />
             </div>
 
-            <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+            <p className={NATION_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
 
             <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
           </section>

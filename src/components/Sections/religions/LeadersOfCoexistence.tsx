@@ -19,9 +19,11 @@ import nationsImg from "@/assets/images/religions/nations.webp";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
 import mustafaBarzaniImg from "@/assets/images/malaMustafa/mustafa-barzani.jpg";
+import masoudBarzaniImg from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
 
 const leaderImages: Record<string, string> = {
   "mustafa-barzani": mustafaBarzaniImg,
+  "masoud-barzani": masoudBarzaniImg,
 };
 
 const coexistenceImages: Record<string, string> = {

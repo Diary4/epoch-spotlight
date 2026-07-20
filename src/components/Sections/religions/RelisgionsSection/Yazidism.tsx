@@ -9,16 +9,15 @@ import OtherFaithTraditionsPage from "@/components/Sections/religions/Relisgions
 import bg from "@/assets/images/religions/r-4.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
-  FaithDetailCard,
   FAITH_CONTENT_PADDING,
-  FAITH_DETAIL_CARD_GRID_2,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
+import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 import lalish from "@/assets/mainImages/story-1.webp";
 import peacock from "@/assets/mainImages/story-2.webp";
 import jemayiImg from "@/assets/images/religions/yazidism/jemayi.jpg";
@@ -26,7 +25,8 @@ import candle from "@/assets/images/bg-2.webp";
 
 type LangCode = "en" | "ku" | "ar";
 
-type CardContent = {
+type TopicContent = {
+  id: TopicId;
   title: string;
   text: string;
 };
@@ -35,32 +35,52 @@ type YazidismContent = {
   back: string;
   pageTitle: string;
   subtitle: string;
-  cards: [CardContent, CardContent, CardContent, CardContent];
+  topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
 };
+
+type TopicId = "lalish" | "tawus-melek" | "jemayi" | "resilience";
+
+type TopicContent = {
+  id: TopicId;
+  title: string;
+  text: string;
+};
+
+const TOPIC_IMAGES: Record<TopicId, string> = {
+  lalish: lalish,
+  "tawus-melek": peacock,
+  jemayi: jemayiImg,
+  resilience: candle,
+};
+
 
 const content: Record<LangCode, YazidismContent> = {
   en: {
     back: "Back",
     pageTitle: "YAZIDISM",
     subtitle: "Sacred valley, memory, and resilience",
-    cards: [
+    topics: [
       {
+        id: "lalish",
         title: "LALISH",
         text: "60 km north of Mosul, in the Sheikhan district. Home to the shrine of Sheikh Adi and the global spiritual center of the Yazidi faith.",
       },
       {
+        id: "tawus-melek",
         title: "TAWUS MELEK",
         text: "The Peacock Angel — chief of the angels and guardian of the universe, the pillar of Yazidi belief and identity.",
       },
       {
+        id: "jemayi",
         title: "JEMAYÎ",
         text: "The largest annual religious gathering (6–13 October). One of the four festivals officially recognized as public holidays.",
       },
       {
+        id: "resilience",
         title: "RESILIENCE",
         text: "The Yazidi population in Kurdistan is estimated at 750,000–800,000. The Kurdistan Parliament has recognized August 3 as Yazidi Genocide Day.",
-      },
+      }
     ],
     tagline: "Rooted in faith, living with dignity.",
   },
@@ -68,23 +88,27 @@ const content: Record<LangCode, YazidismContent> = {
     back: "گەڕانەوە",
     pageTitle: "ئێزیدیاتی",
     subtitle: "دۆڵە پیرۆزەکە، یادەوەری و خۆڕاگری",
-    cards: [
+    topics: [
       {
+        id: "lalish",
         title: "لالش",
         text: "٦٠ کم لە باکووری مووسڵەوە دوورە، لە قەزای شێخان. مەزاری شێخ عەدی لێیە و ناوەندی ڕۆحیی جیهانی ئێزیدییە.",
       },
       {
+        id: "tawus-melek",
         title: "مەلەک تاووس",
         text: "گەورەی فریشتەکانە و پارێزەری گەردوونە. کۆڵەکەی باوەڕی ئێزیدی و ناسنامەیانە.",
       },
       {
+        id: "jemayi",
         title: "جەمایێ",
         text: "گەورەترین کۆبوونەوەی ئایینی ساڵانەیە (٦–١٣ی تشرینی یەکەم). یەکێکە لەو چوار جەژنەی کە وەک پشووی فەرمی ناسراون.",
       },
       {
+        id: "resilience",
         title: "خۆڕاگری",
         text: "ژمارەی ئێزیدییەکان لە کوردستان بە ٧٥٠ بۆ ٨٠٠ هەزار کەس دەخەمڵێنرێت. پەرلەمانی کوردستان ڕۆژی ٣ی ئابی وەک ڕۆژی جینۆسایدی ئێزیدییەکان ناساندووە.",
-      },
+      }
     ],
     tagline: "لە باوەڕدا ڕەگداکوتاون، بە کەرامەتەوە دەژین.",
   },
@@ -92,29 +116,32 @@ const content: Record<LangCode, YazidismContent> = {
     back: "العودة",
     pageTitle: "الإيزيدية",
     subtitle: "الوادي المقدس، الذاكرة، والصمود",
-    cards: [
+    topics: [
       {
+        id: "lalish",
         title: "لalish",
         text: "تبعد ٦٠ كم شمالي الموصل، في قضاء الشيخان. تضمّ ضريح الشيخ عدي، وهي المركز الروحي العالمي للإيزيديين.",
       },
       {
+        id: "tawus-melek",
         title: "ملك طاووس",
         text: "كبير الملائكة وحارس الكون. عماد العقيدة الإيزيدية وهويتها.",
       },
       {
+        id: "jemayi",
         title: "جماعية",
         text: "أكبر تجمّع ديني سنوي (٦–١٣ تشرين الأول). أحد أربعة أعياد معترف بها كعطلٍ رسمية.",
       },
       {
+        id: "resilience",
         title: "الصمود",
         text: "يُقدَّر عدد الإيزيديين في إقليم كوردستان بـ ٧٥٠ إلى ٨٠٠ ألف نسمة. وقد اعتمد برلمان كوردستان يوم ٣ آب يوماً لإبادة الإيزيديين.",
-      },
+      }
     ],
     tagline: "متجذرون في الإيمان، نعيش بكرامة.",
   },
 };
 
-const cardImages = [lalish, peacock, jemayiImg, candle];
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
@@ -207,25 +234,21 @@ export default function YazidismPage({
 
           <FaithDetailSpacer />
 
-          <section className={FAITH_DETAIL_CARD_GRID_2}>
-            {c.cards.map((card, i) => (
-              <FaithDetailCard
-                key={card.title}
-                title={card.title}
-                text={card.text}
-                image={cardImages[i]}
-                index={i}
-                animateAttr="data-yazidi-animate"
-              />
-            ))}
-          </section>
+          <NationTopicSwitcher
+            pageTitle={c.pageTitle}
+            topics={c.topics}
+            images={TOPIC_IMAGES}
+            animateAttr="data-yazidi-animate"
+            ariaLabel="Yazidism topics"
+            langKey={lang}
+          />
 
           <section data-yazidi-animate="true" className={FAITH_TAGLINE_ACTION_SECTION_CLASS}>
             <div className="grid h-16 w-16 shrink-0 place-items-center self-auto text-[#c58b16]">
               <HeartHandshake className="h-12 w-12" strokeWidth={1.8} />
             </div>
 
-            <p className={`flex-1 text-start ${FAITH_TAGLINE_TEXT_CLASS}`}>
+            <p className={`flex-1 text-start ${NATION_TAGLINE_TEXT_CLASS}`}>
               {c.tagline}
             </p>
 
