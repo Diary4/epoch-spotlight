@@ -1,5 +1,4 @@
 import React from "react";
-import gsap from "gsap";
 import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/a-1.webp";
@@ -20,6 +19,7 @@ import {
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
 import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
+import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 
 type LangCode = "en" | "ku" | "ar";
 type TopicId = "history" | "churches" | "community" | "parliament";
@@ -165,34 +165,15 @@ export default function ArmeniansPage({
       ? { fontFamily: "'Almarai', 'Oxygen', sans-serif" }
       : undefined;
 
-  React.useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set("[data-armenians-hero='true']", { autoAlpha: 0, scale: 1.04 });
-      gsap.set("[data-armenians-animate='true']", { autoAlpha: 0, y: 24 });
-
-      const tl = gsap.timeline();
-      tl.to("[data-armenians-hero='true']", {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.9,
-        ease: "power2.out",
-      }).to(
-        "[data-armenians-animate='true']",
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.08,
-          ease: "power2.out",
-        },
-        "-=0.25",
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [lang]);
+  useReligionPageAnimation(
+    sectionRef,
+    {
+      hero: "[data-armenians-hero='true']",
+      animate: "[data-armenians-animate='true']",
+      controls: "[data-armenians-controls='true']",
+    },
+    [lang],
+  );
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>

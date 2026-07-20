@@ -26,6 +26,8 @@ export function NationTopicSwitcher({
   langKey,
 }: NationTopicSwitcherProps) {
   const panelRef = React.useRef<HTMLDivElement | null>(null);
+  const skipPanelMotion = React.useRef(true);
+  const prevLangKey = React.useRef(langKey);
   const [activeId, setActiveId] = React.useState(topics[0]?.id ?? "");
 
   React.useEffect(() => {
@@ -37,12 +39,22 @@ export function NationTopicSwitcher({
   const activeTopic = topics.find((t) => t.id === activeId) ?? topics[0];
   const activeImage = activeTopic ? images[activeTopic.id] : undefined;
 
+  // Topic switches only — skip mount / language change (page timeline owns those).
   React.useEffect(() => {
     if (!panelRef.current || !activeTopic) return;
+    if (skipPanelMotion.current) {
+      skipPanelMotion.current = false;
+      prevLangKey.current = langKey;
+      return;
+    }
+    if (prevLangKey.current !== langKey) {
+      prevLangKey.current = langKey;
+      return;
+    }
     gsap.fromTo(
       panelRef.current,
-      { autoAlpha: 0.35, y: 18 },
-      { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" },
+      { autoAlpha: 0.45, y: 12 },
+      { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" },
     );
   }, [activeId, langKey, activeTopic]);
 
