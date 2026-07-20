@@ -8,6 +8,7 @@ import {
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
+import krgCabinetHero from "@/assets/images/religions/rights/krg_cabinet.jpg";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {
@@ -145,7 +146,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
 };
 
 export default function RightsKRG(
-  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content">,
+  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content" | "heroImage">,
 ) {
-  return <RightsDetailPage {...props} content={content} />;
+  return <RightsDetailPage {...props} content={content} heroImage={krgCabinetHero} />;
 }

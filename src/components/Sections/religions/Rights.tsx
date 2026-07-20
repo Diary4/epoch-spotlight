@@ -18,10 +18,10 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg3 from "@/assets/images/religions/r-8.webp";
-import governmentImg from "@/assets/mainImages/government.webp";
-import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
+import governmentImg from "@/assets/images/religions/rights/krg_cabinet.jpg";
+import parliamentImg from "@/assets/images/religions/rights/images.jpeg";
 import letterImg from "@/assets/mainImages/letter.webp";
-import buildingImg from "@/assets/mainImages/building.webp";
+import buildingImg from "@/assets/images/religions/rights/Hawler_Castle.jpg";
 import sharedImg from "@/assets/mainImages/shared.webp";
 import mediaImg from "@/assets/images/religions/r-6.webp";
 

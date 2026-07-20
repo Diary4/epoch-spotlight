@@ -9,6 +9,8 @@ import heritageImg from "@/assets/images/religions/judaism/250404-IK.jpg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
+  FAITH_DETAIL_CONTENT_WIDTH,
+  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -181,30 +183,30 @@ export default function JudaismPage({
           languageLabel={languageLabel}
         />
 
-        <div className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}>
+        <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-judaism-animate="true"
-            className="mx-auto max-w-[900px] pt-32 text-center"
+            className={FAITH_DETAIL_HEADER_CLASS}
           >
             <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
               ✥
             </div>
 
-            <div className="mx-auto mb-5 w-[480px] max-w-full">
+            <div className="mx-auto mb-3 mt-3 w-[260px] max-w-full">
               <DecorativeLine />
             </div>
 
-            <h1 className="break-words font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
+            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
               {c.title}
             </h1>
 
-            <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
-              {c.subtitle}
-            </p>
-
-            <div className="mx-auto mt-8 w-[210px] max-w-full">
+            <div className="mx-auto mt-5 w-[180px] max-w-full">
               <DecorativeLine />
             </div>
+
+            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+              {c.subtitle}
+            </p>
           </header>
 
           <FaithDetailSpacer />

@@ -18,6 +18,12 @@ export const FAITH_SECTION_CLASS =
 
 export const FAITH_CONTENT_PADDING = "px-0";
 
+/** Shared layout so every faith/nation detail page aligns title + topic card the same way. */
+export const FAITH_DETAIL_CONTENT_WIDTH = "max-w-[1120px]";
+export const FAITH_DETAIL_HEADER_CLASS =
+  "mx-auto max-w-[850px] pt-[140px] text-center";
+export const FAITH_DETAIL_HEADER_SPACER = "h-[540px]";
+
 export const FAITH_ICON_CARD_CLASS =
   "min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm";
 
@@ -230,9 +236,7 @@ export function FaithDetailHeroVideo({
   );
 }
 
-/** Fixed spacer between hero header and card grid on the 1920px artboard. */
-export const FAITH_DETAIL_HEADER_SPACER = "h-[420px]";
-
+/** Fixed spacer between hero header and topic card on the 1920px artboard. */
 export function FaithDetailSpacer({ desktopHeight = FAITH_DETAIL_HEADER_SPACER }: { desktopHeight?: string }) {
   return <div className={desktopHeight} />;
 }

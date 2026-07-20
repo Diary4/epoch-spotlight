@@ -10,6 +10,8 @@ import bg from "@/assets/images/religions/r-4.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
+  FAITH_DETAIL_CONTENT_WIDTH,
+  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
@@ -210,26 +212,26 @@ export default function YazidismPage({
           languageLabel={languageLabel}
         />
 
-        <div className={`relative z-10 mx-auto max-w-[1020px] ${FAITH_CONTENT_PADDING}`}>
+        <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-yazidi-animate="true"
-            className="mx-auto max-w-[820px] pt-12 text-center"
+            className={FAITH_DETAIL_HEADER_CLASS}
           >
-            <div className="mx-auto mb-4 w-[440px] max-w-full">
+            <div className="mx-auto mb-3 mt-3 w-[260px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className="break-words font-serif text-[104px] font-semibold uppercase leading-[1] tracking-[0.1em] text-[#2f1f12]">
+            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
               {c.pageTitle}
             </h1>
 
-            <p className="mt-4 font-serif text-[31px] font-semibold text-[#a46f22]">
-              {c.subtitle}
-            </p>
-
-            <div className="mx-auto mt-6 w-[190px] max-w-full">
+            <div className="mx-auto mt-5 w-[180px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
+
+            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+              {c.subtitle}
+            </p>
           </header>
 
           <FaithDetailSpacer />

@@ -2,6 +2,7 @@ import { AlertTriangle, DoorOpen, Shield, Users } from "lucide-react";
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
+import hawlerCastleHero from "@/assets/images/religions/rights/Hawler_Castle.jpg";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {
@@ -139,7 +140,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
 };
 
 export default function Rights2014(
-  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content">,
+  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content" | "heroImage">,
 ) {
-  return <RightsDetailPage {...props} content={content} />;
+  return <RightsDetailPage {...props} content={content} heroImage={hawlerCastleHero} />;
 }

@@ -9,6 +9,8 @@ import patriarchImg from "@/assets/images/new/religions/nations/assyrian.webp";
 import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import {
   FAITH_CONTENT_PADDING,
+  FAITH_DETAIL_CONTENT_WIDTH,
+  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -211,11 +213,11 @@ export default function ChaldoAssyriansPage({
 
       <div
         style={fontStyle}
-        className={`relative z-10 mx-auto max-w-[1120px] ${FAITH_CONTENT_PADDING}`}
+        className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}
       >
         <header
           data-chaldo-animate="true"
-          className="mx-auto max-w-[850px] pt-[140px] text-center"
+          className={FAITH_DETAIL_HEADER_CLASS}
         >
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
@@ -231,7 +233,7 @@ export default function ChaldoAssyriansPage({
           </p>
         </header>
 
-        <FaithDetailSpacer desktopHeight="h-[540px]" />
+        <FaithDetailSpacer />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}

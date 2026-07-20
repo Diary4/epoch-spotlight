@@ -139,9 +139,9 @@ export default function RightsDetailPage({
         data-rd-hero="true"
         src={cover}
         alt=""
-        className="pointer-events-none absolute inset-x-0 top-[200px] z-0 h-[720px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-[360px] z-0 h-[720px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)]"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-[200px] z-[1] h-[720px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-[360px] z-[1] h-[720px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_10%,transparent_86%,#faf8f5_100%)]" />
 
       {onBack && (
         <button
@@ -181,7 +181,7 @@ export default function RightsDetailPage({
           </p>
         </header>
 
-        <section className="mt-[780px] flex flex-col gap-5 pb-4">
+        <section className="mt-[940px] flex flex-col gap-5 pb-4">
           {c.cards.map((card) => (
             <RightsChapter key={card.id} card={card} />
           ))}
