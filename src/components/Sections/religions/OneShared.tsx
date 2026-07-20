@@ -21,7 +21,7 @@ import zoroImg from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import eidImg from "@/assets/images/religions/sharedlife/mosques.jpeg";
 import christmasImg from "@/assets/images/religions/sharedlife/christmas.jpeg";
 import yazidiFestImg from "@/assets/images/religions/sharedlife/yazidi-festival.jpeg";
-import kakaiImg from "@/assets/images/new/religions/faiths/yarsanism.webp";
+import kakaiImg from "@/assets/images/religions/sharedlife/kakai-festival.jpeg";
 
 type LangCode = "en" | "ku" | "ar";
 type TabId = "celebrations" | "heritage";

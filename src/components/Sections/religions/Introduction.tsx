@@ -14,6 +14,7 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import bg from "@/assets/images/religions/cradle.jpeg";
+import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import lawsImg from "@/assets/images/religions/nl-1.webp";
 import valleyImg from "@/assets/images/religions/b-1.webp";
@@ -389,6 +390,12 @@ const tabs: { id: TabId; icon: typeof MoonStar }[] = [
   { id: "laws", icon: Scale },
 ];
 
+const tabHeroImages: Record<TabId, string> = {
+  religions: bg,
+  nations: nationsCover,
+  laws: bg,
+};
+
 function DecorativeLine({ color = "#c99a55" }: { color?: string }) {
   return (
     <div className="flex items-center justify-center gap-4">
@@ -464,7 +471,7 @@ export default function IntroductionPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [lang, activeFaith, activeNation]);
+  }, [lang, activeFaith, activeNation, activeTab]);
 
   const closeDetail = () => {
     setActiveFaith(null);
@@ -494,15 +501,14 @@ export default function IntroductionPage({
       sectionRef={sectionRef}
       className="min-h-full px-12 pb-12"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[980px] w-full overflow-hidden bg-[#faf8f5]">
-        <img
-          data-intro-hero="true"
-          src={bg}
-          alt=""
-          className="block h-full w-full object-cover object-[center_32%]"
-        />
-        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#faf8f5] from-10% via-[#faf8f5]/85 via-45% to-transparent" />
-      </div>
+      <img
+        data-intro-hero="true"
+        key={activeTab}
+        src={tabHeroImages[activeTab]}
+        alt=""
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1100px] w-full object-cover object-[center_32%] [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)]"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[1100px] bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]" />
 
       {onBack && (
         <button
@@ -542,7 +548,7 @@ export default function IntroductionPage({
           </p>
         </header>
 
-        <section data-intro-animate="true" className="mt-[760px] flex flex-1 flex-col pb-4">
+        <section data-intro-animate="true" className="mt-[820px] flex flex-1 flex-col pb-4">
           <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
             <div className="flex gap-2">
               {tabs.map((tab) => {
