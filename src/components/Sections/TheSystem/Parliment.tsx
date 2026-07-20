@@ -8,7 +8,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import bg from "@/assets/images/parliment/parliment.webp";
+import bg from "@/assets/images/religions/rights/parliment.jpeg";
 import lawmakingIcon from "@/assets/icons/thesystem/parliment/lawmaking.webp";
 import representationIcon from "@/assets/icons/thesystem/parliment/representation.webp";
 import oversightIcon from "@/assets/icons/thesystem/parliment/oversight.webp";
