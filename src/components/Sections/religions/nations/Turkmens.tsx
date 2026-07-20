@@ -11,7 +11,7 @@ import {
   FAITH_CONTENT_PADDING,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
@@ -194,7 +194,11 @@ export default function TurkmensPage({
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
-      <FaithDetailHeroImage heroAttr="data-turkmens-hero" src={heroBg} />
+      <FaithDetailHeroImage
+        heroAttr="data-turkmens-hero"
+        src={heroBg}
+        overlayClassName="bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]"
+      />
 
       <FaithDetailControls
         controlsAttr="data-turkmens-controls"
@@ -211,26 +215,23 @@ export default function TurkmensPage({
       >
         <header
           data-turkmens-animate="true"
-          className="mx-auto max-w-[900px] pt-32 text-center"
+          className="mx-auto max-w-[850px] pt-[140px] text-center"
         >
-          <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-            ✥
+          <div className="mx-auto mb-2 w-[220px]">
+            <DecorativeLine color="#c3923a" />
           </div>
-          <div className="mx-auto mb-5 w-[480px] max-w-full">
-            <DecorativeLine />
-          </div>
-          <h1 className="whitespace-nowrap font-serif text-[118px] font-semibold uppercase leading-[1] tracking-[0.16em] text-[#2f1f12]">
+          <h1 className="break-words font-serif text-[84px] font-light uppercase leading-[1.02] tracking-[0.04em] text-[#3b2410]">
             {c.pageTitle}
           </h1>
-          <p className="mt-4 font-serif text-[40px] font-semibold text-[#7d5a2d]">
+          <div className="mx-auto mt-4 w-[160px]">
+            <DecorativeLine color="#c3923a" />
+          </div>
+          <p className="mx-auto mt-4 max-w-[640px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
             {c.subtitle}
           </p>
-          <div className="mx-auto mt-8 w-[210px] max-w-full">
-            <DecorativeLine />
-          </div>
         </header>
 
-        <FaithDetailSpacer desktopHeight="h-[420px]" />
+        <FaithDetailSpacer desktopHeight="h-[540px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}
@@ -243,7 +244,7 @@ export default function TurkmensPage({
 
         <section data-turkmens-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
           <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>✺</div>
-          <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+          <p className={NATION_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
           <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
         </section>
 

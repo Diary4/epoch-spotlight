@@ -11,7 +11,7 @@ import {
   FAITH_CONTENT_PADDING,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
-  FAITH_TAGLINE_TEXT_CLASS,
+  NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
   FaithDetailHeroImage,
   FaithDetailPageShell,
@@ -218,16 +218,16 @@ export default function KurdsPage({
           data-kurds-animate="true"
           className="mx-auto max-w-[850px] pt-[140px] text-center"
         >
-          <div className="mx-auto mb-2 w-[220px]">
+          <div className="mx-auto mb-3 mt-3 w-[260px]">
             <DecorativeLine color="#c3923a" />
           </div>
-          <h1 className="break-words font-serif text-[84px] font-semibold uppercase leading-[1.02] tracking-[0.04em] text-[#3b2410]">
+          <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
             {c.pageTitle}
           </h1>
-          <div className="mx-auto mt-4 w-[160px]">
+          <div className="mx-auto mt-5 w-[180px]">
             <DecorativeLine color="#c3923a" />
           </div>
-          <p className="mx-auto mt-4 max-w-[640px] font-serif text-[22px] font-medium leading-relaxed text-[#4d3c2a]">
+          <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
             {c.subtitle}
           </p>
         </header>
@@ -245,7 +245,7 @@ export default function KurdsPage({
 
         <section data-kurds-animate="true" className={FAITH_TAGLINE_SECTION_CLASS}>
           <div className={`${FAITH_TAGLINE_ICON_WRAP_CLASS} text-[42px]`}>✺</div>
-          <p className={FAITH_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
+          <p className={NATION_TAGLINE_TEXT_CLASS}>{c.tagline}</p>
           <Sparkles className="h-8 w-8 shrink-0 text-[#c58b16]" />
         </section>
 

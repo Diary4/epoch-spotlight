@@ -65,7 +65,7 @@ export function NationTopicSwitcher({
                 key={topic.id}
                 type="button"
                 onClick={() => setActiveId(topic.id)}
-                className={`border-b-2 px-7 py-4 font-serif text-[22px] font-semibold uppercase tracking-[0.08em] transition-colors ${
+                className={`border-b-2 px-7 py-4 font-serif text-[22px] font-light uppercase tracking-[0.08em] transition-colors ${
                   isActive
                     ? "border-[#b98222] text-[#2f1f12]"
                     : "border-transparent text-[#8a6a45] hover:text-[#3f2b17]"
@@ -94,14 +94,14 @@ export function NationTopicSwitcher({
         </div>
 
         <div className="flex flex-col justify-center px-10 py-12">
-          <p className="font-serif text-[15px] font-semibold uppercase tracking-[0.22em] text-[#b98222]">
+          <p className="font-serif text-[15px] font-light uppercase tracking-[0.22em] text-[#b98222]">
             {pageTitle}
           </p>
-          <h2 className="mt-4 font-serif text-[48px] font-semibold uppercase leading-[1.05] tracking-[0.06em] text-[#2f1f12]">
+          <h2 className="mt-4 font-serif text-[48px] font-light uppercase leading-[1.05] tracking-[0.06em] text-[#2f1f12]">
             {activeTopic.title}
           </h2>
           <span className="mt-5 block h-[3px] w-16 bg-[#b9822d]" />
-          <p className="mt-7 text-[24px] font-medium leading-relaxed text-[#5a4a3a]">
+          <p className="mt-7 text-[24px] font-light leading-relaxed text-[#5a4a3a]">
             {activeTopic.text}
           </p>
         </div>

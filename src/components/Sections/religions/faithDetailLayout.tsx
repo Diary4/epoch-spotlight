@@ -75,6 +75,9 @@ export const FAITH_TAGLINE_ICON_WRAP_CLASS =
 export const FAITH_TAGLINE_TEXT_CLASS =
   "break-words font-serif text-[28px] font-semibold leading-tight text-[#3b2410]";
 
+export const NATION_TAGLINE_TEXT_CLASS =
+  "break-words font-serif text-[28px] font-light leading-tight text-[#3b2410]";
+
 export const FAITH_TAGLINE_ACTION_SECTION_CLASS =
   "mx-auto mt-7 flex flex-row items-center gap-7 rounded-[26px] border-2 border-[#c99745]/45 bg-[#fff7e7]/95 px-8 py-5 shadow-[0_12px_28px_rgba(75,45,12,0.16)]";
 
