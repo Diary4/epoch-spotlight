@@ -393,7 +393,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
     introTitle: "أرض يشترك فيها كثير من الشعوب في وطن واحد",
     introBody:
       "هذه الرحلة تدعوك إلى قصة التعايش في كوردستان — عبر الأديان والقوميات والقادة والحياة المشتركة والحقوق التي تحفظ الانتماء.",
-    introQuote: "ليس تحمّل الآخر — بل الاحتفاء به.",
+    introQuote: "التعايش ليس تحمّل الآخر. بل هو الاحتفاء به.",
     introPillars: [
       {
         title: "الأديان",
@@ -441,12 +441,12 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
     cards: [
       {
         id: "introduction",
-        title: "مهد",
+        title: "كوردستان",
         image: cradleImg,
         icon: Sparkles,
         color: "#7a4a12",
         number: "01",
-        line: "هوية حية",
+        line: "مهد التعايش",
       },
       {
         id: "history",
@@ -455,7 +455,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: ScrollText,
         color: "#3a2f12",
         number: "02",
-        line: "قرون من الذاكرة",
+        line: "أرض اللجوء",
       },
       {
         id: "leaders",
@@ -464,7 +464,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: Award,
         color: "#52351a",
         number: "03",
-        line: "أصوات الوحدة",
+        line: "قادة التعايش",
       },
       {
         id: "nations",
@@ -473,7 +473,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: UsersRound,
         color: "#16466b",
         number: "04",
-        line: "لغة · ثقافة · انتماء",
+        line: "لغة · تراث · انتماء",
       },
       {
         id: "faiths",
@@ -482,7 +482,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: Church,
         color: "#244b1f",
         number: "05",
-        line: "قصص مقدسة · تقاليد حية",
+        line: "إيمان · عبادة · تقاليد",
       },
       {
         id: "sharedLife",
@@ -491,7 +491,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: HeartHandshake,
         color: "#cf921d",
         number: "06",
-        line: "فرح · ذاكرة · تضامن",
+        line: "احتفالات · مواقع مقدسة",
       },
       {
         id: "rights",
@@ -500,7 +500,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
         icon: Scale,
         color: "#52235f",
         number: "07",
-        line: "حماية مرئية",
+        line: "قوانين · حماية · تمثيل",
       },
       {
         id: "closing",
