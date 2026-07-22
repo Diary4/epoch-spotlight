@@ -6,6 +6,7 @@ import {
 
 import bg from "@/assets/images/religions/christianity/christianity.jpeg";
 import popeImg from "@/assets/images/religions/christianity/pope.jpeg";
+import churchesImg from "@/assets/images/religions/christianity/churches.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -40,7 +41,7 @@ type ChristianityContent = {
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
   "historical-presence": bg,
-  churches: bg,
+  churches: churchesImg,
   "easter-christmas": bg,
   "pope-francis": popeImg,
 };
