@@ -2,10 +2,10 @@ import React from "react";
 import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/nations/kurds.jpeg";
-import languageImg from "@/assets/images/religions/k-1.webp";
+import languageImg from "@/assets/images/religions/kurds/language.jpeg";
 import newrozImg from "@/assets/images/religions/kurds/newroz.jpg";
 import cultureImg from "@/assets/images/religions/kurds/culture.jpeg";
-import citiesImg from "@/assets/images/religions/cradle.jpeg";
+import citiesImg from "@/assets/images/religions/kurds/cities.jpeg";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
