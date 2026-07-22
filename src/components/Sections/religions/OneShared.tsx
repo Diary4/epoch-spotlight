@@ -208,8 +208,8 @@ const content: Record<LangCode, SharedContent> = {
     pageTitle: "الحياة المشتركة",
     pageDescription:
       "الأعياد والإيمان واللحظات البهيجة",
-    celebrationsTab: "الاحتفالات",
-    heritageTab: "التراث",
+    celebrationsTab: "الاحتفالات المشتركة",
+    heritageTab: "التراث والمواقع المقدسة",
     celebrations: {
       subtitle: "الأعياد والإيمان واللحظات البهيجة",
       tagline: "تقاليد مختلفة. فرح مشترك واحد.",
