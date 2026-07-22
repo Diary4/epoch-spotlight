@@ -8,7 +8,7 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 
 import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
-import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
+import imgChristianity from "@/assets/images/religions/christianity/christianity.jpeg";
 import imgYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
 import imgYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp";
 import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";

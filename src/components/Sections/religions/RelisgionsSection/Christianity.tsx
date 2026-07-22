@@ -176,6 +176,7 @@ export default function ChristianityPage({
         <FaithDetailHeroImage
           heroAttr="data-christian-hero"
           src={bg}
+          heightClassName="h-[1100px]"
         />
 
         <FaithDetailControls
@@ -211,7 +212,7 @@ export default function ChristianityPage({
             </p>
           </header>
 
-          <FaithDetailSpacer />
+          <FaithDetailSpacer desktopHeight="h-[700px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}
