@@ -3,7 +3,7 @@ import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/nations/kurds.jpeg";
 import languageImg from "@/assets/images/religions/kurds/language.jpeg";
-import newrozImg from "@/assets/images/religions/kurds/newroz.jpg";
+import newrozImg from "@/assets/images/religions/kurds/newroz.jpeg";
 import cultureImg from "@/assets/images/religions/kurds/culture.jpeg";
 import citiesImg from "@/assets/images/religions/kurds/cities.jpeg";
 import {

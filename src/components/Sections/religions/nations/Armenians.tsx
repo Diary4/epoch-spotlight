@@ -3,8 +3,8 @@ import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/nations/aremnian/armenian.jpeg";
 import historyImg from "@/assets/images/new/religions/nations/armenian.webp";
-import churchesImg from "@/assets/images/religions/sharedlife/churches.jpeg";
-import communityImg from "@/assets/images/religions/coexistence/coexistence.jpeg";
+import churchesImg from "@/assets/images/religions/nations/aremnian/churches.jpeg";
+import communityImg from "@/assets/images/religions/nations/aremnian/community.jpeg";
 import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import {
   FAITH_CONTENT_PADDING,
