@@ -4,6 +4,7 @@ import { Sparkles } from "lucide-react";
 import bg from "@/assets/images/religions/islam/barzani.jpeg";
 import shafiImg from "@/assets/images/religions/islam/shafi.jpeg";
 import ministryImg from "@/assets/images/religions/islam/ministry.jpeg";
+import eidImg from "@/assets/images/religions/islam/eid.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -40,7 +41,7 @@ const TOPIC_IMAGES: Record<TopicId, string> = {
   "shafii-school": shafiImg,
   sufism: bg,
   ministry: ministryImg,
-  "ramadan-eid": bg,
+  "ramadan-eid": eidImg,
 };
 
 const content: Record<LangCode, IslamContent> = {
