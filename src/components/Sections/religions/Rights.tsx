@@ -17,9 +17,9 @@ import { cn } from "@/lib/utils";
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
-import bg3 from "@/assets/images/religions/r-8.webp";
+import bg3 from "@/assets/images/religions/rights/parliment.jpeg";
 import governmentImg from "@/assets/images/religions/rights/krg_cabinet.jpg";
-import parliamentImg from "@/assets/images/religions/rights/images.jpeg";
+import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import letterImg from "@/assets/mainImages/letter.webp";
 import buildingImg from "@/assets/images/religions/rights/Hawler_Castle.jpg";
 import sharedImg from "@/assets/mainImages/shared.webp";
@@ -358,9 +358,9 @@ export default function RightsPage({
         data-rts-hero="true"
         src={bg3}
         alt=""
-        className="pointer-events-none absolute inset-x-0 top-[220px] z-0 h-[900px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1100px] w-full object-cover object-[center_70%] [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)]"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-[220px] z-[1] h-[900px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[1100px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
 
       {onBack && (
         <button
