@@ -3,6 +3,7 @@ import { Sparkles } from "lucide-react";
 
 import bg from "@/assets/images/religions/islam/barzani.jpeg";
 import shafiImg from "@/assets/images/religions/islam/shafi.jpeg";
+import sufismImg from "@/assets/images/religions/islam/sufism.jpeg";
 import ministryImg from "@/assets/images/religions/islam/ministry.jpeg";
 import eidImg from "@/assets/images/religions/islam/eid.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
@@ -39,7 +40,7 @@ type IslamContent = {
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
   "shafii-school": shafiImg,
-  sufism: bg,
+  sufism: sufismImg,
   ministry: ministryImg,
   "ramadan-eid": eidImg,
 };

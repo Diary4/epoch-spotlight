@@ -3,9 +3,9 @@ import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/nations/assyrian.jpeg";
 import languageImg from "@/assets/images/new/religions/faiths/christianity.webp";
-import ankawaImg from "@/assets/images/religions/sharedlife/churches.jpeg";
-import patriarchImg from "@/assets/images/new/religions/nations/assyrian.webp";
-import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
+import ankawaImg from "@/assets/images/religions/nations/assyrian/ankawa.jpeg";
+import patriarchImg from "@/assets/images/religions/nations/assyrian/patriah.jpeg";
+import parliamentImg from "@/assets/images/religions/nations/assyrian/seat.jpeg";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
