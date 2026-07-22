@@ -108,31 +108,31 @@ const content: Record<LangCode, NationsContent> = {
     back: "العودة",
     pageTitle: "القوميات",
     pageDescription:
-      "الشعوب التي تتقاسم كوردستان — لغتها وتراثها ومكانتها في الحياة العامة.",
+      "الكورد والآشوريون والأرمن والتركمان وغيرهم.",
     openLabel: "اعرض",
     nations: [
       {
         id: "kurds",
         title: "الكورد",
-        shortIntro: "شعب متجذر باللغة والرقص والجبال.",
+        shortIntro: "اللغة والتراث والهوية الحية",
         image: nationKurds,
       },
       {
         id: "turkmens",
         title: "التركمان",
-        shortIntro: "مجتمع عريق منسوج في حياة كوردستان.",
+        shortIntro: "اللغة والتراث وحياة المجتمع",
         image: nationTurkmens,
       },
       {
         id: "chaldo-assyrians",
-        title: "الكلدو-آشوريون",
-        shortIntro: "حُماة أحد أقدم التراثات المسيحية.",
+        title: "الكلدو آشوريون",
+        shortIntro: "قومية عريقة بتراث لا ينقطع",
         image: nationChaldo,
       },
       {
         id: "armenians",
         title: "الأرمن",
-        shortIntro: "مجتمع مهجري بروابط عميقة مع الأرض.",
+        shortIntro: "قرن من الانتماء في كوردستان",
         image: nationArmenians,
       },
     ],

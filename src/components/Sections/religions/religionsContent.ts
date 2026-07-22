@@ -397,23 +397,23 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
     introPillars: [
       {
         title: "الأديان",
-        body: "مسارات مقدسة تعيش جنباً إلى جنب.",
+        body: "أديان متعددة ازدهرت هنا منذ فجر التاريخ.",
         image: faithsImg,
       },
       {
         title: "القوميات",
-        body: "لغات وثقافات وانتماء.",
+        body: "الكورد والآشوريون والأرمن والتركمان وغيرهم.",
         image: nationsImg,
       },
       {
-        title: "الحياة المشتركة",
-        body: "احتفالات وتضامن واحترام يومي.",
-        image: sharedImg,
+        title: "القوانين",
+        body: "أطر قانونية تحمي كل مجتمع.",
+        image: parliamentImg,
       },
       {
-        title: "الحقوق",
-        body: "اعتراف يحفظه القانون.",
-        image: parliamentImg,
+        title: "التعايش",
+        body: "هوية حية، لا مجرد ذاكرة تاريخية.",
+        image: sharedImg,
       },
     ],
     introCta: "ابدأ الرحلة",
