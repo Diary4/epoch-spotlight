@@ -75,31 +75,31 @@ const content: Record<LangCode, NationsContent> = {
     back: "گەڕانەوە",
     pageTitle: "نەتەوەکان",
     pageDescription:
-      "ئەو گەلانەی کوردستان هاوبەشن — زمان، میرات، و جێگەیان لە ژیانی گشتی.",
+      "کورد، تورکمان، ئاشووری، ئەرمەن، و چەندانی تر.",
     openLabel: "بکەرەوە",
     nations: [
       {
         id: "kurds",
         title: "کورد",
-        shortIntro: "گەلێکی ڕەگدار بە زمان، سەماو چیا.",
+        shortIntro: "زمان، کەلەپوور و ناسنامەیەکی زیندوو",
         image: nationKurds,
       },
       {
         id: "turkmens",
         title: "تورکمان",
-        shortIntro: "کۆمەڵگەیەکی کۆن چەسپاو بە ژیانی کوردستان.",
+        shortIntro: "زمان، کەلەپوور و ژیانی کۆمەڵایەتی",
         image: nationTurkmens,
       },
       {
         id: "chaldo-assyrians",
-        title: "کلدۆ-ئاشووری",
-        shortIntro: "پارێزەرانی یەکێک لە کۆنترین میراتە مەسیحییەکان.",
+        title: "کلدو ئاشوورییەکان",
+        shortIntro: "نەتەوەیەکی دێرین بە میراتێکی بێ پچڕان",
         image: nationChaldo,
       },
       {
         id: "armenians",
         title: "ئەرمەن",
-        shortIntro: "کۆمەڵگەیەکی دیاسپۆرا بە پەیوەندیی قووڵ بەو خاکە.",
+        shortIntro: "سەدەیەک لە سۆز و پەیوەستبوون لە کوردستان",
         image: nationArmenians,
       },
     ],
