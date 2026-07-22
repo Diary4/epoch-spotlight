@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/turkmen.webp";
+import heroBg from "@/assets/images/religions/nations/turkemn.jpeg";
 import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
 import languageImg from "@/assets/images/new/religions/nations/turkmen.webp";
 import cultureImg from "@/assets/images/religions/nc-1.webp";
@@ -180,6 +180,7 @@ export default function TurkmensPage({
       <FaithDetailHeroImage
         heroAttr="data-turkmens-hero"
         src={heroBg}
+        heightClassName="h-[1100px]"
         overlayClassName="bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]"
       />
 
@@ -214,7 +215,7 @@ export default function TurkmensPage({
           </p>
         </header>
 
-        <FaithDetailSpacer />
+        <FaithDetailSpacer desktopHeight="h-[700px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}

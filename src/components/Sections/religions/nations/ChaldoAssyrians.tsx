@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/a-2.webp";
+import heroBg from "@/assets/images/religions/nations/assyrian.jpeg";
 import languageImg from "@/assets/images/new/religions/faiths/christianity.webp";
 import ankawaImg from "@/assets/images/religions/sharedlife/churches.jpeg";
 import patriarchImg from "@/assets/images/new/religions/nations/assyrian.webp";
@@ -180,6 +180,7 @@ export default function ChaldoAssyriansPage({
       <FaithDetailHeroImage
         heroAttr="data-chaldo-hero"
         src={heroBg}
+        heightClassName="h-[1100px]"
         overlayClassName="bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]"
       />
 
@@ -214,7 +215,7 @@ export default function ChaldoAssyriansPage({
           </p>
         </header>
 
-        <FaithDetailSpacer />
+        <FaithDetailSpacer desktopHeight="h-[700px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}
