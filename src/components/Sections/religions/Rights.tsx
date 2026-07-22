@@ -358,9 +358,9 @@ export default function RightsPage({
         data-rts-hero="true"
         src={bg3}
         alt=""
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1100px] w-full object-cover object-[center_70%] [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1300px] w-full object-cover object-[center_70%] [mask-image:linear-gradient(to_bottom,black_0%,black_88%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_88%,transparent_100%)]"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[1100px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[1300px] bg-[linear-gradient(to_bottom,transparent_0%,transparent_86%,#faf8f5_100%)]" />
 
       {onBack && (
         <button
