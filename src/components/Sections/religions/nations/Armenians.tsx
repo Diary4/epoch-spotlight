@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/a-1.webp";
+import heroBg from "@/assets/images/religions/nations/aremnian/armenian.jpeg";
 import historyImg from "@/assets/images/new/religions/nations/armenian.webp";
 import churchesImg from "@/assets/images/religions/sharedlife/churches.jpeg";
 import communityImg from "@/assets/images/religions/coexistence/coexistence.jpeg";
@@ -180,6 +180,7 @@ export default function ArmeniansPage({
       <FaithDetailHeroImage
         heroAttr="data-armenians-hero"
         src={heroBg}
+        heightClassName="h-[1100px]"
         overlayClassName="bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]"
       />
 
@@ -214,7 +215,7 @@ export default function ArmeniansPage({
           </p>
         </header>
 
-        <FaithDetailSpacer />
+        <FaithDetailSpacer desktopHeight="h-[700px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}
