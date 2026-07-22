@@ -7,7 +7,7 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import faithsVideo from "@/assets/videos/faiths.webm";
-import imgIslam from "@/assets/images/new/religions/faiths/islam.webp";
+import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
 import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
 import imgYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
 import imgYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp";

@@ -18,11 +18,15 @@ import cradleImg from "@/assets/images/religions/main.webp";
 import nationsImg from "@/assets/images/religions/nations.webp";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
-import mustafaBarzaniImg from "@/assets/images/malaMustafa/mustafa-barzani.jpg";
+import abdulSalamBarzaniImg from "@/assets/images/religions/coexistence/abdulsalam-barzani.jpeg";
+import mustafaBarzaniImg from "@/assets/images/religions/coexistence/mustafa-barzani.jpeg";
+import ahmedBarzaniImg from "@/assets/images/religions/coexistence/ahmed-barzani.jpeg";
 import masoudBarzaniImg from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
 
 const leaderImages: Record<string, string> = {
+  "abdul-salam-barzani": abdulSalamBarzaniImg,
   "mustafa-barzani": mustafaBarzaniImg,
+  "ahmed-barzani": ahmedBarzaniImg,
   "masoud-barzani": masoudBarzaniImg,
 };
 

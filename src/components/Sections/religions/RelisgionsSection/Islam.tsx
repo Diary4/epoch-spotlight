@@ -1,8 +1,9 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-9.webp";
+import bg from "@/assets/images/religions/islam/barzani.jpeg";
 import shafiImg from "@/assets/images/religions/islam/shafi.jpeg";
+import ministryImg from "@/assets/images/religions/islam/ministry.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -38,7 +39,7 @@ type IslamContent = {
 const TOPIC_IMAGES: Record<TopicId, string> = {
   "shafii-school": shafiImg,
   sufism: bg,
-  ministry: bg,
+  ministry: ministryImg,
   "ramadan-eid": bg,
 };
 
@@ -173,6 +174,7 @@ export default function IslamPage({
         <FaithDetailHeroImage
           heroAttr="data-islam-hero"
           src={bg}
+          heightClassName="h-[1100px]"
         />
 
         <FaithDetailControls
@@ -210,7 +212,7 @@ export default function IslamPage({
             </p>
           </header>
 
-          <FaithDetailSpacer />
+          <FaithDetailSpacer desktopHeight="h-[700px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}

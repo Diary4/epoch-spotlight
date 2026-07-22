@@ -4,7 +4,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/r-5.webp";
+import bg from "@/assets/images/religions/christianity/christianity.jpeg";
 import popeImg from "@/assets/images/religions/christianity/pope.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {

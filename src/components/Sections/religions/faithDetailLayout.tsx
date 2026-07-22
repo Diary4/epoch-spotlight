@@ -175,6 +175,7 @@ type FaithDetailHeroImageProps = {
   desktopClassName?: string;
   imageClassName?: string;
   overlayClassName?: string;
+  heightClassName?: string;
   children?: React.ReactNode;
 };
 
@@ -184,6 +185,7 @@ export function FaithDetailHeroImage({
   alt = "",
   imageClassName = "",
   overlayClassName = "bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95",
+  heightClassName = "h-[900px]",
   children,
 }: FaithDetailHeroImageProps) {
   const heroProps = { [heroAttr]: "true" };
@@ -194,10 +196,10 @@ export function FaithDetailHeroImage({
         src={src}
         alt={alt}
         {...heroProps}
-        className={`absolute inset-x-0 top-0 h-[900px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] ${imageClassName}`}
+        className={`absolute inset-x-0 top-0 ${heightClassName} w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] ${imageClassName}`}
       />
       <div
-        className={`pointer-events-none absolute inset-x-0 top-0 h-[900px] ${overlayClassName}`}
+        className={`pointer-events-none absolute inset-x-0 top-0 ${heightClassName} ${overlayClassName}`}
       />
       {children}
     </>

@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   Globe2,
   MoonStar,
-  Scale,
   UsersRound,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
@@ -15,10 +14,7 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 
 import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
-import nationsImg from "@/assets/images/religions/nations.webp";
-import lawsImg from "@/assets/images/religions/nl-1.webp";
-import valleyImg from "@/assets/images/religions/b-1.webp";
-import imgIslam from "@/assets/images/new/religions/faiths/islam.webp";
+import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
 import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
 import imgYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
 import imgYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp";
@@ -45,7 +41,7 @@ import ChaldoAssyriansPage from "@/components/Sections/religions/nations/ChaldoA
 import ArmeniansPage from "@/components/Sections/religions/nations/Armenians";
 
 type LangCode = "en" | "ku" | "ar";
-type TabId = "religions" | "nations" | "laws";
+type TabId = "religions" | "nations";
 
 type FaithId =
   | "islam"
@@ -74,27 +70,12 @@ type NationCard = {
   accent: string;
 };
 
-type TabCard = {
-  id: string;
-  title: string;
-  body: string;
-  image: string;
-  accent: string;
-};
-
-type TabContent = {
-  subtitle: string;
-  tagline: string;
-  cards: TabCard[];
-};
-
 type IntroductionContent = {
   back: string;
   pageTitle: string;
   pageDescription: string;
   religionsTab: string;
   nationsTab: string;
-  lawsTab: string;
   religions: {
     subtitle: string;
     tagline: string;
@@ -105,7 +86,6 @@ type IntroductionContent = {
     tagline: string;
     cards: NationCard[];
   };
-  laws: TabContent;
 };
 
 const faithAccents = ["#7a4a12", "#a05a18", "#b9822d", "#c58b16", "#6f7d4e", "#4d6b7c", "#8c4a54", "#bf7a2f"];
@@ -118,7 +98,6 @@ const content: Record<LangCode, IntroductionContent> = {
       "A land where many faiths, languages, and peoples have shared one home.",
     religionsTab: "Religions",
     nationsTab: "Nations",
-    lawsTab: "Laws",
     religions: {
       subtitle: "Tap a faith to open its story.",
       tagline: "Different faiths. One shared homeland.",
@@ -167,40 +146,6 @@ const content: Record<LangCode, IntroductionContent> = {
         },
       ],
     },
-    laws: {
-      subtitle: "Legal frameworks protect every community.",
-      tagline: "Recognition made durable by law.",
-      cards: [
-        {
-          id: "legal-protection",
-          title: "Legal Protection",
-          body: "Rights of belief, language, and identity are supported under regional law.",
-          image: lawsImg,
-          accent: "#7a4a12",
-        },
-        {
-          id: "representation",
-          title: "Representation",
-          body: "Communities take part in parliament, government, and public institutions.",
-          image: bg,
-          accent: "#a05a18",
-        },
-        {
-          id: "language-rights",
-          title: "Language Rights",
-          body: "Mother tongues are taught, preserved, and used in community life.",
-          image: nationsImg,
-          accent: "#b9822d",
-        },
-        {
-          id: "cultural-recognition",
-          title: "Cultural Recognition",
-          body: "Faith, heritage, and tradition are protected as part of public life.",
-          image: valleyImg,
-          accent: "#c58b16",
-        },
-      ],
-    },
   },
   ku: {
     back: "گەڕانەوە",
@@ -208,7 +153,6 @@ const content: Record<LangCode, IntroductionContent> = {
     pageDescription: "لانکەی پێکەوەژیان",
     religionsTab: "ئایینەکان",
     nationsTab: "نەتەوەکان",
-    lawsTab: "یاساکان",
     religions: {
       subtitle: "لە سەرەتایی مێژووەوە چەندین ئاینی جیاواز لێرەدا سەری هەڵداوە",
       tagline: "ئایینی جیاواز. زمانی جیاواز. یەک نیشتمانی هاوبەش.",
@@ -257,40 +201,6 @@ const content: Record<LangCode, IntroductionContent> = {
         },
       ],
     },
-    laws: {
-      subtitle: "چوارچێوەی یاسایی بۆ پاراستنی هەموو پێکهاتەکان.",
-      tagline: "ئایینی جیاواز. زمانی جیاواز. یەک نیشتمانی هاوبەش.",
-      cards: [
-        {
-          id: "legal-protection",
-          title: "ئایینەکان",
-          body: "لە سەرەتایی مێژووەوە چەندین ئاینی جیاواز لێرەدا سەری هەڵداوە",
-          image: lawsImg,
-          accent: "#7a4a12",
-        },
-        {
-          id: "representation",
-          title: "نەتەوەکان",
-          body: "کورد، تورکمان، ئاشووری، ئەرمەن، و چەندانی تر.",
-          image: bg,
-          accent: "#a05a18",
-        },
-        {
-          id: "language-rights",
-          title: "یاساکان",
-          body: "چوارچێوەی یاسایی بۆ پاراستنی هەموو پێکهاتەکان.",
-          image: nationsImg,
-          accent: "#b9822d",
-        },
-        {
-          id: "cultural-recognition",
-          title: "پێکەوەژیان",
-          body: "ناسنامەیەکی زیندووە، نەک تەنها یادەوەرییەکی مێژوویی.",
-          image: valleyImg,
-          accent: "#c58b16",
-        },
-      ],
-    },
   },
   ar: {
     back: "العودة",
@@ -298,7 +208,6 @@ const content: Record<LangCode, IntroductionContent> = {
     pageDescription: "مهد التعايش",
     religionsTab: "الأديان",
     nationsTab: "القوميات",
-    lawsTab: "القوانين",
     religions: {
       subtitle: "أديان متعددة ازدهرت هنا منذ فجر التاريخ.",
       tagline: "أديان مختلفة. لغات مختلفة. وطن واحد مشترك.",
@@ -347,53 +256,17 @@ const content: Record<LangCode, IntroductionContent> = {
         },
       ],
     },
-    laws: {
-      subtitle: "أطر قانونية تحمي كل مجتمع.",
-      tagline: "أديان مختلفة. لغات مختلفة. وطن واحد مشترك.",
-      cards: [
-        {
-          id: "legal-protection",
-          title: "الأديان",
-          body: "أديان متعددة ازدهرت هنا منذ فجر التاريخ.",
-          image: lawsImg,
-          accent: "#7a4a12",
-        },
-        {
-          id: "representation",
-          title: "القوميات",
-          body: "الكورد والآشوريون والأرمن والتركمان وغيرهم.",
-          image: bg,
-          accent: "#a05a18",
-        },
-        {
-          id: "language-rights",
-          title: "القوانين",
-          body: "أطر قانونية تحمي كل مجتمع.",
-          image: nationsImg,
-          accent: "#b9822d",
-        },
-        {
-          id: "cultural-recognition",
-          title: "التعايش",
-          body: "هوية حية، لا مجرد ذاكرة تاريخية.",
-          image: valleyImg,
-          accent: "#c58b16",
-        },
-      ],
-    },
   },
 };
 
 const tabs: { id: TabId; icon: typeof MoonStar }[] = [
   { id: "religions", icon: MoonStar },
   { id: "nations", icon: UsersRound },
-  { id: "laws", icon: Scale },
 ];
 
 const tabHeroImages: Record<TabId, string> = {
   religions: bg,
   nations: nationsCover,
-  laws: bg,
 };
 
 function DecorativeLine({ color = "#c99a55" }: { color?: string }) {
@@ -552,12 +425,7 @@ export default function IntroductionPage({
           <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
             <div className="flex gap-2">
               {tabs.map((tab) => {
-                const label =
-                  tab.id === "religions"
-                    ? c.religionsTab
-                    : tab.id === "nations"
-                      ? c.nationsTab
-                      : c.lawsTab;
+                const label = tab.id === "religions" ? c.religionsTab : c.nationsTab;
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
 
@@ -602,35 +470,22 @@ export default function IntroductionPage({
                     className="min-h-full"
                   />
                 ))
-              : activeTab === "nations"
-                ? c.nations.cards.map((card, index) => (
-                    <ReligionInfoCard
-                      key={card.id}
-                      title={card.title}
-                      body={card.body}
-                      image={card.image}
-                      accent={card.accent}
-                      accentIndex={index}
-                      onClick={() => setActiveNation(card.id)}
-                      ariaLabel={card.title}
-                      titleClassName="uppercase"
-                      imageHeightClass="min-h-[360px] flex-1"
-                      imageClassName="object-[center_22%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]"
-                      className="min-h-full"
-                    />
-                  ))
-                : c.laws.cards.map((card, index) => (
-                    <ReligionInfoCard
-                      key={card.id}
-                      title={card.title}
-                      body={card.body}
-                      image={card.image}
-                      accent={card.accent}
-                      accentIndex={index}
-                      imageHeightClass="min-h-[360px] flex-1"
-                      className="min-h-full"
-                    />
-                  ))}
+              : c.nations.cards.map((card, index) => (
+                  <ReligionInfoCard
+                    key={card.id}
+                    title={card.title}
+                    body={card.body}
+                    image={card.image}
+                    accent={card.accent}
+                    accentIndex={index}
+                    onClick={() => setActiveNation(card.id)}
+                    ariaLabel={card.title}
+                    titleClassName="uppercase"
+                    imageHeightClass="min-h-[360px] flex-1"
+                    imageClassName="object-[center_22%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]"
+                    className="min-h-full"
+                  />
+                ))}
           </div>
 
           <div className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
