@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/nations/kurds.jpeg";
+import heroBg from "@/assets/images/religions/kurds/cover.jpeg";
 import languageImg from "@/assets/images/religions/kurds/language.jpeg";
 import newrozImg from "@/assets/images/religions/kurds/newroz.jpeg";
 import cultureImg from "@/assets/images/religions/kurds/culture.jpeg";
@@ -180,7 +180,8 @@ export default function KurdsPage({
       <FaithDetailHeroImage
         heroAttr="data-kurds-hero"
         src={heroBg}
-        imageClassName="object-[28%_center]"
+        heightClassName="h-[1100px]"
+        imageClassName="object-[28%_38%]"
         overlayClassName="bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]"
       />
 
@@ -215,7 +216,7 @@ export default function KurdsPage({
           </p>
         </header>
 
-        <FaithDetailSpacer />
+        <FaithDetailSpacer desktopHeight="h-[700px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}

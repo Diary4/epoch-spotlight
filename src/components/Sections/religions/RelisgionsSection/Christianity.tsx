@@ -4,7 +4,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/christianity/christianity.jpeg";
+import bg from "@/assets/images/religions/christianity/cover.jpeg";
+import historicalImg from "@/assets/images/religions/christianity/christianity.jpeg";
 import popeImg from "@/assets/images/religions/christianity/pope.jpeg";
 import churchesImg from "@/assets/images/religions/christianity/churches.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
@@ -40,9 +41,9 @@ type ChristianityContent = {
 };
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
-  "historical-presence": bg,
+  "historical-presence": historicalImg,
   churches: churchesImg,
-  "easter-christmas": bg,
+  "easter-christmas": historicalImg,
   "pope-francis": popeImg,
 };
 

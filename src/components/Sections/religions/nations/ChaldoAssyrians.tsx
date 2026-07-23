@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/nations/assyrian.jpeg";
+import heroBg from "@/assets/images/religions/nations/assriyan.jpeg";
 import languageImg from "@/assets/images/new/religions/faiths/christianity.webp";
 import ankawaImg from "@/assets/images/religions/nations/assyrian/ankawa.jpeg";
 import patriarchImg from "@/assets/images/religions/nations/assyrian/patriah.jpeg";

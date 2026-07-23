@@ -15,9 +15,9 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
 import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
-import imgChristianity from "@/assets/images/religions/christianity/christianity.jpeg";
+import imgChristianity from "@/assets/images/religions/christianity/cover.jpeg";
 import imgYazidism from "@/assets/images/religions/yazidi/lalish.jpeg";
-import imgYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp";
+import imgYarsanism from "@/assets/images/religions/nations/kakayi/cover.jpeg";
 import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import imgJudaism from "@/assets/images/new/religions/faiths/judaism.webp";
 import imgBahai from "@/assets/images/new/religions/faiths/bahai.webp";

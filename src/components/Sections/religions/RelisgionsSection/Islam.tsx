@@ -10,7 +10,6 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
-  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -191,30 +190,30 @@ export default function IslamPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-islam-animate="true"
-            className={FAITH_DETAIL_HEADER_CLASS}
+            className="max-w-[540px] pt-[360px] pl-10 text-left"
           >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
+            <div className="mb-5 grid h-20 w-20 place-items-center text-[56px] text-[#b9822d] drop-shadow-[0_2px_10px_rgba(250,248,245,0.95)]">
               ✥
             </div>
 
-            <div className="mx-auto mb-3 mt-3 w-[260px] max-w-full">
+            <div className="mb-3 mt-2 w-[220px] max-w-full">
               <DecorativeLine />
             </div>
 
-            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
+            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] drop-shadow-[0_2px_14px_rgba(250,248,245,0.95)]">
               {c.pageTitle}
             </h1>
 
-            <div className="mx-auto mt-5 w-[180px] max-w-full">
+            <div className="mt-5 w-[160px] max-w-full">
               <DecorativeLine />
             </div>
 
-            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+            <p className="mt-5 max-w-[480px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.95)]">
               {c.subtitle}
             </p>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[700px]" />
+          <FaithDetailSpacer desktopHeight="h-[420px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}
