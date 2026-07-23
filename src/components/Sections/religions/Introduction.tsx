@@ -23,7 +23,7 @@ import imgJudaism from "@/assets/images/new/religions/faiths/judaism.webp";
 import imgBahai from "@/assets/images/new/religions/faiths/bahai.webp";
 import imgSabean from "@/assets/images/new/religions/faiths/sabean-mandaeanism.webp";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
-import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
+import nationTurkmens from "@/assets/images/religions/nations/turkmen/cover.jpeg";
 import nationChaldo from "@/assets/images/new/religions/nations/assyrian.webp";
 import nationArmenians from "@/assets/images/new/religions/nations/armenian.webp";
 

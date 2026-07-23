@@ -8,7 +8,7 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 
 import bg from "@/assets/images/religions/nations/cover.jpeg";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
-import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
+import nationTurkmens from "@/assets/images/religions/nations/turkmen/cover.jpeg";
 import nationChaldo from "@/assets/images/new/religions/nations/assyrian.webp";
 import nationArmenians from "@/assets/images/new/religions/nations/armenian.webp";
 
