@@ -16,6 +16,7 @@ import SliderPage from "./pages/SliderPage.tsx";
 import Religions from "./pages/Religions.tsx";
 import ReligionsV2 from "./pages/ReligionsV2.tsx";
 import WomenPage from "./pages/Women.tsx";
+import BcfPage from "./pages/Bcf.tsx";
 import StartMenu from "./pages/StartMenu.tsx";
 import Touristic from "./pages/Touristic.tsx";
 import TouristicDetail from "./pages/TouristicDetail.tsx";
@@ -65,6 +66,7 @@ const AppRoutes = () => {
           <Route path="/religions" element={<Religions />} />
           <Route path="/religions-v2" element={<ReligionsV2 />} />
           <Route path="/women" element={<WomenPage />} />
+          <Route path="/bcf" element={<BcfPage />} />
           <Route path="/touristic" element={<SliderPage />} />
           <Route path="/touristic-v2" element={<Touristic />} />
           <Route path="/touristic/:category/:id" element={<TouristicDetail />} />
