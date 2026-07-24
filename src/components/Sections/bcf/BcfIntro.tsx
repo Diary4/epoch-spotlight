@@ -1,5 +1,6 @@
 import React from "react";
 import { Hand } from "lucide-react";
+import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
@@ -39,19 +40,20 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
       <div className="relative z-10 flex min-h-[1920px] flex-col justify-center px-16 pb-40 pt-48">
-        <div className="max-w-[820px]">
-          <h1 className="font-sans text-[96px] font-bold uppercase leading-[1.02] tracking-[0.02em] text-white">
-            {c.humanity}
-          </h1>
-          <h1 className="mt-2 font-sans text-[96px] font-bold uppercase leading-[1.02] tracking-[0.02em] text-white">
-            {c.dignity}
-          </h1>
-          <h1
-            className="mt-2 font-sans text-[96px] font-bold uppercase leading-[1.02] tracking-[0.02em]"
-            style={{ color: BCF.gold }}
-          >
-            {c.hope}
-          </h1>
+        <div className="max-w-[900px]">
+          <TextType
+            as="h1"
+            text={[c.humanity, c.dignity, c.hope]}
+            typingSpeed={70}
+            deletingSpeed={40}
+            pauseDuration={1400}
+            loop
+            showCursor
+            cursorCharacter="|"
+            cursorClassName="text-[#e8c56a]"
+            textColors={["#ffffff", "#ffffff", BCF.gold]}
+            className="font-sans text-[96px] font-bold uppercase leading-[1.05] tracking-[0.02em]"
+          />
 
           <div className="mt-16 max-w-[640px]">
             <span className="text-[64px] leading-none" style={{ color: BCF.gold }}>

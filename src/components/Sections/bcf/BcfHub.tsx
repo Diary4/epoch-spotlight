@@ -1,7 +1,10 @@
 import React from "react";
 import { ArrowRight, ChevronLeft } from "lucide-react";
+import CircularGallery from "@/components/CircularGallery";
+import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import { bcfGalleryItems } from "@/components/Sections/bcf/bcfGalleryData";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 import mapThumb from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import impactThumb from "@/assets/images/PrimeMinistir/service.webp";
@@ -39,11 +42,16 @@ export default function BcfHub({ lang, onOpen, onBackToWelcome }: BcfHubProps) {
         </button>
 
         <p className="text-[26px] tracking-[0.18em] text-white/70">{c.hubTitle}</p>
-        <h1 className="mt-4 max-w-[980px] text-[64px] font-semibold leading-tight text-white">
-          {c.hubSubtitle}
-        </h1>
+        <TextType
+          as="h1"
+          text={c.hubSubtitle}
+          typingSpeed={28}
+          loop={false}
+          showCursor={false}
+          className="mt-4 max-w-[980px] text-[52px] font-semibold leading-tight text-white"
+        />
 
-        <div className="mt-16 flex flex-col gap-8">
+        <div className="mt-12 flex flex-col gap-8">
           {c.hubCards.map((card) => (
             <button
               key={card.id}
@@ -68,6 +76,16 @@ export default function BcfHub({ lang, onOpen, onBackToWelcome }: BcfHubProps) {
               </span>
             </button>
           ))}
+        </div>
+
+        <div className="mt-16 h-[520px] w-full overflow-hidden rounded-[28px] border border-[#e8c56a]/25 bg-black/40">
+          <CircularGallery
+            items={bcfGalleryItems}
+            bend={2.4}
+            textColor="#e8c56a"
+            borderRadius={0.06}
+            font="bold 28px sans-serif"
+          />
         </div>
       </div>
     </BcfShell>

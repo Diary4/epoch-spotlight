@@ -8,6 +8,7 @@ import {
   type ProjectId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import detailBg from "@/assets/images/women/w-4.webp";
 
 type BcfProjectDetailProps = {
@@ -52,15 +53,11 @@ export default function BcfProjectDetail({
 
           <div className="mt-10 grid grid-cols-2 gap-10">
             <div>
-              <p className="text-[56px] font-bold leading-none" style={{ color: BCF.gold }}>
-                {project.stat1Value}
-              </p>
+              <BcfStatValue value={project.stat1Value} className="text-[56px] font-bold leading-none" />
               <p className="mt-3 text-[24px] text-white/80">{project.stat1Label}</p>
             </div>
             <div>
-              <p className="text-[56px] font-bold leading-none" style={{ color: BCF.gold }}>
-                {project.stat2Value}
-              </p>
+              <BcfStatValue value={project.stat2Value} className="text-[56px] font-bold leading-none" />
               <p className="mt-3 text-[24px] text-white/80">{project.stat2Label}</p>
             </div>
           </div>

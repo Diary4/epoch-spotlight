@@ -1,7 +1,9 @@
 import React from "react";
 import { ChevronLeft, Users, Tent, HeartHandshake, School } from "lucide-react";
+import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 
 const icons = [Users, Tent, HeartHandshake, School];
@@ -13,6 +15,7 @@ type BcfImpactProps = {
 
 export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
   const c = bcfCopy[lang];
+  const enItems = bcfCopy.en.impactItems;
 
   return (
     <BcfShell>
@@ -31,8 +34,15 @@ export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
         <p className="text-[22px] tracking-[0.16em] text-white/65">{c.ourImpact}</p>
         <h1 className="mt-3 text-[68px] font-semibold leading-tight">
           <span style={{ color: BCF.gold }}>04 </span>
-          <span className="text-white">{c.changing} </span>
-          <span style={{ color: BCF.gold }}>{c.livesEveryday}</span>
+          <TextType
+            as="span"
+            text={`${c.changing} ${c.livesEveryday}`}
+            typingSpeed={40}
+            loop={false}
+            showCursor={false}
+            className="text-[68px] font-semibold"
+            textColors={["#ffffff"]}
+          />
         </h1>
 
         <div className="mt-14 flex flex-col gap-7">
@@ -47,9 +57,11 @@ export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
                   <Icon className="h-10 w-10" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[52px] font-bold leading-none" style={{ color: BCF.gold }}>
-                    {item.value}
-                  </p>
+                  <BcfStatValue
+                    value={enItems[index]?.value ?? item.value}
+                    className="text-[52px] font-bold leading-none"
+                    duration={2.2}
+                  />
                   <p className="mt-3 text-[24px] leading-relaxed text-white/80">{item.label}</p>
                 </div>
               </div>

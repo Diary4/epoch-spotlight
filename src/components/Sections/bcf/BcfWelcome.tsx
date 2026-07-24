@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
@@ -24,10 +25,19 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
 
       <div className="relative z-10 flex min-h-[1920px] flex-col justify-end px-14 pb-28 pt-48">
         <p className="text-[28px] tracking-[0.22em] text-white/85">{c.welcomeEyebrow}</p>
-        <h1 className="mt-4 font-sans text-[78px] font-bold uppercase leading-[1.05] tracking-[0.02em]">
-          <span style={{ color: BCF.gold }}>{c.welcomeTitleBcf}</span>{" "}
-          <span className="text-white">{c.welcomeTitleRest}</span>
-        </h1>
+        <div className="mt-4 flex flex-wrap items-baseline gap-x-4 font-sans text-[78px] font-bold uppercase leading-[1.05] tracking-[0.02em]">
+          <span style={{ color: BCF.gold }}>{c.welcomeTitleBcf}</span>
+          <TextType
+            as="span"
+            text={c.welcomeTitleRest}
+            typingSpeed={55}
+            loop={false}
+            showCursor
+            cursorCharacter="|"
+            cursorClassName="text-[#e8c56a]"
+            className="text-[78px] font-bold uppercase text-white"
+          />
+        </div>
         <p className="mt-6 max-w-[820px] text-[28px] font-light leading-relaxed text-white/85">
           {c.welcomeBody}
         </p>

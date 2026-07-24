@@ -9,6 +9,7 @@ import {
   type MapFilterId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import mapBg from "@/assets/images/kurdistan.webp";
 import erbilImg from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import duhokImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
@@ -185,15 +186,11 @@ export default function BcfMap({
                 />
                 <div className="mt-7 grid grid-cols-2 gap-8">
                   <div>
-                    <p className="text-[52px] font-bold leading-none" style={{ color: BCF.gold }}>
-                      {selected.projectsStat}
-                    </p>
+                    <BcfStatValue value={selected.projectsStat} className="text-[52px] font-bold leading-none" />
                     <p className="mt-2 text-[22px] text-white/75">{selected.projectsLabel}</p>
                   </div>
                   <div>
-                    <p className="text-[52px] font-bold leading-none" style={{ color: BCF.gold }}>
-                      {selected.peopleStat}
-                    </p>
+                    <BcfStatValue value={selected.peopleStat} className="text-[52px] font-bold leading-none" />
                     <p className="mt-2 text-[22px] text-white/75">{selected.peopleLabel}</p>
                   </div>
                 </div>
