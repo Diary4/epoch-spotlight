@@ -200,7 +200,7 @@ export default function KurdsPage({
       >
         <header
           data-kurds-animate="true"
-          className={FAITH_DETAIL_HEADER_CLASS}
+          className={`${FAITH_DETAIL_HEADER_CLASS} translate-x-10`}
         >
           <div className="mx-auto mb-3 mt-3 w-[260px]">
             <DecorativeLine color="#c3923a" />

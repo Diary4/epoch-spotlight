@@ -214,26 +214,26 @@ export default function YazidismPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-yazidi-animate="true"
-            className="ml-auto max-w-[560px] pt-[480px] pr-4 text-right"
+            className="-mr-8 ml-auto max-w-[560px] pt-[300px] pr-0 text-right"
           >
-            <div className="ml-auto mb-3 mt-3 w-[220px] max-w-full">
+            <div className="ml-auto mb-3 mt-3 w-[180px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]">
+            <h1 className="whitespace-nowrap font-serif text-[68px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]">
               {c.pageTitle}
             </h1>
 
-            <div className="ml-auto mt-5 w-[160px] max-w-full">
+            <div className="ml-auto mt-5 w-[130px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <p className="ml-auto mt-5 max-w-[480px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.9)]">
+            <p className="ml-auto mt-5 max-w-[400px] font-serif text-[18px] font-light leading-relaxed text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.9)]">
               {c.subtitle}
             </p>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[280px]" />
+          <FaithDetailSpacer desktopHeight="h-[460px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}
