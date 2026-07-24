@@ -9,7 +9,6 @@ import educationImg from "@/assets/images/religions/nations/turkmen/education.jp
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
-  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -199,23 +198,23 @@ export default function TurkmensPage({
       >
         <header
           data-turkmens-animate="true"
-          className={FAITH_DETAIL_HEADER_CLASS}
+          className="mx-auto max-w-[850px] pt-[580px] text-center"
         >
           <div className="mx-auto mb-2 w-[220px]">
-            <DecorativeLine color="#c3923a" />
+            <DecorativeLine color="#e8c56a" />
           </div>
-          <h1 className="break-words font-serif text-[84px] font-light uppercase leading-[1.02] tracking-[0.04em] text-[#3b2410]">
+          <h1 className="break-words font-serif text-[84px] font-light uppercase leading-[1.02] tracking-[0.04em] text-[#f7f0e4] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)]">
             {c.pageTitle}
           </h1>
           <div className="mx-auto mt-4 w-[160px]">
-            <DecorativeLine color="#c3923a" />
+            <DecorativeLine color="#e8c56a" />
           </div>
-          <p className="mx-auto mt-4 max-w-[640px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+          <p className="mx-auto mt-4 max-w-[640px] font-serif text-[22px] font-light leading-relaxed text-[#efe4d2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
             {c.subtitle}
           </p>
         </header>
 
-        <FaithDetailSpacer desktopHeight="h-[700px]" />
+        <FaithDetailSpacer desktopHeight="h-[260px]" />
 
         <NationTopicSwitcher
           pageTitle={c.pageTitle}

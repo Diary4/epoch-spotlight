@@ -199,7 +199,7 @@ export default function ChaldoAssyriansPage({
       >
         <header
           data-chaldo-animate="true"
-          className={FAITH_DETAIL_HEADER_CLASS}
+          className={`${FAITH_DETAIL_HEADER_CLASS} translate-x-16`}
         >
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
