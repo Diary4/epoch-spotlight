@@ -12,7 +12,6 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
-  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -193,28 +192,28 @@ export default function ChristianityPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-christian-animate="true"
-            className={FAITH_DETAIL_HEADER_CLASS}
+            className="mx-auto max-w-[850px] pt-[620px] text-center"
           >
-            <Cross className="mx-auto mb-3 h-16 w-16 text-[#c58b16]" />
+            <Cross className="mx-auto mb-3 h-16 w-16 text-[#e8c56a] drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]" />
 
             <div className="mx-auto mb-3 mt-3 w-[260px] max-w-full">
-              <DecorativeLine color="#c3923a" />
+              <DecorativeLine color="#e8c56a" />
             </div>
 
-            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
+            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#f7f0e4] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)]">
               {c.pageTitle}
             </h1>
 
             <div className="mx-auto mt-5 w-[180px] max-w-full">
-              <DecorativeLine color="#c3923a" />
+              <DecorativeLine color="#e8c56a" />
             </div>
 
-            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#efe4d2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
               {c.subtitle}
             </p>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[700px]" />
+          <FaithDetailSpacer desktopHeight="h-[220px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}

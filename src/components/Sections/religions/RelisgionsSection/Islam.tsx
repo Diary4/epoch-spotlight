@@ -190,7 +190,7 @@ export default function IslamPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-islam-animate="true"
-            className="max-w-[540px] pt-[360px] pl-10 text-left"
+            className="-ml-6 max-w-[540px] pt-[160px] pl-0 text-left"
           >
             <div className="mb-5 grid h-20 w-20 place-items-center text-[56px] text-[#b9822d] drop-shadow-[0_2px_10px_rgba(250,248,245,0.95)]">
               ✥
@@ -213,7 +213,7 @@ export default function IslamPage({
             </p>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[420px]" />
+          <FaithDetailSpacer desktopHeight="h-[600px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}
