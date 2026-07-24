@@ -6,6 +6,7 @@ import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { bcfGalleryItems } from "@/components/Sections/bcf/bcfGalleryData";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import { bcfHubBg } from "@/components/Sections/bcf/bcfAssets";
 import mapThumb from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import impactThumb from "@/assets/images/PrimeMinistir/service.webp";
 import futureThumb from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
@@ -28,10 +29,8 @@ export default function BcfHub({ lang, onOpen, onBackToWelcome }: BcfHubProps) {
   const c = bcfCopy[lang];
 
   return (
-    <BcfShell>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(232,197,106,0.12),_transparent_55%),_#0a0a0a]" />
-
-      <div className="relative z-10 flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
+    <BcfShell backgroundImage={bcfHubBg} overlayClassName="bg-black/55">
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
         <button
           type="button"
           onClick={onBackToWelcome}

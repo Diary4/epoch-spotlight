@@ -8,6 +8,7 @@ import {
   type ProjectId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import { bcfProjectsBg } from "@/components/Sections/bcf/bcfAssets";
 import projectThumb from "@/assets/images/women/w-4.webp";
 
 type BcfProjectsProps = {
@@ -28,10 +29,8 @@ export default function BcfProjects({
   const projects = c.projects[locationId];
 
   return (
-    <BcfShell>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#111111_0%,#0a0a0a_100%)]" />
-
-      <div className="relative z-10 flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
+    <BcfShell backgroundImage={bcfProjectsBg} overlayClassName="bg-black/55">
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
         <button
           type="button"
           onClick={onBack}

@@ -7,11 +7,11 @@ import {
   type FutureTopicId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
 import topicA from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
 import topicB from "@/assets/images/PrimeMinistir/agreement.webp";
 import topicC from "@/assets/images/PrimeMinistir/economic.webp";
 import topicD from "@/assets/images/religions/coexistence/mustafa-barzani.jpeg";
-import corridorBg from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 
 const topicImages: Record<FutureTopicId, string> = {
   leadership: topicA,
@@ -31,15 +31,8 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
   const active = c.futureTopics.find((t) => t.id === activeId) ?? null;
 
   return (
-    <BcfShell>
-      <img
-        src={corridorBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-30 brightness-50"
-      />
-      <div className="absolute inset-0 bg-[#0a0a0a]/80" />
-
-      <div className="relative z-10 flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
+    <BcfShell backgroundImage={bcfFutureDetailBg} overlayClassName="bg-black/60">
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
         <button
           type="button"
           onClick={() => (active ? setActiveId(null) : onBack())}

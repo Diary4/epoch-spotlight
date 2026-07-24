@@ -24,20 +24,13 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
   };
 
   return (
-    <BcfShell>
+    <BcfShell backgroundImage={introBg} overlayClassName="bg-gradient-to-r from-black/70 via-black/40 to-black/15">
       <button
         type="button"
         className="absolute inset-0 z-20 cursor-pointer border-0 bg-transparent p-0"
         onClick={handleContinue}
         aria-label={c.touchToContinue}
       />
-
-      <img
-        src={introBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-[35%_center]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
       <div className="relative z-10 flex min-h-[1920px] flex-col justify-center px-16 pb-40 pt-48">
         <div className="max-w-[900px]">

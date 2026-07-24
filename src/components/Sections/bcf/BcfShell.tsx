@@ -3,6 +3,12 @@ import { BCF_PAGE } from "@/components/Sections/bcf/bcfTheme";
 
 type BcfShellProps = {
   showLogo?: boolean;
+  /** Optional full-bleed background image (template until VIP assets arrive). */
+  backgroundImage?: string;
+  /** Extra class for the dark scrim over the background image. */
+  overlayClassName?: string;
+  /** Optional custom background layer (e.g. DomeGallery on one page only). */
+  backgroundSlot?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
 };
@@ -22,13 +28,34 @@ function BcfLogoMark() {
 
 export default function BcfShell({
   showLogo = true,
+  backgroundImage,
+  overlayClassName = "bg-black/50",
+  backgroundSlot,
   children,
   className = "",
 }: BcfShellProps) {
   return (
     <section className={`${BCF_PAGE} ${className}`}>
+      {backgroundSlot ? (
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          {backgroundSlot}
+          <div className={`absolute inset-0 ${overlayClassName}`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
+        </div>
+      ) : backgroundImage ? (
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={backgroundImage}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className={`absolute inset-0 ${overlayClassName}`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
+        </div>
+      ) : null}
+
       {showLogo ? <BcfLogoMark /> : null}
-      {children}
+      <div className="relative z-10 min-h-[1920px] w-full">{children}</div>
     </section>
   );
 }

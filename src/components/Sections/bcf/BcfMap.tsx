@@ -69,15 +69,8 @@ export default function BcfMap({
   const selected = selectedLocation ? c.locations[selectedLocation] : null;
 
   return (
-    <BcfShell>
-      <img
-        src={mapBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-40 brightness-50 contrast-125 saturate-50"
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(20,30,50,0.35),_#050505_75%)]" />
-
-      <div className="relative z-10 flex min-h-[1920px] flex-col px-10 pb-16 pt-36">
+    <BcfShell backgroundImage={mapBg} overlayClassName="bg-black/45">
+      <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-36">
         <button
           type="button"
           onClick={onBack}

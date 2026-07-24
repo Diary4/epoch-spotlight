@@ -5,6 +5,7 @@ import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import { bcfImpactBg } from "@/components/Sections/bcf/bcfAssets";
 
 const icons = [Users, Tent, HeartHandshake, School];
 
@@ -18,10 +19,8 @@ export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
   const enItems = bcfCopy.en.impactItems;
 
   return (
-    <BcfShell>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(232,197,106,0.1),_transparent_50%),_#0a0a0a]" />
-
-      <div className="relative z-10 flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
+    <BcfShell backgroundImage={bcfImpactBg} overlayClassName="bg-black/60">
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
         <button
           type="button"
           onClick={onBack}

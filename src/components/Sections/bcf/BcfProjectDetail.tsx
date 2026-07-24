@@ -29,15 +29,11 @@ export default function BcfProjectDetail({
     c.projects[locationId].find((p) => p.id === projectId) ?? c.projects[locationId][0];
 
   return (
-    <BcfShell>
-      <img
-        src={detailBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-[50%_20%]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
-
-      <div className="relative z-10 flex min-h-[1920px] flex-col justify-between px-12 pb-20 pt-36">
+    <BcfShell
+      backgroundImage={detailBg}
+      overlayClassName="bg-gradient-to-t from-black via-black/50 to-black/20"
+    >
+      <div className="relative flex min-h-[1920px] flex-col justify-between px-12 pb-20 pt-36">
         <button
           type="button"
           onClick={onBack}
