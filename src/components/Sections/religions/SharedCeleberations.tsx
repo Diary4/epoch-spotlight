@@ -118,9 +118,9 @@ export default function SharedCelebrationsPage({
       gsap.to("[data-celebration-animate='true']", {
         autoAlpha: 1,
         y: 0,
-        duration: 0.85,
-        stagger: 0.07,
-        ease: "power2.out",
+        duration: 1.1,
+        stagger: 0.1,
+        ease: "power3.out",
       });
     }, sectionRef);
 

@@ -23,7 +23,7 @@ export default function ReligionsV2Closing({
       gsap.fromTo(
         "[data-rv2-close]",
         { autoAlpha: 0, y: 24 },
-        { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.8, ease: "power3.out" },
+        { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1, ease: "power3.out" },
       );
     }, sectionRef);
     return () => ctx.revert();

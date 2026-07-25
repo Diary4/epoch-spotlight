@@ -275,22 +275,20 @@ export default function HistoryPage({
       gsap.set("[data-h-hero='true']", { autoAlpha: 0, scale: 1.04 });
       gsap.set("[data-h-animate='true']", { autoAlpha: 0, y: 24 });
 
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.to("[data-h-hero='true']", {
         autoAlpha: 1,
         scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
+        duration: 1.2,
       }).to(
         "[data-h-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.05,
-          ease: "power2.out",
+          duration: 1.1,
+          stagger: 0.1,
         },
-        "-=0.2",
+        "-=0.75",
       );
     }, sectionRef);
 

@@ -41,9 +41,9 @@ export default function ReligionsV2Attract({
       gsap.set("[data-rv2-pillar]", { autoAlpha: 0, y: 32 });
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.to("[data-rv2-hero]", { autoAlpha: 1, scale: 1, duration: 1.15 }, 0)
-        .to("[data-rv2-a]", { autoAlpha: 1, y: 0, stagger: 0.09, duration: 0.7 }, 0.2)
-        .to("[data-rv2-pillar]", { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.65 }, 0.45);
+      tl.to("[data-rv2-hero]", { autoAlpha: 1, scale: 1, duration: 1.2 }, 0)
+        .to("[data-rv2-a]", { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.25)
+        .to("[data-rv2-pillar]", { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.5);
     }, sectionRef);
 
     return () => ctx.revert();

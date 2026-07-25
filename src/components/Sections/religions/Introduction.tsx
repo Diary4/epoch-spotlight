@@ -327,19 +327,19 @@ export default function IntroductionPage({
       gsap.set("[data-intro-hero='true']", { autoAlpha: 0 });
       gsap.set("[data-intro-animate='true']", { autoAlpha: 0, y: 24 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.to("[data-intro-hero='true']", {
         autoAlpha: 1,
-        duration: 1.0,
+        duration: 1.2,
       }).to(
         "[data-intro-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.75,
-          stagger: 0.08,
+          duration: 1.1,
+          stagger: 0.1,
         },
-        "-=0.5",
+        "-=0.75",
       );
     }, sectionRef);
 

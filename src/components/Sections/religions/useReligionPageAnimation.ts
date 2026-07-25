@@ -7,6 +7,12 @@ export type ReligionPageAnimationSelectors = {
   controls?: string;
 };
 
+/** Soft entrance timing shared across faith / nation detail pages. */
+const EASE = "power3.out";
+const CONTROLS_DURATION = 1;
+const HERO_DURATION = 1.2;
+const CONTENT_DURATION = 1.1;
+
 export function useReligionPageAnimation(
   scopeRef: RefObject<HTMLElement | null>,
   selectors: ReligionPageAnimationSelectors,
@@ -31,31 +37,41 @@ export function useReligionPageAnimation(
       }
 
       if (controls) {
-        gsap.set(controls, { autoAlpha: 0, y: -8 });
+        gsap.set(controls, { autoAlpha: 0, y: -10 });
       }
       if (hero) {
-        gsap.set(hero, { autoAlpha: 0, scale: 1.02 });
+        gsap.set(hero, { autoAlpha: 0, scale: 1.03 });
       }
-      gsap.set(animate, { autoAlpha: 0, y: 14 });
+      gsap.set(animate, { autoAlpha: 0, y: 18 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({ defaults: { ease: EASE } });
 
       if (controls) {
-        tl.to(controls, { autoAlpha: 1, y: 0, duration: 0.28, stagger: 0.04 });
+        tl.to(controls, {
+          autoAlpha: 1,
+          y: 0,
+          duration: CONTROLS_DURATION,
+          stagger: 0.08,
+        });
       }
 
       if (hero) {
         tl.to(
           hero,
-          { autoAlpha: 1, scale: 1, duration: 0.48 },
-          controls ? "-=0.12" : 0,
+          { autoAlpha: 1, scale: 1, duration: HERO_DURATION },
+          controls ? "-=0.75" : 0,
         );
       }
 
       tl.to(
         animate,
-        { autoAlpha: 1, y: 0, duration: 0.42, stagger: 0.04 },
-        hero || controls ? "-=0.32" : 0,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: CONTENT_DURATION,
+          stagger: 0.1,
+        },
+        hero || controls ? "-=0.85" : 0,
       );
     }, scope);
 

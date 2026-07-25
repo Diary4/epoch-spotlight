@@ -322,21 +322,19 @@ export default function LeadersOfCoexistencePage({
       gsap.set("[data-lc-hero='true']", { autoAlpha: 0 });
       gsap.set("[data-lc-animate='true']", { autoAlpha: 0, y: 24 });
 
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.to("[data-lc-hero='true']", {
         autoAlpha: 1,
-        duration: 0.8,
-        ease: "power2.out",
+        duration: 1.2,
       }).to(
         "[data-lc-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.05,
-          ease: "power2.out",
+          duration: 1.1,
+          stagger: 0.1,
         },
-        "-=0.2",
+        "-=0.75",
       );
     }, sectionRef);
 

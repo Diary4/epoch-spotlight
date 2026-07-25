@@ -106,22 +106,20 @@ export default function LanguagesOfKurdistanPage({
         y: 24,
       });
 
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.to("[data-language-hero='true']", {
         autoAlpha: 1,
         scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
+        duration: 1.2,
       }).to(
         "[data-language-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.85,
-          stagger: 0.07,
-          ease: "power2.out",
+          duration: 1.1,
+          stagger: 0.1,
         },
-        "-=0.2",
+        "-=0.75",
       );
     }, sectionRef);
 

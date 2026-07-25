@@ -53,8 +53,8 @@ export function NationTopicSwitcher({
     }
     gsap.fromTo(
       panelRef.current,
-      { autoAlpha: 0.45, y: 12 },
-      { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" },
+      { autoAlpha: 0.35, y: 16 },
+      { autoAlpha: 1, y: 0, duration: 0.85, ease: "power3.out", overwrite: "auto" },
     );
   }, [activeId, langKey, activeTopic]);
 

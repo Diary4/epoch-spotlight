@@ -293,12 +293,12 @@ export default function ReligiousDiversityPage({
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.to(hero, { autoAlpha: 1, scale: 1, duration: 1.15 }, 0)
-        .to(langBtn, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.15)
-        .to(titleLines, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.75 }, 0.12)
-        .to(subtitle, { autoAlpha: 1, y: 0, duration: 0.65 }, 0.35)
-        .to(desc, { autoAlpha: 1, y: 0, duration: 0.65 }, 0.45)
-        .to(cards, { autoAlpha: 1, y: 0, stagger: 0.06, duration: 0.8 }, 0.52);
+      tl.to(hero, { autoAlpha: 1, scale: 1, duration: 1.2 }, 0)
+        .to(langBtn, { autoAlpha: 1, y: 0, duration: 1 }, 0.15)
+        .to(titleLines, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.2)
+        .to(subtitle, { autoAlpha: 1, y: 0, duration: 1 }, 0.4)
+        .to(desc, { autoAlpha: 1, y: 0, duration: 1 }, 0.5)
+        .to(cards, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.55);
     }, sectionRef);
 
     return () => ctx.revert();

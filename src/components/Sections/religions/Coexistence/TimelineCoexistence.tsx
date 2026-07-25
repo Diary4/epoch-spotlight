@@ -165,9 +165,9 @@ export default function TimelineOfCoexistencePage({
       gsap.to("[data-timeline-animate='true']", {
         autoAlpha: 1,
         y: 0,
-        duration: 0.85,
-        stagger: 0.06,
-        ease: "power2.out",
+        duration: 1.1,
+        stagger: 0.1,
+        ease: "power3.out",
       });
     }, sectionRef);
 
