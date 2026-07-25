@@ -320,7 +320,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "vision",
         titleGold: "Vision",
         titleWhite: "",
-        body: "A world where poverty and forced migration are eliminated and every person can access rights, education and essential services.",
+        body: "A world where poverty and forced migration are eliminated and every person can access rights, education and essential services",
       },
       {
         id: "philosophy",

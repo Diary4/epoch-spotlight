@@ -68,133 +68,144 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   return (
     <BcfShell showLogo={false} overlayClassName="bg-black/0">
       <div className="relative h-[1920px] min-h-[1920px] w-full overflow-hidden">
+        {/*
+          The visual layer below is an absolutely-positioned sibling of the
+          scroll driver, NOT a descendant of it — so it can never move,
+          regardless of how the driver scrolls. CSS `position: sticky` was
+          tried first but this page renders inside WomenScaledCanvas's
+          transform-scaled canvas, and sticky's containing-block resolution
+          isn't reliable through a transformed ancestor, so the background
+          ended up scrolling away instead of staying pinned. This layout
+          guarantees "fixed" instead of hoping for it.
+        */}
+        <div className="absolute inset-0 z-10 overflow-hidden">
+          {isFoundation ? (
+            <img src={bcfErbil} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{ background: corridorBackground(SECTION_ACCENTS[activeIndex]) }}
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/25" />
+
+          <div className="absolute left-8 top-8 z-20 flex items-center gap-3">
+            <span
+              className="h-16 w-16 shrink-0 overflow-hidden rounded-full border-2"
+              style={{ borderColor: BCF.gold }}
+            >
+              <img src={storyThumb} alt="" className="h-full w-full object-cover" />
+            </span>
+            <span className="rounded-full bg-black/50 px-6 py-3 text-[22px] text-white/90 backdrop-blur-sm">
+              {storyLabel}
+            </span>
+          </div>
+
+          <div key={activeIndex} className="absolute inset-x-0 bottom-0 animate-fade-in px-14 pb-24">
+            <h2 className="flex items-baseline text-[64px] font-bold leading-none">
+              <span style={{ color: BCF.gold }}>0</span>
+              <CountUp
+                to={activeIndex + 1}
+                duration={0.9}
+                className="text-[64px] font-bold leading-none text-[#e8c56a]"
+              />
+            </h2>
+
+            <div className="mt-4 max-w-[820px] font-sans text-[52px] font-bold leading-[1.1] tracking-[0.01em]">
+              <TextType
+                as="span"
+                text={active.titleGold}
+                typingSpeed={45}
+                loop={false}
+                showCursor={!active.titleWhite}
+                cursorCharacter="|"
+                cursorClassName="text-[#e8c56a]"
+                className="text-[52px] font-bold"
+                textColors={[BCF.gold]}
+              />
+              {active.titleWhite ? (
+                <>
+                  {" "}
+                  <TextType
+                    as="span"
+                    text={active.titleWhite}
+                    typingSpeed={45}
+                    initialDelay={active.titleGold.length * 45 + 120}
+                    loop={false}
+                    showCursor
+                    cursorCharacter="|"
+                    cursorClassName="text-white"
+                    className="text-[52px] font-bold text-white"
+                    textColors={["#ffffff"]}
+                  />
+                </>
+              ) : null}
+            </div>
+
+            {active.body ? (
+              <p className="mt-8 max-w-[760px] text-[26px] font-light leading-relaxed text-white/85">
+                {active.body}
+              </p>
+            ) : null}
+
+            {isValues && active.values ? (
+              <div className="mt-10 flex max-w-[760px] flex-col gap-5">
+                {active.values.map((value, i) => (
+                  <div key={value} className={`flex ${i % 2 === 0 ? "justify-start" : "justify-end"}`}>
+                    <span
+                      className={`flex items-center gap-3 rounded-full border border-white/15 bg-black/45 px-7 py-4 text-[24px] text-white backdrop-blur-sm ${
+                        i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                      }`}
+                    >
+                      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: BCF.gold }} />
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            {isFoundation ? (
+              <div className="mt-12 flex max-w-[560px] items-center gap-4">
+                <span className="text-[20px] text-white/70">{c.storyTimelineStart}</span>
+                <span className="relative h-px flex-1 bg-white/25">
+                  <span
+                    className="absolute left-[8%] top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                    style={{ backgroundColor: BCF.gold, boxShadow: `0 0 14px ${BCF.gold}` }}
+                  />
+                </span>
+                <span className="text-[20px] text-white/70">{c.storyTimelineEnd}</span>
+              </div>
+            ) : null}
+          </div>
+
+          {isFoundation ? (
+            <div className="pointer-events-none absolute inset-x-0 bottom-8 z-20 flex flex-col items-center gap-2 text-white/70">
+              <span className="text-[18px] tracking-wide">{c.storyScrollHint}</span>
+              <ChevronDown className="h-6 w-6 animate-bounce" />
+            </div>
+          ) : null}
+        </div>
+
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-10 top-10 z-30 flex w-fit items-center gap-2 rounded-full bg-black/40 px-5 py-3 text-[22px] text-white/85 backdrop-blur-sm"
+          className="absolute right-8 top-8 z-30 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
+          aria-label={c.back}
         >
-          <ChevronLeft className="h-6 w-6" />
-          {c.back}
+          <ChevronLeft className="h-7 w-7 text-white" />
         </button>
 
+        {/* Invisible scroll driver: the only thing that actually scrolls.
+            Its scroll position drives activeIndex; the visual layer above
+            never participates in the scroll flow, so it can't drift. */}
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="relative h-full w-full overflow-y-auto overscroll-contain"
+          className="absolute inset-0 z-40 overflow-y-auto overscroll-contain opacity-0"
+          style={{ WebkitOverflowScrolling: "touch" }}
         >
-          <div className="relative" style={{ height: sections.length * PANE_HEIGHT }}>
-            <div className="sticky top-0 z-10 w-full overflow-hidden" style={{ height: PANE_HEIGHT }}>
-              {isFoundation ? (
-                <img src={bcfErbil} alt="" className="absolute inset-0 h-full w-full object-cover" />
-              ) : (
-                <div
-                  className="absolute inset-0"
-                  style={{ background: corridorBackground(SECTION_ACCENTS[activeIndex]) }}
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/25" />
-
-              <div className="absolute left-10 top-10 z-20 flex items-center gap-3">
-                <span
-                  className="h-16 w-16 shrink-0 overflow-hidden rounded-full border-2"
-                  style={{ borderColor: BCF.gold }}
-                >
-                  <img src={storyThumb} alt="" className="h-full w-full object-cover" />
-                </span>
-                <span className="rounded-full bg-black/50 px-6 py-3 text-[22px] text-white/90 backdrop-blur-sm">
-                  {storyLabel}
-                </span>
-              </div>
-
-              <div
-                key={activeIndex}
-                className="absolute inset-x-0 bottom-0 animate-fade-in px-14 pb-24"
-              >
-                <h2 className="flex items-baseline gap-4 text-[64px] font-bold leading-none">
-                  <span style={{ color: BCF.gold }}>0</span>
-                  <CountUp
-                    to={activeIndex + 1}
-                    duration={0.9}
-                    className="text-[64px] font-bold leading-none text-[#e8c56a]"
-                  />
-                </h2>
-
-                <div className="mt-4 max-w-[820px] font-sans text-[52px] font-bold leading-[1.1] tracking-[0.01em]">
-                  <TextType
-                    as="span"
-                    text={active.titleGold}
-                    typingSpeed={45}
-                    loop={false}
-                    showCursor={!active.titleWhite}
-                    cursorCharacter="|"
-                    cursorClassName="text-[#e8c56a]"
-                    className="text-[52px] font-bold"
-                    textColors={[BCF.gold]}
-                  />
-                  {active.titleWhite ? (
-                    <>
-                      {" "}
-                      <TextType
-                        as="span"
-                        text={active.titleWhite}
-                        typingSpeed={45}
-                        initialDelay={active.titleGold.length * 45 + 120}
-                        loop={false}
-                        showCursor
-                        cursorCharacter="|"
-                        cursorClassName="text-white"
-                        className="text-[52px] font-bold text-white"
-                        textColors={["#ffffff"]}
-                      />
-                    </>
-                  ) : null}
-                </div>
-
-                {active.body ? (
-                  <p className="mt-8 max-w-[760px] text-[26px] font-light leading-relaxed text-white/85">
-                    {active.body}
-                  </p>
-                ) : null}
-
-                {isValues && active.values ? (
-                  <div className="mt-10 flex max-w-[760px] flex-col gap-5">
-                    {active.values.map((value, i) => (
-                      <div key={value} className={`flex ${i % 2 === 0 ? "justify-start" : "justify-end"}`}>
-                        <span
-                          className={`flex items-center gap-3 rounded-full border border-white/15 bg-black/45 px-7 py-4 text-[24px] text-white backdrop-blur-sm ${
-                            i % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                          }`}
-                        >
-                          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: BCF.gold }} />
-                          {value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-
-                {isFoundation ? (
-                  <div className="mt-12 flex max-w-[560px] items-center gap-4">
-                    <span className="text-[20px] text-white/70">{c.storyTimelineStart}</span>
-                    <span className="relative h-px flex-1 bg-white/25">
-                      <span
-                        className="absolute left-[8%] top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                        style={{ backgroundColor: BCF.gold, boxShadow: `0 0 14px ${BCF.gold}` }}
-                      />
-                    </span>
-                    <span className="text-[20px] text-white/70">{c.storyTimelineEnd}</span>
-                  </div>
-                ) : null}
-              </div>
-
-              {isFoundation ? (
-                <div className="pointer-events-none absolute inset-x-0 bottom-8 z-20 flex flex-col items-center gap-2 text-white/70">
-                  <span className="text-[18px] tracking-wide">{c.storyScrollHint}</span>
-                  <ChevronDown className="h-6 w-6 animate-bounce" />
-                </div>
-              ) : null}
-            </div>
-          </div>
+          <div style={{ height: sections.length * PANE_HEIGHT }} />
         </div>
       </div>
     </BcfShell>
