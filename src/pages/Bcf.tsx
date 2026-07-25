@@ -6,7 +6,7 @@ import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
 import BcfSections from "@/components/Sections/bcf/BcfSections";
 import BcfHumanity from "@/components/Sections/bcf/BcfHumanity";
-import BcfHub from "@/components/Sections/bcf/BcfHub";
+import BcfStory from "@/components/Sections/bcf/BcfStory";
 import BcfMap from "@/components/Sections/bcf/BcfMap";
 import BcfProjects from "@/components/Sections/bcf/BcfProjects";
 import BcfProjectDetail from "@/components/Sections/bcf/BcfProjectDetail";
@@ -86,22 +86,7 @@ export default function BcfPage() {
       case "humanity":
         return <BcfHumanity lang={lang} onBack={() => setStep("sections")} />;
       case "hub":
-        return (
-          <BcfHub
-            lang={lang}
-            onBackToWelcome={() => setStep("sections")}
-            onOpen={(id) => {
-              if (id === "map") {
-                setModalLocation(null);
-                setStep("map");
-              } else if (id === "impact") {
-                setStep("impact");
-              } else {
-                setStep("future");
-              }
-            }}
-          />
-        );
+        return <BcfStory lang={lang} onBack={() => setStep("sections")} />;
       case "map":
         return (
           <BcfMap

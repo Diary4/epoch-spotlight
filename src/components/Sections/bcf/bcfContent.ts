@@ -67,6 +67,16 @@ type FutureTopic = {
   body: string;
 };
 
+export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy" | "values";
+
+export type StorySection = {
+  id: StorySectionId;
+  titleGold: string;
+  titleWhite: string;
+  body?: string;
+  values?: string[];
+};
+
 export type BcfCopy = {
   languageTitle: string;
   languages: { id: BcfLang; label: string }[];
@@ -85,9 +95,10 @@ export type BcfCopy = {
   journeyTitleGold: string;
   journeySubtitle: string;
   journeyChapters: { id: JourneyChapterId; title: string }[];
-  hubTitle: string;
-  hubSubtitle: string;
-  hubCards: { id: "map" | "impact" | "future"; title: string; subtitle: string }[];
+  storyTimelineStart: string;
+  storyTimelineEnd: string;
+  storyScrollHint: string;
+  storySections: StorySection[];
   whereWeWork: string;
   across: string;
   borders: string;
@@ -289,12 +300,46 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "impact", title: "Our Impact" },
       { id: "future", title: "Trust & The Future" },
     ],
-    hubTitle: "Our Story",
-    hubSubtitle: "Explore where we work, the lives we change, and the future we build.",
-    hubCards: [
-      { id: "map", title: "Where We Work", subtitle: "Across borders and communities" },
-      { id: "impact", title: "Our Impact", subtitle: "Changing lives every day" },
-      { id: "future", title: "Trust & Future", subtitle: "A legacy that continues" },
+    storyTimelineStart: "2005",
+    storyTimelineEnd: "Today",
+    storyScrollHint: "Scroll Down",
+    storySections: [
+      {
+        id: "foundation",
+        titleGold: "The Foundation",
+        titleWhite: "Story",
+        body: "BCF was officially established in Erbil in 2005 to transform compassion into organized humanitarian action.",
+      },
+      {
+        id: "mission",
+        titleGold: "Mission",
+        titleWhite: "",
+        body: "Provide humanitarian support to vulnerable people without discrimination while promoting peace, dignity and sustainability.",
+      },
+      {
+        id: "vision",
+        titleGold: "Vision",
+        titleWhite: "",
+        body: "A world where poverty and forced migration are eliminated and every person can access rights, education and essential services.",
+      },
+      {
+        id: "philosophy",
+        titleGold: "Humanitarian",
+        titleWhite: "Philosophy",
+        body: "Service is an honor — not charity from above. People are served as human beings, never treated as statistics.",
+      },
+      {
+        id: "values",
+        titleGold: "Values",
+        titleWhite: "Behind the Mission",
+        values: [
+          "Humanitarian neutrality",
+          "Dignity in giving",
+          "Resilience and empowerment",
+          "Coexistence and harmony",
+          "Transparency",
+        ],
+      },
     ],
     whereWeWork: "Where We Work",
     across: "Across",
@@ -423,12 +468,46 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "impact", title: "کاریگەرییەکەمان" },
       { id: "future", title: "متمانە و داهاتوو" },
     ],
-    hubTitle: "چیرۆکەکەمان",
-    hubSubtitle: "شوێنی کار، ژیانە گۆڕاوەکان، و داهاتووی بنیادنان بگەڕێ.",
-    hubCards: [
-      { id: "map", title: "لە کوێ کار دەکەین", subtitle: "لە سنوور و کۆمەڵگەکاندا" },
-      { id: "impact", title: "کاریگەرییەکەمان", subtitle: "هەموو ڕۆژێک ژیان دەگۆڕین" },
-      { id: "future", title: "متمانە و داهاتوو", subtitle: "میراتێک کە بەردەوامە" },
+    storyTimelineStart: "٢٠٠٥",
+    storyTimelineEnd: "ئێستا",
+    storyScrollHint: "بڕۆ خوارەوە",
+    storySections: [
+      {
+        id: "foundation",
+        titleGold: "دامەزراندنی",
+        titleWhite: "دامەزراوە",
+        body: "BCF بە فەرمی ساڵی ٢٠٠٥ لە هەولێر دامەزرا بۆ گۆڕینی بەزەیی بۆ کارێکی مرۆیی ڕێکخراو.",
+      },
+      {
+        id: "mission",
+        titleGold: "ئەرک",
+        titleWhite: "",
+        body: "پشتگیری مرۆیی بۆ کەسانی هەستیار بەبێ جیاکاری، لەگەڵ بەرزکردنەوەی ئاشتی، کەرامەت و بەردەوامی.",
+      },
+      {
+        id: "vision",
+        titleGold: "دیدگا",
+        titleWhite: "",
+        body: "جیهانێک کە هەژاری و ئاوارەیی زۆرەملێ نەمابێت و هەموو کەسێک بگاتە مافەکانی، پەروەردە و خزمەتگوزارییە بنەڕەتییەکان.",
+      },
+      {
+        id: "philosophy",
+        titleGold: "فەلسەفەی",
+        titleWhite: "مرۆیی",
+        body: "خزمەتکردن ڕێزێکە — نەک بەخشینێک لە سەرەوە. خەڵک وەک مرۆڤ خزمەت دەکرێن، نەک وەک ژمارە.",
+      },
+      {
+        id: "values",
+        titleGold: "بەها",
+        titleWhite: "پشتی ئامانجەکە",
+        values: [
+          "بێلایەنی مرۆیی",
+          "کەرامەت لە بەخشیندا",
+          "بەرگەگرتن و بەهێزکردن",
+          "هاوژیانی ئاشتیانە",
+          "ڕوونکاری",
+        ],
+      },
     ],
     whereWeWork: "لە کوێ کار دەکەین",
     across: "لەسەر",
@@ -557,12 +636,46 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "impact", title: "أثرنا" },
       { id: "future", title: "الثقة والمستقبل" },
     ],
-    hubTitle: "قصتنا",
-    hubSubtitle: "استكشفوا أماكن عملنا والحيوات التي نغيّرها والمستقبل الذي نبنيه.",
-    hubCards: [
-      { id: "map", title: "أين نعمل", subtitle: "عبر الحدود والمجتمعات" },
-      { id: "impact", title: "أثرنا", subtitle: "نغيّر الحيوات كل يوم" },
-      { id: "future", title: "الثقة والمستقبل", subtitle: "إرث يستمر" },
+    storyTimelineStart: "2005",
+    storyTimelineEnd: "اليوم",
+    storyScrollHint: "مرر للأسفل",
+    storySections: [
+      {
+        id: "foundation",
+        titleGold: "قصة",
+        titleWhite: "التأسيس",
+        body: "تأسست مؤسسة BCF رسمياً في أربيل عام 2005 لتحويل التعاطف إلى عمل إنساني منظم.",
+      },
+      {
+        id: "mission",
+        titleGold: "الرسالة",
+        titleWhite: "",
+        body: "تقديم الدعم الإنساني للفئات الضعيفة دون تمييز، مع تعزيز السلام والكرامة والاستدامة.",
+      },
+      {
+        id: "vision",
+        titleGold: "الرؤية",
+        titleWhite: "",
+        body: "عالم يخلو من الفقر والنزوح القسري، يصل فيه كل إنسان إلى حقوقه والتعليم والخدمات الأساسية.",
+      },
+      {
+        id: "philosophy",
+        titleGold: "الفلسفة",
+        titleWhite: "الإنسانية",
+        body: "الخدمة شرف، لا إحسان من عل. يُعامل الناس كبشر، لا كأرقام.",
+      },
+      {
+        id: "values",
+        titleGold: "القيم",
+        titleWhite: "خلف الرسالة",
+        values: [
+          "الحياد الإنساني",
+          "الكرامة في العطاء",
+          "الصمود والتمكين",
+          "التعايش والانسجام",
+          "الشفافية",
+        ],
+      },
     ],
     whereWeWork: "أين نعمل",
     across: "عبر",
