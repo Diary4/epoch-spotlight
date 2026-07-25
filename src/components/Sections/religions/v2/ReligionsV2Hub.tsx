@@ -39,10 +39,16 @@ export default function ReligionsV2Hub({
 
   React.useLayoutEffect(() => {
     if (!previewRef.current) return;
+    const img = previewRef.current.querySelector("img");
+    if (!img) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(img, { scale: 1, autoAlpha: 1 });
+      return;
+    }
     gsap.fromTo(
-      previewRef.current.querySelector("img"),
+      img,
       { scale: 1.06, autoAlpha: 0.55 },
-      { scale: 1, autoAlpha: 1, duration: 0.9, ease: "power3.out" },
+      { scale: 1, autoAlpha: 1, duration: 0.9, ease: "power2.out", overwrite: "auto" },
     );
   }, [activeIndex]);
 
@@ -78,7 +84,8 @@ export default function ReligionsV2Hub({
             key={activeCard.id}
             src={activeCard.image}
             alt=""
-            className="h-full w-full object-cover"
+            decoding="async"
+            className="h-full w-full transform-gpu object-cover will-change-[transform,opacity]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1f160e]/85 via-[#1f160e]/30 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-9 text-white">
@@ -116,14 +123,21 @@ export default function ReligionsV2Hub({
               onFocus={() => onActiveIndexChange(index)}
               onPointerEnter={() => onActiveIndexChange(index)}
               onClick={() => onOpenChapter(index)}
-              className={`flex min-h-[250px] flex-col overflow-hidden rounded-[22px] border text-start transition-all duration-300 ${
+              className={`group flex min-h-[250px] transform-gpu flex-col overflow-hidden rounded-[22px] border text-start transition-[transform,border-color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform active:scale-[0.985] ${
                 isActive
-                  ? "border-[#b98222] bg-white shadow-[0_14px_32px_rgba(75,45,12,0.14)]"
+                  ? "-translate-y-1 border-[#b98222] bg-white shadow-[0_14px_32px_rgba(75,45,12,0.14)]"
                   : "border-[#d7b77e]/40 bg-white/70 hover:border-[#d7b77e] hover:bg-white"
               }`}
             >
               <div className="relative h-[140px] w-full overflow-hidden">
-                <img src={card.image} alt="" className="h-full w-full object-cover" />
+                <img
+                  src={card.image}
+                  alt=""
+                  decoding="async"
+                  className={`h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+                    isActive ? "scale-[1.04]" : "group-hover:scale-[1.04]"
+                  }`}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/35 to-transparent" />
                 <span className="absolute left-3 top-3 font-serif text-[18px] text-[#b98222]">
                   {card.number}

@@ -252,6 +252,7 @@ export default function ReligiousDiversityPage({
   onBack,
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const navigatingRef = React.useRef(false);
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<SubPage>(null);
   const content = pageContent[lang];
@@ -261,19 +262,46 @@ export default function ReligiousDiversityPage({
     setLang((prev) => (prev === "en" ? "ku" : prev === "ku" ? "ar" : "en"));
   };
 
-  const openSectionCard = (id: SectionCardId) => {
-    if (id === "introduction") return setSubPage("introduction");
-    if (id === "history") return setSubPage("history");
-    if (id === "leaders") return setSubPage("leaders");
-    if (id === "sharedLife") return setSubPage("sharedLife");
-    if (id === "rights") return setSubPage("rights");
+  // Fade the hub out before swapping to a chapter so the change reads as one
+  // continuous motion instead of a hard cut (matters on the showcase display).
+  const navigateTo = (target: SubPage) => {
+    if (navigatingRef.current) return;
+    const scope = sectionRef.current;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    setSubPage({ kind: "sectionDetail", cardId: id });
+    if (!scope || prefersReduced) {
+      setSubPage(target);
+      return;
+    }
+
+    navigatingRef.current = true;
+    gsap.to(scope, {
+      autoAlpha: 0,
+      y: -14,
+      duration: 0.42,
+      ease: "power2.in",
+      onComplete: () => setSubPage(target),
+    });
+  };
+
+  const openSectionCard = (id: SectionCardId) => {
+    if (id === "introduction") return navigateTo("introduction");
+    if (id === "history") return navigateTo("history");
+    if (id === "leaders") return navigateTo("leaders");
+    if (id === "sharedLife") return navigateTo("sharedLife");
+    if (id === "rights") return navigateTo("rights");
+
+    navigateTo({ kind: "sectionDetail", cardId: id });
   };
 
   // Staggered Page Entrance Animation via useLayoutEffect
   React.useLayoutEffect(() => {
     if (!sectionRef.current || subPage) return;
+
+    // Hub is (re)mounted and visible again — clear the navigation guard.
+    navigatingRef.current = false;
 
     const ctx = gsap.context(() => {
       const hero = "[data-rd-hero='true']";

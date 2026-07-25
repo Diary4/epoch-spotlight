@@ -254,11 +254,37 @@ export default function FaithsPage({
 }: FaithsPageProps) {
   const [activeId, setActiveId] = React.useState<FaithId | null>(null);
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const navigatingRef = React.useRef(false);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
+  // Fade the grid out before opening a faith so the card change stays smooth.
+  const openFaith = (id: FaithId) => {
+    if (navigatingRef.current) return;
+    const scope = sectionRef.current;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!scope || prefersReduced) {
+      setActiveId(id);
+      return;
+    }
+
+    navigatingRef.current = true;
+    gsap.to(scope, {
+      autoAlpha: 0,
+      y: -14,
+      duration: 0.42,
+      ease: "power2.in",
+      onComplete: () => setActiveId(id),
+    });
+  };
+
   React.useLayoutEffect(() => {
     if (!sectionRef.current || activeId) return;
+
+    navigatingRef.current = false;
 
     const reducedMotion =
       typeof window !== "undefined" &&
@@ -452,7 +478,7 @@ export default function FaithsPage({
                 body={faith.shortIntro}
                 image={faith.image}
                 accentIndex={index}
-                onClick={() => setActiveId(faith.id)}
+                onClick={() => openFaith(faith.id)}
                 ariaLabel={faith.title}
                 titleClassName="uppercase"
                 className="min-h-[520px]"
