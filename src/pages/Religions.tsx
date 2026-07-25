@@ -37,6 +37,7 @@ import Rights2014 from "@/components/Sections/religions/RightsSection/Rights2014
 import RightsRefuge from "@/components/Sections/religions/RightsSection/RightsRefuge";
 import RightsMedia from "@/components/Sections/religions/RightsSection/RightsMedia";
 import ClassicalCard from "@/components/Sections/religions/ClassicalCard";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 
 type LangCode = "en" | "ku" | "ar";
@@ -252,7 +253,7 @@ export default function ReligiousDiversityPage({
   onBack,
 }: ReligiousDiversityPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const navigatingRef = React.useRef(false);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [lang, setLang] = React.useState<LangCode>("en");
   const [subPage, setSubPage] = React.useState<SubPage>(null);
   const content = pageContent[lang];
@@ -264,27 +265,7 @@ export default function ReligiousDiversityPage({
 
   // Fade the hub out before swapping to a chapter so the change reads as one
   // continuous motion instead of a hard cut (matters on the showcase display).
-  const navigateTo = (target: SubPage) => {
-    if (navigatingRef.current) return;
-    const scope = sectionRef.current;
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!scope || prefersReduced) {
-      setSubPage(target);
-      return;
-    }
-
-    navigatingRef.current = true;
-    gsap.to(scope, {
-      autoAlpha: 0,
-      y: -14,
-      duration: 0.42,
-      ease: "power2.in",
-      onComplete: () => setSubPage(target),
-    });
-  };
+  const navigateTo = (target: SubPage) => runExit(() => setSubPage(target));
 
   const openSectionCard = (id: SectionCardId) => {
     if (id === "introduction") return navigateTo("introduction");
@@ -301,7 +282,7 @@ export default function ReligiousDiversityPage({
     if (!sectionRef.current || subPage) return;
 
     // Hub is (re)mounted and visible again — clear the navigation guard.
-    navigatingRef.current = false;
+    resetExit();
 
     const ctx = gsap.context(() => {
       const hero = "[data-rd-hero='true']";
@@ -330,7 +311,7 @@ export default function ReligiousDiversityPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [subPage]);
+  }, [subPage, resetExit]);
 
   if (subPage === "religionsKurdistan") {
     const religionsKurdistanProps = {

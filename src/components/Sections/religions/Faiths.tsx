@@ -5,6 +5,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
@@ -254,37 +255,17 @@ export default function FaithsPage({
 }: FaithsPageProps) {
   const [activeId, setActiveId] = React.useState<FaithId | null>(null);
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const navigatingRef = React.useRef(false);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
   // Fade the grid out before opening a faith so the card change stays smooth.
-  const openFaith = (id: FaithId) => {
-    if (navigatingRef.current) return;
-    const scope = sectionRef.current;
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!scope || prefersReduced) {
-      setActiveId(id);
-      return;
-    }
-
-    navigatingRef.current = true;
-    gsap.to(scope, {
-      autoAlpha: 0,
-      y: -14,
-      duration: 0.42,
-      ease: "power2.in",
-      onComplete: () => setActiveId(id),
-    });
-  };
+  const openFaith = (id: FaithId) => runExit(() => setActiveId(id));
 
   React.useLayoutEffect(() => {
     if (!sectionRef.current || activeId) return;
 
-    navigatingRef.current = false;
+    resetExit();
 
     const reducedMotion =
       typeof window !== "undefined" &&
@@ -329,7 +310,7 @@ export default function FaithsPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [lang, activeId]);
+  }, [lang, activeId, resetExit]);
 
   if (activeId === "islam") {
     return (
