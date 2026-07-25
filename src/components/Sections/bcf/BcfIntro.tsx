@@ -24,7 +24,10 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
   };
 
   return (
-    <BcfShell backgroundImage={introBg} overlayClassName="bg-gradient-to-r from-black/70 via-black/40 to-black/15">
+    <BcfShell
+      backgroundImage={introBg}
+      overlayClassName="bg-gradient-to-r from-[#04090c] via-[#04090c]/55 to-transparent"
+    >
       <button
         type="button"
         className="absolute inset-0 z-20 cursor-pointer border-0 bg-transparent p-0"
@@ -32,8 +35,8 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
         aria-label={c.touchToContinue}
       />
 
-      <div className="relative z-10 flex min-h-[1920px] flex-col justify-center px-16 pb-40 pt-48">
-        <div className="max-w-[900px]">
+      <div className="relative z-10 flex min-h-[1920px] flex-col px-16 pb-40 pt-32">
+        <div className="max-w-[920px]">
           <TextType
             as="h1"
             text={[c.humanity, c.dignity, c.hope]}
@@ -43,21 +46,22 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
             loop
             showCursor
             cursorCharacter="|"
-            cursorClassName="text-[#e8c56a]"
-            textColors={["#ffffff", "#ffffff", BCF.gold]}
-            className="font-sans text-[96px] font-bold uppercase leading-[1.05] tracking-[0.02em]"
+            cursorClassName="text-[#fbc158]"
+            textColors={["#fdeed4", "#fdeed4", BCF.gold]}
+            className="font-sans text-[124px] font-bold uppercase leading-[1.02] tracking-[0.01em]"
           />
 
-          <div className="mt-16 max-w-[640px]">
-            <span className="text-[64px] leading-none" style={{ color: BCF.gold }}>
-              “
-            </span>
-            <p className="mt-2 font-serif text-[34px] font-light italic leading-relaxed text-white/95">
+          <div className="mt-24 max-w-[640px]">
+            <span className="block text-[64px] leading-none text-[#fbc158]">“</span>
+            <p className="mt-4 text-[36px] font-medium italic leading-snug text-[#fbf4e4]">
               {c.quote}
             </p>
-            <p className="mt-5 text-[26px] font-medium" style={{ color: BCF.gold }}>
-              {c.quoteAttr}
-            </p>
+            <div className="mt-8 flex items-center gap-4">
+              <span className="h-0.5 w-6 rounded-full" style={{ backgroundColor: BCF.goldDeep }} />
+              <p className="text-[42px] font-medium" style={{ color: BCF.goldDeep }}>
+                {c.quoteAttr.replace(/^—\s*/, "")}
+              </p>
+            </div>
           </div>
         </div>
       </div>

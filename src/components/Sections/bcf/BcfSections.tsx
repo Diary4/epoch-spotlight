@@ -9,10 +9,10 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import storyThumb from "@/assets/images/religions/kurds/cover.jpeg";
-import humanityThumb from "@/assets/images/PrimeMinistir/service.webp";
-import mapThumb from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
+import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
+import mapThumb from "@/assets/images/PrimeMinistir/service.webp";
 import impactThumb from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import futureThumb from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
+import futureThumb from "@/assets/images/PrimeMinistir/agreement.webp";
 
 type BcfSectionsProps = {
   lang: BcfLang;
@@ -28,38 +28,25 @@ const thumbs: Record<JourneyChapterId, string> = {
   future: futureThumb,
 };
 
-// Circle centers (px) inside a 1288-wide coordinate space — the content
-// width of the 1400px design canvas minus the page's px-14 gutters.
-const CANVAS_WIDTH = 1288;
-const CIRCLE_R = 96;
-const POINTS = [
-  { x: 150, y: 116 },
-  { x: 214, y: 388 },
-  { x: 160, y: 660 },
-  { x: 112, y: 932 },
-  { x: 98, y: 1204 },
+/**
+ * Figma Story Sections-3 (1080 design): pills along a left-anchored arc.
+ * Canvas is 1400 wide — X positions are scaled; Y stays on the 1920 design grid.
+ */
+const SCALE_X = 1400 / 1080;
+const CIRCLE = 200;
+
+const LAYOUT: {
+  id: JourneyChapterId;
+  left: number;
+  top: number;
+  width: number;
+}[] = [
+  { id: "story", left: 153, top: 494, width: 483 },
+  { id: "humanity", left: 379, top: 719, width: 606 },
+  { id: "map", left: 460, top: 960, width: 570 },
+  { id: "impact", left: 460, top: 1201, width: 476 },
+  { id: "future", left: 360, top: 1441, width: 592 },
 ];
-
-/** Catmull-Rom -> cubic-Bezier conversion for a smooth curve through arbitrary points. */
-function smoothPath(points: { x: number; y: number }[]) {
-  if (points.length < 2) return "";
-  const d: string[] = [`M ${points[0].x} ${points[0].y}`];
-  for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] ?? points[i];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = points[i + 2] ?? p2;
-    const c1x = p1.x + (p2.x - p0.x) / 6;
-    const c1y = p1.y + (p2.y - p0.y) / 6;
-    const c2x = p2.x - (p3.x - p1.x) / 6;
-    const c2y = p2.y - (p3.y - p1.y) / 6;
-    d.push(`C ${c1x} ${c1y}, ${c2x} ${c2y}, ${p2.x} ${p2.y}`);
-  }
-  return d.join(" ");
-}
-
-const CURVE_PATH = smoothPath(POINTS);
-const LIST_HEIGHT = POINTS[POINTS.length - 1].y + CIRCLE_R + 40;
 
 export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps) {
   const c = bcfCopy[lang];
@@ -68,100 +55,118 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
   React.useLayoutEffect(() => {
     const el = listRef.current;
     if (!el) return;
-    const rows = el.querySelectorAll("[data-journey-row]");
+    const rows = el.querySelectorAll<HTMLElement>("[data-journey-row]");
+    // Hide before first paint so sections never flash visible, then stagger in.
+    gsap.set(rows, { opacity: 0, x: -36 });
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        rows,
-        { opacity: 0, x: -32 },
-        { opacity: 1, x: 0, duration: 0.7, ease: "power3.out", stagger: 0.14, delay: 0.15 },
-      );
+      gsap.to(rows, {
+        opacity: 1,
+        x: 0,
+        duration: 0.65,
+        ease: "power3.out",
+        stagger: 0.12,
+        delay: 0.15,
+      });
     }, el);
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      gsap.set(rows, { opacity: 0, x: -36 });
+    };
   }, [lang]);
 
   return (
-    <BcfShell overlayClassName="bg-black/0">
+    <BcfShell showLogo={false} overlayClassName="bg-black/0">
       <div
-        className="relative flex min-h-[1920px] flex-col px-14 pb-24 pt-28"
+        className="relative min-h-[1920px] w-full overflow-hidden"
         style={{
           background:
-            "radial-gradient(1100px 640px at 10% -8%, rgba(32,44,94,0.55), transparent 62%), linear-gradient(180deg, #0c1224 0%, #0a0a0a 55%, #0a0a0a 100%)",
+            "radial-gradient(900px 700px at -10% -5%, rgba(32,44,94,0.55), transparent 60%), radial-gradient(1000px 800px at 110% 110%, rgba(50,36,9,0.5), transparent 55%), linear-gradient(180deg, #191205 0%, #0a0d22 100%)",
         }}
       >
+        {/* Concentric arcs behind the chapter pills (Figma Ellipse 1 / 2). */}
+        <div
+          className="pointer-events-none absolute rounded-full border border-white/[0.12]"
+          style={{
+            left: -715 * SCALE_X,
+            top: 473,
+            width: 1300 * SCALE_X,
+            height: 1300 * SCALE_X,
+          }}
+        />
+        <div
+          className="pointer-events-none absolute rounded-full border border-white/[0.08]"
+          style={{
+            left: -659 * SCALE_X,
+            top: 564,
+            width: 1133 * SCALE_X,
+            height: 1133 * SCALE_X,
+          }}
+        />
+
         <button
           type="button"
           onClick={onBack}
-          className="mb-10 flex w-fit items-center gap-2 text-[24px] text-white/70"
+          className="absolute right-10 top-10 z-30 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
+          aria-label={c.back}
         >
-          <ChevronLeft className="h-7 w-7" />
-          {c.back}
+          <ChevronLeft className="h-7 w-7 text-white" />
         </button>
 
-        <h1 className="flex flex-wrap items-baseline gap-x-4 font-sans text-[62px] font-bold leading-[1.12] tracking-[0.01em]">
-          <span className="text-white">{c.journeyTitleLead}</span>
-          <span style={{ color: BCF.gold }}>{c.journeyTitleGold}</span>
-        </h1>
-        <div className="mt-6 flex items-center gap-3">
-          <span className="h-px w-[180px]" style={{ backgroundColor: `${BCF.gold}88` }} />
-          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: BCF.gold }} />
+        <div className="absolute left-[80px] top-[124px] z-20 max-w-[720px]">
+          <h1 className="text-[80px] font-bold leading-none tracking-[0.01em]">
+            <span className="text-[#fbf4e4]">{c.journeyTitleLead}</span>{" "}
+            <span style={{ color: BCF.gold }}>{c.journeyTitleGold}</span>
+          </h1>
+          <div className="mt-8 flex w-full max-w-[520px] items-center gap-3">
+            <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: BCF.gold }} />
+          </div>
+          <p className="mt-6 text-[32px] text-[#d2ba91]">{c.journeySubtitle}</p>
         </div>
-        <p className="mt-6 text-[24px] tracking-[0.1em] text-white/70">{c.journeySubtitle}</p>
 
-        <div ref={listRef} className="relative mt-16 w-full" style={{ height: LIST_HEIGHT }}>
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full"
-            viewBox={`0 0 ${CANVAS_WIDTH} ${LIST_HEIGHT}`}
-            fill="none"
-            preserveAspectRatio="none"
-          >
-            <circle
-              cx={-260}
-              cy={LIST_HEIGHT * 0.42}
-              r={620}
-              stroke="rgba(255,255,255,0.08)"
-              strokeWidth={1}
-            />
-            <path d={CURVE_PATH} stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
-          </svg>
-
-          {c.journeyChapters.map((chapter, index) => {
-            const point = POINTS[index];
-            const pillLeft = point.x + CIRCLE_R + 32;
+        <div ref={listRef} className="absolute inset-0 z-20">
+          {LAYOUT.map((item) => {
+            const chapter = c.journeyChapters.find((ch) => ch.id === item.id);
+            if (!chapter) return null;
+            const left = item.left * SCALE_X;
+            const width = item.width * SCALE_X;
             return (
-              <div
-                key={chapter.id}
+              <button
+                key={item.id}
+                type="button"
                 data-journey-row
-                className="absolute left-0 right-0"
-                style={{ top: point.y - CIRCLE_R, height: CIRCLE_R * 2 }}
+                onClick={() => onSelect(item.id)}
+                className="absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm active:scale-[0.99]"
+                style={{
+                  left,
+                  top: item.top,
+                  width,
+                  minHeight: 141,
+                  transform: "translateX(-36px)",
+                }}
               >
-                <button
-                  type="button"
-                  onClick={() => onSelect(chapter.id)}
-                  className="absolute top-0 overflow-hidden rounded-full border-2 transition active:scale-[0.96]"
+                <span
+                  className="absolute left-0 top-1/2 h-[200px] w-[200px] -translate-y-1/2 overflow-hidden rounded-full border-2"
                   style={{
-                    left: point.x - CIRCLE_R,
-                    width: CIRCLE_R * 2,
-                    height: CIRCLE_R * 2,
-                    borderColor: index === 0 ? BCF.gold : "rgba(255,255,255,0.35)",
-                    boxShadow: index === 0 ? `0 0 34px ${BCF.gold}66` : "none",
+                    borderColor: item.id === "story" ? BCF.gold : "rgba(251,193,88,0.55)",
+                    boxShadow:
+                      item.id === "story" ? `0 0 28px ${BCF.gold}55` : "none",
+                    width: CIRCLE,
+                    height: CIRCLE,
                   }}
                 >
-                  <img src={thumbs[chapter.id]} alt="" className="h-full w-full object-cover" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => onSelect(chapter.id)}
-                  className="absolute flex items-center justify-between rounded-full border border-white/12 bg-white/[0.06] px-9 py-6 text-left backdrop-blur-sm transition active:scale-[0.99]"
-                  style={{ left: pillLeft, right: 0, top: "50%", transform: "translateY(-50%)" }}
-                >
-                  <span className="text-[30px] font-medium text-white">{chapter.title}</span>
-                  <span className="ml-6 flex shrink-0 items-center gap-2">
-                    <span className="h-px w-8 bg-white/40" />
-                    <ArrowRight className="h-6 w-6" style={{ color: BCF.gold }} />
+                  <img src={thumbs[item.id]} alt="" className="h-full w-full object-cover" />
+                </span>
+                <span className="flex min-w-0 flex-col items-start gap-4">
+                  <span className="text-[52px] font-light leading-none text-[#fdeed4]">
+                    {chapter.title}
                   </span>
-                </button>
-              </div>
+                  <span className="flex items-center gap-2 text-[#fbc158]">
+                    <span className="h-px w-16 bg-current" />
+                    <ArrowRight className="h-6 w-6" />
+                  </span>
+                </span>
+              </button>
             );
           })}
         </div>

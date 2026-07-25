@@ -58,7 +58,16 @@ type ProjectCopy = {
 
 type ImpactItem = {
   value: string;
-  label: string;
+  title: string;
+  description: string;
+};
+
+export type ServeCategoryId = "relief" | "health" | "education" | "environment" | "community";
+
+export type ServeCategory = {
+  id: ServeCategoryId;
+  title: string;
+  tags?: string[];
 };
 
 type FutureTopic = {
@@ -95,6 +104,9 @@ export type BcfCopy = {
   journeyTitleGold: string;
   journeySubtitle: string;
   journeyChapters: { id: JourneyChapterId; title: string }[];
+  whoWeServeWhite: string;
+  whoWeServeGold: string;
+  serveCategories: ServeCategory[];
   storyTimelineStart: string;
   storyTimelineEnd: string;
   storyScrollHint: string;
@@ -290,8 +302,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     welcomeBody:
       "Discover our story, our humanitarian work, and the impact we create together.",
     startJourney: "Start the Journey",
-    journeyTitleLead: "Explore Our",
-    journeyTitleGold: "Journey",
+    journeyTitleLead: "Explore",
+    journeyTitleGold: "Our Journey",
     journeySubtitle: "5 Chapters . One Mission",
     journeyChapters: [
       { id: "story", title: "Our Story" },
@@ -299,6 +311,19 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "map", title: "Where We Work" },
       { id: "impact", title: "Our Impact" },
       { id: "future", title: "Trust & The Future" },
+    ],
+    whoWeServeWhite: "Who",
+    whoWeServeGold: "We Serve",
+    serveCategories: [
+      { id: "relief", title: "Relief" },
+      { id: "health", title: "Health" },
+      {
+        id: "education",
+        title: "Education",
+        tags: ["Livelihood & Economic Empowerment", "Education & Human Development"],
+      },
+      { id: "environment", title: "Environment", tags: ["Environment and Climate Change"] },
+      { id: "community", title: "Community" },
     ],
     storyTimelineStart: "2005",
     storyTimelineEnd: "Today",
@@ -401,21 +426,37 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     projectsIn: "Projects in",
     back: "Back",
     close: "Close",
-    ourImpact: "Our Impact",
+    ourImpact: "Our Impacts",
     changing: "Changing lives",
     livesEveryday: "everyday",
     impactItems: [
-      { value: "1,004", label: "Employees — people coordinating humanitarian action every day." },
-      { value: "91,281", label: "People in Camps — individuals supported through organizational services." },
-      { value: "75,548", label: "IDPs and Refugees — people assisted across communities." },
-      { value: "20", label: "Schools Renovated — learning environments improved for children." },
+      {
+        value: "1,004",
+        title: "Employees",
+        description: "People coordinating humanitarian action every day",
+      },
+      {
+        value: "191,386",
+        title: "People in Camps",
+        description: "Individuals supported through organized camp services.",
+      },
+      {
+        value: "751,948",
+        title: "IDPs and Refugees",
+        description: "People reached outside camps across communities.",
+      },
+      {
+        value: "310",
+        title: "Schools Renovated",
+        description: "Learning environments restored for children and young people.",
+      },
     ],
-    trustTitle: "Trust & the Future",
-    futureCircle: "01 The Future We Build",
-    legacyCircle: "02 A Legacy That Continues",
-    futureHeadingWhite: "The",
-    futureHeadingGold: "Future",
-    futureHeadingRest: "We Build",
+    trustTitle: "Trust & The Future",
+    futureCircle: "The Future We Build",
+    legacyCircle: "A Legacy That Continues",
+    futureHeadingWhite: "The Future",
+    futureHeadingGold: "We Build",
+    futureHeadingRest: "",
     futureTopics: [
       {
         id: "leadership",
@@ -467,6 +508,19 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "map", title: "لە کوێ کار دەکەین" },
       { id: "impact", title: "کاریگەرییەکەمان" },
       { id: "future", title: "متمانە و داهاتوو" },
+    ],
+    whoWeServeWhite: "ئێمە",
+    whoWeServeGold: "خزمەتی کێ دەکەین",
+    serveCategories: [
+      { id: "relief", title: "فریاگوزاری" },
+      { id: "health", title: "تەندروستی" },
+      {
+        id: "education",
+        title: "پەروەردە",
+        tags: ["بژێوی و بەهێزکردنی ئابووری", "پەروەردە و گەشەپێدانی مرۆیی"],
+      },
+      { id: "environment", title: "ژینگە", tags: ["ژینگە و گۆڕانی کەشوهەوا"] },
+      { id: "community", title: "کۆمەڵگە" },
     ],
     storyTimelineStart: "٢٠٠٥",
     storyTimelineEnd: "ئێستا",
@@ -573,17 +627,33 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     changing: "گۆڕینی ژیان",
     livesEveryday: "هەموو ڕۆژێک",
     impactItems: [
-      { value: "١٬٠٠٤", label: "کارمەند — هەماهەنگی کاری مرۆیی هەموو ڕۆژێک." },
-      { value: "٩١٬٢٨١", label: "کەس لە کەمپ — پشتگیریکراو لە ڕێگەی خزمەتگوزارییەکان." },
-      { value: "٧٥٬٥٤٨", label: "ئاوارە و پەنابەر — یارمەتیدراو لە کۆمەڵگە جیاوازەکان." },
-      { value: "٢٠", label: "قوتابخانەی نۆژەنکراو — ژینگەی فێربوون بۆ منداڵان." },
+      {
+        value: "1,004",
+        title: "کارمەند",
+        description: "هەماهەنگی کاری مرۆیی هەموو ڕۆژێک",
+      },
+      {
+        value: "191,386",
+        title: "کەس لە کەمپ",
+        description: "پشتگیریکراو لە ڕێگەی خزمەتگوزارییە ڕێکخراوەکان",
+      },
+      {
+        value: "751,948",
+        title: "ئاوارە و پەنابەر",
+        description: "گەیشتوون لە دەرەوەی کەمپەکان لە کۆمەڵگەکان",
+      },
+      {
+        value: "310",
+        title: "قوتابخانەی نۆژەنکراو",
+        description: "ژینگەی فێربوون بۆ منداڵان و گەنجان",
+      },
     ],
     trustTitle: "متمانە و داهاتوو",
-    futureCircle: "٠١ داهاتووی بنیاد دەنێین",
-    legacyCircle: "٠٢ میراتێک کە بەردەوامە",
-    futureHeadingWhite: "ئەو",
-    futureHeadingGold: "داهاتووە",
-    futureHeadingRest: "کە بنیاد دەنێین",
+    futureCircle: "داهاتووی بنیاد دەنێین",
+    legacyCircle: "میراتێک کە بەردەوامە",
+    futureHeadingWhite: "داهاتوو",
+    futureHeadingGold: "کە بنیاد دەنێین",
+    futureHeadingRest: "",
     futureTopics: [
       {
         id: "leadership",
@@ -635,6 +705,19 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "map", title: "أين نعمل" },
       { id: "impact", title: "أثرنا" },
       { id: "future", title: "الثقة والمستقبل" },
+    ],
+    whoWeServeWhite: "من",
+    whoWeServeGold: "نخدم",
+    serveCategories: [
+      { id: "relief", title: "الإغاثة" },
+      { id: "health", title: "الصحة" },
+      {
+        id: "education",
+        title: "التعليم",
+        tags: ["سبل العيش والتمكين الاقتصادي", "التعليم والتنمية البشرية"],
+      },
+      { id: "environment", title: "البيئة", tags: ["البيئة وتغير المناخ"] },
+      { id: "community", title: "المجتمع" },
     ],
     storyTimelineStart: "2005",
     storyTimelineEnd: "اليوم",
@@ -741,14 +824,30 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     changing: "نغيّر الحيوات",
     livesEveryday: "كل يوم",
     impactItems: [
-      { value: "1,004", label: "موظفون — ينسّقون العمل الإنساني كل يوم." },
-      { value: "91,281", label: "أشخاص في المخيمات — مدعومون عبر خدمات المنظمة." },
-      { value: "75,548", label: "نازحون ولاجئون — تمت مساعدتهم في مجتمعات متعددة." },
-      { value: "20", label: "مدارس مجدّدة — بيئات تعلم أفضل للأطفال." },
+      {
+        value: "1,004",
+        title: "موظفون",
+        description: "ينسّقون العمل الإنساني كل يوم",
+      },
+      {
+        value: "191,386",
+        title: "أشخاص في المخيمات",
+        description: "مدعومون عبر خدمات المخيمات المنظمة",
+      },
+      {
+        value: "751,948",
+        title: "نازحون ولاجئون",
+        description: "تم الوصول إليهم خارج المخيمات في المجتمعات",
+      },
+      {
+        value: "310",
+        title: "مدارس مجدّدة",
+        description: "بيئات تعلم أُعيد ترميمها للأطفال والشباب",
+      },
     ],
     trustTitle: "الثقة والمستقبل",
-    futureCircle: "01 المستقبل الذي نبنيه",
-    legacyCircle: "02 إرث يستمر",
+    futureCircle: "المستقبل الذي نبنيه",
+    legacyCircle: "إرث يستمر",
     futureHeadingWhite: "المستقبل",
     futureHeadingGold: "الذي نبنيه",
     futureHeadingRest: "",

@@ -1,6 +1,7 @@
 import React from "react";
 import { Building2, Globe2, Tent, Siren, ChevronLeft, X, ArrowRight } from "lucide-react";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
+import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import {
   BCF_LOCATIONS,
   bcfCopy,
@@ -11,6 +12,7 @@ import {
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import mapBg from "@/assets/images/kurdistan.webp";
+import mapThumb from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import erbilImg from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import duhokImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 import zakhoImg from "@/assets/images/TouristicPlace/Bekodian/1000140576.webp";
@@ -70,36 +72,38 @@ export default function BcfMap({
 
   return (
     <BcfShell backgroundImage={mapBg} overlayClassName="bg-black/45">
-      <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-36">
+      <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-24">
         <button
           type="button"
           onClick={onBack}
-          className="mb-8 flex w-fit items-center gap-2 text-[22px] text-white/70"
+          className="absolute right-10 top-10 z-30 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
+          aria-label={c.back}
         >
-          <ChevronLeft className="h-6 w-6" />
-          {c.back}
+          <ChevronLeft className="h-7 w-7 text-white" />
         </button>
 
-        <div className="mb-8 flex items-end justify-between gap-6">
-          <div>
-            <p className="text-[22px] tracking-[0.16em] text-white/65">{c.whereWeWork}</p>
-            <h1 className="mt-3 text-[72px] font-semibold leading-none">
-              <span style={{ color: BCF.gold }}>03 </span>
-              <span className="text-white">{c.across} </span>
-              <span style={{ color: BCF.gold }}>{c.borders}</span>
-            </h1>
-          </div>
+        <BcfChapterPill title={c.whereWeWork} thumb={mapThumb} />
+
+        <div className="mt-12 max-w-[640px]">
+          <p dir="ltr" className="text-[80px] font-bold leading-none">
+            <span className="text-[#fbf4e4]">0</span>
+            <span style={{ color: BCF.gold }}>3</span>
+          </p>
+          <h1 className="mt-6 text-[80px] font-bold leading-[1.05]">
+            <span className="text-[#fbf4e4]">{c.across} </span>
+            <span style={{ color: BCF.gold }}>{c.borders}</span>
+          </h1>
         </div>
 
-        <div className="relative min-h-[1200px] flex-1 overflow-hidden rounded-[28px] border border-white/10">
+        <div className="relative mt-10 min-h-[1100px] flex-1 overflow-hidden">
           <img
             src={mapBg}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover brightness-[0.45] contrast-125"
+            className="absolute inset-0 h-full w-full object-cover brightness-[0.55] contrast-125"
           />
-          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-black/30" />
 
-          <aside className={`${BCF_GLASS_CARD} absolute left-6 top-6 z-20 w-[280px] p-5`}>
+          <aside className="absolute left-6 top-6 z-20 w-[300px] rounded-[24px] bg-black/40 p-5 backdrop-blur-sm">
             {(Object.keys(c.filters) as MapFilterId[]).map((id) => {
               const Icon = filterIcons[id];
               const on = activeFilters.includes(id);
@@ -108,18 +112,21 @@ export default function BcfMap({
                   key={id}
                   type="button"
                   onClick={() => toggleFilter(id)}
-                  className="mb-3 flex w-full items-center gap-3 rounded-xl px-2 py-3 text-left last:mb-0"
+                  className="mb-3 flex w-full items-center justify-between gap-3 rounded-xl px-2 py-3 text-left last:mb-0"
                 >
-                  <span
-                    className={`grid h-10 w-10 place-items-center rounded-full border ${
-                      on ? "border-[#e8c56a] text-[#e8c56a]" : "border-white/25 text-white/45"
-                    }`}
-                  >
-                    <Icon className="h-5 w-5" />
+                  <span className="flex items-center gap-3">
+                    <span
+                      className={`grid h-10 w-10 place-items-center rounded-full border ${
+                        on ? "border-[#fbc158] text-[#fbc158]" : "border-white/25 text-white/45"
+                      }`}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className={`text-[28px] ${on ? "text-[#fbf4e4]" : "text-white/45"}`}>
+                      {c.filters[id]}
+                    </span>
                   </span>
-                  <span className={`text-[22px] ${on ? "text-white" : "text-white/45"}`}>
-                    {c.filters[id]}
-                  </span>
+                  {on ? <span className="h-px w-8 bg-[#fbc158]" /> : null}
                 </button>
               );
             })}
@@ -133,14 +140,17 @@ export default function BcfMap({
                 setHintVisible(false);
                 onSelectLocation(loc.id);
               }}
-              className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
+              className="absolute z-10 -translate-x-1/2 -translate-y-full"
               style={{ left: loc.x, top: loc.y }}
             >
               <span className="relative flex flex-col items-center">
-                <span className="h-4 w-4 rounded-full bg-white shadow-[0_0_18px_rgba(232,197,106,0.9)]" />
-                <span className="mt-2 rounded-full bg-black/55 px-3 py-1 text-[18px] text-white backdrop-blur-sm">
+                <span className="rounded-full border border-[#fbb22f] bg-black/50 px-5 py-3 text-[28px] font-medium text-[#fbf4e4]">
                   {c.locations[loc.id].name}
                 </span>
+                <span
+                  className="mt-1 h-0 w-0 border-l-[10px] border-r-[10px] border-t-[14px] border-l-transparent border-r-transparent"
+                  style={{ borderTopColor: BCF.goldBright }}
+                />
               </span>
             </button>
           ))}
@@ -193,7 +203,7 @@ export default function BcfMap({
                 <button
                   type="button"
                   onClick={() => onExploreProjects(selectedLocation)}
-                  className="mt-8 flex w-full items-center justify-between rounded-full border border-[#e8c56a]/50 px-8 py-5"
+                  className="mt-8 flex w-full items-center justify-between rounded-full border border-[#fbc158]/50 px-8 py-5"
                 >
                   <span className="text-[28px] text-white">{selected.explore}</span>
                   <span
