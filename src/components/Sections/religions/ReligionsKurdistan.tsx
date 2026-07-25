@@ -13,6 +13,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import bg from "@/assets/images/religions/r-2.webp";
 import ChristianityPage from "@/components/Sections/religions/RelisgionsSection/Christianity";
@@ -125,13 +126,16 @@ export default function ReligionsKurdistan({
     religionsData?.footer?.text ?? "Diverse in belief, united in coexistence.";
 
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [subPage, setSubPage] = React.useState<
     null | "christianity" | "yazidism" | "otherFaith"
   >(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || subPage) return;
+
+    resetExit();
 
     const ctx = gsap.context(() => {
       gsap.set("[data-religion-hero='true']", {
@@ -161,7 +165,7 @@ export default function ReligionsKurdistan({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [subPage, resetExit]);
 
   if (subPage === "christianity") {
     return (
@@ -285,7 +289,7 @@ export default function ReligionsKurdistan({
                 accentIndex={index}
                 align="center"
                 titleClassName="uppercase min-h-[72px]"
-                onClick={isNavCard ? () => setSubPage(subPageTarget) : undefined}
+                onClick={isNavCard ? () => runExit(() => setSubPage(subPageTarget)) : undefined}
                 ariaLabel={
                   isChristianity
                     ? "Open Christianity page"

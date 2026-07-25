@@ -11,6 +11,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import bg from "@/assets/images/religions/r-3.webp";
 import LanguagesOfKurdistanPage from "@/components/Sections/religions/Languages/KurdistanLanguages";
@@ -99,11 +100,14 @@ export default function Nationalities({
   const footerText = nationalitiesData?.footer?.text ?? "Different roots, one homeland.";
 
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [subPage, setSubPage] = React.useState<null | "languages">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || subPage) return;
+
+    resetExit();
 
     const ctx = gsap.context(() => {
       gsap.set("[data-nationality-hero='true']", {
@@ -133,7 +137,7 @@ export default function Nationalities({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [subPage, resetExit]);
 
   if (subPage === "languages") {
     const languagesPageProps = {
@@ -250,8 +254,8 @@ export default function Nationalities({
 
           <button
             type="button"
-            onClick={() => setSubPage("languages")}
-            className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)]"
+            onClick={() => runExit(() => setSubPage("languages"))}
+            className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-95"
           >
             <ChevronRight className="h-9 w-9" />
           </button>

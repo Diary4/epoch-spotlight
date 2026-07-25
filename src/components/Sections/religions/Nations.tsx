@@ -5,6 +5,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import bg from "@/assets/images/religions/nations/cover.jpeg";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
@@ -165,12 +166,17 @@ export default function NationsPage({
   onBack,
 }: NationsPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [activeId, setActiveId] = React.useState<NationId | null>(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
 
+  const openNation = (id: NationId) => runExit(() => setActiveId(id));
+
   React.useLayoutEffect(() => {
     if (!sectionRef.current || activeId) return;
+
+    resetExit();
 
     const reducedMotion =
       typeof window !== "undefined" &&
@@ -217,7 +223,7 @@ export default function NationsPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [lang, activeId]);
+  }, [lang, activeId, resetExit]);
 
   // ---------------------------------------------------------------------------
   // Per-nation detail routing.
@@ -329,7 +335,7 @@ export default function NationsPage({
                 body={nation.shortIntro}
                 image={nation.image}
                 accentIndex={index}
-                onClick={() => setActiveId(nation.id)}
+                onClick={() => openNation(nation.id)}
                 ariaLabel={nation.title}
                 titleClassName="uppercase"
                 className="min-h-[520px]"

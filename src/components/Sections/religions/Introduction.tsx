@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
@@ -307,6 +308,7 @@ export default function IntroductionPage({
   onBack,
 }: IntroductionPageProps = {}) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [activeTab, setActiveTab] = React.useState<TabId>("religions");
   const [activeFaith, setActiveFaith] = React.useState<FaithId | null>(null);
   const [activeNation, setActiveNation] = React.useState<NationId | null>(null);
@@ -314,8 +316,13 @@ export default function IntroductionPage({
   const dir = lang === "en" ? "ltr" : "rtl";
   const tabPanel = c[activeTab];
 
+  const openFaith = (id: FaithId) => runExit(() => setActiveFaith(id));
+  const openNation = (id: NationId) => runExit(() => setActiveNation(id));
+
   React.useLayoutEffect(() => {
     if (!sectionRef.current || activeFaith || activeNation) return;
+
+    resetExit();
 
     const reducedMotion =
       typeof window !== "undefined" &&
@@ -344,7 +351,7 @@ export default function IntroductionPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [lang, activeFaith, activeNation, activeTab]);
+  }, [lang, activeFaith, activeNation, activeTab, resetExit]);
 
   const closeDetail = () => {
     setActiveFaith(null);
@@ -463,7 +470,7 @@ export default function IntroductionPage({
                     image={card.image}
                     accent={faithAccents[index]}
                     accentIndex={index}
-                    onClick={() => setActiveFaith(card.id)}
+                    onClick={() => openFaith(card.id)}
                     ariaLabel={card.title}
                     titleClassName="uppercase"
                     imageHeightClass="min-h-[320px] flex-1"
@@ -478,7 +485,7 @@ export default function IntroductionPage({
                     image={card.image}
                     accent={card.accent}
                     accentIndex={index}
-                    onClick={() => setActiveNation(card.id)}
+                    onClick={() => openNation(card.id)}
                     ariaLabel={card.title}
                     titleClassName="uppercase"
                     imageHeightClass="min-h-[360px] flex-1"

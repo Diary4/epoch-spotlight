@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import bg3 from "@/assets/images/religions/rights/parliment.jpeg";
 import governmentImg from "@/assets/images/religions/rights/krg_cabinet.jpg";
@@ -309,6 +310,7 @@ export default function RightsPage({
   onOpenCard,
 }: RightsPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit } = useSectionExit(sectionRef);
   const [activeTab, setActiveTab] = React.useState<TabId>("institutions");
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
@@ -442,7 +444,7 @@ export default function RightsPage({
                 image={CARD_IMAGES[card.id]}
                 accent={card.accent}
                 accentIndex={index}
-                onClick={() => onOpenCard?.(card.id)}
+                onClick={() => runExit(() => onOpenCard?.(card.id))}
                 ariaLabel={card.title}
                 titleClassName="uppercase text-[22px] font-light leading-tight"
                 bodyClassName="text-[14px] font-light"

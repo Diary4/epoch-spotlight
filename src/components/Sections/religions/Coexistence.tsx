@@ -16,6 +16,7 @@ import TimelineOfCoexistencePage from "@/components/Sections/religions/Coexisten
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import bg from "@/assets/images/religions/r-2.webp";
 import en from "@/data/en.json";
@@ -119,11 +120,14 @@ export default function StoriesOfCoexistencePage({
     coexistenceData?.footer?.text ?? "Diversity is our strength. Coexistence is our legacy.";
 
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [subPage, setSubPage] = React.useState<null | "timeline">(null);
   const dir = lang === "en" ? "ltr" : "rtl";
 
   React.useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || subPage) return;
+
+    resetExit();
 
     const ctx = gsap.context(() => {
       gsap.set("[data-story-hero='true']", {
@@ -153,7 +157,7 @@ export default function StoriesOfCoexistencePage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [subPage, resetExit]);
 
   if (subPage === "timeline") {
     return (
@@ -316,8 +320,8 @@ export default function StoriesOfCoexistencePage({
 
           <button
             type="button"
-            onClick={() => setSubPage("timeline")}
-            className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
+            onClick={() => runExit(() => setSubPage("timeline"))}
+            className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-95"
           >
             <ChevronRight className="h-9 w-9" />
           </button>

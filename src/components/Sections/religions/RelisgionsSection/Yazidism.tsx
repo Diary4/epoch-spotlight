@@ -8,6 +8,7 @@ import OtherFaithTraditionsPage from "@/components/Sections/religions/Relisgions
 
 import bg from "@/assets/images/religions/yazidi/cover.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
+import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
@@ -170,9 +171,15 @@ export default function YazidismPage({
   onBack,
 }: YazidismPageProps) {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const { runExit, resetExit } = useSectionExit(sectionRef);
   const [subPage, setSubPage] = React.useState<null | "otherFaith">(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+
+  // Clear the navigation guard whenever the main faith view is shown again.
+  React.useEffect(() => {
+    if (!subPage) resetExit();
+  }, [subPage, resetExit]);
 
   useReligionPageAnimation(
     sectionRef,
@@ -255,8 +262,8 @@ export default function YazidismPage({
 
             <button
               type="button"
-              onClick={() => setSubPage("otherFaith")}
-              className="grid h-16 w-16 shrink-0 place-items-center self-auto rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f]"
+              onClick={() => runExit(() => setSubPage("otherFaith"))}
+              className="grid h-16 w-16 shrink-0 place-items-center self-auto rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-95"
             >
               <ChevronRight className="h-9 w-9" />
             </button>
