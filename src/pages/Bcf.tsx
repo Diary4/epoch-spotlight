@@ -1,6 +1,6 @@
 import React from "react";
 import gsap from "gsap";
-import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import DesignScaledCanvas from "@/components/DesignScaledCanvas";
 import BcfLanguage from "@/components/Sections/bcf/BcfLanguage";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
@@ -40,10 +40,11 @@ export default function BcfPage() {
     navigatingRef.current = false;
 
     const ctx = gsap.context(() => {
+      // Opacity only — y-translating full-bleed photos causes stutter.
       gsap.fromTo(
         el,
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" },
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.35, ease: "power2.out" },
       );
     }, el);
     return () => ctx.revert();
@@ -68,9 +69,8 @@ export default function BcfPage() {
 
     navigatingRef.current = true;
     gsap.to(el, {
-      opacity: 0,
-      y: -16,
-      duration: 0.34,
+      autoAlpha: 0,
+      duration: 0.25,
       ease: "power2.in",
       onComplete: apply,
     });
@@ -189,10 +189,14 @@ export default function BcfPage() {
   })();
 
   return (
-    <WomenScaledCanvas dir={dir} bgClassName="bg-[#0a0a0a]" fitViewport fitDeps={[step, lang]}>
-      <div ref={stageRef} key={`${step}-${lang}-${locationId ?? ""}-${projectId ?? ""}`}>
+    <DesignScaledCanvas dir={dir} bgClassName="bg-[#0a0a0a]" fitViewport fitDeps={[step, lang]}>
+      <div
+        ref={stageRef}
+        key={`${step}-${lang}-${locationId ?? ""}-${projectId ?? ""}`}
+        className="flex min-h-[1920px] w-full flex-col"
+      >
         {content}
       </div>
-    </WomenScaledCanvas>
+    </DesignScaledCanvas>
   );
 }

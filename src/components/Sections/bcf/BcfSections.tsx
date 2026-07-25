@@ -29,10 +29,8 @@ const thumbs: Record<JourneyChapterId, string> = {
 };
 
 /**
- * Figma Story Sections-3 (1080 design): pills along a left-anchored arc.
- * Canvas is 1400 wide — X positions are scaled; Y stays on the 1920 design grid.
+ * Figma Story Sections-3 — 1080×1920 design coordinates (matches DesignScaledCanvas).
  */
-const SCALE_X = 1400 / 1080;
 const CIRCLE = 200;
 
 const LAYOUT: {
@@ -42,10 +40,10 @@ const LAYOUT: {
   width: number;
 }[] = [
   { id: "story", left: 153, top: 494, width: 483 },
-  { id: "humanity", left: 379, top: 719, width: 606 },
-  { id: "map", left: 460, top: 960, width: 570 },
-  { id: "impact", left: 460, top: 1201, width: 476 },
-  { id: "future", left: 360, top: 1441, width: 592 },
+  { id: "humanity", left: 300, top: 719, width: 700 },
+  { id: "map", left: 360, top: 960, width: 640 },
+  { id: "impact", left: 360, top: 1201, width: 560 },
+  { id: "future", left: 280, top: 1441, width: 720 },
 ];
 
 export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps) {
@@ -87,19 +85,19 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
         <div
           className="pointer-events-none absolute rounded-full border border-white/[0.12]"
           style={{
-            left: -715 * SCALE_X,
+            left: -715,
             top: 473,
-            width: 1300 * SCALE_X,
-            height: 1300 * SCALE_X,
+            width: 1300,
+            height: 1300,
           }}
         />
         <div
           className="pointer-events-none absolute rounded-full border border-white/[0.08]"
           style={{
-            left: -659 * SCALE_X,
+            left: -659,
             top: 564,
-            width: 1133 * SCALE_X,
-            height: 1133 * SCALE_X,
+            width: 1133,
+            height: 1133,
           }}
         />
 
@@ -128,8 +126,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
           {LAYOUT.map((item) => {
             const chapter = c.journeyChapters.find((ch) => ch.id === item.id);
             if (!chapter) return null;
-            const left = item.left * SCALE_X;
-            const width = item.width * SCALE_X;
+            // Clamp so pill + label never spill past the 1080 canvas edge.
+            const width = Math.min(item.width, 1040 - item.left);
             return (
               <button
                 key={item.id}
@@ -138,7 +136,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                 onClick={() => onSelect(item.id)}
                 className="group absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-black/45 hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
                 style={{
-                  left,
+                  left: item.left,
                   top: item.top,
                   width,
                   minHeight: 141,
@@ -162,8 +160,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     className="h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.08] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                 </span>
-                <span className="flex min-w-0 flex-col items-start gap-4">
-                  <span className="text-[52px] font-light leading-none text-[#fdeed4]">
+                <span className="flex min-w-0 flex-1 flex-col items-start gap-4 overflow-hidden">
+                  <span className="w-full text-[44px] font-light leading-tight text-[#fdeed4]">
                     {chapter.title}
                   </span>
                   <span className="flex items-center gap-2 text-[#fbc158]">

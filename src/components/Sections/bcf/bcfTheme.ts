@@ -20,4 +20,4 @@ export const BCF_GLASS_CARD =
   "rounded-2xl border border-[#fbc158]/45 bg-black/55 backdrop-blur-md";
 
 export const BCF_PAGE =
-  "relative flex min-h-[1920px] w-full flex-col overflow-hidden bg-[#0a0a0a] text-white";
+  "relative flex h-full min-h-[1920px] w-full flex-col overflow-hidden bg-[#0a0a0a] text-white";

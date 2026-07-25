@@ -47,6 +47,8 @@ export default function BcfShell({
           <img
             src={backgroundImage}
             alt=""
+            decoding="async"
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className={`absolute inset-0 ${overlayClassName}`} />
@@ -55,7 +57,9 @@ export default function BcfShell({
       ) : null}
 
       {showLogo ? <BcfLogoMark /> : null}
-      <div className="relative z-10 min-h-[1920px] w-full">{children}</div>
+      <div className="relative z-10 flex min-h-[1920px] w-full flex-1 flex-col">
+        {children}
+      </div>
     </section>
   );
 }
