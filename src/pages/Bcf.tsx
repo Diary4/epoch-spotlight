@@ -4,6 +4,8 @@ import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import BcfLanguage from "@/components/Sections/bcf/BcfLanguage";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
+import BcfSections from "@/components/Sections/bcf/BcfSections";
+import BcfHumanity from "@/components/Sections/bcf/BcfHumanity";
 import BcfHub from "@/components/Sections/bcf/BcfHub";
 import BcfMap from "@/components/Sections/bcf/BcfMap";
 import BcfProjects from "@/components/Sections/bcf/BcfProjects";
@@ -14,6 +16,7 @@ import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
 import {
   type BcfLang,
   type BcfStep,
+  type JourneyChapterId,
   type LocationId,
   type ProjectId,
 } from "@/components/Sections/bcf/bcfContent";
@@ -39,7 +42,10 @@ export default function BcfPage() {
       );
     }, el);
     return () => ctx.revert();
-  }, [step, lang, locationId, projectId, modalLocation]);
+    // Intentionally excludes modalLocation: selecting a pin on the map is an
+    // in-page interaction, not a screen change, and shouldn't replay the
+    // whole-page entrance fade or force BcfMap to remount.
+  }, [step, lang, locationId, projectId]);
 
   const content = (() => {
     switch (step) {
@@ -55,12 +61,35 @@ export default function BcfPage() {
       case "intro":
         return <BcfIntro lang={lang} onContinue={() => setStep("welcome")} />;
       case "welcome":
-        return <BcfWelcome lang={lang} onStart={() => setStep("hub")} />;
+        return <BcfWelcome lang={lang} onStart={() => setStep("sections")} />;
+      case "sections":
+        return (
+          <BcfSections
+            lang={lang}
+            onBack={() => setStep("welcome")}
+            onSelect={(id: JourneyChapterId) => {
+              if (id === "story") {
+                setStep("hub");
+              } else if (id === "humanity") {
+                setStep("humanity");
+              } else if (id === "map") {
+                setModalLocation(null);
+                setStep("map");
+              } else if (id === "impact") {
+                setStep("impact");
+              } else {
+                setStep("future");
+              }
+            }}
+          />
+        );
+      case "humanity":
+        return <BcfHumanity lang={lang} onBack={() => setStep("sections")} />;
       case "hub":
         return (
           <BcfHub
             lang={lang}
-            onBackToWelcome={() => setStep("welcome")}
+            onBackToWelcome={() => setStep("sections")}
             onOpen={(id) => {
               if (id === "map") {
                 setModalLocation(null);
@@ -81,7 +110,7 @@ export default function BcfPage() {
             onSelectLocation={setModalLocation}
             onBack={() => {
               setModalLocation(null);
-              setStep("hub");
+              setStep("sections");
             }}
             onExploreProjects={(id) => {
               setLocationId(id);
@@ -117,12 +146,12 @@ export default function BcfPage() {
           />
         );
       case "impact":
-        return <BcfImpact lang={lang} onBack={() => setStep("hub")} />;
+        return <BcfImpact lang={lang} onBack={() => setStep("sections")} />;
       case "future":
         return (
           <BcfFuture
             lang={lang}
-            onBack={() => setStep("hub")}
+            onBack={() => setStep("sections")}
             onOpenFuture={() => setStep("futureDetail")}
           />
         );
@@ -135,7 +164,7 @@ export default function BcfPage() {
 
   return (
     <WomenScaledCanvas dir={dir} bgClassName="bg-[#0a0a0a]" fitViewport fitDeps={[step, lang]}>
-      <div ref={stageRef} key={`${step}-${lang}-${locationId ?? ""}-${projectId ?? ""}-${modalLocation ?? ""}`}>
+      <div ref={stageRef} key={`${step}-${lang}-${locationId ?? ""}-${projectId ?? ""}`}>
         {content}
       </div>
     </WomenScaledCanvas>

@@ -4,13 +4,17 @@ export type BcfStep =
   | "language"
   | "intro"
   | "welcome"
+  | "sections"
   | "hub"
+  | "humanity"
   | "map"
   | "projects"
   | "projectDetail"
   | "impact"
   | "future"
   | "futureDetail";
+
+export type JourneyChapterId = "story" | "humanity" | "map" | "impact" | "future";
 
 export type LocationId = "erbil" | "duhok" | "zakho" | "kirkuk" | "sulaymaniyah";
 export type ProjectId = "school-renovation" | "camp-support" | "emergency-aid";
@@ -77,6 +81,10 @@ export type BcfCopy = {
   welcomeTitleRest: string;
   welcomeBody: string;
   startJourney: string;
+  journeyTitleLead: string;
+  journeyTitleGold: string;
+  journeySubtitle: string;
+  journeyChapters: { id: JourneyChapterId; title: string }[];
   hubTitle: string;
   hubSubtitle: string;
   hubCards: { id: "map" | "impact" | "future"; title: string; subtitle: string }[];
@@ -271,6 +279,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     welcomeBody:
       "Discover our story, our humanitarian work, and the impact we create together.",
     startJourney: "Start the Journey",
+    journeyTitleLead: "Explore Our",
+    journeyTitleGold: "Journey",
+    journeySubtitle: "5 Chapters . One Mission",
+    journeyChapters: [
+      { id: "story", title: "Our Story" },
+      { id: "humanity", title: "Humanity in Action" },
+      { id: "map", title: "Where We Work" },
+      { id: "impact", title: "Our Impact" },
+      { id: "future", title: "Trust & The Future" },
+    ],
     hubTitle: "Our Story",
     hubSubtitle: "Explore where we work, the lives we change, and the future we build.",
     hubCards: [
@@ -395,6 +413,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     welcomeTitleRest: "ئەزموون",
     welcomeBody: "چیرۆک، کاری مرۆیی، و کاریگەرییەکەمان پێکەوە ببینە.",
     startJourney: "دەستپێکردنی گەشت",
+    journeyTitleLead: "گەشتی",
+    journeyTitleGold: "ئێمە بدۆزەرەوە",
+    journeySubtitle: "٥ بەش . یەک ئامانج",
+    journeyChapters: [
+      { id: "story", title: "چیرۆکەکەمان" },
+      { id: "humanity", title: "مرۆڤایەتی لە کردار" },
+      { id: "map", title: "لە کوێ کار دەکەین" },
+      { id: "impact", title: "کاریگەرییەکەمان" },
+      { id: "future", title: "متمانە و داهاتوو" },
+    ],
     hubTitle: "چیرۆکەکەمان",
     hubSubtitle: "شوێنی کار، ژیانە گۆڕاوەکان، و داهاتووی بنیادنان بگەڕێ.",
     hubCards: [
@@ -519,6 +547,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     welcomeTitleRest: "التجربة",
     welcomeBody: "اكتشفوا قصتنا وعملنا الإنساني والأثر الذي نصنعه معاً.",
     startJourney: "ابدأ الرحلة",
+    journeyTitleLead: "اكتشف",
+    journeyTitleGold: "رحلتنا",
+    journeySubtitle: "5 فصول . رسالة واحدة",
+    journeyChapters: [
+      { id: "story", title: "قصتنا" },
+      { id: "humanity", title: "الإنسانية في العمل" },
+      { id: "map", title: "أين نعمل" },
+      { id: "impact", title: "أثرنا" },
+      { id: "future", title: "الثقة والمستقبل" },
+    ],
     hubTitle: "قصتنا",
     hubSubtitle: "استكشفوا أماكن عملنا والحيوات التي نغيّرها والمستقبل الذي نبنيه.",
     hubCards: [

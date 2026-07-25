@@ -154,7 +154,10 @@ export default function BcfMap({
           ) : null}
 
           {selected && selectedLocation ? (
-            <div className="absolute inset-x-10 bottom-10 z-30 mx-auto max-w-[920px]">
+            <div
+              key={selectedLocation}
+              className="absolute inset-x-10 bottom-10 z-30 mx-auto max-w-[920px] animate-fade-in"
+            >
               <div className={`${BCF_GLASS_CARD} p-8`}>
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <h2 className="text-[48px] font-semibold" style={{ color: BCF.gold }}>
