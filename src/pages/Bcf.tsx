@@ -30,10 +30,15 @@ export default function BcfPage() {
   const stageRef = React.useRef<HTMLDivElement | null>(null);
 
   const dir = lang === "en" ? "ltr" : "rtl";
+  const navigatingRef = React.useRef(false);
 
   React.useLayoutEffect(() => {
     const el = stageRef.current;
     if (!el) return;
+
+    // New screen mounted and visible — clear the navigation guard.
+    navigatingRef.current = false;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
@@ -47,61 +52,93 @@ export default function BcfPage() {
     // whole-page entrance fade or force BcfMap to remount.
   }, [step, lang, locationId, projectId]);
 
+  // Fade the current screen out before swapping so each transition reads as one
+  // continuous motion instead of a hard cut (this display lives in the VIP room).
+  const go = React.useCallback((apply: () => void) => {
+    if (navigatingRef.current) return;
+    const el = stageRef.current;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!el || prefersReduced) {
+      apply();
+      return;
+    }
+
+    navigatingRef.current = true;
+    gsap.to(el, {
+      opacity: 0,
+      y: -16,
+      duration: 0.34,
+      ease: "power2.in",
+      onComplete: apply,
+    });
+  }, []);
+
   const content = (() => {
     switch (step) {
       case "language":
         return (
           <BcfLanguage
             onSelect={(next) => {
-              setLang(next);
-              setStep("intro");
+              go(() => {
+                setLang(next);
+                setStep("intro");
+              });
             }}
           />
         );
       case "intro":
-        return <BcfIntro lang={lang} onContinue={() => setStep("welcome")} />;
+        return <BcfIntro lang={lang} onContinue={() => go(() => setStep("welcome"))} />;
       case "welcome":
-        return <BcfWelcome lang={lang} onStart={() => setStep("sections")} />;
+        return <BcfWelcome lang={lang} onStart={() => go(() => setStep("sections"))} />;
       case "sections":
         return (
           <BcfSections
             lang={lang}
-            onBack={() => setStep("welcome")}
+            onBack={() => go(() => setStep("welcome"))}
             onSelect={(id: JourneyChapterId) => {
-              if (id === "story") {
-                setStep("hub");
-              } else if (id === "humanity") {
-                setStep("humanity");
-              } else if (id === "map") {
-                setModalLocation(null);
-                setStep("map");
-              } else if (id === "impact") {
-                setStep("impact");
-              } else {
-                setStep("future");
-              }
+              go(() => {
+                if (id === "story") {
+                  setStep("hub");
+                } else if (id === "humanity") {
+                  setStep("humanity");
+                } else if (id === "map") {
+                  setModalLocation(null);
+                  setStep("map");
+                } else if (id === "impact") {
+                  setStep("impact");
+                } else {
+                  setStep("future");
+                }
+              });
             }}
           />
         );
       case "humanity":
-        return <BcfHumanity lang={lang} onBack={() => setStep("sections")} />;
+        return <BcfHumanity lang={lang} onBack={() => go(() => setStep("sections"))} />;
       case "hub":
-        return <BcfStory lang={lang} onBack={() => setStep("sections")} />;
+        return <BcfStory lang={lang} onBack={() => go(() => setStep("sections"))} />;
       case "map":
         return (
           <BcfMap
             lang={lang}
             selectedLocation={modalLocation}
             onSelectLocation={setModalLocation}
-            onBack={() => {
-              setModalLocation(null);
-              setStep("sections");
-            }}
-            onExploreProjects={(id) => {
-              setLocationId(id);
-              setModalLocation(null);
-              setStep("projects");
-            }}
+            onBack={() =>
+              go(() => {
+                setModalLocation(null);
+                setStep("sections");
+              })
+            }
+            onExploreProjects={(id) =>
+              go(() => {
+                setLocationId(id);
+                setModalLocation(null);
+                setStep("projects");
+              })
+            }
           />
         );
       case "projects":
@@ -110,14 +147,18 @@ export default function BcfPage() {
           <BcfProjects
             lang={lang}
             locationId={locationId}
-            onBack={() => {
-              setModalLocation(locationId);
-              setStep("map");
-            }}
-            onOpenProject={(id) => {
-              setProjectId(id);
-              setStep("projectDetail");
-            }}
+            onBack={() =>
+              go(() => {
+                setModalLocation(locationId);
+                setStep("map");
+              })
+            }
+            onOpenProject={(id) =>
+              go(() => {
+                setProjectId(id);
+                setStep("projectDetail");
+              })
+            }
           />
         );
       case "projectDetail":
@@ -127,21 +168,21 @@ export default function BcfPage() {
             lang={lang}
             locationId={locationId}
             projectId={projectId}
-            onBack={() => setStep("projects")}
+            onBack={() => go(() => setStep("projects"))}
           />
         );
       case "impact":
-        return <BcfImpact lang={lang} onBack={() => setStep("sections")} />;
+        return <BcfImpact lang={lang} onBack={() => go(() => setStep("sections"))} />;
       case "future":
         return (
           <BcfFuture
             lang={lang}
-            onBack={() => setStep("sections")}
-            onOpenFuture={() => setStep("futureDetail")}
+            onBack={() => go(() => setStep("sections"))}
+            onOpenFuture={() => go(() => setStep("futureDetail"))}
           />
         );
       case "futureDetail":
-        return <BcfFutureDetail lang={lang} onBack={() => setStep("future")} />;
+        return <BcfFutureDetail lang={lang} onBack={() => go(() => setStep("future"))} />;
       default:
         return null;
     }

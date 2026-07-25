@@ -112,17 +112,21 @@ export default function BcfMap({
                   key={id}
                   type="button"
                   onClick={() => toggleFilter(id)}
-                  className="mb-3 flex w-full items-center justify-between gap-3 rounded-xl px-2 py-3 text-left last:mb-0"
+                  className="mb-3 flex w-full items-center justify-between gap-3 rounded-xl px-2 py-3 text-left transition-colors duration-200 hover:bg-white/[0.06] active:scale-[0.98] last:mb-0"
                 >
                   <span className="flex items-center gap-3">
                     <span
-                      className={`grid h-10 w-10 place-items-center rounded-full border ${
+                      className={`grid h-10 w-10 place-items-center rounded-full border transition-colors duration-300 ${
                         on ? "border-[#fbc158] text-[#fbc158]" : "border-white/25 text-white/45"
                       }`}
                     >
                       <Icon className="h-5 w-5" />
                     </span>
-                    <span className={`text-[28px] ${on ? "text-[#fbf4e4]" : "text-white/45"}`}>
+                    <span
+                      className={`text-[28px] transition-colors duration-300 ${
+                        on ? "text-[#fbf4e4]" : "text-white/45"
+                      }`}
+                    >
                       {c.filters[id]}
                     </span>
                   </span>
@@ -140,11 +144,11 @@ export default function BcfMap({
                 setHintVisible(false);
                 onSelectLocation(loc.id);
               }}
-              className="absolute z-10 -translate-x-1/2 -translate-y-full"
+              className="group absolute z-10 -translate-x-1/2 -translate-y-full transform-gpu transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:z-20 hover:scale-110 active:scale-100"
               style={{ left: loc.x, top: loc.y }}
             >
               <span className="relative flex flex-col items-center">
-                <span className="rounded-full border border-[#fbb22f] bg-black/50 px-5 py-3 text-[28px] font-medium text-[#fbf4e4]">
+                <span className="rounded-full border border-[#fbb22f] bg-black/50 px-5 py-3 text-[28px] font-medium text-[#fbf4e4] transition-[background-color,border-color,box-shadow] duration-300 group-hover:border-[#fbc158] group-hover:bg-black/70 group-hover:shadow-[0_0_28px_rgba(251,193,88,0.4)]">
                   {c.locations[loc.id].name}
                 </span>
                 <span
@@ -203,11 +207,11 @@ export default function BcfMap({
                 <button
                   type="button"
                   onClick={() => onExploreProjects(selectedLocation)}
-                  className="mt-8 flex w-full items-center justify-between rounded-full border border-[#fbc158]/50 px-8 py-5"
+                  className="group mt-8 flex w-full items-center justify-between rounded-full border border-[#fbc158]/50 px-8 py-5 transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#fbc158]/10 hover:shadow-[0_0_36px_rgba(251,193,88,0.22)] active:scale-[0.99]"
                 >
                   <span className="text-[28px] text-white">{selected.explore}</span>
                   <span
-                    className="grid h-14 w-14 place-items-center rounded-full border-2"
+                    className="grid h-14 w-14 place-items-center rounded-full border-2 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1"
                     style={{ borderColor: BCF.gold }}
                   >
                     <ArrowRight className="h-7 w-7" style={{ color: BCF.gold }} />

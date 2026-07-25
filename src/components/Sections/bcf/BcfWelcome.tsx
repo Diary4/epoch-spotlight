@@ -42,11 +42,11 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
           <button
             type="button"
             onClick={onStart}
-            className="mt-16 flex w-full max-w-[920px] items-center justify-between rounded-full border border-[#ece1d0] bg-black/25 px-8 py-5 backdrop-blur-sm transition active:scale-[0.99]"
+            className="group mt-16 flex w-full max-w-[920px] transform-gpu items-center justify-between rounded-full border border-[#ece1d0] bg-black/25 px-8 py-5 backdrop-blur-sm transition-[transform,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-1 hover:bg-black/40 hover:shadow-[0_0_44px_rgba(251,178,47,0.25)] active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
             <span className="text-[32px] font-medium tracking-wide text-white">{c.startJourney}</span>
             <span
-              className="grid h-[100px] w-[100px] place-items-center rounded-full border border-[#f0e8da]"
+              className="grid h-[100px] w-[100px] transform-gpu place-items-center rounded-full border border-[#f0e8da] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2"
               style={{ boxShadow: "inset -1px -1px 20px 0 #fbb22f" }}
             >
               <ArrowRight className="h-10 w-10 text-white" />
