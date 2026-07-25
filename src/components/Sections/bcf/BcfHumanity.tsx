@@ -29,13 +29,21 @@ const categoryImages: Record<ServeCategoryId, string> = {
   community: communityImg,
 };
 
-/** Figma card strip: 600px cards, 64px gap, active lifts 112px with tags. */
+/**
+ * Figma Who We Serve (50789:12 → 50791:208):
+ * 600px cards, 64px gap; inactive y=112 / h=575; active y=0 / h=799 with tags.
+ * Strip slides so the active card stays centered (Smart Animate).
+ */
 const CARD_W = 600;
 const CARD_GAP = 64;
 const CARD_PITCH = CARD_W + CARD_GAP;
+const ACTIVE_H = 799;
+const INACTIVE_H = 575;
 const INACTIVE_Y = 112;
-const TRACK_H = 799;
-const ANIM_DURATION = 0.55;
+const TRACK_H = ACTIVE_H;
+/** Figma Smart Animate default ≈ Ease In And Out @ 400ms */
+const ANIM_DURATION = 0.4;
+const ANIM_EASE = "power1.inOut";
 
 export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const c = bcfCopy[lang];
@@ -55,8 +63,6 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const activeIndexRef = React.useRef(initialIndex);
   const dragRef = React.useRef({ startX: 0, baseX: 0, dragging: false, moved: false });
 
-  const [activeIndex, setActiveIndex] = React.useState(initialIndex);
-
   const trackXForIndex = React.useCallback((index: number, viewportWidth: number) => {
     const center = viewportWidth / 2;
     return center - (index * CARD_PITCH + CARD_W / 2);
@@ -70,15 +76,15 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
 
       const clamped = Math.max(0, Math.min(categories.length - 1, nextIndex));
       activeIndexRef.current = clamped;
-      setActiveIndex(clamped);
 
       const x = trackXForIndex(clamped, viewport.clientWidth);
       const duration = immediate ? 0 : ANIM_DURATION;
 
+      // GSAP owns x / y / height / tags — avoid React style fighting mid-tween.
       gsap.to(track, {
         x,
         duration,
-        ease: "power2.inOut",
+        ease: ANIM_EASE,
         overwrite: "auto",
       });
 
@@ -87,9 +93,9 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         const active = i === clamped;
         gsap.to(card, {
           y: active ? 0 : INACTIVE_Y,
-          opacity: active ? 1 : 0.72,
+          height: active ? ACTIVE_H : INACTIVE_H,
           duration,
-          ease: "power2.inOut",
+          ease: ANIM_EASE,
           overwrite: "auto",
           boxShadow: active
             ? "0px 0px 20px 4px rgba(251,178,47,0.25)"
@@ -102,9 +108,9 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         const active = i === clamped;
         gsap.to(tags, {
           autoAlpha: active ? 1 : 0,
-          y: active ? 0 : 16,
-          duration: immediate ? 0 : ANIM_DURATION * 0.85,
-          ease: "power2.out",
+          y: active ? 0 : 12,
+          duration: immediate ? 0 : ANIM_DURATION * 0.9,
+          ease: active ? "power2.out" : "power1.in",
           overwrite: "auto",
         });
       });
@@ -213,77 +219,62 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
             className="absolute top-0 flex will-change-transform"
             style={{ height: TRACK_H, gap: CARD_GAP }}
           >
-            {categories.map((category, index) => {
-              const active = index === activeIndex;
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  ref={(el) => {
-                    cardRefs.current[index] = el;
-                  }}
-                  data-serve={category.id}
-                  onClick={() => {
-                    if (dragRef.current.moved) return;
-                    animateToIndex(index);
-                  }}
-                  className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] bg-white/[0.08] p-6 text-center"
-                  style={{
-                    width: CARD_W,
-                    height: TRACK_H,
-                    transform: `translateY(${active ? 0 : INACTIVE_Y}px)`,
-                    opacity: active ? 1 : 0.72,
-                    boxShadow: active
-                      ? "0px 0px 20px 4px rgba(251,178,47,0.25)"
-                      : "none",
-                  }}
+            {categories.map((category, index) => (
+              <button
+                key={category.id}
+                type="button"
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                data-serve={category.id}
+                onClick={() => {
+                  if (dragRef.current.moved) return;
+                  animateToIndex(index);
+                }}
+                className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] bg-white/[0.08] px-6 pt-6 text-center"
+                style={{ width: CARD_W }}
+              >
+                <span className="text-[64px] font-bold leading-none text-white">
+                  {category.title}
+                </span>
+                <span
+                  className="mt-8 block h-[400px] w-full overflow-hidden rounded-[20px] border"
+                  style={{ borderColor: BCF.nature }}
                 >
-                  <span className="text-[64px] font-bold leading-none text-white">
-                    {category.title}
-                  </span>
-                  <span
-                    className="mt-8 block h-[400px] w-full overflow-hidden rounded-[20px] border"
-                    style={{ borderColor: BCF.nature }}
-                  >
-                    <img
-                      src={categoryImages[category.id]}
-                      alt=""
-                      className="h-full w-full object-cover"
-                      draggable={false}
-                    />
-                  </span>
+                  <img
+                    src={categoryImages[category.id]}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    draggable={false}
+                  />
+                </span>
 
-                  <div
-                    ref={(el) => {
-                      tagRefs.current[index] = el;
-                    }}
-                    className="mt-8 flex w-full flex-col gap-6"
-                    style={{
-                      opacity: active && category.tags?.length ? 1 : 0,
-                      visibility:
-                        active && category.tags?.length ? "visible" : "hidden",
-                    }}
-                  >
-                    {(category.tags ?? []).map((tag, tagIndex) => (
+                <div
+                  ref={(el) => {
+                    tagRefs.current[index] = el;
+                  }}
+                  className="mt-8 flex w-full flex-col gap-6"
+                  style={{ opacity: 0, visibility: "hidden" }}
+                >
+                  {(category.tags ?? []).map((tag, tagIndex) => (
+                    <span
+                      key={tag}
+                      className={`flex items-center gap-4 bg-black/25 px-8 py-5 text-[24px] font-medium text-[#fbf4e4] ${
+                        tagIndex % 2 === 0
+                          ? "self-start rounded-br-[42px] rounded-tl-[42px]"
+                          : "flex-row-reverse self-end rounded-bl-[42px] rounded-tr-[42px]"
+                      }`}
+                    >
                       <span
-                        key={tag}
-                        className={`flex items-center gap-4 bg-black/25 px-8 py-5 text-[24px] font-medium text-[#fbf4e4] ${
-                          tagIndex % 2 === 0
-                            ? "self-start rounded-br-[42px] rounded-tl-[42px]"
-                            : "flex-row-reverse self-end rounded-bl-[42px] rounded-tr-[42px]"
-                        }`}
-                      >
-                        <span
-                          className="h-4 w-4 shrink-0 rounded-full"
-                          style={{ backgroundColor: BCF.goldBright }}
-                        />
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </button>
-              );
-            })}
+                        className="h-4 w-4 shrink-0 rounded-full"
+                        style={{ backgroundColor: BCF.goldBright }}
+                      />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </button>
+            ))}
           </div>
         </div>
       </div>
