@@ -4,7 +4,9 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/z-1.webp";
+import bg from "@/assets/images/religions/zoro/cover.jpeg";
+import historyImg from "@/assets/images/religions/zoro/history.jpeg";
+import environmentImg from "@/assets/images/religions/zoro/environment.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -38,9 +40,9 @@ type TopicContent = {
 };
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
-  history: bg,
+  history: historyImg,
   "three-pillars": bg,
-  environment: bg,
+  environment: environmentImg,
   nowruz: bg,
 };
 

@@ -1,7 +1,10 @@
 import React from "react";
 import { Heart, Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/b-1.webp";
+import bg from "@/assets/images/religions/bahai/cover.jpeg";
+import kurdistanImg from "@/assets/images/religions/bahai/kurdistan.jpeg";
+import coreImg from "@/assets/images/religions/bahai/core.jpeg";
+import freeImg from "@/assets/images/religions/bahai/free.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -34,9 +37,9 @@ type BahaiContent = {
 };
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
-  "bahaullah-kurdistan": bg,
-  "core-principles": bg,
-  "free-kurdistan": bg,
+  "bahaullah-kurdistan": kurdistanImg,
+  "core-principles": coreImg,
+  "free-kurdistan": freeImg,
   "festival-ridvan": bg,
 };
 

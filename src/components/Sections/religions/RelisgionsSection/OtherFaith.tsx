@@ -14,10 +14,10 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
 import yarsanism from "@/assets/images/religions/k-1.webp";
-import zoroastrianism from "@/assets/mainImages/story-2.webp";
+import zoroastrianism from "@/assets/images/religions/zoro/cover.jpeg";
 import judaism from "@/assets/mainImages/2005.webp";
-import bahai from "@/assets/images/bg-2.webp";
-import mandaean from "@/assets/images/kurdistan.webp";
+import bahai from "@/assets/images/religions/bahai/card-cover.jpeg";
+import mandaean from "@/assets/images/religions/sabean/card-cover.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";

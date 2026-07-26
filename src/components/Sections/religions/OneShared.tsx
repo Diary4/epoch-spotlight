@@ -21,7 +21,7 @@ import sharedHero from "@/assets/images/religions/sharedlife/cover.jpeg";
 import mosquesImg from "@/assets/images/religions/sharedlife/mosques.jpeg";
 import churchesImg from "@/assets/images/religions/sharedlife/churches.jpeg";
 import lalishImg from "@/assets/images/religions/sharedlife/lalish.jpeg";
-import zoroImg from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
+import zoroImg from "@/assets/images/religions/zoro/cover.jpeg";
 import eidImg from "@/assets/images/religions/sharedlife/mosques.jpeg";
 import christmasImg from "@/assets/images/religions/sharedlife/christmas.jpeg";
 import yazidiFestImg from "@/assets/images/religions/sharedlife/yazidi-festival.jpeg";

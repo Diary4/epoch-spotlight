@@ -1,8 +1,9 @@
 import React from "react";
 import { Droplets, Sparkles } from "lucide-react";
 
-import waterVideo from "@/assets/videos/water.webm?url";
-import bg from "@/assets/images/religions/sabean-water.webp";
+import bg from "@/assets/images/religions/sabean/cover.jpeg";
+import meaningImg from "@/assets/images/religions/sabean/meaning.jpeg";
+import kurdistanImg from "@/assets/images/religions/sabean/kurditan.jpeg";
 import mandaicImg from "@/assets/images/religions/sabean/mandiac.gif";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
@@ -13,7 +14,7 @@ import {
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
-  FaithDetailHeroVideo,
+  FaithDetailHeroImage,
   FaithDetailPageShell,
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
@@ -36,10 +37,10 @@ type SabeanContent = {
 };
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
-  meaning: bg,
+  meaning: meaningImg,
   "five-pillars": bg,
   "mandaic-language": mandaicImg,
-  "in-kurdistan": bg,
+  "in-kurdistan": kurdistanImg,
 };
 
 const content: Record<LangCode, SabeanContent> = {
@@ -167,9 +168,9 @@ export default function SabeanMandaeanismPage({
 
   return (
     <FaithDetailPageShell dir={dir} lang={lang} fitDeps={[lang]} sectionRef={sectionRef}>
-        <FaithDetailHeroVideo
+        <FaithDetailHeroImage
           heroAttr="data-sabean-hero"
-          src={waterVideo}
+          src={bg}
         />
 
         <FaithDetailControls
