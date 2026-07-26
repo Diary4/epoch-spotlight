@@ -36,21 +36,16 @@ export function usePreloadImages(sources: readonly string[]) {
   React.useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const images = key
+    // No cleanup: cancelling an in-flight decode would defeat the point, and the
+    // browser cache keeps the result once it lands.
+    key
       .split("|")
       .filter(Boolean)
-      .map((src) => {
+      .forEach((src) => {
         const img = new Image();
         img.decoding = "async";
         img.src = src;
-        return img;
       });
-
-    return () => {
-      images.forEach((img) => {
-        img.src = "";
-      });
-    };
   }, [key]);
 }
 
@@ -78,27 +73,52 @@ export function ReligionsTabNav<T extends string>({
   const buttonRefs = React.useRef(new Map<T, HTMLButtonElement>());
   const placedRef = React.useRef(false);
 
+  const placeIndicator = React.useCallback(
+    (instant: boolean) => {
+      const indicator = indicatorRef.current;
+      const button = buttonRefs.current.get(activeId);
+      if (!indicator || !button) return;
+
+      const target = { x: button.offsetLeft, width: button.offsetWidth };
+
+      if (instant || prefersReducedMotion()) {
+        gsap.set(indicator, { ...target, autoAlpha: 1 });
+        return;
+      }
+
+      gsap.to(indicator, {
+        ...target,
+        duration: 0.55,
+        ease: "power3.inOut",
+        overwrite: "auto",
+      });
+    },
+    [activeId],
+  );
+
+  // First paint lands instantly; later changes glide across the tab bar.
   React.useLayoutEffect(() => {
-    const indicator = indicatorRef.current;
-    const button = buttonRefs.current.get(activeId);
-    if (!indicator || !button) return;
+    placeIndicator(!placedRef.current);
+    placedRef.current = true;
+  }, [placeIndicator]);
 
-    const target = { x: button.offsetLeft, width: button.offsetWidth };
+  // Web fonts and canvas rescaling change the tab widths after first paint.
+  React.useEffect(() => {
+    const list = listRef.current;
+    if (!list || typeof ResizeObserver === "undefined") return;
 
-    // First paint lands instantly; later changes glide across the tab bar.
-    if (!placedRef.current || prefersReducedMotion()) {
-      placedRef.current = true;
-      gsap.set(indicator, { ...target, autoAlpha: 1 });
-      return;
-    }
-
-    gsap.to(indicator, {
-      ...target,
-      duration: 0.55,
-      ease: "power3.inOut",
-      overwrite: "auto",
+    let first = true;
+    const observer = new ResizeObserver(() => {
+      if (first) {
+        first = false;
+        return;
+      }
+      placeIndicator(true);
     });
-  }, [activeId, tabs]);
+
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [placeIndicator]);
 
   return (
     <nav
@@ -107,7 +127,7 @@ export function ReligionsTabNav<T extends string>({
         className,
       )}
     >
-      <div ref={listRef} className="relative flex gap-2">
+      <div ref={listRef} role="tablist" className="relative flex gap-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeId === tab.id;
@@ -182,9 +202,14 @@ export function ReligionsTabPanel<T extends string>({
   children,
 }: ReligionsTabPanelProps<T>) {
   const rootRef = React.useRef<HTMLDivElement | null>(null);
-  const [renderedKey, setRenderedKey] = React.useState<T>(tabKey);
+  // `swap` counts completed exits, so an entrance always follows one — even when
+  // a fast double-click lands back on the tab that was already showing.
+  const [panel, setPanel] = React.useState({ key: tabKey, swap: 0 });
+  const latestKeyRef = React.useRef<T>(tabKey);
   const previousKeyRef = React.useRef<T>(tabKey);
   const tweenRef = React.useRef<gsap.core.Tween | null>(null);
+
+  latestKeyRef.current = tabKey;
 
   const collect = React.useCallback(() => {
     const root = rootRef.current;
@@ -194,22 +219,24 @@ export function ReligionsTabPanel<T extends string>({
     );
   }, []);
 
+  const advance = React.useCallback(() => {
+    setPanel((current) => ({
+      key: latestKeyRef.current,
+      swap: current.swap + 1,
+    }));
+  }, []);
+
   // Selection changed: play the outgoing panel off before swapping content.
   React.useEffect(() => {
-    if (tabKey === renderedKey) return;
-
-    if (prefersReducedMotion()) {
-      setRenderedKey(tabKey);
-      return;
-    }
+    if (tabKey === panel.key) return;
 
     const targets = collect();
-    if (!targets.length) {
-      setRenderedKey(tabKey);
+    if (prefersReducedMotion() || !targets.length) {
+      advance();
       return;
     }
 
-    const forward = order.indexOf(tabKey) >= order.indexOf(renderedKey);
+    const forward = order.indexOf(tabKey) >= order.indexOf(panel.key);
     const away = (forward ? -SHIFT : SHIFT) * (dir === "rtl" ? -1 : 1);
 
     tweenRef.current?.kill();
@@ -221,23 +248,22 @@ export function ReligionsTabPanel<T extends string>({
       ease: "power2.in",
       stagger: 0.025,
       overwrite: "auto",
-      onComplete: () => setRenderedKey(tabKey),
+      onComplete: advance,
     });
-  }, [tabKey, renderedKey, order, dir, collect]);
+  }, [tabKey, panel.key, order, dir, collect, advance]);
 
   // New panel is in the DOM: hide it before paint, then float it in.
   React.useLayoutEffect(() => {
     const previousKey = previousKeyRef.current;
-    previousKeyRef.current = renderedKey;
+    previousKeyRef.current = panel.key;
 
     // Mount renders at rest so the page's own entrance animation stays in charge.
-    if (previousKey === renderedKey) return;
-    if (prefersReducedMotion()) return;
+    if (panel.swap === 0 || prefersReducedMotion()) return;
 
     const targets = collect();
     if (!targets.length) return;
 
-    const forward = order.indexOf(renderedKey) >= order.indexOf(previousKey);
+    const forward = order.indexOf(panel.key) >= order.indexOf(previousKey);
     const from = (forward ? SHIFT : -SHIFT) * (dir === "rtl" ? -1 : 1);
 
     tweenRef.current?.kill();
@@ -252,13 +278,13 @@ export function ReligionsTabPanel<T extends string>({
       overwrite: "auto",
       clearProps: "transform",
     });
-  }, [renderedKey, order, dir, collect]);
+  }, [panel.swap, panel.key, order, dir, collect]);
 
   React.useEffect(() => () => void tweenRef.current?.kill(), []);
 
   return (
     <div ref={rootRef} className={className}>
-      {children(renderedKey)}
+      {children(panel.key)}
     </div>
   );
 }
