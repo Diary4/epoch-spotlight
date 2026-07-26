@@ -7,11 +7,16 @@ import {
   UsersRound,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
-import { cn } from "@/lib/utils";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
+import {
+  ReligionsTabHero,
+  ReligionsTabNav,
+  ReligionsTabPanel,
+  usePreloadImages,
+} from "@/components/Sections/religions/tabTransitions";
 
 import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
@@ -260,10 +265,12 @@ const content: Record<LangCode, IntroductionContent> = {
   },
 };
 
-const tabs: { id: TabId; icon: typeof MoonStar }[] = [
-  { id: "religions", icon: MoonStar },
-  { id: "nations", icon: UsersRound },
-];
+const TAB_ORDER = ["religions", "nations"] as const;
+
+const tabIcons: Record<TabId, typeof MoonStar> = {
+  religions: MoonStar,
+  nations: UsersRound,
+};
 
 const tabHeroImages: Record<TabId, string> = {
   religions: bg,
@@ -314,7 +321,28 @@ export default function IntroductionPage({
   const [activeNation, setActiveNation] = React.useState<NationId | null>(null);
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
-  const tabPanel = c[activeTab];
+
+  const navTabs = React.useMemo(
+    () =>
+      TAB_ORDER.map((id) => ({
+        id,
+        icon: tabIcons[id],
+        label: id === "religions" ? c.religionsTab : c.nationsTab,
+      })),
+    [c],
+  );
+
+  // Both panels' art is decoded up front so switching tabs never pops in.
+  usePreloadImages(
+    React.useMemo(
+      () => [
+        ...Object.values(tabHeroImages),
+        ...c.religions.cards.map((card) => card.image),
+        ...c.nations.cards.map((card) => card.image),
+      ],
+      [c],
+    ),
+  );
 
   const openFaith = (id: FaithId) => runExit(() => setActiveFaith(id));
   const openNation = (id: NationId) => runExit(() => setActiveNation(id));
@@ -351,7 +379,9 @@ export default function IntroductionPage({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [lang, activeFaith, activeNation, activeTab, resetExit]);
+    // Deliberately not keyed on activeTab — switching tabs animates only the
+    // panel (see ReligionsTabPanel) instead of replaying the whole page.
+  }, [lang, activeFaith, activeNation, resetExit]);
 
   const closeDetail = () => {
     setActiveFaith(null);
@@ -381,12 +411,12 @@ export default function IntroductionPage({
       sectionRef={sectionRef}
       className="min-h-full px-12 pb-12"
     >
-      <img
+      <ReligionsTabHero
         data-intro-hero="true"
-        key={activeTab}
-        src={tabHeroImages[activeTab]}
-        alt=""
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1100px] w-full object-cover object-[center_32%] [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)]"
+        activeKey={activeTab}
+        sources={tabHeroImages}
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[1100px] w-full"
+        imageClassName="object-[center_32%] [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)]"
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[1100px] bg-[linear-gradient(to_bottom,transparent_0%,transparent_72%,#faf8f5_100%)]" />
 
@@ -429,77 +459,75 @@ export default function IntroductionPage({
         </header>
 
         <section data-intro-animate="true" className="mt-[920px] flex flex-1 flex-col pb-4">
-          <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
-            <div className="flex gap-2">
-              {tabs.map((tab) => {
-                const label = tab.id === "religions" ? c.religionsTab : c.nationsTab;
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
+          <ReligionsTabNav tabs={navTabs} activeId={activeTab} onChange={setActiveTab} />
 
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={cn(
-                      "flex items-center gap-3 border-b-2 px-8 py-3.5 font-serif text-[20px] transition-colors",
-                      isActive
-                        ? "border-[#b98222] text-[#2f1f12]"
-                        : "border-transparent text-[#8a6a45] hover:text-[#3f2b17]",
-                    )}
+          <ReligionsTabPanel
+            tabKey={activeTab}
+            order={TAB_ORDER}
+            dir={dir}
+            className="flex flex-1 flex-col"
+          >
+            {(key) => {
+              const panel = c[key];
+
+              return (
+                <>
+                  <div data-tab-fx className="mb-6 text-center">
+                    <p className="font-serif text-[20px] italic text-[#6a4a25]">
+                      {panel.subtitle}
+                    </p>
+                  </div>
+
+                  <div
+                    data-tab-fx-group
+                    className="grid w-full flex-1 grid-cols-4 content-stretch gap-5"
                   >
-                    <Icon className="h-5 w-5" />
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          </nav>
+                    {key === "religions"
+                      ? c.religions.cards.map((card, index) => (
+                          <ReligionInfoCard
+                            key={card.id}
+                            title={card.title}
+                            body={card.body}
+                            image={card.image}
+                            accent={faithAccents[index]}
+                            accentIndex={index}
+                            onClick={() => openFaith(card.id)}
+                            ariaLabel={card.title}
+                            titleClassName="uppercase"
+                            imageHeightClass="min-h-[320px] flex-1"
+                            className="min-h-full"
+                          />
+                        ))
+                      : c.nations.cards.map((card, index) => (
+                          <ReligionInfoCard
+                            key={card.id}
+                            title={card.title}
+                            body={card.body}
+                            image={card.image}
+                            accent={card.accent}
+                            accentIndex={index}
+                            onClick={() => openNation(card.id)}
+                            ariaLabel={card.title}
+                            titleClassName="uppercase"
+                            imageHeightClass="min-h-[360px] flex-1"
+                            imageClassName="object-[center_22%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]"
+                            className="min-h-full"
+                          />
+                        ))}
+                  </div>
 
-          <div className="mb-6 text-center">
-            <p className="font-serif text-[20px] italic text-[#6a4a25]">{tabPanel.subtitle}</p>
-          </div>
-
-          <div className="grid w-full flex-1 grid-cols-4 content-stretch gap-5">
-            {activeTab === "religions"
-              ? c.religions.cards.map((card, index) => (
-                  <ReligionInfoCard
-                    key={card.id}
-                    title={card.title}
-                    body={card.body}
-                    image={card.image}
-                    accent={faithAccents[index]}
-                    accentIndex={index}
-                    onClick={() => openFaith(card.id)}
-                    ariaLabel={card.title}
-                    titleClassName="uppercase"
-                    imageHeightClass="min-h-[320px] flex-1"
-                    className="min-h-full"
-                  />
-                ))
-              : c.nations.cards.map((card, index) => (
-                  <ReligionInfoCard
-                    key={card.id}
-                    title={card.title}
-                    body={card.body}
-                    image={card.image}
-                    accent={card.accent}
-                    accentIndex={index}
-                    onClick={() => openNation(card.id)}
-                    ariaLabel={card.title}
-                    titleClassName="uppercase"
-                    imageHeightClass="min-h-[360px] flex-1"
-                    imageClassName="object-[center_22%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]"
-                    className="min-h-full"
-                  />
-                ))}
-          </div>
-
-          <div className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
-            <p className="font-serif text-[22px] font-semibold italic leading-snug text-[#6a4a25]">
-              {tabPanel.tagline}
-            </p>
-          </div>
+                  <div
+                    data-tab-fx
+                    className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]"
+                  >
+                    <p className="font-serif text-[22px] font-semibold italic leading-snug text-[#6a4a25]">
+                      {panel.tagline}
+                    </p>
+                  </div>
+                </>
+              );
+            }}
+          </ReligionsTabPanel>
         </section>
       </div>
     </ReligionsScaledPage>

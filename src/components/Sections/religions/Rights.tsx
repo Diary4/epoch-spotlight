@@ -12,11 +12,15 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
-import { cn } from "@/lib/utils";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
+import {
+  ReligionsTabNav,
+  ReligionsTabPanel,
+  usePreloadImages,
+} from "@/components/Sections/religions/tabTransitions";
 
 import bg3 from "@/assets/images/religions/rights/parliment.jpeg";
 import governmentImg from "@/assets/images/religions/rights/krg_cabinet.jpg";
@@ -277,10 +281,12 @@ const content: Record<LangCode, RightsOverviewContent> = {
   },
 };
 
-const tabs: { id: TabId; icon: LucideIcon }[] = [
-  { id: "institutions", icon: Landmark },
-  { id: "sanctuary", icon: ShieldCheck },
-];
+const TAB_ORDER = ["institutions", "sanctuary"] as const;
+
+const TAB_ICONS: Record<TabId, LucideIcon> = {
+  institutions: Landmark,
+  sanctuary: ShieldCheck,
+};
 
 function DecorativeLine({ color = "#c99a55" }: { color?: string }) {
   return (
@@ -314,7 +320,19 @@ export default function RightsPage({
   const [activeTab, setActiveTab] = React.useState<TabId>("institutions");
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
-  const tabPanel = activeTab === "institutions" ? c.institutions : c.sanctuary;
+
+  const navTabs = React.useMemo(
+    () =>
+      TAB_ORDER.map((id) => ({
+        id,
+        icon: TAB_ICONS[id],
+        label: id === "institutions" ? c.institutionsTab : c.sanctuaryTab,
+      })),
+    [c],
+  );
+
+  // Decode both panels' art up front so switching tabs never pops in.
+  usePreloadImages(React.useMemo(() => Object.values(CARD_IMAGES), []));
 
   React.useLayoutEffect(() => {
     if (!sectionRef.current) return;
@@ -403,62 +421,59 @@ export default function RightsPage({
         </header>
 
         <section data-rts-animate="true" className="mt-[920px] flex flex-1 flex-col pb-4">
-          <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
-            <div className="flex gap-2">
-              {tabs.map((tab) => {
-                const label =
-                  tab.id === "institutions" ? c.institutionsTab : c.sanctuaryTab;
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
+          <ReligionsTabNav tabs={navTabs} activeId={activeTab} onChange={setActiveTab} />
 
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={cn(
-                      "flex items-center gap-3 border-b-2 px-8 py-3.5 font-serif text-[20px] transition-colors",
-                      isActive
-                        ? "border-[#b98222] text-[#2f1f12]"
-                        : "border-transparent text-[#8a6a45] hover:text-[#3f2b17]",
-                    )}
+          <ReligionsTabPanel
+            tabKey={activeTab}
+            order={TAB_ORDER}
+            dir={dir}
+            className="flex flex-1 flex-col"
+          >
+            {(key) => {
+              const panel = key === "institutions" ? c.institutions : c.sanctuary;
+
+              return (
+                <>
+                  <div data-tab-fx className="mb-6 text-center">
+                    <p className="font-serif text-[20px] italic text-[#6a4a25]">
+                      {panel.subtitle}
+                    </p>
+                  </div>
+
+                  <div
+                    data-tab-fx-group
+                    className="grid w-full flex-1 grid-cols-3 content-stretch gap-5"
                   >
-                    <Icon className="h-5 w-5" />
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          </nav>
+                    {panel.cards.map((card, index) => (
+                      <ReligionInfoCard
+                        key={card.id}
+                        title={card.title}
+                        body={card.subtitle}
+                        image={CARD_IMAGES[card.id]}
+                        accent={card.accent}
+                        accentIndex={index}
+                        onClick={() => runExit(() => onOpenCard?.(card.id))}
+                        ariaLabel={card.title}
+                        titleClassName="uppercase text-[22px] font-light leading-tight"
+                        bodyClassName="text-[14px] font-light"
+                        imageHeightClass="min-h-[280px] flex-1"
+                        className="min-h-full"
+                      />
+                    ))}
+                  </div>
 
-          <div className="mb-6 text-center">
-            <p className="font-serif text-[20px] italic text-[#6a4a25]">{tabPanel.subtitle}</p>
-          </div>
-
-          <div className="grid w-full flex-1 grid-cols-3 content-stretch gap-5">
-            {tabPanel.cards.map((card, index) => (
-              <ReligionInfoCard
-                key={card.id}
-                title={card.title}
-                body={card.subtitle}
-                image={CARD_IMAGES[card.id]}
-                accent={card.accent}
-                accentIndex={index}
-                onClick={() => runExit(() => onOpenCard?.(card.id))}
-                ariaLabel={card.title}
-                titleClassName="uppercase text-[22px] font-light leading-tight"
-                bodyClassName="text-[14px] font-light"
-                imageHeightClass="min-h-[280px] flex-1"
-                className="min-h-full"
-              />
-            ))}
-          </div>
-
-          <div className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
-            <p className="font-serif text-[22px] font-semibold italic leading-snug text-[#6a4a25]">
-              {tabPanel.tagline}
-            </p>
-          </div>
+                  <div
+                    data-tab-fx
+                    className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]"
+                  >
+                    <p className="font-serif text-[22px] font-semibold italic leading-snug text-[#6a4a25]">
+                      {panel.tagline}
+                    </p>
+                  </div>
+                </>
+              );
+            }}
+          </ReligionsTabPanel>
         </section>
       </div>
     </ReligionsScaledPage>
