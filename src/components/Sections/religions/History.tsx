@@ -17,7 +17,7 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 
 import bg from "@/assets/images/religions/history/history.jpeg";
 import ancientRootsImg from "@/assets/images/religions/faiths.webp";
-import jewishCommunityImg from "@/assets/images/religions/j-1.webp";
+import jewishCommunityImg from "@/assets/images/religions/judaism/kurdish-jews.jpeg";
 import christiansImg from "@/assets/images/religions/r-5.webp";
 import bahaullahImg from "@/assets/images/religions/bahai/kurdistan.jpeg";
 

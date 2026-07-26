@@ -1,11 +1,11 @@
 import React from "react";
 import { Sparkles, Star } from "lucide-react";
 
-import bg from "@/assets/images/religions/j-1.webp";
-import kurdishJewsImg from "@/assets/images/religions/judaism/kurdish-jews.jpg";
-import torahImg from "@/assets/images/religions/judaism/torah.jpg";
+import bg from "@/assets/images/religions/judaism/cover.jpeg";
+import kurdishJewsImg from "@/assets/images/religions/judaism/kurdish-jews.jpeg";
+import cardCoverImg from "@/assets/images/religions/judaism/card-cover.jpeg";
 import nahumShrineImg from "@/assets/images/religions/judaism/nahum-shrine.jpeg";
-import heritageImg from "@/assets/images/religions/judaism/250404-IK.jpg";
+import heritageImg from "@/assets/images/religions/judaism/heritage.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -39,7 +39,7 @@ type JudaismContent = {
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
   "kurdish-jews": kurdishJewsImg,
-  torah: torahImg,
+  torah: cardCoverImg,
   "nahum-shrine": nahumShrineImg,
   heritage: heritageImg,
 };
