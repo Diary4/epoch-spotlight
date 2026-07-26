@@ -1,6 +1,7 @@
 export type BcfLang = "en" | "ku" | "ar";
 
 export type BcfStep =
+  | "attract"
   | "language"
   | "intro"
   | "welcome"
@@ -90,6 +91,9 @@ export type BcfCopy = {
   languageTitle: string;
   languages: { id: BcfLang; label: string }[];
   touchToContinue: string;
+  /** Opening attract reel: shown in all three languages at once, before a language is chosen. */
+  attractStart: string;
+  attractTagline: string;
   humanity: string;
   dignity: string;
   hope: string;
@@ -291,6 +295,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "ar", label: "عربي" },
     ],
     touchToContinue: "Touch to continue",
+    attractStart: "Touch to Start",
+    attractTagline: "Barzani Charity Foundation",
     humanity: "HUMANITY.",
     dignity: "DIGNITY.",
     hope: "HOPE.",
@@ -489,6 +495,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "ar", label: "عربي" },
     ],
     touchToContinue: "بۆ بەردەوامبوون دەستی لێبدە",
+    attractStart: "دەستی لێبدە بۆ دەستپێکردن",
+    attractTagline: "دامەزراوەی خێرخوازیی بارزانی",
     humanity: "مرۆڤایەتی.",
     dignity: "کەرامەت.",
     hope: "هیوا.",
@@ -686,6 +694,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "ar", label: "عربي" },
     ],
     touchToContinue: "المس للمتابعة",
+    attractStart: "المس للبدء",
+    attractTagline: "مؤسسة بارزاني الخيرية",
     humanity: "الإنسانية.",
     dignity: "الكرامة.",
     hope: "الأمل.",

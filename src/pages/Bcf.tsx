@@ -1,6 +1,7 @@
 import React from "react";
 import gsap from "gsap";
 import DesignScaledCanvas from "@/components/DesignScaledCanvas";
+import BcfAttract from "@/components/Sections/bcf/BcfAttract";
 import BcfLanguage from "@/components/Sections/bcf/BcfLanguage";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
@@ -22,7 +23,7 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 
 export default function BcfPage() {
-  const [step, setStep] = React.useState<BcfStep>("language");
+  const [step, setStep] = React.useState<BcfStep>("attract");
   const [lang, setLang] = React.useState<BcfLang>("en");
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
@@ -78,6 +79,8 @@ export default function BcfPage() {
 
   const content = (() => {
     switch (step) {
+      case "attract":
+        return <BcfAttract onFinish={() => go(() => setStep("language"))} />;
       case "language":
         return (
           <BcfLanguage

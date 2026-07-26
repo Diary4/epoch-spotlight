@@ -14,3 +14,16 @@ export { default as bcfHubBg } from "@/assets/images/PrimeMinistir/p-1.webp";
 export { default as bcfImpactBg } from "@/assets/images/PrimeMinistir/service.webp";
 export { default as bcfProjectsBg } from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 export { default as bcfFutureDetailBg } from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
+
+/**
+ * Opening attract reel.
+ *
+ * `bcfAttractVideo` is the drop-in point for the real BCF brand film: import the
+ * file (portrait 1080x1920 keeps it full-bleed) and assign it here, and
+ * BcfAttract plays that instead of the built-in animated reel — same paused
+ * first frame, same trilingual start prompt, same hand-off to language select.
+ *
+ *   import attractFilm from "@/assets/videos/bcf-attract.webm";
+ *   export const bcfAttractVideo: string | null = attractFilm;
+ */
+export const bcfAttractVideo: string | null = null;
