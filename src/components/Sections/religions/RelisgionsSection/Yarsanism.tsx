@@ -6,7 +6,11 @@ import {
 } from "lucide-react";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
-import bg from "@/assets/images/religions/nations/kakayi/cover.jpeg";
+import bg from "@/assets/images/religions/kakayi/cover.jpeg";
+import meaningImg from "@/assets/images/religions/kakayi/meaning.jpeg";
+import principlesImg from "@/assets/images/religions/kakayi/fourprinciple.jpeg";
+import jamkhanaImg from "@/assets/images/religions/kakayi/jamkhana.jpeg";
+import bookImg from "@/assets/images/religions/kakayi/book.jpeg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import {
@@ -20,10 +24,6 @@ import {
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
 import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
-import meaningImg from "@/assets/mainImages/letter.webp";
-import principlesImg from "@/assets/mainImages/story-2.webp";
-import jamkhanaImg from "@/assets/mainImages/shared.webp";
-import bookImg from "@/assets/mainImages/story-1.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

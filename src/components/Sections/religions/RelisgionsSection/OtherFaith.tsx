@@ -13,7 +13,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
-import yarsanism from "@/assets/images/religions/k-1.webp";
+import yarsanism from "@/assets/images/religions/kakayi/cover.jpeg";
 import zoroastrianism from "@/assets/images/religions/zoro/cover.jpeg";
 import judaism from "@/assets/images/religions/judaism/card-cover.jpeg";
 import bahai from "@/assets/images/religions/bahai/card-cover.jpeg";
