@@ -7,10 +7,14 @@ import {
   Users,
 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
-import { cn } from "@/lib/utils";
 
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
+import {
+  ReligionsTabNav,
+  ReligionsTabPanel,
+  usePreloadImages,
+} from "@/components/Sections/religions/tabTransitions";
 
 import bg from "@/assets/images/religions/nc-1.webp";
 import coexistenceHero from "@/assets/images/religions/coexistence/coexistence.jpeg";
@@ -279,10 +283,12 @@ const content: Record<LangCode, PageContent> = {
   },
 };
 
-const tabs: { id: TabId; icon: typeof HeartHandshake }[] = [
-  { id: "coexistence", icon: HeartHandshake },
-  { id: "leaders", icon: Users },
-];
+const TAB_ORDER = ["coexistence", "leaders"] as const;
+
+const TAB_ICONS: Record<TabId, typeof HeartHandshake> = {
+  coexistence: HeartHandshake,
+  leaders: Users,
+};
 
 function DecorativeLine({ color = "#c99a55" }) {
   return (
@@ -313,7 +319,24 @@ export default function LeadersOfCoexistencePage({
   const [activeTab, setActiveTab] = React.useState<TabId>("coexistence");
   const c = content[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
-  const tabPanel = activeTab === "coexistence" ? c.coexistence : c.leaders;
+
+  const navTabs = React.useMemo(
+    () =>
+      TAB_ORDER.map((id) => ({
+        id,
+        icon: TAB_ICONS[id],
+        label: id === "coexistence" ? c.coexistenceTab : c.leadersTab,
+      })),
+    [c],
+  );
+
+  // Decode both panels' art up front so switching tabs never pops in.
+  usePreloadImages(
+    React.useMemo(
+      () => [...Object.values(coexistenceImages), ...Object.values(leaderImages)],
+      [],
+    ),
+  );
 
   React.useEffect(() => {
     if (!sectionRef.current) return;
@@ -392,76 +415,74 @@ export default function LeadersOfCoexistencePage({
         </header>
 
         <section data-lc-animate="true" className="mt-[1020px] flex flex-1 flex-col pb-4">
-          <nav className="mb-6 flex shrink-0 justify-center border-b border-[#d7b77e]/45">
-            <div className="flex gap-2">
-              {tabs.map((tab) => {
-                const label = tab.id === "coexistence" ? c.coexistenceTab : c.leadersTab;
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
+          <ReligionsTabNav tabs={navTabs} activeId={activeTab} onChange={setActiveTab} />
 
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={cn(
-                      "flex items-center gap-3 border-b-2 px-8 py-3.5 font-serif text-[20px] transition-colors",
-                      isActive
-                        ? "border-[#b98222] text-[#2f1f12]"
-                        : "border-transparent text-[#8a6a45] hover:text-[#3f2b17]",
-                    )}
+          <ReligionsTabPanel
+            tabKey={activeTab}
+            order={TAB_ORDER}
+            dir={dir}
+            className="flex flex-1 flex-col"
+          >
+            {(key) => {
+              const panel = key === "coexistence" ? c.coexistence : c.leaders;
+
+              return (
+                <>
+                  <div data-tab-fx className="mb-6 text-center">
+                    <p className="font-serif text-[20px] italic text-[#6a4a25]">
+                      {panel.subtitle}
+                    </p>
+                    {key === "leaders" ? (
+                      <p className="mx-auto mt-3 max-w-[620px] text-[17px] font-medium leading-relaxed text-[#4d3c2a]">
+                        {c.leaders.description}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div
+                    data-tab-fx-group
+                    className="grid w-full flex-1 grid-cols-4 content-stretch gap-5"
                   >
-                    <Icon className="h-5 w-5" />
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          </nav>
+                    {key === "coexistence"
+                      ? c.coexistence.cards.map((card, index) => (
+                          <ReligionInfoCard
+                            key={card.id}
+                            title={card.title}
+                            body={card.body}
+                            image={coexistenceImages[card.id] ?? bg}
+                            accent={card.accent}
+                            accentIndex={index}
+                            imageHeightClass="min-h-[360px] flex-1"
+                            className="min-h-full"
+                          />
+                        ))
+                      : c.leaders.cards.map((card, index) => (
+                          <ReligionInfoCard
+                            key={card.id}
+                            title={card.title}
+                            body={card.body}
+                            image={leaderImages[card.id] ?? bg}
+                            accent={card.accent}
+                            accentIndex={index}
+                            titleClassName="uppercase tracking-[0.03em] text-[18px]"
+                            imageHeightClass="min-h-[360px] flex-1"
+                            className="min-h-full"
+                          />
+                        ))}
+                  </div>
 
-          <div className="mb-6 text-center">
-            <p className="font-serif text-[20px] italic text-[#6a4a25]">{tabPanel.subtitle}</p>
-            {activeTab === "leaders" ? (
-              <p className="mx-auto mt-3 max-w-[620px] text-[17px] font-medium leading-relaxed text-[#4d3c2a]">
-                {c.leaders.description}
-              </p>
-            ) : null}
-          </div>
-
-          <div className="grid w-full flex-1 grid-cols-4 content-stretch gap-5">
-            {activeTab === "coexistence"
-              ? c.coexistence.cards.map((card, index) => (
-                  <ReligionInfoCard
-                    key={card.id}
-                    title={card.title}
-                    body={card.body}
-                    image={coexistenceImages[card.id] ?? bg}
-                    accent={card.accent}
-                    accentIndex={index}
-                    imageHeightClass="min-h-[360px] flex-1"
-                    className="min-h-full"
-                  />
-                ))
-              : c.leaders.cards.map((card, index) => (
-                  <ReligionInfoCard
-                    key={card.id}
-                    title={card.title}
-                    body={card.body}
-                    image={leaderImages[card.id] ?? bg}
-                    accent={card.accent}
-                    accentIndex={index}
-                    titleClassName="uppercase tracking-[0.03em] text-[18px]"
-                    imageHeightClass="min-h-[360px] flex-1"
-                    className="min-h-full"
-                  />
-                ))}
-          </div>
-
-          <div className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]">
-            <p className="font-serif text-[22px] font-semibold italic leading-snug text-[#6a4a25]">
-              {tabPanel.tagline}
-            </p>
-          </div>
+                  <div
+                    data-tab-fx
+                    className="mx-auto mt-8 w-full max-w-[920px] shrink-0 rounded-[28px] border-2 border-[#c99745]/55 bg-[#fff7e7]/95 px-8 py-6 text-center shadow-[0_12px_26px_rgba(75,45,12,0.14)]"
+                  >
+                    <p className="font-serif text-[22px] font-semibold italic leading-snug text-[#6a4a25]">
+                      {panel.tagline}
+                    </p>
+                  </div>
+                </>
+              );
+            }}
+          </ReligionsTabPanel>
         </section>
       </div>
     </ReligionsScaledPage>
