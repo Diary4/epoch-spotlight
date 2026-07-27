@@ -200,7 +200,7 @@ export default function ChristianityPage({
               <DecorativeLine color="#e8c56a" />
             </div>
 
-            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#f7f0e4] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)]">
+            <h1 className={`${FAITH_DETAIL_TITLE_CLASS} text-[#f7f0e4] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)]`}>
               {c.pageTitle}
             </h1>
 
@@ -208,7 +208,7 @@ export default function ChristianityPage({
               <DecorativeLine color="#e8c56a" />
             </div>
 
-            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#efe4d2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+            <p className={`mx-auto mt-5 max-w-[620px] ${FAITH_DETAIL_SUBTITLE_CLASS} text-[#efe4d2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]`}>
               {c.subtitle}
             </p>
           </header>

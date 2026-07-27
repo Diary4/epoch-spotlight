@@ -200,7 +200,7 @@ export default function IslamPage({
               <DecorativeLine />
             </div>
 
-            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] drop-shadow-[0_2px_14px_rgba(250,248,245,0.95)]">
+            <h1 className={`${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410] drop-shadow-[0_2px_14px_rgba(250,248,245,0.95)]`}>
               {c.pageTitle}
             </h1>
 
@@ -208,7 +208,7 @@ export default function IslamPage({
               <DecorativeLine />
             </div>
 
-            <p className="mt-5 max-w-[480px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.95)]">
+            <p className={`mt-5 max-w-[480px] ${FAITH_DETAIL_SUBTITLE_CLASS} text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.95)]`}>
               {c.subtitle}
             </p>
           </header>

@@ -196,7 +196,7 @@ export default function JudaismPage({
               <DecorativeLine />
             </div>
 
-            <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
+            <h1 className={`${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410]`}>
               {c.title}
             </h1>
 
@@ -204,7 +204,7 @@ export default function JudaismPage({
               <DecorativeLine />
             </div>
 
-            <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+            <p className={`mx-auto mt-5 max-w-[620px] ${FAITH_DETAIL_SUBTITLE_CLASS} text-[#4d3c2a]`}>
               {c.subtitle}
             </p>
           </header>
