@@ -12,6 +12,8 @@ import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
+  FAITH_DETAIL_SUBTITLE_CLASS,
+  FAITH_DETAIL_TITLE_CLASS,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
@@ -227,7 +229,7 @@ export default function YazidismPage({
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className="whitespace-nowrap font-serif text-[68px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]">
+            <h1 className={`whitespace-nowrap ${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]`}>
               {c.pageTitle}
             </h1>
 
@@ -235,12 +237,12 @@ export default function YazidismPage({
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <p className="ml-auto mt-5 max-w-[400px] font-serif text-[18px] font-light leading-relaxed text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.9)]">
+            <p className={`ml-auto mt-5 max-w-[440px] ${FAITH_DETAIL_SUBTITLE_CLASS} text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.9)]`}>
               {c.subtitle}
             </p>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[460px]" />
+          <FaithDetailSpacer desktopHeight="h-[424px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}

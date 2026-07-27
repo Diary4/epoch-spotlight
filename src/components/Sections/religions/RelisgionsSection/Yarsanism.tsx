@@ -16,6 +16,8 @@ import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
+  FAITH_DETAIL_SUBTITLE_CLASS,
+  FAITH_DETAIL_TITLE_CLASS,
   FAITH_TAGLINE_ACTION_SECTION_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
   FaithDetailControls,
@@ -214,13 +216,13 @@ export default function YarsanismPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-yarsan-animate="true"
-            className="-ml-8 max-w-[440px] pt-[200px] pl-0 text-left"
+            className="-ml-8 max-w-[620px] pt-[200px] pl-0 text-left"
           >
             <div className="mb-3 mt-3 w-[160px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className="break-words font-serif text-[56px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]">
+            <h1 className={`${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]`}>
               {c.pageTitle}
             </h1>
 
@@ -228,12 +230,12 @@ export default function YarsanismPage({
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <p className="mt-4 max-w-[360px] font-serif text-[16px] font-light leading-relaxed text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.9)]">
+            <p className={`mt-5 max-w-[440px] ${FAITH_DETAIL_SUBTITLE_CLASS} text-[#4d3c2a] drop-shadow-[0_2px_10px_rgba(250,248,245,0.9)]`}>
               {c.subtitle}
             </p>
           </header>
 
-          <FaithDetailSpacer desktopHeight="h-[520px]" />
+          <FaithDetailSpacer desktopHeight="h-[364px]" />
 
           <NationTopicSwitcher
             pageTitle={c.pageTitle}

@@ -24,6 +24,17 @@ export const FAITH_DETAIL_HEADER_CLASS =
   "mx-auto max-w-[850px] pt-[140px] text-center";
 export const FAITH_DETAIL_HEADER_SPACER = "h-[540px]";
 
+/**
+ * Shared hero type scale — every faith detail page renders its title and
+ * subtitle at the same size. Pages append their own colour / drop-shadow /
+ * spacing utilities, never a different `text-[…px]`.
+ */
+export const FAITH_DETAIL_TITLE_CLASS =
+  "break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em]";
+
+export const FAITH_DETAIL_SUBTITLE_CLASS =
+  "font-serif text-[22px] font-light leading-relaxed";
+
 export const FAITH_ICON_CARD_CLASS =
   "min-h-[335px] rounded-[24px] border-2 border-[#d8b875]/70 bg-[#fff8e9]/92 px-5 py-7 text-center shadow-[0_12px_28px_rgba(75,45,12,0.18)] backdrop-blur-sm";
 
