@@ -155,7 +155,7 @@ export default function DiversityMapPage({
             ))}
           </h1>
 
-          <p className="mt-4 font-serif text-[30px] font-semibold uppercase tracking-[0.08em] text-[#a46f22]">
+          <p className="mt-4 font-serif text-[28px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#a46f22]">
             {pageSubtitle}
           </p>
 

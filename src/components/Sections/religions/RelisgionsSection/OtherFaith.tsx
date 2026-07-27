@@ -175,7 +175,7 @@ export default function OtherFaithTraditionsPage({
             <DecorativeLine color="#c3923a" />
           </div>
 
-          <p className="mx-auto mt-5 max-w-[690px] text-[23px] font-semibold leading-relaxed text-[#4d3c2a]">
+          <p className="mx-auto mt-5 max-w-[690px] text-[22px] font-semibold leading-relaxed text-[#4d3c2a]">
             {pageDescription}
           </p>
         </header>
