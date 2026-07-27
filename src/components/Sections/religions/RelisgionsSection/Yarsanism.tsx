@@ -26,6 +26,7 @@ import {
 import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
 
 type LangCode = "en" | "ku" | "ar";
+type TopicId = "meaning" | "four-principles" | "jamkhana" | "sacred-book";
 
 type TopicContent = {
   id: TopicId;
@@ -39,14 +40,6 @@ type YarsanismContent = {
   subtitle: string;
   topics: [TopicContent, TopicContent, TopicContent, TopicContent];
   tagline: string;
-};
-
-type TopicId = "meaning" | "four-principles" | "jamkhana" | "sacred-book";
-
-type TopicContent = {
-  id: TopicId;
-  title: string;
-  text: string;
 };
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
