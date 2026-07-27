@@ -146,7 +146,7 @@ export default function DiversityMapPage({
             <DecorativeLine color="#c3923a" />
           </div>
 
-          <h1 className="font-serif text-[92px] font-semibold uppercase leading-[0.98] tracking-[0.08em] text-[#2f1f12]">
+          <h1 className="font-serif text-[88px] font-semibold uppercase leading-[1.03] tracking-[0.07em] text-[#2f1f12]">
             {pageTitleLines.map((line, idx) => (
               <React.Fragment key={`${line}-${idx}`}>
                 {line}
