@@ -66,8 +66,11 @@ export default function ReligionInfoCard({
   eyebrow,
   imageHeightClass = "h-[260px]",
   imageFadeClass = "h-[22%] bg-gradient-to-b from-white from-0% via-white/70 via-[35%] to-transparent",
-  imageClassName = "",
-  imageWrapClassName = "-mt-px",
+  // The image's own top rows fade out, so its edge never resolves to a hard
+  // line. Without this the scaled canvas lands that edge on a fractional device
+  // pixel and antialiases it into a dark hairline across the card.
+  imageClassName = "[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_100%)]",
+  imageWrapClassName = "mt-0",
   textSectionClassName = "",
 }: ReligionInfoCardProps) {
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
@@ -119,7 +122,7 @@ export default function ReligionInfoCard({
           src={resolvedImage}
           alt=""
           decoding="async"
-          className={`block h-full w-full -translate-y-px scale-[1.02] transform-gpu object-cover object-top saturate-[0.9] transition-[transform,filter] duration-700 ease-smooth-out will-change-transform ${isInteractive ? " group-active:scale-[1.04] motion-reduce:transition-none " : ""} ${imageClassName}`}
+          className={`block h-full w-full object-cover object-top saturate-[0.9] transition-[transform,filter] duration-700 ease-smooth-out ${isInteractive ? " group-active:scale-[1.03] motion-reduce:transition-none " : ""} ${imageClassName}`}
         />
         <div className={`pointer-events-none absolute inset-x-0 top-0 ${imageFadeClass}`} />
       </div>
