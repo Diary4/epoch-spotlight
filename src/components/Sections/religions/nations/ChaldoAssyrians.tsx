@@ -49,7 +49,7 @@ const content: Record<LangCode, ChaldoContent> = {
   en: {
     back: "Back",
     pageTitle: "CHALDO-ASSYRIANS",
-    subtitle: "An ancient nationality with an unbroken heritage",
+    subtitle: "An Ancient Nation with an Unbroken Heritage",
     topics: [
       {
         id: "language",
@@ -69,10 +69,10 @@ const content: Record<LangCode, ChaldoContent> = {
       {
         id: "parliament",
         title: "5 PARLIAMENT SEATS",
-        text: "The Chaldo-Assyrian community holds 5 reserved seats in the Kurdistan Parliament — more than any other minority.",
+        text: "The Chaldean and Assyrian communities hold five reserved seats in the Kurdistan Parliament.",
       },
     ],
-    tagline: "The oldest nationality of the land, still here.",
+    tagline: "Among the oldest peoples of this land—still here, still thriving.",
   },
   ku: {
     back: "گەڕانەوە",

@@ -50,22 +50,22 @@ const content: Record<LangCode, IslamContent> = {
   en: {
     back: "Back",
     pageTitle: "ISLAM",
-    subtitle: "Faith, worship, and living tradition",
+    subtitle: "Faith, Worship, and Living Traditions",
     topics: [
       {
         id: "shafii-school",
         title: "SHAFI'I SCHOOL",
-        text: "The majority of Kurds follow the Shafi'i school of thought, embraced since the 7th century CE during the caliphate of Umar ibn al-Khattab.",
+        text: "The majority of Kurds follow the Shafi'i school of Islamic jurisprudence. Although Islam reached Kurdistan in the 7th century CE, the Shafi'i tradition has, over the centuries, become the principal religious identity and the dominant legal and spiritual tradition of Kurdish society.",
       },
       {
         id: "sufism",
         title: "SUFISM",
-        text: "189 registered Sufi lodges across the KRI. The Qadiriyya and Naqshbandiyya orders shaped Kurdish society and culture for centuries through dhikr, poetry, and spiritual guidance.",
+        text: "The Kurdistan Region is home to 189 registered Sufi lodges (takyas). The Qadiriyya and Naqshbandiyya orders have played a significant role in the spiritual and cultural development of society.",
       },
       {
         id: "ministry",
         title: "MINISTRY",
-        text: "The Ministry of Endowments and Religious Affairs supervises 6,103 mosques, 121,112 staff, and serves all religions — not only Islam. Includes directorates for Christian and Yazidi affairs.",
+        text: "The Ministry of Endowment and Religious Affairs oversees 6,103 mosques. The Ministry serves all religious communities and includes dedicated directorates for Christian and Yazidi affairs.",
       },
       {
         id: "ramadan-eid",

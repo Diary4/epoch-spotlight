@@ -56,8 +56,8 @@ const content: Record<LangCode, ClosingContent> = {
   en: {
     back: "Back",
     pageTitle: "One Shared Homeland",
-    pageSubtitle: "Diversity, dignity, and a future together.",
-    pageLead: "All are equal members of society in their rights.",
+    pageSubtitle: "Diversity, Dignity, and a Shared Future",
+    pageLead: "Every identity has its own value. In Kurdistan, there is no concept of a \"minority\"-everyone is an equal member of society, with equal rights and protection.",
     cards: [
       {
         id: "respect",
@@ -88,7 +88,7 @@ const content: Record<LangCode, ClosingContent> = {
         accent: ACCENTS[3],
       },
     ],
-    tagline: "Different faiths. Different languages. One shared homeland.",
+    tagline: "Different religions. Different languages. One shared homeland.",
     sourcesTitle: "Sources &\nReferences",
     sourcesSubtitle: "Official publication and source material",
     sourcesIntro:

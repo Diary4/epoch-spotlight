@@ -52,7 +52,7 @@ const content: Record<LangCode, ChristianityContent> = {
   en: {
     back: "Back",
     pageTitle: "CHRISTIANITY",
-    subtitle: "Ancient roots, steadfast faith, and a united community",
+    subtitle: "Ancient Roots, Enduring Faith, and a United Community",
     topics: [
       {
         id: "historical-presence",
@@ -62,7 +62,7 @@ const content: Record<LangCode, ChristianityContent> = {
       {
         id: "churches",
         title: "CHURCHES",
-        text: "All four main traditions are present: Catholic, Orthodox, Eastern, and Evangelical. Dozens of active churches and monasteries stand in Erbil, Duhok, Zakho, and Sulaymaniyah.",
+        text: "Christianity in the Kurdistan Region is represented by four main traditions: Catholic, Orthodox, Church of the East, and Evangelical. Dozens of active churches and monasteries are found across Erbil, Duhok, Zakho, and Sulaymaniyah.",
       },
       {
         id: "easter-christmas",

@@ -99,14 +99,14 @@ const faithAccents = ["#7a4a12", "#a05a18", "#b9822d", "#c58b16", "#6f7d4e", "#4
 const content: Record<LangCode, IntroductionContent> = {
   en: {
     back: "Back",
-    pageTitle: "The Cradle",
+    pageTitle: "Kurdistan",
     pageDescription:
-      "A land where many faiths, languages, and peoples have shared one home.",
+      "Cradle of Coexistence",
     religionsTab: "Religions",
     nationsTab: "Nations",
     religions: {
-      subtitle: "Tap a faith to open its story.",
-      tagline: "Different faiths. One shared homeland.",
+      subtitle: "Since the earliest days of history, many different religions have emerged and flourished here.",
+      tagline: "Different religions. Different languages. One shared homeland.",
       cards: [
         { id: "islam", title: "Islam", body: "Faith, worship, and living tradition.", image: imgIslam },
         { id: "christianity", title: "Christianity", body: "Ancient roots, faith, and community.", image: imgChristianity },
@@ -119,8 +119,8 @@ const content: Record<LangCode, IntroductionContent> = {
       ],
     },
     nations: {
-      subtitle: "Tap a people to open their story.",
-      tagline: "Different languages. One shared homeland.",
+      subtitle: "Kurds, Turkmens, Assyrians, Armenians, and many others.",
+      tagline: "Coexistence is a living identity, not merely a historical memory.",
       cards: [
         {
           id: "kurds",

@@ -49,12 +49,12 @@ const content: Record<LangCode, KurdsContent> = {
   en: {
     back: "Back",
     pageTitle: "KURDS",
-    subtitle: "Language, heritage, and living identity",
+    subtitle: "A Living Language, Heritage, and Identity",
     topics: [
       {
         id: "language",
         title: "LANGUAGE",
-        text: "Sorani and Kurmanji are the two main Kurdish dialects. Both are official languages of the Kurdistan Region alongside Arabic.",
+        text: "Sorani and Badini are the two principal dialects spoken in the Kurdistan Region.",
       },
       {
         id: "newroz",
@@ -69,7 +69,7 @@ const content: Record<LangCode, KurdsContent> = {
       {
         id: "cities",
         title: "CITIES",
-        text: "Erbil, Duhok, and Sulaymaniyah are the three governorates and cultural hearts of the Kurdistan Region.",
+        text: "The four governorates of the Kurdistan Region are Erbil, Duhok, Sulaymaniyah, and Halabja.",
       },
     ],
     tagline: "Rooted in heritage. Building the future.",

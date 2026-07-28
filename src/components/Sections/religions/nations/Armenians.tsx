@@ -49,7 +49,7 @@ const content: Record<LangCode, ArmeniansContent> = {
   en: {
     back: "Back",
     pageTitle: "ARMENIANS",
-    subtitle: "A century of belonging in Kurdistan",
+    subtitle: "A Century of Belonging and Connection in Kurdistan",
     topics: [
       {
         id: "history",
@@ -72,7 +72,7 @@ const content: Record<LangCode, ArmeniansContent> = {
         text: "The Armenian community holds a reserved seat in the Kurdistan Parliament, ensuring their voice in public life.",
       },
     ],
-    tagline: "A community of memory, resilience, and belonging.",
+    tagline: "A community of remembrance, resilience, and devotion.",
   },
   ku: {
     back: "گەڕانەوە",

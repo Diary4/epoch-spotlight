@@ -56,30 +56,30 @@ const content: Record<LangCode, YarsanismContent> = {
   en: {
     back: "Back",
     pageTitle: "YARSANISM (KAKAI)",
-    subtitle: "Inner truth, devotion, and community",
+    subtitle: "Inner Truth, Faith, and Community",
     topics: [
       {
         id: "meaning",
         title: "MEANING",
-        text: "\u201CYarsan\u201D means \u201Cthe companions of God.\u201D In Kurdistan they are known as Kakais, from the Kurdish word \u201CKaka.\u201D",
+        text: "\"Yarsan\" means \"Friends of God.\" In the Kurdistan Region, its followers are commonly known as Kaka'is, a name derived from the Kurdish word \"Kaka\" (brother).",
       },
       {
         id: "four-principles",
         title: "FOUR PRINCIPLES",
-        text: "Purity, Truth, Selflessness (Nisti), and Religiosity (Rada). Three principles govern human relationships, and one governs the relationship with God.",
+        text: "The four core principles of Yarsanism are purity, truthfulness, humility (self-effacement), and devotion. Three govern relationships among people, while one defines the relationship between humanity and God.",
       },
       {
         id: "jamkhana",
         title: "JAMKHANA",
-        text: "The sacred gathering place where rites are performed. Music and the tambour hold a uniquely elevated spiritual role.",
+        text: "The Jamkhana is the sacred gathering place where religious ceremonies are held. Music, especially the tanbur, holds a central spiritual significance in Yarsan tradition.",
       },
       {
         id: "sacred-book",
         title: "SACRED BOOK",
-        text: "The Sernjam — written in verse in the Gorani and Sorani Kurdish dialects.",
+        text: "The Saranjam, the sacred scripture of Yarsanism, is written in poetic form in the Gorani and Sorani dialects.",
       }
     ],
-    tagline: "A quiet path of faith.",
+    tagline: "A peaceful path of faith.",
   },
   ku: {
     back: "گەڕانەوە",
