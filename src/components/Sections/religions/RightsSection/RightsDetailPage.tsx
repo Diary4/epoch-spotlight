@@ -61,14 +61,10 @@ function RightsChapter({ card }: { card: RightsCard }) {
       className="relative overflow-hidden rounded-[28px] bg-[#e6d2a8] p-px shadow-[0_12px_28px_rgba(75,45,12,0.1)]"
     >
       <div className="rounded-[27px] bg-[#fffaf0] px-8 py-8 text-start">
-        <p
-          className="font-serif text-[13px] font-semibold uppercase tracking-[0.16em]"
-          style={{ color: card.accent }}
+        <h2
+          className="font-serif text-[28px] font-semibold uppercase leading-tight tracking-[0.03em] text-[#2f1f12]"
         >
           {card.eyebrow}
-        </p>
-        <h2 className="mt-2 font-serif text-[28px] font-semibold uppercase leading-tight tracking-[0.03em] text-[#2f1f12]">
-          {card.title}
         </h2>
         <div
           className="mt-3 h-[2px] w-12 rounded-full"
@@ -166,7 +162,8 @@ export default function RightsDetailPage({
       )}
 
       <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[1080px] flex-col">
-        <header data-rd-animate="true" className="mx-auto max-w-[900px] shrink-0 pt-10 text-center">
+        {/* Fixed height keeps every rights chapter list at the same y, in every language. */}
+        <header data-rd-animate="true" className="mx-auto h-[290px] max-w-[900px] shrink-0 pt-10 text-center">
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>

@@ -405,7 +405,9 @@ export default function RightsPage({
       )}
 
       <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[1220px] flex-col">
-        <header data-rts-animate="true" className="mx-auto max-w-[850px] shrink-0 pt-8 text-center">
+        {/* Fixed height: Kurdish/Arabic titles wrap to fewer lines than English,
+            so without it the tabs and cards below slide up onto the hero photo. */}
+        <header data-rts-animate="true" className="mx-auto h-[325px] max-w-[850px] shrink-0 pt-8 text-center">
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>

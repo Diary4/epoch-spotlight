@@ -163,9 +163,10 @@ export default function LanguagesOfKurdistanPage({
       </button>
 
       <div className="relative z-10 mx-auto max-w-[980px]">
+        {/* Fixed height keeps the content below at the same y in every language. */}
         <header
           data-language-animate="true"
-          className="mx-auto max-w-[820px] pt-12 text-center"
+          className="mx-auto h-[644px] max-w-[820px] shrink-0 pt-12 text-center"
         >
           <div className="mx-auto mb-4 w-[430px] max-w-full">
             <DecorativeLine color="#c3923a" />
