@@ -202,6 +202,8 @@ export default function YarsanismPage({
         <FaithDetailHeroImage
           heroAttr="data-yarsan-hero"
           src={bg}
+          imageClassName="object-[68%_center]"
+          flipX={dir === "rtl"}
         />
 
         <FaithDetailControls
@@ -214,15 +216,18 @@ export default function YarsanismPage({
         />
 
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
+          {/* Fixed height: the English title wraps to two 96px lines while the
+              Kurdish and Arabic ones fit on one, so without it the topic card
+              below sits ~100px higher and lands on the hero photo. */}
           <header
             data-yarsan-animate="true"
-            className="-ml-8 max-w-[620px] pt-[200px] pl-0 text-left"
+            className="-ms-8 h-[560px] max-w-[620px] pt-[200px] ps-0 text-start"
           >
             <div className="mb-3 mt-3 w-[160px] max-w-full">
               <DecorativeLine color="#c3923a" />
             </div>
 
-            <h1 className={`${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]`}>
+            <h1 className={`min-h-[200px] ${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410] drop-shadow-[0_2px_12px_rgba(250,248,245,0.9)]`}>
               {c.pageTitle}
             </h1>
 

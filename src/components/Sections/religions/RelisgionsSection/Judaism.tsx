@@ -12,7 +12,6 @@ import {
   FAITH_DETAIL_CONTENT_WIDTH,
   FAITH_DETAIL_SUBTITLE_CLASS,
   FAITH_DETAIL_TITLE_CLASS,
-  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -188,7 +187,7 @@ export default function JudaismPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-judaism-animate="true"
-            className={FAITH_DETAIL_HEADER_CLASS}
+            className="mx-auto max-w-[850px] translate-x-[90px] pt-[90px] text-center"
           >
             <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
               ✥

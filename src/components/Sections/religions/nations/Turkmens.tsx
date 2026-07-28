@@ -131,18 +131,6 @@ const content: Record<LangCode, TurkmensContent> = {
   },
 };
 
-function DecorativeLine({ color = "#c3923a" }) {
-  return (
-    <div className="flex items-center justify-center gap-4">
-      <span className="h-px flex-1" style={{ backgroundColor: color }} />
-      <span className="text-2xl" style={{ color }}>
-        ✥
-      </span>
-      <span className="h-px flex-1" style={{ backgroundColor: color }} />
-    </div>
-  );
-}
-
 type TurkmensPageProps = {
   lang?: LangCode;
   languageLabel?: string;
@@ -198,17 +186,11 @@ export default function TurkmensPage({
       >
         <header
           data-turkmens-animate="true"
-          className="mx-auto max-w-[850px] pt-[580px] text-center"
+          className="mx-auto max-w-[850px] pt-[660px] text-center"
         >
-          <div className="mx-auto mb-2 w-[220px]">
-            <DecorativeLine color="#e8c56a" />
-          </div>
           <h1 className="break-words font-serif text-[84px] font-light uppercase leading-[1.02] tracking-[0.04em] text-[#f7f0e4] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)]">
             {c.pageTitle}
           </h1>
-          <div className="mx-auto mt-4 w-[160px]">
-            <DecorativeLine color="#e8c56a" />
-          </div>
           <p className="mx-auto mt-4 max-w-[640px] font-serif text-[22px] font-light leading-relaxed text-[#efe4d2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
             {c.subtitle}
           </p>

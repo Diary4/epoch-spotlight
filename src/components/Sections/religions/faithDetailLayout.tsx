@@ -187,6 +187,8 @@ type FaithDetailHeroImageProps = {
   imageClassName?: string;
   overlayClassName?: string;
   heightClassName?: string;
+  /** Mirror the hero so an RTL page reads as the mirror image of the LTR one. */
+  flipX?: boolean;
   children?: React.ReactNode;
 };
 
@@ -197,18 +199,31 @@ export function FaithDetailHeroImage({
   imageClassName = "",
   overlayClassName = "bg-gradient-to-b from-[#faf8f5]/72 via-[#faf8f5]/30 to-[#faf8f5]/95",
   heightClassName = "h-[900px]",
+  flipX = false,
   children,
 }: FaithDetailHeroImageProps) {
   const heroProps = { [heroAttr]: "true" };
 
+  const heroImage = (
+    <img
+      src={src}
+      alt={alt}
+      {...heroProps}
+      className={`${flipX ? "h-full" : `absolute inset-x-0 top-0 ${heightClassName}`} w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] ${imageClassName}`}
+    />
+  );
+
   return (
     <>
-      <img
-        src={src}
-        alt={alt}
-        {...heroProps}
-        className={`absolute inset-x-0 top-0 ${heightClassName} w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_84%,transparent_100%)] ${imageClassName}`}
-      />
+      {flipX ? (
+        // The entrance animation tweens `scale` on the image itself, so the
+        // mirror lives on a wrapper where GSAP's inline transform can't erase it.
+        <div className={`absolute inset-x-0 top-0 ${heightClassName} -scale-x-100`}>
+          {heroImage}
+        </div>
+      ) : (
+        heroImage
+      )}
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 ${heightClassName} ${overlayClassName}`}
       />

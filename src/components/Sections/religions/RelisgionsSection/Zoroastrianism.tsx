@@ -11,9 +11,6 @@ import { useReligionPageAnimation } from "@/components/Sections/religions/useRel
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
-  FAITH_DETAIL_SUBTITLE_CLASS,
-  FAITH_DETAIL_TITLE_CLASS,
-  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -176,6 +173,7 @@ export default function ZoroastrianismPage({
         <FaithDetailHeroImage
           heroAttr="data-zoro-hero"
           src={bg}
+          imageClassName="object-[58%_center]"
         />
 
         <FaithDetailControls
@@ -190,25 +188,21 @@ export default function ZoroastrianismPage({
         <div className={`relative z-10 mx-auto ${FAITH_DETAIL_CONTENT_WIDTH} ${FAITH_CONTENT_PADDING}`}>
           <header
             data-zoro-animate="true"
-            className={FAITH_DETAIL_HEADER_CLASS}
+            className="-ml-4 max-w-[900px] pt-[200px] text-left"
           >
-            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center text-[68px] text-[#b9822d]">
-              ✥
+            <div className="mb-3 mt-3 w-[160px] max-w-full">
+              <DecorativeLine color="#e8c56a" />
             </div>
 
-            <div className="mx-auto mb-3 mt-3 w-[260px] max-w-full">
-              <DecorativeLine />
-            </div>
-
-            <h1 className={`${FAITH_DETAIL_TITLE_CLASS} text-[#3b2410]`}>
+            <h1 className="whitespace-nowrap font-serif text-[64px] font-light uppercase leading-[1.05] tracking-[0.06em] text-[#faf6ee] drop-shadow-[0_2px_18px_rgba(0,0,0,0.85)]">
               {c.title}
             </h1>
 
-            <div className="mx-auto mt-5 w-[180px] max-w-full">
-              <DecorativeLine />
+            <div className="mt-4 w-[120px] max-w-full">
+              <DecorativeLine color="#e8c56a" />
             </div>
 
-            <p className={`mx-auto mt-5 max-w-[620px] ${FAITH_DETAIL_SUBTITLE_CLASS} text-[#4d3c2a]`}>
+            <p className="mt-5 max-w-[480px] font-serif text-[22px] font-light leading-relaxed text-[#f0e6d4] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
               {c.subtitle}
             </p>
           </header>
