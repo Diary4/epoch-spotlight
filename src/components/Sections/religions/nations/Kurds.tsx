@@ -9,7 +9,6 @@ import citiesImg from "@/assets/images/religions/kurds/cities.jpeg";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,
-  FAITH_DETAIL_HEADER_CLASS,
   FAITH_TAGLINE_ICON_WRAP_CLASS,
   FAITH_TAGLINE_SECTION_CLASS,
   NATION_TAGLINE_TEXT_CLASS,
@@ -200,18 +199,21 @@ export default function KurdsPage({
       >
         <header
           data-kurds-animate="true"
-          className={`${FAITH_DETAIL_HEADER_CLASS} translate-x-20`}
+          className="mx-auto max-w-[850px] translate-x-[280px] pt-[100px] text-center"
         >
           <div className="mx-auto mb-3 mt-3 w-[260px]">
-            <DecorativeLine color="#c3923a" />
+            <DecorativeLine color="#e8c56a" />
           </div>
-          <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#3b2410]">
+          <h1 className="break-words font-serif text-[96px] font-light uppercase leading-[1.04] tracking-[0.04em] text-[#faf6ee] drop-shadow-[0_2px_18px_rgba(0,0,0,0.85)]">
             {c.pageTitle}
           </h1>
           <div className="mx-auto mt-5 w-[180px]">
-            <DecorativeLine color="#c3923a" />
+            <DecorativeLine color="#e8c56a" />
           </div>
-          <p className="mx-auto mt-5 max-w-[620px] font-serif text-[22px] font-light leading-relaxed text-[#4d3c2a]">
+          <p
+            className="mx-auto mt-5 max-w-[620px] font-serif text-[24px] font-normal leading-relaxed text-white"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.7)" }}
+          >
             {c.subtitle}
           </p>
         </header>
