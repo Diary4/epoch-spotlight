@@ -376,9 +376,9 @@ export default function LeadersOfCoexistencePage({
         data-lc-hero="true"
         src={coexistenceHero}
         alt=""
-        className="pointer-events-none absolute inset-x-0 top-[220px] z-0 h-[900px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_86%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[920px] w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-[220px] z-[1] h-[900px] bg-[linear-gradient(to_bottom,#faf8f5_0%,transparent_16%,transparent_84%,#faf8f5_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[920px] bg-[linear-gradient(to_bottom,transparent_0%,transparent_78%,#faf8f5_100%)]" />
       {onBack && (
         <button
           type="button"
@@ -402,7 +402,10 @@ export default function LeadersOfCoexistencePage({
       )}
 
       <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[1220px] flex-col">
-        <header data-lc-animate="true" className="mx-auto max-w-[850px] shrink-0 pt-8 text-center">
+        {/* Push title + content below the full-bleed hero */}
+        <div className="h-[920px] shrink-0" aria-hidden />
+
+        <header data-lc-animate="true" className="mx-auto max-w-[850px] shrink-0 pt-6 text-center">
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>
@@ -414,7 +417,7 @@ export default function LeadersOfCoexistencePage({
           </div>
         </header>
 
-        <section data-lc-animate="true" className="mt-[1020px] flex flex-1 flex-col pb-4">
+        <section data-lc-animate="true" className="mt-8 flex flex-1 flex-col pb-4">
           <ReligionsTabNav tabs={navTabs} activeId={activeTab} onChange={setActiveTab} />
 
           <ReligionsTabPanel

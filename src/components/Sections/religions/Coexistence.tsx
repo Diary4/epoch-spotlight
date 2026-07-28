@@ -176,17 +176,10 @@ export default function StoriesOfCoexistencePage({
         data-story-hero="true"
         src={bg}
         alt=""
-        className="absolute left-0 top-0 h-[720px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+        className="absolute left-0 top-0 h-[720px] w-full object-cover object-top [mask-image:linear-gradient(to_bottom,black_0%,black_82%,transparent_100%)]"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5] via-[#faf8f5]/15 to-[#faf8f5]" />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-[720px] z-[1] h-24 -translate-y-full blur-[2px]"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(250,248,245,0.95) 0%, rgba(250,248,245,0.62) 45%, rgba(250,248,245,0) 100%)",
-        }}
-      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[720px] bg-[linear-gradient(to_bottom,transparent_0%,transparent_78%,#faf8f5_100%)]" />
 
       <button
         type="button"
@@ -209,7 +202,7 @@ export default function StoriesOfCoexistencePage({
       <div className="relative z-10 mx-auto max-w-[1060px]">
         <header
           data-story-animate="true"
-          className="mx-auto max-w-[820px] pt-10 text-center"
+          className="mx-auto max-w-[820px] pt-[760px] text-center"
         >
           <div className="mx-auto mb-4 w-full max-w-[430px]">
             <DecorativeLine color="#c3923a" />
@@ -229,11 +222,9 @@ export default function StoriesOfCoexistencePage({
           </p>
         </header>
 
-        <div className="h-[420px]" />
-
         <section
           data-story-animate="true"
-          className="relative mx-auto rounded-[22px] border-2 border-[#d8b875]/60 bg-[#fff8e9]/88 px-8 py-6 text-center shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-sm"
+          className="relative mx-auto mt-10 rounded-[22px] border-2 border-[#d8b875]/60 bg-[#fff8e9]/88 px-8 py-6 text-center shadow-[0_10px_24px_rgba(75,45,12,0.12)] backdrop-blur-sm"
         >
           <Quote className={`absolute top-5 h-10 w-10 text-[#c58b16] ${religionsOverlayStartClassName(dir)}`} />
           <Quote className={`absolute bottom-5 h-10 w-10 rotate-180 text-[#c58b16] ${religionsOverlayEndClassName(dir)}`} />
