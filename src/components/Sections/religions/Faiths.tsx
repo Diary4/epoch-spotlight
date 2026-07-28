@@ -12,7 +12,7 @@ import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
 import imgChristianity from "@/assets/images/religions/christianity/cover.jpeg";
 import imgYazidism from "@/assets/images/religions/yazidi/lalish.jpeg";
 import imgYarsanism from "@/assets/images/religions/kakayi/cover.jpeg";
-import imgZoroastrianism from "@/assets/images/religions/zoro/cover.jpeg";
+import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import imgJudaism from "@/assets/images/religions/judaism/card-cover.jpeg";
 import imgBahai from "@/assets/images/religions/bahai/card-cover.jpeg";
 import imgSabean from "@/assets/images/religions/sabean/card-cover.jpeg";
