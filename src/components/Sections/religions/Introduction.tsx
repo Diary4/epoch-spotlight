@@ -21,7 +21,7 @@ import {
 import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
 import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
 import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
-import imgChristianity from "@/assets/images/religions/christianity/cover.jpeg";
+import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
 import imgYazidism from "@/assets/images/religions/yazidi/lalish.jpeg";
 import imgYarsanism from "@/assets/images/religions/kakayi/cover.jpeg";
 import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
