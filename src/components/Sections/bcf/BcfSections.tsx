@@ -134,7 +134,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                 type="button"
                 data-journey-row
                 onClick={() => onSelect(item.id)}
-                className="group absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] "
+                className="group absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm transition-[background-color,box-shadow] duration-300 ease-smooth-out "
                 style={{
                   left: item.left,
                   top: item.top,
@@ -144,7 +144,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                 }}
               >
                 <span
-                  className="absolute left-0 top-1/2 h-[200px] w-[200px] -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[border-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  className="absolute left-0 top-1/2 h-[200px] w-[200px] -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[border-color,box-shadow] duration-300 ease-smooth-out"
                   style={{
                     borderColor: item.id === "story" ? BCF.gold : "rgba(251,193,88,0.55)",
                     boxShadow:
@@ -157,7 +157,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     src={thumbs[item.id]}
                     alt=""
                     decoding="async"
-                    className="h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none "
+                    className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out will-change-transform motion-reduce:transition-none "
                   />
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col items-start gap-4 overflow-hidden">
@@ -165,8 +165,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     {chapter.title}
                   </span>
                   <span className="flex items-center gap-2 text-[#fbc158]">
-                    <span className="h-px w-16 bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " />
-                    <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " />
+                    <span className="h-px w-16 bg-current transition-all duration-500 ease-smooth-out " />
+                    <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-smooth-out " />
                   </span>
                 </span>
               </button>

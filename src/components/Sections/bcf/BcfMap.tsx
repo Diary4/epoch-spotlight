@@ -144,7 +144,7 @@ export default function BcfMap({
                 setHintVisible(false);
                 onSelectLocation(loc.id);
               }}
-              className="group absolute z-10 -translate-x-1/2 -translate-y-full transform-gpu transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform active:scale-100"
+              className="group absolute z-10 -translate-x-1/2 -translate-y-full transform-gpu transition-transform duration-300 ease-smooth-out will-change-transform active:scale-100"
               style={{ left: loc.x, top: loc.y }}
             >
               <span className="relative flex flex-col items-center">
@@ -207,11 +207,11 @@ export default function BcfMap({
                 <button
                   type="button"
                   onClick={() => onExploreProjects(selectedLocation)}
-                  className="group mt-8 flex w-full items-center justify-between rounded-full border border-[#fbc158]/50 px-8 py-5 transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.99]"
+                  className="group mt-8 flex w-full items-center justify-between rounded-full border border-[#fbc158]/50 px-8 py-5 transition-[background-color,box-shadow] duration-300 ease-smooth-out active:scale-[0.99]"
                 >
                   <span className="text-[28px] text-white">{selected.explore}</span>
                   <span
-                    className="grid h-14 w-14 place-items-center rounded-full border-2 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] "
+                    className="grid h-14 w-14 place-items-center rounded-full border-2 transition-transform duration-300 ease-smooth-out "
                     style={{ borderColor: BCF.gold }}
                   >
                     <ArrowRight className="h-7 w-7" style={{ color: BCF.gold }} />

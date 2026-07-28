@@ -16,7 +16,7 @@ export default function BcfImageCard({ title, image, onClick, className = "" }: 
     <Comp
       type={onClick ? "button" : undefined}
       onClick={onClick}
-      className={`group relative flex h-[200px] w-full transform-gpu items-center overflow-hidden rounded-[24px] border border-[#84879d]/80 text-left transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+      className={`group relative flex h-[200px] w-full transform-gpu items-center overflow-hidden rounded-[24px] border border-[#84879d]/80 text-left transition-[transform,border-color,box-shadow] duration-500 ease-smooth-out will-change-transform ${
         interactive
           ? " active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none "
           : ""
@@ -33,14 +33,14 @@ export default function BcfImageCard({ title, image, onClick, className = "" }: 
           src={image}
           alt=""
           decoding="async"
-          className="h-full w-full transform-gpu object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none "
+          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out will-change-transform motion-reduce:transition-none "
         />
       </div>
       <div className="relative z-10 flex flex-col items-start gap-5 px-9">
         <span className="text-[48px] font-light leading-none text-[#fdeed4]">{title}</span>
         <span className="flex items-center gap-2 text-[#fbc158]">
-          <span className="h-px w-16 bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " />
-          <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " />
+          <span className="h-px w-16 bg-current transition-all duration-500 ease-smooth-out " />
+          <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-smooth-out " />
         </span>
       </div>
     </Comp>

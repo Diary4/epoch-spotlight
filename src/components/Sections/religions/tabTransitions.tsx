@@ -147,7 +147,7 @@ export function ReligionsTabNav<T extends string>({
               role="tab"
               className={cn(
                 "group relative flex items-center gap-3 px-8 pb-[15px] pt-3.5 font-serif text-[20px]",
-                "transition-[color,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "transition-[color,transform] duration-500 ease-smooth-out",
                 "motion-reduce:transition-none",
                 isActive
                   ? "text-[#2f1f12]"
@@ -156,7 +156,7 @@ export function ReligionsTabNav<T extends string>({
             >
               <Icon
                 className={cn(
-                  "h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+                  "h-5 w-5 transition-transform duration-500 ease-smooth-out motion-reduce:transition-none",
                   isActive ? "scale-110" : "scale-100",
                 )}
               />

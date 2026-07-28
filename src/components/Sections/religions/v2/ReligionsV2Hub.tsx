@@ -123,7 +123,7 @@ export default function ReligionsV2Hub({
               onFocus={() => onActiveIndexChange(index)}
               onPointerEnter={() => onActiveIndexChange(index)}
               onClick={() => onOpenChapter(index)}
-              className={`group flex min-h-[250px] transform-gpu flex-col overflow-hidden rounded-[22px] border text-start transition-[transform,border-color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform active:scale-[0.985] ${
+              className={`group flex min-h-[250px] transform-gpu flex-col overflow-hidden rounded-[22px] border text-start transition-[transform,border-color,background-color,box-shadow] duration-300 ease-smooth-out will-change-transform active:scale-[0.985] ${
                 isActive
                   ? "-translate-y-1 border-[#b98222] bg-white shadow-[0_14px_32px_rgba(75,45,12,0.14)]"
                   : "border-[#d7b77e]/40 bg-white/70 "
@@ -134,7 +134,7 @@ export default function ReligionsV2Hub({
                   src={card.image}
                   alt=""
                   decoding="async"
-                  className={`h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+                  className={`h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out will-change-transform ${
                     isActive ? "scale-[1.04]" : ""
                   }`}
                 />

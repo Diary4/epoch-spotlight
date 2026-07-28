@@ -23,7 +23,7 @@ export default function BcfLanguage({ onSelect }: BcfLanguageProps) {
               key={lang.id}
               type="button"
               onClick={() => onSelect(lang.id)}
-              className="transform-gpu rounded-2xl border-2 px-8 py-7 text-center text-[42px] font-light text-white transition-[transform,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform active:translate-y-0 active:scale-[0.98] motion-reduce:transition-none "
+              className="transform-gpu rounded-2xl border-2 px-8 py-7 text-center text-[42px] font-light text-white transition-[transform,background-color,box-shadow] duration-300 ease-smooth-out will-change-transform active:translate-y-0 active:scale-[0.98] motion-reduce:transition-none "
               style={{ borderColor: BCF.gold }}
             >
               {lang.label}

@@ -13,7 +13,7 @@ type BcfDomeGalleryProps = {
 };
 
 const BASE_CARD_CLASS =
-  "absolute left-1/2 top-1/2 h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[26px] border border-white/20 bg-black/40 shadow-[0_20px_40px_rgba(0,0,0,0.38)] transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]";
+  "absolute left-1/2 top-1/2 h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[26px] border border-white/20 bg-black/40 shadow-[0_20px_40px_rgba(0,0,0,0.38)] transition-[transform,opacity,filter] duration-700 ease-smooth-out";
 
 function wrapIndex(index: number, total: number) {
   return ((index % total) + total) % total;

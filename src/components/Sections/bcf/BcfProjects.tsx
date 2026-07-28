@@ -51,14 +51,14 @@ export default function BcfProjects({
               key={project.id}
               type="button"
               onClick={() => onOpenProject(project.id)}
-              className={`${BCF_GLASS_CARD} group flex transform-gpu items-center gap-7 overflow-hidden p-5 text-left transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none `}
+              className={`${BCF_GLASS_CARD} group flex transform-gpu items-center gap-7 overflow-hidden p-5 text-left transition-[transform,box-shadow] duration-500 ease-smooth-out will-change-transform active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none `}
             >
               <span className="h-40 w-48 shrink-0 overflow-hidden rounded-xl">
                 <img
                   src={projectThumb}
                   alt=""
                   decoding="async"
-                  className="h-full w-full transform-gpu object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none "
+                  className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out will-change-transform motion-reduce:transition-none "
                 />
               </span>
               <div className="min-w-0 flex-1">
@@ -66,7 +66,7 @@ export default function BcfProjects({
                 <p className="mt-2 line-clamp-2 text-[22px] text-white/70">{project.summary}</p>
               </div>
               <span
-                className="mr-3 grid h-14 w-14 shrink-0 place-items-center rounded-full border transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] "
+                className="mr-3 grid h-14 w-14 shrink-0 place-items-center rounded-full border transition-transform duration-500 ease-smooth-out "
                 style={{ borderColor: BCF.gold }}
               >
                 <ArrowRight className="h-7 w-7" style={{ color: BCF.gold }} />

@@ -96,7 +96,7 @@ export function NationTopicSwitcher({
                 key={topic.id}
                 type="button"
                 onClick={() => setActiveId(topic.id)}
-                className={`whitespace-nowrap border-b-2 px-4 py-4 font-serif text-[18px] font-light uppercase tracking-[0.03em] transition-[color,border-color,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] ${
+                className={`whitespace-nowrap border-b-2 px-4 py-4 font-serif text-[18px] font-light uppercase tracking-[0.03em] transition-[color,border-color,transform] duration-300 ease-smooth-out active:scale-[0.97] ${
                   isActive
                     ? "border-[#b98222] text-[#2f1f12]"
                     : "border-transparent text-[#8a6a45] "

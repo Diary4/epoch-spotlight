@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: ["class"],
@@ -24,7 +26,12 @@ export default {
         xs: "450px",
         "3xl": "1920px",
         "4xl": "2560px",
-        "kiosk-portrait": { raw: "(orientation: portrait) and (min-height: 1200px)" },
+      },
+      transitionDuration: {
+        "600": "600ms",
+      },
+      transitionTimingFunction: {
+        "smooth-out": "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -102,5 +109,10 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    tailwindcssAnimate,
+    plugin(({ addVariant }) => {
+      addVariant("kiosk-portrait", "@media (orientation: portrait) and (min-height: 1200px)");
+    }),
+  ],
 } satisfies Config;

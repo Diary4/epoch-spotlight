@@ -119,7 +119,7 @@ export default function ReligionInfoCard({
           src={resolvedImage}
           alt=""
           decoding="async"
-          className={`block h-full w-full -translate-y-px scale-[1.02] transform-gpu object-cover object-top saturate-[0.9] transition-[transform,filter] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${isInteractive ? " group-active:scale-[1.04] motion-reduce:transition-none " : ""} ${imageClassName}`}
+          className={`block h-full w-full -translate-y-px scale-[1.02] transform-gpu object-cover object-top saturate-[0.9] transition-[transform,filter] duration-700 ease-smooth-out will-change-transform ${isInteractive ? " group-active:scale-[1.04] motion-reduce:transition-none " : ""} ${imageClassName}`}
         />
         <div className={`pointer-events-none absolute inset-x-0 top-0 ${imageFadeClass}`} />
       </div>
@@ -128,7 +128,7 @@ export default function ReligionInfoCard({
 
   // Outer shell paints the gold edge; inner surface stays borderless.
   // Avoids the WebKit/Chromium 1px dark hairline on rounded bordered buttons.
-  const shellClassName = `h-full w-full transform-gpu rounded-[24px] bg-[#e6d2a8] p-px shadow-[0_10px_28px_rgba(75,45,12,0.06)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${isInteractive ? " active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none " : ""} ${className.includes("min-h-") ? className : ""}`;
+  const shellClassName = `h-full w-full transform-gpu rounded-[24px] bg-[#e6d2a8] p-px shadow-[0_10px_28px_rgba(75,45,12,0.06)] transition-[transform,box-shadow] duration-500 ease-smooth-out will-change-transform ${isInteractive ? " active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none " : ""} ${className.includes("min-h-") ? className : ""}`;
   const surfaceClassName = `group relative flex h-full w-full flex-col overflow-hidden rounded-[23px] border-0 bg-white text-start ${isInteractive ? "cursor-pointer appearance-none outline-none focus-visible:ring-2 focus-visible:ring-[#d6a45b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]" : ""} ${className.includes("min-h-") ? "min-h-full" : "min-h-[420px]"}`;
 
   if (isInteractive) {
