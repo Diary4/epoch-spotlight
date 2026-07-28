@@ -162,8 +162,7 @@ export default function RightsDetailPage({
       )}
 
       <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[1080px] flex-col">
-        {/* Fixed height keeps every rights chapter list at the same y, in every language. */}
-        <header data-rd-animate="true" className="mx-auto h-[290px] max-w-[900px] shrink-0 pt-10 text-center">
+        <header data-rd-animate="true" className="mx-auto max-w-[900px] shrink-0 pt-10 text-center">
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>

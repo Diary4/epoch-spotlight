@@ -189,10 +189,9 @@ export default function Nationalities({
       </button>
 
       <div className="relative z-10 mx-auto max-w-[1040px]">
-        {/* Fixed height keeps the card grid below at the same y in every language. */}
         <header
           data-nationality-animate="true"
-          className="mx-auto h-[638px] max-w-[850px] shrink-0 pt-16 text-center"
+          className="mx-auto max-w-[850px] pt-16 text-center"
         >
           <div className="mx-auto mb-4 w-[420px] max-w-full">
             <DecorativeLine color="#c3923a" />

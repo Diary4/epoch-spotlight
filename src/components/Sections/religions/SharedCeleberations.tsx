@@ -151,10 +151,9 @@ export default function SharedCelebrationsPage({
       </button>
 
       <div className="relative z-10 mx-auto max-w-[980px]">
-        {/* Fixed height (tallest translation) keeps the card grid below at the same y. */}
         <header
           data-celebration-animate="true"
-          className="mx-auto h-[543px] max-w-[760px] shrink-0 pt-12 text-center"
+          className="mx-auto max-w-[760px] pt-12 text-center"
         >
           <div className="mx-auto mb-4 w-[430px] max-w-full">
             <DecorativeLine color="#c3923a" />

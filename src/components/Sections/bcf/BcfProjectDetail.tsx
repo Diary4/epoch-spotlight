@@ -7,9 +7,16 @@ import {
   type LocationId,
   type ProjectId,
 } from "@/components/Sections/bcf/bcfContent";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import detailBg from "@/assets/images/women/w-4.webp";
+import BcfDomeGallery, { type BcfDomeSlide } from "@/components/Sections/bcf/BcfDomeGallery";
+import {
+  bcfCorridor,
+  bcfErbil,
+  bcfMapBg,
+  bcfProjectHero,
+  bcfProjectsBg,
+  bcfWelcomeBg,
+} from "@/components/Sections/bcf/bcfAssets";
 
 type BcfProjectDetailProps = {
   lang: BcfLang;
@@ -27,13 +34,46 @@ export default function BcfProjectDetail({
   const c = bcfCopy[lang];
   const project =
     c.projects[locationId].find((p) => p.id === projectId) ?? c.projects[locationId][0];
+  const cityName = c.locations[locationId].name;
+  const gallerySlides: BcfDomeSlide[] = [
+    {
+      image: bcfProjectHero,
+      title: project.title,
+      caption: project.summary,
+    },
+    {
+      image: bcfProjectsBg,
+      title: cityName,
+      caption: `${project.stat1Value} ${project.stat1Label}`,
+    },
+    {
+      image: bcfMapBg,
+      title: cityName,
+      caption: `${project.stat2Value} ${project.stat2Label}`,
+    },
+    {
+      image: bcfErbil,
+      title: c.projectsIn,
+      caption: `${cityName} - ${project.title}`,
+    },
+    {
+      image: bcfCorridor,
+      title: c.ourImpact,
+      caption: project.summary,
+    },
+    {
+      image: bcfWelcomeBg,
+      title: c.changing,
+      caption: c.livesEveryday,
+    },
+  ];
 
   return (
     <BcfShell
       backgroundImage={detailBg}
       overlayClassName="bg-gradient-to-t from-black via-black/45 to-black/15"
     >
-      <div className="relative flex min-h-[1920px] flex-col justify-between px-14 pb-20 pt-28">
+      <div className="relative flex min-h-[1920px] flex-col items-center justify-center px-14 py-28">
         <button
           type="button"
           onClick={onBack}
@@ -43,26 +83,8 @@ export default function BcfProjectDetail({
           <ChevronLeft className="h-7 w-7 text-white" />
         </button>
 
-        <div className="mt-auto w-full max-w-[1080px] rounded-[32px] border border-white/15 bg-black/45 p-10 backdrop-blur-md">
-          <h1 className="text-[72px] font-bold leading-tight text-[#fdeed4]">{project.title}</h1>
-          <p className="mt-6 text-[36px] leading-snug text-[#fcdfaa]">{project.summary}</p>
-
-          <div className="mt-12 flex flex-col gap-10">
-            <div>
-              <BcfStatValue
-                value={project.stat1Value}
-                className="text-[64px] font-bold leading-none"
-              />
-              <p className="mt-4 text-[36px] text-[#fbf4e4]">{project.stat1Label}</p>
-            </div>
-            <div>
-              <BcfStatValue
-                value={project.stat2Value}
-                className="text-[64px] font-bold leading-none"
-              />
-              <p className="mt-4 text-[36px] text-[#fbf4e4]">{project.stat2Label}</p>
-            </div>
-          </div>
+        <div className="w-full max-w-[1240px]">
+          <BcfDomeGallery slides={gallerySlides} />
         </div>
       </div>
     </BcfShell>

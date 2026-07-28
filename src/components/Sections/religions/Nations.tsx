@@ -309,10 +309,9 @@ export default function NationsPage({
       )}
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col">
-        {/* Fixed height keeps the card grid below at the same y in every language. */}
         <header
           data-n-animate="true"
-          className="mx-auto h-[408px] max-w-[850px] shrink-0 pt-32 text-center"
+          className="mx-auto max-w-[850px] pt-32 text-center"
         >
           <div className="mx-auto mb-3 mt-3 w-[260px]">
             <DecorativeLine color="#c3923a" />

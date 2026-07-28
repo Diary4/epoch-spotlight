@@ -236,10 +236,9 @@ export default function ReligionsKurdistan({
       </button>
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
-        {/* Fixed height keeps the card grid below at the same y in every language. */}
         <header
           data-religion-animate="true"
-          className="mx-auto h-[556px] max-w-[820px] shrink-0 pt-24 text-center"
+          className="mx-auto max-w-[820px] pt-24 text-center"
         >
           <div className="mx-auto mb-4 w-[420px] max-w-full">
             <DecorativeLine color="#c3923a" />

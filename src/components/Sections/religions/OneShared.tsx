@@ -411,8 +411,7 @@ export default function OneSharedHomelandPage({
       )}
 
       <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[1220px] flex-col">
-        {/* Fixed height keeps the tabs and cards below at the same y in every language. */}
-        <header data-sh-animate="true" className="mx-auto h-[268px] max-w-[850px] shrink-0 pt-8 text-center">
+        <header data-sh-animate="true" className="mx-auto max-w-[850px] shrink-0 pt-8 text-center">
           <div className="mx-auto mb-2 w-[220px]">
             <DecorativeLine color="#c3923a" />
           </div>

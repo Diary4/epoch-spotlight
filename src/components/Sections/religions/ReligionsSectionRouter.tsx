@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowLeft, Globe2 } from "lucide-react";
 import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClassName, religionsOverlayEndClassName } from "@/constants/backNavigation";
-import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import ReligionsFitCanvas from "@/components/Sections/religions/ReligionsFitCanvas";
 
 import ReligionsKurdistan from "@/components/Sections/religions/ReligionsKurdistan";
 import Nationalities from "@/components/Sections/religions/Nationalities";
@@ -177,7 +177,7 @@ export default function ReligionsSectionRouter({
 
     if (card) {
       return (
-        <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang, card.id]}>
+        <ReligionsFitCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang, card.id]}>
           <div
             lang={lang}
             className="relative flex min-h-full w-full flex-col bg-[#faf8f5] px-16 pb-16 text-[#302214]"
@@ -221,7 +221,7 @@ export default function ReligionsSectionRouter({
               </p>
             </div>
           </div>
-        </WomenScaledCanvas>
+        </ReligionsFitCanvas>
       );
     }
   }

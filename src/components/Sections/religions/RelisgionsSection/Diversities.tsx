@@ -141,8 +141,7 @@ export default function DiversityMapPage({
       </button>
 
       <div className="relative z-10 mx-auto max-w-[1180px]">
-        {/* Fixed height keeps the map below at the same y in every language. */}
-        <header data-map-animate="true" className="mx-auto h-[582px] max-w-[790px] shrink-0 pt-8 text-center">
+        <header data-map-animate="true" className="mx-auto max-w-[790px] pt-8 text-center">
           <div className="mx-auto mb-3 w-[430px] max-w-full">
             <DecorativeLine color="#c3923a" />
           </div>

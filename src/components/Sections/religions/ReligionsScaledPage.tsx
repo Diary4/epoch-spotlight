@@ -1,5 +1,5 @@
 import React from "react";
-import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import ReligionsFitCanvas from "@/components/Sections/religions/ReligionsFitCanvas";
 
 type ReligionsScaledPageProps = {
   dir?: "ltr" | "rtl";
@@ -7,14 +7,14 @@ type ReligionsScaledPageProps = {
   fitDeps?: React.DependencyList;
   sectionRef?: React.RefObject<HTMLElement | null>;
   className?: string;
-  /** Kept for call-site compatibility — religions now follow Women width-scaling. */
+  /** Kept for call-site compatibility — every religions screen now fits the window. */
   fitViewport?: boolean;
   children: React.ReactNode;
 };
 
 /**
- * Religions pages use the same width-scaled canvas as Women.tsx so layout
- * stays consistent across window sizes (always fills width, may scroll).
+ * Religions pages use the same 1400px design canvas as Women.tsx, scaled to fit
+ * the window on both axes so no screen ever scrolls.
  */
 export default function ReligionsScaledPage({
   dir,
@@ -25,7 +25,7 @@ export default function ReligionsScaledPage({
   children,
 }: ReligionsScaledPageProps) {
   return (
-    <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={fitDeps}>
+    <ReligionsFitCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={fitDeps}>
       <section
         ref={sectionRef}
         lang={lang}
@@ -34,6 +34,6 @@ export default function ReligionsScaledPage({
       >
         {children}
       </section>
-    </WomenScaledCanvas>
+    </ReligionsFitCanvas>
   );
 }

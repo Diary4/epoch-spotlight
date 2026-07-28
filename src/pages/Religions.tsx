@@ -38,7 +38,7 @@ import RightsRefuge from "@/components/Sections/religions/RightsSection/RightsRe
 import RightsMedia from "@/components/Sections/religions/RightsSection/RightsMedia";
 import ClassicalCard from "@/components/Sections/religions/ClassicalCard";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
-import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
+import ReligionsFitCanvas from "@/components/Sections/religions/ReligionsFitCanvas";
 
 type LangCode = "en" | "ku" | "ar";
 
@@ -465,7 +465,7 @@ export default function ReligiousDiversityPage({
 
     if (card) {
       return (
-        <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang, card.id]}>
+        <ReligionsFitCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang, card.id]}>
           <div
             lang={lang}
             className="relative flex min-h-full w-full flex-col bg-[#faf8f5] px-16 pb-16 text-[#302214]"
@@ -511,13 +511,13 @@ export default function ReligiousDiversityPage({
               </p>
             </div>
           </div>
-        </WomenScaledCanvas>
+        </ReligionsFitCanvas>
       );
     }
   }
 
   return (
-    <WomenScaledCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang]}>
+    <ReligionsFitCanvas dir={dir} bgClassName="bg-[#faf8f5]" fitDeps={[lang]}>
       <section
         ref={sectionRef}
         lang={lang}
@@ -549,7 +549,9 @@ export default function ReligiousDiversityPage({
         </button>
 
         <div className="relative z-10 flex w-full flex-col px-16 pt-24">
-          <div className="shrink-0">
+          {/* Fixed height: the Kurdish and Arabic intro runs shorter than the English
+              one, and without it the cards below slide up when the language changes. */}
+          <div className="h-[454px] shrink-0">
             <div className="relative max-w-[820px]">
               <h1 className="font-serif text-[64px] font-black uppercase leading-[0.92] tracking-wider text-[#332315]">
                 {content.title.map((line, index) => (
@@ -570,15 +572,15 @@ export default function ReligiousDiversityPage({
                 {content.subtitle}
               </h2>
             </div>
-          </div>
 
-          <div
-            data-rd-desc="true"
-            className="mt-6 border-t border-[#c9973e]/30 pt-6"
-          >
-            <p className="max-w-[620px] font-sans text-[18px] font-normal leading-[1.65] text-[#332315]/90">
-              {content.description}
-            </p>
+            <div
+              data-rd-desc="true"
+              className="mt-6 border-t border-[#c9973e]/30 pt-6"
+            >
+              <p className="max-w-[620px] font-sans text-[18px] font-normal leading-[1.65] text-[#332315]/90">
+                {content.description}
+              </p>
+            </div>
           </div>
 
           <section className="z-10 mt-[35rem]">
@@ -620,6 +622,6 @@ export default function ReligiousDiversityPage({
           </section>
         </div>
       </section>
-    </WomenScaledCanvas>
+    </ReligionsFitCanvas>
   );
 }
