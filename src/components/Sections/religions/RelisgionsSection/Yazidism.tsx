@@ -265,7 +265,7 @@ export default function YazidismPage({
             <button
               type="button"
               onClick={() => runExit(() => setSubPage("otherFaith"))}
-              className="grid h-16 w-16 shrink-0 place-items-center self-auto rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-95"
+              className="grid h-16 w-16 shrink-0 place-items-center self-auto rounded-full border border-[#d6b06b] bg-[#fff4dc] text-[#a8751f] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-95"
             >
               <ChevronRight className="h-9 w-9" />
             </button>

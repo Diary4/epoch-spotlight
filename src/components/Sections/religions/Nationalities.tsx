@@ -255,7 +255,7 @@ export default function Nationalities({
           <button
             type="button"
             onClick={() => runExit(() => setSubPage("languages"))}
-            className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-95"
+            className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#c58b16] text-white shadow-[0_8px_18px_rgba(75,45,12,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-95"
           >
             <ChevronRight className="h-9 w-9" />
           </button>

@@ -110,7 +110,7 @@ export default function ReligionsV2Attract({
                 <img
                   src={pillar.image}
                   alt=""
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover transition-transform duration-500 "
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent" />
                 <span className="absolute left-4 top-4 font-serif text-[20px] text-[#b98222]">

@@ -126,7 +126,7 @@ export default function ReligionsV2Hub({
               className={`group flex min-h-[250px] transform-gpu flex-col overflow-hidden rounded-[22px] border text-start transition-[transform,border-color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform active:scale-[0.985] ${
                 isActive
                   ? "-translate-y-1 border-[#b98222] bg-white shadow-[0_14px_32px_rgba(75,45,12,0.14)]"
-                  : "border-[#d7b77e]/40 bg-white/70 hover:border-[#d7b77e] hover:bg-white"
+                  : "border-[#d7b77e]/40 bg-white/70 "
               }`}
             >
               <div className="relative h-[140px] w-full overflow-hidden">
@@ -135,7 +135,7 @@ export default function ReligionsV2Hub({
                   alt=""
                   decoding="async"
                   className={`h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-                    isActive ? "scale-[1.04]" : "group-hover:scale-[1.04]"
+                    isActive ? "scale-[1.04]" : ""
                   }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/35 to-transparent" />

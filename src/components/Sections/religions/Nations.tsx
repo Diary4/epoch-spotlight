@@ -290,7 +290,7 @@ export default function NationsPage({
         <button
           type="button"
           onClick={onBack}
-          className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm transition hover:bg-[#fff7ea] ${religionsOverlayStartClassName(dir)}`}
+          className={`absolute top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d9b477] bg-white text-[#5a3a18] shadow-sm transition ${religionsOverlayStartClassName(dir)}`}
           aria-label={c.back}
         >
           <ArrowLeft size={detailBackIconSize} className={detailBackIconClassName(dir)} />
@@ -301,7 +301,7 @@ export default function NationsPage({
         <button
           type="button"
           onClick={onLanguageChange}
-          className={`absolute top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition hover:bg-[#fff7ea] ${religionsOverlayEndClassName(dir)}`}
+          className={`absolute top-8 z-30 flex items-center gap-3 rounded-full border border-[#d9b477] bg-white px-5 py-3 font-serif text-sm font-semibold text-[#4b3219] shadow-[0_8px_20px_rgba(84,54,16,0.15)] transition ${religionsOverlayEndClassName(dir)}`}
         >
           <Globe2 className="h-5 w-5" />
           {languageLabel}

@@ -1,6 +1,7 @@
 import React from "react";
 import gsap from "gsap";
-import DesignScaledCanvas from "@/components/DesignScaledCanvas";
+import FitScaledCanvas from "@/components/FitScaledCanvas";
+import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
 import BcfAttract from "@/components/Sections/bcf/BcfAttract";
 import BcfLanguage from "@/components/Sections/bcf/BcfLanguage";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
@@ -192,7 +193,12 @@ export default function BcfPage() {
   })();
 
   return (
-    <DesignScaledCanvas dir={dir} bgClassName="bg-[#0a0a0a]" fitViewport fitDeps={[step, lang]}>
+    <FitScaledCanvas
+      designWidth={DESIGN_WIDTH}
+      dir={dir}
+      bgClassName="bg-[#0a0a0a]"
+      fitDeps={[step, lang]}
+    >
       <div
         ref={stageRef}
         key={`${step}-${lang}-${locationId ?? ""}-${projectId ?? ""}`}
@@ -200,6 +206,6 @@ export default function BcfPage() {
       >
         {content}
       </div>
-    </DesignScaledCanvas>
+    </FitScaledCanvas>
   );
 }

@@ -12,10 +12,10 @@ import { cn } from "@/lib/utils";
  * the change read as a hard cut on the showcase display, so these helpers give
  * the switch one continuous motion:
  *
- *   ReligionsTabNav   — tab bar with a sliding gold indicator
- *   ReligionsTabPanel — cross-dissolve + directional slide between panels
- *   ReligionsTabHero  — cross-dissolve between per-tab hero images
- *   usePreloadImages  — warms the inactive tab's art so nothing pops in
+ * ReligionsTabNav — tab bar with a sliding gold indicator
+ * ReligionsTabPanel — cross-dissolve + directional slide between panels
+ * ReligionsTabHero — cross-dissolve between per-tab hero images
+ * usePreloadImages — warms the inactive tab's art so nothing pops in
  */
 
 const EXIT_DURATION = 0.3;
@@ -151,7 +151,7 @@ export function ReligionsTabNav<T extends string>({
                 "motion-reduce:transition-none",
                 isActive
                   ? "text-[#2f1f12]"
-                  : "text-[#8a6a45] hover:-translate-y-[1px] hover:text-[#3f2b17]",
+                  : "text-[#8a6a45] ",
               )}
             >
               <Icon
