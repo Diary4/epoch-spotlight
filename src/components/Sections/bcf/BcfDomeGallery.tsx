@@ -89,7 +89,7 @@ export default function BcfDomeGallery({ slides, autoRotateMs = 4200 }: BcfDomeG
           <button
             type="button"
             onClick={() => setActiveIndex((prev) => wrapIndex(prev - 1, slides.length))}
-            className="absolute left-2 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/35 text-white/90 backdrop-blur-sm transition-colors hover:bg-black/50"
+            className="absolute left-2 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/35 text-white/90 backdrop-blur-sm transition-colors "
             aria-label="Previous image"
           >
             <ChevronLeft className="h-7 w-7" />
@@ -97,7 +97,7 @@ export default function BcfDomeGallery({ slides, autoRotateMs = 4200 }: BcfDomeG
           <button
             type="button"
             onClick={() => setActiveIndex((prev) => wrapIndex(prev + 1, slides.length))}
-            className="absolute right-2 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/35 text-white/90 backdrop-blur-sm transition-colors hover:bg-black/50"
+            className="absolute right-2 top-1/2 z-30 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/35 text-white/90 backdrop-blur-sm transition-colors "
             aria-label="Next image"
           >
             <ChevronRight className="h-7 w-7" />

@@ -30,7 +30,7 @@ export default function ReligionsV2Hub({
       gsap.fromTo(
         "[data-rv2-hub]",
         { autoAlpha: 0, y: 22 },
-        { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1, ease: "power3.out" },
+        { autoAlpha: 1, y: 0, stagger: 0.16, duration: 1.8, ease: "power2.out" },
       );
     }, sectionRef);
 
@@ -48,7 +48,7 @@ export default function ReligionsV2Hub({
     gsap.fromTo(
       img,
       { scale: 1.06, autoAlpha: 0.55 },
-      { scale: 1, autoAlpha: 1, duration: 0.9, ease: "power2.out", overwrite: "auto" },
+      { scale: 1, autoAlpha: 1, duration: 1.45, ease: "power2.out", overwrite: "auto" },
     );
   }, [activeIndex]);
 

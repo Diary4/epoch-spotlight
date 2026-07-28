@@ -18,8 +18,8 @@ import { cn } from "@/lib/utils";
  * usePreloadImages — warms the inactive tab's art so nothing pops in
  */
 
-const EXIT_DURATION = 0.3;
-const ENTER_DURATION = 0.62;
+const EXIT_DURATION = 0.5;
+const ENTER_DURATION = 1.05;
 const SHIFT = 26;
 
 export function prefersReducedMotion() {
@@ -88,8 +88,8 @@ export function ReligionsTabNav<T extends string>({
 
       gsap.to(indicator, {
         ...target,
-        duration: 0.55,
-        ease: "power3.inOut",
+        duration: 0.85,
+        ease: "power2.inOut",
         overwrite: "auto",
       });
     },
@@ -246,7 +246,7 @@ export function ReligionsTabPanel<T extends string>({
       y: -6,
       duration: EXIT_DURATION,
       ease: "power2.in",
-      stagger: 0.025,
+      stagger: 0.045,
       overwrite: "auto",
       onComplete: advance,
     });
@@ -273,8 +273,8 @@ export function ReligionsTabPanel<T extends string>({
       x: 0,
       y: 0,
       duration: ENTER_DURATION,
-      ease: "power3.out",
-      stagger: 0.055,
+      ease: "power2.out",
+      stagger: 0.09,
       overwrite: "auto",
       clearProps: "transform",
     });
@@ -306,7 +306,7 @@ export function ReligionsTabHero({
   sources,
   className = "",
   imageClassName = "",
-  duration = 0.85,
+  duration = 1.3,
   ...rest
 }: ReligionsTabHeroProps) {
   const nodeRefs = React.useRef(new Map<string, HTMLImageElement>());

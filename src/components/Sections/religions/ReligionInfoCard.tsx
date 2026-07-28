@@ -65,9 +65,9 @@ export default function ReligionInfoCard({
   italicBody = false,
   eyebrow,
   imageHeightClass = "h-[260px]",
-  imageFadeClass = "h-[16%] bg-gradient-to-b from-white via-white/35 to-transparent",
-  imageClassName = "[mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]",
-  imageWrapClassName = "mt-0",
+  imageFadeClass = "h-[22%] bg-gradient-to-b from-white from-0% via-white/70 via-[35%] to-transparent",
+  imageClassName = "",
+  imageWrapClassName = "-mt-px",
   textSectionClassName = "",
 }: ReligionInfoCardProps) {
   const resolvedAccent = getReligionCardAccent(accentIndex, accent);
@@ -111,7 +111,7 @@ export default function ReligionInfoCard({
       </div>
 
       <div
-        className={`relative w-full overflow-hidden ${imageWrapClassName} ${
+        className={`relative z-0 w-full overflow-hidden ${imageWrapClassName} ${
           imageGrows ? "min-h-[360px] flex-1" : imageHeightClass
         }`}
       >
@@ -119,7 +119,7 @@ export default function ReligionInfoCard({
           src={resolvedImage}
           alt=""
           decoding="async"
-          className={`h-full w-full transform-gpu object-cover saturate-[0.9] transition-[transform,filter] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${isInteractive ? " group-active:scale-[1.025] motion-reduce:transition-none " : ""} ${imageClassName}`}
+          className={`block h-full w-full -translate-y-px scale-[1.02] transform-gpu object-cover object-top saturate-[0.9] transition-[transform,filter] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${isInteractive ? " group-active:scale-[1.04] motion-reduce:transition-none " : ""} ${imageClassName}`}
         />
         <div className={`pointer-events-none absolute inset-x-0 top-0 ${imageFadeClass}`} />
       </div>

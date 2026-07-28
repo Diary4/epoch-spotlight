@@ -72,7 +72,7 @@ export function NationTopicSwitcher({
       gsap.fromTo(
         textRef.current,
         { autoAlpha: 0.15, y: 18 },
-        { autoAlpha: 1, y: 0, duration: 0.8, ease, overwrite: "auto" },
+        { autoAlpha: 1, y: 0, duration: 1.3, ease, overwrite: "auto" },
       );
     }
   }, [activeId, langKey, activeTopic]);

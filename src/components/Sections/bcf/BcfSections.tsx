@@ -61,8 +61,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
         opacity: 1,
         x: 0,
         duration: 0.65,
-        ease: "power3.out",
-        stagger: 0.12,
+        ease: "power2.out",
+        stagger: 0.19,
         delay: 0.15,
       });
     }, el);
@@ -134,7 +134,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                 type="button"
                 data-journey-row
                 onClick={() => onSelect(item.id)}
-                className="group absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-black/45 hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
+                className="group absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] "
                 style={{
                   left: item.left,
                   top: item.top,
@@ -157,7 +157,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     src={thumbs[item.id]}
                     alt=""
                     decoding="async"
-                    className="h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.08] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    className="h-full w-full transform-gpu object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none "
                   />
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col items-start gap-4 overflow-hidden">
@@ -165,8 +165,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     {chapter.title}
                   </span>
                   <span className="flex items-center gap-2 text-[#fbc158]">
-                    <span className="h-px w-16 bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-24" />
-                    <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5" />
+                    <span className="h-px w-16 bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " />
+                    <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " />
                   </span>
                 </span>
               </button>

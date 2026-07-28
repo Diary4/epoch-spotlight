@@ -168,7 +168,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
       // Opening: the poster frame drifts, then dissolves into the first word.
       tl.to("[data-scene-image='0']", { scale: 1.12, duration: 3.3, ease: "none" }, OPEN)
         .to("[data-open-mark]", { y: -40, duration: 2.4, ease: "power1.inOut" }, OPEN)
-        .to("[data-scene='0']", { autoAlpha: 0, duration: 0.7, ease: "power2.inOut" }, WORD_1 - 0.5);
+        .to("[data-scene='0']", { autoAlpha: 0, duration: 1.15, ease: "power2.inOut" }, WORD_1 - 0.5);
 
       // Three word scenes: cross-dissolve, slow push on the photo, words rise in.
       WORD_STARTS.forEach((at, index) => {
@@ -178,7 +178,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
         tl.fromTo(
           `[data-scene='${scene}']`,
           { autoAlpha: 0 },
-          { autoAlpha: 1, duration: 0.9, ease: "power2.inOut" },
+          { autoAlpha: 1, duration: 1.45, ease: "power2.inOut" },
           at - 0.5,
         )
           .fromTo(
@@ -190,12 +190,12 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
           .fromTo(
             `[data-scene-word='${scene}']`,
             { autoAlpha: 0, y: 44 },
-            { autoAlpha: 1, y: 0, duration: 1.1, ease: "power3.out", stagger: 0.14 },
+            { autoAlpha: 1, y: 0, duration: 1.8, ease: "power2.out", stagger: 0.14 },
             at,
           )
           .to(
             `[data-scene='${scene}']`,
-            { autoAlpha: 0, duration: 0.8, ease: "power2.inOut" },
+            { autoAlpha: 0, duration: 1.3, ease: "power2.inOut" },
             (isLast ? STATS : at + 2.8) - 0.5,
           );
       });
@@ -204,7 +204,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
       tl.fromTo(
         "[data-scene='4']",
         { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.9, ease: "power2.inOut" },
+        { autoAlpha: 1, duration: 1.45, ease: "power2.inOut" },
         STATS - 0.5,
       )
         .fromTo(
@@ -216,7 +216,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
         .fromTo(
           "[data-stat]",
           { autoAlpha: 0, y: 40 },
-          { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.22 },
+          { autoAlpha: 1, y: 0, duration: 1.45, ease: "power2.out", stagger: 0.22 },
           STATS,
         );
 
@@ -240,28 +240,28 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
         );
       });
 
-      tl.to("[data-scene='4']", { autoAlpha: 0, duration: 0.8, ease: "power2.inOut" }, CLOSE - 0.5);
+      tl.to("[data-scene='4']", { autoAlpha: 0, duration: 1.3, ease: "power2.inOut" }, CLOSE - 0.5);
 
       // Closing lockup, then fade to black and hand off.
       tl.fromTo(
         "[data-scene='5']",
         { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.9, ease: "power2.inOut" },
+        { autoAlpha: 1, duration: 1.45, ease: "power2.inOut" },
         CLOSE - 0.5,
       )
         .fromTo(
           "[data-close-mark]",
           { autoAlpha: 0, scale: 0.9 },
-          { autoAlpha: 1, scale: 1, duration: 1.2, ease: "power3.out" },
+          { autoAlpha: 1, scale: 1, duration: 2, ease: "power2.out" },
           CLOSE - 0.5,
         )
         .fromTo(
           "[data-close-rule]",
           { scaleX: 0 },
-          { scaleX: 1, duration: 1, ease: "power3.out" },
+          { scaleX: 1, duration: 1.6, ease: "power2.out" },
           CLOSE + 0.3,
         )
-        .to("[data-scene='5']", { autoAlpha: 0, duration: 0.9, ease: "power2.in" }, REEL_END - 0.9);
+        .to("[data-scene='5']", { autoAlpha: 0, duration: 1.45, ease: "power2.in" }, REEL_END - 0.9);
 
       timelineRef.current = tl;
     }, rootRef);
@@ -372,7 +372,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
                 const numeric = Number(item.value.replace(/\D/g, "")) || 0;
                 const labels = LANGS.map((lang) => bcfCopy[lang].impactItems[statIndex]?.title)
                   .filter(Boolean)
-                  .join("  ·  ");
+                  .join(" ·  ");
 
                 return (
                   <div data-stat="" key={item.title} className="text-center opacity-0">
@@ -472,7 +472,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
         <button
           type="button"
           onClick={skip}
-          className="absolute bottom-16 right-12 z-30 flex items-center gap-3 rounded-full border border-[#fbc158]/50 bg-black/55 px-7 py-4 text-[26px] font-medium text-white backdrop-blur-md transition-colors duration-300 hover:bg-black/75 motion-reduce:transition-none"
+          className="absolute bottom-16 right-12 z-30 flex items-center gap-3 rounded-full border border-[#fbc158]/50 bg-black/55 px-7 py-4 text-[26px] font-medium text-white backdrop-blur-md transition-colors duration-300 motion-reduce:transition-none"
         >
           <SkipForward className="h-7 w-7" style={{ color: BCF.gold }} />
           Skip

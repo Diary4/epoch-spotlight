@@ -46,7 +46,7 @@ export default function BcfPage() {
       gsap.fromTo(
         el,
         { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.35, ease: "power2.out" },
+        { autoAlpha: 1, duration: 0.6, ease: "power2.out" },
       );
     }, el);
     return () => ctx.revert();
@@ -72,7 +72,7 @@ export default function BcfPage() {
     navigatingRef.current = true;
     gsap.to(el, {
       autoAlpha: 0,
-      duration: 0.25,
+      duration: 0.42,
       ease: "power2.in",
       onComplete: apply,
     });

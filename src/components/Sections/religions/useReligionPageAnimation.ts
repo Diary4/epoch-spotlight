@@ -8,10 +8,10 @@ export type ReligionPageAnimationSelectors = {
 };
 
 /** Soft entrance timing shared across faith / nation detail pages. */
-const EASE = "power3.out";
-const CONTROLS_DURATION = 1;
-const HERO_DURATION = 1.2;
-const CONTENT_DURATION = 1.1;
+const EASE = "power2.out";
+const CONTROLS_DURATION = 1.6;
+const HERO_DURATION = 2;
+const CONTENT_DURATION = 1.8;
 
 export function useReligionPageAnimation(
   scopeRef: RefObject<HTMLElement | null>,
@@ -51,7 +51,7 @@ export function useReligionPageAnimation(
           autoAlpha: 1,
           y: 0,
           duration: CONTROLS_DURATION,
-          stagger: 0.08,
+          stagger: 0.14,
         });
       }
 
@@ -59,7 +59,7 @@ export function useReligionPageAnimation(
         tl.to(
           hero,
           { autoAlpha: 1, scale: 1, duration: HERO_DURATION },
-          controls ? "-=0.75" : 0,
+          controls ? "-=1.2" : 0,
         );
       }
 
@@ -69,9 +69,9 @@ export function useReligionPageAnimation(
           autoAlpha: 1,
           y: 0,
           duration: CONTENT_DURATION,
-          stagger: 0.1,
+          stagger: 0.16,
         },
-        hero || controls ? "-=0.85" : 0,
+        hero || controls ? "-=1.4" : 0,
       );
     }, scope);
 

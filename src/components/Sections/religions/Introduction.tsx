@@ -362,19 +362,19 @@ export default function IntroductionPage({
       gsap.set("[data-intro-hero='true']", { autoAlpha: 0 });
       gsap.set("[data-intro-animate='true']", { autoAlpha: 0, y: 24 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
       tl.to("[data-intro-hero='true']", {
         autoAlpha: 1,
-        duration: 1.2,
+        duration: 2,
       }).to(
         "[data-intro-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 1.1,
-          stagger: 0.1,
+          duration: 1.8,
+          stagger: 0.16,
         },
-        "-=0.75",
+        "-=1.2",
       );
     }, sectionRef);
 
@@ -510,7 +510,7 @@ export default function IntroductionPage({
                             ariaLabel={card.title}
                             titleClassName="uppercase"
                             imageHeightClass="min-h-[360px] flex-1"
-                            imageClassName="object-[center_22%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_100%)]"
+                            imageClassName="object-[center_22%]"
                             className="min-h-full"
                           />
                         ))}

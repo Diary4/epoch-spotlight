@@ -104,19 +104,19 @@ export default function RightsDetailPage({
       gsap.set("[data-rd-hero='true']", { autoAlpha: 0 });
       gsap.set("[data-rd-animate='true']", { autoAlpha: 0, y: 24 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
       tl.to("[data-rd-hero='true']", {
         autoAlpha: 1,
-        duration: 1.2,
+        duration: 2,
       }).to(
         "[data-rd-animate='true']",
         {
           autoAlpha: 1,
           y: 0,
-          duration: 1.1,
-          stagger: 0.1,
+          duration: 1.8,
+          stagger: 0.16,
         },
-        "-=0.75",
+        "-=1.2",
       );
     }, sectionRef);
 

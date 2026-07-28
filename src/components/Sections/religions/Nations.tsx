@@ -193,32 +193,32 @@ export default function NationsPage({
       gsap.set(animElements, { autoAlpha: 0, y: 24 });
       gsap.set(cards, { autoAlpha: 0, y: 35 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       tl.to(hero, {
         autoAlpha: 1,
         scale: 1,
-        duration: 1.2,
+        duration: 2,
       })
         .to(
           animElements,
           {
             autoAlpha: 1,
             y: 0,
-            duration: 1.1,
-            stagger: 0.1,
+            duration: 1.8,
+            stagger: 0.16,
           },
-          "-=0.75",
+          "-=1.2",
         )
         .to(
           cards,
           {
             autoAlpha: 1,
             y: 0,
-            stagger: 0.1,
-            duration: 1.1,
+            stagger: 0.16,
+            duration: 1.8,
           },
-          "-=0.7",
+          "-=1.15",
         );
     }, sectionRef);
 

@@ -40,10 +40,10 @@ export default function ReligionsV2Attract({
       gsap.set("[data-rv2-a]", { autoAlpha: 0, y: 26 });
       gsap.set("[data-rv2-pillar]", { autoAlpha: 0, y: 32 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.to("[data-rv2-hero]", { autoAlpha: 1, scale: 1, duration: 1.2 }, 0)
-        .to("[data-rv2-a]", { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.25)
-        .to("[data-rv2-pillar]", { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.5);
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      tl.to("[data-rv2-hero]", { autoAlpha: 1, scale: 1, duration: 2 }, 0)
+        .to("[data-rv2-a]", { autoAlpha: 1, y: 0, stagger: 0.16, duration: 1.8 }, 0.25)
+        .to("[data-rv2-pillar]", { autoAlpha: 1, y: 0, stagger: 0.16, duration: 1.8 }, 0.5);
     }, sectionRef);
 
     return () => ctx.revert();

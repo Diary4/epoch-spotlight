@@ -34,7 +34,7 @@ export function useSectionExit(sectionRef: RefObject<HTMLElement | null>) {
       gsap.to(scope, {
         autoAlpha: 0,
         y: -14,
-        duration: 0.42,
+        duration: 0.6,
         ease: "power2.in",
         onComplete: onDone,
       });

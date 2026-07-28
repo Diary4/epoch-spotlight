@@ -300,14 +300,14 @@ export default function ReligiousDiversityPage({
       gsap.set(desc, { autoAlpha: 0, y: 15 });
       gsap.set(cards, { autoAlpha: 0, y: 35 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-      tl.to(hero, { autoAlpha: 1, scale: 1, duration: 1.2 }, 0)
-        .to(langBtn, { autoAlpha: 1, y: 0, duration: 1 }, 0.15)
-        .to(titleLines, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.2)
-        .to(subtitle, { autoAlpha: 1, y: 0, duration: 1 }, 0.4)
-        .to(desc, { autoAlpha: 1, y: 0, duration: 1 }, 0.5)
-        .to(cards, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 1.1 }, 0.55);
+      tl.to(hero, { autoAlpha: 1, scale: 1, duration: 2 }, 0)
+        .to(langBtn, { autoAlpha: 1, y: 0, duration: 1.6 }, 0.15)
+        .to(titleLines, { autoAlpha: 1, y: 0, stagger: 0.16, duration: 1.8 }, 0.2)
+        .to(subtitle, { autoAlpha: 1, y: 0, duration: 1.6 }, 0.4)
+        .to(desc, { autoAlpha: 1, y: 0, duration: 1.6 }, 0.5)
+        .to(cards, { autoAlpha: 1, y: 0, stagger: 0.16, duration: 1.8 }, 0.55);
     }, sectionRef);
 
     return () => ctx.revert();

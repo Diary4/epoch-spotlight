@@ -226,9 +226,9 @@ export default function ClosingPage({
       gsap.to("[data-src-animate='true']", {
         autoAlpha: 1,
         y: 0,
-        duration: 1.1,
-        stagger: 0.1,
-        ease: "power3.out",
+        duration: 1.8,
+        stagger: 0.16,
+        ease: "power2.out",
       });
     }, sectionRef);
 
