@@ -14,7 +14,7 @@ import dt from "@/assets/images/religions/coexistence/coexistence.jpeg";
 import Ei from "@/assets/images/religions/history/history.jpeg";
 import fo from "@/assets/images/religions/yazidi/lalish.jpeg";
 import Gg from "@/assets/images/religions/nations/aremnian/community.jpeg";
-import go from "@/assets/images/religions/nations.webp";
+import go from "@/assets/images/religions/nations/cover.jpeg";
 import gS from "@/assets/images/religions/islam/sufism.jpeg";
 import GS from "@/assets/images/religions/bahai/kurdistan.jpeg";
 import gu from "@/assets/images/new/religions/nations/kurd.webp";

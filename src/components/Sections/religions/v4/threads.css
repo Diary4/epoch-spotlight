@@ -100,7 +100,8 @@
   text-transform: none;
 }
 .tok-attract {
-  background: #f1eadc;
+  background: #0d0f0c;
+  color: #f1eadc;
 }
 .tok-attract__image,
 .tok-hub__background,
@@ -122,22 +123,25 @@
   transform-origin: 56% 42%;
   -o-object-position: 56% center;
   object-position: 56% center;
-  opacity: 0.28;
-  filter: saturate(0.4) contrast(0.88) brightness(1.18);
 }
 .tok-attract__veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(241, 234, 220, 0.15),
-      rgba(241, 234, 220, 0.5) 48%,
-      #f1eadcd9 100%
-    ),
-    linear-gradient(180deg, #f6f1e6a8 0%, #f1eadcb8 42%, #ebe3d2e0 100%);
+    radial-gradient(circle at 50% 40%, #aa78410f, #090b0940 38%, #080a08e6 88%),
+    linear-gradient(180deg, #07090785, #0709071f 35%, #070907d6 82%, #090b09);
 }
-.tok-attract__grain,
+.tok-attract__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 7px 7px;
+  mix-blend-mode: soft-light;
+}
 .tok-hub__grain,
 .tok-thread__grain,
 .tok-story__grain,
@@ -160,19 +164,22 @@
   left: 70px;
   text-align: center;
 }
+.tok-attract__content .tok-eyebrow {
+  color: #d0a76d;
+}
 .tok-attract__content h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 28px 0 0;
-  color: #1c1812;
+  color: #f1eadc;
   font-family: var(--tok-serif);
   font-size: 116px;
   font-weight: 460;
   letter-spacing: 0.035em;
   line-height: 0.78;
   text-transform: uppercase;
-  text-shadow: none;
+  text-shadow: 0 18px 54px rgba(0, 0, 0, 0.45);
 }
 .tok-attract__content h1 i {
   display: grid;
@@ -180,9 +187,9 @@
   height: 74px;
   margin: 17px 0 15px;
   place-items: center;
-  border: 1px solid rgba(168, 117, 31, 0.45);
+  border: 1px solid rgba(223, 193, 140, 0.5);
   border-radius: 50%;
-  color: var(--tok-copper-bright);
+  color: #d0a76d;
   font-family: var(--tok-sans);
   font-size: 18px;
   font-style: normal;
@@ -192,7 +199,7 @@
 }
 .tok-attract__caption {
   margin: 48px auto 0;
-  color: #4a3f32;
+  color: #f1eadcc7;
   font-family: var(--tok-serif);
   font-size: 34px;
   line-height: 1.35;
@@ -200,7 +207,7 @@
 .tok-attract__caption strong {
   display: block;
   margin-top: 5px;
-  color: #1c1812;
+  color: #f1eadc;
   font-weight: 600;
 }
 .tok-experience--ku .tok-attract__caption,
@@ -222,11 +229,11 @@
   align-items: center;
   gap: 24px;
   padding: 18px 34px;
-  border: 1px solid rgba(179, 122, 67, 0.45) !important;
+  border: 1px solid rgba(231, 203, 154, 0.56) !important;
   border-radius: 70px;
-  color: #1c1812;
-  background: #fff8ecf0;
-  box-shadow: var(--tok-shadow);
+  color: #f1eadc;
+  background: #101310b8;
+  box-shadow: 0 22px 65px #00000061;
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   text-align: start;
@@ -236,15 +243,15 @@
   display: block;
   width: 54px;
   height: 54px;
-  border: 1px solid rgba(168, 117, 31, 0.55);
+  border: 1px solid rgba(225, 190, 129, 0.68);
   border-radius: 50%;
 }
 .tok-enter__pulse:after {
   position: absolute;
   inset: 14px;
   border-radius: inherit;
-  background: var(--tok-copper-bright);
-  box-shadow: 0 0 24px #b37a4366;
+  background: #d0a76d;
+  box-shadow: 0 0 24px #e0b56f9e;
   content: "";
   animation: tok-pulse 2.4s ease-in-out infinite;
 }
@@ -259,7 +266,7 @@
 }
 .tok-enter small {
   margin-top: 4px;
-  color: #6a5a45;
+  color: #f1eadca1;
   font-size: 14px;
   font-weight: 550;
   letter-spacing: 0.12em;
@@ -268,7 +275,7 @@
 .tok-enter__arrow {
   width: 32px;
   height: 32px;
-  color: var(--tok-copper-bright);
+  color: #d0a76d;
   justify-self: end;
 }
 .tok-experience--ku .tok-enter b,

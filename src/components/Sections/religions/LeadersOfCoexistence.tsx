@@ -19,7 +19,7 @@ import {
 import bg from "@/assets/images/religions/nc-1.webp";
 import coexistenceHero from "@/assets/images/religions/coexistence/coexistence.jpeg";
 import cradleImg from "@/assets/images/religions/main.webp";
-import nationsImg from "@/assets/images/religions/nations.webp";
+import nationsImg from "@/assets/images/religions/nations/cover.jpeg";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
 import abdulSalamBarzaniImg from "@/assets/images/religions/coexistence/abdulsalam-barzani.jpeg";

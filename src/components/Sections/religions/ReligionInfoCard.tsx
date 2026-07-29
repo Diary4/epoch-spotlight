@@ -2,7 +2,7 @@ import React from "react";
 
 import mainImg from "@/assets/images/religions/main.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
-import nationsImg from "@/assets/images/religions/nations.webp";
+import nationsImg from "@/assets/images/religions/nations/cover.jpeg";
 import lawsImg from "@/assets/images/religions/nl-1.webp";
 import valleyImg from "@/assets/images/religions/b-1.webp";
 
