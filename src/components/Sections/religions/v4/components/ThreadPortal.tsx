@@ -1,18 +1,16 @@
 import { motion } from "motion/react";
-import { Check, type LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
 
 type ThreadPortalProps = {
   chapter: Chapter;
   icon: LucideIcon;
-  isVisited: boolean;
   dispatch: React.Dispatch<ThreadsAction>;
 };
 
 export default function ThreadPortal({
   chapter,
   icon: Icon,
-  isVisited,
   dispatch,
 }: ThreadPortalProps) {
   return (

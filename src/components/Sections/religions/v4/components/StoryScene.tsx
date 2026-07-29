@@ -81,13 +81,6 @@ export default function StoryScene({
               style={{ objectPosition: card.imagePosition ?? "center" }}
             />
             <span className="tok-detail-card__shade" aria-hidden="true" />
-            <span className="tok-detail-card__count">
-              {String(detailIndex + 1).padStart(2, "0")} /{" "}
-              {String(cards.length).padStart(2, "0")}
-            </span>
-            <span className="tok-detail-card__eyebrow">
-              {copy.cardLabel} · {card.eyebrow}
-            </span>
           </div>
           <div className="tok-detail-card__copy">
             <h2 id="tok-story-title">{card.title}</h2>
