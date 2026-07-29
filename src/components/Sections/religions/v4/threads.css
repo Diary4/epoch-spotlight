@@ -234,11 +234,12 @@
   font-size: 39px;
   line-height: 1.5;
 }
+/* Sits at ~70% of the height so it lands in the reach band of a portrait 65". */
 .tok-enter {
   position: absolute;
   z-index: 5;
   right: 188px;
-  bottom: 205px;
+  bottom: 520px;
   left: 188px;
   display: grid;
   grid-template-columns: 60px 1fr 60px;

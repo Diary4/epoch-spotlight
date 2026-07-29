@@ -117,7 +117,6 @@ function ThreadsExperienceInner() {
             <HubScene
               key="hub"
               chapters={chapters}
-              visited={state.visited}
               copy={copy}
               dispatch={dispatch}
               hubBackground={threadsAssets.hub}
