@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import type { Chapter, ThreadId, ThreadsAction } from "../threadsTypes";
 import { SCENE_TRANSITION } from "../threadsTypes";
-import Signature from "./Signature";
 import ThreadPortal from "./ThreadPortal";
 import WovenMark from "./WovenMark";
 
@@ -41,7 +40,6 @@ type HubSceneProps = {
     hubInstruction: string;
   };
   dispatch: React.Dispatch<ThreadsAction>;
-  bottomNav: React.ReactNode;
 };
 
 export default function HubScene({
@@ -50,7 +48,6 @@ export default function HubScene({
   hubBackground,
   copy,
   dispatch,
-  bottomNav,
 }: HubSceneProps) {
   return (
     <motion.section
@@ -65,29 +62,30 @@ export default function HubScene({
       <div className="tok-hub__wash" />
       <div className="tok-hub__grain" />
       <header className="tok-hub__header">
-        <Signature />
         <p className="tok-eyebrow">{copy.hubEyebrow}</p>
         <h1 id="tok-hub-title">{copy.hubTitle}</h1>
         <p className="tok-hub__body">{copy.hubBody}</p>
         <blockquote>{copy.hubQuote}</blockquote>
       </header>
+      {/* Drawn in the portal container's own 920×1290 coordinate space, so the
+          threads meet the portal images wherever the rail gutter puts them. */}
       <div className="tok-hub__threads" aria-hidden="true">
-        <svg viewBox="0 0 1080 1180" preserveAspectRatio="none">
+        <svg viewBox="0 0 920 1290" preserveAspectRatio="none">
           <path
             className="tok-path tok-path--faiths"
-            d="M540 590 C420 500 315 360 188 175"
+            d="M460 645 C392 520 318 360 244 210"
           />
           <path
             className="tok-path tok-path--nations"
-            d="M540 590 C660 500 765 360 892 175"
+            d="M460 645 C528 520 602 360 676 210"
           />
           <path
             className="tok-path tok-path--shared"
-            d="M540 590 C420 700 315 870 188 1040"
+            d="M460 645 C392 770 318 900 244 1010"
           />
           <path
             className="tok-path tok-path--rights"
-            d="M540 590 C660 700 765 870 892 1040"
+            d="M460 645 C528 770 602 900 676 1010"
           />
         </svg>
       </div>
@@ -110,7 +108,6 @@ export default function HubScene({
         <p>{copy.hubInstruction}</p>
         <span aria-hidden="true" />
       </div>
-      {bottomNav}
     </motion.section>
   );
 }

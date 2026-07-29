@@ -17,7 +17,7 @@ import StoryScene from "./components/StoryScene";
 import ClosingScene from "./components/ClosingScene";
 import LanguageOverlay from "./components/LanguageOverlay";
 import IdleOverlay from "./components/IdleOverlay";
-import BottomNav from "./components/BottomNav";
+import ReachRail from "./components/ReachRail";
 import "./threads.css";
 
 function ThreadsExperienceInner() {
@@ -93,15 +93,6 @@ function ThreadsExperienceInner() {
     if (heading instanceof HTMLElement) heading.tabIndex = -1;
   }, [sceneId]);
 
-  const bottomNav = (
-    <BottomNav
-      copy={copy}
-      scene={state.scene}
-      visitedCount={state.visited.length}
-      dispatch={dispatch}
-    />
-  );
-
   const threadId =
     state.scene.kind === "thread" || state.scene.kind === "story"
       ? state.scene.threadId
@@ -117,51 +108,53 @@ function ThreadsExperienceInner() {
       <div className="tok-sr-live" aria-live="polite">
         {state.scene.kind}
       </div>
-      <AnimatePresence mode="wait">
-        {state.scene.kind === "attract" ? (
-          <AttractScene key="attract" copy={copy} dispatch={dispatch} />
-        ) : null}
-        {state.scene.kind === "hub" ? (
-          <HubScene
-            key="hub"
-            chapters={chapters}
-            visited={state.visited}
-            copy={copy}
-            dispatch={dispatch}
-            bottomNav={bottomNav}
-            hubBackground={threadsAssets.hub}
-          />
-        ) : null}
-        {state.scene.kind === "thread" && threadId ? (
-          <ThreadScene
-            key={`thread-${threadId}`}
-            chapter={chapters[threadId as ThreadId]}
-            storyIndex={state.scene.storyIndex}
-            copy={copy}
-            dispatch={dispatch}
-            bottomNav={bottomNav}
-          />
-        ) : null}
-        {state.scene.kind === "story" && threadId ? (
-          <StoryScene
-            key={`story-${threadId}-${state.scene.storyIndex}`}
-            chapter={chapters[threadId as ThreadId]}
-            storyIndex={state.scene.storyIndex}
-            detailIndex={state.scene.detailIndex}
-            copy={copy}
-            dispatch={dispatch}
-            bottomNav={bottomNav}
-          />
-        ) : null}
-        {state.scene.kind === "closing" ? (
-          <ClosingScene
-            key="closing"
-            copy={copy}
-            dispatch={dispatch}
-            bottomNav={bottomNav}
-          />
-        ) : null}
-      </AnimatePresence>
+      <div className="tok-stage">
+        <AnimatePresence mode="wait">
+          {state.scene.kind === "attract" ? (
+            <AttractScene key="attract" copy={copy} dispatch={dispatch} />
+          ) : null}
+          {state.scene.kind === "hub" ? (
+            <HubScene
+              key="hub"
+              chapters={chapters}
+              visited={state.visited}
+              copy={copy}
+              dispatch={dispatch}
+              hubBackground={threadsAssets.hub}
+            />
+          ) : null}
+          {state.scene.kind === "thread" && threadId ? (
+            <ThreadScene
+              key={`thread-${threadId}`}
+              chapter={chapters[threadId as ThreadId]}
+              storyIndex={state.scene.storyIndex}
+              copy={copy}
+              dispatch={dispatch}
+            />
+          ) : null}
+          {state.scene.kind === "story" && threadId ? (
+            <StoryScene
+              key={`story-${threadId}-${state.scene.storyIndex}`}
+              chapter={chapters[threadId as ThreadId]}
+              storyIndex={state.scene.storyIndex}
+              detailIndex={state.scene.detailIndex}
+              copy={copy}
+              dispatch={dispatch}
+            />
+          ) : null}
+          {state.scene.kind === "closing" ? (
+            <ClosingScene key="closing" copy={copy} dispatch={dispatch} />
+          ) : null}
+        </AnimatePresence>
+      </div>
+      {/* Reach rail: persists across scenes and stays vertically centred so the
+          controls sit in the comfortable zone of a portrait 65" screen. */}
+      <ReachRail
+        copy={copy}
+        scene={state.scene}
+        visitedCount={state.visited.length}
+        dispatch={dispatch}
+      />
       <LanguageOverlay state={state} copy={copy} dispatch={dispatch} />
       <IdleOverlay count={idleCount} copy={copy} onContinue={dismissIdle} />
     </main>

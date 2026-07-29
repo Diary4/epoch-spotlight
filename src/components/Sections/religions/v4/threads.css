@@ -25,7 +25,14 @@
 .tok-experience *:after {
   box-sizing: border-box;
 }
+/*
+ * 1080×1920 artboard — the same 9:16 as the portrait panel, so `fitViewport`
+ * scaling lands edge to edge on the kiosk and letterboxes (never crops) on any
+ * other window. The reach rail floats inside it; scene content keeps a trailing
+ * gutter (--tok-rail-gutter) so nothing ever sits underneath the rail.
+ */
 .tok-experience {
+  --tok-rail-gutter: 160px;
   position: relative;
   width: 1080px;
   height: 1920px;
@@ -36,6 +43,12 @@
   font-family: var(--tok-sans);
   -webkit-font-smoothing: antialiased;
   touch-action: manipulation;
+}
+.tok-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
 }
 .tok-experience--ku,
 .tok-experience--ar {
@@ -58,8 +71,6 @@
 .tok-scene {
   position: absolute;
   inset: 0;
-  width: 1080px;
-  height: 1920px;
   overflow: hidden;
 }
 .tok-sr-live {
@@ -87,52 +98,6 @@
   font-size: 22px;
   letter-spacing: 0;
   text-transform: none;
-}
-.tok-signature {
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
-  direction: ltr;
-  color: var(--tok-ivory);
-  text-align: left;
-}
-.tok-signature__mark {
-  display: grid;
-  width: 54px;
-  height: 54px;
-  place-items: center;
-  border: 1px solid rgba(235, 216, 180, 0.58);
-  border-radius: 50%;
-  font-family: var(--tok-serif);
-  font-size: 36px;
-  font-weight: 550;
-  line-height: 1;
-}
-.tok-signature b,
-.tok-signature small {
-  display: block;
-}
-.tok-signature b {
-  font-family: var(--tok-serif);
-  font-size: 23px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  line-height: 1;
-}
-.tok-signature small {
-  margin-top: 6px;
-  color: #f1eadcb8;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-}
-.tok-museum-index {
-  color: #f1eadca3;
-  direction: ltr;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.2em;
-  unicode-bidi: isolate;
 }
 .tok-woven-mark {
   display: block;
@@ -203,23 +168,10 @@
   background-size: 7px 7px;
   mix-blend-mode: soft-light;
 }
-.tok-attract__header,
-.tok-closing__header {
-  position: absolute;
-  z-index: 4;
-  top: 68px;
-  right: 64px;
-  left: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--tok-rule);
-}
 .tok-attract__loom {
   position: absolute;
   z-index: 3;
-  top: 250px;
+  top: 210px;
   left: 50%;
   width: 390px;
   height: 390px;
@@ -229,7 +181,7 @@
 .tok-attract__content {
   position: absolute;
   z-index: 4;
-  top: 650px;
+  top: 615px;
   right: 70px;
   left: 70px;
   text-align: center;
@@ -547,18 +499,9 @@
 .tok-hub__header {
   position: absolute;
   z-index: 4;
-  top: 55px;
-  right: 62px;
-  left: 62px;
+  top: 78px;
+  inset-inline: 62px calc(62px + var(--tok-rail-gutter));
   text-align: center;
-}
-.tok-hub__header .tok-signature {
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-}
-.tok-hub__header > .tok-eyebrow {
-  padding-top: 10px;
 }
 .tok-hub__header h1 {
   max-width: 780px;
@@ -598,10 +541,9 @@
 .tok-hub__portals {
   position: absolute;
   z-index: 4;
-  top: 455px;
-  right: 0;
-  left: 0;
-  height: 1160px;
+  top: 470px;
+  inset-inline: 0 var(--tok-rail-gutter);
+  height: 1290px;
 }
 .tok-thread-portal {
   position: absolute;
@@ -622,9 +564,10 @@
   right: 64px;
 }
 .tok-thread-portal--coexistence {
-  top: 345px;
-  left: 305px;
+  top: 440px;
+  inset-inline: 0;
   width: 470px;
+  margin-inline: auto;
   min-height: 410px;
 }
 .tok-thread-portal--sharedLife {
@@ -793,20 +736,19 @@
 .tok-hub__loom {
   position: absolute;
   z-index: 3;
-  top: 752px;
-  left: 50%;
+  top: 888px;
+  inset-inline: 0 var(--tok-rail-gutter);
   width: 455px;
   height: 455px;
-  transform: translate(-50%);
+  margin-inline: auto;
   opacity: 0.72;
 }
 .tok-hub__threads {
   position: absolute;
   z-index: 2;
-  top: 455px;
-  right: 0;
-  left: 0;
-  height: 1160px;
+  top: 470px;
+  inset-inline: 0 var(--tok-rail-gutter);
+  height: 1290px;
   opacity: 0.72;
 }
 .tok-hub__threads svg {
@@ -836,9 +778,8 @@
 .tok-hub__instruction {
   position: absolute;
   z-index: 4;
-  right: 72px;
-  bottom: 196px;
-  left: 72px;
+  bottom: 62px;
+  inset-inline: 72px calc(72px + var(--tok-rail-gutter));
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -883,10 +824,9 @@
   position: absolute;
   z-index: 5;
   top: 64px;
-  right: 64px;
-  left: 64px;
+  inset-inline: 64px calc(64px + var(--tok-rail-gutter));
   display: grid;
-  grid-template-columns: 108px 1fr 230px;
+  grid-template-columns: 108px 1fr 200px;
   align-items: start;
   gap: 28px;
   padding-bottom: 30px;
@@ -938,24 +878,26 @@
 .tok-carousel {
   position: absolute;
   z-index: 4;
-  top: 358px;
-  right: 0;
-  left: 0;
-  height: 1120px;
+  top: 330px;
+  inset-inline: 0 var(--tok-rail-gutter);
+  height: 1300px;
+  /* Clips the peek cards at the gutter instead of letting them run under the rail. */
+  overflow: hidden;
   perspective: 1800px;
 }
 .tok-story-card {
   position: absolute;
   z-index: 4;
   top: 0;
-  left: 170px;
+  inset-inline: 0;
   display: block;
-  width: 740px;
-  height: 970px;
+  width: 760px;
+  height: 1220px;
   overflow: hidden;
+  margin-inline: auto;
   padding: 0;
   border: 2px solid color-mix(in srgb, var(--thread-accent) 78%, white 22%) !important;
-  border-radius: 360px 360px 32px 32px;
+  border-radius: 380px 380px 32px 32px;
   background: #171a16;
   box-shadow: 0 42px 100px #0000008c;
   text-align: start;
@@ -1073,9 +1015,9 @@
 .tok-carousel__peek {
   position: absolute;
   z-index: 2;
-  top: 118px;
+  top: 150px;
   width: 230px;
-  height: 720px;
+  height: 905px;
   overflow: hidden;
   padding: 0;
   border: 1px solid rgba(226, 206, 171, 0.2) !important;
@@ -1110,7 +1052,7 @@
 .tok-carousel__arrow {
   position: absolute;
   z-index: 7;
-  top: 744px;
+  top: 948px;
   display: grid;
   width: 96px;
   height: 96px;
@@ -1122,11 +1064,12 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
+/* Straddle the card edges so they never cover the card copy. */
 .tok-carousel__arrow--previous {
-  left: 114px;
+  left: 32px;
 }
 .tok-carousel__arrow--next {
-  right: 114px;
+  right: 32px;
 }
 .tok-carousel__arrow svg {
   width: 36px;
@@ -1135,10 +1078,10 @@
 .tok-carousel__progress {
   position: absolute;
   z-index: 8;
-  top: 1015px;
+  top: 1265px;
   left: 50%;
   display: flex;
-  width: 620px;
+  width: 640px;
   gap: 8px;
   transform: translate(-50%);
 }
@@ -1170,9 +1113,8 @@
 .tok-thread__instruction {
   position: absolute;
   z-index: 4;
-  right: 60px;
-  bottom: 205px;
-  left: 60px;
+  bottom: 78px;
+  inset-inline: 60px calc(60px + var(--tok-rail-gutter));
   margin: 0;
   color: #f1eadc80;
   font-size: 14px;
@@ -1208,40 +1150,25 @@
     ),
     linear-gradient(180deg, #070907d1, #0b0e0bad 48%, #0d100d);
 }
-.tok-story__topline {
-  position: absolute;
-  z-index: 4;
-  top: 44px;
-  right: 62px;
-  left: 62px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(241, 234, 220, 0.24);
-}
-.tok-story__topline > span {
-  max-width: 340px;
-  color: #f1eadcbf;
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: 0.14em;
-  text-align: end;
-  text-transform: uppercase;
-}
-.tok-experience--ku .tok-story__topline > span,
-.tok-experience--ar .tok-story__topline > span {
-  font-size: 17px;
-  letter-spacing: 0;
-  text-transform: none;
-}
 .tok-story__collection-heading {
   position: absolute;
   z-index: 5;
-  top: 142px;
-  right: 64px;
-  left: 64px;
+  top: 84px;
+  inset-inline: 64px calc(64px + var(--tok-rail-gutter));
   text-align: center;
+}
+/* Chapter breadcrumb: number · thread · collection, dot-separated. */
+.tok-story__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.tok-story__eyebrow > span + span:before {
+  margin-inline-end: 16px;
+  color: #f1eadc5c;
+  content: "·";
 }
 .tok-story__collection-heading h1 {
   max-width: 830px;
@@ -1274,10 +1201,9 @@
 .tok-detail-card {
   position: absolute;
   z-index: 6;
-  top: 325px;
-  right: 46px;
-  left: 46px;
-  height: 920px;
+  top: 300px;
+  inset-inline: 46px calc(46px + var(--tok-rail-gutter));
+  height: 1080px;
   overflow: hidden;
   border: 2px solid color-mix(in srgb, var(--thread-accent) 64%, #f3dcae 36%);
   border-radius: 220px 220px 34px 34px;
@@ -1287,7 +1213,7 @@
 }
 .tok-detail-card__visual {
   position: relative;
-  height: 540px;
+  height: 620px;
   overflow: hidden;
   background: #181b17;
 }
@@ -1345,8 +1271,8 @@
   text-transform: uppercase;
 }
 .tok-detail-card__copy {
-  height: 380px;
-  padding: 32px 54px 30px;
+  height: 460px;
+  padding: 40px 54px 34px;
   background: linear-gradient(135deg, #f9f4eafc, #dcd0bafc), var(--tok-ivory);
   text-align: center;
 }
@@ -1396,9 +1322,8 @@
 .tok-detail-selector {
   position: absolute;
   z-index: 8;
-  top: 1268px;
-  right: 54px;
-  left: 54px;
+  top: 1420px;
+  inset-inline: 54px calc(54px + var(--tok-rail-gutter));
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
@@ -1463,11 +1388,10 @@
 .tok-story__stepper {
   position: absolute;
   z-index: 7;
-  top: 1422px;
-  right: 64px;
-  left: 64px;
+  top: 1600px;
+  inset-inline: 64px calc(64px + var(--tok-rail-gutter));
   display: grid;
-  grid-template-columns: 275px 1fr 275px;
+  grid-template-columns: 240px 1fr 240px;
   align-items: center;
   gap: 20px;
 }
@@ -1550,9 +1474,8 @@
 .tok-closing__copy {
   position: absolute;
   z-index: 5;
-  top: 220px;
-  right: 80px;
-  left: 80px;
+  top: 170px;
+  inset-inline: 80px calc(80px + var(--tok-rail-gutter));
   text-align: center;
 }
 .tok-closing__copy h1 {
@@ -1573,11 +1496,11 @@
 .tok-closing__loom {
   position: absolute;
   z-index: 4;
-  top: 430px;
-  left: 50%;
+  top: 400px;
+  inset-inline: 0 var(--tok-rail-gutter);
   width: 690px;
   height: 690px;
-  transform: translate(-50%);
+  margin-inline: auto;
 }
 .tok-closing__core {
   position: absolute;
@@ -1624,9 +1547,8 @@
 .tok-closing__statements {
   position: absolute;
   z-index: 5;
-  top: 1132px;
-  right: 105px;
-  left: 105px;
+  top: 1160px;
+  inset-inline: 105px calc(105px + var(--tok-rail-gutter));
   display: grid;
   gap: 12px;
 }
@@ -1656,9 +1578,8 @@
 .tok-closing__return {
   position: absolute;
   z-index: 6;
-  right: 214px;
-  bottom: 210px;
-  left: 214px;
+  bottom: 120px;
+  inset-inline: 174px calc(174px + var(--tok-rail-gutter));
   display: grid;
   grid-template-columns: 42px 1fr 42px;
   min-height: 108px;
@@ -1684,44 +1605,43 @@
   font-family: var(--tok-arabic-serif);
   font-size: 29px;
 }
-.tok-bottom-nav {
+/*
+ * Reach rail — the controls used to sit in a bar pinned to the bottom edge,
+ * which lands near floor level on a portrait 65" panel. They now occupy their
+ * own column beside the stage, vertically centred inside the reachable band.
+ */
+.tok-rail {
   position: absolute;
   z-index: 30;
-  right: 34px;
-  bottom: 24px;
-  left: 34px;
-  display: grid;
-  grid-template-columns: 150px 150px 1fr 160px 220px;
-  min-height: 166px;
-  align-items: center;
-  gap: 12px;
-  padding: 20px 24px;
+  top: 50%;
+  inset-inline-end: 16px;
+  display: flex;
+  width: 128px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 10px;
+  transform: translateY(-50%);
   border: 1px solid rgba(226, 206, 171, 0.28);
-  border-radius: 32px;
-  background: #0c0f0cf5;
+  border-radius: 40px;
+  background: #0c0f0cf0;
   box-shadow: 0 24px 64px #00000061;
   -webkit-backdrop-filter: blur(22px);
   backdrop-filter: blur(22px);
 }
-.tok-bottom-nav--story {
-  right: 102px;
-  left: 102px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  padding-right: 28px;
-  padding-left: 28px;
+.tok-experience[data-scene="attract"] .tok-rail {
+  visibility: hidden;
 }
-.tok-bottom-nav > button {
+.tok-rail > button {
   display: flex;
   min-width: 0;
-  min-height: 112px;
+  min-height: 128px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 10px;
+  padding: 12px 6px;
   border: 1px solid transparent !important;
-  border-radius: 18px;
+  border-radius: 28px;
   color: #f1eadcbd;
   background: transparent;
   font-size: 14px;
@@ -1729,51 +1649,53 @@
   line-height: 1.15;
   text-align: center;
 }
-.tok-bottom-nav > button:active,
-.tok-bottom-nav > button.is-active {
+.tok-rail > button:active,
+.tok-rail > button.is-active {
   border-color: #debc8352 !important;
   color: #f4e8d1;
   background: #b37a431f;
-  transform: scale(0.985);
+  transform: scale(0.97);
 }
-.tok-bottom-nav > button svg {
-  width: 31px;
-  height: 31px;
+.tok-rail > button svg {
+  width: 34px;
+  height: 34px;
   color: var(--tok-copper-bright);
   stroke-width: 1.7;
 }
-.tok-bottom-nav__progress {
+.tok-rail__progress {
   display: flex;
-  min-height: 94px;
+  min-height: 96px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid rgba(226, 206, 171, 0.16);
-  border-left: 1px solid rgba(226, 206, 171, 0.16);
+  padding: 8px 0;
+  border-top: 1px solid rgba(226, 206, 171, 0.16);
+  border-bottom: 1px solid rgba(226, 206, 171, 0.16);
   color: var(--tok-ivory);
   text-align: center;
 }
-.tok-bottom-nav__progress b {
+.tok-rail__progress b {
   font-family: var(--tok-serif);
   font-size: 29px;
   font-weight: 570;
   direction: ltr;
   unicode-bidi: isolate;
 }
-.tok-bottom-nav__progress small {
+.tok-rail__progress small {
   margin-top: 5px;
   color: #f1eadc7a;
   font-size: 10px;
   font-weight: 650;
   letter-spacing: 0.1em;
+  line-height: 1.25;
   text-transform: uppercase;
 }
-.tok-experience--ku .tok-bottom-nav > button,
-.tok-experience--ar .tok-bottom-nav > button {
+.tok-experience--ku .tok-rail > button,
+.tok-experience--ar .tok-rail > button {
   font-size: 17px;
 }
-.tok-experience--ku .tok-bottom-nav__progress small,
-.tok-experience--ar .tok-bottom-nav__progress small {
+.tok-experience--ku .tok-rail__progress small,
+.tok-experience--ar .tok-rail__progress small {
   font-size: 13px;
   letter-spacing: 0;
   text-transform: none;
@@ -1834,7 +1756,7 @@
 .tok-experience[dir="rtl"] .tok-closing__return svg:last-child {
   transform: rotate(180deg);
 }
-.tok-experience[dir="rtl"] .tok-bottom-nav > button:first-child svg {
+.tok-experience[dir="rtl"] .tok-rail > button:first-child svg {
   transform: rotate(180deg);
 }
 @keyframes tok-pulse {

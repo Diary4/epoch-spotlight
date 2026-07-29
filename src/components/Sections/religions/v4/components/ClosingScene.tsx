@@ -4,20 +4,14 @@ import { threadsAssets } from "../threadsAssets";
 import type { ThreadsCopy } from "../threadsCopy";
 import type { ThreadsAction } from "../threadsTypes";
 import { SCENE_TRANSITION } from "../threadsTypes";
-import Signature from "./Signature";
 import WovenMark from "./WovenMark";
 
 type ClosingSceneProps = {
   copy: ThreadsCopy;
   dispatch: React.Dispatch<ThreadsAction>;
-  bottomNav: React.ReactNode;
 };
 
-export default function ClosingScene({
-  copy,
-  dispatch,
-  bottomNav,
-}: ClosingSceneProps) {
+export default function ClosingScene({ copy, dispatch }: ClosingSceneProps) {
   return (
     <motion.section
       className="tok-scene tok-closing"
@@ -30,10 +24,6 @@ export default function ClosingScene({
       <img src={threadsAssets.closing} alt="" className="tok-closing__image" />
       <div className="tok-closing__veil" />
       <div className="tok-closing__grain" />
-      <header className="tok-closing__header">
-        <Signature />
-        <span className="tok-museum-index">05 / SHARED FUTURE</span>
-      </header>
       <div className="tok-closing__copy">
         <p className="tok-eyebrow">{copy.closingEyebrow}</p>
         <h1 id="tok-closing-title">{copy.closingTitle}</h1>
@@ -67,7 +57,6 @@ export default function ClosingScene({
         <span>{copy.returnToThreads}</span>
         <ArrowRight aria-hidden="true" />
       </button>
-      {bottomNav}
     </motion.section>
   );
 }

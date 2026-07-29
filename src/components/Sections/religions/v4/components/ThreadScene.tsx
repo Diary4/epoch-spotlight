@@ -9,7 +9,6 @@ type ThreadSceneProps = {
   storyIndex: number;
   copy: ThreadsCopy;
   dispatch: React.Dispatch<ThreadsAction>;
-  bottomNav: React.ReactNode;
 };
 
 export default function ThreadScene({
@@ -17,7 +16,6 @@ export default function ThreadScene({
   storyIndex,
   copy,
   dispatch,
-  bottomNav,
 }: ThreadSceneProps) {
   return (
     <motion.section
@@ -48,7 +46,6 @@ export default function ThreadScene({
         dispatch={dispatch}
       />
       <p className="tok-thread__instruction">{copy.storyInstruction}</p>
-      {bottomNav}
     </motion.section>
   );
 }

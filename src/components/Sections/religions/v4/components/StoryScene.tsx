@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
 import type { ThreadsCopy } from "../threadsCopy";
 import { SCENE_TRANSITION } from "../threadsTypes";
-import Signature from "./Signature";
 
 type StorySceneProps = {
   chapter: Chapter;
@@ -11,7 +10,6 @@ type StorySceneProps = {
   detailIndex: number;
   copy: ThreadsCopy;
   dispatch: React.Dispatch<ThreadsAction>;
-  bottomNav: React.ReactNode;
 };
 
 export default function StoryScene({
@@ -20,7 +18,6 @@ export default function StoryScene({
   detailIndex,
   copy,
   dispatch,
-  bottomNav,
 }: StorySceneProps) {
   const story = chapter.stories[storyIndex];
   const cards = story.detailCards;
@@ -53,19 +50,18 @@ export default function StoryScene({
       />
       <div className="tok-story__image-veil" />
       <div className="tok-story__grain" />
-      <header className="tok-story__topline">
-        <Signature />
-        <span>
-          {chapter.number} · {chapter.title}
-        </span>
-      </header>
       <motion.header
         className="tok-story__collection-heading"
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...SCENE_TRANSITION, delay: 0.04 }}
       >
-        <p className="tok-eyebrow">{copy.collectionLabel}</p>
+        {/* Chapter breadcrumb — replaces the old signature topline. */}
+        <p className="tok-eyebrow tok-story__eyebrow">
+          <span>{chapter.number}</span>
+          <span>{chapter.title}</span>
+          <span>{copy.collectionLabel}</span>
+        </p>
         <h1 id="tok-collection-title">{story.title}</h1>
         <p>{story.body}</p>
       </motion.header>
@@ -143,7 +139,6 @@ export default function StoryScene({
           <ArrowRight aria-hidden="true" />
         </button>
       </div>
-      {bottomNav}
     </motion.section>
   );
 }

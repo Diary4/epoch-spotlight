@@ -4,7 +4,6 @@ import { threadsAssets } from "../threadsAssets";
 import type { ThreadsCopy } from "../threadsCopy";
 import type { ThreadsAction } from "../threadsTypes";
 import { SCENE_TRANSITION } from "../threadsTypes";
-import Signature from "./Signature";
 import WovenMark from "./WovenMark";
 
 type AttractSceneProps = {
@@ -38,10 +37,6 @@ export default function AttractScene({ copy, dispatch }: AttractSceneProps) {
       />
       <div className="tok-attract__veil" />
       <div className="tok-attract__grain" />
-      <header className="tok-attract__header">
-        <Signature />
-        <span className="tok-museum-index">01 / COEXISTENCE</span>
-      </header>
       <div className="tok-attract__loom">
         <WovenMark compact />
       </div>
