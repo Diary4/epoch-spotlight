@@ -1,15 +1,16 @@
 :root {
-  --tok-ink: #10120f;
-  --tok-ink-soft: #171a16;
+  --tok-ink: #1c1812;
+  --tok-ink-soft: #2a241c;
   --tok-ivory: #f1eadc;
+  --tok-paper: #f6f1e6;
   --tok-limestone: #d9cdb7;
   --tok-copper: #b37a43;
-  --tok-copper-bright: #d0a76d;
+  --tok-copper-bright: #a8751f;
   --tok-olive: #60796e;
   --tok-madder: #b64c41;
   --tok-lapis: #52759a;
-  --tok-rule: rgba(226, 206, 171, 0.26);
-  --tok-shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+  --tok-rule: rgba(179, 122, 67, 0.28);
+  --tok-shadow: 0 28px 70px rgba(75, 45, 12, 0.14);
   --tok-serif: "Cormorant Garamond Variable", "Times New Roman", serif;
   --tok-sans: "Inter Variable", Arial, sans-serif;
   --tok-arabic-serif: "Noto Naskh Arabic Variable", serif;
@@ -17,7 +18,7 @@
 }
 .tok-canvas {
   overscroll-behavior: none;
-  background: var(--tok-ink);
+  background: var(--tok-ivory);
 }
 .tok-experience,
 .tok-experience *,
@@ -37,8 +38,8 @@
   height: 1920px;
   overflow: hidden;
   isolation: isolate;
-  color: var(--tok-ivory);
-  background: var(--tok-ink);
+  color: var(--tok-ink);
+  background: var(--tok-ivory);
   font-family: var(--tok-sans);
   -webkit-font-smoothing: antialiased;
   touch-action: manipulation;
@@ -99,7 +100,7 @@
   text-transform: none;
 }
 .tok-attract {
-  background: #0d0f0c;
+  background: #f1eadc;
 }
 .tok-attract__image,
 .tok-hub__background,
@@ -121,13 +122,20 @@
   transform-origin: 56% 42%;
   -o-object-position: 56% center;
   object-position: 56% center;
+  opacity: 0.28;
+  filter: saturate(0.4) contrast(0.88) brightness(1.18);
 }
 .tok-attract__veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 40%, #aa78410f, #090b0940 38%, #080a08e6 88%),
-    linear-gradient(180deg, #07090785, #0709071f 35%, #070907d6 82%, #090b09);
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(241, 234, 220, 0.15),
+      rgba(241, 234, 220, 0.5) 48%,
+      #f1eadcd9 100%
+    ),
+    linear-gradient(180deg, #f6f1e6a8 0%, #f1eadcb8 42%, #ebe3d2e0 100%);
 }
 .tok-attract__grain,
 .tok-hub__grain,
@@ -136,13 +144,13 @@
 .tok-closing__grain {
   position: absolute;
   inset: 0;
-  opacity: 0.12;
+  opacity: 0.05;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+    linear-gradient(rgba(75, 45, 12, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75, 45, 12, 0.03) 1px, transparent 1px);
   background-size: 7px 7px;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: multiply;
 }
 .tok-attract__content {
   position: absolute;
@@ -157,14 +165,14 @@
   flex-direction: column;
   align-items: center;
   margin: 28px 0 0;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 116px;
   font-weight: 460;
   letter-spacing: 0.035em;
   line-height: 0.78;
   text-transform: uppercase;
-  text-shadow: 0 18px 54px rgba(0, 0, 0, 0.45);
+  text-shadow: none;
 }
 .tok-attract__content h1 i {
   display: grid;
@@ -172,7 +180,7 @@
   height: 74px;
   margin: 17px 0 15px;
   place-items: center;
-  border: 1px solid rgba(223, 193, 140, 0.5);
+  border: 1px solid rgba(168, 117, 31, 0.45);
   border-radius: 50%;
   color: var(--tok-copper-bright);
   font-family: var(--tok-sans);
@@ -184,7 +192,7 @@
 }
 .tok-attract__caption {
   margin: 48px auto 0;
-  color: #f1eadcc7;
+  color: #4a3f32;
   font-family: var(--tok-serif);
   font-size: 34px;
   line-height: 1.35;
@@ -192,7 +200,7 @@
 .tok-attract__caption strong {
   display: block;
   margin-top: 5px;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-weight: 600;
 }
 .tok-experience--ku .tok-attract__caption,
@@ -214,10 +222,11 @@
   align-items: center;
   gap: 24px;
   padding: 18px 34px;
-  border: 1px solid rgba(231, 203, 154, 0.56) !important;
+  border: 1px solid rgba(179, 122, 67, 0.45) !important;
   border-radius: 70px;
-  background: #101310b8;
-  box-shadow: 0 22px 65px #00000061;
+  color: #1c1812;
+  background: #fff8ecf0;
+  box-shadow: var(--tok-shadow);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   text-align: start;
@@ -227,7 +236,7 @@
   display: block;
   width: 54px;
   height: 54px;
-  border: 1px solid rgba(225, 190, 129, 0.68);
+  border: 1px solid rgba(168, 117, 31, 0.55);
   border-radius: 50%;
 }
 .tok-enter__pulse:after {
@@ -235,7 +244,7 @@
   inset: 14px;
   border-radius: inherit;
   background: var(--tok-copper-bright);
-  box-shadow: 0 0 24px #e0b56f9e;
+  box-shadow: 0 0 24px #b37a4366;
   content: "";
   animation: tok-pulse 2.4s ease-in-out infinite;
 }
@@ -250,7 +259,7 @@
 }
 .tok-enter small {
   margin-top: 4px;
-  color: #f1eadca1;
+  color: #6a5a45;
   font-size: 14px;
   font-weight: 550;
   letter-spacing: 0.12em;
@@ -282,10 +291,10 @@
   background:
     radial-gradient(
       circle at 50% 42%,
-      rgba(117, 82, 48, 0.25),
+      rgba(179, 122, 67, 0.12),
       transparent 56%
     ),
-    #060806e0;
+    #f1eadceb;
   -webkit-backdrop-filter: blur(22px);
   backdrop-filter: blur(22px);
 }
@@ -295,10 +304,10 @@
   min-height: 1030px;
   overflow: hidden;
   padding: 84px 78px 72px;
-  border: 1px solid rgba(226, 203, 165, 0.42);
+  border: 1px solid rgba(179, 122, 67, 0.35);
   border-radius: 220px 220px 38px 38px;
-  background: linear-gradient(145deg, #292921f5, #121512fb), #161915;
-  box-shadow: 0 52px 130px #000000a6;
+  background: linear-gradient(145deg, #fffaf0f5, #f1eadcfb), #f6f1e6;
+  box-shadow: var(--tok-shadow);
   text-align: center;
 }
 .tok-language__panel:before,
@@ -327,9 +336,10 @@
   width: 88px;
   height: 88px;
   place-items: center;
-  border: 1px solid rgba(226, 203, 165, 0.34) !important;
+  border: 1px solid rgba(179, 122, 67, 0.35) !important;
   border-radius: 50%;
-  background: #ffffff0a;
+  color: #1c1812;
+  background: #fff8eccc;
 }
 .tok-language__close svg {
   width: 32px;
@@ -353,14 +363,14 @@
 }
 .tok-language__ornament span {
   height: 1px;
-  background: #debc8380;
+  background: #b37a4380;
 }
 .tok-language__ornament svg {
   width: 24px;
 }
 .tok-language h2 {
   margin: 0;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 68px;
   font-weight: 500;
@@ -369,7 +379,7 @@
 .tok-language__panel > p {
   max-width: 570px;
   margin: 18px auto 0;
-  color: #f1eadc9e;
+  color: #4a3f32;
   font-size: 18px;
   line-height: 1.55;
 }
@@ -391,9 +401,10 @@
   align-items: center;
   gap: 22px;
   padding: 20px 28px;
-  border: 1px solid rgba(226, 203, 165, 0.22) !important;
+  border: 1px solid rgba(179, 122, 67, 0.28) !important;
   border-radius: 18px;
-  background: #f1eadc09;
+  color: #1c1812;
+  background: #fff8eccc;
   text-align: start;
   transition:
     transform 0.18s ease,
@@ -401,7 +412,7 @@
     background 0.18s ease;
 }
 .tok-language__option.is-current {
-  border-color: #dbb06aad !important;
+  border-color: #b37a43ad !important;
   background: #b37a4324;
 }
 .tok-language__option:active {
@@ -413,7 +424,7 @@
   font-size: 22px;
 }
 .tok-language__native {
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-size: 37px;
   font-weight: 520;
 }
@@ -422,7 +433,7 @@
   font-size: 41px;
 }
 .tok-language__latin {
-  color: #f1eadc85;
+  color: #6a5a45;
   font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -433,22 +444,30 @@
   color: var(--tok-copper-bright);
 }
 .tok-hub {
-  background: #111410;
+  background: #f1eadc;
 }
 .tok-hub__background {
-  opacity: 0.17;
-  filter: saturate(0.58) contrast(1.12);
+  display: block;
+  opacity: 0.32;
+  filter: saturate(0.35) contrast(0.85) brightness(1.22);
+  -o-object-position: center 36%;
+  object-position: center 36%;
 }
 .tok-hub__wash {
   position: absolute;
   inset: 0;
   background:
     radial-gradient(
-      circle at 50% 48%,
-      rgba(167, 115, 61, 0.12),
-      transparent 36%
+      circle at 50% 38%,
+      rgba(241, 234, 220, 0.12),
+      rgba(241, 234, 220, 0.42) 48%,
+      #f1eadcd4 100%
     ),
-    linear-gradient(180deg, #111410, #111410d1 24%, #111410c7 76%, #111410);
+    linear-gradient(180deg, #f6f1e68f 0%, #f1eadca8 50%, #ebe3d2d6 100%);
+}
+.tok-hub__grain {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
 }
 .tok-hub__header {
   position: absolute;
@@ -460,7 +479,7 @@
 .tok-hub__header h1 {
   max-width: 780px;
   margin: 24px auto 0;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 58px;
   font-weight: 510;
@@ -469,13 +488,13 @@
 .tok-hub__body {
   max-width: 770px;
   margin: 18px auto 0;
-  color: #f1eadcb0;
+  color: #4a3f32;
   font-size: 18px;
   line-height: 1.52;
 }
 .tok-hub blockquote {
   margin: 20px auto 0;
-  color: #d8bd8e;
+  color: #8a5f2c;
   font-family: var(--tok-serif);
   font-size: 25px;
   font-style: italic;
@@ -597,7 +616,7 @@
 }
 .tok-thread-portal__copy b {
   max-width: 300px;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 32px;
   font-weight: 550;
@@ -606,7 +625,7 @@
 .tok-thread-portal__copy small {
   max-width: 300px;
   margin-top: 7px;
-  color: #f1eadc94;
+  color: #5c4e3a;
   font-size: 14px;
   font-weight: 580;
   letter-spacing: 0.05em;
@@ -622,7 +641,7 @@
 }
 .tok-thread-portal--coexistence .tok-thread-portal__copy small {
   max-width: 340px;
-  color: #f1eadcb8;
+  color: #5c4e3a;
   font-size: 15px;
 }
 .tok-experience--ku .tok-thread-portal__copy b,
@@ -691,12 +710,12 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 22px;
-  color: #f1eadca3;
+  color: #6a5a45;
   text-align: center;
 }
 .tok-hub__instruction span {
   height: 1px;
-  background: #e2ceab33;
+  background: #b37a4340;
 }
 .tok-hub__instruction p {
   margin: 0;
@@ -709,11 +728,11 @@
   font-size: 25px;
 }
 .tok-thread {
-  background: var(--tok-ink);
+  background: #f1eadc;
 }
 .tok-thread__background {
-  opacity: 0.22;
-  filter: blur(8px) saturate(0.55);
+  opacity: 0.2;
+  filter: blur(8px) saturate(0.45) brightness(1.15);
   transform: scale(1.06);
 }
 .tok-thread__wash {
@@ -722,10 +741,10 @@
   background:
     radial-gradient(
       circle at 50% 50%,
-      color-mix(in srgb, var(--thread-accent) 12%, transparent),
+      color-mix(in srgb, var(--thread-accent) 10%, transparent),
       transparent 48%
     ),
-    linear-gradient(180deg, #0d100ddb, #0d100d94 52%, #0d100d);
+    linear-gradient(180deg, #f6f1e6db, #f1eadc94 52%, #ebe3d2);
 }
 .tok-thread__header {
   position: absolute;
@@ -747,7 +766,7 @@
 }
 .tok-thread__header h1 {
   margin: 7px 0 0;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 63px;
   font-weight: 520;
@@ -756,13 +775,13 @@
 .tok-thread__header div > p:last-child {
   max-width: 560px;
   margin: 14px 0 0;
-  color: #f1eadca8;
+  color: #4a3f32;
   font-size: 17px;
   line-height: 1.45;
 }
 .tok-thread__line {
   align-self: center;
-  color: #f1eadc80;
+  color: #6a5a45;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -962,10 +981,11 @@
   width: 96px;
   height: 96px;
   place-items: center;
-  border: 1px solid rgba(235, 216, 180, 0.5) !important;
+  border: 1px solid rgba(179, 122, 67, 0.45) !important;
   border-radius: 50%;
-  background: #0f120fd4;
-  box-shadow: 0 20px 45px #0000005c;
+  color: #1c1812;
+  background: #fff8ecf0;
+  box-shadow: var(--tok-shadow);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
@@ -1008,7 +1028,7 @@
   content: "";
 }
 .tok-carousel__progress button:before {
-  background: #f1eadc33;
+  background: #b37a4333;
 }
 .tok-carousel__progress button span {
   background: var(--thread-accent);
@@ -1021,7 +1041,7 @@
   bottom: 78px;
   inset-inline: 60px;
   margin: 0;
-  color: #f1eadc80;
+  color: #6a5a45;
   font-size: 14px;
   font-weight: 570;
   letter-spacing: 0.1em;
@@ -1035,13 +1055,14 @@
   text-transform: none;
 }
 .tok-story {
-  background: #0d100d;
+  background: #f1eadc;
 }
 .tok-story__image {
   height: 100%;
   -o-object-position: center;
   object-position: center;
-  filter: blur(18px) saturate(0.68);
+  opacity: 0.22;
+  filter: blur(18px) saturate(0.5) brightness(1.12);
   transform: scale(1.08);
 }
 .tok-story__image-veil {
@@ -1050,10 +1071,10 @@
   background:
     radial-gradient(
       circle at 50% 45%,
-      rgba(165, 117, 65, 0.08),
+      rgba(179, 122, 67, 0.08),
       transparent 44%
     ),
-    linear-gradient(180deg, #070907d1, #0b0e0bad 48%, #0d100d);
+    linear-gradient(180deg, #f6f1e6d1, #f1eadcad 48%, #ebe3d2);
 }
 .tok-story__collection-heading {
   position: absolute;
@@ -1072,13 +1093,13 @@
 }
 .tok-story__eyebrow > span + span:before {
   margin-inline-end: 16px;
-  color: #f1eadc5c;
+  color: #b37a437a;
   content: "·";
 }
 .tok-story__collection-heading h1 {
   max-width: 830px;
   margin: 10px auto 0;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 55px;
   font-weight: 540;
@@ -1087,7 +1108,7 @@
 .tok-story__collection-heading > p:last-child {
   max-width: 800px;
   margin: 12px auto 0;
-  color: #f1eadca8;
+  color: #4a3f32;
   font-size: 18px;
   line-height: 1.4;
 }
@@ -1204,10 +1225,10 @@
   align-items: center;
   gap: 12px;
   padding: 12px 15px;
-  border: 1px solid rgba(231, 211, 177, 0.28) !important;
+  border: 1px solid rgba(179, 122, 67, 0.28) !important;
   border-radius: 22px;
-  color: #f1eadcad;
-  background: #131612e6;
+  color: #3d3428;
+  background: #fff8ecf0;
   text-align: start;
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
@@ -1219,11 +1240,11 @@
     var(--thread-accent) 64%,
     #f3dcae 36%
   ) !important;
-  color: #fff7e8;
+  color: #1c1812;
   background: color-mix(
     in srgb,
-    var(--thread-accent) 24%,
-    rgba(19, 22, 18, 0.94)
+    var(--thread-accent) 18%,
+    rgba(255, 248, 236, 0.96)
   );
 }
 .tok-detail-selector button > span {
@@ -1254,11 +1275,11 @@
   line-height: 1.38;
 }
 .tok-closing {
-  background: #0d100d;
+  background: #f1eadc;
 }
 .tok-closing__image {
-  opacity: 0.34;
-  filter: saturate(0.55) contrast(1.12);
+  opacity: 0.26;
+  filter: saturate(0.4) contrast(0.92) brightness(1.15);
   -o-object-position: center;
   object-position: center;
 }
@@ -1266,8 +1287,13 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 49%, #9d6f4321, #090b0940 38%, #090b09 89%),
-    linear-gradient(180deg, #080a08b8, #080a0833 43%, #080a08e8);
+    radial-gradient(
+      circle at 50% 49%,
+      rgba(241, 234, 220, 0.18),
+      rgba(241, 234, 220, 0.5) 42%,
+      #f1eadce0 100%
+    ),
+    linear-gradient(180deg, #f6f1e6b8, #f1eadc66 43%, #ebe3d2e8);
 }
 .tok-closing__copy {
   position: absolute;
@@ -1279,7 +1305,7 @@
 .tok-closing__copy h1 {
   max-width: 790px;
   margin: 22px auto 0;
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 78px;
   font-weight: 520;
@@ -1303,7 +1329,7 @@
   text-align: center;
 }
 .tok-closing__core b {
-  color: var(--tok-ivory);
+  color: #1c1812;
   font-family: var(--tok-serif);
   font-size: 31px;
   font-weight: 610;
@@ -1311,7 +1337,7 @@
 }
 .tok-closing__core small {
   margin-top: 5px;
-  color: #f1eadc94;
+  color: #6a5a45;
   font-size: 10px;
   font-weight: 650;
   letter-spacing: 0.13em;
@@ -1349,8 +1375,8 @@
   gap: 18px;
   margin: 0;
   padding: 10px 26px;
-  border-bottom: 1px solid rgba(226, 206, 171, 0.22);
-  color: #f1eadcd6;
+  border-bottom: 1px solid rgba(179, 122, 67, 0.22);
+  color: #2a241c;
   font-family: var(--tok-serif);
   font-size: 30px;
 }
@@ -1375,11 +1401,11 @@
   align-items: center;
   gap: 20px;
   padding: 0 30px;
-  border: 1px solid rgba(231, 203, 154, 0.52) !important;
+  border: 1px solid rgba(179, 122, 67, 0.45) !important;
   border-radius: 999px;
-  color: var(--tok-ivory);
-  background: #181b16e0;
-  box-shadow: 0 24px 62px #0006;
+  color: #1c1812;
+  background: #fff8ecf0;
+  box-shadow: var(--tok-shadow);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   font-family: var(--tok-serif);
@@ -1411,10 +1437,10 @@
   gap: 8px;
   padding: 14px 8px;
   transform: translateY(-50%);
-  border: 1px solid rgba(226, 206, 171, 0.28);
+  border: 1px solid rgba(179, 122, 67, 0.32);
   border-radius: 34px;
-  background: #0c0f0cf0;
-  box-shadow: 0 24px 64px #00000061;
+  background: #fff8ecf5;
+  box-shadow: var(--tok-shadow);
   -webkit-backdrop-filter: blur(22px);
   backdrop-filter: blur(22px);
 }
@@ -1432,7 +1458,7 @@
   padding: 10px 2px;
   border: 1px solid transparent !important;
   border-radius: 24px;
-  color: #f1eadcbd;
+  color: #4a3f32;
   background: transparent;
   font-size: 13px;
   font-weight: 620;
@@ -1441,8 +1467,8 @@
 }
 .tok-rail > button:active,
 .tok-rail > button.is-active {
-  border-color: #debc8352 !important;
-  color: #f4e8d1;
+  border-color: #b37a4352 !important;
+  color: #1c1812;
   background: #b37a431f;
   transform: scale(0.97);
 }
@@ -1462,9 +1488,10 @@
 .tok-idle__panel {
   width: 690px;
   padding: 68px;
-  border: 1px solid rgba(226, 203, 165, 0.42);
+  border: 1px solid rgba(179, 122, 67, 0.35);
   border-radius: 42px;
-  background: #171a16;
+  color: #1c1812;
+  background: #fffaf0;
   box-shadow: var(--tok-shadow);
   text-align: center;
 }
@@ -1493,15 +1520,16 @@
 }
 .tok-idle__panel p {
   margin: 14px 0 0;
-  color: #f1eadca3;
+  color: #4a3f32;
   font-size: 19px;
 }
 .tok-idle__panel button {
   min-width: 310px;
   min-height: 100px;
   margin-top: 38px;
-  border: 1px solid rgba(226, 203, 165, 0.45) !important;
+  border: 1px solid rgba(179, 122, 67, 0.45) !important;
   border-radius: 999px;
+  color: #1c1812;
   background: #b37a432e;
   font-size: 22px;
   font-weight: 650;

@@ -167,7 +167,7 @@ export default function ThreadsExperience() {
   return (
     <DesignScaledCanvas
       fitViewport
-      bgClassName="bg-[#0e100e]"
+      bgClassName="bg-[#f1eadc]"
       className="tok-canvas"
     >
       <ThreadsExperienceInner />

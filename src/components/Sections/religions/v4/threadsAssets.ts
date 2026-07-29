@@ -147,6 +147,6 @@ export const threadsAssets = {
   yu: yu,
   zS: zS,
   attract: hS,
-  hub: pS,
+  hub: Yn,
   closing: dt,
 } as const;
