@@ -50,12 +50,6 @@ export default function StoryScene({
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...SCENE_TRANSITION, delay: 0.08 }}
       >
-        {/* Chapter breadcrumb — replaces the old signature topline. */}
-        <p className="tok-eyebrow tok-story__eyebrow">
-          <span>{chapter.number}</span>
-          <span>{chapter.title}</span>
-          <span>{copy.collectionLabel}</span>
-        </p>
         <h1 id="tok-collection-title">{story.title}</h1>
         <p>{story.body}</p>
       </motion.header>
