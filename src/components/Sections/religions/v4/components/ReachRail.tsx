@@ -1,17 +1,10 @@
-import {
-  ArrowLeft,
-  Globe2,
-  Home,
-  Sparkles,
-} from "lucide-react";
+import { ArrowLeft, Globe2, Home } from "lucide-react";
 import type { ThreadsCopy } from "../threadsCopy";
 import type { SceneState, ThreadsAction } from "../threadsTypes";
-import { THREAD_IDS } from "../threadsTypes";
 
 type ReachRailProps = {
   copy: ThreadsCopy;
   scene: SceneState;
-  visitedCount: number;
   dispatch: React.Dispatch<ThreadsAction>;
 };
 
@@ -22,14 +15,8 @@ type ReachRailProps = {
  *
  * Hidden on the attract scene via `.tok-experience[data-scene="attract"]`.
  */
-export default function ReachRail({
-  copy,
-  scene,
-  visitedCount,
-  dispatch,
-}: ReachRailProps) {
+export default function ReachRail({ copy, scene, dispatch }: ReachRailProps) {
   const isHub = scene.kind === "hub";
-  const isClosing = scene.kind === "closing";
 
   return (
     <nav className="tok-rail" aria-label="Experience controls">
@@ -46,24 +33,9 @@ export default function ReachRail({
         <Home aria-hidden="true" />
         <span>{copy.home}</span>
       </button>
-      <span className="tok-rail__progress" aria-live="polite">
-        <b>
-          {visitedCount} / {THREAD_IDS.length}
-        </b>
-        <small>{copy.visited}</small>
-      </span>
       <button type="button" onClick={() => dispatch({ type: "OPEN_LANGUAGE" })}>
         <Globe2 aria-hidden="true" />
         <span>{copy.language}</span>
-      </button>
-      <button
-        type="button"
-        className={isClosing ? "is-active" : ""}
-        onClick={() => dispatch({ type: "OPEN_CLOSING" })}
-        aria-current={isClosing ? "page" : undefined}
-      >
-        <Sparkles aria-hidden="true" />
-        <span>{copy.closing}</span>
       </button>
     </nav>
   );

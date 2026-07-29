@@ -148,12 +148,7 @@ function ThreadsExperienceInner() {
       </div>
       {/* Reach rail: persists across scenes and stays vertically centred so the
           controls sit in the comfortable zone of a portrait 65" screen. */}
-      <ReachRail
-        copy={copy}
-        scene={state.scene}
-        visitedCount={state.visited.length}
-        dispatch={dispatch}
-      />
+      <ReachRail copy={copy} scene={state.scene} dispatch={dispatch} />
       <LanguageOverlay state={state} copy={copy} dispatch={dispatch} />
       <IdleOverlay count={idleCount} copy={copy} onContinue={dismissIdle} />
     </main>

@@ -98,29 +98,6 @@
   letter-spacing: 0;
   text-transform: none;
 }
-.tok-woven-mark {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.3));
-}
-.tok-woven-mark__orbit {
-  fill: none;
-  stroke: #e2ceab2e;
-  stroke-dasharray: 2 14;
-  stroke-linecap: round;
-  stroke-width: 2px;
-}
-.tok-woven-mark__core {
-  fill: #e7c58733;
-  stroke: #f0dab1b3;
-  stroke-width: 2px;
-}
-.tok-woven-mark__seed {
-  fill: #e4c38a;
-  filter: drop-shadow(0 0 24px rgba(225, 186, 117, 0.75));
-}
 .tok-attract {
   background: #0d0f0c;
 }
@@ -166,16 +143,6 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
   background-size: 7px 7px;
   mix-blend-mode: soft-light;
-}
-.tok-attract__loom {
-  position: absolute;
-  z-index: 3;
-  top: 210px;
-  left: 50%;
-  width: 390px;
-  height: 390px;
-  transform: translate(-50%);
-  opacity: 0.88;
 }
 .tok-attract__content {
   position: absolute;
@@ -304,19 +271,6 @@
 .tok-experience--ar .tok-enter small {
   letter-spacing: 0;
   text-transform: none;
-}
-.tok-attract__footer {
-  position: absolute;
-  z-index: 4;
-  right: 64px;
-  bottom: 58px;
-  left: 64px;
-  display: flex;
-  justify-content: space-between;
-  color: #f1eadc78;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
 }
 .tok-language,
 .tok-idle {
@@ -634,16 +588,8 @@
   min-height: 104px;
   align-items: center;
   justify-content: center;
-  gap: 18px;
   padding-top: 16px;
-  text-align: start;
-}
-.tok-thread-portal__copy > svg {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 auto;
-  color: var(--thread-accent);
-  stroke-width: 1.55;
+  text-align: center;
 }
 .tok-thread-portal__copy b,
 .tok-thread-portal__copy small {
@@ -669,10 +615,6 @@
 .tok-thread-portal--coexistence .tok-thread-portal__copy {
   min-height: 122px;
   padding-top: 20px;
-}
-.tok-thread-portal--coexistence .tok-thread-portal__copy > svg {
-  width: 42px;
-  height: 42px;
 }
 .tok-thread-portal--coexistence .tok-thread-portal__copy b {
   max-width: 340px;
@@ -707,16 +649,6 @@
   .tok-thread-portal__copy
   small {
   font-size: 18px;
-}
-.tok-hub__loom {
-  position: absolute;
-  z-index: 3;
-  top: 888px;
-  inset-inline: 0;
-  width: 455px;
-  height: 455px;
-  margin-inline: auto;
-  opacity: 0.72;
 }
 .tok-hub__threads {
   position: absolute;
@@ -1176,7 +1108,7 @@
   z-index: 6;
   top: 300px;
   inset-inline: 110px;
-  height: 1080px;
+  height: 1240px;
   overflow: hidden;
   border: 2px solid color-mix(in srgb, var(--thread-accent) 64%, #f3dcae 36%);
   border-radius: 220px 220px 34px 34px;
@@ -1186,7 +1118,7 @@
 }
 .tok-detail-card__visual {
   position: relative;
-  height: 620px;
+  height: 720px;
   overflow: hidden;
   background: #181b17;
 }
@@ -1213,7 +1145,7 @@
     radial-gradient(circle at 50% 45%, transparent 32%, rgba(6, 8, 6, 0.2));
 }
 .tok-detail-card__copy {
-  height: 460px;
+  height: 520px;
   padding: 40px 54px 34px;
   background: linear-gradient(135deg, #f9f4eafc, #dcd0bafc), var(--tok-ivory);
   text-align: center;
@@ -1258,7 +1190,7 @@
 .tok-detail-selector {
   position: absolute;
   z-index: 8;
-  top: 1420px;
+  top: 1600px;
   inset-inline: 54px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1321,76 +1253,6 @@
   font-size: 17px;
   line-height: 1.38;
 }
-.tok-story__stepper {
-  position: absolute;
-  z-index: 7;
-  top: 1600px;
-  inset-inline: 64px;
-  display: grid;
-  grid-template-columns: 275px 1fr 275px;
-  align-items: center;
-  gap: 20px;
-}
-.tok-story__stepper > button {
-  display: flex;
-  min-height: 116px;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  border: 1px solid rgba(231, 211, 177, 0.42) !important;
-  border-radius: 999px;
-  color: var(--tok-ivory);
-  background: #141713f5;
-  font-size: 19px;
-  font-weight: 650;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-}
-.tok-story__stepper > button:active {
-  border-color: color-mix(
-    in srgb,
-    var(--thread-accent) 64%,
-    #f3dcae 36%
-  ) !important;
-  background: color-mix(
-    in srgb,
-    var(--thread-accent) 24%,
-    rgba(20, 23, 19, 0.96)
-  );
-  transform: scale(0.985);
-}
-.tok-story__stepper > button svg {
-  width: 31px;
-  height: 31px;
-}
-.tok-story__stepper > div {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 7px;
-  color: #f1eadc9e;
-  text-align: center;
-}
-.tok-story__stepper > div b {
-  color: #f7e5c6;
-  font-family: var(--tok-serif);
-  font-size: 25px;
-  font-weight: 590;
-  direction: ltr;
-  unicode-bidi: isolate;
-}
-.tok-story__stepper > div small {
-  max-width: 320px;
-  font-size: 13px;
-  font-weight: 570;
-  line-height: 1.35;
-}
-.tok-experience--ku .tok-story__stepper > div small,
-.tok-experience--ar .tok-story__stepper > div small {
-  font-size: 16px;
-}
 .tok-closing {
   background: #0d100d;
 }
@@ -1410,7 +1272,7 @@
 .tok-closing__copy {
   position: absolute;
   z-index: 5;
-  top: 170px;
+  top: 300px;
   inset-inline: 80px;
   text-align: center;
 }
@@ -1429,23 +1291,14 @@
   font-size: 78px;
   line-height: 1.22;
 }
-.tok-closing__loom {
-  position: absolute;
-  z-index: 4;
-  top: 400px;
-  inset-inline: 0;
-  width: 690px;
-  height: 690px;
-  margin-inline: auto;
-}
 .tok-closing__core {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  z-index: 5;
+  top: 715px;
+  inset-inline: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translate(-50%, -50%);
   direction: ltr;
   text-align: center;
 }
@@ -1483,7 +1336,7 @@
 .tok-closing__statements {
   position: absolute;
   z-index: 5;
-  top: 1160px;
+  top: 1010px;
   inset-inline: 105px;
   display: grid;
   gap: 12px;
@@ -1514,7 +1367,7 @@
 .tok-closing__return {
   position: absolute;
   z-index: 6;
-  bottom: 120px;
+  bottom: 380px;
   inset-inline: 214px;
   display: grid;
   grid-template-columns: 42px 1fr 42px;
@@ -1599,43 +1452,9 @@
   color: var(--tok-copper-bright);
   stroke-width: 1.7;
 }
-.tok-rail__progress {
-  display: flex;
-  min-height: 88px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 0;
-  border-top: 1px solid rgba(226, 206, 171, 0.16);
-  border-bottom: 1px solid rgba(226, 206, 171, 0.16);
-  color: var(--tok-ivory);
-  text-align: center;
-}
-.tok-rail__progress b {
-  font-family: var(--tok-serif);
-  font-size: 26px;
-  font-weight: 570;
-  direction: ltr;
-  unicode-bidi: isolate;
-}
-.tok-rail__progress small {
-  margin-top: 5px;
-  color: #f1eadc7a;
-  font-size: 10px;
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  line-height: 1.25;
-  text-transform: uppercase;
-}
 .tok-experience--ku .tok-rail > button,
 .tok-experience--ar .tok-rail > button {
   font-size: 17px;
-}
-.tok-experience--ku .tok-rail__progress small,
-.tok-experience--ar .tok-rail__progress small {
-  font-size: 13px;
-  letter-spacing: 0;
-  text-transform: none;
 }
 .tok-idle {
   z-index: 100;

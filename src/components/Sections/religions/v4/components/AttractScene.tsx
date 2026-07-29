@@ -4,7 +4,6 @@ import { threadsAssets } from "../threadsAssets";
 import type { ThreadsCopy } from "../threadsCopy";
 import type { ThreadsAction } from "../threadsTypes";
 import { SCENE_TRANSITION } from "../threadsTypes";
-import WovenMark from "./WovenMark";
 
 type AttractSceneProps = {
   copy: ThreadsCopy;
@@ -37,9 +36,6 @@ export default function AttractScene({ copy, dispatch }: AttractSceneProps) {
       />
       <div className="tok-attract__veil" />
       <div className="tok-attract__grain" />
-      <div className="tok-attract__loom">
-        <WovenMark compact />
-      </div>
       <div className="tok-attract__content">
         <p className="tok-eyebrow">{copy.attractEyebrow}</p>
         <h1 id="tok-attract-title">
@@ -64,10 +60,6 @@ export default function AttractScene({ copy, dispatch }: AttractSceneProps) {
         </span>
         <ArrowRight className="tok-enter__arrow" aria-hidden="true" />
       </button>
-      <footer className="tok-attract__footer">
-        <span>ERBIL · KURDISTAN REGION</span>
-        <span>PORTRAIT MUSEUM EXPERIENCE · 2026</span>
-      </footer>
     </motion.section>
   );
 }

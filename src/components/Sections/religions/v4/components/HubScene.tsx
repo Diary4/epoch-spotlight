@@ -1,24 +1,7 @@
 import { motion } from "motion/react";
-import {
-  Church,
-  HeartHandshake,
-  Scale,
-  Sparkles,
-  UsersRound,
-  type LucideIcon,
-} from "lucide-react";
 import type { Chapter, ThreadId, ThreadsAction } from "../threadsTypes";
 import { SCENE_TRANSITION } from "../threadsTypes";
 import ThreadPortal from "./ThreadPortal";
-import WovenMark from "./WovenMark";
-
-const THREAD_ICONS: Record<ThreadId, LucideIcon> = {
-  faiths: Church,
-  nations: UsersRound,
-  coexistence: HeartHandshake,
-  sharedLife: Sparkles,
-  rights: Scale,
-};
 
 const THREAD_ORDER: ThreadId[] = [
   "faiths",
@@ -87,15 +70,11 @@ export default function HubScene({
           />
         </svg>
       </div>
-      <div className="tok-hub__loom">
-        <WovenMark />
-      </div>
       <div className="tok-hub__portals">
         {THREAD_ORDER.map((threadId) => (
           <ThreadPortal
             key={threadId}
             chapter={chapters[threadId]}
-            icon={THREAD_ICONS[threadId]}
             dispatch={dispatch}
           />
         ))}

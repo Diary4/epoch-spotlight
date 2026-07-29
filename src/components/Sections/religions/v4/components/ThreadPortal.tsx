@@ -1,18 +1,12 @@
 import { motion } from "motion/react";
-import { type LucideIcon } from "lucide-react";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
 
 type ThreadPortalProps = {
   chapter: Chapter;
-  icon: LucideIcon;
   dispatch: React.Dispatch<ThreadsAction>;
 };
 
-export default function ThreadPortal({
-  chapter,
-  icon: Icon,
-  dispatch,
-}: ThreadPortalProps) {
+export default function ThreadPortal({ chapter, dispatch }: ThreadPortalProps) {
   return (
     <motion.button
       type="button"
@@ -27,7 +21,6 @@ export default function ThreadPortal({
         <span className="tok-thread-portal__shade" />
       </span>
       <span className="tok-thread-portal__copy">
-        <Icon aria-hidden="true" />
         <span>
           <b>{chapter.title}</b>
           <small>{chapter.line}</small>

@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
 import type { ThreadsCopy } from "../threadsCopy";
 import { SCENE_TRANSITION } from "../threadsTypes";
@@ -22,11 +21,6 @@ export default function StoryScene({
   const story = chapter.stories[storyIndex];
   const cards = story.detailCards;
   const card = cards[detailIndex] ?? cards[0];
-
-  const goPrevious = () =>
-    dispatch({ type: "PREVIOUS_DETAIL", detailCount: cards.length });
-  const goNext = () =>
-    dispatch({ type: "NEXT_DETAIL", detailCount: cards.length });
 
   return (
     <motion.section
@@ -103,34 +97,6 @@ export default function StoryScene({
             <b>{item.title}</b>
           </button>
         ))}
-      </div>
-      <div className="tok-story__stepper">
-        <button
-          type="button"
-          onClick={goPrevious}
-          aria-label={`${copy.previous}: ${
-            cards[(detailIndex - 1 + cards.length) % cards.length].title
-          }`}
-        >
-          <ArrowLeft aria-hidden="true" />
-          <span>{copy.previous}</span>
-        </button>
-        <div>
-          <b>
-            {detailIndex + 1} / {cards.length}
-          </b>
-          <small>{copy.collectionHint}</small>
-        </div>
-        <button
-          type="button"
-          onClick={goNext}
-          aria-label={`${copy.next}: ${
-            cards[(detailIndex + 1) % cards.length].title
-          }`}
-        >
-          <span>{copy.next}</span>
-          <ArrowRight aria-hidden="true" />
-        </button>
       </div>
     </motion.section>
   );

@@ -4,7 +4,6 @@ import { threadsAssets } from "../threadsAssets";
 import type { ThreadsCopy } from "../threadsCopy";
 import type { ThreadsAction } from "../threadsTypes";
 import { SCENE_TRANSITION } from "../threadsTypes";
-import WovenMark from "./WovenMark";
 
 type ClosingSceneProps = {
   copy: ThreadsCopy;
@@ -28,12 +27,9 @@ export default function ClosingScene({ copy, dispatch }: ClosingSceneProps) {
         <p className="tok-eyebrow">{copy.closingEyebrow}</p>
         <h1 id="tok-closing-title">{copy.closingTitle}</h1>
       </div>
-      <div className="tok-closing__loom">
-        <WovenMark complete />
-        <div className="tok-closing__core">
-          <b>{copy.closingCore}</b>
-          <small>{copy.closingCoreHint}</small>
-        </div>
+      <div className="tok-closing__core">
+        <b>{copy.closingCore}</b>
+        <small>{copy.closingCoreHint}</small>
       </div>
       <div className="tok-closing__statements">
         {copy.closingLines.map((line, index) => (
