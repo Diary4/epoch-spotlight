@@ -25,12 +25,6 @@ export default function ThreadPortal({
       <span className="tok-thread-portal__image">
         <img src={chapter.hero} alt="" />
         <span className="tok-thread-portal__shade" />
-        <span className="tok-thread-portal__number">{chapter.number}</span>
-        {isVisited ? (
-          <span className="tok-thread-portal__visited">
-            <Check aria-hidden="true" />
-          </span>
-        ) : null}
       </span>
       <span className="tok-thread-portal__copy">
         <Icon aria-hidden="true" />

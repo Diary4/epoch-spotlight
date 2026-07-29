@@ -30,7 +30,6 @@ const THREAD_ORDER: ThreadId[] = [
 
 type HubSceneProps = {
   chapters: Record<ThreadId, Chapter>;
-  visited: ThreadId[];
   hubBackground: string;
   copy: {
     hubEyebrow: string;
@@ -44,7 +43,6 @@ type HubSceneProps = {
 
 export default function HubScene({
   chapters,
-  visited,
   hubBackground,
   copy,
   dispatch,
@@ -98,7 +96,6 @@ export default function HubScene({
             key={threadId}
             chapter={chapters[threadId]}
             icon={THREAD_ICONS[threadId]}
-            isVisited={visited.includes(threadId)}
             dispatch={dispatch}
           />
         ))}

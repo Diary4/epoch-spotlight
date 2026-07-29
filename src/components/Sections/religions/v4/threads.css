@@ -627,31 +627,6 @@
   inset: 0;
   background: linear-gradient(180deg, transparent 34%, rgba(11, 14, 11, 0.73));
 }
-.tok-thread-portal__number {
-  position: absolute;
-  right: 22px;
-  bottom: 16px;
-  color: #f0dfc1;
-  font-family: var(--tok-serif);
-  font-size: 28px;
-}
-.tok-thread-portal__visited {
-  position: absolute;
-  top: 17px;
-  left: 18px;
-  display: grid;
-  width: 54px;
-  height: 54px;
-  place-items: center;
-  border-radius: 50%;
-  color: #f5d89b;
-  background: #0b0e0bbf;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-.tok-thread-portal__visited svg {
-  width: 25px;
-}
 .tok-thread-portal__copy {
   display: flex;
   width: 100%;
