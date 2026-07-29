@@ -91,6 +91,6 @@ export const LANGUAGE_OPTIONS = [
 ];
 
 export const SCENE_TRANSITION = {
-  duration: 0.48,
+  duration: 0.72,
   ease: [0.22, 1, 0.36, 1] as const,
 };

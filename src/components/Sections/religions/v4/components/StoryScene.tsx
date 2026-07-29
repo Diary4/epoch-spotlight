@@ -40,7 +40,7 @@ export default function StoryScene({
         style={{ objectPosition: card.imagePosition ?? "center" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
-        transition={{ duration: 0.42 }}
+        transition={{ duration: 0.62 }}
       />
       <div className="tok-story__image-veil" />
       <div className="tok-story__grain" />
@@ -48,7 +48,7 @@ export default function StoryScene({
         className="tok-story__collection-heading"
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ ...SCENE_TRANSITION, delay: 0.04 }}
+        transition={{ ...SCENE_TRANSITION, delay: 0.08 }}
       >
         {/* Chapter breadcrumb — replaces the old signature topline. */}
         <p className="tok-eyebrow tok-story__eyebrow">

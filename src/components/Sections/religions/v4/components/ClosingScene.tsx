@@ -37,7 +37,7 @@ export default function ClosingScene({ copy, dispatch }: ClosingSceneProps) {
             key={line}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ ...SCENE_TRANSITION, delay: 0.45 + index * 0.14 }}
+            transition={{ ...SCENE_TRANSITION, delay: 0.65 + index * 0.2 }}
           >
             <span>0{index + 1}</span>
             {line}
