@@ -455,8 +455,8 @@
 }
 .tok-hub__background {
   display: block;
-  opacity: 0.32;
-  filter: saturate(0.35) contrast(0.85) brightness(1.22);
+  opacity: 0.62;
+  filter: saturate(0.7) contrast(1) brightness(1.02);
   -o-object-position: center 36%;
   object-position: center 36%;
 }
@@ -466,11 +466,11 @@
   background:
     radial-gradient(
       circle at 50% 38%,
-      rgba(241, 234, 220, 0.12),
-      rgba(241, 234, 220, 0.42) 48%,
-      #f1eadcd4 100%
+      rgba(241, 234, 220, 0.04),
+      rgba(241, 234, 220, 0.18) 52%,
+      #f1eadc88 100%
     ),
-    linear-gradient(180deg, #f6f1e68f 0%, #f1eadca8 50%, #ebe3d2d6 100%);
+    linear-gradient(180deg, #f6f1e640 0%, #f1eadc55 50%, #ebe3d29e 100%);
 }
 .tok-hub__grain {
   opacity: 0.045;
