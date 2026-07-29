@@ -67,25 +67,25 @@ export default function HubScene({
         <p className="tok-hub__body">{copy.hubBody}</p>
         <blockquote>{copy.hubQuote}</blockquote>
       </header>
-      {/* Drawn in the portal container's own 920×1290 coordinate space, so the
-          threads meet the portal images wherever the rail gutter puts them. */}
+      {/* Drawn 1:1 in the portal container's 1080×1290 space so the threads
+          land on the portal images without any preserveAspectRatio guesswork. */}
       <div className="tok-hub__threads" aria-hidden="true">
-        <svg viewBox="0 0 920 1290" preserveAspectRatio="none">
+        <svg viewBox="0 0 1080 1290" preserveAspectRatio="none">
           <path
             className="tok-path tok-path--faiths"
-            d="M460 645 C392 520 318 360 244 210"
+            d="M540 645 C452 520 336 360 244 210"
           />
           <path
             className="tok-path tok-path--nations"
-            d="M460 645 C528 520 602 360 676 210"
+            d="M540 645 C628 520 744 360 836 210"
           />
           <path
             className="tok-path tok-path--shared"
-            d="M460 645 C392 770 318 900 244 1010"
+            d="M540 645 C452 770 336 900 244 1010"
           />
           <path
             className="tok-path tok-path--rights"
-            d="M460 645 C528 770 602 900 676 1010"
+            d="M540 645 C628 770 744 900 836 1010"
           />
         </svg>
       </div>
