@@ -1,4 +1,4 @@
-import lalishImage from "@/assets/images/religions/sharedlife/lalish.jpeg";
+import lalishImage from "@/assets/images/religions/sharedlife/lalish.webp";
 import shrineImage from "@/assets/images/religions/r-2.webp";
 import mosqueImage from "@/assets/images/religions/r-3.webp";
 import churchImage from "@/assets/images/religions/c-1.webp";

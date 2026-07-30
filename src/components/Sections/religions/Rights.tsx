@@ -22,11 +22,11 @@ import {
   usePreloadImages,
 } from "@/components/Sections/religions/tabTransitions";
 
-import bg3 from "@/assets/images/religions/rights/parliment.jpeg";
-import governmentImg from "@/assets/images/religions/rights/krg_cabinet.jpg";
-import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
+import bg3 from "@/assets/images/religions/rights/parliment.webp";
+import governmentImg from "@/assets/images/religions/rights/krg_cabinet.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.webp";
 import letterImg from "@/assets/mainImages/letter.webp";
-import buildingImg from "@/assets/images/religions/rights/Hawler_Castle.jpg";
+import buildingImg from "@/assets/images/religions/rights/Hawler_Castle.webp";
 import sharedImg from "@/assets/mainImages/shared.webp";
 import mediaImg from "@/assets/images/religions/r-6.webp";
 

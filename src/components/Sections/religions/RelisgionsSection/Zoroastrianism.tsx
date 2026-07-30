@@ -4,9 +4,9 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/zoro/cover.jpeg";
-import historyImg from "@/assets/images/religions/zoro/history.jpeg";
-import environmentImg from "@/assets/images/religions/zoro/environment.jpeg";
+import bg from "@/assets/images/religions/zoro/cover.webp";
+import historyImg from "@/assets/images/religions/zoro/history.webp";
+import environmentImg from "@/assets/images/religions/zoro/environment.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,

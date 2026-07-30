@@ -9,15 +9,15 @@ import {
 } from "@/constants/backNavigation";
 import { localizeDigits } from "@/lib/utils";
 import presidencyPortrait from "@/assets/images/parliment/presidency-centered.webp";
-import president1 from "@/assets/images/president/1.jpeg";
-import president2 from "@/assets/images/president/2.jpeg";
-import president3 from "@/assets/images/president/3.jpeg";
-import president4 from "@/assets/images/president/4.jpeg";
-import president5 from "@/assets/images/president/5.jpeg";
-import president6 from "@/assets/images/president/6.jpeg";
-import president7 from "@/assets/images/president/7.jpeg";
-import president8 from "@/assets/images/president/8.jpeg";
-import president9 from "@/assets/images/president/9.jpeg";
+import president1 from "@/assets/images/president/1.webp";
+import president2 from "@/assets/images/president/2.webp";
+import president3 from "@/assets/images/president/3.webp";
+import president4 from "@/assets/images/president/4.webp";
+import president5 from "@/assets/images/president/5.webp";
+import president6 from "@/assets/images/president/6.webp";
+import president7 from "@/assets/images/president/7.webp";
+import president8 from "@/assets/images/president/8.webp";
+import president9 from "@/assets/images/president/9.webp";
 
 type TimelineDetail =
   | string

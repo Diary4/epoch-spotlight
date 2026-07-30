@@ -6,7 +6,7 @@ import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfCorridor, bcfErbil } from "@/components/Sections/bcf/bcfAssets";
-import storyThumb from "@/assets/images/religions/kurds/cover.jpeg";
+import storyThumb from "@/assets/images/religions/kurds/cover.webp";
 
 type BcfStoryProps = {
   lang: BcfLang;

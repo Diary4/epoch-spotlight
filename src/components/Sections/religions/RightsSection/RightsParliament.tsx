@@ -2,7 +2,7 @@ import { Calendar, FileText, ScrollText, Vote } from "lucide-react";
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
-import parliamentHero from "@/assets/images/religions/rights/images.jpeg";
+import parliamentHero from "@/assets/images/religions/rights/images.webp";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {

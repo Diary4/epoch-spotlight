@@ -15,11 +15,11 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
-import bg from "@/assets/images/religions/history/history.jpeg";
+import bg from "@/assets/images/religions/history/history.webp";
 import ancientRootsImg from "@/assets/images/religions/faiths.webp";
-import jewishCommunityImg from "@/assets/images/religions/judaism/kurdish-jews.jpeg";
+import jewishCommunityImg from "@/assets/images/religions/judaism/kurdish-jews.webp";
 import christiansImg from "@/assets/images/religions/r-5.webp";
-import bahaullahImg from "@/assets/images/religions/bahai/kurdistan.jpeg";
+import bahaullahImg from "@/assets/images/religions/bahai/kurdistan.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

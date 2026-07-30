@@ -18,16 +18,16 @@ import {
   usePreloadImages,
 } from "@/components/Sections/religions/tabTransitions";
 
-import bg from "@/assets/images/religions/thecradle/cradle.jpeg";
-import nationsCover from "@/assets/images/religions/nations/cover.jpeg";
-import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
+import bg from "@/assets/images/religions/thecradle/cradle.webp";
+import nationsCover from "@/assets/images/religions/nations/cover.webp";
+import imgIslam from "@/assets/images/religions/islam/barzani.webp";
 import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
-import imgYazidism from "@/assets/images/religions/yazidi/lalish.jpeg";
-import imgYarsanism from "@/assets/images/religions/sharedlife/kakai-festival.jpeg";
+import imgYazidism from "@/assets/images/religions/yazidi/lalish.webp";
+import imgYarsanism from "@/assets/images/religions/sharedlife/kakai-festival.webp";
 import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
-import imgJudaism from "@/assets/images/religions/judaism/heritage.jpeg";
-import imgBahai from "@/assets/images/religions/bahai/core.jpeg";
-import imgSabean from "@/assets/images/religions/sabean/meaning.jpeg";
+import imgJudaism from "@/assets/images/religions/judaism/heritage.webp";
+import imgBahai from "@/assets/images/religions/bahai/core.webp";
+import imgSabean from "@/assets/images/religions/sabean/meaning.webp";
 import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
 import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
 import nationChaldo from "@/assets/images/new/religions/nations/assyrian.webp";

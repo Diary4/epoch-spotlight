@@ -6,11 +6,11 @@ import {
 } from "lucide-react";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
-import bg from "@/assets/images/religions/kakayi/cover.jpeg";
-import meaningImg from "@/assets/images/religions/kakayi/meaning.jpeg";
-import principlesImg from "@/assets/images/religions/kakayi/fourprinciple.jpeg";
-import jamkhanaImg from "@/assets/images/religions/kakayi/jamkhana.jpeg";
-import bookImg from "@/assets/images/religions/kakayi/book.jpeg";
+import bg from "@/assets/images/religions/kakayi/cover.webp";
+import meaningImg from "@/assets/images/religions/kakayi/meaning.webp";
+import principlesImg from "@/assets/images/religions/kakayi/fourprinciple.webp";
+import jamkhanaImg from "@/assets/images/religions/kakayi/jamkhana.webp";
+import bookImg from "@/assets/images/religions/kakayi/book.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import {

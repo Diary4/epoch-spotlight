@@ -2,7 +2,7 @@
  * Central placeholder assets for the BCF VIP experience.
  * Swap these imports when final VIP photography / logo assets arrive.
  */
-export { default as bcfLangBg } from "@/assets/images/religions/kurds/cover.jpeg";
+export { default as bcfLangBg } from "@/assets/images/religions/kurds/cover.webp";
 export { default as bcfIntroBg } from "@/assets/images/PrimeMinistir/service.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
 export { default as bcfMapBg } from "@/assets/images/kurdistan.webp";

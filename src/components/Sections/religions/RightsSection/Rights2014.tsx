@@ -2,7 +2,7 @@ import { AlertTriangle, DoorOpen, Shield, Users } from "lucide-react";
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
-import hawlerCastleHero from "@/assets/images/religions/rights/Hawler_Castle.jpg";
+import hawlerCastleHero from "@/assets/images/religions/rights/Hawler_Castle.webp";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {

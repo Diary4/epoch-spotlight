@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import OtherFaithTraditionsPage from "@/components/Sections/religions/RelisgionsSection/OtherFaith";
 
-import bg from "@/assets/images/religions/yazidi/cover.jpeg";
+import bg from "@/assets/images/religions/yazidi/cover.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 import {
@@ -22,10 +22,10 @@ import {
   FaithDetailSpacer,
 } from "@/components/Sections/religions/faithDetailLayout";
 import { NationTopicSwitcher } from "@/components/Sections/religions/nations/NationTopicSwitcher";
-import lalish from "@/assets/images/religions/yazidi/lalish.jpeg";
-import peacock from "@/assets/images/religions/yazidi/tawus.jpeg";
-import jemayiImg from "@/assets/images/religions/yazidi/jemayi.jpeg";
-import candle from "@/assets/images/religions/yazidi/reslience.jpeg";
+import lalish from "@/assets/images/religions/yazidi/lalish.webp";
+import peacock from "@/assets/images/religions/yazidi/tawus.webp";
+import jemayiImg from "@/assets/images/religions/yazidi/jemayi.webp";
+import candle from "@/assets/images/religions/yazidi/reslience.webp";
 
 type LangCode = "en" | "ku" | "ar";
 

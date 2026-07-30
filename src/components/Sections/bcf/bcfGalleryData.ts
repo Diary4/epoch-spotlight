@@ -1,11 +1,11 @@
 import erbil from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import gali from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 import ahmed from "@/assets/images/TouristicPlace/AhmedAwa/1000140566.webp";
-import lalish from "@/assets/images/religions/yazidi/lalish.jpeg";
+import lalish from "@/assets/images/religions/yazidi/lalish.webp";
 import service from "@/assets/images/PrimeMinistir/service.webp";
 import welcome from "@/assets/images/women/w-4.webp";
-import coexistence from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
-import kurds from "@/assets/images/religions/kurds/cover.jpeg";
+import coexistence from "@/assets/images/religions/coexistence/masoud-barzani.webp";
+import kurds from "@/assets/images/religions/kurds/cover.webp";
 
 export const bcfGalleryItems = [
   { image: erbil, text: "Erbil" },

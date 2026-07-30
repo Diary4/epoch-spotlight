@@ -13,11 +13,11 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 
-import yarsanism from "@/assets/images/religions/kakayi/cover.jpeg";
-import zoroastrianism from "@/assets/images/religions/zoro/cover.jpeg";
-import judaism from "@/assets/images/religions/judaism/card-cover.jpeg";
-import bahai from "@/assets/images/religions/bahai/card-cover.jpeg";
-import mandaean from "@/assets/images/religions/sabean/card-cover.jpeg";
+import yarsanism from "@/assets/images/religions/kakayi/cover.webp";
+import zoroastrianism from "@/assets/images/religions/zoro/cover.webp";
+import judaism from "@/assets/images/religions/judaism/card-cover.webp";
+import bahai from "@/assets/images/religions/bahai/card-cover.webp";
+import mandaean from "@/assets/images/religions/sabean/card-cover.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";

@@ -1,6 +1,6 @@
 import potatoEatersCover from "@/assets/images/library/books/the-potato-eater.webp";
-import hotelEuropaCover from "@/assets/images/library/books/hotel-europa.jpeg";
-import triangleTombCover from "@/assets/images/library/books/triangle-tomb.jpeg";
+import hotelEuropaCover from "@/assets/images/library/books/hotel-europa.webp";
+import triangleTombCover from "@/assets/images/library/books/triangle-tomb.webp";
 import type { LibraryBook, LibraryCategory } from "./libraryTypes";
 
 export const LIBRARY_BOOKS: LibraryBook[] = [

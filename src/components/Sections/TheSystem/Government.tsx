@@ -25,7 +25,7 @@ import presidencyImg from "@/assets/images/parliment/presidency-centered.webp";
 import publicServicesIcon from "@/assets/icons/thesystem/government/public-services.webp";
 import policyImplementationIcon from "@/assets/icons/thesystem/government/policy-impl.webp";
 import administrationIcon from "@/assets/icons/thesystem/government/administration.webp";
-import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
+import cabinetIcon from "@/assets/icons/thecabinet/cabinet.webp";
 
 const mainCards = [
   {

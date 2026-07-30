@@ -11,7 +11,7 @@ import governmentIcon from "@/assets/icons/thesystem/government.webp";
 import judiciaryIcon from "@/assets/icons/thesystem/judiciary.webp";
 import pmImg from "@/assets/images/PrimeMinistir/p-4.webp";
 import presidencyImg from "@/assets/images/parliment/presidency-centered.webp";
-import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
+import cabinetIcon from "@/assets/icons/thecabinet/cabinet.webp";
 
 /** Radiating sun motif used in the ornament dividers and the panel emblem. */
 function Sunburst({ className = "" }: { className?: string }) {

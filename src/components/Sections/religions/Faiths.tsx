@@ -8,14 +8,14 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
 import faithsVideo from "@/assets/videos/faiths.webm";
-import imgIslam from "@/assets/images/religions/islam/barzani.jpeg";
+import imgIslam from "@/assets/images/religions/islam/barzani.webp";
 import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
-import imgYazidism from "@/assets/images/religions/yazidi/lalish.jpeg";
-import imgYarsanism from "@/assets/images/religions/sharedlife/kakai-festival.jpeg";
+import imgYazidism from "@/assets/images/religions/yazidi/lalish.webp";
+import imgYarsanism from "@/assets/images/religions/sharedlife/kakai-festival.webp";
 import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
-import imgJudaism from "@/assets/images/religions/judaism/heritage.jpeg";
-import imgBahai from "@/assets/images/religions/bahai/core.jpeg";
-import imgSabean from "@/assets/images/religions/sabean/meaning.jpeg";
+import imgJudaism from "@/assets/images/religions/judaism/heritage.webp";
+import imgBahai from "@/assets/images/religions/bahai/core.webp";
+import imgSabean from "@/assets/images/religions/sabean/meaning.webp";
 
 // Per-faith detail pages
 import IslamPage from "@/components/Sections/religions/RelisgionsSection/Islam";

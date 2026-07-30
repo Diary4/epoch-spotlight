@@ -30,7 +30,7 @@ import {
   systemCanvasBackButtonClassName,
   systemCanvasBackIconSize,
 } from "@/constants/backNavigation";
-import cabinetIcon from "@/assets/icons/thecabinet/cabinet.png";
+import cabinetIcon from "@/assets/icons/thecabinet/cabinet.webp";
 
 type Lang = "ku" | "en" | "ar";
 

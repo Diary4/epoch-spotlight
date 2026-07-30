@@ -1,11 +1,11 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/nations/turkmen/cover.jpeg";
-import parliamentImg from "@/assets/images/religions/nations/turkmen/parliment.jpeg";
-import languageImg from "@/assets/images/religions/nations/turkmen/cover.jpeg";
-import cultureImg from "@/assets/images/religions/nations/turkmen/culture.jpeg";
-import educationImg from "@/assets/images/religions/nations/turkmen/education.jpeg";
+import heroBg from "@/assets/images/religions/nations/turkmen/cover.webp";
+import parliamentImg from "@/assets/images/religions/nations/turkmen/parliment.webp";
+import languageImg from "@/assets/images/religions/nations/turkmen/cover.webp";
+import cultureImg from "@/assets/images/religions/nations/turkmen/culture.webp";
+import educationImg from "@/assets/images/religions/nations/turkmen/education.webp";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,

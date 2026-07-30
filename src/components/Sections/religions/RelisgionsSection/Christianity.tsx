@@ -4,10 +4,10 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import bg from "@/assets/images/religions/christianity/cover.jpeg";
-import historicalImg from "@/assets/images/religions/christianity/christianity.jpeg";
-import popeImg from "@/assets/images/religions/christianity/pope.jpeg";
-import churchesImg from "@/assets/images/religions/christianity/churches.jpeg";
+import bg from "@/assets/images/religions/christianity/cover.webp";
+import historicalImg from "@/assets/images/religions/christianity/christianity.webp";
+import popeImg from "@/assets/images/religions/christianity/pope.webp";
+import churchesImg from "@/assets/images/religions/christianity/churches.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,

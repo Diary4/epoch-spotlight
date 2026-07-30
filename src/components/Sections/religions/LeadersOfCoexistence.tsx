@@ -17,15 +17,15 @@ import {
 } from "@/components/Sections/religions/tabTransitions";
 
 import bg from "@/assets/images/religions/nc-1.webp";
-import coexistenceHero from "@/assets/images/religions/coexistence/coexistence.jpeg";
+import coexistenceHero from "@/assets/images/religions/coexistence/coexistence.webp";
 import cradleImg from "@/assets/images/religions/main.webp";
-import nationsImg from "@/assets/images/religions/nations/cover.jpeg";
+import nationsImg from "@/assets/images/religions/nations/cover.webp";
 import sharedImg from "@/assets/images/religions/nl-1.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
-import abdulSalamBarzaniImg from "@/assets/images/religions/coexistence/abdulsalam-barzani.jpeg";
-import mustafaBarzaniImg from "@/assets/images/religions/coexistence/mustafa-barzani.jpeg";
-import ahmedBarzaniImg from "@/assets/images/religions/coexistence/ahmed-barzani.jpeg";
-import masoudBarzaniImg from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
+import abdulSalamBarzaniImg from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
+import mustafaBarzaniImg from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
+import ahmedBarzaniImg from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
+import masoudBarzaniImg from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 
 const leaderImages: Record<string, string> = {
   "abdul-salam-barzani": abdulSalamBarzaniImg,

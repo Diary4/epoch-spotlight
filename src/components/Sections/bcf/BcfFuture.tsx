@@ -4,7 +4,7 @@ import BcfShell from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import futureThumb from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
+import futureThumb from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfFutureProps = {

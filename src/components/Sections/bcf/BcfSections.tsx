@@ -8,7 +8,7 @@ import {
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import storyThumb from "@/assets/images/religions/kurds/cover.jpeg";
+import storyThumb from "@/assets/images/religions/kurds/cover.webp";
 import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
 import mapThumb from "@/assets/images/PrimeMinistir/service.webp";
 import impactThumb from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";

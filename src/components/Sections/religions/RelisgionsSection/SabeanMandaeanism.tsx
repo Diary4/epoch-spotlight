@@ -1,9 +1,9 @@
 import React from "react";
 import { Droplets, Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/sabean/cover.jpeg";
-import meaningImg from "@/assets/images/religions/sabean/meaning.jpeg";
-import kurdistanImg from "@/assets/images/religions/sabean/kurditan.jpeg";
+import bg from "@/assets/images/religions/sabean/cover.webp";
+import meaningImg from "@/assets/images/religions/sabean/meaning.webp";
+import kurdistanImg from "@/assets/images/religions/sabean/kurditan.webp";
 import mandaicImg from "@/assets/images/religions/sabean/mandiac.gif";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {

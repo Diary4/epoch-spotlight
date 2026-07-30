@@ -1,11 +1,11 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import bg from "@/assets/images/religions/islam/barzani.jpeg";
-import shafiImg from "@/assets/images/religions/islam/shafi.jpeg";
-import sufismImg from "@/assets/images/religions/islam/sufism.jpeg";
-import ministryImg from "@/assets/images/religions/islam/ministry.jpeg";
-import eidImg from "@/assets/images/religions/islam/eid.jpeg";
+import bg from "@/assets/images/religions/islam/barzani.webp";
+import shafiImg from "@/assets/images/religions/islam/shafi.webp";
+import sufismImg from "@/assets/images/religions/islam/sufism.webp";
+import ministryImg from "@/assets/images/religions/islam/ministry.webp";
+import eidImg from "@/assets/images/religions/islam/eid.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,

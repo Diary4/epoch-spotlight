@@ -1,11 +1,11 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/nations/aremnian/armenian.jpeg";
+import heroBg from "@/assets/images/religions/nations/aremnian/armenian.webp";
 import historyImg from "@/assets/images/new/religions/nations/armenian.webp";
-import churchesImg from "@/assets/images/religions/nations/aremnian/churches.jpeg";
-import communityImg from "@/assets/images/religions/nations/aremnian/community.jpeg";
-import parliamentImg from "@/assets/images/religions/rights/parliment.jpeg";
+import churchesImg from "@/assets/images/religions/nations/aremnian/churches.webp";
+import communityImg from "@/assets/images/religions/nations/aremnian/community.webp";
+import parliamentImg from "@/assets/images/religions/rights/parliment.webp";
 import {
   FAITH_CONTENT_PADDING,
   FAITH_DETAIL_CONTENT_WIDTH,

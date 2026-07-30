@@ -14,7 +14,7 @@ import reliefImg from "@/assets/images/PrimeMinistir/isis.webp";
 import healthImg from "@/assets/images/PrimeMinistir/service.webp";
 import educationImg from "@/assets/images/PrimeMinistir/education.webp";
 import environmentImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import communityImg from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
+import communityImg from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 
 type BcfHumanityProps = {
   lang: BcfLang;

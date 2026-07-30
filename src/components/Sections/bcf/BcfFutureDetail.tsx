@@ -9,10 +9,10 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
-import topicA from "@/assets/images/religions/coexistence/masoud-barzani.jpeg";
+import topicA from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import topicB from "@/assets/images/PrimeMinistir/agreement.webp";
 import topicC from "@/assets/images/PrimeMinistir/economic.webp";
-import topicD from "@/assets/images/religions/coexistence/mustafa-barzani.jpeg";
+import topicD from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
 
 const topicImages: Record<FutureTopicId, string> = {
   leadership: topicA,
