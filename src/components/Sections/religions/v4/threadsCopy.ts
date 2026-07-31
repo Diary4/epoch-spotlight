@@ -13,7 +13,8 @@ export const threadsCopy = {
       hubBody:
         "This journey invites you into Kurdistan's story of coexistence — through faiths, nations, courageous leadership, shared life, and the rights that protect belonging.",
       hubQuote: "Not enduring the other — celebrating one another.",
-      hubInstruction: "Touch a thread to follow its story",
+      hubInstruction: "Touch a thread",
+      hubInstructionHint: "to follow its story",
       threadLabel: "Living thread",
       storyInstruction: "Touch a subject to explore its four photo stories",
       openStory: "Read more",
@@ -54,7 +55,8 @@ export const threadsCopy = {
         "ئەم گەشتە بانگهێشتی چیرۆکی پێکەوەژیانی کوردستان دەکات — لە ڕێگەی ئایین، نەتەوە، ڕێبەرایەتیی ئازا، ژیانی هاوبەش و ئەو مافانەی سەربەخۆیی دەپارێزن.",
       hubQuote:
         "پێکەوەژیان تەنها دانبەخۆداگرتن نییە بەرامبەر ئەوی تر، بەڵکو بەرزڕاگرتنیەتی.",
-      hubInstruction: "دەست لە تەنێک بدە و بەدوای چیرۆکەکەیدا بڕۆ",
+      hubInstruction: "دەست لە تەنێک بدە",
+      hubInstructionHint: "بەدوای چیرۆکەکەیدا بڕۆ",
       threadLabel: "تەنە زیندووەکە",
       storyInstruction: "دەست لە بابەتێک بدە بۆ دۆزینەوەی چوار چیرۆکی وێنەدار",
       openStory: "زیاتر بخوێنەوە",
@@ -94,7 +96,8 @@ export const threadsCopy = {
       hubBody:
         "هذه الرحلة تدعوك إلى قصة التعايش في كوردستان — عبر الأديان والقوميات والقيادة الشجاعة والحياة المشتركة والحقوق التي تحفظ الانتماء.",
       hubQuote: "التعايش ليس تحمّل الآخر. بل هو الاحتفاء به.",
-      hubInstruction: "المس خيطاً لتتبع حكايته",
+      hubInstruction: "المس خيطاً",
+      hubInstructionHint: "لتتبع حكايته",
       threadLabel: "الخيط الحي",
       storyInstruction: "المس موضوعاً لاستكشاف أربع حكايات مصوّرة",
       openStory: "اقرأ المزيد",
