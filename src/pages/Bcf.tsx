@@ -113,7 +113,7 @@ export default function BcfPage() {
                   setStep("map");
                 } else if (id === "impact") {
                   setStep("impact");
-                } else {
+                } else if (id === "trust" || id === "future") {
                   setStep("future");
                 }
               });

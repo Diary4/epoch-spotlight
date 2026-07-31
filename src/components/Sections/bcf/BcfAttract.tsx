@@ -324,7 +324,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
               src={bcfLangBg}
               alt=""
               decoding="async"
-              fetchPriority="high"
+              fetchpriority="high"
               className="absolute inset-0 h-full w-full object-cover opacity-45"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/92" />

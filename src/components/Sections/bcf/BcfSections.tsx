@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import gsap from "gsap";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import {
@@ -12,6 +12,7 @@ import storyThumb from "@/assets/images/religions/kurds/cover.webp";
 import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
 import mapThumb from "@/assets/images/PrimeMinistir/service.webp";
 import impactThumb from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
+import trustThumb from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import futureThumb from "@/assets/images/PrimeMinistir/agreement.webp";
 
 type BcfSectionsProps = {
@@ -25,52 +26,151 @@ const thumbs: Record<JourneyChapterId, string> = {
   humanity: humanityThumb,
   map: mapThumb,
   impact: impactThumb,
+  trust: trustThumb,
   future: futureThumb,
 };
 
-/**
- * Figma Story Sections-3 — 1080×1920 design coordinates (matches DesignScaledCanvas).
- */
-const CIRCLE = 200;
+const CIRCLE = 236;
 
+/**
+ * Constellation layout (1080×1920) — two rows of circles with the top-middle
+ * node lifted, matching the Explore Our Journey Figma frame.
+ * Positions are circle centers.
+ */
 const LAYOUT: {
   id: JourneyChapterId;
-  left: number;
-  top: number;
-  width: number;
+  cx: number;
+  cy: number;
 }[] = [
-  { id: "story", left: 153, top: 494, width: 483 },
-  { id: "humanity", left: 300, top: 719, width: 700 },
-  { id: "map", left: 360, top: 960, width: 640 },
-  { id: "impact", left: 360, top: 1201, width: 560 },
-  { id: "future", left: 280, top: 1441, width: 720 },
+  { id: "humanity", cx: 200, cy: 820 },
+  { id: "story", cx: 540, cy: 680 },
+  { id: "map", cx: 880, cy: 820 },
+  { id: "impact", cx: 200, cy: 1240 },
+  { id: "trust", cx: 540, cy: 1240 },
+  { id: "future", cx: 880, cy: 1240 },
 ];
+
+type Point = { cx: number; cy: number };
+
+/**
+ * Smooth cubic path through three circle centers (left → middle → right).
+ * Top row arches through the elevated middle; bottom row keeps a soft ribbon
+ * undulation so flat rows still match the Figma wave, without looking hand-drawn.
+ */
+function rowCurve(a: Point, b: Point, c: Point, dy = 0): string {
+  const lift = (p: Point): Point => ({ cx: p.cx, cy: p.cy + dy });
+  const A = lift(a);
+  const B = lift(b);
+  const C = lift(c);
+  const t = 0.42;
+  const dx1 = B.cx - A.cx;
+  const dx2 = C.cx - B.cx;
+  const flat = Math.abs(A.cy - B.cy) < 1 && Math.abs(B.cy - C.cy) < 1;
+  // Gentle sine-like ribbon when the three centers are level.
+  const wave = flat ? 22 : 0;
+
+  return [
+    `M ${A.cx} ${A.cy}`,
+    `C ${A.cx + dx1 * t} ${A.cy - wave} ${B.cx - dx1 * t} ${B.cy + wave * 0.35} ${B.cx} ${B.cy}`,
+    `C ${B.cx + dx2 * t} ${B.cy + wave * 0.35} ${C.cx - dx2 * t} ${C.cy - wave} ${C.cx} ${C.cy}`,
+  ].join(" ");
+}
+
+/** Three perfectly parallel strands per row — matching the Figma ribbon look. */
+const ROW_STRAND_OFFSETS = [-14, 0, 14] as const;
 
 export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps) {
   const c = bcfCopy[lang];
-  const listRef = React.useRef<HTMLDivElement | null>(null);
+  const stageRef = React.useRef<HTMLDivElement | null>(null);
+  const [activeId, setActiveId] = React.useState<JourneyChapterId>("story");
+
+  const topRow = React.useMemo(
+    () => [LAYOUT[0], LAYOUT[1], LAYOUT[2]] as [Point, Point, Point],
+    [],
+  );
+  const bottomRow = React.useMemo(
+    () => [LAYOUT[3], LAYOUT[4], LAYOUT[5]] as [Point, Point, Point],
+    [],
+  );
+
+  const rowPaths = React.useMemo(
+    () => [
+      ...ROW_STRAND_OFFSETS.map((dy) => rowCurve(topRow[0], topRow[1], topRow[2], dy)),
+      ...ROW_STRAND_OFFSETS.map((dy) =>
+        rowCurve(bottomRow[0], bottomRow[1], bottomRow[2], dy),
+      ),
+    ],
+    [topRow, bottomRow],
+  );
 
   React.useLayoutEffect(() => {
-    const el = listRef.current;
-    if (!el) return;
-    const rows = el.querySelectorAll<HTMLElement>("[data-journey-row]");
-    // Hide before first paint so sections never flash visible, then stagger in.
-    gsap.set(rows, { opacity: 0, x: -36 });
+    const root = stageRef.current;
+    if (!root) return;
+
+    const nodes = root.querySelectorAll<HTMLElement>("[data-journey-node]");
+    const lines = root.querySelectorAll<SVGPathElement>("[data-journey-line]");
+
+    gsap.set(nodes, { opacity: 0, scale: 0.72 });
+    gsap.set(lines, { opacity: 0 });
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const ctx = gsap.context(() => {
-      gsap.to(rows, {
-        opacity: 1,
-        x: 0,
-        duration: 0.65,
-        ease: "power2.out",
-        stagger: 0.19,
-        delay: 0.15,
-      });
-    }, el);
+      if (prefersReduced) {
+        gsap.set(nodes, { opacity: 1, scale: 1 });
+        gsap.set(lines, { opacity: 1 });
+        return;
+      }
+
+      // Soft scale+fade entrance — same spirit as Who We Serve card motion.
+      gsap
+        .timeline({ delay: 0.12 })
+        .to(lines, {
+          opacity: 1,
+          duration: 0.7,
+          ease: "power1.out",
+          stagger: 0.03,
+        })
+        .to(
+          nodes,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.55,
+            ease: "power2.out",
+            stagger: 0.09,
+          },
+          "-=0.35",
+        );
+    }, root);
+
     return () => {
       ctx.revert();
-      gsap.set(rows, { opacity: 0, x: -36 });
+      gsap.set(nodes, { opacity: 0, scale: 0.72 });
+      gsap.set(lines, { opacity: 0 });
     };
   }, [lang]);
+
+  const activate = (id: JourneyChapterId) => {
+    setActiveId(id);
+    const node = stageRef.current?.querySelector<HTMLElement>(
+      `[data-journey-node="${id}"]`,
+    );
+    if (!node) return;
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+    gsap.fromTo(
+      node,
+      { scale: 0.92 },
+      { scale: 1, duration: 0.4, ease: "power1.inOut", overwrite: "auto" },
+    );
+  };
 
   return (
     <BcfShell showLogo={false} overlayClassName="bg-black/0">
@@ -81,26 +181,6 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
             "radial-gradient(900px 700px at -10% -5%, rgba(32,44,94,0.55), transparent 60%), radial-gradient(1000px 800px at 110% 110%, rgba(50,36,9,0.5), transparent 55%), linear-gradient(180deg, #191205 0%, #0a0d22 100%)",
         }}
       >
-        {/* Concentric arcs behind the chapter pills (Figma Ellipse 1 / 2). */}
-        <div
-          className="pointer-events-none absolute rounded-full border border-white/[0.12]"
-          style={{
-            left: -715,
-            top: 473,
-            width: 1300,
-            height: 1300,
-          }}
-        />
-        <div
-          className="pointer-events-none absolute rounded-full border border-white/[0.08]"
-          style={{
-            left: -659,
-            top: 564,
-            width: 1133,
-            height: 1133,
-          }}
-        />
-
         <button
           type="button"
           onClick={onBack}
@@ -110,7 +190,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
           <ChevronLeft className="h-7 w-7 text-white" />
         </button>
 
-        <div className="absolute left-[80px] top-[124px] z-20 max-w-[720px]">
+        <div className="absolute left-[80px] top-[124px] z-20 max-w-[860px]">
           <h1 className="text-[80px] font-bold leading-none tracking-[0.01em]">
             <span className="text-[#fbf4e4]">{c.journeyTitleLead}</span>{" "}
             <span style={{ color: BCF.gold }}>{c.journeyTitleGold}</span>
@@ -122,52 +202,76 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
           <p className="mt-6 text-[32px] text-[#d2ba91]">{c.journeySubtitle}</p>
         </div>
 
-        <div ref={listRef} className="absolute inset-0 z-20">
+        <div ref={stageRef} className="absolute inset-0 z-20">
+          <svg
+            className="pointer-events-none absolute inset-0 h-full w-full"
+            viewBox="0 0 1080 1920"
+            fill="none"
+            aria-hidden="true"
+          >
+            {rowPaths.map((d, index) => {
+              const isCenter = index % 3 === 1;
+              return (
+                <path
+                  key={`strand-${index}`}
+                  data-journey-line=""
+                  d={d}
+                  stroke={
+                    isCenter ? "rgba(251,193,88,0.42)" : "rgba(251,193,88,0.18)"
+                  }
+                  strokeWidth={isCenter ? 1.75 : 1.25}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              );
+            })}
+          </svg>
+
           {LAYOUT.map((item) => {
             const chapter = c.journeyChapters.find((ch) => ch.id === item.id);
             if (!chapter) return null;
-            // Clamp so pill + label never spill past the 1080 canvas edge.
-            const width = Math.min(item.width, 1040 - item.left);
+            const isActive = activeId === item.id;
+            const size = isActive ? CIRCLE + 16 : CIRCLE;
+
             return (
               <button
                 key={item.id}
                 type="button"
-                data-journey-row
-                onClick={() => onSelect(item.id)}
-                className="group absolute flex items-center rounded-full bg-black/25 py-5 pl-[210px] pr-8 text-left opacity-0 backdrop-blur-sm transition-[background-color,box-shadow] duration-300 ease-smooth-out "
+                data-journey-node={item.id}
+                onClick={() => {
+                  activate(item.id);
+                  onSelect(item.id);
+                }}
+                onPointerEnter={() => activate(item.id)}
+                className="absolute -translate-x-1/2 -translate-y-1/2 opacity-0"
                 style={{
-                  left: item.left,
-                  top: item.top,
-                  width,
-                  minHeight: 141,
-                  transform: "translateX(-36px)",
+                  left: item.cx,
+                  top: item.cy,
+                  width: CIRCLE + 48,
+                  height: CIRCLE + 48,
                 }}
               >
                 <span
-                  className="absolute left-0 top-1/2 h-[200px] w-[200px] -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[border-color,box-shadow] duration-300 ease-smooth-out"
+                  className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[width,height,box-shadow,border-color] duration-500 ease-smooth-out"
                   style={{
-                    borderColor: item.id === "story" ? BCF.gold : "rgba(251,193,88,0.55)",
-                    boxShadow:
-                      item.id === "story" ? `0 0 28px ${BCF.gold}55` : "none",
-                    width: CIRCLE,
-                    height: CIRCLE,
+                    width: size,
+                    height: size,
+                    borderColor: isActive ? BCF.gold : "rgba(251,193,88,0.55)",
+                    boxShadow: isActive
+                      ? `0 0 28px ${BCF.gold}66, 0 0 0 6px rgba(251,193,88,0.12)`
+                      : `0 0 0 0 ${BCF.gold}00`,
                   }}
                 >
                   <img
                     src={thumbs[item.id]}
                     alt=""
                     decoding="async"
-                    className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out will-change-transform motion-reduce:transition-none "
+                    className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out will-change-transform motion-reduce:transition-none"
+                    style={{ transform: isActive ? "scale(1.08)" : "scale(1)" }}
                   />
                 </span>
-                <span className="flex min-w-0 flex-1 flex-col items-start gap-4 overflow-hidden">
-                  <span className="w-full text-[44px] font-light leading-tight text-[#fdeed4]">
-                    {chapter.title}
-                  </span>
-                  <span className="flex items-center gap-2 text-[#fbc158]">
-                    <span className="h-px w-16 bg-current transition-all duration-500 ease-smooth-out " />
-                    <ArrowRight className="h-6 w-6 transform-gpu transition-transform duration-500 ease-smooth-out " />
-                  </span>
+                <span className="absolute left-1/2 top-full mt-5 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight text-[#fdeed4]">
+                  {chapter.title}
                 </span>
               </button>
             );

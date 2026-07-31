@@ -15,7 +15,13 @@ export type BcfStep =
   | "future"
   | "futureDetail";
 
-export type JourneyChapterId = "story" | "humanity" | "map" | "impact" | "future";
+export type JourneyChapterId =
+  | "story"
+  | "humanity"
+  | "map"
+  | "impact"
+  | "trust"
+  | "future";
 
 export type LocationId = "erbil" | "duhok" | "zakho" | "kirkuk" | "sulaymaniyah";
 export type ProjectId = "school-renovation" | "camp-support" | "emergency-aid";
@@ -310,13 +316,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     startJourney: "Start the Journey",
     journeyTitleLead: "Explore",
     journeyTitleGold: "Our Journey",
-    journeySubtitle: "5 Chapters . One Mission",
+    journeySubtitle: "6 Chapters . One Mission",
     journeyChapters: [
-      { id: "story", title: "Our Story" },
       { id: "humanity", title: "Humanity in Action" },
-      { id: "map", title: "Where We Work" },
+      { id: "story", title: "Our Story" },
+      { id: "map", title: "Where we Work" },
       { id: "impact", title: "Our Impact" },
-      { id: "future", title: "Trust & The Future" },
+      { id: "trust", title: "Trust Behind the Work" },
+      { id: "future", title: "Future & Legacy" },
     ],
     whoWeServeWhite: "Who",
     whoWeServeGold: "We Serve",
@@ -509,13 +516,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     startJourney: "دەستپێکردنی گەشت",
     journeyTitleLead: "گەشتی",
     journeyTitleGold: "ئێمە بدۆزەرەوە",
-    journeySubtitle: "٥ بەش . یەک ئامانج",
+    journeySubtitle: "٦ بەش . یەک ئامانج",
     journeyChapters: [
-      { id: "story", title: "چیرۆکەکەمان" },
       { id: "humanity", title: "مرۆڤایەتی لە کردار" },
+      { id: "story", title: "چیرۆکەکەمان" },
       { id: "map", title: "لە کوێ کار دەکەین" },
       { id: "impact", title: "کاریگەرییەکەمان" },
-      { id: "future", title: "متمانە و داهاتوو" },
+      { id: "trust", title: "متمانەی پشت کارەکە" },
+      { id: "future", title: "داهاتوو و میرات" },
     ],
     whoWeServeWhite: "ئێمە",
     whoWeServeGold: "خزمەتی کێ دەکەین",
@@ -708,13 +716,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     startJourney: "ابدأ الرحلة",
     journeyTitleLead: "اكتشف",
     journeyTitleGold: "رحلتنا",
-    journeySubtitle: "5 فصول . رسالة واحدة",
+    journeySubtitle: "6 فصول . رسالة واحدة",
     journeyChapters: [
-      { id: "story", title: "قصتنا" },
       { id: "humanity", title: "الإنسانية في العمل" },
+      { id: "story", title: "قصتنا" },
       { id: "map", title: "أين نعمل" },
       { id: "impact", title: "أثرنا" },
-      { id: "future", title: "الثقة والمستقبل" },
+      { id: "trust", title: "الثقة وراء العمل" },
+      { id: "future", title: "المستقبل والإرث" },
     ],
     whoWeServeWhite: "من",
     whoWeServeGold: "نخدم",
