@@ -126,13 +126,13 @@ const parliamentImages = [
   threadsAssets.dollar_g,
 ];
 const lawsImages = [
-  threadsAssets.wo,
+  threadsAssets.rightsLaws,
   threadsAssets.Yg,
   threadsAssets.Hg,
   threadsAssets.dt,
 ];
 const sanctuaryImages = [
-  threadsAssets.Ug,
+  threadsAssets.rightsYear2014,
   threadsAssets.Qg,
   threadsAssets.A2,
   threadsAssets.Yn,

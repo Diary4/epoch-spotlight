@@ -2,6 +2,7 @@ import { BookOpen, HeartHandshake, Languages, Scale } from "lucide-react";
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
+import lawsHero from "@/assets/images/religions/rights/laws.webp";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {
@@ -139,7 +140,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
 };
 
 export default function RightsLaws(
-  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content">,
+  props: Omit<React.ComponentProps<typeof RightsDetailPage>, "content" | "heroImage">,
 ) {
-  return <RightsDetailPage {...props} content={content} />;
+  return <RightsDetailPage {...props} content={content} heroImage={lawsHero} />;
 }

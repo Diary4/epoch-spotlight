@@ -5,6 +5,13 @@ import AS from "@/assets/images/religions/yazidi/tawus.webp";
 import bahaiCover from "@/assets/images/religions/bahai/cover.webp";
 import bS from "@/assets/images/religions/kakayi/meaning.webp";
 import C2 from "@/assets/images/religions/coexistence/masoud-barzani.webp";
+import coexistenceAcceptance from "@/assets/images/religions/coexistence/acceptance.webp";
+import coexistenceRespect from "@/assets/images/religions/coexistence/respect.webp";
+import coexistenceHumanity from "@/assets/images/religions/coexistence/humanity.webp";
+import coexistenceLivingIdentity from "@/assets/images/religions/coexistence/living-identity.webp";
+import rightsCover from "@/assets/images/religions/rights/cover.webp";
+import rightsLaws from "@/assets/images/religions/rights/laws.webp";
+import rightsYear2014 from "@/assets/images/religions/rights/year-2014.webp";
 import Ci from "@/assets/images/religions/sharedlife/kakai-festival.webp";
 import co from "@/assets/images/new/religions/faiths/christianity.webp";
 import CS from "@/assets/images/religions/christianity/churches.webp";
@@ -156,4 +163,11 @@ export const threadsAssets = {
   attract: hS,
   hub: Yn,
   closing: dt,
+  coexistenceAcceptance,
+  coexistenceRespect,
+  coexistenceHumanity,
+  coexistenceLivingIdentity,
+  rightsCover,
+  rightsLaws,
+  rightsYear2014,
 } as const;

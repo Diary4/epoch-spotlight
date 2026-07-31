@@ -18,10 +18,10 @@ import {
 
 import bg from "@/assets/images/religions/nc-1.webp";
 import coexistenceHero from "@/assets/images/religions/coexistence/coexistence.webp";
-import cradleImg from "@/assets/images/religions/main.webp";
-import nationsImg from "@/assets/images/religions/nations/cover.webp";
-import sharedImg from "@/assets/images/religions/nl-1.webp";
-import faithsImg from "@/assets/images/religions/faiths.webp";
+import acceptanceImg from "@/assets/images/religions/coexistence/acceptance.webp";
+import respectImg from "@/assets/images/religions/coexistence/respect.webp";
+import humanityImg from "@/assets/images/religions/coexistence/humanity.webp";
+import livingIdentityImg from "@/assets/images/religions/coexistence/living-identity.webp";
 import abdulSalamBarzaniImg from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
 import mustafaBarzaniImg from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
 import ahmedBarzaniImg from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
@@ -35,10 +35,10 @@ const leaderImages: Record<string, string> = {
 };
 
 const coexistenceImages: Record<string, string> = {
-  acceptance: cradleImg,
-  respect: nationsImg,
-  humanity: sharedImg,
-  "living-identity": faithsImg,
+  acceptance: acceptanceImg,
+  respect: respectImg,
+  humanity: humanityImg,
+  "living-identity": livingIdentityImg,
 };
 
 type LangCode = "en" | "ku" | "ar";

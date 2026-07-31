@@ -286,12 +286,12 @@ export const rightsStories = {
         "Every community has a seat at the table.",
         threadsAssets.Ot,
       ],
-      ["laws", "Laws & Protection", "Rights, dignity, and coexistence.", threadsAssets.wo],
+      ["laws", "Laws & Protection", "Rights, dignity, and coexistence.", threadsAssets.rightsLaws],
       [
         "sanctuary",
         "2014 — Kurdistan Opened Its Doors",
         "When the world watched, Kurdistan acted.",
-        threadsAssets.Yn,
+        threadsAssets.rightsYear2014,
       ],
     ],
     ku: [
@@ -307,23 +307,23 @@ export const rightsStories = {
         "بۆ هەموو پێکهاتەکان کورسی هەیە",
         threadsAssets.Ot,
       ],
-      ["laws", "یاساکان و پاراستن", "ماف، کەرامەت و پێکەوەژیان", threadsAssets.wo],
+      ["laws", "یاساکان و پاراستن", "ماف، کەرامەت و پێکەوەژیان", threadsAssets.rightsLaws],
       [
         "sanctuary",
         "٢٠١٤ — کوردستان دەرگاکانی واڵا کرد",
         "کاتێک جیهان سەیری دەکرد، کوردستان هەنگاوی نا",
-        threadsAssets.Yn,
+        threadsAssets.rightsYear2014,
       ],
     ],
     ar: [
       ["government", "حكومة إقليم كوردستان", "حكومة لجميع أبنائها", threadsAssets.xo],
       ["parliament", "أصوات في البرلمان", "لكل مجتمع مقعد على الطاولة", threadsAssets.Ot],
-      ["laws", "القوانين والحماية", "الحقوق والكرامة والتعايش", threadsAssets.wo],
+      ["laws", "القوانين والحماية", "الحقوق والكرامة والتعايش", threadsAssets.rightsLaws],
       [
         "sanctuary",
         "2014 — كوردستان فتحت أبوابها",
         "حين راقب العالم، تصرفت كوردستان",
-        threadsAssets.Yn,
+        threadsAssets.rightsYear2014,
       ],
     ],
   };

@@ -15,7 +15,7 @@ import cradleImg from "@/assets/images/religions/cradle.webp";
 import sharedImg from "@/assets/images/religions/sharedlife/cover.webp";
 import nationsImg from "@/assets/images/religions/nations/cover.webp";
 import buildingImg from "@/assets/mainImages/building.webp";
-import parliamentImg from "@/assets/images/religions/rights/parliment.webp";
+import parliamentImg from "@/assets/images/religions/rights/cover.webp";
 import presidencyImg from "@/assets/images/religions/history/history.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
 
@@ -106,8 +106,8 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
     description:
       "Across faiths, languages, and cultures, Kurdistan stands as a timeless home of respect, unity, and shared heritage.",
     attractEyebrow: "The living memory of a shared homeland",
-    attractCaption: ["Different faiths. Different languages.", "One shared homeland."],
-    attractCaptionStrong: "One shared homeland.",
+    attractCaption: ["The cradle of coexistence"],
+    attractCaptionStrong: "The cradle of coexistence",
     attractEnter: "Touch to enter",
     attractEnterHint: "Let the stories find you",
     attractFooter: ["ERBIL · KURDISTAN REGION", "TOUCHSCREEN · ENGLISH"],
@@ -245,8 +245,8 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
     description:
       "لە نێوان ئاین و زمان و کلتوورە جیاوازەکاندا، کوردستان ماڵی ڕێز و یەکگرتوویی و میراتی هاوبەشە.",
     attractEyebrow: "یادەوەری زیندووی وڵاتێکی هاوبەش",
-    attractCaption: ["ئایینی جیاواز. زمانی جیاواز.", "یەک نیشتمانی هاوبەش."],
-    attractCaptionStrong: "یەک نیشتمانی هاوبەش.",
+    attractCaption: ["لانکەی پێکەوەژیان"],
+    attractCaptionStrong: "لانکەی پێکەوەژیان",
     attractEnter: "دەست لێبدە بۆ چوونە ژوورەوە",
     attractEnterHint: "با چیرۆکەکان بدۆزیتەوە",
     attractFooter: ["هەولێر · هەرێمی کوردستان", "تاکتایل · کوردی"],
@@ -384,8 +384,8 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
     description:
       "عبر الأديان واللغات والثقافات، تظل كوردستان موطناً دائماً للاحترام والوحدة والتراث المشترك.",
     attractEyebrow: "الذاكرة الحية لوطن مشترك",
-    attractCaption: ["أديان مختلفة. لغات مختلفة.", "وطن واحد مشترك."],
-    attractCaptionStrong: "وطن واحد مشترك.",
+    attractCaption: ["مهد التعايش"],
+    attractCaptionStrong: "مهد التعايش",
     attractEnter: "المس للدخول",
     attractEnterHint: "دع القصص تجدك",
     attractFooter: ["أربيل · إقليم كوردستان", "شاشة لمس · العربية"],

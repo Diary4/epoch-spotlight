@@ -39,13 +39,10 @@ export default function AttractScene({ copy, dispatch }: AttractSceneProps) {
       <div className="tok-attract__content">
         <p className="tok-eyebrow">{copy.attractEyebrow}</p>
         <h1 id="tok-attract-title">
-          <span>THREADS</span>
-          <i>OF</i>
-          <span>KURDISTAN</span>
+          <span>{copy.attractTitle}</span>
         </h1>
         <p className="tok-attract__caption">
           {copy.attractCaption[0]}
-          <strong>{copy.attractCaption[1]}</strong>
         </p>
       </div>
       <button

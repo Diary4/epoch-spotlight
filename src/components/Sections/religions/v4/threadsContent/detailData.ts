@@ -1974,7 +1974,7 @@ export const E2 = {
     "masoud-barzani": threadsAssets.C2,
   };
 
-export const P2 = { acceptance: threadsAssets.xS, respect: threadsAssets.go, humanity: threadsAssets.wS, "living-identity": threadsAssets.uo };
+export const P2 = { acceptance: threadsAssets.coexistenceAcceptance, respect: threadsAssets.coexistenceRespect, humanity: threadsAssets.coexistenceHumanity, "living-identity": threadsAssets.coexistenceLivingIdentity };
 
 export const N2 = {
     en: {

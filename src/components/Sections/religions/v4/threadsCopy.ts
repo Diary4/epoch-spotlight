@@ -2,10 +2,8 @@ export const threadsCopy = {
     en: {
       languageName: "English",
       attractEyebrow: "The living memory of a shared homeland",
-      attractCaption: [
-        "Different faiths. Different languages.",
-        "One shared homeland.",
-      ],
+      attractTitle: "Kurdistan",
+      attractCaption: ["The cradle of coexistence"],
       enter: "Touch to enter",
       enterHint: "Follow the living threads",
       chooseLanguage: "Choose your language",
@@ -44,7 +42,8 @@ export const threadsCopy = {
     ku: {
       languageName: "کوردی",
       attractEyebrow: "یادەوەری زیندووی وڵاتێکی هاوبەش",
-      attractCaption: ["ئایینی جیاواز. زمانی جیاواز.", "یەک نیشتمانی هاوبەش."],
+      attractTitle: "کوردستان",
+      attractCaption: ["لانکەی پێکەوەژیان"],
       enter: "دەست لێبدە بۆ چوونە ژوورەوە",
       enterHint: "بەدوای تەنە زیندووەکاندا بڕۆ",
       chooseLanguage: "زمانەکەت هەڵبژێرە",
@@ -84,7 +83,8 @@ export const threadsCopy = {
     ar: {
       languageName: "العربية",
       attractEyebrow: "الذاكرة الحية لوطن مشترك",
-      attractCaption: ["أديان مختلفة. لغات مختلفة.", "وطن واحد مشترك."],
+      attractTitle: "كوردستان",
+      attractCaption: ["مهد التعايش"],
       enter: "المس للدخول",
       enterHint: "اتبع الخيوط الحية",
       chooseLanguage: "اختر لغتك",
