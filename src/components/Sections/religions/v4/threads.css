@@ -439,26 +439,26 @@
 .tok-hub__background {
   display: block;
   right: auto;
-  left: -24%;
+  left: -42%;
   width: 148%;
   max-width: none;
   height: 66%;
-  opacity: 0.52;
-  filter: saturate(0.5) contrast(0.96) brightness(1.06);
+  opacity: 0.64;
+  filter: saturate(0.55) contrast(1) brightness(1.04);
   -o-object-position: center 32%;
   object-position: center 32%;
   -webkit-mask-image: linear-gradient(
     180deg,
     #000 0%,
-    #000 54%,
-    #00000059 80%,
+    #000 62%,
+    #00000066 84%,
     transparent 100%
   );
   mask-image: linear-gradient(
     180deg,
     #000 0%,
-    #000 54%,
-    #00000059 80%,
+    #000 62%,
+    #00000066 84%,
     transparent 100%
   );
 }
@@ -468,16 +468,16 @@
   background:
     radial-gradient(
       circle at 50% 26%,
-      rgba(246, 241, 230, 0.04),
-      rgba(244, 238, 227, 0.24) 44%,
-      #f2ece0bf 74%,
+      rgba(246, 241, 230, 0.02),
+      rgba(244, 238, 227, 0.14) 46%,
+      #f2ece0b3 76%,
       #f2ece0 100%
     ),
     linear-gradient(
       180deg,
-      #f6f1e659 0%,
-      #f2ece080 40%,
-      #f0e9dbe6 78%,
+      #f6f1e640 0%,
+      #f2ece066 42%,
+      #f0e9dbdb 76%,
       #f0e9db 100%
     );
 }
