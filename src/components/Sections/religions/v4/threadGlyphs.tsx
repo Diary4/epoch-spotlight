@@ -24,7 +24,9 @@ function ArchGlyph(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-const GLYPHS: Record<ThreadId, typeof Users> = {
+type Glyph = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+const GLYPHS: Record<ThreadId, Glyph> = {
   faiths: ArchGlyph,
   nations: Users,
   rights: Scale,

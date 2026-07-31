@@ -4,7 +4,7 @@ type FullscreenGateProps = {
 };
 
 export default function FullscreenGate({ visible, onActivate }: FullscreenGateProps) {
-  if (!visible) {
+  if (!visible || true) {
     return null;
   }
 

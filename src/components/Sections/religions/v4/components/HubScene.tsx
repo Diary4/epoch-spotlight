@@ -89,6 +89,13 @@ export default function HubScene({
           cards are placed with, so every thread lands on its card. */}
       <div className="tok-hub__web" aria-hidden="true">
         <svg viewBox={`0 0 ${width} ${height}`}>
+          <defs>
+            <radialGradient id="tok-sun-gold" cx="40%" cy="32%" r="76%">
+              <stop offset="0%" stopColor="#e6c87d" />
+              <stop offset="52%" stopColor="#cfa754" />
+              <stop offset="100%" stopColor="#b0813a" />
+            </radialGradient>
+          </defs>
           <line
             className="tok-thread-line tok-thread-line--soft"
             x1={HUB_TAIL.x1}

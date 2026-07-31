@@ -8,7 +8,7 @@ import {
 
 export function createInitialThreadsState(lang: ThreadsLang = "en"): ThreadsState {
   return {
-    scene: { kind: "attract" },
+    scene: { kind: "hub" },
     lang,
     languageOpen: false,
     languageOrigin: "entry",
