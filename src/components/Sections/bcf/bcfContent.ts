@@ -158,6 +158,12 @@ export type BcfCopy = {
   back: string;
   close: string;
   ourImpact: string;
+  impactTitleLead: string;
+  impactTitleGold: string;
+  impactSubtitle: string;
+  impactHumanStoryLead: string;
+  impactHumanStoryRest: string;
+  impactHumanStoryHint: string;
   changing: string;
   livesEveryday: string;
   impactItems: ImpactItem[];
@@ -479,13 +485,20 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     back: "Back",
     close: "Close",
     ourImpact: "Our Impacts",
+    impactTitleLead: "Our",
+    impactTitleGold: "Impact",
+    impactSubtitle:
+      "Major numbers supported by human stories, official photography and project evidence.",
+    impactHumanStoryLead: "The Human Story",
+    impactHumanStoryRest: "Layer",
+    impactHumanStoryHint: "Each statistic should open into one verified story:",
     changing: "Changing lives",
     livesEveryday: "everyday",
     impactItems: [
       {
         value: "1,004",
         title: "Employees",
-        description: "People coordinating humanitarian action every day",
+        description: "People coordinating humanitarian action every day.",
       },
       {
         value: "191,386",
@@ -766,6 +779,13 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     back: "گەڕانەوە",
     close: "داخستن",
     ourImpact: "کاریگەرییەکەمان",
+    impactTitleLead: "کاریگەری",
+    impactTitleGold: "ئێمە",
+    impactSubtitle:
+      "ژمارە گەورەکان پشتگیری دەکرێن بە چیرۆکی مرۆیی، وێنەی فەرمی و بەڵگەی پڕۆژە.",
+    impactHumanStoryLead: "چیرۆکی مرۆیی",
+    impactHumanStoryRest: "چین",
+    impactHumanStoryHint: "هەر ئامارێک دەبێت بکرێتەوە بۆ یەک چیرۆکی پشتڕاستکراو:",
     changing: "گۆڕینی ژیان",
     livesEveryday: "هەموو ڕۆژێک",
     impactItems: [
@@ -1053,6 +1073,13 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     back: "العودة",
     close: "إغلاق",
     ourImpact: "أثرنا",
+    impactTitleLead: "أثر",
+    impactTitleGold: "نا",
+    impactSubtitle:
+      "أرقام كبيرة مدعومة بقصص إنسانية وتصوير رسمي وأدلة المشاريع.",
+    impactHumanStoryLead: "القصة الإنسانية",
+    impactHumanStoryRest: "الطبقة",
+    impactHumanStoryHint: "يجب أن يفتح كل رقم إلى قصة موثّقة واحدة:",
     changing: "نغيّر الحيوات",
     livesEveryday: "كل يوم",
     impactItems: [
