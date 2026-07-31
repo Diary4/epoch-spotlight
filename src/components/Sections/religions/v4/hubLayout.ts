@@ -109,7 +109,7 @@ export const HUB_TAIL: Segment = {
 export const HUB_SUN_PATH = (() => {
   const { rays, outer, inner } = HUB_LAYOUT.sun;
   const step = (Math.PI * 2) / rays;
-  const half = step * 0.34;
+  const half = step * 0.42;
   let d = "";
   for (let i = 0; i < rays; i += 1) {
     const angle = -Math.PI / 2 + i * step;

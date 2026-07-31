@@ -434,25 +434,30 @@
 }
 /* The castle reads as a watermark behind the header and dissolves before the
    constellation starts, so the cards sit on clean paper. */
+/* Framed so the citadel wall — not the plaza in front of it — carries the top
+   of the page, then dissolved before the lower cards. */
 .tok-hub__background {
   display: block;
-  height: 62%;
-  opacity: 0.32;
-  filter: saturate(0.42) contrast(0.94) brightness(1.1);
-  -o-object-position: center 34%;
-  object-position: center 34%;
+  right: auto;
+  left: -24%;
+  width: 148%;
+  height: 66%;
+  opacity: 0.52;
+  filter: saturate(0.5) contrast(0.96) brightness(1.06);
+  -o-object-position: center 32%;
+  object-position: center 32%;
   -webkit-mask-image: linear-gradient(
     180deg,
     #000 0%,
-    #000 42%,
-    #0000004d 74%,
+    #000 54%,
+    #00000059 80%,
     transparent 100%
   );
   mask-image: linear-gradient(
     180deg,
     #000 0%,
-    #000 42%,
-    #0000004d 74%,
+    #000 54%,
+    #00000059 80%,
     transparent 100%
   );
 }
@@ -461,13 +466,19 @@
   inset: 0;
   background:
     radial-gradient(
-      circle at 50% 30%,
-      rgba(246, 241, 230, 0.1),
-      rgba(244, 238, 227, 0.42) 46%,
-      #f2ece0d9 78%,
+      circle at 50% 26%,
+      rgba(246, 241, 230, 0.04),
+      rgba(244, 238, 227, 0.24) 44%,
+      #f2ece0bf 74%,
       #f2ece0 100%
     ),
-    linear-gradient(180deg, #f6f1e64d 0%, #f2ece0c7 46%, #f0e9db 100%);
+    linear-gradient(
+      180deg,
+      #f6f1e659 0%,
+      #f2ece080 40%,
+      #f0e9dbe6 78%,
+      #f0e9db 100%
+    );
 }
 .tok-hub__grain {
   opacity: 0.045;
@@ -533,7 +544,7 @@
   color: #5a4e40;
   font-size: 19px;
   line-height: 1.62;
-  text-wrap: pretty;
+  text-wrap: balance;
 }
 .tok-hub blockquote {
   margin: 32px auto 0;
