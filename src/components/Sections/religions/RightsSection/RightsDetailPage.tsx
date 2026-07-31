@@ -22,6 +22,7 @@ export type RightsCard = {
   body: string;
   icon: LucideIcon;
   accent: string;
+  image?: string;
 };
 
 export type RightsDetailContent = {
@@ -60,19 +61,35 @@ function RightsChapter({ card }: { card: RightsCard }) {
       data-rd-animate="true"
       className="relative overflow-hidden rounded-[28px] bg-[#e6d2a8] p-px shadow-[0_12px_28px_rgba(75,45,12,0.1)]"
     >
-      <div className="rounded-[27px] bg-[#fffaf0] px-8 py-8 text-start">
-        <h2
-          className="font-serif text-[28px] font-semibold uppercase leading-tight tracking-[0.03em] text-[#2f1f12]"
-        >
-          {card.eyebrow}
-        </h2>
-        <div
-          className="mt-3 h-[2px] w-12 rounded-full"
-          style={{ backgroundColor: card.accent }}
-        />
-        <p className="mt-4 text-[17px] font-medium leading-[1.7] text-[#4d3c2a]">
-          {card.body}
-        </p>
+      <div
+        className={`rounded-[27px] bg-[#fffaf0] text-start ${
+          card.image ? "grid grid-cols-[1fr_280px] gap-0 overflow-hidden" : "px-8 py-8"
+        }`}
+      >
+        <div className={card.image ? "px-8 py-8" : undefined}>
+          <h2
+            className="font-serif text-[28px] font-semibold uppercase leading-tight tracking-[0.03em] text-[#2f1f12]"
+          >
+            {card.eyebrow}
+          </h2>
+          <div
+            className="mt-3 h-[2px] w-12 rounded-full"
+            style={{ backgroundColor: card.accent }}
+          />
+          <p className="mt-4 text-[17px] font-medium leading-[1.7] text-[#4d3c2a]">
+            {card.body}
+          </p>
+        </div>
+        {card.image ? (
+          <div className="relative min-h-[220px] overflow-hidden">
+            <img
+              src={card.image}
+              alt=""
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover object-center saturate-[0.9]"
+            />
+          </div>
+        ) : null}
       </div>
     </article>
   );

@@ -71,6 +71,7 @@ import wo from "@/assets/mainImages/letter.webp";
 import wS from "@/assets/images/religions/nl-1.webp";
 import wu from "@/assets/images/religions/sharedlife/yazidi-festival.webp";
 import xo from "@/assets/images/religions/rights/krg_cabinet.webp";
+import renamedToServeAll from "@/assets/images/religions/rights/renamed-to-serve-all.webp";
 import xS from "@/assets/images/religions/main.webp";
 import xu from "@/assets/images/religions/sharedlife/mosques.webp";
 import Yg from "@/assets/images/religions/rights/images.webp";
@@ -103,6 +104,7 @@ export const threadsAssets = {
   Ot: Ot,
   Pi: Pi,
   Qg: Qg,
+  renamedToServeAll: renamedToServeAll,
   RS: RS,
   Rt: Rt,
   S2: S2,

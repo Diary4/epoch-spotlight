@@ -441,6 +441,7 @@
   right: auto;
   left: -24%;
   width: 148%;
+  max-width: none;
   height: 66%;
   opacity: 0.52;
   filter: saturate(0.5) contrast(0.96) brightness(1.06);

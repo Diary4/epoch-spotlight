@@ -115,7 +115,7 @@ function mapTimeline(
 
 const governmentImages = [
   threadsAssets.xo,
-  threadsAssets.Qg,
+  threadsAssets.renamedToServeAll,
   threadsAssets.Wg,
   threadsAssets.Gg,
 ];

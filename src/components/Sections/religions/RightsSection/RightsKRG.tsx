@@ -9,6 +9,7 @@ import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
 import krgCabinetHero from "@/assets/images/religions/rights/krg_cabinet.webp";
+import renamedToServeAllImg from "@/assets/images/religions/rights/renamed-to-serve-all.webp";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {
@@ -33,6 +34,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
           "Renamed in 2007 from “Islamic Affairs” to “Religious Affairs” — reflecting that it serves all faiths. Includes General Directorates for Christian and Yazidi Affairs.",
         icon: Building2,
         accent: "#7a4a12",
+        image: renamedToServeAllImg,
       },
       {
         id: "education",
@@ -77,6 +79,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
           "لە ٢٠٠٧ ناوی لە \"ئەوقاف و کاروباری ئیسلامی\" گۆڕدرا بۆ \"ئەوقاف و کاروباری ئایینی\" بۆ ئەوەی گوزارشت لە هەمووان بکات.",
         icon: Building2,
         accent: "#7a4a12",
+        image: renamedToServeAllImg,
       },
       {
         id: "education",
@@ -121,6 +124,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
           "أُعيدت تسميتها عام 2007 من \"الأوقاف والشؤون الإسلامية\" إلى \"الأوقاف والشؤون الدينية\" لتعكس خدمتها لجميع الأديان. وتضم مديريات للشؤون المسيحية والإيزيدية.",
         icon: Building2,
         accent: "#7a4a12",
+        image: renamedToServeAllImg,
       },
       {
         id: "education",
