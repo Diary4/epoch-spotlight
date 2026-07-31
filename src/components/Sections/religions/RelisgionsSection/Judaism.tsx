@@ -3,7 +3,7 @@ import { Sparkles, Star } from "lucide-react";
 
 import bg from "@/assets/images/religions/judaism/cover.webp";
 import kurdishJewsImg from "@/assets/images/religions/judaism/kurdish-jews.webp";
-import cardCoverImg from "@/assets/images/religions/judaism/card-cover.webp";
+import torahImg from "@/assets/images/religions/judaism/torah.webp";
 import nahumShrineImg from "@/assets/images/religions/judaism/nahum-shrine.webp";
 import heritageImg from "@/assets/images/religions/judaism/heritage.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
@@ -40,7 +40,7 @@ type JudaismContent = {
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
   "kurdish-jews": kurdishJewsImg,
-  torah: cardCoverImg,
+  torah: torahImg,
   "nahum-shrine": nahumShrineImg,
   heritage: heritageImg,
 };

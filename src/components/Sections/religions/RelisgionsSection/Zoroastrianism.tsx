@@ -7,6 +7,7 @@ import {
 import bg from "@/assets/images/religions/zoro/cover.webp";
 import historyImg from "@/assets/images/religions/zoro/history.webp";
 import environmentImg from "@/assets/images/religions/zoro/environment.webp";
+import nowruzImg from "@/assets/images/religions/zoro/nowruz.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -42,7 +43,7 @@ const TOPIC_IMAGES: Record<TopicId, string> = {
   history: historyImg,
   "three-pillars": bg,
   environment: environmentImg,
-  nowruz: bg,
+  nowruz: nowruzImg,
 };
 
 const content: Record<LangCode, PageContent> = {

@@ -8,6 +8,8 @@ import C2 from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import Ci from "@/assets/images/religions/sharedlife/kakai-festival.webp";
 import co from "@/assets/images/new/religions/faiths/christianity.webp";
 import CS from "@/assets/images/religions/christianity/churches.webp";
+import christianHistorical from "@/assets/images/religions/christianity/historical.webp";
+import christianEaster from "@/assets/images/religions/christianity/easter-egg.webp";
 import d2 from "@/assets/images/religions/nations/assyrian/ankawa.webp";
 import DS from "@/assets/images/religions/kakayi/jamkhana.webp";
 import dt from "@/assets/images/religions/coexistence/coexistence.webp";
@@ -35,6 +37,8 @@ import mS from "@/assets/images/religions/islam/shafi.webp";
 import mu from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import n2 from "@/assets/images/religions/kurds/newroz.webp";
 import OS from "@/assets/images/religions/zoro/history.webp";
+import zoroNowruz from "@/assets/images/religions/zoro/nowruz.webp";
+import judaismTorah from "@/assets/images/religions/judaism/torah.webp";
 import Ot from "@/assets/images/religions/rights/parliment.webp";
 import Pi from "@/assets/images/religions/sharedlife/christmas.webp";
 import po from "@/assets/images/religions/bahai/core.webp";
@@ -49,7 +53,7 @@ import S2 from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
 import seatImg from "@/assets/images/religions/nations/assyrian/seat.webp";
 import T2 from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
 import TS from "@/assets/images/religions/christianity/pope.webp";
-import Ug from "@/assets/images/religions/yazidi/reslience.webp";
+import Ug from "@/assets/images/religions/yazidi/resilience.webp";
 import uo from "@/assets/images/religions/faiths.webp";
 import US from "@/assets/images/religions/judaism/kurdish-jews.webp";
 import vo from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
@@ -130,7 +134,10 @@ export const threadsAssets = {
   po: po,
   pu: pu,
   qS: qS,
-  qp: d2,
+  qp: christianHistorical,
+  easterEgg: christianEaster,
+  nowruz: zoroNowruz,
+  torah: judaismTorah,
   r2: r2,
   uo: uo,
   vS: vS,

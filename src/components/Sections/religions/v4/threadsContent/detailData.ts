@@ -1933,7 +1933,7 @@ export const kS = { "shafii-school": threadsAssets.mS, sufism: threadsAssets.gS,
 export const ES = {
     "historical-presence": threadsAssets.qp,
     churches: threadsAssets.CS,
-    "easter-christmas": threadsAssets.qp,
+    "easter-christmas": threadsAssets.easterEgg,
     "pope-francis": threadsAssets.TS,
   };
 
@@ -1941,9 +1941,9 @@ export const MS = { lalish: threadsAssets.fo, "tawus-melek": threadsAssets.AS, j
 
 export const NS = { meaning: threadsAssets.bS, "four-principles": threadsAssets.IS, jamkhana: threadsAssets.DS, "sacred-book": threadsAssets._S };
 
-export const FS = { history: threadsAssets.OS, "three-pillars": threadsAssets.Jp, environment: threadsAssets.zS, nowruz: threadsAssets.Jp };
+export const FS = { history: threadsAssets.OS, "three-pillars": threadsAssets.Jp, environment: threadsAssets.zS, nowruz: threadsAssets.nowruz };
 
-export const KS = { "kurdish-jews": threadsAssets.US, torah: threadsAssets.RS, "nahum-shrine": threadsAssets.HS, heritage: threadsAssets.ho };
+export const KS = { "kurdish-jews": threadsAssets.US, torah: threadsAssets.torah, "nahum-shrine": threadsAssets.HS, heritage: threadsAssets.ho };
 
 export const QS = {
     "bahaullah-kurdistan": threadsAssets.GS,

@@ -5,9 +5,10 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/christianity/cover.webp";
-import historicalImg from "@/assets/images/religions/christianity/christianity.webp";
+import historicalImg from "@/assets/images/religions/christianity/historical.webp";
 import popeImg from "@/assets/images/religions/christianity/pope.webp";
 import churchesImg from "@/assets/images/religions/christianity/churches.webp";
+import easterImg from "@/assets/images/religions/christianity/easter-egg.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,
@@ -44,7 +45,7 @@ type ChristianityContent = {
 const TOPIC_IMAGES: Record<TopicId, string> = {
   "historical-presence": historicalImg,
   churches: churchesImg,
-  "easter-christmas": historicalImg,
+  "easter-christmas": easterImg,
   "pope-francis": popeImg,
 };
 

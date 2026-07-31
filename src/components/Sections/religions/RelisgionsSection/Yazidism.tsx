@@ -25,7 +25,7 @@ import { NationTopicSwitcher } from "@/components/Sections/religions/nations/Nat
 import lalish from "@/assets/images/religions/yazidi/lalish.webp";
 import peacock from "@/assets/images/religions/yazidi/tawus.webp";
 import jemayiImg from "@/assets/images/religions/yazidi/jemayi.webp";
-import candle from "@/assets/images/religions/yazidi/reslience.webp";
+import candle from "@/assets/images/religions/yazidi/resilience.webp";
 
 type LangCode = "en" | "ku" | "ar";
 
