@@ -12,6 +12,7 @@ export type BcfStep =
   | "projects"
   | "projectDetail"
   | "impact"
+  | "trust"
   | "future"
   | "futureDetail";
 
@@ -25,6 +26,11 @@ export type JourneyChapterId =
 
 export type LocationId = "erbil" | "duhok" | "zakho" | "kirkuk" | "sulaymaniyah";
 export type ProjectId = "school-renovation" | "camp-support" | "emergency-aid";
+export type TrustTopicId =
+  | "leadership"
+  | "quality"
+  | "partnerships"
+  | "recognition";
 export type FutureTopicId =
   | "education"
   | "environment"
@@ -88,6 +94,22 @@ type FutureTopic = {
   bullets: string[];
 };
 
+export type TrustTopic = {
+  id: TrustTopicId;
+  title: string;
+};
+
+export type TrustFounderCard = {
+  title: string;
+  subtitle: string;
+};
+
+export type TrustCredential = {
+  id: string;
+  title: string;
+  body: string;
+};
+
 export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy" | "values";
 
 export type StorySection = {
@@ -140,6 +162,17 @@ export type BcfCopy = {
   livesEveryday: string;
   impactItems: ImpactItem[];
   trustTitle: string;
+  trustTitleGold: string;
+  trustTitleRest: string;
+  trustTopics: TrustTopic[];
+  trustLeadershipTitle: string;
+  trustFounders: TrustFounderCard[];
+  trustQualityTitle: string;
+  trustCredentials: TrustCredential[];
+  trustPartnershipsTitle: string;
+  trustPartnershipsHint: string;
+  trustRecognitionTitle: string;
+  trustRecognitionBody: string;
   futureCircle: string;
   legacyCircle: string;
   futureHeadingWhite: string;
@@ -471,6 +504,66 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     trustTitle: "Trust & The Future",
+    trustTitleGold: "Trust",
+    trustTitleRest: "Behind the Work",
+    trustTopics: [
+      { id: "leadership", title: "Leadership and Governance" },
+      { id: "quality", title: "Quality and Credibility" },
+      { id: "partnerships", title: "Partnerships" },
+      { id: "recognition", title: "Recognition" },
+    ],
+    trustLeadershipTitle: "Leadership and Governance",
+    trustFounders: [
+      {
+        title: "Board of Founders",
+        subtitle: "Guiding the mission with vision and integrity",
+      },
+      {
+        title: "Board of Founders",
+        subtitle: "Guiding the mission with vision and integrity",
+      },
+      {
+        title: "Board of Founders",
+        subtitle: "Guiding the mission with vision and integrity",
+      },
+      {
+        title: "Board of Founders",
+        subtitle: "Guiding the mission with vision and integrity",
+      },
+    ],
+    trustQualityTitle: "Quality and Credibility",
+    trustCredentials: [
+      {
+        id: "iraq-krg",
+        title: "Licensed in Iraq and Kurdistan",
+        body: "BCF is officially licensed to operate in both the Republic of Iraq and the Kurdistan Region, ensuring full compliance with national regulations and a strong commitment to local communities.",
+      },
+      {
+        id: "usa",
+        title: "United States License",
+        body: "Registered to operate in the United States, enabling transparent partnerships and accountable cross-border humanitarian support.",
+      },
+      {
+        id: "ecosoc",
+        title: "UN ECOSOC Consultative Status",
+        body: "Special consultative status with the United Nations Economic and Social Council, affirming BCF's role in international humanitarian dialogue.",
+      },
+      {
+        id: "uk",
+        title: "British Charity Commission",
+        body: "Recognized under the UK Charity Commission framework, reinforcing standards of governance, reporting, and public trust.",
+      },
+      {
+        id: "iso",
+        title: "ISO 9001:2015",
+        body: "Quality-management certification that guides consistent, measurable, and continuously improving humanitarian delivery.",
+      },
+    ],
+    trustPartnershipsTitle: "Partnerships",
+    trustPartnershipsHint: "Trusted partners working alongside BCF",
+    trustRecognitionTitle: "Recognition",
+    trustRecognitionBody:
+      "A record of service recognized across Kurdistan and beyond — built through accountability, partnerships, and lasting impact.",
     futureCircle: "The Future We Build",
     legacyCircle: "A Legacy That Continues",
     futureHeadingWhite: "The",
@@ -698,6 +791,66 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     trustTitle: "متمانە و داهاتوو",
+    trustTitleGold: "متمانە",
+    trustTitleRest: "لە پشت کارەکە",
+    trustTopics: [
+      { id: "leadership", title: "سەرکردایەتی و حوکمڕانی" },
+      { id: "quality", title: "کوالیتی و باوەڕپێکراوی" },
+      { id: "partnerships", title: "هاوبەشییەکان" },
+      { id: "recognition", title: "ناسینەوە" },
+    ],
+    trustLeadershipTitle: "سەرکردایەتی و حوکمڕانی",
+    trustFounders: [
+      {
+        title: "ئەنجومەنی دامەزرێنەران",
+        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+      },
+      {
+        title: "ئەنجومەنی دامەزرێنەران",
+        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+      },
+      {
+        title: "ئەنجومەنی دامەزرێنەران",
+        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+      },
+      {
+        title: "ئەنجومەنی دامەزرێنەران",
+        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+      },
+    ],
+    trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
+    trustCredentials: [
+      {
+        id: "iraq-krg",
+        title: "مۆڵەت لە عێراق و کوردستان",
+        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە کۆماری عێراق و هەرێمی کوردستان هەیە، بە پابەندبوون بە یاسا ناوخۆییەکان و پابەندییەکی بەهێز بە کۆمەڵگەکان.",
+      },
+      {
+        id: "usa",
+        title: "مۆڵەتی ویلایەتە یەکگرتووەکان",
+        body: "تۆمارکراوە بۆ کارکردن لە ئەمریکا، بۆ هاوبەشی شفاف و پشتگیری مرۆیی بەرپرسیار.",
+      },
+      {
+        id: "ecosoc",
+        title: "پێگەی ڕاوێژکاری UN ECOSOC",
+        body: "پێگەی ڕاوێژکاری تایبەت لەگەڵ ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان.",
+      },
+      {
+        id: "uk",
+        title: "کۆمیسیۆنی خێرخوازی بەریتانیا",
+        body: "ناسراو لە چوارچێوەی کۆمیسیۆنی خێرخوازی بەریتانیا بۆ حوکمڕانی و متمانەی گشتی.",
+      },
+      {
+        id: "iso",
+        title: "ISO 9001:2015",
+        body: "بڕوانامەی بەڕێوەبردنی کوالیتی بۆ گەیاندنی مرۆیی بەردەوام و پێوانەکراو.",
+      },
+    ],
+    trustPartnershipsTitle: "هاوبەشییەکان",
+    trustPartnershipsHint: "هاوبەشە باوەڕپێکراوەکان لەگەڵ BCF",
+    trustRecognitionTitle: "ناسینەوە",
+    trustRecognitionBody:
+      "تۆماری خزمەت کە لە کوردستان و دەرەوەدا ناسراوە — لە ڕێگەی بەرپرسیارێتی، هاوبەشی و کاریگەری بەردەوام.",
     futureCircle: "داهاتووی بنیاد دەنێین",
     legacyCircle: "میراتێک کە بەردەوامە",
     futureHeadingWhite: "داهاتوو",
@@ -925,6 +1078,66 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     trustTitle: "الثقة والمستقبل",
+    trustTitleGold: "الثقة",
+    trustTitleRest: "وراء العمل",
+    trustTopics: [
+      { id: "leadership", title: "القيادة والحوكمة" },
+      { id: "quality", title: "الجودة والمصداقية" },
+      { id: "partnerships", title: "الشراكات" },
+      { id: "recognition", title: "الاعتراف" },
+    ],
+    trustLeadershipTitle: "القيادة والحوكمة",
+    trustFounders: [
+      {
+        title: "مجلس المؤسسين",
+        subtitle: "توجيه الرسالة برؤية ونزاهة",
+      },
+      {
+        title: "مجلس المؤسسين",
+        subtitle: "توجيه الرسالة برؤية ونزاهة",
+      },
+      {
+        title: "مجلس المؤسسين",
+        subtitle: "توجيه الرسالة برؤية ونزاهة",
+      },
+      {
+        title: "مجلس المؤسسين",
+        subtitle: "توجيه الرسالة برؤية ونزاهة",
+      },
+    ],
+    trustQualityTitle: "الجودة والمصداقية",
+    trustCredentials: [
+      {
+        id: "iraq-krg",
+        title: "مرخّص في العراق وكوردستان",
+        body: "BCF مرخّصة رسمياً للعمل في جمهورية العراق وإقليم كوردستان، بما يضمن الامتثال للأنظمة الوطنية والالتزام بالمجتمعات المحلية.",
+      },
+      {
+        id: "usa",
+        title: "ترخيص الولايات المتحدة",
+        body: "مسجّلة للعمل في الولايات المتحدة لدعم شراكات شفافة وعمل إنساني مسؤول.",
+      },
+      {
+        id: "ecosoc",
+        title: "الوضع الاستشاري لدى UN ECOSOC",
+        body: "وضع استشاري خاص لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة.",
+      },
+      {
+        id: "uk",
+        title: "هيئة الجمعيات الخيرية البريطانية",
+        body: "معترف بها ضمن إطار هيئة الجمعيات الخيرية في المملكة المتحدة للحوكمة والثقة العامة.",
+      },
+      {
+        id: "iso",
+        title: "ISO 9001:2015",
+        body: "شهادة إدارة الجودة لتقديم إنساني متسق وقابل للقياس ومتحسن باستمرار.",
+      },
+    ],
+    trustPartnershipsTitle: "الشراكات",
+    trustPartnershipsHint: "شركاء موثوقون يعملون إلى جانب BCF",
+    trustRecognitionTitle: "الاعتراف",
+    trustRecognitionBody:
+      "سجل خدمة معترف به في كوردستان وخارجها — مبني على المساءلة والشراكات والأثر الدائم.",
     futureCircle: "المستقبل الذي نبنيه",
     legacyCircle: "إرث يستمر",
     futureHeadingWhite: "المستقبل",

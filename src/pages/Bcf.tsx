@@ -15,6 +15,7 @@ import BcfProjectDetail from "@/components/Sections/bcf/BcfProjectDetail";
 import BcfImpact from "@/components/Sections/bcf/BcfImpact";
 import BcfFuture from "@/components/Sections/bcf/BcfFuture";
 import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
+import BcfTrust from "@/components/Sections/bcf/BcfTrust";
 import {
   type BcfLang,
   type BcfStep,
@@ -113,7 +114,9 @@ export default function BcfPage() {
                   setStep("map");
                 } else if (id === "impact") {
                   setStep("impact");
-                } else if (id === "trust" || id === "future") {
+                } else if (id === "trust") {
+                  setStep("trust");
+                } else if (id === "future") {
                   setStep("future");
                 }
               });
@@ -177,6 +180,8 @@ export default function BcfPage() {
         );
       case "impact":
         return <BcfImpact lang={lang} onBack={() => go(() => setStep("sections"))} />;
+      case "trust":
+        return <BcfTrust lang={lang} onBack={() => go(() => setStep("sections"))} />;
       case "future":
         return (
           <BcfFuture
