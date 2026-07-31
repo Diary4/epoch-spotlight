@@ -7,18 +7,18 @@ import type { ThreadId } from "./threadsTypes";
  */
 export const HUB_LAYOUT = {
   width: 1080,
-  height: 1206,
-  centre: { x: 540, y: 588 },
-  card: { width: 262, height: 376, radiusTop: 64, radiusBottom: 52 },
+  height: 1196,
+  centre: { x: 540, y: 583 },
+  card: { width: 250, height: 366, radiusTop: 64, radiusBottom: 52 },
   badge: 29,
-  sun: { rays: 21, outer: 72, inner: 31, disc: 33 },
-  ring: { inner: 96, outer: 132 },
+  sun: { rays: 21, outer: 66, inner: 28, disc: 30 },
+  ring: { inner: 104, outer: 148 },
   cards: {
-    faiths: { x: 409, y: 0 },
-    nations: { x: 91, y: 400 },
-    rights: { x: 727, y: 400 },
-    sharedLife: { x: 201, y: 800 },
-    coexistence: { x: 617, y: 800 },
+    faiths: { x: 415, y: 0 },
+    nations: { x: 100, y: 400 },
+    rights: { x: 730, y: 400 },
+    sharedLife: { x: 207, y: 800 },
+    coexistence: { x: 623, y: 800 },
   } satisfies Record<ThreadId, { x: number; y: number }>,
 } as const;
 

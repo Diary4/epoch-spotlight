@@ -9,11 +9,12 @@ type ThreadPortalProps = {
 };
 
 /**
- * Captions read as two short lines, so the last segment of the dotted list
- * drops to its own line and the separator before it disappears with the break.
+ * Captions read as two short lines. A dotted list drops its last segment to
+ * line two — the separator disappears with the break — and a plain phrase
+ * breaks after its first word instead.
  */
 function splitCaption(line: string): [string, string] {
-  const cut = line.lastIndexOf("·");
+  const cut = line.includes("·") ? line.lastIndexOf("·") : line.indexOf(" ");
   if (cut < 0) return [line, ""];
   return [line.slice(0, cut).trim(), line.slice(cut + 1).trim()];
 }

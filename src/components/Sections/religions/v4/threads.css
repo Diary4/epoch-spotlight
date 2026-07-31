@@ -437,7 +437,7 @@
 .tok-hub__background {
   display: block;
   height: 62%;
-  opacity: 0.34;
+  opacity: 0.32;
   filter: saturate(0.42) contrast(0.94) brightness(1.1);
   -o-object-position: center 34%;
   object-position: center 34%;
@@ -477,7 +477,7 @@
   position: absolute;
   z-index: 4;
   top: 74px;
-  inset-inline: 62px;
+  inset-inline: 40px;
   text-align: center;
 }
 .tok-hub .tok-eyebrow {
@@ -517,11 +517,11 @@
   transform: rotate(45deg);
 }
 .tok-hub__header h1 {
-  max-width: 950px;
+  max-width: 1000px;
   margin: 26px auto 0;
   color: #23201a;
   font-family: var(--tok-serif);
-  font-size: 63px;
+  font-size: 54px;
   font-weight: 500;
   letter-spacing: 0.012em;
   line-height: 1.06;
@@ -560,13 +560,19 @@
   font-size: 29px;
   font-style: normal;
 }
-/* The web and the cards share one 1080×1206 box; see hubLayout.ts. */
+/* The web and the cards share one 1080×1196 box; see hubLayout.ts. The nudge
+   away from the reach rail keeps the outer cards clear of it. */
 .tok-hub__web,
 .tok-hub__portals {
   position: absolute;
-  top: 548px;
+  top: 540px;
   inset-inline: 0;
-  height: 1206px;
+  height: 1196px;
+  transform: translateX(-14px);
+}
+.tok-experience[dir="rtl"] .tok-hub__web,
+.tok-experience[dir="rtl"] .tok-hub__portals {
+  transform: translateX(14px);
 }
 .tok-hub__web {
   z-index: 2;
@@ -619,8 +625,8 @@
 }
 .tok-thread-portal {
   position: absolute;
-  width: 262px;
-  height: 376px;
+  width: 250px;
+  height: 366px;
   padding: 0;
   background: transparent;
 }
@@ -690,15 +696,15 @@
 /* Two title lines are always reserved so every caption sits on one baseline. */
 .tok-thread-portal__copy b {
   display: flex;
-  min-height: 50px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   color: #8a6733;
   font-family: var(--tok-serif);
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 560;
   letter-spacing: 0.06em;
-  line-height: 1.04;
+  line-height: 1;
   text-transform: uppercase;
 }
 .tok-thread-portal__copy small {
