@@ -25,7 +25,12 @@ export type JourneyChapterId =
 
 export type LocationId = "erbil" | "duhok" | "zakho" | "kirkuk" | "sulaymaniyah";
 export type ProjectId = "school-renovation" | "camp-support" | "emergency-aid";
-export type FutureTopicId = "leadership" | "quality" | "partnerships" | "recognition";
+export type FutureTopicId =
+  | "education"
+  | "environment"
+  | "crises"
+  | "rehabilitation"
+  | "rights";
 export type MapFilterId = "offices" | "camps" | "geographic" | "emergency";
 
 export type BcfLocation = {
@@ -80,7 +85,7 @@ export type ServeCategory = {
 type FutureTopic = {
   id: FutureTopicId;
   title: string;
-  body: string;
+  bullets: string[];
 };
 
 export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy" | "values";
@@ -140,6 +145,7 @@ export type BcfCopy = {
   futureHeadingWhite: string;
   futureHeadingGold: string;
   futureHeadingRest: string;
+  futureSubtitle: string;
   futureTopics: FutureTopic[];
   projects: Record<LocationId, ProjectCopy[]>;
 };
@@ -467,29 +473,56 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustTitle: "Trust & The Future",
     futureCircle: "The Future We Build",
     legacyCircle: "A Legacy That Continues",
-    futureHeadingWhite: "The Future",
-    futureHeadingGold: "We Build",
-    futureHeadingRest: "",
+    futureHeadingWhite: "The",
+    futureHeadingGold: "Future",
+    futureHeadingRest: "We Build",
+    futureSubtitle:
+      "Strategic objectives for people, education, rehabilitation, the environment and crisis preparedness",
     futureTopics: [
       {
-        id: "leadership",
-        title: "Leadership and Governance",
-        body: "Accountable leadership guiding humanitarian work with clarity and care.",
+        id: "education",
+        title: "Education",
+        bullets: [
+          "Renovate 200 schools",
+          "Build five new schools",
+          "Two back-to-school projects",
+        ],
       },
       {
-        id: "quality",
-        title: "Quality and Credibility",
-        body: "Standards that protect dignity and deliver trusted results.",
+        id: "environment",
+        title: "Environment",
+        bullets: [
+          "Protect shared natural resources",
+          "Support climate-ready communities",
+          "Expand green livelihoods programs",
+        ],
       },
       {
-        id: "partnerships",
-        title: "Partnerships",
-        body: "Working with communities and institutions to multiply impact.",
+        id: "crises",
+        title: "Crises Preparations",
+        bullets: [
+          "Strengthen emergency response capacity",
+          "Pre-position relief across key corridors",
+          "Train rapid-response volunteer teams",
+        ],
       },
       {
-        id: "recognition",
-        title: "Recognition",
-        body: "A record of service recognized across Kurdistan and beyond.",
+        id: "rehabilitation",
+        title: "Rehabilitation and Inclusion",
+        bullets: [
+          "Rebuild homes and community spaces",
+          "Expand disability inclusion services",
+          "Support return and social cohesion",
+        ],
+      },
+      {
+        id: "rights",
+        title: "Human Rights and Recovery",
+        bullets: [
+          "Defend dignity in every program",
+          "Support survivors of violence",
+          "Advance fair access to essential services",
+        ],
       },
     ],
     projects: projectsEn,
@@ -668,28 +701,55 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     futureCircle: "داهاتووی بنیاد دەنێین",
     legacyCircle: "میراتێک کە بەردەوامە",
     futureHeadingWhite: "داهاتوو",
-    futureHeadingGold: "کە بنیاد دەنێین",
-    futureHeadingRest: "",
+    futureHeadingGold: "کە",
+    futureHeadingRest: "بنیاد دەنێین",
+    futureSubtitle:
+      "ئامانجە ستراتیژییەکان بۆ خەڵک، پەروەردە، نۆژەنکردنەوە، ژینگە و ئامادەکاری قەیران",
     futureTopics: [
       {
-        id: "leadership",
-        title: "سەرکردایەتی و حوکمڕانی",
-        body: "سەرکردایەتییەکی بەرپرسیار بۆ کاری مرۆیی بە ڕوونی و چاودێری.",
+        id: "education",
+        title: "پەروەردە",
+        bullets: [
+          "نۆژەنکردنەوەی ٢٠٠ قوتابخانە",
+          "دروستکردنی پێنج قوتابخانەی نوێ",
+          "دوو پڕۆژەی گەڕانەوە بۆ قوتابخانە",
+        ],
       },
       {
-        id: "quality",
-        title: "کوالیتی و باوەڕپێکراوی",
-        body: "ستانداردەکان کە کەرامەت دەپارێزن و ئەنجامی باوەڕپێکراو دەدەن.",
+        id: "environment",
+        title: "ژینگە",
+        bullets: [
+          "پاراستنی سەرچاوە سروشتییە هاوبەشەکان",
+          "پشتگیریکردنی کۆمەڵگەکان لەبەرامبەر گۆڕانی کەشوهەوا",
+          "فراوانکردنی بەرنامەکانی ژیانی سەوز",
+        ],
       },
       {
-        id: "partnerships",
-        title: "هاوبەشییەکان",
-        body: "کارکردن لەگەڵ کۆمەڵگە و دامەزراوەکان بۆ زیادکردنی کاریگەری.",
+        id: "crises",
+        title: "ئامادەکاری قەیران",
+        bullets: [
+          "بەهێزکردنی توانای وەڵامدانەوەی فریاگوزاری",
+          "دانانی یارمەتی لە ڕێڕەوە سەرەکییەکان",
+          "ڕاهێنانی تیمە خێرا وەڵامدەرەکان",
+        ],
       },
       {
-        id: "recognition",
-        title: "ناسینەوە",
-        body: "تۆماری خزمەت کە لە کوردستان و دەرەوەدا ناسراوە.",
+        id: "rehabilitation",
+        title: "نۆژەنکردنەوە و گشتگیری",
+        bullets: [
+          "دووبارە دروستکردنەوەی ماڵ و شوێنە گشتییەکان",
+          "فراوانکردنی خزمەتگوزارییەکانی گشتگیری",
+          "پشتگیریکردنی گەڕانەوە و پێکەوەژیان",
+        ],
+      },
+      {
+        id: "rights",
+        title: "مافی مرۆڤ و چاکبوونەوە",
+        bullets: [
+          "پاراستنی کەرامەت لە هەموو بەرنامەیەکدا",
+          "پشتگیریکردنی ڕزگاربووان",
+          "دەستپێڕاگەیشتنی دادپەروەرانە بە خزمەتگوزارییەکان",
+        ],
       },
     ],
     projects: projectsEn,
@@ -868,28 +928,55 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     futureCircle: "المستقبل الذي نبنيه",
     legacyCircle: "إرث يستمر",
     futureHeadingWhite: "المستقبل",
-    futureHeadingGold: "الذي نبنيه",
-    futureHeadingRest: "",
+    futureHeadingGold: "الذي",
+    futureHeadingRest: "نبنيه",
+    futureSubtitle:
+      "أهداف استراتيجية للناس والتعليم وإعادة التأهيل والبيئة والتأهب للأزمات",
     futureTopics: [
       {
-        id: "leadership",
-        title: "القيادة والحوكمة",
-        body: "قيادة مسؤولة توجّه العمل الإنساني بوضوح وعناية.",
+        id: "education",
+        title: "التعليم",
+        bullets: [
+          "ترميم 200 مدرسة",
+          "بناء خمس مدارس جديدة",
+          "مشروعان للعودة إلى المدارس",
+        ],
       },
       {
-        id: "quality",
-        title: "الجودة والمصداقية",
-        body: "معايير تحمي الكرامة وتقدّم نتائج موثوقة.",
+        id: "environment",
+        title: "البيئة",
+        bullets: [
+          "حماية الموارد الطبيعية المشتركة",
+          "دعم المجتمعات المستعدة للمناخ",
+          "توسيع برامج سبل العيش الخضراء",
+        ],
       },
       {
-        id: "partnerships",
-        title: "الشراكات",
-        body: "العمل مع المجتمعات والمؤسسات لمضاعفة الأثر.",
+        id: "crises",
+        title: "التأهب للأزمات",
+        bullets: [
+          "تعزيز قدرة الاستجابة للطوارئ",
+          "تجهيز المساعدات عبر الممرات الرئيسية",
+          "تدريب فرق المتطوعين سريعة الاستجابة",
+        ],
       },
       {
-        id: "recognition",
-        title: "الاعتراف",
-        body: "سجل خدمة معترف به في كوردستان وخارجها.",
+        id: "rehabilitation",
+        title: "إعادة التأهيل والشمول",
+        bullets: [
+          "إعادة بناء المنازل والفضاءات المجتمعية",
+          "توسيع خدمات الشمول لذوي الإعاقة",
+          "دعم العودة والتماسك الاجتماعي",
+        ],
+      },
+      {
+        id: "rights",
+        title: "حقوق الإنسان والتعافي",
+        bullets: [
+          "حماية الكرامة في كل برنامج",
+          "دعم الناجين من العنف",
+          "تعزيز الوصول العادل إلى الخدمات الأساسية",
+        ],
       },
     ],
     projects: projectsEn,
