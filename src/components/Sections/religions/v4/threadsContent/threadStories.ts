@@ -2,7 +2,7 @@ import { threadsAssets } from "../threadsAssets";
 
 export const faithStories = {
     en: [
-      ["islam", "Islam", "Faith, Worship, and Living Traditions.", threadsAssets.pu],
+      ["islam", "Islam", "Faith, Worship, and Living Traditions.", threadsAssets.faithIslam],
       [
         "christianity",
         "Christianity",
@@ -13,16 +13,16 @@ export const faithStories = {
         "yazidism",
         "Yazidism",
         "The Sacred Valley, Memory, and Resilience.",
-        threadsAssets.fo,
+        threadsAssets.faithYazidism,
       ],
       [
         "yarsanism",
         "Yarsanism (Kaka'i)",
         "Inner Truth, Faith, and Community.",
-        threadsAssets.Ci,
+        threadsAssets.faithYarsanism,
       ],
       ["zoroastrianism", "Zoroastrianism", "Light, Truth, and Wisdom.", threadsAssets.mu],
-      ["judaism", "Judaism", "Memory, Heritage, and Continuity.", threadsAssets.ho],
+      ["judaism", "Judaism", "Memory, Heritage, and Continuity.", threadsAssets.faithJudaism],
       [
         "bahai",
         "The Bahá’í Faith",
@@ -33,38 +33,38 @@ export const faithStories = {
         "sabean",
         "Mandaean Sabians",
         "Living water, purity, and continuity.",
-        threadsAssets.mo,
+        threadsAssets.faithSabean,
       ],
     ],
     ku: [
-      ["islam", "ئیسلام", "باوەڕ، پەرستن و نەریتە زیندووەکان", threadsAssets.pu],
+      ["islam", "ئیسلام", "باوەڕ، پەرستن و نەریتە زیندووەکان", threadsAssets.faithIslam],
       [
         "christianity",
         "مەسیحییەت",
         "ڕەگی دێرین، باوەڕی چەسپاو و کۆمەڵگەی یەکگرتوو",
         threadsAssets.co,
       ],
-      ["yazidism", "ئێزیدیاتی", "دۆڵە پیرۆزەکە، یادەوەری و خۆڕاگری", threadsAssets.fo],
-      ["yarsanism", "یارسانی (کاکەیی)", "ڕاستی ناخ، باوەڕداری و کۆمەڵگە", threadsAssets.Ci],
+      ["yazidism", "ئێزیدیاتی", "دۆڵە پیرۆزەکە، یادەوەری و خۆڕاگری", threadsAssets.faithYazidism],
+      ["yarsanism", "یارسانی (کاکەیی)", "ڕاستی ناخ، باوەڕداری و کۆمەڵگە", threadsAssets.faithYarsanism],
       ["zoroastrianism", "زەردەشتی", "ڕووناکی، ڕاستی و دانایی", threadsAssets.mu],
-      ["judaism", "جوو", "یادەوەری، میرات و بەردەوامی", threadsAssets.ho],
+      ["judaism", "جوو", "یادەوەری، میرات و بەردەوامی", threadsAssets.faithJudaism],
       ["bahai", "ئایینی بەهایی", "تەبایی، ئاشتی و یەکبوون لە مرۆڤایەتیدا.", threadsAssets.po],
-      ["sabean", "سابیئەی مەندائی", "ئاوی زیندوو، پاکوخاوێنی و بەردەوامی", threadsAssets.mo],
+      ["sabean", "سابیئەی مەندائی", "ئاوی زیندوو، پاکوخاوێنی و بەردەوامی", threadsAssets.faithSabean],
     ],
     ar: [
-      ["islam", "الإسلام", "الإيمان والعبادة والتقاليد الحية", threadsAssets.pu],
+      ["islam", "الإسلام", "الإيمان والعبادة والتقاليد الحية", threadsAssets.faithIslam],
       ["christianity", "المسيحية", "جذور عريقة وإيمان راسخ ومجتمع متماسك", threadsAssets.co],
-      ["yazidism", "الإيزيدية", "الوادي المقدس والذاكرة والصمود", threadsAssets.fo],
+      ["yazidism", "الإيزيدية", "الوادي المقدس والذاكرة والصمود", threadsAssets.faithYazidism],
       [
         "yarsanism",
         "اليارسانية (الكاكائية)",
         "الحقيقة الداخلية والتقوى والمجتمع",
-        threadsAssets.Ci,
+        threadsAssets.faithYarsanism,
       ],
       ["zoroastrianism", "الزرادشتية", "النور والحقيقة والحكمة العريقة", threadsAssets.mu],
-      ["judaism", "اليهودية", "الذاكرة والتراث والاستمرارية", threadsAssets.ho],
+      ["judaism", "اليهودية", "الذاكرة والتراث والاستمرارية", threadsAssets.faithJudaism],
       ["bahai", "الديانة البهائية", "الوحدة والسلام وإنسانية واحدة", threadsAssets.po],
-      ["sabean", "الصابئة المندائيون", "الماء الحي والطهارة والاستمرارية", threadsAssets.mo],
+      ["sabean", "الصابئة المندائيون", "الماء الحي والطهارة والاستمرارية", threadsAssets.faithSabean],
     ],
   };
 export const nationsStories = {
