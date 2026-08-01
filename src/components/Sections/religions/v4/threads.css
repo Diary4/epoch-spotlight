@@ -121,15 +121,15 @@
 }
 .tok-attract__image {
   transform-origin: 56% 42%;
-  -o-object-position: 56% center;
-  object-position: 56% center;
+  -o-object-position: center center;
+  object-position: center center;
 }
 .tok-attract__veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 40%, #aa78410f, #090b0940 38%, #080a08e6 88%),
-    linear-gradient(180deg, #07090785, #0709071f 35%, #070907d6 82%, #090b09);
+    radial-gradient(circle at 50% 40%, #aa78410f, #090b0928 42%, #080a0899 92%),
+    linear-gradient(180deg, #07090766, #07090714 38%, #07090770 78%, #090b09b8);
 }
 .tok-attract__grain {
   position: absolute;
@@ -599,31 +599,31 @@
 }
 .tok-thread-line {
   fill: none;
-  stroke: rgba(166, 124, 58, 0.42);
-  stroke-width: 1.4px;
+  stroke: rgba(166, 124, 58, 0.72);
+  stroke-width: 1.8px;
 }
 .tok-thread-line--soft {
-  stroke: rgba(166, 124, 58, 0.3);
+  stroke: rgba(166, 124, 58, 0.55);
   stroke-dasharray: 2 12;
   stroke-linecap: round;
-  stroke-width: 2px;
+  stroke-width: 2.2px;
 }
 .tok-thread-node {
-  fill: rgba(166, 124, 58, 0.5);
+  fill: rgba(166, 124, 58, 0.78);
 }
 .tok-thread-diamond {
-  fill: rgba(166, 124, 58, 0.55);
+  fill: rgba(166, 124, 58, 0.8);
 }
 .tok-thread-ring {
   fill: none;
-  stroke: rgba(166, 124, 58, 0.28);
-  stroke-width: 1.2px;
+  stroke: rgba(166, 124, 58, 0.5);
+  stroke-width: 1.4px;
 }
 .tok-thread-ring--inner {
-  stroke: rgba(166, 124, 58, 0.34);
+  stroke: rgba(166, 124, 58, 0.58);
   stroke-dasharray: 1.5 9;
   stroke-linecap: round;
-  stroke-width: 1.6px;
+  stroke-width: 1.8px;
 }
 .tok-sun__glow {
   fill: url(#tok-sun-glow);

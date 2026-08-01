@@ -103,6 +103,10 @@ export default function HubScene({
               <stop offset="100%" stopColor="#f2ece0" stopOpacity="0" />
             </radialGradient>
           </defs>
+          {/* Glow sits under the web so the paper wash never erases the threads. */}
+          <g transform={`translate(${centre.x} ${centre.y})`}>
+            <circle className="tok-sun__glow" r={sun.outer + 460} />
+          </g>
           <line
             className="tok-thread-line tok-thread-line--soft"
             x1={HUB_TAIL.x1}
@@ -137,7 +141,6 @@ export default function HubScene({
             r={ring.inner}
           />
           <g transform={`translate(${centre.x} ${centre.y})`}>
-            <circle className="tok-sun__glow" r={sun.outer + 460} />
             <path className="tok-sun__rays" d={HUB_SUN_PATH} />
             <circle className="tok-sun__disc" r={sun.disc} />
           </g>

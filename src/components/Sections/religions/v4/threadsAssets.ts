@@ -32,6 +32,7 @@ import gu from "@/assets/images/new/religions/nations/kurd.webp";
 import Hg from "@/assets/images/religions/kurds/language.webp";
 import ho from "@/assets/images/religions/judaism/heritage.webp";
 import hS from "@/assets/images/religions/r-8.webp";
+import attractVideo from "@/assets/videos/religion.mp4";
 import HS from "@/assets/images/religions/judaism/nahum-shrine.webp";
 import i2 from "@/assets/images/religions/kurds/culture.webp";
 import IS from "@/assets/images/religions/kakayi/fourprinciple.webp";
@@ -169,6 +170,7 @@ export const threadsAssets = {
   sharedChurches,
   zoroCover,
   attract: hS,
+  attractVideo,
   hub: Yn,
   closing: dt,
   coexistenceAcceptance,
