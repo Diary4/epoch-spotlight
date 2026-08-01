@@ -3,7 +3,9 @@ import { AnimatePresence } from "motion/react";
 import FitScaledCanvas from "@/components/FitScaledCanvas";
 import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
 import BcfAttract from "@/components/Sections/bcf/BcfAttract";
-import BcfLanguage from "@/components/Sections/bcf/BcfLanguage";
+import BcfLanguageOverlay from "@/components/Sections/bcf/BcfLanguageOverlay";
+import BcfIdleOverlay from "@/components/Sections/bcf/BcfIdleOverlay";
+import BcfReachRail from "@/components/Sections/bcf/BcfReachRail";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
 import BcfSections from "@/components/Sections/bcf/BcfSections";
@@ -17,6 +19,7 @@ import BcfFuture from "@/components/Sections/bcf/BcfFuture";
 import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
 import BcfTrust from "@/components/Sections/bcf/BcfTrust";
 import {
+  bcfCopy,
   type BcfLang,
   type BcfStep,
   type JourneyChapterId,
@@ -24,13 +27,40 @@ import {
   type ProjectId,
 } from "@/components/Sections/bcf/bcfContent";
 
+/** Steps that draw their own back control, which the rail has to clear. */
+const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
+  "sections",
+  "humanity",
+  "hub",
+  "map",
+  "projects",
+  "projectDetail",
+  "impact",
+  "trust",
+  "future",
+  "futureDetail",
+];
+
+/** Home only means something once the chapter menu exists behind the visitor. */
+const STEPS_WITH_HOME: BcfStep[] = STEPS_WITH_BACK_BUTTON;
+
+/** Idle rhythm, matched to the Threads experience so both kiosks behave alike. */
+const IDLE_WARNING_MS = 75_000;
+const IDLE_RESET_MS = 90_000;
+const IDLE_COUNTDOWN_FROM = 15;
+
 export default function BcfPage() {
   const [step, setStep] = React.useState<BcfStep>("attract");
   const [lang, setLang] = React.useState<BcfLang>("en");
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
   const [projectId, setProjectId] = React.useState<ProjectId | null>(null);
+  const [languageOpen, setLanguageOpen] = React.useState(false);
+  const [languageOrigin, setLanguageOrigin] =
+    React.useState<"entry" | "control">("entry");
+  const [idleCount, setIdleCount] = React.useState<number | null>(null);
 
+  const c = bcfCopy[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
   const navigatingRef = React.useRef(false);
 
@@ -54,22 +84,83 @@ export default function BcfPage() {
     }, 420);
   }, []);
 
+  const reset = React.useCallback(() => {
+    setIdleCount(null);
+    setLanguageOpen(false);
+    setLanguageOrigin("entry");
+    setModalLocation(null);
+    setLocationId(null);
+    setProjectId(null);
+    setLang("en");
+    setStep("attract");
+  }, []);
+
+  /**
+   * Idle watch. The attract screen is already the resting state, so it is the
+   * one place that needs no timer.
+   */
+  React.useEffect(() => {
+    if (step === "attract") {
+      setIdleCount(null);
+      return;
+    }
+
+    let warningTimeout = 0;
+    let resetTimeout = 0;
+    let countdownInterval = 0;
+
+    const restart = () => {
+      window.clearTimeout(warningTimeout);
+      window.clearTimeout(resetTimeout);
+      window.clearInterval(countdownInterval);
+      setIdleCount(null);
+
+      warningTimeout = window.setTimeout(() => {
+        let remaining = IDLE_COUNTDOWN_FROM;
+        setIdleCount(remaining);
+        countdownInterval = window.setInterval(() => {
+          remaining -= 1;
+          setIdleCount(Math.max(remaining, 0));
+        }, 1000);
+      }, IDLE_WARNING_MS);
+
+      resetTimeout = window.setTimeout(() => {
+        window.clearInterval(countdownInterval);
+        reset();
+      }, IDLE_RESET_MS);
+    };
+
+    restart();
+    window.addEventListener("pointerdown", restart, { passive: true });
+    window.addEventListener("keydown", restart);
+
+    return () => {
+      window.clearTimeout(warningTimeout);
+      window.clearTimeout(resetTimeout);
+      window.clearInterval(countdownInterval);
+      window.removeEventListener("pointerdown", restart);
+      window.removeEventListener("keydown", restart);
+    };
+  }, [step, reset]);
+
+  const openLanguage = React.useCallback((origin: "entry" | "control") => {
+    setLanguageOrigin(origin);
+    setLanguageOpen(true);
+  }, []);
+
+  const chooseLanguage = React.useCallback(
+    (next: BcfLang) => {
+      setLang(next);
+      setLanguageOpen(false);
+      if (languageOrigin === "entry") go(() => setStep("intro"));
+    },
+    [go, languageOrigin],
+  );
+
   const content = (() => {
     switch (step) {
       case "attract":
-        return <BcfAttract key="attract" onFinish={() => go(() => setStep("language"))} />;
-      case "language":
-        return (
-          <BcfLanguage
-            key="language"
-            onSelect={(next) => {
-              go(() => {
-                setLang(next);
-                setStep("intro");
-              });
-            }}
-          />
-        );
+        return <BcfAttract key="attract" onEnter={() => openLanguage("entry")} />;
       case "intro":
         return (
           <BcfIntro
@@ -227,14 +318,45 @@ export default function BcfPage() {
       bgClassName="bg-[#0a0a0a]"
       fitDeps={[step, lang]}
     >
-      <div className="flex min-h-[1920px] w-full flex-col">
+      {/* `relative` so the rail and the two overlays can pin themselves to the
+          artboard rather than the window — they have to scale with it. */}
+      <div className="relative flex min-h-[1920px] w-full flex-col">
         {/* `mode="wait"` lets the outgoing scene finish its short exit before the
             next one dissolves up, so the backdrop never cuts to black between
-            screens. `initial={false}` keeps the attract reel from fading in over
+            screens. `initial={false}` keeps the attract from fading in over
             itself on first paint. */}
         <AnimatePresence mode="wait" initial={false}>
           {content}
         </AnimatePresence>
+
+        {step !== "attract" ? (
+          <BcfReachRail
+            homeLabel={c.home}
+            languageLabel={c.language}
+            onHome={
+              STEPS_WITH_HOME.includes(step)
+                ? () => go(() => setStep("sections"))
+                : undefined
+            }
+            onLanguage={() => openLanguage("control")}
+            homeActive={step === "sections"}
+            offsetForBackButton={STEPS_WITH_BACK_BUTTON.includes(step)}
+          />
+        ) : null}
+
+        <BcfLanguageOverlay
+          open={languageOpen}
+          origin={languageOrigin}
+          lang={lang}
+          onSelect={chooseLanguage}
+          onClose={() => setLanguageOpen(false)}
+        />
+
+        <BcfIdleOverlay
+          count={idleCount}
+          lang={lang}
+          onContinue={() => setIdleCount(null)}
+        />
       </div>
     </FitScaledCanvas>
   );

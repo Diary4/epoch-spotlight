@@ -1,8 +1,11 @@
 export type BcfLang = "en" | "ku" | "ar";
 
+/**
+ * Language is no longer a step: it is an overlay that can be raised from the
+ * attract on the way in, or from the reach rail at any point after.
+ */
 export type BcfStep =
   | "attract"
-  | "language"
   | "intro"
   | "welcome"
   | "sections"
@@ -124,9 +127,20 @@ export type BcfCopy = {
   languageTitle: string;
   languages: { id: BcfLang; label: string }[];
   touchToContinue: string;
-  /** Opening attract reel: shown in all three languages at once, before a language is chosen. */
+  /** Opening attract: shown in all three languages at once, before a language is chosen. */
   attractStart: string;
   attractTagline: string;
+  attractEyebrow: string;
+  attractCaption: string;
+  enterHint: string;
+  /** Persistent reach-rail controls, present on every scene after the attract. */
+  home: string;
+  language: string;
+  chooseLanguageHint: string;
+  /** Idle warning shown before the kiosk returns itself to the attract screen. */
+  idleTitle: string;
+  idleBody: string;
+  idleContinue: string;
   humanity: string;
   dignity: string;
   hope: string;
@@ -348,6 +362,15 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     touchToContinue: "Touch to continue",
     attractStart: "Touch to Start",
     attractTagline: "Barzani Charity Foundation",
+    attractEyebrow: "BARZANI CHARITY FOUNDATION",
+    attractCaption: "Thirty years of standing beside the people of Kurdistan.",
+    enterHint: "TOUCH ANYWHERE",
+    home: "Home",
+    language: "Language",
+    chooseLanguageHint: "You can change this at any time from the side controls.",
+    idleTitle: "Still with us?",
+    idleBody: "The experience returns to the start so the next visitor begins fresh.",
+    idleContinue: "I'm still here",
     humanity: "HUMANITY.",
     dignity: "DIGNITY.",
     hope: "HOPE.",
@@ -643,6 +666,15 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     touchToContinue: "بۆ بەردەوامبوون دەستی لێبدە",
     attractStart: "دەستی لێبدە بۆ دەستپێکردن",
     attractTagline: "دامەزراوەی خێرخوازیی بارزانی",
+    attractEyebrow: "دامەزراوەی خێرخوازیی بارزانی",
+    attractCaption: "سی ساڵ لەپاڵ خەڵکی کوردستان.",
+    enterHint: "دەستی لە هەر شوێنێک بدە",
+    home: "سەرەتا",
+    language: "زمان",
+    chooseLanguageHint: "هەر کاتێک بتەوێت لە کۆنترۆڵەکانی لاوە دەیگۆڕیت.",
+    idleTitle: "هێشتا لەگەڵمانیت؟",
+    idleBody: "ئەزموونەکە دەگەڕێتەوە سەرەتا بۆ ئەوەی سەردانکەری داهاتوو لە سەرەتاوە دەست پێبکات.",
+    idleContinue: "بەڵێ، لێرەم",
     humanity: "مرۆڤایەتی.",
     dignity: "کەرامەت.",
     hope: "هیوا.",
@@ -937,6 +969,15 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     touchToContinue: "المس للمتابعة",
     attractStart: "المس للبدء",
     attractTagline: "مؤسسة بارزاني الخيرية",
+    attractEyebrow: "مؤسسة بارزاني الخيرية",
+    attractCaption: "ثلاثون عاماً إلى جانب أهالي كوردستان.",
+    enterHint: "المس أي مكان",
+    home: "الرئيسية",
+    language: "اللغة",
+    chooseLanguageHint: "يمكنك تغييرها في أي وقت من أدوات التحكم الجانبية.",
+    idleTitle: "هل ما زلت معنا؟",
+    idleBody: "تعود التجربة إلى البداية ليبدأ الزائر التالي من جديد.",
+    idleContinue: "نعم، ما زلت هنا",
     humanity: "الإنسانية.",
     dignity: "الكرامة.",
     hope: "الأمل.",

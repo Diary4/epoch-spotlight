@@ -12,7 +12,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfWelcomeBg as welcomeBg } from "@/components/Sections/bcf/bcfAssets";
+import { bcfAttractPoster } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfWelcomeProps = {
   lang: BcfLang;
@@ -24,9 +24,16 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
   const reduceMotion = useReducedMotion();
 
   return (
+    /*
+     * Third of the three opening plates, and the only one of the pair the
+     * visitor has not yet been alone with — the attract cycles both, the vow
+     * holds on the sunrise, and this closes on the citadel ridge. It used to be
+     * a borrowed portrait from the Women section, which broke the one place the
+     * opening had been building since the first frame.
+     */
     <BcfShell
-      backgroundImage={welcomeBg}
-      overlayClassName="bg-gradient-to-r from-[#04090c] via-[#04090c]/55 to-transparent"
+      backgroundImage={bcfAttractPoster}
+      overlayClassName="bg-gradient-to-r from-[#04090c]/95 via-[#04090c]/60 to-[#04090c]/10"
     >
       <motion.div
         className="relative flex min-h-[1920px] flex-col justify-center px-14 pb-28 pt-48"

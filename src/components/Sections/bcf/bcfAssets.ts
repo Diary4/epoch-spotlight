@@ -16,14 +16,12 @@ export { default as bcfProjectsBg } from "@/assets/images/TouristicPlace/GaliAli
 export { default as bcfFutureDetailBg } from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 
 /**
- * Opening attract reel.
+ * Opening plates.
  *
- * `bcfAttractVideo` is the drop-in point for the real BCF brand film: import the
- * file (portrait 1080x1920 keeps it full-bleed) and assign it here, and
- * BcfAttract plays that instead of the built-in animated reel — same paused
- * first frame, same trilingual start prompt, same hand-off to language select.
- *
- *   import attractFilm from "@/assets/videos/bcf-attract.webm";
- *   export const bcfAttractVideo: string | null = attractFilm;
+ * Both are portrait 1080×1620 originals commissioned for BCF — the only two
+ * images in the experience that are not borrowed from another section. The
+ * attract cross-fades between them on a slow cycle, which is where its motion
+ * comes from now that there is no film to play.
  */
-export const bcfAttractVideo: string | null = null;
+export { default as bcfAttractPoster } from "@/assets/images/bcf/attract-poster.webp";
+export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";

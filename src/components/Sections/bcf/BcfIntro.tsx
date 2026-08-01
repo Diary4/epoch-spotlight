@@ -1,30 +1,44 @@
-import React from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { Hand } from "lucide-react";
-import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
-import { bcfIntroBg as introBg } from "@/components/Sections/bcf/bcfAssets";
+import {
+  BCF_EASE,
+  bcfDrawX,
+  bcfRise,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
+import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfIntroProps = {
   lang: BcfLang;
   onContinue: () => void;
 };
 
+/**
+ * The vow.
+ *
+ * One screen, one sentence — the line the foundation was built on — set into
+ * the dark valley of the sunrise plate, with the three words of the mission
+ * standing under it as pillars.
+ *
+ * It used to run the same looping typewriter the attract ran, on the same three
+ * words, over a borrowed press photograph: the visitor met the identical trick
+ * twice in ten seconds and neither showing was the point of the screen. The
+ * quote is the point, so the quote is the composition, and the three words are
+ * demoted to what they actually are — its footing.
+ */
 export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
+  const pillars = [c.humanity, c.dignity, c.hope];
 
   return (
     <BcfShell
-      backgroundImage={introBg}
-      overlayClassName="bg-gradient-to-r from-[#04090c] via-[#04090c]/55 to-transparent"
+      backgroundImage={bcfSunrise}
+      overlayClassName="bg-gradient-to-b from-[#04090c]/40 via-[#04090c]/25 to-[#04090c]/95"
     >
-      {/* One tap continues. The screen used to open behind a black wall that had
-          to be dismissed first, so the visitor's first touch bought them nothing
-          but the page they were already looking at. */}
+      {/* One tap continues, from anywhere on the plate. */}
       <button
         type="button"
         className="absolute inset-0 z-20 cursor-pointer border-0 bg-transparent p-0"
@@ -32,81 +46,128 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
         aria-label={c.touchToContinue}
       />
 
-      {/* pt clears the BCF logo mark in the top-left corner — at pt-32 the
-          124px headline ran straight through it. */}
       <motion.div
-        className="relative z-10 flex min-h-[1920px] flex-col px-16 pb-40 pt-[300px]"
-        variants={bcfStagger(0.14, 0.28)}
+        // Anchored well clear of the bottom edge: on a portrait 65" the lower
+        // 500px is below waist height, and the block was reading as sunk into
+        // the floor of the frame rather than set into the valley.
+        className="pointer-events-none relative z-10 flex min-h-[1920px] flex-col justify-end px-16 pb-[540px]"
+        variants={bcfStagger(0.16, 0.3)}
         initial="initial"
         animate="animate"
       >
-        <div className="max-w-[920px]">
-          <motion.div variants={bcfRise}>
-            <TextType
-              as="h1"
-              text={[c.humanity, c.dignity, c.hope]}
-              typingSpeed={70}
-              deletingSpeed={40}
-              pauseDuration={1400}
-              loop
-              showCursor
-              cursorCharacter="|"
-              cursorClassName="text-[#fbc158]"
-              textColors={["#fdeed4", "#fdeed4", BCF.gold]}
-              className="font-sans text-[124px] font-bold uppercase leading-[1.02] tracking-[0.01em]"
-            />
-          </motion.div>
+        <motion.p
+          variants={bcfRise}
+          className="text-[26px] font-semibold uppercase"
+          style={{ color: BCF.nature, letterSpacing: "0.28em" }}
+        >
+          {c.attractTagline}
+        </motion.p>
 
+        <motion.span
+          variants={bcfDrawX}
+          className="mt-8 block h-px w-[460px] origin-left"
+          style={{
+            background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+          }}
+        />
+
+        {/* The quote. Set in the display serif at a size that has to be read
+            slowly, which is the pace the sentence deserves. */}
+        <div className="relative mt-16 max-w-[880px]">
           <motion.span
-            variants={bcfDrawX}
-            className="mt-14 block h-px w-[420px] origin-left"
-            style={{
-              background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
-            }}
-          />
+            variants={bcfRise}
+            aria-hidden="true"
+            className="absolute -left-2 -top-[86px] font-display-num text-[190px] leading-none rtl:-right-2 rtl:left-auto"
+            style={{ color: `${BCF.gold}3d` }}
+          >
+            “
+          </motion.span>
+          <motion.p
+            variants={bcfRise}
+            className="relative font-display-num text-[86px] font-semibold italic leading-[1.14]"
+            style={{ color: BCF.cream, textShadow: "0 20px 60px rgba(0,0,0,0.6)" }}
+          >
+            {c.quote}
+          </motion.p>
+        </div>
 
-          <div className="mt-16 max-w-[640px]">
-            <motion.span
+        <motion.div variants={bcfRise} className="mt-12 flex items-center gap-5">
+          <span
+            className="h-[3px] w-16 rounded-full"
+            style={{ backgroundColor: BCF.goldDeep }}
+          />
+          <p className="text-[40px] font-medium" style={{ color: BCF.gold }}>
+            {c.quoteAttr.replace(/^—\s*/, "")}
+          </p>
+        </motion.div>
+
+        {/* Three pillars. Each column's hairline grows up out of the baseline,
+            in sequence, so the vow visibly comes to rest on something. */}
+        <div className="mt-24 grid grid-cols-3 gap-8">
+          {pillars.map((word, index) => (
+            <motion.div
+              key={word}
               variants={bcfRise}
-              className="block text-[64px] leading-none text-[#fbc158]"
+              className="flex flex-col items-start gap-6"
             >
-              “
-            </motion.span>
-            <motion.p
-              variants={bcfRise}
-              className="mt-4 text-[36px] font-medium italic leading-snug text-[#fbf4e4]"
-            >
-              {c.quote}
-            </motion.p>
-            <motion.div variants={bcfRise} className="mt-8 flex items-center gap-4">
-              <span className="h-0.5 w-6 rounded-full" style={{ backgroundColor: BCF.goldDeep }} />
-              <p className="text-[42px] font-medium" style={{ color: BCF.goldDeep }}>
-                {c.quoteAttr.replace(/^—\s*/, "")}
-              </p>
+              <motion.span
+                className="block w-px origin-bottom"
+                style={{
+                  height: 96,
+                  background: `linear-gradient(0deg, ${BCF.gold}, transparent)`,
+                }}
+                initial={reduceMotion ? { opacity: 0 } : { scaleY: 0, opacity: 0 }}
+                animate={
+                  reduceMotion
+                    ? { opacity: 1, transition: { duration: 0.3 } }
+                    : {
+                        scaleY: 1,
+                        opacity: 1,
+                        transition: {
+                          duration: 0.9,
+                          ease: BCF_EASE,
+                          delay: 0.9 + index * 0.16,
+                        },
+                      }
+                }
+              />
+              <span
+                className="font-sans text-[19px] font-semibold"
+                style={{ color: `${BCF.nature}b0`, letterSpacing: "0.24em" }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span
+                className="font-sans text-[46px] font-bold uppercase leading-none"
+                style={{ color: BCF.creamSoft }}
+              >
+                {word}
+              </span>
             </motion.div>
-          </div>
+          ))}
         </div>
       </motion.div>
 
-      {/* Touch prompt: a breathing cue at the foot of the screen rather than a
+      {/* Touch prompt — a breathing line at the foot of the screen rather than a
           scrim across the artwork, so the composition is never hidden. */}
       <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-24 z-30 flex flex-col items-center gap-5"
-        initial={{ opacity: 0, y: 20 }}
+        className="pointer-events-none absolute inset-x-0 bottom-[290px] z-30 flex flex-col items-center gap-6"
+        initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ delay: 1.6, duration: 0.85, ease: BCF_EASE }}
       >
         <motion.span
-          className="grid h-[112px] w-[112px] place-items-center rounded-full border bg-black/35 backdrop-blur-sm"
-          style={{ borderColor: `${BCF.gold}70` }}
-          animate={reduceMotion ? undefined : { y: [0, -14, 0] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Hand className="h-14 w-14" strokeWidth={1.4} style={{ color: BCF.sand }} />
-        </motion.span>
+          className="block h-[74px] w-px"
+          style={{
+            transformOrigin: "top",
+            background: `linear-gradient(180deg, transparent, ${BCF.gold})`,
+          }}
+          animate={reduceMotion ? undefined : { scaleY: [0.4, 1, 0.4], opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        />
         <p
-          className="text-[32px] tracking-[0.14em]"
-          style={{ color: BCF.nature }}
+          className="text-[28px] font-medium uppercase"
+          style={{ color: `${BCF.nature}cc`, letterSpacing: "0.22em" }}
         >
           {c.touchToContinue}
         </p>
