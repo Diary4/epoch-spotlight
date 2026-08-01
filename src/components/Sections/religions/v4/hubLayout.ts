@@ -8,7 +8,7 @@ import type { ThreadId } from "./threadsTypes";
 export const HUB_LAYOUT = {
   width: 1080,
   height: 1196,
-  centre: { x: 540, y: 463 },
+  centre: { x: 540, y: 560 },
   card: { width: 250, height: 366, radiusTop: 64, radiusBottom: 52 },
   sun: { rays: 21, outer: 66, inner: 28, disc: 30 },
   ring: { inner: 104, outer: 148 },
