@@ -49,12 +49,18 @@ export type BcfLocation = {
   filters: MapFilterId[];
 };
 
+/**
+ * Pin positions, as a percentage of the map artboard in bcfMapGeometry — the
+ * same projection the outlines are drawn with, so every city lands on its own
+ * governorate. They were eyeballed onto a photograph before, which put Kirkuk
+ * east of Sulaymaniyah and Zakho north-east of Duhok.
+ */
 export const BCF_LOCATIONS: BcfLocation[] = [
-  { id: "erbil", x: "58%", y: "48%", filters: ["offices", "geographic", "emergency"] },
-  { id: "duhok", x: "42%", y: "28%", filters: ["offices", "camps", "geographic"] },
-  { id: "zakho", x: "34%", y: "18%", filters: ["camps", "emergency"] },
-  { id: "kirkuk", x: "72%", y: "58%", filters: ["offices", "geographic"] },
-  { id: "sulaymaniyah", x: "78%", y: "42%", filters: ["offices", "camps", "geographic"] },
+  { id: "erbil", x: "42.07%", y: "43.01%", filters: ["offices", "geographic", "emergency"] },
+  { id: "duhok", x: "18.94%", y: "20.26%", filters: ["offices", "camps", "geographic"] },
+  { id: "zakho", x: "11.68%", y: "10.94%", filters: ["camps", "emergency"] },
+  { id: "kirkuk", x: "50.84%", y: "67.36%", filters: ["offices", "geographic"] },
+  { id: "sulaymaniyah", x: "74.67%", y: "64.41%", filters: ["offices", "camps", "geographic"] },
 ];
 
 type LocCopy = {

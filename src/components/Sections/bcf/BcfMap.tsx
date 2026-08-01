@@ -20,7 +20,13 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
-import mapBg from "@/assets/images/kurdistan.webp";
+import {
+  BCF_MAP_CONTEXT,
+  BCF_MAP_CORE,
+  BCF_MAP_KIRKUK,
+  BCF_MAP_VIEWBOX,
+} from "@/components/Sections/bcf/bcfMapGeometry";
+import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
 import mapThumb from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import erbilImg from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import duhokImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
@@ -81,7 +87,11 @@ export default function BcfMap({
   const selected = selectedLocation ? c.locations[selectedLocation] : null;
 
   return (
-    <BcfShell backgroundImage={mapBg} overlayClassName="bg-black/55" drift={false}>
+    <BcfShell
+      backgroundImage={bcfSunrise}
+      overlayClassName="bg-black/65"
+      drift={false}
+    >
       <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-24">
         <BcfBackButton onClick={onBack} label={c.back} />
 
@@ -119,12 +129,14 @@ export default function BcfMap({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: BCF_EASE }}
         >
+          {/* The plate the opening screens are set on, pushed right down: it is
+              texture under the cartography, not a picture in its own right. */}
           <img
-            src={mapBg}
+            src={bcfSunrise}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover brightness-[0.55] contrast-125"
+            className="absolute inset-0 h-full w-full object-cover brightness-[0.3] saturate-[0.55]"
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-[#050a10]/72" />
           {/* Gold graticule — reads as cartography rather than a dimmed photo. */}
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.16]"
@@ -136,6 +148,167 @@ export default function BcfMap({
                 "radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 82%)",
             }}
           />
+
+          {/* Map plane. Fixed to the region's own aspect ratio and centred, so
+              the outlines and the pins share one coordinate space — the pin
+              percentages in BCF_LOCATIONS are percentages of *this* box, which
+              is the only reason a city can be trusted to sit on its own
+              governorate. */}
+          <div
+            className="absolute inset-x-0 top-1/2 z-10 -translate-y-1/2"
+            style={{
+              aspectRatio: `${BCF_MAP_VIEWBOX.width} / ${BCF_MAP_VIEWBOX.height}`,
+            }}
+          >
+            <svg
+              className="absolute inset-0 h-full w-full"
+              viewBox={`0 0 ${BCF_MAP_VIEWBOX.width} ${BCF_MAP_VIEWBOX.height}`}
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="bcf-map-core" x1="0" y1="0" x2="0.4" y2="1">
+                  <stop offset="0%" stopColor={BCF.gold} stopOpacity="0.22" />
+                  <stop offset="100%" stopColor={BCF.goldDeep} stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+
+              {/* Neighbours first, and faint: they give the Region an edge to
+                  sit against without ever competing with it. */}
+              {BCF_MAP_CONTEXT.map((shape) => (
+                <path
+                  key={shape.id}
+                  d={shape.d}
+                  fill="rgba(255,255,255,0.022)"
+                  stroke="rgba(255,255,255,0.1)"
+                  strokeWidth={1.2}
+                  strokeLinejoin="round"
+                />
+              ))}
+
+              {/* Kirkuk is worked in but outside the Region — a dashed edge
+                  says that without needing a legend. */}
+              <path
+                d={BCF_MAP_KIRKUK.d}
+                fill={`${BCF.gold}0f`}
+                stroke={`${BCF.gold}72`}
+                strokeWidth={1.8}
+                strokeDasharray="12 9"
+                strokeLinejoin="round"
+              />
+
+              {BCF_MAP_CORE.map((shape, index) => (
+                <g key={shape.id}>
+                  {/* Wide, soft pass under the hairline reads as a glow on a
+                      65" panel, where a 2px stroke alone goes thin and mean. */}
+                  <path
+                    d={shape.d}
+                    fill="url(#bcf-map-core)"
+                    stroke={`${BCF.gold}26`}
+                    strokeWidth={9}
+                    strokeLinejoin="round"
+                  />
+                  <motion.path
+                    d={shape.d}
+                    stroke={BCF.goldBright}
+                    strokeWidth={2.4}
+                    strokeLinejoin="round"
+                    // The border draws itself before the pins bloom, so the
+                    // Region assembles rather than simply appearing.
+                    initial={
+                      reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }
+                    }
+                    animate={
+                      reduceMotion
+                        ? { opacity: 1, transition: { duration: 0.3 } }
+                        : {
+                            pathLength: 1,
+                            opacity: 1,
+                            transition: {
+                              duration: 1.5,
+                              ease: BCF_EASE,
+                              delay: 0.4 + index * 0.16,
+                            },
+                          }
+                    }
+                  />
+                </g>
+              ))}
+            </svg>
+
+            <AnimatePresence initial={false}>
+              {visibleLocations.map((loc, index) => {
+                const isSelected = selectedLocation === loc.id;
+                return (
+                  /* Pin anchoring stays on a plain wrapper — motion owns
+                     `transform` on the button for the bloom and tap scale. */
+                  <div
+                    key={loc.id}
+                    className="absolute -translate-x-1/2 -translate-y-full"
+                    style={{ left: loc.x, top: loc.y }}
+                  >
+                    <motion.button
+                      type="button"
+                      variants={bcfBloom}
+                      initial="initial"
+                      animate="animate"
+                      exit={{ opacity: 0, scale: 0.7, transition: { duration: 0.22 } }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.9 + index * 0.07,
+                        ease: BCF_EASE,
+                      }}
+                      onClick={() => {
+                        setHintVisible(false);
+                        onSelectLocation(loc.id);
+                      }}
+                      whileTap={BCF_TAP}
+                      className="group origin-bottom transform-gpu will-change-transform"
+                    >
+                      <span className="relative flex flex-col items-center">
+                        {/* Halo ping marks a pin as live without needing a hover. */}
+                        {!reduceMotion ? (
+                          <motion.span
+                            aria-hidden="true"
+                            className="absolute -bottom-1 h-6 w-6 rounded-full"
+                            style={{ backgroundColor: `${BCF.goldBright}55` }}
+                            animate={{ scale: [1, 2.4], opacity: [0.55, 0] }}
+                            transition={{
+                              duration: 2.4,
+                              repeat: Infinity,
+                              delay: index * 0.35,
+                              ease: "easeOut",
+                            }}
+                          />
+                        ) : null}
+                        <span
+                          className="rounded-full border px-5 py-3 text-[28px] font-medium transition-all duration-300"
+                          style={{
+                            borderColor: isSelected
+                              ? BCF.goldBright
+                              : `${BCF.goldBright}aa`,
+                            backgroundColor: isSelected
+                              ? "rgba(251,178,47,0.2)"
+                              : "rgba(0,0,0,0.55)",
+                            color: BCF.creamSoft,
+                            boxShadow: isSelected
+                              ? `0 0 34px ${BCF.gold}66`
+                              : "0 8px 24px rgba(0,0,0,0.4)",
+                          }}
+                        >
+                          {c.locations[loc.id].name}
+                        </span>
+                        <span
+                          className="mt-1 h-0 w-0 border-l-[10px] border-r-[10px] border-t-[14px] border-l-transparent border-r-transparent"
+                          style={{ borderTopColor: BCF.goldBright }}
+                        />
+                      </span>
+                    </motion.button>
+                  </div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
 
           {/* Filters sit low-left: the pins run from 18% to 58% of the stage,
               so a top-left panel buried the Zakho marker behind itself. */}
@@ -187,73 +360,6 @@ export default function BcfMap({
               );
             })}
           </motion.aside>
-
-          <AnimatePresence initial={false}>
-            {visibleLocations.map((loc, index) => {
-              const isSelected = selectedLocation === loc.id;
-              return (
-                /* Pin anchoring stays on a plain wrapper — motion owns
-                   `transform` on the button for the bloom and tap scale. */
-                <div
-                  key={loc.id}
-                  className="absolute z-10 -translate-x-1/2 -translate-y-full"
-                  style={{ left: loc.x, top: loc.y }}
-                >
-                <motion.button
-                  type="button"
-                  variants={bcfBloom}
-                  initial="initial"
-                  animate="animate"
-                  exit={{ opacity: 0, scale: 0.7, transition: { duration: 0.22 } }}
-                  transition={{ duration: 0.5, delay: 0.55 + index * 0.07, ease: BCF_EASE }}
-                  onClick={() => {
-                    setHintVisible(false);
-                    onSelectLocation(loc.id);
-                  }}
-                  whileTap={BCF_TAP}
-                  className="group origin-bottom transform-gpu will-change-transform"
-                >
-                  <span className="relative flex flex-col items-center">
-                    {/* Halo ping marks a pin as live without needing a hover. */}
-                    {!reduceMotion ? (
-                      <motion.span
-                        aria-hidden="true"
-                        className="absolute -bottom-1 h-6 w-6 rounded-full"
-                        style={{ backgroundColor: `${BCF.goldBright}55` }}
-                        animate={{ scale: [1, 2.4], opacity: [0.55, 0] }}
-                        transition={{
-                          duration: 2.4,
-                          repeat: Infinity,
-                          delay: index * 0.35,
-                          ease: "easeOut",
-                        }}
-                      />
-                    ) : null}
-                    <span
-                      className="rounded-full border px-5 py-3 text-[28px] font-medium transition-all duration-300"
-                      style={{
-                        borderColor: isSelected ? BCF.goldBright : `${BCF.goldBright}aa`,
-                        backgroundColor: isSelected
-                          ? "rgba(251,178,47,0.2)"
-                          : "rgba(0,0,0,0.55)",
-                        color: BCF.creamSoft,
-                        boxShadow: isSelected
-                          ? `0 0 34px ${BCF.gold}66`
-                          : "0 8px 24px rgba(0,0,0,0.4)",
-                      }}
-                    >
-                      {c.locations[loc.id].name}
-                    </span>
-                    <span
-                      className="mt-1 h-0 w-0 border-l-[10px] border-r-[10px] border-t-[14px] border-l-transparent border-r-transparent"
-                      style={{ borderTopColor: BCF.goldBright }}
-                    />
-                  </span>
-                </motion.button>
-                </div>
-              );
-            })}
-          </AnimatePresence>
 
           <AnimatePresence>
             {hintVisible && !selectedLocation ? (
