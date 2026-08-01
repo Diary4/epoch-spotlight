@@ -10,7 +10,6 @@ export const HUB_LAYOUT = {
   height: 1196,
   centre: { x: 540, y: 463 },
   card: { width: 250, height: 366, radiusTop: 64, radiusBottom: 52 },
-  badge: 29,
   sun: { rays: 21, outer: 66, inner: 28, disc: 30 },
   ring: { inner: 104, outer: 148 },
   cards: {
@@ -22,7 +21,7 @@ export const HUB_LAYOUT = {
   } satisfies Record<ThreadId, { x: number; y: number }>,
 } as const;
 
-const { centre, card, cards, ring, badge } = HUB_LAYOUT;
+const { centre, card, cards, ring } = HUB_LAYOUT;
 
 export type Segment = { x1: number; y1: number; x2: number; y2: number };
 type Corner = { x: number; y: number; r: number };
@@ -76,10 +75,10 @@ const corner = (
 
 /** Threads that run from the medallion out to each card. */
 export const HUB_SPOKES: Segment[] = [
-  // Straight up to the rim of the Faiths badge.
+  // Straight up to the bottom rim of Faiths.
   spoke({
     x: cards.faiths.x + card.width / 2,
-    y: cards.faiths.y + card.height + badge,
+    y: cards.faiths.y + card.height,
   }),
   // Sideways to the inner edge of the two mid cards.
   spoke({ x: cards.nations.x + card.width, y: centre.y }),

@@ -95,6 +95,13 @@ export default function HubScene({
               <stop offset="52%" stopColor="#cfa754" />
               <stop offset="100%" stopColor="#b0813a" />
             </radialGradient>
+            <radialGradient id="tok-sun-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f2ece0" stopOpacity="1" />
+              <stop offset="22%" stopColor="#f2ece0" stopOpacity="0.9" />
+              <stop offset="48%" stopColor="#f2ece0" stopOpacity="0.55" />
+              <stop offset="72%" stopColor="#f2ece0" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#f2ece0" stopOpacity="0" />
+            </radialGradient>
           </defs>
           <line
             className="tok-thread-line tok-thread-line--soft"
@@ -130,7 +137,7 @@ export default function HubScene({
             r={ring.inner}
           />
           <g transform={`translate(${centre.x} ${centre.y})`}>
-            <circle className="tok-sun__halo" r={sun.outer + 16} />
+            <circle className="tok-sun__glow" r={sun.outer + 460} />
             <path className="tok-sun__rays" d={HUB_SUN_PATH} />
             <circle className="tok-sun__disc" r={sun.disc} />
           </g>

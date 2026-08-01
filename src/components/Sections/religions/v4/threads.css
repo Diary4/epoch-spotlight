@@ -625,8 +625,8 @@
   stroke-linecap: round;
   stroke-width: 1.6px;
 }
-.tok-sun__halo {
-  fill: rgba(201, 160, 65, 0.09);
+.tok-sun__glow {
+  fill: url(#tok-sun-glow);
 }
 .tok-sun__rays,
 .tok-sun__disc {
@@ -728,30 +728,6 @@
   font-weight: 500;
   letter-spacing: 0.035em;
   line-height: 1.42;
-}
-.tok-thread-portal__badge {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  display: flex;
-  width: 58px;
-  height: 58px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid
-    color-mix(in srgb, var(--thread-accent) 52%, rgba(216, 195, 154, 0.9));
-  border-radius: 50%;
-  background: linear-gradient(180deg, #fdfaf3, #f6efdf);
-  box-shadow:
-    0 0 0 6px #f2ece0,
-    0 10px 22px rgba(74, 48, 14, 0.12);
-  transform: translate(-50%, 50%);
-}
-.tok-thread-portal__badge svg {
-  width: 25px;
-  height: 25px;
-  color: #97742f;
-  stroke-width: 1.7;
 }
 .tok-experience--ku .tok-thread-portal__copy b,
 .tok-experience--ar .tok-thread-portal__copy b {

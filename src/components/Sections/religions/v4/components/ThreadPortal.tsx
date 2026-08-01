@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
-import { ThreadGlyph } from "../threadGlyphs";
 
 type ThreadPortalProps = {
   chapter: Chapter;
@@ -53,9 +52,6 @@ export default function ThreadPortal({
             {tail ? <span>{tail}</span> : null}
           </small>
         </span>
-      </span>
-      <span className="tok-thread-portal__badge">
-        <ThreadGlyph id={chapter.id} />
       </span>
     </motion.button>
   );
