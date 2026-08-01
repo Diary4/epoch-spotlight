@@ -21,6 +21,7 @@ export default function StoryCarousel({
   const dragRef = useRef(false);
   const story = chapter.stories[storyIndex];
   const hasDetail = story.detailCards.length > 0;
+  const fullFrame = story.imageFit === "contain";
   const previousStory =
     chapter.stories[
       (storyIndex - 1 + chapter.stories.length) % chapter.stories.length
@@ -48,7 +49,9 @@ export default function StoryCarousel({
         <motion.button
           key={story.id}
           type="button"
-          className={`tok-story-card${hasDetail ? "" : " tok-story-card--static"}`}
+          className={`tok-story-card${hasDetail ? "" : " tok-story-card--static"}${
+            fullFrame ? " tok-story-card--full" : ""
+          }`}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.16}
@@ -74,7 +77,13 @@ export default function StoryCarousel({
             hasDetail ? `${copy.openStory}: ${story.title}` : story.title
           }
         >
+          {/* Blurred over-scaled copy so a letterboxed photo still fills the
+              arch instead of leaving flat slabs above and below it. */}
+          {fullFrame ? (
+            <img className="tok-story-card__fill" src={story.image} alt="" aria-hidden="true" />
+          ) : null}
           <img
+            className="tok-story-card__photo"
             src={story.image}
             alt={story.title}
             style={{ objectPosition: story.imagePosition ?? "center" }}

@@ -898,6 +898,19 @@
   user-select: none;
   pointer-events: none;
 }
+/* Full-frame cards: the photo is letterboxed whole with `contain`, and the
+   space it leaves is filled by a blurred, over-scaled copy of itself. */
+.tok-story-card__fill {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.2);
+  filter: blur(42px) saturate(1.15) brightness(0.55);
+}
+.tok-story-card--full > .tok-story-card__photo {
+  position: relative;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
 .tok-story-card__veil {
   display: block;
   position: absolute;

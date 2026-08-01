@@ -44,6 +44,8 @@ export type Story = {
   significance: string;
   image: string;
   imagePosition?: string;
+  /** `contain` letterboxes the photo whole instead of cropping it to the card. */
+  imageFit?: "cover" | "contain";
   detailCards: DetailCard[];
 };
 
