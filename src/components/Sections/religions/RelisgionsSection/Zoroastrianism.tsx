@@ -6,6 +6,7 @@ import {
 
 import bg from "@/assets/images/religions/zoro/cover.webp";
 import historyImg from "@/assets/images/religions/zoro/history.webp";
+import threePillarsImg from "@/assets/images/religions/zoro/three-pillars.jpeg";
 import environmentImg from "@/assets/images/religions/zoro/environment.webp";
 import nowruzImg from "@/assets/images/religions/zoro/nowruz.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
@@ -41,7 +42,7 @@ type TopicContent = {
 
 const TOPIC_IMAGES: Record<TopicId, string> = {
   history: historyImg,
-  "three-pillars": bg,
+  "three-pillars": threePillarsImg,
   environment: environmentImg,
   nowruz: nowruzImg,
 };

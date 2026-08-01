@@ -1,12 +1,14 @@
 import { AnimatePresence, motion } from "motion/react";
+import { localizeDigits } from "@/lib/utils";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
-import type { ThreadsCopy } from "../threadsCopy";
+import type { ThreadsCopy, ThreadsLang } from "../threadsCopy";
 import { SCENE_TRANSITION } from "../threadsTypes";
 
 type StorySceneProps = {
   chapter: Chapter;
   storyIndex: number;
   detailIndex: number;
+  lang: ThreadsLang;
   copy: ThreadsCopy;
   dispatch: React.Dispatch<ThreadsAction>;
 };
@@ -15,6 +17,7 @@ export default function StoryScene({
   chapter,
   storyIndex,
   detailIndex,
+  lang,
   copy,
   dispatch,
 }: StorySceneProps) {
@@ -84,10 +87,12 @@ export default function StoryScene({
             type="button"
             className={index === detailIndex ? "is-active" : ""}
             onClick={() => dispatch({ type: "SELECT_DETAIL", detailIndex: index })}
-            aria-label={`${index + 1}. ${item.title}`}
+            aria-label={`${localizeDigits(String(index + 1), lang)}. ${item.title}`}
             aria-current={index === detailIndex ? "step" : undefined}
           >
-            <span>{String(index + 1).padStart(2, "0")}</span>
+            <span>
+              {localizeDigits(String(index + 1).padStart(2, "0"), lang)}
+            </span>
             <b>{item.title}</b>
           </button>
         ))}

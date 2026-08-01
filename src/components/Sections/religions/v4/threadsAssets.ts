@@ -44,6 +44,7 @@ import mS from "@/assets/images/religions/islam/shafi.webp";
 import mu from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import n2 from "@/assets/images/religions/kurds/newroz.webp";
 import OS from "@/assets/images/religions/zoro/history.webp";
+import zoroThreePillars from "@/assets/images/religions/zoro/three-pillars.jpeg";
 import zoroNowruz from "@/assets/images/religions/zoro/nowruz.webp";
 import judaismTorah from "@/assets/images/religions/judaism/torah.webp";
 import Ot from "@/assets/images/religions/rights/parliment.webp";
@@ -146,6 +147,7 @@ export const threadsAssets = {
   qp: christianHistorical,
   easterEgg: christianEaster,
   nowruz: zoroNowruz,
+  threePillars: zoroThreePillars,
   torah: judaismTorah,
   r2: r2,
   uo: uo,

@@ -1,7 +1,16 @@
 import React from "react";
-import { Building2, Globe2, Tent, Siren, ChevronLeft, X, ArrowRight } from "lucide-react";
-import BcfShell from "@/components/Sections/bcf/BcfShell";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Building2, Globe2, Tent, Siren, X, ArrowRight } from "lucide-react";
+import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
+import {
+  BCF_EASE,
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfBloom,
+  bcfRise,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
 import {
   BCF_LOCATIONS,
   bcfCopy,
@@ -50,6 +59,7 @@ export default function BcfMap({
   onBack,
 }: BcfMapProps) {
   const c = bcfCopy[lang];
+  const reduceMotion = useReducedMotion();
   const [activeFilters, setActiveFilters] = React.useState<MapFilterId[]>([
     "offices",
     "camps",
@@ -71,156 +81,287 @@ export default function BcfMap({
   const selected = selectedLocation ? c.locations[selectedLocation] : null;
 
   return (
-    <BcfShell backgroundImage={mapBg} overlayClassName="bg-black/45">
+    <BcfShell backgroundImage={mapBg} overlayClassName="bg-black/55" drift={false}>
       <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-24">
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute right-10 top-10 z-30 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-          aria-label={c.back}
+        <BcfBackButton onClick={onBack} label={c.back} />
+
+        <motion.div
+          variants={bcfStagger(0.1, 0.16)}
+          initial="initial"
+          animate="animate"
         >
-          <ChevronLeft className="h-7 w-7 text-white" />
-        </button>
+          <motion.div variants={bcfRise}>
+            <BcfChapterPill title={c.whereWeWork} thumb={mapThumb} />
+          </motion.div>
 
-        <BcfChapterPill title={c.whereWeWork} thumb={mapThumb} />
+          <div className="mt-12 max-w-[640px]">
+            <motion.p
+              variants={bcfRise}
+              dir="ltr"
+              className="text-[80px] font-bold leading-none"
+            >
+              <span className="text-[#fbf4e4]">0</span>
+              <span style={{ color: BCF.gold }}>3</span>
+            </motion.p>
+            <motion.h1
+              variants={bcfRise}
+              className="mt-6 text-[80px] font-bold leading-[1.05]"
+            >
+              <span className="text-[#fbf4e4]">{c.across} </span>
+              <span style={{ color: BCF.gold }}>{c.borders}</span>
+            </motion.h1>
+          </div>
+        </motion.div>
 
-        <div className="mt-12 max-w-[640px]">
-          <p dir="ltr" className="text-[80px] font-bold leading-none">
-            <span className="text-[#fbf4e4]">0</span>
-            <span style={{ color: BCF.gold }}>3</span>
-          </p>
-          <h1 className="mt-6 text-[80px] font-bold leading-[1.05]">
-            <span className="text-[#fbf4e4]">{c.across} </span>
-            <span style={{ color: BCF.gold }}>{c.borders}</span>
-          </h1>
-        </div>
-
-        <div className="relative mt-10 min-h-[1100px] flex-1 overflow-hidden">
+        <motion.div
+          className="relative mt-10 min-h-[1100px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/15"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: BCF_EASE }}
+        >
           <img
             src={mapBg}
             alt=""
             className="absolute inset-0 h-full w-full object-cover brightness-[0.55] contrast-125"
           />
           <div className="absolute inset-0 bg-black/30" />
+          {/* Gold graticule — reads as cartography rather than a dimmed photo. */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.16]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(251,193,88,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(251,193,88,0.5) 1px, transparent 1px)",
+              backgroundSize: "120px 120px",
+              maskImage:
+                "radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 82%)",
+            }}
+          />
 
-          <aside className="absolute left-6 top-6 z-20 w-[300px] rounded-[24px] bg-black/40 p-5 backdrop-blur-sm">
+          {/* Filters sit low-left: the pins run from 18% to 58% of the stage,
+              so a top-left panel buried the Zakho marker behind itself. */}
+          <motion.aside
+            className="absolute bottom-6 left-6 z-20 w-[300px] rounded-[24px] border border-white/10 bg-black/55 p-5 backdrop-blur-md"
+            variants={bcfStagger(0.06, 0.5)}
+            initial="initial"
+            animate="animate"
+          >
             {(Object.keys(c.filters) as MapFilterId[]).map((id) => {
               const Icon = filterIcons[id];
               const on = activeFilters.includes(id);
               return (
-                <button
+                <motion.button
                   key={id}
                   type="button"
+                  variants={bcfRise}
                   onClick={() => toggleFilter(id)}
-                  className="mb-3 flex w-full items-center justify-between gap-3 rounded-xl px-2 py-3 text-left transition-colors duration-200 active:scale-[0.98] last:mb-0"
+                  whileTap={BCF_TAP}
+                  transition={BCF_TAP_TRANSITION}
+                  className="mb-3 flex w-full transform-gpu items-center justify-between gap-3 rounded-xl px-2 py-3 text-start will-change-transform last:mb-0"
                 >
                   <span className="flex items-center gap-3">
                     <span
-                      className={`grid h-10 w-10 place-items-center rounded-full border transition-colors duration-300 ${
-                        on ? "border-[#fbc158] text-[#fbc158]" : "border-white/25 text-white/45"
-                      }`}
+                      className="grid h-10 w-10 place-items-center rounded-full border transition-all duration-300"
+                      style={{
+                        borderColor: on ? BCF.gold : "rgba(255,255,255,0.25)",
+                        color: on ? BCF.gold : "rgba(255,255,255,0.45)",
+                        boxShadow: on ? `0 0 18px ${BCF.gold}40` : "none",
+                      }}
                     >
                       <Icon className="h-5 w-5" />
                     </span>
                     <span
-                      className={`text-[28px] transition-colors duration-300 ${
-                        on ? "text-[#fbf4e4]" : "text-white/45"
-                      }`}
+                      className="text-[28px] transition-colors duration-300"
+                      style={{ color: on ? BCF.creamSoft : "rgba(255,255,255,0.45)" }}
                     >
                       {c.filters[id]}
                     </span>
                   </span>
-                  {on ? <span className="h-px w-8 bg-[#fbc158]" /> : null}
-                </button>
+                  <span
+                    className="h-px transition-all duration-300"
+                    style={{
+                      width: on ? 32 : 0,
+                      backgroundColor: BCF.gold,
+                    }}
+                  />
+                </motion.button>
               );
             })}
-          </aside>
+          </motion.aside>
 
-          {visibleLocations.map((loc) => (
-            <button
-              key={loc.id}
-              type="button"
-              onClick={() => {
-                setHintVisible(false);
-                onSelectLocation(loc.id);
-              }}
-              className="group absolute z-10 -translate-x-1/2 -translate-y-full transform-gpu transition-transform duration-300 ease-smooth-out will-change-transform active:scale-100"
-              style={{ left: loc.x, top: loc.y }}
-            >
-              <span className="relative flex flex-col items-center">
-                <span className="rounded-full border border-[#fbb22f] bg-black/50 px-5 py-3 text-[28px] font-medium text-[#fbf4e4] transition-[background-color,border-color,box-shadow] duration-300 ">
-                  {c.locations[loc.id].name}
-                </span>
-                <span
-                  className="mt-1 h-0 w-0 border-l-[10px] border-r-[10px] border-t-[14px] border-l-transparent border-r-transparent"
-                  style={{ borderTopColor: BCF.goldBright }}
-                />
-              </span>
-            </button>
-          ))}
-
-          {hintVisible && !selectedLocation ? (
-            <div className="pointer-events-none absolute left-1/2 top-[52%] z-20 -translate-x-1/2 text-center">
-              <p className="rounded-full bg-black/55 px-6 py-3 text-[24px] text-white backdrop-blur-sm">
-                {c.tapToExplore}
-              </p>
-            </div>
-          ) : null}
-
-          {selected && selectedLocation ? (
-            <div
-              key={selectedLocation}
-              className="absolute inset-x-10 bottom-10 z-30 mx-auto max-w-[920px] animate-fade-in"
-            >
-              <div className={`${BCF_GLASS_CARD} p-8`}>
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <h2 className="text-[48px] font-semibold" style={{ color: BCF.gold }}>
-                    {selected.name}
-                  </h2>
-                  <button
-                    type="button"
-                    onClick={() => onSelectLocation(null)}
-                    className="grid h-12 w-12 place-items-center rounded-full border border-white/30"
-                    aria-label={c.close}
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
-                <p className="max-w-[760px] text-[24px] leading-relaxed text-white/80">
-                  {selected.description}
-                </p>
-                <img
-                  src={locationImages[selectedLocation]}
-                  alt=""
-                  className="mt-6 h-[280px] w-full rounded-xl object-cover"
-                />
-                <div className="mt-7 grid grid-cols-2 gap-8">
-                  <div>
-                    <BcfStatValue value={selected.projectsStat} className="text-[52px] font-bold leading-none" />
-                    <p className="mt-2 text-[22px] text-white/75">{selected.projectsLabel}</p>
-                  </div>
-                  <div>
-                    <BcfStatValue value={selected.peopleStat} className="text-[52px] font-bold leading-none" />
-                    <p className="mt-2 text-[22px] text-white/75">{selected.peopleLabel}</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => onExploreProjects(selectedLocation)}
-                  className="group mt-8 flex w-full items-center justify-between rounded-full border border-[#fbc158]/50 px-8 py-5 transition-[background-color,box-shadow] duration-300 ease-smooth-out active:scale-[0.99]"
+          <AnimatePresence initial={false}>
+            {visibleLocations.map((loc, index) => {
+              const isSelected = selectedLocation === loc.id;
+              return (
+                /* Pin anchoring stays on a plain wrapper — motion owns
+                   `transform` on the button for the bloom and tap scale. */
+                <div
+                  key={loc.id}
+                  className="absolute z-10 -translate-x-1/2 -translate-y-full"
+                  style={{ left: loc.x, top: loc.y }}
                 >
-                  <span className="text-[28px] text-white">{selected.explore}</span>
-                  <span
-                    className="grid h-14 w-14 place-items-center rounded-full border-2 transition-transform duration-300 ease-smooth-out "
-                    style={{ borderColor: BCF.gold }}
-                  >
-                    <ArrowRight className="h-7 w-7" style={{ color: BCF.gold }} />
+                <motion.button
+                  type="button"
+                  variants={bcfBloom}
+                  initial="initial"
+                  animate="animate"
+                  exit={{ opacity: 0, scale: 0.7, transition: { duration: 0.22 } }}
+                  transition={{ duration: 0.5, delay: 0.55 + index * 0.07, ease: BCF_EASE }}
+                  onClick={() => {
+                    setHintVisible(false);
+                    onSelectLocation(loc.id);
+                  }}
+                  whileTap={BCF_TAP}
+                  className="group origin-bottom transform-gpu will-change-transform"
+                >
+                  <span className="relative flex flex-col items-center">
+                    {/* Halo ping marks a pin as live without needing a hover. */}
+                    {!reduceMotion ? (
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute -bottom-1 h-6 w-6 rounded-full"
+                        style={{ backgroundColor: `${BCF.goldBright}55` }}
+                        animate={{ scale: [1, 2.4], opacity: [0.55, 0] }}
+                        transition={{
+                          duration: 2.4,
+                          repeat: Infinity,
+                          delay: index * 0.35,
+                          ease: "easeOut",
+                        }}
+                      />
+                    ) : null}
+                    <span
+                      className="rounded-full border px-5 py-3 text-[28px] font-medium transition-all duration-300"
+                      style={{
+                        borderColor: isSelected ? BCF.goldBright : `${BCF.goldBright}aa`,
+                        backgroundColor: isSelected
+                          ? "rgba(251,178,47,0.2)"
+                          : "rgba(0,0,0,0.55)",
+                        color: BCF.creamSoft,
+                        boxShadow: isSelected
+                          ? `0 0 34px ${BCF.gold}66`
+                          : "0 8px 24px rgba(0,0,0,0.4)",
+                      }}
+                    >
+                      {c.locations[loc.id].name}
+                    </span>
+                    <span
+                      className="mt-1 h-0 w-0 border-l-[10px] border-r-[10px] border-t-[14px] border-l-transparent border-r-transparent"
+                      style={{ borderTopColor: BCF.goldBright }}
+                    />
                   </span>
-                </button>
-              </div>
-            </div>
-          ) : null}
-        </div>
+                </motion.button>
+                </div>
+              );
+            })}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {hintVisible && !selectedLocation ? (
+              /* Above the topmost pin rather than mid-stage, where it landed
+                 squarely on the Kirkuk and Erbil markers. */
+              <motion.div
+                className="pointer-events-none absolute left-1/2 top-6 z-20 -translate-x-1/2 text-center"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5, delay: 0.9, ease: BCF_EASE }}
+              >
+                <p className="rounded-full border border-white/10 bg-black/55 px-6 py-3 text-[24px] text-white backdrop-blur-md">
+                  {c.tapToExplore}
+                </p>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            {selected && selectedLocation ? (
+              <motion.div
+                key={selectedLocation}
+                className="absolute inset-x-10 bottom-10 z-30 mx-auto max-w-[920px]"
+                initial={{ opacity: 0, y: 56 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 40, transition: { duration: 0.26 } }}
+                transition={{ duration: 0.55, ease: BCF_EASE }}
+              >
+                <div
+                  className={`${BCF_GLASS_CARD} p-8`}
+                  style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}
+                >
+                  <div className="mb-4 flex items-start justify-between gap-4">
+                    <h2 className="text-[48px] font-semibold" style={{ color: BCF.gold }}>
+                      {selected.name}
+                    </h2>
+                    <motion.button
+                      type="button"
+                      onClick={() => onSelectLocation(null)}
+                      whileTap={BCF_TAP}
+                      transition={BCF_TAP_TRANSITION}
+                      className="grid h-12 w-12 transform-gpu place-items-center rounded-full border border-white/30 will-change-transform"
+                      aria-label={c.close}
+                    >
+                      <X className="h-6 w-6" />
+                    </motion.button>
+                  </div>
+                  <p className="max-w-[760px] text-[24px] leading-relaxed text-white/80">
+                    {selected.description}
+                  </p>
+                  <div className="relative mt-6 overflow-hidden rounded-xl">
+                    <img
+                      src={locationImages[selectedLocation]}
+                      alt=""
+                      className="h-[280px] w-full object-cover"
+                    />
+                    <span
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, rgba(4,7,10,0) 55%, rgba(4,7,10,0.55) 100%)",
+                      }}
+                    />
+                  </div>
+                  <div className="mt-7 grid grid-cols-2 gap-8">
+                    <div>
+                      <BcfStatValue
+                        value={selected.projectsStat}
+                        className="text-[52px] font-bold leading-none"
+                      />
+                      <p className="mt-2 text-[22px] text-white/75">
+                        {selected.projectsLabel}
+                      </p>
+                    </div>
+                    <div>
+                      <BcfStatValue
+                        value={selected.peopleStat}
+                        className="text-[52px] font-bold leading-none"
+                      />
+                      <p className="mt-2 text-[22px] text-white/75">{selected.peopleLabel}</p>
+                    </div>
+                  </div>
+                  <motion.button
+                    type="button"
+                    onClick={() => onExploreProjects(selectedLocation)}
+                    whileTap={BCF_TAP}
+                    transition={BCF_TAP_TRANSITION}
+                    className="mt-8 flex w-full transform-gpu items-center justify-between rounded-full border border-[#fbc158]/50 bg-black/25 px-8 py-5 will-change-transform"
+                  >
+                    <span className="text-[28px] text-white">{selected.explore}</span>
+                    <motion.span
+                      className="grid h-14 w-14 place-items-center rounded-full border-2"
+                      style={{ borderColor: BCF.gold }}
+                      animate={reduceMotion ? undefined : { scale: [1, 1.06, 1] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ArrowRight
+                        className="h-7 w-7 rtl:rotate-180"
+                        style={{ color: BCF.gold }}
+                      />
+                    </motion.span>
+                  </motion.button>
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </BcfShell>
   );

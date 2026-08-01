@@ -9,7 +9,7 @@ export function parseBcfStat(raw: string): {
   const prefix = trimmed.startsWith("+") ? "+" : "";
   let body = trimmed.replace(/^\+/, "").replace(/,/g, "");
   let suffix = "";
-  let multiplier = 1;
+  const multiplier = 1;
 
   if (/k$/i.test(body)) {
     suffix = "K";

@@ -1,7 +1,6 @@
 import React from "react";
-import { ChevronLeft } from "lucide-react";
-import gsap from "gsap";
-import BcfShell from "@/components/Sections/bcf/BcfShell";
+import { AnimatePresence, motion } from "motion/react";
+import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import {
   bcfCopy,
@@ -9,6 +8,14 @@ import {
   type TrustTopicId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfDrawX,
+  bcfRise,
+  bcfRiseCard,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
 import leadershipThumb from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import qualityThumb from "@/assets/images/PrimeMinistir/agreement.webp";
 import partnershipsThumb from "@/assets/images/PrimeMinistir/economic.webp";
@@ -53,36 +60,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const c = bcfCopy[lang];
   const [activeId, setActiveId] = React.useState<TrustTopicId | null>(null);
   const [credentialIndex, setCredentialIndex] = React.useState(0);
-  const listRef = React.useRef<HTMLDivElement | null>(null);
-
-  React.useLayoutEffect(() => {
-    if (activeId) return;
-    const el = listRef.current;
-    if (!el) return;
-    const rows = el.querySelectorAll<HTMLElement>("[data-trust-row]");
-    gsap.set(rows, { opacity: 0, y: 28 });
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const ctx = gsap.context(() => {
-      if (prefersReduced) {
-        gsap.set(rows, { opacity: 1, y: 0 });
-        return;
-      }
-      gsap.to(rows, {
-        opacity: 1,
-        y: 0,
-        duration: 0.55,
-        ease: "power2.out",
-        stagger: 0.1,
-        delay: 0.12,
-      });
-    }, el);
-
-    return () => ctx.revert();
-  }, [lang, activeId]);
 
   const goBack = () => {
     if (activeId) {
@@ -93,16 +70,35 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     onBack();
   };
 
-  if (activeId === "leadership") {
-    return (
-      <BcfShell backgroundImage={topicBgs.leadership} overlayClassName="bg-black/65">
-        <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
-          <div className="mx-auto mt-16 grid w-full max-w-[980px] grid-cols-2 gap-8">
-            {c.trustFounders.map((founder, index) => (
-              <div
-                key={`${founder.title}-${index}`}
-                className={`${BCF_GLASS_CARD} relative flex min-h-[360px] flex-col items-start gap-6 p-10`}
-              >
+  /**
+   * The hub and its four topics are separate scenes, so they get their own
+   * `AnimatePresence` — keying `BcfShell` per topic means opening Leadership
+   * dissolves exactly the way entering the chapter did. Previously each branch
+   * re-rendered the same shell in place and the backdrop cut hard.
+   */
+  const scene = (() => {
+    if (activeId === "leadership") {
+      return (
+        <BcfShell
+          key="leadership"
+          showLogo={false}
+          backgroundImage={topicBgs.leadership}
+          overlayClassName="bg-black/72"
+        >
+          <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
+            <motion.div
+              className="mx-auto mt-16 grid w-full max-w-[980px] grid-cols-2 gap-8"
+              variants={bcfStagger(0.09, 0.26)}
+              initial="initial"
+              animate="animate"
+            >
+              {c.trustFounders.map((founder, index) => (
+                <motion.div
+                  key={`${founder.title}-${index}`}
+                  variants={bcfRiseCard}
+                  className={`${BCF_GLASS_CARD} relative flex min-h-[360px] flex-col items-start gap-6 p-10`}
+                  style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
+                >
                 <span
                   className="h-[96px] w-[96px] overflow-hidden rounded-full border-2"
                   style={{ borderColor: BCF.gold }}
@@ -121,154 +117,234 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     {founder.subtitle}
                   </p>
                 </div>
-                <span
-                  className="mt-auto self-end text-[42px] font-bold tabular-nums"
-                  style={{ color: BCF.gold }}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
-            ))}
-          </div>
-        </TrustChrome>
-      </BcfShell>
-    );
-  }
-
-  if (activeId === "quality") {
-    const activeCredential = c.trustCredentials[credentialIndex] ?? c.trustCredentials[0];
-
-    return (
-      <BcfShell backgroundImage={topicBgs.quality} overlayClassName="bg-black/70">
-        <TrustChrome title={c.trustQualityTitle} backLabel={c.back} onBack={goBack}>
-          <div className="mx-auto mt-14 flex w-full max-w-[1040px] gap-8">
-            <div className="flex w-[340px] shrink-0 flex-col gap-4">
-              {c.trustCredentials.map((item, index) => {
-                const selected = index === credentialIndex;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setCredentialIndex(index)}
-                    className={`rounded-2xl px-6 py-5 text-left text-[26px] font-medium leading-snug transition ${
-                      selected
-                        ? "border bg-black/55 text-[#fdeed4]"
-                        : "border border-transparent bg-black/30 text-white/70"
-                    }`}
-                    style={{
-                      borderColor: selected ? BCF.gold : "transparent",
-                    }}
+                  <span
+                    className="mt-auto self-end text-[42px] font-bold tabular-nums"
+                    style={{ color: BCF.gold }}
                   >
-                    {item.title}
-                  </button>
-                );
-              })}
-            </div>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </TrustChrome>
+        </BcfShell>
+      );
+    }
 
-            <div className="flex min-w-0 flex-1 flex-col gap-8">
-              <div
-                className={`${BCF_GLASS_CARD} overflow-hidden p-5`}
-              >
-                <img
-                  src={certificateImg}
-                  alt=""
-                  className="h-[720px] w-full rounded-xl object-cover"
-                />
+    if (activeId === "quality") {
+      const activeCredential = c.trustCredentials[credentialIndex] ?? c.trustCredentials[0];
+
+      return (
+        <BcfShell
+          key="quality"
+          showLogo={false}
+          backgroundImage={topicBgs.quality}
+          overlayClassName="bg-black/76"
+        >
+          <TrustChrome title={c.trustQualityTitle} backLabel={c.back} onBack={goBack}>
+            <motion.div
+              className="mx-auto mt-14 flex w-full max-w-[1040px] gap-8"
+              initial={{ opacity: 0, y: 34 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="flex w-[340px] shrink-0 flex-col gap-4">
+                {c.trustCredentials.map((item, index) => {
+                  const selected = index === credentialIndex;
+                  return (
+                    <motion.button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setCredentialIndex(index)}
+                      whileTap={BCF_TAP}
+                      transition={BCF_TAP_TRANSITION}
+                      className="relative transform-gpu overflow-hidden rounded-2xl px-6 py-5 text-start text-[26px] font-medium leading-snug will-change-transform"
+                      style={{
+                        border: "1px solid",
+                        borderColor: selected ? BCF.gold : "transparent",
+                        backgroundColor: selected
+                          ? "rgba(0,0,0,0.55)"
+                          : "rgba(0,0,0,0.3)",
+                        color: selected ? BCF.creamSoft : "rgba(255,255,255,0.7)",
+                        boxShadow: selected ? `0 0 30px ${BCF.gold}2e` : "none",
+                        transition:
+                          "border-color 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms cubic-bezier(0.22,1,0.36,1), color 300ms, box-shadow 300ms",
+                      }}
+                    >
+                      {/* Selected marker rides between rows instead of blinking
+                          on and off in place. */}
+                      {selected ? (
+                        <motion.span
+                          layoutId="bcf-credential-marker"
+                          className="absolute inset-y-3 start-0 w-[3px] rounded-full"
+                          style={{ backgroundColor: BCF.goldBright }}
+                          transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                        />
+                      ) : null}
+                      {item.title}
+                    </motion.button>
+                  );
+                })}
               </div>
-              <p className="text-[28px] leading-relaxed text-white/85">
-                {activeCredential.body}
+
+              <div className="flex min-w-0 flex-1 flex-col gap-8">
+                <div className={`${BCF_GLASS_CARD} overflow-hidden p-5`}>
+                  <img
+                    src={certificateImg}
+                    alt=""
+                    className="h-[720px] w-full rounded-xl object-cover"
+                  />
+                </div>
+                {/* The body text belongs to the selected credential, so it
+                    cross-fades with the selection rather than snapping. */}
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={activeCredential.id}
+                    className="text-[28px] leading-relaxed text-white/85"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {activeCredential.body}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          </TrustChrome>
+        </BcfShell>
+      );
+    }
+
+    if (activeId === "partnerships") {
+      return (
+        <BcfShell
+          key="partnerships"
+          showLogo={false}
+          backgroundImage={topicBgs.partnerships}
+          overlayClassName="bg-black/80"
+        >
+          <TrustChrome title={c.trustPartnershipsTitle} backLabel={c.back} onBack={goBack}>
+            <motion.p
+              className="mx-auto mt-8 max-w-[720px] text-center text-[28px] text-white/75"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {c.trustPartnershipsHint}
+            </motion.p>
+            <motion.div
+              className="mx-auto mt-14 grid w-full max-w-[920px] grid-cols-3 gap-x-10 gap-y-12"
+              variants={bcfStagger(0.07, 0.3)}
+              initial="initial"
+              animate="animate"
+            >
+              {Array.from({ length: 6 }).map((_, index) => (
+                <motion.div
+                  key={`partner-${index}`}
+                  variants={bcfRiseCard}
+                  className="relative mx-auto flex h-[280px] w-[250px] flex-col items-center justify-center rounded-[28px] rounded-t-[120px] border border-[#f5d7a0]/35"
+                  style={{
+                    background:
+                      "linear-gradient(165deg, #e2b66a 0%, #b07a2e 42%, #6d4214 100%)",
+                    boxShadow:
+                      "0 18px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.28)",
+                  }}
+                >
+                  <span className="text-[36px] font-semibold tracking-wide text-[#2a1808]/65">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </TrustChrome>
+        </BcfShell>
+      );
+    }
+
+    if (activeId === "recognition") {
+      return (
+        <BcfShell
+          key="recognition"
+          showLogo={false}
+          backgroundImage={topicBgs.recognition}
+          overlayClassName="bg-black/72"
+        >
+          <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
+            <motion.div
+              className={`${BCF_GLASS_CARD} mx-auto mt-20 max-w-[900px] p-14 text-center`}
+              initial={{ opacity: 0, y: 40, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.75, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.5)" }}
+            >
+              <p className="text-[34px] leading-relaxed text-[#fdeed4]">
+                {c.trustRecognitionBody}
               </p>
-            </div>
-          </div>
-        </TrustChrome>
-      </BcfShell>
-    );
-  }
+            </motion.div>
+          </TrustChrome>
+        </BcfShell>
+      );
+    }
 
-  if (activeId === "partnerships") {
     return (
-      <BcfShell backgroundImage={topicBgs.partnerships} overlayClassName="bg-black/75">
-        <TrustChrome title={c.trustPartnershipsTitle} backLabel={c.back} onBack={goBack}>
-          <p className="mx-auto mt-8 max-w-[720px] text-center text-[28px] text-white/75">
-            {c.trustPartnershipsHint}
-          </p>
-          <div className="mx-auto mt-14 grid w-full max-w-[920px] grid-cols-3 gap-x-10 gap-y-12">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <div
-                key={`partner-${index}`}
-                className="relative mx-auto flex h-[280px] w-[250px] flex-col items-center justify-center rounded-[28px] rounded-t-[120px] border border-[#f5d7a0]/35"
-                style={{
-                  background:
-                    "linear-gradient(165deg, #e2b66a 0%, #b07a2e 42%, #6d4214 100%)",
-                  boxShadow:
-                    "0 18px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.28)",
-                }}
-              >
-                <span className="text-[36px] font-semibold tracking-wide text-[#2a1808]/65">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+      <BcfShell
+        key="hub"
+        showLogo={false}
+        backgroundImage={trustBg}
+        overlayClassName="bg-black/74"
+      >
+        <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
+          <BcfBackButton onClick={goBack} label={c.back} />
+
+          <motion.div
+            className="mx-auto flex w-full max-w-[980px] flex-col items-center"
+            variants={bcfStagger(0.1, 0.16)}
+            initial="initial"
+            animate="animate"
+          >
+            <motion.h1
+              variants={bcfRise}
+              className="text-center text-[72px] font-bold leading-none"
+            >
+              <span style={{ color: BCF.gold }}>{c.trustTitleGold}</span>{" "}
+              <span className="text-[#fbf4e4]">{c.trustTitleRest}</span>
+            </motion.h1>
+            <motion.div
+              variants={bcfDrawX}
+              className="mt-8 flex w-full max-w-[420px] items-center gap-3"
+            >
+              <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
+              <span className="h-3 w-3 rotate-45" style={{ backgroundColor: BCF.gold }} />
+              <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="mx-auto mt-16 flex w-full max-w-[980px] flex-col gap-8"
+            variants={bcfStagger(0.1, 0.3)}
+            initial="initial"
+            animate="animate"
+          >
+            {c.trustTopics.map((topic) => (
+              <motion.div key={topic.id} variants={bcfRiseCard}>
+                <BcfImageCard
+                  title={topic.title}
+                  image={topicThumbs[topic.id]}
+                  onClick={() => setActiveId(topic.id)}
+                />
+              </motion.div>
             ))}
-          </div>
-        </TrustChrome>
+          </motion.div>
+        </div>
       </BcfShell>
     );
-  }
-
-  if (activeId === "recognition") {
-    return (
-      <BcfShell backgroundImage={topicBgs.recognition} overlayClassName="bg-black/65">
-        <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
-          <div className={`${BCF_GLASS_CARD} mx-auto mt-20 max-w-[900px] p-14 text-center`}>
-            <p className="text-[34px] leading-relaxed text-[#fdeed4]">
-              {c.trustRecognitionBody}
-            </p>
-          </div>
-        </TrustChrome>
-      </BcfShell>
-    );
-  }
+  })();
 
   return (
-    <BcfShell backgroundImage={trustBg} overlayClassName="bg-black/70">
-      <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
-        <button
-          type="button"
-          onClick={goBack}
-          className="absolute right-10 top-10 z-20 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-          aria-label={c.back}
-        >
-          <ChevronLeft className="h-7 w-7 text-white" />
-        </button>
-
-        <div className="mx-auto flex w-full max-w-[980px] flex-col items-center">
-          <h1 className="text-center text-[72px] font-bold leading-none">
-            <span style={{ color: BCF.gold }}>{c.trustTitleGold}</span>{" "}
-            <span className="text-[#fbf4e4]">{c.trustTitleRest}</span>
-          </h1>
-          <div className="mt-8 flex w-full max-w-[420px] items-center gap-3">
-            <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
-            <span
-              className="h-3 w-3 rotate-45"
-              style={{ backgroundColor: BCF.gold }}
-            />
-            <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
-          </div>
-        </div>
-
-        <div ref={listRef} className="mx-auto mt-16 flex w-full max-w-[980px] flex-col gap-8">
-          {c.trustTopics.map((topic) => (
-            <div key={topic.id} data-trust-row className="opacity-0">
-              <BcfImageCard
-                title={topic.title}
-                image={topicThumbs[topic.id]}
-                onClick={() => setActiveId(topic.id)}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </BcfShell>
+    <AnimatePresence mode="wait" initial={false}>
+      {scene}
+    </AnimatePresence>
   );
 }
 
@@ -285,20 +361,25 @@ function TrustChrome({
 }) {
   return (
     <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
-      <button
-        type="button"
-        onClick={onBack}
-        className="absolute right-10 top-10 z-20 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-        aria-label={backLabel}
-      >
-        <ChevronLeft className="h-7 w-7 text-white" />
-      </button>
-      <h1
+      <BcfBackButton onClick={onBack} label={backLabel} />
+      <motion.h1
         className="mx-auto max-w-[980px] text-center text-[64px] font-bold leading-tight"
         style={{ color: BCF.gold }}
+        initial={{ opacity: 0, y: 26 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.68, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
       >
         {title}
-      </h1>
+      </motion.h1>
+      <motion.span
+        className="mx-auto mt-7 block h-px w-[320px]"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${BCF.gold}, transparent)`,
+        }}
+        initial={{ opacity: 0, scaleX: 0 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      />
       {children}
     </div>
   );

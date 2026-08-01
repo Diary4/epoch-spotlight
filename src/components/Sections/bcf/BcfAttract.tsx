@@ -1,9 +1,20 @@
 import React from "react";
 import gsap from "gsap";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Play, SkipForward } from "lucide-react";
 
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF,
+  BCF_GRAIN_STYLE,
+  BCF_VIGNETTE_STYLE,
+} from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfScene,
+  bcfSceneReduced,
+} from "@/components/Sections/bcf/bcfMotion";
 import {
   bcfAttractVideo,
   bcfErbil,
@@ -134,6 +145,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
   const finishedRef = React.useRef(false);
 
   const [playing, setPlaying] = React.useState(false);
+  const reduceMotion = useReducedMotion();
 
   const en = bcfCopy.en;
 
@@ -158,7 +170,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
   React.useLayoutEffect(() => {
     if (bcfAttractVideo || !rootRef.current) return;
 
-    const ctx = gsap.context((self) => {
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         paused: true,
         onUpdate: () => setProgress(tl.time() / REEL_END),
@@ -222,7 +234,10 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
 
       // Counters start exactly as their figure begins to fade in, so the final
       // value is never briefly on screen before it resets to zero.
-      self.selector?.<HTMLElement>("[data-stat-value]").forEach((node, index) => {
+      const statNodes = Array.from(
+        rootRef.current?.querySelectorAll<HTMLElement>("[data-stat-value]") ?? [],
+      );
+      statNodes.forEach((node, index) => {
         const target = Number(node.dataset.statValue ?? "0");
         const counter = { value: 0 };
 
@@ -297,9 +312,15 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
   }, [finish]);
 
   return (
-    <section
+    <motion.section
       ref={rootRef}
       className="relative flex h-full min-h-[1920px] w-full flex-col overflow-hidden bg-[#0a0a0a] text-white"
+      // Carries the same dissolve as every BcfShell scene, so handing off to the
+      // language step is one continuous motion rather than a cut.
+      variants={reduceMotion ? bcfSceneReduced : bcfScene}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
       {bcfAttractVideo ? (
         <video
@@ -324,7 +345,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
               src={bcfLangBg}
               alt=""
               decoding="async"
-              fetchpriority="high"
+              fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover opacity-45"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/92" />
@@ -420,64 +441,114 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
         </>
       )}
 
-      {/* Start prompt — the reel holds here until the visitor touches the screen. */}
-      {!playing ? (
-        <button
-          type="button"
-          onClick={start}
-          aria-label={LANGS.map((lang) => bcfCopy[lang].attractStart).join(" / ")}
-          className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-12 border-0 bg-black/40 p-0"
-        >
-          <span className="relative grid h-[220px] w-[220px] place-items-center">
-            <span
-              className="absolute inset-0 animate-ping rounded-full border-2 opacity-40 motion-reduce:animate-none"
-              style={{ borderColor: BCF.gold }}
-            />
-            <span
-              className="absolute inset-0 rounded-full border-2"
-              style={{ borderColor: BCF.gold }}
-            />
-            <Play className="h-20 w-20 translate-x-2" style={{ color: BCF.gold }} fill={BCF.gold} />
-          </span>
+      {/* Film texture over every scene — grain and corner falloff, the same
+          stack the rest of the experience gets from BcfShell. */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[5] opacity-[0.1]"
+        style={BCF_GRAIN_STYLE}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[6]"
+        style={BCF_VIGNETTE_STYLE}
+      />
 
-          <span className="flex flex-col items-center gap-5">
-            {LANGS.map((lang) => (
+      {/* Start prompt — the reel holds here until the visitor touches the screen. */}
+      <AnimatePresence>
+        {!playing ? (
+          <motion.button
+            type="button"
+            onClick={start}
+            aria-label={LANGS.map((lang) => bcfCopy[lang].attractStart).join(" / ")}
+            className="absolute inset-0 z-30 flex transform-gpu flex-col items-center justify-center gap-12 border-0 bg-black/45 p-0 will-change-transform"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.45 } }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            whileTap={BCF_TAP}
+          >
+            <span className="relative grid h-[220px] w-[220px] place-items-center">
+              {/* Two rings on staggered cycles read as a beacon rather than a
+                  single blinking outline. */}
+              {!reduceMotion
+                ? [0, 1].map((ring) => (
+                    <motion.span
+                      key={ring}
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-full border-2"
+                      style={{ borderColor: BCF.gold }}
+                      animate={{ scale: [1, 1.55], opacity: [0.45, 0] }}
+                      transition={{
+                        duration: 2.8,
+                        repeat: Infinity,
+                        delay: ring * 1.4,
+                        ease: "easeOut",
+                      }}
+                    />
+                  ))
+                : null}
               <span
-                key={lang}
-                dir={lang === "en" ? "ltr" : "rtl"}
-                className={
-                  lang === "en"
-                    ? "text-[52px] font-semibold leading-none"
-                    : "text-[40px] font-medium leading-none"
-                }
-                style={{ color: lang === "en" ? BCF.cream : BCF.nature }}
-              >
-                {bcfCopy[lang].attractStart}
-              </span>
-            ))}
-          </span>
-        </button>
-      ) : null}
+                className="absolute inset-0 rounded-full border-2 bg-black/40 backdrop-blur-sm"
+                style={{
+                  borderColor: BCF.gold,
+                  boxShadow: `0 0 60px ${BCF.gold}3a`,
+                }}
+              />
+              <Play
+                className="relative h-20 w-20 translate-x-2"
+                style={{ color: BCF.gold }}
+                fill={BCF.gold}
+              />
+            </span>
+
+            <span className="flex flex-col items-center gap-5">
+              {LANGS.map((lang) => (
+                <span
+                  key={lang}
+                  dir={lang === "en" ? "ltr" : "rtl"}
+                  className={
+                    lang === "en"
+                      ? "text-[52px] font-semibold leading-none"
+                      : "text-[40px] font-medium leading-none"
+                  }
+                  style={{ color: lang === "en" ? BCF.cream : BCF.nature }}
+                >
+                  {bcfCopy[lang].attractStart}
+                </span>
+              ))}
+            </span>
+          </motion.button>
+        ) : null}
+      </AnimatePresence>
 
       {/* Scrubber — reinforces that this is a film, and shows how much is left. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[6px] bg-white/12">
         <span
           ref={progressRef}
           className="block h-full w-0"
-          style={{ backgroundColor: BCF.gold }}
+          style={{
+            backgroundColor: BCF.gold,
+            boxShadow: `0 0 14px ${BCF.gold}`,
+          }}
         />
       </div>
 
-      {playing ? (
-        <button
-          type="button"
-          onClick={skip}
-          className="absolute bottom-16 right-12 z-30 flex items-center gap-3 rounded-full border border-[#fbc158]/50 bg-black/55 px-7 py-4 text-[26px] font-medium text-white backdrop-blur-md transition-colors duration-300 motion-reduce:transition-none"
-        >
-          <SkipForward className="h-7 w-7" style={{ color: BCF.gold }} />
-          Skip
-        </button>
-      ) : null}
-    </section>
+      <AnimatePresence>
+        {playing ? (
+          <motion.button
+            type="button"
+            onClick={skip}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.45, delay: 0.8 }}
+            whileTap={BCF_TAP}
+            className="absolute bottom-16 end-12 z-30 flex transform-gpu items-center gap-3 rounded-full border border-[#fbc158]/50 bg-black/55 px-7 py-4 text-[26px] font-medium text-white backdrop-blur-md will-change-transform"
+          >
+            <SkipForward className="h-7 w-7 rtl:rotate-180" style={{ color: BCF.gold }} />
+            Skip
+          </motion.button>
+        ) : null}
+      </AnimatePresence>
+    </motion.section>
   );
 }

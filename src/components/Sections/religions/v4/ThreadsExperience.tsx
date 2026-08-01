@@ -137,6 +137,7 @@ function ThreadsExperienceInner() {
               chapter={chapters[threadId as ThreadId]}
               storyIndex={state.scene.storyIndex}
               detailIndex={state.scene.detailIndex}
+              lang={state.lang}
               copy={copy}
               dispatch={dispatch}
             />

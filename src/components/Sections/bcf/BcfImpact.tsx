@@ -1,10 +1,18 @@
 import React from "react";
-import { ArrowRight, ChevronLeft, Sun } from "lucide-react";
-import gsap from "gsap";
-import BcfShell from "@/components/Sections/bcf/BcfShell";
+import { motion } from "motion/react";
+import { ArrowRight, Sun } from "lucide-react";
+import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfDrawX,
+  bcfRise,
+  bcfRiseCard,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
 import cardA from "@/assets/images/PrimeMinistir/service.webp";
 import cardB from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 
@@ -21,75 +29,60 @@ const CARD_IMAGES = [cardA, cardB, cardA, cardB] as const;
 export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
   const c = bcfCopy[lang];
   const enItems = bcfCopy.en.impactItems;
-  const gridRef = React.useRef<HTMLDivElement | null>(null);
-
-  React.useLayoutEffect(() => {
-    const root = gridRef.current;
-    if (!root) return;
-    const cards = root.querySelectorAll<HTMLElement>("[data-impact-card]");
-    gsap.set(cards, { opacity: 0, y: 32 });
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const ctx = gsap.context(() => {
-      if (prefersReduced) {
-        gsap.set(cards, { opacity: 1, y: 0 });
-        return;
-      }
-      gsap.to(cards, {
-        opacity: 1,
-        y: 0,
-        duration: 0.55,
-        ease: "power2.out",
-        stagger: 0.1,
-        delay: 0.12,
-      });
-    }, root);
-
-    return () => ctx.revert();
-  }, [lang]);
 
   return (
-    <BcfShell showLogo={false} overlayClassName="bg-black/0">
-      <div
-        className="relative flex min-h-[1920px] flex-col overflow-hidden px-14 pb-20 pt-28"
-        style={{
-          background:
-            "radial-gradient(900px 800px at 110% 35%, rgba(40,70,140,0.35), transparent 55%), linear-gradient(180deg, #0b0d14 0%, #0a0a0a 55%, #14100a 100%)",
-        }}
-      >
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute right-10 top-10 z-20 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-          aria-label={c.back}
-        >
-          <ChevronLeft className="h-7 w-7 text-white" />
-        </button>
+    <BcfShell
+      showLogo={false}
+      overlayClassName="bg-black/0"
+      backgroundStyle={{
+        background:
+          "radial-gradient(900px 800px at 110% 35%, rgba(40,70,140,0.35), transparent 55%), linear-gradient(180deg, #0b0d14 0%, #0a0a0a 55%, #14100a 100%)",
+      }}
+    >
+      <div className="relative flex min-h-[1920px] flex-col overflow-hidden px-14 pb-20 pt-28">
+        <BcfBackButton onClick={onBack} label={c.back} />
 
-        <div className="relative z-10 max-w-[820px]">
-          <h1 className="text-[80px] font-bold leading-none tracking-[0.01em]">
+        <motion.div
+          className="relative z-10 max-w-[820px]"
+          variants={bcfStagger(0.1, 0.16)}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.h1
+            variants={bcfRise}
+            className="text-[80px] font-bold leading-none tracking-[0.01em]"
+          >
             <span className="text-[#fbf4e4]">{c.impactTitleLead} </span>
             <span style={{ color: BCF.gold }}>{c.impactTitleGold}</span>
-          </h1>
-          <span
-            className="mt-5 block h-px w-[120px]"
-            style={{ backgroundColor: BCF.gold }}
+          </motion.h1>
+          <motion.span
+            variants={bcfDrawX}
+            className="mt-5 block h-px w-[240px] origin-left"
+            style={{
+              background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+            }}
           />
-          <p className="mt-8 max-w-[720px] text-[28px] leading-relaxed text-white/80">
+          <motion.p
+            variants={bcfRise}
+            className="mt-8 max-w-[720px] text-[28px] leading-relaxed text-white/80"
+          >
             {c.impactSubtitle}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div ref={gridRef} className="relative z-10 mt-14 flex w-full flex-col gap-7">
+        <motion.div
+          className="relative z-10 mt-14 flex w-full flex-col gap-7"
+          variants={bcfStagger(0.1, 0.34)}
+          initial="initial"
+          animate="animate"
+        >
           <div className="grid grid-cols-2 gap-7">
             {c.impactItems.map((item, index) => (
-              <article
+              <motion.article
                 key={`${item.title}-${index}`}
-                data-impact-card
-                className="relative flex h-[520px] flex-col overflow-hidden rounded-[28px] border border-white/15 opacity-0"
+                variants={bcfRiseCard}
+                className="relative flex h-[520px] flex-col overflow-hidden rounded-[28px] border border-white/15"
+                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <img
                   src={CARD_IMAGES[index]}
@@ -127,14 +120,16 @@ export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
                     </p>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
 
-          <button
+          <motion.button
             type="button"
-            data-impact-card
-            className="relative flex h-[180px] w-full items-center overflow-hidden rounded-[28px] border border-white/20 bg-black/40 px-10 text-left opacity-0 backdrop-blur-sm"
+            variants={bcfRiseCard}
+            whileTap={BCF_TAP}
+            transition={BCF_TAP_TRANSITION}
+            className="relative flex h-[180px] w-full transform-gpu items-center overflow-hidden rounded-[28px] border border-white/20 bg-black/40 px-10 text-left backdrop-blur-sm will-change-transform"
           >
             <span className="absolute left-10 top-8 text-[28px] font-light text-white/55">
               01
@@ -150,10 +145,10 @@ export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
               className="grid h-16 w-16 shrink-0 place-items-center rounded-full border"
               style={{ borderColor: `${BCF.gold}99`, color: BCF.gold }}
             >
-              <ArrowRight className="h-7 w-7" />
+              <ArrowRight className="h-7 w-7 rtl:rotate-180" />
             </span>
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </BcfShell>
   );

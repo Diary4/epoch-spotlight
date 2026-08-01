@@ -1,13 +1,21 @@
 import React from "react";
-import { ChevronLeft, X } from "lucide-react";
-import gsap from "gsap";
-import BcfShell from "@/components/Sections/bcf/BcfShell";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { X } from "lucide-react";
+import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import {
   bcfCopy,
   type BcfLang,
   type FutureTopicId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF_EASE,
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfBloom,
+  bcfRise,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
 import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
 import educationImg from "@/assets/images/PrimeMinistir/education.webp";
 import environmentImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
@@ -40,76 +48,52 @@ type BcfFutureDetailProps = {
   onBack: () => void;
 };
 
+/**
+ * The modal is both an animating element and the stagger parent for its own
+ * title, bullets and photo, so it has to drive its children by variant label —
+ * object-valued `animate` would never propagate.
+ */
+const MODAL_CARD = {
+  initial: { opacity: 0, scale: 0.94, y: 30 },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.42,
+      ease: BCF_EASE,
+      staggerChildren: 0.07,
+      delayChildren: 0.14,
+    },
+  },
+  exit: { opacity: 0, scale: 0.96, y: 18, transition: { duration: 0.22 } },
+};
+
 export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) {
   const c = bcfCopy[lang];
+  const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = React.useState<FutureTopicId | null>(null);
   const active = c.futureTopics.find((t) => t.id === activeId) ?? null;
-  const mapRef = React.useRef<HTMLDivElement | null>(null);
-  const modalRef = React.useRef<HTMLDivElement | null>(null);
-
-  React.useLayoutEffect(() => {
-    const root = mapRef.current;
-    if (!root) return;
-    const pins = root.querySelectorAll<HTMLElement>("[data-future-pin]");
-    gsap.set(pins, { opacity: 0, scale: 0.6 });
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const ctx = gsap.context(() => {
-      if (prefersReduced) {
-        gsap.set(pins, { opacity: 1, scale: 1 });
-        return;
-      }
-      gsap.to(pins, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.55,
-        ease: "power2.out",
-        stagger: 0.1,
-        delay: 0.15,
-      });
-    }, root);
-
-    return () => ctx.revert();
-  }, [lang]);
-
-  React.useLayoutEffect(() => {
-    const modal = modalRef.current;
-    if (!modal || !active) return;
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReduced) {
-      gsap.set(modal, { opacity: 1, scale: 1 });
-      return;
-    }
-
-    gsap.fromTo(
-      modal,
-      { opacity: 0, scale: 0.92, y: 24 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power2.out" },
-    );
-  }, [active]);
 
   return (
-    <BcfShell backgroundImage={bcfFutureDetailBg} overlayClassName="bg-black/45">
+    <BcfShell
+      showLogo={false}
+      backgroundImage={bcfFutureDetailBg}
+      overlayClassName="bg-black/58"
+    >
       <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-24">
-        <button
-          type="button"
+        <BcfBackButton
           onClick={() => (active ? setActiveId(null) : onBack())}
-          className="absolute right-10 top-10 z-40 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-          aria-label={c.back}
-        >
-          <ChevronLeft className="h-7 w-7 text-white" />
-        </button>
+          label={c.back}
+        />
 
         {/* Title card */}
-        <div
+        <motion.div
           className={`${BCF_GLASS_CARD} relative z-20 mx-auto w-full max-w-[920px] px-12 py-10 text-center`}
+          initial={{ opacity: 0, y: 34 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.72, delay: 0.14, ease: BCF_EASE }}
+          style={{ boxShadow: "0 26px 70px rgba(0,0,0,0.5)" }}
         >
           <h1 className="text-[64px] font-bold leading-tight">
             <span className="text-[#fbf4e4]">{c.futureHeadingWhite} </span>
@@ -121,38 +105,92 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
           <p className="mx-auto mt-6 max-w-[780px] text-[28px] leading-relaxed text-white/85">
             {c.futureSubtitle}
           </p>
-        </div>
+        </motion.div>
 
         {/* Hotspot map stage */}
-        <div
-          ref={mapRef}
+        <motion.div
           className="relative z-10 mx-auto mt-10 h-[1180px] w-full max-w-[1000px]"
+          variants={bcfStagger(0.1, 0.34)}
+          initial="initial"
+          animate="animate"
         >
-          {HOTSPOTS.map((pin) => {
+          {/* Constellation threads between the hotspots, so the five pins read as
+              one landscape instead of five unrelated dots. */}
+          <svg
+            className="pointer-events-none absolute inset-0 h-full w-full"
+            viewBox="0 0 1000 1180"
+            fill="none"
+            aria-hidden="true"
+          >
+            {HOTSPOTS.slice(0, -1).map((pin, index) => {
+              const next = HOTSPOTS[index + 1];
+              return (
+                <motion.line
+                  key={`thread-${pin.id}`}
+                  x1={pin.left}
+                  y1={pin.top}
+                  x2={next.left}
+                  y2={next.top}
+                  stroke="rgba(251,193,88,0.22)"
+                  strokeWidth={1.25}
+                  strokeDasharray="6 10"
+                  initial={reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }}
+                  animate={{
+                    pathLength: 1,
+                    opacity: 1,
+                    transition: {
+                      duration: 0.9,
+                      delay: 0.4 + index * 0.1,
+                      ease: BCF_EASE,
+                    },
+                  }}
+                />
+              );
+            })}
+          </svg>
+
+          {HOTSPOTS.map((pin, index) => {
             const topic = c.futureTopics.find((t) => t.id === pin.id);
             if (!topic) return null;
             const isActive = activeId === pin.id;
 
             return (
-              <button
+              /* Hotspot anchoring on a plain wrapper — motion owns `transform`
+                 on the button, and would otherwise drop the translate. */
+              <div
                 key={pin.id}
-                type="button"
-                data-future-pin={pin.id}
-                onClick={() => setActiveId(pin.id)}
-                className="absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center opacity-0"
+                className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
                 style={{ left: pin.left, top: pin.top }}
+              >
+              <motion.button
+                type="button"
+                variants={bcfBloom}
+                onClick={() => setActiveId(pin.id)}
+                whileTap={BCF_TAP}
+                transition={BCF_TAP_TRANSITION}
+                className="flex transform-gpu flex-col items-center will-change-transform"
                 aria-label={topic.title}
               >
                 <span className="relative grid h-[56px] w-[56px] place-items-center">
+                  {!reduceMotion ? (
+                    <motion.span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-full"
+                      style={{ backgroundColor: BCF.gold }}
+                      animate={{ scale: [1, 2.1], opacity: [0.42, 0] }}
+                      transition={{
+                        duration: 2.6,
+                        repeat: Infinity,
+                        delay: index * 0.32,
+                        ease: "easeOut",
+                      }}
+                    />
+                  ) : null}
                   <span
-                    className="absolute inset-0 animate-ping rounded-full opacity-40 motion-reduce:animate-none"
-                    style={{ backgroundColor: BCF.gold }}
-                  />
-                  <span
-                    className="absolute inset-[-6px] rounded-full border-2 border-white/80"
+                    className="absolute inset-[-6px] rounded-full border-2 border-white/80 transition-shadow duration-500"
                     style={{
                       boxShadow: isActive
-                        ? `0 0 24px ${BCF.gold}`
+                        ? `0 0 28px ${BCF.gold}`
                         : `0 0 16px ${BCF.gold}99`,
                     }}
                   />
@@ -176,56 +214,84 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
                 >
                   {topic.title}
                 </span>
-              </button>
+              </motion.button>
+              </div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Detail modal */}
-        {active ? (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/45 px-10">
-            <div
-              ref={modalRef}
-              className={`${BCF_GLASS_CARD} relative w-full max-w-[860px] overflow-hidden p-12`}
-              role="dialog"
-              aria-modal="true"
-              aria-label={active.title}
+        <AnimatePresence>
+          {active ? (
+            <motion.div
+              className="absolute inset-0 z-30 flex items-center justify-center px-10 backdrop-blur-[2px]"
+              initial={{ opacity: 0, backgroundColor: "rgba(0,0,0,0)" }}
+              animate={{ opacity: 1, backgroundColor: "rgba(0,0,0,0.55)" }}
+              exit={{ opacity: 0, backgroundColor: "rgba(0,0,0,0)" }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setActiveId(null)}
             >
-              <button
-                type="button"
-                onClick={() => setActiveId(null)}
-                className="absolute right-8 top-8 grid h-14 w-14 place-items-center rounded-full border border-white/30 bg-black/40"
-                aria-label={c.close}
+              <motion.div
+                className={`${BCF_GLASS_CARD} relative w-full max-w-[860px] overflow-hidden p-12`}
+                role="dialog"
+                aria-modal="true"
+                aria-label={active.title}
+                onClick={(event) => event.stopPropagation()}
+                variants={MODAL_CARD}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ boxShadow: "0 40px 110px rgba(0,0,0,0.62)" }}
               >
-                <X className="h-7 w-7 text-white" />
-              </button>
+                <motion.button
+                  type="button"
+                  onClick={() => setActiveId(null)}
+                  whileTap={BCF_TAP}
+                  transition={BCF_TAP_TRANSITION}
+                  className="absolute end-8 top-8 grid h-14 w-14 transform-gpu place-items-center rounded-full border border-white/30 bg-black/40 will-change-transform"
+                  aria-label={c.close}
+                >
+                  <X className="h-7 w-7 text-white" />
+                </motion.button>
 
-              <h2 className="pr-16 text-[64px] font-bold leading-none" style={{ color: BCF.gold }}>
-                {active.title}
-              </h2>
+                <motion.h2
+                  variants={bcfRise}
+                  className="pe-16 text-[64px] font-bold leading-none"
+                  style={{ color: BCF.gold }}
+                >
+                  {active.title}
+                </motion.h2>
 
-              <ul className="mt-12 flex flex-col gap-7">
-                {active.bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-start gap-5 text-[34px] leading-snug text-[#fdeed4]">
-                    <span
-                      className="mt-3 h-3.5 w-3.5 shrink-0 rounded-full"
-                      style={{ backgroundColor: BCF.goldBright }}
-                    />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+                <ul className="mt-12 flex flex-col gap-7">
+                  {active.bullets.map((bullet) => (
+                    <motion.li
+                      key={bullet}
+                      variants={bcfRise}
+                      className="flex items-start gap-5 text-[34px] leading-snug text-[#fdeed4]"
+                    >
+                      <span
+                        className="mt-3 h-3.5 w-3.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: BCF.goldBright }}
+                      />
+                      <span>{bullet}</span>
+                    </motion.li>
+                  ))}
+                </ul>
 
-              <div className="mt-12 overflow-hidden rounded-[28px] border border-white/15">
-                <img
-                  src={topicImages[active.id]}
-                  alt=""
-                  className="h-[360px] w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        ) : null}
+                <motion.div
+                  variants={bcfRise}
+                  className="mt-12 overflow-hidden rounded-[28px] border border-white/15"
+                >
+                  <img
+                    src={topicImages[active.id]}
+                    alt=""
+                    className="h-[360px] w-full object-cover"
+                  />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
     </BcfShell>
   );

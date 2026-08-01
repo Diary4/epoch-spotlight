@@ -1,7 +1,7 @@
 import React from "react";
-import { ChevronLeft } from "lucide-react";
+import { motion } from "motion/react";
 import gsap from "gsap";
-import BcfShell from "@/components/Sections/bcf/BcfShell";
+import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import {
   bcfCopy,
@@ -9,6 +9,7 @@ import {
   type ServeCategoryId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
 import reliefImg from "@/assets/images/PrimeMinistir/isis.webp";
 import healthImg from "@/assets/images/PrimeMinistir/service.webp";
@@ -62,6 +63,12 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const tagRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   const activeIndexRef = React.useRef(initialIndex);
   const dragRef = React.useRef({ startX: 0, baseX: 0, dragging: false, moved: false });
+  /**
+   * React mirror of `activeIndexRef`, for the position rail only. The ref stays
+   * the source of truth during a tween so a re-render never fights GSAP for the
+   * card transforms.
+   */
+  const [dotIndex, setDotIndex] = React.useState(initialIndex);
 
   const trackXForIndex = React.useCallback((index: number, viewportWidth: number) => {
     const center = viewportWidth / 2;
@@ -76,6 +83,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
 
       const clamped = Math.max(0, Math.min(categories.length - 1, nextIndex));
       activeIndexRef.current = clamped;
+      setDotIndex(clamped);
 
       const x = trackXForIndex(clamped, viewport.clientWidth);
       const duration = immediate ? 0 : ANIM_DURATION;
@@ -163,14 +171,15 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   };
 
   return (
-    <BcfShell showLogo={false} overlayClassName="bg-black/0">
-      <div
-        className="relative flex min-h-[1920px] flex-col overflow-hidden pt-24"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 55%, rgba(251,178,47,0.06), transparent 60%), linear-gradient(180deg, #191205 0%, #0a0d22 100%)",
-        }}
-      >
+    <BcfShell
+      showLogo={false}
+      overlayClassName="bg-black/0"
+      backgroundStyle={{
+        background:
+          "radial-gradient(ellipse 70% 50% at 50% 55%, rgba(251,178,47,0.06), transparent 60%), linear-gradient(180deg, #191205 0%, #0a0d22 100%)",
+      }}
+    >
+      <div className="relative flex min-h-[1920px] flex-col overflow-hidden pt-24">
         {/* Subtle dot field behind the carousel (Figma Mini Dots). */}
         <div
           className="pointer-events-none absolute inset-x-0 top-[520px] h-[900px] opacity-40"
@@ -182,33 +191,53 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           }}
         />
 
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute right-10 top-10 z-30 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-          aria-label={c.back}
-        >
-          <ChevronLeft className="h-7 w-7 text-white" />
-        </button>
+        <BcfBackButton onClick={onBack} label={c.back} />
 
-        <div className="relative z-10 px-14">
-          <BcfChapterPill title={chapterTitle} thumb={humanityThumb} />
+        <motion.div
+          className="relative z-10 px-14"
+          variants={bcfStagger(0.1, 0.18)}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.div variants={bcfRise}>
+            <BcfChapterPill title={chapterTitle} thumb={humanityThumb} />
+          </motion.div>
 
           <div className="mt-16 max-w-[1080px]">
-            <p dir="ltr" className="text-[80px] font-bold leading-none">
+            <motion.p
+              variants={bcfRise}
+              dir="ltr"
+              className="text-[80px] font-bold leading-none"
+            >
               <span className="text-[#fbf4e4]">0</span>
               <span style={{ color: BCF.gold }}>2</span>
-            </p>
-            <h1 className="mt-6 text-[80px] font-bold leading-[1.05]">
+            </motion.p>
+            <motion.h1
+              variants={bcfRise}
+              className="mt-6 text-[80px] font-bold leading-[1.05]"
+            >
               <span className="text-[#fbf4e4]">{c.whoWeServeWhite} </span>
               <span style={{ color: BCF.gold }}>{c.whoWeServeGold}</span>
-            </h1>
+            </motion.h1>
+            <motion.span
+              variants={bcfDrawX}
+              className="mt-8 block h-px w-[420px] origin-left"
+              style={{
+                background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+              }}
+            />
           </div>
-        </div>
+        </motion.div>
 
-        <div
+        {/* The carousel and its rail take the leftover height as one block, so
+            the screen no longer ends on 400px of empty field. */}
+        <div className="relative z-10 flex flex-1 flex-col justify-center">
+        <motion.div
           ref={viewportRef}
-          className="relative z-10 mt-10 h-[860px] w-full touch-pan-y overflow-hidden"
+          initial={{ opacity: 0, y: 48 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 h-[860px] w-full touch-pan-y overflow-hidden"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -231,14 +260,14 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   if (dragRef.current.moved) return;
                   animateToIndex(index);
                 }}
-                className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] bg-white/[0.08] px-6 pt-6 text-center"
+                className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] px-6 pt-6 text-center backdrop-blur-[2px]"
                 style={{ width: CARD_W }}
               >
                 <span className="text-[64px] font-bold leading-none text-white">
                   {category.title}
                 </span>
                 <span
-                  className="mt-8 block h-[400px] w-full overflow-hidden rounded-[20px] border"
+                  className="relative mt-8 block h-[400px] w-full overflow-hidden rounded-[20px] border"
                   style={{ borderColor: BCF.nature }}
                 >
                   <img
@@ -246,6 +275,15 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                     alt=""
                     className="h-full w-full object-cover"
                     draggable={false}
+                  />
+                  {/* Warm floor under the photo so the card edge does not cut a
+                      bright image dead against the dark field. */}
+                  <span
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(4,7,10,0) 45%, rgba(4,7,10,0.62) 100%)",
+                    }}
                   />
                 </span>
 
@@ -276,6 +314,31 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
               </button>
             ))}
           </div>
+        </motion.div>
+
+        {/* Position rail — a strip of five cards with no indicator gives the
+            visitor no idea there is more to the side, or how much. */}
+        <motion.div
+          className="relative z-10 mt-10 flex items-center justify-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          {categories.map((category, index) => (
+            <button
+              key={`dot-${category.id}`}
+              type="button"
+              aria-label={category.title}
+              onClick={() => animateToIndex(index)}
+              className="h-3 rounded-full transition-all duration-500 ease-smooth-out"
+              style={{
+                width: index === dotIndex ? 64 : 24,
+                backgroundColor:
+                  index === dotIndex ? BCF.goldBright : "rgba(255,255,255,0.24)",
+              }}
+            />
+          ))}
+        </motion.div>
         </div>
       </div>
     </BcfShell>

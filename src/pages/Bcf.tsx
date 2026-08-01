@@ -1,5 +1,5 @@
 import React from "react";
-import gsap from "gsap";
+import { AnimatePresence } from "motion/react";
 import FitScaledCanvas from "@/components/FitScaledCanvas";
 import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
 import BcfAttract from "@/components/Sections/bcf/BcfAttract";
@@ -30,62 +30,38 @@ export default function BcfPage() {
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
   const [projectId, setProjectId] = React.useState<ProjectId | null>(null);
-  const stageRef = React.useRef<HTMLDivElement | null>(null);
 
   const dir = lang === "en" ? "ltr" : "rtl";
   const navigatingRef = React.useRef(false);
 
-  React.useLayoutEffect(() => {
-    const el = stageRef.current;
-    if (!el) return;
-
-    // New screen mounted and visible — clear the navigation guard.
-    navigatingRef.current = false;
-
-    const ctx = gsap.context(() => {
-      // Opacity only — y-translating full-bleed photos causes stutter.
-      gsap.fromTo(
-        el,
-        { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.6, ease: "power2.out" },
-      );
-    }, el);
-    return () => ctx.revert();
-    // Intentionally excludes modalLocation: selecting a pin on the map is an
-    // in-page interaction, not a screen change, and shouldn't replay the
-    // whole-page entrance fade or force BcfMap to remount.
-  }, [step, lang, locationId, projectId]);
-
-  // Fade the current screen out before swapping so each transition reads as one
-  // continuous motion instead of a hard cut (this display lives in the VIP room).
+  /**
+   * Screen changes are handed to `AnimatePresence`, which cross-dissolves the
+   * outgoing scene into the incoming one (see `bcfScene` in bcfMotion). The
+   * previous approach — fade the stage to black, remount, fade back up — cost a
+   * full second of dead screen and re-decoded every full-bleed photo on arrival.
+   *
+   * `go` now only guards against a second tap landing mid-transition; the motion
+   * itself belongs to the scenes.
+   */
   const go = React.useCallback((apply: () => void) => {
     if (navigatingRef.current) return;
-    const el = stageRef.current;
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!el || prefersReduced) {
-      apply();
-      return;
-    }
-
     navigatingRef.current = true;
-    gsap.to(el, {
-      autoAlpha: 0,
-      duration: 0.42,
-      ease: "power2.in",
-      onComplete: apply,
-    });
+    apply();
+    // Matches the scene exit + entrance overlap; long enough that a double tap
+    // cannot skip a screen, short enough never to swallow a deliberate one.
+    window.setTimeout(() => {
+      navigatingRef.current = false;
+    }, 420);
   }, []);
 
   const content = (() => {
     switch (step) {
       case "attract":
-        return <BcfAttract onFinish={() => go(() => setStep("language"))} />;
+        return <BcfAttract key="attract" onFinish={() => go(() => setStep("language"))} />;
       case "language":
         return (
           <BcfLanguage
+            key="language"
             onSelect={(next) => {
               go(() => {
                 setLang(next);
@@ -95,12 +71,25 @@ export default function BcfPage() {
           />
         );
       case "intro":
-        return <BcfIntro lang={lang} onContinue={() => go(() => setStep("welcome"))} />;
+        return (
+          <BcfIntro
+            key={`intro-${lang}`}
+            lang={lang}
+            onContinue={() => go(() => setStep("welcome"))}
+          />
+        );
       case "welcome":
-        return <BcfWelcome lang={lang} onStart={() => go(() => setStep("sections"))} />;
+        return (
+          <BcfWelcome
+            key={`welcome-${lang}`}
+            lang={lang}
+            onStart={() => go(() => setStep("sections"))}
+          />
+        );
       case "sections":
         return (
           <BcfSections
+            key={`sections-${lang}`}
             lang={lang}
             onBack={() => go(() => setStep("welcome"))}
             onSelect={(id: JourneyChapterId) => {
@@ -124,12 +113,25 @@ export default function BcfPage() {
           />
         );
       case "humanity":
-        return <BcfHumanity lang={lang} onBack={() => go(() => setStep("sections"))} />;
+        return (
+          <BcfHumanity
+            key={`humanity-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("sections"))}
+          />
+        );
       case "hub":
-        return <BcfStory lang={lang} onBack={() => go(() => setStep("sections"))} />;
+        return (
+          <BcfStory
+            key={`story-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("sections"))}
+          />
+        );
       case "map":
         return (
           <BcfMap
+            key={`map-${lang}`}
             lang={lang}
             selectedLocation={modalLocation}
             onSelectLocation={setModalLocation}
@@ -152,6 +154,7 @@ export default function BcfPage() {
         if (!locationId) return null;
         return (
           <BcfProjects
+            key={`projects-${lang}-${locationId}`}
             lang={lang}
             locationId={locationId}
             onBack={() =>
@@ -172,6 +175,7 @@ export default function BcfPage() {
         if (!locationId || !projectId) return null;
         return (
           <BcfProjectDetail
+            key={`project-${lang}-${locationId}-${projectId}`}
             lang={lang}
             locationId={locationId}
             projectId={projectId}
@@ -179,19 +183,38 @@ export default function BcfPage() {
           />
         );
       case "impact":
-        return <BcfImpact lang={lang} onBack={() => go(() => setStep("sections"))} />;
+        return (
+          <BcfImpact
+            key={`impact-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("sections"))}
+          />
+        );
       case "trust":
-        return <BcfTrust lang={lang} onBack={() => go(() => setStep("sections"))} />;
+        return (
+          <BcfTrust
+            key={`trust-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("sections"))}
+          />
+        );
       case "future":
         return (
           <BcfFuture
+            key={`future-${lang}`}
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
             onOpenFuture={() => go(() => setStep("futureDetail"))}
           />
         );
       case "futureDetail":
-        return <BcfFutureDetail lang={lang} onBack={() => go(() => setStep("future"))} />;
+        return (
+          <BcfFutureDetail
+            key={`futureDetail-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("future"))}
+          />
+        );
       default:
         return null;
     }
@@ -204,12 +227,14 @@ export default function BcfPage() {
       bgClassName="bg-[#0a0a0a]"
       fitDeps={[step, lang]}
     >
-      <div
-        ref={stageRef}
-        key={`${step}-${lang}-${locationId ?? ""}-${projectId ?? ""}`}
-        className="flex min-h-[1920px] w-full flex-col"
-      >
-        {content}
+      <div className="flex min-h-[1920px] w-full flex-col">
+        {/* `mode="wait"` lets the outgoing scene finish its short exit before the
+            next one dissolves up, so the backdrop never cuts to black between
+            screens. `initial={false}` keeps the attract reel from fading in over
+            itself on first paint. */}
+        <AnimatePresence mode="wait" initial={false}>
+          {content}
+        </AnimatePresence>
       </div>
     </FitScaledCanvas>
   );

@@ -1,13 +1,20 @@
 import React from "react";
-import { ChevronLeft } from "lucide-react";
-import gsap from "gsap";
-import BcfShell from "@/components/Sections/bcf/BcfShell";
+import { motion, useReducedMotion } from "motion/react";
+import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import {
   bcfCopy,
   type BcfLang,
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF_EASE,
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfDrawX,
+  bcfRise,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
 import storyThumb from "@/assets/images/religions/kurds/cover.webp";
 import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
 import mapThumb from "@/assets/images/PrimeMinistir/service.webp";
@@ -79,9 +86,19 @@ function rowCurve(a: Point, b: Point, c: Point, dy = 0): string {
 /** Three perfectly parallel strands per row — matching the Figma ribbon look. */
 const ROW_STRAND_OFFSETS = [-14, 0, 14] as const;
 
+/** Nodes bloom out of the strands, so the lines draw first and the discs follow. */
+const NODE_VARIANTS = {
+  initial: { opacity: 0, scale: 0.72 },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: BCF_EASE },
+  },
+};
+
 export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps) {
   const c = bcfCopy[lang];
-  const stageRef = React.useRef<HTMLDivElement | null>(null);
+  const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = React.useState<JourneyChapterId>("story");
 
   const topRow = React.useMemo(
@@ -103,106 +120,46 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
     [topRow, bottomRow],
   );
 
-  React.useLayoutEffect(() => {
-    const root = stageRef.current;
-    if (!root) return;
-
-    const nodes = root.querySelectorAll<HTMLElement>("[data-journey-node]");
-    const lines = root.querySelectorAll<SVGPathElement>("[data-journey-line]");
-
-    gsap.set(nodes, { opacity: 0, scale: 0.72 });
-    gsap.set(lines, { opacity: 0 });
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const ctx = gsap.context(() => {
-      if (prefersReduced) {
-        gsap.set(nodes, { opacity: 1, scale: 1 });
-        gsap.set(lines, { opacity: 1 });
-        return;
-      }
-
-      // Soft scale+fade entrance — same spirit as Who We Serve card motion.
-      gsap
-        .timeline({ delay: 0.12 })
-        .to(lines, {
-          opacity: 1,
-          duration: 0.7,
-          ease: "power1.out",
-          stagger: 0.03,
-        })
-        .to(
-          nodes,
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.55,
-            ease: "power2.out",
-            stagger: 0.09,
-          },
-          "-=0.35",
-        );
-    }, root);
-
-    return () => {
-      ctx.revert();
-      gsap.set(nodes, { opacity: 0, scale: 0.72 });
-      gsap.set(lines, { opacity: 0 });
-    };
-  }, [lang]);
-
-  const activate = (id: JourneyChapterId) => {
-    setActiveId(id);
-    const node = stageRef.current?.querySelector<HTMLElement>(
-      `[data-journey-node="${id}"]`,
-    );
-    if (!node) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
-    gsap.fromTo(
-      node,
-      { scale: 0.92 },
-      { scale: 1, duration: 0.4, ease: "power1.inOut", overwrite: "auto" },
-    );
-  };
-
   return (
-    <BcfShell showLogo={false} overlayClassName="bg-black/0">
-      <div
-        className="relative min-h-[1920px] w-full overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(900px 700px at -10% -5%, rgba(32,44,94,0.55), transparent 60%), radial-gradient(1000px 800px at 110% 110%, rgba(50,36,9,0.5), transparent 55%), linear-gradient(180deg, #191205 0%, #0a0d22 100%)",
-        }}
-      >
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute right-10 top-10 z-30 grid h-14 w-14 place-items-center rounded-full bg-black/40 backdrop-blur-sm"
-          aria-label={c.back}
-        >
-          <ChevronLeft className="h-7 w-7 text-white" />
-        </button>
+    <BcfShell
+      showLogo={false}
+      backgroundStyle={{ background: BCF_FIELD_BG }}
+      overlayClassName="bg-black/0"
+    >
+      <div className="relative min-h-[1920px] w-full overflow-hidden">
+        <BcfBackButton onClick={onBack} label={c.back} />
 
-        <div className="absolute left-[80px] top-[124px] z-20 max-w-[860px]">
-          <h1 className="text-[80px] font-bold leading-none tracking-[0.01em]">
+        <motion.div
+          className="absolute left-[80px] top-[124px] z-20 max-w-[860px]"
+          variants={bcfStagger(0.1, 0.16)}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.h1
+            variants={bcfRise}
+            className="text-[80px] font-bold leading-none tracking-[0.01em]"
+          >
             <span className="text-[#fbf4e4]">{c.journeyTitleLead}</span>{" "}
             <span style={{ color: BCF.gold }}>{c.journeyTitleGold}</span>
-          </h1>
-          <div className="mt-8 flex w-full max-w-[520px] items-center gap-3">
+          </motion.h1>
+          <motion.div
+            variants={bcfDrawX}
+            className="mt-8 flex w-full max-w-[520px] origin-left items-center gap-3"
+          >
             <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
             <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: BCF.gold }} />
-          </div>
-          <p className="mt-6 text-[32px] text-[#d2ba91]">{c.journeySubtitle}</p>
-        </div>
+          </motion.div>
+          <motion.p variants={bcfRise} className="mt-6 text-[32px] text-[#d2ba91]">
+            {c.journeySubtitle}
+          </motion.p>
+        </motion.div>
 
-        <div ref={stageRef} className="absolute inset-0 z-20">
+        <motion.div
+          className="absolute inset-0 z-20"
+          variants={bcfStagger(0.09, 0.5)}
+          initial="initial"
+          animate="animate"
+        >
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full"
             viewBox="0 0 1080 1920"
@@ -212,16 +169,29 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
             {rowPaths.map((d, index) => {
               const isCenter = index % 3 === 1;
               return (
-                <path
+                <motion.path
                   key={`strand-${index}`}
-                  data-journey-line=""
                   d={d}
-                  stroke={
-                    isCenter ? "rgba(251,193,88,0.42)" : "rgba(251,193,88,0.18)"
-                  }
+                  stroke={isCenter ? "rgba(251,193,88,0.42)" : "rgba(251,193,88,0.18)"}
                   strokeWidth={isCenter ? 1.75 : 1.25}
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  // The strands draw themselves left to right before the nodes
+                  // land on them — the constellation assembles instead of fading.
+                  initial={reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }}
+                  animate={
+                    reduceMotion
+                      ? { opacity: 1, transition: { duration: 0.3 } }
+                      : {
+                          pathLength: 1,
+                          opacity: 1,
+                          transition: {
+                            duration: 1.15,
+                            ease: BCF_EASE,
+                            delay: 0.18 + (index % 3) * 0.06 + (index > 2 ? 0.14 : 0),
+                          },
+                        }
+                  }
                 />
               );
             })}
@@ -234,22 +204,32 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
             const size = isActive ? CIRCLE + 16 : CIRCLE;
 
             return (
-              <button
+              /* The centring translate lives on a plain wrapper: motion writes
+                 its own `transform` for the scale/tap, which would otherwise
+                 overwrite the utility classes and knock every node half a card
+                 down and to the side. */
+              <div
                 key={item.id}
-                type="button"
-                data-journey-node={item.id}
-                onClick={() => {
-                  activate(item.id);
-                  onSelect(item.id);
-                }}
-                onPointerEnter={() => activate(item.id)}
-                className="absolute -translate-x-1/2 -translate-y-1/2 opacity-0"
+                className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{
                   left: item.cx,
                   top: item.cy,
                   width: CIRCLE + 48,
                   height: CIRCLE + 48,
                 }}
+              >
+              <motion.button
+                type="button"
+                variants={NODE_VARIANTS}
+                onClick={() => {
+                  setActiveId(item.id);
+                  onSelect(item.id);
+                }}
+                onPointerEnter={() => setActiveId(item.id)}
+                onPointerDown={() => setActiveId(item.id)}
+                whileTap={BCF_TAP}
+                transition={BCF_TAP_TRANSITION}
+                className="relative h-full w-full transform-gpu will-change-transform"
               >
                 <span
                   className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[width,height,box-shadow,border-color] duration-500 ease-smooth-out"
@@ -269,14 +249,26 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out will-change-transform motion-reduce:transition-none"
                     style={{ transform: isActive ? "scale(1.08)" : "scale(1)" }}
                   />
+                  <span
+                    className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 50% 50%, rgba(4,7,10,0.05), rgba(4,7,10,0.55))",
+                      opacity: isActive ? 0.35 : 0.8,
+                    }}
+                  />
                 </span>
-                <span className="absolute left-1/2 top-full mt-5 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight text-[#fdeed4]">
+                <span
+                  className="absolute left-1/2 top-full mt-5 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight transition-colors duration-500"
+                  style={{ color: isActive ? BCF.sand : "#fdeed4" }}
+                >
                   {chapter.title}
                 </span>
-              </button>
+              </motion.button>
+              </div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </BcfShell>
   );

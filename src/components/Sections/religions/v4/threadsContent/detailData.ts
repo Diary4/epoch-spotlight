@@ -1941,7 +1941,7 @@ export const MS = { lalish: threadsAssets.fo, "tawus-melek": threadsAssets.AS, j
 
 export const NS = { meaning: threadsAssets.bS, "four-principles": threadsAssets.IS, jamkhana: threadsAssets.DS, "sacred-book": threadsAssets._S };
 
-export const FS = { history: threadsAssets.OS, "three-pillars": threadsAssets.Jp, environment: threadsAssets.zS, nowruz: threadsAssets.nowruz };
+export const FS = { history: threadsAssets.OS, "three-pillars": threadsAssets.threePillars, environment: threadsAssets.zS, nowruz: threadsAssets.nowruz };
 
 export const KS = { "kurdish-jews": threadsAssets.US, torah: threadsAssets.torah, "nahum-shrine": threadsAssets.HS, heritage: threadsAssets.ho };
 
