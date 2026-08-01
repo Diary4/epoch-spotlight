@@ -15,6 +15,8 @@ import rightsYear2014 from "@/assets/images/religions/rights/year-2014.webp";
 import Ci from "@/assets/images/religions/sharedlife/kakai-festival.webp";
 import co from "@/assets/images/new/religions/faiths/christianity.webp";
 import CS from "@/assets/images/religions/christianity/churches.webp";
+import sharedChurches from "@/assets/images/religions/sharedlife/churches.webp";
+import zoroCover from "@/assets/images/religions/zoro/cover.webp";
 import christianHistorical from "@/assets/images/religions/christianity/historical.webp";
 import christianEaster from "@/assets/images/religions/christianity/easter-egg.webp";
 import d2 from "@/assets/images/religions/nations/assyrian/ankawa.webp";
@@ -164,6 +166,8 @@ export const threadsAssets = {
   yo: yo,
   yu: yu,
   zS: zS,
+  sharedChurches,
+  zoroCover,
   attract: hS,
   hub: Yn,
   closing: dt,

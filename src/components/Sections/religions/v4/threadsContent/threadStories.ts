@@ -197,26 +197,50 @@ export const sharedLifeStories = {
       [
         "eid",
         "Eid Al-Fitr & Eid Al-Adha",
-        "Official holidays celebrated with communal prayers, feasts, visits, and acts of solidarity across communities.",
+        "Official 3 and 4-day holidays. Celebrated with communal prayers, feasts, and visits. Christians in Erbil prepare iftar tables during Ramadan in solidarity with Muslims.",
         threadsAssets.xu,
       ],
       [
         "christmas",
         "Christmas & Easter",
-        "Public holidays in the Kurdistan Region, marked by faith, hospitality, and traditions shared with neighbors.",
+        "Official public holidays in the Kurdistan Region. Easter celebrated with egg coloring and special Easter bread (ka'k). Christmas celebrated December 25 or January 7.",
         threadsAssets.Pi,
       ],
       [
         "yazidi-festivals",
         "Yazidi Festivals",
-        "Red Wednesday, Jemai, Summer Forty Days, and the Day of Êzî bring worship, memory, and community together.",
+        "New Year (Red Wednesday, April), Jemai (October 6–13), Summer Forty Days (August 2), Day of Êzî (December 16) — all official holidays in the Kurdistan Region.",
         threadsAssets.wu,
       ],
       [
         "kakai-festival",
         "Kakai Festival",
-        "Qewltas is a three-day religious festival observed in December by the Kakai community.",
+        "Qewltas Festival — a three-day religious festival observed in December by the Kakai community.",
         threadsAssets.Ci,
+      ],
+      [
+        "mosques",
+        "Mosques",
+        "6,103 mosques supervised by the Ministry of Endowments. Including historic sites such as the Erbil Citadel Mosque, Grand Mosque of Akre, and Jalil Khayat Mosque.",
+        threadsAssets.xu,
+      ],
+      [
+        "churches-monasteries",
+        "Churches & Monasteries",
+        "Mar Mattai Monastery on Mount Maqlub, Monastery of Hormizd in Alqosh, Rabban Boya Monastery in Shaqlawa, and dozens of active churches across the region.",
+        threadsAssets.sharedChurches,
+      ],
+      [
+        "lalish-temple",
+        "Lalish Temple",
+        "The sacred heart of Yazidism. Located in Shekhan, Duhok. Contains the tombs of Yazidi saints and two sacred springs: Kaniya Spi and Zamzam.",
+        threadsAssets.A2,
+      ],
+      [
+        "zoroastrian-temples",
+        "Zoroastrian Temples",
+        "Qazkapan Zoroastrian Temple in Dukan, Sulaymaniyah. Charsten Cave Zoroastrian Temple in Duhok. Ancient sites of pre-Islamic Kurdistan still standing today.",
+        threadsAssets.zoroCover,
       ],
     ],
     ku: [
@@ -235,7 +259,7 @@ export const sharedLifeStories = {
       [
         "yazidi-festivals",
         "جەژنە ئێزیدییەکان",
-        "سەری ساڵ، جەمایێ، چلەی هاوین و ڕۆژووی ئێزی — هەموویان پشووی فەرمین لە هەرێم.",
+        "سەری ساڵ (چوارشەممەی سوور)، جەمایێ، چلەی هاوین و ڕۆژووی ئێزی — هەموویان پشووی فەرمین لە هەرێم.",
         threadsAssets.wu,
       ],
       [
@@ -244,24 +268,48 @@ export const sharedLifeStories = {
         "فیستیڤاڵی قۆڵتاس — جەژنێکی ئایینی سێ ڕۆژەیە لە مانگی کانوونی یەکەمدا.",
         threadsAssets.Ci,
       ],
+      [
+        "mosques",
+        "مزگەوتەکان",
+        "٦١٠٣ مزگەوت هەن. وەک مزگەوتی قەڵای هەولێر و مزگەوتی گەورەی ئاکرێ و جەلیل خەیات.",
+        threadsAssets.xu,
+      ],
+      [
+        "churches-monasteries",
+        "کەنیسە و دێرەکان",
+        "دێری مار مەتی لەسەر چیای مەقلووب، دێری رەبان هورمزد لە ئەلقوش، و دێری ڕەبان بۆیا لە شەقڵاوە.",
+        threadsAssets.sharedChurches,
+      ],
+      [
+        "lalish-temple",
+        "پەرستگای لالەش",
+        "دڵی ڕۆحیی ئێزیدییەکانە. دەکەوێتە قەزای شێخان لە پارێزگای دهۆک. مەزارگەی پیرۆزی کەسایەتییە ئایینییەکانی ئێزیدی و دوو کانیی پیرۆز (کانیا سپی و زەمزەم) لەخۆدەگرێت.",
+        threadsAssets.A2,
+      ],
+      [
+        "zoroastrian-temples",
+        "پەرستگا زەردەشتییەکان",
+        "پەرستگای قزقاپان لە دووکان و ئەشکەوتی چارستن لە دهۆک کە مێژووەکەیان بۆ پێش ئیسلام دەگەڕێتەوە و تا ئەمڕۆش وەک خۆیان ماونەتەوە.",
+        threadsAssets.zoroCover,
+      ],
     ],
     ar: [
       [
         "eid",
         "عيد الفطر وعيد الأضحى",
-        "عطلتان رسميتان تُقام فيهما صلوات الجماعة والولائم والزيارات ومبادرات التضامن بين المجتمعات.",
+        "عطلتان رسميتان لمدة 3 و4 أيام. تُقام فيهما صلوات الجماعة والولائم والزيارات. ويُعدّ المسيحيون في أربيل موائد إفطار خلال رمضان تضامناً مع المسلمين.",
         threadsAssets.xu,
       ],
       [
         "christmas",
         "الميلاد وعيد الفصح",
-        "عطلتان رسميتان في إقليم كوردستان، تجمعان الإيمان والضيافة والتقاليد التي يشاركها الجيران.",
+        "عطلتان رسميتان في إقليم كوردستان. يُحتفل بعيد الفصح بتلوين البيض وإعداد كعك العيد التقليدي. ويُحتفل بعيد الميلاد في 25 ديسمبر أو 7 يناير.",
         threadsAssets.Pi,
       ],
       [
         "yazidi-festivals",
         "الأعياد الإيزيدية",
-        "الأربعاء الأحمر وجمايا والأربعينية الصيفية ويوم الإيزي تجمع العبادة والذاكرة والمجتمع.",
+        "رأس السنة (الأربعاء الأحمر، أبريل)، وجمايا (6-13 أكتوبر)، وعيد الأربعينية الصيفية (2 أغسطس)، ويوم الإيزي (16 ديسمبر) — جميعها عطل رسمية في الإقليم.",
         threadsAssets.wu,
       ],
       [
@@ -269,6 +317,30 @@ export const sharedLifeStories = {
         "عيد الكاكائيين",
         "مهرجان قولتاس — احتفال ديني لثلاثة أيام يُقيمه مجتمع الكاكائيين في شهر ديسمبر.",
         threadsAssets.Ci,
+      ],
+      [
+        "mosques",
+        "المساجد",
+        "6,103 مسجداً تشرف عليها وزارة الأوقاف. من بينها مواقع تاريخية كمسجد قلعة أربيل والجامع الكبير في عقرة وجامع جليل خياط.",
+        threadsAssets.xu,
+      ],
+      [
+        "churches-monasteries",
+        "الكنائس والأديرة",
+        "دير مار متي على جبل مقلوب، ودير هرمزد في ألقوش، ودير ربان بويا في شقلاوة، وعشرات الكنائس النشطة في أرجاء الإقليم.",
+        threadsAssets.sharedChurches,
+      ],
+      [
+        "lalish-temple",
+        "معبد لالش",
+        "القلب الروحي للإيزيدية. يقع في شيخان بدهوك. يضم أضرحة القديسين الإيزيديين وينبوعَين مقدسَين: كانيا سبي وزمزم.",
+        threadsAssets.A2,
+      ],
+      [
+        "zoroastrian-temples",
+        "معابد زرادشتية",
+        "معبد قزقبان الزرادشتي في دوكان بالسليمانية. ومعبد كهف چارستن الزرادشتي في دهوك. مواقع تاريخية تعود إلى ما قبل الإسلام لا تزال قائمة حتى اليوم.",
+        threadsAssets.zoroCover,
       ],
     ],
   };

@@ -2074,6 +2074,30 @@ export const N2 = {
         significance:
           "The gathering carries Kakai faith, communal memory, and continuity from one generation to the next.",
       },
+      mosques: {
+        context:
+          "The Ministry of Endowments supervises 6,103 mosques across the Kurdistan Region.",
+        significance:
+          "Historic sites such as the Erbil Citadel Mosque, the Grand Mosque of Akre, and Jalil Khayat Mosque mark Islam’s living presence in public life.",
+      },
+      "churches-monasteries": {
+        context:
+          "Christian worship continues in monasteries and churches that have stood across the Region for centuries.",
+        significance:
+          "Mar Mattai, Hormizd in Alqosh, Rabban Boya in Shaqlawa, and dozens of active churches keep Christian heritage visible.",
+      },
+      "lalish-temple": {
+        context:
+          "Lalish Temple in Shekhan, Duhok, is the sacred heart of Yazidism.",
+        significance:
+          "It holds the tombs of Yazidi saints and the sacred springs of Kaniya Spi and Zamzam.",
+      },
+      "zoroastrian-temples": {
+        context:
+          "Pre-Islamic Zoroastrian sites still stand in the Kurdistan Region.",
+        significance:
+          "Qazkapan in Dukan and Charsten Cave in Duhok preserve an ancient layer of Kurdistan’s religious landscape.",
+      },
       government: {
         context:
           "The KRG followed the Region’s first democratic election on May 19, 1992, with minority seats reserved in parliament from the beginning.",
@@ -2220,6 +2244,30 @@ export const N2 = {
         significance:
           "ئەم کۆبوونەوەیە باوەڕ، یادەوەریی کۆمەڵایەتی و بەردەوامیی کاکەیی لە نەوەیەکەوە بۆ نەوەیەکی تر دەگوازێتەوە.",
       },
+      mosques: {
+        context:
+          "وەزارەتی ئەوقاف سەرپەرشتی ٦١٠٣ مزگەوت لە هەرێمی کوردستان دەکات.",
+        significance:
+          "شوێنە مێژووییەکان وەک مزگەوتی قەڵای هەولێر، مزگەوتی گەورەی ئاکرێ و جەلیل خەیات ئامادەیی ئیسلام لە ژیانی گشتیدا دەردەخەن.",
+      },
+      "churches-monasteries": {
+        context:
+          "پەرستنی مەسیحی لە دێر و کەنیسەکاندا بەردەوامە کە سەدان ساڵە لە هەرێمدا وەستاون.",
+        significance:
+          "مار مەتی، هورمزد لە ئەلقوش، ڕەبان بۆیا لە شەقڵاوە و دەیان کەنیسەی چالاک میراتی مەسیحی بە دیاری دەهێڵنەوە.",
+      },
+      "lalish-temple": {
+        context:
+          "پەرستگای لالەش لە شێخانی دهۆک دڵی پیرۆزی ئێزیدییە.",
+        significance:
+          "مەزارگەی پیرۆزی کەسایەتییە ئایینییەکانی ئێزیدی و کانییە پیرۆزەکانی کانیا سپی و زەمزەم لەخۆدەگرێت.",
+      },
+      "zoroastrian-temples": {
+        context:
+          "شوێنە زەردەشتییەکانی پێش ئیسلام تا ئەمڕۆش لە هەرێمی کوردستان ماونەتەوە.",
+        significance:
+          "قزقاپان لە دووکان و ئەشکەوتی چارستن لە دهۆک چینێکی کۆنی دیمەنی ئایینیی کوردستان دەپارێزن.",
+      },
       government: {
         context:
           "حکومەتی هەرێم دوای یەکەم هەڵبژاردنی دیموکراسیی ناوچەکە لە ١٩ی ئایاری ١٩٩٢ هاتەکایەوە و لە سەرەتاوە کورسی بۆ کەمینەکان تەرخانکرا.",
@@ -2365,6 +2413,30 @@ export const N2 = {
           "قولتاس احتفال ديني يستمر ثلاثة أيام ويقيمه مجتمع الكاكائيين في شهر ديسمبر.",
         significance:
           "ينقل هذا التجمع الإيمان والذاكرة المجتمعية والاستمرارية الكاكائية من جيل إلى آخر.",
+      },
+      mosques: {
+        context:
+          "تشرف وزارة الأوقاف على 6,103 مسجداً في إقليم كوردستان.",
+        significance:
+          "تُظهر مواقع تاريخية كمسجد قلعة أربيل والجامع الكبير في عقرة وجامع جليل خياط حضور الإسلام الحي في الحياة العامة.",
+      },
+      "churches-monasteries": {
+        context:
+          "تستمر العبادة المسيحية في أديرة وكنائس قائمة في الإقليم منذ قرون.",
+        significance:
+          "يبقي مار متي وهرمزد في ألقوش وربان بويا في شقلاوة وعشرات الكنائس النشطة التراث المسيحي مرئياً.",
+      },
+      "lalish-temple": {
+        context:
+          "معبد لالش في شيخان بدهوك هو القلب المقدس للإيزيدية.",
+        significance:
+          "يضم أضرحة القديسين الإيزيديين وينبوعَي كانيا سبي وزمزم المقدسين.",
+      },
+      "zoroastrian-temples": {
+        context:
+          "لا تزال مواقع زرادشتية تعود إلى ما قبل الإسلام قائمة في إقليم كوردستان.",
+        significance:
+          "يحفظ قزقبان في دوكان وكهف چارستن في دهوك طبقة قديمة من المشهد الديني لكوردستان.",
       },
       government: {
         context:

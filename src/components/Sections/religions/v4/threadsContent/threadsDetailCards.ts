@@ -144,17 +144,24 @@ export function resolveDetailCards(
 ): DetailCard[] {
   switch (storyId) {
     case "islam":
-    case "eid":
       return mapTopics(lang, SS, kS);
     case "christianity":
-    case "christmas":
       return mapTopics(lang, PS, ES);
     case "yazidism":
-    case "yazidi-festivals":
       return mapTopics(lang, jS, MS);
     case "yarsanism":
-    case "kakai-festival":
       return mapTopics(lang, VS, NS);
+    // Shared Life celebrations and heritage are complete on the carousel card —
+    // they intentionally have no deeper detail page.
+    case "eid":
+    case "christmas":
+    case "yazidi-festivals":
+    case "kakai-festival":
+    case "mosques":
+    case "churches-monasteries":
+    case "lalish-temple":
+    case "zoroastrian-temples":
+      return [];
     case "zoroastrianism":
       return mapTopics(lang, BS, FS);
     case "judaism":

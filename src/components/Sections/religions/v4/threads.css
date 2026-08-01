@@ -909,6 +909,9 @@
   text-align: start;
   touch-action: pan-y;
 }
+.tok-story-card--static {
+  cursor: default;
+}
 .tok-story-card > img {
   width: 100%;
   height: 100%;
@@ -955,19 +958,9 @@
   bottom: 52px;
   left: 56px;
 }
-.tok-story-card__copy small {
-  display: block;
-  color: color-mix(in srgb, var(--thread-accent) 52%, #f2d8a8 48%);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
-}
 .tok-story-card__copy b {
   display: block;
   max-width: 610px;
-  margin-top: 13px;
   color: #fffaf0;
   font-family: var(--tok-serif);
   font-size: 63px;
@@ -1015,9 +1008,7 @@
   font-size: 65px;
   line-height: 1.2;
 }
-.tok-experience--ku .tok-story-card__copy small,
 .tok-experience--ku .tok-story-card__copy em,
-.tok-experience--ar .tok-story-card__copy small,
 .tok-experience--ar .tok-story-card__copy em {
   letter-spacing: 0;
   text-transform: none;

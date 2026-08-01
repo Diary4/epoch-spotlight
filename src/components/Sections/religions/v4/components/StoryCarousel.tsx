@@ -20,6 +20,7 @@ export default function StoryCarousel({
 }: StoryCarouselProps) {
   const dragRef = useRef(false);
   const story = chapter.stories[storyIndex];
+  const hasDetail = story.detailCards.length > 0;
   const previousStory =
     chapter.stories[
       (storyIndex - 1 + chapter.stories.length) % chapter.stories.length
@@ -47,7 +48,7 @@ export default function StoryCarousel({
         <motion.button
           key={story.id}
           type="button"
-          className="tok-story-card"
+          className={`tok-story-card${hasDetail ? "" : " tok-story-card--static"}`}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.16}
@@ -62,14 +63,16 @@ export default function StoryCarousel({
             }, 50);
           }}
           onClick={() => {
-            if (!dragRef.current) dispatch({ type: "OPEN_STORY" });
+            if (!dragRef.current && hasDetail) dispatch({ type: "OPEN_STORY" });
           }}
           initial={{ opacity: 0, x: 80, rotateY: -4 }}
           animate={{ opacity: 1, x: 0, rotateY: 0 }}
           exit={{ opacity: 0, x: -80, rotateY: 4 }}
           transition={SCENE_TRANSITION}
-          whileTap={{ scale: 0.992 }}
-          aria-label={`${copy.openStory}: ${story.title}`}
+          whileTap={hasDetail ? { scale: 0.992 } : undefined}
+          aria-label={
+            hasDetail ? `${copy.openStory}: ${story.title}` : story.title
+          }
         >
           <img
             src={story.image}
@@ -82,13 +85,14 @@ export default function StoryCarousel({
             {String(chapter.stories.length).padStart(2, "0")}
           </span>
           <span className="tok-story-card__copy">
-            <small>{chapter.title}</small>
             <b>{story.title}</b>
             <span>{story.body}</span>
-            <em>
-              {copy.openStory}
-              <ArrowRight aria-hidden="true" />
-            </em>
+            {hasDetail ? (
+              <em>
+                {copy.openStory}
+                <ArrowRight aria-hidden="true" />
+              </em>
+            ) : null}
           </span>
         </motion.button>
       </AnimatePresence>

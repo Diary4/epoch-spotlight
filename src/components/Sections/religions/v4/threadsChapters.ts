@@ -69,9 +69,9 @@ const CHAPTER_META: Record<
       id: "sharedLife",
       number: "04",
       title: "Shared Life",
-      line: "Joy · memory · solidarity",
+      line: "Celebrations · sacred places",
       description:
-        "Four celebrations show how worship, hospitality, public holidays, and neighborly solidarity turn difference into shared life.",
+        "Festivals that bring communities together, and sacred places that hold shared memory — from Eid and Christmas to mosques, churches, Lalish, and Zoroastrian temples.",
       hero: threadsAssets.Rt,
       accent: "#b24438",
     },
@@ -123,7 +123,7 @@ const CHAPTER_META: Record<
       title: "ژیانی هاوبەش",
       line: "جەژن · شوێنە پیرۆزەکان",
       description:
-        "چوار جەژن نیشان دەدەن کە پەرستن، میواندۆستی، پشووی فەرمی و هاوپشتیی دراوسێیان جیاوازی دەکەنە ژیانی هاوبەش.",
+        "جەژنەکان کە کۆمەڵگەکان کۆدەکەنەوە، و شوێنە پیرۆزەکان کە یادەوەریی هاوبەش هەڵدەگرن — لە جەژنی ڕەمەزان و لەدایکبوونەوە تا مزگەوت، کەنیسە، لالەش و پەرستگا زەردەشتییەکان.",
       hero: threadsAssets.Rt,
       accent: "#b24438",
     },
@@ -173,9 +173,9 @@ const CHAPTER_META: Record<
       id: "sharedLife",
       number: "٠٤",
       title: "الحياة المشتركة",
-      line: "فرح · ذاكرة · تضامن",
+      line: "احتفالات · مواقع مقدسة",
       description:
-        "أربعة احتفالات تُظهر كيف تحوّل العبادة والضيافة والعطل الرسمية والتضامن بين الجيران الاختلاف إلى حياة مشتركة.",
+        "أعياد تجمع المجتمعات، وأماكن مقدسة تحمل الذاكرة المشتركة — من عيد الفطر والميلاد إلى المساجد والكنائس ولالش والمعابد الزرادشتية.",
       hero: threadsAssets.Rt,
       accent: "#b24438",
     },
