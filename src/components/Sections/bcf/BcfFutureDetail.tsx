@@ -79,7 +79,7 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
     <BcfShell
       showLogo={false}
       backgroundImage={bcfFutureDetailBg}
-      overlayClassName="bg-black/58"
+      overlayClassName="bg-black/60"
     >
       <div className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-24">
         <BcfBackButton

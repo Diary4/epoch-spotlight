@@ -577,7 +577,7 @@
 .tok-hub__web,
 .tok-hub__portals {
   position: absolute;
-  top: 540px;
+  top: 500px;
   inset-inline: 0;
   height: 1196px;
   transform: translateX(-14px);

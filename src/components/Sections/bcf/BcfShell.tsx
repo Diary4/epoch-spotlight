@@ -116,7 +116,7 @@ export default function BcfShell({
             src={backgroundImage}
             alt=""
             decoding="async"
-            fetchpriority="high"
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
             initial={driftAnimation ? { scale: 1.04 } : undefined}
             animate={driftAnimation}

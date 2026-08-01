@@ -345,10 +345,10 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
               src={bcfLangBg}
               alt=""
               decoding="async"
-              fetchpriority="high"
+              fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover opacity-45"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/92" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90" />
 
             <div className="relative flex min-h-[1920px] flex-col items-center gap-9 pt-[360px]">
               <BcfMonogram data-open-mark="" />
@@ -383,7 +383,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/78" />
+            <div className="absolute inset-0 bg-black/80" />
 
             <div className="relative flex w-full max-w-[860px] flex-col gap-20">
               {STAT_INDEXES.map((statIndex) => {
@@ -424,7 +424,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover opacity-45"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/92" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90" />
 
             <div className="relative flex flex-col items-center gap-10">
               <BcfMonogram data-close-mark="" className="opacity-0" />
@@ -521,7 +521,7 @@ export default function BcfAttract({ onFinish }: BcfAttractProps) {
       </AnimatePresence>
 
       {/* Scrubber — reinforces that this is a film, and shows how much is left. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[6px] bg-white/12">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[6px] bg-white/10">
         <span
           ref={progressRef}
           className="block h-full w-0"

@@ -114,7 +114,7 @@ export default function BcfProjects({
   const projects = c.projects[locationId];
 
   return (
-    <BcfShell backgroundImage={bcfProjectsBg} overlayClassName="bg-black/62">
+    <BcfShell backgroundImage={bcfProjectsBg} overlayClassName="bg-black/60">
       <div className="relative flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
         <BcfBackButton onClick={onBack} label={c.back} />
 

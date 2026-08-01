@@ -83,7 +83,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           key="leadership"
           showLogo={false}
           backgroundImage={topicBgs.leadership}
-          overlayClassName="bg-black/72"
+          overlayClassName="bg-black/70"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
             <motion.div
@@ -139,7 +139,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           key="quality"
           showLogo={false}
           backgroundImage={topicBgs.quality}
-          overlayClassName="bg-black/76"
+          overlayClassName="bg-black/75"
         >
           <TrustChrome title={c.trustQualityTitle} backLabel={c.back} onBack={goBack}>
             <motion.div
@@ -268,7 +268,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           key="recognition"
           showLogo={false}
           backgroundImage={topicBgs.recognition}
-          overlayClassName="bg-black/72"
+          overlayClassName="bg-black/70"
         >
           <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
             <motion.div
@@ -292,7 +292,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         key="hub"
         showLogo={false}
         backgroundImage={trustBg}
-        overlayClassName="bg-black/74"
+        overlayClassName="bg-black/75"
       >
         <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
           <BcfBackButton onClick={goBack} label={c.back} />

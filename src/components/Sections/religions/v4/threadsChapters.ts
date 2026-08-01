@@ -69,7 +69,7 @@ const CHAPTER_META: Record<
       id: "sharedLife",
       number: "04",
       title: "Shared Life",
-      line: "Celebrations · sacred places",
+      line: "Celebrations · Heritage",
       description:
         "Festivals that bring communities together, and sacred places that hold shared memory — from Eid and Christmas to mosques, churches, Lalish, and Zoroastrian temples.",
       hero: threadsAssets.Rt,
@@ -121,7 +121,7 @@ const CHAPTER_META: Record<
       id: "sharedLife",
       number: "٠٤",
       title: "ژیانی هاوبەش",
-      line: "جەژن · شوێنە پیرۆزەکان",
+      line: "جەژن · میرات",
       description:
         "جەژنەکان کە کۆمەڵگەکان کۆدەکەنەوە، و شوێنە پیرۆزەکان کە یادەوەریی هاوبەش هەڵدەگرن — لە جەژنی ڕەمەزان و لەدایکبوونەوە تا مزگەوت، کەنیسە، لالەش و پەرستگا زەردەشتییەکان.",
       hero: threadsAssets.Rt,
@@ -173,7 +173,7 @@ const CHAPTER_META: Record<
       id: "sharedLife",
       number: "٠٤",
       title: "الحياة المشتركة",
-      line: "احتفالات · مواقع مقدسة",
+      line: "احتفالات · تراث",
       description:
         "أعياد تجمع المجتمعات، وأماكن مقدسة تحمل الذاكرة المشتركة — من عيد الفطر والميلاد إلى المساجد والكنائس ولالش والمعابد الزرادشتية.",
       hero: threadsAssets.Rt,
