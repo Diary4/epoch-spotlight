@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import type { Chapter, ThreadsAction } from "../threadsTypes";
+import ThreadGlyph from "./ThreadGlyph";
 
 type ThreadPortalProps = {
   chapter: Chapter;
@@ -51,6 +52,10 @@ export default function ThreadPortal({
             <span>{lead}</span>
             {tail ? <span>{tail}</span> : null}
           </small>
+        </span>
+        {/* The seal caps the thread that arrives at the card's bottom rim. */}
+        <span className="tok-thread-portal__seal" aria-hidden="true">
+          <ThreadGlyph threadId={chapter.id} />
         </span>
       </span>
     </motion.button>

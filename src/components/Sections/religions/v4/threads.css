@@ -628,6 +628,10 @@
 .tok-sun__glow {
   fill: url(#tok-sun-glow);
 }
+.tok-sun {
+  transform-origin: 0 0;
+  animation: tok-sun-spin 72s linear infinite;
+}
 .tok-sun__rays,
 .tok-sun__disc {
   fill: url(#tok-sun-gold);
@@ -669,7 +673,7 @@
   display: block;
   overflow: hidden;
   width: 100%;
-  height: 196px;
+  height: 190px;
   flex: none;
   border-radius: 49px 49px 12px 12px;
 }
@@ -697,12 +701,34 @@
     rgba(30, 24, 14, 0.14) 100%
   );
 }
+/* The seal sits on the bottom rim, where the thread from the sun arrives. */
+.tok-thread-portal__seal {
+  position: absolute;
+  z-index: 2;
+  bottom: -26px;
+  left: 50%;
+  display: flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(170, 131, 68, 0.45);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fdfaf3 0%, #f5eddd 100%);
+  box-shadow: 0 6px 14px rgba(74, 48, 14, 0.12);
+  color: #9d7134;
+  transform: translateX(-50%);
+}
+.tok-thread-portal__seal svg {
+  width: 27px;
+  height: 27px;
+}
 .tok-thread-portal__copy {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding-top: 18px;
+  padding-top: 16px;
   text-align: center;
 }
 /* Two title lines are always reserved so every caption sits on one baseline. */
@@ -711,7 +737,7 @@
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  color: #8a6733;
+  color: #453724;
   font-family: var(--tok-serif);
   font-size: 24px;
   font-weight: 560;
@@ -1628,6 +1654,11 @@
 @keyframes tok-flow {
   to {
     stroke-dashoffset: -150;
+  }
+}
+@keyframes tok-sun-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 @media (prefers-reduced-motion: reduce) {

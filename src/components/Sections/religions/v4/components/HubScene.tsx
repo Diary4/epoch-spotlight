@@ -141,8 +141,10 @@ export default function HubScene({
             r={ring.inner}
           />
           <g transform={`translate(${centre.x} ${centre.y})`}>
-            <path className="tok-sun__rays" d={HUB_SUN_PATH} />
-            <circle className="tok-sun__disc" r={sun.disc} />
+            <g className="tok-sun">
+              <path className="tok-sun__rays" d={HUB_SUN_PATH} />
+              <circle className="tok-sun__disc" r={sun.disc} />
+            </g>
           </g>
         </svg>
       </div>
