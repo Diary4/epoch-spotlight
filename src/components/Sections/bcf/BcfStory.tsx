@@ -1,14 +1,27 @@
 import React from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useTransform,
+} from "motion/react";
+import { ChevronDown, Quote } from "lucide-react";
 import TextType from "@/components/TextType";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
-import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import {
+  bcfCopy,
+  type BcfLang,
+  type StorySectionId,
+} from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { BCF_EASE, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import { bcfCorridor, bcfErbil } from "@/components/Sections/bcf/bcfAssets";
 import storyThumb from "@/assets/images/religions/kurds/cover.webp";
+// Placeholders until the official presidential photography arrives.
+import presidentA from "@/assets/images/PrimeMinistir/masrur-barzani.webp";
+import presidentB from "@/assets/images/PrimeMinistir/pm.webp";
+import presidentC from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 
 type BcfStoryProps = {
   lang: BcfLang;
@@ -16,6 +29,15 @@ type BcfStoryProps = {
 };
 
 const PANE_HEIGHT = 1920;
+
+/**
+ * Most chapters are one screen of scroll. Values is a long read — a title, six
+ * values and three portraits — so it is given extra scroll length, and the
+ * column inside it travels with the surplus instead of cross-fading.
+ */
+const SECTION_PANES: Partial<Record<StorySectionId, number>> = { values: 3 };
+
+const PRESIDENT_PLATES = [presidentA, presidentB, presidentC];
 
 function chapterLabel(index: number) {
   return String(index + 1).padStart(2, "0");
@@ -31,21 +53,67 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const tickingRef = React.useRef(false);
 
+  /** Pane count and cumulative start pane for every section. */
+  const { panes, starts, totalPanes } = React.useMemo(() => {
+    const p = sections.map((s) => SECTION_PANES[s.id] ?? 1);
+    const st: number[] = [];
+    let running = 0;
+    for (const count of p) {
+      st.push(running);
+      running += count;
+    }
+    return { panes: p, starts: st, totalPanes: running };
+  }, [sections]);
+
+  /**
+   * Values-column travel, kept off React state: it changes every frame while
+   * the visitor scrolls, and re-rendering the whole scene at 60fps would undo
+   * the smoothness the long column is there to provide.
+   */
+  const valuesProgress = useMotionValue(0);
+  const valuesTravelRef = React.useRef(0);
+  const valuesY = useTransform(
+    valuesProgress,
+    (p) => -p * valuesTravelRef.current,
+  );
+  const [valuesStarted, setValuesStarted] = React.useState(false);
+
   const handleScroll = React.useCallback(() => {
     if (tickingRef.current) return;
     tickingRef.current = true;
     requestAnimationFrame(() => {
       const el = scrollRef.current;
       if (el) {
-        const next = Math.min(
-          sections.length - 1,
-          Math.max(0, Math.round(el.scrollTop / PANE_HEIGHT)),
-        );
+        const top = el.scrollTop;
+        let next = 0;
+        for (let i = 0; i < starts.length; i += 1) {
+          if (top >= starts[i] * PANE_HEIGHT) next = i;
+        }
         setActiveIndex((prev) => (prev === next ? prev : next));
+
+        const local = top - starts[next] * PANE_HEIGHT;
+        const range = (panes[next] - 1) * PANE_HEIGHT;
+        const p = range > 0 ? Math.min(1, Math.max(0, local / range)) : 0;
+        valuesProgress.set(p);
+        setValuesStarted(p > 0.02);
       }
       tickingRef.current = false;
     });
-  }, [sections.length]);
+  }, [panes, starts, valuesProgress]);
+
+  /** Measure the column so the travel is exact in every language. */
+  const columnRef = React.useRef<HTMLDivElement | null>(null);
+  React.useEffect(() => {
+    const node = columnRef.current;
+    if (!node) return;
+    const measure = () => {
+      valuesTravelRef.current = Math.max(0, node.scrollHeight - PANE_HEIGHT);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [lang, activeIndex]);
 
   const active = sections[activeIndex];
   const isFoundation = activeIndex === 0;
@@ -109,6 +177,124 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             ))}
           </div>
 
+          {/* Values reads as a chapter, not a pane: the column travels with the
+              scroll instead of cross-fading, so the six values and the three
+              portraits arrive under one continuous gesture. */}
+          {isValues ? (
+            <div className="absolute inset-0 z-20 overflow-hidden">
+              <motion.div style={{ y: valuesY }} className="will-change-transform">
+                <div ref={columnRef} className="px-14 pb-[240px] pt-[280px]">
+                  <div className="mx-auto w-full max-w-[900px]">
+                    <p
+                      dir="ltr"
+                      className="text-[80px] font-bold leading-none tracking-wide"
+                    >
+                      <span className="text-[#fbf4e4]">{label[0]}</span>
+                      <span style={{ color: BCF.gold }}>{label[1]}</span>
+                    </p>
+
+                    <h2 className="mt-8 font-sans text-[80px] font-bold leading-[1.05]">
+                      <span style={{ color: BCF.gold }}>{active.titleGold}</span>{" "}
+                      <span className="text-[#fbf4e4]">{active.titleWhite}</span>
+                    </h2>
+
+                    <span
+                      className="mt-10 block h-px w-[420px] max-w-full rtl:scale-x-[-1]"
+                      style={{
+                        background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+                      }}
+                    />
+
+                    <p className="mt-10 text-[40px] font-medium leading-snug text-[#fcdfaa]">
+                      {c.storyValuesIntro}
+                    </p>
+
+                    {c.storyValues.map((value, index) => (
+                      <React.Fragment key={value.id}>
+                        <div className="mt-16 border-t border-white/12 pt-10">
+                          <span
+                            dir="ltr"
+                            className="text-[28px] font-semibold tabular-nums"
+                            style={{ color: `${BCF.gold}b3` }}
+                          >
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <h3
+                            className="mt-4 text-[52px] font-semibold leading-tight"
+                            style={{ color: BCF.gold }}
+                          >
+                            {value.title}
+                          </h3>
+                          <p className="mt-5 text-[34px] leading-relaxed text-white/82">
+                            {value.body}
+                          </p>
+                        </div>
+
+                        {/* A portrait after every second value, the way the
+                            chapter breathes between blocks of reading. */}
+                        {index % 2 === 1 ? (
+                          <figure className="mt-16">
+                            <div className="overflow-hidden rounded-[32px] border border-[#fbc158]/25">
+                              <img
+                                src={PRESIDENT_PLATES[(index - 1) / 2]}
+                                alt=""
+                                decoding="async"
+                                className="h-[620px] w-full object-cover"
+                              />
+                            </div>
+                            <figcaption className="mt-5 text-[26px] leading-snug text-white/55">
+                              {c.storyValuesCaptions[(index - 1) / 2]}
+                            </figcaption>
+                          </figure>
+                        ) : null}
+                      </React.Fragment>
+                    ))}
+
+                    <blockquote className="mt-20 flex flex-col items-start gap-6">
+                      <Quote
+                        className="h-14 w-14 rtl:scale-x-[-1]"
+                        style={{ color: `${BCF.gold}80` }}
+                        aria-hidden="true"
+                      />
+                      <p className="text-[46px] font-semibold italic leading-snug text-[#fbf4e4]">
+                        {c.quote}
+                      </p>
+                      <footer className="text-[30px]" style={{ color: BCF.gold }}>
+                        {c.quoteAttr}
+                      </footer>
+                    </blockquote>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Bottom fade, so text leaving the frame dissolves into the
+                  photograph rather than being sliced by the edge. */}
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[220px]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(4,9,12,0) 0%, rgb(4,9,12) 88%)",
+                }}
+              />
+
+              <AnimatePresence>
+                {!valuesStarted ? (
+                  <motion.div
+                    className="pointer-events-none absolute inset-x-0 bottom-16 flex flex-col items-center gap-3 text-white"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: BCF_EASE }}
+                  >
+                    <span className="text-[34px] font-medium tracking-wide">
+                      {c.storyScrollHint}
+                    </span>
+                    <ChevronDown className="h-10 w-10 animate-bounce" />
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+          ) : (
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -171,41 +357,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                   </motion.p>
                 ) : null}
 
-                {isValues && active.values ? (
-                  <div className="relative mx-auto mt-14 h-[800px] w-full max-w-[900px]">
-                    {active.values.map((value, i) => {
-                      const layouts = [
-                        "left-0 top-0",
-                        "right-0 top-[160px]",
-                        "left-0 top-[320px]",
-                        "right-8 top-[480px]",
-                        "left-0 top-[640px]",
-                      ];
-                      const dotEnd = i % 2 === 1;
-                      return (
-                        <motion.span
-                          key={value}
-                          variants={bcfRise}
-                          className={`absolute flex items-center gap-4 bg-black/30 px-8 py-5 text-[40px] font-medium text-[#fbf4e4] backdrop-blur-sm ${layouts[i]} ${
-                            dotEnd
-                              ? "flex-row-reverse rounded-bl-[42px] rounded-tr-[42px]"
-                              : i === 4
-                                ? "rounded-full"
-                                : "rounded-br-[42px] rounded-tl-[42px]"
-                          }`}
-                          style={{ boxShadow: "0 14px 40px rgba(0,0,0,0.35)" }}
-                        >
-                          <span
-                            className="h-3.5 w-3.5 shrink-0 rounded-full"
-                            style={{ backgroundColor: BCF.goldBright }}
-                          />
-                          {value}
-                        </motion.span>
-                      );
-                    })}
-                  </div>
-                ) : null}
-
                 {isFoundation ? (
                   <motion.div
                     variants={bcfRise}
@@ -232,6 +383,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
               </div>
             </motion.div>
           </AnimatePresence>
+          )}
 
           <AnimatePresence>
             {isFoundation ? (
@@ -259,7 +411,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           className="absolute inset-0 z-40 overflow-y-auto overscroll-contain opacity-0"
           style={{ WebkitOverflowScrolling: "touch" }}
         >
-          <div style={{ height: sections.length * PANE_HEIGHT }} />
+          <div style={{ height: totalPanes * PANE_HEIGHT }} />
         </div>
       </div>
     </BcfShell>

@@ -252,7 +252,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
         type="button"
         className="absolute inset-0 z-10 cursor-pointer border-0 bg-transparent p-0"
         onClick={onEnter}
-        aria-label={LANGS.map((lang) => bcfCopy[lang].attractStart).join(" / ")}
+        aria-label={bcfCopy.en.attractStart}
       />
 
       <div className="pointer-events-none relative z-20 flex min-h-[1920px] flex-col items-center px-16 pb-[220px] pt-[168px]">
@@ -370,7 +370,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
       <motion.button
         type="button"
         onClick={onEnter}
-        aria-label={LANGS.map((lang) => bcfCopy[lang].attractStart).join(" / ")}
+        aria-label={bcfCopy.en.attractStart}
         className="grid w-full transform-gpu grid-cols-[64px_1fr_44px] items-center gap-7 rounded-full border px-10 py-7 text-start backdrop-blur-xl will-change-transform"
         style={{
           borderColor: `${BCF.gold}66`,
@@ -402,21 +402,13 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
           />
         </span>
 
-        <span className="flex flex-col gap-2">
-          {LANGS.map((lang) => (
-            <span
-              key={lang}
-              dir={lang === "en" ? "ltr" : "rtl"}
-              className={
-                lang === "en"
-                  ? "text-[40px] font-semibold leading-none"
-                  : "text-[30px] font-medium leading-none"
-              }
-              style={{ color: lang === "en" ? BCF.cream : `${BCF.nature}d9` }}
-            >
-              {bcfCopy[lang].attractStart}
-            </span>
-          ))}
+        <span className="flex flex-col">
+          <span
+            className="text-[40px] font-semibold leading-none"
+            style={{ color: BCF.cream }}
+          >
+            {bcfCopy.en.attractStart}
+          </span>
         </span>
 
         <ArrowRight
