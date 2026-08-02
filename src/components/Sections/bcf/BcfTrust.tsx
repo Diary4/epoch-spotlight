@@ -1,16 +1,20 @@
 import React from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import {
   bcfCopy,
   type BcfLang,
+  type RecognitionItem,
+  type RecognitionItemId,
   type TrustTopicId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 import {
+  BCF_EASE,
   BCF_TAP,
   BCF_TAP_TRANSITION,
+  bcfBloom,
   bcfDrawX,
   bcfRise,
   bcfRiseCard,
@@ -30,6 +34,11 @@ import founderB from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
 import founderC from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import founderD from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
+import awardsNode from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
+import certificationsNode from "@/assets/images/PrimeMinistir/agreement.webp";
+import parliamentNode from "@/assets/images/PrimeMinistir/government.webp";
+import lettersNode from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
+import timelineNode from "@/assets/images/PrimeMinistir/2019.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -279,7 +288,11 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {c.trustRecognitionBody}
             </motion.p>
-            <RecognitionArc items={c.trustRecognitionItems} hint={c.tapToExplore} />
+            <RecognitionArc
+              items={c.trustRecognitionItems}
+              hint={c.tapToExplore}
+              rtl={lang !== "en"}
+            />
           </TrustChrome>
         </BcfShell>
       );
@@ -343,6 +356,240 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     <AnimatePresence mode="wait" initial={false}>
       {scene}
     </AnimatePresence>
+  );
+}
+
+const recognitionNodes: Record<RecognitionItemId, string> = {
+  awards: awardsNode,
+  certifications: certificationsNode,
+  parliament: parliamentNode,
+  letters: lettersNode,
+  timeline: timelineNode,
+};
+
+/** Stage the constellation is drawn in. Nodes zigzag down a single thread. */
+const ARC_W = 1000;
+const ARC_H = 1240;
+const NODE_R = 95;
+/** x is the LTR centre; the whole stage mirrors for Kurdish and Arabic. */
+const ARC_NODES: { x: number; y: number }[] = [
+  { x: 250, y: 150 },
+  { x: 420, y: 385 },
+  { x: 250, y: 620 },
+  { x: 420, y: 855 },
+  { x: 250, y: 1090 },
+];
+
+/** Smooth S-curve through the node centres — control points sit half a step out. */
+function arcPath(mirror: boolean) {
+  const at = (i: number) => {
+    const n = ARC_NODES[i];
+    return { x: mirror ? ARC_W - n.x : n.x, y: n.y };
+  };
+  let d = `M${at(0).x} ${at(0).y}`;
+  for (let i = 1; i < ARC_NODES.length; i += 1) {
+    const a = at(i - 1);
+    const b = at(i);
+    const half = (b.y - a.y) / 2;
+    d += ` C${a.x} ${a.y + half} ${b.x} ${b.y - half} ${b.x} ${b.y}`;
+  }
+  return d;
+}
+
+/**
+ * Recognition — the five proofs read as one descending thread rather than a
+ * paragraph. Tapping a node opens the awards behind that heading, so the page
+ * carries the roadmap's detail without printing a list nobody reads standing up.
+ */
+function RecognitionArc({
+  items,
+  hint,
+  rtl,
+}: {
+  items: RecognitionItem[];
+  hint: string;
+  rtl: boolean;
+}) {
+  const reduceMotion = useReducedMotion();
+  const [activeId, setActiveId] = React.useState<RecognitionItemId | null>(null);
+  const thread = React.useMemo(() => arcPath(rtl), [rtl]);
+
+  return (
+    <div className="mx-auto mt-10 w-full max-w-[1000px]">
+      <motion.p
+        className="text-center text-[24px] tracking-[0.16em] text-white/45"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+      >
+        {hint}
+      </motion.p>
+
+      <div
+        className="relative mx-auto mt-6"
+        style={{ width: ARC_W, height: ARC_H }}
+      >
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full"
+          viewBox={`0 0 ${ARC_W} ${ARC_H}`}
+          fill="none"
+          aria-hidden="true"
+        >
+          {/* Two wide guide arcs give the thread something to belong to. */}
+          {[700, 890].map((r, i) => (
+            <motion.circle
+              key={r}
+              cx={rtl ? ARC_W + 120 : -120}
+              cy={ARC_H / 2}
+              r={r}
+              stroke="rgba(255,255,255,0.09)"
+              strokeWidth={1}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.1, delay: 0.3 + i * 0.12 }}
+            />
+          ))}
+
+          <motion.path
+            d={thread}
+            stroke="rgba(255,255,255,0.16)"
+            strokeWidth={1.4}
+            initial={reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }}
+            animate={{
+              pathLength: 1,
+              opacity: 1,
+              transition: { duration: 1.5, delay: 0.34, ease: BCF_EASE },
+            }}
+          />
+          {/* A slow travelling glint, so the thread reads as live wiring. */}
+          {!reduceMotion ? (
+            <motion.path
+              d={thread}
+              stroke={BCF.gold}
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeDasharray="70 1200"
+              opacity={0.75}
+              initial={{ strokeDashoffset: 0 }}
+              animate={{ strokeDashoffset: -1270 }}
+              transition={{
+                duration: 7.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 1.4,
+              }}
+            />
+          ) : null}
+        </svg>
+
+        {items.map((item, index) => {
+          const node = ARC_NODES[index] ?? ARC_NODES[ARC_NODES.length - 1];
+          const cx = rtl ? ARC_W - node.x : node.x;
+          const isActive = activeId === item.id;
+          const labelInset = cx + NODE_R + 26;
+
+          return (
+            <React.Fragment key={item.id}>
+              {/* Node — a plain wrapper carries the centring translate, because
+                  motion owns `transform` on the button itself. */}
+              <div
+                className="absolute z-20"
+                style={{
+                  left: cx - NODE_R,
+                  top: node.y - NODE_R,
+                  width: NODE_R * 2,
+                  height: NODE_R * 2,
+                }}
+              >
+                <motion.button
+                  type="button"
+                  onClick={() => setActiveId(isActive ? null : item.id)}
+                  aria-label={item.title}
+                  aria-expanded={isActive}
+                  variants={bcfBloom}
+                  initial="initial"
+                  animate="animate"
+                  whileTap={BCF_TAP}
+                  transition={{ ...BCF_TAP_TRANSITION, delay: 0.4 + index * 0.11 }}
+                  className="relative block h-full w-full transform-gpu overflow-hidden rounded-full will-change-transform"
+                  style={{
+                    border: `2px solid ${isActive ? BCF.goldBright : `${BCF.gold}88`}`,
+                    boxShadow: isActive
+                      ? `0 0 46px ${BCF.gold}77`
+                      : "0 16px 40px rgba(0,0,0,0.5)",
+                    transition: "border-color 400ms ease, box-shadow 400ms ease",
+                  }}
+                >
+                  <img
+                    src={recognitionNodes[item.id]}
+                    alt=""
+                    decoding="async"
+                    className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
+                    style={{ transform: isActive ? "scale(1.08)" : "scale(1)" }}
+                  />
+                  <span
+                    className="absolute inset-0"
+                    style={{
+                      background: isActive
+                        ? "radial-gradient(circle at 50% 40%, rgba(4,7,10,0.05), rgba(4,7,10,0.45) 92%)"
+                        : "radial-gradient(circle at 50% 40%, rgba(4,7,10,0.2), rgba(4,7,10,0.62) 92%)",
+                      transition: "background 400ms ease",
+                    }}
+                  />
+                </motion.button>
+              </div>
+
+              {/* Label pill, anchored to the node and growing into its detail. */}
+              <motion.div
+                className="absolute z-10"
+                style={{
+                  [rtl ? "right" : "left"]: labelInset,
+                  top: node.y,
+                  maxWidth: ARC_W - labelInset - 8,
+                  transform: "translateY(-50%)",
+                }}
+                initial={{ opacity: 0, x: rtl ? 26 : -26 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.66,
+                  delay: 0.52 + index * 0.11,
+                  ease: BCF_EASE,
+                }}
+              >
+                <div
+                  className="rounded-[38px] px-9 py-5 backdrop-blur-md"
+                  style={{
+                    border: `1px solid ${isActive ? `${BCF.gold}99` : "rgba(255,255,255,0.16)"}`,
+                    backgroundColor: isActive
+                      ? "rgba(0,0,0,0.62)"
+                      : "rgba(0,0,0,0.42)",
+                    transition:
+                      "border-color 340ms ease, background-color 340ms ease",
+                  }}
+                >
+                  <p className="text-[30px] font-medium leading-tight text-[#fbf4e4]">
+                    {item.title}
+                  </p>
+                  <AnimatePresence initial={false}>
+                    {isActive ? (
+                      <motion.p
+                        className="overflow-hidden text-[24px] leading-relaxed text-white/78"
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: "auto", marginTop: 14 }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        transition={{ duration: 0.36, ease: BCF_EASE }}
+                      >
+                        {item.detail}
+                      </motion.p>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

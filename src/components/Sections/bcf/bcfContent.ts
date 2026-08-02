@@ -17,7 +17,8 @@ export type BcfStep =
   | "impact"
   | "trust"
   | "future"
-  | "futureDetail";
+  | "futureDetail"
+  | "legacy";
 
 export type JourneyChapterId =
   | "story"
@@ -406,7 +407,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     attractStart: "Touch to Start",
     attractTagline: "Barzani Charity Foundation",
     attractEyebrow: "BARZANI CHARITY FOUNDATION",
-    attractCaption: "Thirty years of standing beside the people of Kurdistan.",
+    attractCaption: "A legacy of service.",
     enterHint: "TOUCH ANYWHERE",
     home: "Home",
     language: "Language",
@@ -455,27 +456,27 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storySections: [
       {
         id: "foundation",
-        titleGold: "The Foundation",
-        titleWhite: "Story",
-        body: "BCF was officially established in Erbil in 2005 to transform compassion into organized humanitarian action.",
+        titleGold: "A Legacy",
+        titleWhite: "of Service",
+        body: "BCF was officially established in 2005 in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
       },
       {
         id: "mission",
         titleGold: "Mission",
         titleWhite: "",
-        body: "Provide humanitarian support to vulnerable people without discrimination while promoting peace, dignity and sustainability.",
+        body: "To provide humanitarian aid to the most vulnerable people, regardless of ethnic, religious or political background, while promoting peace, dignity and sustainability for humanity and nature.",
       },
       {
         id: "vision",
         titleGold: "Vision",
         titleWhite: "",
-        body: "A world where poverty and forced migration are eliminated and every person can access rights, education and essential services",
+        body: "A world where poverty and forced migration are eliminated, and where every person has access to education, essential services, basic rights and a protected environment.",
       },
       {
         id: "philosophy",
         titleGold: "Humanitarian",
         titleWhite: "Philosophy",
-        body: "Service is an honor — not charity from above. People are served as human beings, never treated as statistics.",
+        body: "Humanitarian work is not charity from above. It is service with dignity, delivered to people as human beings, not as statistics.",
       },
       {
         id: "values",
@@ -589,25 +590,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "leadership", title: "Leadership and Governance" },
       { id: "quality", title: "Quality and Credibility" },
       { id: "partnerships", title: "Partnerships" },
-      { id: "recognition", title: "Recognition" },
+      { id: "recognition", title: "Recognition and Awards" },
     ],
     trustLeadershipTitle: "Leadership and Governance",
     trustFounders: [
       {
         title: "Board of Founders",
-        subtitle: "Guiding the mission with vision and integrity",
+        subtitle: "The highest authority of the foundation.",
       },
       {
-        title: "Board of Founders",
-        subtitle: "Guiding the mission with vision and integrity",
+        title: "Administrative Board",
+        subtitle: "Reviews and approves major decisions, policies and project direction.",
       },
       {
-        title: "Board of Founders",
-        subtitle: "Guiding the mission with vision and integrity",
+        title: "Operational Departments",
+        subtitle: "Assess needs and design the humanitarian programs.",
       },
       {
-        title: "Board of Founders",
-        subtitle: "Guiding the mission with vision and integrity",
+        title: "Regional Offices",
+        subtitle: "Implement the work directly with local communities.",
       },
     ],
     trustQualityTitle: "Quality and Credibility",
@@ -633,14 +634,19 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "Recognized under the UK Charity Commission framework, reinforcing standards of governance, reporting, and public trust.",
       },
       {
+        id: "kuwait",
+        title: "Registered in Kuwait",
+        body: "Registered as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
+      },
+      {
         id: "iso",
         title: "ISO 9001:2015",
-        body: "Quality-management certification that guides consistent, measurable, and continuously improving humanitarian delivery.",
+        body: "Quality-management certification: responsibilities are clear, systems are organized, and humanitarian services are delivered with consistent quality.",
       },
     ],
     trustPartnershipsTitle: "Partnerships",
     trustPartnershipsHint: "Trusted partners working alongside BCF",
-    trustRecognitionTitle: "Recognition",
+    trustRecognitionTitle: "Recognition and Awards",
     trustRecognitionBody:
       "Recognition reflects trust. But the true value of BCF’s work is found in the communities it continues to serve.",
     trustRecognitionItems: [
@@ -752,9 +758,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     touchToContinue: "بۆ بەردەوامبوون دەستی لێبدە",
     attractStart: "دەستی لێبدە بۆ دەستپێکردن",
-    attractTagline: "دامەزراوەی خێرخوازیی بارزانی",
-    attractEyebrow: "دامەزراوەی خێرخوازیی بارزانی",
-    attractCaption: "سی ساڵ لەپاڵ خەڵکی کوردستان.",
+    attractTagline: "دەزگای خێرخوازیی بارزانی",
+    attractEyebrow: "دەزگای خێرخوازیی بارزانی",
+    attractCaption: "میراتێک لە خزمەتکردن.",
     enterHint: "دەستی لە هەر شوێنێک بدە",
     home: "سەرەتا",
     language: "زمان",
@@ -765,13 +771,13 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     humanity: "مرۆڤایەتی.",
     dignity: "کەرامەت.",
     hope: "هیوا.",
-    quote: "شانازییە کە خزمەتی گەلی خۆت بکەیت.",
+    quote: "خزمەتکردنی گەلی خۆت، شانازییە.",
     quoteAttr: "— مستەفا بارزانی",
     welcomeEyebrow: "بەخێربێیت بۆ",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "ئەزموون",
     welcomeBody: "چیرۆک، کاری مرۆیی، و کاریگەرییەکەمان پێکەوە ببینە.",
-    startJourney: "دەستپێکردنی گەشت",
+    startJourney: "دەستپێکردنی گەشتەکە",
     journeyTitleLead: "گەشتی",
     journeyTitleGold: "ئێمە بدۆزەرەوە",
     journeySubtitle: "٦ بەش . یەک ئامانج",
@@ -802,27 +808,27 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storySections: [
       {
         id: "foundation",
-        titleGold: "دامەزراندنی",
-        titleWhite: "دامەزراوە",
-        body: "BCF بە فەرمی ساڵی ٢٠٠٥ لە هەولێر دامەزرا بۆ گۆڕینی بەزەیی بۆ کارێکی مرۆیی ڕێکخراو.",
+        titleGold: "میراتێک",
+        titleWhite: "لە خزمەتکردن",
+        body: "دەزگای خێرخوازیی بارزانی بە شێوەیەکی فەرمی لە ساڵی ٢٠٠٥ لە هەولێری پایتەختی هەرێمی کوردستانی عێراق دامەزرا، بۆ گۆڕینی بەزەیی و هاوسۆزی بە کارێکی مرۆیی ڕێکخراو.",
       },
       {
         id: "mission",
-        titleGold: "ئەرک",
+        titleGold: "پەیام",
         titleWhite: "",
-        body: "پشتگیری مرۆیی بۆ کەسانی هەستیار بەبێ جیاکاری، لەگەڵ بەرزکردنەوەی ئاشتی، کەرامەت و بەردەوامی.",
+        body: "پێشکەشکردنی هاوکاریی مرۆیی بە لێقەوماوان، بەبێ جیاکاری لەسەر بنەمای بنچینەی نەتەوەیی، ئاینی یان سیاسی، لەگەڵ بەرقەرارکردنی ئاشتی و کەرامەت بۆ مرۆڤایەتی و سروشت.",
       },
       {
         id: "vision",
         titleGold: "دیدگا",
         titleWhite: "",
-        body: "جیهانێک کە هەژاری و ئاوارەیی زۆرەملێ نەمابێت و هەموو کەسێک بگاتە مافەکانی، پەروەردە و خزمەتگوزارییە بنەڕەتییەکان.",
+        body: "جیهانێک کە تێیدا هەژاری و کۆچی زۆرەملێ بنبڕ کرابێت، و هەموو کەسێک مافی هەبێت لە بەدەستهێنانی پەروەردە، خزمەتگوزارییە سەرەکییەکان، مافە بنەڕەتییەکان و ژینگەیەکی پارێزراو.",
       },
       {
         id: "philosophy",
         titleGold: "فەلسەفەی",
-        titleWhite: "مرۆیی",
-        body: "خزمەتکردن ڕێزێکە — نەک بەخشینێک لە سەرەوە. خەڵک وەک مرۆڤ خزمەت دەکرێن، نەک وەک ژمارە.",
+        titleWhite: "مرۆڤدۆستانە",
+        body: "وتەی «خزمەتکردنی گەلی خۆت، شانازییە» تەنها دروشمێک نییە؛ بەڵکو بنەمای ئەخلاقیی کارەکانی دەزگای خێرخوازیی بارزانییە. کاری مرۆیی بەخشینێک نییە لە سەرەوە، بەڵکو خزمەتکردنە بە کەرامەتەوە.",
       },
       {
         id: "values",
@@ -936,25 +942,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "leadership", title: "سەرکردایەتی و حوکمڕانی" },
       { id: "quality", title: "کوالیتی و باوەڕپێکراوی" },
       { id: "partnerships", title: "هاوبەشییەکان" },
-      { id: "recognition", title: "ناسینەوە" },
+      { id: "recognition", title: "پێزانین و خەڵاتەکان" },
     ],
     trustLeadershipTitle: "سەرکردایەتی و حوکمڕانی",
     trustFounders: [
       {
-        title: "ئەنجومەنی دامەزرێنەران",
-        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+        title: "بۆردی دامەزرێنەران",
+        subtitle: "باڵاترین دەسەڵاتە لە دەزگاکەدا.",
       },
       {
-        title: "ئەنجومەنی دامەزرێنەران",
-        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+        title: "دەستەی کارگێڕی",
+        subtitle: "سەرپەرشتی بڕیارە سەرەکییەکان و ڕێساکان و ئاڕاستەکردنی پڕۆژەکان دەکات.",
       },
       {
-        title: "ئەنجومەنی دامەزرێنەران",
-        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+        title: "بەشەکانی ڕاپەڕاندن",
+        subtitle: "هەڵسەنگاندن بۆ پێداویستییەکان دەکەن و بەرنامەکان دادەڕێژن.",
       },
       {
-        title: "ئەنجومەنی دامەزرێنەران",
-        subtitle: "ڕێنمایی کردنی ئامانج بە بینین و دەستپاکی",
+        title: "نووسینگە هەرێمییەکان",
+        subtitle: "کارەکان لەگەڵ کۆمەڵگە ناوخۆییەکاندا جێبەجێ دەکەن.",
       },
     ],
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
@@ -980,43 +986,48 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "ناسراو لە چوارچێوەی کۆمیسیۆنی خێرخوازی بەریتانیا بۆ حوکمڕانی و متمانەی گشتی.",
       },
       {
+        id: "kuwait",
+        title: "تۆمارکراو لە کوێت",
+        body: "لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکراوە.",
+      },
+      {
         id: "iso",
         title: "ISO 9001:2015",
-        body: "بڕوانامەی بەڕێوەبردنی کوالیتی بۆ گەیاندنی مرۆیی بەردەوام و پێوانەکراو.",
+        body: "بڕوانامەی بەڕێوەبردنی کوالیتی: بەرپرسیارێتییەکان ڕوونن، سیستمەکان ڕێکخراون، و خزمەتگوزارییە مرۆییەکان بە کوالیتییەکی جێگیر پێشکەش دەکرێن.",
       },
     ],
     trustPartnershipsTitle: "هاوبەشییەکان",
     trustPartnershipsHint: "هاوبەشە باوەڕپێکراوەکان لەگەڵ BCF",
-    trustRecognitionTitle: "ناسینەوە",
+    trustRecognitionTitle: "پێزانین و خەڵاتەکان",
     trustRecognitionBody:
-      "ناسینەوە مانای متمانەیە. بەڵام بەهای ڕاستەقینەی کاری BCF لەو کۆمەڵگایانەدایە کە بەردەوامە لە خزمەتکردنیان.",
+      "پێزانین ڕەنگدانەوەی متمانەیە، بەڵام بەهای ڕاستەقینەی کاری دەزگای خێرخوازیی بارزانی لەو کۆمەڵگایانەدایە کە هێشتا خزمەتیان دەکات.",
     trustRecognitionItems: [
       {
         id: "awards",
         title: "خەڵاتە مرۆییە نێودەوڵەتییەکان",
         detail:
-          "خەڵاتی سێرجیۆ دی میلۆ لەلایەن حکومەتی پورتوگالەوە، خەڵاتی ڕێکخراوی Wings of Help (٢٠٢٥)، خەڵاتی Helfen Bringt Freude (٢٠٢٥)، خەڵاتی ناسینەوەی لووتکەی خۆبەخشان (٢٠٢٥) و خەڵاتی پارێزگاری ئێسن لە ئەڵمانیا (٢٠٢٤).",
+          "خەڵاتی Sergio de Mello لەلایەن حکومەتی پورتوگالەوە، خەڵاتی ڕێکخراوی باڵەکانی یارمەتی (Wings of Help) ٢٠٢٥، خەڵاتی Helfen Bringt Freude ٢٠٢٥، خەڵاتی پێزانینی لوتکەی خۆبەخشان ٢٠٢٥، و خەڵاتێک لەلایەن حاکمی ئێسن / ئەڵمانیا ٢٠٢٤.",
       },
       {
         id: "certifications",
-        title: "بڕوانامە دامەزراوەییەکان",
+        title: "پێزانین و بڕوانامەکان",
         detail:
-          "دۆخی ڕاوێژکاری لە ئەنجومەنی ئابووری و کۆمەڵایەتیی نەتەوە یەکگرتووەکان لە ٢٠١٦ەوە، و بڕوانامەی بەڕێوەبردنی کوالیتی ISO 9001:2015.",
+          "پێگەی ڕاوێژکاری لە ئەنجومەنی ئابووری و کۆمەڵایەتیی نەتەوە یەکگرتووەکان (ECOSOC) لە ساڵی ٢٠١٦ەوە، و بڕوانامەی بەڕێوەبردنی کوالیتی ISO 9001:2015.",
       },
       {
         id: "parliament",
-        title: "ناسینەوەی پەرلەمانی",
+        title: "پێزانینی پەرلەمانی",
         detail:
-          "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا (٢٠٢٥)، خەڵاتی پەرلەمانی عێراق بۆ باشترین ڕێکخراوی ناحکومی لە عێراق (٢٠١٥) و خەڵاتی گروپی کرێکاریی لەندەن.",
+          "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا ٢٠٢٥، خەڵاتی پەرلەمانی عێراق بۆ باشترین ڕێکخراوی ناحکومی لە عێراق ٢٠١٥، و خەڵاتی گرووپی کار (Labour Group) لە لەندەن.",
       },
       {
         id: "letters",
-        title: "نامەکانی سوپاسگوزاری",
-        detail: "چەندین نامەی سوپاسگوزاریی ناوخۆیی و نێودەوڵەتی.",
+        title: "سوپاسنامەکان",
+        detail: "چەندین سوپاسنامە و پێزانینی ناوخۆیی و نێودەوڵەتی.",
       },
       {
         id: "timeline",
-        title: "هێڵی کاتیی خەڵاتە بەڵگەدارەکان",
+        title: "هێڵی کاتیی خەڵاتەکان",
         detail: "تۆمارێکی بەڵگەدار بە درێژایی دەیەیەک، لە ٢٠١٥ەوە تا ٢٠٢٥.",
       },
     ],
@@ -1025,16 +1036,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     legacyTitleWhite: "میراتێک",
     legacyTitleGold: "کە بەردەوامە",
     legacyLead:
-      "ڕەگداکوتاو لە کوردستان و ڕێنماییکراو بەو باوەڕەی کە خزمەتکردن شەرەفە، دەزگای خێرخوازیی بارزانی بەردەوامە لە پشتیوانیی کۆمەڵگا لاوازەکان بە بەزەیی، کەرامەت و کاری مرۆییی پیشەیی.",
+      "دەزگای خێرخوازیی بارزانی کە ڕەگی لە ناو خاکی کوردستاندایە و بەو باوەڕەوە هەنگاو دەنێت کە خزمەتکردن شانازییە، بەردەوامە لە پشتگیریکردنی کۆمەڵگا نەدار و کەمدەرامەتەکان لە ڕێگەی بەزەیی، کەرامەت و کارە مرۆییە پیشەییەکانەوە.",
     legacyBridge:
-      "لە خواردن و سەرپەناوە تا پەروەردە، تەندروستی، پاراستن، چاکسازی و بەرپرسیارێتیی ژینگەیی، BCF پەیامێک دەگوازێتەوە کە لە سنوورەکان تێدەپەڕێت:",
+      "لە دابینکردنی خۆراک و پەناگە تا دەگاتە پەروەردە، تەندروستی، پاراستن، ڕاهێنان و بەرپرسیارێتی ژینگەیی، دەزگای خێرخوازیی بارزانی پەیامێک هەڵدەگرێت کە دەگاتە دەرەوەی سنوورەکان:",
     legacyPillars: [
-      { id: "service", titleWhite: "خزمەت", titleGold: "کەرامەتە" },
+      { id: "service", titleWhite: "خزمەتکردن", titleGold: "کەرامەتە" },
       { id: "humanity", titleWhite: "مرۆڤایەتی", titleGold: "بەرپرسیارێتییە" },
-      { id: "hope", titleWhite: "هیوا", titleGold: "بە کردار بنیاد دەنرێت" },
+      { id: "hope", titleWhite: "هیوا", titleGold: "لە ڕێگەی کارکردنەوە بنیاد دەنرێت" },
     ],
     legacyThanks: "سوپاس",
-    legacyThanksBody: "سوپاس بۆ سەردانی ئەزموونی BCF.",
+    legacyThanksBody: "سوپاس بۆ سەردانیکردنی دەزگای خێرخوازیی بارزانی.",
     legacyRestart: "گەڕانەوە بۆ سەرەتا",
     futureHeadingWhite: "داهاتوو",
     futureHeadingGold: "کە",
@@ -1101,7 +1112,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     attractStart: "المس للبدء",
     attractTagline: "مؤسسة بارزاني الخيرية",
     attractEyebrow: "مؤسسة بارزاني الخيرية",
-    attractCaption: "ثلاثون عاماً إلى جانب أهالي كوردستان.",
+    attractCaption: "إرث من الخدمة.",
     enterHint: "المس أي مكان",
     home: "الرئيسية",
     language: "اللغة",
@@ -1112,8 +1123,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     humanity: "الإنسانية.",
     dignity: "الكرامة.",
     hope: "الأمل.",
-    quote: "إنه شرف أن تخدم شعبك.",
-    quoteAttr: "— مصطفى البارزاني",
+    quote: "شرفٌ عظيم أن يخدم الإنسان أبناء شعبه.",
+    quoteAttr: "— مصطفى بارزاني",
     welcomeEyebrow: "مرحباً بكم في",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "التجربة",
@@ -1149,27 +1160,27 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storySections: [
       {
         id: "foundation",
-        titleGold: "قصة",
-        titleWhite: "التأسيس",
-        body: "تأسست مؤسسة BCF رسمياً في أربيل عام 2005 لتحويل التعاطف إلى عمل إنساني منظم.",
+        titleGold: "إرث",
+        titleWhite: "من الخدمة",
+        body: "تأسست مؤسسة بارزاني الخيرية رسمياً عام 2005 في أربيل، عاصمة إقليم كوردستان العراق، لتحوّل التعاطف إلى عمل إنساني منظم.",
       },
       {
         id: "mission",
         titleGold: "الرسالة",
         titleWhite: "",
-        body: "تقديم الدعم الإنساني للفئات الضعيفة دون تمييز، مع تعزيز السلام والكرامة والاستدامة.",
+        body: "تقديم المساعدة الإنسانية لأكثر الفئات ضعفاً، بصرف النظر عن انتمائها العرقي أو الديني أو السياسي، مع تعزيز قيم السلام والكرامة والاستدامة للإنسان والبيئة.",
       },
       {
         id: "vision",
         titleGold: "الرؤية",
         titleWhite: "",
-        body: "عالم يخلو من الفقر والنزوح القسري، يصل فيه كل إنسان إلى حقوقه والتعليم والخدمات الأساسية.",
+        body: "عالمٌ خالٍ من الفقر والنزوح القسري، يحصل فيه كل إنسان على التعليم والخدمات الأساسية وحقوقه، وبيئة محمية.",
       },
       {
         id: "philosophy",
         titleGold: "الفلسفة",
         titleWhite: "الإنسانية",
-        body: "الخدمة شرف، لا إحسان من عل. يُعامل الناس كبشر، لا كأرقام.",
+        body: "العمل الإنساني ليس إحساناً من الأعلى، بل خدمة بكرامة تُقدَّم للناس كبشر، لا كأرقام.",
       },
       {
         id: "values",
@@ -1283,7 +1294,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "leadership", title: "القيادة والحوكمة" },
       { id: "quality", title: "الجودة والمصداقية" },
       { id: "partnerships", title: "الشراكات" },
-      { id: "recognition", title: "الاعتراف" },
+      { id: "recognition", title: "التقدير والجوائز" },
     ],
     trustLeadershipTitle: "القيادة والحوكمة",
     trustFounders: [
@@ -1327,39 +1338,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "معترف بها ضمن إطار هيئة الجمعيات الخيرية في المملكة المتحدة للحوكمة والثقة العامة.",
       },
       {
+        id: "kuwait",
+        title: "مسجَّلة في الكويت",
+        body: "مسجَّلة كمنظمة خيرية في الكويت عام 2019.",
+      },
+      {
         id: "iso",
         title: "ISO 9001:2015",
-        body: "شهادة إدارة الجودة لتقديم إنساني متسق وقابل للقياس ومتحسن باستمرار.",
+        body: "شهادة إدارة الجودة: المسؤوليات واضحة، والأنظمة منظمة، والخدمات الإنسانية تُقدَّم بجودة ثابتة.",
       },
     ],
     trustPartnershipsTitle: "الشراكات",
     trustPartnershipsHint: "شركاء موثوقون يعملون إلى جانب BCF",
-    trustRecognitionTitle: "الاعتراف",
+    trustRecognitionTitle: "التقدير والجوائز",
     trustRecognitionBody:
-      "الاعتراف انعكاس للثقة. لكن القيمة الحقيقية لعمل BCF تكمن في المجتمعات التي يواصل خدمتها.",
+      "التقدير يعكس الثقة، لكن القيمة الحقيقية لعمل المؤسسة تكمن في المجتمعات التي ما تزال تخدمها.",
     trustRecognitionItems: [
       {
         id: "awards",
         title: "جوائز إنسانية دولية",
         detail:
-          "جائزة سيرجيو دي ميلو من الحكومة البرتغالية، وجائزة منظمة Wings of Help (2025)، وجائزة Helfen Bringt Freude (2025)، وجائزة تقدير قمة المتطوعين (2025)، وجائزة محافظ إيسن في ألمانيا (2024).",
+          "جائزة سيرجيو دي ميلو من الحكومة البرتغالية، وجائزة منظمة أجنحة العون (Wings of Help) 2025، وجائزة Helfen Bringt Freude 2025، وجائزة قمة المتطوعين التقديرية 2025، وجائزة من محافظ إيسن، ألمانيا، 2024.",
       },
       {
         id: "certifications",
-        title: "اعتمادات مؤسسية",
+        title: "شهادات التقدير والاعتماد",
         detail:
-          "الصفة الاستشارية لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة منذ 2016، وشهادة إدارة الجودة ISO 9001:2015.",
+          "الصفة الاستشارية لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة منذ عام 2016، وشهادة الأيزو ISO 9001:2015 لإدارة الجودة.",
       },
       {
         id: "parliament",
-        title: "اعتراف برلماني",
+        title: "تكريم برلماني",
         detail:
-          "جائزة البرلمان الاتحادي الألماني (2025)، وجائزة البرلمان العراقي لأفضل منظمة غير حكومية في العراق (2015)، وجائزة مجموعة العمل في لندن.",
+          "جائزة البرلمان الألماني الاتحادي 2025، وجائزة البرلمان العراقي لأفضل منظمة غير حكومية في العراق 2015، وجائزة مجموعة Labour Group لندن.",
       },
       {
         id: "letters",
-        title: "رسائل التقدير",
-        detail: "العديد من رسائل التقدير المحلية والدولية.",
+        title: "كتب الشكر والتقدير",
+        detail: "عدة كتب شكر وتقدير محلية ودولية.",
       },
       {
         id: "timeline",
@@ -1368,20 +1384,20 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     futureCircle: "المستقبل الذي نبنيه",
-    legacyCircle: "إرث يستمر",
+    legacyCircle: "إرث مستمر",
     legacyTitleWhite: "إرث",
-    legacyTitleGold: "يستمر",
+    legacyTitleGold: "مستمر",
     legacyLead:
-      "متجذّرة في كوردستان ومسترشدة بالإيمان بأن الخدمة شرف، تواصل مؤسسة بارزاني الخيرية دعم المجتمعات الهشّة بالرحمة والكرامة والعمل الإنساني المهني.",
+      "انطلاقاً من جذورها في كوردستان، وإيماناً منها بأن الخدمة شرف، تواصل مؤسسة بارزاني الخيرية دعم المجتمعات الضعيفة بتعاطف وكرامة وعمل إنساني احترافي.",
     legacyBridge:
-      "من الغذاء والمأوى إلى التعليم والصحة والحماية وإعادة التأهيل والمسؤولية البيئية، تحمل BCF رسالة تتجاوز الحدود:",
+      "من الغذاء والمأوى إلى التعليم والصحة والحماية وإعادة التأهيل والمسؤولية البيئية، تحمل المؤسسة رسالة تتجاوز الحدود:",
     legacyPillars: [
       { id: "service", titleWhite: "الخدمة", titleGold: "كرامة" },
       { id: "humanity", titleWhite: "الإنسانية", titleGold: "مسؤولية" },
       { id: "hope", titleWhite: "الأمل", titleGold: "يُبنى بالعمل" },
     ],
     legacyThanks: "شكراً لكم",
-    legacyThanksBody: "شكراً لزيارتكم تجربة BCF.",
+    legacyThanksBody: "شكراً لزيارتكم تجربة مؤسسة بارزاني الخيرية.",
     legacyRestart: "العودة إلى البداية",
     futureHeadingWhite: "المستقبل",
     futureHeadingGold: "الذي",

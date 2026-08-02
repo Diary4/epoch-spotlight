@@ -22,6 +22,7 @@ type BcfFutureProps = {
   lang: BcfLang;
   onBack: () => void;
   onOpenFuture: () => void;
+  onOpenLegacy: () => void;
 };
 
 const CIRCLE = 580;
@@ -124,13 +125,18 @@ function FuturePortal({
   );
 }
 
-export default function BcfFuture({ lang, onBack, onOpenFuture }: BcfFutureProps) {
+export default function BcfFuture({
+  lang,
+  onBack,
+  onOpenFuture,
+  onOpenLegacy,
+}: BcfFutureProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
 
   const portals = [
-    { title: c.futureCircle, image: futureFill },
-    { title: c.legacyCircle, image: legacyFill },
+    { title: c.futureCircle, image: futureFill, open: onOpenFuture },
+    { title: c.legacyCircle, image: legacyFill, open: onOpenLegacy },
   ];
 
   return (
@@ -182,7 +188,7 @@ export default function BcfFuture({ lang, onBack, onOpenFuture }: BcfFutureProps
               index={index}
               title={portal.title}
               image={portal.image}
-              onOpen={onOpenFuture}
+              onOpen={portal.open}
               reduceMotion={reduceMotion}
             />
           ))}

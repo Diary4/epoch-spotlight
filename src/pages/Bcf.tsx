@@ -18,6 +18,7 @@ import BcfImpact from "@/components/Sections/bcf/BcfImpact";
 import BcfFuture from "@/components/Sections/bcf/BcfFuture";
 import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
 import BcfTrust from "@/components/Sections/bcf/BcfTrust";
+import BcfLegacy from "@/components/Sections/bcf/BcfLegacy";
 import {
   bcfCopy,
   type BcfLang,
@@ -39,6 +40,7 @@ const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
   "trust",
   "future",
   "futureDetail",
+  "legacy",
 ];
 
 /** Home only means something once the chapter menu exists behind the visitor. */
@@ -296,6 +298,7 @@ export default function BcfPage() {
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
             onOpenFuture={() => go(() => setStep("futureDetail"))}
+            onOpenLegacy={() => go(() => setStep("legacy"))}
           />
         );
       case "futureDetail":
@@ -304,6 +307,15 @@ export default function BcfPage() {
             key={`futureDetail-${lang}`}
             lang={lang}
             onBack={() => go(() => setStep("future"))}
+          />
+        );
+      case "legacy":
+        return (
+          <BcfLegacy
+            key={`legacy-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("future"))}
+            onRestart={reset}
           />
         );
       default:
