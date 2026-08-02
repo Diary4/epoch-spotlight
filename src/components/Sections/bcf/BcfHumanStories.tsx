@@ -129,13 +129,22 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
         {/* Explicit height: `.sphere-root` sizes at 100%, and a flex-derived
             height would let the dome collapse to nothing. */}
         <motion.div
-          className="relative z-10 mt-8 h-[1480px] w-full"
+          className="relative z-10 mt-4 h-[1440px] w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: BCF_EASE }}
         >
+          {/* The published default (`fit: 0.5`) is tuned for a landscape web
+              page; on a 1080-wide portrait panel it lands under `minRadius` and
+              the dome reads tiny. Sizing off the full width instead fills the
+              panel — everything scales from the radius, so the tiles grow with
+              it. */}
           <DomeGallery
             images={images}
+            fit={1}
+            fitBasis="width"
+            minRadius={900}
+            imageBorderRadius="24px"
             overlayBlurColor={DOME_BG}
             onItemClick={openBySrc}
           />
