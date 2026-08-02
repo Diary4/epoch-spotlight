@@ -19,6 +19,7 @@ import BcfFuture from "@/components/Sections/bcf/BcfFuture";
 import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
 import BcfTrust from "@/components/Sections/bcf/BcfTrust";
 import BcfLegacy from "@/components/Sections/bcf/BcfLegacy";
+import BcfHumanStories from "@/components/Sections/bcf/BcfHumanStories";
 import {
   bcfCopy,
   type BcfLang,
@@ -37,6 +38,7 @@ const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
   "projects",
   "projectDetail",
   "impact",
+  "humanStories",
   "trust",
   "future",
   "futureDetail",
@@ -281,6 +283,15 @@ export default function BcfPage() {
             key={`impact-${lang}`}
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
+            onOpenStories={() => go(() => setStep("humanStories"))}
+          />
+        );
+      case "humanStories":
+        return (
+          <BcfHumanStories
+            key={`humanStories-${lang}`}
+            lang={lang}
+            onBack={() => go(() => setStep("impact"))}
           />
         );
       case "trust":

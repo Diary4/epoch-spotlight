@@ -15,6 +15,7 @@ export type BcfStep =
   | "projects"
   | "projectDetail"
   | "impact"
+  | "humanStories"
   | "trust"
   | "future"
   | "futureDetail"
@@ -163,6 +164,27 @@ export type StorySection = {
  */
 export type StoryValue = { id: string; title: string; body: string };
 
+export type HumanStoryId =
+  | "school"
+  | "shelter"
+  | "care"
+  | "displaced"
+  | "skills"
+  | "cash"
+  | "autism"
+  | "recovery";
+
+/**
+ * Roadmap page 27. The titles are the roadmap's own story categories; `body`
+ * carries the verified sector figures that stand behind each one, because the
+ * publication supplies no per-person narrative and a museum must not invent one.
+ */
+export type HumanStory = {
+  id: HumanStoryId;
+  title: string;
+  body: string;
+};
+
 export type BcfCopy = {
   languageTitle: string;
   languages: { id: BcfLang; label: string }[];
@@ -222,6 +244,9 @@ export type BcfCopy = {
   impactHumanStoryLead: string;
   impactHumanStoryRest: string;
   impactHumanStoryHint: string;
+  humanStoriesTitle: string;
+  humanStoriesTagline: string;
+  humanStories: HumanStory[];
   changing: string;
   livesEveryday: string;
   impactItems: ImpactItem[];
@@ -600,6 +625,50 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     impactHumanStoryLead: "The Human Story",
     impactHumanStoryRest: "Layer",
     impactHumanStoryHint: "Each statistic should open into one verified story:",
+    humanStoriesTitle: "Human Stories",
+    humanStoriesTagline: "Numbers help us understand scale. Stories help us understand meaning.",
+    humanStories: [
+      {
+        id: "school",
+        title: "A child returning to school",
+        body: "310 schools renovated, 131 classrooms built and 362,538 sets of school materials distributed, with two back-to-school projects planned for children who dropped out.",
+      },
+      {
+        id: "shelter",
+        title: "A family receiving shelter",
+        body: "540 residential units distributed to families of martyrs in Erbil and Soran in 2024, 20 houses built in Sinjar, and 4,129 tents provided after the 2023 Turkey and Syria earthquakes.",
+      },
+      {
+        id: "care",
+        title: "A patient receiving medical care",
+        body: "Five primary health-care centres built and opened, Khalifan, Peshmarga and Akre Maternity hospitals renovated, and a congenital heart surgery programme for children.",
+      },
+      {
+        id: "displaced",
+        title: "A displaced community receiving food and water",
+        body: "14,429,226 hot meals and 2,450,099 food parcels distributed, and 65,864,000 litres of drinking water delivered in Erbil in 2021.",
+      },
+      {
+        id: "skills",
+        title: "A young person gaining new skills",
+        body: "21 vocational training centres have supported 587,216 individuals through skills development, training and job opportunities.",
+      },
+      {
+        id: "cash",
+        title: "A vulnerable family receiving cash support",
+        body: "141,468,261,002 IQD distributed in cash assistance, alongside blankets, winter supplies, mattresses and emergency household items.",
+      },
+      {
+        id: "autism",
+        title: "A child with autism receiving care",
+        body: "Awareness and support programmes, with targets to rehabilitate 200 autistic children, reintegrate 100 into public schools and open three autism centres.",
+      },
+      {
+        id: "recovery",
+        title: "A community recovering after disaster",
+        body: "Rapid emergency support following the 2023 earthquake in Turkey and Syria, with five disaster-response teams planned across five locations.",
+      },
+    ],
     changing: "Changing lives",
     livesEveryday: "everyday",
     impactItems: [
@@ -984,6 +1053,50 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     impactHumanStoryLead: "چیرۆکی مرۆیی",
     impactHumanStoryRest: "چین",
     impactHumanStoryHint: "هەر ئامارێک دەبێت بکرێتەوە بۆ یەک چیرۆکی پشتڕاستکراو:",
+    humanStoriesTitle: "چیرۆکە مرۆییەکان",
+    humanStoriesTagline: "ژمارەکان قەبارە دەگەیەنن، چیرۆکەکان مانا.",
+    humanStories: [
+      {
+        id: "school",
+        title: "منداڵێک کە دەگەڕێتەوە بۆ قوتابخانە",
+        body: "نۆژەنکردنەوەی ٣١٠ قوتابخانە، دروستکردنی ١٣١ پۆلی خوێندن و دابەشکردنی ٣٦٢،٥٣٨ پێداویستیی قوتابخانە، لەگەڵ دوو پڕۆژەی گەڕانەوە بۆ قوتابخانە بۆ ئەو منداڵانەی وازیان هێناوە.",
+      },
+      {
+        id: "shelter",
+        title: "خێزانێک کە پەناگە وەردەگرێت",
+        body: "دابەشکردنی ٥٤٠ یەکەی نیشتەجێبوون بەسەر خێزانی شەهیدان لە هەولێر و سۆران لە ٢٠٢٤، دروستکردنی ٢٠ خانوو لە شنگال، و دابینکردنی ٤،١٢٩ خێمە دوای بوومەلەرزەی تورکیا و سوریا لە ٢٠٢٣.",
+      },
+      {
+        id: "care",
+        title: "نەخۆشێک کە چاودێری پزیشکی پێدەگات",
+        body: "دروستکردن و کردنەوەی پێنج بنکەی تەندروستی سەرەتایی، نۆژەنکردنەوەی نەخۆشخانەکانی خەلیفان و پێشمەرگە و لەدایکبوونی ئاکرێ، و پڕۆژەی نەشتەرگەریی دڵی زگماکی بۆ منداڵان.",
+      },
+      {
+        id: "displaced",
+        title: "کۆمەڵگەیەکی ئاوارە کە خۆراک و ئاویان پێدەگات",
+        body: "دابەشکردنی ١٤،٤٢٩،٢٢٦ ژەمی گەرم و ٢،٤٥٠،٠٩٩ سەبەتەی خۆراک، و گەیاندنی ٦٥،٨٦٤،٠٠٠ لیتر ئاوی خواردنەوە لە هەولێر لە ٢٠٢١.",
+      },
+      {
+        id: "skills",
+        title: "گەنجێک کە کارامەیی نوێ بەدەست دەهێنێت",
+        body: "٢١ سەنتەری ڕاهێنانی پیشەیی پشتگیریی ٥٨٧،٢١٦ تاکیان کردووە لە ڕێگەی گەشەپێدانی کارامەیی، ڕاهێنان و دەرفەتی کار.",
+      },
+      {
+        id: "cash",
+        title: "خێزانێکی کەمدەرامەت کە پاڵپشتیی نەقدی وەردەگرێت",
+        body: "دابەشکردنی ١٤١،٤٦٨،٢٦١،٠٠٢ دیناری عێراقی وەک هاوکاریی نەقدی، لەگەڵ بەتانی، پێداویستییەکانی زستانە، دۆشەک و پێداویستییە بەپەلەکانی ناوماڵ.",
+      },
+      {
+        id: "autism",
+        title: "منداڵێکی ئۆتیزم کە چاودێری دەکرێت",
+        body: "بەرنامەکانی هۆشیاری و پشتگیری، بە ئامانجی ڕاهێنانەوەی ٢٠٠ منداڵی ئۆتیزم، تێکەڵکردنەوەی ١٠٠ منداڵ لە قوتابخانە حکومییەکان و کردنەوەی سێ سەنتەری ئۆتیزم.",
+      },
+      {
+        id: "recovery",
+        title: "کۆمەڵگەیەک کە دوای کارەسات دەبوژێتەوە",
+        body: "پاڵپشتیی فریاگوزاریی خێرا دوای بوومەلەرزەی ٢٠٢٣ لە تورکیا و سوریا، بە ئامانجی بەهێزکردنی پێنج تیمی بەدەمەوەچوونی کارەسات لە پێنج شوێندا.",
+      },
+    ],
     changing: "گۆڕینی ژیان",
     livesEveryday: "هەموو ڕۆژێک",
     impactItems: [
@@ -1368,6 +1481,50 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     impactHumanStoryLead: "القصة الإنسانية",
     impactHumanStoryRest: "الطبقة",
     impactHumanStoryHint: "يجب أن يفتح كل رقم إلى قصة موثّقة واحدة:",
+    humanStoriesTitle: "قصص إنسانية",
+    humanStoriesTagline: "الأرقام تساعدنا على فهم الحجم، والقصص على فهم المعنى.",
+    humanStories: [
+      {
+        id: "school",
+        title: "طفل يعود إلى مدرسته",
+        body: "ترميم 310 مدارس، وبناء 131 صفاً دراسياً، وتوزيع 362,538 قطعة من المواد المدرسية، مع مشروعين لإعادة الأطفال المتسرّبين إلى المدارس.",
+      },
+      {
+        id: "shelter",
+        title: "عائلة تحصل على مأوى",
+        body: "توزيع 540 وحدة سكنية على عائلات الشهداء في أربيل وسوران عام 2024، وبناء 20 منزلاً في سنجار، وتوزيع 4,129 خيمة بعد زلزال تركيا وسوريا عام 2023.",
+      },
+      {
+        id: "care",
+        title: "مريض يتلقى الرعاية الطبية",
+        body: "بناء وافتتاح خمسة مراكز للرعاية الصحية الأولية، وترميم مستشفيات خليفان والبيشمركة والولادة في عقرة، ومشروع جراحة القلب الخلقي عند الأطفال.",
+      },
+      {
+        id: "displaced",
+        title: "مجتمع نازح يحصل على الغذاء والماء",
+        body: "توزيع 14,429,226 وجبة ساخنة و2,450,099 سلة غذائية، وتوصيل 65,864,000 لتر من مياه الشرب في أربيل عام 2021.",
+      },
+      {
+        id: "skills",
+        title: "شاب يكتسب مهارات جديدة",
+        body: "21 مركزاً للتدريب المهني دعمت 587,216 شخصاً عبر تطوير المهارات والتدريب ودعم فرص العمل.",
+      },
+      {
+        id: "cash",
+        title: "عائلة ضعيفة تحصل على دعم نقدي",
+        body: "توزيع 141,468,261,002 ديناراً عراقياً كمساعدات نقدية، إلى جانب البطانيات ومستلزمات الشتاء والفرشات والأدوات المنزلية الطارئة.",
+      },
+      {
+        id: "autism",
+        title: "طفل مصاب بالتوحّد يحظى بالرعاية",
+        body: "برامج التوعية والدعم، مع أهداف لتأهيل 200 طفل من ذوي التوحّد، ودمج 100 منهم في المدارس الحكومية، وافتتاح ثلاثة مراكز للتوحّد.",
+      },
+      {
+        id: "recovery",
+        title: "مجتمع يتعافى بعد كارثة",
+        body: "استجابة طارئة سريعة عقب زلزال تركيا وسوريا عام 2023، مع خطة لتعزيز خمسة فرق للاستجابة للكوارث في خمسة مواقع.",
+      },
+    ],
     changing: "نغيّر الحيوات",
     livesEveryday: "كل يوم",
     impactItems: [

@@ -888,9 +888,9 @@
 .tok-carousel {
   position: absolute;
   z-index: 4;
-  top: 330px;
+  top: 278px;
   inset-inline: 0;
-  height: 1300px;
+  height: 1520px;
   perspective: 1800px;
 }
 .tok-story-card {
@@ -899,13 +899,13 @@
   top: 0;
   inset-inline: 0;
   display: block;
-  width: 740px;
-  height: 1220px;
+  width: 900px;
+  height: 1420px;
   overflow: hidden;
   margin-inline: auto;
   padding: 0;
   border: 2px solid color-mix(in srgb, var(--thread-accent) 78%, white 22%) !important;
-  border-radius: 370px 370px 32px 32px;
+  border-radius: 450px 450px 36px 36px;
   background: #171a16;
   box-shadow: 0 42px 100px #0000008c;
   text-align: start;
@@ -950,8 +950,8 @@
 }
 .tok-story-card__index {
   position: absolute;
-  top: 50px;
-  inset-inline-end: 60px;
+  top: 56px;
+  inset-inline-end: 64px;
   min-width: 114px;
   padding: 12px 19px;
   border: 1px solid rgba(243, 224, 190, 0.34);
@@ -969,27 +969,27 @@
 }
 .tok-story-card__copy {
   position: absolute;
-  right: 56px;
-  bottom: 52px;
-  left: 56px;
+  right: 64px;
+  bottom: 58px;
+  left: 64px;
 }
 .tok-story-card__copy b {
   display: block;
-  max-width: 610px;
+  max-width: 740px;
   color: #fffaf0;
   font-family: var(--tok-serif);
-  font-size: 63px;
+  font-size: 68px;
   font-weight: 520;
   line-height: 0.96;
   text-shadow: 0 3px 18px rgba(0, 0, 0, 0.6);
 }
 .tok-story-card__copy > span {
   display: -webkit-box;
-  max-width: 600px;
+  max-width: 720px;
   overflow: hidden;
   margin-top: 20px;
   color: #faf3e6e0;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.48;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -1020,7 +1020,7 @@
 .tok-experience--ku .tok-story-card__copy b,
 .tok-experience--ar .tok-story-card__copy b {
   font-family: var(--tok-arabic-serif);
-  font-size: 65px;
+  font-size: 70px;
   line-height: 1.2;
 }
 .tok-experience--ku .tok-story-card__copy em,
@@ -1030,27 +1030,27 @@
 }
 .tok-experience--ku .tok-story-card__copy > span,
 .tok-experience--ar .tok-story-card__copy > span {
-  font-size: 21px;
+  font-size: 22px;
   line-height: 1.6;
 }
 .tok-carousel__peek {
   position: absolute;
   z-index: 2;
-  top: 150px;
-  width: 230px;
-  height: 905px;
+  top: 160px;
+  width: 180px;
+  height: 980px;
   overflow: hidden;
   padding: 0;
   border: 1px solid rgba(226, 206, 171, 0.2) !important;
-  border-radius: 130px 130px 24px 24px;
+  border-radius: 100px 100px 22px 22px;
   background: #171a16;
   opacity: 0.42;
 }
 .tok-carousel__peek--previous {
-  left: -122px;
+  left: -70px;
 }
 .tok-carousel__peek--next {
-  right: -122px;
+  right: -70px;
 }
 .tok-carousel__peek img {
   width: 100%;
@@ -1061,19 +1061,19 @@
 }
 .tok-carousel__peek span {
   position: absolute;
-  right: 22px;
-  bottom: 38px;
-  left: 22px;
+  right: 18px;
+  bottom: 34px;
+  left: 18px;
   color: #fff;
   font-family: var(--tok-serif);
-  font-size: 23px;
+  font-size: 21px;
   line-height: 1.05;
   text-align: center;
 }
 .tok-carousel__arrow {
   position: absolute;
   z-index: 7;
-  top: 948px;
+  top: 1120px;
   display: grid;
   width: 96px;
   height: 96px;
@@ -1086,12 +1086,12 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
-/* Straddle the card edges so they never cover the card copy. */
+/* Sit just outside the card edges so they never cover the card copy. */
 .tok-carousel__arrow--previous {
-  left: 122px;
+  left: 28px;
 }
 .tok-carousel__arrow--next {
-  right: 122px;
+  right: 28px;
 }
 .tok-carousel__arrow svg {
   width: 36px;
@@ -1100,10 +1100,10 @@
 .tok-carousel__progress {
   position: absolute;
   z-index: 8;
-  top: 1265px;
+  top: 1455px;
   left: 50%;
   display: flex;
-  width: 640px;
+  width: 720px;
   gap: 8px;
   transform: translate(-50%);
 }

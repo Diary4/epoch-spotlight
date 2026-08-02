@@ -19,6 +19,7 @@ import cardB from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 type BcfImpactProps = {
   lang: BcfLang;
   onBack: () => void;
+  onOpenStories: () => void;
 };
 
 const CARD_IMAGES = [cardA, cardB, cardA, cardB] as const;
@@ -26,7 +27,11 @@ const CARD_IMAGES = [cardA, cardB, cardA, cardB] as const;
 /**
  * Our Impact — Figma grid: 2×2 photo stat cards + Human Story Layer CTA.
  */
-export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
+export default function BcfImpact({
+  lang,
+  onBack,
+  onOpenStories,
+}: BcfImpactProps) {
   const c = bcfCopy[lang];
   const enItems = bcfCopy.en.impactItems;
 
@@ -127,6 +132,7 @@ export default function BcfImpact({ lang, onBack }: BcfImpactProps) {
           <motion.button
             type="button"
             variants={bcfRiseCard}
+            onClick={onOpenStories}
             whileTap={BCF_TAP}
             transition={BCF_TAP_TRANSITION}
             className="relative flex h-[180px] w-full transform-gpu items-center overflow-hidden rounded-[28px] border border-white/20 bg-black/40 px-10 text-left backdrop-blur-sm will-change-transform"

@@ -198,7 +198,7 @@ export const sharedLifeStories = {
         "eid",
         "Eid Al-Fitr & Eid Al-Adha",
         "Official 3 and 4-day holidays. Celebrated with communal prayers, feasts, and visits. Christians in Erbil prepare iftar tables during Ramadan in solidarity with Muslims.",
-        threadsAssets.xu,
+        threadsAssets.vS,
       ],
       [
         "christmas",
@@ -248,7 +248,7 @@ export const sharedLifeStories = {
         "eid",
         "جەژنی ڕەمەزان و قوربان",
         "پشووی فەرمین. مەسیحییەکان لەم جەژنانەدا سەردانی هاوڕێ موسڵمانەکانیان دەکەن و خوان ئامادە دەکەن.",
-        threadsAssets.xu,
+        threadsAssets.vS,
       ],
       [
         "christmas",
@@ -298,7 +298,7 @@ export const sharedLifeStories = {
         "eid",
         "عيد الفطر وعيد الأضحى",
         "عطلتان رسميتان لمدة 3 و4 أيام. تُقام فيهما صلوات الجماعة والولائم والزيارات. ويُعدّ المسيحيون في أربيل موائد إفطار خلال رمضان تضامناً مع المسلمين.",
-        threadsAssets.xu,
+        threadsAssets.vS,
       ],
       [
         "christmas",

@@ -116,14 +116,14 @@ function mapTimeline(
 const governmentImages = [
   threadsAssets.xo,
   threadsAssets.renamedToServeAll,
-  threadsAssets.Wg,
-  threadsAssets.Gg,
+  threadsAssets.rightsMotherTongue,
+  threadsAssets.rightsHeritage,
 ];
 const parliamentImages = [
-  threadsAssets.Ot,
-  threadsAssets.Yg,
-  threadsAssets.Kg,
-  threadsAssets.dollar_g,
+  threadsAssets.rightsRepresentation,
+  threadsAssets.rightsCommunities,
+  threadsAssets.rightsCalendar,
+  threadsAssets.rightsRecognitionDay,
 ];
 const lawsImages = [
   threadsAssets.rightsLaws,
@@ -134,7 +134,7 @@ const lawsImages = [
 const sanctuaryImages = [
   threadsAssets.rightsYear2014,
   threadsAssets.Qg,
-  threadsAssets.A2,
+  threadsAssets.defenders,
   threadsAssets.Yn,
 ];
 

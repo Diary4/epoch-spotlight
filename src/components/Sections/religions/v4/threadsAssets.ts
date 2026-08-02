@@ -1,6 +1,6 @@
 import _S from "@/assets/images/religions/kakayi/book.webp";
 import a2 from "@/assets/images/religions/nations/turkmen/cover.webp";
-import A2 from "@/assets/images/religions/sharedlife/lalish.webp";
+import A2 from "@/assets/images/religions/lalish-temple.jpg";
 import AS from "@/assets/images/religions/yazidi/tawus.webp";
 import bahaiCover from "@/assets/images/religions/bahai/cover.webp";
 import bS from "@/assets/images/religions/kakayi/meaning.webp";
@@ -11,8 +11,8 @@ import coexistenceHumanity from "@/assets/images/religions/coexistence/humanity.
 import coexistenceLivingIdentity from "@/assets/images/religions/coexistence/living-identity.webp";
 import rightsCover from "@/assets/images/religions/rights/cover.webp";
 import rightsLaws from "@/assets/images/religions/rights/laws.webp";
-import rightsYear2014 from "@/assets/images/religions/rights/year-2014.webp";
-import Ci from "@/assets/images/religions/sharedlife/kakai-festival.webp";
+import rightsYear2014 from "@/assets/images/religions/rights/opened-doors-2014.jpg";
+import Ci from "@/assets/images/religions/kakai-festival.jpg";
 import co from "@/assets/images/new/religions/faiths/christianity.webp";
 /* Story-card covers. The carousel card rasterises at 1480×2440 on the 4K
    portrait kiosk, so a 1280px photo lands ~2.9× upscaled and reads soft. These
@@ -24,7 +24,7 @@ import faithYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp"
 import faithYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
 import CS from "@/assets/images/religions/christianity/churches.webp";
 import sharedChurches from "@/assets/images/religions/sharedlife/churches.webp";
-import zoroCover from "@/assets/images/religions/zoro/cover.webp";
+import zoroCover from "@/assets/images/religions/zoro-temples.jpg";
 import christianHistorical from "@/assets/images/religions/christianity/historical.webp";
 import christianEaster from "@/assets/images/religions/christianity/easter-egg.webp";
 import d2 from "@/assets/images/religions/nations/assyrian/ankawa.webp";
@@ -34,7 +34,7 @@ import Ei from "@/assets/images/religions/history/history.webp";
 import fo from "@/assets/images/religions/yazidi/lalish.webp";
 import Gg from "@/assets/images/religions/nations/aremnian/community.webp";
 import go from "@/assets/images/religions/nations/cover.webp";
-import gS from "@/assets/images/religions/islam/sufism.webp";
+import gS from "@/assets/images/religions/islam/sufism.jpg";
 import GS from "@/assets/images/religions/bahai/kurdistan.webp";
 import gu from "@/assets/images/new/religions/nations/kurd.webp";
 import Hg from "@/assets/images/religions/kurds/language.webp";
@@ -59,7 +59,7 @@ import zoroThreePillars from "@/assets/images/religions/zoro/three-pillars.jpeg"
 import zoroNowruz from "@/assets/images/religions/zoro/nowruz.webp";
 import judaismTorah from "@/assets/images/religions/judaism/torah.webp";
 import Ot from "@/assets/images/religions/rights/parliment.webp";
-import Pi from "@/assets/images/religions/sharedlife/christmas.webp";
+import Pi from "@/assets/images/religions/christmas-easter.jpg";
 import po from "@/assets/images/religions/bahai/core.webp";
 import pS from "@/assets/images/religions/thecradle/cradle.webp";
 import pu from "@/assets/images/religions/islam/barzani.webp";
@@ -72,20 +72,27 @@ import S2 from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
 import seatImg from "@/assets/images/religions/nations/assyrian/seat.webp";
 import T2 from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
 import TS from "@/assets/images/religions/christianity/pope.webp";
-import Ug from "@/assets/images/religions/yazidi/resilience.webp";
-import uo from "@/assets/images/religions/faiths.webp";
+import Ug from "@/assets/images/religions/yazidi/resilience.jpg";
+import uo from "@/assets/images/faiths.jpg";
 import US from "@/assets/images/religions/judaism/kurdish-jews.webp";
 import vo from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
-import vS from "@/assets/images/religions/islam/eid.webp";
+import vS from "@/assets/images/religions/eid.jpg";
 import vu from "@/assets/images/new/religions/nations/assyrian.webp";
 import Wg from "@/assets/images/religions/nations/turkmen/education.webp";
 import wo from "@/assets/mainImages/letter.webp";
 import wS from "@/assets/images/religions/nl-1.webp";
-import wu from "@/assets/images/religions/sharedlife/yazidi-festival.webp";
+import wu from "@/assets/images/religions/yazidi-festival.jpg";
 import xo from "@/assets/images/religions/rights/krg_cabinet.webp";
 import renamedToServeAll from "@/assets/images/religions/rights/renamed-to-serve-all.webp";
+import rightsRepresentation from "@/assets/images/religions/rights/representation.jpg";
+import rightsCommunities from "@/assets/images/religions/rights/rights-communities.jpg";
+import rightsCalendar from "@/assets/images/religions/rights/calendar.jpg";
+import rightsRecognitionDay from "@/assets/images/religions/rights/recognition-day.jpg";
+import rightsMotherTongue from "@/assets/images/religions/rights/mother-tongue.jpg";
+import rightsHeritage from "@/assets/images/religions/rights/heritage.jpg";
+import defenders from "@/assets/images/religions/defenders.jpg";
 import xS from "@/assets/images/religions/main.webp";
-import xu from "@/assets/images/religions/sharedlife/mosques.webp";
+import xu from "@/assets/images/religions/mosques.jpg";
 import Yg from "@/assets/images/religions/rights/images.webp";
 import Yn from "@/assets/images/castle.webp";
 import yo from "@/assets/images/new/religions/nations/armenian.webp";
@@ -117,6 +124,13 @@ export const threadsAssets = {
   Pi: Pi,
   Qg: Qg,
   renamedToServeAll: renamedToServeAll,
+  rightsRepresentation,
+  rightsCommunities,
+  rightsCalendar,
+  rightsRecognitionDay,
+  rightsMotherTongue,
+  rightsHeritage,
+  defenders,
   RS: RS,
   Rt: Rt,
   S2: S2,

@@ -1,5 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import {
@@ -151,13 +152,17 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           overlayClassName="bg-black/75"
         >
           <TrustChrome title={c.trustQualityTitle} backLabel={c.back} onBack={goBack}>
+            {/* The six credentials used to sit in a 340px rail beside the
+                photograph, which left the certificate a narrow slot on a 1080
+                artboard. As a wrapping row above it, the image gets the full
+                width and the labels get kiosk-sized touch targets. */}
             <motion.div
-              className="mx-auto mt-14 flex w-full max-w-[1040px] gap-8"
+              className="mt-12 flex flex-1 flex-col"
               initial={{ opacity: 0, y: 34 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="flex w-[340px] shrink-0 flex-col gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 {c.trustCredentials.map((item, index) => {
                   const selected = index === credentialIndex;
                   return (
@@ -167,25 +172,25 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative transform-gpu overflow-hidden rounded-2xl px-6 py-5 text-start text-[26px] font-medium leading-snug will-change-transform"
+                      className="relative transform-gpu overflow-hidden rounded-full px-9 py-6 text-[29px] font-medium leading-none will-change-transform"
                       style={{
                         border: "1px solid",
-                        borderColor: selected ? BCF.gold : "transparent",
+                        borderColor: selected ? BCF.gold : "rgba(255,255,255,0.14)",
                         backgroundColor: selected
-                          ? "rgba(0,0,0,0.55)"
-                          : "rgba(0,0,0,0.3)",
+                          ? "rgba(0,0,0,0.6)"
+                          : "rgba(0,0,0,0.34)",
                         color: selected ? BCF.creamSoft : "rgba(255,255,255,0.7)",
-                        boxShadow: selected ? `0 0 30px ${BCF.gold}2e` : "none",
+                        boxShadow: selected ? `0 0 34px ${BCF.gold}33` : "none",
                         transition:
                           "border-color 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms cubic-bezier(0.22,1,0.36,1), color 300ms, box-shadow 300ms",
                       }}
                     >
-                      {/* Selected marker rides between rows instead of blinking
-                          on and off in place. */}
+                      {/* Selected marker rides between chips instead of
+                          blinking on and off in place. */}
                       {selected ? (
                         <motion.span
                           layoutId="bcf-credential-marker"
-                          className="absolute inset-y-3 start-0 w-[3px] rounded-full"
+                          className="absolute inset-x-9 bottom-[10px] h-[3px] rounded-full"
                           style={{ backgroundColor: BCF.goldBright }}
                           transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
                         />
@@ -196,29 +201,33 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 })}
               </div>
 
-              <div className="flex min-w-0 flex-1 flex-col gap-8">
-                <div className={`${BCF_GLASS_CARD} overflow-hidden p-5`}>
-                  <img
-                    src={certificateImg}
-                    alt=""
-                    className="h-[720px] w-full rounded-xl object-cover"
-                  />
-                </div>
-                {/* The body text belongs to the selected credential, so it
-                    cross-fades with the selection rather than snapping. */}
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={activeCredential.id}
-                    className="text-[28px] leading-relaxed text-white/85"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {activeCredential.body}
-                  </motion.p>
-                </AnimatePresence>
+              {/* The certificate takes whatever height is left, so the pane
+                  fills the panel in every language instead of ending in a
+                  band of dead space. */}
+              <div
+                className={`${BCF_GLASS_CARD} mt-12 min-h-0 flex-1 overflow-hidden p-6`}
+              >
+                <img
+                  src={certificateImg}
+                  alt=""
+                  className="h-full w-full rounded-2xl object-cover"
+                />
               </div>
+
+              {/* The body text belongs to the selected credential, so it
+                  cross-fades with the selection rather than snapping. */}
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={activeCredential.id}
+                  className="mt-10 min-h-[160px] text-center text-[33px] leading-relaxed text-white/85"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {activeCredential.body}
+                </motion.p>
+              </AnimatePresence>
             </motion.div>
           </TrustChrome>
         </BcfShell>
@@ -291,6 +300,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             <RecognitionArc
               items={c.trustRecognitionItems}
               hint={c.tapToExplore}
+              closeLabel={c.close}
               rtl={lang !== "en"}
             />
           </TrustChrome>
@@ -404,15 +414,18 @@ function arcPath(mirror: boolean) {
 function RecognitionArc({
   items,
   hint,
+  closeLabel,
   rtl,
 }: {
   items: RecognitionItem[];
   hint: string;
+  closeLabel: string;
   rtl: boolean;
 }) {
   const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = React.useState<RecognitionItemId | null>(null);
   const thread = React.useMemo(() => arcPath(rtl), [rtl]);
+  const active = items.find((item) => item.id === activeId) ?? null;
 
   return (
     <div className="mx-auto mt-10 w-full max-w-[1000px]">
@@ -539,7 +552,9 @@ function RecognitionArc({
                 </motion.button>
               </div>
 
-              {/* Label pill, anchored to the node and growing into its detail. */}
+              {/* Label pill, anchored to its node. The detail opens as a card
+                  over the constellation — grown in place it ran into the next
+                  node down, and the text was unreadable behind it. */}
               <motion.div
                 className="absolute z-10"
                 style={{
@@ -570,24 +585,81 @@ function RecognitionArc({
                   <p className="text-[30px] font-medium leading-tight text-[#fbf4e4]">
                     {item.title}
                   </p>
-                  <AnimatePresence initial={false}>
-                    {isActive ? (
-                      <motion.p
-                        className="overflow-hidden text-[24px] leading-relaxed text-white/78"
-                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                        animate={{ opacity: 1, height: "auto", marginTop: 14 }}
-                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                        transition={{ duration: 0.36, ease: BCF_EASE }}
-                      >
-                        {item.detail}
-                      </motion.p>
-                    ) : null}
-                  </AnimatePresence>
                 </div>
               </motion.div>
             </React.Fragment>
           );
         })}
+
+        {/* Detail card. It dims the constellation behind it so the awards are
+            read against a settled backdrop, and any tap closes it. */}
+        <AnimatePresence>
+          {active ? (
+            <motion.div
+              className="absolute inset-0 z-40 flex items-center justify-center px-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28 }}
+              onClick={() => setActiveId(null)}
+            >
+              <div
+                className="absolute inset-0 backdrop-blur-[3px]"
+                style={{ backgroundColor: "rgba(4,6,9,0.72)" }}
+              />
+
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label={active.title}
+                onClick={(event) => event.stopPropagation()}
+                className={`${BCF_GLASS_CARD} relative w-full max-w-[820px] overflow-hidden`}
+                initial={{ opacity: 0, scale: 0.95, y: 24 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: 14 }}
+                transition={{ duration: 0.4, ease: BCF_EASE }}
+                style={{ boxShadow: "0 40px 110px rgba(0,0,0,0.62)" }}
+              >
+                <img
+                  src={recognitionNodes[active.id]}
+                  alt=""
+                  decoding="async"
+                  className="h-[320px] w-full object-cover"
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-[320px]"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(4,6,9,0.25) 0%, rgba(4,6,9,0.15) 50%, rgba(0,0,0,0.85) 100%)",
+                  }}
+                />
+
+                <div className="p-12 pt-10">
+                  <h3
+                    className="text-[46px] font-semibold leading-tight"
+                    style={{ color: BCF.gold }}
+                  >
+                    {active.title}
+                  </h3>
+                  <p className="mt-7 text-[32px] leading-relaxed text-[#fdeed4]">
+                    {active.detail}
+                  </p>
+                </div>
+
+                <motion.button
+                  type="button"
+                  onClick={() => setActiveId(null)}
+                  whileTap={BCF_TAP}
+                  transition={BCF_TAP_TRANSITION}
+                  className="absolute end-7 top-7 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/55 backdrop-blur-md will-change-transform"
+                  aria-label={closeLabel}
+                >
+                  <X className="h-8 w-8 text-white" />
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
     </div>
   );
