@@ -12,7 +12,7 @@ export const threadsCopy = {
       hubTitle: "A land where many peoples share one home",
       hubBody:
         "This journey invites you into Kurdistan's story of coexistence — through faiths, nations, courageous leadership, shared life, and the rights that protect belonging.",
-      hubQuote: "Not enduring the other — celebrating one another.",
+      hubQuote: "Coexistence is not merely tolerating others — it is embracing and uplifting them.",
       hubInstruction: "Touch a thread",
       hubInstructionHint: "to follow its story",
       threadLabel: "Living thread",

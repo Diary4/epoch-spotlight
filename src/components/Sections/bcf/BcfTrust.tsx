@@ -271,17 +271,15 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           overlayClassName="bg-black/70"
         >
           <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
-            <motion.div
-              className={`${BCF_GLASS_CARD} mx-auto mt-20 max-w-[900px] p-14 text-center`}
-              initial={{ opacity: 0, y: 40, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.75, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.5)" }}
+            <motion.p
+              className="mx-auto mt-10 max-w-[820px] text-center text-[30px] leading-relaxed text-[#fdeed4]"
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-[34px] leading-relaxed text-[#fdeed4]">
-                {c.trustRecognitionBody}
-              </p>
-            </motion.div>
+              {c.trustRecognitionBody}
+            </motion.p>
+            <RecognitionArc items={c.trustRecognitionItems} hint={c.tapToExplore} />
           </TrustChrome>
         </BcfShell>
       );

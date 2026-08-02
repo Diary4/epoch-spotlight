@@ -119,6 +119,34 @@ export type TrustCredential = {
   body: string;
 };
 
+export type RecognitionItemId =
+  | "awards"
+  | "certifications"
+  | "parliament"
+  | "letters"
+  | "timeline";
+
+/**
+ * The five proofs on the Recognition constellation, top to bottom. `detail`
+ * carries the awards and certifications named in the BCF roadmap (Page 25), so
+ * a node is a heading a visitor can open rather than an unsupported claim.
+ */
+export type RecognitionItem = {
+  id: RecognitionItemId;
+  title: string;
+  detail: string;
+};
+
+/**
+ * Closing pillars. Each reads as one sentence broken over two lines, the second
+ * half in gold — the split is editorial, so it lives in the copy, not the view.
+ */
+export type LegacyPillar = {
+  id: "service" | "humanity" | "hope";
+  titleWhite: string;
+  titleGold: string;
+};
+
 export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy" | "values";
 
 export type StorySection = {
@@ -199,8 +227,17 @@ export type BcfCopy = {
   trustPartnershipsHint: string;
   trustRecognitionTitle: string;
   trustRecognitionBody: string;
+  trustRecognitionItems: RecognitionItem[];
   futureCircle: string;
   legacyCircle: string;
+  legacyTitleWhite: string;
+  legacyTitleGold: string;
+  legacyLead: string;
+  legacyBridge: string;
+  legacyPillars: LegacyPillar[];
+  legacyThanks: string;
+  legacyThanksBody: string;
+  legacyRestart: string;
   futureHeadingWhite: string;
   futureHeadingGold: string;
   futureHeadingRest: string;
@@ -605,9 +642,53 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustPartnershipsHint: "Trusted partners working alongside BCF",
     trustRecognitionTitle: "Recognition",
     trustRecognitionBody:
-      "A record of service recognized across Kurdistan and beyond — built through accountability, partnerships, and lasting impact.",
+      "Recognition reflects trust. But the true value of BCF’s work is found in the communities it continues to serve.",
+    trustRecognitionItems: [
+      {
+        id: "awards",
+        title: "International humanitarian awards",
+        detail:
+          "Sergio de Mello Award by the Portuguese Government, Wings of Help Organization Award (2025), Helfen Bringt Freude Award (2025), Volunteer Summit Recognition Award (2025) and the Essen Governor Award, Germany (2024).",
+      },
+      {
+        id: "certifications",
+        title: "Institutional certifications",
+        detail:
+          "ECOSOC consultative status since 2016 and ISO 9001:2015 quality-management certification.",
+      },
+      {
+        id: "parliament",
+        title: "Parliamentary recognition",
+        detail:
+          "German Federal Parliament Award (2025), Iraqi Parliament Award for Best NGO in Iraq (2015) and the Labour Group London Award.",
+      },
+      {
+        id: "letters",
+        title: "Appreciation letters",
+        detail: "Several local and international appreciation letters.",
+      },
+      {
+        id: "timeline",
+        title: "Verified award timeline",
+        detail: "A documented record spanning a decade, from 2015 to 2025.",
+      },
+    ],
     futureCircle: "The Future We Build",
     legacyCircle: "A Legacy That Continues",
+    legacyTitleWhite: "A Legacy",
+    legacyTitleGold: "That Continues",
+    legacyLead:
+      "Rooted in Kurdistan and guided by the belief that service is an honor, the Barzani Charity Foundation continues to support vulnerable communities with compassion, dignity and professional humanitarian action.",
+    legacyBridge:
+      "From food and shelter to education, health, protection, rehabilitation and environmental responsibility, BCF carries a message that reaches beyond borders:",
+    legacyPillars: [
+      { id: "service", titleWhite: "Service", titleGold: "is dignity" },
+      { id: "humanity", titleWhite: "Humanity", titleGold: "is responsibility" },
+      { id: "hope", titleWhite: "Hope is built", titleGold: "through action" },
+    ],
+    legacyThanks: "Thank You",
+    legacyThanksBody: "Thank you for visiting the BCF Experience.",
+    legacyRestart: "Return to Beginning",
     futureHeadingWhite: "The",
     futureHeadingGold: "Future",
     futureHeadingRest: "We Build",
@@ -908,9 +989,53 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustPartnershipsHint: "هاوبەشە باوەڕپێکراوەکان لەگەڵ BCF",
     trustRecognitionTitle: "ناسینەوە",
     trustRecognitionBody:
-      "تۆماری خزمەت کە لە کوردستان و دەرەوەدا ناسراوە — لە ڕێگەی بەرپرسیارێتی، هاوبەشی و کاریگەری بەردەوام.",
+      "ناسینەوە مانای متمانەیە. بەڵام بەهای ڕاستەقینەی کاری BCF لەو کۆمەڵگایانەدایە کە بەردەوامە لە خزمەتکردنیان.",
+    trustRecognitionItems: [
+      {
+        id: "awards",
+        title: "خەڵاتە مرۆییە نێودەوڵەتییەکان",
+        detail:
+          "خەڵاتی سێرجیۆ دی میلۆ لەلایەن حکومەتی پورتوگالەوە، خەڵاتی ڕێکخراوی Wings of Help (٢٠٢٥)، خەڵاتی Helfen Bringt Freude (٢٠٢٥)، خەڵاتی ناسینەوەی لووتکەی خۆبەخشان (٢٠٢٥) و خەڵاتی پارێزگاری ئێسن لە ئەڵمانیا (٢٠٢٤).",
+      },
+      {
+        id: "certifications",
+        title: "بڕوانامە دامەزراوەییەکان",
+        detail:
+          "دۆخی ڕاوێژکاری لە ئەنجومەنی ئابووری و کۆمەڵایەتیی نەتەوە یەکگرتووەکان لە ٢٠١٦ەوە، و بڕوانامەی بەڕێوەبردنی کوالیتی ISO 9001:2015.",
+      },
+      {
+        id: "parliament",
+        title: "ناسینەوەی پەرلەمانی",
+        detail:
+          "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا (٢٠٢٥)، خەڵاتی پەرلەمانی عێراق بۆ باشترین ڕێکخراوی ناحکومی لە عێراق (٢٠١٥) و خەڵاتی گروپی کرێکاریی لەندەن.",
+      },
+      {
+        id: "letters",
+        title: "نامەکانی سوپاسگوزاری",
+        detail: "چەندین نامەی سوپاسگوزاریی ناوخۆیی و نێودەوڵەتی.",
+      },
+      {
+        id: "timeline",
+        title: "هێڵی کاتیی خەڵاتە بەڵگەدارەکان",
+        detail: "تۆمارێکی بەڵگەدار بە درێژایی دەیەیەک، لە ٢٠١٥ەوە تا ٢٠٢٥.",
+      },
+    ],
     futureCircle: "داهاتووی بنیاد دەنێین",
     legacyCircle: "میراتێک کە بەردەوامە",
+    legacyTitleWhite: "میراتێک",
+    legacyTitleGold: "کە بەردەوامە",
+    legacyLead:
+      "ڕەگداکوتاو لە کوردستان و ڕێنماییکراو بەو باوەڕەی کە خزمەتکردن شەرەفە، دەزگای خێرخوازیی بارزانی بەردەوامە لە پشتیوانیی کۆمەڵگا لاوازەکان بە بەزەیی، کەرامەت و کاری مرۆییی پیشەیی.",
+    legacyBridge:
+      "لە خواردن و سەرپەناوە تا پەروەردە، تەندروستی، پاراستن، چاکسازی و بەرپرسیارێتیی ژینگەیی، BCF پەیامێک دەگوازێتەوە کە لە سنوورەکان تێدەپەڕێت:",
+    legacyPillars: [
+      { id: "service", titleWhite: "خزمەت", titleGold: "کەرامەتە" },
+      { id: "humanity", titleWhite: "مرۆڤایەتی", titleGold: "بەرپرسیارێتییە" },
+      { id: "hope", titleWhite: "هیوا", titleGold: "بە کردار بنیاد دەنرێت" },
+    ],
+    legacyThanks: "سوپاس",
+    legacyThanksBody: "سوپاس بۆ سەردانی ئەزموونی BCF.",
+    legacyRestart: "گەڕانەوە بۆ سەرەتا",
     futureHeadingWhite: "داهاتوو",
     futureHeadingGold: "کە",
     futureHeadingRest: "بنیاد دەنێین",
@@ -1211,9 +1336,53 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustPartnershipsHint: "شركاء موثوقون يعملون إلى جانب BCF",
     trustRecognitionTitle: "الاعتراف",
     trustRecognitionBody:
-      "سجل خدمة معترف به في كوردستان وخارجها — مبني على المساءلة والشراكات والأثر الدائم.",
+      "الاعتراف انعكاس للثقة. لكن القيمة الحقيقية لعمل BCF تكمن في المجتمعات التي يواصل خدمتها.",
+    trustRecognitionItems: [
+      {
+        id: "awards",
+        title: "جوائز إنسانية دولية",
+        detail:
+          "جائزة سيرجيو دي ميلو من الحكومة البرتغالية، وجائزة منظمة Wings of Help (2025)، وجائزة Helfen Bringt Freude (2025)، وجائزة تقدير قمة المتطوعين (2025)، وجائزة محافظ إيسن في ألمانيا (2024).",
+      },
+      {
+        id: "certifications",
+        title: "اعتمادات مؤسسية",
+        detail:
+          "الصفة الاستشارية لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة منذ 2016، وشهادة إدارة الجودة ISO 9001:2015.",
+      },
+      {
+        id: "parliament",
+        title: "اعتراف برلماني",
+        detail:
+          "جائزة البرلمان الاتحادي الألماني (2025)، وجائزة البرلمان العراقي لأفضل منظمة غير حكومية في العراق (2015)، وجائزة مجموعة العمل في لندن.",
+      },
+      {
+        id: "letters",
+        title: "رسائل التقدير",
+        detail: "العديد من رسائل التقدير المحلية والدولية.",
+      },
+      {
+        id: "timeline",
+        title: "خط زمني موثّق للجوائز",
+        detail: "سجل موثّق يمتد عقداً كاملاً، من 2015 إلى 2025.",
+      },
+    ],
     futureCircle: "المستقبل الذي نبنيه",
     legacyCircle: "إرث يستمر",
+    legacyTitleWhite: "إرث",
+    legacyTitleGold: "يستمر",
+    legacyLead:
+      "متجذّرة في كوردستان ومسترشدة بالإيمان بأن الخدمة شرف، تواصل مؤسسة بارزاني الخيرية دعم المجتمعات الهشّة بالرحمة والكرامة والعمل الإنساني المهني.",
+    legacyBridge:
+      "من الغذاء والمأوى إلى التعليم والصحة والحماية وإعادة التأهيل والمسؤولية البيئية، تحمل BCF رسالة تتجاوز الحدود:",
+    legacyPillars: [
+      { id: "service", titleWhite: "الخدمة", titleGold: "كرامة" },
+      { id: "humanity", titleWhite: "الإنسانية", titleGold: "مسؤولية" },
+      { id: "hope", titleWhite: "الأمل", titleGold: "يُبنى بالعمل" },
+    ],
+    legacyThanks: "شكراً لكم",
+    legacyThanksBody: "شكراً لزيارتكم تجربة BCF.",
+    legacyRestart: "العودة إلى البداية",
     futureHeadingWhite: "المستقبل",
     futureHeadingGold: "الذي",
     futureHeadingRest: "نبنيه",

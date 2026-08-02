@@ -32,7 +32,7 @@ export const faithStories = {
       [
         "sabean",
         "Mandaean Sabians",
-        "Living water, purity, and continuity.",
+        "Living Water, Purity, and Continuity.",
         threadsAssets.faithSabean,
       ],
     ],
@@ -72,25 +72,25 @@ export const nationsStories = {
       [
         "kurds",
         "Kurds",
-        "A rooted people of language, dance, and mountains.",
+        "A Living Language, Heritage, and Identity.",
         threadsAssets.gu,
       ],
       [
         "turkmens",
         "Turkmens",
-        "An ancient community woven into Kurdistan's life.",
+        "Language, Heritage, and Community Life.",
         threadsAssets.yu,
       ],
       [
         "assyrians",
         "Chaldo-Assyrians",
-        "Custodians of one of the oldest Christian heritages.",
+        "An Ancient Nation with an Unbroken Heritage.",
         threadsAssets.vu,
       ],
       [
         "armenians",
         "Armenians",
-        "A diaspora community with deep ties to the land.",
+        "A Century of Belonging and Connection in Kurdistan.",
         threadsAssets.yo,
       ],
     ],
@@ -117,13 +117,13 @@ export const coexistenceStories = {
       [
         "coexistence-leaders",
         "Leaders of Coexistence",
-        "Four leaders whose decisions made protection, brotherhood, and equal belonging visible.",
+        "A legacy of protection and brotherhood.",
         threadsAssets.vo,
       ],
       [
         "coexistence-principles",
         "Principles of Coexistence",
-        "Acceptance, respect, humanity, and identity practiced as living values.",
+        "A perspective from the depth of humanity.",
         threadsAssets.closing,
       ],
       [
@@ -227,7 +227,7 @@ export const sharedLifeStories = {
       [
         "churches-monasteries",
         "Churches & Monasteries",
-        "Mar Mattai Monastery on Mount Maqlub, Monastery of Hormizd in Alqosh, Rabban Boya Monastery in Shaqlawa, and dozens of active churches across the region.",
+        "Mar Mattai Monastery on Mount Maqloub, Rabban Hormizd Monastery in Alqosh, Rabban Boya Monastery in Shaqlawa, and dozens of active churches across the region.",
         threadsAssets.sharedChurches,
       ],
       [
@@ -239,7 +239,7 @@ export const sharedLifeStories = {
       [
         "zoroastrian-temples",
         "Zoroastrian Temples",
-        "Qazkapan Zoroastrian Temple in Dukan, Sulaymaniyah. Charsten Cave Zoroastrian Temple in Duhok. Ancient sites of pre-Islamic Kurdistan still standing today.",
+        "Qizqapan Temple near Dukan in Sulaymaniyah and Charstin Cave in Duhok — pre-Islamic sacred sites that have survived to the present day.",
         threadsAssets.zoroCover,
       ],
     ],
@@ -349,20 +349,20 @@ export const rightsStories = {
       [
         "government",
         "The Kurdistan Regional Government",
-        "A government for all its peoples.",
+        "A government for all citizens.",
         threadsAssets.xo,
       ],
       [
         "parliament",
         "Voices in Parliament",
-        "Every community has a seat at the table.",
+        "Every community has a seat.",
         threadsAssets.Ot,
       ],
-      ["laws", "Laws & Protection", "Rights, dignity, and coexistence.", threadsAssets.rightsLaws],
+      ["laws", "Laws & Protection", "Rights, dignity, and peaceful coexistence.", threadsAssets.rightsLaws],
       [
         "sanctuary",
         "2014 — Kurdistan Opened Its Doors",
-        "When the world watched, Kurdistan acted.",
+        "When the world was watching, Kurdistan took action.",
         threadsAssets.rightsYear2014,
       ],
     ],
