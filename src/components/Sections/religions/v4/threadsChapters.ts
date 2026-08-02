@@ -12,17 +12,6 @@ import { threadsAssets } from "./threadsAssets";
 
 type StoryTuple = [string, string, string, string];
 
-/**
- * Wide festival group shots whose subjects sit at the edges of the frame — the
- * card's portrait crop cuts the outer players off, so these are shown whole.
- */
-const FULL_FRAME_STORIES = new Set([
-  "eid",
-  "christmas",
-  "yazidi-festivals",
-  "kakai-festival",
-]);
-
 function buildStories(lang: ThreadsLang, tuples: StoryTuple[]): Story[] {
   return tuples.map(([id, title, body, image]) => {
     const context = N2[lang][id as keyof (typeof N2)["en"]];
@@ -33,7 +22,6 @@ function buildStories(lang: ThreadsLang, tuples: StoryTuple[]): Story[] {
       context: context?.context ?? "",
       significance: context?.significance ?? "",
       image,
-      imageFit: FULL_FRAME_STORIES.has(id) ? "contain" : undefined,
       detailCards: resolveDetailCards(lang, id),
     };
   });

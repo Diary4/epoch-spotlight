@@ -12,6 +12,9 @@ import coexistenceLivingIdentity from "@/assets/images/religions/coexistence/liv
 import rightsCover from "@/assets/images/religions/rights/cover.webp";
 import rightsLaws from "@/assets/images/religions/rights/laws.webp";
 import rightsYear2014 from "@/assets/images/religions/rights/opened-doors-2014.jpg";
+import lawsEquality from "@/assets/images/religions/rights/laws/equality.jpg";
+import lawsLanguages from "@/assets/images/religions/rights/laws/languages.jpg";
+import lawsCoexistenceDirectorate from "@/assets/images/religions/rights/laws/coexistence-directorate.jpg";
 import Ci from "@/assets/images/religions/kakai-festival.jpg";
 import co from "@/assets/images/new/religions/faiths/christianity.webp";
 /* Story-card covers. The carousel card rasterises at 1480×2440 on the 4K
@@ -131,6 +134,9 @@ export const threadsAssets = {
   rightsMotherTongue,
   rightsHeritage,
   defenders,
+  lawsEquality,
+  lawsLanguages,
+  lawsCoexistenceDirectorate,
   RS: RS,
   Rt: Rt,
   S2: S2,

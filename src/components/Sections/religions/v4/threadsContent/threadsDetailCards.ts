@@ -127,9 +127,9 @@ const parliamentImages = [
 ];
 const lawsImages = [
   threadsAssets.rightsLaws,
-  threadsAssets.Yg,
-  threadsAssets.Hg,
-  threadsAssets.dt,
+  threadsAssets.lawsEquality,
+  threadsAssets.lawsLanguages,
+  threadsAssets.lawsCoexistenceDirectorate,
 ];
 const sanctuaryImages = [
   threadsAssets.rightsYear2014,
