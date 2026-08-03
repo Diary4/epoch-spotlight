@@ -101,3 +101,43 @@ export const BCF_DRIFT_TRANSITION: Transition = {
   repeatType: "mirror",
   ease: "easeInOut",
 };
+
+/* -------------------------------------------------------------------------
+ * Locomotive Scroll motion
+ *
+ * The long-read chapters follow sakharov.space, which drives its scroll with
+ * Locomotive Scroll v4. Rather than approximate the feel, these are the two
+ * numbers the library actually computes — the lerp it applies to the scroll
+ * position every frame, and the transform it gives a `data-scroll-speed`
+ * element — so a chapter here glides and drifts on the same curve.
+ * ---------------------------------------------------------------------- */
+
+/** Locomotive's default `lerp`, applied once per animation frame. */
+export const LOCO_LERP = 0.1;
+
+/** Below this the smoothed position is snapped, so the tail is not endless. */
+export const LOCO_SETTLE = 0.08;
+
+export function lerp(start: number, end: number, amount: number) {
+  return (1 - amount) * start + amount * end;
+}
+
+/**
+ * Locomotive's default parallax: `data-scroll-speed` is divided by ten, and the
+ * element is pushed by its distance from the middle of the viewport — so it
+ * sits at its laid-out position as it passes the centre of the screen and
+ * drifts symmetrically either side of it.
+ *
+ * @param scroll        smoothed scroll position of the container
+ * @param viewport      viewport height (Locomotive's `windowMiddle` is half it)
+ * @param elementMiddle element centre in container coordinates, untransformed
+ * @param speed         the raw `data-scroll-speed` value
+ */
+export function locoParallax(
+  scroll: number,
+  viewport: number,
+  elementMiddle: number,
+  speed: number,
+) {
+  return (scroll + viewport / 2 - elementMiddle) * -(speed / 10);
+}

@@ -179,7 +179,11 @@ export function resolveDetailCards(
     case "armenians":
       return mapTopics(lang, y2, g2);
     case "government":
-      return mapCards(lang, v2, governmentImages);
+      return mapCards(lang, v2, governmentImages).map((card) =>
+        card.id === "ministry"
+          ? { ...card, imagePosition: "center bottom" }
+          : card,
+      );
     case "parliament":
       return mapCards(lang, x2, parliamentImages);
     case "laws":

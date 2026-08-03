@@ -23,6 +23,9 @@ export type RightsCard = {
   icon: LucideIcon;
   accent: string;
   image?: string;
+  /** Prefer `contain` when the full width of a landscape photo must stay visible. */
+  imageFit?: "cover" | "contain";
+  imagePosition?: string;
 };
 
 export type RightsDetailContent = {
@@ -81,12 +84,17 @@ function RightsChapter({ card }: { card: RightsCard }) {
           </p>
         </div>
         {card.image ? (
-          <div className="relative min-h-[220px] overflow-hidden">
+          <div className="relative min-h-[220px] overflow-hidden bg-[#181b17]">
             <img
               src={card.image}
               alt=""
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover object-center saturate-[0.9]"
+              className={`absolute inset-0 h-full w-full saturate-[0.9] ${
+                card.imageFit === "contain" ? "object-contain" : "object-cover"
+              }`}
+              style={{
+                objectPosition: card.imagePosition ?? "center",
+              }}
             />
           </div>
         ) : null}

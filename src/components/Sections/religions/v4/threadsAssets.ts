@@ -9,6 +9,10 @@ import coexistenceAcceptance from "@/assets/images/religions/coexistence/accepta
 import coexistenceRespect from "@/assets/images/religions/coexistence/respect.webp";
 import coexistenceHumanity from "@/assets/images/religions/coexistence/humanity.webp";
 import coexistenceLivingIdentity from "@/assets/images/religions/coexistence/living-identity.webp";
+import coexistenceSafeHaven from "@/assets/images/religions/coexistence/indailylife/safe-haven.webp";
+import coexistenceSharedCelebrations from "@/assets/images/religions/coexistence/indailylife/shared-celebrations.webp";
+import coexistenceLivingSideBySide from "@/assets/images/religions/coexistence/indailylife/living-side-by-side.webp";
+import coexistenceHospitality from "@/assets/images/religions/coexistence/indailylife/hospitality.webp";
 import rightsCover from "@/assets/images/religions/rights/cover.webp";
 import rightsLaws from "@/assets/images/religions/rights/laws.webp";
 import rightsYear2014 from "@/assets/images/religions/rights/opened-doors-2014.jpg";
@@ -70,7 +74,7 @@ import Qg from "@/assets/images/religions/nations/assyrian/patriah.webp";
 import qS from "@/assets/images/religions/sabean/kurditan.webp";
 import r2 from "@/assets/images/religions/kurds/cities.webp";
 import RS from "@/assets/images/religions/bahai/card-cover.webp";
-import Rt from "@/assets/images/religions/sharedlife/cover.webp";
+import Rt from "@/assets/images/religions/sharedlife/cover.jpg";
 import S2 from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
 import seatImg from "@/assets/images/religions/nations/assyrian/seat.webp";
 import T2 from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
@@ -79,7 +83,7 @@ import Ug from "@/assets/images/religions/yazidi/resilience.jpg";
 import uo from "@/assets/images/faiths.jpg";
 import US from "@/assets/images/religions/judaism/kurdish-jews.webp";
 import vo from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
-import vS from "@/assets/images/religions/eid.jpg";
+import vS from "@/assets/images/religions/islam/eid.webp";
 import vu from "@/assets/images/new/religions/nations/assyrian.webp";
 import Wg from "@/assets/images/religions/nations/turkmen/education.webp";
 import wo from "@/assets/mainImages/letter.webp";
@@ -97,7 +101,7 @@ import defenders from "@/assets/images/religions/defenders.jpg";
 import xS from "@/assets/images/religions/main.webp";
 import xu from "@/assets/images/religions/mosques.jpg";
 import Yg from "@/assets/images/religions/rights/images.webp";
-import Yn from "@/assets/images/castle.webp";
+import Yn from "@/assets/images/religions/bg.jpg";
 import yo from "@/assets/images/new/religions/nations/armenian.webp";
 import yS from "@/assets/images/religions/islam/ministry.webp";
 import YS from "@/assets/images/religions/bahai/free.webp";
@@ -210,6 +214,10 @@ export const threadsAssets = {
   coexistenceRespect,
   coexistenceHumanity,
   coexistenceLivingIdentity,
+  coexistenceSafeHaven,
+  coexistenceSharedCelebrations,
+  coexistenceLivingSideBySide,
+  coexistenceHospitality,
   rightsCover,
   rightsLaws,
   rightsYear2014,

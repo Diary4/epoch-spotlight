@@ -12,6 +12,9 @@ import { threadsAssets } from "./threadsAssets";
 
 type StoryTuple = [string, string, string, string];
 
+/** Landscape photos that should letterbox whole inside the portrait card. */
+const FULL_FRAME_STORY_IDS = new Set(["eid"]);
+
 function buildStories(lang: ThreadsLang, tuples: StoryTuple[]): Story[] {
   return tuples.map(([id, title, body, image]) => {
     const context = N2[lang][id as keyof (typeof N2)["en"]];
@@ -22,6 +25,7 @@ function buildStories(lang: ThreadsLang, tuples: StoryTuple[]): Story[] {
       context: context?.context ?? "",
       significance: context?.significance ?? "",
       image,
+      imageFit: FULL_FRAME_STORY_IDS.has(id) ? "contain" : undefined,
       detailCards: resolveDetailCards(lang, id),
     };
   });

@@ -17,7 +17,7 @@ import {
   usePreloadImages,
 } from "@/components/Sections/religions/tabTransitions";
 
-import sharedHero from "@/assets/images/religions/sharedlife/cover.webp";
+import sharedHero from "@/assets/images/religions/sharedlife/cover.jpg";
 import mosquesImg from "@/assets/images/religions/sharedlife/mosques.webp";
 import churchesImg from "@/assets/images/religions/sharedlife/churches.webp";
 import lalishImg from "@/assets/images/religions/sharedlife/lalish.webp";

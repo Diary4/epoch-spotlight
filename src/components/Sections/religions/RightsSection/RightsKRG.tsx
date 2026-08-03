@@ -35,6 +35,8 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
         icon: Building2,
         accent: "#7a4a12",
         image: renamedToServeAllImg,
+        imageFit: "contain",
+        imagePosition: "center bottom",
       },
       {
         id: "education",
@@ -80,6 +82,8 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
         icon: Building2,
         accent: "#7a4a12",
         image: renamedToServeAllImg,
+        imageFit: "contain",
+        imagePosition: "center bottom",
       },
       {
         id: "education",
@@ -125,6 +129,8 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
         icon: Building2,
         accent: "#7a4a12",
         image: renamedToServeAllImg,
+        imageFit: "contain",
+        imagePosition: "center bottom",
       },
       {
         id: "education",

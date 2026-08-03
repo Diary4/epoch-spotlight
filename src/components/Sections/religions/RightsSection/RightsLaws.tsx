@@ -40,7 +40,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
       {
         id: "directorate",
         eyebrow: "Directorate of Coexistence",
-        title: "Established 2017",
+        title: "Directorate of Coexistence",
         body:
           "Established by the Ministry of Endowments and Religious Affairs to deepen relationships among all religious and ethnic groups in the Kurdistan Region.",
         icon: HeartHandshake,

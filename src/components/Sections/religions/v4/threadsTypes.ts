@@ -34,6 +34,8 @@ export type DetailCard = {
   body: string;
   image: string;
   imagePosition?: string;
+  /** `contain` letterboxes the photo whole instead of cropping it. */
+  imageFit?: "cover" | "contain";
 };
 
 export type Story = {

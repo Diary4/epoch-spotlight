@@ -9,13 +9,20 @@ import { ChevronDown, Quote } from "lucide-react";
 import TextType from "@/components/TextType";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
+import BcfParallaxPlate from "@/components/Sections/bcf/BcfParallaxPlate";
 import {
   bcfCopy,
   type BcfLang,
-  type StorySectionId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import { BCF_EASE, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
+import {
+  BCF_EASE,
+  LOCO_LERP,
+  LOCO_SETTLE,
+  bcfRise,
+  bcfStagger,
+  lerp,
+} from "@/components/Sections/bcf/bcfMotion";
 import { bcfCorridor, bcfErbil } from "@/components/Sections/bcf/bcfAssets";
 import storyThumb from "@/assets/images/religions/kurds/cover.webp";
 // Placeholders until the official presidential photography arrives.
@@ -30,14 +37,23 @@ type BcfStoryProps = {
 
 const PANE_HEIGHT = 1920;
 
-/**
- * Most chapters are one screen of scroll. Values is a long read — a title, six
- * values and three portraits — so it is given extra scroll length, and the
- * column inside it travels with the surplus instead of cross-fading.
- */
-const SECTION_PANES: Partial<Record<StorySectionId, number>> = { values: 3 };
+/** Room for the smoothing to settle once the column has run out of travel. */
+const VALUES_TAIL = 260;
 
 const PRESIDENT_PLATES = [presidentA, presidentB, presidentC];
+
+/**
+ * `data-scroll-speed` per portrait. All three drift with the scroll rather than
+ * against it; it is the difference between them that reads as depth, and
+ * keeping the gaps small enough means the plates never close on each other.
+ */
+const PLATE_SPEEDS = [2, 1, 2.5];
+
+const PLATE_LAYOUT = [
+  { frame: "w-full", height: "h-[660px]" },
+  { frame: "w-[74%] ms-auto", height: "h-[540px]" },
+  { frame: "w-[74%]", height: "h-[580px]" },
+];
 
 function chapterLabel(index: number) {
   return String(index + 1).padStart(2, "0");
@@ -53,29 +69,41 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const tickingRef = React.useRef(false);
 
-  /** Pane count and cumulative start pane for every section. */
-  const { panes, starts, totalPanes } = React.useMemo(() => {
-    const p = sections.map((s) => SECTION_PANES[s.id] ?? 1);
-    const st: number[] = [];
-    let running = 0;
-    for (const count of p) {
-      st.push(running);
-      running += count;
-    }
-    return { panes: p, starts: st, totalPanes: running };
-  }, [sections]);
+  const valuesIndex = React.useMemo(
+    () => sections.findIndex((section) => section.id === "values"),
+    [sections],
+  );
 
   /**
-   * Values-column travel, kept off React state: it changes every frame while
-   * the visitor scrolls, and re-rendering the whole scene at 60fps would undo
-   * the smoothness the long column is there to provide.
+   * Column travel, in px. Every other chapter is one screen; values is a long
+   * read — a title, six values and the presidency plates — so it buys exactly
+   * as much scroll as its column overflows by, and travels through it.
    */
-  const valuesProgress = useMotionValue(0);
-  const valuesTravelRef = React.useRef(0);
-  const valuesY = useTransform(
-    valuesProgress,
-    (p) => -p * valuesTravelRef.current,
-  );
+  const [valuesTravel, setValuesTravel] = React.useState(0);
+
+  /** Section start offsets in px, so the scroll maps 1:1 onto the travel. */
+  const { starts, totalHeight } = React.useMemo(() => {
+    const st: number[] = [];
+    let running = 0;
+    sections.forEach((section, index) => {
+      st.push(running);
+      running +=
+        index === valuesIndex
+          ? Math.max(PANE_HEIGHT, valuesTravel + VALUES_TAIL)
+          : PANE_HEIGHT;
+    });
+    return { starts: st, totalHeight: running };
+  }, [sections, valuesIndex, valuesTravel]);
+
+  /**
+   * Locomotive keeps two positions: the raw one the input has reached, and the
+   * one on screen, which lerps toward it every frame. Both are kept off React
+   * state — re-rendering the scene at 60fps would undo the smoothness the
+   * whole arrangement exists to provide.
+   */
+  const targetRef = React.useRef(0);
+  const smooth = useMotionValue(0);
+  const valuesY = useTransform(smooth, (value) => -value);
   const [valuesStarted, setValuesStarted] = React.useState(false);
 
   const handleScroll = React.useCallback(() => {
@@ -87,19 +115,43 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
         const top = el.scrollTop;
         let next = 0;
         for (let i = 0; i < starts.length; i += 1) {
-          if (top >= starts[i] * PANE_HEIGHT) next = i;
+          if (top >= starts[i]) next = i;
         }
         setActiveIndex((prev) => (prev === next ? prev : next));
 
-        const local = top - starts[next] * PANE_HEIGHT;
-        const range = (panes[next] - 1) * PANE_HEIGHT;
-        const p = range > 0 ? Math.min(1, Math.max(0, local / range)) : 0;
-        valuesProgress.set(p);
-        setValuesStarted(p > 0.02);
+        const local = top - starts[valuesIndex];
+        targetRef.current = Math.min(valuesTravel, Math.max(0, local));
+        setValuesStarted(targetRef.current > 40);
       }
       tickingRef.current = false;
     });
-  }, [panes, starts, valuesProgress]);
+  }, [starts, valuesIndex, valuesTravel]);
+
+  const active = sections[activeIndex];
+  const isFoundation = activeIndex === 0;
+  const isValues = active.id === "values";
+  const label = chapterLabel(activeIndex);
+  const showCorridor = activeIndex > 0;
+
+  /** The lerp itself: one frame of Locomotive, for as long as the chapter is up. */
+  React.useEffect(() => {
+    if (!isValues) return;
+    let frame = 0;
+    const step = () => {
+      const current = smooth.get();
+      const target = targetRef.current;
+      if (current !== target) {
+        const next =
+          Math.abs(target - current) < LOCO_SETTLE
+            ? target
+            : lerp(current, target, LOCO_LERP);
+        smooth.set(next);
+      }
+      frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [isValues, smooth]);
 
   /** Measure the column so the travel is exact in every language. */
   const columnRef = React.useRef<HTMLDivElement | null>(null);
@@ -107,19 +159,14 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
     const node = columnRef.current;
     if (!node) return;
     const measure = () => {
-      valuesTravelRef.current = Math.max(0, node.scrollHeight - PANE_HEIGHT);
+      const travel = Math.max(0, node.scrollHeight - PANE_HEIGHT);
+      setValuesTravel((prev) => (prev === travel ? prev : travel));
     };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(node);
     return () => observer.disconnect();
-  }, [lang, activeIndex]);
-
-  const active = sections[activeIndex];
-  const isFoundation = activeIndex === 0;
-  const isValues = active.id === "values";
-  const label = chapterLabel(activeIndex);
-  const showCorridor = activeIndex > 0;
+  }, [lang, isValues]);
 
   return (
     <BcfShell showLogo={false} overlayClassName="bg-black/0">
