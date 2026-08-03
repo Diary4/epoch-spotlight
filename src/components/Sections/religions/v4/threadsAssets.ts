@@ -20,6 +20,9 @@ import timelineSharedFuture from "@/assets/images/religions/coexistence/livingti
 import rightsCover from "@/assets/images/religions/rights/cover.webp";
 import rightsLaws from "@/assets/images/religions/rights/laws.webp";
 import rightsYear2014 from "@/assets/images/religions/rights/opened-doors-2014.jpg";
+import rights2014Genocide from "@/assets/images/religions/rights/2014/genocide.webp";
+import rights2014Refuge from "@/assets/images/religions/rights/2014/refuge.webp";
+import rights2014Sheltered from "@/assets/images/religions/rights/2014/sheltered.webp";
 import lawsEquality from "@/assets/images/religions/rights/laws/equality.jpg";
 import lawsLanguages from "@/assets/images/religions/rights/laws/languages.jpg";
 import lawsCoexistenceDirectorate from "@/assets/images/religions/rights/laws/coexistence-directorate.jpg";
@@ -231,4 +234,7 @@ export const threadsAssets = {
   rightsCover,
   rightsLaws,
   rightsYear2014,
+  rights2014Genocide,
+  rights2014Refuge,
+  rights2014Sheltered,
 } as const;

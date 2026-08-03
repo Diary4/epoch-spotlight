@@ -141,10 +141,10 @@ const lawsImages = [
   threadsAssets.lawsCoexistenceDirectorate,
 ];
 const sanctuaryImages = [
-  threadsAssets.rightsYear2014,
-  threadsAssets.Qg,
+  threadsAssets.rights2014Genocide,
+  threadsAssets.rights2014Refuge,
   threadsAssets.defenders,
-  threadsAssets.Yn,
+  threadsAssets.rights2014Sheltered,
 ];
 
 export function resolveDetailCards(
