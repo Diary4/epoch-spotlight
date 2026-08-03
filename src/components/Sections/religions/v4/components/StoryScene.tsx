@@ -65,11 +65,18 @@ export default function StoryScene({
           exit={{ opacity: 0, x: -52, scale: 0.985 }}
           transition={SCENE_TRANSITION}
         >
-          <div className="tok-detail-card__visual">
+          <div
+            className={`tok-detail-card__visual${
+              card.imageFit === "contain" ? " tok-detail-card__visual--contain" : ""
+            }`}
+          >
             <img
               src={card.image}
               alt={card.title}
-              style={{ objectPosition: card.imagePosition ?? "center" }}
+              style={{
+                objectFit: card.imageFit ?? "cover",
+                objectPosition: card.imagePosition ?? "center",
+              }}
             />
             <span className="tok-detail-card__shade" aria-hidden="true" />
           </div>

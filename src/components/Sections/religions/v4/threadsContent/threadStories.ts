@@ -136,7 +136,7 @@ export const coexistenceStories = {
         "coexistence-timeline",
         "A Living Timeline",
         "From ancient diversity to recognition, protection, and a shared future.",
-        threadsAssets.Ei,
+        threadsAssets.coexistenceLivingTimeline,
       ],
     ],
     ku: [
@@ -162,7 +162,7 @@ export const coexistenceStories = {
         "coexistence-timeline",
         "هێڵی کاتێکی زیندوو",
         "لە جۆراوجۆریی کۆنەوە بۆ دانپێدانان، پاراستن و داهاتووی هاوبەش.",
-        threadsAssets.Ei,
+        threadsAssets.coexistenceLivingTimeline,
       ],
     ],
     ar: [
@@ -188,7 +188,7 @@ export const coexistenceStories = {
         "coexistence-timeline",
         "خط زمني حي",
         "من التنوع القديم إلى الاعتراف والحماية والمستقبل المشترك.",
-        threadsAssets.Ei,
+        threadsAssets.coexistenceLivingTimeline,
       ],
     ],
   };

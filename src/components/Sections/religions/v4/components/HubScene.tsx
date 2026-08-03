@@ -24,7 +24,6 @@ type HubSceneProps = {
   chapters: Record<ThreadId, Chapter>;
   hubBackground: string;
   copy: {
-    hubEyebrow: string;
     hubTitle: string;
     hubBody: string;
     hubQuote: string;
@@ -78,7 +77,6 @@ export default function HubScene({
       <div className="tok-hub__wash" />
       <div className="tok-hub__grain" />
       <header className="tok-hub__header">
-        <p className="tok-eyebrow">{copy.hubEyebrow}</p>
         <Rule />
         <h1 id="tok-hub-title">{copy.hubTitle}</h1>
         <p className="tok-hub__body">{copy.hubBody}</p>

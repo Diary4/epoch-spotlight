@@ -8,7 +8,6 @@ export const threadsCopy = {
       enterHint: "Follow the living threads",
       chooseLanguage: "Choose your language",
       chooseLanguageHint: "Your choice stays with you throughout the journey.",
-      hubEyebrow: "Five living threads · one shared story",
       hubTitle: "A land where many peoples share one home",
       hubBody:
         "This journey invites you into Kurdistan's story of coexistence — through faiths, nations, courageous leadership, shared life, and the rights that protect belonging.",
@@ -49,7 +48,6 @@ export const threadsCopy = {
       enterHint: "بەدوای تەنە زیندووەکاندا بڕۆ",
       chooseLanguage: "زمانەکەت هەڵبژێرە",
       chooseLanguageHint: "هەڵبژاردنەکەت لە تەواوی گەشتەکەدا دەمێنێتەوە.",
-      hubEyebrow: "پێنج تەنە زیندوو · یەک چیرۆکی هاوبەش",
       hubTitle: "وڵاتێک کە گەلانی زۆر یەک ماڵی هاوبەشە",
       hubBody:
         "ئەم گەشتە بانگهێشتی چیرۆکی پێکەوەژیانی کوردستان دەکات — لە ڕێگەی ئایین، نەتەوە، ڕێبەرایەتیی ئازا، ژیانی هاوبەش و ئەو مافانەی سەربەخۆیی دەپارێزن.",
@@ -91,7 +89,6 @@ export const threadsCopy = {
       enterHint: "اتبع الخيوط الحية",
       chooseLanguage: "اختر لغتك",
       chooseLanguageHint: "سيبقى اختيارك معك طوال الرحلة.",
-      hubEyebrow: "خمسة خيوط حية · قصة واحدة مشتركة",
       hubTitle: "أرض يشترك فيها كثير من الشعوب في وطن واحد",
       hubBody:
         "هذه الرحلة تدعوك إلى قصة التعايش في كوردستان — عبر الأديان والقوميات والقيادة الشجاعة والحياة المشتركة والحقوق التي تحفظ الانتماء.",

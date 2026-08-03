@@ -135,7 +135,12 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
   /** The lerp itself: one frame of Locomotive, for as long as the chapter is up. */
   React.useEffect(() => {
-    if (!isValues) return;
+    // Leaving the chapter snaps the smoothed position, so coming back to it
+    // does not replay the glide the visitor already scrolled through.
+    if (!isValues) {
+      smooth.set(targetRef.current);
+      return;
+    }
     let frame = 0;
     const step = () => {
       const current = smooth.get();
@@ -257,47 +262,68 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     </p>
 
                     {c.storyValues.map((value, index) => (
-                      <React.Fragment key={value.id}>
-                        <div className="mt-16 border-t border-white/12 pt-10">
-                          <span
-                            dir="ltr"
-                            className="text-[28px] font-semibold tabular-nums"
-                            style={{ color: `${BCF.gold}b3` }}
-                          >
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-                          <h3
-                            className="mt-4 text-[52px] font-semibold leading-tight"
-                            style={{ color: BCF.gold }}
-                          >
-                            {value.title}
-                          </h3>
-                          <p className="mt-5 text-[34px] leading-relaxed text-white/82">
-                            {value.body}
-                          </p>
-                        </div>
+                      <div
+                        key={value.id}
+                        className="mt-16 border-t border-white/12 pt-10"
+                      >
+                        <span
+                          dir="ltr"
+                          className="text-[28px] font-semibold tabular-nums"
+                          style={{ color: `${BCF.gold}b3` }}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <h3
+                          className="mt-4 text-[52px] font-semibold leading-tight"
+                          style={{ color: BCF.gold }}
+                        >
+                          {value.title}
+                        </h3>
+                        <p className="mt-5 text-[34px] leading-relaxed text-white/82">
+                          {value.body}
+                        </p>
+                      </div>
+                    ))}
 
-                        {/* A portrait after every second value, the way the
-                            chapter breathes between blocks of reading. */}
-                        {index % 2 === 1 ? (
-                          <figure className="mt-16">
+                    {/* Presidency showcase. It follows the six values rather
+                        than breaking them up, so the reading finishes before
+                        the leadership behind it is shown. Each plate carries
+                        its own scroll speed and drifts against the column. */}
+                    <div className="mt-[200px]">
+                      <span
+                        className="block h-px w-[420px] max-w-full rtl:scale-x-[-1]"
+                        style={{
+                          background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+                        }}
+                      />
+
+                      {PRESIDENT_PLATES.map((plate, index) => (
+                        <BcfParallaxPlate
+                          key={c.storyValuesCaptions[index] ?? index}
+                          scroll={smooth}
+                          containerRef={columnRef}
+                          viewport={PANE_HEIGHT}
+                          speed={PLATE_SPEEDS[index]}
+                          className={`mt-[180px] ${PLATE_LAYOUT[index].frame}`}
+                        >
+                          <figure>
                             <div className="overflow-hidden rounded-[32px] border border-[#fbc158]/25">
                               <img
-                                src={PRESIDENT_PLATES[(index - 1) / 2]}
+                                src={plate}
                                 alt=""
                                 decoding="async"
-                                className="h-[620px] w-full object-cover"
+                                className={`w-full object-cover ${PLATE_LAYOUT[index].height}`}
                               />
                             </div>
                             <figcaption className="mt-5 text-[26px] leading-snug text-white/55">
-                              {c.storyValuesCaptions[(index - 1) / 2]}
+                              {c.storyValuesCaptions[index]}
                             </figcaption>
                           </figure>
-                        ) : null}
-                      </React.Fragment>
-                    ))}
+                        </BcfParallaxPlate>
+                      ))}
+                    </div>
 
-                    <blockquote className="mt-20 flex flex-col items-start gap-6">
+                    <blockquote className="mt-[220px] flex flex-col items-start gap-6">
                       <Quote
                         className="h-14 w-14 rtl:scale-x-[-1]"
                         style={{ color: `${BCF.gold}80` }}
@@ -458,7 +484,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           className="absolute inset-0 z-40 overflow-y-auto overscroll-contain opacity-0"
           style={{ WebkitOverflowScrolling: "touch" }}
         >
-          <div style={{ height: totalPanes * PANE_HEIGHT }} />
+          <div style={{ height: totalHeight }} />
         </div>
       </div>
     </BcfShell>

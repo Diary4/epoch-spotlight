@@ -13,6 +13,10 @@ import coexistenceSafeHaven from "@/assets/images/religions/coexistence/indailyl
 import coexistenceSharedCelebrations from "@/assets/images/religions/coexistence/indailylife/shared-celebrations.webp";
 import coexistenceLivingSideBySide from "@/assets/images/religions/coexistence/indailylife/living-side-by-side.webp";
 import coexistenceHospitality from "@/assets/images/religions/coexistence/indailylife/hospitality.webp";
+import coexistenceLivingTimeline from "@/assets/images/religions/coexistence/living-timeline.webp";
+import timelineLivedLegacy from "@/assets/images/religions/coexistence/livingtimeline/lived-legacy.webp";
+import timelineRecognition from "@/assets/images/religions/coexistence/livingtimeline/recognition.webp";
+import timelineSharedFuture from "@/assets/images/religions/coexistence/livingtimeline/shared-future.webp";
 import rightsCover from "@/assets/images/religions/rights/cover.webp";
 import rightsLaws from "@/assets/images/religions/rights/laws.webp";
 import rightsYear2014 from "@/assets/images/religions/rights/opened-doors-2014.jpg";
@@ -40,6 +44,7 @@ import dt from "@/assets/images/religions/coexistence/coexistence.webp";
 import Ei from "@/assets/images/religions/history/history.webp";
 import fo from "@/assets/images/religions/yazidi/lalish.webp";
 import Gg from "@/assets/images/religions/nations/aremnian/community.webp";
+import armenianParliament from "@/assets/images/religions/nations/aremnian/parliament.webp";
 import go from "@/assets/images/religions/nations/cover.webp";
 import gS from "@/assets/images/religions/islam/sufism.jpg";
 import GS from "@/assets/images/religions/bahai/kurdistan.webp";
@@ -119,6 +124,7 @@ export const threadsAssets = {
   Ei: Ei,
   GS: GS,
   Gg: Gg,
+  armenianParliament,
   HS: HS,
   Hg: Hg,
   IS: IS,
@@ -218,6 +224,10 @@ export const threadsAssets = {
   coexistenceSharedCelebrations,
   coexistenceLivingSideBySide,
   coexistenceHospitality,
+  coexistenceLivingTimeline,
+  timelineLivedLegacy,
+  timelineRecognition,
+  timelineSharedFuture,
   rightsCover,
   rightsLaws,
   rightsYear2014,

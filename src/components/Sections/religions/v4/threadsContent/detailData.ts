@@ -1859,19 +1859,21 @@ export const M2 = {
         id: "lived-legacy",
         title: "A Lived Legacy",
         body: "Communities of different religions and ethnicities lived, worked, traded, and celebrated side by side.",
-        image: threadsAssets.closing,
+        image: threadsAssets.timelineLivedLegacy,
       },
       {
         id: "recognition",
         title: "Recognition and Rights",
         body: "From the 1990s onward, institutions increasingly recognized communities, languages, holidays, and representation in law.",
-        image: threadsAssets.Ot,
+        image: threadsAssets.timelineRecognition,
       },
       {
         id: "shared-future",
         title: "A Shared Future",
         body: "Today coexistence is carried forward through protection, dialogue, equal dignity, and a common responsibility for Kurdistan.",
-        image: threadsAssets.Rt,
+        image: threadsAssets.timelineSharedFuture,
+        imagePosition: "32% center",
+        imageFit: "contain",
       },
     ],
     ku: [
@@ -1885,19 +1887,21 @@ export const M2 = {
         id: "lived-legacy",
         title: "میراتێکی زیندوو",
         body: "کۆمەڵگە ئایینی و نەتەوەییە جیاوازەکان پێکەوە ژیاون، کاریان کردووە، بازرگانی و جەژنیان کردووە.",
-        image: threadsAssets.closing,
+        image: threadsAssets.timelineLivedLegacy,
       },
       {
         id: "recognition",
         title: "دانپێدانان و ماف",
         body: "لە دەیەی ١٩٩٠ەکانەوە، دامەزراوەکان زیاتر دان بە کۆمەڵگە، زمان، پشوو و نوێنەرایەتی لە یاسادا دەنێن.",
-        image: threadsAssets.Ot,
+        image: threadsAssets.timelineRecognition,
       },
       {
         id: "shared-future",
         title: "داهاتووی هاوبەش",
         body: "ئەمڕۆ پێکەوەژیان بە پاراستن، گفتوگۆ، کەرامەتی یەکسان و بەرپرسیارێتیی هاوبەش بۆ کوردستان بەردەوام دەبێت.",
-        image: threadsAssets.Rt,
+        image: threadsAssets.timelineSharedFuture,
+        imagePosition: "32% center",
+        imageFit: "contain",
       },
     ],
     ar: [
@@ -1911,19 +1915,21 @@ export const M2 = {
         id: "lived-legacy",
         title: "إرث حي",
         body: "عاشت المجتمعات الدينية والقومية المختلفة وعملت وتاجرت واحتفلت جنباً إلى جنب.",
-        image: threadsAssets.closing,
+        image: threadsAssets.timelineLivedLegacy,
       },
       {
         id: "recognition",
         title: "الاعتراف والحقوق",
         body: "منذ تسعينيات القرن الماضي، ازداد الاعتراف المؤسسي بالمجتمعات واللغات والأعياد والتمثيل في القانون.",
-        image: threadsAssets.Ot,
+        image: threadsAssets.timelineRecognition,
       },
       {
         id: "shared-future",
         title: "مستقبل مشترك",
         body: "يستمر التعايش اليوم عبر الحماية والحوار والكرامة المتساوية والمسؤولية المشتركة تجاه كوردستان.",
-        image: threadsAssets.Rt,
+        image: threadsAssets.timelineSharedFuture,
+        imagePosition: "32% center",
+        imageFit: "contain",
       },
     ],
   };
@@ -1965,7 +1971,7 @@ export const u2 = { parliament: threadsAssets.Kg, language: threadsAssets.a2, cu
 
 export const h2 = { language: threadsAssets.co, ankawa: threadsAssets.d2, patriarch: threadsAssets.f2, parliament: threadsAssets.dollar_g };
 
-export const g2 = { history: threadsAssets.yo, churches: threadsAssets.m2, community: threadsAssets.Gg, parliament: threadsAssets.Ot };
+export const g2 = { history: threadsAssets.yo, churches: threadsAssets.m2, community: threadsAssets.Gg, parliament: threadsAssets.armenianParliament };
 
 export const E2 = {
     "abdul-salam-barzani": threadsAssets.S2,

@@ -101,7 +101,14 @@ function mapTimeline(
   lang: ThreadsLang,
   items: Record<
     ThreadsLang,
-    Array<{ id: string; title: string; body: string; image: string }>
+    Array<{
+      id: string;
+      title: string;
+      body: string;
+      image: string;
+      imagePosition?: string;
+      imageFit?: "cover" | "contain";
+    }>
   >,
 ): DetailCard[] {
   return items[lang].map((item, index) => ({
@@ -110,6 +117,8 @@ function mapTimeline(
     title: item.title,
     body: item.body,
     image: item.image,
+    imagePosition: item.imagePosition,
+    imageFit: item.imageFit,
   }));
 }
 

@@ -430,60 +430,39 @@
   color: var(--tok-copper-bright);
 }
 .tok-hub {
-  background: #f2ece0;
+  background: #1a1612;
 }
-/* The castle reads as a watermark behind the header and dissolves before the
-   constellation starts, so the cards sit on clean paper. */
-/* Framed so the citadel wall — not the plaza in front of it — carries the top
-   of the page, then dissolved before the lower cards. */
+/* Full-bleed stone chamber — no dissolve/mask into the page. */
 .tok-hub__background {
   display: block;
-  right: auto;
-  left: -42%;
-  width: 148%;
+  inset: 0;
+  width: 100%;
   max-width: none;
-  height: 66%;
-  opacity: 0.64;
-  filter: saturate(0.55) contrast(1) brightness(1.04);
-  -o-object-position: center 32%;
-  object-position: center 32%;
-  -webkit-mask-image: linear-gradient(
-    180deg,
-    #000 0%,
-    #000 62%,
-    #00000066 84%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    180deg,
-    #000 0%,
-    #000 62%,
-    #00000066 84%,
-    transparent 100%
-  );
+  height: 100%;
+  opacity: 1;
+  filter: saturate(0.78) contrast(1.04) brightness(0.88);
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .tok-hub__wash {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at 50% 26%,
-      rgba(246, 241, 230, 0.02),
-      rgba(244, 238, 227, 0.14) 46%,
-      #f2ece0b3 76%,
-      #f2ece0 100%
-    ),
-    linear-gradient(
-      180deg,
-      #f6f1e640 0%,
-      #f2ece066 42%,
-      #f0e9dbdb 76%,
-      #f0e9db 100%
-    );
+  /* Soft readability scrim only — does not fade the photo away. */
+  background: linear-gradient(
+    180deg,
+    rgba(18, 14, 10, 0.42) 0%,
+    rgba(18, 14, 10, 0.18) 22%,
+    rgba(18, 14, 10, 0.12) 55%,
+    rgba(18, 14, 10, 0.35) 100%
+  );
 }
 .tok-hub__grain {
-  opacity: 0.045;
-  mix-blend-mode: multiply;
+  opacity: 0.04;
+  mix-blend-mode: soft-light;
 }
 .tok-hub__header {
   position: absolute;
@@ -496,6 +475,8 @@
   font-size: 16px;
   font-weight: 620;
   letter-spacing: 0.3em;
+  color: #e0c48a;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 .tok-experience--ku .tok-hub .tok-eyebrow,
 .tok-experience--ar .tok-hub .tok-eyebrow {
@@ -531,29 +512,32 @@
 .tok-hub__header h1 {
   max-width: 1000px;
   margin: 26px auto 0;
-  color: #23201a;
+  color: #f6f0e4;
   font-family: var(--tok-serif);
   font-size: 54px;
   font-weight: 500;
   letter-spacing: 0.012em;
   line-height: 1.06;
   text-transform: uppercase;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
 }
 .tok-hub__body {
   max-width: 640px;
   margin: 30px auto 0;
-  color: #5a4e40;
+  color: #e8dfcf;
   font-size: 19px;
   line-height: 1.62;
   text-wrap: balance;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
 }
 .tok-hub blockquote {
   margin: 32px auto 0;
-  color: #8a6733;
+  color: #e0c48a;
   font-family: var(--tok-serif);
   font-size: 27px;
   font-style: italic;
   font-weight: 500;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
 }
 .tok-experience--ku .tok-hub__header h1,
 .tok-experience--ar .tok-hub__header h1 {
@@ -687,6 +671,13 @@
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.3s ease;
 }
+/* Shared Life cover is a group portrait — keep every person in the frame. */
+.tok-thread-portal--sharedLife .tok-thread-portal__image img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center 46%;
+  object-position: center 46%;
+}
 .tok-thread-portal:active .tok-thread-portal__image img {
   transform: scale(1.045);
   filter: saturate(1) contrast(1.02);
@@ -781,25 +772,28 @@
 .tok-hub__instruction svg {
   width: 34px;
   height: 34px;
-  color: #4a4034;
+  color: #e0c48a;
   stroke-width: 1.4;
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.45));
 }
 .tok-hub__instruction p {
   margin: 0;
-  color: #2c261d;
+  color: #f3ebe0;
   font-size: 15px;
   font-weight: 620;
   letter-spacing: 0.24em;
   line-height: 1;
   text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 .tok-hub__instruction span {
-  color: #a67c3a;
+  color: #e0c48a;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.2em;
   line-height: 1;
   text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 .tok-experience--ku .tok-hub__instruction p,
 .tok-experience--ar .tok-hub__instruction p {
@@ -1239,6 +1233,9 @@
   height: 720px;
   overflow: hidden;
   background: #181b17;
+}
+.tok-detail-card__visual--contain {
+  background: #12140f;
 }
 .tok-detail-card__visual img {
   width: 100%;
