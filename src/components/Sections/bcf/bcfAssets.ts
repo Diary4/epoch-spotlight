@@ -2,6 +2,16 @@
  * Central placeholder assets for the BCF VIP experience.
  * Swap these imports when final VIP photography / logo assets arrive.
  */
+
+/**
+ * The official lockup: the seal over the wordmark, on transparency.
+ *
+ * Derived from `logo.png`, which is a 15871×25759 print original — 12 MB, and
+ * enough pixels to stall the kiosk on decode. This is the same artwork at
+ * 986×1600, which still clears 2× on the 4K portrait panel at every size the
+ * experience draws it.
+ */
+export { default as bcfLogo } from "@/assets/images/bcf/logo.webp";
 export { default as bcfLangBg } from "@/assets/images/religions/kurds/cover.webp";
 export { default as bcfIntroBg } from "@/assets/images/PrimeMinistir/service.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";

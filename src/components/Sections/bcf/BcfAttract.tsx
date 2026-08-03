@@ -23,6 +23,7 @@ import {
 } from "@/components/Sections/bcf/bcfMotion";
 import {
   bcfAttractPoster,
+  bcfLogo,
   bcfSunrise,
 } from "@/components/Sections/bcf/bcfAssets";
 
@@ -91,24 +92,18 @@ const EMBERS = [
 
 function BcfMonogram() {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div
-        className="grid h-[128px] w-[128px] place-items-center rounded-full border-2 text-[32px] font-semibold tracking-[0.12em]"
-        style={{
-          borderColor: BCF.gold,
-          color: BCF.gold,
-          boxShadow: `0 0 60px ${BCF.gold}33, inset 0 0 40px ${BCF.gold}14`,
-        }}
-      >
-        BCF
-      </div>
-      <span
-        className="font-display-num text-[44px] font-bold leading-none tracking-[0.1em]"
-        style={{ color: BCF.red }}
-      >
-        BCF
-      </span>
-    </div>
+    <img
+      src={bcfLogo}
+      alt="Barzani Charity Foundation"
+      decoding="async"
+      fetchPriority="high"
+      className="h-[300px] w-auto"
+      // The seal carries its own ring, so the gold that used to be a border
+      // becomes the glow behind it — the halo stays, the placeholder goes.
+      style={{
+        filter: `drop-shadow(0 0 60px ${BCF.gold}44) drop-shadow(0 12px 30px rgba(0,0,0,0.5))`,
+      }}
+    />
   );
 }
 

@@ -12,8 +12,17 @@ import { threadsAssets } from "./threadsAssets";
 
 type StoryTuple = [string, string, string, string];
 
-/** Landscape photos that should letterbox whole inside the portrait card. */
-const FULL_FRAME_STORY_IDS = new Set(["eid"]);
+/** Photos that should letterbox whole inside the portrait card (blurred fill). */
+const FULL_FRAME_STORY_IDS = new Set<string>([
+  // Portrait group spans the full width — avoid cropping left/right figures.
+  "coexistence-stories",
+]);
+
+/** Per-story object-position so key subjects stay inside the portrait crop. */
+const STORY_IMAGE_POSITIONS: Record<string, string> = {
+  // Landscape group — bias left so the full handshake party stays in frame.
+  eid: "28% center",
+};
 
 function buildStories(lang: ThreadsLang, tuples: StoryTuple[]): Story[] {
   return tuples.map(([id, title, body, image]) => {
@@ -26,6 +35,7 @@ function buildStories(lang: ThreadsLang, tuples: StoryTuple[]): Story[] {
       significance: context?.significance ?? "",
       image,
       imageFit: FULL_FRAME_STORY_IDS.has(id) ? "contain" : undefined,
+      imagePosition: STORY_IMAGE_POSITIONS[id],
       detailCards: resolveDetailCards(lang, id),
     };
   });

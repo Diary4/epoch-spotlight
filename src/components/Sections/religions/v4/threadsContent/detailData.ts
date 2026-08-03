@@ -1779,6 +1779,7 @@ export const L2 = {
         title: "Shared Celebrations",
         body: "Religious feasts and public holidays bring neighbors together through visits, meals, greetings, and acts of solidarity.",
         image: threadsAssets.coexistenceSharedCelebrations,
+        imagePosition: "center 18%",
       },
       {
         id: "side-by-side",
@@ -1791,6 +1792,7 @@ export const L2 = {
         title: "Hospitality With Heart",
         body: "Open doors, shared food, and care for guests turn hospitality into a public language of dignity and belonging.",
         image: threadsAssets.coexistenceHospitality,
+        imagePosition: "center 22%",
       },
     ],
     ku: [
@@ -1805,6 +1807,7 @@ export const L2 = {
         title: "جەژنە هاوبەشەکان",
         body: "جەژنە ئایینی و پشووە فەرمییەکان بە سەردان، خوان، پیرۆزبایی و کردەوەی هاوپشتی دراوسێکان کۆدەکەنەوە.",
         image: threadsAssets.coexistenceSharedCelebrations,
+        imagePosition: "center 18%",
       },
       {
         id: "side-by-side",
@@ -1817,6 +1820,7 @@ export const L2 = {
         title: "میواندۆستی لە دڵەوە",
         body: "دەرگای کراوە، خواردنی هاوبەش و خەمخۆریی میوان، میواندۆستی دەکەنە زمانی گشتیی کەرامەت و سەربەخۆیی.",
         image: threadsAssets.coexistenceHospitality,
+        imagePosition: "center 22%",
       },
     ],
     ar: [
@@ -1831,6 +1835,7 @@ export const L2 = {
         title: "احتفالات مشتركة",
         body: "تجمع الأعياد الدينية والعطل الرسمية الجيران عبر الزيارات والموائد والتهاني ومبادرات التضامن.",
         image: threadsAssets.coexistenceSharedCelebrations,
+        imagePosition: "center 18%",
       },
       {
         id: "side-by-side",
@@ -1843,6 +1848,7 @@ export const L2 = {
         title: "ضيافة من القلب",
         body: "تحوّل الأبواب المفتوحة والطعام المشترك والعناية بالضيف الضيافة إلى لغة عامة للكرامة والانتماء.",
         image: threadsAssets.coexistenceHospitality,
+        imagePosition: "center 22%",
       },
     ],
   };

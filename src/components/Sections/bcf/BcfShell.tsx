@@ -1,6 +1,7 @@
 import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 import {
   BCF,
   BCF_BLOOM_STYLE,
@@ -34,13 +35,14 @@ type BcfShellProps = {
 
 function BcfLogoMark() {
   return (
-    <div className="pointer-events-none absolute left-10 top-10 z-30 flex flex-col items-center gap-1">
-      <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-[#e8c56a] bg-black/50 text-[11px] font-semibold tracking-wide text-[#e8c56a]">
-        BCF
-      </div>
-      <span className="font-serif text-[28px] font-bold leading-none tracking-[0.08em] text-[#c41e3a]">
-        BCF
-      </span>
+    <div className="pointer-events-none absolute left-10 top-10 z-30">
+      <img
+        src={bcfLogo}
+        alt="Barzani Charity Foundation"
+        decoding="async"
+        className="h-[172px] w-auto"
+        style={{ filter: "drop-shadow(0 10px 28px rgba(0,0,0,0.55))" }}
+      />
     </div>
   );
 }
