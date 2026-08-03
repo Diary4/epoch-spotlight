@@ -32,9 +32,9 @@ import co from "@/assets/images/new/religions/faiths/christianity.webp";
    portrait kiosk, so a 1280px photo lands ~2.9× upscaled and reads soft. These
    are the 2000–5500px siblings of `co`/`mu`, sized like the nations covers. */
 import faithIslam from "@/assets/images/new/religions/faiths/islam.webp";
-import faithJudaism from "@/assets/images/new/religions/faiths/judaism.webp";
+import faithJudaism from "@/assets/images/religions/judaism/heritage.webp";
 import faithSabean from "@/assets/images/new/religions/faiths/sabean-mandaeanism.webp";
-import faithYarsanism from "@/assets/images/new/religions/faiths/yarsanism.webp";
+import faithYarsanism from "@/assets/images/religions/kakayi/cover.webp";
 import faithYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
 import CS from "@/assets/images/religions/christianity/churches.webp";
 import sharedChurches from "@/assets/images/religions/sharedlife/churches.webp";

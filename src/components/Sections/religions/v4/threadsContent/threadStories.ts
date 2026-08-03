@@ -2,7 +2,7 @@ import { threadsAssets } from "../threadsAssets";
 
 export const faithStories = {
     en: [
-      ["islam", "Islam", "Faith, Worship, and Living Traditions.", threadsAssets.faithIslam],
+      ["islam", "Islam", "Faith, Worship, and Living Traditions.", threadsAssets.pu],
       [
         "christianity",
         "Christianity",
@@ -37,7 +37,7 @@ export const faithStories = {
       ],
     ],
     ku: [
-      ["islam", "ئیسلام", "باوەڕ، پەرستن و نەریتە زیندووەکان", threadsAssets.faithIslam],
+      ["islam", "ئیسلام", "باوەڕ، پەرستن و نەریتە زیندووەکان", threadsAssets.pu],
       [
         "christianity",
         "مەسیحییەت",
@@ -52,7 +52,7 @@ export const faithStories = {
       ["sabean", "سابیئەی مەندائی", "ئاوی زیندوو، پاکوخاوێنی و بەردەوامی", threadsAssets.faithSabean],
     ],
     ar: [
-      ["islam", "الإسلام", "الإيمان والعبادة والتقاليد الحية", threadsAssets.faithIslam],
+      ["islam", "الإسلام", "الإيمان والعبادة والتقاليد الحية", threadsAssets.pu],
       ["christianity", "المسيحية", "جذور عريقة وإيمان راسخ ومجتمع متماسك", threadsAssets.co],
       ["yazidism", "الإيزيدية", "الوادي المقدس والذاكرة والصمود", threadsAssets.faithYazidism],
       [

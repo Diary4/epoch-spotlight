@@ -89,10 +89,6 @@ export default function StoryCarousel({
             style={{ objectPosition: story.imagePosition ?? "center" }}
           />
           <span className="tok-story-card__veil" />
-          <span className="tok-story-card__index">
-            {String(storyIndex + 1).padStart(2, "0")} /{" "}
-            {String(chapter.stories.length).padStart(2, "0")}
-          </span>
           <span className="tok-story-card__copy">
             <b>{story.title}</b>
             <span>{story.body}</span>

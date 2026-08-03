@@ -942,25 +942,6 @@
     rgba(7, 9, 7, 0.55) 100%
   );
 }
-.tok-story-card__index {
-  position: absolute;
-  top: 50px;
-  inset-inline-end: 60px;
-  min-width: 114px;
-  padding: 12px 19px;
-  border: 1px solid rgba(243, 224, 190, 0.34);
-  border-radius: 999px;
-  color: #f6ebd7d6;
-  background: #0a0c0a80;
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: 0.12em;
-  text-align: center;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  direction: ltr;
-  unicode-bidi: isolate;
-}
 .tok-story-card__copy {
   position: absolute;
   right: 56px;

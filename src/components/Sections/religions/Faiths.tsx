@@ -11,7 +11,7 @@ import faithsVideo from "@/assets/videos/faiths.webm";
 import imgIslam from "@/assets/images/religions/islam/barzani.webp";
 import imgChristianity from "@/assets/images/new/religions/faiths/christianity.webp";
 import imgYazidism from "@/assets/images/religions/yazidi/lalish.webp";
-import imgYarsanism from "@/assets/images/religions/sharedlife/kakai-festival.webp";
+import imgYarsanism from "@/assets/images/religions/kakayi/cover.webp";
 import imgZoroastrianism from "@/assets/images/new/religions/faiths/zoroastrianism.webp";
 import imgJudaism from "@/assets/images/religions/judaism/heritage.webp";
 import imgBahai from "@/assets/images/religions/bahai/core.webp";

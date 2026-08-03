@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles, Star } from "lucide-react";
 
-import bg from "@/assets/images/religions/judaism/cover.webp";
+import bg from "@/assets/images/religions/judaism/heritage.webp";
 import kurdishJewsImg from "@/assets/images/religions/judaism/kurdish-jews.webp";
 import torahImg from "@/assets/images/religions/judaism/torah.webp";
 import nahumShrineImg from "@/assets/images/religions/judaism/nahum-shrine.webp";

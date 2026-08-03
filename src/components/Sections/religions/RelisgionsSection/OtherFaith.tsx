@@ -15,7 +15,7 @@ import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaled
 
 import yarsanism from "@/assets/images/religions/kakayi/cover.webp";
 import zoroastrianism from "@/assets/images/religions/zoro/cover.webp";
-import judaism from "@/assets/images/religions/judaism/card-cover.webp";
+import judaism from "@/assets/images/religions/judaism/heritage.webp";
 import bahai from "@/assets/images/religions/bahai/card-cover.webp";
 import mandaean from "@/assets/images/religions/sabean/card-cover.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";

@@ -10,6 +10,7 @@ import TextType from "@/components/TextType";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import BcfParallaxPlate from "@/components/Sections/bcf/BcfParallaxPlate";
+import BcfScrollReveal from "@/components/Sections/bcf/BcfScrollReveal";
 import {
   bcfCopy,
   type BcfLang,
@@ -57,6 +58,80 @@ const PLATE_LAYOUT = [
 
 function chapterLabel(index: number) {
   return String(index + 1).padStart(2, "0");
+}
+
+/**
+ * The opener every chapter shares: the number, the title typing itself in, and
+ * the line beneath it. Values used to draw its own — a smaller column with the
+ * six values already under it — which read as a different screen rather than
+ * the next chapter. It is one component now so the two cannot drift again.
+ */
+function BcfChapterHead({
+  label,
+  titleGold,
+  titleWhite,
+  body,
+}: {
+  label: string;
+  titleGold: string;
+  titleWhite?: string;
+  body?: string;
+}) {
+  return (
+    <>
+      <motion.p
+        variants={bcfRise}
+        dir="ltr"
+        className="text-[80px] font-bold leading-none tracking-wide"
+      >
+        <span className="text-[#fbf4e4]">{label[0]}</span>
+        <span style={{ color: BCF.gold }}>{label[1]}</span>
+      </motion.p>
+
+      <motion.div
+        variants={bcfRise}
+        className="mt-8 max-w-[1000px] font-sans text-[80px] font-bold leading-[1.05]"
+      >
+        <TextType
+          as="span"
+          text={titleGold}
+          typingSpeed={45}
+          loop={false}
+          showCursor={!titleWhite}
+          cursorCharacter="|"
+          cursorClassName="text-[#fbc158]"
+          className="text-[80px] font-bold"
+          textColors={[BCF.gold]}
+        />
+        {titleWhite ? (
+          <>
+            {" "}
+            <TextType
+              as="span"
+              text={titleWhite}
+              typingSpeed={45}
+              initialDelay={titleGold.length * 45 + 120}
+              loop={false}
+              showCursor
+              cursorCharacter="|"
+              cursorClassName="text-[#fbf4e4]"
+              className="text-[80px] font-bold text-[#fbf4e4]"
+              textColors={["#fbf4e4"]}
+            />
+          </>
+        ) : null}
+      </motion.div>
+
+      {body ? (
+        <motion.p
+          variants={bcfRise}
+          className="mt-8 max-w-[920px] text-[40px] font-medium leading-snug text-[#fcdfaa]"
+        >
+          {body}
+        </motion.p>
+      ) : null}
+    </>
+  );
 }
 
 export default function BcfStory({ lang, onBack }: BcfStoryProps) {
@@ -235,107 +310,125 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           {isValues ? (
             <div className="absolute inset-0 z-20 overflow-hidden">
               <motion.div style={{ y: valuesY }} className="will-change-transform">
-                <div ref={columnRef} className="px-14 pb-[240px] pt-[280px]">
-                  <div className="mx-auto w-full max-w-[900px]">
-                    <p
-                      dir="ltr"
-                      className="text-[80px] font-bold leading-none tracking-wide"
-                    >
-                      <span className="text-[#fbf4e4]">{label[0]}</span>
-                      <span style={{ color: BCF.gold }}>{label[1]}</span>
-                    </p>
-
-                    <h2 className="mt-8 font-sans text-[80px] font-bold leading-[1.05]">
-                      <span style={{ color: BCF.gold }}>{active.titleGold}</span>{" "}
-                      <span className="text-[#fbf4e4]">{active.titleWhite}</span>
-                    </h2>
-
-                    <span
-                      className="mt-10 block h-px w-[420px] max-w-full rtl:scale-x-[-1]"
-                      style={{
-                        background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
-                      }}
-                    />
-
-                    <p className="mt-10 text-[40px] font-medium leading-snug text-[#fcdfaa]">
-                      {c.storyValuesIntro}
-                    </p>
-
-                    {c.storyValues.map((value, index) => (
-                      <div
-                        key={value.id}
-                        className="mt-16 border-t border-white/12 pt-10"
-                      >
-                        <span
-                          dir="ltr"
-                          className="text-[28px] font-semibold tabular-nums"
-                          style={{ color: `${BCF.gold}b3` }}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <h3
-                          className="mt-4 text-[52px] font-semibold leading-tight"
-                          style={{ color: BCF.gold }}
-                        >
-                          {value.title}
-                        </h3>
-                        <p className="mt-5 text-[34px] leading-relaxed text-white/82">
-                          {value.body}
-                        </p>
-                      </div>
-                    ))}
-
-                    {/* Presidency showcase. It follows the six values rather
-                        than breaking them up, so the reading finishes before
-                        the leadership behind it is shown. Each plate carries
-                        its own scroll speed and drifts against the column. */}
-                    <div className="mt-[200px]">
-                      <span
-                        className="block h-px w-[420px] max-w-full rtl:scale-x-[-1]"
-                        style={{
-                          background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
-                        }}
+                <div ref={columnRef} className="pb-[240px]">
+                  {/* The opener holds a full pane on its own, so the chapter
+                      arrives as a title — exactly like the four before it —
+                      and the read only begins once the visitor scrolls. */}
+                  <motion.div
+                    className="px-14 pt-[300px]"
+                    style={{ height: PANE_HEIGHT }}
+                    variants={bcfStagger(0.08, 0.06)}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <div className="mx-auto w-full max-w-[1080px]">
+                      <BcfChapterHead
+                        label={label}
+                        titleGold={active.titleGold}
+                        titleWhite={active.titleWhite}
+                        body={c.storyValuesIntro}
                       />
+                    </div>
+                  </motion.div>
 
-                      {PRESIDENT_PLATES.map((plate, index) => (
-                        <BcfParallaxPlate
-                          key={c.storyValuesCaptions[index] ?? index}
+                  <div className="px-14">
+                    <div className="mx-auto w-full max-w-[1080px]">
+                      {c.storyValues.map((value, index) => (
+                        <BcfScrollReveal
+                          key={value.id}
                           scroll={smooth}
                           containerRef={columnRef}
                           viewport={PANE_HEIGHT}
-                          speed={PLATE_SPEEDS[index]}
-                          className={`mt-[180px] ${PLATE_LAYOUT[index].frame}`}
+                          className={index === 0 ? "" : "mt-[170px]"}
                         >
-                          <figure>
-                            <div className="overflow-hidden rounded-[32px] border border-[#fbc158]/25">
-                              <img
-                                src={plate}
-                                alt=""
-                                decoding="async"
-                                className={`w-full object-cover ${PLATE_LAYOUT[index].height}`}
-                              />
-                            </div>
-                            <figcaption className="mt-5 text-[26px] leading-snug text-white/55">
-                              {c.storyValuesCaptions[index]}
-                            </figcaption>
-                          </figure>
-                        </BcfParallaxPlate>
+                          <div className="border-t border-white/12 pt-12">
+                            <span
+                              dir="ltr"
+                              className="text-[28px] font-semibold tabular-nums"
+                              style={{ color: `${BCF.gold}b3` }}
+                            >
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <h3
+                              className="mt-4 text-[52px] font-semibold leading-tight"
+                              style={{ color: BCF.gold }}
+                            >
+                              {value.title}
+                            </h3>
+                            <p className="mt-5 text-[34px] leading-relaxed text-white/82">
+                              {value.body}
+                            </p>
+                          </div>
+                        </BcfScrollReveal>
                       ))}
-                    </div>
 
-                    <blockquote className="mt-[220px] flex flex-col items-start gap-6">
-                      <Quote
-                        className="h-14 w-14 rtl:scale-x-[-1]"
-                        style={{ color: `${BCF.gold}80` }}
-                        aria-hidden="true"
-                      />
-                      <p className="text-[46px] font-semibold italic leading-snug text-[#fbf4e4]">
-                        {c.quote}
-                      </p>
-                      <footer className="text-[30px]" style={{ color: BCF.gold }}>
-                        {c.quoteAttr}
-                      </footer>
-                    </blockquote>
+                      {/* Presidency showcase. It follows the six values rather
+                          than breaking them up, so the reading finishes before
+                          the leadership behind it is shown. Each plate carries
+                          its own scroll speed and drifts against the column —
+                          the reveal is opacity only, so the drift stays true. */}
+                      <div className="mt-[220px]">
+                        <span
+                          className="block h-px w-[420px] max-w-full rtl:scale-x-[-1]"
+                          style={{
+                            background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+                          }}
+                        />
+
+                        {PRESIDENT_PLATES.map((plate, index) => (
+                          <BcfScrollReveal
+                            key={c.storyValuesCaptions[index] ?? index}
+                            scroll={smooth}
+                            containerRef={columnRef}
+                            viewport={PANE_HEIGHT}
+                            distance={0}
+                            className={`mt-[180px] ${PLATE_LAYOUT[index].frame}`}
+                          >
+                            <BcfParallaxPlate
+                              scroll={smooth}
+                              containerRef={columnRef}
+                              viewport={PANE_HEIGHT}
+                              speed={PLATE_SPEEDS[index]}
+                            >
+                              <figure>
+                                <div className="overflow-hidden rounded-[32px] border border-[#fbc158]/25">
+                                  <img
+                                    src={plate}
+                                    alt=""
+                                    decoding="async"
+                                    className={`w-full object-cover ${PLATE_LAYOUT[index].height}`}
+                                  />
+                                </div>
+                                <figcaption className="mt-5 text-[26px] leading-snug text-white/55">
+                                  {c.storyValuesCaptions[index]}
+                                </figcaption>
+                              </figure>
+                            </BcfParallaxPlate>
+                          </BcfScrollReveal>
+                        ))}
+                      </div>
+
+                      <BcfScrollReveal
+                        scroll={smooth}
+                        containerRef={columnRef}
+                        viewport={PANE_HEIGHT}
+                        className="mt-[240px]"
+                      >
+                        <blockquote className="flex flex-col items-start gap-6">
+                          <Quote
+                            className="h-14 w-14 rtl:scale-x-[-1]"
+                            style={{ color: `${BCF.gold}80` }}
+                            aria-hidden="true"
+                          />
+                          <p className="text-[46px] font-semibold italic leading-snug text-[#fbf4e4]">
+                            {c.quote}
+                          </p>
+                          <footer className="text-[30px]" style={{ color: BCF.gold }}>
+                            {c.quoteAttr}
+                          </footer>
+                        </blockquote>
+                      </BcfScrollReveal>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -359,10 +452,10 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4, ease: BCF_EASE }}
                   >
-                    <span className="text-[34px] font-medium tracking-wide">
+                    <span className="text-[42px] font-medium tracking-wide">
                       {c.storyScrollHint}
                     </span>
-                    <ChevronDown className="h-10 w-10 animate-bounce" />
+                    <ChevronDown className="h-12 w-12 animate-bounce" />
                   </motion.div>
                 ) : null}
               </AnimatePresence>
@@ -378,57 +471,12 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
               exit={{ opacity: 0, y: -24, transition: { duration: 0.28 } }}
             >
               <div className="mx-auto w-full max-w-[1080px]">
-                <motion.p
-                  variants={bcfRise}
-                  dir="ltr"
-                  className="text-[80px] font-bold leading-none tracking-wide"
-                >
-                  <span className="text-[#fbf4e4]">{label[0]}</span>
-                  <span style={{ color: BCF.gold }}>{label[1]}</span>
-                </motion.p>
-
-                <motion.div
-                  variants={bcfRise}
-                  className="mt-8 max-w-[1000px] font-sans text-[80px] font-bold leading-[1.05]"
-                >
-                <TextType
-                  as="span"
-                  text={active.titleGold}
-                  typingSpeed={45}
-                  loop={false}
-                  showCursor={!active.titleWhite}
-                  cursorCharacter="|"
-                  cursorClassName="text-[#fbc158]"
-                  className="text-[80px] font-bold"
-                  textColors={[BCF.gold]}
+                <BcfChapterHead
+                  label={label}
+                  titleGold={active.titleGold}
+                  titleWhite={active.titleWhite}
+                  body={active.body}
                 />
-                {active.titleWhite ? (
-                  <>
-                    {" "}
-                    <TextType
-                      as="span"
-                      text={active.titleWhite}
-                      typingSpeed={45}
-                      initialDelay={active.titleGold.length * 45 + 120}
-                      loop={false}
-                      showCursor
-                      cursorCharacter="|"
-                      cursorClassName="text-[#fbf4e4]"
-                      className="text-[80px] font-bold text-[#fbf4e4]"
-                      textColors={["#fbf4e4"]}
-                    />
-                  </>
-                  ) : null}
-                </motion.div>
-
-                {active.body ? (
-                  <motion.p
-                    variants={bcfRise}
-                    className="mt-8 max-w-[920px] text-[40px] font-medium leading-snug text-[#fcdfaa]"
-                  >
-                    {active.body}
-                  </motion.p>
-                ) : null}
 
                 {isFoundation ? (
                   <motion.div
