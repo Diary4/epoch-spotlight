@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { threadsAssets } from "../threadsAssets";
 import type { ThreadsCopy } from "../threadsCopy";
@@ -12,33 +11,6 @@ type AttractSceneProps = {
 };
 
 export default function AttractScene({ copy, dispatch }: AttractSceneProps) {
-  const reduceMotion = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (reduceMotion) {
-      video.pause();
-      return;
-    }
-
-    const tryPlay = () => {
-      video.play().catch(() => {
-        // Autoplay can be blocked; the poster frame still reads as the backdrop.
-      });
-    };
-
-    tryPlay();
-    const onVisibility = () => {
-      if (document.hidden) video.pause();
-      else tryPlay();
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-    return () => document.removeEventListener("visibilitychange", onVisibility);
-  }, [reduceMotion]);
-
   return (
     <motion.section
       className="tok-scene tok-attract"
@@ -48,25 +20,11 @@ export default function AttractScene({ copy, dispatch }: AttractSceneProps) {
       exit={{ opacity: 0 }}
       transition={SCENE_TRANSITION}
     >
-      {reduceMotion ? (
-        <img
-          src={threadsAssets.attract}
-          alt=""
-          className="tok-attract__image"
-        />
-      ) : (
-        <video
-          ref={videoRef}
-          className="tok-attract__image"
-          src={threadsAssets.attractVideo}
-          poster={threadsAssets.attract}
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        />
-      )}
+      <img
+        src={threadsAssets.attract}
+        alt=""
+        className="tok-attract__image"
+      />
       <div className="tok-attract__veil" />
       <div className="tok-attract__grain" />
       <div className="tok-attract__content">
