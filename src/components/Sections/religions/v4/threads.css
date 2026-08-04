@@ -662,6 +662,11 @@
   -o-object-position: center 46%;
   object-position: center 46%;
 }
+/* Coexistence is a wide interfaith group — bias right so figures on that side stay in frame. */
+.tok-thread-portal--coexistence .tok-thread-portal__image img {
+  -o-object-position: 72% center;
+  object-position: 72% center;
+}
 .tok-thread-portal:active .tok-thread-portal__image img {
   transform: scale(1.045);
   filter: saturate(1) contrast(1.02);
