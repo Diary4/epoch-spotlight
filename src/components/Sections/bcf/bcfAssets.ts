@@ -17,9 +17,9 @@ export { default as bcfIntroBg } from "@/assets/images/PrimeMinistir/service.web
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
 export { default as bcfMapBg } from "@/assets/images/kurdistan.webp";
 export { default as bcfProjectHero } from "@/assets/images/women/w-4.webp";
-export { default as bcfErbil } from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
+export { default as bcfErbil } from "@/assets/images/bcf/selected/trust-bg.webp";
 /** Distinct from bcfErbil so Our Story chapter scroll visibly swaps the backdrop. */
-export { default as bcfCorridor } from "@/assets/images/TouristicPlace/ErbilCastle/DSC_5315.webp";
+export { default as bcfCorridor } from "@/assets/images/bcf/board-chief/8C6A0117.JPG";
 export { default as bcfHubBg } from "@/assets/images/PrimeMinistir/p-1.webp";
 export { default as bcfImpactBg } from "@/assets/images/PrimeMinistir/service.webp";
 export { default as bcfProjectsBg } from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
@@ -37,7 +37,7 @@ export { default as bcfAttractPoster } from "@/assets/images/bcf/attract-poster.
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
 
 /** Journey-hub chapter discs — curated BCF field photography from `selected/`. */
-export { default as bcfJourneyStory } from "@/assets/images/bcf/attract-poster.webp";
+export { default as bcfJourneyStory } from "@/assets/images/bcf/selected/trust-bg.webp";
 export { default as bcfJourneyHumanity } from "@/assets/images/bcf/selected/humanity-education.webp";
 export { default as bcfJourneyMap } from "@/assets/images/bcf/selected/impact-camps.webp";
 export { default as bcfJourneyImpact } from "@/assets/images/bcf/selected/impact-employees.webp";
