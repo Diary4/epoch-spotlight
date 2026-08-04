@@ -19,7 +19,7 @@ import {
 
 import sharedHero from "@/assets/images/religions/sharedlife/cover.jpg";
 import mosquesImg from "@/assets/images/religions/sharedlife/mosques.webp";
-import churchesImg from "@/assets/images/religions/sharedlife/churches.webp";
+import churchesImg from "@/assets/images/religions/sharedlife/churches-and-monasteries.jpeg";
 import lalishImg from "@/assets/images/religions/sharedlife/lalish.webp";
 import zoroImg from "@/assets/images/religions/zoro/cover.webp";
 import eidImg from "@/assets/images/religions/sharedlife/mosques.webp";

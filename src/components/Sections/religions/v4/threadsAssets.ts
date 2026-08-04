@@ -37,7 +37,8 @@ import faithSabean from "@/assets/images/new/religions/faiths/sabean-mandaeanism
 import faithYarsanism from "@/assets/images/religions/kakayi/cover.webp";
 import faithYazidism from "@/assets/images/new/religions/faiths/yazidism.webp";
 import CS from "@/assets/images/religions/christianity/churches.webp";
-import sharedChurches from "@/assets/images/religions/sharedlife/churches.webp";
+import sharedChurches from "@/assets/images/religions/sharedlife/churches-and-monasteries.jpeg";
+import syriacLanguage from "@/assets/images/religions/nations/assyrian/syriac-language.jpeg";
 import zoroCover from "@/assets/images/religions/zoro-temples.jpg";
 import christianHistorical from "@/assets/images/religions/christianity/historical.webp";
 import christianEaster from "@/assets/images/religions/christianity/easter-egg.webp";
@@ -214,6 +215,7 @@ export const threadsAssets = {
   faithYarsanism,
   faithYazidism,
   sharedChurches,
+  syriacLanguage,
   zoroCover,
   attract: attractBackground,
   hub: Yn,

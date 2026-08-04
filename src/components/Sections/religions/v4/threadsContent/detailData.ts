@@ -1975,7 +1975,7 @@ export const s2 = { language: threadsAssets.Hg, newroz: threadsAssets.n2, cultur
 
 export const u2 = { parliament: threadsAssets.Kg, language: threadsAssets.a2, culture: threadsAssets.l2, education: threadsAssets.Wg };
 
-export const h2 = { language: threadsAssets.co, ankawa: threadsAssets.d2, patriarch: threadsAssets.f2, parliament: threadsAssets.dollar_g };
+export const h2 = { language: threadsAssets.syriacLanguage, ankawa: threadsAssets.d2, patriarch: threadsAssets.f2, parliament: threadsAssets.dollar_g };
 
 export const g2 = { history: threadsAssets.yo, churches: threadsAssets.m2, community: threadsAssets.Gg, parliament: threadsAssets.armenianParliament };
 
