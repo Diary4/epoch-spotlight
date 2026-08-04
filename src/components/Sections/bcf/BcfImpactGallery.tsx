@@ -20,8 +20,8 @@ type BcfImpactGalleryProps = {
   onBack: () => void;
 };
 
-/** The dome's own dark field — same treatment as Human Stories. */
-const DOME_BG = "#0d0b09";
+/** Shared dark field — matches `BCF_PAGE` so shell and dome edge-fades read as one. */
+const DOME_BG = "#0a0a0a";
 
 /**
  * Impact statistic gallery — same dome browser as the Human Story Layer, but
@@ -38,8 +38,12 @@ export default function BcfImpactGallery({
   const images = IMPACT_GALLERY_IMAGES[galleryId];
 
   return (
-    <BcfShell showLogo={false} backgroundStyle={{ backgroundColor: DOME_BG }}>
-      <div className="relative flex min-h-[1920px] flex-col">
+    <BcfShell
+      showLogo={false}
+      atmosphere={false}
+      backgroundStyle={{ backgroundColor: DOME_BG }}
+    >
+      <div className="relative flex min-h-[1920px] flex-col" style={{ backgroundColor: DOME_BG }}>
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div
@@ -78,6 +82,7 @@ export default function BcfImpactGallery({
 
         <motion.div
           className="relative z-10 mt-4 h-[1440px] w-full"
+          style={{ backgroundColor: DOME_BG }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: BCF_EASE }}

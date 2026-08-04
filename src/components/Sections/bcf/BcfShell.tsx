@@ -29,6 +29,11 @@ type BcfShellProps = {
   backgroundStyle?: React.CSSProperties;
   /** Slow ken-burns push on the backdrop. Off for maps, where drift misleads. */
   drift?: boolean;
+  /**
+   * Warm bloom / grain / vignette stack. Turn off for flat scenes (e.g. the
+   * impact dome galleries) where those layers fight the dome's own edge fade.
+   */
+  atmosphere?: boolean;
   children: React.ReactNode;
   className?: string;
 };
@@ -90,6 +95,7 @@ export default function BcfShell({
   backgroundSlot,
   backgroundStyle,
   drift = true,
+  atmosphere = true,
   children,
   className = "",
 }: BcfShellProps) {
@@ -130,19 +136,22 @@ export default function BcfShell({
       ) : null}
 
       {/* Texture stack — always above the backdrop, always below the content. */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[1]"
-        style={BCF_BLOOM_STYLE}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-[2] opacity-[0.09]"
-        style={BCF_GRAIN_STYLE}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-[3]"
-        style={BCF_VIGNETTE_STYLE}
-      />
-
+      {atmosphere ? (
+        <>
+          <div
+            className="pointer-events-none absolute inset-0 z-[1]"
+            style={BCF_BLOOM_STYLE}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 z-[2] opacity-[0.09]"
+            style={BCF_GRAIN_STYLE}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 z-[3]"
+            style={BCF_VIGNETTE_STYLE}
+          />
+        </>
+      ) : null}
       {showLogo ? <BcfLogoMark /> : null}
       <div className="relative z-10 flex min-h-[1920px] w-full flex-1 flex-col">
         {children}

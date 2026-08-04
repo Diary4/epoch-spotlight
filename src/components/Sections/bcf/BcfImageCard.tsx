@@ -12,12 +12,9 @@ type BcfImageCardProps = {
 };
 
 /**
- * Figma journey / future row: title + arrow on the left, masked photo on the right.
- *
- * Every animatable property here is driven by the `pressed` state. The card
- * previously declared `transition-*` on the rule, the arrow and the photo but
- * nothing ever changed them, so the transitions were inert and the row felt dead
- * to the touch.
+ * Figma journey / future row: title + arrow on the start side, masked photo on
+ * the end side. Logical CSS (`start` / `end` / `text-start`) keeps Kurdish and
+ * Arabic from stacking the title over the photograph.
  */
 export default function BcfImageCard({
   title,
@@ -45,7 +42,7 @@ export default function BcfImageCard({
       type={interactive ? "button" : undefined}
       onClick={onClick}
       {...pressProps}
-      className={`group relative flex h-[200px] w-full transform-gpu items-center overflow-hidden rounded-[24px] border text-left will-change-transform ${className}`}
+      className={`group relative flex h-[200px] w-full transform-gpu items-center overflow-hidden rounded-[24px] border text-start will-change-transform ${className}`}
       style={{
         borderColor: pressed ? BCF.gold : "rgba(132,135,157,0.8)",
         backgroundColor: pressed ? "rgba(251,193,88,0.07)" : "rgba(0,0,0,0.24)",
@@ -56,12 +53,11 @@ export default function BcfImageCard({
           "border-color 420ms cubic-bezier(0.22,1,0.36,1), background-color 420ms cubic-bezier(0.22,1,0.36,1), box-shadow 420ms cubic-bezier(0.22,1,0.36,1)",
       }}
     >
+      {/* Soft scrim under the title so white type clears the photo in both dirs. */}
+      <div className="pointer-events-none absolute inset-y-0 start-0 z-[1] w-[62%] bg-gradient-to-r from-black/80 via-black/45 to-transparent rtl:bg-gradient-to-l" />
+
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-[46%]"
-        style={{
-          maskImage: "linear-gradient(90deg, transparent 0%, black 28%)",
-          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 28%)",
-        }}
+        className="pointer-events-none absolute inset-y-0 end-0 w-[46%] [mask-image:linear-gradient(to_right,transparent_0%,black_28%)] rtl:[mask-image:linear-gradient(to_left,transparent_0%,black_28%)]"
       >
         <img
           src={image}
@@ -72,16 +68,25 @@ export default function BcfImageCard({
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-start gap-5 px-9">
-        <span className="text-[48px] font-light leading-none text-[#fdeed4]">{title}</span>
+      <div className="relative z-10 flex max-w-[58%] flex-col items-start gap-5 px-9">
+        <span
+          className="text-[48px] font-light leading-none text-[#fdeed4]"
+          style={{
+            textShadow:
+              "0 1px 2px rgba(0,0,0,0.9), 0 4px 18px rgba(0,0,0,0.75)",
+          }}
+        >
+          {title}
+        </span>
         <span className="flex items-center gap-2" style={{ color: BCF.gold }}>
           <span
             className="h-px bg-current transition-all duration-500 ease-smooth-out motion-reduce:transition-none"
             style={{ width: pressed ? 96 : 64 }}
           />
           <ArrowRight
-            className="h-6 w-6 transform-gpu transition-transform duration-500 ease-smooth-out motion-reduce:transition-none rtl:rotate-180"
-            style={{ transform: pressed ? "translateX(8px)" : "translateX(0)" }}
+            className={`h-6 w-6 transform-gpu transition-transform duration-500 ease-smooth-out motion-reduce:transition-none rtl:rotate-180 ${
+              pressed ? "translate-x-2 rtl:-translate-x-2" : "translate-x-0"
+            }`}
           />
         </span>
       </div>

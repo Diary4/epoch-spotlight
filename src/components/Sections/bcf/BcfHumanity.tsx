@@ -11,7 +11,7 @@ import {
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import { bcfJourneyHumanity } from "@/components/Sections/bcf/bcfAssets";
-import environmentImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
+import environmentImg from "@/assets/images/bcf/selected/impact-camps.webp";
 // Real field photography for the four categories the new drop covers.
 import reliefImg from "@/assets/images/bcf/selected/humanity-relief.webp";
 import healthImg from "@/assets/images/bcf/selected/humanity-health.webp";
@@ -235,6 +235,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         <div className="relative z-10 flex flex-1 flex-col justify-center">
         <motion.div
           ref={viewportRef}
+          dir="ltr"
           initial={{ opacity: 0, y: 48 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
@@ -246,7 +247,8 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         >
           <div
             ref={trackRef}
-            className="absolute top-0 flex will-change-transform"
+            dir="ltr"
+            className="absolute top-0 flex flex-row will-change-transform"
             style={{ height: TRACK_H, gap: CARD_GAP }}
           >
             {categories.map((category, index) => (
@@ -262,9 +264,19 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   animateToIndex(index);
                 }}
                 className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] px-6 pt-6 text-center backdrop-blur-[2px]"
-                style={{ width: CARD_W }}
+                style={{
+                  width: CARD_W,
+                  height: index === initialIndex ? ACTIVE_H : INACTIVE_H,
+                  transform:
+                    index === initialIndex
+                      ? "translateY(0px)"
+                      : `translateY(${INACTIVE_Y}px)`,
+                }}
               >
-                <span className="text-[64px] font-bold leading-none text-white">
+                <span
+                  dir={lang === "en" ? "ltr" : "rtl"}
+                  className="text-[64px] font-bold leading-none text-white"
+                >
                   {category.title}
                 </span>
                 <span
@@ -292,6 +304,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   ref={(el) => {
                     tagRefs.current[index] = el;
                   }}
+                  dir={lang === "en" ? "ltr" : "rtl"}
                   className="mt-8 flex w-full flex-col gap-6"
                   style={{ opacity: 0, visibility: "hidden" }}
                 >
@@ -321,6 +334,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
             visitor no idea there is more to the side, or how much. */}
         <motion.div
           className="relative z-10 mt-10 flex items-center justify-center gap-4"
+          dir="ltr"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}

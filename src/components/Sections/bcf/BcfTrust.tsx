@@ -21,28 +21,29 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import qualityThumb from "@/assets/images/PrimeMinistir/agreement.webp";
-import partnershipsThumb from "@/assets/images/PrimeMinistir/economic.webp";
-import qualityBg from "@/assets/images/PrimeMinistir/service.webp";
-import partnershipsBg from "@/assets/images/religions/main.webp";
+import qualityThumb from "@/assets/images/bcf/selected/trust-recognition.webp";
+import partnershipsThumb from "@/assets/images/bcf/selected/trust-leadership.webp";
+import qualityBg from "@/assets/images/bcf/selected/trust-recognition.webp";
+import partnershipsBg from "@/assets/images/bcf/board-chief/8D1A8564.JPG";
 // Real event photography — an award ceremony and a governance handover both
 // read straight as "Leadership" / "Recognition" without naming anyone, so
 // they replace the founder headshots that used to stand in for both topics.
 import leadershipThumb from "@/assets/images/bcf/selected/trust-leadership.webp";
 import leadershipBg from "@/assets/images/bcf/selected/trust-leadership.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/trust-recognition.webp";
-import recognitionBg from "@/assets/images/bcf/selected/trust-recognition.webp";
+import recognitionBg from "@/assets/images/bcf/board-chief/8D1A8564.JPG";
 import trustBg from "@/assets/images/bcf/selected/trust-bg.webp";
-import founderA from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
-import founderB from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
-import founderC from "@/assets/images/religions/coexistence/masoud-barzani.webp";
-import founderD from "@/assets/images/religions/coexistence/abdulsalam-barzani.webp";
-import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
-import awardsNode from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
-import certificationsNode from "@/assets/images/PrimeMinistir/agreement.webp";
-import parliamentNode from "@/assets/images/PrimeMinistir/government.webp";
-import lettersNode from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import timelineNode from "@/assets/images/PrimeMinistir/2019.webp";
+// BCF board / leadership photography — not historical Barzani portraits from Religions.
+import founderA from "@/assets/images/bcf/board-chief/8C6A0257.JPG";
+import founderB from "@/assets/images/bcf/board-chief/8C6A0316.JPG";
+import founderC from "@/assets/images/bcf/board-chief/8C6A3599.JPG";
+import founderD from "@/assets/images/bcf/board-chief/FY1A6986.JPG";
+import certificateImg from "@/assets/images/bcf/selected/trust-recognition.webp";
+import awardsNode from "@/assets/images/bcf/board-chief/FY1A7010.JPG";
+import certificationsNode from "@/assets/images/bcf/board-chief/8C6A0295.JPG";
+import parliamentNode from "@/assets/images/bcf/board-chief/8D1A9536.JPG";
+import lettersNode from "@/assets/images/bcf/board-chief/8D1A9629.JPG";
+import timelineNode from "@/assets/images/bcf/board-chief/FY1A7016.JPG";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -502,7 +503,21 @@ function RecognitionArc({
           const node = ARC_NODES[index] ?? ARC_NODES[ARC_NODES.length - 1];
           const cx = rtl ? ARC_W - node.x : node.x;
           const isActive = activeId === item.id;
-          const labelInset = cx + NODE_R + 26;
+          const labelGap = NODE_R + 28;
+          /** Labels sit on the open side of the thread and fill toward the node. */
+          const labelStyle: React.CSSProperties = rtl
+            ? {
+                left: 12,
+                right: ARC_W - cx + labelGap,
+                top: node.y,
+                transform: "translateY(-50%)",
+              }
+            : {
+                left: cx + labelGap,
+                right: 12,
+                top: node.y,
+                transform: "translateY(-50%)",
+              };
 
           return (
             <React.Fragment key={item.id}>
@@ -559,13 +574,8 @@ function RecognitionArc({
                   over the constellation — grown in place it ran into the next
                   node down, and the text was unreadable behind it. */}
               <motion.div
-                className="absolute z-10"
-                style={{
-                  [rtl ? "right" : "left"]: labelInset,
-                  top: node.y,
-                  maxWidth: ARC_W - labelInset - 8,
-                  transform: "translateY(-50%)",
-                }}
+                className={`absolute z-10 flex ${rtl ? "justify-end" : "justify-start"}`}
+                style={labelStyle}
                 initial={{ opacity: 0, x: rtl ? 26 : -26 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -575,7 +585,7 @@ function RecognitionArc({
                 }}
               >
                 <div
-                  className="rounded-[38px] px-9 py-5 backdrop-blur-md"
+                  className="max-w-full rounded-[38px] px-9 py-5 backdrop-blur-md"
                   style={{
                     border: `1px solid ${isActive ? `${BCF.gold}99` : "rgba(255,255,255,0.16)"}`,
                     backgroundColor: isActive

@@ -46,8 +46,8 @@ const STORY_IMAGES: Record<HumanStoryId, string> = {
   recovery,
 };
 
-/** The dome's own dark field — the scene carries no photograph behind it. */
-const DOME_BG = "#0d0b09";
+/** Shared dark field — matches `BCF_PAGE` so shell and dome edge-fades read as one. */
+const DOME_BG = "#0a0a0a";
 
 /**
  * Human Stories — every project begins with a human need and ends with a human
@@ -87,8 +87,12 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
   };
 
   return (
-    <BcfShell showLogo={false} backgroundStyle={{ backgroundColor: DOME_BG }}>
-      <div className="relative flex min-h-[1920px] flex-col">
+    <BcfShell
+      showLogo={false}
+      atmosphere={false}
+      backgroundStyle={{ backgroundColor: DOME_BG }}
+    >
+      <div className="relative flex min-h-[1920px] flex-col" style={{ backgroundColor: DOME_BG }}>
         <BcfBackButton onClick={goBack} label={c.back} />
 
         <motion.div
@@ -132,6 +136,7 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
             height would let the dome collapse to nothing. */}
         <motion.div
           className="relative z-10 mt-4 h-[1440px] w-full"
+          style={{ backgroundColor: DOME_BG }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: BCF_EASE }}
@@ -148,6 +153,7 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
             minRadius={900}
             imageBorderRadius="24px"
             overlayBlurColor={DOME_BG}
+            grayscale={false}
             onItemClick={openBySrc}
           />
         </motion.div>
@@ -173,7 +179,7 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
                 aria-modal="true"
                 aria-label={open.title}
                 onClick={(event) => event.stopPropagation()}
-                className={`${BCF_GLASS_CARD} relative w-full max-w-[860px] overflow-hidden`}
+                className={`${BCF_GLASS_CARD} relative w-full max-w-[980px] overflow-hidden`}
                 initial={{ opacity: 0, scale: 0.95, y: 28 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.97, y: 16 }}
@@ -184,10 +190,10 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
                   src={STORY_IMAGES[open.id]}
                   alt=""
                   decoding="async"
-                  className="h-[520px] w-full object-cover"
+                  className="h-[920px] w-full object-cover"
                 />
                 <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-[520px]"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-[920px]"
                   style={{
                     background:
                       "linear-gradient(180deg, rgba(4,6,9,0.3) 0%, rgba(4,6,9,0.1) 45%, rgba(0,0,0,0.9) 100%)",
