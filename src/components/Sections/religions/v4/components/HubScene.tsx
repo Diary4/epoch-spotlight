@@ -26,7 +26,6 @@ type HubSceneProps = {
   copy: {
     hubTitle: string;
     hubBody: string;
-    hubQuote: string;
     hubInstruction: string;
     hubInstructionHint: string;
   };

@@ -541,12 +541,6 @@
 .tok-experience--ar .tok-hub__body {
   font-size: 21px;
 }
-.tok-experience--ku .tok-hub blockquote,
-.tok-experience--ar .tok-hub blockquote {
-  font-family: var(--tok-arabic-serif);
-  font-size: 29px;
-  font-style: normal;
-}
 /* The web and the cards share one 1080×1196 box; see hubLayout.ts. The nudge
    away from the reach rail keeps the outer cards clear of it. */
 .tok-hub__web,
@@ -612,7 +606,7 @@
   fill: url(#tok-sun-gold);
 }
 .tok-sun__rays {
-  filter: drop-shadow(0 8px 20px rgba(150, 108, 40, 0.28));
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.55));
 }
 .tok-thread-portal {
   position: absolute;
@@ -626,10 +620,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 15px 0;
   border: 1px solid rgba(170, 131, 68, 0.3);
   border-radius: 64px 64px 52px 52px;
-  background: linear-gradient(180deg, #fdfaf3 0%, #f8f2e5 100%);
+  background: #181b17;
   box-shadow:
     0 22px 48px rgba(74, 48, 14, 0.13),
     0 4px 12px rgba(74, 48, 14, 0.06);
@@ -637,7 +630,7 @@
 }
 .tok-thread-portal__card:after {
   position: absolute;
-  border: 1px solid rgba(170, 131, 68, 0.16);
+  border: 1px solid rgba(250, 240, 220, 0.22);
   border-radius: 57px 57px 45px 45px;
   content: "";
   inset: 7px;
@@ -648,9 +641,9 @@
   display: block;
   overflow: hidden;
   width: 100%;
-  height: 190px;
+  height: 100%;
   flex: none;
-  border-radius: 49px 49px 12px 12px;
+  border-radius: 64px 64px 52px 52px;
 }
 .tok-thread-portal__image img {
   width: 100%;
@@ -678,10 +671,34 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(30, 24, 14, 0.12) 0%,
-    transparent 34%,
-    rgba(30, 24, 14, 0.14) 100%
+    rgba(15, 12, 6, 0.22) 0%,
+    transparent 32%,
+    rgba(10, 8, 4, 0.86) 88%
   );
+}
+/* Title now sits on the photo itself, where the cream copy panel used to
+   carry it. */
+.tok-thread-portal__image b {
+  position: absolute;
+  inset-inline: 18px;
+  bottom: 44px;
+  color: #f9f4ea;
+  font-family: var(--tok-serif);
+  font-size: 24px;
+  font-weight: 560;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+}
+.tok-experience--ku .tok-thread-portal__image b,
+.tok-experience--ar .tok-thread-portal__image b {
+  font-family: var(--tok-arabic-serif);
+  font-size: 28px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: none;
 }
 /* The seal sits on the bottom rim, where the thread from the sun arrives. */
 .tok-thread-portal__seal {
@@ -704,50 +721,6 @@
 .tok-thread-portal__seal svg {
   width: 27px;
   height: 27px;
-}
-.tok-thread-portal__copy {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 16px;
-  text-align: center;
-}
-/* Two title lines are always reserved so every caption sits on one baseline. */
-.tok-thread-portal__copy b {
-  display: flex;
-  min-height: 48px;
-  align-items: center;
-  justify-content: center;
-  color: #453724;
-  font-family: var(--tok-serif);
-  font-size: 24px;
-  font-weight: 560;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-.tok-thread-portal__copy small {
-  display: flex;
-  flex-direction: column;
-  margin-top: 8px;
-  color: #6b5c48;
-  font-size: 14.5px;
-  font-weight: 500;
-  letter-spacing: 0.035em;
-  line-height: 1.42;
-}
-.tok-experience--ku .tok-thread-portal__copy b,
-.tok-experience--ar .tok-thread-portal__copy b {
-  font-family: var(--tok-arabic-serif);
-  font-size: 30px;
-  letter-spacing: 0;
-  line-height: 1.24;
-}
-.tok-experience--ku .tok-thread-portal__copy small,
-.tok-experience--ar .tok-thread-portal__copy small {
-  font-size: 17px;
-  letter-spacing: 0;
 }
 .tok-hub__instruction {
   position: absolute;
@@ -1197,12 +1170,12 @@
   border: 2px solid color-mix(in srgb, var(--thread-accent) 64%, #f3dcae 36%);
   border-radius: 220px 220px 34px 34px;
   color: var(--tok-ink);
-  background: #e9dfce;
+  background: #181b17;
   box-shadow: 0 40px 105px #0000008c;
 }
 .tok-detail-card__visual {
   position: relative;
-  height: 720px;
+  height: 100%;
   overflow: hidden;
   background: #181b17;
 }
@@ -1225,54 +1198,49 @@
   background:
     linear-gradient(
       180deg,
-      rgba(7, 9, 7, 0.2),
-      transparent 38%,
-      rgba(7, 9, 7, 0.62)
+      rgba(7, 9, 7, 0.15),
+      transparent 34%,
+      rgba(7, 9, 7, 0.86) 92%
     ),
     radial-gradient(circle at 50% 45%, transparent 32%, rgba(6, 8, 6, 0.2));
 }
-.tok-detail-card__copy {
-  height: 520px;
-  padding: 40px 54px 34px;
-  background: linear-gradient(135deg, #f9f4eafc, #dcd0bafc), var(--tok-ivory);
-  text-align: center;
-}
-.tok-detail-card__copy h2 {
+/* Title and its one-line description now live on the photograph — the card
+   no longer breaks into a separate cream panel underneath it. */
+.tok-detail-card__caption {
+  position: absolute;
+  inset-inline: 54px;
+  bottom: 54px;
   max-width: 850px;
   margin: 0 auto;
-  color: #181a13;
+  text-align: center;
+}
+.tok-detail-card__caption h2 {
+  color: #f9f4ea;
   font-family: var(--tok-serif);
   font-size: 49px;
   font-weight: 570;
-  line-height: 0.98;
+  line-height: 1.05;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
 }
-.tok-detail-card__copy > span {
-  display: block;
-  width: 116px;
-  height: 3px;
-  margin: 19px auto 0;
-  border-radius: 3px;
-  background: var(--thread-accent);
-}
-.tok-detail-card__copy p {
-  max-width: 850px;
-  margin: 18px auto 0;
-  color: #3d3d34;
-  font-size: 23px;
+.tok-detail-card__caption p {
+  margin: 14px auto 0;
+  color: #e8dfcf;
+  font-size: 22px;
   font-weight: 510;
-  line-height: 1.48;
+  line-height: 1.42;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
 }
-.tok-experience--ku .tok-detail-card__copy h2,
-.tok-experience--ar .tok-detail-card__copy h2 {
+.tok-experience--ku .tok-detail-card__caption h2,
+.tok-experience--ar .tok-detail-card__caption h2 {
   font-family: var(--tok-arabic-serif);
   font-size: 52px;
   line-height: 1.16;
 }
-.tok-experience--ku .tok-detail-card__copy p,
-.tok-experience--ar .tok-detail-card__copy p {
+.tok-experience--ku .tok-detail-card__caption p,
+.tok-experience--ar .tok-detail-card__caption p {
   font-family: var(--tok-arabic-sans);
-  font-size: 24px;
-  line-height: 1.55;
+  font-size: 23px;
+  line-height: 1.5;
 }
 .tok-detail-selector {
   position: absolute;

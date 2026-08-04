@@ -79,11 +79,10 @@ export default function StoryScene({
               }}
             />
             <span className="tok-detail-card__shade" aria-hidden="true" />
-          </div>
-          <div className="tok-detail-card__copy">
-            <h2 id="tok-story-title">{card.title}</h2>
-            <span aria-hidden="true" />
-            <p>{card.body}</p>
+            <div className="tok-detail-card__caption">
+              <h2 id="tok-story-title">{card.title}</h2>
+              <p>{card.body}</p>
+            </div>
           </div>
         </motion.article>
       </AnimatePresence>
