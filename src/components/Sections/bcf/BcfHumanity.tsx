@@ -11,11 +11,12 @@ import {
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
-import reliefImg from "@/assets/images/PrimeMinistir/isis.webp";
-import healthImg from "@/assets/images/PrimeMinistir/service.webp";
-import educationImg from "@/assets/images/PrimeMinistir/education.webp";
 import environmentImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import communityImg from "@/assets/images/religions/coexistence/masoud-barzani.webp";
+// Real field photography for the four categories the new drop covers.
+import reliefImg from "@/assets/images/bcf/selected/humanity-relief.webp";
+import healthImg from "@/assets/images/bcf/selected/humanity-health.webp";
+import educationImg from "@/assets/images/bcf/selected/humanity-education.webp";
+import communityImg from "@/assets/images/bcf/selected/humanity-community.webp";
 
 type BcfHumanityProps = {
   lang: BcfLang;

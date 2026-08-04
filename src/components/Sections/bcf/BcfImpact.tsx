@@ -13,8 +13,13 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import cardA from "@/assets/images/PrimeMinistir/service.webp";
-import cardB from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
+// Four distinct field photos, one per stat, in the same order as impactItems
+// below — the two placeholders this replaced were reused twice each, which
+// read as a stock pair rather than four counts of real work.
+import cardEmployees from "@/assets/images/bcf/selected/impact-employees.webp";
+import cardCamps from "@/assets/images/bcf/selected/impact-camps.webp";
+import cardIdps from "@/assets/images/bcf/selected/impact-idps.webp";
+import cardSchools from "@/assets/images/bcf/selected/impact-schools.webp";
 
 type BcfImpactProps = {
   lang: BcfLang;
@@ -22,7 +27,7 @@ type BcfImpactProps = {
   onOpenStories: () => void;
 };
 
-const CARD_IMAGES = [cardA, cardB, cardA, cardB] as const;
+const CARD_IMAGES = [cardEmployees, cardCamps, cardIdps, cardSchools] as const;
 
 /**
  * Our Impact — Figma grid: 2×2 photo stat cards + Human Story Layer CTA.

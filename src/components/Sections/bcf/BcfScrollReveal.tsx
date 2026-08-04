@@ -53,7 +53,14 @@ export default function BcfScrollReveal({
   const [inView, setInView] = React.useState(false);
   const inViewRef = React.useRef(false);
 
-  React.useLayoutEffect(() => {
+  /**
+   * Passive, not layout. `containerRef` points at an ancestor, and React
+   * attaches refs child-first during commit — so in a layout effect the
+   * container is still `null`, the effect bails on its own guard, and the
+   * element never subscribes to the scroll at all. Passive effects run after
+   * the whole commit, by which point every ref is attached.
+   */
+  React.useEffect(() => {
     const el = ref.current;
     const container = containerRef.current;
     if (!el || !container) return;

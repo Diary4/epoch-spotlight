@@ -1949,7 +1949,7 @@ export const ES = {
     "pope-francis": threadsAssets.TS,
   };
 
-export const MS = { lalish: threadsAssets.fo, "tawus-melek": threadsAssets.AS, jemayi: threadsAssets.LS, resilience: threadsAssets.Ug };
+export const MS = { lalish: threadsAssets.fo, "tawus-melek": threadsAssets.AS, jemayi: threadsAssets.Ug, resilience: threadsAssets.LS };
 
 export const NS = { meaning: threadsAssets.bS, "four-principles": threadsAssets.IS, jamkhana: threadsAssets.DS, "sacred-book": threadsAssets._S };
 

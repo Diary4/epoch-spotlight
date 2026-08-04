@@ -19,14 +19,16 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import school from "@/assets/images/PrimeMinistir/education.webp";
 import shelter from "@/assets/images/PrimeMinistir/infrastructure.webp";
-import care from "@/assets/images/PrimeMinistir/service.webp";
 import displaced from "@/assets/images/PrimeMinistir/isis.webp";
 import skills from "@/assets/images/PrimeMinistir/job.webp";
 import cash from "@/assets/images/PrimeMinistir/economic.webp";
 import autism from "@/assets/images/women/w-4.webp";
-import recovery from "@/assets/images/PrimeMinistir/formation.webp";
+// A BCF school rebuild and a stocked pharmacy shelf — real work standing in
+// for the two categories the new drop actually covers.
+import school from "@/assets/images/bcf/selected/humanity-education.webp";
+import care from "@/assets/images/bcf/selected/humanity-health.webp";
+import recovery from "@/assets/images/bcf/selected/humanstories-recovery.webp";
 
 type BcfHumanStoriesProps = {
   lang: BcfLang;

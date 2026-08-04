@@ -80,7 +80,6 @@ export default function HubScene({
         <Rule />
         <h1 id="tok-hub-title">{copy.hubTitle}</h1>
         <p className="tok-hub__body">{copy.hubBody}</p>
-        <blockquote>{copy.hubQuote}</blockquote>
         <Rule tight />
       </header>
       {/* Drawn 1:1 in the portal layer's own space, from the same geometry the

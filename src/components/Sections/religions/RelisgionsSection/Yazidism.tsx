@@ -54,8 +54,8 @@ type TopicContent = {
 const TOPIC_IMAGES: Record<TopicId, string> = {
   lalish: lalish,
   "tawus-melek": peacock,
-  jemayi: jemayiImg,
-  resilience: candle,
+  jemayi: candle,
+  resilience: jemayiImg,
 };
 
 

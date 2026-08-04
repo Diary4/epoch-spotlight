@@ -21,15 +21,18 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import leadershipThumb from "@/assets/images/religions/coexistence/masoud-barzani.webp";
 import qualityThumb from "@/assets/images/PrimeMinistir/agreement.webp";
 import partnershipsThumb from "@/assets/images/PrimeMinistir/economic.webp";
-import recognitionThumb from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
-import trustBg from "@/assets/images/PrimeMinistir/p-1.webp";
-import leadershipBg from "@/assets/images/PrimeMinistir/agreement.webp";
 import qualityBg from "@/assets/images/PrimeMinistir/service.webp";
 import partnershipsBg from "@/assets/images/religions/main.webp";
-import recognitionBg from "@/assets/images/religions/coexistence/coexistence.webp";
+// Real event photography — an award ceremony and a governance handover both
+// read straight as "Leadership" / "Recognition" without naming anyone, so
+// they replace the founder headshots that used to stand in for both topics.
+import leadershipThumb from "@/assets/images/bcf/selected/trust-leadership.webp";
+import leadershipBg from "@/assets/images/bcf/selected/trust-leadership.webp";
+import recognitionThumb from "@/assets/images/bcf/selected/trust-recognition.webp";
+import recognitionBg from "@/assets/images/bcf/selected/trust-recognition.webp";
+import trustBg from "@/assets/images/bcf/selected/trust-bg.webp";
 import founderA from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
 import founderB from "@/assets/images/religions/coexistence/ahmed-barzani.webp";
 import founderC from "@/assets/images/religions/coexistence/masoud-barzani.webp";

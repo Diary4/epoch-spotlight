@@ -18,7 +18,7 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfProjectsBg } from "@/components/Sections/bcf/bcfAssets";
-import projectThumb from "@/assets/images/women/w-4.webp";
+import projectThumb from "@/assets/images/bcf/selected/humanity-education.webp";
 
 /**
  * One project row. Split out so each row owns its own press state — the list

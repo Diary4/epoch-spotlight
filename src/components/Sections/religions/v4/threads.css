@@ -530,15 +530,6 @@
   text-wrap: balance;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
 }
-.tok-hub blockquote {
-  margin: 32px auto 0;
-  color: #e0c48a;
-  font-family: var(--tok-serif);
-  font-size: 27px;
-  font-style: italic;
-  font-weight: 500;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
-}
 .tok-experience--ku .tok-hub__header h1,
 .tok-experience--ar .tok-hub__header h1 {
   font-family: var(--tok-arabic-serif);

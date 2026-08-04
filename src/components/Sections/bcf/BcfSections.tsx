@@ -6,7 +6,8 @@ import {
   type BcfLang,
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
-import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
+import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
 import {
   BCF_EASE,
   BCF_TAP,
@@ -123,10 +124,21 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
   return (
     <BcfShell
       showLogo={false}
-      backgroundStyle={{ background: BCF_FIELD_BG }}
-      overlayClassName="bg-black/0"
+      backgroundImage={bcfSunrise}
+      overlayClassName="bg-black/38"
     >
       <div className="relative min-h-[1920px] w-full overflow-hidden">
+        {/* A low, warm glow behind the constellation only — the same amber the
+            rest of the experience carries, kept faint enough that the sunrise
+            underneath stays the brightest thing on the screen. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[420px] h-[1100px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(251,193,88,0.16), transparent 70%)",
+          }}
+        />
+
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div
@@ -197,11 +209,12 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
             })}
           </svg>
 
-          {LAYOUT.map((item) => {
+          {LAYOUT.map((item, index) => {
             const chapter = c.journeyChapters.find((ch) => ch.id === item.id);
             if (!chapter) return null;
             const isActive = activeId === item.id;
             const size = isActive ? CIRCLE + 16 : CIRCLE;
+            const label = String(index + 1).padStart(2, "0");
 
             return (
               /* The centring translate lives on a plain wrapper: motion writes
@@ -231,6 +244,34 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                 transition={BCF_TAP_TRANSITION}
                 className="relative h-full w-full transform-gpu will-change-transform"
               >
+                {/* Ambient halo — always on at a whisper, so the constellation
+                    reads as lit rather than pasted on top of the photograph;
+                    it blooms with the node the visitor has landed on. */}
+                <span
+                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl transition-opacity duration-500"
+                  style={{
+                    width: size + 72,
+                    height: size + 72,
+                    background: `radial-gradient(circle, ${BCF.gold}55, transparent 70%)`,
+                    opacity: isActive ? 0.9 : 0.32,
+                  }}
+                />
+
+                {/* Slow orbit ring — only the active node earns it, so it reads
+                    as "you are here" rather than decoration repeated six times. */}
+                {isActive && !reduceMotion ? (
+                  <motion.span
+                    className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                    style={{
+                      width: size + 34,
+                      height: size + 34,
+                      border: `1.5px dashed ${BCF.gold}99`,
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+                  />
+                ) : null}
+
                 <span
                   className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[width,height,box-shadow,border-color] duration-500 ease-smooth-out"
                   style={{
@@ -258,8 +299,21 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     }}
                   />
                 </span>
+                {/* Numbered kicker, matching the "0X" mark every other chapter
+                    opens on — the hub was the one screen that never counted
+                    itself. It sits below the circle rather than inside it: a
+                    round photo clips its own bounding-box corners, so a badge
+                    placed "top-left" the way a rectangular card would carry
+                    one lands in the part of the square that the circle never
+                    draws. */}
                 <span
-                  className="absolute left-1/2 top-full mt-5 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight transition-colors duration-500"
+                  className="absolute left-1/2 top-full mt-5 -translate-x-1/2 text-[24px] font-bold leading-none tabular-nums transition-opacity duration-500"
+                  style={{ color: BCF.goldBright, opacity: isActive ? 1 : 0.6 }}
+                >
+                  {label}
+                </span>
+                <span
+                  className="absolute left-1/2 top-full mt-12 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight transition-colors duration-500"
                   style={{ color: isActive ? BCF.sand : "#fdeed4" }}
                 >
                   {chapter.title}

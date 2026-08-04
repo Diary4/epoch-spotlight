@@ -35,7 +35,12 @@ export default function BcfParallaxPlate({
   const middleRef = React.useRef(0);
   const y = useMotionValue(0);
 
-  React.useLayoutEffect(() => {
+  /**
+   * Passive, not layout. `containerRef` is an ancestor, and React attaches refs
+   * child-first during commit — in a layout effect it is still `null`, so the
+   * guard below would return and the plate would never drift at all.
+   */
+  React.useEffect(() => {
     const el = ref.current;
     const container = containerRef.current;
     if (!el || !container) return;
