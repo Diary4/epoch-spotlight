@@ -35,3 +35,11 @@ export { default as bcfFutureDetailBg } from "@/assets/images/TouristicPlace/Erb
  */
 export { default as bcfAttractPoster } from "@/assets/images/bcf/attract-poster.webp";
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
+
+/** Journey-hub chapter discs — curated BCF field photography from `selected/`. */
+export { default as bcfJourneyStory } from "@/assets/images/bcf/attract-poster.webp";
+export { default as bcfJourneyHumanity } from "@/assets/images/bcf/selected/humanity-education.webp";
+export { default as bcfJourneyMap } from "@/assets/images/bcf/selected/impact-camps.webp";
+export { default as bcfJourneyImpact } from "@/assets/images/bcf/selected/impact-employees.webp";
+export { default as bcfJourneyTrust } from "@/assets/images/bcf/selected/trust-leadership.webp";
+export { default as bcfJourneyFuture } from "@/assets/images/bcf/selected/trust-recognition.webp";

@@ -24,8 +24,7 @@ import {
   bcfStagger,
   lerp,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfCorridor, bcfErbil } from "@/components/Sections/bcf/bcfAssets";
-import storyThumb from "@/assets/images/religions/kurds/cover.webp";
+import { bcfCorridor, bcfErbil, bcfJourneyStory } from "@/components/Sections/bcf/bcfAssets";
 // Placeholders until the official presidential photography arrives.
 import presidentA from "@/assets/images/PrimeMinistir/masrur-barzani.webp";
 import presidentB from "@/assets/images/PrimeMinistir/pm.webp";
@@ -282,7 +281,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.14, ease: BCF_EASE }}
           >
-            <BcfChapterPill title={storyLabel} thumb={storyThumb} />
+            <BcfChapterPill title={storyLabel} thumb={bcfJourneyStory} />
           </motion.div>
 
           {/* Chapter rail — a scroll story with no position marker leaves the

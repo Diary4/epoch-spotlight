@@ -20,10 +20,12 @@ import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
 import BcfTrust from "@/components/Sections/bcf/BcfTrust";
 import BcfLegacy from "@/components/Sections/bcf/BcfLegacy";
 import BcfHumanStories from "@/components/Sections/bcf/BcfHumanStories";
+import BcfImpactGallery from "@/components/Sections/bcf/BcfImpactGallery";
 import {
   bcfCopy,
   type BcfLang,
   type BcfStep,
+  type ImpactGalleryId,
   type JourneyChapterId,
   type LocationId,
   type ProjectId,
@@ -39,6 +41,7 @@ const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
   "projectDetail",
   "impact",
   "humanStories",
+  "impactGallery",
   "trust",
   "future",
   "futureDetail",
@@ -59,6 +62,8 @@ export default function BcfPage() {
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
   const [projectId, setProjectId] = React.useState<ProjectId | null>(null);
+  const [impactGalleryId, setImpactGalleryId] =
+    React.useState<ImpactGalleryId | null>(null);
   const [languageOpen, setLanguageOpen] = React.useState(false);
   const [languageOrigin, setLanguageOrigin] =
     React.useState<"entry" | "control">("entry");
@@ -95,6 +100,7 @@ export default function BcfPage() {
     setModalLocation(null);
     setLocationId(null);
     setProjectId(null);
+    setImpactGalleryId(null);
     setLang("en");
     setStep("attract");
   }, []);
@@ -284,6 +290,12 @@ export default function BcfPage() {
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
             onOpenStories={() => go(() => setStep("humanStories"))}
+            onOpenGallery={(id) =>
+              go(() => {
+                setImpactGalleryId(id);
+                setStep("impactGallery");
+              })
+            }
           />
         );
       case "humanStories":
@@ -292,6 +304,21 @@ export default function BcfPage() {
             key={`humanStories-${lang}`}
             lang={lang}
             onBack={() => go(() => setStep("impact"))}
+          />
+        );
+      case "impactGallery":
+        if (!impactGalleryId) return null;
+        return (
+          <BcfImpactGallery
+            key={`impactGallery-${lang}-${impactGalleryId}`}
+            lang={lang}
+            galleryId={impactGalleryId}
+            onBack={() =>
+              go(() => {
+                setImpactGalleryId(null);
+                setStep("impact");
+              })
+            }
           />
         );
       case "trust":

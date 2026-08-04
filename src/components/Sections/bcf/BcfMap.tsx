@@ -26,8 +26,7 @@ import {
   BCF_MAP_KIRKUK,
   BCF_MAP_VIEWBOX,
 } from "@/components/Sections/bcf/bcfMapGeometry";
-import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
-import mapThumb from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
+import { bcfSunrise, bcfJourneyMap } from "@/components/Sections/bcf/bcfAssets";
 import erbilImg from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 import duhokImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 import zakhoImg from "@/assets/images/TouristicPlace/Bekodian/1000140576.webp";
@@ -101,7 +100,7 @@ export default function BcfMap({
           animate="animate"
         >
           <motion.div variants={bcfRise}>
-            <BcfChapterPill title={c.whereWeWork} thumb={mapThumb} />
+            <BcfChapterPill title={c.whereWeWork} thumb={bcfJourneyMap} />
           </motion.div>
 
           <div className="mt-12 max-w-[640px]">

@@ -7,7 +7,15 @@ import {
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
+import {
+  bcfSunrise,
+  bcfJourneyStory,
+  bcfJourneyHumanity,
+  bcfJourneyMap,
+  bcfJourneyImpact,
+  bcfJourneyTrust,
+  bcfJourneyFuture,
+} from "@/components/Sections/bcf/bcfAssets";
 import {
   BCF_EASE,
   BCF_TAP,
@@ -16,12 +24,6 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import storyThumb from "@/assets/images/religions/kurds/cover.webp";
-import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
-import mapThumb from "@/assets/images/PrimeMinistir/service.webp";
-import impactThumb from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import trustThumb from "@/assets/images/religions/coexistence/masoud-barzani.webp";
-import futureThumb from "@/assets/images/PrimeMinistir/agreement.webp";
 
 type BcfSectionsProps = {
   lang: BcfLang;
@@ -30,12 +32,12 @@ type BcfSectionsProps = {
 };
 
 const thumbs: Record<JourneyChapterId, string> = {
-  story: storyThumb,
-  humanity: humanityThumb,
-  map: mapThumb,
-  impact: impactThumb,
-  trust: trustThumb,
-  future: futureThumb,
+  story: bcfJourneyStory,
+  humanity: bcfJourneyHumanity,
+  map: bcfJourneyMap,
+  impact: bcfJourneyImpact,
+  trust: bcfJourneyTrust,
+  future: bcfJourneyFuture,
 };
 
 const CIRCLE = 236;

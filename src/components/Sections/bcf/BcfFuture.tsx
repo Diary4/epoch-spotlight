@@ -13,10 +13,9 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import futureThumb from "@/assets/images/religions/coexistence/masoud-barzani.webp";
-import futureFill from "@/assets/images/PrimeMinistir/agreement.webp";
-import legacyFill from "@/assets/images/religions/coexistence/mustafa-barzani.webp";
-import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
+import { bcfJourneyFuture, bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
+import futureFill from "@/assets/images/bcf/selected/trust-recognition.webp";
+import legacyFill from "@/assets/images/bcf/selected/trust-leadership.webp";
 
 type BcfFutureProps = {
   lang: BcfLang;
@@ -154,7 +153,7 @@ export default function BcfFuture({
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfRise}>
-          <BcfChapterPill title={c.trustTitle} thumb={futureThumb} />
+          <BcfChapterPill title={c.trustTitle} thumb={bcfJourneyFuture} />
         </motion.div>
 
         <motion.span

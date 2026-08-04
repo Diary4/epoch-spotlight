@@ -10,7 +10,7 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
-import humanityThumb from "@/assets/images/PrimeMinistir/education.webp";
+import { bcfJourneyHumanity } from "@/components/Sections/bcf/bcfAssets";
 import environmentImg from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
 // Real field photography for the four categories the new drop covers.
 import reliefImg from "@/assets/images/bcf/selected/humanity-relief.webp";
@@ -201,7 +201,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           animate="animate"
         >
           <motion.div variants={bcfRise}>
-            <BcfChapterPill title={chapterTitle} thumb={humanityThumb} />
+            <BcfChapterPill title={chapterTitle} thumb={bcfJourneyHumanity} />
           </motion.div>
 
           <div className="mt-16 max-w-[1080px]">

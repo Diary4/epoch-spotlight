@@ -3,7 +3,11 @@ import { motion } from "motion/react";
 import { ArrowRight, Sun } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
-import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import {
+  bcfCopy,
+  type BcfLang,
+  type ImpactGalleryId,
+} from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_TAP,
@@ -25,17 +29,25 @@ type BcfImpactProps = {
   lang: BcfLang;
   onBack: () => void;
   onOpenStories: () => void;
+  onOpenGallery: (id: ImpactGalleryId) => void;
 };
 
-const CARD_IMAGES = [cardEmployees, cardCamps, cardIdps, cardSchools] as const;
+const CARD_IMAGES: Record<ImpactGalleryId, string> = {
+  employees: cardEmployees,
+  camps: cardCamps,
+  idps: cardIdps,
+  schools: cardSchools,
+};
 
 /**
  * Our Impact — Figma grid: 2×2 photo stat cards + Human Story Layer CTA.
+ * Each card opens a dome gallery of the photography in its BCF field folder.
  */
 export default function BcfImpact({
   lang,
   onBack,
   onOpenStories,
+  onOpenGallery,
 }: BcfImpactProps) {
   const c = bcfCopy[lang];
   const enItems = bcfCopy.en.impactItems;
@@ -88,14 +100,18 @@ export default function BcfImpact({
         >
           <div className="grid grid-cols-2 gap-7">
             {c.impactItems.map((item, index) => (
-              <motion.article
-                key={`${item.title}-${index}`}
+              <motion.button
+                key={item.id}
+                type="button"
                 variants={bcfRiseCard}
-                className="relative flex h-[520px] flex-col overflow-hidden rounded-[28px] border border-white/15"
+                onClick={() => onOpenGallery(item.id)}
+                whileTap={BCF_TAP}
+                transition={BCF_TAP_TRANSITION}
+                className="relative flex h-[520px] transform-gpu flex-col overflow-hidden rounded-[28px] border border-white/15 text-left will-change-transform"
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <img
-                  src={CARD_IMAGES[index]}
+                  src={CARD_IMAGES[item.id]}
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -130,7 +146,7 @@ export default function BcfImpact({
                     </p>
                   </div>
                 </div>
-              </motion.article>
+              </motion.button>
             ))}
           </div>
 

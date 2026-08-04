@@ -16,6 +16,7 @@ export type BcfStep =
   | "projectDetail"
   | "impact"
   | "humanStories"
+  | "impactGallery"
   | "trust"
   | "future"
   | "futureDetail"
@@ -85,7 +86,10 @@ type ProjectCopy = {
   stat2Label: string;
 };
 
+export type ImpactGalleryId = "employees" | "camps" | "idps" | "schools";
+
 type ImpactItem = {
+  id: ImpactGalleryId;
   value: string;
   title: string;
   description: string;
@@ -673,21 +677,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     livesEveryday: "everyday",
     impactItems: [
       {
+        id: "employees",
         value: "1,004",
         title: "Employees",
         description: "People coordinating humanitarian action every day.",
       },
       {
+        id: "camps",
         value: "191,386",
         title: "People in Camps",
         description: "Individuals supported through organized camp services.",
       },
       {
+        id: "idps",
         value: "751,948",
         title: "IDPs and Refugees",
         description: "People reached outside camps across communities.",
       },
       {
+        id: "schools",
         value: "310",
         title: "Schools Renovated",
         description: "Learning environments restored for children and young people.",
@@ -1101,21 +1109,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     livesEveryday: "هەموو ڕۆژێک",
     impactItems: [
       {
+        id: "employees",
         value: "1,004",
         title: "کارمەند",
         description: "هەماهەنگی کاری مرۆیی هەموو ڕۆژێک",
       },
       {
+        id: "camps",
         value: "191,386",
         title: "کەس لە کەمپ",
         description: "پشتگیریکراو لە ڕێگەی خزمەتگوزارییە ڕێکخراوەکان",
       },
       {
+        id: "idps",
         value: "751,948",
         title: "ئاوارە و پەنابەر",
         description: "گەیشتوون لە دەرەوەی کەمپەکان لە کۆمەڵگەکان",
       },
       {
+        id: "schools",
         value: "310",
         title: "قوتابخانەی نۆژەنکراو",
         description: "ژینگەی فێربوون بۆ منداڵان و گەنجان",
@@ -1529,21 +1541,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     livesEveryday: "كل يوم",
     impactItems: [
       {
+        id: "employees",
         value: "1,004",
         title: "موظفون",
         description: "ينسّقون العمل الإنساني كل يوم",
       },
       {
+        id: "camps",
         value: "191,386",
         title: "أشخاص في المخيمات",
         description: "مدعومون عبر خدمات المخيمات المنظمة",
       },
       {
+        id: "idps",
         value: "751,948",
         title: "نازحون ولاجئون",
         description: "تم الوصول إليهم خارج المخيمات في المجتمعات",
       },
       {
+        id: "schools",
         value: "310",
         title: "مدارس مجدّدة",
         description: "بيئات تعلم أُعيد ترميمها للأطفال والشباب",
