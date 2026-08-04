@@ -92,11 +92,11 @@ export default function HubScene({
               <stop offset="100%" stopColor="#b0813a" />
             </radialGradient>
             <radialGradient id="tok-sun-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#f2ece0" stopOpacity="1" />
-              <stop offset="22%" stopColor="#f2ece0" stopOpacity="0.9" />
-              <stop offset="48%" stopColor="#f2ece0" stopOpacity="0.55" />
-              <stop offset="72%" stopColor="#f2ece0" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#f2ece0" stopOpacity="0" />
+              <stop offset="0%" stopColor="#0c0a06" stopOpacity="0.9" />
+              <stop offset="22%" stopColor="#0c0a06" stopOpacity="0.8" />
+              <stop offset="48%" stopColor="#0c0a06" stopOpacity="0.5" />
+              <stop offset="72%" stopColor="#0c0a06" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#0c0a06" stopOpacity="0" />
             </radialGradient>
           </defs>
           {/* Glow sits under the web so the paper wash never erases the threads. */}
