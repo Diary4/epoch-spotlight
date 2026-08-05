@@ -1,6 +1,13 @@
 services:
   web:
     build: .
+    image: epoch-spotlight:latest
     ports:
       - "8080:80"
     restart: unless-stopped
+    # Production kiosk container — no volumes, no env, just the built app.
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp

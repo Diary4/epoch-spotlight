@@ -24,22 +24,22 @@ import {
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsThumb from "@/assets/images/bcf/selected/humanity-relief.webp";
 import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
-import partnershipsBg from "@/assets/images/bcf/camps/debaga.JPG";
+import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
 import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
 import leadershipBg from "@/assets/images/bcf/selected/humanity-community.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
-import recognitionBg from "@/assets/images/bcf/camps/kawrgosk.JPG";
-import trustBg from "@/assets/images/bcf/camps/harsham.JPG";
-import founderA from "@/assets/images/bcf/administration/8C6A0612.JPG";
-import founderB from "@/assets/images/bcf/administration/8C6A0443.JPG";
-import founderC from "@/assets/images/bcf/administration/405A9925.jpg";
-import founderD from "@/assets/images/bcf/administration/8C6A7443.JPG";
+import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
+import trustBg from "@/assets/images/bcf/optimized/camps/harsham.webp";
+import founderA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
+import founderB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
+import founderC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
+import founderD from "@/assets/images/bcf/optimized/administration/8C6A7443.webp";
 import certificateImg from "@/assets/images/bcf/selected/impact-schools.webp";
-import awardsNode from "@/assets/images/bcf/schools/8D1A7008.JPG";
-import certificationsNode from "@/assets/images/bcf/schools/IMG_6698.JPG";
-import parliamentNode from "@/assets/images/bcf/children-activity/DSC_1567.JPG";
-import lettersNode from "@/assets/images/bcf/flood/2B1A6924.JPG";
-import timelineNode from "@/assets/images/bcf/children-activity/8C6A6112.JPG";
+import awardsNode from "@/assets/images/bcf/optimized/schools/8D1A7008.webp";
+import certificationsNode from "@/assets/images/bcf/optimized/schools/IMG_6698.webp";
+import parliamentNode from "@/assets/images/bcf/optimized/children-activity/DSC_1567.webp";
+import lettersNode from "@/assets/images/bcf/optimized/flood/2B1A6924.webp";
+import timelineNode from "@/assets/images/bcf/optimized/children-activity/8C6A6112.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;

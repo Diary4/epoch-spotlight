@@ -5,8 +5,23 @@ dist
 .cursor
 android
 .vscode
+release
+electron
 *.md
 .env
 .env.*
 coverage
 **/*.log
+
+# Camera originals are archival only — the app bundles `bcf/optimized/` + `selected/`.
+src/assets/images/bcf/administration
+src/assets/images/bcf/camps
+src/assets/images/bcf/flood
+src/assets/images/bcf/schools
+src/assets/images/bcf/children-activity
+src/assets/images/bcf/board-chief
+src/assets/images/bcf/drug-hospital
+src/assets/images/bcf/office-manager
+src/assets/images/bcf/logo.png
+src/assets/images/bcf/attract-poster.png
+src/assets/images/bcf/closing-lockup.png
