@@ -19,10 +19,10 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import shelter from "@/assets/images/PrimeMinistir/infrastructure.webp";
-import displaced from "@/assets/images/PrimeMinistir/isis.webp";
-import skills from "@/assets/images/PrimeMinistir/job.webp";
-import cash from "@/assets/images/PrimeMinistir/economic.webp";
+import shelter from "@/assets/images/bcf/selected/humanity-relief.webp";
+import displaced from "@/assets/images/bcf/selected/impact-idps.webp";
+import skills from "@/assets/images/bcf/selected/impact-employees.webp";
+import cash from "@/assets/images/bcf/selected/humanity-community.webp";
 import autism from "@/assets/images/women/w-4.webp";
 // A BCF school rebuild and a stocked pharmacy shelf — real work standing in
 // for the two categories the new drop actually covers.

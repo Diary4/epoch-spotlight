@@ -25,10 +25,9 @@ import {
   lerp,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfCorridor, bcfErbil, bcfJourneyStory } from "@/components/Sections/bcf/bcfAssets";
-// Placeholders until the official presidential photography arrives.
-import presidentA from "@/assets/images/PrimeMinistir/masrur-barzani.webp";
-import presidentB from "@/assets/images/PrimeMinistir/pm.webp";
-import presidentC from "@/assets/images/religions/coexistence/masoud-barzani.webp";
+import presidentA from "@/assets/images/bcf/selected/humanity-relief.webp";
+import presidentB from "@/assets/images/bcf/selected/humanity-community.webp";
+import presidentC from "@/assets/images/bcf/selected/humanstories-recovery.webp";
 
 type BcfStoryProps = {
   lang: BcfLang;

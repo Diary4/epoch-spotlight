@@ -14,8 +14,8 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfJourneyFuture, bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
-import futureFill from "@/assets/images/bcf/selected/trust-recognition.webp";
-import legacyFill from "@/assets/images/bcf/selected/trust-leadership.webp";
+import futureFill from "@/assets/images/bcf/selected/humanstories-recovery.webp";
+import legacyFill from "@/assets/images/bcf/selected/humanity-community.webp";
 
 type BcfFutureProps = {
   lang: BcfLang;

@@ -21,29 +21,25 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import qualityThumb from "@/assets/images/bcf/selected/trust-recognition.webp";
-import partnershipsThumb from "@/assets/images/bcf/selected/trust-leadership.webp";
-import qualityBg from "@/assets/images/bcf/selected/trust-recognition.webp";
-import partnershipsBg from "@/assets/images/bcf/board-chief/8D1A8564.JPG";
-// Real event photography — an award ceremony and a governance handover both
-// read straight as "Leadership" / "Recognition" without naming anyone, so
-// they replace the founder headshots that used to stand in for both topics.
-import leadershipThumb from "@/assets/images/bcf/selected/trust-leadership.webp";
-import leadershipBg from "@/assets/images/bcf/selected/trust-leadership.webp";
-import recognitionThumb from "@/assets/images/bcf/selected/trust-recognition.webp";
-import recognitionBg from "@/assets/images/bcf/board-chief/8D1A8564.JPG";
-import trustBg from "@/assets/images/bcf/selected/trust-bg.webp";
-// BCF board / leadership photography — not historical Barzani portraits from Religions.
-import founderA from "@/assets/images/bcf/board-chief/8C6A0257.JPG";
-import founderB from "@/assets/images/bcf/board-chief/8C6A0316.JPG";
-import founderC from "@/assets/images/bcf/board-chief/8C6A3599.JPG";
-import founderD from "@/assets/images/bcf/board-chief/FY1A6986.JPG";
-import certificateImg from "@/assets/images/bcf/selected/trust-recognition.webp";
-import awardsNode from "@/assets/images/bcf/board-chief/FY1A7010.JPG";
-import certificationsNode from "@/assets/images/bcf/board-chief/8C6A0295.JPG";
-import parliamentNode from "@/assets/images/bcf/board-chief/8D1A9536.JPG";
-import lettersNode from "@/assets/images/bcf/board-chief/8D1A9629.JPG";
-import timelineNode from "@/assets/images/bcf/board-chief/FY1A7016.JPG";
+import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
+import partnershipsThumb from "@/assets/images/bcf/selected/humanity-relief.webp";
+import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
+import partnershipsBg from "@/assets/images/bcf/camps/debaga.JPG";
+import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
+import leadershipBg from "@/assets/images/bcf/selected/humanity-community.webp";
+import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
+import recognitionBg from "@/assets/images/bcf/camps/kawrgosk.JPG";
+import trustBg from "@/assets/images/bcf/camps/harsham.JPG";
+import founderA from "@/assets/images/bcf/administration/8C6A0612.JPG";
+import founderB from "@/assets/images/bcf/administration/8C6A0443.JPG";
+import founderC from "@/assets/images/bcf/administration/405A9925.jpg";
+import founderD from "@/assets/images/bcf/administration/8C6A7443.JPG";
+import certificateImg from "@/assets/images/bcf/selected/impact-schools.webp";
+import awardsNode from "@/assets/images/bcf/schools/8D1A7008.JPG";
+import certificationsNode from "@/assets/images/bcf/schools/IMG_6698.JPG";
+import parliamentNode from "@/assets/images/bcf/children-activity/DSC_1567.JPG";
+import lettersNode from "@/assets/images/bcf/flood/2B1A6924.JPG";
+import timelineNode from "@/assets/images/bcf/children-activity/8C6A6112.JPG";
 
 type BcfTrustProps = {
   lang: BcfLang;

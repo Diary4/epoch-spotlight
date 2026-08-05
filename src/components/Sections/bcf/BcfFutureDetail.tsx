@@ -21,7 +21,7 @@ import educationImg from "@/assets/images/bcf/selected/impact-schools.webp";
 import environmentImg from "@/assets/images/bcf/selected/humanity-community.webp";
 import crisesImg from "@/assets/images/bcf/selected/humanity-relief.webp";
 import rehabImg from "@/assets/images/bcf/selected/humanstories-recovery.webp";
-import rightsImg from "@/assets/images/bcf/selected/trust-leadership.webp";
+import rightsImg from "@/assets/images/bcf/selected/impact-employees.webp";
 
 const topicImages: Record<FutureTopicId, string> = {
   education: educationImg,
