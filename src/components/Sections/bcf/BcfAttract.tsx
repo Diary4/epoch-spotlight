@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  type TargetAndTransition,
-} from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
@@ -14,7 +9,6 @@ import {
   BCF_VIGNETTE_STYLE,
 } from "@/components/Sections/bcf/bcfTheme";
 import {
-  BCF_DRIFT_TRANSITION,
   BCF_EASE,
   BCF_TAP,
   BCF_TAP_TRANSITION,
@@ -59,15 +53,17 @@ const PLATE_HOLD_MS = 10_800;
 const PLATES = [bcfAttractPoster, bcfSunrise];
 
 /**
- * Ken-burns per plate. Module-level so the keyframe arrays keep their identity
- * across renders — rebuilt inline, they would restart the push every time the
- * word above them turned over, and the backdrop would twitch on a 3.6s beat.
- * The two plates push opposite ways, so the cross-fade has parallax in it.
+ * Ken-burns per plate — CSS keyframes in index.css, one class each. The two
+ * plates push opposite ways, so the cross-fade has parallax in it.
+ *
+ * These used to be `motion` keyframe arrays, kept at module scope so they would
+ * not restart every time the word above them turned over. As CSS animations the
+ * identity problem goes away entirely (a class does not change on re-render),
+ * and the push runs on the compositor instead of writing a transform from the
+ * main thread every frame for as long as the kiosk sits on this screen — which
+ * is most of the day.
  */
-const PLATE_DRIFT: TargetAndTransition[] = [
-  { scale: [1.05, 1.14], x: [0, -18] },
-  { scale: [1.14, 1.05], x: [0, 16] },
-];
+const PLATE_DRIFT = ["bcf-plate-a", "bcf-plate-b"];
 
 const PLATE_ORIGINS = ["62% 38%", "38% 44%"];
 
@@ -149,12 +145,10 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
                outer one owns a push that never stops or restarts, the inner one
                owns the dissolve. Driving both from a single element made the
                plate jump back to its start scale as it faded out. */
-            <motion.div
+            <div
               key={plate}
-              className="absolute inset-0"
+              className={`absolute inset-0 ${animate ? PLATE_DRIFT[index] : ""}`}
               style={{ transformOrigin: PLATE_ORIGINS[index] }}
-              animate={animate ? PLATE_DRIFT[index] : undefined}
-              transition={BCF_DRIFT_TRANSITION}
             >
               <motion.img
                 src={plate}
@@ -166,7 +160,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
                 animate={{ opacity: isActive ? 1 : 0 }}
                 transition={{ duration: 2.6, ease: BCF_EASE }}
               />
-            </motion.div>
+            </div>
           );
         })}
         <div
@@ -181,52 +175,37 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
       {/* Warm shaft that breathes across the horizon — the plate is a still, so
           this is what keeps the light itself feeling alive. */}
       {animate ? (
-        <motion.div
+        <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[1]"
+          className="bcf-shaft pointer-events-none absolute inset-0 z-[1]"
           style={{
             background: `radial-gradient(760px 620px at 74% 46%, ${BCF.gold}26, transparent 66%)`,
           }}
-          animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.08, 1] }}
-          transition={{ duration: 9.5, repeat: Infinity, ease: "easeInOut" }}
         />
       ) : null}
 
-      {/* Embers rising off the valley floor. */}
+      {/* Embers rising off the valley floor. The travel, the fade and the
+          per-ember timing all live in the `bcfEmber` keyframes; only the
+          numbers that differ per ember come through as custom properties. */}
       {animate ? (
         <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden">
           {EMBERS.map((ember) => (
-            <motion.span
+            <span
               key={ember.x}
-              className="absolute rounded-full"
-              style={{
-                left: `${ember.x}%`,
-                bottom: -20,
-                width: ember.size,
-                height: ember.size,
-                backgroundColor: BCF.sand,
-                boxShadow: `0 0 12px ${BCF.gold}`,
-              }}
-              animate={{
-                y: [0, -1180],
-                x: [0, ember.drift],
-                opacity: [0, 0.7, 0.7, 0],
-              }}
-              // Opacity carries four stops to the travel's two, so it needs its
-              // own timing — a shared `times` would not line up with either.
-              transition={{
-                duration: ember.duration,
-                delay: ember.delay,
-                repeat: Infinity,
-                ease: "linear",
-                opacity: {
-                  duration: ember.duration,
-                  delay: ember.delay,
-                  repeat: Infinity,
-                  ease: "linear",
-                  times: [0, 0.16, 0.74, 1],
-                },
-              }}
+              className="bcf-ember absolute rounded-full"
+              style={
+                {
+                  left: `${ember.x}%`,
+                  bottom: -20,
+                  width: ember.size,
+                  height: ember.size,
+                  backgroundColor: BCF.sand,
+                  boxShadow: `0 0 12px ${BCF.gold}`,
+                  "--ember-duration": `${ember.duration}s`,
+                  "--ember-delay": `${ember.delay}s`,
+                  "--ember-drift": `${ember.drift}px`,
+                } as React.CSSProperties
+              }
             />
           ))}
         </div>

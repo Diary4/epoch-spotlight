@@ -254,9 +254,86 @@ All colors MUST be HSL.
   animation: bcfOrbit 14s linear infinite;
 }
 
+/* The attract plate's ken-burns push. The two plates drift opposite ways so the
+   cross-fade between them carries parallax. */
+@keyframes bcfPlateDriftA {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  to {
+    transform: translate3d(-18px, 0, 0) scale(1.14);
+  }
+}
+
+@keyframes bcfPlateDriftB {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.14);
+  }
+  to {
+    transform: translate3d(16px, 0, 0) scale(1.05);
+  }
+}
+
+.bcf-plate-a {
+  animation: bcfPlateDriftA 26s ease-in-out infinite alternate;
+}
+
+.bcf-plate-b {
+  animation: bcfPlateDriftB 26s ease-in-out infinite alternate;
+}
+
+/* Embers rising off the valley floor. Eleven of these run for as long as the
+   kiosk sits on the attract screen, which is most of the day — as `motion`
+   animations that was eleven per-frame style writes on the main thread behind
+   the visitor's first tap. Per-ember timing comes in as custom properties. */
+@keyframes bcfEmber {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.7;
+  }
+  74% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(var(--ember-drift, 0px), -1180px, 0);
+    opacity: 0;
+  }
+}
+
+.bcf-ember {
+  opacity: 0;
+  animation: bcfEmber var(--ember-duration, 16s) linear var(--ember-delay, 0s)
+    infinite;
+}
+
+/* Warm shaft breathing across the horizon. Full-bleed, so driving its opacity
+   and scale from JS repainted the whole plate every frame. */
+@keyframes bcfShaft {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.bcf-shaft {
+  animation: bcfShaft 9.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bcf-drift,
-  .bcf-orbit {
+  .bcf-orbit,
+  .bcf-plate-a,
+  .bcf-plate-b,
+  .bcf-ember,
+  .bcf-shaft {
     animation: none;
   }
 }

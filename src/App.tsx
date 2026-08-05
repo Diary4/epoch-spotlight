@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Capacitor } from "@capacitor/core";
 import { BrowserRouter, HashRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -6,28 +7,41 @@ import { useAppFullscreen } from "@/hooks/useAppFullscreen";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import SecondScreen from "./pages/SecondScreen.tsx";
-import Portraits from "./pages/Portraits.tsx";
-import PortraitDetail from "./pages/PortraitDetail.tsx";
-import PortraitTimeline from "./pages/PortraitTimeline.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import SliderPage from "./pages/SliderPage.tsx";
-import Religions from "./pages/Religions.tsx";
-import ReligionsV2 from "./pages/ReligionsV2.tsx";
-import ReligionsV4 from "./pages/ReligionsV4.tsx";
-import WomenPage from "./pages/Women.tsx";
-import BcfPage from "./pages/Bcf.tsx";
+/**
+ * Every route is split.
+ *
+ * Statically imported, all twenty-two pages landed in one entry chunk — 1.9 MB
+ * of JavaScript that a visitor opening /bcf had to download, parse and execute
+ * before the first pixel of the attract screen. Desktop absorbs that; Chrome on
+ * the Android kiosk panel does not, and the delay reads as the experience being
+ * slow rather than as it still loading.
+ *
+ * `StartMenu` stays eager: it is the app's own entry point, so splitting it
+ * would only cost it a round trip.
+ */
 import StartMenu from "./pages/StartMenu.tsx";
-import Touristic from "./pages/Touristic.tsx";
-import TouristicDetail from "./pages/TouristicDetail.tsx";
-import Library from "./pages/Library.tsx";
-import LibraryWriters from "./pages/LibraryWriters.tsx";
-import LibraryBooks from "./pages/LibraryBooks.tsx";
-import LibraryWriterDetail from "./pages/LibraryWriterDetail.tsx";
-import LibraryFeaturedWriter from "./pages/LibraryFeaturedWriter.tsx";
-import LibraryBookDetail from "./pages/LibraryBookDetail.tsx";
-import LibraryBookReader from "./pages/LibraryBookReader.tsx";
+
+const Index = lazy(() => import("./pages/Index.tsx"));
+const SecondScreen = lazy(() => import("./pages/SecondScreen.tsx"));
+const Portraits = lazy(() => import("./pages/Portraits.tsx"));
+const PortraitDetail = lazy(() => import("./pages/PortraitDetail.tsx"));
+const PortraitTimeline = lazy(() => import("./pages/PortraitTimeline.tsx"));
+const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+const SliderPage = lazy(() => import("./pages/SliderPage.tsx"));
+const Religions = lazy(() => import("./pages/Religions.tsx"));
+const ReligionsV2 = lazy(() => import("./pages/ReligionsV2.tsx"));
+const ReligionsV4 = lazy(() => import("./pages/ReligionsV4.tsx"));
+const WomenPage = lazy(() => import("./pages/Women.tsx"));
+const BcfPage = lazy(() => import("./pages/Bcf.tsx"));
+const Touristic = lazy(() => import("./pages/Touristic.tsx"));
+const TouristicDetail = lazy(() => import("./pages/TouristicDetail.tsx"));
+const Library = lazy(() => import("./pages/Library.tsx"));
+const LibraryWriters = lazy(() => import("./pages/LibraryWriters.tsx"));
+const LibraryBooks = lazy(() => import("./pages/LibraryBooks.tsx"));
+const LibraryWriterDetail = lazy(() => import("./pages/LibraryWriterDetail.tsx"));
+const LibraryFeaturedWriter = lazy(() => import("./pages/LibraryFeaturedWriter.tsx"));
+const LibraryBookDetail = lazy(() => import("./pages/LibraryBookDetail.tsx"));
+const LibraryBookReader = lazy(() => import("./pages/LibraryBookReader.tsx"));
 
 import { useViewportHeight } from "@/hooks/useViewportHeight";
 import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
@@ -55,6 +69,12 @@ const AppRoutes = () => {
   return (
     <>
       <FullscreenGate visible={showGate} onActivate={onGateActivate} />
+      {/* The fallback is the app's own black, not a spinner: every screen here
+          opens on a dark plate, so a chunk that arrives quickly reads as the
+          page painting rather than as a loader that flashed. */}
+      <Suspense
+        fallback={<div className="min-h-screen w-full flex-1 bg-[#0a0a0a]" />}
+      >
       <Routes>
           <Route path="/" element={<StartMenu />} />
           <Route path="/screen" element={<Index />} />
@@ -90,6 +110,7 @@ const AppRoutes = () => {
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+      </Suspense>
     </>
   );
 };
