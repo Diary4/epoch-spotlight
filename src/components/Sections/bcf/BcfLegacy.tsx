@@ -184,7 +184,7 @@ export default function BcfLegacy({ lang, onBack, onRestart }: BcfLegacyProps) {
               onClick={onRestart}
               whileTap={BCF_TAP}
               transition={BCF_TAP_TRANSITION}
-              className="mt-10 flex transform-gpu items-center gap-4 rounded-full px-12 py-6 text-[30px] font-medium will-change-transform"
+              className="mt-10 flex transform-gpu items-center gap-4 rounded-full px-12 py-6 text-[30px] font-medium"
               style={{
                 border: `1px solid ${BCF.gold}66`,
                 backgroundColor: "rgba(0,0,0,0.45)",

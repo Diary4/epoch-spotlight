@@ -7,11 +7,15 @@
  * The official lockup: the seal over the wordmark, on transparency.
  *
  * Derived from `logo.png`, which is a 15871×25759 print original — 12 MB, and
- * enough pixels to stall the kiosk on decode. This is the same artwork at
- * 986×1600, which still clears 2× on the 4K portrait panel at every size the
- * experience draws it.
+ * enough pixels to stall the kiosk on decode.
+ *
+ * 456×740. The experience never draws the lockup taller than 300 px (the
+ * attract monogram; the shell mark is 172), so this clears 2× on the 4K
+ * portrait panel with margin to spare. The 986×1600 `logo.webp` it replaces
+ * decoded to 6.3 MB of bitmap to be drawn a fifth of that size — a cost the
+ * Android panel paid on every screen, since the shell mark is always up.
  */
-export { default as bcfLogo } from "@/assets/images/bcf/logo.webp";
+export { default as bcfLogo } from "@/assets/images/bcf/logo-mark.webp";
 export { default as bcfLangBg } from "@/assets/images/religions/kurds/cover.webp";
 export { default as bcfIntroBg } from "@/assets/images/bcf/attract-poster.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
@@ -36,10 +40,18 @@ export { default as bcfFutureDetailBg } from "@/assets/images/bcf/selected/impac
 export { default as bcfAttractPoster } from "@/assets/images/bcf/attract-poster.webp";
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
 
-/** Journey-hub chapter discs — BCF humanitarian field photography only. */
-export { default as bcfJourneyStory } from "@/assets/images/bcf/selected/impact-schools.webp";
-export { default as bcfJourneyHumanity } from "@/assets/images/bcf/selected/humanity-education.webp";
-export { default as bcfJourneyMap } from "@/assets/images/bcf/selected/impact-camps.webp";
-export { default as bcfJourneyImpact } from "@/assets/images/bcf/selected/impact-employees.webp";
-export { default as bcfJourneyTrust } from "@/assets/images/bcf/selected/humanity-community.webp";
-export { default as bcfJourneyFuture } from "@/assets/images/bcf/selected/humanstories-recovery.webp";
+/**
+ * Journey-hub chapter discs — BCF humanitarian field photography only.
+ *
+ * Square 560×560 crops of the `selected/` plates, not the plates themselves.
+ * The hub draws six of them at once inside 236 px circles: at the full 1600×
+ * 1066 that was ~41 MB of decoded bitmap resident for six thumbnails, which is
+ * what made the hub the slowest screen to arrive on and the first to stutter.
+ * 560 still clears 2× on the 4K panel (the active disc is 252 CSS px).
+ */
+export { default as bcfJourneyStory } from "@/assets/images/bcf/thumbs/impact-schools.webp";
+export { default as bcfJourneyHumanity } from "@/assets/images/bcf/thumbs/humanity-education.webp";
+export { default as bcfJourneyMap } from "@/assets/images/bcf/thumbs/impact-camps.webp";
+export { default as bcfJourneyImpact } from "@/assets/images/bcf/thumbs/impact-employees.webp";
+export { default as bcfJourneyTrust } from "@/assets/images/bcf/thumbs/humanity-community.webp";
+export { default as bcfJourneyFuture } from "@/assets/images/bcf/thumbs/humanstories-recovery.webp";

@@ -49,7 +49,7 @@ function ProjectRow({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className={`${BCF_GLASS_CARD} group flex transform-gpu items-center gap-7 overflow-hidden p-5 text-start will-change-transform`}
+      className={`${BCF_GLASS_CARD} group flex transform-gpu items-center gap-7 overflow-hidden p-5 text-start`}
       style={{
         borderColor: pressed ? BCF.gold : `${BCF.gold}73`,
         boxShadow: pressed
@@ -64,7 +64,7 @@ function ProjectRow({
           src={projectThumb}
           alt=""
           decoding="async"
-          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out will-change-transform motion-reduce:transition-none"
+          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
           style={{ transform: pressed ? "scale(1.08)" : "scale(1)" }}
         />
         <span

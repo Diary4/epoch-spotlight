@@ -151,7 +151,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
                plate jump back to its start scale as it faded out. */
             <motion.div
               key={plate}
-              className="absolute inset-0 will-change-transform"
+              className="absolute inset-0"
               style={{ transformOrigin: PLATE_ORIGINS[index] }}
               animate={animate ? PLATE_DRIFT[index] : undefined}
               transition={BCF_DRIFT_TRANSITION}
@@ -366,7 +366,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
         type="button"
         onClick={onEnter}
         aria-label={bcfCopy.en.attractStart}
-        className="grid w-full transform-gpu grid-cols-[64px_1fr_44px] items-center gap-7 rounded-full border px-10 py-7 text-start backdrop-blur-xl will-change-transform"
+        className="grid w-full transform-gpu grid-cols-[64px_1fr_44px] items-center gap-7 rounded-full border px-10 py-7 text-start backdrop-blur-xl"
         style={{
           borderColor: `${BCF.gold}66`,
           backgroundColor: "rgba(10,12,16,0.62)",

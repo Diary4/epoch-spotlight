@@ -262,7 +262,7 @@ export default function BcfMap({
                         onSelectLocation(loc.id);
                       }}
                       whileTap={BCF_TAP}
-                      className="group origin-bottom transform-gpu will-change-transform"
+                      className="group origin-bottom transform-gpu"
                     >
                       <span className="relative flex flex-col items-center">
                         {/* Halo ping marks a pin as live without needing a hover. */}
@@ -328,7 +328,7 @@ export default function BcfMap({
                   onClick={() => toggleFilter(id)}
                   whileTap={BCF_TAP}
                   transition={BCF_TAP_TRANSITION}
-                  className="mb-3 flex w-full transform-gpu items-center justify-between gap-3 rounded-xl px-2 py-3 text-start will-change-transform last:mb-0"
+                  className="mb-3 flex w-full transform-gpu items-center justify-between gap-3 rounded-xl px-2 py-3 text-start last:mb-0"
                 >
                   <span className="flex items-center gap-3">
                     <span
@@ -401,7 +401,7 @@ export default function BcfMap({
                       onClick={() => onSelectLocation(null)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="grid h-12 w-12 transform-gpu place-items-center rounded-full border border-white/30 will-change-transform"
+                      className="grid h-12 w-12 transform-gpu place-items-center rounded-full border border-white/30"
                       aria-label={c.close}
                     >
                       <X className="h-6 w-6" />
@@ -447,7 +447,7 @@ export default function BcfMap({
                     onClick={() => onExploreProjects(selectedLocation)}
                     whileTap={BCF_TAP}
                     transition={BCF_TAP_TRANSITION}
-                    className="mt-8 flex w-full transform-gpu items-center justify-between rounded-full border border-[#fbc158]/50 bg-black/25 px-8 py-5 will-change-transform"
+                    className="mt-8 flex w-full transform-gpu items-center justify-between rounded-full border border-[#fbc158]/50 bg-black/25 px-8 py-5"
                   >
                     <span className="text-[28px] text-white">{selected.explore}</span>
                     <motion.span

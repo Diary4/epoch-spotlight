@@ -107,7 +107,7 @@ export default function BcfImpact({
                 onClick={() => onOpenGallery(item.id)}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
-                className="relative flex h-[520px] transform-gpu flex-col overflow-hidden rounded-[28px] border border-white/15 text-left will-change-transform"
+                className="relative flex h-[520px] transform-gpu flex-col overflow-hidden rounded-[28px] border border-white/15 text-left"
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <img
@@ -156,7 +156,7 @@ export default function BcfImpact({
             onClick={onOpenStories}
             whileTap={BCF_TAP}
             transition={BCF_TAP_TRANSITION}
-            className="relative flex h-[180px] w-full transform-gpu items-center overflow-hidden rounded-[28px] border border-white/20 bg-black/40 px-10 text-left backdrop-blur-sm will-change-transform"
+            className="relative flex h-[180px] w-full transform-gpu items-center overflow-hidden rounded-[28px] border border-white/20 bg-black/40 px-10 text-left backdrop-blur-sm"
           >
             <span className="absolute left-10 top-8 text-[28px] font-light text-white/55">
               01

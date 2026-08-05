@@ -217,7 +217,7 @@ export default function BcfHumanStories({ lang, onBack }: BcfHumanStoriesProps) 
                   onClick={() => setOpenId(null)}
                   whileTap={BCF_TAP}
                   transition={BCF_TAP_TRANSITION}
-                  className="absolute end-7 top-7 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/55 backdrop-blur-md will-change-transform"
+                  className="absolute end-7 top-7 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/55 backdrop-blur-md"
                   aria-label={c.close}
                 >
                   <X className="h-8 w-8 text-white" />

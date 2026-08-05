@@ -58,7 +58,7 @@ function FuturePortal({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className="relative grid shrink-0 transform-gpu place-items-center will-change-transform"
+      className="relative grid shrink-0 transform-gpu place-items-center"
       style={{ width: CIRCLE, height: CIRCLE }}
     >
       {/* Orbit: a dashed ring that turns slowly, opposite ways for the two. */}

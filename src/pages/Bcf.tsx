@@ -21,6 +21,7 @@ import BcfTrust from "@/components/Sections/bcf/BcfTrust";
 import BcfLegacy from "@/components/Sections/bcf/BcfLegacy";
 import BcfHumanStories from "@/components/Sections/bcf/BcfHumanStories";
 import BcfImpactGallery from "@/components/Sections/bcf/BcfImpactGallery";
+import { BCF_PERF_CLASS } from "@/components/Sections/bcf/bcfPerf";
 import {
   bcfCopy,
   type BcfLang,
@@ -362,10 +363,14 @@ export default function BcfPage() {
   })();
 
   return (
+    /* `BCF_PERF_CLASS` is the switch for the low-power rendering path — see
+       bcfPerf.ts. It has to sit above the scenes *and* the two overlays, which
+       is why it goes on the canvas rather than on the shell. */
     <FitScaledCanvas
       designWidth={DESIGN_WIDTH}
       dir={dir}
       bgClassName="bg-[#0a0a0a]"
+      className={BCF_PERF_CLASS}
       fitDeps={[step, lang]}
     >
       {/* `relative` so the rail and the two overlays can pin themselves to the

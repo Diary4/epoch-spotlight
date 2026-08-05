@@ -244,33 +244,40 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                 onPointerDown={() => setActiveId(item.id)}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
-                className="relative h-full w-full transform-gpu will-change-transform"
+                className="relative h-full w-full"
               >
                 {/* Ambient halo — always on at a whisper, so the constellation
                     reads as lit rather than pasted on top of the photograph;
-                    it blooms with the node the visitor has landed on. */}
+                    it blooms with the node the visitor has landed on.
+
+                    The gradient does the softening on its own; the `blur-2xl`
+                    that used to sit on top of it was six 380px blur surfaces on
+                    one screen, each of which Chrome renders by drawing the
+                    element to a texture and running a separable convolution
+                    over it — at 2× on the 4K panel, before anything moves. The
+                    wider, softer falloff below is the same picture for free. */}
                 <span
-                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl transition-opacity duration-500"
+                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-500"
                   style={{
-                    width: size + 72,
-                    height: size + 72,
-                    background: `radial-gradient(circle, ${BCF.gold}55, transparent 70%)`,
+                    width: size + 132,
+                    height: size + 132,
+                    background: `radial-gradient(circle, ${BCF.gold}4d 0%, ${BCF.gold}2b 42%, transparent 72%)`,
                     opacity: isActive ? 0.9 : 0.32,
                   }}
                 />
 
                 {/* Slow orbit ring — only the active node earns it, so it reads
-                    as "you are here" rather than decoration repeated six times. */}
+                    as "you are here" rather than decoration repeated six times.
+                    CSS keyframes, so the rotation lives on the compositor and
+                    the main thread stays free for the next tap. */}
                 {isActive && !reduceMotion ? (
-                  <motion.span
-                    className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  <span
+                    className="bcf-orbit pointer-events-none absolute left-1/2 top-1/2 rounded-full"
                     style={{
                       width: size + 34,
                       height: size + 34,
                       border: `1.5px dashed ${BCF.gold}99`,
                     }}
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
                   />
                 ) : null}
 
@@ -289,7 +296,9 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     src={thumbs[item.id]}
                     alt=""
                     decoding="async"
-                    className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out will-change-transform motion-reduce:transition-none"
+                    width={CIRCLE}
+                    height={CIRCLE}
+                    className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out motion-reduce:transition-none"
                     style={{ transform: isActive ? "scale(1.08)" : "scale(1)" }}
                   />
                   <span

@@ -168,7 +168,7 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
                 onClick={() => setActiveId(pin.id)}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
-                className="flex transform-gpu flex-col items-center will-change-transform"
+                className="flex transform-gpu flex-col items-center"
                 aria-label={topic.title}
               >
                 <span className="relative grid h-[56px] w-[56px] place-items-center">
@@ -248,7 +248,7 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
                   onClick={() => setActiveId(null)}
                   whileTap={BCF_TAP}
                   transition={BCF_TAP_TRANSITION}
-                  className="absolute end-8 top-8 grid h-14 w-14 transform-gpu place-items-center rounded-full border border-white/30 bg-black/40 will-change-transform"
+                  className="absolute end-8 top-8 grid h-14 w-14 transform-gpu place-items-center rounded-full border border-white/30 bg-black/40"
                   aria-label={c.close}
                 >
                   <X className="h-7 w-7 text-white" />

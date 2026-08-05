@@ -42,7 +42,7 @@ export default function BcfImageCard({
       type={interactive ? "button" : undefined}
       onClick={onClick}
       {...pressProps}
-      className={`group relative flex h-[200px] w-full transform-gpu items-center overflow-hidden rounded-[24px] border text-start will-change-transform ${className}`}
+      className={`group relative flex h-[200px] w-full transform-gpu items-center overflow-hidden rounded-[24px] border text-start ${className}`}
       style={{
         borderColor: pressed ? BCF.gold : "rgba(132,135,157,0.8)",
         backgroundColor: pressed ? "rgba(251,193,88,0.07)" : "rgba(0,0,0,0.24)",
@@ -63,7 +63,7 @@ export default function BcfImageCard({
           src={image}
           alt=""
           decoding="async"
-          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out will-change-transform motion-reduce:transition-none"
+          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
           style={{ transform: pressed ? "scale(1.06)" : "scale(1)" }}
         />
       </div>

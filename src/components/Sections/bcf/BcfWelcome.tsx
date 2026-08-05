@@ -89,7 +89,7 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
             onClick={onStart}
             whileTap={BCF_TAP}
             transition={BCF_TAP_TRANSITION}
-            className="group relative mt-16 flex w-full max-w-[920px] transform-gpu items-center justify-between overflow-hidden rounded-full border border-[#ece1d0]/70 bg-black/30 px-8 py-5 backdrop-blur-sm will-change-transform"
+            className="group relative mt-16 flex w-full max-w-[920px] transform-gpu items-center justify-between overflow-hidden rounded-full border border-[#ece1d0]/70 bg-black/30 px-8 py-5 backdrop-blur-sm"
             style={{ boxShadow: "0 16px 48px rgba(0,0,0,0.42)" }}
           >
             {/* Gold sweep that keeps crossing the button — the one moving thing on

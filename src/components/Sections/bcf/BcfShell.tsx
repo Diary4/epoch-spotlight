@@ -4,13 +4,11 @@ import { motion, useReducedMotion } from "motion/react";
 import { bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 import {
   BCF,
-  BCF_BLOOM_STYLE,
+  BCF_ATMOSPHERE_STYLE,
   BCF_GRAIN_STYLE,
   BCF_PAGE,
-  BCF_VIGNETTE_STYLE,
 } from "@/components/Sections/bcf/bcfTheme";
 import {
-  BCF_DRIFT_TRANSITION,
   BCF_TAP_FIRM,
   BCF_TAP_TRANSITION,
   bcfScene,
@@ -100,8 +98,12 @@ export default function BcfShell({
   className = "",
 }: BcfShellProps) {
   const reduceMotion = useReducedMotion();
-  const driftAnimation =
-    drift && !reduceMotion ? { scale: [1.04, 1.11] } : undefined;
+  // The ken-burns push is a CSS animation (`.bcf-drift` in index.css) rather
+  // than a `motion` one. It runs for as long as the screen is up, and driven
+  // from JS that meant a style write on the main thread every frame, forever,
+  // competing with the taps. On the compositor it is free. `prefers-reduced-
+  // motion` is handled in the stylesheet alongside the keyframes.
+  const driftClass = drift && !reduceMotion ? "bcf-drift" : "";
 
   return (
     <motion.section
@@ -120,35 +122,31 @@ export default function BcfShell({
         </div>
       ) : backgroundImage ? (
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <motion.img
+          <img
             src={backgroundImage}
             alt=""
             decoding="async"
             fetchPriority="high"
-            className="absolute inset-0 h-full w-full object-cover"
-            initial={driftAnimation ? { scale: 1.04 } : undefined}
-            animate={driftAnimation}
-            transition={BCF_DRIFT_TRANSITION}
+            className={`absolute inset-0 h-full w-full object-cover ${driftClass}`}
           />
           <div className={`absolute inset-0 ${overlayClassName}`} />
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
         </div>
       ) : null}
 
-      {/* Texture stack — always above the backdrop, always below the content. */}
+      {/* Texture stack — always above the backdrop, always below the content.
+          Bloom and vignette share one element (see BCF_ATMOSPHERE_STYLE): they
+          are both static gradients, and a separate layer for each only doubled
+          the compositor memory the scene needs. */}
       {atmosphere ? (
         <>
           <div
             className="pointer-events-none absolute inset-0 z-[1]"
-            style={BCF_BLOOM_STYLE}
+            style={BCF_ATMOSPHERE_STYLE}
           />
           <div
             className="pointer-events-none absolute inset-0 z-[2] opacity-[0.09]"
             style={BCF_GRAIN_STYLE}
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-[3]"
-            style={BCF_VIGNETTE_STYLE}
           />
         </>
       ) : null}

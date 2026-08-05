@@ -172,7 +172,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative transform-gpu overflow-hidden rounded-full px-9 py-6 text-[29px] font-medium leading-none will-change-transform"
+                      className="relative transform-gpu overflow-hidden rounded-full px-9 py-6 text-[29px] font-medium leading-none"
                       style={{
                         border: "1px solid",
                         borderColor: selected ? BCF.gold : "rgba(255,255,255,0.14)",
@@ -538,7 +538,7 @@ function RecognitionArc({
                   animate="animate"
                   whileTap={BCF_TAP}
                   transition={{ ...BCF_TAP_TRANSITION, delay: 0.4 + index * 0.11 }}
-                  className="relative block h-full w-full transform-gpu overflow-hidden rounded-full will-change-transform"
+                  className="relative block h-full w-full transform-gpu overflow-hidden rounded-full"
                   style={{
                     border: `2px solid ${isActive ? BCF.goldBright : `${BCF.gold}88`}`,
                     boxShadow: isActive
@@ -660,7 +660,7 @@ function RecognitionArc({
                   onClick={() => setActiveId(null)}
                   whileTap={BCF_TAP}
                   transition={BCF_TAP_TRANSITION}
-                  className="absolute end-7 top-7 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/55 backdrop-blur-md will-change-transform"
+                  className="absolute end-7 top-7 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/55 backdrop-blur-md"
                   aria-label={closeLabel}
                 >
                   <X className="h-8 w-8 text-white" />

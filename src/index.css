@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+/* The Google Fonts request moved to index.html, where it can be loaded without
+   blocking the first paint. As an `@import` here it was serialised *after* the
+   app stylesheet and still render-blocking, so on a kiosk with a slow or absent
+   connection the screen stayed empty until the request timed out. */
 
 @tailwind base;
 @tailwind components;
@@ -186,5 +189,74 @@ All colors MUST be HSL.
   }
   100% {
     transform: translate(5px, 8px) scale(1.035);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * BCF kiosk — low-power rendering path.
+ *
+ * See bcfPerf.ts for why: on Chrome for Android every `backdrop-filter` is a
+ * full-artboard GPU readback per frame, and the artboard is drawn at 2× on the
+ * 4K portrait panel. `.bcf-lowpower` is set on the BCF page root for those
+ * devices only — the desktop and Electron builds keep the full glass stack.
+ * ------------------------------------------------------------------------ */
+
+.bcf-lowpower [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  /* Layered *over* whatever background-color the element already carries (most
+     of them set it inline), so a panel keeps its contrast against the
+     photograph now that it no longer blurs what is behind it. */
+  background-image: linear-gradient(rgba(6, 9, 12, 0.32), rgba(6, 9, 12, 0.32));
+}
+
+/* The dome's edge-fade blur is a full-screen backdrop-filter behind a mask —
+   the single most expensive layer in the experience. The gradient overlay
+   underneath it already carries the fade, so dropping it costs a little
+   softness at the rim and nothing else. */
+.bcf-lowpower .overlay--blur {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+ * BCF motion that runs forever.
+ *
+ * The backdrop drift and the journey-hub orbit ring used to be driven by
+ * `motion`, which writes a style on every animation frame from the main thread
+ * — for the whole time the screen is up, on a screen that is never dismissed.
+ * As CSS animations on transform alone they run on the compositor instead and
+ * cost the main thread nothing, which is what leaves headroom for the taps.
+ * ------------------------------------------------------------------------ */
+
+@keyframes bcfDrift {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.11);
+  }
+}
+
+.bcf-drift {
+  animation: bcfDrift 26s ease-in-out infinite alternate;
+}
+
+@keyframes bcfOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.bcf-orbit {
+  animation: bcfOrbit 14s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bcf-drift,
+  .bcf-orbit {
+    animation: none;
   }
 }
