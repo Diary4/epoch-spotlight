@@ -4,7 +4,7 @@ import { Droplets, Sparkles } from "lucide-react";
 import bg from "@/assets/images/religions/sabean/cover.webp";
 import meaningImg from "@/assets/images/religions/sabean/meaning.webp";
 import kurdistanImg from "@/assets/images/religions/sabean/kurditan.webp";
-import mandaicImg from "@/assets/images/religions/sabean/mandiac.gif";
+import mandaicImg from "@/assets/images/religions/sabean/mandiac.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,

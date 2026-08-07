@@ -14,7 +14,7 @@ import { detailBackIconClassName, detailBackIconSize, religionsOverlayStartClass
 import bg2 from "@/assets/images/religions/r-8.webp";
 import leadersImg from "@/assets/images/religions/coexistence/coexistence.webp";
 import cradleImg from "@/assets/images/religions/cradle.webp";
-import sharedImg from "@/assets/images/religions/sharedlife/cover.jpg";
+import sharedImg from "@/assets/images/religions/sharedlife/cover.webp";
 import parliamentImg from "@/assets/images/religions/rights/parliment.webp";
 import historyImg from "@/assets/images/religions/history/history.webp";
 

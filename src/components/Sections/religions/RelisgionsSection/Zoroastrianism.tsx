@@ -6,7 +6,7 @@ import {
 
 import bg from "@/assets/images/religions/zoro/cover.webp";
 import historyImg from "@/assets/images/religions/zoro/history.webp";
-import threePillarsImg from "@/assets/images/religions/zoro/three-pillars.jpeg";
+import threePillarsImg from "@/assets/images/religions/zoro/three-pillars.webp";
 import environmentImg from "@/assets/images/religions/zoro/environment.webp";
 import nowruzImg from "@/assets/images/religions/zoro/nowruz.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
