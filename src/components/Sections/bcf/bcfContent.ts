@@ -125,6 +125,65 @@ export type TrustCredential = {
   body: string;
 };
 
+/**
+ * Board Chief — the person behind the first governance card.
+ *
+ * The four `trustFounders` cards name the layers of the foundation but nobody
+ * stands in them, so Leadership reads as an org chart. This is the one profile
+ * the chapter opens into: a nameplate, the photography, and the record the
+ * office is answerable for.
+ */
+export type BoardChiefSlideId =
+  | "honour"
+  | "medal"
+  | "gift"
+  | "child"
+  | "distribution"
+  | "ceremony";
+
+/** Caption under the carousel. Describes the photograph, nothing beyond it. */
+export type BoardChiefSlide = {
+  id: BoardChiefSlideId;
+  caption: string;
+};
+
+export type BoardChiefMilestoneId =
+  | "founded"
+  | "ecosoc"
+  | "kuwait"
+  | "earthquake"
+  | "homes"
+  | "awards";
+
+/**
+ * One node on the governance timeline. Every entry restates a fact the rest of
+ * this file already carries (founding, credentials, recognition, human stories)
+ * — a museum wall may not introduce a claim it cannot source.
+ */
+export type BoardChiefMilestone = {
+  id: BoardChiefMilestoneId;
+  year: string;
+  title: string;
+  body: string;
+};
+
+export type BoardChiefCopy = {
+  /** Label on the card that opens the profile, on the Leadership screen. */
+  open: string;
+  name: string;
+  role: string;
+  /** Third nameplate line — the institution, not a term of service. */
+  meta: string;
+  intro: string;
+  slides: BoardChiefSlide[];
+  /** Heading over the two governance bodies the chief sits with. */
+  alongside: string;
+  timelineCta: string;
+  timelineTitle: string;
+  timelineRange: string;
+  timelineMilestones: BoardChiefMilestone[];
+};
+
 export type RecognitionItemId =
   | "awards"
   | "certifications"
@@ -260,6 +319,7 @@ export type BcfCopy = {
   trustTopics: TrustTopic[];
   trustLeadershipTitle: string;
   trustFounders: TrustFounderCard[];
+  boardChief: BoardChiefCopy;
   trustQualityTitle: string;
   trustCredentials: TrustCredential[];
   trustPartnershipsTitle: string;
@@ -729,6 +789,88 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         subtitle: "Implement the work directly with local communities.",
       },
     ],
+    boardChief: {
+      open: "Meet the Board Chief",
+      name: "Masrour Barzani",
+      role: "President of the Board of Founders",
+      meta: "Barzani Charity Foundation · Established 2005",
+      intro:
+        "The Board of Founders is the highest authority of the foundation, and its president sets the standard the work is held to: aid given on need alone, delivered in a way that protects the dignity of the person receiving it.",
+      slides: [
+        {
+          id: "honour",
+          caption:
+            "Honouring a mother at a BCF handover ceremony for the families of martyrs in Duhok.",
+        },
+        {
+          id: "medal",
+          caption:
+            "A commemorative medal presented to a family at the same ceremony, beneath the foundation's seal.",
+        },
+        {
+          id: "gift",
+          caption:
+            "Kneeling to hand a gift to a child on stage — the work measured one person at a time.",
+        },
+        {
+          id: "child",
+          caption:
+            "A moment with a child away from the podium, in a foundation whose philosophy is service, not charity from above.",
+        },
+        {
+          id: "distribution",
+          caption:
+            "Meeting children at a BCF distribution site, where the programmes reach families directly.",
+        },
+        {
+          id: "ceremony",
+          caption:
+            "Seated with officials, partners and faith leaders — coexistence among Kurdistan's communities is one of the six values BCF works by.",
+        },
+      ],
+      alongside: "Alongside the Board",
+      timelineCta: "View Governance Timeline",
+      timelineTitle: "Board of Founders",
+      timelineRange: "2005 — Present",
+      timelineMilestones: [
+        {
+          id: "founded",
+          year: "2005",
+          title: "Founded in Erbil",
+          body: "BCF is officially established in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
+        },
+        {
+          id: "ecosoc",
+          year: "2016",
+          title: "A seat at the UN table",
+          body: "Special consultative status with the United Nations Economic and Social Council, affirming BCF's role in international humanitarian dialogue.",
+        },
+        {
+          id: "kuwait",
+          year: "2019",
+          title: "Registered in Kuwait",
+          body: "Registered as a charity organization in Kuwait, extending BCF's licensed humanitarian presence across the region.",
+        },
+        {
+          id: "earthquake",
+          year: "2023",
+          title: "Across the border, in days",
+          body: "Rapid emergency support after the earthquakes in Turkey and Syria, including 4,129 tents provided to displaced families.",
+        },
+        {
+          id: "homes",
+          year: "2024",
+          title: "Homes for the families of martyrs",
+          body: "540 residential units distributed to the families of martyrs in Erbil and Soran.",
+        },
+        {
+          id: "awards",
+          year: "2025",
+          title: "Recognized abroad",
+          body: "The German Federal Parliament Award, the Wings of Help Organization Award and the Helfen Bringt Freude Award.",
+        },
+      ],
+    },
     trustQualityTitle: "Quality and Credibility",
     trustCredentials: [
       {
@@ -1161,6 +1303,88 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         subtitle: "کارەکان لەگەڵ کۆمەڵگە ناوخۆییەکاندا جێبەجێ دەکەن.",
       },
     ],
+    boardChief: {
+      open: "ناسینی سەرۆکی بۆرد",
+      name: "مەسرور بارزانی",
+      role: "سەرۆکی بۆردی دامەزرێنەران",
+      meta: "دەزگای خێرخوازیی بارزانی · دامەزراوە لە ٢٠٠٥",
+      intro:
+        "بۆردی دامەزرێنەران باڵاترین دەسەڵاتە لە دەزگاکەدا، و سەرۆکەکەی ئەو پێوەرە دادەنێت کە کارەکە پێوەی هەڵدەسەنگێنرێت: هاوکاری تەنها لەسەر بنەمای پێویستی دەدرێت، و بە شێوەیەک پێشکەش دەکرێت کە کەرامەتی ئەو کەسە بپارێزێت کە وەریدەگرێت.",
+      slides: [
+        {
+          id: "honour",
+          caption:
+            "ڕێزلێنان لە دایکێک لە ڕێوڕەسمی پێشکەشکردنی خانوو بۆ خێزانی شەهیدان لە دهۆک.",
+        },
+        {
+          id: "medal",
+          caption:
+            "پێشکەشکردنی مەدالیای یادەوەری بە خێزانێک لە هەمان ڕێوڕەسم، لەژێر ئاڵای دەزگاکەدا.",
+        },
+        {
+          id: "gift",
+          caption:
+            "چۆکدادان بۆ پێشکەشکردنی دیارییەک بە منداڵێک لەسەر شانۆ — کارەکە بە یەک کەس یەک کەس دەپێورێت.",
+        },
+        {
+          id: "child",
+          caption:
+            "ساتێک لەگەڵ منداڵێک دوور لە منبەر، لە دەزگایەکدا کە فەلسەفەکەی خزمەتکردنە، نەک بەخشین لە سەرەوە.",
+        },
+        {
+          id: "distribution",
+          caption:
+            "بینینی منداڵان لە شوێنێکی دابەشکردنی دەزگاکە، لەوێدا بەرنامەکان ڕاستەوخۆ دەگەنە خێزانەکان.",
+        },
+        {
+          id: "ceremony",
+          caption:
+            "دانیشتن لەگەڵ بەرپرسان و هاوبەشان و پێشەوایانی ئایینی — پێکەوەژیانی کۆمەڵگەکانی کوردستان یەکێکە لەو شەش بەهایەی دەزگاکە پێی کار دەکات.",
+        },
+      ],
+      alongside: "لەپاڵ بۆردەکە",
+      timelineCta: "بینینی هێڵی کاتی حوکمڕانی",
+      timelineTitle: "بۆردی دامەزرێنەران",
+      timelineRange: "٢٠٠٥ — ئێستا",
+      timelineMilestones: [
+        {
+          id: "founded",
+          year: "٢٠٠٥",
+          title: "دامەزراندن لە هەولێر",
+          body: "دەزگای خێرخوازیی بارزانی بە فەرمی لە هەولێری پایتەختی هەرێمی کوردستانی عێراق دامەزرا، بۆ گۆڕینی بەزەیی بە کارێکی مرۆیی ڕێکخراو.",
+        },
+        {
+          id: "ecosoc",
+          year: "٢٠١٦",
+          title: "شوێنێک لەسەر مێزی نەتەوە یەکگرتووەکان",
+          body: "پێگەی ڕاوێژکاری تایبەت لەگەڵ ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان، کە ڕۆڵی دەزگاکە لە دیالۆگی مرۆیی نێودەوڵەتیدا دەسەلمێنێت.",
+        },
+        {
+          id: "kuwait",
+          year: "٢٠١٩",
+          title: "تۆمارکردن لە کوێت",
+          body: "وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکرا، بۆ فراوانکردنی ئامادەبوونی مۆڵەتپێدراوی دەزگاکە لە ناوچەکەدا.",
+        },
+        {
+          id: "earthquake",
+          year: "٢٠٢٣",
+          title: "بەو دیوی سنوور، بە ڕۆژ",
+          body: "پشتگیریی خێرای فریاگوزاری دوای بوومەلەرزەکانی تورکیا و سووریا، لەوانەش ٤٬١٢٩ ڕەشماڵ بۆ خێزانە ئاوارەکان.",
+        },
+        {
+          id: "homes",
+          year: "٢٠٢٤",
+          title: "خانوو بۆ خێزانی شەهیدان",
+          body: "٥٤٠ یەکەی نیشتەجێبوون بۆ خێزانی شەهیدان لە هەولێر و سۆران دابەشکرا.",
+        },
+        {
+          id: "awards",
+          year: "٢٠٢٥",
+          title: "پێزانین لە دەرەوە",
+          body: "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا، خەڵاتی ڕێکخراوی Wings of Help و خەڵاتی Helfen Bringt Freude.",
+        },
+      ],
+    },
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
     trustCredentials: [
       {
@@ -1578,21 +1802,100 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustFounders: [
       {
         title: "مجلس المؤسسين",
-        subtitle: "توجيه الرسالة برؤية ونزاهة",
+        subtitle: "السلطة العليا في المؤسسة.",
       },
       {
-        title: "مجلس المؤسسين",
-        subtitle: "توجيه الرسالة برؤية ونزاهة",
+        title: "المجلس الإداري",
+        subtitle: "يراجع ويقرّ القرارات الكبرى والسياسات ومسار المشاريع.",
       },
       {
-        title: "مجلس المؤسسين",
-        subtitle: "توجيه الرسالة برؤية ونزاهة",
+        title: "الأقسام التنفيذية",
+        subtitle: "تقيّم الاحتياجات وتصمّم البرامج الإنسانية.",
       },
       {
-        title: "مجلس المؤسسين",
-        subtitle: "توجيه الرسالة برؤية ونزاهة",
+        title: "المكاتب الإقليمية",
+        subtitle: "تنفّذ العمل مباشرة مع المجتمعات المحلية.",
       },
     ],
+    boardChief: {
+      open: "تعرّف على رئيس المجلس",
+      name: "مسرور بارزاني",
+      role: "رئيس مجلس المؤسسين",
+      meta: "مؤسسة بارزاني الخيرية · تأسست عام 2005",
+      intro:
+        "مجلس المؤسسين هو السلطة العليا في المؤسسة، ورئيسه يضع المعيار الذي يُقاس به العمل: مساعدة تُقدَّم على أساس الحاجة وحدها، وبطريقة تصون كرامة من يتلقاها.",
+      slides: [
+        {
+          id: "honour",
+          caption: "تكريم أمٍّ في حفل تسليم المساكن لعوائل الشهداء في دهوك.",
+        },
+        {
+          id: "medal",
+          caption: "تسليم ميدالية تذكارية لإحدى العوائل في الحفل نفسه، تحت شعار المؤسسة.",
+        },
+        {
+          id: "gift",
+          caption:
+            "الانحناء لتسليم هدية إلى طفلة على المسرح — عملٌ يُقاس بإنسانٍ واحد في كل مرة.",
+        },
+        {
+          id: "child",
+          caption:
+            "لحظة مع طفل بعيداً عن المنصة، في مؤسسة فلسفتها الخدمة لا الإحسان من الأعلى.",
+        },
+        {
+          id: "distribution",
+          caption: "لقاء مع أطفال في أحد مواقع التوزيع، حيث تصل البرامج إلى العوائل مباشرة.",
+        },
+        {
+          id: "ceremony",
+          caption:
+            "الجلوس مع المسؤولين والشركاء ورجال الدين — التعايش بين مكوّنات كوردستان أحد القيم الست التي تعمل بها المؤسسة.",
+        },
+      ],
+      alongside: "إلى جانب المجلس",
+      timelineCta: "عرض المسار الزمني للحوكمة",
+      timelineTitle: "مجلس المؤسسين",
+      timelineRange: "2005 — اليوم",
+      timelineMilestones: [
+        {
+          id: "founded",
+          year: "2005",
+          title: "التأسيس في أربيل",
+          body: "تأسست مؤسسة بارزاني الخيرية رسمياً في أربيل، عاصمة إقليم كوردستان العراق، لتحوّل التعاطف إلى عمل إنساني منظم.",
+        },
+        {
+          id: "ecosoc",
+          year: "2016",
+          title: "مقعد على طاولة الأمم المتحدة",
+          body: "وضع استشاري خاص لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة، تأكيداً لدور المؤسسة في الحوار الإنساني الدولي.",
+        },
+        {
+          id: "kuwait",
+          year: "2019",
+          title: "التسجيل في الكويت",
+          body: "مسجَّلة كمنظمة خيرية في الكويت، بما يوسّع حضور المؤسسة المرخّص في المنطقة.",
+        },
+        {
+          id: "earthquake",
+          year: "2023",
+          title: "عبر الحدود، خلال أيام",
+          body: "دعم طارئ سريع بعد زلزالي تركيا وسوريا، شمل 4,129 خيمة للعوائل النازحة.",
+        },
+        {
+          id: "homes",
+          year: "2024",
+          title: "مساكن لعوائل الشهداء",
+          body: "توزيع 540 وحدة سكنية على عوائل الشهداء في أربيل وسوران.",
+        },
+        {
+          id: "awards",
+          year: "2025",
+          title: "تقدير من الخارج",
+          body: "جائزة البرلمان الاتحادي الألماني، وجائزة منظمة أجنحة العون (Wings of Help)، وجائزة Helfen Bringt Freude.",
+        },
+      ],
+    },
     trustQualityTitle: "الجودة والمصداقية",
     trustCredentials: [
       {

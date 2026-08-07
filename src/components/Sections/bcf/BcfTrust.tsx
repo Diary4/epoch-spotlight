@@ -1,8 +1,12 @@
 import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
+import BcfBoardChief, {
+  bcfBoardChiefPortrait,
+  type BoardChiefView,
+} from "@/components/Sections/bcf/BcfBoardChief";
 import {
   bcfCopy,
   type BcfLang,
@@ -70,8 +74,18 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const c = bcfCopy[lang];
   const [activeId, setActiveId] = React.useState<TrustTopicId | null>(null);
   const [credentialIndex, setCredentialIndex] = React.useState(0);
+  /** Null while the Leadership grid is up; the profile and its timeline sit under it. */
+  const [chiefView, setChiefView] = React.useState<BoardChiefView | null>(null);
 
   const goBack = () => {
+    if (chiefView === "timeline") {
+      setChiefView("profile");
+      return;
+    }
+    if (chiefView) {
+      setChiefView(null);
+      return;
+    }
     if (activeId) {
       setActiveId(null);
       setCredentialIndex(0);
@@ -87,6 +101,18 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
    * re-rendered the same shell in place and the backdrop cut hard.
    */
   const scene = (() => {
+    if (chiefView) {
+      return (
+        <BcfBoardChief
+          key={`chief-${chiefView}`}
+          lang={lang}
+          view={chiefView}
+          onOpenTimeline={() => setChiefView("timeline")}
+          onBack={goBack}
+        />
+      );
+    }
+
     if (activeId === "leadership") {
       return (
         <BcfShell
@@ -96,8 +122,17 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           overlayClassName="bg-black/70"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
+            {/* The four cards below name the layers of the foundation but nobody
+                stands in them. This is the one person the chapter opens into. */}
+            <ChiefCard
+              name={c.boardChief.name}
+              role={c.boardChief.role}
+              open={c.boardChief.open}
+              onClick={() => setChiefView("profile")}
+            />
+
             <motion.div
-              className="mx-auto mt-16 grid w-full max-w-[980px] grid-cols-2 gap-8"
+              className="mx-auto mt-10 grid w-full max-w-[980px] grid-cols-2 gap-8"
               variants={bcfStagger(0.09, 0.26)}
               initial="initial"
               animate="animate"
@@ -671,6 +706,83 @@ function RecognitionArc({
         </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+/**
+ * The Board Chief entry on the Leadership grid.
+ *
+ * A portrait rather than another titled rectangle: it is the only card here
+ * that opens onto a person, and it has to look unlike the four governance
+ * cards for a visitor to know that before they touch it.
+ */
+function ChiefCard({
+  name,
+  role,
+  open,
+  onClick,
+}: {
+  name: string;
+  role: string;
+  open: string;
+  onClick: () => void;
+}) {
+  const [pressed, setPressed] = React.useState(false);
+
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      onPointerDown={() => setPressed(true)}
+      onPointerUp={() => setPressed(false)}
+      onPointerLeave={() => setPressed(false)}
+      onPointerCancel={() => setPressed(false)}
+      whileTap={BCF_TAP}
+      className="mx-auto mt-14 flex w-full max-w-[980px] transform-gpu items-center gap-10 rounded-[28px] border p-8 text-start"
+      style={{
+        borderColor: pressed ? BCF.goldBright : `${BCF.gold}59`,
+        backgroundColor: pressed ? "rgba(251,193,88,0.09)" : "rgba(0,0,0,0.5)",
+        boxShadow: pressed
+          ? `0 0 48px ${BCF.gold}33`
+          : "0 22px 60px rgba(0,0,0,0.45)",
+        transition:
+          "border-color 400ms cubic-bezier(0.22,1,0.36,1), background-color 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1)",
+      }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ...BCF_TAP_TRANSITION, duration: 0.72, delay: 0.26, ease: BCF_EASE }}
+    >
+      <span
+        className="h-[188px] w-[188px] shrink-0 overflow-hidden rounded-full border-2"
+        style={{ borderColor: BCF.gold }}
+      >
+        <img
+          src={bcfBoardChiefPortrait}
+          alt=""
+          decoding="async"
+          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
+          style={{ transform: pressed ? "scale(1.06)" : "scale(1)" }}
+        />
+      </span>
+
+      <span className="flex min-w-0 flex-col">
+        <span className="text-[46px] font-semibold leading-tight text-[#fdeed4]">
+          {name}
+        </span>
+        <span className="mt-3 text-[26px] leading-snug text-white/70">{role}</span>
+        <span
+          className="mt-6 flex items-center gap-3 text-[25px] font-medium"
+          style={{ color: BCF.gold }}
+        >
+          {open}
+          <ArrowRight
+            className={`h-6 w-6 transform-gpu transition-transform duration-500 ease-smooth-out motion-reduce:transition-none rtl:rotate-180 ${
+              pressed ? "translate-x-2 rtl:-translate-x-2" : ""
+            }`}
+          />
+        </span>
+      </span>
+    </motion.button>
   );
 }
 
