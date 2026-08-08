@@ -133,9 +133,25 @@ export default function BcfImpact({
                   <div className="mt-auto">
                     <BcfStatValue
                       value={enItems[index]?.value ?? item.value}
-                      className="text-[72px] font-bold leading-none"
+                      className="text-[76px] font-semibold leading-none"
                       color="#fbf4e4"
-                      duration={2.2}
+                      duration={2.8}
+                      delay={0.28 + index * 0.18}
+                      smooth
+                    />
+                    <motion.span
+                      aria-hidden="true"
+                      className="mt-5 block h-px w-[88px] origin-left"
+                      style={{
+                        background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+                      }}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      transition={{
+                        duration: 0.85,
+                        delay: 0.55 + index * 0.18,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                     />
                     <p className="mt-4 text-[34px] font-medium" style={{ color: BCF.gold }}>
                       {item.title}

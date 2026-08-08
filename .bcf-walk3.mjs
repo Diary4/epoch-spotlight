@@ -8,7 +8,7 @@ const OUT =
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const page = await browser.newPage({
   viewport: { width: 1080, height: 1920 },
-  deviceScaleFactor: 2,
+  deviceScaleFactor: 1,
 });
 const errors = [];
 page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
@@ -16,7 +16,7 @@ page.on("console", (m) => {
   if (m.type() === "error") errors.push(`console: ${m.text()}`);
 });
 
-const stats = async () =>
+const stats = () =>
   page.evaluate(() => {
     const n = (s) => document.querySelectorAll(s).length;
     let bd = 0;
@@ -27,22 +27,18 @@ const stats = async () =>
       if (cs.mixBlendMode && cs.mixBlendMode !== "normal") blend += 1;
     }
     return {
-      m: {
-        ping: n(".bcf-ping"),
-        pulse: n(".bcf-pulse"),
-        sweep: n(".bcf-sweep"),
-        beam: n(".bcf-beam"),
-        spin: n(".bcf-spin, .bcf-spin-reverse"),
-        drift: n(".bcf-drift"),
-        breathe: n(".bcf-breathe"),
-      },
-      bd,
-      blend,
-      anims: document.getAnimations().length,
+      ping: n(".bcf-ping"),
+      pulse: n(".bcf-pulse"),
+      sweep: n(".bcf-sweep"),
+      beam: n(".bcf-beam"),
+      spin: n(".bcf-spin, .bcf-spin-reverse"),
+      drift: n(".bcf-drift"),
+      breathe: n(".bcf-breathe"),
+      backdropFilters: bd,
+      blendModes: blend,
     };
   });
 
-// Frame-rate + long-task probe over 4s of the screen just sitting there.
 const cost = () =>
   page.evaluate(
     () =>
@@ -62,7 +58,7 @@ const cost = () =>
         const t0 = performance.now();
         const tick = () => {
           f += 1;
-          if (performance.now() - t0 < 4000) requestAnimationFrame(tick);
+          if (performance.now() - t0 < 3000) requestAnimationFrame(tick);
           else {
             po.disconnect();
             const s = (performance.now() - t0) / 1000;
@@ -73,47 +69,57 @@ const cost = () =>
       }),
   );
 
+const snap = async (label) => {
+  const s = await stats();
+  const c = await cost();
+  const motions = Object.entries(s)
+    .filter(([k, v]) => v > 0 && k !== "backdropFilters" && k !== "blendModes")
+    .map(([k, v]) => `${k}:${v}`)
+    .join(" ") || "-";
+  console.log(
+    `${label.padEnd(20)} css[${motions.padEnd(28)}] backdropFilter:${s.backdropFilters} blend:${s.blendModes}  ${c.fps}fps longTasks:${c.longTasks}`,
+  );
+  await page.screenshot({ path: `${OUT}/w3-${PERF || "def"}-${label}.png` });
+};
+
 async function toSections() {
   await page.goto(`${BASE}/bcf${PERF ? `?perf=${PERF}` : ""}`, {
     waitUntil: "networkidle",
   });
-  await page.waitForTimeout(900);
-  // App-wide interaction gate that sits over every page.
+  await page.waitForTimeout(800);
   const gate = page.locator('[aria-label="Tap to begin"]');
-  if (await gate.count()) {
-    await gate.click();
-    await page.waitForTimeout(900);
-  }
+  if (await gate.count()) await gate.click();
+  await page.waitForTimeout(800);
   await page.locator('[aria-label="Touch to Start"]').last().click();
   await page.waitForTimeout(1000);
-  await page.locator("text=English").first().click();
-  await page.waitForTimeout(1400); // intro
-  await page.locator("button:visible").last().click(); // continue
-  await page.waitForTimeout(1300); // welcome
-  await page.locator("button:visible").last().click(); // start journey
-  await page.waitForTimeout(1400); // sections
+  // Language menu: pick the entry whose label is exactly English.
+  await page.getByText("English", { exact: true }).first().click();
+  await page.waitForTimeout(1600); // intro
+  await page.mouse.click(540, 960); // intro advances on any tap
+  await page.waitForTimeout(1500); // welcome
+  await page.locator('button:visible').filter({ hasText: /journey|start/i }).last()
+    .click().catch(() => page.mouse.click(540, 1500));
+  await page.waitForTimeout(1600); // sections
 }
 
 await toSections();
-const labels = await page.locator("button:visible").allInnerTexts();
-console.log("CHAPTER BUTTONS:", JSON.stringify(labels));
+await snap("sections");
 
-const s = await stats();
-console.log(`sections        ${JSON.stringify(s)}  ${JSON.stringify(await cost())}`);
-await page.screenshot({ path: `${OUT}/w2-${PERF || "def"}-sections.png` });
+const cards = await page
+  .locator("button:visible")
+  .evaluateAll((els) =>
+    els.map((e) => e.getAttribute("aria-label") || e.innerText.split("\n")[0]),
+  );
+console.log("CHAPTERS:", JSON.stringify(cards));
 
-for (let i = 0; i < labels.length; i += 1) {
-  const raw = labels[i].split("\n").filter(Boolean).pop() || `b${i}`;
-  const name = raw.slice(0, 18).replace(/[^\w]/g, "") || `b${i}`;
+for (let i = 0; i < cards.length; i += 1) {
+  const name = (cards[i] || `b${i}`).slice(0, 16).replace(/[^\w]/g, "") || `b${i}`;
   await toSections();
   const btns = page.locator("button:visible");
   if (i >= (await btns.count())) break;
   await btns.nth(i).click({ timeout: 5000 }).catch(() => {});
-  await page.waitForTimeout(1600);
-  const st = await stats();
-  const c = await cost();
-  console.log(`${`ch${i}-${name}`.padEnd(24)} ${JSON.stringify(st)}  ${JSON.stringify(c)}`);
-  await page.screenshot({ path: `${OUT}/w2-${PERF || "def"}-ch${i}-${name}.png` });
+  await page.waitForTimeout(1800);
+  await snap(`ch${i}-${name}`);
 }
 
 console.log("\nERRORS:", errors.length ? errors : "none");
