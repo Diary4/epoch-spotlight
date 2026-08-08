@@ -21,7 +21,7 @@ import {
   type MapScopeId,
 } from "@/components/Sections/bcf/bcfContent";
 import BcfGlobalMap from "@/components/Sections/bcf/BcfGlobalMap";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import {
   BCF_MAP_CONTEXT,
@@ -205,28 +205,41 @@ export default function BcfMap({
         </motion.div>
 
         <motion.div
-          className="relative mt-10 min-h-[1100px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/15"
+          className="relative mt-10 min-h-[1100px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/28"
+          style={{
+            boxShadow:
+              "inset 0 1px 0 rgba(251,193,88,0.14), inset 0 0 140px rgba(0,0,0,0.5), 0 34px 90px rgba(0,0,0,0.45)",
+          }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: BCF_EASE }}
         >
-          {/* The plate the opening screens are set on, pushed right down: it is
-              texture under the cartography, not a picture in its own right. */}
-          <img
-            src={bcfSunrise}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover brightness-[0.3] saturate-[0.55]"
-          />
-          <div className="absolute inset-0 bg-[#050a10]/72" />
+          {/* A chart table, not a landscape. The plate used to be the sunrise
+              photograph the opening screens are set on, dimmed to 30% — but a
+              mountain ridge and a tree line under a world map read as two maps
+              fighting, and the dark photo left the coastlines with almost no
+              ground to sit on. The deep field the photograph-free scenes already
+              use gives the cartography a surface of its own. */}
+          <div className="absolute inset-0" style={{ background: BCF_FIELD_BG }} />
           {/* Gold graticule — reads as cartography rather than a dimmed photo. */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.16]"
+            className="pointer-events-none absolute inset-0 opacity-[0.2]"
             style={{
               backgroundImage:
                 "linear-gradient(rgba(251,193,88,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(251,193,88,0.5) 1px, transparent 1px)",
               backgroundSize: "120px 120px",
               maskImage:
                 "radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 82%)",
+            }}
+          />
+          {/* Warm light under the middle of the plate, dark at the corners, so
+              the map sits in the lit part and the buttons stay legible on the
+              rim. Sized to this plate rather than the 1080×1920 artboard. */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(120% 82% at 50% 44%, transparent 46%, rgba(4,6,9,0.62) 100%), radial-gradient(72% 54% at 50% 40%, rgba(251,193,88,0.1), transparent 72%)",
             }}
           />
 

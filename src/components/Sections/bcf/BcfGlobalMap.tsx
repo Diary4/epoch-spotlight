@@ -10,7 +10,7 @@ import {
   Sphere,
   ZoomableGroup,
 } from "react-simple-maps";
-import { Award, BadgeCheck, Landmark, Minus, Plus, RotateCcw, Siren, X } from "lucide-react";
+import { BadgeCheck, HandHeart, Landmark, Minus, Plus, RotateCcw, Siren, X } from "lucide-react";
 import {
   BCF_GLOBAL_LOCATIONS,
   bcfCopy,
@@ -70,7 +70,7 @@ const kindIcons: Record<GlobalReachKind, typeof Landmark> = {
   hq: Landmark,
   registered: BadgeCheck,
   response: Siren,
-  recognition: Award,
+  work: HandHeart,
 };
 
 /** Response is the one kind that earns a colour outside the gold family. */
@@ -78,10 +78,10 @@ const kindColors: Record<GlobalReachKind, string> = {
   hq: BCF.goldBright,
   registered: BCF.gold,
   response: BCF.red,
-  recognition: BCF.nature,
+  work: BCF.nature,
 };
 
-const ALL_KINDS: GlobalReachKind[] = ["hq", "registered", "response", "recognition"];
+const ALL_KINDS: GlobalReachKind[] = ["hq", "registered", "response", "work"];
 
 type View = { coordinates: [number, number]; zoom: number };
 
@@ -414,11 +414,12 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
         })}
       </motion.div>
 
-      {/* The list, not the dots, is the way in: four of the eight countries sit
-          inside a 15° box and cannot be picked apart by thumb at world zoom.
-          Tapping one flies the map to it, so the two stay in step. */}
+      {/* The list, not the dots, is the way in: six of the thirteen countries
+          sit inside a 15° box and cannot be picked apart by thumb at map zoom.
+          Tapping one flies the map to it, so the two stay in step. Three columns
+          rather than two — thirteen rows of pairs would eat the map's height. */}
       <motion.div
-        className="mt-5 grid grid-cols-2 gap-4"
+        className="mt-5 grid grid-cols-3 gap-3"
         variants={bcfStagger(0.05, 0.55)}
         initial="initial"
         animate="animate"
@@ -437,7 +438,7 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
                 onClick={() => pick(loc.id)}
                 whileTap={BCF_TAP}
-                className="flex transform-gpu items-center gap-4 rounded-2xl border p-3 text-start transition-colors duration-300"
+                className="flex transform-gpu items-center gap-3 rounded-2xl border px-4 py-3 text-start transition-colors duration-300"
                 style={{
                   borderColor: isSelected ? `${color}99` : "rgba(255,255,255,0.1)",
                   backgroundColor: isSelected
@@ -451,12 +452,12 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 />
                 <span className="min-w-0">
                   <span
-                    className="block truncate text-[28px] leading-tight"
+                    className="block truncate text-[25px] leading-tight"
                     style={{ color: isSelected ? BCF.gold : BCF.creamSoft }}
                   >
                     {copy.name}
                   </span>
-                  <span className="mt-1 block truncate text-[19px] text-white/50">
+                  <span className="mt-0.5 block truncate text-[17px] text-white/50">
                     {copy.meta}
                   </span>
                 </span>
@@ -521,19 +522,24 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 {detail.description}
               </p>
 
-              <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
-                {detail.facts.map((fact) => (
-                  <li key={fact} className="flex items-start gap-4">
-                    <span
-                      className="mt-3 h-px w-8 shrink-0"
-                      style={{ backgroundColor: BCF.gold }}
-                    />
-                    <span className="text-[23px] leading-relaxed text-white/75">
-                      {fact}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              {/* The countries added from the twenty-year map carry no facts
+                  yet; an empty rule under the description would read as a
+                  missing block rather than a deliberate one. */}
+              {detail.facts.length > 0 ? (
+                <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
+                  {detail.facts.map((fact) => (
+                    <li key={fact} className="flex items-start gap-4">
+                      <span
+                        className="mt-3 h-px w-8 shrink-0"
+                        style={{ backgroundColor: BCF.gold }}
+                      />
+                      <span className="text-[23px] leading-relaxed text-white/75">
+                        {fact}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
           </motion.div>
         ) : null}
