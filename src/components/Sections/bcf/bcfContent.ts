@@ -45,12 +45,66 @@ export type FutureTopicId =
   | "rights";
 export type MapFilterId = "offices" | "camps" | "geographic" | "emergency";
 
+/**
+ * Where We Work opens on the world, because BCF's footprint is not only the
+ * Region: it is licensed in four countries, sits at the UN table, and crossed
+ * the border into Türkiye and Syria within days of the 2023 earthquakes. The
+ * Region map is the second half of that story, not the whole of it.
+ */
+export type MapScopeId = "global" | "kurdistan";
+
 export type BcfLocation = {
   id: LocationId;
   x: string;
   y: string;
   filters: MapFilterId[];
 };
+
+/** The four kinds of presence the world map distinguishes between. */
+export type GlobalReachKind = "hq" | "registered" | "response" | "recognition";
+
+export type GlobalLocationId =
+  | "kurdistan"
+  | "unitedStates"
+  | "unitedKingdom"
+  | "kuwait"
+  | "turkiye"
+  | "syria"
+  | "germany"
+  | "portugal";
+
+export type BcfGlobalLocation = {
+  id: GlobalLocationId;
+  /** [longitude, latitude] — projected by the world map, never hand-placed. */
+  coordinates: [number, number];
+  kind: GlobalReachKind;
+  /**
+   * ISO 3166-1 numeric, matching the ids in the world topology, so the country
+   * the dot sits on can be filled rather than only pricked with a pin.
+   */
+  iso: string;
+};
+
+/**
+ * One point per country, on the capital rather than the operational city: at
+ * world scale Gaziantep and Aleppo are 100km apart and would land on the same
+ * dot, so Türkiye and Syria are shown by Ankara and Damascus and the cities
+ * the 2023 response actually reached are named in the card instead.
+ *
+ * The dots are deliberately not labelled on the map — four of the eight sit
+ * inside a 15° box around the Region, and no label arrangement survives that.
+ * The list beside the map carries the names and is the primary tap target.
+ */
+export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
+  { id: "kurdistan", coordinates: [44.009, 36.191], kind: "hq", iso: "368" },
+  { id: "unitedStates", coordinates: [-77.037, 38.907], kind: "registered", iso: "840" },
+  { id: "unitedKingdom", coordinates: [-0.128, 51.507], kind: "registered", iso: "826" },
+  { id: "kuwait", coordinates: [47.978, 29.375], kind: "registered", iso: "414" },
+  { id: "turkiye", coordinates: [32.864, 39.925], kind: "response", iso: "792" },
+  { id: "syria", coordinates: [36.292, 33.513], kind: "response", iso: "760" },
+  { id: "germany", coordinates: [13.405, 52.52], kind: "recognition", iso: "276" },
+  { id: "portugal", coordinates: [-9.139, 38.722], kind: "recognition", iso: "620" },
+];
 
 /**
  * Pin positions, as a percentage of the map artboard in bcfMapGeometry — the
@@ -74,6 +128,15 @@ type LocCopy = {
   projectsStat: string;
   peopleStat: string;
   explore: string;
+};
+
+type GlobalLocCopy = {
+  name: string;
+  /** The year or standing that makes the country part of the footprint. */
+  meta: string;
+  description: string;
+  /** Two or three verifiable lines — the card carries no photography. */
+  facts: string[];
 };
 
 type ProjectCopy = {
@@ -297,6 +360,10 @@ export type BcfCopy = {
   filters: Record<MapFilterId, string>;
   tapToExplore: string;
   locations: Record<LocationId, LocCopy>;
+  mapScopes: Record<MapScopeId, string>;
+  globalLead: string;
+  globalKinds: Record<GlobalReachKind, string>;
+  globalLocations: Record<GlobalLocationId, GlobalLocCopy>;
   projectsIn: string;
   back: string;
   close: string;
@@ -631,6 +698,95 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       emergency: "Emergency",
     },
     tapToExplore: "Tap to explore",
+    mapScopes: {
+      global: "Globally",
+      kurdistan: "Inside Kurdistan",
+    },
+    globalLead:
+      "Licensed in four countries, seated at the UN, and across the border within days.",
+    globalKinds: {
+      hq: "Headquarters",
+      registered: "Licensed",
+      response: "Emergency",
+      recognition: "Recognition",
+    },
+    globalLocations: {
+      kurdistan: {
+        name: "Kurdistan Region, Iraq",
+        meta: "Since 2005",
+        description:
+          "Founded in Erbil and licensed in both the Republic of Iraq and the Kurdistan Region, this is where every programme is designed, staffed and run from.",
+        facts: [
+          "Offices in Erbil, Duhok, Zakho, Kirkuk and Sulaymaniyah",
+          "ISO 9001:2015 quality-management certification",
+        ],
+      },
+      unitedStates: {
+        name: "United States",
+        meta: "Registered · ECOSOC since 2016",
+        description:
+          "Registered to operate in the United States, enabling transparent partnerships and accountable cross-border support — and holding special consultative status with the UN Economic and Social Council.",
+        facts: [
+          "Special consultative status with UN ECOSOC, granted 2016",
+          "Cross-border partnerships and donor accountability",
+        ],
+      },
+      unitedKingdom: {
+        name: "United Kingdom",
+        meta: "Charity Commission",
+        description:
+          "Recognized under the UK Charity Commission framework, reinforcing standards of governance, reporting and public trust.",
+        facts: [
+          "Governance and reporting to UK charity standards",
+          "Labour Group London Award",
+        ],
+      },
+      kuwait: {
+        name: "Kuwait",
+        meta: "Registered 2019",
+        description:
+          "Registered as a charity organization in Kuwait, extending BCF's licensed humanitarian presence across the region.",
+        facts: ["Licensed regional presence in the Gulf"],
+      },
+      turkiye: {
+        name: "Türkiye",
+        meta: "Earthquake response, 2023",
+        description:
+          "Rapid emergency support after the February 2023 earthquakes, with relief moving across the border within days of the first tremor.",
+        facts: [
+          "4,129 tents provided to displaced families across Türkiye and Syria",
+          "Five disaster-response teams planned across five locations",
+        ],
+      },
+      syria: {
+        name: "Syria",
+        meta: "Earthquake response, 2023",
+        description:
+          "Shelter and emergency relief for families displaced by the 2023 earthquakes in northern Syria.",
+        facts: [
+          "Tents, blankets and winter supplies for displaced families",
+          "Delivered alongside the response in Türkiye",
+        ],
+      },
+      germany: {
+        name: "Germany",
+        meta: "Awarded 2024 — 2025",
+        description:
+          "BCF's humanitarian record has been recognized by German institutions, from a city governor's office to the Federal Parliament.",
+        facts: [
+          "German Federal Parliament Award (2025)",
+          "Wings of Help and Helfen Bringt Freude Awards (2025)",
+          "Essen Governor Award (2024)",
+        ],
+      },
+      portugal: {
+        name: "Portugal",
+        meta: "Sergio de Mello Award",
+        description:
+          "Honoured by the Portuguese Government with the Sergio de Mello Award, named for the UN humanitarian killed in Baghdad in 2003.",
+        facts: ["Awarded by the Government of Portugal"],
+      },
+    },
     locations: {
       erbil: {
         name: "Erbil",
@@ -1145,6 +1301,95 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       emergency: "فریاکەوتن",
     },
     tapToExplore: "بۆ گەڕان دەستی لێبدە",
+    mapScopes: {
+      global: "جیهانی",
+      kurdistan: "لە ناو کوردستان",
+    },
+    globalLead:
+      "مۆڵەتدار لە چوار وڵات، جێگای لە نەتەوە یەکگرتووەکان، و لە ماوەی چەند ڕۆژێکدا لەو دیو سنوور.",
+    globalKinds: {
+      hq: "بارەگا",
+      registered: "مۆڵەتدار",
+      response: "فریاکەوتن",
+      recognition: "دانپێدانان",
+    },
+    globalLocations: {
+      kurdistan: {
+        name: "هەرێمی کوردستان، عێراق",
+        meta: "لە ٢٠٠٥ەوە",
+        description:
+          "لە هەولێر دامەزراوە و لە کۆماری عێراق و هەرێمی کوردستان مۆڵەتی هەیە؛ لێرەوە هەموو بەرنامەیەک دادەڕێژرێت و بەڕێوە دەبرێت.",
+        facts: [
+          "ئۆفیس لە هەولێر، دهۆک، زاخۆ، کەرکوک و سلێمانی",
+          "بڕوانامەی بەڕێوەبردنی جۆرایەتی ISO 9001:2015",
+        ],
+      },
+      unitedStates: {
+        name: "ویلایەتە یەکگرتووەکان",
+        meta: "تۆمارکراو · ECOSOC لە ٢٠١٦ەوە",
+        description:
+          "بۆ کارکردن لە ویلایەتە یەکگرتووەکان تۆمارکراوە، کە هاوبەشی شەفاف و پشتگیری بەرپرسیارانەی سەروو سنوور ئاسان دەکات، لەگەڵ دۆخی ڕاوێژکاری تایبەت لە ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان.",
+        facts: [
+          "دۆخی ڕاوێژکاری تایبەت لەگەڵ ECOSOC، لە ٢٠١٦",
+          "هاوبەشی سەروو سنوور و بەرپرسیاریەتی لەبەرامبەر بەخشەران",
+        ],
+      },
+      unitedKingdom: {
+        name: "شانشینی یەکگرتوو",
+        meta: "لیژنەی خێرخوازی بەریتانیا",
+        description:
+          "لە چوارچێوەی لیژنەی خێرخوازی بەریتانیا دانی پێدا نراوە، کە ستانداردی حوکمڕانی، ڕاپۆرتکردن و متمانەی گشتی بەهێز دەکات.",
+        facts: [
+          "حوکمڕانی و ڕاپۆرتکردن بەپێی ستانداردی خێرخوازی بەریتانیا",
+          "خەڵاتی گرووپی کرێکاری لەندەن",
+        ],
+      },
+      kuwait: {
+        name: "کوەیت",
+        meta: "تۆمارکراو لە ٢٠١٩",
+        description:
+          "وەک ڕێکخراوێکی خێرخوازی لە کوەیت تۆمارکراوە و ئامادەبوونی مۆڵەتداری مرۆڤدۆستانەی BCF لە ناوچەکە فراوان دەکات.",
+        facts: ["ئامادەبوونی مۆڵەتدار لە کەنداو"],
+      },
+      turkiye: {
+        name: "تورکیا",
+        meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
+        description:
+          "پشتگیری فریاکەوتنی خێرا دوای بوومەلەرزەکانی شوباتی ٢٠٢٣، کە یارمەتی لە ماوەی چەند ڕۆژێکدا لە سنوور پەڕییەوە.",
+        facts: [
+          "٤,١٢٩ چادر بۆ خێزانە ئاوارەکان لە تورکیا و سووریا",
+          "پلانی پێنج تیمی وەڵامدانەوەی کارەسات لە پێنج شوێن",
+        ],
+      },
+      syria: {
+        name: "سووریا",
+        meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
+        description:
+          "سەرپەناو یارمەتی فریاکەوتن بۆ ئەو خێزانانەی بە بوومەلەرزەکانی ٢٠٢٣ لە باکووری سووریا ئاوارە بوون.",
+        facts: [
+          "چادر، بەتانی و پێداویستی زستانە بۆ خێزانە ئاوارەکان",
+          "لەگەڵ وەڵامدانەوەکەی تورکیا پێکەوە گەیەنرا",
+        ],
+      },
+      germany: {
+        name: "ئەڵمانیا",
+        meta: "خەڵاتکراو ٢٠٢٤ — ٢٠٢٥",
+        description:
+          "تۆماری مرۆڤدۆستانەی BCF لەلایەن دامەزراوە ئەڵمانییەکانەوە دانی پێدا نراوە، لە ئۆفیسی پارێزگارەوە تا پەرلەمانی فیدراڵی.",
+        facts: [
+          "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا (٢٠٢٥)",
+          "خەڵاتی Wings of Help و Helfen Bringt Freude (٢٠٢٥)",
+          "خەڵاتی پارێزگاری ئێسن (٢٠٢٤)",
+        ],
+      },
+      portugal: {
+        name: "پورتوگال",
+        meta: "خەڵاتی سێرجیۆ دی مێلۆ",
+        description:
+          "لەلایەن حکومەتی پورتوگالەوە بە خەڵاتی سێرجیۆ دی مێلۆ ڕێزی لێ نراوە، کە بە ناوی ئەو کارمەندە مرۆڤدۆستەی نەتەوە یەکگرتووەکانە کە لە ٢٠٠٣ لە بەغدا کوژرا.",
+        facts: ["لەلایەن حکومەتی پورتوگالەوە پێشکەش کراوە"],
+      },
+    },
     locations: {
       erbil: {
         name: "هەولێر",
@@ -1659,6 +1904,95 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       emergency: "الطوارئ",
     },
     tapToExplore: "المس للاستكشاف",
+    mapScopes: {
+      global: "عالمياً",
+      kurdistan: "داخل كردستان",
+    },
+    globalLead:
+      "مرخّصة في أربع دول، وذات مقعد لدى الأمم المتحدة، وعبر الحدود خلال أيام.",
+    globalKinds: {
+      hq: "المقر",
+      registered: "مرخّصة",
+      response: "الطوارئ",
+      recognition: "تقدير",
+    },
+    globalLocations: {
+      kurdistan: {
+        name: "إقليم كردستان، العراق",
+        meta: "منذ 2005",
+        description:
+          "تأسست في أربيل ومرخّصة في جمهورية العراق وإقليم كردستان معاً، ومن هنا تُصمَّم كل البرامج وتُدار.",
+        facts: [
+          "مكاتب في أربيل ودهوك وزاخو وكركوك والسليمانية",
+          "شهادة إدارة الجودة ISO 9001:2015",
+        ],
+      },
+      unitedStates: {
+        name: "الولايات المتحدة",
+        meta: "مسجّلة · ECOSOC منذ 2016",
+        description:
+          "مسجّلة للعمل في الولايات المتحدة، بما يتيح شراكات شفافة ودعماً عابراً للحدود خاضعاً للمساءلة، مع الصفة الاستشارية الخاصة لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة.",
+        facts: [
+          "صفة استشارية خاصة لدى ECOSOC، مُنحت عام 2016",
+          "شراكات عابرة للحدود ومساءلة أمام المانحين",
+        ],
+      },
+      unitedKingdom: {
+        name: "المملكة المتحدة",
+        meta: "مفوضية الجمعيات الخيرية",
+        description:
+          "معترف بها ضمن إطار مفوضية الجمعيات الخيرية البريطانية، بما يعزّز معايير الحوكمة وإعداد التقارير وثقة الجمهور.",
+        facts: [
+          "حوكمة وتقارير وفق المعايير الخيرية البريطانية",
+          "جائزة مجموعة العمال في لندن",
+        ],
+      },
+      kuwait: {
+        name: "الكويت",
+        meta: "مسجّلة 2019",
+        description:
+          "مسجّلة كمنظمة خيرية في الكويت، ما يوسّع حضور المؤسسة الإنساني المرخّص في المنطقة.",
+        facts: ["حضور مرخّص في الخليج"],
+      },
+      turkiye: {
+        name: "تركيا",
+        meta: "استجابة الزلزال، 2023",
+        description:
+          "دعم طارئ سريع بعد زلازل شباط/فبراير 2023، مع عبور الإغاثة للحدود خلال أيام من الهزّة الأولى.",
+        facts: [
+          "4,129 خيمة للعائلات النازحة في تركيا وسوريا",
+          "خطة لخمسة فرق استجابة للكوارث في خمسة مواقع",
+        ],
+      },
+      syria: {
+        name: "سوريا",
+        meta: "استجابة الزلزال، 2023",
+        description:
+          "مأوى وإغاثة طارئة للعائلات التي نزحت جرّاء زلازل 2023 في شمال سوريا.",
+        facts: [
+          "خيام وبطانيات ومستلزمات شتوية للعائلات النازحة",
+          "نُفِّذت بالتوازي مع الاستجابة في تركيا",
+        ],
+      },
+      germany: {
+        name: "ألمانيا",
+        meta: "مكرَّمة 2024 — 2025",
+        description:
+          "حظي سجل المؤسسة الإنساني بتقدير مؤسسات ألمانية، من مكتب محافظ المدينة إلى البرلمان الاتحادي.",
+        facts: [
+          "جائزة البرلمان الاتحادي الألماني (2025)",
+          "جائزتا Wings of Help و Helfen Bringt Freude (2025)",
+          "جائزة محافظ إيسن (2024)",
+        ],
+      },
+      portugal: {
+        name: "البرتغال",
+        meta: "جائزة سيرجيو دي ميلو",
+        description:
+          "كرّمتها الحكومة البرتغالية بجائزة سيرجيو دي ميلو، المسمّاة على اسم موظف الأمم المتحدة الإنساني الذي قُتل في بغداد عام 2003.",
+        facts: ["مُنحت من حكومة البرتغال"],
+      },
+    },
     locations: {
       erbil: {
         name: "أربيل",
