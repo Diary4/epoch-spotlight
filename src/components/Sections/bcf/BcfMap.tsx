@@ -18,7 +18,7 @@ import {
   type LocationId,
   type MapFilterId,
 } from "@/components/Sections/bcf/bcfContent";
-import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import {
   BCF_MAP_CONTEXT,
@@ -382,14 +382,14 @@ export default function BcfMap({
             {selected && selectedLocation ? (
               <motion.div
                 key={selectedLocation}
-                className="absolute inset-x-10 bottom-10 z-30 mx-auto max-w-[920px]"
+                className="absolute inset-0 z-30 flex items-center justify-center px-10"
                 initial={{ opacity: 0, y: 56 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 40, transition: { duration: 0.26 } }}
                 transition={{ duration: 0.55, ease: BCF_EASE }}
               >
                 <div
-                  className={`${BCF_GLASS_CARD} p-8`}
+                  className="w-full max-w-[920px] rounded-2xl border border-[#fbc158]/45 bg-[#0a0a0a]/95 p-8 backdrop-blur-xl"
                   style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}
                 >
                   <div className="mb-4 flex items-start justify-between gap-4">
