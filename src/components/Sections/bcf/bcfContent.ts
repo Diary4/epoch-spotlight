@@ -103,10 +103,13 @@ export type BcfGlobalLocation = {
  * are not part of that footprint and are no longer plotted; the awards
  * themselves are carried by the Recognition topic in BcfTrust.
  *
- * One point per country, on the capital rather than the operational city: at
- * world scale Gaziantep and Aleppo are 100km apart and would land on the same
- * dot, so Türkiye and Syria are shown by Ankara and Damascus and the cities
- * the 2023 response actually reached are named in the card instead.
+ * One point per country, roughly at its centre rather than on its capital or on
+ * an operational city. The dot is a handle for the whole country — the country
+ * itself is what gets filled — and centres are what keep the handles apart:
+ * Beirut and Damascus are 85km from each other and merged into one dot when
+ * both sat on their capitals. Erbil is the exception, because for the HQ the
+ * city is the point. The cities a response actually reached are named in the
+ * cards, which is where a city belongs at this scale.
  *
  * TODO(bcf): `work` is the honest default for the nine countries the poster
  * added — it claims only what the poster claims. Anything with a documented

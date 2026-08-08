@@ -59,8 +59,6 @@ const MAP_PROJECTION = { scale: 373.6, center: HOME_CENTER };
 
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 10;
-/** Enough to separate Beirut from Damascus, which is the tightest pair. */
-const FOCUS_ZOOM = 6;
 /** Below this the Levantine labels overlap; above it they have room to sit. */
 const LABEL_ZOOM = 2.4;
 
@@ -147,7 +145,11 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
     ? BCF_GLOBAL_LOCATIONS.find((l) => l.id === selected) ?? null
     : null;
 
-  /** Tapping a place both opens its card and takes the map there. */
+  /**
+   * Tapping a place both opens its card and takes the map there — to the zoom
+   * that frames *that* country, not to whichever zoom the map happened to be
+   * on. Picking a country is a request to see it, so it may zoom out.
+   */
   const pick = (id: GlobalLocationId) => {
     if (selected === id) {
       onSelect(null);
@@ -155,7 +157,7 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
     }
     const loc = BCF_GLOBAL_LOCATIONS.find((l) => l.id === id)!;
     onSelect(id);
-    moveTo({ coordinates: loc.coordinates, zoom: Math.max(view.zoom, FOCUS_ZOOM) });
+    moveTo({ coordinates: loc.coordinates, zoom: clampZoom(loc.focusZoom) });
   };
 
   const showLabels = view.zoom >= LABEL_ZOOM;
