@@ -42,19 +42,26 @@ import worldTopology from "@/assets/geo/world-countries-110m.json";
  */
 
 /**
- * Frames the entire world in 1000×500 with an even margin — nothing is cropped
- * at rest, which is the point of opening here. Exploration is the zoom's job.
+ * Frames the footprint, not the planet. The thirteen countries span Rabat to
+ * Canberra and Scotland to Tasmania; drawn on a whole-world artboard that left
+ * two empty continents on screen and shrank the part that carries the story.
+ *
+ * The artboard is the projected extent of lon [-20, 158] × lat [-46, 64] — the
+ * footprint plus a margin of ocean — computed with d3-geo's fitExtent, which is
+ * where the scale and centre come from. Its own aspect ratio, so nothing is
+ * stretched, and `translateExtent` below fences panning to exactly this box, so
+ * the Americas cannot be dragged back into view at any zoom.
  */
 const MAP_WIDTH = 1000;
-const MAP_HEIGHT = 500;
-const HOME_CENTER: [number, number] = [0, 0];
-const MAP_PROJECTION = { scale: 182, center: HOME_CENTER };
+const MAP_HEIGHT = 754;
+const HOME_CENTER: [number, number] = [69.21, 6.5];
+const MAP_PROJECTION = { scale: 373.6, center: HOME_CENTER };
 
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 10;
-/** Enough to separate Ankara from Damascus, which is the tightest pair. */
-const FOCUS_ZOOM = 5;
-/** Below this the eight labels overlap; above it they have room to sit. */
+/** Enough to separate Beirut from Damascus, which is the tightest pair. */
+const FOCUS_ZOOM = 6;
+/** Below this the Levantine labels overlap; above it they have room to sit. */
 const LABEL_ZOOM = 2.4;
 
 const HQ = BCF_GLOBAL_LOCATIONS.find((l) => l.id === "kurdistan")!;

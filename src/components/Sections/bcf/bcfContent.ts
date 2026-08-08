@@ -61,17 +61,22 @@ export type BcfLocation = {
 };
 
 /** The four kinds of presence the world map distinguishes between. */
-export type GlobalReachKind = "hq" | "registered" | "response" | "recognition";
+export type GlobalReachKind = "hq" | "registered" | "response" | "work";
 
 export type GlobalLocationId =
   | "kurdistan"
-  | "unitedStates"
   | "unitedKingdom"
-  | "kuwait"
+  | "ukraine"
+  | "serbia"
   | "turkiye"
   | "syria"
-  | "germany"
-  | "portugal";
+  | "lebanon"
+  | "morocco"
+  | "saudiArabia"
+  | "sudan"
+  | "yemen"
+  | "bangladesh"
+  | "australia";
 
 export type BcfGlobalLocation = {
   id: GlobalLocationId;
@@ -86,25 +91,50 @@ export type BcfGlobalLocation = {
 };
 
 /**
+ * The thirteen countries on BCF's own "geographical area of work in 20 years"
+ * map, listed west to east after the HQ. Countries that only ever appeared here
+ * as a registration or an award — the United States, Kuwait, Germany, Portugal —
+ * are not part of that footprint and are no longer plotted; the awards
+ * themselves are carried by the Recognition topic in BcfTrust.
+ *
  * One point per country, on the capital rather than the operational city: at
  * world scale Gaziantep and Aleppo are 100km apart and would land on the same
  * dot, so Türkiye and Syria are shown by Ankara and Damascus and the cities
  * the 2023 response actually reached are named in the card instead.
  *
- * The dots are deliberately not labelled on the map — four of the eight sit
- * inside a 15° box around the Region, and no label arrangement survives that.
- * The list beside the map carries the names and is the primary tap target.
+ * TODO(bcf): `work` is the honest default for the nine countries the poster
+ * added — it claims only what the poster claims. Anything with a documented
+ * registration or a dated emergency deployment should be moved to `registered`
+ * or `response` once the copy below is filled in.
  */
 export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
   { id: "kurdistan", coordinates: [44.009, 36.191], kind: "hq", iso: "368" },
-  { id: "unitedStates", coordinates: [-77.037, 38.907], kind: "registered", iso: "840" },
   { id: "unitedKingdom", coordinates: [-0.128, 51.507], kind: "registered", iso: "826" },
-  { id: "kuwait", coordinates: [47.978, 29.375], kind: "registered", iso: "414" },
+  { id: "morocco", coordinates: [-6.842, 34.021], kind: "work", iso: "504" },
+  { id: "serbia", coordinates: [20.457, 44.787], kind: "work", iso: "688" },
+  { id: "ukraine", coordinates: [30.523, 50.45], kind: "work", iso: "804" },
   { id: "turkiye", coordinates: [32.864, 39.925], kind: "response", iso: "792" },
+  { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422" },
   { id: "syria", coordinates: [36.292, 33.513], kind: "response", iso: "760" },
-  { id: "germany", coordinates: [13.405, 52.52], kind: "recognition", iso: "276" },
-  { id: "portugal", coordinates: [-9.139, 38.722], kind: "recognition", iso: "620" },
+  { id: "sudan", coordinates: [32.56, 15.501], kind: "work", iso: "729" },
+  { id: "saudiArabia", coordinates: [46.675, 24.713], kind: "work", iso: "682" },
+  { id: "yemen", coordinates: [44.207, 15.369], kind: "work", iso: "887" },
+  { id: "bangladesh", coordinates: [90.407, 23.811], kind: "work", iso: "050" },
+  { id: "australia", coordinates: [149.128, -35.283], kind: "work", iso: "036" },
 ];
+
+/**
+ * Placeholder body for the nine countries the twenty-year map added. It states
+ * only what the map states — that the country is inside the footprint — so the
+ * screen never claims a programme, a date or a figure nobody has verified.
+ * Replace per country as the real copy arrives; see the TODO in globalLocations.
+ */
+const WORK_ONLY_EN =
+  "One of the countries reached by BCF's humanitarian work over the past twenty years.";
+const WORK_ONLY_KU =
+  "یەکێکە لەو وڵاتانەی کە کاری مرۆڤدۆستانەی BCF لە ماوەی بیست ساڵی ڕابردوودا گەیشتووەتێ.";
+const WORK_ONLY_AR =
+  "إحدى الدول التي وصل إليها عمل المؤسسة الإنساني خلال العشرين عاماً الماضية.";
 
 /**
  * Pin positions, as a percentage of the map artboard in bcfMapGeometry — the
@@ -710,7 +740,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "Inside Kurdistan",
     },
     globalLead:
-      "Licensed in four countries, seated at the UN, and across the border within days.",
+      "Thirteen countries in twenty years — from Erbil, out across three continents.",
     globalZoomHint: "Drag to move · pinch to zoom",
     zoomIn: "Zoom in",
     zoomOut: "Zoom out",
@@ -719,7 +749,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       hq: "Headquarters",
       registered: "Licensed",
       response: "Emergency",
-      recognition: "Recognition",
+      work: "Area of work",
     },
     globalLocations: {
       kurdistan: {
@@ -732,16 +762,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "ISO 9001:2015 quality-management certification",
         ],
       },
-      unitedStates: {
-        name: "United States",
-        meta: "Registered · ECOSOC since 2016",
-        description:
-          "Registered to operate in the United States, enabling transparent partnerships and accountable cross-border support — and holding special consultative status with the UN Economic and Social Council.",
-        facts: [
-          "Special consultative status with UN ECOSOC, granted 2016",
-          "Cross-border partnerships and donor accountability",
-        ],
-      },
       unitedKingdom: {
         name: "United Kingdom",
         meta: "Charity Commission",
@@ -751,13 +771,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "Governance and reporting to UK charity standards",
           "Labour Group London Award",
         ],
-      },
-      kuwait: {
-        name: "Kuwait",
-        meta: "Registered 2019",
-        description:
-          "Registered as a charity organization in Kuwait, extending BCF's licensed humanitarian presence across the region.",
-        facts: ["Licensed regional presence in the Gulf"],
       },
       turkiye: {
         name: "Türkiye",
@@ -779,23 +792,62 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "Delivered alongside the response in Türkiye",
         ],
       },
-      germany: {
-        name: "Germany",
-        meta: "Awarded 2024 — 2025",
-        description:
-          "BCF's humanitarian record has been recognized by German institutions, from a city governor's office to the Federal Parliament.",
-        facts: [
-          "German Federal Parliament Award (2025)",
-          "Wings of Help and Helfen Bringt Freude Awards (2025)",
-          "Essen Governor Award (2024)",
-        ],
+      /* TODO(bcf): the nine entries below carry only what the twenty-year map
+         itself states. Each needs its real meta line, description and facts —
+         until then they say nothing that is not on the poster. */
+      ukraine: {
+        name: "Ukraine",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
       },
-      portugal: {
-        name: "Portugal",
-        meta: "Sergio de Mello Award",
-        description:
-          "Honoured by the Portuguese Government with the Sergio de Mello Award, named for the UN humanitarian killed in Baghdad in 2003.",
-        facts: ["Awarded by the Government of Portugal"],
+      serbia: {
+        name: "Serbia",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      lebanon: {
+        name: "Lebanon",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      morocco: {
+        name: "Morocco",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      saudiArabia: {
+        name: "Saudi Arabia",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      sudan: {
+        name: "Sudan",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      yemen: {
+        name: "Yemen",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      bangladesh: {
+        name: "Bangladesh",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      australia: {
+        name: "Australia",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
       },
     },
     locations: {
@@ -1321,7 +1373,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "لە ناو کوردستان",
     },
     globalLead:
-      "مۆڵەتدار لە چوار وڵات، جێگای لە نەتەوە یەکگرتووەکان، و لە ماوەی چەند ڕۆژێکدا لەو دیو سنوور.",
+      "سیازدە وڵات لە ماوەی بیست ساڵدا — لە هەولێرەوە بۆ سێ کیشوەر.",
     globalZoomHint: "ڕایبکێشە بۆ جوڵاندن · بیگوشە بۆ نزیکبوونەوە",
     zoomIn: "نزیکبوونەوە",
     zoomOut: "دوورکەوتنەوە",
@@ -1330,7 +1382,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       hq: "بارەگا",
       registered: "مۆڵەتدار",
       response: "فریاکەوتن",
-      recognition: "دانپێدانان",
+      work: "ناوچەی کار",
     },
     globalLocations: {
       kurdistan: {
@@ -1343,16 +1395,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "بڕوانامەی بەڕێوەبردنی جۆرایەتی ISO 9001:2015",
         ],
       },
-      unitedStates: {
-        name: "ویلایەتە یەکگرتووەکان",
-        meta: "تۆمارکراو · ECOSOC لە ٢٠١٦ەوە",
-        description:
-          "بۆ کارکردن لە ویلایەتە یەکگرتووەکان تۆمارکراوە، کە هاوبەشی شەفاف و پشتگیری بەرپرسیارانەی سەروو سنوور ئاسان دەکات، لەگەڵ دۆخی ڕاوێژکاری تایبەت لە ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان.",
-        facts: [
-          "دۆخی ڕاوێژکاری تایبەت لەگەڵ ECOSOC، لە ٢٠١٦",
-          "هاوبەشی سەروو سنوور و بەرپرسیاریەتی لەبەرامبەر بەخشەران",
-        ],
-      },
       unitedKingdom: {
         name: "شانشینی یەکگرتوو",
         meta: "لیژنەی خێرخوازی بەریتانیا",
@@ -1362,13 +1404,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "حوکمڕانی و ڕاپۆرتکردن بەپێی ستانداردی خێرخوازی بەریتانیا",
           "خەڵاتی گرووپی کرێکاری لەندەن",
         ],
-      },
-      kuwait: {
-        name: "کوەیت",
-        meta: "تۆمارکراو لە ٢٠١٩",
-        description:
-          "وەک ڕێکخراوێکی خێرخوازی لە کوەیت تۆمارکراوە و ئامادەبوونی مۆڵەتداری مرۆڤدۆستانەی BCF لە ناوچەکە فراوان دەکات.",
-        facts: ["ئامادەبوونی مۆڵەتدار لە کەنداو"],
       },
       turkiye: {
         name: "تورکیا",
@@ -1390,24 +1425,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "لەگەڵ وەڵامدانەوەکەی تورکیا پێکەوە گەیەنرا",
         ],
       },
-      germany: {
-        name: "ئەڵمانیا",
-        meta: "خەڵاتکراو ٢٠٢٤ — ٢٠٢٥",
-        description:
-          "تۆماری مرۆڤدۆستانەی BCF لەلایەن دامەزراوە ئەڵمانییەکانەوە دانی پێدا نراوە، لە ئۆفیسی پارێزگارەوە تا پەرلەمانی فیدراڵی.",
-        facts: [
-          "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا (٢٠٢٥)",
-          "خەڵاتی Wings of Help و Helfen Bringt Freude (٢٠٢٥)",
-          "خەڵاتی پارێزگاری ئێسن (٢٠٢٤)",
-        ],
+      ukraine: { name: "ئۆکرانیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      serbia: { name: "سربیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      lebanon: { name: "لوبنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      morocco: { name: "مەغریب", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      saudiArabia: {
+        name: "عەرەبستانی سعودی",
+        meta: "ناوچەی کار",
+        description: WORK_ONLY_KU,
+        facts: [],
       },
-      portugal: {
-        name: "پورتوگال",
-        meta: "خەڵاتی سێرجیۆ دی مێلۆ",
-        description:
-          "لەلایەن حکومەتی پورتوگالەوە بە خەڵاتی سێرجیۆ دی مێلۆ ڕێزی لێ نراوە، کە بە ناوی ئەو کارمەندە مرۆڤدۆستەی نەتەوە یەکگرتووەکانە کە لە ٢٠٠٣ لە بەغدا کوژرا.",
-        facts: ["لەلایەن حکومەتی پورتوگالەوە پێشکەش کراوە"],
+      sudan: { name: "سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      yemen: { name: "یەمەن", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      bangladesh: {
+        name: "بەنگلادیش",
+        meta: "ناوچەی کار",
+        description: WORK_ONLY_KU,
+        facts: [],
       },
+      australia: { name: "ئۆسترالیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
     },
     locations: {
       erbil: {
@@ -1931,7 +1967,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "داخل كردستان",
     },
     globalLead:
-      "مرخّصة في أربع دول، وذات مقعد لدى الأمم المتحدة، وعبر الحدود خلال أيام.",
+      "ثلاث عشرة دولة في عشرين عاماً — من أربيل إلى ثلاث قارات.",
     globalZoomHint: "اسحب للتحريك · اضغط بإصبعين للتكبير",
     zoomIn: "تكبير",
     zoomOut: "تصغير",
@@ -1940,7 +1976,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       hq: "المقر",
       registered: "مرخّصة",
       response: "الطوارئ",
-      recognition: "تقدير",
+      work: "منطقة العمل",
     },
     globalLocations: {
       kurdistan: {
@@ -1953,16 +1989,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "شهادة إدارة الجودة ISO 9001:2015",
         ],
       },
-      unitedStates: {
-        name: "الولايات المتحدة",
-        meta: "مسجّلة · ECOSOC منذ 2016",
-        description:
-          "مسجّلة للعمل في الولايات المتحدة، بما يتيح شراكات شفافة ودعماً عابراً للحدود خاضعاً للمساءلة، مع الصفة الاستشارية الخاصة لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة.",
-        facts: [
-          "صفة استشارية خاصة لدى ECOSOC، مُنحت عام 2016",
-          "شراكات عابرة للحدود ومساءلة أمام المانحين",
-        ],
-      },
       unitedKingdom: {
         name: "المملكة المتحدة",
         meta: "مفوضية الجمعيات الخيرية",
@@ -1972,13 +1998,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "حوكمة وتقارير وفق المعايير الخيرية البريطانية",
           "جائزة مجموعة العمال في لندن",
         ],
-      },
-      kuwait: {
-        name: "الكويت",
-        meta: "مسجّلة 2019",
-        description:
-          "مسجّلة كمنظمة خيرية في الكويت، ما يوسّع حضور المؤسسة الإنساني المرخّص في المنطقة.",
-        facts: ["حضور مرخّص في الخليج"],
       },
       turkiye: {
         name: "تركيا",
@@ -2000,24 +2019,20 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "نُفِّذت بالتوازي مع الاستجابة في تركيا",
         ],
       },
-      germany: {
-        name: "ألمانيا",
-        meta: "مكرَّمة 2024 — 2025",
-        description:
-          "حظي سجل المؤسسة الإنساني بتقدير مؤسسات ألمانية، من مكتب محافظ المدينة إلى البرلمان الاتحادي.",
-        facts: [
-          "جائزة البرلمان الاتحادي الألماني (2025)",
-          "جائزتا Wings of Help و Helfen Bringt Freude (2025)",
-          "جائزة محافظ إيسن (2024)",
-        ],
+      ukraine: { name: "أوكرانيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      serbia: { name: "صربيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      lebanon: { name: "لبنان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      morocco: { name: "المغرب", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      saudiArabia: {
+        name: "السعودية",
+        meta: "منطقة عمل",
+        description: WORK_ONLY_AR,
+        facts: [],
       },
-      portugal: {
-        name: "البرتغال",
-        meta: "جائزة سيرجيو دي ميلو",
-        description:
-          "كرّمتها الحكومة البرتغالية بجائزة سيرجيو دي ميلو، المسمّاة على اسم موظف الأمم المتحدة الإنساني الذي قُتل في بغداد عام 2003.",
-        facts: ["مُنحت من حكومة البرتغال"],
-      },
+      sudan: { name: "السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      yemen: { name: "اليمن", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      bangladesh: { name: "بنغلاديش", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      australia: { name: "أستراليا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
     },
     locations: {
       erbil: {
