@@ -31,7 +31,6 @@ import nodeHomes from "@/assets/images/bcf/thumbs/board-chief/8D1A9536.webp";
 import nodeAwards from "@/assets/images/bcf/thumbs/board-chief/8D1A8564.webp";
 import alongsideA from "@/assets/images/bcf/thumbs/board-chief/8C6A0152.webp";
 import alongsideB from "@/assets/images/bcf/thumbs/board-chief/FY1A6986.webp";
-import chiefBg from "@/assets/images/bcf/optimized/board-chief/8C6A0316.webp";
 
 export type BoardChiefView = "profile" | "timeline";
 
@@ -139,11 +138,15 @@ export default function BcfBoardChief({
   }
 
   return (
+    /* No photograph behind the profile either. The carousel directly under the
+       nameplate is already six plates of the same man; a seventh, blurred and
+       full-bleed behind them, only competed with the one the visitor is meant to
+       be looking at. Same deep-field gradient the timeline reads on. */
     <BcfShell
       key="chief-profile"
       showLogo={false}
-      backgroundImage={chiefBg}
-      overlayClassName="bg-black/80"
+      overlayClassName="bg-black/0"
+      backgroundStyle={{ background: BCF_FIELD_BG }}
     >
       {/* Every block below is sized so the column lands inside the 1920 artboard
           in all three languages. It used to run 2101px, and the canvas scrolls
@@ -161,7 +164,7 @@ export default function BcfBoardChief({
         />
 
         <motion.p
-          className="mt-7 max-w-[880px] text-center text-[27px] leading-relaxed text-white/70"
+          className="mt-6 max-w-[840px] text-center text-[25px] leading-relaxed text-white/70"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.46, ease: BCF_EASE }}
@@ -173,7 +176,7 @@ export default function BcfBoardChief({
             copy as the cards on the Leadership grid, so a visitor arriving here
             first still learns where this office sits in the structure. */}
         <motion.p
-          className="mt-8 text-[24px] tracking-[0.18em] text-white/40"
+          className="mt-7 text-[22px] tracking-[0.18em] text-white/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.56 }}
@@ -182,7 +185,7 @@ export default function BcfBoardChief({
         </motion.p>
 
         <motion.div
-          className="mt-6 flex w-full max-w-[840px] items-start justify-center gap-16"
+          className="mt-6 flex w-full max-w-[800px] items-start justify-center gap-14"
           variants={bcfStagger(0.1, 0.62)}
           initial="initial"
           animate="animate"
@@ -191,10 +194,10 @@ export default function BcfBoardChief({
             <motion.div
               key={body?.title ?? index}
               variants={bcfRiseCard}
-              className="flex w-[320px] flex-col items-center text-center"
+              className="flex w-[300px] flex-col items-center text-center"
             >
               <span
-                className="h-[150px] w-[150px] overflow-hidden rounded-full border-2"
+                className="h-[132px] w-[132px] overflow-hidden rounded-full border-2"
                 style={{
                   borderColor: `${BCF.gold}aa`,
                   boxShadow: "0 18px 44px rgba(0,0,0,0.55)",
@@ -208,12 +211,12 @@ export default function BcfBoardChief({
                 />
               </span>
               <span
-                className="mt-5 border-b-2 pb-2.5 text-[29px] font-semibold leading-tight"
+                className="mt-4 border-b-2 pb-2 text-[26px] font-semibold leading-tight"
                 style={{ color: BCF.creamSoft, borderColor: `${BCF.gold}66` }}
               >
                 {body?.title}
               </span>
-              <span className="mt-3 text-[22px] leading-snug text-white/60">
+              <span className="mt-3 text-[20px] leading-snug text-white/60">
                 {body?.subtitle}
               </span>
             </motion.div>
@@ -224,7 +227,10 @@ export default function BcfBoardChief({
           type="button"
           onClick={onOpenTimeline}
           whileTap={BCF_TAP_FIRM}
-          className="mt-auto w-full max-w-[620px] transform-gpu rounded-full px-12 py-7 text-[31px] font-semibold"
+          /* Sits a fixed step under the last card rather than on `mt-auto`.
+             Pinned to the foot of the artboard it stranded itself at the bottom
+             of the screen no matter how much air the column above gave back. */
+          className="mt-14 w-full max-w-[580px] transform-gpu rounded-full px-12 py-6 text-[29px] font-semibold"
           style={{
             background: "linear-gradient(165deg, #e2b66a 0%, #b07a2e 60%, #8a5c1c 100%)",
             color: "#2a1808",
@@ -242,9 +248,18 @@ export default function BcfBoardChief({
 }
 
 /**
- * The nameplate. Its cut corners are a clip-path rather than a border image, so
- * it stays crisp at the 2× the 4K portrait panel scales this artboard to.
+ * The nameplate.
+ *
+ * A solid gold block was the single loudest object in the chapter — brighter
+ * than the photography under it and unrelated to the glass the carousel, the
+ * cards and the timeline are all drawn in. It is now that same glass: dark
+ * plate, gold hairline, gold type. Its cut corners are a clip-path rather than
+ * a border image, so it stays crisp at the 2× the 4K portrait panel scales this
+ * artboard to.
  */
+const PLATE_CLIP =
+  "polygon(32px 0, calc(100% - 32px) 0, 100% 32px, 100% calc(100% - 32px), calc(100% - 32px) 100%, 32px 100%, 0 calc(100% - 32px), 0 32px)";
+
 function NamePlate({
   name,
   role,
@@ -256,12 +271,13 @@ function NamePlate({
 }) {
   return (
     <motion.div
-      className="relative w-full max-w-[700px] px-10 py-7 text-center"
+      className="relative w-full max-w-[640px] px-9 py-6 text-center backdrop-blur-md"
       style={{
-        background: "linear-gradient(165deg, #e6bd72 0%, #c2892f 46%, #8a5c1c 100%)",
-        clipPath:
-          "polygon(38px 0, calc(100% - 38px) 0, 100% 38px, 100% calc(100% - 38px), calc(100% - 38px) 100%, 38px 100%, 0 calc(100% - 38px), 0 38px)",
-        boxShadow: "0 22px 60px rgba(0,0,0,0.55)",
+        background:
+          "linear-gradient(165deg, rgba(28,20,8,0.82) 0%, rgba(10,10,10,0.72) 100%)",
+        border: `1px solid ${BCF.gold}66`,
+        clipPath: PLATE_CLIP,
+        boxShadow: `0 22px 60px rgba(0,0,0,0.55), inset 0 0 60px ${BCF.gold}0f`,
       }}
       variants={bcfBloom}
       initial="initial"
@@ -271,28 +287,35 @@ function NamePlate({
       {/* Inner hairline, inset from the cut edge — the detail that reads as an
           engraved plate rather than a filled rectangle. */}
       <span
-        className="pointer-events-none absolute inset-[10px]"
+        className="pointer-events-none absolute inset-[9px]"
         style={{
-          border: "1px solid rgba(42,24,8,0.35)",
+          border: `1px solid ${BCF.gold}2e`,
           clipPath:
-            "polygon(30px 0, calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px)",
+            "polygon(26px 0, calc(100% - 26px) 0, 100% 26px, 100% calc(100% - 26px), calc(100% - 26px) 100%, 26px 100%, 0 calc(100% - 26px), 0 26px)",
         }}
       />
-      <h1 className="text-[62px] font-bold leading-none" style={{ color: "#2a1808" }}>
+      <h1 className="text-[54px] font-bold leading-none" style={{ color: BCF.cream }}>
         {name}
       </h1>
-      <p className="mt-3 text-[30px] font-medium" style={{ color: "rgba(42,24,8,0.82)" }}>
+      <p className="mt-3 text-[27px] font-medium" style={{ color: BCF.gold }}>
         {role}
       </p>
-      <p className="mt-2 text-[24px]" style={{ color: "rgba(42,24,8,0.62)" }}>
-        {meta}
-      </p>
+      <p className="mt-2 text-[21px] text-white/50">{meta}</p>
     </motion.div>
   );
 }
 
+/** Dwell on each plate before it advances on its own. Long enough to read the
+ *  caption under it in all three languages. */
+const SLIDE_DWELL_MS = 5600;
+
 /**
  * Photography carousel.
+ *
+ * Advances on its own — nobody walks up to a kiosk and starts tapping chevrons,
+ * so the plates have to be the thing that invites them. The controls stay for
+ * whoever does reach out, and touching one restarts the dwell rather than
+ * fighting a timer that was already half spent.
  *
  * Chevrons and dots sit under the plate rather than over it: on a kiosk the
  * visitor's hand is already on the glass, and controls laid over the image are
@@ -307,20 +330,36 @@ function ChiefCarousel({
   captions: string[];
   rtl: boolean;
 }) {
+  const reduceMotion = useReducedMotion();
   const [index, setIndex] = React.useState(0);
+  /** Bumped on every manual pick, purely to restart the effect below. */
+  const [touched, setTouched] = React.useState(0);
   const count = Math.min(images.length, captions.length);
-  const step = (delta: number) =>
-    setIndex((current) => (current + delta + count) % count);
+
+  const go = (next: number) => {
+    setIndex(((next % count) + count) % count);
+    setTouched((n) => n + 1);
+  };
+  const step = (delta: number) => go(index + delta);
+
+  React.useEffect(() => {
+    if (reduceMotion || count < 2) return;
+    const id = window.setTimeout(
+      () => setIndex((current) => (current + 1) % count),
+      SLIDE_DWELL_MS,
+    );
+    return () => window.clearTimeout(id);
+  }, [index, touched, count, reduceMotion]);
 
   return (
     <motion.div
-      className="mt-8 flex w-full max-w-[900px] flex-col items-center"
+      className="mt-7 flex w-full max-w-[860px] flex-col items-center"
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.3, ease: BCF_EASE }}
     >
       <div
-        className={`${BCF_GLASS_CARD} relative h-[548px] w-full overflow-hidden p-3`}
+        className={`${BCF_GLASS_CARD} relative h-[478px] w-full overflow-hidden p-3`}
       >
         {/* One plate at a time, cross-dissolved. `mode="wait"` would leave the
             frame empty mid-swap, which on a slow panel reads as a broken image. */}
@@ -339,27 +378,27 @@ function ChiefCarousel({
         </AnimatePresence>
       </div>
 
-      <div className="mt-5 flex items-center gap-8">
+      <div className="mt-4 flex items-center gap-7">
         <CarouselArrow
           direction="prev"
           rtl={rtl}
           onClick={() => step(-1)}
         />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {Array.from({ length: count }).map((_, dot) => (
             <button
               key={dot}
               type="button"
-              onClick={() => setIndex(dot)}
+              onClick={() => go(dot)}
               aria-label={`${dot + 1}`}
               aria-current={dot === index}
-              className="grid h-[44px] w-[44px] place-items-center"
+              className="grid h-[40px] w-[40px] place-items-center"
             >
               <span
                 className="block rounded-full transition-all duration-400 ease-smooth-out"
                 style={{
-                  width: dot === index ? 18 : 11,
-                  height: dot === index ? 18 : 11,
+                  width: dot === index ? 16 : 10,
+                  height: dot === index ? 16 : 10,
                   backgroundColor:
                     dot === index ? BCF.goldBright : "rgba(255,255,255,0.3)",
                 }}
@@ -375,7 +414,7 @@ function ChiefCarousel({
       <AnimatePresence mode="wait">
         <motion.p
           key={index}
-          className="mt-5 min-h-[92px] max-w-[820px] text-center text-[28px] leading-relaxed"
+          className="mt-4 min-h-[84px] max-w-[780px] text-center text-[26px] leading-relaxed"
           style={{ color: BCF.creamSoft }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -410,10 +449,10 @@ function CarouselArrow({
       aria-label={direction}
       whileTap={BCF_TAP_FIRM}
       transition={BCF_TAP_TRANSITION}
-      className="grid h-[76px] w-[76px] transform-gpu place-items-center rounded-full border bg-black/45 backdrop-blur-md"
+      className="grid h-[68px] w-[68px] transform-gpu place-items-center rounded-full border bg-black/45 backdrop-blur-md"
       style={{ borderColor: `${BCF.gold}59` }}
     >
-      <Icon className="h-9 w-9" style={{ color: BCF.sand }} />
+      <Icon className="h-8 w-8" style={{ color: BCF.sand }} />
     </motion.button>
   );
 }
