@@ -24,6 +24,10 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
+import {
+  bcfPartnerLogos,
+  type PartnerLogoGroupId,
+} from "@/components/Sections/bcf/bcfPartnerLogos";
 import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsThumb from "@/assets/images/bcf/selected/humanity-relief.webp";
@@ -64,6 +68,12 @@ const topicBgs: Partial<Record<TrustTopicId, string>> = {
 
 const founderAvatars = [founderA, founderB, founderC, founderD];
 
+const PARTNER_GROUPS: PartnerLogoGroupId[] = [
+  "partners",
+  "donors",
+  "sponsors",
+];
+
 /**
  * Trust Behind the Work — Figma frames:
  * hub list → Leadership / Quality / Partnerships / Recognition details.
@@ -74,6 +84,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const [credentialIndex, setCredentialIndex] = React.useState(0);
   /** Null while the Leadership grid is up; the profile and its timeline sit under it. */
   const [chiefView, setChiefView] = React.useState<BoardChiefView | null>(null);
+  const [partnerGroup, setPartnerGroup] =
+    React.useState<PartnerLogoGroupId>("partners");
 
   const goBack = () => {
     if (chiefView === "timeline") {
@@ -87,6 +99,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     if (activeId) {
       setActiveId(null);
       setCredentialIndex(0);
+      setPartnerGroup("partners");
       return;
     }
     onBack();
@@ -264,6 +277,13 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     }
 
     if (activeId === "partnerships") {
+      const groupLabels: Record<PartnerLogoGroupId, string> = {
+        partners: c.trustPartnersLabel,
+        donors: c.trustDonorsLabel,
+        sponsors: c.trustSponsorsLabel,
+      };
+      const logos = bcfPartnerLogos[partnerGroup];
+
       return (
         <BcfShell
           key="partnerships"
@@ -273,37 +293,80 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         >
           <TrustChrome title={c.trustPartnershipsTitle} backLabel={c.back} onBack={goBack}>
             <motion.p
-              className="mx-auto mt-8 max-w-[720px] text-center text-[28px] text-white/75"
+              className="mx-auto mt-8 max-w-[780px] text-center text-[28px] text-white/75"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
               {c.trustPartnershipsHint}
             </motion.p>
+
             <motion.div
-              className="mx-auto mt-14 grid w-full max-w-[920px] grid-cols-3 gap-x-10 gap-y-12"
-              variants={bcfStagger(0.07, 0.3)}
-              initial="initial"
-              animate="animate"
+              className="mx-auto mt-10 flex w-full max-w-[920px] justify-center gap-4"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
-              {Array.from({ length: 6 }).map((_, index) => (
-                <motion.div
-                  key={`partner-${index}`}
-                  variants={bcfRiseCard}
-                  className="relative mx-auto flex h-[280px] w-[250px] flex-col items-center justify-center rounded-[28px] rounded-t-[120px] border border-[#f5d7a0]/35"
-                  style={{
-                    background:
-                      "linear-gradient(165deg, #e2b66a 0%, #b07a2e 42%, #6d4214 100%)",
-                    boxShadow:
-                      "0 18px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.28)",
-                  }}
-                >
-                  <span className="text-[36px] font-semibold tracking-wide text-[#2a1808]/65">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </motion.div>
-              ))}
+              {PARTNER_GROUPS.map((group) => {
+                const selected = partnerGroup === group;
+                return (
+                  <motion.button
+                    key={group}
+                    type="button"
+                    onClick={() => setPartnerGroup(group)}
+                    whileTap={BCF_TAP}
+                    transition={BCF_TAP_TRANSITION}
+                    className="min-w-[200px] transform-gpu rounded-2xl px-8 py-4 text-[26px] font-medium backdrop-blur-md"
+                    style={{
+                      border: "1px solid",
+                      borderColor: selected ? BCF.gold : "rgba(255,255,255,0.22)",
+                      backgroundColor: selected
+                        ? "rgba(0,0,0,0.55)"
+                        : "rgba(0,0,0,0.3)",
+                      color: selected ? BCF.creamSoft : "rgba(255,255,255,0.72)",
+                      boxShadow: selected ? `0 0 28px ${BCF.gold}38` : "none",
+                      transition:
+                        "border-color 280ms ease, background-color 280ms ease, color 280ms, box-shadow 280ms",
+                    }}
+                  >
+                    {groupLabels[group]}
+                  </motion.button>
+                );
+              })}
             </motion.div>
+
+            <div className="mx-auto mt-12 w-full max-w-[980px] flex-1">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={partnerGroup}
+                  className="grid max-h-[1280px] grid-cols-3 gap-x-8 gap-y-8 overflow-y-auto overscroll-contain px-2 pb-8 pt-1"
+                  variants={bcfStagger(0.035, 0.04)}
+                  initial="initial"
+                  animate="animate"
+                  exit={{ opacity: 0, y: -10, transition: { duration: 0.22 } }}
+                >
+                  {logos.map((src, index) => (
+                    <motion.div
+                      key={`${partnerGroup}-${index}`}
+                      variants={bcfRiseCard}
+                      className="mx-auto flex h-[220px] w-[220px] items-center justify-center rounded-[28px] border border-white/15 bg-[#f7f1e6] p-7"
+                      style={{
+                        boxShadow:
+                          "0 16px 36px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.55)",
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt=""
+                        decoding="async"
+                        loading="lazy"
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </TrustChrome>
         </BcfShell>
       );

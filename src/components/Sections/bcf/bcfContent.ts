@@ -395,6 +395,9 @@ export type BcfCopy = {
   trustCredentials: TrustCredential[];
   trustPartnershipsTitle: string;
   trustPartnershipsHint: string;
+  trustPartnersLabel: string;
+  trustDonorsLabel: string;
+  trustSponsorsLabel: string;
   trustRecognitionTitle: string;
   trustRecognitionBody: string;
   trustRecognitionItems: RecognitionItem[];
@@ -1069,7 +1072,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     trustPartnershipsTitle: "Partnerships",
-    trustPartnershipsHint: "Trusted partners working alongside BCF",
+    trustPartnershipsHint:
+      "Partners, donors and sponsors who stand with BCF",
+    trustPartnersLabel: "Partners",
+    trustDonorsLabel: "Donors",
+    trustSponsorsLabel: "Sponsors",
     trustRecognitionTitle: "Recognition and Awards",
     trustRecognitionBody:
       "Recognition reflects trust. But the true value of BCF’s work is found in the communities it continues to serve.",
@@ -1676,7 +1683,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     trustPartnershipsTitle: "هاوبەشییەکان",
-    trustPartnershipsHint: "هاوبەشە باوەڕپێکراوەکان لەگەڵ BCF",
+    trustPartnershipsHint: "هاوبەش و بەخشەر و سپۆنسەرەکان لەگەڵ BCF",
+    trustPartnersLabel: "هاوبەشەکان",
+    trustDonorsLabel: "بەخشەرەکان",
+    trustSponsorsLabel: "سپۆنسەرەکان",
     trustRecognitionTitle: "پێزانین و خەڵاتەکان",
     trustRecognitionBody:
       "پێزانین ڕەنگدانەوەی متمانەیە، بەڵام بەهای ڕاستەقینەی کاری دەزگای خێرخوازیی بارزانی لەو کۆمەڵگایانەدایە کە هێشتا خزمەتیان دەکات.",
@@ -2280,7 +2290,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     trustPartnershipsTitle: "الشراكات",
-    trustPartnershipsHint: "شركاء موثوقون يعملون إلى جانب BCF",
+    trustPartnershipsHint: "شركاء ومتبرعون وراعون يقفون إلى جانب BCF",
+    trustPartnersLabel: "الشركاء",
+    trustDonorsLabel: "المتبرعون",
+    trustSponsorsLabel: "الراعون",
     trustRecognitionTitle: "التقدير والجوائز",
     trustRecognitionBody:
       "التقدير يعكس الثقة، لكن القيمة الحقيقية لعمل المؤسسة تكمن في المجتمعات التي ما تزال تخدمها.",
