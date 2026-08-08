@@ -4,7 +4,6 @@ import { ArrowRight, X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import BcfBoardChief, {
-  bcfBoardChiefPortrait,
   type BoardChiefView,
 } from "@/components/Sections/bcf/BcfBoardChief";
 import {
@@ -44,6 +43,8 @@ import certificationsNode from "@/assets/images/bcf/optimized/schools/IMG_6698.w
 import parliamentNode from "@/assets/images/bcf/optimized/children-activity/DSC_1567.webp";
 import lettersNode from "@/assets/images/bcf/optimized/flood/2B1A6924.webp";
 import timelineNode from "@/assets/images/bcf/optimized/children-activity/8C6A6112.webp";
+/** Square crop of the chief, for the portrait card on the Leadership grid. */
+import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -757,7 +758,7 @@ function ChiefCard({
         style={{ borderColor: BCF.gold }}
       >
         <img
-          src={bcfBoardChiefPortrait}
+          src={chiefPortrait}
           alt=""
           decoding="async"
           className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"

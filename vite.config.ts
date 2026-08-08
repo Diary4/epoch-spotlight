@@ -12,6 +12,9 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    watch: {
+      ignored: ["**/design-reference-religion-v4/**"],
+    },
   },
   plugins: [
     react(),
@@ -22,6 +25,11 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
+  },
+  // Local design-reference HTML bundles import deps (e.g. @emotion/is-prop-valid)
+  // that aren't in this app — don't crawl them during optimizeDeps.
+  optimizeDeps: {
+    entries: ["index.html"],
   },
   build: {
     chunkSizeWarningLimit: 1500,
