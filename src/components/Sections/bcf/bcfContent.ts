@@ -740,7 +740,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "Inside Kurdistan",
     },
     globalLead:
-      "Thirteen countries in twenty years — from Erbil, out across three continents.",
+      "Thirteen countries in twenty years, all run from Erbil.",
     globalZoomHint: "Drag to move · pinch to zoom",
     zoomIn: "Zoom in",
     zoomOut: "Zoom out",
@@ -1373,7 +1373,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "لە ناو کوردستان",
     },
     globalLead:
-      "سیازدە وڵات لە ماوەی بیست ساڵدا — لە هەولێرەوە بۆ سێ کیشوەر.",
+      "سیازدە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.",
     globalZoomHint: "ڕایبکێشە بۆ جوڵاندن · بیگوشە بۆ نزیکبوونەوە",
     zoomIn: "نزیکبوونەوە",
     zoomOut: "دوورکەوتنەوە",
@@ -1967,7 +1967,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "داخل كردستان",
     },
     globalLead:
-      "ثلاث عشرة دولة في عشرين عاماً — من أربيل إلى ثلاث قارات.",
+      "ثلاث عشرة دولة في عشرين عاماً، تُدار جميعها من أربيل.",
     globalZoomHint: "اسحب للتحريك · اضغط بإصبعين للتكبير",
     zoomIn: "تكبير",
     zoomOut: "تصغير",

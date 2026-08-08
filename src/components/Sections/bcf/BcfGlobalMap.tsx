@@ -73,12 +73,19 @@ const kindIcons: Record<GlobalReachKind, typeof Landmark> = {
   work: HandHeart,
 };
 
-/** Response is the one kind that earns a colour outside the gold family. */
+/**
+ * Response is the one kind that earns a colour outside the gold family.
+ *
+ * `work` cannot use BCF.nature, the obvious fourth token: it is a beige a few
+ * percent off the colour of unhighlighted land, so nine of the thirteen
+ * countries vanished into the continent they sit on. The deep gold reads as a
+ * fill at a glance, which is the only job this colour has.
+ */
 const kindColors: Record<GlobalReachKind, string> = {
   hq: BCF.goldBright,
   registered: BCF.gold,
   response: BCF.red,
-  work: BCF.nature,
+  work: BCF.goldDeep,
 };
 
 const ALL_KINDS: GlobalReachKind[] = ["hq", "registered", "response", "work"];
@@ -170,8 +177,11 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 key={geo.rsmKey}
                 geography={geo}
                 vectorEffect="non-scaling-stroke"
-                fill={hit ? `${kindColors[hit.kind]}30` : "rgba(255,255,255,0.045)"}
-                stroke={hit ? `${kindColors[hit.kind]}b3` : "rgba(255,255,255,0.14)"}
+                /* Cool grey land, warm fills. Plain white land over the warm
+                   field came out the same beige as the gold highlights, so the
+                   countries that matter had nothing to stand against. */
+                fill={hit ? `${kindColors[hit.kind]}55` : "rgba(176,196,222,0.11)"}
+                stroke={hit ? `${kindColors[hit.kind]}d9` : "rgba(200,218,240,0.22)"}
                 strokeWidth={hit ? 1.4 : 0.6}
                 style={{
                   default: { outline: "none", transition: "fill 300ms ease" },
@@ -237,11 +247,15 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
               })
             }
           >
+            {/* The sphere is now the sea rather than a hairline around the
+                globe — its outline sits far outside a frame this tight, so all
+                it can still do is give the cartography a plane of its own,
+                darker than the plate it is set on. */}
             <Sphere
               id="bcf-globe-sphere"
-              fill="rgba(255,255,255,0.018)"
-              stroke={`${BCF.gold}2e`}
-              strokeWidth={1.2}
+              fill="rgba(6,12,24,0.5)"
+              stroke="none"
+              strokeWidth={0}
               vectorEffect="non-scaling-stroke"
             />
             <Graticule
@@ -375,7 +389,7 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
       {/* Kinds double as the legend and as filters, the way the Region map's
           panel does — one control, so the two halves behave the same way. */}
       <motion.div
-        className="mt-5 flex flex-wrap justify-center gap-3"
+        className="mt-4 flex flex-wrap justify-center gap-3"
         variants={bcfStagger(0.06, 0.45)}
         initial="initial"
         animate="animate"
@@ -419,7 +433,7 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
           Tapping one flies the map to it, so the two stay in step. Three columns
           rather than two — thirteen rows of pairs would eat the map's height. */}
       <motion.div
-        className="mt-5 grid grid-cols-3 gap-3"
+        className="mt-4 grid grid-cols-3 gap-2.5"
         variants={bcfStagger(0.05, 0.55)}
         initial="initial"
         animate="animate"
@@ -438,7 +452,7 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
                 onClick={() => pick(loc.id)}
                 whileTap={BCF_TAP}
-                className="flex transform-gpu items-center gap-3 rounded-2xl border px-4 py-3 text-start transition-colors duration-300"
+                className="flex transform-gpu items-center gap-3 rounded-2xl border px-4 py-2.5 text-start transition-colors duration-300"
                 style={{
                   borderColor: isSelected ? `${color}99` : "rgba(255,255,255,0.1)",
                   backgroundColor: isSelected
@@ -452,12 +466,12 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 />
                 <span className="min-w-0">
                   <span
-                    className="block truncate text-[25px] leading-tight"
+                    className="block truncate text-[23px] leading-tight"
                     style={{ color: isSelected ? BCF.gold : BCF.creamSoft }}
                   >
                     {copy.name}
                   </span>
-                  <span className="mt-0.5 block truncate text-[17px] text-white/50">
+                  <span className="mt-0.5 block truncate text-[16px] text-white/50">
                     {copy.meta}
                   </span>
                 </span>
