@@ -8,8 +8,9 @@ import {
   Line,
   Marker,
   Sphere,
+  ZoomableGroup,
 } from "react-simple-maps";
-import { Award, BadgeCheck, Landmark, Siren, X } from "lucide-react";
+import { Award, BadgeCheck, Landmark, Minus, Plus, RotateCcw, Siren, X } from "lucide-react";
 import {
   BCF_GLOBAL_LOCATIONS,
   bcfCopy,
@@ -18,7 +19,13 @@ import {
   type GlobalReachKind,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import { BCF_EASE, BCF_TAP, BCF_TAP_TRANSITION, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
+import {
+  BCF_EASE,
+  BCF_TAP,
+  BCF_TAP_TRANSITION,
+  bcfRise,
+  bcfStagger,
+} from "@/components/Sections/bcf/bcfMotion";
 import worldTopology from "@/assets/geo/world-countries-110m.json";
 
 /**
@@ -35,13 +42,20 @@ import worldTopology from "@/assets/geo/world-countries-110m.json";
  */
 
 /**
- * Sized against the 1080-wide artboard: the frame crops the mid-Pacific and the
- * foot of Antarctica, neither of which carries anything this screen is saying,
- * and spends the pixels it saves on the Atlantic band the eight countries sit in.
+ * Frames the entire world in 1000×500 with an even margin — nothing is cropped
+ * at rest, which is the point of opening here. Exploration is the zoom's job.
  */
 const MAP_WIDTH = 1000;
-const MAP_HEIGHT = 560;
-const MAP_PROJECTION = { scale: 198, center: [10, 8] as [number, number] };
+const MAP_HEIGHT = 500;
+const HOME_CENTER: [number, number] = [0, 0];
+const MAP_PROJECTION = { scale: 182, center: HOME_CENTER };
+
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 10;
+/** Enough to separate Ankara from Damascus, which is the tightest pair. */
+const FOCUS_ZOOM = 5;
+/** Below this the eight labels overlap; above it they have room to sit. */
+const LABEL_ZOOM = 2.4;
 
 const HQ = BCF_GLOBAL_LOCATIONS.find((l) => l.id === "kurdistan")!;
 
@@ -62,6 +76,12 @@ const kindColors: Record<GlobalReachKind, string> = {
 
 const ALL_KINDS: GlobalReachKind[] = ["hq", "registered", "response", "recognition"];
 
+type View = { coordinates: [number, number]; zoom: number };
+
+const HOME_VIEW: View = { coordinates: HOME_CENTER, zoom: 1 };
+
+const clampZoom = (z: number) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z));
+
 type BcfGlobalMapProps = {
   lang: BcfLang;
   selected: GlobalLocationId | null;
@@ -72,6 +92,29 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
   const [activeKinds, setActiveKinds] = React.useState<GlobalReachKind[]>(ALL_KINDS);
+  const [view, setView] = React.useState<View>(HOME_VIEW);
+  /**
+   * A programmatic move gets a CSS transition so the map glides to the country
+   * instead of teleporting; a finger drag must not, or every frame of the drag
+   * would be chasing a 600ms tween. The flag is cleared the moment a gesture
+   * starts and on a timer after a button or list tap.
+   */
+  const [gliding, setGliding] = React.useState(false);
+  const glideTimer = React.useRef<number>();
+
+  React.useEffect(() => () => window.clearTimeout(glideTimer.current), []);
+
+  const moveTo = React.useCallback(
+    (next: View) => {
+      if (!reduceMotion) {
+        setGliding(true);
+        window.clearTimeout(glideTimer.current);
+        glideTimer.current = window.setTimeout(() => setGliding(false), 700);
+      }
+      setView(next);
+    },
+    [reduceMotion],
+  );
 
   const toggleKind = (kind: GlobalReachKind) => {
     setActiveKinds((prev) =>
@@ -82,12 +125,60 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
   const visible = BCF_GLOBAL_LOCATIONS.filter((loc) => activeKinds.includes(loc.kind));
   const highlighted = React.useMemo(
     () => new Map(visible.map((loc) => [loc.iso, loc])),
-    [visible],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeKinds],
   );
   const detail = selected ? c.globalLocations[selected] : null;
   const selectedLoc = selected
     ? BCF_GLOBAL_LOCATIONS.find((l) => l.id === selected) ?? null
     : null;
+
+  /** Tapping a place both opens its card and takes the map there. */
+  const pick = (id: GlobalLocationId) => {
+    if (selected === id) {
+      onSelect(null);
+      return;
+    }
+    const loc = BCF_GLOBAL_LOCATIONS.find((l) => l.id === id)!;
+    onSelect(id);
+    moveTo({ coordinates: loc.coordinates, zoom: Math.max(view.zoom, FOCUS_ZOOM) });
+  };
+
+  const showLabels = view.zoom >= LABEL_ZOOM;
+  /** Dots and labels are screen-sized, so they do not balloon as the map grows. */
+  const inv = 1 / view.zoom;
+
+  /**
+   * 177 country paths are rebuilt only when the highlighting changes, never on
+   * a zoom or pan: React sees the identical element and skips the whole subtree.
+   */
+  const countries = React.useMemo(
+    () => (
+      <Geographies geography={worldTopology}>
+        {({ geographies }) =>
+          geographies.map((geo) => {
+            const hit = highlighted.get(String(geo.id));
+            return (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                vectorEffect="non-scaling-stroke"
+                fill={hit ? `${kindColors[hit.kind]}30` : "rgba(255,255,255,0.045)"}
+                stroke={hit ? `${kindColors[hit.kind]}b3` : "rgba(255,255,255,0.14)"}
+                strokeWidth={hit ? 1.4 : 0.6}
+                style={{
+                  default: { outline: "none", transition: "fill 300ms ease" },
+                  hover: { outline: "none" },
+                  pressed: { outline: "none" },
+                }}
+              />
+            );
+          })
+        }
+      </Geographies>
+    ),
+    [highlighted],
+  );
 
   return (
     <div className="relative flex h-full flex-col px-8 pb-8 pt-10">
@@ -115,114 +206,169 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
           projection="geoEqualEarth"
           projectionConfig={MAP_PROJECTION}
           style={{ width: "100%", height: "100%" }}
-          aria-hidden="true"
         >
-          <Sphere
-            id="bcf-globe-sphere"
-            fill="rgba(255,255,255,0.018)"
-            stroke={`${BCF.gold}2e`}
-            strokeWidth={1.2}
-          />
-          <Graticule step={[20, 20]} stroke={`${BCF.gold}1f`} strokeWidth={0.6} />
-
-          <Geographies geography={worldTopology}>
-            {({ geographies }) =>
-              geographies.map((geo) => {
-                const hit = highlighted.get(String(geo.id));
-                const isSelected = hit != null && hit.id === selected;
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    fill={
-                      hit
-                        ? isSelected
-                          ? `${kindColors[hit.kind]}59`
-                          : `${kindColors[hit.kind]}2e`
-                        : "rgba(255,255,255,0.045)"
-                    }
-                    stroke={hit ? `${kindColors[hit.kind]}b3` : "rgba(255,255,255,0.14)"}
-                    strokeWidth={hit ? 1.1 : 0.5}
-                    style={{
-                      default: { outline: "none", transition: "fill 300ms ease" },
-                      hover: { outline: "none" },
-                      pressed: { outline: "none" },
-                    }}
-                  />
-                );
+          <ZoomableGroup
+            center={view.coordinates}
+            zoom={view.zoom}
+            minZoom={MIN_ZOOM}
+            maxZoom={MAX_ZOOM}
+            /* Panning is fenced to the artboard, so the world can never be
+               dragged off the stage and left as an empty gold rectangle. */
+            translateExtent={[
+              [0, 0],
+              [MAP_WIDTH, MAP_HEIGHT],
+            ]}
+            className={gliding ? "bcf-map-glide" : undefined}
+            onMoveStart={() => {
+              window.clearTimeout(glideTimer.current);
+              setGliding(false);
+            }}
+            onMoveEnd={(position) =>
+              setView({
+                coordinates: position.coordinates as [number, number],
+                zoom: position.zoom,
               })
             }
-          </Geographies>
+          >
+            <Sphere
+              id="bcf-globe-sphere"
+              fill="rgba(255,255,255,0.018)"
+              stroke={`${BCF.gold}2e`}
+              strokeWidth={1.2}
+              vectorEffect="non-scaling-stroke"
+            />
+            <Graticule
+              step={[20, 20]}
+              stroke={`${BCF.gold}1f`}
+              strokeWidth={0.6}
+              vectorEffect="non-scaling-stroke"
+            />
 
-          {/* Every thread runs back to Erbil: the reach is not eight separate
-              footprints, it is one organisation reaching out of one place. */}
-          {visible
-            .filter((loc) => loc.id !== HQ.id)
-            .map((loc) => (
-              <Line
-                key={`arc-${loc.id}`}
-                from={HQ.coordinates}
-                to={loc.coordinates}
-                stroke={selected === loc.id ? `${BCF.gold}cc` : `${BCF.gold}42`}
-                strokeWidth={selected === loc.id ? 1.8 : 1}
-                strokeDasharray="7 9"
-                strokeLinecap="round"
-                fill="none"
-              />
-            ))}
+            {countries}
 
-          {visible.map((loc) => {
-            const isSelected = selected === loc.id;
-            const color = kindColors[loc.kind];
-            const radius = loc.kind === "hq" ? 9 : 7;
-            return (
-              <Marker
-                key={loc.id}
-                coordinates={loc.coordinates}
-                onClick={() => onSelect(isSelected ? null : loc.id)}
-                style={{
-                  default: { cursor: "pointer", outline: "none" },
-                  hover: { outline: "none" },
-                  pressed: { outline: "none" },
-                }}
-              >
-                {!reduceMotion ? (
+            {/* Every thread runs back to Erbil: the reach is not eight separate
+                footprints, it is one organisation reaching out of one place. */}
+            {visible
+              .filter((loc) => loc.id !== HQ.id)
+              .map((loc) => (
+                <Line
+                  key={`arc-${loc.id}`}
+                  from={HQ.coordinates}
+                  to={loc.coordinates}
+                  stroke={selected === loc.id ? `${BCF.gold}cc` : `${BCF.gold}42`}
+                  strokeWidth={selected === loc.id ? 1.8 : 1}
+                  strokeDasharray="7 9"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                  fill="none"
+                />
+              ))}
+
+            {visible.map((loc) => {
+              const isSelected = selected === loc.id;
+              const color = kindColors[loc.kind];
+              const radius = (loc.kind === "hq" ? 9 : 7) * inv;
+              return (
+                <Marker
+                  key={loc.id}
+                  coordinates={loc.coordinates}
+                  onClick={() => pick(loc.id)}
+                  style={{
+                    default: { cursor: "pointer", outline: "none" },
+                    hover: { outline: "none" },
+                    pressed: { outline: "none" },
+                  }}
+                >
+                  {!reduceMotion ? (
+                    <circle
+                      r={radius}
+                      fill={`${color}55`}
+                      className="bcf-ping"
+                      style={
+                        {
+                          transformOrigin: "center",
+                          transformBox: "fill-box",
+                          "--ping-scale": loc.kind === "hq" ? "3.4" : "2.6",
+                          "--ping-opacity": "0.5",
+                          "--ping-duration": loc.kind === "hq" ? "2.8s" : "3.2s",
+                        } as React.CSSProperties
+                      }
+                    />
+                  ) : null}
+                  {isSelected ? (
+                    <circle
+                      r={radius + 9 * inv}
+                      fill="none"
+                      stroke={color}
+                      strokeWidth={1.6}
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  ) : null}
                   <circle
                     r={radius}
-                    fill={`${color}55`}
-                    className="bcf-ping"
-                    style={
-                      {
-                        transformOrigin: "center",
-                        transformBox: "fill-box",
-                        "--ping-scale": loc.kind === "hq" ? "3.4" : "2.6",
-                        "--ping-opacity": "0.5",
-                        "--ping-duration": loc.kind === "hq" ? "2.8s" : "3.2s",
-                      } as React.CSSProperties
-                    }
+                    fill={color}
+                    stroke="rgba(4,7,10,0.85)"
+                    strokeWidth={2}
+                    vectorEffect="non-scaling-stroke"
                   />
-                ) : null}
-                {isSelected ? (
-                  <circle r={radius + 8} fill="none" stroke={color} strokeWidth={1.6} />
-                ) : null}
-                <circle
-                  r={radius}
-                  fill={color}
-                  stroke="rgba(4,7,10,0.85)"
-                  strokeWidth={2}
-                />
-                {/* A 7px dot is not a touch target on a wall panel. */}
-                <circle r={30} fill="transparent" />
-              </Marker>
-            );
-          })}
+                  {/* A 7px dot is not a touch target on a wall panel. */}
+                  <circle r={30 * inv} fill="transparent" />
+                  {showLabels ? (
+                    <text
+                      x={0}
+                      y={-18 * inv}
+                      textAnchor="middle"
+                      fontSize={22 * inv}
+                      fill={isSelected ? BCF.gold : BCF.creamSoft}
+                      stroke="rgba(4,7,10,0.9)"
+                      strokeWidth={4 * inv}
+                      paintOrder="stroke"
+                      style={{ pointerEvents: "none" }}
+                    >
+                      {c.globalLocations[loc.id].name}
+                    </text>
+                  ) : null}
+                </Marker>
+              );
+            })}
+          </ZoomableGroup>
         </ComposableMap>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4">
+          <p className="text-[20px] text-white/35">{c.globalZoomHint}</p>
+          <div className="pointer-events-auto flex items-center gap-2">
+            <ZoomButton
+              label={c.zoomOut}
+              disabled={view.zoom <= MIN_ZOOM}
+              onClick={() => moveTo({ ...view, zoom: clampZoom(view.zoom / 1.6) })}
+            >
+              <Minus className="h-7 w-7" />
+            </ZoomButton>
+            <ZoomButton
+              label={c.zoomIn}
+              disabled={view.zoom >= MAX_ZOOM}
+              onClick={() => moveTo({ ...view, zoom: clampZoom(view.zoom * 1.6) })}
+            >
+              <Plus className="h-7 w-7" />
+            </ZoomButton>
+            <ZoomButton
+              label={c.resetView}
+              disabled={view.zoom === 1 && view.coordinates === HOME_CENTER}
+              onClick={() => {
+                onSelect(null);
+                moveTo(HOME_VIEW);
+              }}
+            >
+              <RotateCcw className="h-6 w-6" />
+            </ZoomButton>
+          </div>
+        </div>
       </motion.div>
 
       {/* Kinds double as the legend and as filters, the way the Region map's
           panel does — one control, so the two halves behave the same way. */}
       <motion.div
-        className="mt-6 flex flex-wrap justify-center gap-3"
+        className="mt-5 flex flex-wrap justify-center gap-3"
         variants={bcfStagger(0.06, 0.45)}
         initial="initial"
         animate="animate"
@@ -261,10 +407,11 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
         })}
       </motion.div>
 
-      {/* The list, not the dots, is the real tap target: four of the eight
-          countries sit inside a 15° box and cannot be picked apart by thumb. */}
+      {/* The list, not the dots, is the way in: four of the eight countries sit
+          inside a 15° box and cannot be picked apart by thumb at world zoom.
+          Tapping one flies the map to it, so the two stay in step. */}
       <motion.div
-        className="mt-6 grid grid-cols-2 gap-4"
+        className="mt-5 grid grid-cols-2 gap-4"
         variants={bcfStagger(0.05, 0.55)}
         initial="initial"
         animate="animate"
@@ -281,12 +428,14 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 layout={!reduceMotion}
                 variants={bcfRise}
                 exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
-                onClick={() => onSelect(isSelected ? null : loc.id)}
+                onClick={() => pick(loc.id)}
                 whileTap={BCF_TAP}
                 className="flex transform-gpu items-center gap-4 rounded-2xl border p-3 text-start transition-colors duration-300"
                 style={{
                   borderColor: isSelected ? `${color}99` : "rgba(255,255,255,0.1)",
-                  backgroundColor: isSelected ? "rgba(251,178,47,0.09)" : "rgba(0,0,0,0.42)",
+                  backgroundColor: isSelected
+                    ? "rgba(251,178,47,0.09)"
+                    : "rgba(0,0,0,0.42)",
                 }}
               >
                 <span
@@ -310,21 +459,24 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
         </AnimatePresence>
       </motion.div>
 
+      {/* A sheet over the legend and the list rather than the whole stage: the
+          map has just flown to this country and covering it would waste the
+          only move the screen makes. */}
       <AnimatePresence mode="wait">
         {detail && selectedLoc ? (
           <motion.div
             key={selectedLoc.id}
-            className="absolute inset-0 z-30 flex items-center justify-center px-10"
-            initial={{ opacity: 0, y: 56 }}
+            className="absolute inset-x-8 bottom-8 z-30"
+            initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40, transition: { duration: 0.26 } }}
-            transition={{ duration: 0.55, ease: BCF_EASE }}
+            exit={{ opacity: 0, y: 32, transition: { duration: 0.24 } }}
+            transition={{ duration: 0.5, ease: BCF_EASE }}
           >
             <div
-              className="w-full max-w-[920px] rounded-2xl border border-[#fbc158]/45 bg-[#0a0a0a]/95 p-8 backdrop-blur-xl"
+              className="rounded-2xl border border-[#fbc158]/45 bg-[#0a0a0a]/95 p-8 backdrop-blur-xl"
               style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}
             >
-              <div className="mb-2 flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-4">
                 <div>
                   <span
                     className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[20px]"
@@ -339,7 +491,7 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                     {c.globalKinds[selectedLoc.kind]}
                   </span>
                   <h2
-                    className="mt-4 text-[48px] font-semibold leading-tight"
+                    className="mt-4 text-[46px] font-semibold leading-tight"
                     style={{ color: BCF.gold }}
                   >
                     {detail.name}
@@ -358,18 +510,18 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                 </motion.button>
               </div>
 
-              <p className="mt-6 max-w-[760px] text-[26px] leading-relaxed text-white/80">
+              <p className="mt-5 max-w-[760px] text-[25px] leading-relaxed text-white/80">
                 {detail.description}
               </p>
 
-              <ul className="mt-7 space-y-4 border-t border-white/10 pt-6">
+              <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
                 {detail.facts.map((fact) => (
                   <li key={fact} className="flex items-start gap-4">
                     <span
                       className="mt-3 h-px w-8 shrink-0"
                       style={{ backgroundColor: BCF.gold }}
                     />
-                    <span className="text-[24px] leading-relaxed text-white/75">
+                    <span className="text-[23px] leading-relaxed text-white/75">
                       {fact}
                     </span>
                   </li>
@@ -380,5 +532,32 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
         ) : null}
       </AnimatePresence>
     </div>
+  );
+}
+
+function ZoomButton({
+  label,
+  disabled,
+  onClick,
+  children,
+}: {
+  label: string;
+  disabled?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      whileTap={disabled ? undefined : BCF_TAP}
+      transition={BCF_TAP_TRANSITION}
+      aria-label={label}
+      className="grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/15 bg-black/60 backdrop-blur-md transition-opacity duration-300 disabled:opacity-30"
+      style={{ color: BCF.gold }}
+    >
+      {children}
+    </motion.button>
   );
 }

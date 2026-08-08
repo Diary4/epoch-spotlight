@@ -362,6 +362,10 @@ export type BcfCopy = {
   locations: Record<LocationId, LocCopy>;
   mapScopes: Record<MapScopeId, string>;
   globalLead: string;
+  globalZoomHint: string;
+  zoomIn: string;
+  zoomOut: string;
+  resetView: string;
   globalKinds: Record<GlobalReachKind, string>;
   globalLocations: Record<GlobalLocationId, GlobalLocCopy>;
   projectsIn: string;
@@ -704,6 +708,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     globalLead:
       "Licensed in four countries, seated at the UN, and across the border within days.",
+    globalZoomHint: "Drag to move · pinch to zoom",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    resetView: "Reset view",
     globalKinds: {
       hq: "Headquarters",
       registered: "Licensed",
@@ -1307,6 +1315,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     globalLead:
       "مۆڵەتدار لە چوار وڵات، جێگای لە نەتەوە یەکگرتووەکان، و لە ماوەی چەند ڕۆژێکدا لەو دیو سنوور.",
+    globalZoomHint: "ڕایبکێشە بۆ جوڵاندن · بیگوشە بۆ نزیکبوونەوە",
+    zoomIn: "نزیکبوونەوە",
+    zoomOut: "دوورکەوتنەوە",
+    resetView: "گەڕانەوە بۆ دیمەنی سەرەتا",
     globalKinds: {
       hq: "بارەگا",
       registered: "مۆڵەتدار",
@@ -1910,6 +1922,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     globalLead:
       "مرخّصة في أربع دول، وذات مقعد لدى الأمم المتحدة، وعبر الحدود خلال أيام.",
+    globalZoomHint: "اسحب للتحريك · اضغط بإصبعين للتكبير",
+    zoomIn: "تكبير",
+    zoomOut: "تصغير",
+    resetView: "إعادة العرض",
     globalKinds: {
       hq: "المقر",
       registered: "مرخّصة",
