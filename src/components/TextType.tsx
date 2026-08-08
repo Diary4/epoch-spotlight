@@ -55,6 +55,15 @@ const TextType = ({
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
+  // Language / copy swaps must restart the typewriter — otherwise a finished
+  // Latin sentence stays on screen while the next script never paints.
+  useEffect(() => {
+    setDisplayedText('');
+    setCurrentCharIndex(0);
+    setIsDeleting(false);
+    setCurrentTextIndex(0);
+  }, [textArray]);
+
   const getRandomSpeed = useCallback(() => {
     if (!variableSpeed) return typingSpeed;
     const { min, max } = variableSpeed;
@@ -102,8 +111,12 @@ const TextType = ({
 
     let timeout: ReturnType<typeof setTimeout>;
 
-    const currentText = textArray[currentTextIndex];
-    const processedText = reverseMode ? currentText.split('').reverse().join('') : currentText;
+    const currentText = textArray[currentTextIndex] ?? '';
+    // Code-point iteration so Arabic / Kurdish characters are not split on
+    // UTF-16 surrogates the way `string[i]` would.
+    const processedText = reverseMode
+      ? Array.from(currentText).reverse()
+      : Array.from(currentText);
 
     const executeTypingAnimation = () => {
       if (isDeleting) {
@@ -122,7 +135,7 @@ const TextType = ({
           timeout = setTimeout(() => {}, pauseDuration);
         } else {
           timeout = setTimeout(() => {
-            setDisplayedText(prev => prev.slice(0, -1));
+            setDisplayedText(prev => Array.from(prev).slice(0, -1).join(''));
           }, deletingSpeed);
         }
       } else {
@@ -168,7 +181,8 @@ const TextType = ({
   ]);
 
   const shouldHideCursor =
-    hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
+    hideCursorWhileTyping &&
+    (currentCharIndex < Array.from(textArray[currentTextIndex] ?? '').length || isDeleting);
 
   return createElement(
     Component,

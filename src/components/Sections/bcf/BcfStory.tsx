@@ -41,6 +41,9 @@ const VALUES_TAIL = 260;
 
 const PRESIDENT_PLATES = [presidentA, presidentB, presidentC];
 
+/** Arabic-Indic digits used for Kurdish and Arabic chapter markers. */
+const ARABIC_INDIC = "٠١٢٣٤٥٦٧٨٩";
+
 /**
  * `data-scroll-speed` per portrait. All three drift with the scroll rather than
  * against it; it is the difference between them that reads as depth, and
@@ -54,8 +57,14 @@ const PLATE_LAYOUT = [
   { frame: "w-[74%]", height: "h-[580px]" },
 ];
 
-function chapterLabel(index: number) {
-  return String(index + 1).padStart(2, "0");
+function formatChapterDigits(value: number, lang: BcfLang) {
+  const latin = String(value).padStart(2, "0");
+  if (lang === "en") return latin;
+  return latin.replace(/\d/g, (digit) => ARABIC_INDIC[Number(digit)] ?? digit);
+}
+
+function chapterLabel(index: number, lang: BcfLang) {
+  return formatChapterDigits(index + 1, lang);
 }
 
 /**
@@ -75,6 +84,8 @@ function BcfChapterHead({
   titleWhite?: string;
   body?: string;
 }) {
+  const goldDelayChars = Array.from(titleGold).length;
+
   return (
     <>
       <motion.p
@@ -91,6 +102,7 @@ function BcfChapterHead({
         className="mt-8 max-w-[1000px] font-sans text-[80px] font-bold leading-[1.05]"
       >
         <TextType
+          key={`gold-${titleGold}`}
           as="span"
           text={titleGold}
           typingSpeed={45}
@@ -105,10 +117,11 @@ function BcfChapterHead({
           <>
             {" "}
             <TextType
+              key={`white-${titleWhite}`}
               as="span"
               text={titleWhite}
               typingSpeed={45}
-              initialDelay={titleGold.length * 45 + 120}
+              initialDelay={goldDelayChars * 45 + 120}
               loop={false}
               showCursor
               cursorCharacter="|"
@@ -203,7 +216,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const active = sections[activeIndex];
   const isFoundation = activeIndex === 0;
   const isValues = active.id === "values";
-  const label = chapterLabel(activeIndex);
+  const label = chapterLabel(activeIndex, lang);
   const showCorridor = activeIndex > 0;
 
   /** The lerp itself: one frame of Locomotive, for as long as the chapter is up. */
@@ -345,7 +358,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                               className="text-[28px] font-semibold tabular-nums"
                               style={{ color: `${BCF.gold}b3` }}
                             >
-                              {String(index + 1).padStart(2, "0")}
+                              {formatChapterDigits(index + 1, lang)}
                             </span>
                             <h3
                               className="mt-4 text-[52px] font-semibold leading-tight"
@@ -461,7 +474,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           ) : (
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeIndex}
+              key={`${lang}-${activeIndex}`}
               className="absolute inset-x-0 top-[300px] z-20 px-14"
               variants={bcfStagger(0.08, 0.06)}
               initial="initial"

@@ -3,7 +3,11 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import {
+  BCF,
+  BCF_FIELD_BG,
+  BCF_GLASS_CARD,
+} from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
   BCF_TAP_FIRM,
@@ -28,7 +32,6 @@ import nodeAwards from "@/assets/images/bcf/thumbs/board-chief/8D1A8564.webp";
 import alongsideA from "@/assets/images/bcf/thumbs/board-chief/8C6A0152.webp";
 import alongsideB from "@/assets/images/bcf/thumbs/board-chief/FY1A6986.webp";
 import chiefBg from "@/assets/images/bcf/optimized/board-chief/8C6A0316.webp";
-import timelineBg from "@/assets/images/bcf/optimized/board-chief/8C6A0295.webp";
 
 export type BoardChiefView = "profile" | "timeline";
 
@@ -80,11 +83,15 @@ export default function BcfBoardChief({
 
   if (view === "timeline") {
     return (
+      /* No photograph behind the timeline. A full-bleed portrait under a thread
+         of six discs was two competing subjects on one plate — the deep-field
+         gradient the chapter already defines for photograph-less scenes lets the
+         discs be the only faces on the screen. */
       <BcfShell
         key="chief-timeline"
         showLogo={false}
-        backgroundImage={timelineBg}
-        overlayClassName="bg-black/82"
+        overlayClassName="bg-black/0"
+        backgroundStyle={{ background: BCF_FIELD_BG }}
       >
         <div className="relative flex min-h-[1920px] flex-col px-12 pb-12 pt-28">
           <BcfBackButton onClick={onBack} label={c.back} />
@@ -138,7 +145,11 @@ export default function BcfBoardChief({
       backgroundImage={chiefBg}
       overlayClassName="bg-black/80"
     >
-      <div className="relative flex min-h-[1920px] flex-col items-center px-12 pb-14 pt-28">
+      {/* Every block below is sized so the column lands inside the 1920 artboard
+          in all three languages. It used to run 2101px, and the canvas scrolls
+          whatever it cannot fit — on a kiosk that means the CTA is off-screen
+          until someone drags a page nobody expects to move. */}
+      <div className="relative flex min-h-[1920px] flex-col items-center px-12 pb-12 pt-24">
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <NamePlate name={chief.name} role={chief.role} meta={chief.meta} />
@@ -150,7 +161,7 @@ export default function BcfBoardChief({
         />
 
         <motion.p
-          className="mt-9 max-w-[880px] text-center text-[27px] leading-relaxed text-white/70"
+          className="mt-7 max-w-[880px] text-center text-[27px] leading-relaxed text-white/70"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.46, ease: BCF_EASE }}
@@ -162,7 +173,7 @@ export default function BcfBoardChief({
             copy as the cards on the Leadership grid, so a visitor arriving here
             first still learns where this office sits in the structure. */}
         <motion.p
-          className="mt-12 text-[24px] tracking-[0.18em] text-white/40"
+          className="mt-8 text-[24px] tracking-[0.18em] text-white/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.56 }}
@@ -171,7 +182,7 @@ export default function BcfBoardChief({
         </motion.p>
 
         <motion.div
-          className="mt-8 flex w-full max-w-[840px] items-start justify-center gap-16"
+          className="mt-6 flex w-full max-w-[840px] items-start justify-center gap-16"
           variants={bcfStagger(0.1, 0.62)}
           initial="initial"
           animate="animate"
