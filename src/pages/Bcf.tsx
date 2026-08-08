@@ -175,7 +175,7 @@ export default function BcfPage() {
       case "intro":
         return (
           <BcfIntro
-            key={`intro-${lang}`}
+            key="intro"
             lang={lang}
             onContinue={() => go(() => setStep("welcome"))}
           />
@@ -183,7 +183,7 @@ export default function BcfPage() {
       case "welcome":
         return (
           <BcfWelcome
-            key={`welcome-${lang}`}
+            key="welcome"
             lang={lang}
             onStart={() => go(() => setStep("sections"))}
           />
@@ -191,7 +191,7 @@ export default function BcfPage() {
       case "sections":
         return (
           <BcfSections
-            key={`sections-${lang}`}
+            key="sections"
             lang={lang}
             onBack={() => go(() => setStep("welcome"))}
             onSelect={(id: JourneyChapterId) => {
@@ -217,7 +217,7 @@ export default function BcfPage() {
       case "humanity":
         return (
           <BcfHumanity
-            key={`humanity-${lang}`}
+            key="humanity"
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
           />
@@ -225,7 +225,7 @@ export default function BcfPage() {
       case "hub":
         return (
           <BcfStory
-            key={`story-${lang}`}
+            key="story"
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
           />
@@ -233,7 +233,7 @@ export default function BcfPage() {
       case "map":
         return (
           <BcfMap
-            key={`map-${lang}`}
+            key="map"
             lang={lang}
             selectedLocation={modalLocation}
             onSelectLocation={setModalLocation}
@@ -256,7 +256,7 @@ export default function BcfPage() {
         if (!locationId) return null;
         return (
           <BcfProjects
-            key={`projects-${lang}-${locationId}`}
+            key={`projects-${locationId}`}
             lang={lang}
             locationId={locationId}
             onBack={() =>
@@ -277,7 +277,7 @@ export default function BcfPage() {
         if (!locationId || !projectId) return null;
         return (
           <BcfProjectDetail
-            key={`project-${lang}-${locationId}-${projectId}`}
+            key={`project-${locationId}-${projectId}`}
             lang={lang}
             locationId={locationId}
             projectId={projectId}
@@ -287,7 +287,7 @@ export default function BcfPage() {
       case "impact":
         return (
           <BcfImpact
-            key={`impact-${lang}`}
+            key="impact"
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
             onOpenStories={() => go(() => setStep("humanStories"))}
@@ -302,7 +302,7 @@ export default function BcfPage() {
       case "humanStories":
         return (
           <BcfHumanStories
-            key={`humanStories-${lang}`}
+            key="humanStories"
             lang={lang}
             onBack={() => go(() => setStep("impact"))}
           />
@@ -311,7 +311,7 @@ export default function BcfPage() {
         if (!impactGalleryId) return null;
         return (
           <BcfImpactGallery
-            key={`impactGallery-${lang}-${impactGalleryId}`}
+            key={`impactGallery-${impactGalleryId}`}
             lang={lang}
             galleryId={impactGalleryId}
             onBack={() =>
@@ -325,7 +325,7 @@ export default function BcfPage() {
       case "trust":
         return (
           <BcfTrust
-            key={`trust-${lang}`}
+            key="trust"
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
           />
@@ -333,7 +333,7 @@ export default function BcfPage() {
       case "future":
         return (
           <BcfFuture
-            key={`future-${lang}`}
+            key="future"
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
             onOpenFuture={() => go(() => setStep("futureDetail"))}
@@ -343,7 +343,7 @@ export default function BcfPage() {
       case "futureDetail":
         return (
           <BcfFutureDetail
-            key={`futureDetail-${lang}`}
+            key="futureDetail"
             lang={lang}
             onBack={() => go(() => setStep("future"))}
           />
@@ -351,7 +351,7 @@ export default function BcfPage() {
       case "legacy":
         return (
           <BcfLegacy
-            key={`legacy-${lang}`}
+            key="legacy"
             lang={lang}
             onBack={() => go(() => setStep("future"))}
             onRestart={reset}
@@ -369,8 +369,9 @@ export default function BcfPage() {
     <FitScaledCanvas
       designWidth={DESIGN_WIDTH}
       dir={dir}
+      lang={lang}
       bgClassName="bg-[#0a0a0a]"
-      className={BCF_PERF_CLASS}
+      className={`${BCF_PERF_CLASS} bcf-experience`}
       fitDeps={[step, lang]}
     >
       {/* `relative` so the rail and the two overlays can pin themselves to the

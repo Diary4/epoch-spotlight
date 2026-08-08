@@ -326,7 +326,9 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         >
           <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
             <motion.p
-              className="mx-auto mt-10 max-w-[820px] text-center text-[30px] leading-relaxed text-[#fdeed4]"
+              className={`mx-auto mt-10 max-w-[820px] text-center text-[30px] text-[#fdeed4] ${
+                lang === "en" ? "leading-relaxed" : "leading-[1.75]"
+              }`}
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
@@ -466,7 +468,7 @@ function RecognitionArc({
   return (
     <div className="mx-auto mt-10 w-full max-w-[1000px]">
       <motion.p
-        className="text-center text-[24px] tracking-[0.16em] text-white/45"
+        className={`text-center text-[24px] text-white/45 ${rtl ? "" : "tracking-[0.16em]"}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
@@ -627,7 +629,11 @@ function RecognitionArc({
                       "border-color 340ms ease, background-color 340ms ease",
                   }}
                 >
-                  <p className="text-[30px] font-medium leading-tight text-[#fbf4e4]">
+                  <p
+                    className={`text-[30px] leading-tight text-[#fbf4e4] ${
+                      rtl ? "font-semibold" : "font-medium"
+                    }`}
+                  >
                     {item.title}
                   </p>
                 </div>

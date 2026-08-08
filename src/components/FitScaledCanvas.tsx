@@ -4,6 +4,8 @@ type FitScaledCanvasProps = {
   /** Artboard width the screens are designed against. */
   designWidth: number;
   dir?: "ltr" | "rtl";
+  /** BCP 47 language tag — drives script-specific font stacks via CSS. */
+  lang?: string;
   bgClassName?: string;
   className?: string;
   fitDeps?: React.DependencyList;
@@ -24,6 +26,7 @@ type FitScaledCanvasProps = {
 export default function FitScaledCanvas({
   designWidth,
   dir,
+  lang,
   bgClassName = "",
   className = "",
   fitDeps = [],
@@ -82,6 +85,7 @@ export default function FitScaledCanvas({
     <div
       ref={wrapRef}
       dir={dir}
+      lang={lang}
       className={`relative min-h-screen w-full overflow-x-hidden overflow-y-auto ${bgClassName} ${className}`}
     >
       <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
