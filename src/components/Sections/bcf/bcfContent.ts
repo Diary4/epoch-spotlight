@@ -88,6 +88,12 @@ export type BcfGlobalLocation = {
    * the dot sits on can be filled rather than only pricked with a pin.
    */
   iso: string;
+  /**
+   * Zoom the map flies to when this country is picked, chosen to frame the
+   * country. One number for all thirteen cannot work: the zoom that separates
+   * Beirut from Damascus puts a single Australian state on the screen.
+   */
+  focusZoom: number;
 };
 
 /**
