@@ -456,7 +456,21 @@ All colors MUST be HSL.
   animation: bcfSpin 78s linear infinite reverse;
 }
 
+/*
+ * The world map gliding to a country after a tap. react-simple-maps writes the
+ * pan/zoom straight onto the group's `transform` attribute, so a programmatic
+ * jump lands in one frame; this class is added only for those moves — never
+ * while a finger is on the map, where a 620ms tween would fight the drag.
+ */
+.bcf-map-glide {
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .bcf-map-glide {
+    transition: none;
+  }
+
   .bcf-drift,
   .bcf-orbit,
   .bcf-plate-a,
