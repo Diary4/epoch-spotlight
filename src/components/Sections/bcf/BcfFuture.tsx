@@ -14,8 +14,6 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfJourneyFuture, bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
-import futureFill from "@/assets/images/bcf/selected/humanstories-recovery.webp";
-import legacyFill from "@/assets/images/bcf/selected/humanity-community.webp";
 
 type BcfFutureProps = {
   lang: BcfLang;
@@ -27,20 +25,17 @@ type BcfFutureProps = {
 const CIRCLE = 580;
 
 /**
- * One of the two portals. Each is a photograph behind a gold ring rather than a
- * flat outlined disc, with a slow counter-rotating orbit so the pair reads as
- * living artwork on an otherwise still screen.
+ * One of the two portals — a gold ring over the plate, with a slow
+ * counter-rotating orbit so the pair reads as living artwork.
  */
 function FuturePortal({
   index,
   title,
-  image,
   onOpen,
   reduceMotion,
 }: {
   index: number;
   title: string;
-  image: string;
   onOpen: () => void;
   reduceMotion: boolean | null;
 }) {
@@ -58,10 +53,10 @@ function FuturePortal({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className="relative grid shrink-0 transform-gpu place-items-center"
+      aria-label={title}
+      className="relative grid shrink-0 transform-gpu place-items-center rounded-full"
       style={{ width: CIRCLE, height: CIRCLE }}
     >
-      {/* Orbit: a dashed ring that turns slowly, opposite ways for the two. */}
       {!reduceMotion ? (
         <motion.span
           aria-hidden="true"
@@ -76,30 +71,16 @@ function FuturePortal({
       ) : null}
 
       <span
-        className="absolute inset-0 overflow-hidden rounded-full border-2"
+        className="absolute inset-0 rounded-full border-2 backdrop-blur-sm"
         style={{
           borderColor: pressed ? BCF.goldBright : BCF.gold,
+          backgroundColor: pressed ? "rgba(0,0,0,0.42)" : "rgba(0,0,0,0.32)",
           boxShadow: pressed
-            ? `0 0 70px ${BCF.gold}66, inset 0 0 60px rgba(0,0,0,0.6)`
-            : `0 0 0 rgba(0,0,0,0), inset 0 0 60px rgba(0,0,0,0.6)`,
-          transition: "border-color 400ms ease, box-shadow 400ms ease",
+            ? `0 0 70px ${BCF.gold}66, inset 0 0 60px rgba(0,0,0,0.45)`
+            : `inset 0 0 60px rgba(0,0,0,0.45)`,
+          transition: "border-color 400ms ease, box-shadow 400ms ease, background-color 400ms ease",
         }}
-      >
-        <img
-          src={image}
-          alt=""
-          decoding="async"
-          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
-          style={{ transform: pressed ? "scale(1.07)" : "scale(1)" }}
-        />
-        <span
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 42%, rgba(4,7,10,0.45), rgba(4,7,10,0.86) 78%)",
-          }}
-        />
-      </span>
+      />
 
       <span className="relative flex max-w-[420px] flex-col items-center gap-6 px-10 text-center">
         <span dir="ltr" className="text-[64px] font-bold leading-none">
@@ -132,10 +113,13 @@ export default function BcfFuture({
 }: BcfFutureProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
+  const chapterTitle =
+    c.journeyChapters.find((chapter) => chapter.id === "future")?.title ??
+    c.futureCircle;
 
   const portals = [
-    { title: c.futureCircle, image: futureFill, open: onOpenFuture },
-    { title: c.legacyCircle, image: legacyFill, open: onOpenLegacy },
+    { title: c.futureCircle, open: onOpenFuture },
+    { title: c.legacyCircle, open: onOpenLegacy },
   ];
 
   return (
@@ -153,7 +137,7 @@ export default function BcfFuture({
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfRise}>
-          <BcfChapterPill title={c.trustTitle} thumb={bcfJourneyFuture} />
+          <BcfChapterPill title={chapterTitle} thumb={bcfJourneyFuture} />
         </motion.div>
 
         <motion.span
@@ -164,9 +148,6 @@ export default function BcfFuture({
           }}
         />
 
-        {/* Two portals on a single vertical thread. They previously sat as
-            absolutely-positioned discs inside a fixed 1400px box, which left the
-            spacing at the mercy of the container rather than the composition. */}
         <div className="relative mx-auto mt-16 flex w-full max-w-[980px] flex-col items-center gap-[92px]">
           <span
             aria-hidden="true"
@@ -186,7 +167,6 @@ export default function BcfFuture({
               key={portal.title}
               index={index}
               title={portal.title}
-              image={portal.image}
               onOpen={portal.open}
               reduceMotion={reduceMotion}
             />

@@ -342,13 +342,134 @@ All colors MUST be HSL.
   animation: bcfShaft 9.5s ease-in-out infinite;
 }
 
+/* ---------------------------------------------------------------------------
+ * The remaining forever-motions, moved off the main thread.
+ *
+ * Everything below was a `motion` animation with `repeat: Infinity`. Each one
+ * costs a style write per element per frame, from the main thread, for as long
+ * as its screen is up — and these screens are never dismissed. Twelve of them
+ * across the experience is twelve writes competing with the touch handler that
+ * a visitor is waiting on, which is what the stutter actually is.
+ *
+ * As CSS keyframes on `transform` and `opacity` only, they are handed to the
+ * compositor and cost the main thread nothing. The timings and values are
+ * carried over unchanged, so each one looks exactly as it did.
+ *
+ * Per-instance timing comes in as custom properties, so one keyframe serves the
+ * several places that share a motion.
+ * ------------------------------------------------------------------------ */
+
+/* Expanding halo — the attract ring, the map pins, the future-detail dots. */
+@keyframes bcfPing {
+  from {
+    transform: scale(1);
+    opacity: var(--ping-opacity, 0.5);
+  }
+  to {
+    transform: scale(var(--ping-scale, 1.62));
+    opacity: 0;
+  }
+}
+
+.bcf-ping {
+  animation: bcfPing var(--ping-duration, 2.6s) ease-out var(--ping-delay, 0s)
+    infinite;
+}
+
+/* Opacity breathing — the attract hint line, the legacy glow under the pillars. */
+@keyframes bcfBreathe {
+  0%,
+  100% {
+    opacity: var(--breathe-from, 0.35);
+  }
+  50% {
+    opacity: var(--breathe-to, 0.9);
+  }
+}
+
+.bcf-breathe {
+  animation: bcfBreathe var(--breathe-duration, 3.4s) ease-in-out
+    var(--breathe-delay, 0s) infinite;
+}
+
+/* Scale breathing — the welcome CTA disc, the map's explore chevron. */
+@keyframes bcfPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(var(--pulse-scale, 1.045));
+  }
+}
+
+.bcf-pulse {
+  animation: bcfPulse var(--pulse-duration, 2.8s) ease-in-out infinite;
+}
+
+/* The gold sweep that keeps crossing the welcome CTA. */
+@keyframes bcfSweep {
+  0% {
+    transform: translate3d(-120%, 0, 0);
+  }
+  69% {
+    transform: translate3d(320%, 0, 0);
+  }
+  100% {
+    transform: translate3d(320%, 0, 0);
+  }
+}
+
+.bcf-sweep {
+  animation: bcfSweep 5.2s ease-in-out infinite;
+}
+
+/* The intro's vertical gold beam, drawing and fading on its own axis. */
+@keyframes bcfBeam {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.bcf-beam {
+  animation: bcfBeam 2.8s ease-in-out infinite;
+}
+
+/* The dashed rings around the two future portals, turning opposite ways. */
+@keyframes bcfSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bcf-spin {
+  animation: bcfSpin 78s linear infinite;
+}
+
+.bcf-spin-reverse {
+  animation: bcfSpin 78s linear infinite reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bcf-drift,
   .bcf-orbit,
   .bcf-plate-a,
   .bcf-plate-b,
   .bcf-ember,
-  .bcf-shaft {
+  .bcf-shaft,
+  .bcf-ping,
+  .bcf-breathe,
+  .bcf-pulse,
+  .bcf-sweep,
+  .bcf-beam,
+  .bcf-spin,
+  .bcf-spin-reverse {
     animation: none;
   }
 }

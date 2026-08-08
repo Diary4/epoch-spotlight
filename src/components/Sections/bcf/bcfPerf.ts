@@ -7,10 +7,9 @@
  *
  * Three of those layers — `backdrop-filter`, `mix-blend-mode` and large
  * `filter: blur()` halos — cannot be composited on the GPU in place: Chrome has
- * to read the backdrop back, process it, and paint it again. On Chrome for
- * Android (both the kiosk panel and a phone) that readback alone overruns the
- * frame budget before anything has moved, which is why the experience crawls
- * there and is fine on the desktop build.
+ * to read the backdrop back, process it, and paint it again. At 2160×3840 that
+ * readback alone can overrun the frame budget before anything has moved, on the
+ * Android panel and on the Windows TV box alike.
  *
  * So the low tier drops those three and keeps everything else — the layout, the
  * colours, the entrances and the drift are identical. Nothing here is a visual
@@ -20,8 +19,6 @@
  * Read once at module load: the device does not change under a running kiosk,
  * and making it reactive would only add a render pass per screen.
  */
-
-type CapabilityNavigator = Navigator & { deviceMemory?: number };
 
 /** Manual override, for bringing a specific panel up or down without a rebuild. */
 function forcedTier(): "low" | "high" | null {
@@ -34,30 +31,34 @@ function forcedTier(): "low" | "high" | null {
     const stored = window.localStorage.getItem("bcf:perf");
     if (stored === "low" || stored === "high") return stored;
   } catch {
-    // Private mode / file:// — fall through to detection.
+    // Private mode / file:// — fall through to the default.
   }
   return null;
 }
 
+/**
+ * The low tier is now the default for every device, not a phone-shaped
+ * exception.
+ *
+ * The previous version sniffed for `Android` in the user agent, or for four or
+ * fewer cores. That reads the wrong variable. What makes these layers expensive
+ * is not the CPU — it is that a `backdrop-filter` costs a readback of whatever
+ * is behind it, and on the 4K portrait panel "behind it" is a 2160×3840
+ * surface. That price is charged per frame on any GPU. The Windows TV box the
+ * kiosk actually runs on reports a Windows UA and eight cores, so it failed
+ * every one of those checks and got the expensive path — which is exactly where
+ * the reported stutter comes from.
+ *
+ * Since the reduced path is a deliberate visual match rather than a downgrade
+ * (see the notes in index.css and bcfTheme.ts), there is no reason to gate it.
+ * `?perf=high` still restores the full glass stack for comparing the two on a
+ * workstation.
+ */
 function detectLowPower(): boolean {
   if (typeof window === "undefined" || typeof navigator === "undefined") {
     return false;
   }
-
-  const forced = forcedTier();
-  if (forced) return forced === "low";
-
-  // Android covers both targets that struggle: the kiosk panel's built-in
-  // Chrome and the phone. Desktop Chrome/Electron on the same markup is fine.
-  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return true;
-
-  const nav = navigator as CapabilityNavigator;
-  if (typeof nav.deviceMemory === "number" && nav.deviceMemory <= 4) return true;
-  if (typeof nav.hardwareConcurrency === "number" && nav.hardwareConcurrency <= 4) {
-    return true;
-  }
-
-  return false;
+  return forcedTier() !== "high";
 }
 
 export const BCF_LOW_POWER = detectLowPower();

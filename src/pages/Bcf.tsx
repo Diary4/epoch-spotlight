@@ -354,7 +354,6 @@ export default function BcfPage() {
             key="legacy"
             lang={lang}
             onBack={() => go(() => setStep("future"))}
-            onRestart={reset}
           />
         );
       default:

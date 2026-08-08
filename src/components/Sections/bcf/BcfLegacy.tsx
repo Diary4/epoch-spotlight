@@ -1,13 +1,10 @@
 import { motion, useReducedMotion } from "motion/react";
-import { RotateCcw } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_DRIFT_TRANSITION,
   BCF_EASE,
-  BCF_TAP,
-  BCF_TAP_TRANSITION,
   bcfDrawX,
   bcfRise,
   bcfRiseCard,
@@ -21,8 +18,6 @@ import pillarHope from "@/assets/images/bcf/selected/humanity-education.webp";
 type BcfLegacyProps = {
   lang: BcfLang;
   onBack: () => void;
-  /** Closing page's own exit — the roadmap ends on "Return to Beginning". */
-  onRestart: () => void;
 };
 
 const PILLAR_IMAGES = [pillarService, pillarHumanity, pillarHope];
@@ -30,11 +25,11 @@ const PILLAR_IMAGES = [pillarService, pillarHumanity, pillarHope];
 /**
  * Closing page — "A Legacy That Continues" (roadmap page 29).
  *
- * The scene is one photograph that dissolves into black, three pillars that
- * arrive on a stagger, and the thanks last: the visitor should feel the room
- * settling rather than another list opening.
+ * The scene is one photograph that dissolves into black and three pillars that
+ * arrive on a stagger: the visitor should feel the room settling rather than
+ * another list opening.
  */
-export default function BcfLegacy({ lang, onBack, onRestart }: BcfLegacyProps) {
+export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
 
@@ -165,38 +160,7 @@ export default function BcfLegacy({ lang, onBack, onRestart }: BcfLegacyProps) {
             ))}
           </div>
 
-          <motion.div
-            variants={bcfRise}
-            className="mt-16 flex flex-col items-center text-center"
-          >
-            <span
-              className="text-[26px] font-semibold uppercase tracking-[0.34em]"
-              style={{ color: BCF.gold }}
-            >
-              {c.legacyThanks}
-            </span>
-            <p className="mt-7 max-w-[760px] text-[30px] leading-relaxed text-white/80">
-              {c.legacyThanksBody}
-            </p>
-
-            <motion.button
-              type="button"
-              onClick={onRestart}
-              whileTap={BCF_TAP}
-              transition={BCF_TAP_TRANSITION}
-              className="mt-10 flex transform-gpu items-center gap-4 rounded-full px-12 py-6 text-[30px] font-medium"
-              style={{
-                border: `1px solid ${BCF.gold}66`,
-                backgroundColor: "rgba(0,0,0,0.45)",
-                color: BCF.creamSoft,
-              }}
-            >
-              <RotateCcw className="h-8 w-8" style={{ color: BCF.gold }} />
-              {c.legacyRestart}
-            </motion.button>
-          </motion.div>
-
-          {/* A last slow breath of gold under the thanks. */}
+          {/* A last slow breath of gold under the pillars. */}
           {!reduceMotion ? (
             <motion.span
               aria-hidden="true"

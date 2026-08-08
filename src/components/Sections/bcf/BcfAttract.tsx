@@ -360,11 +360,9 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
           aria-hidden="true"
         >
           {animate ? (
-            <motion.span
-              className="absolute inset-0 rounded-full border"
+            <span
+              className="bcf-ping absolute inset-0 rounded-full border"
               style={{ borderColor: BCF.gold }}
-              animate={{ scale: [1, 1.62], opacity: [0.5, 0] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
             />
           ) : null}
           <span

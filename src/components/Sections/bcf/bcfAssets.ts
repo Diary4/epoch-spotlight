@@ -27,7 +27,7 @@ export { default as bcfCorridor } from "@/assets/images/TouristicPlace/ErbilCast
 export { default as bcfHubBg } from "@/assets/images/bcf/optimized/camps/harsham.webp";
 export { default as bcfImpactBg } from "@/assets/images/bcf/selected/humanity-relief.webp";
 export { default as bcfProjectsBg } from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-export { default as bcfFutureDetailBg } from "@/assets/images/bcf/selected/impact-camps.webp";
+export { default as bcfFutureDetailBg } from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
 
 /**
  * Opening plates.

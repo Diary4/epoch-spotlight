@@ -31,7 +31,6 @@ import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
 import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
-import trustBg from "@/assets/images/bcf/optimized/camps/harsham.webp";
 import founderA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
 import founderB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
 import founderC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
@@ -344,8 +343,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       <BcfShell
         key="hub"
         showLogo={false}
-        backgroundImage={trustBg}
-        overlayClassName="bg-black/75"
       >
         <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
           <BcfBackButton onClick={goBack} label={c.back} />
