@@ -114,19 +114,25 @@ export type BcfGlobalLocation = {
  * or `response` once the copy below is filled in.
  */
 export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
-  { id: "kurdistan", coordinates: [44.009, 36.191], kind: "hq", iso: "368" },
-  { id: "unitedKingdom", coordinates: [-0.128, 51.507], kind: "registered", iso: "826" },
-  { id: "morocco", coordinates: [-6.842, 34.021], kind: "work", iso: "504" },
-  { id: "serbia", coordinates: [20.457, 44.787], kind: "work", iso: "688" },
-  { id: "ukraine", coordinates: [30.523, 50.45], kind: "work", iso: "804" },
-  { id: "turkiye", coordinates: [32.864, 39.925], kind: "response", iso: "792" },
-  { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422" },
-  { id: "syria", coordinates: [36.292, 33.513], kind: "response", iso: "760" },
-  { id: "sudan", coordinates: [32.56, 15.501], kind: "work", iso: "729" },
-  { id: "saudiArabia", coordinates: [46.675, 24.713], kind: "work", iso: "682" },
-  { id: "yemen", coordinates: [44.207, 15.369], kind: "work", iso: "887" },
-  { id: "bangladesh", coordinates: [90.407, 23.811], kind: "work", iso: "050" },
-  { id: "australia", coordinates: [149.128, -35.283], kind: "work", iso: "036" },
+  { id: "kurdistan", coordinates: [44.009, 36.191], kind: "hq", iso: "368", focusZoom: 4.5 },
+  {
+    id: "unitedKingdom",
+    coordinates: [-2.5, 54.2],
+    kind: "registered",
+    iso: "826",
+    focusZoom: 5,
+  },
+  { id: "morocco", coordinates: [-6.842, 31.8], kind: "work", iso: "504", focusZoom: 4.5 },
+  { id: "serbia", coordinates: [20.457, 44.787], kind: "work", iso: "688", focusZoom: 6.5 },
+  { id: "ukraine", coordinates: [31.2, 48.8], kind: "work", iso: "804", focusZoom: 4 },
+  { id: "turkiye", coordinates: [35.2, 39.1], kind: "response", iso: "792", focusZoom: 4.5 },
+  { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422", focusZoom: 7 },
+  { id: "syria", coordinates: [38.5, 35], kind: "response", iso: "760", focusZoom: 6 },
+  { id: "sudan", coordinates: [30.2, 15.9], kind: "work", iso: "729", focusZoom: 4 },
+  { id: "saudiArabia", coordinates: [45.1, 24], kind: "work", iso: "682", focusZoom: 3.6 },
+  { id: "yemen", coordinates: [47.5, 15.5], kind: "work", iso: "887", focusZoom: 5.5 },
+  { id: "bangladesh", coordinates: [90.407, 23.811], kind: "work", iso: "050", focusZoom: 6.5 },
+  { id: "australia", coordinates: [134, -25.5], kind: "work", iso: "036", focusZoom: 2.6 },
 ];
 
 /**
