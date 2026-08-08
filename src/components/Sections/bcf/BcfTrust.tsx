@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, ChevronRight, X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import BcfBoardChief, {
@@ -24,12 +24,11 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
+import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsThumb from "@/assets/images/bcf/selected/humanity-relief.webp";
 import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
-import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
-import leadershipBg from "@/assets/images/bcf/selected/humanity-community.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
 import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
 import trustBg from "@/assets/images/bcf/optimized/camps/harsham.webp";
@@ -37,7 +36,7 @@ import founderA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp
 import founderB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
 import founderC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
 import founderD from "@/assets/images/bcf/optimized/administration/8C6A7443.webp";
-import certificateImg from "@/assets/images/bcf/selected/impact-schools.webp";
+import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import awardsNode from "@/assets/images/bcf/optimized/schools/8D1A7008.webp";
 import certificationsNode from "@/assets/images/bcf/optimized/schools/IMG_6698.webp";
 import parliamentNode from "@/assets/images/bcf/optimized/children-activity/DSC_1567.webp";
@@ -58,8 +57,7 @@ const topicThumbs: Record<TrustTopicId, string> = {
   recognition: recognitionThumb,
 };
 
-const topicBgs: Record<TrustTopicId, string> = {
-  leadership: leadershipBg,
+const topicBgs: Partial<Record<TrustTopicId, string>> = {
   quality: qualityBg,
   partnerships: partnershipsBg,
   recognition: recognitionBg,
@@ -119,8 +117,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="leadership"
           showLogo={false}
-          backgroundImage={topicBgs.leadership}
-          overlayClassName="bg-black/70"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
             {/* The four cards below name the layers of the foundation but nobody
@@ -179,26 +175,32 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 
     if (activeId === "quality") {
       const activeCredential = c.trustCredentials[credentialIndex] ?? c.trustCredentials[0];
+      const qualityTitle =
+        lang === "en" ? (
+          <>
+            <span style={{ color: BCF.gold }}>Quality</span>{" "}
+            <span className="text-[#fbf4e4]">and</span>{" "}
+            <span style={{ color: BCF.gold }}>Credibility</span>
+          </>
+        ) : (
+          c.trustQualityTitle
+        );
 
       return (
         <BcfShell
           key="quality"
           showLogo={false}
           backgroundImage={topicBgs.quality}
-          overlayClassName="bg-black/75"
+          overlayClassName="bg-black/70"
         >
-          <TrustChrome title={c.trustQualityTitle} backLabel={c.back} onBack={goBack}>
-            {/* The six credentials used to sit in a 340px rail beside the
-                photograph, which left the certificate a narrow slot on a 1080
-                artboard. As a wrapping row above it, the image gets the full
-                width and the labels get kiosk-sized touch targets. */}
+          <TrustChrome title={qualityTitle} backLabel={c.back} onBack={goBack}>
             <motion.div
-              className="mt-12 flex flex-1 flex-col"
+              className="mx-auto mt-14 flex w-full max-w-[1040px] gap-8"
               initial={{ opacity: 0, y: 34 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex w-[340px] shrink-0 flex-col gap-4">
                 {c.trustCredentials.map((item, index) => {
                   const selected = index === credentialIndex;
                   return (
@@ -208,62 +210,54 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative transform-gpu overflow-hidden rounded-full px-9 py-6 text-[29px] font-medium leading-none"
+                      className="relative flex transform-gpu items-center justify-between gap-4 overflow-hidden rounded-2xl px-6 py-5 text-start text-[26px] font-medium leading-snug backdrop-blur-md"
                       style={{
                         border: "1px solid",
-                        borderColor: selected ? BCF.gold : "rgba(255,255,255,0.14)",
+                        borderColor: selected ? BCF.gold : "rgba(255,255,255,0.22)",
                         backgroundColor: selected
-                          ? "rgba(0,0,0,0.6)"
-                          : "rgba(0,0,0,0.34)",
-                        color: selected ? BCF.creamSoft : "rgba(255,255,255,0.7)",
-                        boxShadow: selected ? `0 0 34px ${BCF.gold}33` : "none",
+                          ? "rgba(0,0,0,0.55)"
+                          : "rgba(0,0,0,0.3)",
+                        color: selected ? BCF.creamSoft : "rgba(255,255,255,0.78)",
+                        boxShadow: selected ? `0 0 30px ${BCF.gold}40` : "none",
                         transition:
                           "border-color 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms cubic-bezier(0.22,1,0.36,1), color 300ms, box-shadow 300ms",
                       }}
                     >
-                      {/* Selected marker rides between chips instead of
-                          blinking on and off in place. */}
-                      {selected ? (
-                        <motion.span
-                          layoutId="bcf-credential-marker"
-                          className="absolute inset-x-9 bottom-[10px] h-[3px] rounded-full"
-                          style={{ backgroundColor: BCF.goldBright }}
-                          transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                      ) : null}
-                      {item.title}
+                      <span className="min-w-0 flex-1">{item.title}</span>
+                      <ChevronRight
+                        className="h-6 w-6 shrink-0 rtl:rotate-180"
+                        style={{ color: BCF.gold }}
+                        strokeWidth={2.25}
+                      />
                     </motion.button>
                   );
                 })}
               </div>
 
-              {/* The certificate takes whatever height is left, so the pane
-                  fills the panel in every language instead of ending in a
-                  band of dead space. */}
               <div
-                className={`${BCF_GLASS_CARD} mt-12 min-h-0 flex-1 overflow-hidden p-6`}
+                className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden p-6`}
+                style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
-                <img
-                  src={certificateImg}
-                  alt=""
-                  className="h-full w-full rounded-2xl object-cover"
-                />
+                <div className="overflow-hidden rounded-xl border border-white/10">
+                  <img
+                    src={certificateImg}
+                    alt=""
+                    className="h-[680px] w-full object-cover"
+                  />
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={activeCredential.id}
+                    className="mt-8 text-[28px] leading-relaxed text-white/85"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {activeCredential.body}
+                  </motion.p>
+                </AnimatePresence>
               </div>
-
-              {/* The body text belongs to the selected credential, so it
-                  cross-fades with the selection rather than snapping. */}
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={activeCredential.id}
-                  className="mt-10 min-h-[160px] text-center text-[33px] leading-relaxed text-white/85"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {activeCredential.body}
-                </motion.p>
-              </AnimatePresence>
             </motion.div>
           </TrustChrome>
         </BcfShell>
@@ -799,7 +793,7 @@ function TrustChrome({
   onBack,
   children,
 }: {
-  title: string;
+  title: React.ReactNode;
   backLabel: string;
   onBack: () => void;
   children: React.ReactNode;

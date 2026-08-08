@@ -550,14 +550,20 @@ function GovernanceTimeline({
               />
             </motion.div>
 
-            <motion.div
+            {/* Centring lives on a plain wrapper, not on the animated element:
+                motion owns `transform` to slide the label in on `x`, and would
+                drop the -50% that lines the copy up with its disc. Without it
+                every label hung a half-height low and ran under the next node. */}
+            <div
               className="absolute z-10"
               style={{
                 ...labelStyle,
                 top: centre.y,
                 transform: "translateY(-50%)",
-                textAlign: labelOnRight === !rtl ? "start" : "end",
               }}
+            >
+            <motion.div
+              style={{ textAlign: labelOnRight === !rtl ? "start" : "end" }}
               initial={{ opacity: 0, x: labelOnRight ? -22 : 22 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
@@ -582,6 +588,7 @@ function GovernanceTimeline({
                 {milestone.body}
               </p>
             </motion.div>
+            </div>
           </React.Fragment>
         );
       })}
