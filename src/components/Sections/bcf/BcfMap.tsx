@@ -223,7 +223,7 @@ export default function BcfMap({
           <div className="absolute inset-0" style={{ background: BCF_FIELD_BG }} />
           {/* Gold graticule — reads as cartography rather than a dimmed photo. */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.2]"
+            className="pointer-events-none absolute inset-0 opacity-[0.13]"
             style={{
               backgroundImage:
                 "linear-gradient(rgba(251,193,88,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(251,193,88,0.5) 1px, transparent 1px)",
