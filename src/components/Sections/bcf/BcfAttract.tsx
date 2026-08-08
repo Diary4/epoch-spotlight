@@ -319,92 +319,90 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
             />
           ))}
         </div>
-
-        <motion.p
-          className="mt-16 max-w-[820px] text-center font-display-num text-[38px] font-semibold italic leading-snug"
-          style={{ color: BCF.cream }}
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: BCF_EASE, delay: 0.9 }}
-        >
-          {bcfCopy.en.attractCaption}
-        </motion.p>
       </div>
 
-      {/* Enter control. Parked at ~72% of the height so it lands in the reach
-          band of a portrait 65" panel rather than down at floor level.
-          The entrance lives on the wrapper so the press keeps its own short
-          curve instead of inheriting the slow arrival. */}
+      {/* Caption, enter pill, and quiet hint stacked so nothing sits under the
+          control — the caption used to live in the flowing column and landed
+          behind the absolutely parked button. */}
       <motion.div
-        className="absolute inset-x-[150px] bottom-[420px] z-30"
+        className="absolute inset-x-[150px] bottom-[280px] z-30 flex flex-col items-center gap-10"
         initial={{ opacity: 0, y: 42 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: BCF_EASE, delay: 1.1 }}
+        transition={{ duration: 1, ease: BCF_EASE, delay: 0.9 }}
       >
-      <motion.button
-        type="button"
-        onClick={onEnter}
-        aria-label={bcfCopy.en.attractStart}
-        className="grid w-full transform-gpu grid-cols-[64px_1fr_44px] items-center gap-7 rounded-full border px-10 py-7 text-start backdrop-blur-xl"
-        style={{
-          borderColor: `${BCF.gold}66`,
-          backgroundColor: "rgba(10,12,16,0.62)",
-          boxShadow: `0 26px 70px rgba(0,0,0,0.55), inset 0 0 0 1px ${BCF.gold}1f`,
-        }}
-        whileTap={BCF_TAP}
-        transition={BCF_TAP_TRANSITION}
-      >
-        <span
-          className="relative grid h-16 w-16 place-items-center rounded-full border"
-          style={{ borderColor: `${BCF.gold}9e` }}
-          aria-hidden="true"
+        <p
+          className="max-w-[820px] text-center font-display-num text-[38px] font-semibold italic leading-snug"
+          style={{ color: BCF.cream }}
         >
-          {animate ? (
-            <span
-              className="bcf-ping absolute inset-0 rounded-full border"
-              style={{ borderColor: BCF.gold }}
-            />
-          ) : null}
-          <span
-            className="h-5 w-5 rounded-full"
-            style={{
-              backgroundColor: BCF.gold,
-              boxShadow: `0 0 22px ${BCF.gold}`,
-            }}
-          />
-        </span>
+          {bcfCopy.en.attractCaption}
+        </p>
 
-        <span className="flex flex-col">
+        <motion.button
+          type="button"
+          onClick={onEnter}
+          aria-label={bcfCopy.en.attractStart}
+          className="grid w-full transform-gpu grid-cols-[64px_1fr_44px] items-center gap-7 rounded-full border px-10 py-7 text-start backdrop-blur-xl"
+          style={{
+            borderColor: `${BCF.gold}66`,
+            backgroundColor: "rgba(10,12,16,0.62)",
+            boxShadow: `0 26px 70px rgba(0,0,0,0.55), inset 0 0 0 1px ${BCF.gold}1f`,
+          }}
+          whileTap={BCF_TAP}
+          transition={BCF_TAP_TRANSITION}
+        >
           <span
-            className="text-[40px] font-semibold leading-none"
-            style={{ color: BCF.cream }}
+            className="relative grid h-16 w-16 place-items-center rounded-full border"
+            style={{ borderColor: `${BCF.gold}9e` }}
+            aria-hidden="true"
           >
-            {bcfCopy.en.attractStart}
+            {animate ? (
+              <span
+                className="bcf-ping absolute inset-0 rounded-full border"
+                style={{ borderColor: BCF.gold }}
+              />
+            ) : null}
+            <span
+              className="h-5 w-5 rounded-full"
+              style={{
+                backgroundColor: BCF.gold,
+                boxShadow: `0 0 22px ${BCF.gold}`,
+              }}
+            />
           </span>
-        </span>
 
-        <ArrowRight
-          className="h-11 w-11 justify-self-end"
-          style={{ color: BCF.gold }}
-          aria-hidden="true"
-        />
-      </motion.button>
+          <span className="flex flex-col">
+            <span
+              className="text-[40px] font-semibold leading-none"
+              style={{ color: BCF.cream }}
+            >
+              {bcfCopy.en.attractStart}
+            </span>
+          </span>
+
+          <ArrowRight
+            className="h-11 w-11 justify-self-end"
+            style={{ color: BCF.gold }}
+            aria-hidden="true"
+          />
+        </motion.button>
+
+        {/* Quiet reminder that the whole plate is live, not just the pill. */}
+        <p
+          className={`pointer-events-none text-center text-[22px] font-semibold uppercase ${
+            animate ? "bcf-breathe" : ""
+          }`}
+          style={
+            {
+              color: `${BCF.nature}9c`,
+              letterSpacing: "0.26em",
+              opacity: animate ? 0.35 : 0.7,
+              "--breathe-delay": "1.6s",
+            } as React.CSSProperties
+          }
+        >
+          {bcfCopy.en.enterHint}
+        </p>
       </motion.div>
-
-      {/* Quiet reminder that the whole plate is live, not just the pill. */}
-      <motion.p
-        className="pointer-events-none absolute inset-x-0 bottom-[300px] z-30 text-center text-[22px] font-semibold uppercase"
-        style={{ color: `${BCF.nature}9c`, letterSpacing: "0.26em" }}
-        initial={{ opacity: 0 }}
-        animate={animate ? { opacity: [0.35, 0.9, 0.35] } : { opacity: 0.7 }}
-        transition={
-          animate
-            ? { duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 1.6 }
-            : { duration: 0.4, delay: 1.6 }
-        }
-      >
-        {bcfCopy.en.enterHint}
-      </motion.p>
     </motion.section>
   );
 }

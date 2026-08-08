@@ -267,17 +267,18 @@ export default function BcfMap({
                       <span className="relative flex flex-col items-center">
                         {/* Halo ping marks a pin as live without needing a hover. */}
                         {!reduceMotion ? (
-                          <motion.span
+                          <span
                             aria-hidden="true"
-                            className="absolute -bottom-1 h-6 w-6 rounded-full"
-                            style={{ backgroundColor: `${BCF.goldBright}55` }}
-                            animate={{ scale: [1, 2.4], opacity: [0.55, 0] }}
-                            transition={{
-                              duration: 2.4,
-                              repeat: Infinity,
-                              delay: index * 0.35,
-                              ease: "easeOut",
-                            }}
+                            className="bcf-ping absolute -bottom-1 h-6 w-6 rounded-full"
+                            style={
+                              {
+                                backgroundColor: `${BCF.goldBright}55`,
+                                "--ping-scale": "2.4",
+                                "--ping-opacity": "0.55",
+                                "--ping-duration": "2.4s",
+                                "--ping-delay": `${index * 0.35}s`,
+                              } as React.CSSProperties
+                            }
                           />
                         ) : null}
                         <span
@@ -450,17 +451,23 @@ export default function BcfMap({
                     className="mt-8 flex w-full transform-gpu items-center justify-between rounded-full border border-[#fbc158]/50 bg-black/25 px-8 py-5"
                   >
                     <span className="text-[28px] text-white">{selected.explore}</span>
-                    <motion.span
-                      className="grid h-14 w-14 place-items-center rounded-full border-2"
-                      style={{ borderColor: BCF.gold }}
-                      animate={reduceMotion ? undefined : { scale: [1, 1.06, 1] }}
-                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                    <span
+                      className={`grid h-14 w-14 place-items-center rounded-full border-2 ${
+                        reduceMotion ? "" : "bcf-pulse"
+                      }`}
+                      style={
+                        {
+                          borderColor: BCF.gold,
+                          "--pulse-scale": "1.06",
+                          "--pulse-duration": "2.4s",
+                        } as React.CSSProperties
+                      }
                     >
                       <ArrowRight
                         className="h-7 w-7 rtl:rotate-180"
                         style={{ color: BCF.gold }}
                       />
-                    </motion.span>
+                    </span>
                   </motion.button>
                 </div>
               </motion.div>

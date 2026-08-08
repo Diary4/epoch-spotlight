@@ -58,15 +58,15 @@ function FuturePortal({
       style={{ width: CIRCLE, height: CIRCLE }}
     >
       {!reduceMotion ? (
-        <motion.span
+        <span
           aria-hidden="true"
-          className="absolute rounded-full border border-dashed"
+          className={`absolute rounded-full border border-dashed ${
+            index % 2 === 0 ? "bcf-spin" : "bcf-spin-reverse"
+          }`}
           style={{
             inset: -26,
             borderColor: `${BCF.gold}3d`,
           }}
-          animate={{ rotate: index % 2 === 0 ? 360 : -360 }}
-          transition={{ duration: 78, repeat: Infinity, ease: "linear" }}
         />
       ) : null}
 

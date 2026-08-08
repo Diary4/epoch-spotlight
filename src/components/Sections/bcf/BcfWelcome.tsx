@@ -95,18 +95,11 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
             {/* Gold sweep that keeps crossing the button — the one moving thing on
                 a still screen, which is what makes the CTA read as live. */}
             {!reduceMotion ? (
-              <motion.span
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 w-[42%]"
+                className="bcf-sweep pointer-events-none absolute inset-y-0 w-[42%]"
                 style={{
                   background: `linear-gradient(90deg, transparent, ${BCF.gold}22, transparent)`,
-                }}
-                animate={{ x: ["-120%", "320%"] }}
-                transition={{
-                  duration: 3.6,
-                  repeat: Infinity,
-                  repeatDelay: 1.6,
-                  ease: "easeInOut",
                 }}
               />
             ) : null}
@@ -114,14 +107,14 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
             <span className="relative text-[32px] font-medium tracking-wide text-white">
               {c.startJourney}
             </span>
-            <motion.span
-              className="relative grid h-[100px] w-[100px] transform-gpu place-items-center rounded-full border border-[#f0e8da]"
+            <span
+              className={`relative grid h-[100px] w-[100px] transform-gpu place-items-center rounded-full border border-[#f0e8da] ${
+                reduceMotion ? "" : "bcf-pulse"
+              }`}
               style={{ boxShadow: "inset -1px -1px 20px 0 #fbb22f" }}
-              animate={reduceMotion ? undefined : { scale: [1, 1.045, 1] }}
-              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
             >
               <ArrowRight className="h-10 w-10 text-white rtl:rotate-180" />
-            </motion.span>
+            </span>
           </motion.button>
         </div>
       </motion.div>

@@ -173,17 +173,17 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
               >
                 <span className="relative grid h-[56px] w-[56px] place-items-center">
                   {!reduceMotion ? (
-                    <motion.span
+                    <span
                       aria-hidden="true"
-                      className="absolute inset-0 rounded-full"
-                      style={{ backgroundColor: BCF.gold }}
-                      animate={{ scale: [1, 2.1], opacity: [0.42, 0] }}
-                      transition={{
-                        duration: 2.6,
-                        repeat: Infinity,
-                        delay: index * 0.32,
-                        ease: "easeOut",
-                      }}
+                      className="bcf-ping absolute inset-0 rounded-full"
+                      style={
+                        {
+                          backgroundColor: BCF.gold,
+                          "--ping-scale": "2.1",
+                          "--ping-opacity": "0.42",
+                          "--ping-delay": `${index * 0.32}s`,
+                        } as React.CSSProperties
+                      }
                     />
                   ) : null}
                   <span

@@ -162,14 +162,17 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
 
           {/* A last slow breath of gold under the pillars. */}
           {!reduceMotion ? (
-            <motion.span
+            <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-[320px]"
-              style={{
-                background: `radial-gradient(60% 100% at 50% 100%, ${BCF.gold}1f, transparent 70%)`,
-              }}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 7, repeat: Infinity, ease: BCF_EASE }}
+              className="bcf-breathe pointer-events-none absolute inset-x-0 bottom-0 h-[320px]"
+              style={
+                {
+                  background: `radial-gradient(60% 100% at 50% 100%, ${BCF.gold}1f, transparent 70%)`,
+                  "--breathe-from": "0.5",
+                  "--breathe-to": "1",
+                  "--breathe-duration": "7s",
+                } as React.CSSProperties
+              }
             />
           ) : null}
         </motion.div>

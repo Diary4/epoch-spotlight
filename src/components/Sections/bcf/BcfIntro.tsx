@@ -156,14 +156,12 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6, duration: 0.85, ease: BCF_EASE }}
       >
-        <motion.span
-          className="block h-[74px] w-px"
+        <span
+          className={`block h-[74px] w-px ${reduceMotion ? "" : "bcf-beam"}`}
           style={{
             transformOrigin: "top",
             background: `linear-gradient(180deg, transparent, ${BCF.gold})`,
           }}
-          animate={reduceMotion ? undefined : { scaleY: [0.4, 1, 0.4], opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
         />
         <p
           className="text-[28px] font-medium uppercase"

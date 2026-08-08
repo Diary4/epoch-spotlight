@@ -503,25 +503,12 @@ function RecognitionArc({
               transition: { duration: 1.5, delay: 0.34, ease: BCF_EASE },
             }}
           />
-          {/* A slow travelling glint, so the thread reads as live wiring. */}
-          {!reduceMotion ? (
-            <motion.path
-              d={thread}
-              stroke={BCF.gold}
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeDasharray="70 1200"
-              opacity={0.75}
-              initial={{ strokeDashoffset: 0 }}
-              animate={{ strokeDashoffset: -1270 }}
-              transition={{
-                duration: 7.5,
-                repeat: Infinity,
-                ease: "linear",
-                delay: 1.4,
-              }}
-            />
-          ) : null}
+          {/* The thread used to carry a travelling glint — a second copy of this
+              path with an animated `stroke-dashoffset`. Unlike transform and
+              opacity, dash offset is not a compositor property: every frame
+              re-rasterised the whole 1000×-wide arc on the main thread, for as
+              long as the screen was up. The static thread above already reads as
+              wiring, and the nodes carry the life on this screen. */}
         </svg>
 
         {items.map((item, index) => {
