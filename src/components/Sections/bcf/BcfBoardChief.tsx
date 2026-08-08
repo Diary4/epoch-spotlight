@@ -30,9 +30,6 @@ import alongsideB from "@/assets/images/bcf/thumbs/board-chief/FY1A6986.webp";
 import chiefBg from "@/assets/images/bcf/optimized/board-chief/8C6A0316.webp";
 import timelineBg from "@/assets/images/bcf/optimized/board-chief/8C6A0295.webp";
 
-/** The square crop that opens the profile from the Leadership grid. */
-export { default as bcfBoardChiefPortrait } from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
-
 export type BoardChiefView = "profile" | "timeline";
 
 type BcfBoardChiefProps = {
