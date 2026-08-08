@@ -194,7 +194,7 @@ export default function BcfBoardChief({
               className="flex w-[320px] flex-col items-center text-center"
             >
               <span
-                className="h-[186px] w-[186px] overflow-hidden rounded-full border-2"
+                className="h-[150px] w-[150px] overflow-hidden rounded-full border-2"
                 style={{
                   borderColor: `${BCF.gold}aa`,
                   boxShadow: "0 18px 44px rgba(0,0,0,0.55)",
@@ -208,12 +208,12 @@ export default function BcfBoardChief({
                 />
               </span>
               <span
-                className="mt-6 border-b-2 pb-3 text-[30px] font-semibold leading-tight"
+                className="mt-5 border-b-2 pb-2.5 text-[29px] font-semibold leading-tight"
                 style={{ color: BCF.creamSoft, borderColor: `${BCF.gold}66` }}
               >
                 {body?.title}
               </span>
-              <span className="mt-4 text-[23px] leading-snug text-white/60">
+              <span className="mt-3 text-[22px] leading-snug text-white/60">
                 {body?.subtitle}
               </span>
             </motion.div>
@@ -256,7 +256,7 @@ function NamePlate({
 }) {
   return (
     <motion.div
-      className="relative w-full max-w-[700px] px-10 py-8 text-center"
+      className="relative w-full max-w-[700px] px-10 py-7 text-center"
       style={{
         background: "linear-gradient(165deg, #e6bd72 0%, #c2892f 46%, #8a5c1c 100%)",
         clipPath:
@@ -281,7 +281,7 @@ function NamePlate({
       <h1 className="text-[62px] font-bold leading-none" style={{ color: "#2a1808" }}>
         {name}
       </h1>
-      <p className="mt-4 text-[30px] font-medium" style={{ color: "rgba(42,24,8,0.82)" }}>
+      <p className="mt-3 text-[30px] font-medium" style={{ color: "rgba(42,24,8,0.82)" }}>
         {role}
       </p>
       <p className="mt-2 text-[24px]" style={{ color: "rgba(42,24,8,0.62)" }}>
@@ -314,13 +314,13 @@ function ChiefCarousel({
 
   return (
     <motion.div
-      className="mt-10 flex w-full max-w-[900px] flex-col items-center"
+      className="mt-8 flex w-full max-w-[900px] flex-col items-center"
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.3, ease: BCF_EASE }}
     >
       <div
-        className={`${BCF_GLASS_CARD} relative h-[620px] w-full overflow-hidden p-3`}
+        className={`${BCF_GLASS_CARD} relative h-[548px] w-full overflow-hidden p-3`}
       >
         {/* One plate at a time, cross-dissolved. `mode="wait"` would leave the
             frame empty mid-swap, which on a slow panel reads as a broken image. */}
@@ -339,7 +339,7 @@ function ChiefCarousel({
         </AnimatePresence>
       </div>
 
-      <div className="mt-6 flex items-center gap-8">
+      <div className="mt-5 flex items-center gap-8">
         <CarouselArrow
           direction="prev"
           rtl={rtl}
@@ -375,7 +375,7 @@ function ChiefCarousel({
       <AnimatePresence mode="wait">
         <motion.p
           key={index}
-          className="mt-6 min-h-[110px] max-w-[820px] text-center text-[29px] leading-relaxed"
+          className="mt-5 min-h-[92px] max-w-[820px] text-center text-[28px] leading-relaxed"
           style={{ color: BCF.creamSoft }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
