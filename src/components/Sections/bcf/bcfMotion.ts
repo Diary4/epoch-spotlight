@@ -94,13 +94,13 @@ export const BCF_TAP = { scale: 0.982 } as const;
 export const BCF_TAP_FIRM = { scale: 0.96 } as const;
 export const BCF_TAP_TRANSITION: Transition = { duration: 0.18, ease: BCF_EASE };
 
-/** Slow ken-burns drift for full-bleed backdrops. */
-export const BCF_DRIFT_TRANSITION: Transition = {
-  duration: 26,
-  repeat: Infinity,
-  repeatType: "mirror",
-  ease: "easeInOut",
-};
+/*
+ * The slow ken-burns drift for full-bleed backdrops used to live here as a
+ * `Transition` with `repeat: Infinity`. It is now the `.bcf-drift` CSS class in
+ * index.css: a never-ending transform belongs on the compositor, not in a
+ * per-frame style write from the main thread. The same file holds the rest of
+ * the experience's perpetual motions, for the same reason.
+ */
 
 /* -------------------------------------------------------------------------
  * Locomotive Scroll motion

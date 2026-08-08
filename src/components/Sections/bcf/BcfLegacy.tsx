@@ -1,10 +1,9 @@
+import type React from "react";
 import { motion, useReducedMotion } from "motion/react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
-  BCF_DRIFT_TRANSITION,
-  BCF_EASE,
   bcfDrawX,
   bcfRise,
   bcfRiseCard,
@@ -41,15 +40,19 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
         {/* Hero plate. It carries its own fade to black so the pillars below sit
             on the page rather than on a photograph. */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[700px] overflow-hidden">
-          <motion.img
+          {/* Same ken-burns push every other backdrop uses (`.bcf-drift` in
+              index.css), rather than a `motion` scale driven from JS. This plate
+              is 700px of full-width photograph, so a per-frame transform write
+              on the main thread was one of the more expensive things on the
+              screen — and it never stopped. */}
+          <img
             src={legacyHero}
             alt=""
             decoding="async"
             fetchPriority="high"
-            className="h-full w-full object-cover"
-            initial={reduceMotion ? undefined : { scale: 1.06 }}
-            animate={reduceMotion ? undefined : { scale: 1.13 }}
-            transition={BCF_DRIFT_TRANSITION}
+            className={`h-full w-full object-cover ${
+              reduceMotion ? "" : "bcf-drift"
+            }`}
           />
           <div
             className="absolute inset-0"

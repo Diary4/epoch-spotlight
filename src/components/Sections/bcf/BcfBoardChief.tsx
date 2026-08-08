@@ -528,24 +528,10 @@ function GovernanceTimeline({
             transition: { duration: 1.6, delay: 0.3, ease: BCF_EASE },
           }}
         />
-        {!reduceMotion ? (
-          <motion.path
-            d={thread}
-            stroke={BCF.gold}
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeDasharray="80 1600"
-            opacity={0.7}
-            initial={{ strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: -1680 }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "linear",
-              delay: 1.5,
-            }}
-          />
-        ) : null}
+        {/* The travelling glint that used to run along this thread is gone, for
+            the same reason as the one on the recognition arc in BcfTrust:
+            `stroke-dashoffset` is not a compositor property, so it re-rastered
+            the full timeline path on the main thread every frame, forever. */}
       </svg>
 
       {milestones.map((milestone, index) => {
