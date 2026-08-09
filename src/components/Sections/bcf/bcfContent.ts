@@ -260,7 +260,9 @@ type ProjectsCopy = {
   /** Undated year markers, translated where the source used a word not a year. */
   yearMarkers: Record<string, string>;
   sectorsLabel: string;
+  /** Plural, and the singular beside it — "1 documented projects" reads as a bug. */
   entriesLabel: string;
+  entryLabel: string;
   yearsLabel: string;
   timelineTitle: string;
   /** Header over the row of places that are not on the Region map. */
@@ -659,6 +661,7 @@ const projectsEn: ProjectsCopy = {
   yearMarkers: YEAR_MARKERS_EN,
   sectorsLabel: "Sectors",
   entriesLabel: "Documented projects",
+  entryLabel: "Documented project",
   yearsLabel: "Years documented",
   timelineTitle: "Documented years",
   beyondTitle: "Beyond the Region",
@@ -677,6 +680,7 @@ const projectsKu: ProjectsCopy = {
   yearMarkers: YEAR_MARKERS_KU,
   sectorsLabel: "کەرتەکان",
   entriesLabel: "پڕۆژەی تۆمارکراو",
+  entryLabel: "پڕۆژەی تۆمارکراو",
   yearsLabel: "ساڵانی تۆمارکراو",
   timelineTitle: "ساڵانی تۆمارکراو",
   beyondTitle: "لە دەرەوەی هەرێم",
@@ -695,6 +699,7 @@ const projectsAr: ProjectsCopy = {
   yearMarkers: YEAR_MARKERS_AR,
   sectorsLabel: "القطاعات",
   entriesLabel: "مشاريع موثّقة",
+  entryLabel: "مشروع موثّق",
   yearsLabel: "السنوات الموثّقة",
   timelineTitle: "السنوات الموثّقة",
   beyondTitle: "خارج الإقليم",

@@ -63,12 +63,12 @@ function spanOf(record: BcfSectorRecord): string | null {
 function SectorTile({
   record,
   title,
-  entriesLabel,
+  countLabel,
   onOpen,
 }: {
   record: BcfSectorRecord;
   title: string;
-  entriesLabel: string;
+  countLabel: string;
   onOpen: () => void;
 }) {
   const [pressed, setPressed] = React.useState(false);
@@ -87,7 +87,7 @@ function SectorTile({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className={`${BCF_GLASS_CARD} group flex min-h-[168px] transform-gpu items-center gap-5 overflow-hidden px-6 py-5 text-start`}
+      className={`${BCF_GLASS_CARD} group flex min-h-[152px] transform-gpu items-center gap-5 overflow-hidden px-6 py-5 text-start`}
       style={{
         borderColor: pressed ? BCF.gold : `${BCF.gold}73`,
         boxShadow: pressed
@@ -115,14 +115,17 @@ function SectorTile({
         <span className="block text-[30px] font-semibold leading-tight text-white">
           {title}
         </span>
+        {/* Count and span on one line. Two lines cost 26px on every tile, which
+            across five rows was most of the bottom margin the panel needs. */}
         <span className="mt-2 block text-[21px] text-white/65">
-          <span className="tabular-nums">{record.entries.length}</span> {entriesLabel}
+          <span className="tabular-nums">{record.entries.length}</span> {countLabel}
+          {span ? (
+            <span className="tabular-nums text-white/40" dir="ltr">
+              {" · "}
+              {span}
+            </span>
+          ) : null}
         </span>
-        {span ? (
-          <span className="mt-1 block text-[21px] tabular-nums text-white/40" dir="ltr">
-            {span}
-          </span>
-        ) : null}
         {/* Era pips. The recap asks a screen to keep history and this month
             visibly apart; this is that distinction carried onto the list, so a
             visitor can see which sectors are still running before opening one. */}
@@ -266,7 +269,11 @@ export default function BcfProjects({
               key={record.id}
               record={record}
               title={c.projects.sectors[record.id]}
-              entriesLabel={c.projects.entriesLabel}
+              countLabel={
+                record.entries.length === 1
+                  ? c.projects.entryLabel
+                  : c.projects.entriesLabel
+              }
               onOpen={() => onOpenSector(record.id)}
             />
           ))}
