@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import { bcfLangBg, bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -9,11 +10,11 @@ import {
   BCF_TAP_TRANSITION,
 } from "@/components/Sections/bcf/bcfMotion";
 
-/** Latin names, so a visitor can find their language without reading its script. */
-const LANGUAGE_OPTIONS: { code: BcfLang; native: string; latin: string }[] = [
-  { code: "ku", native: "کوردی", latin: "KURDISH" },
-  { code: "en", native: "English", latin: "ENGLISH" },
-  { code: "ar", native: "عربي", latin: "ARABIC" },
+/** Mockup order: English · Kurdish · Arabic, each shown in its own script. */
+const LANGUAGE_OPTIONS: { code: BcfLang; label: string }[] = [
+  { code: "en", label: "English" },
+  { code: "ku", label: "کوردی" },
+  { code: "ar", label: "عربي" },
 ];
 
 type BcfLanguageOverlayProps = {
@@ -29,12 +30,12 @@ type BcfLanguageOverlayProps = {
 };
 
 /**
- * Language as an overlay rather than a screen of its own.
+ * Language as a full-bleed plate rather than a floating card.
  *
- * It used to be step two of a one-way corridor: choose once, and the choice was
- * unreachable for the rest of the visit unless you walked all the way back out.
- * The same panel now serves both moments — the way in, and any time after from
- * the rail — which is why it carries an origin instead of being two components.
+ * Matches the Option 1 language frame: logo alone in the corner, three glass
+ * pills across the centre, photography carrying the rest of the screen. The
+ * same surface serves entry and the rail reopen — origin only decides whether
+ * a close control is drawn.
  */
 export default function BcfLanguageOverlay({
   open,
@@ -47,175 +48,86 @@ export default function BcfLanguageOverlay({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="absolute inset-0 z-[60] grid place-items-center backdrop-blur-xl"
+          className="absolute inset-0 z-[60] overflow-hidden"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="bcf-language-title"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 40%, rgba(251,193,88,0.10), transparent 58%), rgba(4,6,9,0.82)",
-          }}
+          aria-label={bcfCopy.en.languageTitle}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: BCF_EASE }}
         >
-          <motion.div
-            className="relative w-[860px] overflow-hidden border px-20 pb-20 pt-24 text-center"
-            style={{
-              borderColor: `${BCF.gold}3d`,
-              borderRadius: "260px 260px 40px 40px",
-              background:
-                "linear-gradient(160deg, rgba(22,18,10,0.96), rgba(8,10,14,0.98))",
-              boxShadow: `0 40px 120px rgba(0,0,0,0.6), inset 0 0 0 1px ${BCF.gold}12`,
-            }}
-            initial={{ opacity: 0, y: 54, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 26, scale: 0.98 }}
-            transition={{ duration: 0.62, ease: BCF_EASE }}
-          >
-            {/* Two faint arcs echoing the arch of the panel, the same quiet
-                geometry the rest of the experience draws its rules with. */}
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-[150px] -top-[220px] h-[340px] w-[340px] rounded-full border"
-              style={{ borderColor: `${BCF.gold}14` }}
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-[230px] -right-[170px] h-[340px] w-[340px] rounded-full border"
-              style={{ borderColor: `${BCF.gold}14` }}
-            />
+          <img
+            src={bcfLangBg}
+            alt=""
+            decoding="async"
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
 
-            {origin === "control" ? (
-              <motion.button
-                type="button"
-                onClick={onClose}
-                aria-label={bcfCopy[lang].close}
-                whileTap={BCF_TAP_FIRM}
-                transition={BCF_TAP_TRANSITION}
-                className="absolute end-12 top-12 z-10 grid h-[84px] w-[84px] place-items-center rounded-full border"
-                style={{
-                  borderColor: `${BCF.gold}3d`,
-                  backgroundColor: "rgba(0,0,0,0.4)",
-                }}
-              >
-                <X className="h-8 w-8" style={{ color: BCF.sand }} />
-              </motion.button>
-            ) : null}
+          <img
+            src={bcfLogo}
+            alt="Barzani Charity Foundation"
+            decoding="async"
+            className="pointer-events-none absolute left-10 top-10 z-10 h-[172px] w-auto"
+            style={{ filter: "drop-shadow(0 10px 28px rgba(0,0,0,0.55))" }}
+          />
 
-            <div>
-              <p
-                className="text-[19px] font-semibold uppercase"
-                style={{ color: BCF.goldDeep, letterSpacing: "0.26em" }}
-              >
-                {bcfCopy.en.attractTagline}
-              </p>
+          {origin === "control" ? (
+            <motion.button
+              type="button"
+              onClick={onClose}
+              aria-label={bcfCopy[lang].close}
+              whileTap={BCF_TAP_FIRM}
+              transition={BCF_TAP_TRANSITION}
+              className="absolute end-10 top-10 z-20 grid h-[76px] w-[76px] place-items-center rounded-full border border-[#fbc158]/35 bg-black/45 backdrop-blur-md"
+              style={{ boxShadow: "0 10px 34px rgba(0,0,0,0.45)" }}
+            >
+              <X className="h-8 w-8" style={{ color: BCF.sand }} />
+            </motion.button>
+          ) : null}
 
-              <div
-                className="mx-auto mt-8 flex w-[380px] items-center gap-5"
-                aria-hidden="true"
-              >
-                <span
-                  className="h-px flex-1"
-                  style={{
-                    background: `linear-gradient(90deg, transparent, ${BCF.gold}80)`,
-                  }}
-                />
-                <span
-                  className="h-2 w-2 rotate-45"
-                  style={{ backgroundColor: BCF.gold }}
-                />
-                <span
-                  className="h-px flex-1"
-                  style={{
-                    background: `linear-gradient(90deg, ${BCF.gold}80, transparent)`,
-                  }}
-                />
-              </div>
+          <div className="absolute inset-0 z-10 flex items-center justify-center px-14">
+            <motion.div
+              className="flex w-full max-w-[980px] items-center justify-center gap-7"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.55, delay: 0.08, ease: BCF_EASE }}
+            >
+              {LANGUAGE_OPTIONS.map((option) => {
+                const isCurrent = origin === "control" && option.code === lang;
 
-              {/* Trilingual title: on the way in, no language has been chosen
-                  yet, so the panel cannot assume which one to speak. */}
-              <h2
-                id="bcf-language-title"
-                className="mt-10 font-display-num text-[64px] font-semibold leading-tight"
-                style={{ color: BCF.cream }}
-              >
-                {bcfCopy.en.languageTitle}
-              </h2>
-              <p
-                className="mt-3 text-[30px] font-medium leading-snug"
-                style={{ color: `${BCF.nature}c4` }}
-                dir="rtl"
-              >
-                {bcfCopy.ku.languageTitle} · {bcfCopy.ar.languageTitle}
-              </p>
-
-              <div className="mt-14 grid gap-5">
-                {LANGUAGE_OPTIONS.map((option, index) => {
-                  const isCurrent = option.code === lang;
-
-                  return (
-                    <motion.button
-                      key={option.code}
-                      type="button"
-                      onClick={() => onSelect(option.code)}
-                      whileTap={BCF_TAP}
-                      transition={BCF_TAP_TRANSITION}
-                      // The row stays LTR so all three read as one column with
-                      // the arrow on a single edge; only the label runs RTL.
-                      dir="ltr"
-                      className="grid grid-cols-[54px_1fr_150px_44px] items-center gap-6 rounded-2xl border px-9 py-7 text-start transition-[border-color,background-color,box-shadow] duration-300 ease-smooth-out"
-                      style={{
-                        borderColor: isCurrent ? `${BCF.gold}b0` : `${BCF.gold}33`,
-                        backgroundColor: isCurrent
-                          ? "rgba(251,193,88,0.12)"
-                          : "rgba(255,255,255,0.03)",
-                        boxShadow: isCurrent
-                          ? `0 0 40px ${BCF.gold}2e`
-                          : "0 10px 30px rgba(0,0,0,0.3)",
-                      }}
-                    >
-                      <span
-                        className="font-display-num text-[28px]"
-                        style={{ color: BCF.goldDeep }}
-                      >
-                        0{index + 1}
-                      </span>
-                      <span
-                        lang={option.code}
-                        dir={option.code === "en" ? "ltr" : "rtl"}
-                        className="text-[44px] font-medium"
-                        style={{ color: BCF.cream }}
-                      >
-                        {option.native}
-                      </span>
-                      <span
-                        className="text-[18px] font-semibold"
-                        style={{ color: `${BCF.nature}a8`, letterSpacing: "0.14em" }}
-                      >
-                        {option.latin}
-                      </span>
-                      <ArrowRight
-                        className="h-8 w-8 justify-self-end"
-                        style={{ color: BCF.gold }}
-                        aria-hidden="true"
-                      />
-                    </motion.button>
-                  );
-                })}
-              </div>
-
-              {origin === "control" ? (
-                <p
-                  className="mt-10 text-[22px]"
-                  style={{ color: `${BCF.nature}8a` }}
-                >
-                  {bcfCopy[lang].chooseLanguageHint}
-                </p>
-              ) : null}
-            </div>
-          </motion.div>
+                return (
+                  <motion.button
+                    key={option.code}
+                    type="button"
+                    onClick={() => onSelect(option.code)}
+                    whileTap={BCF_TAP}
+                    transition={BCF_TAP_TRANSITION}
+                    lang={option.code}
+                    dir={option.code === "en" ? "ltr" : "rtl"}
+                    className="min-h-[110px] flex-1 transform-gpu rounded-[22px] border px-6 py-8 text-center text-[40px] font-medium text-white backdrop-blur-md"
+                    style={{
+                      borderColor: isCurrent ? BCF.gold : `${BCF.gold}99`,
+                      backgroundColor: isCurrent
+                        ? "rgba(0,0,0,0.62)"
+                        : "rgba(0,0,0,0.42)",
+                      boxShadow: isCurrent
+                        ? `0 0 36px ${BCF.gold}40, 0 14px 36px rgba(0,0,0,0.4)`
+                        : "0 14px 36px rgba(0,0,0,0.4)",
+                      transition:
+                        "border-color 300ms ease, background-color 300ms ease, box-shadow 300ms ease",
+                    }}
+                  >
+                    {option.label}
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>

@@ -14,8 +14,51 @@
 
 export type BcfMapShape = { id: string; d: string };
 
-/** SVG user units. The artboard matches the region's own aspect ratio. */
-export const BCF_MAP_VIEWBOX = { width: 1000, height: 840.2 };
+/**
+ * SVG user units.
+ *
+ * The artboard opened on the three Region governorates alone. It now has to
+ * hold everything the project register documents, which reaches west past
+ * Sinjar and south past Kalar — both of which fell outside the original box,
+ * Sinjar by about 75 units off the left edge. `minX` goes negative rather than
+ * the paths being re-projected: every ring below is already drawn in this
+ * coordinate space, and moving the window is the change that leaves the
+ * geometry provably untouched.
+ *
+ * The faint neighbour rings were always drawn out to roughly x = -218, so the
+ * widened window reveals more of Ninawa rather than exposing empty ground —
+ * Sinjar lands on its own governorate.
+ */
+export const BCF_MAP_VIEWBOX = { minX: -120, minY: 0, width: 1120, height: 880 };
+
+/**
+ * The projection the rings were drawn with: equirectangular, longitude squeezed
+ * by cos(mean latitude) so the region is not stretched sideways.
+ *
+ * These four constants are not a new choice — they are recovered from the
+ * geometry itself, and reproduce the five hand-placed pins the screen shipped
+ * with to within 0.15% of the artboard. Keeping them here is what lets a city
+ * be added by its real coordinates instead of by eye, which is how Kirkuk once
+ * ended up east of Sulaymaniyah.
+ */
+const LON_SCALE = 228.238;
+const LON_OFFSET = -9623.542;
+const LAT_SCALE = -283.23;
+const LAT_OFFSET = 10612.201;
+
+/**
+ * A [longitude, latitude] pair as a percentage of the artboard, ready for the
+ * `left`/`top` of an absolutely positioned pin. Percentages rather than user
+ * units because the pins are HTML over the SVG, not inside it.
+ */
+export function bcfProjectPin(lon: number, lat: number): { x: string; y: string } {
+  const px = LON_SCALE * lon + LON_OFFSET;
+  const py = LAT_SCALE * lat + LAT_OFFSET;
+  return {
+    x: `${((px - BCF_MAP_VIEWBOX.minX) / BCF_MAP_VIEWBOX.width) * 100}%`,
+    y: `${((py - BCF_MAP_VIEWBOX.minY) / BCF_MAP_VIEWBOX.height) * 100}%`,
+  };
+}
 
 /** The three governorates of the Kurdistan Region. */
 export const BCF_MAP_CORE: BcfMapShape[] = [

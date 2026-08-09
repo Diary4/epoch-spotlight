@@ -30,8 +30,31 @@ export type JourneyChapterId =
   | "trust"
   | "future";
 
-export type LocationId = "erbil" | "duhok" | "zakho" | "kirkuk" | "sulaymaniyah";
-export type ProjectId = "school-renovation" | "camp-support" | "emergency-aid";
+/**
+ * Every place the project register documents.
+ *
+ * The first twelve are pins on the Region map; the last four are the work that
+ * does not fit on it — Afrin and Western Kurdistan are across the Syrian
+ * border, and the other two are deliberately not places at all but the
+ * groupings BCF's own reporting uses for everything outside the Region.
+ */
+export type LocationId =
+  | "erbil"
+  | "duhok"
+  | "sulaymaniyah"
+  | "kirkuk"
+  | "nineveh"
+  | "sinjar"
+  | "garmian"
+  | "halabja"
+  | "soran"
+  | "zakho"
+  | "akre"
+  | "amedi"
+  | "afrin"
+  | "rojava"
+  | "iraq"
+  | "international";
 export type TrustTopicId =
   | "leadership"
   | "quality"
@@ -55,8 +78,8 @@ export type MapScopeId = "global" | "kurdistan";
 
 export type BcfLocation = {
   id: LocationId;
-  x: string;
-  y: string;
+  /** [longitude, latitude] — projected by bcfProjectPin, never hand-placed. */
+  coordinates: [number, number];
   filters: MapFilterId[];
 };
 
@@ -152,26 +175,68 @@ const WORK_ONLY_AR =
   "إحدى الدول التي وصل إليها عمل المؤسسة الإنساني خلال العشرين عاماً الماضية.";
 
 /**
- * Pin positions, as a percentage of the map artboard in bcfMapGeometry — the
- * same projection the outlines are drawn with, so every city lands on its own
- * governorate. They were eyeballed onto a photograph before, which put Kirkuk
- * east of Sulaymaniyah and Zakho north-east of Duhok.
+ * The twelve places on the Region map, by their real coordinates — the same
+ * projection the governorate outlines are drawn with, so every city lands on
+ * its own ground. Five of them were eyeballed onto a photograph before, which
+ * put Kirkuk east of Sulaymaniyah and Zakho north-east of Duhok; the seven the
+ * project register added could not have been placed that way at all.
+ *
+ * Rawanduz and Sidakan are not pins of their own. They sit 12 and 71 units from
+ * Soran on this artboard — closer together than two labels can be drawn — and
+ * they are districts of the Soran administration, so the mobility-aid figures
+ * the source lists under their names are carried on Soran's page instead. The
+ * Lalish water tank moves to Nineveh, the governorate it is actually in, and
+ * the recurring camp support the same page grouped is split between the Erbil
+ * and Duhok camp sectors by the camps it names.
+ *
+ * Filters describe what the source documents for each place: `offices` where
+ * BCF reports an office or representative, `camps` where it reports camp
+ * management, `emergency` where it reports a dated emergency deployment, and
+ * `geographic` for the governorate-level programmes.
  */
 export const BCF_LOCATIONS: BcfLocation[] = [
-  { id: "erbil", x: "42.07%", y: "43.01%", filters: ["offices", "geographic", "emergency"] },
-  { id: "duhok", x: "18.94%", y: "20.26%", filters: ["offices", "camps", "geographic"] },
-  { id: "zakho", x: "11.68%", y: "10.94%", filters: ["camps", "emergency"] },
-  { id: "kirkuk", x: "50.84%", y: "67.36%", filters: ["offices", "geographic"] },
-  { id: "sulaymaniyah", x: "74.67%", y: "64.41%", filters: ["offices", "camps", "geographic"] },
+  { id: "erbil", coordinates: [44.009, 36.191], filters: ["offices", "camps", "geographic", "emergency"] },
+  { id: "duhok", coordinates: [42.988, 36.868], filters: ["offices", "camps", "geographic"] },
+  { id: "sulaymaniyah", coordinates: [45.436, 35.561], filters: ["offices", "geographic"] },
+  { id: "kirkuk", coordinates: [44.392, 35.468], filters: ["offices", "geographic"] },
+  { id: "nineveh", coordinates: [43.13, 36.345], filters: ["offices", "camps", "geographic"] },
+  { id: "sinjar", coordinates: [41.84, 36.32], filters: ["offices", "emergency", "geographic"] },
+  { id: "garmian", coordinates: [45.323, 34.629], filters: ["offices", "geographic", "emergency"] },
+  { id: "halabja", coordinates: [45.986, 35.178], filters: ["offices", "geographic"] },
+  { id: "soran", coordinates: [44.542, 36.652], filters: ["offices", "geographic"] },
+  { id: "zakho", coordinates: [42.681, 37.144], filters: ["offices", "emergency"] },
+  { id: "akre", coordinates: [43.892, 36.741], filters: ["camps", "geographic"] },
+  { id: "amedi", coordinates: [43.487, 37.093], filters: ["offices", "geographic"] },
 ];
 
+/**
+ * The four groupings that carry BCF's work outside the Region. They are not
+ * pins: Afrin sits 1,200 artboard units west of Sinjar, and the last two are
+ * reporting categories rather than points. The map offers them as a row beneath
+ * itself so the register is reachable in full without pretending they fit on a
+ * map of Kurdistan.
+ */
+export const BCF_BEYOND_LOCATIONS: LocationId[] = [
+  "rojava",
+  "afrin",
+  "iraq",
+  "international",
+];
+
+/**
+ * A place on the map.
+ *
+ * The `projectsStat` / `peopleStat` pair this replaced held invented figures —
+ * "+120 projects, 250K people helped" for Erbil, and four more like it, none of
+ * which appears in any BCF source. The map card now counts what the register
+ * actually holds (sectors, documented entries, the span of years it covers),
+ * which is derived from the data at render time and cannot drift away from it.
+ */
 type LocCopy = {
   name: string;
+  /** Short form for the map pin, where the full name will not fit. */
+  short: string;
   description: string;
-  projectsLabel: string;
-  peopleLabel: string;
-  projectsStat: string;
-  peopleStat: string;
   explore: string;
 };
 

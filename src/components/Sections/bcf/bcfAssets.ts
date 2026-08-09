@@ -16,7 +16,8 @@
  * Android panel paid on every screen, since the shell mark is always up.
  */
 export { default as bcfLogo } from "@/assets/images/bcf/logo-mark.webp";
-export { default as bcfLangBg } from "@/assets/images/religions/kurds/cover.webp";
+/** Full-bleed plate behind the language choice — BCF field work with the truck in frame. */
+export { default as bcfLangBg } from "@/assets/images/bcf/selected/impact-camps.webp";
 export { default as bcfIntroBg } from "@/assets/images/bcf/attract-poster.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
 export { default as bcfMapBg } from "@/assets/images/kurdistan.webp";
