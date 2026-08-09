@@ -36,11 +36,14 @@ import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
 import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
+import hubBg from "@/assets/images/bcf/selected/trust-bg.webp";
+import leadershipBg from "@/assets/images/bcf/selected/trust-leadership.webp";
 import founderA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
 import founderB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
 import founderC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
 import founderD from "@/assets/images/bcf/optimized/administration/8C6A7443.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
+import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 import awardsNode from "@/assets/images/bcf/optimized/schools/8D1A7008.webp";
 import certificationsNode from "@/assets/images/bcf/optimized/schools/IMG_6698.webp";
 import parliamentNode from "@/assets/images/bcf/optimized/children-activity/DSC_1567.webp";
@@ -62,12 +65,25 @@ const topicThumbs: Record<TrustTopicId, string> = {
 };
 
 const topicBgs: Partial<Record<TrustTopicId, string>> = {
+  leadership: leadershipBg,
   quality: qualityBg,
   partnerships: partnershipsBg,
   recognition: recognitionBg,
 };
 
 const founderAvatars = [founderA, founderB, founderC, founderD];
+
+/**
+ * Credential artwork, keyed by `trustCredentials[].id`.
+ *
+ * Entries with a scanned document are shown whole (`contain`) — a certificate
+ * cropped to fill the frame loses the seal and the validity dates, which are
+ * the only parts of it worth standing in front of. Everything else falls back
+ * to the signing photograph, which is a photo and crops fine.
+ */
+const credentialArt: Record<string, { src: string; document?: boolean }> = {
+  iso: { src: isoCertificate, document: true },
+};
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
   "partners",
@@ -130,6 +146,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="leadership"
           showLogo={false}
+          backgroundImage={topicBgs.leadership}
+          overlayClassName="bg-black/78"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
             {/* The four cards below name the layers of the foundation but nobody
@@ -188,6 +206,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 
     if (activeId === "quality") {
       const activeCredential = c.trustCredentials[credentialIndex] ?? c.trustCredentials[0];
+      const activeArt = credentialArt[activeCredential.id];
       const qualityTitle =
         lang === "en" ? (
           <>
@@ -251,12 +270,32 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden p-6`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
-                <div className="overflow-hidden rounded-xl border border-white/10">
-                  <img
-                    src={certificateImg}
-                    alt=""
-                    className="h-[680px] w-full object-cover"
-                  />
+                <div
+                  className="overflow-hidden rounded-xl border border-white/10"
+                  style={{
+                    backgroundColor: activeArt?.document
+                      ? "rgba(255,255,255,0.06)"
+                      : "transparent",
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    {/* Keyed on the image, not the credential: five of the six
+                        entries share the signing photograph, and keying on the
+                        id would crossfade it into itself on every switch. */}
+                    <motion.img
+                      key={activeArt?.src ?? certificateImg}
+                      src={activeArt?.src ?? certificateImg}
+                      alt=""
+                      decoding="async"
+                      className={`h-[680px] w-full ${
+                        activeArt?.document ? "object-contain p-3" : "object-cover"
+                      }`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </AnimatePresence>
                 </div>
                 <AnimatePresence mode="wait">
                   <motion.p
@@ -404,9 +443,14 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     }
 
     return (
+      {/* The hub and the Leadership grid were the only two Trust screens with
+          no photograph behind them, so they also had no ken-burns drift — a
+          still page between four drifting ones. */}
       <BcfShell
         key="hub"
         showLogo={false}
+        backgroundImage={hubBg}
+        overlayClassName="bg-black/78"
       >
         <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
           <BcfBackButton onClick={goBack} label={c.back} />
@@ -455,8 +499,18 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     );
   })();
 
+  /*
+   * No `initial={false}` here, and it matters more than it looks.
+   *
+   * `AnimatePresence` publishes that flag on React context, and every `motion`
+   * element underneath reads it — not just the direct child. On the render
+   * where this chapter mounts, it told the whole tree to skip its entrance, so
+   * opening Trust snapped the hub into place fully formed: no shell dissolve,
+   * no staggered cards. Only the screens opened afterwards animated, which is
+   * why the chapter felt dead exactly at the moment a visitor first looks at it.
+   */
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       {scene}
     </AnimatePresence>
   );
