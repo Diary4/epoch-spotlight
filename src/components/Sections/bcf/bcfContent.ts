@@ -1,3 +1,5 @@
+import type { BcfEraId, SectorId } from "@/components/Sections/bcf/bcfProjectData";
+
 export type BcfLang = "en" | "ku" | "ar";
 
 /**
@@ -249,14 +251,27 @@ type GlobalLocCopy = {
   facts: string[];
 };
 
-type ProjectCopy = {
-  id: ProjectId;
-  title: string;
-  summary: string;
-  stat1Value: string;
-  stat1Label: string;
-  stat2Value: string;
-  stat2Label: string;
+/** Chrome around the project register — the entries themselves live in bcfProjectData. */
+type ProjectsCopy = {
+  /** Sector names, keyed by the ids in bcfProjectData. */
+  sectors: Record<SectorId, string>;
+  /** The four bands the source asks a screen to keep visually distinct. */
+  eras: Record<BcfEraId, string>;
+  /** Undated year markers, translated where the source used a word not a year. */
+  yearMarkers: Record<string, string>;
+  sectorsLabel: string;
+  entriesLabel: string;
+  yearsLabel: string;
+  timelineTitle: string;
+  /** Header over the row of places that are not on the Region map. */
+  beyondTitle: string;
+  beyondSubtitle: string;
+  /** Framing for the organisation-wide 2025 figure on a sector page. */
+  orgTotalLabel: string;
+  orgTotalNote: string;
+  /** Preface to a `note` on an entry. */
+  scopeNote: string;
+  sourceNote: string;
 };
 
 export type ImpactGalleryId = "employees" | "camps" | "idps" | "schools";
@@ -526,155 +541,170 @@ export type BcfCopy = {
   futureHeadingRest: string;
   futureSubtitle: string;
   futureTopics: FutureTopic[];
-  projects: Record<LocationId, ProjectCopy[]>;
+  projects: ProjectsCopy;
 };
 
-const projectsEn: Record<LocationId, ProjectCopy[]> = {
-  erbil: [
-    {
-      id: "school-renovation",
-      title: "School Renovation Program",
-      summary: "Providing safe and effective learning environments for thousands of students.",
-      stat1Value: "45",
-      stat1Label: "Schools Renovated",
-      stat2Value: "+12,500",
-      stat2Label: "Students Benefited",
-    },
-    {
-      id: "camp-support",
-      title: "Community Support Centers",
-      summary: "Daily services for families rebuilding their lives with dignity.",
-      stat1Value: "18",
-      stat1Label: "Centers Active",
-      stat2Value: "62K",
-      stat2Label: "People Served",
-    },
-    {
-      id: "emergency-aid",
-      title: "Emergency Relief Response",
-      summary: "Rapid aid for vulnerable households during crises and displacement.",
-      stat1Value: "90",
-      stat1Label: "Response Days",
-      stat2Value: "34K",
-      stat2Label: "Families Reached",
-    },
-  ],
-  duhok: [
-    {
-      id: "camp-support",
-      title: "Camp Livelihoods Program",
-      summary: "Skills, food security, and protection for people living in camps.",
-      stat1Value: "12",
-      stat1Label: "Camp Sites",
-      stat2Value: "48K",
-      stat2Label: "People Supported",
-    },
-    {
-      id: "school-renovation",
-      title: "Learning Spaces Initiative",
-      summary: "Renovating classrooms and supplying educational materials.",
-      stat1Value: "22",
-      stat1Label: "Schools Supported",
-      stat2Value: "+6,800",
-      stat2Label: "Students Benefited",
-    },
-    {
-      id: "emergency-aid",
-      title: "Winterization Kits",
-      summary: "Warmth and shelter support before and during harsh winters.",
-      stat1Value: "15K",
-      stat1Label: "Kits Delivered",
-      stat2Value: "9K",
-      stat2Label: "Households Helped",
-    },
-  ],
-  zakho: [
-    {
-      id: "emergency-aid",
-      title: "Border Emergency Hub",
-      summary: "Immediate assistance for arrivals and families in transit.",
-      stat1Value: "24/7",
-      stat1Label: "Response Ready",
-      stat2Value: "21K",
-      stat2Label: "People Assisted",
-    },
-    {
-      id: "camp-support",
-      title: "Shelter & Water Access",
-      summary: "Safe water points and improved shelter conditions.",
-      stat1Value: "8",
-      stat1Label: "Sites Upgraded",
-      stat2Value: "11K",
-      stat2Label: "Residents Reached",
-    },
-    {
-      id: "school-renovation",
-      title: "Child Learning Corners",
-      summary: "Safe spaces for children to learn and play.",
-      stat1Value: "6",
-      stat1Label: "Learning Corners",
-      stat2Value: "+1,200",
-      stat2Label: "Children Benefited",
-    },
-  ],
-  kirkuk: [
-    {
-      id: "school-renovation",
-      title: "Inclusive Education Support",
-      summary: "Strengthening schools serving diverse communities.",
-      stat1Value: "14",
-      stat1Label: "Schools Supported",
-      stat2Value: "+4,100",
-      stat2Label: "Students Benefited",
-    },
-    {
-      id: "camp-support",
-      title: "Family Assistance Desk",
-      summary: "Casework and referrals for vulnerable households.",
-      stat1Value: "5",
-      stat1Label: "Service Desks",
-      stat2Value: "8.5K",
-      stat2Label: "Cases Assisted",
-    },
-    {
-      id: "emergency-aid",
-      title: "Rapid Needs Response",
-      summary: "Food and non-food items for sudden displacement.",
-      stat1Value: "120",
-      stat1Label: "Distributions",
-      stat2Value: "16K",
-      stat2Label: "People Helped",
-    },
-  ],
-  sulaymaniyah: [
-    {
-      id: "school-renovation",
-      title: "School Infrastructure Drive",
-      summary: "Modernizing facilities for safer learning.",
-      stat1Value: "19",
-      stat1Label: "Schools Renovated",
-      stat2Value: "+5,600",
-      stat2Label: "Students Benefited",
-    },
-    {
-      id: "camp-support",
-      title: "Youth Opportunity Labs",
-      summary: "Training and mentorship for young people.",
-      stat1Value: "9",
-      stat1Label: "Lab Sites",
-      stat2Value: "3.2K",
-      stat2Label: "Youth Trained",
-    },
-    {
-      id: "emergency-aid",
-      title: "Community Relief Network",
-      summary: "Coordinated local partners for emergency delivery.",
-      stat1Value: "28",
-      stat1Label: "Partner Orgs",
-      stat2Value: "19K",
-      stat2Label: "People Reached",
-    },
-  ],
+/**
+ * Sector names.
+ *
+ * The recap prints combined headings — "Disability / Protection", "Cash /
+ * Orphans / Nujin", "NFI / Livelihood" — that differ from city to city. The
+ * entries beneath them are filed onto these fourteen sectors in
+ * bcfProjectData, so "Health" means the same thing on Erbil's page as on
+ * Afrin's and a visitor can compare two cities without re-reading a heading.
+ */
+const SECTORS_EN: Record<SectorId, string> = {
+  emergency: "Emergency Response",
+  food: "Food Security",
+  health: "Health",
+  education: "Education & Development",
+  shelter: "Shelter & Housing",
+  wash: "Water & Sanitation",
+  camp: "Camp Management",
+  nfi: "Non-Food Items",
+  disability: "Disability Support",
+  protection: "Protection",
+  livelihood: "Livelihood",
+  cash: "Cash & Orphans",
+  environment: "Environment",
+  community: "Community Support",
+};
+
+const SECTORS_KU: Record<SectorId, string> = {
+  emergency: "وەڵامدانەوەی فریاکەوتن",
+  food: "دڵنیایی خۆراک",
+  health: "تەندروستی",
+  education: "پەروەردە و گەشەپێدان",
+  shelter: "پەناگە و نیشتەجێبوون",
+  wash: "ئاو و خاوێنکاری",
+  camp: "بەڕێوەبردنی کەمپ",
+  nfi: "کەلوپەلی ناخۆراکی",
+  disability: "پشتگیری کەمئەندامان",
+  protection: "پاراستن",
+  livelihood: "بژێوی",
+  cash: "پارە و هەتیوان",
+  environment: "ژینگە",
+  community: "پشتگیری کۆمەڵگا",
+};
+
+const SECTORS_AR: Record<SectorId, string> = {
+  emergency: "الاستجابة الطارئة",
+  food: "الأمن الغذائي",
+  health: "الصحة",
+  education: "التعليم والتطوير",
+  shelter: "المأوى والإسكان",
+  wash: "المياه والإصحاح",
+  camp: "إدارة المخيمات",
+  nfi: "المواد غير الغذائية",
+  disability: "دعم ذوي الإعاقة",
+  protection: "الحماية",
+  livelihood: "سبل العيش",
+  cash: "النقد والأيتام",
+  environment: "البيئة",
+  community: "دعم المجتمع",
+};
+
+/**
+ * The four bands. `latest` and `current` say different things and must not be
+ * collapsed: 2025 is a closed annual dataset, 2026 is a run of dated updates
+ * through July and not a year's total.
+ */
+const ERAS_EN: Record<BcfEraId, string> = {
+  historic: "Historic",
+  annual: "Annual reports 2020-24",
+  latest: "2025 — latest complete year",
+  current: "2026 — current",
+};
+
+const ERAS_KU: Record<BcfEraId, string> = {
+  historic: "مێژوویی",
+  annual: "ڕاپۆرتی ساڵانە ٢٠٢٠-٢٤",
+  latest: "٢٠٢٥ — دوایین ساڵی تەواو",
+  current: "٢٠٢٦ — ئێستا",
+};
+
+const ERAS_AR: Record<BcfEraId, string> = {
+  historic: "تاريخي",
+  annual: "التقارير السنوية ٢٠٢٠-٢٤",
+  latest: "٢٠٢٥ — آخر سنة كاملة",
+  current: "٢٠٢٦ — الحالي",
+};
+
+/**
+ * Where the source names a project without a date it uses a word, not a year.
+ * Those words are the only ones that need translating — an actual year renders
+ * as itself.
+ */
+const YEAR_MARKERS_EN: Record<string, string> = {
+  Historic: "Historic",
+  "Multi-year": "Multi-year",
+  Ongoing: "Ongoing",
+};
+
+const YEAR_MARKERS_KU: Record<string, string> = {
+  Historic: "مێژوویی",
+  "Multi-year": "چەند ساڵە",
+  Ongoing: "بەردەوام",
+};
+
+const YEAR_MARKERS_AR: Record<string, string> = {
+  Historic: "تاريخي",
+  "Multi-year": "متعدد السنوات",
+  Ongoing: "مستمر",
+};
+
+const projectsEn: ProjectsCopy = {
+  sectors: SECTORS_EN,
+  eras: ERAS_EN,
+  yearMarkers: YEAR_MARKERS_EN,
+  sectorsLabel: "Sectors",
+  entriesLabel: "Documented projects",
+  yearsLabel: "Years documented",
+  timelineTitle: "Documented years",
+  beyondTitle: "Beyond the Region",
+  beyondSubtitle: "Work BCF documents outside the Kurdistan Region map.",
+  orgTotalLabel: "Reached in 2025",
+  orgTotalNote:
+    "Organisation-wide individuals for this sector in 2025, published by BCF in January 2026. Not a figure for this location.",
+  scopeNote: "Scope",
+  sourceNote:
+    "Paraphrased from official BCF annual reports, the cumulative 2005-2024 report, and BCF website updates verified in August 2026.",
+};
+
+const projectsKu: ProjectsCopy = {
+  sectors: SECTORS_KU,
+  eras: ERAS_KU,
+  yearMarkers: YEAR_MARKERS_KU,
+  sectorsLabel: "کەرتەکان",
+  entriesLabel: "پڕۆژەی تۆمارکراو",
+  yearsLabel: "ساڵانی تۆمارکراو",
+  timelineTitle: "ساڵانی تۆمارکراو",
+  beyondTitle: "لە دەرەوەی هەرێم",
+  beyondSubtitle: "ئەو کارانەی BCF لە دەرەوەی نەخشەی هەرێمی کوردستان تۆماری کردوون.",
+  orgTotalLabel: "گەیشتووە لە ٢٠٢٥",
+  orgTotalNote:
+    "کۆی گشتی کەسان بۆ ئەم کەرتە لە ٢٠٢٥ لە ئاستی دامەزراوەدا، لە کانوونی دووەمی ٢٠٢٦ بڵاوکراوەتەوە. ژمارەی ئەم شوێنە نییە.",
+  scopeNote: "مەودا",
+  sourceNote:
+    "لە ڕاپۆرتە ساڵانە فەرمییەکانی BCF، ڕاپۆرتی کۆی ٢٠٠٥-٢٠٢٤ و نوێکارییەکانی ماڵپەڕ کە لە ئابی ٢٠٢٦ پشتڕاست کراونەتەوە.",
+};
+
+const projectsAr: ProjectsCopy = {
+  sectors: SECTORS_AR,
+  eras: ERAS_AR,
+  yearMarkers: YEAR_MARKERS_AR,
+  sectorsLabel: "القطاعات",
+  entriesLabel: "مشاريع موثّقة",
+  yearsLabel: "السنوات الموثّقة",
+  timelineTitle: "السنوات الموثّقة",
+  beyondTitle: "خارج الإقليم",
+  beyondSubtitle: "أعمال توثّقها المؤسسة خارج خريطة إقليم كردستان.",
+  orgTotalLabel: "تم الوصول إليهم في ٢٠٢٥",
+  orgTotalNote:
+    "إجمالي الأفراد لهذا القطاع على مستوى المؤسسة في ٢٠٢٥، نشرته المؤسسة في كانون الثاني ٢٠٢٦. ليس رقماً لهذا الموقع.",
+  scopeNote: "النطاق",
+  sourceNote:
+    "مُعاد صياغته من التقارير السنوية الرسمية للمؤسسة، وتقرير ٢٠٠٥-٢٠٢٤ التراكمي، وتحديثات الموقع التي جرى التحقق منها في آب ٢٠٢٦.",
 };
 
 export const bcfCopy: Record<BcfLang, BcfCopy> = {
@@ -933,47 +963,114 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     locations: {
       erbil: {
         name: "Erbil",
-        description: "Supporting education and community programs for a better tomorrow.",
-        projectsLabel: "Projects",
-        peopleLabel: "People Helped",
-        projectsStat: "+120",
-        peopleStat: "250K",
+        short: "Erbil",
+        description:
+          "The headquarters governorate, and the broadest register BCF keeps: food, schools, water, camps, housing and the Center of Excellence for Complex Care.",
         explore: "Explore Projects",
       },
       duhok: {
         name: "Duhok",
-        description: "Camp services, livelihoods, and protection for displaced families.",
-        projectsLabel: "Projects",
-        peopleLabel: "People Helped",
-        projectsStat: "+86",
-        peopleStat: "180K",
-        explore: "Explore Projects",
-      },
-      zakho: {
-        name: "Zakho",
-        description: "Emergency hubs supporting arrivals and border communities.",
-        projectsLabel: "Projects",
-        peopleLabel: "People Helped",
-        projectsStat: "+42",
-        peopleStat: "95K",
-        explore: "Explore Projects",
-      },
-      kirkuk: {
-        name: "Kirkuk",
-        description: "Inclusive programs for education, families, and rapid relief.",
-        projectsLabel: "Projects",
-        peopleLabel: "People Helped",
-        projectsStat: "+55",
-        peopleStat: "110K",
+        short: "Duhok",
+        description:
+          "Twenty camps at the 2021 peak, the 420-unit Roj City housing project, and the free-bread bakeries running through the districts in 2026.",
         explore: "Explore Projects",
       },
       sulaymaniyah: {
         name: "Sulaymaniyah",
-        description: "Youth opportunity, school upgrades, and community partnerships.",
-        projectsLabel: "Projects",
-        peopleLabel: "People Helped",
-        projectsStat: "+70",
-        peopleStat: "140K",
+        short: "Sulaymaniyah",
+        description:
+          "Fifty of the 203 renovated schools, recurring Qurbani and Ramadan food, and cash projects reaching families through the office in 2026.",
+        explore: "Explore Projects",
+      },
+      kirkuk: {
+        name: "Kirkuk",
+        short: "Kirkuk",
+        description:
+          "The largest single share of the 203-school renovation programme, alongside food, disability and coexistence projects across a mixed governorate.",
+        explore: "Explore Projects",
+      },
+      nineveh: {
+        name: "Nineveh / Mosul",
+        short: "Mosul",
+        description:
+          "Nearly half a million hot meals in 2022, ten camps under management, and patient transport out of the East Mosul camps to hospitals in Erbil and Mosul.",
+        explore: "Explore Projects",
+      },
+      sinjar: {
+        name: "Sinjar / Shingal",
+        short: "Sinjar",
+        description:
+          "Where BCF's emergency work begins — the 2007 bombing response, the 2014 helicopter airlift to the mountain, and the houses built there since.",
+        explore: "Explore Projects",
+      },
+      garmian: {
+        name: "Garmian / Kalar",
+        short: "Garmian",
+        description:
+          "Food, disability and cash programmes across Kalar, Kifri, Khanaqin, Rizgari and Darbandikhan, with flood relief in 2024.",
+        explore: "Explore Projects",
+      },
+      halabja: {
+        name: "Halabja",
+        short: "Halabja",
+        description:
+          "COVID-19 support to the health directorate, eleven renovated schools, a kindergarten opened in 2023, and continuing orphan-family assistance.",
+        explore: "Explore Projects",
+      },
+      soran: {
+        name: "Soran",
+        short: "Soran",
+        description:
+          "Five renovated schools, a share of the martyrs' housing distribution, and autism-awareness work at the Mother Community Center.",
+        explore: "Explore Projects",
+      },
+      zakho: {
+        name: "Zakho",
+        short: "Zakho",
+        description:
+          "Winter heaters and flood response on the border, a five-month literacy project for refugee children, and mosque carpets across the administration.",
+        explore: "Explore Projects",
+      },
+      akre: {
+        name: "Akre",
+        short: "Akre",
+        description:
+          "Camp food parcels through German Caritas, 10,000 oak saplings planted in 2021, and the maternity hospital renovation recorded in the cumulative report.",
+        explore: "Explore Projects",
+      },
+      amedi: {
+        name: "Amedi / Shiladze / Dereluk / Sarsang",
+        short: "Amedi",
+        description:
+          "The Smile Center with Caritas Germany, special-care and autism activities, and food baskets across the mountain townships.",
+        explore: "Explore Projects",
+      },
+      afrin: {
+        name: "Afrin",
+        short: "Afrin",
+        description:
+          "A standing programme in Syria: the mobile clinic, the Barzani Culture & Development Center, university student support, and 192 sponsored orphans.",
+        explore: "Explore Projects",
+      },
+      rojava: {
+        name: "Western Kurdistan / Rojava",
+        short: "Rojava",
+        description:
+          "BCF's largest current cross-border operation — 415 truckloads, 29,070 families, flour for 3.36 million loaves, diesel, medicine and jobs.",
+        explore: "Explore Projects",
+      },
+      iraq: {
+        name: "Other Iraqi Governorates",
+        short: "Iraq",
+        description:
+          "Food and medical work reaching Baghdad, Diyala, Dhi Qar, Anbar and Samawah — 493,380 individuals in Iraq outside the Region in 2025.",
+        explore: "Explore Projects",
+      },
+      international: {
+        name: "International / Cross-border",
+        short: "International",
+        description:
+          "The Van camp in Türkiye, the 2023 earthquake response, and documented work in ten countries from Lebanon and Ukraine to Bangladesh and Australia.",
         explore: "Explore Projects",
       },
     },
@@ -1528,47 +1625,114 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     locations: {
       erbil: {
         name: "هەولێر",
-        description: "پشتگیری پەروەردە و بەرنامەی کۆمەڵایەتی بۆ سبەینێیەکی باشتر.",
-        projectsLabel: "پڕۆژە",
-        peopleLabel: "کەسی یارمەتیدراو",
-        projectsStat: "+١٢٠",
-        peopleStat: "٢٥٠هەزار",
+        short: "هەولێر",
+        description:
+          "پارێزگای بارەگای سەرەکی و فراوانترین تۆمار: خۆراک، قوتابخانە، ئاو، کەمپ، نیشتەجێبوون و ناوەندی نایابی چاودێری ئاڵۆز.",
         explore: "پڕۆژەکان ببینە",
       },
       duhok: {
         name: "دهۆک",
-        description: "خزمەتگوزاری کەمپ، بژێوی و پاراستن بۆ خێزانە ئاوارەکان.",
-        projectsLabel: "پڕۆژە",
-        peopleLabel: "کەسی یارمەتیدراو",
-        projectsStat: "+٨٦",
-        peopleStat: "١٨٠هەزار",
-        explore: "پڕۆژەکان ببینە",
-      },
-      zakho: {
-        name: "زاخۆ",
-        description: "ناوەندی فریاکەوتن بۆ هاتووەکان و کۆمەڵگە سنوورییەکان.",
-        projectsLabel: "پڕۆژە",
-        peopleLabel: "کەسی یارمەتیدراو",
-        projectsStat: "+٤٢",
-        peopleStat: "٩٥هەزار",
-        explore: "پڕۆژەکان ببینە",
-      },
-      kirkuk: {
-        name: "کەرکوک",
-        description: "بەرنامەی گشتگیر بۆ پەروەردە، خێزان و فریاکەوتنی خێرا.",
-        projectsLabel: "پڕۆژە",
-        peopleLabel: "کەسی یارمەتیدراو",
-        projectsStat: "+٥٥",
-        peopleStat: "١١٠هەزار",
+        short: "دهۆک",
+        description:
+          "بیست کەمپ لە لووتکەی ٢٠٢١، پڕۆژەی نیشتەجێبوونی ٤٢٠ یەکەی شاری ڕۆژ، و نانەواخانە بێبەرامبەرەکانی ٢٠٢٦ بەناو قەزاکاندا.",
         explore: "پڕۆژەکان ببینە",
       },
       sulaymaniyah: {
         name: "سلێمانی",
-        description: "دەرفەتی گەنجان، نوێکردنەوەی قوتابخانە و هاوبەشی کۆمەڵایەتی.",
-        projectsLabel: "پڕۆژە",
-        peopleLabel: "کەسی یارمەتیدراو",
-        projectsStat: "+٧٠",
-        peopleStat: "١٤٠هەزار",
+        short: "سلێمانی",
+        description:
+          "پەنجا لە ٢٠٣ قوتابخانەی نۆژەنکراوە، خۆراکی قوربانی و ڕەمەزانی بەردەوام، و پڕۆژەی پارەیی بۆ خێزانەکان لە ٢٠٢٦.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      kirkuk: {
+        name: "کەرکوک",
+        short: "کەرکوک",
+        description:
+          "گەورەترین بەشی پڕۆژەی نۆژەنکردنەوەی ٢٠٣ قوتابخانە، لەگەڵ پڕۆژەی خۆراک، کەمئەندامی و پێکەوەژیان.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      nineveh: {
+        name: "نەینەوا / مووسڵ",
+        short: "مووسڵ",
+        description:
+          "نزیکەی نیو ملیۆن ژەمی گەرم لە ٢٠٢٢، دە کەمپ لەژێر بەڕێوەبردن، و گواستنەوەی نەخۆشان بۆ نەخۆشخانەکانی هەولێر و مووسڵ.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      sinjar: {
+        name: "شنگال",
+        short: "شنگال",
+        description:
+          "لێرەوە کاری فریاکەوتنی BCF دەست پێدەکات — وەڵامدانەوەی بۆمبارانی ٢٠٠٧، هەڵگرتنی ٢٠١٤ بۆ چیا، و ئەو ماڵانەی لەدوایدا دروستکران.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      garmian: {
+        name: "گەرمیان / کەلار",
+        short: "گەرمیان",
+        description:
+          "پڕۆژەی خۆراک، کەمئەندامی و پارە لە کەلار، کفری، خانەقین، ڕزگاری و دەربەندیخان، لەگەڵ فریاکەوتنی لافاوی ٢٠٢٤.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      halabja: {
+        name: "هەڵەبجە",
+        short: "هەڵەبجە",
+        description:
+          "پشتگیری کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی، یازدە قوتابخانەی نۆژەنکراوە، باخچەیەکی منداڵان لە ٢٠٢٣، و یارمەتی بەردەوامی خێزانی هەتیوان.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      soran: {
+        name: "سۆران",
+        short: "سۆران",
+        description:
+          "پێنج قوتابخانەی نۆژەنکراوە، بەشێک لە دابەشکردنی نیشتەجێبوونی شەهیدان، و کاری ئاگاداری ئۆتیزم لە ناوەندی کۆمەڵایەتی دایک.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      zakho: {
+        name: "زاخۆ",
+        short: "زاخۆ",
+        description:
+          "سۆبەی زستان و وەڵامدانەوەی لافاو لەسەر سنوور، پڕۆژەی پێنج مانگی خوێندەواری بۆ منداڵانی پەنابەر، و فەرشی مزگەوتەکان.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      akre: {
+        name: "ئاکرێ",
+        short: "ئاکرێ",
+        description:
+          "پاکێتی خۆراکی کەمپ لە ڕێگەی کاریتاسی ئەڵمانیا، ڕواندنی ١٠٬٠٠٠ نەمامی دار بەڕوو لە ٢٠٢١، و نۆژەنکردنەوەی نەخۆشخانەی لەدایکبوون.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      amedi: {
+        name: "ئامێدی / شێلادزێ / دەرەلوک / سەرسنگ",
+        short: "ئامێدی",
+        description:
+          "ناوەندی زەردەخەنە لەگەڵ کاریتاسی ئەڵمانیا، چالاکی چاودێری تایبەت و ئۆتیزم، و سەبەتەی خۆراک بەناو شارۆچکە شاخاوییەکاندا.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      afrin: {
+        name: "عەفرین",
+        short: "عەفرین",
+        description:
+          "بەرنامەیەکی چەسپاو لە سووریا: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران، و ١٩٢ هەتیوی سەرپەرشتیکراو.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      rojava: {
+        name: "ڕۆژئاوای کوردستان",
+        short: "ڕۆژئاوا",
+        description:
+          "گەورەترین کاری ئێستای BCF لە دەرەوەی سنوور — ٤١٥ بارهەڵگر، ٢٩٬٠٧٠ خێزان، ئارد بۆ ٣٫٣٦ ملیۆن نان، گازۆیل، دەرمان و کار.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      iraq: {
+        name: "پارێزگاکانی دیکەی عێراق",
+        short: "عێراق",
+        description:
+          "کاری خۆراک و پزیشکی لە بەغدا، دیالە، زیقار، ئەنبار و سەماوە — ٤٩٣٬٣٨٠ کەس لە عێراق لە دەرەوەی هەرێم لە ٢٠٢٥.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      international: {
+        name: "نێودەوڵەتی / سنووربڕ",
+        short: "نێودەوڵەتی",
+        description:
+          "کەمپی وان لە تورکیا، وەڵامدانەوەی بوومەلەرزەی ٢٠٢٣، و کاری تۆمارکراو لە دە وڵات لە لوبنان و ئۆکرانیاوە تا بەنگلادیش و ئۆسترالیا.",
         explore: "پڕۆژەکان ببینە",
       },
     },
@@ -1904,7 +2068,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         ],
       },
     ],
-    projects: projectsEn,
+    projects: projectsKu,
   },
   ar: {
     languageTitle: "اختر لغتك",
@@ -2117,47 +2281,114 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     locations: {
       erbil: {
         name: "أربيل",
-        description: "دعم التعليم وبرامج المجتمع من أجل غدٍ أفضل.",
-        projectsLabel: "مشاريع",
-        peopleLabel: "أشخاص تمت مساعدتهم",
-        projectsStat: "+120",
-        peopleStat: "250K",
+        short: "أربيل",
+        description:
+          "محافظة المقر الرئيسي وأوسع سجل تحتفظ به المؤسسة: الغذاء والمدارس والمياه والمخيمات والإسكان ومركز التميّز للرعاية المعقّدة.",
         explore: "استكشف المشاريع",
       },
       duhok: {
         name: "دهوك",
-        description: "خدمات المخيمات وسبل العيش والحماية للعائلات النازحة.",
-        projectsLabel: "مشاريع",
-        peopleLabel: "أشخاص تمت مساعدتهم",
-        projectsStat: "+86",
-        peopleStat: "180K",
-        explore: "استكشف المشاريع",
-      },
-      zakho: {
-        name: "زاخو",
-        description: "مراكز طوارئ تدعم القادمين ومجتمعات الحدود.",
-        projectsLabel: "مشاريع",
-        peopleLabel: "أشخاص تمت مساعدتهم",
-        projectsStat: "+42",
-        peopleStat: "95K",
-        explore: "استكشف المشاريع",
-      },
-      kirkuk: {
-        name: "كركوك",
-        description: "برامج شاملة للتعليم والعائلات والإغاثة السريعة.",
-        projectsLabel: "مشاريع",
-        peopleLabel: "أشخاص تمت مساعدتهم",
-        projectsStat: "+55",
-        peopleStat: "110K",
+        short: "دهوك",
+        description:
+          "عشرون مخيماً في ذروة ٢٠٢١، ومشروع إسكان روج سيتي بـ ٤٢٠ وحدة، ومخابز الخبز المجاني العاملة في الأقضية عام ٢٠٢٦.",
         explore: "استكشف المشاريع",
       },
       sulaymaniyah: {
         name: "السليمانية",
-        description: "فرص الشباب وتحديث المدارس وشراكات المجتمع.",
-        projectsLabel: "مشاريع",
-        peopleLabel: "أشخاص تمت مساعدتهم",
-        projectsStat: "+70",
-        peopleStat: "140K",
+        short: "السليمانية",
+        description:
+          "خمسون من أصل ٢٠٣ مدارس مُرمَّمة، وغذاء الأضاحي ورمضان المتكرر، ومشاريع نقدية وصلت إلى العائلات عبر المكتب في ٢٠٢٦.",
+        explore: "استكشف المشاريع",
+      },
+      kirkuk: {
+        name: "كركوك",
+        short: "كركوك",
+        description:
+          "أكبر حصة مفردة من برنامج ترميم ٢٠٣ مدارس، إلى جانب مشاريع الغذاء والإعاقة والتعايش في محافظة متنوّعة.",
+        explore: "استكشف المشاريع",
+      },
+      nineveh: {
+        name: "نينوى / الموصل",
+        short: "الموصل",
+        description:
+          "قرابة نصف مليون وجبة ساخنة في ٢٠٢٢، وعشرة مخيمات تحت الإدارة، ونقل المرضى من مخيمات شرق الموصل إلى مستشفيات أربيل والموصل.",
+        explore: "استكشف المشاريع",
+      },
+      sinjar: {
+        name: "سنجار / شنكال",
+        short: "سنجار",
+        description:
+          "من هنا يبدأ العمل الطارئ للمؤسسة — استجابة تفجير ٢٠٠٧، والجسر الجوي إلى الجبل عام ٢٠١٤، والبيوت التي بُنيت منذ ذلك الحين.",
+        explore: "استكشف المشاريع",
+      },
+      garmian: {
+        name: "كرميان / كلار",
+        short: "كرميان",
+        description:
+          "برامج الغذاء والإعاقة والنقد في كلار وكفري وخانقين ورزكاري ودربنديخان، مع إغاثة الفيضانات في ٢٠٢٤.",
+        explore: "استكشف المشاريع",
+      },
+      halabja: {
+        name: "حلبجة",
+        short: "حلبجة",
+        description:
+          "دعم كوفيد-١٩ لدائرة الصحة، وإحدى عشرة مدرسة مُرمَّمة، وروضة افتُتحت في ٢٠٢٣، ومساعدة مستمرة لعائلات الأيتام.",
+        explore: "استكشف المشاريع",
+      },
+      soran: {
+        name: "سوران",
+        short: "سوران",
+        description:
+          "خمس مدارس مُرمَّمة، وحصة من توزيع إسكان الشهداء، وأنشطة التوعية بالتوحّد في مركز الأم المجتمعي.",
+        explore: "استكشف المشاريع",
+      },
+      zakho: {
+        name: "زاخو",
+        short: "زاخو",
+        description:
+          "مدافئ الشتاء والاستجابة للفيضانات على الحدود، ومشروع محو أميّة لخمسة أشهر لأطفال لاجئين، وسجّاد للمساجد في الإدارة.",
+        explore: "استكشف المشاريع",
+      },
+      akre: {
+        name: "عقرة",
+        short: "عقرة",
+        description:
+          "طرود غذائية للمخيم عبر كاريتاس ألمانيا، وزراعة ١٠٬٠٠٠ شتلة بلّوط في ٢٠٢١، وترميم مستشفى الولادة المسجّل في التقرير التراكمي.",
+        explore: "استكشف المشاريع",
+      },
+      amedi: {
+        name: "العمادية / شيلادزي / ديرلوك / سرسنك",
+        short: "العمادية",
+        description:
+          "مركز الابتسامة مع كاريتاس ألمانيا، وأنشطة الرعاية الخاصة والتوحّد، وسلال غذائية في بلدات الجبل.",
+        explore: "استكشف المشاريع",
+      },
+      afrin: {
+        name: "عفرين",
+        short: "عفرين",
+        description:
+          "برنامج قائم في سوريا: العيادة المتنقّلة، ومركز بارزاني للثقافة والتنمية، ودعم طلبة الجامعة، و١٩٢ يتيماً مكفولاً.",
+        explore: "استكشف المشاريع",
+      },
+      rojava: {
+        name: "غربي كردستان / روج آفا",
+        short: "روج آفا",
+        description:
+          "أكبر عملية حالية للمؤسسة عبر الحدود — ٤١٥ شاحنة، و٢٩٬٠٧٠ عائلة، وطحين لـ ٣٫٣٦ مليون رغيف، ووقود ودواء وفرص عمل.",
+        explore: "استكشف المشاريع",
+      },
+      iraq: {
+        name: "المحافظات العراقية الأخرى",
+        short: "العراق",
+        description:
+          "عمل غذائي وطبي وصل إلى بغداد وديالى وذي قار والأنبار والسماوة — ٤٩٣٬٣٨٠ فرداً في العراق خارج الإقليم عام ٢٠٢٥.",
+        explore: "استكشف المشاريع",
+      },
+      international: {
+        name: "دولي / عابر للحدود",
+        short: "دولي",
+        description:
+          "مخيم وان في تركيا، والاستجابة لزلزال ٢٠٢٣، وعمل موثّق في عشر دول من لبنان وأوكرانيا إلى بنغلاديش وأستراليا.",
         explore: "استكشف المشاريع",
       },
     },
@@ -2490,6 +2721,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         ],
       },
     ],
-    projects: projectsEn,
+    projects: projectsAr,
   },
 };
