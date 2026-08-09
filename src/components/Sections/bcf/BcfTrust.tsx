@@ -350,10 +350,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     <motion.div
                       key={`${partnerGroup}-${index}`}
                       variants={bcfRiseCard}
-                      className="mx-auto flex h-[220px] w-[220px] items-center justify-center rounded-[28px] border border-white/15 bg-[#f7f1e6] p-7"
+                      className="mx-auto flex h-[220px] w-[220px] items-center justify-center rounded-[28px] border border-white/18 bg-white/92 p-8"
                       style={{
                         boxShadow:
-                          "0 16px 36px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.55)",
+                          "0 16px 36px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.7)",
                       }}
                     >
                       <img
