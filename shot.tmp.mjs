@@ -38,7 +38,14 @@ if (extra && extra !== "-") {
     await wait(step[2] ?? 1000);
   }
 }
-await wait(2200);
+await wait(1200);
+if (process.env.PRE_EVAL) {
+  for (const step of JSON.parse(process.env.PRE_EVAL)) {
+    await send("Runtime.evaluate", { expression: step, awaitPromise: false });
+    await wait(1600);
+  }
+}
+await wait(1600);
 if (evalJs) {
   const r = await send("Runtime.evaluate", { expression: evalJs, returnByValue: true });
   console.log("EVAL:", JSON.stringify(r?.result?.value ?? r));

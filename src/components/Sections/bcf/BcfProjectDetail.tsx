@@ -47,6 +47,26 @@ function groupByEra(entries: BcfProjectEntry[]): EraGroup[] {
   })).filter((group) => group.entries.length > 0);
 }
 
+/**
+ * Type scale by how much there is to say.
+ *
+ * The shell does not scroll: a sector that runs past 1920px is a sector whose
+ * last years nobody can read. Erbil's shelter register carries six entries and
+ * three scope notes, which at the roomy setting ended 80px below the panel.
+ * Rather than set everything to the size the worst case needs — and leave
+ * Akre's single-entry health page looking like fine print — the page picks a
+ * density from the count it is actually rendering.
+ */
+function densityFor(count: number) {
+  if (count <= 3) {
+    return { body: 26, note: 21, pad: "p-6", gap: "gap-5", band: "gap-10" };
+  }
+  if (count <= 5) {
+    return { body: 25, note: 20, pad: "p-5", gap: "gap-4", band: "gap-8" };
+  }
+  return { body: 23, note: 19, pad: "px-5 py-4", gap: "gap-3.5", band: "gap-7" };
+}
+
 type BcfProjectDetailProps = {
   lang: BcfLang;
   locationId: LocationId;
@@ -67,95 +87,101 @@ export default function BcfProjectDetail({
   const entries = bcfEntriesFor(locationId, sectorId);
   const groups = groupByEra(entries);
   const orgTotal = BCF_SECTOR_2025_TOTALS[sectorId];
+  const d = densityFor(entries.length);
 
   return (
     <BcfShell
       backgroundImage={BCF_SECTOR_HERO[sectorId]}
-      overlayClassName="bg-black/80"
+      overlayClassName="bg-black/88"
       drift={false}
     >
-      <div className="relative flex min-h-[1920px] flex-col px-14 pb-24 pt-40">
+      {/* The shell's logo mark is 172px tall at top-10, so the header has to
+          start below 212 or it runs straight through the lockup. */}
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-14 pt-[236px]">
         <BcfBackButton onClick={onBack} label={c.back} />
 
-        <motion.div variants={bcfStagger(0.09, 0.14)} initial="initial" animate="animate">
-          <motion.div variants={bcfRise} className="flex items-center gap-5">
-            <span
-              className="grid h-[92px] w-[92px] shrink-0 place-items-center rounded-2xl border"
-              style={{
-                borderColor: `${BCF.gold}66`,
-                backgroundColor: "rgba(251,193,88,0.09)",
-              }}
-            >
-              <Icon className="h-11 w-11" style={{ color: BCF.gold }} />
-            </span>
-            <span className="min-w-0">
+        <motion.div variants={bcfStagger(0.08, 0.12)} initial="initial" animate="animate">
+          {/* Title and the 2025 figure share one band. The figure had a card of
+              its own, which cost 150px the timeline below needed. */}
+          <motion.div variants={bcfRise} className="flex items-end justify-between gap-8">
+            <span className="flex min-w-0 items-center gap-5">
               <span
-                className="block text-[26px] tracking-[0.18em]"
-                style={{ color: BCF.nature }}
+                className="grid h-[88px] w-[88px] shrink-0 place-items-center rounded-2xl border"
+                style={{
+                  borderColor: `${BCF.gold}66`,
+                  backgroundColor: "rgba(251,193,88,0.09)",
+                }}
               >
-                {location.name}
+                <Icon className="h-11 w-11" style={{ color: BCF.gold }} />
               </span>
-              <h1
-                className="mt-2 block text-[58px] font-bold leading-tight"
-                style={{ color: BCF.creamSoft }}
-              >
-                {sectorName}
-              </h1>
+              <span className="min-w-0">
+                <span
+                  className="block text-[25px] leading-tight tracking-[0.18em]"
+                  style={{ color: BCF.nature }}
+                >
+                  {location.name}
+                </span>
+                <h1
+                  className="mt-2 block text-[54px] font-bold leading-[1.08]"
+                  style={{ color: BCF.creamSoft }}
+                >
+                  {sectorName}
+                </h1>
+              </span>
             </span>
+
+            {/* The one figure BCF publishes for this sector in 2025 — and it is
+                an organisation-wide figure, not this city's. It keeps its own
+                label and its own caveat below, because the source's editorial
+                rule is that scopes are never quietly mixed. */}
+            {orgTotal ? (
+              <span className="shrink-0 text-end">
+                <span
+                  className="block whitespace-nowrap text-[22px] tracking-[0.14em]"
+                  style={{ color: BCF.goldDeep }}
+                >
+                  {c.projects.orgTotalLabel}
+                </span>
+                <span
+                  className="mt-1 block text-[52px] font-bold leading-none tabular-nums"
+                  style={{ color: BCF.gold }}
+                  dir="ltr"
+                >
+                  {orgTotal}
+                </span>
+              </span>
+            ) : null}
           </motion.div>
+
+          {orgTotal ? (
+            <motion.p
+              variants={bcfRise}
+              className="mt-3 text-end text-[18px] leading-snug text-white/40"
+            >
+              {c.projects.orgTotalNote}
+            </motion.p>
+          ) : null}
 
           <motion.span
             variants={bcfRise}
-            className="mt-8 block h-px w-full origin-left"
+            className="mt-6 block h-px w-full origin-left"
             style={{
               background: `linear-gradient(90deg, ${BCF.gold}, transparent 78%)`,
             }}
           />
-
-          {/* The one figure BCF publishes for this sector in 2025 — and it is an
-              organisation-wide figure, not this city's. It sits apart from the
-              timeline, under its own label, because the source's editorial rule
-              is that scopes are never quietly mixed. */}
-          {orgTotal ? (
-            <motion.div
-              variants={bcfRise}
-              className="mt-9 rounded-2xl border p-7"
-              style={{
-                borderColor: `${BCF.gold}38`,
-                backgroundColor: "rgba(0,0,0,0.42)",
-              }}
-            >
-              <span
-                className="text-[24px] tracking-[0.16em]"
-                style={{ color: BCF.goldDeep }}
-              >
-                {c.projects.orgTotalLabel}
-              </span>
-              <span
-                className="mt-2 block text-[64px] font-bold leading-none tabular-nums"
-                style={{ color: BCF.gold }}
-                dir="ltr"
-              >
-                {orgTotal}
-              </span>
-              <p className="mt-3 text-[20px] leading-relaxed text-white/50">
-                {c.projects.orgTotalNote}
-              </p>
-            </motion.div>
-          ) : null}
         </motion.div>
 
         <motion.p
-          className="mt-12 text-[26px] tracking-[0.2em]"
+          className="mt-8 text-[24px] tracking-[0.2em]"
           style={{ color: BCF.nature }}
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.36, ease: BCF_EASE }}
+          transition={{ duration: 0.55, delay: 0.3, ease: BCF_EASE }}
         >
           {c.projects.timelineTitle}
         </motion.p>
 
-        <div className="relative mt-8 flex flex-col gap-12">
+        <div className={`relative mt-6 flex flex-col ${d.band}`}>
           {/* The spine. A single rule down the whole timeline rather than one
               per band, so the years read as one continuous run and the era
               headings sit on it as markers instead of breaking it into pieces. */}
@@ -170,22 +196,22 @@ export default function BcfProjectDetail({
           {groups.map((group, groupIndex) => (
             <motion.section
               key={group.era}
-              initial={{ opacity: 0, y: 26 }}
+              initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.6,
-                delay: 0.44 + groupIndex * 0.1,
+                duration: 0.55,
+                delay: 0.38 + groupIndex * 0.09,
                 ease: BCF_EASE,
               }}
             >
               <h2
-                className="mb-6 text-[24px] font-medium tracking-[0.14em] ltr:pl-[130px] rtl:pr-[130px]"
+                className="mb-4 text-[22px] font-medium tracking-[0.14em] ltr:pl-[130px] rtl:pr-[130px]"
                 style={{ color: BCF_ERA_COLORS[group.era] }}
               >
                 {c.projects.eras[group.era]}
               </h2>
 
-              <div className="flex flex-col gap-5">
+              <div className={`flex flex-col ${d.gap}`}>
                 {group.entries.map((entry, index) => (
                   <article key={`${entry.year}-${index}`} className="relative flex gap-8">
                     {/* Year rail. Fixed width so every year in the sector lines
@@ -193,7 +219,7 @@ export default function BcfProjectDetail({
                         as the column allows and wrap rather than shifting the
                         text beside them. */}
                     <span
-                      className="relative w-[86px] shrink-0 pt-1 text-end text-[30px] font-semibold leading-tight tabular-nums"
+                      className="relative w-[86px] shrink-0 pt-1 text-end text-[28px] font-semibold leading-tight tabular-nums"
                       style={{ color: BCF_ERA_COLORS[group.era] }}
                       dir="ltr"
                     >
@@ -202,7 +228,7 @@ export default function BcfProjectDetail({
 
                     <span
                       aria-hidden="true"
-                      className="absolute top-[14px] h-[13px] w-[13px] rounded-full border-2 ltr:left-[80px] rtl:right-[80px]"
+                      className="absolute top-[12px] h-[13px] w-[13px] rounded-full border-2 ltr:left-[80px] rtl:right-[80px]"
                       style={{
                         borderColor: BCF_ERA_COLORS[group.era],
                         backgroundColor: BCF.bg,
@@ -210,19 +236,25 @@ export default function BcfProjectDetail({
                     />
 
                     <div
-                      className="min-w-0 flex-1 rounded-2xl border p-6 ltr:ml-[30px] rtl:mr-[30px]"
+                      className={`min-w-0 flex-1 rounded-2xl border ${d.pad} ltr:ml-[30px] rtl:mr-[30px]`}
                       style={{
                         borderColor: "rgba(255,255,255,0.09)",
-                        backgroundColor: "rgba(0,0,0,0.42)",
+                        backgroundColor: "rgba(0,0,0,0.52)",
                       }}
                     >
-                      <p className="text-[26px] leading-relaxed text-white/90">
+                      <p
+                        className="leading-[1.45] text-white/90"
+                        style={{ fontSize: d.body }}
+                      >
                         {entry.text}
                       </p>
                       {entry.note ? (
                         <p
-                          className="mt-4 border-t pt-4 text-[21px] leading-relaxed text-white/45"
-                          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+                          className="mt-3 border-t pt-3 leading-snug text-white/45"
+                          style={{
+                            fontSize: d.note,
+                            borderColor: "rgba(255,255,255,0.08)",
+                          }}
                         >
                           <span style={{ color: BCF.goldDeep }}>
                             {c.projects.scopeNote}:
@@ -238,7 +270,7 @@ export default function BcfProjectDetail({
           ))}
         </div>
 
-        <p className="mt-14 max-w-[900px] text-[20px] leading-relaxed text-white/40">
+        <p className="mt-8 text-[18px] leading-snug text-white/35">
           {c.projects.sourceNote}
         </p>
       </div>

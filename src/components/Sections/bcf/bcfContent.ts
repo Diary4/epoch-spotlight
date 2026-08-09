@@ -274,6 +274,8 @@ type ProjectsCopy = {
   /** Plural, and the singular beside it — "1 documented projects" reads as a bug. */
   entriesLabel: string;
   entryLabel: string;
+  /** Compact noun for chips, where the full label wraps to three lines. */
+  entriesShort: string;
   yearsLabel: string;
   timelineTitle: string;
   /** Header over the row of places that are not on the Region map. */
@@ -673,6 +675,7 @@ const projectsEn: ProjectsCopy = {
   sectorsLabel: "Sectors",
   entriesLabel: "Documented projects",
   entryLabel: "Documented project",
+  entriesShort: "projects",
   yearsLabel: "Years documented",
   timelineTitle: "Documented years",
   beyondTitle: "Beyond the Region",
@@ -692,6 +695,7 @@ const projectsKu: ProjectsCopy = {
   sectorsLabel: "کەرتەکان",
   entriesLabel: "پڕۆژەی تۆمارکراو",
   entryLabel: "پڕۆژەی تۆمارکراو",
+  entriesShort: "پڕۆژە",
   yearsLabel: "ساڵانی تۆمارکراو",
   timelineTitle: "ساڵانی تۆمارکراو",
   beyondTitle: "لە دەرەوەی هەرێم",
@@ -711,6 +715,7 @@ const projectsAr: ProjectsCopy = {
   sectorsLabel: "القطاعات",
   entriesLabel: "مشاريع موثّقة",
   entryLabel: "مشروع موثّق",
+  entriesShort: "مشاريع",
   yearsLabel: "السنوات الموثّقة",
   timelineTitle: "السنوات الموثّقة",
   beyondTitle: "خارج الإقليم",

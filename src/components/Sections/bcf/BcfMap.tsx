@@ -237,17 +237,16 @@ export default function BcfMap({
                       >
                         {c.locations[id].short}
                       </span>
-                      {/* Both numbers carry their own noun. "3 Sectors · 4"
-                          left the second one meaning nothing. */}
-                      <span className="mt-1 block text-[19px] text-white/50">
+                      {/* Both numbers carry a noun — "3 Sectors · 4" left the
+                          second one meaning nothing — but the short one, since
+                          "Documented projects" wrapped the chip to three lines. */}
+                      <span className="mt-1 block truncate text-[19px] lowercase text-white/50">
                         <span className="tabular-nums">
                           {bcfSectorsFor(id).length}
                         </span>{" "}
                         {c.projects.sectorsLabel} ·{" "}
                         <span className="tabular-nums">{bcfEntryCountFor(id)}</span>{" "}
-                        {bcfEntryCountFor(id) === 1
-                          ? c.projects.entryLabel
-                          : c.projects.entriesLabel}
+                        {c.projects.entriesShort}
                       </span>
                     </span>
                     <span
@@ -319,6 +318,7 @@ export default function BcfMap({
                   lang={lang}
                   selected={globalSelection}
                   onSelect={setGlobalSelection}
+                  onExploreProjects={onExploreProjects}
                 />
               </motion.div>
             ) : (

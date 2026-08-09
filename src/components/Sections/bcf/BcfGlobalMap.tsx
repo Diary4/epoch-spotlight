@@ -157,6 +157,7 @@ export default function BcfGlobalMap({
   const selectedLoc = selected
     ? BCF_GLOBAL_LOCATIONS.find((l) => l.id === selected) ?? null
     : null;
+  const projectLocation = selected ? BCF_GLOBAL_PROJECT_LOCATIONS[selected] : undefined;
 
   /**
    * Tapping a place both opens its card and takes the map there — to the zoom
@@ -589,7 +590,7 @@ export default function BcfGlobalMap({
                     <span className="block text-[26px] text-white">
                       {c.locations[projectLocation].explore}
                     </span>
-                    <span className="mt-0.5 block text-[19px] text-white/45">
+                    <span className="mt-0.5 block text-[19px] lowercase text-white/45">
                       <span className="tabular-nums">
                         {bcfSectorsFor(projectLocation).length}
                       </span>{" "}
@@ -597,9 +598,7 @@ export default function BcfGlobalMap({
                       <span className="tabular-nums">
                         {bcfEntryCountFor(projectLocation)}
                       </span>{" "}
-                      {bcfEntryCountFor(projectLocation) === 1
-                        ? c.projects.entryLabel
-                        : c.projects.entriesLabel}
+                      {c.projects.entriesShort}
                     </span>
                   </span>
                   <span
