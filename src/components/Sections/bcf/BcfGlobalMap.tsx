@@ -10,14 +10,20 @@ import {
   Sphere,
   ZoomableGroup,
 } from "react-simple-maps";
-import { BadgeCheck, HandHeart, Landmark, Minus, Plus, RotateCcw, Siren, X } from "lucide-react";
+import { ArrowRight, BadgeCheck, HandHeart, Landmark, Minus, Plus, RotateCcw, Siren, X } from "lucide-react";
 import {
   BCF_GLOBAL_LOCATIONS,
+  BCF_GLOBAL_PROJECT_LOCATIONS,
   bcfCopy,
   type BcfLang,
   type GlobalLocationId,
   type GlobalReachKind,
+  type LocationId,
 } from "@/components/Sections/bcf/bcfContent";
+import {
+  bcfEntryCountFor,
+  bcfSectorsFor,
+} from "@/components/Sections/bcf/bcfProjectData";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -98,9 +104,16 @@ type BcfGlobalMapProps = {
   lang: BcfLang;
   selected: GlobalLocationId | null;
   onSelect: (id: GlobalLocationId | null) => void;
+  /** Opens a country's own register, for the three countries that have one. */
+  onExploreProjects: (id: LocationId) => void;
 };
 
-export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapProps) {
+export default function BcfGlobalMap({
+  lang,
+  selected,
+  onSelect,
+  onExploreProjects,
+}: BcfGlobalMapProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
   const [activeKinds, setActiveKinds] = React.useState<GlobalReachKind[]>(ALL_KINDS);
@@ -555,6 +568,50 @@ export default function BcfGlobalMap({ lang, selected, onSelect }: BcfGlobalMapP
                     </li>
                   ))}
                 </ul>
+              ) : null}
+
+              {/* Türkiye, Syria and Lebanon each carry a documented register,
+                  so their card opens it here — the Van camp and the earthquake
+                  response belong to Türkiye, not to a separate "International"
+                  page filed under no country at all. The other ten countries
+                  are on this map because the twenty-year poster puts them
+                  there; it names no project for them, and a way in with nothing
+                  behind it is worse than none. */}
+              {projectLocation ? (
+                <motion.button
+                  type="button"
+                  onClick={() => onExploreProjects(projectLocation)}
+                  whileTap={BCF_TAP}
+                  transition={BCF_TAP_TRANSITION}
+                  className="mt-6 flex w-full transform-gpu items-center justify-between rounded-full border border-[#fbc158]/50 bg-black/25 px-7 py-4"
+                >
+                  <span className="text-start">
+                    <span className="block text-[26px] text-white">
+                      {c.locations[projectLocation].explore}
+                    </span>
+                    <span className="mt-0.5 block text-[19px] text-white/45">
+                      <span className="tabular-nums">
+                        {bcfSectorsFor(projectLocation).length}
+                      </span>{" "}
+                      {c.projects.sectorsLabel} ·{" "}
+                      <span className="tabular-nums">
+                        {bcfEntryCountFor(projectLocation)}
+                      </span>{" "}
+                      {bcfEntryCountFor(projectLocation) === 1
+                        ? c.projects.entryLabel
+                        : c.projects.entriesLabel}
+                    </span>
+                  </span>
+                  <span
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-2"
+                    style={{ borderColor: BCF.gold }}
+                  >
+                    <ArrowRight
+                      className="h-6 w-6 rtl:rotate-180"
+                      style={{ color: BCF.gold }}
+                    />
+                  </span>
+                </motion.button>
               ) : null}
             </div>
           </motion.div>

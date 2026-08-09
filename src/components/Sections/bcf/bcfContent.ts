@@ -33,12 +33,12 @@ export type JourneyChapterId =
   | "future";
 
 /**
- * Every place the project register documents.
+ * Every place the project register documents, in three groups.
  *
- * The first twelve are pins on the Region map; the last four are the work that
- * does not fit on it — Afrin and Western Kurdistan are across the Syrian
- * border, and the other two are deliberately not places at all but the
- * groupings BCF's own reporting uses for everything outside the Region.
+ * The first twelve are pins on the Region map. The next three are the near
+ * abroad — two operations across the Syrian border and the rest of Iraq — which
+ * the Region map offers as a row beside itself. The last three are countries on
+ * the world map, reached from their own country card there.
  */
 export type LocationId =
   | "erbil"
@@ -56,7 +56,9 @@ export type LocationId =
   | "afrin"
   | "rojava"
   | "iraq"
-  | "international";
+  | "turkiye"
+  | "syria"
+  | "lebanon";
 export type TrustTopicId =
   | "leadership"
   | "quality"
@@ -212,18 +214,27 @@ export const BCF_LOCATIONS: BcfLocation[] = [
 ];
 
 /**
- * The four groupings that carry BCF's work outside the Region. They are not
- * pins: Afrin sits 1,200 artboard units west of Sinjar, and the last two are
- * reporting categories rather than points. The map offers them as a row beneath
- * itself so the register is reachable in full without pretending they fit on a
- * map of Kurdistan.
+ * The near abroad. Afrin and Western Kurdistan are across the Syrian border —
+ * Afrin sits some 1,200 artboard units west of Sinjar, so putting them on the
+ * Region map would shrink the Region to a corner of it — and the rest of Iraq
+ * is a reporting grouping rather than a point. The Region map offers all three
+ * as a row above itself, where they are in reach on a wall panel.
  */
-export const BCF_BEYOND_LOCATIONS: LocationId[] = [
-  "rojava",
-  "afrin",
-  "iraq",
-  "international",
-];
+export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "afrin", "iraq"];
+
+/**
+ * Countries on the world map that have a register of their own, so their card
+ * can open it. The other ten are on that map because BCF's twenty-year poster
+ * puts them there; the poster names no project for them, and a card with
+ * nothing behind it should not offer a way in.
+ */
+export const BCF_GLOBAL_PROJECT_LOCATIONS: Partial<
+  Record<GlobalLocationId, LocationId>
+> = {
+  turkiye: "turkiye",
+  syria: "syria",
+  lebanon: "lebanon",
+};
 
 /**
  * A place on the map.
@@ -1071,11 +1082,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "Food and medical work reaching Baghdad, Diyala, Dhi Qar, Anbar and Samawah — 493,380 individuals in Iraq outside the Region in 2025.",
         explore: "Explore Projects",
       },
-      international: {
-        name: "International / Cross-border",
-        short: "International",
+      turkiye: {
+        name: "Türkiye",
+        short: "Türkiye",
         description:
-          "The Van camp in Türkiye, the 2023 earthquake response, and documented work in ten countries from Lebanon and Ukraine to Bangladesh and Australia.",
+          "The Van camp built with 400 caravans, and the 2023 earthquake response that crossed the border within days with rescue teams, hot meals and tents.",
+        explore: "Explore Projects",
+      },
+      syria: {
+        name: "Syria",
+        short: "Syria",
+        description:
+          "Where the earthquake response and the Afrin programme expanded BCF's work, and where the Western Kurdistan operation now runs.",
+        explore: "Explore Projects",
+      },
+      lebanon: {
+        name: "Lebanon",
+        short: "Lebanon",
+        description:
+          "Tents provided in Mam Rashan Camp to welcome Lebanese Kurds displaced by the regional crisis.",
         explore: "Explore Projects",
       },
     },
@@ -1733,11 +1758,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "کاری خۆراک و پزیشکی لە بەغدا، دیالە، زیقار، ئەنبار و سەماوە — ٤٩٣٬٣٨٠ کەس لە عێراق لە دەرەوەی هەرێم لە ٢٠٢٥.",
         explore: "پڕۆژەکان ببینە",
       },
-      international: {
-        name: "نێودەوڵەتی / سنووربڕ",
-        short: "نێودەوڵەتی",
+      turkiye: {
+        name: "تورکیا",
+        short: "تورکیا",
         description:
-          "کەمپی وان لە تورکیا، وەڵامدانەوەی بوومەلەرزەی ٢٠٢٣، و کاری تۆمارکراو لە دە وڵات لە لوبنان و ئۆکرانیاوە تا بەنگلادیش و ئۆسترالیا.",
+          "کەمپی وان بە ٤٠٠ کاروان، و وەڵامدانەوەی بوومەلەرزەی ٢٠٢٣ کە لە ماوەی چەند ڕۆژێکدا بە تیمی ڕزگارکردن، ژەمی گەرم و چادرەوە پەڕییەوە.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      syria: {
+        name: "سووریا",
+        short: "سووریا",
+        description:
+          "لێرەدا وەڵامدانەوەی بوومەلەرزە و بەرنامەی عەفرین کاری BCF فراوان کرد، و ئێستا کاری ڕۆژئاوای کوردستان لێرەدا بەڕێوەدەچێت.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      lebanon: {
+        name: "لوبنان",
+        short: "لوبنان",
+        description:
+          "چادر لە کەمپی مام ڕەشان بۆ پێشوازی لە کوردە لوبنانییەکان کە بەهۆی قەیرانی ناوچەکەوە ئاوارە بوون.",
         explore: "پڕۆژەکان ببینە",
       },
     },
@@ -2389,11 +2428,25 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "عمل غذائي وطبي وصل إلى بغداد وديالى وذي قار والأنبار والسماوة — ٤٩٣٬٣٨٠ فرداً في العراق خارج الإقليم عام ٢٠٢٥.",
         explore: "استكشف المشاريع",
       },
-      international: {
-        name: "دولي / عابر للحدود",
-        short: "دولي",
+      turkiye: {
+        name: "تركيا",
+        short: "تركيا",
         description:
-          "مخيم وان في تركيا، والاستجابة لزلزال ٢٠٢٣، وعمل موثّق في عشر دول من لبنان وأوكرانيا إلى بنغلاديش وأستراليا.",
+          "مخيم وان المبني بـ ٤٠٠ كرفان، والاستجابة لزلزال ٢٠٢٣ التي عبرت الحدود خلال أيام بفرق الإنقاذ والوجبات الساخنة والخيام.",
+        explore: "استكشف المشاريع",
+      },
+      syria: {
+        name: "سوريا",
+        short: "سوريا",
+        description:
+          "حيث وسّعت الاستجابة للزلزال وبرنامج عفرين عمل المؤسسة، وحيث تجري الآن عملية غربي كردستان.",
+        explore: "استكشف المشاريع",
+      },
+      lebanon: {
+        name: "لبنان",
+        short: "لبنان",
+        description:
+          "خيام قُدِّمت في مخيم مام رشان لاستقبال الأكراد اللبنانيين النازحين بفعل أزمة المنطقة.",
         explore: "استكشف المشاريع",
       },
     },

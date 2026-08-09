@@ -1290,23 +1290,42 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
     },
   ],
 
-  international: [
+  /*
+   * The cross-border work, filed under the countries it happened in rather than
+   * under one "International" heading.
+   *
+   * That heading was a category, not a place: it put the Van camp, the Türkiye
+   * earthquake, the Syria totals and the Lebanese Kurds' tents on one page that
+   * belonged nowhere on either map. Each of these three now hangs off its own
+   * country on the world map, which is where a visitor looking for Türkiye
+   * would go.
+   *
+   * The cumulative report's list of ten countries does not become entries here.
+   * It states that BCF's work reached them, which is exactly what the world map
+   * already says by plotting them — it names no project, so inventing project
+   * lines out of it would break the rule the rest of this file keeps.
+   */
+  turkiye: [
     {
       id: "emergency",
       entries: [
-        { year: "2011-12", text: "BCF constructed a camp in Van, Türkiye, with 400 caravans." },
+        { year: "2011-12", text: "BCF constructed a camp in Van with 400 caravans." },
         {
           year: "2023",
           text: "Major earthquake response in Türkiye: rescue, hot meals, food, tents, medical aid and heavy equipment.",
-          note: "The cumulative report records 4,129 tents for Türkiye and Syria earthquake victims.",
+          note: "The cumulative report records 4,129 tents for Türkiye and Syria earthquake victims together.",
         },
+      ],
+    },
+  ],
+
+  syria: [
+    {
+      id: "emergency",
+      entries: [
         {
           year: "2023",
           text: "The earthquake response and ongoing Afrin programming expanded BCF's work in Syria.",
-        },
-        {
-          year: "2024",
-          text: "BCF provided tents to welcome Lebanese Kurds in Mam Rashan Camp — the Kurdistan response to regional displacement.",
         },
         {
           year: "2026",
@@ -1318,13 +1337,20 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
       id: "community",
       entries: [
         {
-          year: "2005-24",
-          text: "The cumulative report documents humanitarian work in Lebanon, Ukraine, Serbia, Saudi Arabia, Yemen, Sudan, Morocco, Bangladesh, Australia and the United Kingdom.",
-          note: "Scale and sector differ by country.",
-        },
-        {
           year: "2025",
           text: "BCF reported 10,673 individual beneficiaries in Syria for the full year.",
+        },
+      ],
+    },
+  ],
+
+  lebanon: [
+    {
+      id: "emergency",
+      entries: [
+        {
+          year: "2024",
+          text: "BCF provided tents to welcome Lebanese Kurds in Mam Rashan Camp — the Kurdistan Region's response to displacement from Lebanon.",
         },
       ],
     },

@@ -198,8 +198,76 @@ export default function BcfMap({
           </motion.div>
         </motion.div>
 
+        {/* The near abroad, above the map rather than below it.
+            Two reasons it moved. On a 65" panel stood on its end, a control at
+            the foot of a 1920 artboard is around knee height — reachable in a
+            mockup, not by a visitor. And it only belongs to the Region half:
+            the world map answers "which countries?" itself, so a second list of
+            countries under it was the same question asked twice. */}
+        <AnimatePresence initial={false}>
+          {scope === "kurdistan" ? (
+            <motion.section
+              key="beyond"
+              className="mt-7 flex items-center gap-5 overflow-hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0, transition: { duration: 0.22 } }}
+              transition={{ duration: 0.45, ease: BCF_EASE }}
+            >
+              <h2
+                className="w-[190px] shrink-0 text-[28px] font-semibold leading-tight"
+                style={{ color: BCF.gold }}
+              >
+                {c.projects.beyondTitle}
+              </h2>
+              <div className="grid flex-1 grid-cols-3 gap-4">
+                {BCF_BEYOND_LOCATIONS.map((id) => (
+                  <motion.button
+                    key={id}
+                    type="button"
+                    onClick={() => onExploreProjects(id)}
+                    whileTap={BCF_TAP}
+                    transition={BCF_TAP_TRANSITION}
+                    className="flex transform-gpu items-center justify-between gap-3 rounded-2xl border border-white/12 bg-black/45 px-5 py-4 text-start backdrop-blur-md"
+                  >
+                    <span className="min-w-0">
+                      <span
+                        className="block truncate text-[26px] font-semibold leading-tight"
+                        style={{ color: BCF.creamSoft }}
+                      >
+                        {c.locations[id].short}
+                      </span>
+                      {/* Both numbers carry their own noun. "3 Sectors · 4"
+                          left the second one meaning nothing. */}
+                      <span className="mt-1 block text-[19px] text-white/50">
+                        <span className="tabular-nums">
+                          {bcfSectorsFor(id).length}
+                        </span>{" "}
+                        {c.projects.sectorsLabel} ·{" "}
+                        <span className="tabular-nums">{bcfEntryCountFor(id)}</span>{" "}
+                        {bcfEntryCountFor(id) === 1
+                          ? c.projects.entryLabel
+                          : c.projects.entriesLabel}
+                      </span>
+                    </span>
+                    <span
+                      className="grid h-11 w-11 shrink-0 place-items-center rounded-full border"
+                      style={{ borderColor: `${BCF.gold}80` }}
+                    >
+                      <ArrowRight
+                        className="h-5 w-5 rtl:rotate-180"
+                        style={{ color: BCF.gold }}
+                      />
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.section>
+          ) : null}
+        </AnimatePresence>
+
         <motion.div
-          className="relative mt-10 min-h-[980px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/28"
+          className="relative mt-7 min-h-[900px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/28"
           style={{
             boxShadow:
               "inset 0 1px 0 rgba(251,193,88,0.14), inset 0 0 140px rgba(0,0,0,0.5), 0 34px 90px rgba(0,0,0,0.45)",
@@ -600,8 +668,12 @@ export default function BcfMap({
                           </div>
                           {bcfYearSpanFor(selectedLocation) ? (
                             <div>
+                              {/* Smaller than its two neighbours: "2012 - 2026"
+                                  is nine glyphs where they are one or two, and
+                                  at 52px it wrapped and shoved its own caption
+                                  out of the row. */}
                               <p
-                                className="text-[52px] font-bold leading-none tabular-nums"
+                                className="whitespace-nowrap text-[40px] font-bold leading-none tabular-nums"
                                 style={{ color: BCF.gold }}
                                 dir="ltr"
                               >
@@ -647,58 +719,6 @@ export default function BcfMap({
             )}
           </AnimatePresence>
         </motion.div>
-
-        {/* The work that will not fit on either map.
-            Afrin and Western Kurdistan are across the Syrian border — the
-            Region artboard would have to grow fivefold to hold them, and the
-            world map deals in whole countries, so neither can open a city
-            register. The last two are not places at all but the groupings BCF's
-            own reporting uses. A row of four keeps them reachable without
-            pretending any of them is a pin. */}
-        <motion.section
-          className="mt-8"
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55, ease: BCF_EASE }}
-        >
-          <div className="flex items-baseline gap-5">
-            <h2 className="text-[32px] font-semibold" style={{ color: BCF.gold }}>
-              {c.projects.beyondTitle}
-            </h2>
-            <p className="text-[22px] text-white/50">{c.projects.beyondSubtitle}</p>
-          </div>
-
-          <div className="mt-5 grid grid-cols-4 gap-4">
-            {BCF_BEYOND_LOCATIONS.map((id) => (
-              <motion.button
-                key={id}
-                type="button"
-                onClick={() => onExploreProjects(id)}
-                whileTap={BCF_TAP}
-                transition={BCF_TAP_TRANSITION}
-                className="flex transform-gpu flex-col items-start rounded-2xl border border-white/10 bg-black/45 p-5 text-start backdrop-blur-md"
-              >
-                <span
-                  className="text-[27px] font-semibold leading-tight"
-                  style={{ color: BCF.creamSoft }}
-                >
-                  {c.locations[id].short}
-                </span>
-                <span className="mt-2 text-[20px] tabular-nums text-white/50">
-                  {bcfSectorsFor(id).length} {c.projects.sectorsLabel} ·{" "}
-                  {bcfEntryCountFor(id)}
-                </span>
-                <span
-                  className="mt-3 flex items-center gap-2 text-[20px]"
-                  style={{ color: BCF.gold }}
-                >
-                  {c.locations[id].explore}
-                  <ArrowRight className="h-5 w-5 rtl:rotate-180" />
-                </span>
-              </motion.button>
-            ))}
-          </div>
-        </motion.section>
       </div>
     </BcfShell>
   );

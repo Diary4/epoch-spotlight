@@ -87,7 +87,7 @@ function SectorTile({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className={`${BCF_GLASS_CARD} group flex min-h-[152px] transform-gpu items-center gap-5 overflow-hidden px-6 py-5 text-start`}
+      className={`${BCF_GLASS_CARD} group flex min-h-[152px] transform-gpu items-center gap-4 overflow-hidden px-5 py-5 text-start`}
       style={{
         borderColor: pressed ? BCF.gold : `${BCF.gold}73`,
         boxShadow: pressed
@@ -101,53 +101,58 @@ function SectorTile({
           fourteen matching plates in BCF's folders, and the list previously
           repeated one school photo down every row of every city. */}
       <span
-        className="grid h-[92px] w-[92px] shrink-0 place-items-center rounded-2xl border"
+        className="grid h-[76px] w-[76px] shrink-0 place-items-center rounded-2xl border"
         style={{
           borderColor: pressed ? BCF.gold : `${BCF.gold}55`,
           backgroundColor: pressed ? "rgba(251,178,47,0.16)" : "rgba(251,193,88,0.07)",
           transition: "all 400ms cubic-bezier(0.22,1,0.36,1)",
         }}
       >
-        <Icon className="h-11 w-11" style={{ color: BCF.gold }} />
+        <Icon className="h-9 w-9" style={{ color: BCF.gold }} />
       </span>
 
+      {/* Everything the tile says fits in three lines: the sector, then one
+          meta row carrying the count, the span and the era pips together. They
+          were three stacked rows, which cost 18px a tile — across five rows,
+          most of the clearance the panel needs at the bottom. */}
       <span className="min-w-0 flex-1">
-        <span className="block text-[30px] font-semibold leading-tight text-white">
+        <span className="block text-[28px] font-semibold leading-tight text-white">
           {title}
         </span>
-        {/* Count and span on one line. Two lines cost 26px on every tile, which
-            across five rows was most of the bottom margin the panel needs. */}
-        <span className="mt-2 block text-[21px] text-white/65">
-          <span className="tabular-nums">{record.entries.length}</span> {countLabel}
-          {span ? (
-            <span className="tabular-nums text-white/40" dir="ltr">
-              {" · "}
-              {span}
-            </span>
-          ) : null}
-        </span>
-        {/* Era pips. The recap asks a screen to keep history and this month
-            visibly apart; this is that distinction carried onto the list, so a
-            visitor can see which sectors are still running before opening one. */}
-        <span className="mt-3 flex items-center gap-2">
-          {eras.map((era) => (
-            <span
-              key={era}
-              className="h-[6px] w-9 rounded-full"
-              style={{ backgroundColor: BCF_ERA_COLORS[era] }}
-            />
-          ))}
+        <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 text-[21px] text-white/65">
+          <span>
+            <span className="tabular-nums">{record.entries.length}</span> {countLabel}
+            {span ? (
+              <span className="tabular-nums text-white/40" dir="ltr">
+                {" · "}
+                {span}
+              </span>
+            ) : null}
+          </span>
+          {/* Era pips. The recap asks a screen to keep history and this month
+              visibly apart; this is that distinction carried onto the list, so
+              a visitor can see which sectors are still running before opening
+              one. */}
+          <span className="flex items-center gap-1.5">
+            {eras.map((era) => (
+              <span
+                key={era}
+                className="h-[6px] w-8 rounded-full"
+                style={{ backgroundColor: BCF_ERA_COLORS[era] }}
+              />
+            ))}
+          </span>
         </span>
       </span>
 
       <span
-        className="grid h-12 w-12 shrink-0 place-items-center rounded-full border transition-transform duration-500 ease-smooth-out motion-reduce:transition-none"
+        className="grid h-11 w-11 shrink-0 place-items-center rounded-full border transition-transform duration-500 ease-smooth-out motion-reduce:transition-none"
         style={{
           borderColor: BCF.gold,
           transform: pressed ? "translateX(6px)" : "translateX(0)",
         }}
       >
-        <ArrowRight className="h-6 w-6 rtl:rotate-180" style={{ color: BCF.gold }} />
+        <ArrowRight className="h-5 w-5 rtl:rotate-180" style={{ color: BCF.gold }} />
       </span>
     </motion.button>
   );
