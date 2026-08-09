@@ -24,6 +24,7 @@ import {
   bcfEntryCountFor,
   bcfSectorsFor,
 } from "@/components/Sections/bcf/bcfProjectData";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -596,14 +597,14 @@ export default function BcfGlobalMap({
                     </span>
                     <span className="mt-0.5 block text-[19px] lowercase text-white/45">
                       <span className="tabular-nums">
-                        {bcfSectorsFor(projectLocation).length}
+                        {bcfDigits(bcfSectorsFor(projectLocation).length, lang)}
                       </span>{" "}
                       {bcfSectorsFor(projectLocation).length === 1
                         ? c.projects.sectorLabel
                         : c.projects.sectorsLabel}{" "}
                       ·{" "}
                       <span className="tabular-nums">
-                        {bcfEntryCountFor(projectLocation)}
+                        {bcfDigits(bcfEntryCountFor(projectLocation), lang)}
                       </span>{" "}
                       {c.projects.entriesShort}
                     </span>

@@ -26,6 +26,7 @@ import {
   bcfSectorsFor,
   bcfYearSpanFor,
 } from "@/components/Sections/bcf/bcfProjectData";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { BCF_SECTOR_ICONS } from "@/components/Sections/bcf/bcfSectorMeta";
 import BcfGlobalMap from "@/components/Sections/bcf/BcfGlobalMap";
 import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
@@ -37,6 +38,7 @@ import {
   bcfProjectPin,
 } from "@/components/Sections/bcf/bcfMapGeometry";
 import { bcfSunrise, bcfJourneyMap } from "@/components/Sections/bcf/bcfAssets";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 const filterIcons: Record<MapFilterId, typeof Building2> = {
   offices: Building2,
@@ -242,13 +244,15 @@ export default function BcfMap({
                           "Documented projects" wrapped the chip to three lines. */}
                       <span className="mt-1 block truncate text-[19px] lowercase text-white/50">
                         <span className="tabular-nums">
-                          {bcfSectorsFor(id).length}
+                          {bcfDigits(bcfSectorsFor(id).length, lang)}
                         </span>{" "}
                         {bcfSectorsFor(id).length === 1
                           ? c.projects.sectorLabel
                           : c.projects.sectorsLabel}{" "}
                         ·{" "}
-                        <span className="tabular-nums">{bcfEntryCountFor(id)}</span>{" "}
+                        <span className="tabular-nums">
+                          {bcfDigits(bcfEntryCountFor(id), lang)}
+                        </span>{" "}
                         {c.projects.entriesShort}
                       </span>
                     </span>
@@ -652,7 +656,7 @@ export default function BcfMap({
                               className="text-[52px] font-bold leading-none tabular-nums"
                               style={{ color: BCF.gold }}
                             >
-                              {bcfSectorsFor(selectedLocation).length}
+                              {bcfDigits(bcfSectorsFor(selectedLocation).length, lang)}
                             </p>
                             <p className="mt-2 text-[22px] text-white/75">
                               {c.projects.sectorsLabel}
@@ -663,7 +667,7 @@ export default function BcfMap({
                               className="text-[52px] font-bold leading-none tabular-nums"
                               style={{ color: BCF.gold }}
                             >
-                              {bcfEntryCountFor(selectedLocation)}
+                              {bcfDigits(bcfEntryCountFor(selectedLocation), lang)}
                             </p>
                             <p className="mt-2 text-[22px] text-white/75">
                               {c.projects.entriesLabel}
@@ -680,7 +684,7 @@ export default function BcfMap({
                                 style={{ color: BCF.gold }}
                                 dir="ltr"
                               >
-                                {bcfYearSpanFor(selectedLocation)}
+                                {bcfDigits(bcfYearSpanFor(selectedLocation)!, lang)}
                               </p>
                               <p className="mt-2 text-[22px] text-white/75">
                                 {c.projects.yearsLabel}

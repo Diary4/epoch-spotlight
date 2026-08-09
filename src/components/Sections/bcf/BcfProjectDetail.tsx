@@ -21,6 +21,7 @@ import {
   BCF_SECTOR_HERO,
   BCF_SECTOR_ICONS,
 } from "@/components/Sections/bcf/bcfSectorMeta";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 /**
  * One sector of one city, as a timeline.
@@ -163,7 +164,7 @@ export default function BcfProjectDetail({
                   style={{ color: BCF.gold }}
                   dir="ltr"
                 >
-                  {orgTotal}
+                  {bcfDigits(orgTotal, lang)}
                 </span>
               </span>
               <span
@@ -235,7 +236,10 @@ export default function BcfProjectDetail({
                       style={{ color: BCF_ERA_COLORS[group.era] }}
                       dir="ltr"
                     >
-                      {c.projects.yearMarkers[entry.year] ?? entry.year}
+                      {bcfDigits(
+                        c.projects.yearMarkers[entry.year] ?? entry.year,
+                        lang,
+                      )}
                     </span>
 
                     <span

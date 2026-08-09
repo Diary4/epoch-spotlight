@@ -28,6 +28,8 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfProjectsBg } from "@/components/Sections/bcf/bcfAssets";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 /**
  * The city page: which sectors this place has documented work in, and how much
@@ -65,12 +67,14 @@ function SectorTile({
   title,
   countLabel,
   minHeight,
+  lang,
   onOpen,
 }: {
   record: BcfSectorRecord;
   title: string;
   countLabel: string;
   minHeight: number;
+  lang: BcfLang;
   onOpen: () => void;
 }) {
   const [pressed, setPressed] = React.useState(false);
@@ -124,14 +128,17 @@ function SectorTile({
         </span>
         <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 text-[21px] text-white/65">
           <span>
-            <span className="tabular-nums">{record.entries.length}</span> {countLabel}
+            <span className="tabular-nums">
+              {bcfDigits(record.entries.length, lang)}
+            </span>{" "}
+            {countLabel}
             {span ? (
               <span
                 className="whitespace-nowrap tabular-nums text-white/40"
                 dir="ltr"
               >
                 {" · "}
-                {span}
+                {bcfDigits(span, lang)}
               </span>
             ) : null}
           </span>
@@ -228,7 +235,7 @@ export default function BcfProjects({
             variants={bcfRise}
             className="mt-4 max-w-[920px] text-[24px] leading-[1.5] text-white/72"
           >
-            {location.description}
+            {bcfDigits(location.description, lang)}
           </motion.p>
 
           {/* Three counts, all read off the register below rather than stated
@@ -240,7 +247,7 @@ export default function BcfProjects({
                 className="block text-[48px] font-bold leading-none tabular-nums"
                 style={{ color: BCF.gold }}
               >
-                {sectors.length}
+                {bcfDigits(sectors.length, lang)}
               </span>
               <span className="mt-2 block text-[21px] text-white/65">
                 {sectors.length === 1
@@ -253,7 +260,7 @@ export default function BcfProjects({
                 className="block text-[48px] font-bold leading-none tabular-nums"
                 style={{ color: BCF.gold }}
               >
-                {entryCount}
+                {bcfDigits(entryCount, lang)}
               </span>
               <span className="mt-2 block text-[21px] text-white/65">
                 {entryCount === 1 ? c.projects.entryLabel : c.projects.entriesLabel}
@@ -266,7 +273,7 @@ export default function BcfProjects({
                   style={{ color: BCF.gold }}
                   dir="ltr"
                 >
-                  {span}
+                  {bcfDigits(span, lang)}
                 </span>
                 <span className="mt-2 block text-[21px] text-white/65">
                   {c.projects.yearsLabel}
@@ -293,6 +300,7 @@ export default function BcfProjects({
           {sectors.map((record) => (
             <SectorTile
               key={record.id}
+              lang={lang}
               record={record}
               title={c.projects.sectors[record.id]}
               countLabel={
@@ -301,6 +309,7 @@ export default function BcfProjects({
                   : c.projects.entriesLabel
               }
               minHeight={tileMinHeight}
+              lang={lang}
               onOpen={() => onOpenSector(record.id)}
             />
           ))}
