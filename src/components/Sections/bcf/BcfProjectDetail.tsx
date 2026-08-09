@@ -51,17 +51,20 @@ function groupByEra(entries: BcfProjectEntry[]): EraGroup[] {
  * Type scale by how much there is to say.
  *
  * The shell does not scroll: a sector that runs past 1920px is a sector whose
- * last years nobody can read. Erbil's shelter register carries six entries and
- * three scope notes, which at the roomy setting ended 80px below the panel.
- * Rather than set everything to the size the worst case needs — and leave
- * Akre's single-entry health page looking like fine print — the page picks a
- * density from the count it is actually rendering.
+ * last years nobody can read. The register's heaviest page — Erbil's shelter
+ * work, six entries with three scope notes — needs the middle setting to land
+ * inside the panel with margin. But it is the exception: 51 of the 87 sector
+ * pages carry one or two entries, and setting all of them at the size the worst
+ * case needs would leave most of the experience reading as fine print.
+ *
+ * The third tier is a guard rather than a case that exists today; it keeps the
+ * page honest if a future year pushes a sector past six.
  */
 function densityFor(count: number) {
-  if (count <= 3) {
-    return { body: 26, note: 21, pad: "p-6", gap: "gap-5", band: "gap-10" };
+  if (count <= 4) {
+    return { body: 27, note: 21, pad: "p-6", gap: "gap-5", band: "gap-10" };
   }
-  if (count <= 5) {
+  if (count <= 6) {
     return { body: 25, note: 20, pad: "p-5", gap: "gap-4", band: "gap-8" };
   }
   return { body: 23, note: 19, pad: "px-5 py-4", gap: "gap-3.5", band: "gap-7" };
@@ -92,75 +95,47 @@ export default function BcfProjectDetail({
   return (
     <BcfShell
       backgroundImage={BCF_SECTOR_HERO[sectorId]}
-      overlayClassName="bg-black/88"
+      overlayClassName="bg-black/90"
       drift={false}
     >
-      {/* The shell's logo mark is 172px tall at top-10, so the header has to
-          start below 212 or it runs straight through the lockup. */}
-      <div className="relative flex min-h-[1920px] flex-col px-14 pb-14 pt-[236px]">
+      {/* Two hard margins on this panel. The shell's logo mark is 172px tall at
+          top-10, so the header has to start below 212 or it runs straight
+          through the lockup. And the foot of a 1920 artboard is knee height on
+          a 65" screen stood on its end, so the last 220px stay clear rather
+          than carrying the closing line. */}
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-[220px] pt-[236px]">
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfStagger(0.08, 0.12)} initial="initial" animate="animate">
-          {/* Title and the 2025 figure share one band. The figure had a card of
-              its own, which cost 150px the timeline below needed. */}
-          <motion.div variants={bcfRise} className="flex items-end justify-between gap-8">
-            <span className="flex min-w-0 items-center gap-5">
-              <span
-                className="grid h-[88px] w-[88px] shrink-0 place-items-center rounded-2xl border"
-                style={{
-                  borderColor: `${BCF.gold}66`,
-                  backgroundColor: "rgba(251,193,88,0.09)",
-                }}
-              >
-                <Icon className="h-11 w-11" style={{ color: BCF.gold }} />
-              </span>
-              <span className="min-w-0">
-                <span
-                  className="block text-[25px] leading-tight tracking-[0.18em]"
-                  style={{ color: BCF.nature }}
-                >
-                  {location.name}
-                </span>
-                <h1
-                  className="mt-2 block text-[54px] font-bold leading-[1.08]"
-                  style={{ color: BCF.creamSoft }}
-                >
-                  {sectorName}
-                </h1>
-              </span>
-            </span>
-
-            {/* The one figure BCF publishes for this sector in 2025 — and it is
-                an organisation-wide figure, not this city's. It keeps its own
-                label and its own caveat below, because the source's editorial
-                rule is that scopes are never quietly mixed. */}
-            {orgTotal ? (
-              <span className="shrink-0 text-end">
-                <span
-                  className="block whitespace-nowrap text-[22px] tracking-[0.14em]"
-                  style={{ color: BCF.goldDeep }}
-                >
-                  {c.projects.orgTotalLabel}
-                </span>
-                <span
-                  className="mt-1 block text-[52px] font-bold leading-none tabular-nums"
-                  style={{ color: BCF.gold }}
-                  dir="ltr"
-                >
-                  {orgTotal}
-                </span>
-              </span>
-            ) : null}
-          </motion.div>
-
-          {orgTotal ? (
-            <motion.p
-              variants={bcfRise}
-              className="mt-3 text-end text-[18px] leading-snug text-white/40"
+          {/* The title keeps the left edge to itself. The 2025 figure sat
+              opposite it, which put it underneath the reach rail — the rail is
+              pinned to the right of the artboard from y=170 down, so the whole
+              top-right corner is spoken for on every screen. */}
+          <motion.div variants={bcfRise} className="flex items-center gap-5 pe-[150px]">
+            <span
+              className="grid h-[88px] w-[88px] shrink-0 place-items-center rounded-2xl border"
+              style={{
+                borderColor: `${BCF.gold}66`,
+                backgroundColor: "rgba(251,193,88,0.09)",
+              }}
             >
-              {c.projects.orgTotalNote}
-            </motion.p>
-          ) : null}
+              <Icon className="h-11 w-11" style={{ color: BCF.gold }} />
+            </span>
+            <span className="min-w-0">
+              <span
+                className="block text-[25px] leading-tight tracking-[0.18em]"
+                style={{ color: BCF.nature }}
+              >
+                {location.name}
+              </span>
+              <h1
+                className="mt-2 block text-[54px] font-bold leading-[1.08]"
+                style={{ color: BCF.creamSoft }}
+              >
+                {sectorName}
+              </h1>
+            </span>
+          </motion.div>
 
           <motion.span
             variants={bcfRise}
@@ -169,6 +144,37 @@ export default function BcfProjectDetail({
               background: `linear-gradient(90deg, ${BCF.gold}, transparent 78%)`,
             }}
           />
+
+          {/* The one figure BCF publishes for this sector in 2025 — and it is an
+              organisation-wide figure, not this city's. It keeps its own label
+              and carries its caveat on the same line, because the source's
+              editorial rule is that scopes are never quietly mixed. */}
+          {orgTotal ? (
+            <motion.div variants={bcfRise} className="mt-6 flex items-center gap-6">
+              <span className="shrink-0">
+                <span
+                  className="block whitespace-nowrap text-[21px] tracking-[0.14em]"
+                  style={{ color: BCF.goldDeep }}
+                >
+                  {c.projects.orgTotalLabel}
+                </span>
+                <span
+                  className="mt-1 block text-[46px] font-bold leading-none tabular-nums"
+                  style={{ color: BCF.gold }}
+                  dir="ltr"
+                >
+                  {orgTotal}
+                </span>
+              </span>
+              <span
+                className="h-[62px] w-px shrink-0"
+                style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
+              />
+              <p className="text-[19px] leading-snug text-white/45">
+                {c.projects.orgTotalNote}
+              </p>
+            </motion.div>
+          ) : null}
         </motion.div>
 
         <motion.p
@@ -181,7 +187,13 @@ export default function BcfProjectDetail({
           {c.projects.timelineTitle}
         </motion.p>
 
-        <div className={`relative mt-6 flex flex-col ${d.band}`}>
+        {/* The timeline takes the rest of the panel and sits in the middle of
+            it. Two thirds of these pages carry one or two entries; anchored to
+            the top they left two thirds of a 65" screen empty below them, which
+            reads as a page that failed to load rather than a short register. */}
+        <div
+          className={`relative mt-6 flex flex-1 flex-col justify-center ${d.band}`}
+        >
           {/* The spine. A single rule down the whole timeline rather than one
               per band, so the years read as one continuous run and the era
               headings sit on it as markers instead of breaking it into pieces. */}
@@ -239,7 +251,7 @@ export default function BcfProjectDetail({
                       className={`min-w-0 flex-1 rounded-2xl border ${d.pad} ltr:ml-[30px] rtl:mr-[30px]`}
                       style={{
                         borderColor: "rgba(255,255,255,0.09)",
-                        backgroundColor: "rgba(0,0,0,0.52)",
+                        backgroundColor: "rgba(6,8,12,0.72)",
                       }}
                     >
                       <p
@@ -270,7 +282,7 @@ export default function BcfProjectDetail({
           ))}
         </div>
 
-        <p className="mt-8 text-[18px] leading-snug text-white/35">
+        <p className="mt-8 shrink-0 text-[18px] leading-snug text-white/35">
           {c.projects.sourceNote}
         </p>
       </div>

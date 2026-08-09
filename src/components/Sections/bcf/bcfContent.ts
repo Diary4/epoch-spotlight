@@ -415,7 +415,7 @@ export type LegacyPillar = {
   titleGold: string;
 };
 
-export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy" | "values";
+export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy";
 
 export type StorySection = {
   id: StorySectionId;
@@ -423,12 +423,6 @@ export type StorySection = {
   titleWhite: string;
   body?: string;
 };
-
-/**
- * One value from roadmap page 04. The Values chapter scrolls as a long column
- * rather than a pane of floating pills, so each value carries its full text.
- */
-export type StoryValue = { id: string; title: string; body: string };
 
 export type HumanStoryId =
   | "school"
@@ -490,10 +484,6 @@ export type BcfCopy = {
   storyTimelineEnd: string;
   storyScrollHint: string;
   storySections: StorySection[];
-  storyValuesIntro: string;
-  storyValues: StoryValue[];
-  /** Captions under the three portraits in the Values chapter. */
-  storyValuesCaptions: string[];
   whereWeWork: string;
   across: string;
   borders: string;
@@ -811,50 +801,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleWhite: "Philosophy",
         body: "Humanitarian work is not charity from above. It is service with dignity, delivered to people as human beings, not as statistics.",
       },
-      {
-        id: "values",
-        titleGold: "Values",
-        titleWhite: "Behind the Mission",
-      },
-    ],
-    storyValuesIntro:
-      "BCF operates through values that shape both local and international humanitarian work.",
-    storyValues: [
-      {
-        id: "neutrality",
-        title: "Humanitarian Neutrality",
-        body: "BCF provides aid based on need alone, without discrimination based on politics, ethnicity, religion, gender or background.",
-      },
-      {
-        id: "dignity",
-        title: "Dignity in Giving",
-        body: "Support is delivered in a way that protects the honor and self-worth of every person served.",
-      },
-      {
-        id: "resilience",
-        title: "Resilience and Empowerment",
-        body: "BCF works beyond emergency relief by helping communities rebuild, recover and become self-reliant.",
-      },
-      {
-        id: "coexistence",
-        title: "Coexistence and Harmony",
-        body: "BCF promotes peaceful coexistence among Kurdistan's diverse ethnic and religious communities.",
-      },
-      {
-        id: "vulnerable",
-        title: "Supporting the Vulnerable",
-        body: "BCF serves poor families, IDPs, refugees, people with disabilities, elderly people, orphans and other vulnerable groups.",
-      },
-      {
-        id: "transparency",
-        title: "Transparency",
-        body: "BCF maintains accountability to donors, partners and beneficiaries to ensure that resources reach those most in need.",
-      },
-    ],
-    storyValuesCaptions: [
-      "Masrour Barzani, President of the Board of Founders",
-      "Service before self — leadership measured by what it gives",
-      "A humanitarian philosophy carried into a second generation",
     ],
     whereWeWork: "Where We Work",
     across: "Across",
@@ -1525,50 +1471,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleWhite: "مرۆڤدۆستانە",
         body: "وتەی «خزمەتکردنی گەلی خۆت، شانازییە» تەنها دروشمێک نییە؛ بەڵکو بنەمای ئەخلاقیی کارەکانی دەزگای خێرخوازیی بارزانییە. کاری مرۆیی بەخشینێک نییە لە سەرەوە، بەڵکو خزمەتکردنە بە کەرامەتەوە.",
       },
-      {
-        id: "values",
-        titleGold: "بەهاکانی",
-        titleWhite: "پشت پەیامەکە",
-      },
-    ],
-    storyValuesIntro:
-      "دەزگای خێرخوازیی بارزانی لە ڕێگەی کۆمەڵێک بەهاوە کاردەکات کە کاری مرۆیی ناوخۆیی و نێودەوڵەتی دادەڕێژن.",
-    storyValues: [
-      {
-        id: "neutrality",
-        title: "بێلایەنیی مرۆیی",
-        body: "هاوکارییەکان تەنها لەسەر بنەمای پێویستی پێشکەش دەکرێن، بەبێ جیاکاری لەسەر بنەمای ڕامیاری، نەتەوە، ئاین، ڕەگەز یان بنچینە.",
-      },
-      {
-        id: "dignity",
-        title: "کەرامەت لە بەخشیندا",
-        body: "پاڵپشتییەکان بە شێوازێک پێشکەش دەکرێن کە پارێزگاری لە کەرامەت و بەهای خودیی هەر کەسێک بکەن کە خزمەت دەکرێت.",
-      },
-      {
-        id: "resilience",
-        title: "خۆڕاگری و بەهێزکردن",
-        body: "کارەکانی دەزگای خێرخوازیی بارزانی لە سنووری فریاگوزاریی خێرا تێدەپەڕن؛ ئەمەش لە ڕێگەی یارمەتیدانی کۆمەڵگەکان بۆ بونیاتنانەوە، چاکبوونەوە و پشتبەستن بە خۆیان.",
-      },
-      {
-        id: "coexistence",
-        title: "پێکەوەژیان و تەبایی",
-        body: "دەزگای خێرخوازیی بارزانی کار دەکات بۆ بڵاوکردنەوەی پێکەوەژیانی ئاشتیانە لە نێوان پێکهاتە نەتەوەیی و ئاینییە جیاوازەکانی کوردستاندا.",
-      },
-      {
-        id: "vulnerable",
-        title: "پاڵپشتیکردنی لێقەوماوان",
-        body: "خزمەت بە خێزانە هەژارەکان، ئاوارەکان، پەنابەران، خاوەن پێداویستییە تایبەتەکان، بەساڵاچووان، بێسەرپەرشتان و گروپە لێقەوماوەکانی دیکە دەکات.",
-      },
-      {
-        id: "transparency",
-        title: "شەفافییەت",
-        body: "دەزگای خێرخوازیی بارزانی بەرپرسیارێتی لە بەرامبەر بەخشەران، هاوبەشان و سوودمەندان هەڵدەگرێت بۆ دڵنیابوونەوە لەوەی سەرچاوەکان دەگەنە دەست ئەو کەسانەی پێویستیان پێیەتی.",
-      },
-    ],
-    storyValuesCaptions: [
-      "مەسرور بارزانی، سەرۆکی بۆردی دامەزرێنەران",
-      "خزمەتکردن پێش خود — سەرکردایەتی بەوە دەپێورێت کە چی دەبەخشێت",
-      "فەلسەفەیەکی مرۆڤدۆستانە کە بۆ نەوەی دووەم گوازراوەتەوە",
     ],
     whereWeWork: "لە کوێ کار دەکەین",
     across: "لەسەر",
@@ -2200,50 +2102,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleWhite: "الإنسانية",
         body: "العمل الإنساني ليس إحساناً من الأعلى، بل خدمة بكرامة تُقدَّم للناس كبشر، لا كأرقام.",
       },
-      {
-        id: "values",
-        titleGold: "القيم",
-        titleWhite: "التي تقوم عليها الرسالة",
-      },
-    ],
-    storyValuesIntro:
-      "تعمل المؤسسة وفق قيم تصوغ عملها الإنساني محلياً ودولياً.",
-    storyValues: [
-      {
-        id: "neutrality",
-        title: "الحياد الإنساني",
-        body: "تقدّم المؤسسة مساعداتها بناءً على الحاجة فقط، دون تمييز على أساس السياسة أو العرق أو الدين أو الجنس أو الخلفية الاجتماعية.",
-      },
-      {
-        id: "dignity",
-        title: "الكرامة في العطاء",
-        body: "يُقدَّم الدعم بطريقة تحافظ على كرامة كل شخص واحترام ذاته.",
-      },
-      {
-        id: "resilience",
-        title: "الصمود والتمكين",
-        body: "لا تتوقف المؤسسة عند حدود الإغاثة الطارئة، بل تساعد المجتمعات على إعادة البناء والتعافي والاعتماد على الذات.",
-      },
-      {
-        id: "coexistence",
-        title: "التعايش والانسجام",
-        body: "تعزّز المؤسسة التعايش السلمي بين مكوّنات كوردستان العرقية والدينية المتنوعة.",
-      },
-      {
-        id: "vulnerable",
-        title: "دعم الفئات الضعيفة",
-        body: "تخدم المؤسسة الأسر الفقيرة والنازحين واللاجئين وذوي الإعاقة وكبار السن والأيتام وغيرهم من الفئات المستضعفة.",
-      },
-      {
-        id: "transparency",
-        title: "الشفافية",
-        body: "تلتزم المؤسسة بالمساءلة أمام المانحين والشركاء والمستفيدين لضمان وصول الموارد إلى مستحقيها.",
-      },
-    ],
-    storyValuesCaptions: [
-      "مسرور بارزاني، رئيس مجلس المؤسسين",
-      "الخدمة قبل الذات — القيادة تُقاس بما تقدّمه",
-      "فلسفة إنسانية انتقلت إلى جيل ثانٍ",
     ],
     whereWeWork: "أين نعمل",
     across: "عبر",
