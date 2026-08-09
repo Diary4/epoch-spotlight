@@ -133,6 +133,7 @@ export default function BcfImpact({
                   <div className="mt-auto">
                     <BcfStatValue
                       value={enItems[index]?.value ?? item.value}
+                      lang={lang}
                       className="text-[76px] font-semibold leading-none"
                       color="#fbf4e4"
                       duration={2.8}

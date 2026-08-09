@@ -15,6 +15,8 @@ interface CountUpProps {
    * figures where a spring would chatter through every digit place.
    */
   smooth?: boolean;
+  /** Remap the formatted figure (e.g. Western → Arabic-Indic digits). */
+  formatDigits?: (value: string) => string;
   onStart?: () => void;
   onEnd?: () => void;
 }
@@ -29,6 +31,7 @@ export default function CountUp({
   startWhen = true,
   separator = "",
   smooth = false,
+  formatDigits,
   onStart,
   onEnd,
 }: CountUpProps) {
@@ -57,9 +60,12 @@ export default function CountUp({
         maximumFractionDigits: hasDecimals ? maxDecimals : 0,
       };
       const formattedNumber = Intl.NumberFormat("en-US", options).format(latest);
-      return separator ? formattedNumber.replace(/,/g, separator) : formattedNumber;
+      const withSep = separator
+        ? formattedNumber.replace(/,/g, separator)
+        : formattedNumber;
+      return formatDigits ? formatDigits(withSep) : withSep;
     },
-    [maxDecimals, separator],
+    [maxDecimals, separator, formatDigits],
   );
 
   useEffect(() => {

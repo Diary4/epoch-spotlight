@@ -1,10 +1,14 @@
+import { useCallback } from "react";
 import { motion } from "motion/react";
 import CountUp from "@/components/CountUp";
 import { parseBcfStat } from "@/components/Sections/bcf/bcfStat";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
+import type { BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 
 type BcfStatValueProps = {
   value: string;
+  lang: BcfLang;
   className?: string;
   duration?: number;
   delay?: number;
@@ -15,6 +19,7 @@ type BcfStatValueProps = {
 
 export default function BcfStatValue({
   value,
+  lang,
   className = "text-[52px] font-bold",
   duration = 2,
   delay = 0,
@@ -22,6 +27,11 @@ export default function BcfStatValue({
   smooth = false,
 }: BcfStatValueProps) {
   const stat = parseBcfStat(value);
+  const formatDigits = useCallback(
+    (digits: string) => bcfDigits(digits, lang),
+    [lang],
+  );
+
   return (
     <motion.span
       className={`inline-flex items-baseline font-sans tabular-nums tracking-[-0.03em] ${className}`}
@@ -33,7 +43,7 @@ export default function BcfStatValue({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: delay * 0.85, ease: [0.22, 1, 0.36, 1] }}
     >
-      {stat.prefix}
+      {bcfDigits(stat.prefix, lang)}
       <CountUp
         to={stat.to}
         duration={duration}
@@ -41,8 +51,9 @@ export default function BcfStatValue({
         separator={stat.separator}
         className={className}
         smooth={smooth}
+        formatDigits={formatDigits}
       />
-      {stat.suffix}
+      {bcfDigits(stat.suffix, lang)}
     </motion.span>
   );
 }

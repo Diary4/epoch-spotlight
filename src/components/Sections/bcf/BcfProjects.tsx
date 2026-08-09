@@ -243,7 +243,9 @@ export default function BcfProjects({
                 {sectors.length}
               </span>
               <span className="mt-2 block text-[21px] text-white/65">
-                {c.projects.sectorsLabel}
+                {sectors.length === 1
+                  ? c.projects.sectorLabel
+                  : c.projects.sectorsLabel}
               </span>
             </span>
             <span>
@@ -254,7 +256,7 @@ export default function BcfProjects({
                 {entryCount}
               </span>
               <span className="mt-2 block text-[21px] text-white/65">
-                {c.projects.entriesLabel}
+                {entryCount === 1 ? c.projects.entryLabel : c.projects.entriesLabel}
               </span>
             </span>
             {span ? (
@@ -281,7 +283,9 @@ export default function BcfProjects({
         </motion.div>
 
         <motion.div
-          className="mt-9 grid grid-cols-2 gap-5"
+          className={`mt-9 grid gap-5 ${
+            sectors.length === 1 ? "grid-cols-1" : "grid-cols-2"
+          }`}
           variants={bcfStagger(0.06, 0.28)}
           initial="initial"
           animate="animate"
