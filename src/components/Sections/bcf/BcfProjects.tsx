@@ -34,6 +34,11 @@ import { bcfProjectsBg } from "@/components/Sections/bcf/bcfAssets";
  * of it. It used to list three invented projects — the same three titles for
  * every city, with invented figures under them. What it lists now is the real
  * register, and the counts on each row are derived from it rather than typed.
+ *
+ * Two columns, not one. Duhok and Nineveh each document nine sectors, and a
+ * single column of nine rows ran off the bottom of the 1920 artboard — which on
+ * a kiosk means sectors nobody can reach, since the shell does not scroll. Five
+ * rows of two clear the panel with room to spare for every city.
  */
 
 /** The eras a sector's entries fall into, oldest band first, deduplicated. */
@@ -55,14 +60,12 @@ function spanOf(record: BcfSectorRecord): string | null {
   return min === max ? String(min) : `${min} - ${max}`;
 }
 
-function SectorRow({
-  index,
+function SectorTile({
   record,
   title,
   entriesLabel,
   onOpen,
 }: {
-  index: number;
   record: BcfSectorRecord;
   title: string;
   entriesLabel: string;
@@ -84,7 +87,7 @@ function SectorRow({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className={`${BCF_GLASS_CARD} group flex transform-gpu items-center gap-6 overflow-hidden px-6 py-5 text-start`}
+      className={`${BCF_GLASS_CARD} group flex min-h-[168px] transform-gpu items-center gap-5 overflow-hidden px-6 py-5 text-start`}
       style={{
         borderColor: pressed ? BCF.gold : `${BCF.gold}73`,
         boxShadow: pressed
@@ -98,30 +101,28 @@ function SectorRow({
           fourteen matching plates in BCF's folders, and the list previously
           repeated one school photo down every row of every city. */}
       <span
-        className="grid h-[104px] w-[104px] shrink-0 place-items-center rounded-2xl border"
+        className="grid h-[92px] w-[92px] shrink-0 place-items-center rounded-2xl border"
         style={{
           borderColor: pressed ? BCF.gold : `${BCF.gold}55`,
           backgroundColor: pressed ? "rgba(251,178,47,0.16)" : "rgba(251,193,88,0.07)",
           transition: "all 400ms cubic-bezier(0.22,1,0.36,1)",
         }}
       >
-        <Icon className="h-12 w-12" style={{ color: BCF.gold }} />
+        <Icon className="h-11 w-11" style={{ color: BCF.gold }} />
       </span>
 
-      <div className="min-w-0 flex-1">
-        <span
-          className="text-[22px] font-medium tabular-nums"
-          style={{ color: BCF.goldDeep }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <h2 className="mt-1 text-[36px] font-semibold leading-tight text-white">
+      <span className="min-w-0 flex-1">
+        <span className="block text-[30px] font-semibold leading-tight text-white">
           {title}
-        </h2>
-        <p className="mt-2 text-[22px] text-white/70">
+        </span>
+        <span className="mt-2 block text-[21px] text-white/65">
           <span className="tabular-nums">{record.entries.length}</span> {entriesLabel}
-          {span ? <span className="text-white/45"> · {span}</span> : null}
-        </p>
+        </span>
+        {span ? (
+          <span className="mt-1 block text-[21px] tabular-nums text-white/40" dir="ltr">
+            {span}
+          </span>
+        ) : null}
         {/* Era pips. The recap asks a screen to keep history and this month
             visibly apart; this is that distinction carried onto the list, so a
             visitor can see which sectors are still running before opening one. */}
@@ -129,21 +130,21 @@ function SectorRow({
           {eras.map((era) => (
             <span
               key={era}
-              className="h-[6px] w-10 rounded-full"
+              className="h-[6px] w-9 rounded-full"
               style={{ backgroundColor: BCF_ERA_COLORS[era] }}
             />
           ))}
         </span>
-      </div>
+      </span>
 
       <span
-        className="mx-1 grid h-14 w-14 shrink-0 place-items-center rounded-full border transition-transform duration-500 ease-smooth-out motion-reduce:transition-none"
+        className="grid h-12 w-12 shrink-0 place-items-center rounded-full border transition-transform duration-500 ease-smooth-out motion-reduce:transition-none"
         style={{
           borderColor: BCF.gold,
           transform: pressed ? "translateX(6px)" : "translateX(0)",
         }}
       >
-        <ArrowRight className="h-7 w-7 rtl:rotate-180" style={{ color: BCF.gold }} />
+        <ArrowRight className="h-6 w-6 rtl:rotate-180" style={{ color: BCF.gold }} />
       </span>
     </motion.button>
   );
@@ -177,27 +178,30 @@ export default function BcfProjects({
 
   return (
     <BcfShell backgroundImage={bcfProjectsBg} overlayClassName="bg-black/72">
-      <div className="relative flex min-h-[1920px] flex-col px-14 pb-20 pt-40">
+      {/* The shell's logo mark is 172px tall at top-10, so anything above 212px
+          lands underneath it. The header used to start at 160 and the eyebrow
+          ran straight through the lockup. */}
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-16 pt-[240px]">
         <BcfBackButton onClick={onBack} label={c.back} />
 
-        <motion.div variants={bcfStagger(0.1, 0.16)} initial="initial" animate="animate">
+        <motion.div variants={bcfStagger(0.09, 0.14)} initial="initial" animate="animate">
           <motion.p
             variants={bcfRise}
-            className="text-[28px] tracking-[0.2em]"
+            className="text-[26px] leading-tight tracking-[0.2em]"
             style={{ color: BCF.nature }}
           >
             {c.whereWeWork}
           </motion.p>
           <motion.h1
             variants={bcfRise}
-            className="mt-5 text-[64px] font-semibold leading-tight"
+            className="mt-4 text-[60px] font-semibold leading-[1.08]"
           >
             <span style={{ color: BCF.gold }}>{c.projectsIn}</span>{" "}
             <span className="text-white">{location.name}</span>
           </motion.h1>
           <motion.p
             variants={bcfRise}
-            className="mt-5 max-w-[860px] text-[26px] leading-relaxed text-white/72"
+            className="mt-4 max-w-[920px] text-[24px] leading-[1.5] text-white/72"
           >
             {location.description}
           </motion.p>
@@ -205,39 +209,39 @@ export default function BcfProjects({
           {/* Three counts, all read off the register below rather than stated
               independently of it, so the header can never disagree with the
               list it introduces. */}
-          <motion.div variants={bcfRise} className="mt-8 flex items-end gap-14">
+          <motion.div variants={bcfRise} className="mt-7 flex items-end gap-14">
             <span>
               <span
-                className="block text-[52px] font-bold leading-none tabular-nums"
+                className="block text-[48px] font-bold leading-none tabular-nums"
                 style={{ color: BCF.gold }}
               >
                 {sectors.length}
               </span>
-              <span className="mt-2 block text-[22px] text-white/65">
+              <span className="mt-2 block text-[21px] text-white/65">
                 {c.projects.sectorsLabel}
               </span>
             </span>
             <span>
               <span
-                className="block text-[52px] font-bold leading-none tabular-nums"
+                className="block text-[48px] font-bold leading-none tabular-nums"
                 style={{ color: BCF.gold }}
               >
                 {entryCount}
               </span>
-              <span className="mt-2 block text-[22px] text-white/65">
+              <span className="mt-2 block text-[21px] text-white/65">
                 {c.projects.entriesLabel}
               </span>
             </span>
             {span ? (
               <span>
                 <span
-                  className="block text-[52px] font-bold leading-none tabular-nums"
+                  className="block text-[48px] font-bold leading-none tabular-nums"
                   style={{ color: BCF.gold }}
                   dir="ltr"
                 >
                   {span}
                 </span>
-                <span className="mt-2 block text-[22px] text-white/65">
+                <span className="mt-2 block text-[21px] text-white/65">
                   {c.projects.yearsLabel}
                 </span>
               </span>
@@ -246,21 +250,20 @@ export default function BcfProjects({
 
           <motion.span
             variants={bcfDrawX}
-            className="mt-8 block h-px w-[380px] origin-left"
+            className="mt-7 block h-px w-[380px] origin-left"
             style={{ background: `linear-gradient(90deg, ${BCF.gold}, transparent)` }}
           />
         </motion.div>
 
         <motion.div
-          className="mt-12 flex flex-col gap-5"
-          variants={bcfStagger(0.07, 0.3)}
+          className="mt-9 grid grid-cols-2 gap-5"
+          variants={bcfStagger(0.06, 0.28)}
           initial="initial"
           animate="animate"
         >
-          {sectors.map((record, index) => (
-            <SectorRow
+          {sectors.map((record) => (
+            <SectorTile
               key={record.id}
-              index={index}
               record={record}
               title={c.projects.sectors[record.id]}
               entriesLabel={c.projects.entriesLabel}
@@ -269,7 +272,7 @@ export default function BcfProjects({
           ))}
         </motion.div>
 
-        <p className="mt-12 max-w-[900px] text-[20px] leading-relaxed text-white/40">
+        <p className="mt-9 max-w-[900px] text-[19px] leading-relaxed text-white/40">
           {c.projects.sourceNote}
         </p>
       </div>
