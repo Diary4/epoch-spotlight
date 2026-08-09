@@ -10,7 +10,6 @@ import {
 import {
   bcfEraForYear,
   bcfSectorsFor,
-  bcfYearSortKey,
   type BcfEraId,
   type BcfSectorRecord,
   type SectorId,

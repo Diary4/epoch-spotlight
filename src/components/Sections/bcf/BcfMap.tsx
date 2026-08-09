@@ -199,7 +199,7 @@ export default function BcfMap({
         </motion.div>
 
         <motion.div
-          className="relative mt-10 min-h-[1100px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/28"
+          className="relative mt-10 min-h-[980px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/28"
           style={{
             boxShadow:
               "inset 0 1px 0 rgba(251,193,88,0.14), inset 0 0 140px rgba(0,0,0,0.5), 0 34px 90px rgba(0,0,0,0.45)",
@@ -544,37 +544,74 @@ export default function BcfMap({
                         <p className="max-w-[760px] text-[24px] leading-relaxed text-white/80">
                           {selected.description}
                         </p>
-                        <div className="relative mt-6 overflow-hidden rounded-xl">
-                          <img
-                            src={locationImages[selectedLocation]}
-                            alt=""
-                            className="h-[280px] w-full object-cover"
-                          />
-                          <span
-                            className="pointer-events-none absolute inset-0"
-                            style={{
-                              background:
-                                "linear-gradient(180deg, rgba(4,7,10,0) 55%, rgba(4,7,10,0.55) 100%)",
-                            }}
-                          />
+
+                        {/* Sectors, not a landscape photograph. The card used to
+                            show a tourist plate of the nearest beauty spot — a
+                            waterfall for Sulaymaniyah, a castle for Kirkuk — and
+                            two invented totals underneath. What a visitor is
+                            about to open is a register of sectors, so that is
+                            what the card previews, drawn from the same data. */}
+                        <div className="mt-7 flex flex-wrap gap-3">
+                          {bcfSectorsFor(selectedLocation).map((record) => {
+                            const SectorIcon = BCF_SECTOR_ICONS[record.id];
+                            return (
+                              <span
+                                key={record.id}
+                                className="flex items-center gap-2.5 rounded-full border px-4 py-2"
+                                style={{
+                                  borderColor: `${BCF.gold}3d`,
+                                  backgroundColor: "rgba(251,193,88,0.07)",
+                                }}
+                              >
+                                <SectorIcon
+                                  className="h-6 w-6 shrink-0"
+                                  style={{ color: BCF.gold }}
+                                />
+                                <span className="text-[22px] text-white/85">
+                                  {c.projects.sectors[record.id]}
+                                </span>
+                              </span>
+                            );
+                          })}
                         </div>
-                        <div className="mt-7 grid grid-cols-2 gap-8">
+
+                        <div className="mt-7 grid grid-cols-3 gap-8">
                           <div>
-                            <BcfStatValue
-                              value={selected.projectsStat}
-                              className="text-[52px] font-bold leading-none"
-                            />
+                            <p
+                              className="text-[52px] font-bold leading-none tabular-nums"
+                              style={{ color: BCF.gold }}
+                            >
+                              {bcfSectorsFor(selectedLocation).length}
+                            </p>
                             <p className="mt-2 text-[22px] text-white/75">
-                              {selected.projectsLabel}
+                              {c.projects.sectorsLabel}
                             </p>
                           </div>
                           <div>
-                            <BcfStatValue
-                              value={selected.peopleStat}
-                              className="text-[52px] font-bold leading-none"
-                            />
-                            <p className="mt-2 text-[22px] text-white/75">{selected.peopleLabel}</p>
+                            <p
+                              className="text-[52px] font-bold leading-none tabular-nums"
+                              style={{ color: BCF.gold }}
+                            >
+                              {bcfEntryCountFor(selectedLocation)}
+                            </p>
+                            <p className="mt-2 text-[22px] text-white/75">
+                              {c.projects.entriesLabel}
+                            </p>
                           </div>
+                          {bcfYearSpanFor(selectedLocation) ? (
+                            <div>
+                              <p
+                                className="text-[52px] font-bold leading-none tabular-nums"
+                                style={{ color: BCF.gold }}
+                                dir="ltr"
+                              >
+                                {bcfYearSpanFor(selectedLocation)}
+                              </p>
+                              <p className="mt-2 text-[22px] text-white/75">
+                                {c.projects.yearsLabel}
+                              </p>
+                            </div>
+                          ) : null}
                         </div>
                         <motion.button
                           type="button"
@@ -610,6 +647,58 @@ export default function BcfMap({
             )}
           </AnimatePresence>
         </motion.div>
+
+        {/* The work that will not fit on either map.
+            Afrin and Western Kurdistan are across the Syrian border — the
+            Region artboard would have to grow fivefold to hold them, and the
+            world map deals in whole countries, so neither can open a city
+            register. The last two are not places at all but the groupings BCF's
+            own reporting uses. A row of four keeps them reachable without
+            pretending any of them is a pin. */}
+        <motion.section
+          className="mt-8"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55, ease: BCF_EASE }}
+        >
+          <div className="flex items-baseline gap-5">
+            <h2 className="text-[32px] font-semibold" style={{ color: BCF.gold }}>
+              {c.projects.beyondTitle}
+            </h2>
+            <p className="text-[22px] text-white/50">{c.projects.beyondSubtitle}</p>
+          </div>
+
+          <div className="mt-5 grid grid-cols-4 gap-4">
+            {BCF_BEYOND_LOCATIONS.map((id) => (
+              <motion.button
+                key={id}
+                type="button"
+                onClick={() => onExploreProjects(id)}
+                whileTap={BCF_TAP}
+                transition={BCF_TAP_TRANSITION}
+                className="flex transform-gpu flex-col items-start rounded-2xl border border-white/10 bg-black/45 p-5 text-start backdrop-blur-md"
+              >
+                <span
+                  className="text-[27px] font-semibold leading-tight"
+                  style={{ color: BCF.creamSoft }}
+                >
+                  {c.locations[id].short}
+                </span>
+                <span className="mt-2 text-[20px] tabular-nums text-white/50">
+                  {bcfSectorsFor(id).length} {c.projects.sectorsLabel} ·{" "}
+                  {bcfEntryCountFor(id)}
+                </span>
+                <span
+                  className="mt-3 flex items-center gap-2 text-[20px]"
+                  style={{ color: BCF.gold }}
+                >
+                  {c.locations[id].explore}
+                  <ArrowRight className="h-5 w-5 rtl:rotate-180" />
+                </span>
+              </motion.button>
+            ))}
+          </div>
+        </motion.section>
       </div>
     </BcfShell>
   );

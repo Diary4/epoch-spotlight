@@ -23,14 +23,15 @@ import BcfHumanStories from "@/components/Sections/bcf/BcfHumanStories";
 import BcfImpactGallery from "@/components/Sections/bcf/BcfImpactGallery";
 import { BCF_PERF_CLASS } from "@/components/Sections/bcf/bcfPerf";
 import {
+  BCF_LOCATIONS,
   bcfCopy,
   type BcfLang,
   type BcfStep,
   type ImpactGalleryId,
   type JourneyChapterId,
   type LocationId,
-  type ProjectId,
 } from "@/components/Sections/bcf/bcfContent";
+import type { SectorId } from "@/components/Sections/bcf/bcfProjectData";
 
 /** Steps that draw their own back control, which the rail has to clear. */
 const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
@@ -62,7 +63,7 @@ export default function BcfPage() {
   const [lang, setLang] = React.useState<BcfLang>("en");
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
-  const [projectId, setProjectId] = React.useState<ProjectId | null>(null);
+  const [sectorId, setSectorId] = React.useState<SectorId | null>(null);
   const [impactGalleryId, setImpactGalleryId] =
     React.useState<ImpactGalleryId | null>(null);
   const [languageOpen, setLanguageOpen] = React.useState(false);
@@ -100,7 +101,7 @@ export default function BcfPage() {
     setLanguageOrigin("entry");
     setModalLocation(null);
     setLocationId(null);
-    setProjectId(null);
+    setSectorId(null);
     setImpactGalleryId(null);
     setLang("en");
     setStep("attract");
@@ -261,26 +262,31 @@ export default function BcfPage() {
             locationId={locationId}
             onBack={() =>
               go(() => {
-                setModalLocation(locationId);
+                /* Reopen the card only for places that are pins. Coming back
+                   from Rojava or "Other Iraqi Governorates" would otherwise
+                   raise a location card over a map that has no marker for it. */
+                setModalLocation(
+                  BCF_LOCATIONS.some((loc) => loc.id === locationId) ? locationId : null,
+                );
                 setStep("map");
               })
             }
-            onOpenProject={(id) =>
+            onOpenSector={(id) =>
               go(() => {
-                setProjectId(id);
+                setSectorId(id);
                 setStep("projectDetail");
               })
             }
           />
         );
       case "projectDetail":
-        if (!locationId || !projectId) return null;
+        if (!locationId || !sectorId) return null;
         return (
           <BcfProjectDetail
-            key={`project-${locationId}-${projectId}`}
+            key={`project-${locationId}-${sectorId}`}
             lang={lang}
             locationId={locationId}
-            projectId={projectId}
+            sectorId={sectorId}
             onBack={() => go(() => setStep("projects"))}
           />
         );
