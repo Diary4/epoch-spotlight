@@ -29,7 +29,6 @@ import {
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfProjectsBg } from "@/components/Sections/bcf/bcfAssets";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 /**
  * The city page: which sectors this place has documented work in, and how much
@@ -300,7 +299,6 @@ export default function BcfProjects({
           {sectors.map((record) => (
             <SectorTile
               key={record.id}
-              lang={lang}
               record={record}
               title={c.projects.sectors[record.id]}
               countLabel={

@@ -14,6 +14,7 @@ import {
   type TrustTopicId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   BCF_EASE,
   BCF_TAP,
@@ -175,7 +176,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     className="mt-auto self-end text-[42px] font-bold tabular-nums"
                     style={{ color: BCF.gold }}
                   >
-                    {String(index + 1).padStart(2, "0")}
+                    {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
                   </span>
                 </motion.div>
               ))}

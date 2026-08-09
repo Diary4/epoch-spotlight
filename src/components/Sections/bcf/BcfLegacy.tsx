@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   bcfDrawX,
   bcfRise,
@@ -127,7 +128,7 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
                   className="grid w-[150px] shrink-0 place-items-center text-[46px] font-bold tabular-nums"
                   style={{ color: `${BCF.gold}cc` }}
                 >
-                  {String(index + 1).padStart(2, "0")}
+                  {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
                 </span>
 
                 <span className="flex min-w-0 flex-1 flex-col justify-center gap-2 pe-8">

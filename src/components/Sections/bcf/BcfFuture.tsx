@@ -14,6 +14,7 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfJourneyFuture, bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfFutureProps = {
   lang: BcfLang;
@@ -31,16 +32,18 @@ const CIRCLE = 580;
 function FuturePortal({
   index,
   title,
+  lang,
   onOpen,
   reduceMotion,
 }: {
   index: number;
   title: string;
+  lang: BcfLang;
   onOpen: () => void;
   reduceMotion: boolean | null;
 }) {
   const [pressed, setPressed] = React.useState(false);
-  const label = String(index + 1).padStart(2, "0");
+  const label = bcfDigits(String(index + 1).padStart(2, "0"), lang);
 
   return (
     <motion.button
@@ -167,6 +170,7 @@ export default function BcfFuture({
               key={portal.title}
               index={index}
               title={portal.title}
+              lang={lang}
               onOpen={portal.open}
               reduceMotion={reduceMotion}
             />

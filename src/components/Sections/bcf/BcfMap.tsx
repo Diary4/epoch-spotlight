@@ -38,7 +38,6 @@ import {
   bcfProjectPin,
 } from "@/components/Sections/bcf/bcfMapGeometry";
 import { bcfSunrise, bcfJourneyMap } from "@/components/Sections/bcf/bcfAssets";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 const filterIcons: Record<MapFilterId, typeof Building2> = {
   offices: Building2,
@@ -617,7 +616,7 @@ export default function BcfMap({
                           </motion.button>
                         </div>
                         <p className="max-w-[760px] text-[24px] leading-relaxed text-white/80">
-                          {selected.description}
+                          {bcfDigits(selected.description, lang)}
                         </p>
 
                         {/* Sectors, not a landscape photograph. The card used to

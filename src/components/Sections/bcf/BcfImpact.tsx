@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Sun } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   bcfCopy,
   type BcfLang,
@@ -120,7 +121,7 @@ export default function BcfImpact({
                 <div className="relative z-10 flex h-full flex-col p-9">
                   <div className="flex items-start justify-between">
                     <span className="text-[28px] font-light text-white/55">
-                      {String(index + 1).padStart(2, "0")}
+                      {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
                     </span>
                     <span
                       className="grid h-11 w-11 place-items-center rounded-full border"

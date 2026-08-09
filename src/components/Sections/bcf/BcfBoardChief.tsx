@@ -8,6 +8,7 @@ import {
   BCF_FIELD_BG,
   BCF_GLASS_CARD,
 } from "@/components/Sections/bcf/bcfTheme";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   BCF_EASE,
   BCF_TAP_FIRM,
@@ -114,7 +115,7 @@ export default function BcfBoardChief({
               className="pb-2 text-[34px] font-medium tabular-nums"
               style={{ color: BCF.gold }}
             >
-              {chief.timelineRange}
+              {bcfDigits(chief.timelineRange, lang)}
             </motion.span>
           </motion.div>
 
@@ -131,6 +132,7 @@ export default function BcfBoardChief({
           <GovernanceTimeline
             milestones={chief.timelineMilestones}
             rtl={rtl}
+            lang={lang}
           />
         </div>
       </BcfShell>
@@ -497,9 +499,11 @@ function threadPath(count: number, rtl: boolean) {
 function GovernanceTimeline({
   milestones,
   rtl,
+  lang,
 }: {
   milestones: { id: string; year: string; title: string; body: string }[];
   rtl: boolean;
+  lang: BcfLang;
 }) {
   const reduceMotion = useReducedMotion();
   const count = milestones.length;
@@ -601,7 +605,7 @@ function GovernanceTimeline({
                 className="text-[46px] font-bold leading-none tabular-nums"
                 style={{ color: BCF.gold }}
               >
-                {milestone.year}
+                {bcfDigits(milestone.year, lang)}
               </p>
               <p
                 className="mt-3 text-[31px] font-semibold leading-tight"

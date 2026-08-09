@@ -15,6 +15,7 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfCorridor, bcfErbil, bcfJourneyStory } from "@/components/Sections/bcf/bcfAssets";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfStoryProps = {
   lang: BcfLang;
@@ -23,17 +24,8 @@ type BcfStoryProps = {
 
 const PANE_HEIGHT = 1920;
 
-/** Arabic-Indic digits used for Kurdish and Arabic chapter markers. */
-const ARABIC_INDIC = "٠١٢٣٤٥٦٧٨٩";
-
-function formatChapterDigits(value: number, lang: BcfLang) {
-  const latin = String(value).padStart(2, "0");
-  if (lang === "en") return latin;
-  return latin.replace(/\d/g, (digit) => ARABIC_INDIC[Number(digit)] ?? digit);
-}
-
 function chapterLabel(index: number, lang: BcfLang) {
-  return formatChapterDigits(index + 1, lang);
+  return bcfDigits(String(index + 1).padStart(2, "0"), lang);
 }
 
 /**
@@ -229,8 +221,8 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     className="mt-14 flex w-full max-w-[920px] flex-col gap-3"
                   >
                     <div className="flex items-center justify-between text-[40px] font-medium text-white">
-                      <span>{c.storyTimelineStart}</span>
-                      <span>{c.storyTimelineEnd}</span>
+                      <span>{bcfDigits(c.storyTimelineStart, lang)}</span>
+                      <span>{bcfDigits(c.storyTimelineEnd, lang)}</span>
                     </div>
                     <span className="relative h-1 w-full bg-white/25">
                       <motion.span

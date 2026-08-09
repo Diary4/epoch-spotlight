@@ -262,7 +262,7 @@ export default function BcfProjectDetail({
                         className="leading-[1.45] text-white/90"
                         style={{ fontSize: d.body }}
                       >
-                        {entry.text}
+                        {bcfDigits(entry.text, lang)}
                       </p>
                       {entry.note ? (
                         <p
@@ -275,7 +275,7 @@ export default function BcfProjectDetail({
                           <span style={{ color: BCF.goldDeep }}>
                             {c.projects.scopeNote}:
                           </span>{" "}
-                          {entry.note}
+                          {bcfDigits(entry.note, lang)}
                         </p>
                       ) : null}
                     </div>

@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -59,7 +60,7 @@ export default function BcfIdleOverlay({
               className="mx-auto grid h-[168px] w-[168px] place-items-center rounded-full border-2 font-display-num text-[80px]"
               style={{ borderColor: BCF.goldDeep, color: BCF.gold }}
             >
-              {count}
+              {bcfDigits(count, lang)}
             </span>
             <h2
               id="bcf-idle-title"

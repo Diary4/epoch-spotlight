@@ -24,6 +24,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfSectionsProps = {
   lang: BcfLang;
@@ -216,7 +217,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
             if (!chapter) return null;
             const isActive = activeId === item.id;
             const size = isActive ? CIRCLE + 16 : CIRCLE;
-            const label = String(index + 1).padStart(2, "0");
+            const label = bcfDigits(String(index + 1).padStart(2, "0"), lang);
 
             return (
               /* The centring translate lives on a plain wrapper: motion writes

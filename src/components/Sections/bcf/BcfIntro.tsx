@@ -9,6 +9,7 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfIntroProps = {
   lang: BcfLang;
@@ -135,7 +136,7 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
                 className="font-sans text-[19px] font-semibold"
                 style={{ color: `${BCF.nature}b0`, letterSpacing: "0.24em" }}
               >
-                {String(index + 1).padStart(2, "0")}
+                {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
               </span>
               <span
                 className="font-sans text-[46px] font-bold uppercase leading-none"
