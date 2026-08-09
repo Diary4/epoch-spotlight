@@ -108,11 +108,15 @@ export default function BcfProjectDetail({
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfStagger(0.08, 0.12)} initial="initial" animate="animate">
-          {/* The title keeps the left edge to itself. The 2025 figure sat
+          {/* The title keeps the leading edge to itself. The 2025 figure sat
               opposite it, which put it underneath the reach rail — the rail is
               pinned to the right of the artboard from y=170 down, so the whole
-              top-right corner is spoken for on every screen. */}
-          <motion.div variants={bcfRise} className="flex items-center gap-5 pe-[150px]">
+              top-right corner is spoken for on every screen.
+              `pr`, not `pe`: the rail and the back control are anchored to
+              physical right in both directions (see BcfReachRail), so a logical
+              inset would clear the wrong side in Kurdish and Arabic and drop
+              the sector icon straight under the rail. */}
+          <motion.div variants={bcfRise} className="flex items-center gap-5 pr-[150px]">
             <span
               className="grid h-[88px] w-[88px] shrink-0 place-items-center rounded-2xl border"
               style={{
@@ -258,15 +262,26 @@ export default function BcfProjectDetail({
                         backgroundColor: "rgba(6,8,12,0.72)",
                       }}
                     >
+                      {/* The entry bodies are English — they are paraphrased
+                          from English-language BCF reporting and are not yet
+                          translated — so they are marked as English rather than
+                          inheriting the page direction. Left in an RTL run they
+                          came out with the full stop leading the sentence, and
+                          their figures are left in Western digits because
+                          "٧٥١ households" is neither script's convention. The
+                          chrome around them is translated and localised
+                          normally. */}
                       <p
-                        className="leading-[1.45] text-white/90"
+                        dir="ltr"
+                        className="text-start leading-[1.45] text-white/90"
                         style={{ fontSize: d.body }}
                       >
-                        {bcfDigits(entry.text, lang)}
+                        {entry.text}
                       </p>
                       {entry.note ? (
                         <p
-                          className="mt-3 border-t pt-3 leading-snug text-white/45"
+                          dir="ltr"
+                          className="mt-3 border-t pt-3 text-start leading-snug text-white/45"
                           style={{
                             fontSize: d.note,
                             borderColor: "rgba(255,255,255,0.08)",
@@ -275,7 +290,7 @@ export default function BcfProjectDetail({
                           <span style={{ color: BCF.goldDeep }}>
                             {c.projects.scopeNote}:
                           </span>{" "}
-                          {bcfDigits(entry.note, lang)}
+                          {entry.note}
                         </p>
                       ) : null}
                     </div>
