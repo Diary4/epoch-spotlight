@@ -64,11 +64,13 @@ function SectorTile({
   record,
   title,
   countLabel,
+  minHeight,
   onOpen,
 }: {
   record: BcfSectorRecord;
   title: string;
   countLabel: string;
+  minHeight: number;
   onOpen: () => void;
 }) {
   const [pressed, setPressed] = React.useState(false);
@@ -87,8 +89,9 @@ function SectorTile({
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className={`${BCF_GLASS_CARD} group flex min-h-[152px] transform-gpu items-center gap-4 overflow-hidden px-5 py-5 text-start`}
+      className={`${BCF_GLASS_CARD} group flex transform-gpu items-center gap-4 overflow-hidden px-5 py-5 text-start`}
       style={{
+        minHeight,
         borderColor: pressed ? BCF.gold : `${BCF.gold}73`,
         boxShadow: pressed
           ? `0 0 40px ${BCF.gold}33`
@@ -123,7 +126,10 @@ function SectorTile({
           <span>
             <span className="tabular-nums">{record.entries.length}</span> {countLabel}
             {span ? (
-              <span className="tabular-nums text-white/40" dir="ltr">
+              <span
+                className="whitespace-nowrap tabular-nums text-white/40"
+                dir="ltr"
+              >
                 {" · "}
                 {span}
               </span>
@@ -184,12 +190,23 @@ export default function BcfProjects({
     ? `${Math.min(...years)} - ${Math.max(...years)}`
     : null;
 
+  /**
+   * Tile height follows how many rows there are.
+   *
+   * Duhok and Nineveh fill five rows and need every tile at its tightest to
+   * clear the panel. Amedi documents three sectors, and at that same height the
+   * page was two small cards adrift in 800px of photograph. Rows, not sectors,
+   * because two columns means three sectors and four occupy the same space.
+   */
+  const rows = Math.ceil(sectors.length / 2);
+  const tileMinHeight = rows <= 2 ? 210 : rows === 3 ? 178 : 152;
+
   return (
-    <BcfShell backgroundImage={bcfProjectsBg} overlayClassName="bg-black/72">
+    <BcfShell backgroundImage={bcfProjectsBg} overlayClassName="bg-black/80">
       {/* The shell's logo mark is 172px tall at top-10, so anything above 212px
           lands underneath it. The header used to start at 160 and the eyebrow
           ran straight through the lockup. */}
-      <div className="relative flex min-h-[1920px] flex-col px-14 pb-16 pt-[240px]">
+      <div className="relative flex min-h-[1920px] flex-col px-14 pb-[210px] pt-[240px]">
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfStagger(0.09, 0.14)} initial="initial" animate="animate">
@@ -279,12 +296,16 @@ export default function BcfProjects({
                   ? c.projects.entryLabel
                   : c.projects.entriesLabel
               }
+              minHeight={tileMinHeight}
               onOpen={() => onOpenSector(record.id)}
             />
           ))}
         </motion.div>
 
-        <p className="mt-9 max-w-[900px] text-[19px] leading-relaxed text-white/40">
+        {/* Pushed to the foot of the panel rather than trailing the last tile,
+            so the closing line lands in the same place on a three-sector city
+            as on a nine-sector one. */}
+        <p className="mt-auto max-w-[900px] pt-9 text-[19px] leading-relaxed text-white/40">
           {c.projects.sourceNote}
         </p>
       </div>

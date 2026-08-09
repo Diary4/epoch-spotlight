@@ -271,6 +271,8 @@ type ProjectsCopy = {
   /** Undated year markers, translated where the source used a word not a year. */
   yearMarkers: Record<string, string>;
   sectorsLabel: string;
+  /** Singular, for the countries that document exactly one sector. */
+  sectorLabel: string;
   /** Plural, and the singular beside it — "1 documented projects" reads as a bug. */
   entriesLabel: string;
   entryLabel: string;
@@ -663,6 +665,7 @@ const projectsEn: ProjectsCopy = {
   eras: ERAS_EN,
   yearMarkers: YEAR_MARKERS_EN,
   sectorsLabel: "Sectors",
+  sectorLabel: "Sector",
   entriesLabel: "Documented projects",
   entryLabel: "Documented project",
   entriesShort: "projects",
@@ -683,6 +686,7 @@ const projectsKu: ProjectsCopy = {
   eras: ERAS_KU,
   yearMarkers: YEAR_MARKERS_KU,
   sectorsLabel: "کەرتەکان",
+  sectorLabel: "کەرت",
   entriesLabel: "پڕۆژەی تۆمارکراو",
   entryLabel: "پڕۆژەی تۆمارکراو",
   entriesShort: "پڕۆژە",
@@ -703,6 +707,7 @@ const projectsAr: ProjectsCopy = {
   eras: ERAS_AR,
   yearMarkers: YEAR_MARKERS_AR,
   sectorsLabel: "القطاعات",
+  sectorLabel: "قطاع",
   entriesLabel: "مشاريع موثّقة",
   entryLabel: "مشروع موثّق",
   entriesShort: "مشاريع",

@@ -504,7 +504,11 @@ export default function BcfGlobalMap({
         {detail && selectedLoc ? (
           <motion.div
             key={selectedLoc.id}
-            className="absolute inset-x-8 bottom-8 z-30"
+            /* Centred, not pinned to the foot of the stage. The card carries
+               the one button on this half of the screen, and at the bottom of a
+               1920 artboard that button is knee height on a 65" panel stood on
+               its end. */
+            className="absolute inset-x-8 top-1/2 z-30 -translate-y-1/2"
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 32, transition: { duration: 0.24 } }}
@@ -594,7 +598,10 @@ export default function BcfGlobalMap({
                       <span className="tabular-nums">
                         {bcfSectorsFor(projectLocation).length}
                       </span>{" "}
-                      {c.projects.sectorsLabel} ·{" "}
+                      {bcfSectorsFor(projectLocation).length === 1
+                        ? c.projects.sectorLabel
+                        : c.projects.sectorsLabel}{" "}
+                      ·{" "}
                       <span className="tabular-nums">
                         {bcfEntryCountFor(projectLocation)}
                       </span>{" "}

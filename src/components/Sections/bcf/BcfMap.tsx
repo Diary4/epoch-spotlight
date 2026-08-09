@@ -244,7 +244,10 @@ export default function BcfMap({
                         <span className="tabular-nums">
                           {bcfSectorsFor(id).length}
                         </span>{" "}
-                        {c.projects.sectorsLabel} ·{" "}
+                        {bcfSectorsFor(id).length === 1
+                          ? c.projects.sectorLabel
+                          : c.projects.sectorsLabel}{" "}
+                        ·{" "}
                         <span className="tabular-nums">{bcfEntryCountFor(id)}</span>{" "}
                         {c.projects.entriesShort}
                       </span>
