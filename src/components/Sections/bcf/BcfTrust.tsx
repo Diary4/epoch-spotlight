@@ -226,23 +226,29 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           overlayClassName="bg-black/70"
         >
           <TrustChrome title={qualityTitle} backLabel={c.back} onBack={goBack}>
+            {/* The rail used to arrive as one slab with the panel. Cascading the
+                six credentials down and letting the certificate settle beside
+                them reads as the page assembling itself. */}
             <motion.div
-              className="mx-auto mt-14 flex w-full max-w-[1040px] gap-8"
-              initial={{ opacity: 0, y: 34 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="mx-auto mt-24 flex w-full max-w-[1120px] gap-8"
+              variants={bcfStagger(0.16, 0.2)}
+              initial="initial"
+              animate="animate"
             >
-              <div className="flex w-[340px] shrink-0 flex-col gap-4">
+              <motion.div
+                className="flex w-[440px] shrink-0 flex-col gap-5"
+                variants={bcfStagger(0.07, 0)}
+              >
                 {c.trustCredentials.map((item, index) => {
                   const selected = index === credentialIndex;
                   return (
+                    <motion.div key={item.id} variants={bcfRiseCard}>
                     <motion.button
-                      key={item.id}
                       type="button"
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative flex transform-gpu items-center justify-between gap-4 overflow-hidden rounded-2xl px-6 py-5 text-start text-[26px] font-medium leading-snug backdrop-blur-md"
+                      className="relative flex w-full transform-gpu items-center justify-between gap-5 overflow-hidden rounded-2xl px-7 py-6 text-start text-[30px] font-medium leading-snug backdrop-blur-md"
                       style={{
                         border: "1px solid",
                         borderColor: selected ? BCF.gold : "rgba(255,255,255,0.22)",
@@ -255,18 +261,22 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                           "border-color 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms cubic-bezier(0.22,1,0.36,1), color 300ms, box-shadow 300ms",
                       }}
                     >
-                      <span className="min-w-0 flex-1">{item.title}</span>
+                      <span className="min-w-0 flex-1">
+                        {bcfDigits(item.title, lang)}
+                      </span>
                       <ChevronRight
-                        className="h-6 w-6 shrink-0 rtl:rotate-180"
+                        className="h-7 w-7 shrink-0 rtl:rotate-180"
                         style={{ color: BCF.gold }}
                         strokeWidth={2.25}
                       />
                     </motion.button>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
 
-              <div
+              <motion.div
+                variants={bcfRiseCard}
                 className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden p-6`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
@@ -309,7 +319,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     {activeCredential.body}
                   </motion.p>
                 </AnimatePresence>
-              </div>
+              </motion.div>
             </motion.div>
           </TrustChrome>
         </BcfShell>
@@ -442,10 +452,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       );
     }
 
+    // The hub and the Leadership grid were the only two Trust screens with no
+    // photograph behind them, so they also had no ken-burns drift — two still
+    // pages among four drifting ones.
     return (
-      {/* The hub and the Leadership grid were the only two Trust screens with
-          no photograph behind them, so they also had no ken-burns drift — a
-          still page between four drifting ones. */}
       <BcfShell
         key="hub"
         showLogo={false}
