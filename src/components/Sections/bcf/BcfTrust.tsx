@@ -37,7 +37,6 @@ import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
 import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
 import hubBg from "@/assets/images/bcf/selected/trust-bg.webp";
-import leadershipBg from "@/assets/images/bcf/selected/trust-leadership.webp";
 import founderA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
 import founderB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
 import founderC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
@@ -65,7 +64,6 @@ const topicThumbs: Record<TrustTopicId, string> = {
 };
 
 const topicBgs: Partial<Record<TrustTopicId, string>> = {
-  leadership: leadershipBg,
   quality: qualityBg,
   partnerships: partnershipsBg,
   recognition: recognitionBg,
@@ -146,8 +144,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="leadership"
           showLogo={false}
-          backgroundImage={topicBgs.leadership}
-          overlayClassName="bg-black/78"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
             {/* The four cards below name the layers of the foundation but nobody

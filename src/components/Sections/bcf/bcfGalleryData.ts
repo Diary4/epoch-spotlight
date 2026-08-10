@@ -1,30 +1,34 @@
-import erbil from "@/assets/images/TouristicPlace/ErbilCastle/IMG_8636 copy.webp";
-import gali from "@/assets/images/TouristicPlace/GaliAliBag/16.webp";
-import ahmed from "@/assets/images/TouristicPlace/AhmedAwa/1000140566.webp";
-import lalish from "@/assets/images/religions/yazidi/lalish.webp";
-import service from "@/assets/images/PrimeMinistir/service.webp";
-import welcome from "@/assets/images/women/w-4.webp";
-import coexistence from "@/assets/images/religions/coexistence/masoud-barzani.webp";
-import kurds from "@/assets/images/religions/kurds/cover.webp";
+/**
+ * Shared BCF gallery plates — humanitarian field photography only.
+ * Touristic / other-section borrowings were removed from this experience.
+ */
+import camps from "@/assets/images/bcf/selected/impact-camps.webp";
+import schools from "@/assets/images/bcf/selected/impact-schools.webp";
+import employees from "@/assets/images/bcf/selected/impact-employees.webp";
+import relief from "@/assets/images/bcf/selected/humanity-relief.webp";
+import community from "@/assets/images/bcf/selected/humanity-community.webp";
+import education from "@/assets/images/bcf/selected/humanity-education.webp";
+import health from "@/assets/images/bcf/selected/humanity-health.webp";
+import recovery from "@/assets/images/bcf/selected/humanstories-recovery.webp";
 
 export const bcfGalleryItems = [
-  { image: erbil, text: "Erbil" },
-  { image: gali, text: "Duhok" },
-  { image: ahmed, text: "Sulaymaniyah" },
-  { image: lalish, text: "Communities" },
-  { image: service, text: "Service" },
-  { image: welcome, text: "Hope" },
-  { image: coexistence, text: "Dignity" },
-  { image: kurds, text: "Kurdistan" },
+  { image: camps, text: "Camps" },
+  { image: schools, text: "Schools" },
+  { image: employees, text: "Team" },
+  { image: relief, text: "Relief" },
+  { image: community, text: "Community" },
+  { image: education, text: "Education" },
+  { image: health, text: "Health" },
+  { image: recovery, text: "Recovery" },
 ];
 
 export const bcfDomeImages = [
-  { src: erbil, alt: "Erbil" },
-  { src: gali, alt: "Duhok" },
-  { src: ahmed, alt: "Sulaymaniyah" },
-  { src: lalish, alt: "Lalish" },
-  { src: service, alt: "Service" },
-  { src: welcome, alt: "Hope" },
-  { src: coexistence, alt: "Leadership" },
-  { src: kurds, alt: "Homeland" },
+  { src: camps, alt: "Camps" },
+  { src: schools, alt: "Schools" },
+  { src: employees, alt: "Team" },
+  { src: relief, alt: "Relief" },
+  { src: community, alt: "Community" },
+  { src: education, alt: "Education" },
+  { src: health, alt: "Health" },
+  { src: recovery, alt: "Recovery" },
 ];
