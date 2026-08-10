@@ -430,7 +430,12 @@ export type LegacyPillar = {
   titleGold: string;
 };
 
-export type StorySectionId = "foundation" | "mission" | "vision" | "philosophy";
+export type StorySectionId =
+  | "foundation"
+  | "mission"
+  | "vision"
+  | "philosophy"
+  | "values";
 
 export type StorySection = {
   id: StorySectionId;
@@ -438,6 +443,11 @@ export type StorySection = {
   titleWhite: string;
   body?: string;
 };
+
+/**
+ * One of the five principle pills on the Values pane — title only.
+ */
+export type StoryValue = { id: string; title: string };
 
 export type HumanStoryId =
   | "school"
@@ -499,6 +509,7 @@ export type BcfCopy = {
   storyTimelineEnd: string;
   storyScrollHint: string;
   storySections: StorySection[];
+  storyValues: StoryValue[];
   whereWeWork: string;
   across: string;
   borders: string;
@@ -820,6 +831,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleWhite: "Philosophy",
         body: "Humanitarian work is not charity from above. It is service with dignity, delivered to people as human beings, not as statistics.",
       },
+      {
+        id: "values",
+        titleGold: "Values",
+        titleWhite: "Behind the Mission",
+      },
+    ],
+    storyValues: [
+      { id: "neutrality", title: "Humanitarian neutrality" },
+      { id: "dignity", title: "Dignity in giving" },
+      { id: "resilience", title: "Resilience and empowerment" },
+      { id: "coexistence", title: "Coexistence and harmony" },
+      { id: "transparency", title: "Transparency" },
     ],
     whereWeWork: "Where We Work",
     across: "Across",
@@ -1502,6 +1525,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleWhite: "مرۆڤدۆستانە",
         body: "وتەی «خزمەتکردنی گەلی خۆت، شانازییە» تەنها دروشمێک نییە؛ بەڵکو بنەمای ئەخلاقیی کارەکانی دەزگای خێرخوازیی بارزانییە. کاری مرۆیی بەخشینێک نییە لە سەرەوە، بەڵکو خزمەتکردنە بە کەرامەتەوە.",
       },
+      {
+        id: "values",
+        titleGold: "بەهاکانی",
+        titleWhite: "پشت پەیامەکە",
+      },
+    ],
+    storyValues: [
+      { id: "neutrality", title: "بێلایەنی مرۆیی" },
+      { id: "dignity", title: "کەرامەت لە بەخشیندا" },
+      { id: "resilience", title: "بەرگەگرتن و بەهێزکردن" },
+      { id: "coexistence", title: "هاوژیانی ئاشتیانە" },
+      { id: "transparency", title: "ڕوونکاری" },
     ],
     whereWeWork: "لە کوێ کار دەکەین",
     across: "لەسەر",
@@ -2145,6 +2180,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleWhite: "الإنسانية",
         body: "العمل الإنساني ليس إحساناً من الأعلى، بل خدمة بكرامة تُقدَّم للناس كبشر، لا كأرقام.",
       },
+      {
+        id: "values",
+        titleGold: "القيم",
+        titleWhite: "التي تقوم عليها الرسالة",
+      },
+    ],
+    storyValues: [
+      { id: "neutrality", title: "الحياد الإنساني" },
+      { id: "dignity", title: "الكرامة في العطاء" },
+      { id: "resilience", title: "الصمود والتمكين" },
+      { id: "coexistence", title: "التعايش والانسجام" },
+      { id: "transparency", title: "الشفافية" },
     ],
     whereWeWork: "أين نعمل",
     across: "عبر",

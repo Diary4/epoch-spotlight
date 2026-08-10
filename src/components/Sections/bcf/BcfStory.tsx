@@ -105,10 +105,8 @@ function BcfChapterHead({
 }
 
 /**
- * Our Story — foundation, mission, vision, philosophy.
- *
- * The Values long-read (six principles + presidency plates) is parked for now;
- * the chapter rail only walks the four panes above.
+ * Our Story — foundation, mission, vision, philosophy, then five principle
+ * pills on a single pane (no long-read bodies, no presidency plates).
  */
 export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const c = bcfCopy[lang];
@@ -141,6 +139,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
   const active = sections[activeIndex];
   const isFoundation = activeIndex === 0;
+  const isValues = active.id === "values";
   const label = chapterLabel(activeIndex, lang);
   const showCorridor = activeIndex > 0;
 
@@ -212,8 +211,35 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                   label={label}
                   titleGold={active.titleGold}
                   titleWhite={active.titleWhite}
-                  body={active.body}
+                  body={isValues ? undefined : active.body}
                 />
+
+                {isValues ? (
+                  <motion.div
+                    variants={bcfStagger(0.07, 0.12)}
+                    className="mt-14 flex max-w-[920px] flex-col gap-7"
+                  >
+                    {c.storyValues.map((value, i) => (
+                      <motion.div
+                        key={value.id}
+                        variants={bcfRise}
+                        className={`flex ${i % 2 === 0 ? "justify-start" : "justify-end"}`}
+                      >
+                        <span
+                          className={`flex items-center gap-4 rounded-full border border-white/15 bg-black/45 px-10 py-5 text-[34px] text-white backdrop-blur-sm ${
+                            i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                          }`}
+                        >
+                          <span
+                            className="h-3.5 w-3.5 shrink-0 rounded-full"
+                            style={{ backgroundColor: BCF.gold }}
+                          />
+                          {value.title}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                ) : null}
 
                 {isFoundation ? (
                   <motion.div
