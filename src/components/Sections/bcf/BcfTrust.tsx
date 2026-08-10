@@ -40,10 +40,6 @@ import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
 import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
 import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
 import hubBg from "@/assets/images/bcf/selected/trust-bg.webp";
-import founderA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
-import founderB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
-import founderC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
-import founderD from "@/assets/images/bcf/optimized/administration/8C6A7443.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 import awardsNode from "@/assets/images/bcf/optimized/schools/8D1A7008.webp";
@@ -72,8 +68,6 @@ const topicBgs: Partial<Record<TrustTopicId, string>> = {
   partnerships: partnershipsBg,
   recognition: recognitionBg,
 };
-
-const founderAvatars = [founderA, founderB, founderC, founderD];
 
 /**
  * Credential artwork, keyed by `trustCredentials[].id`.
@@ -180,53 +174,46 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
               onClick={() => setChiefView("profile")}
             />
 
-            <ChiefCard
-              name={c.bcfPresident.name}
-              role={c.bcfPresident.role}
-              open={c.bcfPresident.open}
-              portrait={presidentPortrait}
-              onClick={() => setPresidentView("profile")}
-            />
-
             <motion.div
               className="mx-auto mt-10 grid w-full max-w-[980px] grid-cols-2 gap-8"
               variants={bcfStagger(0.09, 0.26)}
               initial="initial"
               animate="animate"
             >
-              {c.trustFounders.map((founder, index) => (
-                <motion.div
-                  key={`${founder.title}-${index}`}
-                  variants={bcfRiseCard}
-                  className={`${BCF_GLASS_CARD} relative flex min-h-[360px] flex-col items-start gap-6 p-10`}
-                  style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
-                >
+              <motion.button
+                type="button"
+                variants={bcfRiseCard}
+                whileTap={BCF_TAP}
+                transition={BCF_TAP_TRANSITION}
+                onClick={() => setPresidentView("profile")}
+                className={`${BCF_GLASS_CARD} relative flex min-h-[360px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
+                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
+              >
                 <span
                   className="h-[96px] w-[96px] overflow-hidden rounded-full border-2"
                   style={{ borderColor: BCF.gold }}
                 >
                   <img
-                    src={founderAvatars[index % founderAvatars.length]}
+                    src={presidentPortrait}
                     alt=""
                     className="h-full w-full object-cover"
                   />
                 </span>
                 <div>
                   <h3 className="text-[40px] font-semibold leading-tight text-[#fdeed4]">
-                    {founder.title}
+                    {c.bcfPresident.name}
                   </h3>
                   <p className="mt-4 text-[26px] leading-relaxed text-white/75">
-                    {founder.subtitle}
+                    {c.bcfPresident.role}
                   </p>
                 </div>
-                  <span
-                    className="mt-auto self-end text-[42px] font-bold tabular-nums"
-                    style={{ color: BCF.gold }}
-                  >
-                    {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
-                  </span>
-                </motion.div>
-              ))}
+                <span
+                  className="mt-auto self-end text-[42px] font-bold tabular-nums"
+                  style={{ color: BCF.gold }}
+                >
+                  {bcfDigits("01", lang)}
+                </span>
+              </motion.button>
             </motion.div>
           </TrustChrome>
         </BcfShell>
