@@ -389,6 +389,19 @@ export type BoardChiefCopy = {
   timelineMilestones: BoardChiefMilestone[];
 };
 
+/** BCF President profile — same shape as the Board Chief, detail filled later. */
+export type BcfPresidentCopy = {
+  open: string;
+  name: string;
+  role: string;
+  meta: string;
+  intro: string;
+  timelineCta: string;
+  timelineTitle: string;
+  timelineRange: string;
+  timelinePlaceholder: string;
+};
+
 export type RecognitionItemId =
   | "awards"
   | "certifications"
@@ -523,6 +536,7 @@ export type BcfCopy = {
   trustLeadershipTitle: string;
   trustFounders: TrustFounderCard[];
   boardChief: BoardChiefCopy;
+  bcfPresident: BcfPresidentCopy;
   trustQualityTitle: string;
   trustCredentials: TrustCredential[];
   trustPartnershipsTitle: string;
@@ -1253,6 +1267,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
     },
+    bcfPresident: {
+      open: "Meet the BCF President",
+      name: "Mousa Ahmed Agha Tajaldeen",
+      role: "BCF President",
+      meta: "Barzani Charity Foundation",
+      intro:
+        "Leading the foundation's day-to-day humanitarian work — detail for this profile will follow.",
+      timelineCta: "View Timeline",
+      timelineTitle: "BCF Presidency",
+      timelineRange: "—",
+      timelinePlaceholder: "Timeline details will be added soon.",
+    },
     trustQualityTitle: "Quality and Credibility",
     trustCredentials: [
       {
@@ -1885,6 +1911,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
     },
+    bcfPresident: {
+      open: "ناسینی سەرۆکی دەزگا",
+      name: "موسا ئەحمەد ئاغا تاجەدین",
+      role: "سەرۆکی دەزگا",
+      meta: "دەزگای خێرخوازیی بارزانی",
+      intro:
+        "سەرکردایەتیکردنی کاری ڕۆژانەی مرۆیی دەزگاکە — وردەکاریی ئەم پڕۆفایلە دواتر زیاد دەکرێت.",
+      timelineCta: "بینینی هێڵی کات",
+      timelineTitle: "سەرۆکایەتی دەزگا",
+      timelineRange: "—",
+      timelinePlaceholder: "وردەکاریی هێڵی کات بەم زووانە زیاد دەکرێت.",
+    },
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
     trustCredentials: [
       {
@@ -2507,6 +2545,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           body: "جائزة البرلمان الاتحادي الألماني، وجائزة منظمة أجنحة العون (Wings of Help)، وجائزة Helfen Bringt Freude.",
         },
       ],
+    },
+    bcfPresident: {
+      open: "تعرّف على رئيس المؤسسة",
+      name: "موسى أحمد آغا تاج الدين",
+      role: "رئيس المؤسسة",
+      meta: "مؤسسة بارزاني الخيرية",
+      intro:
+        "يقود العمل الإنساني اليومي للمؤسسة — ستُضاف تفاصيل هذا الملف لاحقاً.",
+      timelineCta: "عرض الجدول الزمني",
+      timelineTitle: "رئاسة المؤسسة",
+      timelineRange: "—",
+      timelinePlaceholder: "ستُضاف تفاصيل الجدول الزمني قريباً.",
     },
     trustQualityTitle: "الجودة والمصداقية",
     trustCredentials: [

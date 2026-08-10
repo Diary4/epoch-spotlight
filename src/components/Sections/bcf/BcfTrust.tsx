@@ -6,6 +6,9 @@ import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import BcfBoardChief, {
   type BoardChiefView,
 } from "@/components/Sections/bcf/BcfBoardChief";
+import BcfPresident, {
+  type PresidentView,
+} from "@/components/Sections/bcf/BcfPresident";
 import {
   bcfCopy,
   type BcfLang,
@@ -50,6 +53,7 @@ import lettersNode from "@/assets/images/bcf/optimized/flood/2B1A6924.webp";
 import timelineNode from "@/assets/images/bcf/optimized/children-activity/8C6A6112.webp";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
+import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -99,6 +103,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const [credentialIndex, setCredentialIndex] = React.useState(0);
   /** Null while the Leadership grid is up; the profile and its timeline sit under it. */
   const [chiefView, setChiefView] = React.useState<BoardChiefView | null>(null);
+  const [presidentView, setPresidentView] =
+    React.useState<PresidentView | null>(null);
   const [partnerGroup, setPartnerGroup] =
     React.useState<PartnerLogoGroupId>("partners");
 
@@ -109,6 +115,14 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     }
     if (chiefView) {
       setChiefView(null);
+      return;
+    }
+    if (presidentView === "timeline") {
+      setPresidentView("profile");
+      return;
+    }
+    if (presidentView) {
+      setPresidentView(null);
       return;
     }
     if (activeId) {
@@ -139,6 +153,18 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       );
     }
 
+    if (presidentView) {
+      return (
+        <BcfPresident
+          key={`president-${presidentView}`}
+          lang={lang}
+          view={presidentView}
+          onOpenTimeline={() => setPresidentView("timeline")}
+          onBack={goBack}
+        />
+      );
+    }
+
     if (activeId === "leadership") {
       return (
         <BcfShell
@@ -146,13 +172,20 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           showLogo={false}
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
-            {/* The four cards below name the layers of the foundation but nobody
-                stands in them. This is the one person the chapter opens into. */}
             <ChiefCard
               name={c.boardChief.name}
               role={c.boardChief.role}
               open={c.boardChief.open}
+              portrait={chiefPortrait}
               onClick={() => setChiefView("profile")}
+            />
+
+            <ChiefCard
+              name={c.bcfPresident.name}
+              role={c.bcfPresident.role}
+              open={c.bcfPresident.open}
+              portrait={presidentPortrait}
+              onClick={() => setPresidentView("profile")}
             />
 
             <motion.div
@@ -829,11 +862,13 @@ function ChiefCard({
   name,
   role,
   open,
+  portrait,
   onClick,
 }: {
   name: string;
   role: string;
   open: string;
+  portrait: string;
   onClick: () => void;
 }) {
   const [pressed, setPressed] = React.useState(false);
@@ -847,7 +882,7 @@ function ChiefCard({
       onPointerLeave={() => setPressed(false)}
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
-      className="mx-auto mt-14 flex w-full max-w-[980px] transform-gpu items-center gap-10 rounded-[28px] border p-8 text-start"
+      className="mx-auto mt-10 flex w-full max-w-[980px] transform-gpu items-center gap-10 rounded-[28px] border p-8 text-start first:mt-14"
       style={{
         borderColor: pressed ? BCF.goldBright : `${BCF.gold}59`,
         backgroundColor: pressed ? "rgba(251,193,88,0.09)" : "rgba(0,0,0,0.5)",
@@ -866,7 +901,7 @@ function ChiefCard({
         style={{ borderColor: BCF.gold }}
       >
         <img
-          src={chiefPortrait}
+          src={portrait}
           alt=""
           decoding="async"
           className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
