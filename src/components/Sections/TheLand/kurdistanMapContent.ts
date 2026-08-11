@@ -18,7 +18,7 @@ export const LAND_MAP_COLORS: Record<LandMapLayerId, { fill: string; line: strin
   greater: { fill: "#d8a63c", line: "#a97717", ink: "#7a5310" },
   region: { fill: "#2f6d4c", line: "#1d4c33", ink: "#173d29" },
   disputed: { fill: "#963538", line: "#6f2325", ink: "#5c1d1f" },
-  presence: { fill: "#5c6f9e", line: "#3f5079", ink: "#334063" },
+  presence: { fill: "#5f74a8", line: "#3f5079", ink: "#334063" },
 };
 
 /** Parchment ground the layers are painted on, shared with the rest of The Land. */
@@ -91,8 +91,6 @@ export const LAND_MAP_COUNTRY_LABELS: { id: string; lon: number; lat: number; ho
   { id: "iraq", lon: 42.6, lat: 31.9, host: true },
   { id: "iran", lon: 54.4, lat: 32.6, host: true },
   { id: "georgia", lon: 43.4, lat: 42.4 },
-  { id: "armenia", lon: 44.9, lat: 40.5 },
-  { id: "azerbaijan", lon: 47.6, lat: 40.4 },
   { id: "turkmenistan", lon: 59.4, lat: 40.4 },
   { id: "jordan", lon: 36.8, lat: 30.9 },
   { id: "saudiArabia", lon: 43.5, lat: 27.6 },
@@ -106,10 +104,10 @@ export const LAND_MAP_COUNTRY_LABELS: { id: string; lon: number; lat: number; ho
  * country named on them at all.
  */
 export const LAND_MAP_CLOSE_COUNTRY_LABELS: { id: string; lon: number; lat: number }[] = [
-  { id: "turkey", lon: 42.4, lat: 37.78 },
+  { id: "turkey", lon: 43.6, lat: 37.55 },
   { id: "syria", lon: 40.75, lat: 36.35 },
   { id: "iran", lon: 46.55, lat: 36.15 },
-  { id: "iraq", lon: 43.4, lat: 34.25 },
+  { id: "iraq", lon: 43.4, lat: 34.55 },
 ];
 
 /** Water labels — the italic names that make a map look drawn rather than plotted. */

@@ -17,6 +17,7 @@ import {
   LAND_MAP_COUNTRY_LABELS,
   LAND_MAP_PAPER,
   LAND_MAP_PLACES,
+  LAND_MAP_WATER_LABELS,
   landMapCopy,
   type LandMapLayerId,
   type LandMapPlaceTier,
@@ -38,10 +39,10 @@ import type { DiscoverLangCode } from "@/components/Sections/discoverLanguage";
  */
 const FRAMES: Record<LandMapLayerId, { west: number; east: number; south: number; north: number }> = {
   /* The three governorates, with a margin of Turkey, Iran and Iraq around. */
-  region: { west: 41.9, east: 46.8, south: 34.4, north: 37.55 },
+  region: { west: 41.9, east: 46.8, south: 34.4, north: 37.75 },
   /* Widened west and south to hold Sinjar and Khanaqin, the two Kurdistani
      districts furthest from the Region. */
-  disputed: { west: 40.8, east: 46.8, south: 33.7, north: 37.55 },
+  disputed: { west: 40.8, east: 46.8, south: 33.7, north: 37.75 },
   /* The homeland whole, from Afrin to the Zagros. */
   greater: { west: 35.8, east: 49.2, south: 31.5, north: 42.1 },
   /* All four states, out as far as the Khorasani Kurds. */
@@ -139,7 +140,10 @@ export default function KurdistanMapFigure({
 
   /** Wide enough that a country can be named from its own middle. */
   const wide = layer === "greater" || layer === "presence";
-  const strength = (id: LandMapLayerId) => (layer === id ? 1 : DIMMED);
+  /* On the presence card the homeland is not a supporting layer — it is most of
+     what "where Kurds are" means — so it keeps full strength beside the states. */
+  const strength = (id: LandMapLayerId) =>
+    layer === id || (layer === "presence" && id === "greater") ? 1 : DIMMED;
   const type = (size: number) => size * view.unit;
 
   return (
@@ -189,9 +193,9 @@ export default function KurdistanMapFigure({
                 key={shape.id}
                 d={shape.d}
                 fill={LAND_MAP_COLORS.presence.fill}
-                fillOpacity={0.2}
+                fillOpacity={0.1}
                 stroke={LAND_MAP_COLORS.presence.line}
-                strokeWidth={2}
+                strokeWidth={2.6}
                 strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"
               />
@@ -272,6 +276,28 @@ export default function KurdistanMapFigure({
             vectorEffect="non-scaling-stroke"
           />
         ))}
+
+        {/* Named water, on the card wide enough to hold it: the italic sea names
+            are most of what separates a map from a shape on a background. */}
+        {layer === "presence"
+          ? LAND_MAP_WATER_LABELS.map((label) => {
+              const { x, y } = landMapPoint(label.lon, label.lat);
+              return (
+                <text
+                  key={label.id}
+                  x={x}
+                  y={y}
+                  textAnchor="middle"
+                  fontSize={type(11)}
+                  fontStyle="italic"
+                  fill="#4f7d99"
+                  opacity={0.8}
+                >
+                  {copy.waters[label.id]}
+                </text>
+              );
+            })
+          : null}
 
         {/* Close in, the four states are named from inside the frame; wide, from
             their own middles, with the neighbours named too. */}

@@ -1,16 +1,36 @@
 /**
- * Builds src/components/Sections/TheLand/kurdistanMapGeometry.ts
+ * Builds src/components/Sections/TheLand/kurdistanMapGeometry.ts — the vector
+ * Kurdistan map used by the three cards on The Land.
+ *
+ * This is a one-off generator, not part of the app build. Run it only when the
+ * layers themselves need to change (a district added to the Article 140 list, a
+ * province added to the homeland); the committed .ts file is the artefact.
+ *
+ *   mkdir -p /tmp/kurdistan-map && cd /tmp/kurdistan-map
+ *   npm init -y && npm install polygon-clipping
+ *   B=https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson
+ *   curl -sLo ne50_countries.json $B/ne_50m_admin_0_countries.geojson
+ *   curl -sLo ne10_adm1.json      $B/ne_10m_admin_1_states_provinces.geojson
+ *   curl -sLo ne50_lakes.json     $B/ne_50m_lakes.geojson
+ *   # geoBoundaries pins its downloads to a commit, so resolve them via the API:
+ *   for S in "IRQ ADM1" "IRQ ADM2" "SYR ADM2"; do set -- $S; \\
+ *     curl -sL "$(curl -s https://www.geoboundaries.org/api/current/gbOpen/$1/$2/ \\
+ *       | node -pe 'JSON.parse(require("fs").readFileSync(0)).simplifiedGeometryGeoJSON')" \\
+ *       -o ${1}_$(echo $2 | tr A-Z a-z).json; done
+ *   node <repo>/scripts/build-kurdistan-map.js
  *
  * Sources
  *   Natural Earth 50m admin-0 countries + 10m admin-1 states  (public domain)
- *   geoBoundaries gbOpen IRQ ADM1/ADM2, SYR ADM2                (CC BY 4.0)
+ *   geoBoundaries gbOpen IRQ ADM1/ADM2, SYR ADM2               (CC BY 4.0)
  */
 const fs = require("fs");
 const path = require("path");
 const pc = require("polygon-clipping");
 
+/** Run from the directory holding the downloads above; writes into the repo. */
 const OUT = path.resolve(
-  "/Users/diarysalahaddinsaadi/Desktop/epoch-spotlight/src/components/Sections/TheLand/kurdistanMapGeometry.ts",
+  __dirname,
+  "../src/components/Sections/TheLand/kurdistanMapGeometry.ts",
 );
 
 /* ---------------------------------------------------------------- projection */
@@ -32,7 +52,7 @@ const py = (lat) => (BBOX.north - lat) * SCALE;
 
 /* ------------------------------------------------------------------- helpers */
 
-const read = (f) => JSON.parse(fs.readFileSync(path.resolve(__dirname, f), "utf8"));
+const read = (f) => JSON.parse(fs.readFileSync(path.resolve(process.cwd(), f), "utf8"));
 
 /** GeoJSON geometry -> polygon-clipping MultiPolygon coordinates. */
 function toMulti(geom) {
@@ -126,14 +146,29 @@ function ringArea(points) {
 
 const round = (n) => Math.round(n * 10) / 10;
 
+/** Absolute area of a MultiPolygon in whatever units its coordinates are in. */
+function multiArea(multi) {
+  let total = 0;
+  for (const polygon of multi)
+    for (let i = 0; i < polygon.length; i++)
+      total += (i === 0 ? 1 : -1) * ringArea(polygon[i]);
+  return Math.abs(total);
+}
+
 /**
  * Projected, simplified SVG path for a MultiPolygon. `minArea` drops the
  * offshore specks that cost bytes and read as dirt on a 1600-unit artboard.
  */
-function toPath(multi, { tolerance = 1.1, minArea = 6 } = {}) {
+function toPath(multi, { tolerance = 1.1, minArea = 6, dropHoles = false } = {}) {
   const commands = [];
   for (const polygon of multi) {
-    for (const ring of polygon) {
+    for (const [index, ring] of polygon.entries()) {
+      /* Two boundary sets simplified in different runs never meet exactly, so a
+         union of them keeps hairline slivers as interior rings. Left in, they
+         punch white through to the page between the Region and the Kurdistani
+         areas. Nothing here has a hole worth keeping — Van and Urmia are drawn
+         over the top as water — so the layers close themselves. */
+      if (dropHoles && index > 0) continue;
       let points = ring.map(([lon, lat]) => [px(lon), py(lat)]);
       points = simplifyRing(points, tolerance);
       if (points.length < 4 || ringArea(points) < minArea) continue;
@@ -184,12 +219,46 @@ const shapes = (collection, names) => {
 };
 
 /* --- 1. The Kurdistan Region of Iraq: the three governorates, plus Halabja,
-       which geoBoundaries still folds into Sulaymaniyah. --------------------- */
+       which geoBoundaries still folds into Sulaymaniyah.
+
+   Built out of ADM2 districts rather than the ADM1 governorate outlines, even
+   though ADM1 is the authority on where the Region ends. The two files are
+   simplified independently, so a Region drawn from one and Kirkuk drawn from
+   the other miss each other by a few hundred metres the whole length of their
+   shared border — which is a white seam between the green and the red on a
+   screen. ADM1 still decides which districts belong: a district joins the
+   Region when more than half of it falls inside the ADM1 Region.
+   ---------------------------------------------------------------------- */
 const KRI_NAMES = ["Dohuk", "Erbil", "Al-Sulaimaniyah"];
-const kriParts = KRI_NAMES.map((name) => ({
-  name,
-  geom: shapes(irqAdm1, [name]),
-}));
+const kriByAdm1 = KRI_NAMES.map((name) => ({ name, geom: shapes(irqAdm1, [name]) }));
+const kriOutline = union(...kriByAdm1.map((p) => p.geom));
+
+const kriParts = KRI_NAMES.map((name) => ({ name, districts: [] }));
+for (const feature of irqAdm2.features) {
+  const district = toMulti(feature.geometry);
+  if (!district.length) continue;
+  const area = multiArea(district);
+  if (!area) continue;
+  const inside = intersection(district, kriOutline);
+  if (!inside.length || multiArea(inside) / area <= 0.5) continue;
+  /* Which of the three it belongs to, by the same measure. */
+  let best = null;
+  let bestArea = 0;
+  for (const part of kriParts) {
+    const overlap = intersection(district, kriByAdm1.find((p) => p.name === part.name).geom);
+    const size = overlap.length ? multiArea(overlap) : 0;
+    if (size > bestArea) {
+      bestArea = size;
+      best = part;
+    }
+  }
+  (best ?? kriParts[0]).districts.push(district);
+}
+for (const part of kriParts) {
+  if (!part.districts.length) throw new Error(`no ADM2 districts fell inside ${part.name}`);
+  part.geom = union(...part.districts);
+  console.log(`  ${part.name}: ${part.districts.length} districts`);
+}
 const kri = union(...kriParts.map((p) => p.geom));
 
 /* --- 2. Kurdistani areas of Iraq outside the Region — the Article 140
@@ -338,10 +407,10 @@ ${shapeList(lakeShapes)}
 ];
 
 /** Greater Kurdistan: the contiguous Kurdish homeland across the four states. */
-export const LAND_MAP_GREATER: string = ${fmt(toPath(greater, { tolerance: 0.5, minArea: 8 }))};
+export const LAND_MAP_GREATER: string = ${fmt(toPath(greater, { tolerance: 0.5, minArea: 8, dropHoles: true }))};
 
 /** The Kurdistan Region of Iraq, as one body and as its three governorates. */
-export const LAND_MAP_REGION: string = ${fmt(toPath(kri, { tolerance: 0.28, minArea: 3 }))};
+export const LAND_MAP_REGION: string = ${fmt(toPath(kri, { tolerance: 0.28, minArea: 3, dropHoles: true }))};
 
 export const LAND_MAP_REGION_GOVERNORATES: LandMapShape[] = [
 ${kriParts
@@ -349,16 +418,16 @@ ${kriParts
     (p) =>
       `  { id: ${fmt(p.name.toLowerCase().replace(/\W+/g, "-"))}, name: ${fmt(
         p.name === "Dohuk" ? "Duhok" : p.name === "Al-Sulaimaniyah" ? "Sulaymaniyah" : p.name,
-      )}, d: ${fmt(toPath(p.geom, { tolerance: 0.28, minArea: 3 }))} },`,
+      )}, d: ${fmt(toPath(p.geom, { tolerance: 0.28, minArea: 3, dropHoles: true }))} },`,
   )
   .join("\n")}
 ];
 
 /** The Kurdistani districts of Iraq outside the Region — the Article 140 areas. */
-export const LAND_MAP_DISPUTED: string = ${fmt(toPath(disputed, { tolerance: 0.32, minArea: 3 }))};
+export const LAND_MAP_DISPUTED: string = ${fmt(toPath(disputed, { tolerance: 0.32, minArea: 3, dropHoles: true }))};
 
 /** Khorasan in north-east Iran: Kurds deported there in the 1600s, still there. */
-export const LAND_MAP_KHORASAN: string = ${fmt(toPath(khorasan, { tolerance: 0.7, minArea: 8 }))};
+export const LAND_MAP_KHORASAN: string = ${fmt(toPath(khorasan, { tolerance: 0.7, minArea: 8, dropHoles: true }))};
 `;
 
 fs.writeFileSync(OUT, out);
