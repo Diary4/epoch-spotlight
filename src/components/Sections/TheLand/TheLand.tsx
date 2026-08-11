@@ -9,11 +9,10 @@ import {
 } from "@/constants/backNavigation";
 import { discoverDisplayFont, discoverRtlScript, type DiscoverLangCode } from "@/components/Sections/discoverLanguage";
 import { localizeDigits } from "@/lib/utils";
+import KurdistanMapFigure from "@/components/Sections/TheLand/KurdistanMapFigure";
+import type { LandMapLayerId } from "@/components/Sections/TheLand/kurdistanMapContent";
 import WomenScaledCanvas from "@/components/Sections/women/WomenScaledCanvas";
 import bg from "@/assets/mainImages/bg-2.webp";
-import mapImage from "@/assets/mainImages/theland/land-1.webp";
-import mapImage2 from "@/assets/mainImages/theland/land-2.webp";
-import mapImage3 from "@/assets/mainImages/theland/land-3.webp";
 
 const mapCards = [
   {
@@ -21,21 +20,21 @@ const mapCards = [
     title: "Kurdistan Region\nof Iraq",
     text: "Explore the officially recognized Kurdistan Region of Iraq — its governorates, major cities, and borders.",
     color: "#c69237",
-    mapImage: mapImage3,
+    layer: "region" as LandMapLayerId,
   },
   {
     number: "2",
     title: "Disputed Areas",
-    text: "Explore the disputed areas between Kurdistan and Iraq, shown here in pink.",
+    text: "Explore the disputed areas between Kurdistan and Iraq, shown here in red.",
     color: "#963538",
-    mapImage: mapImage2,
+    layer: "disputed" as LandMapLayerId,
   },
   {
     number: "3",
     title: "Kurdish Presence\nAcross Countries",
     text: "See the broader areas where Kurdish communities live across the region.",
     color: "#c69237",
-    mapImage: mapImage,
+    layer: "presence" as LandMapLayerId,
   },
 ];
 
@@ -81,12 +80,7 @@ function MapCard({ card, lang = "en" }: { card: (typeof mapCards)[number]; lang?
       </div>
 
       <div className="relative h-full min-h-0 w-full min-w-0 overflow-hidden bg-[#f7efe2]">
-        <img
-          src={card.mapImage}
-          alt={card.title.replace("\n", " ")}
-          className="block h-full w-full max-w-none object-cover object-center align-middle"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-[#fbf5eb]/20 mix-blend-multiply" />
+        <KurdistanMapFigure layer={card.layer} lang={lang} />
       </div>
     </article>
   );
@@ -107,13 +101,13 @@ export default function TheLandPage({ lang = "en", onBack }: TheLandPageProps) {
   const localMapCards = isAr
     ? [
         { ...mapCards[0], title: "إقليم كوردستان العراق", text: "استكشف إقليم كوردستان المعترف به رسميًا في العراق، محافظاته ومدنه الكبرى وحدوده." },
-        { ...mapCards[1], title: "المناطق المتنازع عليها", text: "استكشف المناطق المتنازع عليها بين كوردستان والعراق، الموضحة باللون الوردي." },
+        { ...mapCards[1], title: "المناطق المتنازع عليها", text: "استكشف المناطق المتنازع عليها بين كوردستان والعراق، الموضحة باللون الأحمر." },
         { ...mapCards[2], title: "الوجود الكوردي\nعبر الدول", text: "تعرّف على المناطق الأوسع التي يعيش فيها المجتمعات الكوردية في المنطقة." },
       ]
     : isKu
       ? [
           { ...mapCards[0], title: "هەرێمی کوردستانی عێراق", text: "گەڕان لەناو هەرێمی کوردستانی عێراق کە بە فەرمی ناسراوە — پارێزگاکانی، شارە سەرەکییەکانی، و سنوورەکانی." },
-          { ...mapCards[1], title: "ناوچە جێناکۆکەکان", text: "گەڕان لەناو ناوچە جێناکۆکەکانی نێوان هەرێمی کوردستان و عێراق، کە لێرەدا بە ڕەنگی پەمەیی دیاری کراوە." },
+          { ...mapCards[1], title: "ناوچە جێناکۆکەکان", text: "گەڕان لەناو ناوچە جێناکۆکەکانی نێوان هەرێمی کوردستان و عێراق، کە لێرەدا بە ڕەنگی سوور دیاری کراوە." },
           { ...mapCards[2], title: "بوونی کورد\nلە سەرانسەری وڵاتان", text: "ئەو ناوچە فراوانانەی کە کۆمەڵگە کوردییەکانی لێ نیشتەجێیە لە سەرانسەری ناوچەکەدا." },
         ]
       : mapCards;
