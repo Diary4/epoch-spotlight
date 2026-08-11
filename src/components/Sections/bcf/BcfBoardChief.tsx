@@ -496,14 +496,16 @@ function threadPath(count: number, rtl: boolean) {
  * credentials, the recognition — so the timeline is a reading of the chapter
  * rather than a second, unsourced account of it.
  */
-function GovernanceTimeline({
+export function GovernanceTimeline({
   milestones,
   rtl,
   lang,
+  nodeImages = NODE_IMAGES,
 }: {
   milestones: { id: string; year: string; title: string; body: string }[];
   rtl: boolean;
   lang: BcfLang;
+  nodeImages?: string[];
 }) {
   const reduceMotion = useReducedMotion();
   const count = milestones.length;
@@ -565,7 +567,7 @@ function GovernanceTimeline({
               transition={{ duration: 0.6, delay: 0.42 + index * 0.1, ease: BCF_EASE }}
             >
               <img
-                src={NODE_IMAGES[index % NODE_IMAGES.length]}
+                src={nodeImages[index % nodeImages.length]}
                 alt=""
                 decoding="async"
                 className="h-full w-full object-cover"

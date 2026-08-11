@@ -389,7 +389,14 @@ export type BoardChiefCopy = {
   timelineMilestones: BoardChiefMilestone[];
 };
 
-/** BCF President profile — same shape as the Board Chief, detail filled later. */
+/** BCF President profile — biography and career timeline. */
+export type BcfPresidentMilestone = {
+  id: string;
+  year: string;
+  title: string;
+  body: string;
+};
+
 export type BcfPresidentCopy = {
   open: string;
   name: string;
@@ -399,7 +406,7 @@ export type BcfPresidentCopy = {
   timelineCta: string;
   timelineTitle: string;
   timelineRange: string;
-  timelinePlaceholder: string;
+  timelineMilestones: BcfPresidentMilestone[];
 };
 
 export type RecognitionItemId =
@@ -1296,11 +1303,42 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       role: "BCF President",
       meta: "Barzani Charity Foundation",
       intro:
-        "Leading the foundation's day-to-day humanitarian work — detail for this profile will follow.",
+        "Born on August 5, 1974, in the village of Kalok in the Barzan region, he is a graduate of the Institute of Fine Arts. He is married and has four children. He served as the Secretary of the Kurdistan Students Union from 1994 to 1998, later becoming the Vice President of the Barzani Charity Foundation in 2007 before assuming the role of its President. He has been leading the foundation for 19 years and is a recipient of the Immortal Barzani Medal, alongside hundreds of other honors and recognitions.",
       timelineCta: "View Timeline",
       timelineTitle: "BCF Presidency",
-      timelineRange: "—",
-      timelinePlaceholder: "Timeline details will be added soon.",
+      timelineRange: "1974 — Present",
+      timelineMilestones: [
+        {
+          id: "birth",
+          year: "1974",
+          title: "Born in Kalok",
+          body: "Born on August 5 in the village of Kalok in the Barzan region. A graduate of the Institute of Fine Arts; married with four children.",
+        },
+        {
+          id: "students",
+          year: "1994",
+          title: "Kurdistan Students Union",
+          body: "Served as Secretary of the Kurdistan Students Union from 1994 to 1998.",
+        },
+        {
+          id: "vice-president",
+          year: "2007",
+          title: "Vice President of BCF",
+          body: "Became Vice President of the Barzani Charity Foundation in 2007.",
+        },
+        {
+          id: "president",
+          year: "2007",
+          title: "President of BCF",
+          body: "Assumed the presidency of the foundation and has led its humanitarian work for 19 years.",
+        },
+        {
+          id: "medal",
+          year: "—",
+          title: "Immortal Barzani Medal",
+          body: "Recipient of the Immortal Barzani Medal, alongside hundreds of other honors and recognitions.",
+        },
+      ],
     },
     trustQualityTitle: "Quality and Credibility",
     trustCredentials: [
@@ -1952,11 +1990,42 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       role: "سەرۆکی دەزگا",
       meta: "دەزگای خێرخوازیی بارزانی",
       intro:
-        "سەرکردایەتیکردنی کاری ڕۆژانەی مرۆیی دەزگاکە — وردەکاریی ئەم پڕۆفایلە دواتر زیاد دەکرێت.",
+        "لە دایکبووی ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان، دەرچووی پەیمانگای هونەرە جوانەکانە. خێزاندارە و خاوەنی چوار منداڵە. لە نێوان ساڵانی ١٩٩٤ تا ١٩٩٨ سکرتێری قوتابیان بووە، پاشان لە ساڵی ٢٠٠٧ بۆتە جێگری سەرۆکی دەزگای خێرخوازیی بارزانی و دواتر بۆتە سەرۆکی دەزگاکە. ماوەی ١٩ ساڵە ڕابەرایەتیی ئەم دەزگایە دەکات و هەڵگری مەدالیای بارزانیی نەمر و سەدان شانازیی ترە.",
       timelineCta: "بینینی هێڵی کات",
       timelineTitle: "سەرۆکایەتی دەزگا",
-      timelineRange: "—",
-      timelinePlaceholder: "وردەکاریی هێڵی کات بەم زووانە زیاد دەکرێت.",
+      timelineRange: "١٩٧٤ — ئێستا",
+      timelineMilestones: [
+        {
+          id: "birth",
+          year: "١٩٧٤",
+          title: "لەدایکبوون لە کەلۆک",
+          body: "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە. دەرچووی پەیمانگای هونەرە جوانەکانە؛ خێزاندارە و خاوەنی چوار منداڵە.",
+        },
+        {
+          id: "students",
+          year: "١٩٩٤",
+          title: "یەکێتیی قوتابیانی کوردستان",
+          body: "لە نێوان ساڵانی ١٩٩٤ تا ١٩٩٨ سکرتێری یەکێتیی قوتابیانی کوردستان بووە.",
+        },
+        {
+          id: "vice-president",
+          year: "٢٠٠٧",
+          title: "جێگری سەرۆکی دەزگا",
+          body: "لە ساڵی ٢٠٠٧ بۆتە جێگری سەرۆکی دەزگای خێرخوازیی بارزانی.",
+        },
+        {
+          id: "president",
+          year: "٢٠٠٧",
+          title: "سەرۆکی دەزگا",
+          body: "دواتر بۆتە سەرۆکی دەزگاکە و ماوەی ١٩ ساڵە ڕابەرایەتیی کاری مرۆیی دەزگاکە دەکات.",
+        },
+        {
+          id: "medal",
+          year: "—",
+          title: "مەدالیای بارزانیی نەمر",
+          body: "هەڵگری مەدالیای بارزانیی نەمر و سەدان شانازیی و ڕێزلێنانی ترە.",
+        },
+      ],
     },
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
     trustCredentials: [
@@ -2599,11 +2668,42 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       role: "رئيس المؤسسة",
       meta: "مؤسسة بارزاني الخيرية",
       intro:
-        "يقود العمل الإنساني اليومي للمؤسسة — ستُضاف تفاصيل هذا الملف لاحقاً.",
+        "وُلد في 5 آب 1974 في قرية «کەلۆک» بمنطقة بارزان، وهو خريج معهد الفنون الجميلة. متزوج وأب لأربعة أطفال. بدأ نشاطه سكرتيراً لاتحاد طلبة كوردستان بين عامي 1994 و1998، ثم شغل منصب نائب رئيس مؤسسة بارزاني الخيرية عام 2007، ليصبح بعدها رئيساً للمؤسسة. يقود هذه المؤسسة منذ 19 عاماً، وهو حاصل على وسام البارزاني الخالد ومئات الأوسمة وشهادات التقدير الأخرى.",
       timelineCta: "عرض الجدول الزمني",
       timelineTitle: "رئاسة المؤسسة",
-      timelineRange: "—",
-      timelinePlaceholder: "ستُضاف تفاصيل الجدول الزمني قريباً.",
+      timelineRange: "1974 — اليوم",
+      timelineMilestones: [
+        {
+          id: "birth",
+          year: "1974",
+          title: "الميلاد في کالوك",
+          body: "وُلد في 5 آب 1974 في قرية «کەلۆک» بمنطقة بارزان. خريج معهد الفنون الجميلة؛ متزوج وأب لأربعة أطفال.",
+        },
+        {
+          id: "students",
+          year: "1994",
+          title: "اتحاد طلبة كوردستان",
+          body: "سكرتير اتحاد طلبة كوردستان بين عامي 1994 و1998.",
+        },
+        {
+          id: "vice-president",
+          year: "2007",
+          title: "نائب رئيس المؤسسة",
+          body: "شغل منصب نائب رئيس مؤسسة بارزاني الخيرية عام 2007.",
+        },
+        {
+          id: "president",
+          year: "2007",
+          title: "رئيس المؤسسة",
+          body: "أصبح رئيساً للمؤسسة ويقود عملها الإنساني منذ 19 عاماً.",
+        },
+        {
+          id: "medal",
+          year: "—",
+          title: "وسام البارزاني الخالد",
+          body: "حاصل على وسام البارزاني الخالد ومئات الأوسمة وشهادات التقدير الأخرى.",
+        },
+      ],
     },
     trustQualityTitle: "الجودة والمصداقية",
     trustCredentials: [
