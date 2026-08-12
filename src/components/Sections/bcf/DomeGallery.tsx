@@ -33,6 +33,28 @@ const getDataNumber = (el: HTMLElement, name: string, fallback: number) => {
   return Number.isFinite(n) ? n : fallback;
 };
 
+/**
+ * FitScaledCanvas scales the artboard with CSS transform. Client rects are in
+ * screen pixels; absolute left/top/width and translate() on children are in
+ * unscaled local CSS pixels. Mixing them shifts opened images left on Android.
+ */
+function cssScaleOf(el: HTMLElement): number {
+  const layout = el.offsetWidth;
+  if (layout <= 0) return 1;
+  const visual = el.getBoundingClientRect().width;
+  return visual > 0 ? visual / layout : 1;
+}
+
+function screenToLocal(screenPx: number, scale: number): number {
+  return scale > 0.001 ? screenPx / scale : screenPx;
+}
+
+function parseCssSize(value: string | undefined, fallback: number): number {
+  if (!value) return fallback;
+  const n = parseFloat(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+
 type Tile = {
   x: number;
   y: number;
@@ -237,22 +259,23 @@ export default function DomeGallery({
       if (enlargedOverlay && frameRef.current && mainRef.current) {
         const frameR = frameRef.current.getBoundingClientRect();
         const mainR = mainRef.current.getBoundingClientRect();
+        const scale = cssScaleOf(mainRef.current);
+        const frameLocalLeft = screenToLocal(frameR.left - mainR.left, scale);
+        const frameLocalTop = screenToLocal(frameR.top - mainR.top, scale);
+        const frameLocalW = screenToLocal(frameR.width, scale);
+        const frameLocalH = screenToLocal(frameR.height, scale);
 
         const hasCustomSize = openedImageWidth && openedImageHeight;
         if (hasCustomSize) {
-          const tempDiv = document.createElement("div");
-          tempDiv.style.cssText = `position: absolute; width: ${openedImageWidth}; height: ${openedImageHeight}; visibility: hidden;`;
-          document.body.appendChild(tempDiv);
-          const tempRect = tempDiv.getBoundingClientRect();
-          document.body.removeChild(tempDiv);
-
-          enlargedOverlay.style.left = `${frameR.left - mainR.left + (frameR.width - tempRect.width) / 2}px`;
-          enlargedOverlay.style.top = `${frameR.top - mainR.top + (frameR.height - tempRect.height) / 2}px`;
+          const openW = parseCssSize(openedImageWidth, frameLocalW);
+          const openH = parseCssSize(openedImageHeight, frameLocalH);
+          enlargedOverlay.style.left = `${frameLocalLeft + (frameLocalW - openW) / 2}px`;
+          enlargedOverlay.style.top = `${frameLocalTop + (frameLocalH - openH) / 2}px`;
         } else {
-          enlargedOverlay.style.left = `${frameR.left - mainR.left}px`;
-          enlargedOverlay.style.top = `${frameR.top - mainR.top}px`;
-          enlargedOverlay.style.width = `${frameR.width}px`;
-          enlargedOverlay.style.height = `${frameR.height}px`;
+          enlargedOverlay.style.left = `${frameLocalLeft}px`;
+          enlargedOverlay.style.top = `${frameLocalTop}px`;
+          enlargedOverlay.style.width = `${frameLocalW}px`;
+          enlargedOverlay.style.height = `${frameLocalH}px`;
         }
       }
     });
@@ -406,17 +429,18 @@ export default function DomeGallery({
       }
       const currentRect = overlay.getBoundingClientRect();
       const rootRect = rootRef.current!.getBoundingClientRect();
+      const scale = cssScaleOf(rootRef.current!);
       const originalPosRelativeToRoot = {
-        left: originalPos.left - rootRect.left,
-        top: originalPos.top - rootRect.top,
-        width: originalPos.width,
-        height: originalPos.height,
+        left: screenToLocal(originalPos.left - rootRect.left, scale),
+        top: screenToLocal(originalPos.top - rootRect.top, scale),
+        width: screenToLocal(originalPos.width, scale),
+        height: screenToLocal(originalPos.height, scale),
       };
       const overlayRelativeToRoot = {
-        left: currentRect.left - rootRect.left,
-        top: currentRect.top - rootRect.top,
-        width: currentRect.width,
-        height: currentRect.height,
+        left: screenToLocal(currentRect.left - rootRect.left, scale),
+        top: screenToLocal(currentRect.top - rootRect.top, scale),
+        width: screenToLocal(currentRect.width, scale),
+        height: screenToLocal(currentRect.height, scale),
       };
       const animatingOverlay = document.createElement("div");
       animatingOverlay.className = "enlarge-closing";
@@ -524,13 +548,19 @@ export default function DomeGallery({
       const mainR = mainRef.current?.getBoundingClientRect();
       const frameR = frameRef.current?.getBoundingClientRect();
 
-      if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0) {
+      if (!mainR || !frameR || !mainRef.current || tileR.width <= 0 || tileR.height <= 0) {
         openingRef.current = false;
         focusedElRef.current = null;
         parent.removeChild(refDiv);
         unlockScroll();
         return;
       }
+
+      const scale = cssScaleOf(mainRef.current);
+      const frameLocalLeft = screenToLocal(frameR.left - mainR.left, scale);
+      const frameLocalTop = screenToLocal(frameR.top - mainR.top, scale);
+      const frameLocalW = screenToLocal(frameR.width, scale);
+      const frameLocalH = screenToLocal(frameR.height, scale);
 
       originalTilePositionRef.current = {
         left: tileR.left,
@@ -543,10 +573,10 @@ export default function DomeGallery({
       const overlay = document.createElement("div");
       overlay.className = "enlarge";
       overlay.style.position = "absolute";
-      overlay.style.left = `${frameR.left - mainR.left}px`;
-      overlay.style.top = `${frameR.top - mainR.top}px`;
-      overlay.style.width = `${frameR.width}px`;
-      overlay.style.height = `${frameR.height}px`;
+      overlay.style.left = `${frameLocalLeft}px`;
+      overlay.style.top = `${frameLocalTop}px`;
+      overlay.style.width = `${frameLocalW}px`;
+      overlay.style.height = `${frameLocalH}px`;
       overlay.style.opacity = "0";
       overlay.style.zIndex = "30";
       overlay.style.willChange = "transform, opacity";
@@ -558,8 +588,8 @@ export default function DomeGallery({
       img.src = rawSrc;
       overlay.appendChild(img);
       viewerRef.current!.appendChild(overlay);
-      const tx0 = tileR.left - frameR.left;
-      const ty0 = tileR.top - frameR.top;
+      const tx0 = screenToLocal(tileR.left - frameR.left, scale);
+      const ty0 = screenToLocal(tileR.top - frameR.top, scale);
       const sx0 = tileR.width / frameR.width;
       const sy0 = tileR.height / frameR.height;
 
@@ -582,19 +612,14 @@ export default function DomeGallery({
           overlay.removeEventListener("transitionend", onFirstEnd);
           const prevTransition = overlay.style.transition;
           overlay.style.transition = "none";
-          const tempWidth = openedImageWidth || `${frameR.width}px`;
-          const tempHeight = openedImageHeight || `${frameR.height}px`;
-          overlay.style.width = tempWidth;
-          overlay.style.height = tempHeight;
-          const newRect = overlay.getBoundingClientRect();
-          overlay.style.width = `${frameR.width}px`;
-          overlay.style.height = `${frameR.height}px`;
+          const tempWidth = openedImageWidth || `${frameLocalW}px`;
+          const tempHeight = openedImageHeight || `${frameLocalH}px`;
+          const openW = parseCssSize(tempWidth, frameLocalW);
+          const openH = parseCssSize(tempHeight, frameLocalH);
           void overlay.offsetWidth;
           overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
-          const centeredLeft =
-            frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
-          const centeredTop =
-            frameR.top - mainR.top + (frameR.height - newRect.height) / 2;
+          const centeredLeft = frameLocalLeft + (frameLocalW - openW) / 2;
+          const centeredTop = frameLocalTop + (frameLocalH - openH) / 2;
           requestAnimationFrame(() => {
             overlay.style.left = `${centeredLeft}px`;
             overlay.style.top = `${centeredTop}px`;

@@ -26,8 +26,8 @@ export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
 export { default as bcfMapBg } from "@/assets/images/kurdistan.webp";
 export { default as bcfProjectHero } from "@/assets/images/women/w-4.webp";
 export { default as bcfErbil } from "@/assets/images/bcf/optimized/schools/8D1A7011.webp";
-/** Distinct from bcfErbil so Our Story chapter scroll visibly swaps the backdrop. */
-export { default as bcfCorridor } from "@/assets/images/TouristicPlace/ErbilCastle/DSC_5315.webp";
+/** Our Story full-bleed plate — used across every chapter pane. */
+export { default as bcfStoryBg } from "@/assets/images/bcf/our-story-bg.webp";
 export { default as bcfHubBg } from "@/assets/images/bcf/optimized/camps/harsham.webp";
 export { default as bcfImpactBg } from "@/assets/images/bcf/selected/humanity-relief.webp";
 export { default as bcfProjectsBg } from "@/assets/images/bcf/selected/impact-camps.webp";

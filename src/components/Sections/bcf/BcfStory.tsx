@@ -14,7 +14,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfCorridor, bcfErbil } from "@/components/Sections/bcf/bcfAssets";
+import { bcfStoryBg } from "@/components/Sections/bcf/bcfAssets";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfStoryProps = {
@@ -125,7 +125,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const active = sections[activeIndex];
   const isFoundation = activeIndex === 0;
   const isValues = active.id === "values";
-  const showCorridor = activeIndex > 0;
 
   return (
     <BcfShell showLogo={false} overlayClassName="bg-black/0">
@@ -133,18 +132,9 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
         <div className="absolute inset-0 z-10 overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src={bcfErbil}
+              src={bcfStoryBg}
               alt=""
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
-                showCorridor ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <img
-              src={bcfCorridor}
-              alt=""
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
-                showCorridor ? "opacity-100" : "opacity-0"
-              }`}
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
           <div

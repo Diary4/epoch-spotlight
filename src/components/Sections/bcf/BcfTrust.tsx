@@ -30,14 +30,14 @@ import {
   type PartnerLogoGroupId,
 } from "@/components/Sections/bcf/bcfPartnerLogos";
 import { bcfAwardImages } from "@/components/Sections/bcf/bcfAwardImages";
-import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
+import leadershipThumb from "@/assets/images/bcf/trust/leadership.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
-import partnershipsThumb from "@/assets/images/bcf/selected/humanity-relief.webp";
+import partnershipsThumb from "@/assets/images/bcf/trust/partnerships.webp";
 import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
-import partnershipsBg from "@/assets/images/bcf/optimized/camps/debaga.webp";
-import recognitionThumb from "@/assets/images/bcf/selected/impact-employees.webp";
-import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
-import hubBg from "@/assets/images/bcf/selected/trust-bg.webp";
+import partnershipsBg from "@/assets/images/bcf/trust/partnerships.webp";
+import recognitionThumb from "@/assets/images/bcf/trust/recognition.webp";
+import recognitionBg from "@/assets/images/bcf/trust/recognition.webp";
+import hubBg from "@/assets/images/bcf/trust/main-bg.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
