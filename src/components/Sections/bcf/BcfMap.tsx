@@ -126,69 +126,75 @@ export default function BcfMap({
             <BcfChapterPill title={c.whereWeWork} />
           </motion.div>
 
-          <div className="mt-12 max-w-[640px]">
+          {/* Title and scope share one row. Stacked, they cost the map a
+              hundred and fifty pixels of height for two elements that between
+              them fill less than the width — and on this screen the map is the
+              thing worth the height. `flex-wrap` is the safety net: the Kurdish
+              and Arabic labels are longer, and if the row ever runs out of room
+              the control drops beneath the title rather than squashing it. */}
+          <div className="mt-9 flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
             <motion.h1
               variants={bcfRise}
-              className="text-[80px] font-bold leading-[1.05]"
+              className="text-[76px] font-bold leading-[1.05]"
             >
               <span className="text-[#fbf4e4]">{c.across} </span>
               <span style={{ color: BCF.gold }}>{c.borders}</span>
             </motion.h1>
-          </div>
 
-          {/* Segmented scope control. Two states, both always visible, with the
-              active one carrying the gold — on a kiosk a dropdown would be a
-              second tap and a hidden option. */}
-          <motion.div
-            variants={bcfRise}
-            role="tablist"
-            aria-label={c.whereWeWork}
-            className="mt-9 inline-flex gap-2 rounded-full border border-white/12 bg-black/45 p-2 backdrop-blur-md"
-          >
-            {SCOPES.map((id) => {
-              const Icon = scopeIcons[id];
-              const on = scope === id;
-              return (
-                <motion.button
-                  key={id}
-                  type="button"
-                  role="tab"
-                  aria-selected={on}
-                  onClick={() => selectScope(id)}
-                  whileTap={BCF_TAP}
-                  transition={BCF_TAP_TRANSITION}
-                  className="relative flex transform-gpu items-center gap-3 rounded-full px-8 py-4"
-                >
-                  {on ? (
-                    <motion.span
-                      layoutId="bcf-map-scope"
-                      className="absolute inset-0 rounded-full border"
-                      style={{
-                        borderColor: `${BCF.gold}80`,
-                        backgroundColor: "rgba(251,178,47,0.14)",
-                        boxShadow: `0 0 28px ${BCF.gold}33`,
-                      }}
-                      transition={
-                        reduceMotion
-                          ? { duration: 0 }
-                          : { duration: 0.4, ease: BCF_EASE }
-                      }
-                    />
-                  ) : null}
-                  <Icon
-                    className="relative h-7 w-7"
-                    style={{ color: on ? BCF.gold : "rgba(255,255,255,0.45)" }}
-                  />
-                  <span
-                    className="relative text-[30px]"
-                    style={{ color: on ? BCF.creamSoft : "rgba(255,255,255,0.5)" }}
+            {/* Segmented scope control. Two states, both always visible, with the
+                active one carrying the gold — on a kiosk a dropdown would be a
+                second tap and a hidden option. */}
+            <motion.div
+              variants={bcfRise}
+              role="tablist"
+              aria-label={c.whereWeWork}
+              className="inline-flex gap-2 rounded-full border border-white/12 bg-black/45 p-2 backdrop-blur-md"
+            >
+              {SCOPES.map((id) => {
+                const Icon = scopeIcons[id];
+                const on = scope === id;
+                return (
+                  <motion.button
+                    key={id}
+                    type="button"
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => selectScope(id)}
+                    whileTap={BCF_TAP}
+                    transition={BCF_TAP_TRANSITION}
+                    className="relative flex transform-gpu items-center gap-3 rounded-full px-6 py-3.5"
                   >
-                    {c.mapScopes[id]}
-                  </span>
-                </motion.button>
-              );
-            })}
-          </motion.div>
+                    {on ? (
+                      <motion.span
+                        layoutId="bcf-map-scope"
+                        className="absolute inset-0 rounded-full border"
+                        style={{
+                          borderColor: `${BCF.gold}80`,
+                          backgroundColor: "rgba(251,178,47,0.14)",
+                          boxShadow: `0 0 28px ${BCF.gold}33`,
+                        }}
+                        transition={
+                          reduceMotion
+                            ? { duration: 0 }
+                            : { duration: 0.4, ease: BCF_EASE }
+                        }
+                      />
+                    ) : null}
+                    <Icon
+                      className="relative h-7 w-7"
+                      style={{ color: on ? BCF.gold : "rgba(255,255,255,0.45)" }}
+                    />
+                    <span
+                      className="relative whitespace-nowrap text-[28px]"
+                      style={{ color: on ? BCF.creamSoft : "rgba(255,255,255,0.5)" }}
+                    >
+                      {c.mapScopes[id]}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* The near abroad, above the map rather than below it.
@@ -264,7 +270,7 @@ export default function BcfMap({
         </AnimatePresence>
 
         <motion.div
-          className="relative mt-7 min-h-[900px] flex-1 overflow-hidden rounded-[32px] border border-[#fbc158]/28"
+          className="relative mt-6 min-h-[1150px] flex-1 overflow-hidden rounded-[36px] border border-[#fbc158]/28"
           style={{
             boxShadow:
               "inset 0 1px 0 rgba(251,193,88,0.14), inset 0 0 140px rgba(0,0,0,0.5), 0 34px 90px rgba(0,0,0,0.45)",
@@ -322,261 +328,264 @@ export default function BcfMap({
             ) : (
               <motion.div
                 key="scope-kurdistan"
-                className="absolute inset-0 z-10"
+                className="absolute inset-0 z-10 flex flex-col"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.22 } }}
                 transition={{ duration: 0.42, ease: BCF_EASE }}
               >
+                {/* Control band, matching the world half: instruction, then the
+                    filters, then a rule, and the map gets everything below.
+                    The filters used to be a column pinned to the bottom-left
+                    corner of the plate, which on a 1920 artboard stood on its
+                    end is a place a visitor's hand does not go. */}
+                <div className="px-8 pt-7">
+                  {/* Faded rather than unmounted once a pin has been tapped —
+                      the row below it must not jump when the advice retires. */}
+                  <p
+                    className="text-center text-[26px] leading-relaxed text-white/70 transition-opacity duration-500"
+                    style={{
+                      opacity: hintVisible && !selectedLocation ? 1 : 0,
+                    }}
+                  >
+                    {c.tapToExplore}
+                  </p>
+
+                  <motion.div
+                    className="mt-5 flex flex-wrap justify-center gap-3"
+                    variants={bcfStagger(0.06, 0.4)}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    {(Object.keys(c.filters) as MapFilterId[]).map((id) => {
+                      const Icon = filterIcons[id];
+                      const on = activeFilters.includes(id);
+                      return (
+                        <motion.button
+                          key={id}
+                          type="button"
+                          variants={bcfRise}
+                          onClick={() => toggleFilter(id)}
+                          whileTap={BCF_TAP}
+                          transition={BCF_TAP_TRANSITION}
+                          aria-pressed={on}
+                          className="flex transform-gpu items-center gap-3 rounded-full border px-5 py-2.5 transition-all duration-300"
+                          style={{
+                            borderColor: on ? `${BCF.gold}88` : "rgba(255,255,255,0.14)",
+                            backgroundColor: on
+                              ? "rgba(0,0,0,0.5)"
+                              : "rgba(0,0,0,0.28)",
+                            boxShadow: on ? `0 0 22px ${BCF.gold}26` : "none",
+                          }}
+                        >
+                          <Icon
+                            className="h-6 w-6"
+                            style={{ color: on ? BCF.gold : "rgba(255,255,255,0.35)" }}
+                          />
+                          <span
+                            className="text-[24px]"
+                            style={{
+                              color: on ? BCF.creamSoft : "rgba(255,255,255,0.4)",
+                            }}
+                          >
+                            {c.filters[id]}
+                          </span>
+                        </motion.button>
+                      );
+                    })}
+                  </motion.div>
+
+                  <div
+                    className="mt-6 h-px"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(251,193,88,0.3), transparent)",
+                    }}
+                  />
+                </div>
+
                 {/* Map plane. Fixed to the region's own aspect ratio and centred, so
                     the outlines and the pins share one coordinate space — the pin
                     percentages in BCF_LOCATIONS are percentages of *this* box, which
                     is the only reason a city can be trusted to sit on its own
                     governorate. */}
-                <div
-                  className="absolute inset-x-0 top-1/2 z-10 -translate-y-1/2"
-                  style={{
-                    aspectRatio: `${BCF_MAP_VIEWBOX.width} / ${BCF_MAP_VIEWBOX.height}`,
-                  }}
-                >
-                  <svg
-                    className="absolute inset-0 h-full w-full"
-                    viewBox={`${BCF_MAP_VIEWBOX.minX} ${BCF_MAP_VIEWBOX.minY} ${BCF_MAP_VIEWBOX.width} ${BCF_MAP_VIEWBOX.height}`}
-                    fill="none"
-                    aria-hidden="true"
+                <div className="relative min-h-0 flex-1">
+                  <div
+                    className="absolute inset-x-0 top-1/2 z-10 -translate-y-1/2"
+                    style={{
+                      aspectRatio: `${BCF_MAP_VIEWBOX.width} / ${BCF_MAP_VIEWBOX.height}`,
+                    }}
                   >
-                    <defs>
-                      <linearGradient id="bcf-map-core" x1="0" y1="0" x2="0.4" y2="1">
-                        <stop offset="0%" stopColor={BCF.gold} stopOpacity="0.22" />
-                        <stop offset="100%" stopColor={BCF.goldDeep} stopOpacity="0.1" />
-                      </linearGradient>
-                    </defs>
+                    <svg
+                      className="absolute inset-0 h-full w-full"
+                      viewBox={`${BCF_MAP_VIEWBOX.minX} ${BCF_MAP_VIEWBOX.minY} ${BCF_MAP_VIEWBOX.width} ${BCF_MAP_VIEWBOX.height}`}
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <defs>
+                        <linearGradient id="bcf-map-core" x1="0" y1="0" x2="0.4" y2="1">
+                          <stop offset="0%" stopColor={BCF.gold} stopOpacity="0.22" />
+                          <stop offset="100%" stopColor={BCF.goldDeep} stopOpacity="0.1" />
+                        </linearGradient>
+                      </defs>
 
-                    {/* Neighbours first, and faint: they give the Region an edge to
-                        sit against without ever competing with it. */}
-                    {BCF_MAP_CONTEXT.map((shape) => (
+                      {/* Neighbours first, and faint: they give the Region an edge to
+                          sit against without ever competing with it. */}
+                      {BCF_MAP_CONTEXT.map((shape) => (
+                        <path
+                          key={shape.id}
+                          d={shape.d}
+                          fill="rgba(255,255,255,0.022)"
+                          stroke="rgba(255,255,255,0.1)"
+                          strokeWidth={1.2}
+                          strokeLinejoin="round"
+                        />
+                      ))}
+
+                      {/* Kirkuk is worked in but outside the Region — a dashed edge
+                          says that without needing a legend. */}
                       <path
-                        key={shape.id}
-                        d={shape.d}
-                        fill="rgba(255,255,255,0.022)"
-                        stroke="rgba(255,255,255,0.1)"
-                        strokeWidth={1.2}
+                        d={BCF_MAP_KIRKUK.d}
+                        fill={`${BCF.gold}0f`}
+                        stroke={`${BCF.gold}72`}
+                        strokeWidth={1.8}
+                        strokeDasharray="12 9"
                         strokeLinejoin="round"
                       />
-                    ))}
 
-                    {/* Kirkuk is worked in but outside the Region — a dashed edge
-                        says that without needing a legend. */}
-                    <path
-                      d={BCF_MAP_KIRKUK.d}
-                      fill={`${BCF.gold}0f`}
-                      stroke={`${BCF.gold}72`}
-                      strokeWidth={1.8}
-                      strokeDasharray="12 9"
-                      strokeLinejoin="round"
-                    />
-
-                    {BCF_MAP_CORE.map((shape, index) => (
-                      <g key={shape.id}>
-                        {/* Wide, soft pass under the hairline reads as a glow on a
-                            65" panel, where a 2px stroke alone goes thin and mean. */}
-                        <path
-                          d={shape.d}
-                          fill="url(#bcf-map-core)"
-                          stroke={`${BCF.gold}26`}
-                          strokeWidth={9}
-                          strokeLinejoin="round"
-                        />
-                        <motion.path
-                          d={shape.d}
-                          stroke={BCF.goldBright}
-                          strokeWidth={2.4}
-                          strokeLinejoin="round"
-                          // The border draws itself before the pins bloom, so the
-                          // Region assembles rather than simply appearing.
-                          initial={
-                            reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }
-                          }
-                          animate={
-                            reduceMotion
-                              ? { opacity: 1, transition: { duration: 0.3 } }
-                              : {
-                                  pathLength: 1,
-                                  opacity: 1,
-                                  transition: {
-                                    duration: 1.5,
-                                    ease: BCF_EASE,
-                                    delay: 0.4 + index * 0.16,
-                                  },
-                                }
-                          }
-                        />
-                      </g>
-                    ))}
-                  </svg>
-
-                  <AnimatePresence initial={false}>
-                    {visibleLocations.map((loc, index) => {
-                      const isSelected = selectedLocation === loc.id;
-                      const pin = bcfProjectPin(...loc.coordinates);
-                      return (
-                        /* Pin anchoring stays on a plain wrapper — motion owns
-                           `transform` on the button for the bloom and tap scale.
-                           The wrapper centres on the coordinate rather than
-                           sitting above it: with twelve markers the dot is the
-                           thing that has to be exactly on its ground, and a
-                           label hanging beneath is free to be approximate. */
-                        <div
-                          key={loc.id}
-                          className="absolute -translate-x-1/2 -translate-y-1/2"
-                          style={{ left: pin.x, top: pin.y }}
-                        >
-                          <motion.button
-                            type="button"
-                            variants={bcfBloom}
-                            initial="initial"
-                            animate="animate"
-                            exit={{ opacity: 0, scale: 0.7, transition: { duration: 0.22 } }}
-                            transition={{
-                              duration: 0.5,
-                              delay: 0.9 + index * 0.05,
-                              ease: BCF_EASE,
-                            }}
-                            onClick={() => {
-                              setHintVisible(false);
-                              onSelectLocation(loc.id);
-                            }}
-                            whileTap={BCF_TAP}
-                            className="group flex transform-gpu flex-col items-center"
-                          >
-                            {/* A dot, not a name plate. Five cities could each
-                                carry a pill with their full name on it; twelve
-                                cannot — "Sulaymaniyah" alone is wider than the
-                                gap to Halabja, and the labels collided before
-                                the map had even finished drawing. The name now
-                                rides under the dot at a size that fits, and the
-                                card carries the full form. */}
-                            <span className="relative grid h-9 w-9 place-items-center">
-                              {/* Halo ping marks a pin as live without needing a hover. */}
-                              {!reduceMotion ? (
-                                <span
-                                  aria-hidden="true"
-                                  className="bcf-ping absolute h-6 w-6 rounded-full"
-                                  style={
-                                    {
-                                      backgroundColor: `${BCF.goldBright}55`,
-                                      "--ping-scale": "2.4",
-                                      "--ping-opacity": "0.55",
-                                      "--ping-duration": "2.4s",
-                                      "--ping-delay": `${index * 0.28}s`,
-                                    } as React.CSSProperties
+                      {BCF_MAP_CORE.map((shape, index) => (
+                        <g key={shape.id}>
+                          {/* Wide, soft pass under the hairline reads as a glow on a
+                              65" panel, where a 2px stroke alone goes thin and mean. */}
+                          <path
+                            d={shape.d}
+                            fill="url(#bcf-map-core)"
+                            stroke={`${BCF.gold}26`}
+                            strokeWidth={9}
+                            strokeLinejoin="round"
+                          />
+                          <motion.path
+                            d={shape.d}
+                            stroke={BCF.goldBright}
+                            strokeWidth={2.4}
+                            strokeLinejoin="round"
+                            // The border draws itself before the pins bloom, so the
+                            // Region assembles rather than simply appearing.
+                            initial={
+                              reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }
+                            }
+                            animate={
+                              reduceMotion
+                                ? { opacity: 1, transition: { duration: 0.3 } }
+                                : {
+                                    pathLength: 1,
+                                    opacity: 1,
+                                    transition: {
+                                      duration: 1.5,
+                                      ease: BCF_EASE,
+                                      delay: 0.4 + index * 0.16,
+                                    },
                                   }
+                            }
+                          />
+                        </g>
+                      ))}
+                    </svg>
+
+                    <AnimatePresence initial={false}>
+                      {visibleLocations.map((loc, index) => {
+                        const isSelected = selectedLocation === loc.id;
+                        const pin = bcfProjectPin(...loc.coordinates);
+                        return (
+                          /* Pin anchoring stays on a plain wrapper — motion owns
+                             `transform` on the button for the bloom and tap scale.
+                             The wrapper centres on the coordinate rather than
+                             sitting above it: with twelve markers the dot is the
+                             thing that has to be exactly on its ground, and a
+                             label hanging beneath is free to be approximate. */
+                          <div
+                            key={loc.id}
+                            className="absolute -translate-x-1/2 -translate-y-1/2"
+                            style={{ left: pin.x, top: pin.y }}
+                          >
+                            <motion.button
+                              type="button"
+                              variants={bcfBloom}
+                              initial="initial"
+                              animate="animate"
+                              exit={{ opacity: 0, scale: 0.7, transition: { duration: 0.22 } }}
+                              transition={{
+                                duration: 0.5,
+                                delay: 0.9 + index * 0.05,
+                                ease: BCF_EASE,
+                              }}
+                              onClick={() => {
+                                setHintVisible(false);
+                                onSelectLocation(loc.id);
+                              }}
+                              whileTap={BCF_TAP}
+                              className="group flex transform-gpu flex-col items-center"
+                            >
+                              {/* A dot, not a name plate. Five cities could each
+                                  carry a pill with their full name on it; twelve
+                                  cannot — "Sulaymaniyah" alone is wider than the
+                                  gap to Halabja, and the labels collided before
+                                  the map had even finished drawing. The name now
+                                  rides under the dot at a size that fits, and the
+                                  card carries the full form. */}
+                              <span className="relative grid h-9 w-9 place-items-center">
+                                {/* Halo ping marks a pin as live without needing a hover. */}
+                                {!reduceMotion ? (
+                                  <span
+                                    aria-hidden="true"
+                                    className="bcf-ping absolute h-6 w-6 rounded-full"
+                                    style={
+                                      {
+                                        backgroundColor: `${BCF.goldBright}55`,
+                                        "--ping-scale": "2.4",
+                                        "--ping-opacity": "0.55",
+                                        "--ping-duration": "2.4s",
+                                        "--ping-delay": `${index * 0.28}s`,
+                                      } as React.CSSProperties
+                                    }
+                                  />
+                                ) : null}
+                                <span
+                                  className="relative rounded-full border-2 transition-all duration-300"
+                                  style={{
+                                    width: isSelected ? 26 : 18,
+                                    height: isSelected ? 26 : 18,
+                                    borderColor: BCF.goldBright,
+                                    backgroundColor: isSelected
+                                      ? BCF.goldBright
+                                      : "rgba(10,10,10,0.85)",
+                                    boxShadow: isSelected
+                                      ? `0 0 30px ${BCF.gold}aa`
+                                      : `0 0 14px ${BCF.gold}55`,
+                                  }}
                                 />
-                              ) : null}
+                              </span>
                               <span
-                                className="relative rounded-full border-2 transition-all duration-300"
+                                className="mt-1 whitespace-nowrap rounded-md px-2 py-[3px] text-[22px] font-medium transition-all duration-300"
                                 style={{
-                                  width: isSelected ? 26 : 18,
-                                  height: isSelected ? 26 : 18,
-                                  borderColor: BCF.goldBright,
+                                  color: isSelected ? BCF.bg : BCF.creamSoft,
                                   backgroundColor: isSelected
                                     ? BCF.goldBright
-                                    : "rgba(10,10,10,0.85)",
-                                  boxShadow: isSelected
-                                    ? `0 0 30px ${BCF.gold}aa`
-                                    : `0 0 14px ${BCF.gold}55`,
+                                    : "rgba(4,6,9,0.72)",
+                                  textShadow: isSelected
+                                    ? "none"
+                                    : "0 2px 8px rgba(0,0,0,0.9)",
                                 }}
-                              />
-                            </span>
-                            <span
-                              className="mt-1 whitespace-nowrap rounded-md px-2 py-[3px] text-[22px] font-medium transition-all duration-300"
-                              style={{
-                                color: isSelected ? BCF.bg : BCF.creamSoft,
-                                backgroundColor: isSelected
-                                  ? BCF.goldBright
-                                  : "rgba(4,6,9,0.72)",
-                                textShadow: isSelected
-                                  ? "none"
-                                  : "0 2px 8px rgba(0,0,0,0.9)",
-                              }}
-                            >
-                              {c.locations[loc.id].short}
-                            </span>
-                          </motion.button>
-                        </div>
-                      );
-                    })}
-                  </AnimatePresence>
+                              >
+                                {c.locations[loc.id].short}
+                              </span>
+                            </motion.button>
+                          </div>
+                        );
+                      })}
+                    </AnimatePresence>
+                  </div>
                 </div>
-
-                {/* Filters sit low-left: the pins run from 18% to 58% of the stage,
-                    so a top-left panel buried the Zakho marker behind itself. */}
-                <motion.aside
-                  className="absolute bottom-6 left-6 z-20 w-[300px] rounded-[24px] border border-white/10 bg-black/55 p-5 backdrop-blur-md"
-                  variants={bcfStagger(0.06, 0.5)}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {(Object.keys(c.filters) as MapFilterId[]).map((id) => {
-                    const Icon = filterIcons[id];
-                    const on = activeFilters.includes(id);
-                    return (
-                      <motion.button
-                        key={id}
-                        type="button"
-                        variants={bcfRise}
-                        onClick={() => toggleFilter(id)}
-                        whileTap={BCF_TAP}
-                        transition={BCF_TAP_TRANSITION}
-                        className="mb-3 flex w-full transform-gpu items-center justify-between gap-3 rounded-xl px-2 py-3 text-start last:mb-0"
-                      >
-                        <span className="flex items-center gap-3">
-                          <span
-                            className="grid h-10 w-10 place-items-center rounded-full border transition-all duration-300"
-                            style={{
-                              borderColor: on ? BCF.gold : "rgba(255,255,255,0.25)",
-                              color: on ? BCF.gold : "rgba(255,255,255,0.45)",
-                              boxShadow: on ? `0 0 18px ${BCF.gold}40` : "none",
-                            }}
-                          >
-                            <Icon className="h-5 w-5" />
-                          </span>
-                          <span
-                            className="text-[28px] transition-colors duration-300"
-                            style={{ color: on ? BCF.creamSoft : "rgba(255,255,255,0.45)" }}
-                          >
-                            {c.filters[id]}
-                          </span>
-                        </span>
-                        <span
-                          className="h-px transition-all duration-300"
-                          style={{
-                            width: on ? 32 : 0,
-                            backgroundColor: BCF.gold,
-                          }}
-                        />
-                      </motion.button>
-                    );
-                  })}
-                </motion.aside>
-
-                <AnimatePresence>
-                  {hintVisible && !selectedLocation ? (
-                    /* Above the topmost pin rather than mid-stage, where it landed
-                       squarely on the Kirkuk and Erbil markers. */
-                    <motion.div
-                      className="pointer-events-none absolute left-1/2 top-6 z-20 -translate-x-1/2 text-center"
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.5, delay: 0.9, ease: BCF_EASE }}
-                    >
-                      <p className="rounded-full border border-white/10 bg-black/55 px-6 py-3 text-[24px] text-white backdrop-blur-md">
-                        {c.tapToExplore}
-                      </p>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
 
                 <AnimatePresence mode="wait">
                   {selected && selectedLocation ? (

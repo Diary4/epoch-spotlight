@@ -528,6 +528,9 @@ export type BcfCopy = {
   mapScopes: Record<MapScopeId, string>;
   globalLead: string;
   globalZoomHint: string;
+  globeHint: string;
+  viewGlobe: string;
+  viewFlat: string;
   zoomIn: string;
   zoomOut: string;
   resetView: string;
@@ -870,6 +873,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     globalLead:
       "Thirteen countries in twenty years, all run from Erbil.",
     globalZoomHint: "Drag to move · pinch to zoom",
+    globeHint: "Drag to spin · pinch to zoom",
+    viewGlobe: "Globe",
+    viewFlat: "Flat map",
     zoomIn: "Zoom in",
     zoomOut: "Zoom out",
     resetView: "Reset view",
@@ -1596,6 +1602,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     globalLead:
       "سیازدە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.",
     globalZoomHint: "ڕایبکێشە بۆ جوڵاندن · بیگوشە بۆ نزیکبوونەوە",
+    globeHint: "ڕایبکێشە بۆ خولاندن · بیگوشە بۆ نزیکبوونەوە",
+    viewGlobe: "گۆی زەوی",
+    viewFlat: "نەخشەی تەخت",
     zoomIn: "نزیکبوونەوە",
     zoomOut: "دوورکەوتنەوە",
     resetView: "گەڕانەوە بۆ دیمەنی سەرەتا",
@@ -2283,6 +2292,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     globalLead:
       "ثلاث عشرة دولة في عشرين عاماً، تُدار جميعها من أربيل.",
     globalZoomHint: "اسحب للتحريك · اضغط بإصبعين للتكبير",
+    globeHint: "اسحب للتدوير · اضغط بإصبعين للتكبير",
+    viewGlobe: "الكرة الأرضية",
+    viewFlat: "خريطة مسطحة",
     zoomIn: "تكبير",
     zoomOut: "تصغير",
     resetView: "إعادة العرض",
