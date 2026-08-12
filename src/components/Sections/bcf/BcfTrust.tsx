@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, ChevronRight, X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
@@ -12,8 +12,6 @@ import BcfPresident, {
 import {
   bcfCopy,
   type BcfLang,
-  type RecognitionItem,
-  type RecognitionItemId,
   type TrustTopicId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
@@ -22,7 +20,6 @@ import {
   BCF_EASE,
   BCF_TAP,
   BCF_TAP_TRANSITION,
-  bcfBloom,
   bcfDrawX,
   bcfRise,
   bcfRiseCard,
@@ -32,6 +29,7 @@ import {
   bcfPartnerLogos,
   type PartnerLogoGroupId,
 } from "@/components/Sections/bcf/bcfPartnerLogos";
+import { bcfAwardImages } from "@/components/Sections/bcf/bcfAwardImages";
 import leadershipThumb from "@/assets/images/bcf/selected/humanity-community.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsThumb from "@/assets/images/bcf/selected/humanity-relief.webp";
@@ -42,11 +40,6 @@ import recognitionBg from "@/assets/images/bcf/optimized/camps/kawrgosk.webp";
 import hubBg from "@/assets/images/bcf/selected/trust-bg.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
-import awardsNode from "@/assets/images/bcf/optimized/schools/8D1A7008.webp";
-import certificationsNode from "@/assets/images/bcf/optimized/schools/IMG_6698.webp";
-import parliamentNode from "@/assets/images/bcf/optimized/children-activity/DSC_1567.webp";
-import lettersNode from "@/assets/images/bcf/optimized/flood/2B1A6924.webp";
-import timelineNode from "@/assets/images/bcf/optimized/children-activity/8C6A6112.webp";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
 import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
@@ -101,8 +94,13 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     React.useState<PresidentView | null>(null);
   const [partnerGroup, setPartnerGroup] =
     React.useState<PartnerLogoGroupId>("partners");
+  const [awardPreview, setAwardPreview] = React.useState<string | null>(null);
 
   const goBack = () => {
+    if (awardPreview) {
+      setAwardPreview(null);
+      return;
+    }
     if (chiefView === "timeline") {
       setChiefView("profile");
       return;
@@ -123,6 +121,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       setActiveId(null);
       setCredentialIndex(0);
       setPartnerGroup("partners");
+      setAwardPreview(null);
       return;
     }
     onBack();
@@ -442,7 +441,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         >
           <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
             <motion.p
-              className={`mx-auto mt-10 max-w-[820px] text-center text-[30px] text-[#fdeed4] ${
+              className={`mx-auto mt-8 max-w-[820px] text-center text-[28px] text-[#fdeed4] ${
                 lang === "en" ? "leading-relaxed" : "leading-[1.75]"
               }`}
               initial={{ opacity: 0, y: 26 }}
@@ -451,12 +450,81 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {c.trustRecognitionBody}
             </motion.p>
-            <RecognitionArc
-              items={c.trustRecognitionItems}
-              hint={c.tapToExplore}
-              closeLabel={c.close}
-              rtl={lang !== "en"}
-            />
+
+            <motion.div
+              className="mx-auto mt-10 grid max-h-[1420px] w-full max-w-[980px] grid-cols-2 gap-6 overflow-y-auto overscroll-contain px-2 pb-8"
+              variants={bcfStagger(0.03, 0.1)}
+              initial="initial"
+              animate="animate"
+            >
+              {bcfAwardImages.map((src, index) => (
+                <motion.button
+                  key={src}
+                  type="button"
+                  variants={bcfRiseCard}
+                  whileTap={BCF_TAP}
+                  transition={BCF_TAP_TRANSITION}
+                  onClick={() => setAwardPreview(src)}
+                  className="flex aspect-[4/3] transform-gpu items-center justify-center rounded-[24px] border border-white/14 bg-black/40 p-6"
+                  style={{ boxShadow: "0 16px 40px rgba(0,0,0,0.42)" }}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    decoding="async"
+                    loading={index < 6 ? "eager" : "lazy"}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </motion.button>
+              ))}
+            </motion.div>
+
+            <AnimatePresence>
+              {awardPreview ? (
+                <motion.div
+                  className="absolute inset-0 z-50 flex items-center justify-center px-10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.28 }}
+                  onClick={() => setAwardPreview(null)}
+                >
+                  <div
+                    className="absolute inset-0 backdrop-blur-[4px]"
+                    style={{ backgroundColor: "rgba(4,6,9,0.82)" }}
+                  />
+                  <motion.div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={c.trustRecognitionTitle}
+                    onClick={(event) => event.stopPropagation()}
+                    className="relative z-10 flex max-h-[1680px] w-full max-w-[920px] items-center justify-center rounded-[28px] border border-white/16 bg-black/55 p-10"
+                    style={{ boxShadow: "0 40px 110px rgba(0,0,0,0.65)" }}
+                    initial={{ opacity: 0, scale: 0.96, y: 18 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98, y: 10 }}
+                    transition={{ duration: 0.36, ease: BCF_EASE }}
+                  >
+                    <img
+                      src={awardPreview}
+                      alt=""
+                      decoding="async"
+                      className="max-h-[1480px] max-w-full object-contain"
+                    />
+                    <motion.button
+                      type="button"
+                      onClick={() => setAwardPreview(null)}
+                      whileTap={BCF_TAP}
+                      transition={BCF_TAP_TRANSITION}
+                      className="absolute end-6 top-6 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/60 backdrop-blur-md"
+                      aria-label={c.close}
+                    >
+                      <X className="h-8 w-8 text-white" />
+                    </motion.button>
+                  </motion.div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </TrustChrome>
         </BcfShell>
       );
@@ -533,302 +601,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     <AnimatePresence mode="wait">
       {scene}
     </AnimatePresence>
-  );
-}
-
-const recognitionNodes: Record<RecognitionItemId, string> = {
-  awards: awardsNode,
-  certifications: certificationsNode,
-  parliament: parliamentNode,
-  letters: lettersNode,
-  timeline: timelineNode,
-};
-
-/** Stage the constellation is drawn in. Nodes zigzag down a single thread. */
-const ARC_W = 1000;
-const ARC_H = 1240;
-const NODE_R = 95;
-/** x is the LTR centre; the whole stage mirrors for Kurdish and Arabic. */
-const ARC_NODES: { x: number; y: number }[] = [
-  { x: 250, y: 150 },
-  { x: 420, y: 385 },
-  { x: 250, y: 620 },
-  { x: 420, y: 855 },
-  { x: 250, y: 1090 },
-];
-
-/** Smooth S-curve through the node centres — control points sit half a step out. */
-function arcPath(mirror: boolean) {
-  const at = (i: number) => {
-    const n = ARC_NODES[i];
-    return { x: mirror ? ARC_W - n.x : n.x, y: n.y };
-  };
-  let d = `M${at(0).x} ${at(0).y}`;
-  for (let i = 1; i < ARC_NODES.length; i += 1) {
-    const a = at(i - 1);
-    const b = at(i);
-    const half = (b.y - a.y) / 2;
-    d += ` C${a.x} ${a.y + half} ${b.x} ${b.y - half} ${b.x} ${b.y}`;
-  }
-  return d;
-}
-
-/**
- * Recognition — the five proofs read as one descending thread rather than a
- * paragraph. Tapping a node opens the awards behind that heading, so the page
- * carries the roadmap's detail without printing a list nobody reads standing up.
- */
-function RecognitionArc({
-  items,
-  hint,
-  closeLabel,
-  rtl,
-}: {
-  items: RecognitionItem[];
-  hint: string;
-  closeLabel: string;
-  rtl: boolean;
-}) {
-  const reduceMotion = useReducedMotion();
-  const [activeId, setActiveId] = React.useState<RecognitionItemId | null>(null);
-  const thread = React.useMemo(() => arcPath(rtl), [rtl]);
-  const active = items.find((item) => item.id === activeId) ?? null;
-
-  return (
-    <div className="mx-auto mt-10 w-full max-w-[1000px]">
-      <motion.p
-        className={`text-center text-[24px] text-white/45 ${rtl ? "" : "tracking-[0.16em]"}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-      >
-        {hint}
-      </motion.p>
-
-      <div
-        className="relative mx-auto mt-6"
-        style={{ width: ARC_W, height: ARC_H }}
-      >
-        <svg
-          className="pointer-events-none absolute inset-0 h-full w-full"
-          viewBox={`0 0 ${ARC_W} ${ARC_H}`}
-          fill="none"
-          aria-hidden="true"
-        >
-          {/* Two wide guide arcs give the thread something to belong to. */}
-          {[700, 890].map((r, i) => (
-            <motion.circle
-              key={r}
-              cx={rtl ? ARC_W + 120 : -120}
-              cy={ARC_H / 2}
-              r={r}
-              stroke="rgba(255,255,255,0.09)"
-              strokeWidth={1}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.1, delay: 0.3 + i * 0.12 }}
-            />
-          ))}
-
-          <motion.path
-            d={thread}
-            stroke="rgba(255,255,255,0.16)"
-            strokeWidth={1.4}
-            initial={reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }}
-            animate={{
-              pathLength: 1,
-              opacity: 1,
-              transition: { duration: 1.5, delay: 0.34, ease: BCF_EASE },
-            }}
-          />
-          {/* The thread used to carry a travelling glint — a second copy of this
-              path with an animated `stroke-dashoffset`. Unlike transform and
-              opacity, dash offset is not a compositor property: every frame
-              re-rasterised the whole 1000×-wide arc on the main thread, for as
-              long as the screen was up. The static thread above already reads as
-              wiring, and the nodes carry the life on this screen. */}
-        </svg>
-
-        {items.map((item, index) => {
-          const node = ARC_NODES[index] ?? ARC_NODES[ARC_NODES.length - 1];
-          const cx = rtl ? ARC_W - node.x : node.x;
-          const isActive = activeId === item.id;
-          const labelGap = NODE_R + 28;
-          /** Labels sit on the open side of the thread and fill toward the node. */
-          const labelStyle: React.CSSProperties = rtl
-            ? {
-                left: 12,
-                right: ARC_W - cx + labelGap,
-                top: node.y,
-                transform: "translateY(-50%)",
-              }
-            : {
-                left: cx + labelGap,
-                right: 12,
-                top: node.y,
-                transform: "translateY(-50%)",
-              };
-
-          return (
-            <React.Fragment key={item.id}>
-              {/* Node — a plain wrapper carries the centring translate, because
-                  motion owns `transform` on the button itself. */}
-              <div
-                className="absolute z-20"
-                style={{
-                  left: cx - NODE_R,
-                  top: node.y - NODE_R,
-                  width: NODE_R * 2,
-                  height: NODE_R * 2,
-                }}
-              >
-                <motion.button
-                  type="button"
-                  onClick={() => setActiveId(isActive ? null : item.id)}
-                  aria-label={item.title}
-                  aria-expanded={isActive}
-                  variants={bcfBloom}
-                  initial="initial"
-                  animate="animate"
-                  whileTap={BCF_TAP}
-                  transition={{ ...BCF_TAP_TRANSITION, delay: 0.4 + index * 0.11 }}
-                  className="relative block h-full w-full transform-gpu overflow-hidden rounded-full"
-                  style={{
-                    border: `2px solid ${isActive ? BCF.goldBright : `${BCF.gold}88`}`,
-                    boxShadow: isActive
-                      ? `0 0 46px ${BCF.gold}77`
-                      : "0 16px 40px rgba(0,0,0,0.5)",
-                    transition: "border-color 400ms ease, box-shadow 400ms ease",
-                  }}
-                >
-                  <img
-                    src={recognitionNodes[item.id]}
-                    alt=""
-                    decoding="async"
-                    className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
-                    style={{ transform: isActive ? "scale(1.08)" : "scale(1)" }}
-                  />
-                  <span
-                    className="absolute inset-0"
-                    style={{
-                      background: isActive
-                        ? "radial-gradient(circle at 50% 40%, rgba(4,7,10,0.05), rgba(4,7,10,0.45) 92%)"
-                        : "radial-gradient(circle at 50% 40%, rgba(4,7,10,0.2), rgba(4,7,10,0.62) 92%)",
-                      transition: "background 400ms ease",
-                    }}
-                  />
-                </motion.button>
-              </div>
-
-              {/* Label pill, anchored to its node. The detail opens as a card
-                  over the constellation — grown in place it ran into the next
-                  node down, and the text was unreadable behind it. */}
-              <motion.div
-                className={`absolute z-10 flex ${rtl ? "justify-end" : "justify-start"}`}
-                style={labelStyle}
-                initial={{ opacity: 0, x: rtl ? 26 : -26 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.66,
-                  delay: 0.52 + index * 0.11,
-                  ease: BCF_EASE,
-                }}
-              >
-                <div
-                  className="max-w-full rounded-[38px] px-9 py-5 backdrop-blur-md"
-                  style={{
-                    border: `1px solid ${isActive ? `${BCF.gold}99` : "rgba(255,255,255,0.16)"}`,
-                    backgroundColor: isActive
-                      ? "rgba(0,0,0,0.62)"
-                      : "rgba(0,0,0,0.42)",
-                    transition:
-                      "border-color 340ms ease, background-color 340ms ease",
-                  }}
-                >
-                  <p
-                    className={`text-[30px] leading-tight text-[#fbf4e4] ${
-                      rtl ? "font-semibold" : "font-medium"
-                    }`}
-                  >
-                    {item.title}
-                  </p>
-                </div>
-              </motion.div>
-            </React.Fragment>
-          );
-        })}
-
-        {/* Detail card. It dims the constellation behind it so the awards are
-            read against a settled backdrop, and any tap closes it. */}
-        <AnimatePresence>
-          {active ? (
-            <motion.div
-              className="absolute inset-0 z-40 flex items-center justify-center px-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.28 }}
-              onClick={() => setActiveId(null)}
-            >
-              <div
-                className="absolute inset-0 backdrop-blur-[3px]"
-                style={{ backgroundColor: "rgba(4,6,9,0.72)" }}
-              />
-
-              <motion.div
-                role="dialog"
-                aria-modal="true"
-                aria-label={active.title}
-                onClick={(event) => event.stopPropagation()}
-                className={`${BCF_GLASS_CARD} relative w-full max-w-[820px] overflow-hidden`}
-                initial={{ opacity: 0, scale: 0.95, y: 24 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.97, y: 14 }}
-                transition={{ duration: 0.4, ease: BCF_EASE }}
-                style={{ boxShadow: "0 40px 110px rgba(0,0,0,0.62)" }}
-              >
-                <img
-                  src={recognitionNodes[active.id]}
-                  alt=""
-                  decoding="async"
-                  className="h-[320px] w-full object-cover"
-                />
-                <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-[320px]"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(4,6,9,0.25) 0%, rgba(4,6,9,0.15) 50%, rgba(0,0,0,0.85) 100%)",
-                  }}
-                />
-
-                <div className="p-12 pt-10">
-                  <h3
-                    className="text-[46px] font-semibold leading-tight"
-                    style={{ color: BCF.gold }}
-                  >
-                    {active.title}
-                  </h3>
-                  <p className="mt-7 text-[32px] leading-relaxed text-[#fdeed4]">
-                    {active.detail}
-                  </p>
-                </div>
-
-                <motion.button
-                  type="button"
-                  onClick={() => setActiveId(null)}
-                  whileTap={BCF_TAP}
-                  transition={BCF_TAP_TRANSITION}
-                  className="absolute end-7 top-7 grid h-16 w-16 transform-gpu place-items-center rounded-full border border-white/30 bg-black/55 backdrop-blur-md"
-                  aria-label={closeLabel}
-                >
-                  <X className="h-8 w-8 text-white" />
-                </motion.button>
-              </motion.div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </div>
-    </div>
   );
 }
 

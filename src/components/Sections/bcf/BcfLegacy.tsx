@@ -3,7 +3,6 @@ import { motion, useReducedMotion } from "motion/react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   bcfDrawX,
   bcfRise,
@@ -110,7 +109,7 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
             {c.legacyBridge}
           </motion.p>
 
-          {/* The three pillars, numbered the way every other BCF list is. */}
+          {/* The three pillars. */}
           <div className="mt-12 flex flex-col gap-6">
             {c.legacyPillars.map((pillar, index) => (
               <motion.div
@@ -124,14 +123,7 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
                   boxShadow: "0 22px 56px rgba(0,0,0,0.5)",
                 }}
               >
-                <span
-                  className="grid w-[150px] shrink-0 place-items-center text-[46px] font-bold tabular-nums"
-                  style={{ color: `${BCF.gold}cc` }}
-                >
-                  {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
-                </span>
-
-                <span className="flex min-w-0 flex-1 flex-col justify-center gap-2 pe-8">
+                <span className="flex min-w-0 flex-1 flex-col justify-center gap-2 px-10">
                   <span className="text-[42px] font-semibold uppercase leading-tight tracking-[0.04em] text-[#fbf4e4]">
                     {pillar.titleWhite}
                   </span>
