@@ -10,7 +10,6 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
-import { bcfJourneyHumanity } from "@/components/Sections/bcf/bcfAssets";
 import environmentImg from "@/assets/images/bcf/selected/impact-camps.webp";
 // Real field photography for the four categories the new drop covers.
 import reliefImg from "@/assets/images/bcf/selected/humanity-relief.webp";
@@ -201,21 +200,13 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           animate="animate"
         >
           <motion.div variants={bcfRise}>
-            <BcfChapterPill title={chapterTitle} thumb={bcfJourneyHumanity} />
+            <BcfChapterPill title={chapterTitle} />
           </motion.div>
 
           <div className="mt-16 max-w-[1080px]">
-            <motion.p
-              variants={bcfRise}
-              dir="ltr"
-              className="text-[80px] font-bold leading-none"
-            >
-              <span className="text-[#fbf4e4]">0</span>
-              <span style={{ color: BCF.gold }}>2</span>
-            </motion.p>
             <motion.h1
               variants={bcfRise}
-              className="mt-6 text-[80px] font-bold leading-[1.05]"
+              className="text-[80px] font-bold leading-[1.05]"
             >
               <span className="text-[#fbf4e4]">{c.whoWeServeWhite} </span>
               <span style={{ color: BCF.gold }}>{c.whoWeServeGold}</span>

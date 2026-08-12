@@ -14,7 +14,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfCorridor, bcfErbil, bcfJourneyStory } from "@/components/Sections/bcf/bcfAssets";
+import { bcfCorridor, bcfErbil } from "@/components/Sections/bcf/bcfAssets";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfStoryProps = {
@@ -24,21 +24,15 @@ type BcfStoryProps = {
 
 const PANE_HEIGHT = 1920;
 
-function chapterLabel(index: number, lang: BcfLang) {
-  return bcfDigits(String(index + 1).padStart(2, "0"), lang);
-}
-
 /**
- * The opener every chapter shares: the number, the title typing itself in, and
- * the line beneath it.
+ * The opener every chapter shares: the title typing itself in, and the line
+ * beneath it.
  */
 function BcfChapterHead({
-  label,
   titleGold,
   titleWhite,
   body,
 }: {
-  label: string;
   titleGold: string;
   titleWhite?: string;
   body?: string;
@@ -47,18 +41,9 @@ function BcfChapterHead({
 
   return (
     <>
-      <motion.p
-        variants={bcfRise}
-        dir="ltr"
-        className="text-[80px] font-bold leading-none tracking-wide"
-      >
-        <span className="text-[#fbf4e4]">{label[0]}</span>
-        <span style={{ color: BCF.gold }}>{label[1]}</span>
-      </motion.p>
-
       <motion.div
         variants={bcfRise}
-        className="mt-8 max-w-[1000px] font-sans text-[80px] font-bold leading-[1.05]"
+        className="max-w-[1000px] font-sans text-[80px] font-bold leading-[1.05]"
       >
         <TextType
           key={`gold-${titleGold}`}
@@ -140,7 +125,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const active = sections[activeIndex];
   const isFoundation = activeIndex === 0;
   const isValues = active.id === "values";
-  const label = chapterLabel(activeIndex, lang);
   const showCorridor = activeIndex > 0;
 
   return (
@@ -177,7 +161,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.14, ease: BCF_EASE }}
           >
-            <BcfChapterPill title={storyLabel} thumb={bcfJourneyStory} />
+            <BcfChapterPill title={storyLabel} />
           </motion.div>
 
           <div className="absolute end-12 top-1/2 z-30 flex -translate-y-1/2 flex-col items-center gap-4">
@@ -208,7 +192,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             >
               <div className="mx-auto w-full max-w-[1080px]">
                 <BcfChapterHead
-                  label={label}
                   titleGold={active.titleGold}
                   titleWhite={active.titleWhite}
                   body={isValues ? undefined : active.body}

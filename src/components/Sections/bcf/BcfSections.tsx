@@ -24,7 +24,6 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 
 type BcfSectionsProps = {
   lang: BcfLang;
@@ -217,7 +216,6 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
             if (!chapter) return null;
             const isActive = activeId === item.id;
             const size = isActive ? CIRCLE + 16 : CIRCLE;
-            const label = bcfDigits(String(index + 1).padStart(2, "0"), lang);
 
             return (
               /* The centring translate lives on a plain wrapper: motion writes
@@ -311,21 +309,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                     }}
                   />
                 </span>
-                {/* Numbered kicker, matching the "0X" mark every other chapter
-                    opens on — the hub was the one screen that never counted
-                    itself. It sits below the circle rather than inside it: a
-                    round photo clips its own bounding-box corners, so a badge
-                    placed "top-left" the way a rectangular card would carry
-                    one lands in the part of the square that the circle never
-                    draws. */}
                 <span
-                  className="absolute left-1/2 top-full mt-5 -translate-x-1/2 text-[24px] font-bold leading-none tabular-nums transition-opacity duration-500"
-                  style={{ color: BCF.goldBright, opacity: isActive ? 1 : 0.6 }}
-                >
-                  {label}
-                </span>
-                <span
-                  className="absolute left-1/2 top-full mt-12 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight transition-colors duration-500"
+                  className="absolute left-1/2 top-full mt-5 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight transition-colors duration-500"
                   style={{ color: isActive ? BCF.sand : "#fdeed4" }}
                 >
                   {chapter.title}

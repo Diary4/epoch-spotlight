@@ -402,6 +402,8 @@ export type BcfPresidentCopy = {
   name: string;
   role: string;
   meta: string;
+  /** Short heading above the biography. */
+  introTitle: string;
   intro: string;
   timelineCta: string;
   timelineTitle: string;
@@ -1302,8 +1304,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "Mousa Ahmed Agha Tajaldeen",
       role: "BCF President",
       meta: "Barzani Charity Foundation",
+      introTitle: "A Life of Service and Leadership",
       intro:
-        "Born on August 5, 1974, in the village of Kalok in the Barzan region, he is a graduate of the Institute of Fine Arts. He is married and has four children. He served as the Secretary of the Kurdistan Students Union from 1994 to 1998, later becoming the Vice President of the Barzani Charity Foundation in 2007 before assuming the role of its President. He has been leading the foundation for 19 years and is a recipient of the Immortal Barzani Medal, alongside hundreds of other honors and recognitions.",
+        "Born on August 5, 1974, in Kalok village in the Barzan region, he graduated from the Institute of Fine Arts. His commitment to public and humanitarian service began at an early age.\n\nFrom 1994 to 1998, he served as Secretary of the Kurdistan Students Union. In 2007, he joined the leadership of the Barzani Charity Foundation as Vice President and later became its President. For more than 19 years, he has helped guide the foundation’s humanitarian mission and expand its support for communities in need.\n\nIn recognition of his service, he was awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions. He is married and has four children.",
       timelineCta: "View Timeline",
       timelineTitle: "BCF Presidency",
       timelineRange: "1974 — Present",
@@ -1312,7 +1315,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           id: "birth",
           year: "1974",
           title: "Born in Kalok",
-          body: "Born on August 5 in the village of Kalok in the Barzan region. A graduate of the Institute of Fine Arts; married with four children.",
+          body: "Born on August 5 in Kalok village in the Barzan region. Graduated from the Institute of Fine Arts; his commitment to public and humanitarian service began at an early age.",
         },
         {
           id: "students",
@@ -1324,19 +1327,19 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           id: "vice-president",
           year: "2007",
           title: "Vice President of BCF",
-          body: "Became Vice President of the Barzani Charity Foundation in 2007.",
+          body: "Joined the leadership of the Barzani Charity Foundation as Vice President.",
         },
         {
           id: "president",
           year: "2007",
           title: "President of BCF",
-          body: "Assumed the presidency of the foundation and has led its humanitarian work for 19 years.",
+          body: "Later became President. For more than 19 years he has helped guide the foundation’s humanitarian mission and expand its support for communities in need.",
         },
         {
           id: "medal",
           year: "—",
           title: "Immortal Barzani Medal",
-          body: "Recipient of the Immortal Barzani Medal, alongside hundreds of other honors and recognitions.",
+          body: "Awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions. He is married and has four children.",
         },
       ],
     },
@@ -1989,8 +1992,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "موسا ئەحمەد ئاغا تاجەدین",
       role: "سەرۆکی دەزگا",
       meta: "دەزگای خێرخوازیی بارزانی",
+      introTitle: "ژیانێک لە خزمەت و سەرکردایەتی",
       intro:
-        "لە دایکبووی ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان، دەرچووی پەیمانگای هونەرە جوانەکانە. خێزاندارە و خاوەنی چوار منداڵە. لە نێوان ساڵانی ١٩٩٤ تا ١٩٩٨ سکرتێری قوتابیان بووە، پاشان لە ساڵی ٢٠٠٧ بۆتە جێگری سەرۆکی دەزگای خێرخوازیی بارزانی و دواتر بۆتە سەرۆکی دەزگاکە. ماوەی ١٩ ساڵە ڕابەرایەتیی ئەم دەزگایە دەکات و هەڵگری مەدالیای بارزانیی نەمر و سەدان شانازیی ترە.",
+        "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە و دەرچووی پەیمانگای هونەرە جوانەکانە. پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.\n\nلە نێوان ساڵانی ١٩٩٤ تا ١٩٩٨ سکرتێری یەکێتیی قوتابیانی کوردستان بووە. لە ساڵی ٢٠٠٧ پەیوەستی بە سەرکردایەتیی دەزگای خێرخوازیی بارزانی بوو وەک جێگری سەرۆک، و دواتر بوو بە سەرۆکی دەزگاکە. زیاتر لە ١٩ ساڵە یارمەتی ڕێنمایی کردنی پەیامی مرۆیی دەزگاکە و فراوانکردنی پشتگیری بۆ کۆمەڵگە پێویستدارەکان دەدات.\n\nبە ڕێزلێنان لە خزمەتەکانی، مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.",
       timelineCta: "بینینی هێڵی کات",
       timelineTitle: "سەرۆکایەتی دەزگا",
       timelineRange: "١٩٧٤ — ئێستا",
@@ -1999,7 +2003,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           id: "birth",
           year: "١٩٧٤",
           title: "لەدایکبوون لە کەلۆک",
-          body: "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە. دەرچووی پەیمانگای هونەرە جوانەکانە؛ خێزاندارە و خاوەنی چوار منداڵە.",
+          body: "لە ٥ی ئاب لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە. دەرچووی پەیمانگای هونەرە جوانەکانە؛ پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.",
         },
         {
           id: "students",
@@ -2011,19 +2015,19 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           id: "vice-president",
           year: "٢٠٠٧",
           title: "جێگری سەرۆکی دەزگا",
-          body: "لە ساڵی ٢٠٠٧ بۆتە جێگری سەرۆکی دەزگای خێرخوازیی بارزانی.",
+          body: "پەیوەستی بە سەرکردایەتیی دەزگای خێرخوازیی بارزانی بوو وەک جێگری سەرۆک.",
         },
         {
           id: "president",
           year: "٢٠٠٧",
           title: "سەرۆکی دەزگا",
-          body: "دواتر بۆتە سەرۆکی دەزگاکە و ماوەی ١٩ ساڵە ڕابەرایەتیی کاری مرۆیی دەزگاکە دەکات.",
+          body: "دواتر بوو بە سەرۆک. زیاتر لە ١٩ ساڵە یارمەتی ڕێنمایی کردنی پەیامی مرۆیی دەزگاکە و فراوانکردنی پشتگیری بۆ کۆمەڵگە پێویستدارەکان دەدات.",
         },
         {
           id: "medal",
           year: "—",
           title: "مەدالیای بارزانیی نەمر",
-          body: "هەڵگری مەدالیای بارزانیی نەمر و سەدان شانازیی و ڕێزلێنانی ترە.",
+          body: "مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.",
         },
       ],
     },
@@ -2667,8 +2671,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "موسى أحمد آغا تاج الدين",
       role: "رئيس المؤسسة",
       meta: "مؤسسة بارزاني الخيرية",
+      introTitle: "حياة من الخدمة والقيادة",
       intro:
-        "وُلد في 5 آب 1974 في قرية «کەلۆک» بمنطقة بارزان، وهو خريج معهد الفنون الجميلة. متزوج وأب لأربعة أطفال. بدأ نشاطه سكرتيراً لاتحاد طلبة كوردستان بين عامي 1994 و1998، ثم شغل منصب نائب رئيس مؤسسة بارزاني الخيرية عام 2007، ليصبح بعدها رئيساً للمؤسسة. يقود هذه المؤسسة منذ 19 عاماً، وهو حاصل على وسام البارزاني الخالد ومئات الأوسمة وشهادات التقدير الأخرى.",
+        "وُلد في 5 آب 1974 في قرية کالوك بمنطقة بارزان، وتخرّج من معهد الفنون الجميلة. بدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.\n\nبين عامي 1994 و1998 عمل سكرتيراً لاتحاد طلبة كوردستان. وفي عام 2007 انضم إلى قيادة مؤسسة بارزاني الخيرية نائباً للرئيس، ثم أصبح رئيساً لها. لأكثر من 19 عاماً ساعد في توجيه الرسالة الإنسانية للمؤسسة وتوسيع دعمها للمجتمعات المحتاجة.\n\nتقديراً لخدمته مُنح وسام البارزاني الخالد، إلى جانب مئات الأوسمة والتكريمات الأخرى. وهو متزوج وأب لأربعة أطفال.",
       timelineCta: "عرض الجدول الزمني",
       timelineTitle: "رئاسة المؤسسة",
       timelineRange: "1974 — اليوم",
@@ -2677,31 +2682,31 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           id: "birth",
           year: "1974",
           title: "الميلاد في کالوك",
-          body: "وُلد في 5 آب 1974 في قرية «کەلۆک» بمنطقة بارزان. خريج معهد الفنون الجميلة؛ متزوج وأب لأربعة أطفال.",
+          body: "وُلد في 5 آب في قرية کالوك بمنطقة بارزان. تخرّج من معهد الفنون الجميلة؛ بدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.",
         },
         {
           id: "students",
           year: "1994",
           title: "اتحاد طلبة كوردستان",
-          body: "سكرتير اتحاد طلبة كوردستان بين عامي 1994 و1998.",
+          body: "عمل سكرتيراً لاتحاد طلبة كوردستان بين عامي 1994 و1998.",
         },
         {
           id: "vice-president",
           year: "2007",
           title: "نائب رئيس المؤسسة",
-          body: "شغل منصب نائب رئيس مؤسسة بارزاني الخيرية عام 2007.",
+          body: "انضم إلى قيادة مؤسسة بارزاني الخيرية نائباً للرئيس.",
         },
         {
           id: "president",
           year: "2007",
           title: "رئيس المؤسسة",
-          body: "أصبح رئيساً للمؤسسة ويقود عملها الإنساني منذ 19 عاماً.",
+          body: "أصبح رئيساً للمؤسسة لاحقاً. لأكثر من 19 عاماً ساعد في توجيه رسالتها الإنسانية وتوسيع دعمها للمجتمعات المحتاجة.",
         },
         {
           id: "medal",
           year: "—",
           title: "وسام البارزاني الخالد",
-          body: "حاصل على وسام البارزاني الخالد ومئات الأوسمة وشهادات التقدير الأخرى.",
+          body: "مُنح وسام البارزاني الخالد ومئات الأوسمة والتكريمات الأخرى. متزوج وأب لأربعة أطفال.",
         },
       ],
     },

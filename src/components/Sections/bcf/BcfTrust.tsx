@@ -207,12 +207,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     {c.bcfPresident.role}
                   </p>
                 </div>
-                <span
-                  className="mt-auto self-end text-[42px] font-bold tabular-nums"
-                  style={{ color: BCF.gold }}
-                >
-                  {bcfDigits("01", lang)}
-                </span>
               </motion.button>
             </motion.div>
           </TrustChrome>

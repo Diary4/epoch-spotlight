@@ -37,7 +37,7 @@ import {
   BCF_MAP_VIEWBOX,
   bcfProjectPin,
 } from "@/components/Sections/bcf/bcfMapGeometry";
-import { bcfSunrise, bcfJourneyMap } from "@/components/Sections/bcf/bcfAssets";
+import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
 
 const filterIcons: Record<MapFilterId, typeof Building2> = {
   offices: Building2,
@@ -123,21 +123,13 @@ export default function BcfMap({
           animate="animate"
         >
           <motion.div variants={bcfRise}>
-            <BcfChapterPill title={c.whereWeWork} thumb={bcfJourneyMap} />
+            <BcfChapterPill title={c.whereWeWork} />
           </motion.div>
 
           <div className="mt-12 max-w-[640px]">
-            <motion.p
-              variants={bcfRise}
-              dir="ltr"
-              className="text-[80px] font-bold leading-none"
-            >
-              <span className="text-[#fbf4e4]">0</span>
-              <span style={{ color: BCF.gold }}>3</span>
-            </motion.p>
             <motion.h1
               variants={bcfRise}
-              className="mt-6 text-[80px] font-bold leading-[1.05]"
+              className="text-[80px] font-bold leading-[1.05]"
             >
               <span className="text-[#fbf4e4]">{c.across} </span>
               <span style={{ color: BCF.gold }}>{c.borders}</span>

@@ -13,8 +13,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfJourneyFuture, bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
+import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfFutureProps = {
   lang: BcfLang;
@@ -32,18 +31,15 @@ const CIRCLE = 580;
 function FuturePortal({
   index,
   title,
-  lang,
   onOpen,
   reduceMotion,
 }: {
   index: number;
   title: string;
-  lang: BcfLang;
   onOpen: () => void;
   reduceMotion: boolean | null;
 }) {
   const [pressed, setPressed] = React.useState(false);
-  const label = bcfDigits(String(index + 1).padStart(2, "0"), lang);
 
   return (
     <motion.button
@@ -86,10 +82,6 @@ function FuturePortal({
       />
 
       <span className="relative flex max-w-[420px] flex-col items-center gap-6 px-10 text-center">
-        <span dir="ltr" className="text-[64px] font-bold leading-none">
-          <span className="text-[#fbf4e4]">{label[0]}</span>
-          <span style={{ color: BCF.goldBright }}>{label[1]}</span>
-        </span>
         <span className="text-[52px] font-bold leading-tight text-[#fbf4e4]">
           {title}
         </span>
@@ -140,7 +132,7 @@ export default function BcfFuture({
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfRise}>
-          <BcfChapterPill title={chapterTitle} thumb={bcfJourneyFuture} />
+          <BcfChapterPill title={chapterTitle} />
         </motion.div>
 
         <motion.span
@@ -170,7 +162,6 @@ export default function BcfFuture({
               key={portal.title}
               index={index}
               title={portal.title}
-              lang={lang}
               onOpen={portal.open}
               reduceMotion={reduceMotion}
             />

@@ -1,14 +1,17 @@
 import React from "react";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { bcfLogoSeal } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfChapterPillProps = {
   title: string;
-  thumb: string;
   className?: string;
 };
 
-/** Centered avatar + title pill used across Our Story / Impact / Map / Future. */
-export default function BcfChapterPill({ title, thumb, className = "" }: BcfChapterPillProps) {
+/**
+ * Centered seal + title pill used across Our Story / Humanity / Map / Future.
+ * Always uses the circle-only BCF seal (no photo thumb, no red wordmark).
+ */
+export default function BcfChapterPill({ title, className = "" }: BcfChapterPillProps) {
   return (
     <div className={`flex justify-center ${className}`}>
       <div
@@ -16,13 +19,18 @@ export default function BcfChapterPill({ title, thumb, className = "" }: BcfChap
         style={{ boxShadow: "0 16px 44px rgba(0,0,0,0.42)" }}
       >
         <span
-          className="absolute start-0 top-1/2 h-[160px] w-[160px] -translate-y-1/2 overflow-hidden rounded-full border-2"
+          className="absolute start-0 top-1/2 grid h-[160px] w-[160px] -translate-y-1/2 place-items-center overflow-hidden rounded-full border-2 bg-black/80"
           style={{
             borderColor: BCF.gold,
             boxShadow: `0 0 34px ${BCF.gold}40`,
           }}
         >
-          <img src={thumb} alt="" className="h-full w-full object-cover" />
+          <img
+            src={bcfLogoSeal}
+            alt=""
+            decoding="async"
+            className="h-[92%] w-[92%] object-contain"
+          />
         </span>
         <span className="text-[40px] font-light tracking-wide text-[#fdeed4]">{title}</span>
       </div>

@@ -155,7 +155,7 @@ export default function BcfPresident({
         </motion.div>
 
         <motion.div
-          className="mt-10 h-[380px] w-[380px] overflow-hidden rounded-full border-2"
+          className="mt-8 h-[320px] w-[320px] overflow-hidden rounded-full border-2"
           style={{
             borderColor: BCF.gold,
             boxShadow: `0 28px 70px rgba(0,0,0,0.55), 0 0 48px ${BCF.gold}22`,
@@ -172,20 +172,28 @@ export default function BcfPresident({
           />
         </motion.div>
 
-        <motion.p
-          className="mt-10 max-w-[920px] text-center text-[26px] leading-relaxed text-white/75"
+        <motion.div
+          className="mt-8 flex w-full max-w-[920px] flex-col items-center gap-4 text-center"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.46, ease: BCF_EASE }}
         >
-          {president.intro}
-        </motion.p>
+          <h2
+            className="text-[32px] font-semibold leading-tight"
+            style={{ color: BCF.gold }}
+          >
+            {president.introTitle}
+          </h2>
+          <p className="whitespace-pre-line text-[24px] leading-relaxed text-white/75">
+            {president.intro}
+          </p>
+        </motion.div>
 
         <motion.button
           type="button"
           onClick={onOpenTimeline}
           whileTap={BCF_TAP_FIRM}
-          className="mt-12 w-full max-w-[580px] transform-gpu rounded-full px-12 py-6 text-[29px] font-semibold"
+          className="mt-10 w-full max-w-[580px] transform-gpu rounded-full px-12 py-6 text-[29px] font-semibold"
           style={{
             background:
               "linear-gradient(165deg, #e2b66a 0%, #b07a2e 60%, #8a5c1c 100%)",

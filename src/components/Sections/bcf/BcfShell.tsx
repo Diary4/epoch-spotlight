@@ -87,7 +87,7 @@ export function BcfBackButton({
  * single black scrim.
  */
 export default function BcfShell({
-  showLogo = true,
+  showLogo = false,
   backgroundImage,
   overlayClassName = "bg-black/50",
   backgroundSlot,
