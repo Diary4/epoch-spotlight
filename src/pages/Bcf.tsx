@@ -59,7 +59,7 @@ const IDLE_RESET_MS = 90_000;
 const IDLE_COUNTDOWN_FROM = 15;
 
 export default function BcfPage() {
-  const [step, setStep] = React.useState<BcfStep>("map"); // SCREENSHOT-TEMP
+  const [step, setStep] = React.useState<BcfStep>("attract");
   const [lang, setLang] = React.useState<BcfLang>("en");
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);

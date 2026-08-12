@@ -10,12 +10,12 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
-import environmentImg from "@/assets/images/bcf/selected/impact-camps.webp";
-// Real field photography for the four categories the new drop covers.
-import reliefImg from "@/assets/images/bcf/selected/humanity-relief.webp";
-import healthImg from "@/assets/images/bcf/selected/humanity-health.webp";
-import educationImg from "@/assets/images/bcf/selected/humanity-education.webp";
-import communityImg from "@/assets/images/bcf/selected/humanity-community.webp";
+import reliefImg from "@/assets/images/bcf/humanity-in-action/relief.webp";
+import healthImg from "@/assets/images/bcf/humanity-in-action/health.webp";
+import educationImg from "@/assets/images/bcf/humanity-in-action/education.webp";
+import environmentImg from "@/assets/images/bcf/humanity-in-action/environment.webp";
+import communityImg from "@/assets/images/bcf/humanity-in-action/community.webp";
+import humanityMainBg from "@/assets/images/bcf/humanity-in-action/main-bg.webp";
 
 type BcfHumanityProps = {
   lang: BcfLang;
@@ -173,11 +173,8 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   return (
     <BcfShell
       showLogo={false}
-      overlayClassName="bg-black/0"
-      backgroundStyle={{
-        background:
-          "radial-gradient(ellipse 70% 50% at 50% 55%, rgba(251,178,47,0.06), transparent 60%), linear-gradient(180deg, #191205 0%, #0a0d22 100%)",
-      }}
+      backgroundImage={humanityMainBg}
+      overlayClassName="bg-gradient-to-b from-[#04090c]/55 via-[#04090c]/45 to-[#04090c]/85"
     >
       <div className="relative flex min-h-[1920px] flex-col overflow-hidden pt-24">
         {/* Subtle dot field behind the carousel (Figma Mini Dots). */}

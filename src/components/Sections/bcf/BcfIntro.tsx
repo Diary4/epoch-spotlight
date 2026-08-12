@@ -8,8 +8,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
+import { bcfIntroBg } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfIntroProps = {
   lang: BcfLang;
@@ -19,9 +18,9 @@ type BcfIntroProps = {
 /**
  * The vow.
  *
- * One screen, one sentence — the line the foundation was built on — set into
- * the dark valley of the sunrise plate, with the three words of the mission
- * standing under it as pillars.
+ * One screen, one sentence — the line the foundation was built on — set over
+ * the honor-to-serve plate, with the three words of the mission standing under
+ * it as pillars.
  *
  * It used to run the same looping typewriter the attract ran, on the same three
  * words, over a borrowed press photograph: the visitor met the identical trick
@@ -36,7 +35,7 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
 
   return (
     <BcfShell
-      backgroundImage={bcfSunrise}
+      backgroundImage={bcfIntroBg}
       overlayClassName="bg-gradient-to-b from-[#04090c]/40 via-[#04090c]/25 to-[#04090c]/95"
     >
       {/* One tap continues, from anywhere on the plate. */}
@@ -48,10 +47,9 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
       />
 
       <motion.div
-        // Anchored well clear of the bottom edge: on a portrait 65" the lower
-        // 500px is below waist height, and the block was reading as sunk into
-        // the floor of the frame rather than set into the valley.
-        className="pointer-events-none relative z-10 flex min-h-[1920px] flex-col justify-end px-16 pb-[540px]"
+        // Sit in the open sky above Mustafa Barzani — the plate puts his head
+        // in the lower half, so bottom-anchored copy was reading across his face.
+        className="pointer-events-none relative z-10 flex min-h-[1920px] flex-col justify-start px-16 pt-[220px]"
         variants={bcfStagger(0.16, 0.3)}
         initial="initial"
         animate="animate"
@@ -101,15 +99,21 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
             {c.quoteAttr.replace(/^—\s*/, "")}
           </p>
         </motion.div>
+      </motion.div>
 
-        {/* Three pillars. Each column's hairline grows up out of the baseline,
-            in sequence, so the vow visibly comes to rest on something. */}
-        <div className="mt-24 grid grid-cols-3 gap-8">
+      {/* Mission words stay at their lower footing, grouped in the center. */}
+      <motion.div
+        className="pointer-events-none absolute inset-x-0 bottom-[520px] z-10 flex justify-center px-16"
+        variants={bcfStagger(0.16, 0.9)}
+        initial="initial"
+        animate="animate"
+      >
+        <div className="flex items-start justify-center gap-16">
           {pillars.map((word, index) => (
             <motion.div
               key={word}
               variants={bcfRise}
-              className="flex flex-col items-start gap-6"
+              className="flex flex-col items-center gap-6"
             >
               <motion.span
                 className="block w-px origin-bottom"
@@ -132,12 +136,6 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
                       }
                 }
               />
-              <span
-                className="font-sans text-[19px] font-semibold"
-                style={{ color: `${BCF.nature}b0`, letterSpacing: "0.24em" }}
-              >
-                {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
-              </span>
               <span
                 className="font-sans text-[46px] font-bold uppercase leading-none"
                 style={{ color: BCF.creamSoft }}
