@@ -52,7 +52,7 @@ const scopeIcons: Record<MapScopeId, typeof Globe> = {
 };
 
 /**
- * The world comes first. BCF is licensed in four countries and was across the
+ * The world comes first. BCF is licensed internationally and was across the
  * Turkish and Syrian border within days of the 2023 earthquakes; opening on the
  * Region alone told the smaller half of that story, so the scope is a category
  * the visitor switches, and it starts wide.
