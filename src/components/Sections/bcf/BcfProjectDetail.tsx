@@ -108,15 +108,12 @@ export default function BcfProjectDetail({
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div variants={bcfStagger(0.08, 0.12)} initial="initial" animate="animate">
-          {/* The title keeps the leading edge to itself. The 2025 figure sat
-              opposite it, which put it underneath the reach rail — the rail is
-              pinned to the right of the artboard from y=170 down, so the whole
-              top-right corner is spoken for on every screen.
-              `pr`, not `pe`: the rail and the back control are anchored to
-              physical right in both directions (see BcfReachRail), so a logical
-              inset would clear the wrong side in Kurdish and Arabic and drop
-              the sector icon straight under the rail. */}
-          <motion.div variants={bcfRise} className="flex items-center gap-5 pr-[150px]">
+          {/* The title keeps the leading edge to itself: the 2025 figure used
+              to sit opposite it, which is a place a heading and a number both
+              want. The 150px of right padding that went with it is gone — the
+              chrome is one band across the top of the artboard now, and no
+              longer runs down the right edge into this row. */}
+          <motion.div variants={bcfRise} className="flex items-center gap-5">
             <span
               className="grid h-[88px] w-[88px] shrink-0 place-items-center rounded-2xl border"
               style={{

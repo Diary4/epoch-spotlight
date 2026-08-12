@@ -144,7 +144,7 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div
-          className="absolute left-[80px] top-[124px] z-20 max-w-[860px]"
+          className="absolute left-[80px] top-[150px] z-20 max-w-[860px]"
           variants={bcfStagger(0.1, 0.16)}
           initial="initial"
           animate="animate"

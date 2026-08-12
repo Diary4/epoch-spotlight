@@ -62,7 +62,7 @@ export default function BcfImpact({
           "radial-gradient(900px 800px at 110% 35%, rgba(40,70,140,0.35), transparent 55%), linear-gradient(180deg, #0b0d14 0%, #0a0a0a 55%, #14100a 100%)",
       }}
     >
-      <div className="relative flex min-h-[1920px] flex-col overflow-hidden px-14 pb-20 pt-28">
+      <div className="relative flex min-h-[1920px] flex-col overflow-hidden px-14 pb-20 pt-[136px]">
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div

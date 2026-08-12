@@ -93,7 +93,7 @@ export default function BcfBoardChief({
         overlayClassName="bg-black/0"
         backgroundStyle={{ background: BCF_FIELD_BG }}
       >
-        <div className="relative flex min-h-[1920px] flex-col px-12 pb-12 pt-28">
+        <div className="relative flex min-h-[1920px] flex-col px-12 pb-12 pt-[136px]">
           <BcfBackButton onClick={onBack} label={c.back} />
           <OrnateFrame />
 

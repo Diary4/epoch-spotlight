@@ -33,7 +33,7 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import type { SectorId } from "@/components/Sections/bcf/bcfProjectData";
 
-/** Steps that draw their own back control, which the rail has to clear. */
+/** Steps that draw their own back control, in the opposite top corner. */
 const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
   "sections",
   "humanity",
@@ -401,7 +401,6 @@ export default function BcfPage() {
             }
             onLanguage={() => openLanguage("control")}
             homeActive={step === "sections"}
-            offsetForBackButton={STEPS_WITH_BACK_BUTTON.includes(step)}
           />
         ) : null}
 
