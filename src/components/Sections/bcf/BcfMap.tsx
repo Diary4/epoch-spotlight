@@ -37,7 +37,7 @@ import {
   BCF_MAP_VIEWBOX,
   bcfProjectPin,
 } from "@/components/Sections/bcf/bcfMapGeometry";
-import { bcfSunrise } from "@/components/Sections/bcf/bcfAssets";
+import { bcfMapBg } from "@/components/Sections/bcf/bcfAssets";
 
 const filterIcons: Record<MapFilterId, typeof Building2> = {
   offices: Building2,
@@ -110,7 +110,7 @@ export default function BcfMap({
 
   return (
     <BcfShell
-      backgroundImage={bcfSunrise}
+      backgroundImage={bcfMapBg}
       overlayClassName="bg-black/65"
       drift={false}
     >

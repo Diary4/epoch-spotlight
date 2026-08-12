@@ -93,6 +93,7 @@ export type GlobalReachKind = "hq" | "registered" | "response" | "work";
 export type GlobalLocationId =
   | "kurdistan"
   | "unitedKingdom"
+  | "unitedStates"
   | "ukraine"
   | "serbia"
   | "turkiye"
@@ -124,10 +125,10 @@ export type BcfGlobalLocation = {
 };
 
 /**
- * The thirteen countries on BCF's own "geographical area of work in 20 years"
- * map, listed west to east after the HQ. Countries that only ever appeared here
- * as a registration or an award — the United States, Kuwait, Germany, Portugal —
- * are not part of that footprint and are no longer plotted; the awards
+ * Countries on BCF's own "geographical area of work in 20 years" map, listed
+ * west to east after the HQ, plus licensed registrations (UK, United States).
+ * Countries that only ever appeared here as an award — Kuwait, Germany,
+ * Portugal — are not part of that footprint and are not plotted; the awards
  * themselves are carried by the Recognition topic in BcfTrust.
  *
  * One point per country, roughly at its centre rather than on its capital or on
@@ -151,6 +152,13 @@ export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
     kind: "registered",
     iso: "826",
     focusZoom: 5,
+  },
+  {
+    id: "unitedStates",
+    coordinates: [-98.5, 39.8],
+    kind: "registered",
+    iso: "840",
+    focusZoom: 3.2,
   },
   { id: "morocco", coordinates: [-6.842, 31.8], kind: "work", iso: "504", focusZoom: 4.5 },
   { id: "serbia", coordinates: [20.457, 44.787], kind: "work", iso: "688", focusZoom: 6.5 },
@@ -871,7 +879,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "Inside Kurdistan",
     },
     globalLead:
-      "Thirteen countries in twenty years, all run from Erbil.",
+      "Fourteen countries in twenty years, all run from Erbil.",
     globalZoomHint: "Drag to move · pinch to zoom",
     globeHint: "Drag to spin · pinch to zoom",
     viewGlobe: "Globe",
@@ -904,6 +912,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         facts: [
           "Governance and reporting to UK charity standards",
           "Labour Group London Award",
+        ],
+      },
+      unitedStates: {
+        name: "United States of America",
+        meta: "Licensed",
+        description:
+          "Registered to operate in the United States, enabling transparent partnerships and accountable cross-border humanitarian support.",
+        facts: [
+          "Licensed humanitarian presence in the United States",
+          "Supports transparent cross-border partnerships",
         ],
       },
       turkiye: {
@@ -1635,6 +1653,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "خەڵاتی گرووپی کرێکاری لەندەن",
         ],
       },
+      unitedStates: {
+        name: "ویلایەتە یەکگرتووەکانی ئەمریکا",
+        meta: "مۆڵەتدار",
+        description:
+          "لە ویلایەتە یەکگرتووەکان تۆمار کراوە بۆ کارکردن، کە هاوبەشی ڕوون و پشتگیریی مرۆیی بەرپرسیارانەی نێودەوڵەتی دەستەبەر دەکات.",
+        facts: [
+          "ئامادەبوونی مرۆیی مۆڵەتدار لە ویلایەتە یەکگرتووەکان",
+          "پشتگیری بۆ هاوبەشییە نێودەوڵەتییە ڕوونەکان",
+        ],
+      },
       turkiye: {
         name: "تورکیا",
         meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
@@ -2323,6 +2351,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         facts: [
           "حوكمة وتقارير وفق المعايير الخيرية البريطانية",
           "جائزة مجموعة العمال في لندن",
+        ],
+      },
+      unitedStates: {
+        name: "الولايات المتحدة الأمريكية",
+        meta: "مرخّصة",
+        description:
+          "مسجّلة للعمل في الولايات المتحدة، بما يتيح شراكات شفافة ودعماً إنسانياً عابراً للحدود بمسؤولية.",
+        facts: [
+          "حضور إنساني مرخّص في الولايات المتحدة",
+          "يدعم الشراكات الشفافة عبر الحدود",
         ],
       },
       turkiye: {

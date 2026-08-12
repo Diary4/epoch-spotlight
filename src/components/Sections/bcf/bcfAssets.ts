@@ -23,7 +23,7 @@ export { default as bcfLangBg } from "@/assets/images/bcf/selected/impact-camps.
 /** Full-bleed plate behind the vow (“It is an honor to serve one's own people.”). */
 export { default as bcfIntroBg } from "@/assets/images/bcf/honor-to-serve-bg.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
-export { default as bcfMapBg } from "@/assets/images/kurdistan.webp";
+export { default as bcfMapBg } from "@/assets/images/bcf/where-we-work-bg.webp";
 export { default as bcfProjectHero } from "@/assets/images/women/w-4.webp";
 export { default as bcfErbil } from "@/assets/images/bcf/optimized/schools/8D1A7011.webp";
 /** Our Story full-bleed plate — used across every chapter pane. */
@@ -37,7 +37,7 @@ export { default as bcfFutureDetailBg } from "@/assets/images/bcf/future-legacy-
  * Opening plates.
  *
  * The attract screen holds on the start-page photograph. The vow screen uses
- * `bcfIntroBg`; map / other plates still use `bcfSunrise`.
+ * `bcfIntroBg`; Where We Work uses `bcfMapBg`.
  */
 export { default as bcfAttractPoster } from "@/assets/images/bcf/start-page.webp";
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
