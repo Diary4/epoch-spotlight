@@ -18,7 +18,6 @@ import {
 import {
   bcfAttractPoster,
   bcfLogo,
-  bcfSunrise,
 } from "@/components/Sections/bcf/bcfAssets";
 
 /**
@@ -50,7 +49,7 @@ const WORD_KEYS = ["humanity", "dignity", "hope"] as const;
 const WORD_HOLD_MS = 3600;
 const PLATE_HOLD_MS = 10_800;
 
-const PLATES = [bcfAttractPoster, bcfSunrise];
+const PLATES = [bcfAttractPoster];
 
 /**
  * Ken-burns per plate — CSS keyframes in index.css, one class each. The two

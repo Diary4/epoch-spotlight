@@ -9,7 +9,7 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import legacyHero from "@/assets/images/bcf/selected/humanity-relief.webp";
+import legacyHero from "@/assets/images/bcf/future-legacy-bg.webp";
 import pillarService from "@/assets/images/bcf/selected/humanity-relief.webp";
 import pillarHumanity from "@/assets/images/bcf/selected/humanity-community.webp";
 import pillarHope from "@/assets/images/bcf/selected/humanity-education.webp";

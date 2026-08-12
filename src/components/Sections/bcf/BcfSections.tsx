@@ -8,7 +8,7 @@ import {
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
-  bcfSunrise,
+  bcfJourneyBg,
   bcfJourneyStory,
   bcfJourneyHumanity,
   bcfJourneyMap,
@@ -126,8 +126,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
   return (
     <BcfShell
       showLogo={false}
-      backgroundImage={bcfSunrise}
-      overlayClassName="bg-black/38"
+      backgroundImage={bcfJourneyBg}
+      overlayClassName="bg-black/48"
     >
       <div className="relative min-h-[1920px] w-full overflow-hidden">
         {/* A low, warm glow behind the constellation only — the same amber the
@@ -140,32 +140,41 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
               "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(251,193,88,0.16), transparent 70%)",
           }}
         />
+        {/* Local dark lift under the title so Explore Our Journey stays readable
+            over bright photography. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(4,9,12,0.72) 0%, rgba(4,9,12,0.35) 55%, transparent 100%)",
+          }}
+        />
 
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div
-          className="absolute left-[80px] top-[150px] z-20 max-w-[860px]"
+          className="absolute left-[80px] top-[150px] z-20 max-w-[920px]"
           variants={bcfStagger(0.1, 0.16)}
           initial="initial"
           animate="animate"
         >
           <motion.h1
             variants={bcfRise}
-            className="text-[80px] font-bold leading-none tracking-[0.01em]"
+            className="text-[96px] font-bold leading-[1.02] tracking-[0.01em]"
+            style={{
+              textShadow: "0 8px 28px rgba(0,0,0,0.65), 0 2px 8px rgba(0,0,0,0.45)",
+            }}
           >
-            <span className="text-[#fbf4e4]">{c.journeyTitleLead}</span>{" "}
-            <span style={{ color: BCF.gold }}>{c.journeyTitleGold}</span>
+            <span className="text-[#fff6e6]">{c.journeyTitleLead}</span>{" "}
+            <span style={{ color: BCF.goldBright }}>{c.journeyTitleGold}</span>
           </motion.h1>
           <motion.div
             variants={bcfDrawX}
-            className="mt-8 flex w-full max-w-[520px] origin-left items-center gap-3"
+            className="mt-10 flex w-full max-w-[560px] origin-left items-center gap-3"
           >
-            <span className="h-px flex-1" style={{ backgroundColor: `${BCF.gold}aa` }} />
-            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: BCF.gold }} />
+            <span className="h-[2px] flex-1" style={{ backgroundColor: `${BCF.gold}` }} />
+            <span className="h-3 w-3 rounded-full" style={{ backgroundColor: BCF.goldBright }} />
           </motion.div>
-          <motion.p variants={bcfRise} className="mt-6 text-[32px] text-[#d2ba91]">
-            {c.journeySubtitle}
-          </motion.p>
         </motion.div>
 
         <motion.div

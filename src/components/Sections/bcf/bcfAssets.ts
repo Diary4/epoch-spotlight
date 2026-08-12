@@ -30,31 +30,28 @@ export { default as bcfCorridor } from "@/assets/images/TouristicPlace/ErbilCast
 export { default as bcfHubBg } from "@/assets/images/bcf/optimized/camps/harsham.webp";
 export { default as bcfImpactBg } from "@/assets/images/bcf/selected/humanity-relief.webp";
 export { default as bcfProjectsBg } from "@/assets/images/bcf/selected/impact-camps.webp";
-export { default as bcfFutureDetailBg } from "@/assets/images/bcf/selected/humanstories-recovery.webp";
+export { default as bcfFutureDetailBg } from "@/assets/images/bcf/future-legacy-bg.webp";
 
 /**
  * Opening plates.
  *
- * Both are portrait 1080×1620 originals commissioned for BCF — the only two
- * images in the experience that are not borrowed from another section. The
- * attract cross-fades between them on a slow cycle, which is where its motion
- * comes from now that there is no film to play.
+ * The attract screen holds on the start-page photograph. Intro / vow screens
+ * still use `bcfSunrise` as their own plate.
  */
-export { default as bcfAttractPoster } from "@/assets/images/bcf/attract-poster.webp";
+export { default as bcfAttractPoster } from "@/assets/images/bcf/start-page.webp";
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
+/** Full-bleed plate behind Explore Our Journey. */
+export { default as bcfJourneyBg } from "@/assets/images/bcf/journey-bg.webp";
 
 /**
- * Journey-hub chapter discs — BCF humanitarian field photography only.
+ * Journey-hub chapter discs — Explore Our Journey card photography.
  *
- * Square 560×560 crops of the `selected/` plates, not the plates themselves.
- * The hub draws six of them at once inside 236 px circles: at the full 1600×
- * 1066 that was ~41 MB of decoded bitmap resident for six thumbnails, which is
- * what made the hub the slowest screen to arrive on and the first to stutter.
- * 560 still clears 2× on the 4K panel (the active disc is 252 CSS px).
+ * Square 560×560 center-crops so six discs stay light on the 4K kiosk
+ * (active disc is ~252 CSS px).
  */
-export { default as bcfJourneyStory } from "@/assets/images/bcf/thumbs/impact-schools.webp";
-export { default as bcfJourneyHumanity } from "@/assets/images/bcf/thumbs/humanity-education.webp";
-export { default as bcfJourneyMap } from "@/assets/images/bcf/thumbs/impact-camps.webp";
-export { default as bcfJourneyImpact } from "@/assets/images/bcf/thumbs/impact-employees.webp";
-export { default as bcfJourneyTrust } from "@/assets/images/bcf/thumbs/humanity-community.webp";
-export { default as bcfJourneyFuture } from "@/assets/images/bcf/thumbs/humanstories-recovery.webp";
+export { default as bcfJourneyStory } from "@/assets/images/bcf/thumbs/journey/story.webp";
+export { default as bcfJourneyHumanity } from "@/assets/images/bcf/thumbs/journey/humanity.webp";
+export { default as bcfJourneyMap } from "@/assets/images/bcf/thumbs/journey/map.webp";
+export { default as bcfJourneyImpact } from "@/assets/images/bcf/thumbs/journey/impact.webp";
+export { default as bcfJourneyTrust } from "@/assets/images/bcf/thumbs/journey/trust.webp";
+export { default as bcfJourneyFuture } from "@/assets/images/bcf/thumbs/journey/future.webp";
