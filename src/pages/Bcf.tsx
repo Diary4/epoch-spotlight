@@ -2,7 +2,6 @@ import React from "react";
 import { AnimatePresence } from "motion/react";
 import FitScaledCanvas from "@/components/FitScaledCanvas";
 import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
-import BcfAttract from "@/components/Sections/bcf/BcfAttract";
 import BcfLanguageOverlay from "@/components/Sections/bcf/BcfLanguageOverlay";
 import BcfIdleOverlay from "@/components/Sections/bcf/BcfIdleOverlay";
 import BcfReachRail from "@/components/Sections/bcf/BcfReachRail";
@@ -59,14 +58,14 @@ const IDLE_RESET_MS = 90_000;
 const IDLE_COUNTDOWN_FROM = 15;
 
 export default function BcfPage() {
-  const [step, setStep] = React.useState<BcfStep>("attract");
+  const [step, setStep] = React.useState<BcfStep>("intro");
   const [lang, setLang] = React.useState<BcfLang>("en");
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
   const [sectorId, setSectorId] = React.useState<SectorId | null>(null);
   const [impactGalleryId, setImpactGalleryId] =
     React.useState<ImpactGalleryId | null>(null);
-  const [languageOpen, setLanguageOpen] = React.useState(false);
+  const [languageOpen, setLanguageOpen] = React.useState(true);
   const [languageOrigin, setLanguageOrigin] =
     React.useState<"entry" | "control">("entry");
   const [idleCount, setIdleCount] = React.useState<number | null>(null);
@@ -97,22 +96,22 @@ export default function BcfPage() {
 
   const reset = React.useCallback(() => {
     setIdleCount(null);
-    setLanguageOpen(false);
+    setLanguageOpen(true);
     setLanguageOrigin("entry");
     setModalLocation(null);
     setLocationId(null);
     setSectorId(null);
     setImpactGalleryId(null);
     setLang("en");
-    setStep("attract");
+    setStep("intro");
   }, []);
 
   /**
-   * Idle watch. The attract screen is already the resting state, so it is the
-   * one place that needs no timer.
+   * Idle watch. The entry language screen is the resting state, so it needs
+   * no timer.
    */
   React.useEffect(() => {
-    if (step === "attract") {
+    if (languageOpen && languageOrigin === "entry") {
       setIdleCount(null);
       return;
     }
@@ -153,7 +152,7 @@ export default function BcfPage() {
       window.removeEventListener("pointerdown", restart);
       window.removeEventListener("keydown", restart);
     };
-  }, [step, reset]);
+  }, [step, reset, languageOpen, languageOrigin]);
 
   const openLanguage = React.useCallback((origin: "entry" | "control") => {
     setLanguageOrigin(origin);
@@ -171,8 +170,6 @@ export default function BcfPage() {
 
   const content = (() => {
     switch (step) {
-      case "attract":
-        return <BcfAttract key="attract" onEnter={() => openLanguage("entry")} />;
       case "intro":
         return (
           <BcfIntro
@@ -384,13 +381,13 @@ export default function BcfPage() {
       <div className="relative flex min-h-[1920px] w-full flex-col">
         {/* `mode="wait"` lets the outgoing scene finish its short exit before the
             next one dissolves up, so the backdrop never cuts to black between
-            screens. `initial={false}` keeps the attract from fading in over
-            itself on first paint. */}
+            screens. `initial={false}` keeps the first paint from fading in
+            over itself. */}
         <AnimatePresence mode="wait" initial={false}>
           {content}
         </AnimatePresence>
 
-        {step !== "attract" ? (
+        {!(languageOpen && languageOrigin === "entry") ? (
           <BcfReachRail
             homeLabel={c.home}
             languageLabel={c.language}

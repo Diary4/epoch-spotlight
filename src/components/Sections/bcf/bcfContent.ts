@@ -3,11 +3,9 @@ import type { BcfEraId, SectorId } from "@/components/Sections/bcf/bcfProjectDat
 export type BcfLang = "en" | "ku" | "ar";
 
 /**
- * Language is no longer a step: it is an overlay that can be raised from the
- * attract on the way in, or from the reach rail at any point after.
+ * Language is an overlay raised on first entry, or later from the reach rail.
  */
 export type BcfStep =
-  | "attract"
   | "intro"
   | "welcome"
   | "sections"
