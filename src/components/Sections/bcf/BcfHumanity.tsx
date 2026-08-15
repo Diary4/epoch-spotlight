@@ -8,7 +8,7 @@ import {
   type BcfLang,
   type ServeCategoryId,
 } from "@/components/Sections/bcf/bcfContent";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_GLASS_CARD } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDrawX, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import reliefImg from "@/assets/images/bcf/humanity-in-action/relief.webp";
 import healthImg from "@/assets/images/bcf/humanity-in-action/health.webp";
@@ -38,9 +38,9 @@ const categoryImages: Record<ServeCategoryId, string> = {
 const CARD_W = 600;
 const CARD_GAP = 64;
 const CARD_PITCH = CARD_W + CARD_GAP;
-const ACTIVE_H = 799;
-const INACTIVE_H = 575;
-const INACTIVE_Y = 112;
+const ACTIVE_H = 580;
+const INACTIVE_H = 430;
+const INACTIVE_Y = 80;
 const TRACK_H = ACTIVE_H;
 /** Figma Smart Animate default ≈ Ease In And Out @ 400ms */
 const ANIM_DURATION = 0.4;
@@ -200,22 +200,36 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
             <BcfChapterPill title={chapterTitle} />
           </motion.div>
 
-          <div className="mt-16 max-w-[1080px]">
+          <div className="mt-10 max-w-[1080px]">
             <motion.h1
               variants={bcfRise}
-              className="text-[80px] font-bold leading-[1.05]"
+              className="text-[64px] font-bold leading-[1.05]"
             >
               <span className="text-[#fbf4e4]">{c.whoWeServeWhite} </span>
               <span style={{ color: BCF.gold }}>{c.whoWeServeGold}</span>
             </motion.h1>
+            <motion.p
+              variants={bcfRise}
+              className="mt-5 max-w-[860px] text-[26px] leading-relaxed text-white/70"
+            >
+              {c.whoHowHint}
+            </motion.p>
             <motion.span
               variants={bcfDrawX}
-              className="mt-8 block h-px w-[420px] origin-left"
+              className="mt-6 block h-px w-[420px] origin-left"
               style={{
                 background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
               }}
             />
           </div>
+
+          <motion.div
+            variants={bcfRise}
+            className="mt-8 grid grid-cols-2 gap-6"
+          >
+            <ServeListCard title={c.whoServesTitle} items={c.whoServesItems} />
+            <ServeListCard title={c.howServesTitle} items={c.howServesItems} />
+          </motion.div>
         </motion.div>
 
         {/* The carousel and its rail take the leftover height as one block, so
@@ -227,7 +241,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           initial={{ opacity: 0, y: 48 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 h-[860px] w-full touch-pan-y overflow-hidden"
+          className="relative z-10 h-[620px] w-full touch-pan-y overflow-hidden"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -268,7 +282,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   {category.title}
                 </span>
                 <span
-                  className="relative mt-8 block h-[400px] w-full overflow-hidden rounded-[20px] border"
+                  className="relative mt-8 block h-[280px] w-full overflow-hidden rounded-[20px] border"
                   style={{ borderColor: BCF.nature }}
                 >
                   <img
@@ -345,5 +359,35 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         </div>
       </div>
     </BcfShell>
+  );
+}
+
+function ServeListCard({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div
+      className={`${BCF_GLASS_CARD} flex flex-col gap-5 p-8`}
+      style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
+    >
+      <h2
+        className="text-[28px] font-semibold uppercase tracking-[0.08em]"
+        style={{ color: BCF.gold }}
+      >
+        {title}
+      </h2>
+      <ul className="flex flex-col gap-3">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-4 text-[24px] leading-snug text-[#fdeed4]"
+          >
+            <span
+              className="mt-[13px] h-[2px] w-7 shrink-0 rounded-full"
+              style={{ backgroundColor: BCF.gold }}
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

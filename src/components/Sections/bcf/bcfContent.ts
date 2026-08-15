@@ -535,6 +535,11 @@ export type BcfCopy = {
   whoWeServeWhite: string;
   whoWeServeGold: string;
   serveCategories: ServeCategory[];
+  whoServesTitle: string;
+  howServesTitle: string;
+  whoHowHint: string;
+  whoServesItems: string[];
+  howServesItems: string[];
   storyTimelineStart: string;
   storyTimelineEnd: string;
   storyScrollHint: string;
@@ -851,6 +856,24 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       { id: "environment", title: "Environment", tags: ["Environment and Climate Change"] },
       { id: "community", title: "Community" },
+    ],
+    whoServesTitle: "Who BCF Serves",
+    howServesTitle: "How BCF Serves",
+    whoHowHint: "Separate who BCF serves from how BCF serves.",
+    whoServesItems: [
+      "Orphans and widows",
+      "Refugees and IDPs",
+      "Host communities and low-income families",
+      "People with disabilities",
+      "Children, youth and disaster-affected communities",
+    ],
+    howServesItems: [
+      "Food Security",
+      "Non-Food Items",
+      "WASH",
+      "Education and Development",
+      "Livelihood and Cash Assistance",
+      "Protection, Health, Shelter and CCCM",
     ],
     storyTimelineStart: "2005",
     storyTimelineEnd: "Today",
@@ -1676,6 +1699,24 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "environment", title: "ژینگە", tags: ["ژینگە و گۆڕانی کەشوهەوا"] },
       { id: "community", title: "کۆمەڵگە" },
     ],
+    whoServesTitle: "کێ خزمەت دەکەین",
+    howServesTitle: "چۆن خزمەت دەکەین",
+    whoHowHint: "جیاکردنەوەی ئەوانەی BCF خزمەتیان دەکات لە شێوازی خزمەتکردن.",
+    whoServesItems: [
+      "هەتیو و بێوەژن",
+      "پەنابەر و ئاوارەکان",
+      "کۆمەڵگە خانەخوێکان و خێزانە کەمداهاتەکان",
+      "کەسانی خاوەن پێداویستی تایبەت",
+      "منداڵان، گەنجان و کۆمەڵگە زیانلێکەوتووەکانی کارەسات",
+    ],
+    howServesItems: [
+      "ئاسایشی خۆراک",
+      "کاڵای نەخۆراکی",
+      "ئاو، ئاوەڕۆ و پاکوخاوێنی (WASH)",
+      "پەروەردە و گەشەپێدان",
+      "بژێوی و هاوکاری نەختی",
+      "پاراستن، تەندروستی، پەناگە و بەڕێوەبردنی کەمپ",
+    ],
     storyTimelineStart: "٢٠٠٥",
     storyTimelineEnd: "ئێستا",
     storyScrollHint: "بڕۆ خوارەوە",
@@ -2476,6 +2517,24 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       { id: "environment", title: "البيئة", tags: ["البيئة وتغير المناخ"] },
       { id: "community", title: "المجتمع" },
+    ],
+    whoServesTitle: "من تخدم المؤسسة",
+    howServesTitle: "كيف تخدم المؤسسة",
+    whoHowHint: "الفصل بين من تخدمهم المؤسسة وكيف تقدم خدمتها.",
+    whoServesItems: [
+      "الأيتام والأرامل",
+      "اللاجئون والنازحون",
+      "المجتمعات المضيفة والأسر ذات الدخل المحدود",
+      "ذوو الإعاقة",
+      "الأطفال والشباب والمجتمعات المتضررة من الكوارث",
+    ],
+    howServesItems: [
+      "الأمن الغذائي",
+      "المواد غير الغذائية",
+      "المياه والصرف الصحي والنظافة (WASH)",
+      "التعليم والتنمية",
+      "سبل العيش والمساعدات النقدية",
+      "الحماية، الصحة، المأوى وإدارة المخيمات",
     ],
     storyTimelineStart: "2005",
     storyTimelineEnd: "اليوم",
