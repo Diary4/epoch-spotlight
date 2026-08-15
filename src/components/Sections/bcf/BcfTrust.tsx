@@ -304,8 +304,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 </div>
               </motion.button>
 
-              {/* The Vice President sits beside the President but has no profile
-                  or portrait yet, so this stays a plain card — a button that
+              {/* Slot held for the leader beside the President. No name, portrait
+                  or profile yet, so it renders as a plain card — a button that
                   opens nothing reads as a broken one. */}
               <motion.div
                 variants={bcfRiseCard}
@@ -319,11 +319,11 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                   <User className="h-14 w-14 text-white/35" />
                 </span>
                 <div>
-                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
-                    {c.trustVicePresidentName}
+                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]/60">
+                    {c.trustPendingLeaderName}
                   </h3>
-                  <p className="mt-4 text-[26px] leading-relaxed text-white/75">
-                    {c.trustVicePresidentRole}
+                  <p className="mt-4 text-[26px] leading-relaxed text-white/50">
+                    {c.trustPendingLeaderRole}
                   </p>
                 </div>
               </motion.div>

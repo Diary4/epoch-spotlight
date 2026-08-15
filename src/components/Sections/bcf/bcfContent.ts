@@ -582,13 +582,17 @@ export type BcfCopy = {
   trustAdminBoardTitle: string;
   trustAdminBoardOpen: string;
   trustAdminBoardBody: string;
-  /** Sits beside the President on the Leadership grid; no profile page yet. */
-  trustVicePresidentName: string;
-  trustVicePresidentRole: string;
   /**
-   * The management roster from bcf.krd/management-staff, minus the President
-   * and Vice President, who each have their own card one screen up. Grouped
-   * because only six of them hold the board seat the screen is named for.
+   * Placeholder card sitting beside the President on the Leadership grid. The
+   * person is confirmed, the name and title are not yet — the card holds the
+   * slot so the grid reads as a pair rather than a lone portrait.
+   */
+  trustPendingLeaderName: string;
+  trustPendingLeaderRole: string;
+  /**
+   * The management roster from bcf.krd/management-staff, minus the President,
+   * who has his own card one screen up. Grouped because only the board seats
+   * belong under the name the screen carries.
    */
   trustStaffGroups: TrustStaffGroup[];
   boardChief: BoardChiefCopy;
@@ -1252,13 +1256,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustAdminBoardOpen: "View members",
     trustAdminBoardBody:
       "Reviews and approves major decisions, policies and project direction.",
-    trustVicePresidentName: "Ibrahim Samin",
-    trustVicePresidentRole: "BCF Vice President",
+    trustPendingLeaderName: "Name to be confirmed",
+    trustPendingLeaderRole: "Title to be confirmed",
     trustStaffGroups: [
       {
         id: "board",
         title: "Administrative Board Members",
         members: [
+          { id: "ibrahim", name: "Ibrahim Samin", role: "BCF Vice President" },
           { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
           {
             id: "abdulwahid",
@@ -2037,13 +2042,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustAdminBoardOpen: "بینینی ئەندامان",
     trustAdminBoardBody:
       "سەرپەرشتی بڕیارە سەرەکییەکان و ڕێساکان و ئاڕاستەکردنی پڕۆژەکان دەکات.",
-    trustVicePresidentName: "ئیبراهیم سامین",
-    trustVicePresidentRole: "جێگری سەرۆکی دەزگا",
+    trustPendingLeaderName: "ناو دواتر دیاری دەکرێت",
+    trustPendingLeaderRole: "پلە دواتر دیاری دەکرێت",
     trustStaffGroups: [
       {
         id: "board",
         title: "ئەندامانی دەستەی کارگێڕی",
         members: [
+          { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
           { id: "awat", name: "ئاوات ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
           {
             id: "abdulwahid",
@@ -2832,13 +2838,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustAdminBoardOpen: "عرض الأعضاء",
     trustAdminBoardBody:
       "يراجع ويقرّ القرارات الكبرى والسياسات ومسار المشاريع.",
-    trustVicePresidentName: "إبراهيم سامين",
-    trustVicePresidentRole: "نائب رئيس المؤسسة",
+    trustPendingLeaderName: "الاسم قيد التأكيد",
+    trustPendingLeaderRole: "المنصب قيد التأكيد",
     trustStaffGroups: [
       {
         id: "board",
         title: "أعضاء الهيئة الإدارية",
         members: [
+          { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
           { id: "awat", name: "آوات أحمد", role: "عضو الهيئة الإدارية" },
           {
             id: "abdulwahid",
