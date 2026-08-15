@@ -566,6 +566,9 @@ export type BcfCopy = {
   trustTopics: TrustTopic[];
   trustLeadershipTitle: string;
   trustFounders: TrustFounderCard[];
+  trustAdminBoardTitle: string;
+  trustAdminBoardOpen: string;
+  trustAdminBoardBody: string;
   boardChief: BoardChiefCopy;
   bcfPresident: BcfPresidentCopy;
   trustQualityTitle: string;
@@ -1223,6 +1226,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "recognition", title: "Recognition and Awards" },
     ],
     trustLeadershipTitle: "Leadership and Governance",
+    trustAdminBoardTitle: "Administrative Board Members",
+    trustAdminBoardOpen: "View members",
+    trustAdminBoardBody:
+      "Reviews and approves major decisions, policies and project direction.",
     trustFounders: [
       {
         title: "Board of Founders",
@@ -1924,6 +1931,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "recognition", title: "پێزانین و خەڵاتەکان" },
     ],
     trustLeadershipTitle: "سەرکردایەتی و حوکمڕانی",
+    trustAdminBoardTitle: "ئەندامانی دەستەی کارگێڕی",
+    trustAdminBoardOpen: "بینینی ئەندامان",
+    trustAdminBoardBody:
+      "سەرپەرشتی بڕیارە سەرەکییەکان و ڕێساکان و ئاڕاستەکردنی پڕۆژەکان دەکات.",
     trustFounders: [
       {
         title: "بۆردی دامەزرێنەران",
@@ -2619,6 +2630,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "recognition", title: "التقدير والجوائز" },
     ],
     trustLeadershipTitle: "القيادة والحوكمة",
+    trustAdminBoardTitle: "أعضاء الهيئة الإدارية",
+    trustAdminBoardOpen: "عرض الأعضاء",
+    trustAdminBoardBody:
+      "يراجع ويقرّ القرارات الكبرى والسياسات ومسار المشاريع.",
     trustFounders: [
       {
         title: "مجلس المؤسسين",

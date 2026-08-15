@@ -27,6 +27,8 @@ type BcfShellProps = {
   backgroundStyle?: React.CSSProperties;
   /** Slow ken-burns push on the backdrop. Off for maps, where drift misleads. */
   drift?: boolean;
+  /** Soften the full-bleed plate. Scale up so the blur does not show empty edges. */
+  backgroundBlur?: boolean;
   /**
    * Warm bloom / grain / vignette stack. Turn off for flat scenes (e.g. the
    * impact dome galleries) where those layers fight the dome's own edge fade.
@@ -109,6 +111,7 @@ export default function BcfShell({
   backgroundSlot,
   backgroundStyle,
   drift = true,
+  backgroundBlur = false,
   atmosphere = true,
   children,
   className = "",
@@ -120,6 +123,7 @@ export default function BcfShell({
   // competing with the taps. On the compositor it is free. `prefers-reduced-
   // motion` is handled in the stylesheet alongside the keyframes.
   const driftClass = drift && !reduceMotion ? "bcf-drift" : "";
+  const blurClass = backgroundBlur ? "scale-[1.12] blur-[22px]" : "";
 
   return (
     <motion.section
@@ -143,7 +147,7 @@ export default function BcfShell({
             alt=""
             decoding="async"
             fetchPriority="high"
-            className={`absolute inset-0 h-full w-full object-cover ${driftClass}`}
+            className={`absolute inset-0 h-full w-full object-cover ${driftClass} ${blurClass}`}
           />
           <div className={`absolute inset-0 ${overlayClassName}`} />
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
