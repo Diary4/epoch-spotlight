@@ -9,7 +9,7 @@ type BcfChapterPillProps = {
 
 /**
  * Centered seal + title pill used across Our Story / Humanity / Map / Future.
- * Always uses the circle-only BCF seal (no photo thumb, no red wordmark).
+ * Always uses the circle-only BCF seal (portrait + flag rings, no wordmark).
  *
  * The seal was 160px and the pill 176 tall — a chapter marker taller than the
  * page title underneath it, and wide enough that on the map screen it ran into
@@ -34,7 +34,7 @@ export default function BcfChapterPill({ title, className = "" }: BcfChapterPill
             src={bcfLogoSeal}
             alt=""
             decoding="async"
-            className="h-[92%] w-[92%] object-contain"
+            className="h-full w-full object-cover"
           />
         </span>
         <span className="text-[32px] font-light tracking-wide text-[#fdeed4]">{title}</span>

@@ -338,6 +338,19 @@ export type TrustCredential = {
   body: string;
 };
 
+/** One person on the management roster: name and title, exactly as BCF lists them. */
+export type TrustStaffMember = {
+  id: string;
+  name: string;
+  role: string;
+};
+
+export type TrustStaffGroup = {
+  id: string;
+  title: string;
+  members: TrustStaffMember[];
+};
+
 /**
  * Board Chief — the person behind the first governance card.
  *
@@ -569,6 +582,15 @@ export type BcfCopy = {
   trustAdminBoardTitle: string;
   trustAdminBoardOpen: string;
   trustAdminBoardBody: string;
+  /** Sits beside the President on the Leadership grid; no profile page yet. */
+  trustVicePresidentName: string;
+  trustVicePresidentRole: string;
+  /**
+   * The management roster from bcf.krd/management-staff, minus the President
+   * and Vice President, who each have their own card one screen up. Grouped
+   * because only six of them hold the board seat the screen is named for.
+   */
+  trustStaffGroups: TrustStaffGroup[];
   boardChief: BoardChiefCopy;
   bcfPresident: BcfPresidentCopy;
   trustQualityTitle: string;
@@ -1230,6 +1252,86 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustAdminBoardOpen: "View members",
     trustAdminBoardBody:
       "Reviews and approves major decisions, policies and project direction.",
+    trustVicePresidentName: "Ibrahim Samin",
+    trustVicePresidentRole: "BCF Vice President",
+    trustStaffGroups: [
+      {
+        id: "board",
+        title: "Administrative Board Members",
+        members: [
+          { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
+          {
+            id: "abdulwahid",
+            name: "Abdulwahid Amin",
+            role: "Administrative Board Member and Duhok Office Director",
+          },
+          { id: "ways", name: "Ways Jalil", role: "Administrative Board Member" },
+          {
+            id: "ismail-a",
+            name: "Ismail Abudlaziz",
+            role: "Administrative Board Member",
+          },
+          {
+            id: "karzan-n",
+            name: "Karzan Nuri",
+            role: "Administrative Board Member and Program Planning Dep. Manager",
+          },
+          {
+            id: "rawaj",
+            name: "Rawaj Haji",
+            role: "Administrative Board Member and Human Resources Dep. Manager",
+          },
+        ],
+      },
+      {
+        id: "management",
+        title: "Management",
+        members: [
+          {
+            id: "farzin",
+            name: "Farzin Bagzade",
+            role: "Supervisor of Public Relations, Media and Legal Affairs Departments",
+          },
+          { id: "azad", name: "Azad Mahmud", role: "President's Office Manager" },
+          {
+            id: "ayoub",
+            name: "Ayoub Mohammed Babakir",
+            role: "Manager of Public Relations and Media",
+          },
+          {
+            id: "omar",
+            name: "Omar Ahmad",
+            role: "Orphans' and Widows' Care Dep. Manager",
+          },
+          { id: "rizgar", name: "Rizgar Obed", role: "Supply Chain Dep. Manager" },
+          { id: "hardi", name: "Hardi Ismail", role: "Finance Dep. Manager" },
+          {
+            id: "eskandar",
+            name: "Eskandar Salih",
+            role: "Monitoring and Evaluation Dep. Manager",
+          },
+          {
+            id: "ashna",
+            name: "Ashna Jamal",
+            role: "Quality Management Division Manager",
+          },
+          { id: "sulaf", name: "Sulaf Sabah", role: "Auditing Division Manager" },
+          { id: "najat", name: "Najat Rafiq", role: "Legal Division Manager" },
+        ],
+      },
+      {
+        id: "offices",
+        title: "Office Directors",
+        members: [
+          { id: "rebwar", name: "Rebwar Mihyaddin", role: "Kirkuk Office Director" },
+          { id: "stav", name: "Stav Aso", role: "Erbil Office Director" },
+          { id: "srwa", name: "Srwa Salih", role: "Slemani Office Director" },
+          { id: "karzan-s", name: "Karzan Salam", role: "Halabja Office Director" },
+          { id: "shero", name: "Shero Simo", role: "Shngal Office Director" },
+          { id: "araz", name: "Araz Ameer", role: "Acting Mosul Office Director" },
+        ],
+      },
+    ],
     trustFounders: [
       {
         title: "Board of Founders",
@@ -1935,6 +2037,102 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustAdminBoardOpen: "بینینی ئەندامان",
     trustAdminBoardBody:
       "سەرپەرشتی بڕیارە سەرەکییەکان و ڕێساکان و ئاڕاستەکردنی پڕۆژەکان دەکات.",
+    trustVicePresidentName: "ئیبراهیم سامین",
+    trustVicePresidentRole: "جێگری سەرۆکی دەزگا",
+    trustStaffGroups: [
+      {
+        id: "board",
+        title: "ئەندامانی دەستەی کارگێڕی",
+        members: [
+          { id: "awat", name: "ئاوات ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
+          {
+            id: "abdulwahid",
+            name: "عەبدولواحید ئەمین",
+            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری نووسینگەی دهۆک",
+          },
+          { id: "ways", name: "ویس جەلیل", role: "ئەندامی دەستەی کارگێڕی" },
+          {
+            id: "ismail-a",
+            name: "ئیسماعیل عەبدولعەزیز",
+            role: "ئەندامی دەستەی کارگێڕی",
+          },
+          {
+            id: "karzan-n",
+            name: "کارزان نووری",
+            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
+          },
+          {
+            id: "rawaj",
+            name: "ڕەواج حاجی",
+            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی سەرچاوە مرۆییەکان",
+          },
+        ],
+      },
+      {
+        id: "management",
+        title: "بەڕێوەبەرایەتی",
+        members: [
+          {
+            id: "farzin",
+            name: "فەرزین بەگزادە",
+            role: "سەرپەرشتیاری بەشەکانی پەیوەندییە گشتییەکان، ڕاگەیاندن و کاروباری یاسایی",
+          },
+          { id: "azad", name: "ئازاد مەحموود", role: "بەڕێوەبەری نووسینگەی سەرۆک" },
+          {
+            id: "ayoub",
+            name: "ئەیوب محەمەد بابەکر",
+            role: "بەڕێوەبەری پەیوەندییە گشتییەکان و ڕاگەیاندن",
+          },
+          {
+            id: "omar",
+            name: "عومەر ئەحمەد",
+            role: "بەڕێوەبەری بەشی چاودێری هەتیوان و بێوەژنان",
+          },
+          {
+            id: "rizgar",
+            name: "ڕزگار عوبێد",
+            role: "بەڕێوەبەری بەشی زنجیرەی دابینکردن",
+          },
+          { id: "hardi", name: "هاردی ئیسماعیل", role: "بەڕێوەبەری بەشی دارایی" },
+          {
+            id: "eskandar",
+            name: "ئەسکەندەر ساڵح",
+            role: "بەڕێوەبەری بەشی چاودێری و هەڵسەنگاندن",
+          },
+          {
+            id: "ashna",
+            name: "ئاشنا جەمال",
+            role: "بەڕێوەبەری لقی بەڕێوەبردنی کوالیتی",
+          },
+          { id: "sulaf", name: "سولاف سەباح", role: "بەڕێوەبەری لقی پشکنین" },
+          { id: "najat", name: "نەجات ڕەفیق", role: "بەڕێوەبەری لقی یاسایی" },
+        ],
+      },
+      {
+        id: "offices",
+        title: "بەڕێوەبەرانی نووسینگەکان",
+        members: [
+          {
+            id: "rebwar",
+            name: "ڕێبوار محیەدین",
+            role: "بەڕێوەبەری نووسینگەی کەرکووک",
+          },
+          { id: "stav", name: "ستاڤ ئاسۆ", role: "بەڕێوەبەری نووسینگەی هەولێر" },
+          { id: "srwa", name: "سروە ساڵح", role: "بەڕێوەبەری نووسینگەی سلێمانی" },
+          {
+            id: "karzan-s",
+            name: "کارزان سەلام",
+            role: "بەڕێوەبەری نووسینگەی هەڵەبجە",
+          },
+          { id: "shero", name: "شێرۆ سیمۆ", role: "بەڕێوەبەری نووسینگەی شنگال" },
+          {
+            id: "araz",
+            name: "ئاراز ئەمیر",
+            role: "بەڕێوەبەری کاتی نووسینگەی موسڵ",
+          },
+        ],
+      },
+    ],
     trustFounders: [
       {
         title: "بۆردی دامەزرێنەران",
@@ -2634,6 +2832,82 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustAdminBoardOpen: "عرض الأعضاء",
     trustAdminBoardBody:
       "يراجع ويقرّ القرارات الكبرى والسياسات ومسار المشاريع.",
+    trustVicePresidentName: "إبراهيم سامين",
+    trustVicePresidentRole: "نائب رئيس المؤسسة",
+    trustStaffGroups: [
+      {
+        id: "board",
+        title: "أعضاء الهيئة الإدارية",
+        members: [
+          { id: "awat", name: "آوات أحمد", role: "عضو الهيئة الإدارية" },
+          {
+            id: "abdulwahid",
+            name: "عبدالواحد أمين",
+            role: "عضو الهيئة الإدارية ومدير مكتب دهوك",
+          },
+          { id: "ways", name: "ويس جليل", role: "عضو الهيئة الإدارية" },
+          {
+            id: "ismail-a",
+            name: "إسماعيل عبدالعزيز",
+            role: "عضو الهيئة الإدارية",
+          },
+          {
+            id: "karzan-n",
+            name: "كارزان نوري",
+            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
+          },
+          {
+            id: "rawaj",
+            name: "رواج حاجي",
+            role: "عضو الهيئة الإدارية ومدير قسم الموارد البشرية",
+          },
+        ],
+      },
+      {
+        id: "management",
+        title: "الإدارة",
+        members: [
+          {
+            id: "farzin",
+            name: "فرزين بكزاده",
+            role: "المشرف على أقسام العلاقات العامة والإعلام والشؤون القانونية",
+          },
+          { id: "azad", name: "آزاد محمود", role: "مدير مكتب الرئيس" },
+          {
+            id: "ayoub",
+            name: "أيوب محمد بابكر",
+            role: "مدير العلاقات العامة والإعلام",
+          },
+          {
+            id: "omar",
+            name: "عمر أحمد",
+            role: "مدير قسم رعاية الأيتام والأرامل",
+          },
+          { id: "rizgar", name: "رزكار عبيد", role: "مدير قسم سلسلة التجهيز" },
+          { id: "hardi", name: "هاردي إسماعيل", role: "مدير القسم المالي" },
+          {
+            id: "eskandar",
+            name: "اسكندر صالح",
+            role: "مدير قسم الرصد والتقييم",
+          },
+          { id: "ashna", name: "آشنا جمال", role: "مدير شعبة إدارة الجودة" },
+          { id: "sulaf", name: "سلاف صباح", role: "مدير شعبة التدقيق" },
+          { id: "najat", name: "نجاة رفيق", role: "مدير الشعبة القانونية" },
+        ],
+      },
+      {
+        id: "offices",
+        title: "مدراء المكاتب",
+        members: [
+          { id: "rebwar", name: "ريبوار محي الدين", role: "مدير مكتب كركوك" },
+          { id: "stav", name: "ستاف آسو", role: "مدير مكتب أربيل" },
+          { id: "srwa", name: "سروة صالح", role: "مدير مكتب السليمانية" },
+          { id: "karzan-s", name: "كارزان سلام", role: "مدير مكتب حلبجة" },
+          { id: "shero", name: "شيرو سيمو", role: "مدير مكتب سنجار" },
+          { id: "araz", name: "آراز أمير", role: "مدير مكتب الموصل بالوكالة" },
+        ],
+      },
+    ],
     trustFounders: [
       {
         title: "مجلس المؤسسين",

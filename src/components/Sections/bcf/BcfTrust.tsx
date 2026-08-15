@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, ChevronRight, Users, X } from "lucide-react";
+import { ArrowRight, ChevronRight, User, Users, X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import BcfBoardChief, {
@@ -78,7 +78,13 @@ const credentialArt: Record<string, { src: string; document?: boolean }> = {
   iso: { src: isoCertificate, document: true },
 };
 
-const ADMIN_BOARD_PORTRAITS = [
+/**
+ * Stacked avatars on the Leadership card — decoration, not identification. The
+ * roster behind the card is named text: BCF publishes no staff photographs, so
+ * which face in `administration/` belongs to which name is unknown. Four is the
+ * limit; past that the circles overlap into a smear.
+ */
+const ADMIN_BOARD_STACK = [
   adminMemberA,
   adminMemberB,
   adminMemberC,
@@ -192,26 +198,55 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {c.trustAdminBoardBody}
             </motion.p>
+            {/* Named roster, grouped: the six who hold the board seat, then the
+                departments, then the offices. Cards carry no portrait — BCF
+                publishes the roster without photographs, and pairing the eight
+                unlabelled `administration/` shots with names would be guesswork. */}
             <motion.div
-              className="mx-auto mt-14 grid w-full max-w-[920px] grid-cols-2 gap-10"
-              variants={bcfStagger(0.08, 0.24)}
+              className="mx-auto mt-12 flex w-full max-w-[980px] flex-col gap-12"
+              variants={bcfStagger(0.1, 0.24)}
               initial="initial"
               animate="animate"
             >
-              {ADMIN_BOARD_PORTRAITS.map((src) => (
-                <motion.div
-                  key={src}
-                  variants={bcfRiseCard}
-                  className={`${BCF_GLASS_CARD} flex min-h-[420px] flex-col items-center justify-center gap-8 p-10`}
-                  style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
-                >
-                  <span
-                    className="h-[180px] w-[180px] overflow-hidden rounded-full border-2"
-                    style={{ borderColor: BCF.gold }}
+              {c.trustStaffGroups.map((group) => (
+                <motion.section key={group.id} variants={bcfRiseCard}>
+                  <h2
+                    className="text-[34px] font-semibold leading-tight"
+                    style={{ color: BCF.gold }}
                   >
-                    <img src={src} alt="" className="h-full w-full object-cover" />
-                  </span>
-                </motion.div>
+                    {group.title}
+                  </h2>
+                  <span
+                    className="mt-4 block h-px w-full"
+                    style={{ background: `linear-gradient(90deg, ${BCF.gold}66, transparent)` }}
+                  />
+                  <div className="mt-7 grid grid-cols-2 gap-5">
+                    {group.members.map((member) => (
+                      <div
+                        key={member.id}
+                        className={`${BCF_GLASS_CARD} flex gap-5 p-6`}
+                        style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
+                      >
+                        <span
+                          className="mt-1 w-[3px] shrink-0 self-stretch rounded-full"
+                          style={{ backgroundColor: BCF.gold }}
+                        />
+                        <span className="flex min-w-0 flex-col">
+                          <span className="text-[28px] font-semibold leading-snug text-[#fdeed4]">
+                            {member.name}
+                          </span>
+                          <span
+                            className={`mt-2 text-[21px] text-white/65 ${
+                              lang === "en" ? "leading-snug" : "leading-[1.7]"
+                            }`}
+                          >
+                            {member.role}
+                          </span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
               ))}
             </motion.div>
           </TrustChrome>
@@ -269,17 +304,41 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 </div>
               </motion.button>
 
+              {/* The Vice President sits beside the President but has no profile
+                  or portrait yet, so this stays a plain card — a button that
+                  opens nothing reads as a broken one. */}
+              <motion.div
+                variants={bcfRiseCard}
+                className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full flex-col items-start gap-6 p-10 text-start`}
+                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
+              >
+                <span
+                  className="flex h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-full border-2 bg-white/5"
+                  style={{ borderColor: `${BCF.gold}80` }}
+                >
+                  <User className="h-14 w-14 text-white/35" />
+                </span>
+                <div>
+                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
+                    {c.trustVicePresidentName}
+                  </h3>
+                  <p className="mt-4 text-[26px] leading-relaxed text-white/75">
+                    {c.trustVicePresidentRole}
+                  </p>
+                </div>
+              </motion.div>
+
               <motion.button
                 type="button"
                 variants={bcfRiseCard}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
                 onClick={() => setAdminBoardOpen(true)}
-                className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
+                className={`${BCF_GLASS_CARD} relative col-span-2 flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <span className="flex items-center">
-                  {ADMIN_BOARD_PORTRAITS.map((src, index) => (
+                  {ADMIN_BOARD_STACK.map((src, index) => (
                     <span
                       key={src}
                       className="h-[72px] w-[72px] overflow-hidden rounded-full border-2"
