@@ -43,10 +43,6 @@ import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
 import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
-import adminMemberA from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
-import adminMemberB from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
-import adminMemberC from "@/assets/images/bcf/optimized/administration/405A9925.webp";
-import adminMemberD from "@/assets/images/bcf/optimized/administration/8C6A7443.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -77,19 +73,6 @@ const topicBgs: Partial<Record<TrustTopicId, string>> = {
 const credentialArt: Record<string, { src: string; document?: boolean }> = {
   iso: { src: isoCertificate, document: true },
 };
-
-/**
- * Stacked avatars on the Leadership card — decoration, not identification. The
- * roster behind the card is named text: BCF publishes no staff photographs, so
- * which face in `administration/` belongs to which name is unknown. Four is the
- * limit; past that the circles overlap into a smear.
- */
-const ADMIN_BOARD_STACK = [
-  adminMemberA,
-  adminMemberB,
-  adminMemberC,
-  adminMemberD,
-];
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
   "partners",
@@ -337,19 +320,11 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 className={`${BCF_GLASS_CARD} relative col-span-2 flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
-                <span className="flex items-center">
-                  {ADMIN_BOARD_STACK.map((src, index) => (
-                    <span
-                      key={src}
-                      className="h-[72px] w-[72px] overflow-hidden rounded-full border-2"
-                      style={{
-                        borderColor: BCF.gold,
-                        marginInlineStart: index === 0 ? 0 : -22,
-                      }}
-                    >
-                      <img src={src} alt="" className="h-full w-full object-cover" />
-                    </span>
-                  ))}
+                <span
+                  className="flex h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-full border-2 bg-white/5"
+                  style={{ borderColor: BCF.gold }}
+                >
+                  <Users className="h-14 w-14" style={{ color: BCF.gold }} />
                 </span>
                 <div>
                   <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
