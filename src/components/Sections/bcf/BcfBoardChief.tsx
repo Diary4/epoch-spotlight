@@ -1,11 +1,12 @@
 import React from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfProfileHero from "@/components/Sections/bcf/BcfProfileHero";
 import BcfFilmstrip from "@/components/Sections/bcf/BcfFilmstrip";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
+import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   BCF_EASE,
@@ -87,8 +88,8 @@ export default function BcfBoardChief({
       <BcfShell
         key="chief-timeline"
         showLogo={false}
-        overlayClassName="bg-black/0"
-        backgroundStyle={{ background: BCF_FIELD_BG }}
+        backgroundImage={bcfTrustBg}
+        overlayClassName="bg-black/35"
       >
         <div className="relative flex min-h-[1920px] flex-col px-12 pb-12 pt-[136px]">
           <BcfBackButton onClick={onBack} label={c.back} />
@@ -144,8 +145,8 @@ export default function BcfBoardChief({
     <BcfShell
       key="chief-profile"
       showLogo={false}
-      overlayClassName="bg-black/0"
-      backgroundStyle={{ background: BCF_FIELD_BG }}
+      backgroundImage={bcfTrustBg}
+      overlayClassName="bg-black/35"
     >
       {/* Every block below is sized so the column lands inside the 1920 artboard
           in all three languages. It used to run 2101px, and the canvas scrolls

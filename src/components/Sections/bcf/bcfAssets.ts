@@ -28,6 +28,8 @@ export { default as bcfProjectHero } from "@/assets/images/women/w-4.webp";
 export { default as bcfErbil } from "@/assets/images/bcf/optimized/schools/8D1A7011.webp";
 /** Our Story full-bleed plate — used across every chapter pane. */
 export { default as bcfStoryBg } from "@/assets/images/bcf/our-story-bg.webp";
+/** Trust Behind the Work — hub and every topic / profile under it. */
+export { default as bcfTrustBg } from "@/assets/images/bcf/trustbehindwokr.png";
 export { default as bcfHubBg } from "@/assets/images/bcf/optimized/camps/harsham.webp";
 export { default as bcfImpactBg } from "@/assets/images/bcf/selected/humanity-relief.webp";
 export { default as bcfProjectsBg } from "@/assets/images/bcf/selected/impact-camps.webp";

@@ -29,14 +29,11 @@ import {
 } from "@/components/Sections/bcf/bcfPartnerLogos";
 import { bcfAwardImages } from "@/components/Sections/bcf/bcfAwardImages";
 import { bcfStaffPortraits } from "@/components/Sections/bcf/bcfStaffPortraits";
+import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
 import leadershipThumb from "@/assets/images/bcf/trust/leadership.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsThumb from "@/assets/images/bcf/trust/partnerships.webp";
-import qualityBg from "@/assets/images/bcf/selected/impact-schools.webp";
-import partnershipsBg from "@/assets/images/bcf/trust/partnerships.webp";
 import recognitionThumb from "@/assets/images/bcf/trust/recognition.webp";
-import recognitionBg from "@/assets/images/bcf/trust/recognition.webp";
-import hubBg from "@/assets/images/bcf/trust/main-bg.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpeg";
@@ -60,13 +57,18 @@ const topicThumbs: Record<TrustTopicId, string> = {
   recognition: recognitionThumb,
 };
 
-const topicBgs: Partial<Record<TrustTopicId, string>> = {
-  quality: qualityBg,
-  partnerships: partnershipsBg,
-  recognition: recognitionBg,
-};
-
-/** Credential artwork, keyed by `trustCredentials[].id`. */
+/**
+ * Credential artwork, keyed by `trustCredentials[].id`.
+ *
+ * `fit` is not a taste call. A photograph or a flag crops fine, so it fills the
+ * frame. A scanned document does not: the ISO certificate is a 1045×1472
+ * portrait page, and cropping it to fill a landscape-ish panel cuts the
+ * EUROCERT mark off the top right, the certificate number and both validity
+ * dates off the left rail, and the director's signature off the foot — which is
+ * the entire reason a visitor would stand in front of it. Documents are shown
+ * whole, on the white backing the panel paints behind `contain`, so the
+ * letterbox reads as the page rather than as a gap.
+ */
 const credentialArt: Record<
   string,
   { src: string; fit: "cover" | "contain"; pad?: string; position?: string }
@@ -76,7 +78,7 @@ const credentialArt: Record<
   kuwait: { src: credKuwait, fit: "cover" },
   ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14" },
   uk: { src: credBcc, fit: "contain", pad: "p-12" },
-  iso: { src: isoCertificate, fit: "cover", position: "object-top" },
+  iso: { src: isoCertificate, fit: "contain", pad: "p-6" },
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -158,7 +160,12 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 
     if (adminBoardOpen) {
       return (
-        <BcfShell key="admin-board" showLogo={false}>
+        <BcfShell
+          key="admin-board"
+          showLogo={false}
+          backgroundImage={bcfTrustBg}
+          overlayClassName="bg-black/35"
+        >
           <TrustChrome
             title={c.trustAdminBoardTitle}
             backLabel={c.back}
@@ -248,6 +255,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="leadership"
           showLogo={false}
+          backgroundImage={bcfTrustBg}
+          overlayClassName="bg-black/35"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
             <ChiefCard
@@ -376,8 +385,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="quality"
           showLogo={false}
-          backgroundImage={topicBgs.quality}
-          overlayClassName="bg-black/70"
+          backgroundImage={bcfTrustBg}
+          overlayClassName="bg-black/35"
         >
           <TrustChrome title={qualityTitle} backLabel={c.back} onBack={goBack}>
             {/* The rail used to arrive as one slab with the panel. Cascading the
@@ -491,8 +500,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="partnerships"
           showLogo={false}
-          backgroundImage={topicBgs.partnerships}
-          overlayClassName="bg-black/80"
+          backgroundImage={bcfTrustBg}
+          overlayClassName="bg-black/35"
         >
           <TrustChrome title={c.trustPartnershipsTitle} backLabel={c.back} onBack={goBack}>
             <motion.p
@@ -580,8 +589,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         <BcfShell
           key="recognition"
           showLogo={false}
-          backgroundImage={topicBgs.recognition}
-          overlayClassName="bg-black/70"
+          backgroundImage={bcfTrustBg}
+          overlayClassName="bg-black/35"
         >
           <TrustChrome title={c.trustRecognitionTitle} backLabel={c.back} onBack={goBack}>
             <motion.p
@@ -681,9 +690,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       <BcfShell
         key="hub"
         showLogo={false}
-        backgroundImage={hubBg}
-        backgroundBlur
-        overlayClassName="bg-black/62"
+        backgroundImage={bcfTrustBg}
+        overlayClassName="bg-black/35"
       >
         <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
           <BcfBackButton onClick={goBack} label={c.back} />

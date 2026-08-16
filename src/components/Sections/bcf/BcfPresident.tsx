@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "motion/react";
+import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfProfileHero from "@/components/Sections/bcf/BcfProfileHero";
 import BcfFilmstrip from "@/components/Sections/bcf/BcfFilmstrip";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
+import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { bcfRiseCard, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
@@ -59,8 +60,8 @@ export default function BcfPresident({ lang, onBack }: BcfPresidentProps) {
     <BcfShell
       key="president-profile"
       showLogo={false}
-      overlayClassName="bg-black/0"
-      backgroundStyle={{ background: BCF_FIELD_BG }}
+      backgroundImage={bcfTrustBg}
+      overlayClassName="bg-black/35"
     >
       <div className="relative flex min-h-[1920px] flex-col pb-14">
         <BcfBackButton onClick={onBack} label={c.back} />
