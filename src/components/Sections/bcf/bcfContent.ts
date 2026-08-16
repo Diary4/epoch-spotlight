@@ -102,7 +102,9 @@ export type GlobalLocationId =
   | "sudan"
   | "yemen"
   | "bangladesh"
-  | "australia";
+  | "australia"
+  | "greece"
+  | "southSudan";
 
 export type BcfGlobalLocation = {
   id: GlobalLocationId;
@@ -160,11 +162,13 @@ export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
   },
   { id: "morocco", coordinates: [-6.842, 31.8], kind: "work", iso: "504", focusZoom: 4.5 },
   { id: "serbia", coordinates: [20.457, 44.787], kind: "work", iso: "688", focusZoom: 6.5 },
+  { id: "greece", coordinates: [21.8, 39.1], kind: "work", iso: "300", focusZoom: 5.5 },
   { id: "ukraine", coordinates: [31.2, 48.8], kind: "work", iso: "804", focusZoom: 4 },
   { id: "turkiye", coordinates: [35.2, 39.1], kind: "response", iso: "792", focusZoom: 4.5 },
   { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422", focusZoom: 7 },
   { id: "syria", coordinates: [38.5, 35], kind: "response", iso: "760", focusZoom: 6 },
   { id: "sudan", coordinates: [30.2, 15.9], kind: "work", iso: "729", focusZoom: 4 },
+  { id: "southSudan", coordinates: [30.1, 7.0], kind: "work", iso: "728", focusZoom: 4.5 },
   { id: "saudiArabia", coordinates: [45.1, 24], kind: "work", iso: "682", focusZoom: 3.6 },
   { id: "yemen", coordinates: [47.5, 15.5], kind: "work", iso: "887", focusZoom: 5.5 },
   { id: "bangladesh", coordinates: [90.407, 23.811], kind: "work", iso: "050", focusZoom: 6.5 },
@@ -929,7 +933,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "Inside Kurdistan",
     },
     globalLead:
-      "Fourteen countries in twenty years, all run from Erbil.",
+      "Sixteen countries in twenty years, all run from Erbil.",
     globalZoomHint: "Drag to move · pinch to zoom",
     globeHint: "Drag to spin · pinch to zoom",
     viewGlobe: "Globe",
@@ -1009,6 +1013,12 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: WORK_ONLY_EN,
         facts: [],
       },
+      greece: {
+        name: "Greece",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
       lebanon: {
         name: "Lebanon",
         meta: "Area of work",
@@ -1029,6 +1039,12 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       sudan: {
         name: "Sudan",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      southSudan: {
+        name: "South Sudan",
         meta: "Area of work",
         description: WORK_ONLY_EN,
         facts: [],
@@ -1771,7 +1787,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "لە ناو کوردستان",
     },
     globalLead:
-      "چواردە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.",
+      "شازدە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.",
     globalZoomHint: "ڕایبکێشە بۆ جوڵاندن · بیگوشە بۆ نزیکبوونەوە",
     globeHint: "ڕایبکێشە بۆ خولاندن · بیگوشە بۆ نزیکبوونەوە",
     viewGlobe: "گۆی زەوی",
@@ -1838,6 +1854,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       ukraine: { name: "ئۆکرانیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       serbia: { name: "سربیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      greece: { name: "یۆنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       lebanon: { name: "لوبنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       morocco: { name: "مەغریب", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       saudiArabia: {
@@ -1847,6 +1864,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         facts: [],
       },
       sudan: { name: "سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      southSudan: { name: "باشووری سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       yemen: { name: "یەمەن", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       bangladesh: {
         name: "بەنگلادیش",
@@ -2590,7 +2608,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       kurdistan: "داخل كردستان",
     },
     globalLead:
-      "أربع عشرة دولة في عشرين عاماً، تُدار جميعها من أربيل.",
+      "ست عشرة دولة في عشرين عاماً، تُدار جميعها من أربيل.",
     globalZoomHint: "اسحب للتحريك · اضغط بإصبعين للتكبير",
     globeHint: "اسحب للتدوير · اضغط بإصبعين للتكبير",
     viewGlobe: "الكرة الأرضية",
@@ -2657,6 +2675,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       ukraine: { name: "أوكرانيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       serbia: { name: "صربيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      greece: { name: "اليونان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       lebanon: { name: "لبنان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       morocco: { name: "المغرب", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       saudiArabia: {
@@ -2666,6 +2685,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         facts: [],
       },
       sudan: { name: "السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      southSudan: { name: "جنوب السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       yemen: { name: "اليمن", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       bangladesh: { name: "بنغلاديش", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       australia: { name: "أستراليا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },

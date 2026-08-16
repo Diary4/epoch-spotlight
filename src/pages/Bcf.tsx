@@ -65,7 +65,7 @@ export default function BcfPage() {
   const [sectorId, setSectorId] = React.useState<SectorId | null>(null);
   const [impactGalleryId, setImpactGalleryId] =
     React.useState<ImpactGalleryId | null>(null);
-  const [languageOpen, setLanguageOpen] = React.useState(true);
+  const [languageOpen, setLanguageOpen] = React.useState(false);
   const [languageOrigin, setLanguageOrigin] =
     React.useState<"entry" | "control">("entry");
   const [idleCount, setIdleCount] = React.useState<number | null>(null);
@@ -96,7 +96,7 @@ export default function BcfPage() {
 
   const reset = React.useCallback(() => {
     setIdleCount(null);
-    setLanguageOpen(true);
+    setLanguageOpen(false);
     setLanguageOrigin("entry");
     setModalLocation(null);
     setLocationId(null);
@@ -107,11 +107,11 @@ export default function BcfPage() {
   }, []);
 
   /**
-   * Idle watch. The entry language screen is the resting state, so it needs
-   * no timer.
+   * Idle watch. The Barzani vow is the resting plate, so it needs no timer
+   * until the visitor has tapped through into the journey.
    */
   React.useEffect(() => {
-    if (languageOpen && languageOrigin === "entry") {
+    if (step === "intro" || (languageOpen && languageOrigin === "entry")) {
       setIdleCount(null);
       return;
     }
@@ -163,7 +163,7 @@ export default function BcfPage() {
     (next: BcfLang) => {
       setLang(next);
       setLanguageOpen(false);
-      if (languageOrigin === "entry") go(() => setStep("intro"));
+      if (languageOrigin === "entry") go(() => setStep("welcome"));
     },
     [go, languageOrigin],
   );
@@ -175,7 +175,7 @@ export default function BcfPage() {
           <BcfIntro
             key="intro"
             lang={lang}
-            onContinue={() => go(() => setStep("welcome"))}
+            onContinue={() => openLanguage("entry")}
           />
         );
       case "welcome":
@@ -387,7 +387,7 @@ export default function BcfPage() {
           {content}
         </AnimatePresence>
 
-        {!(languageOpen && languageOrigin === "entry") ? (
+        {step !== "intro" && !(languageOpen && languageOrigin === "entry") ? (
           <BcfReachRail
             homeLabel={c.home}
             languageLabel={c.language}
