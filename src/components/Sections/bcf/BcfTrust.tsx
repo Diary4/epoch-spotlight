@@ -6,9 +6,7 @@ import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import BcfBoardChief, {
   type BoardChiefView,
 } from "@/components/Sections/bcf/BcfBoardChief";
-import BcfPresident, {
-  type PresidentView,
-} from "@/components/Sections/bcf/BcfPresident";
+import BcfPresident from "@/components/Sections/bcf/BcfPresident";
 import {
   bcfCopy,
   type BcfLang,
@@ -41,6 +39,11 @@ import recognitionBg from "@/assets/images/bcf/trust/recognition.webp";
 import hubBg from "@/assets/images/bcf/trust/main-bg.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
+import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpeg";
+import credUsa from "@/assets/images/bcf/Credibility page/United States.jpeg";
+import credEcosoc from "@/assets/images/bcf/Credibility page/ECOSOC.png";
+import credBcc from "@/assets/images/bcf/Credibility page/BCC.webp";
+import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait flag.jpeg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
 import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
@@ -66,12 +69,16 @@ const topicBgs: Partial<Record<TrustTopicId, string>> = {
 /**
  * Credential artwork, keyed by `trustCredentials[].id`.
  *
- * Entries with a scanned document are shown whole (`contain`) — a certificate
- * cropped to fill the frame loses the seal and the validity dates, which are
- * the only parts of it worth standing in front of. Everything else falls back
- * to the signing photograph, which is a photo and crops fine.
+ * Logos and certificates are shown whole (`document`) so seals and wordmarks
+ * are not cropped. Country flags are contained too — they are graphics, not
+ * photographs, and a crop would lose the canton or the sun.
  */
 const credentialArt: Record<string, { src: string; document?: boolean }> = {
+  "iraq-krg": { src: credKurdistan, document: true },
+  usa: { src: credUsa, document: true },
+  ecosoc: { src: credEcosoc, document: true },
+  uk: { src: credBcc, document: true },
+  kuwait: { src: credKuwait, document: true },
   iso: { src: isoCertificate, document: true },
 };
 
@@ -91,8 +98,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const [credentialIndex, setCredentialIndex] = React.useState(0);
   /** Null while the Leadership grid is up; the profile and its timeline sit under it. */
   const [chiefView, setChiefView] = React.useState<BoardChiefView | null>(null);
-  const [presidentView, setPresidentView] =
-    React.useState<PresidentView | null>(null);
+  /** The President has one screen — his record is printed on the profile. */
+  const [presidentOpen, setPresidentOpen] = React.useState(false);
   const [adminBoardOpen, setAdminBoardOpen] = React.useState(false);
   const [partnerGroup, setPartnerGroup] =
     React.useState<PartnerLogoGroupId>("partners");
@@ -111,12 +118,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       setChiefView(null);
       return;
     }
-    if (presidentView === "timeline") {
-      setPresidentView("profile");
-      return;
-    }
-    if (presidentView) {
-      setPresidentView(null);
+    if (presidentOpen) {
+      setPresidentOpen(false);
       return;
     }
     if (adminBoardOpen) {
@@ -152,16 +155,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       );
     }
 
-    if (presidentView) {
-      return (
-        <BcfPresident
-          key={`president-${presidentView}`}
-          lang={lang}
-          view={presidentView}
-          onOpenTimeline={() => setPresidentView("timeline")}
-          onBack={goBack}
-        />
-      );
+    if (presidentOpen) {
+      return <BcfPresident key="president" lang={lang} onBack={goBack} />;
     }
 
     if (adminBoardOpen) {
@@ -277,7 +272,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 variants={bcfRiseCard}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
-                onClick={() => setPresidentView("profile")}
+                onClick={() => setPresidentOpen(true)}
                 className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
@@ -447,9 +442,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                   }}
                 >
                   <AnimatePresence mode="wait">
-                    {/* Keyed on the image, not the credential: five of the six
-                        entries share the signing photograph, and keying on the
-                        id would crossfade it into itself on every switch. */}
+                    {/* Keyed on the image so a credential switch crossfades
+                        the plate, not the surrounding glass. */}
                     <motion.img
                       key={activeArt?.src ?? certificateImg}
                       src={activeArt?.src ?? certificateImg}

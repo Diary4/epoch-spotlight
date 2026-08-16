@@ -1,114 +1,59 @@
 import React from "react";
 import { motion } from "motion/react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
-import {
-  GovernanceTimeline,
-} from "@/components/Sections/bcf/BcfBoardChief";
+import BcfProfileHero from "@/components/Sections/bcf/BcfProfileHero";
+import BcfFilmstrip from "@/components/Sections/bcf/BcfFilmstrip";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
-import {
-  BCF_EASE,
-  BCF_TAP_FIRM,
-  BCF_TAP_TRANSITION,
-  bcfBloom,
-  bcfRise,
-  bcfStagger,
-} from "@/components/Sections/bcf/bcfMotion";
-/** Placeholder portrait until a dedicated crop is commissioned. */
+import { bcfRiseCard, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
+/**
+ * Context strip under the record.
+ *
+ * Stand-in photography: BCF field work rather than the President himself, which
+ * is the honest placeholder until his own set arrives. Deliberately *not* the
+ * other `administration/` portraits — those are other named officers, and a
+ * strip on his page reads as him.
+ */
+import stripConvoy from "@/assets/images/bcf/optimized/flood/8C6A6595.webp";
+import stripTeam from "@/assets/images/bcf/optimized/flood/4949107.webp";
+import stripClearing from "@/assets/images/bcf/optimized/flood/2B1A6744.webp";
+import stripCamp from "@/assets/images/bcf/optimized/camps/harsham.webp";
+import stripSchool from "@/assets/images/bcf/optimized/schools/8D1A7003.webp";
 
-export type PresidentView = "profile" | "timeline";
+const STRIP_IMAGES = [
+  stripTeam,
+  stripConvoy,
+  stripClearing,
+  stripCamp,
+  stripSchool,
+];
+
+/** Padded column the record cards are read in. */
+const COLUMN = "mx-auto w-full max-w-[1000px] px-10";
 
 type BcfPresidentProps = {
   lang: BcfLang;
-  view: PresidentView;
-  onOpenTimeline: () => void;
   onBack: () => void;
 };
 
-const PLATE_CLIP =
-  "polygon(32px 0, calc(100% - 32px) 0, 100% 32px, 100% calc(100% - 32px), calc(100% - 32px) 100%, 32px 100%, 0 calc(100% - 32px), 0 32px)";
-
-const NODE_IMAGES = [
-  presidentPortrait,
-  presidentPortrait,
-  presidentPortrait,
-  presidentPortrait,
-  presidentPortrait,
-];
-
 /**
- * BCF President — profile biography and career timeline, mirroring the Board
- * Chief chapter layout.
+ * BCF President.
+ *
+ * A record, not an essay. The page opens on the photograph with the nameplate
+ * laid into it, then answers three questions in the order a visitor asks them
+ * — who he is, how he got here, what he has been given — with the labels down
+ * one side so any one of the three can be found without reading the other two.
+ *
+ * There is no timeline screen behind this one any more. The career it held was
+ * five nodes restating the same three facts printed here, and a second screen
+ * that only repeats the first is a screen nobody has a reason to open.
  */
-export default function BcfPresident({
-  lang,
-  view,
-  onOpenTimeline,
-  onBack,
-}: BcfPresidentProps) {
+export default function BcfPresident({ lang, onBack }: BcfPresidentProps) {
   const c = bcfCopy[lang];
   const president = c.bcfPresident;
   const rtl = lang !== "en";
-
-  if (view === "timeline") {
-    return (
-      <BcfShell
-        key="president-timeline"
-        showLogo={false}
-        overlayClassName="bg-black/0"
-        backgroundStyle={{ background: BCF_FIELD_BG }}
-      >
-        <div className="relative flex min-h-[1920px] flex-col px-12 pb-12 pt-[136px]">
-          <BcfBackButton onClick={onBack} label={c.back} />
-
-          <motion.div
-            className="relative z-10 flex w-full items-end justify-between gap-8 px-6"
-            variants={bcfStagger(0.1, 0.16)}
-            initial="initial"
-            animate="animate"
-          >
-            <motion.h1
-              variants={bcfRise}
-              className="max-w-[720px] text-start text-[62px] font-bold leading-none"
-              style={{ color: BCF.cream }}
-            >
-              {president.timelineTitle}
-            </motion.h1>
-            <motion.span
-              variants={bcfRise}
-              className="pb-2 text-[34px] font-medium tabular-nums"
-              style={{ color: BCF.gold }}
-            >
-              {bcfDigits(president.timelineRange, lang)}
-            </motion.span>
-          </motion.div>
-
-          <motion.span
-            className="relative z-10 mx-6 mt-8 block h-px origin-left"
-            style={{
-              background: `linear-gradient(90deg, ${BCF.gold}, ${BCF.gold}22)`,
-            }}
-            initial={{
-              opacity: 0,
-              scaleX: 0,
-              transformOrigin: rtl ? "right" : "left",
-            }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.85, delay: 0.22, ease: BCF_EASE }}
-          />
-
-          <GovernanceTimeline
-            milestones={president.timelineMilestones}
-            rtl={rtl}
-            lang={lang}
-            nodeImages={NODE_IMAGES}
-          />
-        </div>
-      </BcfShell>
-    );
-  }
 
   return (
     <BcfShell
@@ -117,101 +62,144 @@ export default function BcfPresident({
       overlayClassName="bg-black/0"
       backgroundStyle={{ background: BCF_FIELD_BG }}
     >
-      <div className="relative flex min-h-[1920px] flex-col items-center px-12 pb-12 pt-20">
+      <div className="relative flex min-h-[1920px] flex-col pb-14">
         <BcfBackButton onClick={onBack} label={c.back} />
 
+        <BcfProfileHero
+          image={presidentPortrait}
+          name={president.name}
+          role={president.role}
+          meta={president.meta}
+          align="center"
+          height={640}
+          objectPosition="50% 22%"
+          plateWidth={700}
+        />
+
+        {/* The two record cards sit in the padded column; the filmstrip between
+            them does not — it is film, and film runs past the edge of the page
+            in both directions. */}
         <motion.div
-          className="relative w-full max-w-[640px] px-9 py-6 text-center backdrop-blur-md"
-          style={{
-            background:
-              "linear-gradient(165deg, rgba(28,20,8,0.82) 0%, rgba(10,10,10,0.72) 100%)",
-            border: `1px solid ${BCF.gold}66`,
-            clipPath: PLATE_CLIP,
-            boxShadow: `0 22px 60px rgba(0,0,0,0.55), inset 0 0 60px ${BCF.gold}0f`,
-          }}
-          variants={bcfBloom}
+          className="flex w-full flex-col gap-7"
+          variants={bcfStagger(0.12, 0.4)}
           initial="initial"
           animate="animate"
-          transition={{ duration: 0.7, delay: 0.14, ease: BCF_EASE }}
         >
-          <span
-            className="pointer-events-none absolute inset-[9px]"
-            style={{
-              border: `1px solid ${BCF.gold}2e`,
-              clipPath:
-                "polygon(26px 0, calc(100% - 26px) 0, 100% 26px, 100% calc(100% - 26px), calc(100% - 26px) 100%, 26px 100%, 0 calc(100% - 26px), 0 26px)",
-            }}
-          />
-          <h1
-            className="text-[44px] font-bold leading-tight"
-            style={{ color: BCF.cream }}
-          >
-            {president.name}
-          </h1>
-          <p className="mt-3 text-[26px] font-medium" style={{ color: BCF.gold }}>
-            {president.role}
-          </p>
-          <p className="mt-2 text-[20px] text-white/50">{president.meta}</p>
-        </motion.div>
+          <motion.div variants={bcfRiseCard} className={COLUMN}>
+            <RecordCard>
+              <RecordRow label={president.bioLabel}>
+                <p className={bodyClass(lang)}>{president.bio}</p>
+              </RecordRow>
 
-        <motion.div
-          className="mt-8 h-[320px] w-[320px] overflow-hidden rounded-full border-2"
-          style={{
-            borderColor: BCF.gold,
-            boxShadow: `0 28px 70px rgba(0,0,0,0.55), 0 0 48px ${BCF.gold}22`,
-          }}
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.75, delay: 0.28, ease: BCF_EASE }}
-        >
-          <img
-            src={presidentPortrait}
-            alt=""
-            decoding="async"
-            className="h-full w-full object-cover"
-          />
-        </motion.div>
+              <RecordRow label={president.journeyLabel} divided>
+                <div className="flex flex-col">
+                  {president.journey.map((fact, index) => (
+                    <div
+                      key={fact.id}
+                      className="grid grid-cols-[152px_1fr] gap-6 py-4 first:pt-0 last:pb-0"
+                      style={
+                        index === 0
+                          ? undefined
+                          : { borderTop: "1px solid rgba(255,255,255,0.10)" }
+                      }
+                    >
+                      <span
+                        className="text-[21px] font-medium leading-snug tabular-nums"
+                        style={{ color: BCF.gold }}
+                      >
+                        {bcfDigits(fact.period, lang)}
+                      </span>
+                      <p className={bodyClass(lang)}>{fact.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </RecordRow>
+            </RecordCard>
+          </motion.div>
 
-        <motion.div
-          className="mt-8 flex w-full max-w-[920px] flex-col items-center gap-4 text-center"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.46, ease: BCF_EASE }}
-        >
-          <h2
-            className="text-[32px] font-semibold leading-tight"
-            style={{ color: BCF.gold }}
-          >
-            {president.introTitle}
-          </h2>
-          <p className="whitespace-pre-line text-[24px] leading-relaxed text-white/75">
-            {president.intro}
-          </p>
-        </motion.div>
+          <motion.div variants={bcfRiseCard}>
+            <BcfFilmstrip
+              images={STRIP_IMAGES}
+              rtl={rtl}
+              controls={false}
+              size="sm"
+              width={1080}
+              delay={0}
+            />
+          </motion.div>
 
-        <motion.button
-          type="button"
-          onClick={onOpenTimeline}
-          whileTap={BCF_TAP_FIRM}
-          className="mt-10 w-full max-w-[580px] transform-gpu rounded-full px-12 py-6 text-[29px] font-semibold"
-          style={{
-            background:
-              "linear-gradient(165deg, #e2b66a 0%, #b07a2e 60%, #8a5c1c 100%)",
-            color: "#2a1808",
-            boxShadow: `0 18px 46px rgba(0,0,0,0.5), 0 0 40px ${BCF.gold}22`,
-          }}
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            ...BCF_TAP_TRANSITION,
-            duration: 0.7,
-            delay: 0.62,
-            ease: BCF_EASE,
-          }}
-        >
-          {president.timelineCta}
-        </motion.button>
+          <motion.div variants={bcfRiseCard} className={COLUMN}>
+            <RecordCard>
+              <RecordRow label={president.awardsLabel}>
+                <p className={bodyClass(lang)}>{president.awards}</p>
+              </RecordRow>
+            </RecordCard>
+          </motion.div>
+        </motion.div>
       </div>
     </BcfShell>
+  );
+}
+
+/** Kurdish and Arabic need the looser leading their scripts are set on. */
+function bodyClass(lang: BcfLang) {
+  return `text-[21px] text-white/80 ${
+    lang === "en" ? "leading-relaxed" : "leading-[1.85]"
+  }`;
+}
+
+function RecordCard({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className="w-full overflow-hidden backdrop-blur-md"
+      style={{
+        borderRadius: 16,
+        border: `1px solid ${BCF.gold}2e`,
+        background:
+          "linear-gradient(165deg, rgba(20,15,7,0.66) 0%, rgba(8,8,8,0.58) 100%)",
+        boxShadow: "0 22px 56px rgba(0,0,0,0.45)",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * One labelled section. The label column is a fixed width in every language so
+ * the three cards on the page share a single spine — a column that resized
+ * itself to the longest word would put "AWARDS" and "BIOGRAPHY" on different
+ * left edges, which is exactly the drift that makes a page look assembled from
+ * three unrelated blocks.
+ */
+function RecordRow({
+  label,
+  divided = false,
+  children,
+}: {
+  label: string;
+  divided?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className="grid grid-cols-[248px_1fr] items-start"
+      style={
+        divided ? { borderTop: "1px solid rgba(255,255,255,0.12)" } : undefined
+      }
+    >
+      <span
+        className="px-8 py-7 text-[26px] font-semibold uppercase leading-tight tracking-[0.04em]"
+        style={{ color: BCF.gold }}
+      >
+        {label}
+      </span>
+      <div
+        className="px-8 py-7"
+        style={{ borderInlineStart: "1px solid rgba(255,255,255,0.12)" }}
+      >
+        {children}
+      </div>
+    </div>
   );
 }

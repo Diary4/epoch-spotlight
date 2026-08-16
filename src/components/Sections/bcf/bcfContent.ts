@@ -403,35 +403,48 @@ export type BoardChiefCopy = {
   /** Third nameplate line — the institution, not a term of service. */
   meta: string;
   intro: string;
+  /**
+   * Photography for the filmstrip. The caption is no longer printed under the
+   * plate — it is the `alt` the plate carries, which is the only description a
+   * screen reader or a maintainer swapping the art ever gets.
+   */
   slides: BoardChiefSlide[];
-  /** Heading over the two governance bodies the chief sits with. */
-  alongside: string;
   timelineCta: string;
   timelineTitle: string;
   timelineRange: string;
   timelineMilestones: BoardChiefMilestone[];
 };
 
-/** BCF President profile — biography and career timeline. */
-export type BcfPresidentMilestone = {
+/**
+ * One row of the President's career rail: a period in gold and what he did in
+ * it. Deliberately not a `year` — two of the three entries are a span
+ * ("1994 – 1998") or a duration ("+19 years") rather than a date.
+ */
+export type BcfPresidentFact = {
   id: string;
-  year: string;
-  title: string;
+  period: string;
   body: string;
 };
 
+/**
+ * BCF President profile.
+ *
+ * Read as a record rather than a narrative: three labelled sections down the
+ * left, their content to the right. The biography prose it replaced said the
+ * same things in a paragraph a visitor had to finish before finding the one
+ * fact they came for.
+ */
 export type BcfPresidentCopy = {
   open: string;
   name: string;
   role: string;
   meta: string;
-  /** Short heading above the biography. */
-  introTitle: string;
-  intro: string;
-  timelineCta: string;
-  timelineTitle: string;
-  timelineRange: string;
-  timelineMilestones: BcfPresidentMilestone[];
+  bioLabel: string;
+  bio: string;
+  journeyLabel: string;
+  journey: BcfPresidentFact[];
+  awardsLabel: string;
+  awards: string;
 };
 
 export type RecognitionItemId =
@@ -1394,7 +1407,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             "Seated with officials, partners and faith leaders — coexistence among Kurdistan's communities is one of the six values BCF works by.",
         },
       ],
-      alongside: "Alongside the Board",
       timelineCta: "View Governance Timeline",
       timelineTitle: "Board of Founders",
       timelineRange: "2005 — Present",
@@ -1442,44 +1454,29 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "Mousa Ahmed Agha Tajaldeen",
       role: "BCF President",
       meta: "Barzani Charity Foundation",
-      introTitle: "A Life of Service and Leadership",
-      intro:
-        "Born on August 5, 1974, in Kalok village in the Barzan region, he graduated from the Institute of Fine Arts. His commitment to public and humanitarian service began at an early age.\n\nFrom 1994 to 1998, he served as Secretary of the Kurdistan Students Union. In 2007, he joined the leadership of the Barzani Charity Foundation as Vice President and later became its President. For more than 19 years, he has helped guide the foundation’s humanitarian mission and expand its support for communities in need.\n\nIn recognition of his service, he was awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions. He is married and has four children.",
-      timelineCta: "View Timeline",
-      timelineTitle: "BCF Presidency",
-      timelineRange: "1974 — Present",
-      timelineMilestones: [
-        {
-          id: "birth",
-          year: "1974",
-          title: "Born in Kalok",
-          body: "Born on August 5 in Kalok village in the Barzan region. Graduated from the Institute of Fine Arts; his commitment to public and humanitarian service began at an early age.",
-        },
+      bioLabel: "Biography",
+      bio: "Born on August 5, 1974, in Kalok village in the Barzan region, he graduated from the Institute of Fine Arts. His commitment to public and humanitarian service began at an early age.",
+      journeyLabel: "Starting the Journey",
+      journey: [
         {
           id: "students",
-          year: "1994",
-          title: "Kurdistan Students Union",
-          body: "Served as Secretary of the Kurdistan Students Union from 1994 to 1998.",
+          period: "1994 – 1998",
+          body: "Served as Secretary of the Kurdistan Students Union",
         },
         {
-          id: "vice-president",
-          year: "2007",
-          title: "Vice President of BCF",
-          body: "Joined the leadership of the Barzani Charity Foundation as Vice President.",
+          id: "bcf",
+          period: "2007",
+          body: "Joined the leadership of the Barzani Charity Foundation as Vice President and later became its President",
         },
         {
-          id: "president",
-          year: "2007",
-          title: "President of BCF",
-          body: "Later became President. For more than 19 years he has helped guide the foundation’s humanitarian mission and expand its support for communities in need.",
-        },
-        {
-          id: "medal",
-          year: "—",
-          title: "Immortal Barzani Medal",
-          body: "Awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions. He is married and has four children.",
+          id: "tenure",
+          period: "+19 years",
+          body: "Has helped guide the foundation’s humanitarian mission and expand its support for communities in need.",
         },
       ],
+      awardsLabel: "Awards",
+      awards:
+        "Awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions. He is married and has four children.",
     },
     trustQualityTitle: "Quality and Credibility",
     trustCredentials: [
@@ -2163,7 +2160,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             "دانیشتن لەگەڵ بەرپرسان و هاوبەشان و پێشەوایانی ئایینی — پێکەوەژیانی کۆمەڵگەکانی کوردستان یەکێکە لەو شەش بەهایەی دەزگاکە پێی کار دەکات.",
         },
       ],
-      alongside: "لەپاڵ بۆردەکە",
       timelineCta: "بینینی هێڵی کاتی حوکمڕانی",
       timelineTitle: "بۆردی دامەزرێنەران",
       timelineRange: "٢٠٠٥ — ئێستا",
@@ -2211,44 +2207,29 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "موسا ئەحمەد ئاغا تاجەدین",
       role: "سەرۆکی دەزگا",
       meta: "دەزگای خێرخوازیی بارزانی",
-      introTitle: "ژیانێک لە خزمەت و سەرکردایەتی",
-      intro:
-        "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە و دەرچووی پەیمانگای هونەرە جوانەکانە. پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.\n\nلە نێوان ساڵانی ١٩٩٤ تا ١٩٩٨ سکرتێری یەکێتیی قوتابیانی کوردستان بووە. لە ساڵی ٢٠٠٧ پەیوەستی بە سەرکردایەتیی دەزگای خێرخوازیی بارزانی بوو وەک جێگری سەرۆک، و دواتر بوو بە سەرۆکی دەزگاکە. زیاتر لە ١٩ ساڵە یارمەتی ڕێنمایی کردنی پەیامی مرۆیی دەزگاکە و فراوانکردنی پشتگیری بۆ کۆمەڵگە پێویستدارەکان دەدات.\n\nبە ڕێزلێنان لە خزمەتەکانی، مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.",
-      timelineCta: "بینینی هێڵی کات",
-      timelineTitle: "سەرۆکایەتی دەزگا",
-      timelineRange: "١٩٧٤ — ئێستا",
-      timelineMilestones: [
-        {
-          id: "birth",
-          year: "١٩٧٤",
-          title: "لەدایکبوون لە کەلۆک",
-          body: "لە ٥ی ئاب لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە. دەرچووی پەیمانگای هونەرە جوانەکانە؛ پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.",
-        },
+      bioLabel: "ژیاننامە",
+      bio: "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە و دەرچووی پەیمانگای هونەرە جوانەکانە. پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.",
+      journeyLabel: "دەستپێکی ڕێگا",
+      journey: [
         {
           id: "students",
-          year: "١٩٩٤",
-          title: "یەکێتیی قوتابیانی کوردستان",
-          body: "لە نێوان ساڵانی ١٩٩٤ تا ١٩٩٨ سکرتێری یەکێتیی قوتابیانی کوردستان بووە.",
+          period: "١٩٩٤ – ١٩٩٨",
+          body: "سکرتێری یەکێتیی قوتابیانی کوردستان بووە",
         },
         {
-          id: "vice-president",
-          year: "٢٠٠٧",
-          title: "جێگری سەرۆکی دەزگا",
-          body: "پەیوەستی بە سەرکردایەتیی دەزگای خێرخوازیی بارزانی بوو وەک جێگری سەرۆک.",
+          id: "bcf",
+          period: "٢٠٠٧",
+          body: "پەیوەستی بە سەرکردایەتیی دەزگای خێرخوازیی بارزانی بوو وەک جێگری سەرۆک و دواتر بوو بە سەرۆکی دەزگاکە",
         },
         {
-          id: "president",
-          year: "٢٠٠٧",
-          title: "سەرۆکی دەزگا",
-          body: "دواتر بوو بە سەرۆک. زیاتر لە ١٩ ساڵە یارمەتی ڕێنمایی کردنی پەیامی مرۆیی دەزگاکە و فراوانکردنی پشتگیری بۆ کۆمەڵگە پێویستدارەکان دەدات.",
-        },
-        {
-          id: "medal",
-          year: "—",
-          title: "مەدالیای بارزانیی نەمر",
-          body: "مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.",
+          id: "tenure",
+          period: "+١٩ ساڵ",
+          body: "یارمەتی ڕێنمایی کردنی پەیامی مرۆیی دەزگاکە و فراوانکردنی پشتگیری بۆ کۆمەڵگە پێویستدارەکانی داوە.",
         },
       ],
+      awardsLabel: "خەڵاتەکان",
+      awards:
+        "مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.",
     },
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
     trustCredentials: [
@@ -2923,7 +2904,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             "الجلوس مع المسؤولين والشركاء ورجال الدين — التعايش بين مكوّنات كوردستان أحد القيم الست التي تعمل بها المؤسسة.",
         },
       ],
-      alongside: "إلى جانب المجلس",
       timelineCta: "عرض المسار الزمني للحوكمة",
       timelineTitle: "مجلس المؤسسين",
       timelineRange: "2005 — اليوم",
@@ -2971,44 +2951,29 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "موسى أحمد آغا تاج الدين",
       role: "رئيس المؤسسة",
       meta: "مؤسسة بارزاني الخيرية",
-      introTitle: "حياة من الخدمة والقيادة",
-      intro:
-        "وُلد في 5 آب 1974 في قرية کالوك بمنطقة بارزان، وتخرّج من معهد الفنون الجميلة. بدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.\n\nبين عامي 1994 و1998 عمل سكرتيراً لاتحاد طلبة كوردستان. وفي عام 2007 انضم إلى قيادة مؤسسة بارزاني الخيرية نائباً للرئيس، ثم أصبح رئيساً لها. لأكثر من 19 عاماً ساعد في توجيه الرسالة الإنسانية للمؤسسة وتوسيع دعمها للمجتمعات المحتاجة.\n\nتقديراً لخدمته مُنح وسام البارزاني الخالد، إلى جانب مئات الأوسمة والتكريمات الأخرى. وهو متزوج وأب لأربعة أطفال.",
-      timelineCta: "عرض الجدول الزمني",
-      timelineTitle: "رئاسة المؤسسة",
-      timelineRange: "1974 — اليوم",
-      timelineMilestones: [
-        {
-          id: "birth",
-          year: "1974",
-          title: "الميلاد في کالوك",
-          body: "وُلد في 5 آب في قرية کالوك بمنطقة بارزان. تخرّج من معهد الفنون الجميلة؛ بدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.",
-        },
+      bioLabel: "السيرة الذاتية",
+      bio: "وُلد في 5 آب 1974 في قرية کالوك بمنطقة بارزان، وتخرّج من معهد الفنون الجميلة. بدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.",
+      journeyLabel: "بداية المسيرة",
+      journey: [
         {
           id: "students",
-          year: "1994",
-          title: "اتحاد طلبة كوردستان",
-          body: "عمل سكرتيراً لاتحاد طلبة كوردستان بين عامي 1994 و1998.",
+          period: "1994 – 1998",
+          body: "عمل سكرتيراً لاتحاد طلبة كوردستان",
         },
         {
-          id: "vice-president",
-          year: "2007",
-          title: "نائب رئيس المؤسسة",
-          body: "انضم إلى قيادة مؤسسة بارزاني الخيرية نائباً للرئيس.",
+          id: "bcf",
+          period: "2007",
+          body: "انضم إلى قيادة مؤسسة بارزاني الخيرية نائباً للرئيس، ثم أصبح رئيساً لها",
         },
         {
-          id: "president",
-          year: "2007",
-          title: "رئيس المؤسسة",
-          body: "أصبح رئيساً للمؤسسة لاحقاً. لأكثر من 19 عاماً ساعد في توجيه رسالتها الإنسانية وتوسيع دعمها للمجتمعات المحتاجة.",
-        },
-        {
-          id: "medal",
-          year: "—",
-          title: "وسام البارزاني الخالد",
-          body: "مُنح وسام البارزاني الخالد ومئات الأوسمة والتكريمات الأخرى. متزوج وأب لأربعة أطفال.",
+          id: "tenure",
+          period: "+19 عاماً",
+          body: "ساعد في توجيه الرسالة الإنسانية للمؤسسة وتوسيع دعمها للمجتمعات المحتاجة.",
         },
       ],
+      awardsLabel: "التكريمات",
+      awards:
+        "مُنح وسام البارزاني الخالد، إلى جانب مئات الأوسمة والتكريمات الأخرى. وهو متزوج وأب لأربعة أطفال.",
     },
     trustQualityTitle: "الجودة والمصداقية",
     trustCredentials: [

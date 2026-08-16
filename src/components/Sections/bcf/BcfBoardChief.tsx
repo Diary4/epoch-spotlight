@@ -1,13 +1,11 @@
 import React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
+import BcfProfileHero from "@/components/Sections/bcf/BcfProfileHero";
+import BcfFilmstrip from "@/components/Sections/bcf/BcfFilmstrip";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import {
-  BCF,
-  BCF_FIELD_BG,
-  BCF_GLASS_CARD,
-} from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   BCF_EASE,
@@ -15,9 +13,10 @@ import {
   BCF_TAP_TRANSITION,
   bcfBloom,
   bcfRise,
-  bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
+/** Full-bleed plate at the head of the profile. */
+import heroPortrait from "@/assets/images/bcf/optimized/board-chief/8C6A0295.webp";
 import slideHonour from "@/assets/images/bcf/optimized/board-chief/309413182_646064353547301_6647496102934481967_n.webp";
 import slideMedal from "@/assets/images/bcf/optimized/board-chief/8C6A0117.webp";
 import slideGift from "@/assets/images/bcf/optimized/board-chief/8D1A9629.webp";
@@ -30,8 +29,6 @@ import nodeKuwait from "@/assets/images/bcf/thumbs/board-chief/8C6A0316.webp";
 import nodeEarthquake from "@/assets/images/bcf/thumbs/board-chief/FY1A7010.webp";
 import nodeHomes from "@/assets/images/bcf/thumbs/board-chief/8D1A9536.webp";
 import nodeAwards from "@/assets/images/bcf/thumbs/board-chief/8D1A8564.webp";
-import alongsideA from "@/assets/images/bcf/thumbs/board-chief/8C6A0152.webp";
-import alongsideB from "@/assets/images/bcf/thumbs/board-chief/FY1A6986.webp";
 
 export type BoardChiefView = "profile" | "timeline";
 
@@ -140,10 +137,10 @@ export default function BcfBoardChief({
   }
 
   return (
-    /* No photograph behind the profile either. The carousel directly under the
-       nameplate is already six plates of the same man; a seventh, blurred and
-       full-bleed behind them, only competed with the one the visitor is meant to
-       be looking at. Same deep-field gradient the timeline reads on. */
+    /* The photograph is the head of the page now rather than a blurred plate
+       behind it. Below the hero the scene falls back to the same deep-field
+       gradient the timeline reads on, so the filmstrip has nothing competing
+       with it. */
     <BcfShell
       key="chief-profile"
       showLogo={false}
@@ -154,308 +151,75 @@ export default function BcfBoardChief({
           in all three languages. It used to run 2101px, and the canvas scrolls
           whatever it cannot fit — on a kiosk that means the CTA is off-screen
           until someone drags a page nobody expects to move. */}
-      <div className="relative flex min-h-[1920px] flex-col items-center px-12 pb-12 pt-24">
+      <div className="relative flex min-h-[1920px] flex-col items-center pb-14">
         <BcfBackButton onClick={onBack} label={c.back} />
 
-        <NamePlate name={chief.name} role={chief.role} meta={chief.meta} />
+        <BcfProfileHero
+          image={heroPortrait}
+          name={chief.name}
+          role={chief.role}
+          meta={chief.meta}
+          align="start"
+          height={700}
+          objectPosition="52% 24%"
+        />
 
-        <ChiefCarousel
+        <BcfFilmstrip
+          className="mt-8"
           images={SLIDE_IMAGES}
-          captions={chief.slides.map((slide) => slide.caption)}
+          alts={chief.slides.map((slide) => slide.caption)}
           rtl={rtl}
+          controls
+          width={1080}
         />
 
         <motion.p
-          className="mt-6 max-w-[840px] text-center text-[25px] leading-relaxed text-white/70"
+          className={`mt-9 max-w-[840px] px-12 text-center text-[25px] text-white/70 ${
+            lang === "en" ? "leading-relaxed" : "leading-[1.85]"
+          }`}
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.46, ease: BCF_EASE }}
+          transition={{ duration: 0.7, delay: 0.52, ease: BCF_EASE }}
         >
           {chief.intro}
         </motion.p>
 
-        {/* The two governance bodies the chief sits with. They carry the same
-            copy as the cards on the Leadership grid, so a visitor arriving here
-            first still learns where this office sits in the structure. */}
-        <motion.p
-          className="mt-7 text-[22px] tracking-[0.18em] text-white/40"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.56 }}
-        >
-          {chief.alongside}
-        </motion.p>
-
-        <motion.div
-          className="mt-6 flex w-full max-w-[800px] items-start justify-center gap-14"
-          variants={bcfStagger(0.1, 0.62)}
-          initial="initial"
-          animate="animate"
-        >
-          {[c.trustFounders[1], c.trustFounders[2]].map((body, index) => (
-            <motion.div
-              key={body?.title ?? index}
-              variants={bcfRiseCard}
-              className="flex w-[300px] flex-col items-center text-center"
-            >
-              <span
-                className="h-[132px] w-[132px] overflow-hidden rounded-full border-2"
-                style={{
-                  borderColor: `${BCF.gold}aa`,
-                  boxShadow: "0 18px 44px rgba(0,0,0,0.55)",
-                }}
-              >
-                <img
-                  src={index === 0 ? alongsideA : alongsideB}
-                  alt=""
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </span>
-              <span
-                className="mt-4 border-b-2 pb-2 text-[26px] font-semibold leading-tight"
-                style={{ color: BCF.creamSoft, borderColor: `${BCF.gold}66` }}
-              >
-                {body?.title}
-              </span>
-              <span className="mt-3 text-[20px] leading-snug text-white/60">
-                {body?.subtitle}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
-
+        {/* Outlined rather than the filled gold slab it used to be. On this page
+            the gold now belongs to the plate in the film gate, and a solid gold
+            bar under it was the brightest object on a screen whose subject is
+            the photograph. */}
         <motion.button
           type="button"
           onClick={onOpenTimeline}
           whileTap={BCF_TAP_FIRM}
-          /* Sits a fixed step under the last card rather than on `mt-auto`.
-             Pinned to the foot of the artboard it stranded itself at the bottom
-             of the screen no matter how much air the column above gave back. */
-          className="mt-14 w-full max-w-[580px] transform-gpu rounded-full px-12 py-6 text-[29px] font-semibold"
+          className="mt-10 flex w-full max-w-[740px] transform-gpu items-center justify-between gap-6 rounded-full py-5 ps-12 pe-5 text-start backdrop-blur-md"
           style={{
-            background: "linear-gradient(165deg, #e2b66a 0%, #b07a2e 60%, #8a5c1c 100%)",
-            color: "#2a1808",
-            boxShadow: `0 18px 46px rgba(0,0,0,0.5), 0 0 40px ${BCF.gold}22`,
+            border: "1px solid rgba(255,255,255,0.30)",
+            backgroundColor: "rgba(0,0,0,0.42)",
+            boxShadow: "0 18px 46px rgba(0,0,0,0.45)",
           }}
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...BCF_TAP_TRANSITION, duration: 0.7, delay: 0.8, ease: BCF_EASE }}
+          transition={{ ...BCF_TAP_TRANSITION, duration: 0.7, delay: 0.66, ease: BCF_EASE }}
         >
-          {chief.timelineCta}
+          <span
+            className="text-[30px] font-medium leading-tight"
+            style={{ color: BCF.cream }}
+          >
+            {chief.timelineCta}
+          </span>
+          <span
+            className="grid h-[68px] w-[68px] shrink-0 place-items-center rounded-full border"
+            style={{ borderColor: `${BCF.gold}8c` }}
+          >
+            <ArrowRight
+              className="h-8 w-8 rtl:rotate-180"
+              style={{ color: BCF.sand }}
+            />
+          </span>
         </motion.button>
       </div>
     </BcfShell>
-  );
-}
-
-/**
- * The nameplate.
- *
- * A solid gold block was the single loudest object in the chapter — brighter
- * than the photography under it and unrelated to the glass the carousel, the
- * cards and the timeline are all drawn in. It is now that same glass: dark
- * plate, gold hairline, gold type. Its cut corners are a clip-path rather than
- * a border image, so it stays crisp at the 2× the 4K portrait panel scales this
- * artboard to.
- */
-const PLATE_CLIP =
-  "polygon(32px 0, calc(100% - 32px) 0, 100% 32px, 100% calc(100% - 32px), calc(100% - 32px) 100%, 32px 100%, 0 calc(100% - 32px), 0 32px)";
-
-function NamePlate({
-  name,
-  role,
-  meta,
-}: {
-  name: string;
-  role: string;
-  meta: string;
-}) {
-  return (
-    <motion.div
-      className="relative w-full max-w-[640px] px-9 py-6 text-center backdrop-blur-md"
-      style={{
-        background:
-          "linear-gradient(165deg, rgba(28,20,8,0.82) 0%, rgba(10,10,10,0.72) 100%)",
-        border: `1px solid ${BCF.gold}66`,
-        clipPath: PLATE_CLIP,
-        boxShadow: `0 22px 60px rgba(0,0,0,0.55), inset 0 0 60px ${BCF.gold}0f`,
-      }}
-      variants={bcfBloom}
-      initial="initial"
-      animate="animate"
-      transition={{ duration: 0.7, delay: 0.14, ease: BCF_EASE }}
-    >
-      {/* Inner hairline, inset from the cut edge — the detail that reads as an
-          engraved plate rather than a filled rectangle. */}
-      <span
-        className="pointer-events-none absolute inset-[9px]"
-        style={{
-          border: `1px solid ${BCF.gold}2e`,
-          clipPath:
-            "polygon(26px 0, calc(100% - 26px) 0, 100% 26px, 100% calc(100% - 26px), calc(100% - 26px) 100%, 26px 100%, 0 calc(100% - 26px), 0 26px)",
-        }}
-      />
-      <h1 className="text-[54px] font-bold leading-none" style={{ color: BCF.cream }}>
-        {name}
-      </h1>
-      <p className="mt-3 text-[27px] font-medium" style={{ color: BCF.gold }}>
-        {role}
-      </p>
-      <p className="mt-2 text-[21px] text-white/50">{meta}</p>
-    </motion.div>
-  );
-}
-
-/** Dwell on each plate before it advances on its own. Long enough to read the
- *  caption under it in all three languages. */
-const SLIDE_DWELL_MS = 5600;
-
-/**
- * Photography carousel.
- *
- * Advances on its own — nobody walks up to a kiosk and starts tapping chevrons,
- * so the plates have to be the thing that invites them. The controls stay for
- * whoever does reach out, and touching one restarts the dwell rather than
- * fighting a timer that was already half spent.
- *
- * Chevrons and dots sit under the plate rather than over it: on a kiosk the
- * visitor's hand is already on the glass, and controls laid over the image are
- * exactly what their palm covers.
- */
-function ChiefCarousel({
-  images,
-  captions,
-  rtl,
-}: {
-  images: string[];
-  captions: string[];
-  rtl: boolean;
-}) {
-  const reduceMotion = useReducedMotion();
-  const [index, setIndex] = React.useState(0);
-  /** Bumped on every manual pick, purely to restart the effect below. */
-  const [touched, setTouched] = React.useState(0);
-  const count = Math.min(images.length, captions.length);
-
-  const go = (next: number) => {
-    setIndex(((next % count) + count) % count);
-    setTouched((n) => n + 1);
-  };
-  const step = (delta: number) => go(index + delta);
-
-  React.useEffect(() => {
-    if (reduceMotion || count < 2) return;
-    const id = window.setTimeout(
-      () => setIndex((current) => (current + 1) % count),
-      SLIDE_DWELL_MS,
-    );
-    return () => window.clearTimeout(id);
-  }, [index, touched, count, reduceMotion]);
-
-  return (
-    <motion.div
-      className="mt-7 flex w-full max-w-[860px] flex-col items-center"
-      initial={{ opacity: 0, scale: 0.97 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay: 0.3, ease: BCF_EASE }}
-    >
-      <div
-        className={`${BCF_GLASS_CARD} relative h-[478px] w-full overflow-hidden p-3`}
-      >
-        {/* One plate at a time, cross-dissolved. `mode="wait"` would leave the
-            frame empty mid-swap, which on a slow panel reads as a broken image. */}
-        <AnimatePresence initial={false}>
-          <motion.img
-            key={index}
-            src={images[index]}
-            alt=""
-            decoding="async"
-            className="absolute inset-3 h-[calc(100%-24px)] w-[calc(100%-24px)] rounded-xl object-cover"
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.55, ease: BCF_EASE }}
-          />
-        </AnimatePresence>
-      </div>
-
-      <div className="mt-4 flex items-center gap-7">
-        <CarouselArrow
-          direction="prev"
-          rtl={rtl}
-          onClick={() => step(-1)}
-        />
-        <div className="flex items-center gap-3">
-          {Array.from({ length: count }).map((_, dot) => (
-            <button
-              key={dot}
-              type="button"
-              onClick={() => go(dot)}
-              aria-label={`${dot + 1}`}
-              aria-current={dot === index}
-              className="grid h-[40px] w-[40px] place-items-center"
-            >
-              <span
-                className="block rounded-full transition-all duration-400 ease-smooth-out"
-                style={{
-                  width: dot === index ? 16 : 10,
-                  height: dot === index ? 16 : 10,
-                  backgroundColor:
-                    dot === index ? BCF.goldBright : "rgba(255,255,255,0.3)",
-                }}
-              />
-            </button>
-          ))}
-        </div>
-        <CarouselArrow direction="next" rtl={rtl} onClick={() => step(1)} />
-      </div>
-
-      {/* The caption belongs to the plate, so it changes with it. A fixed
-          minimum height keeps the two-line captions from shifting the page. */}
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={index}
-          className="mt-4 min-h-[84px] max-w-[780px] text-center text-[26px] leading-relaxed"
-          style={{ color: BCF.creamSoft }}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.3, ease: BCF_EASE }}
-        >
-          {captions[index]}
-        </motion.p>
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
-function CarouselArrow({
-  direction,
-  rtl,
-  onClick,
-}: {
-  direction: "prev" | "next";
-  rtl: boolean;
-  onClick: () => void;
-}) {
-  // "Previous" points back along the reading direction, so the glyph flips with
-  // the language rather than always pointing left.
-  const pointsLeft = direction === "prev" ? !rtl : rtl;
-  const Icon = pointsLeft ? ChevronLeft : ChevronRight;
-
-  return (
-    <motion.button
-      type="button"
-      onClick={onClick}
-      aria-label={direction}
-      whileTap={BCF_TAP_FIRM}
-      transition={BCF_TAP_TRANSITION}
-      className="grid h-[68px] w-[68px] transform-gpu place-items-center rounded-full border bg-black/45 backdrop-blur-md"
-      style={{ borderColor: `${BCF.gold}59` }}
-    >
-      <Icon className="h-8 w-8" style={{ color: BCF.sand }} />
-    </motion.button>
   );
 }
 
