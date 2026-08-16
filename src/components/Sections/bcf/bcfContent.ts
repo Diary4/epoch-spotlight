@@ -477,6 +477,7 @@ export type LegacyPillar = {
 
 export type StorySectionId =
   | "foundation"
+  | "timeline"
   | "mission"
   | "vision"
   | "philosophy"
@@ -493,6 +494,13 @@ export type StorySection = {
  * One of the five principle pills on the Values pane — title only.
  */
 export type StoryValue = { id: string; title: string };
+
+/** One beat on the Our Story institutional timeline. */
+export type StoryMilestone = {
+  id: string;
+  year: string;
+  body: string;
+};
 
 export type HumanStoryId =
   | "school"
@@ -563,6 +571,7 @@ export type BcfCopy = {
   storyScrollHint: string;
   storySections: StorySection[];
   storyValues: StoryValue[];
+  storyMilestones: StoryMilestone[];
   whereWeWork: string;
   across: string;
   borders: string;
@@ -905,6 +914,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "BCF was officially established in 2005 in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
       },
       {
+        id: "timeline",
+        titleGold: "Institutional",
+        titleWhite: "Timeline",
+      },
+      {
         id: "mission",
         titleGold: "Mission",
         titleWhite: "",
@@ -934,6 +948,45 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "resilience", title: "Resilience and empowerment" },
       { id: "coexistence", title: "Coexistence and harmony" },
       { id: "transparency", title: "Transparency" },
+    ],
+    storyMilestones: [
+      { id: "founded", year: "2005", body: "BCF founded in Erbil." },
+      { id: "orphan-care", year: "2009", body: "Orphan Care Project begins." },
+      {
+        id: "sinjar",
+        year: "2014",
+        body: "Emergency response for displaced people on Sinjar Mountain.",
+      },
+      {
+        id: "camps",
+        year: "2015",
+        body: "Management of IDP and refugee camps in Erbil.",
+      },
+      {
+        id: "ecosoc",
+        year: "2016",
+        body: "UN ECOSOC consultative status and international licensing milestones.",
+      },
+      {
+        id: "sphere",
+        year: "2018",
+        body: "Sphere representation in the Kurdistan Region.",
+      },
+      {
+        id: "uk-duhok",
+        year: "2020",
+        body: "UK Charity Commission recognition and Duhok camp management.",
+      },
+      {
+        id: "iso-quake",
+        year: "2023",
+        body: "ISO 9001:2015 certification and Turkey-Syria earthquake response.",
+      },
+      {
+        id: "recent",
+        year: "2024–2026",
+        body: "Major housing, health, education and international recognition milestones.",
+      },
     ],
     whereWeWork: "Where We Work",
     across: "Across",
@@ -1707,6 +1760,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "دەزگای خێرخوازیی بارزانی بە شێوەیەکی فەرمی لە ساڵی ٢٠٠٥ لە هەولێری پایتەختی هەرێمی کوردستانی عێراق دامەزرا، بۆ گۆڕینی بەزەیی و هاوسۆزی بە کارێکی مرۆیی ڕێکخراو.",
       },
       {
+        id: "timeline",
+        titleGold: "هێڵی کاتی",
+        titleWhite: "دەزگاکە",
+      },
+      {
         id: "mission",
         titleGold: "پەیام",
         titleWhite: "",
@@ -1736,6 +1794,45 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "resilience", title: "بەرگەگرتن و بەهێزکردن" },
       { id: "coexistence", title: "هاوژیانی ئاشتیانە" },
       { id: "transparency", title: "ڕوونکاری" },
+    ],
+    storyMilestones: [
+      { id: "founded", year: "2005", body: "دامەزراندنی دەزگا لە هەولێر." },
+      { id: "orphan-care", year: "2009", body: "دەستپێکی پڕۆژەی چاودێری هەتیوان." },
+      {
+        id: "sinjar",
+        year: "2014",
+        body: "وەڵامی فریاکەوتن بۆ ئاوارەکانی چیای شنگال.",
+      },
+      {
+        id: "camps",
+        year: "2015",
+        body: "بەڕێوەبردنی کەمپەکانی ئاوارە و پەنابەران لە هەولێر.",
+      },
+      {
+        id: "ecosoc",
+        year: "2016",
+        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و مۆڵەتە نێودەوڵەتییەکان.",
+      },
+      {
+        id: "sphere",
+        year: "2018",
+        body: "نوێنەرایەتی Sphere لە هەرێمی کوردستان.",
+      },
+      {
+        id: "uk-duhok",
+        year: "2020",
+        body: "ناسینەوەی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپی دهۆک.",
+      },
+      {
+        id: "iso-quake",
+        year: "2023",
+        body: "بڕوانامەی ISO 9001:2015 و وەڵامی بوومەلەرزەی تورکیا و سووریا.",
+      },
+      {
+        id: "recent",
+        year: "2024–2026",
+        body: "هەنگاوە گەورەکانی نیشتەجێبوون، تەندروستی، پەروەردە و ناسینەوەی نێودەوڵەتی.",
+      },
     ],
     whereWeWork: "لە کوێ کار دەکەین",
     across: "لەسەر",
@@ -2460,6 +2557,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "تأسست مؤسسة بارزاني الخيرية رسمياً عام 2005 في أربيل، عاصمة إقليم كوردستان العراق، لتحوّل التعاطف إلى عمل إنساني منظم.",
       },
       {
+        id: "timeline",
+        titleGold: "المسار",
+        titleWhite: "المؤسسي",
+      },
+      {
         id: "mission",
         titleGold: "الرسالة",
         titleWhite: "",
@@ -2489,6 +2591,45 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "resilience", title: "الصمود والتمكين" },
       { id: "coexistence", title: "التعايش والانسجام" },
       { id: "transparency", title: "الشفافية" },
+    ],
+    storyMilestones: [
+      { id: "founded", year: "2005", body: "تأسيس المؤسسة في أربيل." },
+      { id: "orphan-care", year: "2009", body: "انطلاق مشروع رعاية الأيتام." },
+      {
+        id: "sinjar",
+        year: "2014",
+        body: "استجابة طارئة للنازحين على جبل سنجار.",
+      },
+      {
+        id: "camps",
+        year: "2015",
+        body: "إدارة مخيمات النازحين واللاجئين في أربيل.",
+      },
+      {
+        id: "ecosoc",
+        year: "2016",
+        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وترخيص دولي.",
+      },
+      {
+        id: "sphere",
+        year: "2018",
+        body: "تمثيل Sphere في إقليم كوردستان.",
+      },
+      {
+        id: "uk-duhok",
+        year: "2020",
+        body: "اعتراف هيئة المؤسسات الخيرية البريطانية وإدارة مخيم دهوك.",
+      },
+      {
+        id: "iso-quake",
+        year: "2023",
+        body: "شهادة ISO 9001:2015 والاستجابة لزلزال تركيا وسوريا.",
+      },
+      {
+        id: "recent",
+        year: "2024–2026",
+        body: "محطات كبرى في الإسكان والصحة والتعليم والاعتراف الدولي.",
+      },
     ],
     whereWeWork: "أين نعمل",
     across: "عبر",

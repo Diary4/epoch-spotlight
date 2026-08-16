@@ -90,8 +90,8 @@ function BcfChapterHead({
 }
 
 /**
- * Our Story — foundation, mission, vision, philosophy, then five principle
- * pills on a single pane (no long-read bodies, no presidency plates).
+ * Our Story — foundation, institutional timeline, mission, vision,
+ * philosophy, then five principle pills on a single pane.
  */
 export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const c = bcfCopy[lang];
@@ -123,8 +123,9 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   }, [sections.length]);
 
   const active = sections[activeIndex];
-  const isFoundation = activeIndex === 0;
+  const isFoundation = active.id === "foundation";
   const isValues = active.id === "values";
+  const isTimeline = active.id === "timeline";
 
   return (
     <BcfShell showLogo={false} overlayClassName="bg-black/0">
@@ -174,7 +175,9 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           <AnimatePresence mode="wait">
             <motion.div
               key={`${lang}-${activeIndex}`}
-              className="absolute inset-x-0 top-[300px] z-20 px-14"
+              className={`absolute inset-x-0 z-20 px-14 ${
+                isTimeline ? "top-[240px]" : "top-[300px]"
+              }`}
               variants={bcfStagger(0.08, 0.06)}
               initial="initial"
               animate="animate"
@@ -208,6 +211,39 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                             style={{ backgroundColor: BCF.gold }}
                           />
                           {value.title}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                ) : null}
+
+                {isTimeline ? (
+                  <motion.div
+                    variants={bcfStagger(0.05, 0.1)}
+                    className="mt-12 flex max-w-[980px] flex-col"
+                  >
+                    {c.storyMilestones.map((milestone, index) => (
+                      <motion.div
+                        key={milestone.id}
+                        variants={bcfRise}
+                        className="flex items-start gap-7 border-white/12 py-5"
+                        style={{
+                          borderBottomWidth:
+                            index === c.storyMilestones.length - 1 ? 0 : 1,
+                        }}
+                      >
+                        <span
+                          className="w-[210px] shrink-0 text-[36px] font-semibold leading-tight"
+                          style={{ color: BCF.gold }}
+                        >
+                          {bcfDigits(milestone.year, lang)}
+                        </span>
+                        <span
+                          className={`min-w-0 flex-1 text-[30px] text-[#fdeed4] ${
+                            lang === "en" ? "leading-snug" : "leading-[1.7]"
+                          }`}
+                        >
+                          {milestone.body}
                         </span>
                       </motion.div>
                     ))}

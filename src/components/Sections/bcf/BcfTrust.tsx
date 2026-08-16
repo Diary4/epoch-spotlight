@@ -41,8 +41,8 @@ import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpeg";
 import credUsa from "@/assets/images/bcf/Credibility page/United States.jpeg";
-import credEcosoc from "@/assets/images/bcf/Credibility page/ECOSOC.png";
-import credBcc from "@/assets/images/bcf/Credibility page/BCC.webp";
+import credEcosoc from "@/assets/images/bcf/credentials/ecosoc.webp";
+import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait flag.jpeg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
@@ -67,13 +67,16 @@ const topicBgs: Partial<Record<TrustTopicId, string>> = {
 };
 
 /** Credential artwork, keyed by `trustCredentials[].id`. */
-const credentialArt: Record<string, string> = {
-  "iraq-krg": credKurdistan,
-  usa: credUsa,
-  ecosoc: credEcosoc,
-  uk: credBcc,
-  kuwait: credKuwait,
-  iso: isoCertificate,
+const credentialArt: Record<
+  string,
+  { src: string; fit: "cover" | "contain"; pad?: string; position?: string }
+> = {
+  "iraq-krg": { src: credKurdistan, fit: "cover" },
+  usa: { src: credUsa, fit: "cover" },
+  kuwait: { src: credKuwait, fit: "cover" },
+  ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14" },
+  uk: { src: credBcc, fit: "contain", pad: "p-12" },
+  iso: { src: isoCertificate, fit: "cover", position: "object-top" },
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -354,6 +357,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     if (activeId === "quality") {
       const activeCredential = c.trustCredentials[credentialIndex] ?? c.trustCredentials[0];
       const activeArt = credentialArt[activeCredential.id];
+      const artSrc = activeArt?.src ?? certificateImg;
+      const artFit = activeArt?.fit ?? "contain";
+      const artPad = activeArt?.pad ?? "p-8";
+      const artPosition = activeArt?.position ?? "";
       const qualityTitle =
         lang === "en" ? (
           <>
@@ -427,14 +434,23 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
-                <div className="relative min-h-[760px] flex-1 overflow-hidden">
+                <div
+                  className="relative min-h-[760px] flex-1 overflow-hidden"
+                  style={{
+                    backgroundColor: artFit === "contain" ? "#fff" : undefined,
+                  }}
+                >
                   <AnimatePresence mode="wait">
                     <motion.img
-                      key={activeArt ?? certificateImg}
-                      src={activeArt ?? certificateImg}
+                      key={artSrc}
+                      src={artSrc}
                       alt=""
                       decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className={
+                        artFit === "cover"
+                          ? `absolute inset-0 h-full w-full object-cover ${artPosition}`
+                          : `absolute inset-0 h-full w-full object-contain ${artPad}`
+                      }
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
