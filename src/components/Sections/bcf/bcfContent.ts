@@ -310,12 +310,45 @@ type ImpactItem = {
   description: string;
 };
 
-export type ServeCategoryId = "relief" | "health" | "education" | "environment" | "community";
+/**
+ * The twelve sectors Humanity in Action presents, in the same reading order the
+ * project register uses (`BCF_SECTOR_ORDER`): the long-running service sectors
+ * first, the cross-cutting ones last. `rehabilitation` is the register's
+ * `disability` sector under the name BCF publishes it with.
+ */
+export type ServeCategoryId =
+  | "food"
+  | "health"
+  | "education"
+  | "shelter"
+  | "wash"
+  | "camp"
+  | "nfi"
+  | "rehabilitation"
+  | "protection"
+  | "livelihood"
+  | "cash"
+  | "environment";
+
+/** One labelled block inside a sector — its activities, its projects, its goals. */
+export type ServeCategoryGroup = {
+  title: string;
+  items: string[];
+};
 
 export type ServeCategory = {
   id: ServeCategoryId;
   title: string;
-  tags?: string[];
+  /** Opening paragraph: what BCF does in this sector, and for whom. */
+  intro: string;
+  /**
+   * The sector's wall text — BCF's own "museum text" line, which is written to
+   * be read on a panel rather than in a report. Shown on the card and as the
+   * closing line of the dialog. Absent where the source gives none, in which
+   * case the card falls back to `intro`.
+   */
+  headline?: string;
+  groups: ServeCategoryGroup[];
 };
 
 type FutureTopic = {
@@ -561,6 +594,8 @@ export type BcfCopy = {
   whoWeServeWhite: string;
   whoWeServeGold: string;
   serveCategories: ServeCategory[];
+  /** Cue on the centred sector card, and the label of the dialog it opens. */
+  serveDetailCta: string;
   whoServesTitle: string;
   howServesTitle: string;
   whoHowHint: string;
@@ -874,20 +909,313 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     whoWeServeWhite: "Who",
     whoWeServeGold: "We Serve",
+    /**
+     * The twelve sectors, transcribed from BCF's own sector document (the
+     * Kurdish and Arabic editions of "Humanitarian Sectors"). Group headings
+     * are the document's own; nothing is added to a sector the document does
+     * not state, which is why Non-Food Items carries relief items and no
+     * wall text — the source gives it none.
+     */
     serveCategories: [
-      { id: "relief", title: "Relief" },
-      { id: "health", title: "Health" },
+      {
+        id: "food",
+        title: "Food Security",
+        intro:
+          "Food security is one of BCF's core humanitarian sectors. Food assistance reaches vulnerable families, internally displaced people, refugees and communities affected by crisis.",
+        headline:
+          "Food support is more than a meal: it is stability in a time of uncertainty, dignity in a time of hardship, and hope in a time of crisis.",
+        groups: [
+          {
+            title: "Key activities",
+            items: [
+              "Dry food distribution",
+              "Hot meals",
+              "Food baskets",
+              "Emergency food response",
+              "Support aligned with humanitarian food-security standards",
+            ],
+          },
+          {
+            title: "Impact figures",
+            items: [
+              "776,427 tonnes of dry food distributed",
+              "14,429,226 hot meals distributed",
+              "2,450,099 food parcels distributed",
+            ],
+          },
+        ],
+      },
+      {
+        id: "health",
+        title: "Health and Medical Support",
+        intro:
+          "BCF supports health services for vulnerable communities through medical projects, support to facilities, and treatment programmes.",
+        headline:
+          "Health care protects more than the body. It protects dignity, the stability of a family, and the right to live in hope.",
+        groups: [
+          {
+            title: "Selected health projects",
+            items: [
+              "Five primary health care centers built and opened",
+              "Khalifan Hospital renovated",
+              "Peshmerga Hospital renovated",
+              "The maternity hospital in Akre renovated",
+              "A counselling center opened in Bardarash camp",
+              "Congenital heart surgery project for children",
+              "Support for children referred for treatment abroad",
+              "Medical support for displaced communities",
+            ],
+          },
+        ],
+      },
       {
         id: "education",
-        title: "Education",
-        tags: ["Livelihood & Economic Empowerment", "Education & Human Development"],
+        title: "Education and Human Development",
+        intro:
+          "BCF invests in education because learning is one of the strongest routes out of poverty and vulnerability.",
+        headline:
+          "Education gives children more than knowledge. It gives them confidence, opportunity and a future that crisis cannot easily take away.",
+        groups: [
+          {
+            title: "Key achievements",
+            items: [
+              "310 schools renovated",
+              "362,538 school materials and stationery items distributed",
+              "131 classrooms built",
+              "The Tanahi Center opened in 2022",
+            ],
+          },
+          {
+            title: "Future goals",
+            items: [
+              "Renovate 200 schools",
+              "Build five new schools",
+              "Run two back-to-school projects for children who have dropped out",
+            ],
+          },
+        ],
       },
-      { id: "environment", title: "Environment", tags: ["Environment and Climate Change"] },
-      { id: "community", title: "Community" },
+      {
+        id: "wash",
+        title: "Water, Sanitation and Hygiene",
+        intro:
+          "BCF's work in this sector focuses on clean water, sanitation and hygiene services.",
+        headline:
+          "Clean water protects health, restores dignity and supports life in places where crisis has taken away the basics.",
+        groups: [
+          {
+            title: "Key activities",
+            items: [
+              "Drinking-water support",
+              "Water networks",
+              "Water wells",
+              "Sanitation and environmental health support",
+              "Hygiene services",
+              "Water delivery to vulnerable families",
+            ],
+          },
+          {
+            title: "Selected projects",
+            items: [
+              "Four water wells drilled for four villages in Duhok in 2019",
+              "Four water wells drilled on Mount Sinjar in 2016",
+              "65,864,000 litres of drinking water delivered in Erbil in 2021",
+              "9,100 families supported with drinking water in Erbil in 2024",
+            ],
+          },
+        ],
+      },
+      {
+        id: "shelter",
+        title: "Shelter and Emergency Response",
+        intro:
+          "BCF provides shelter and rapid relief to families and communities displaced by war, crisis and natural disaster.",
+        headline:
+          "Shelter is the first step toward recovery and a return to normal life. A safe place gives a family the strength to begin again.",
+        groups: [
+          {
+            title: "Selected shelter and response projects",
+            items: [
+              "400 caravans established in Van, Türkiye, 2011-2012",
+              "300 caravans established in Baharka camp in 2015",
+              "600 caravans established in Darkar Ajam camp in 2016",
+              "4,129 tents provided after the 2023 Türkiye and Syria earthquakes",
+              "540 residential units distributed to families of martyrs in Erbil and Soran in 2024",
+              "20 houses built in Sinjar in 2024",
+            ],
+          },
+        ],
+      },
+      {
+        id: "protection",
+        title: "Protection and Human Dignity",
+        intro:
+          "BCF's protection work focuses on the safety, dignity and wellbeing of vulnerable people.",
+        headline:
+          "Protection means more than responding to danger. It means making sure every person is treated with dignity, respect and worth.",
+        groups: [
+          {
+            title: "Protection focus",
+            items: [
+              "Physical safety",
+              "Psychosocial support",
+              "Child protection",
+              "Support for vulnerable families",
+              "Support for people with disabilities",
+              "Awareness and training",
+              "Community-based protection services",
+            ],
+          },
+        ],
+      },
+      {
+        id: "rehabilitation",
+        title: "Rehabilitation and Inclusion",
+        intro:
+          "BCF supports people with disabilities, children with autism, and communities facing health and social challenges.",
+        headline:
+          "Inclusion means giving every person the right to participate, learn, recover and live with dignity.",
+        groups: [
+          {
+            title: "Current and future focus",
+            items: [
+              "Autism awareness and support",
+              "Support for children with disabilities",
+              "Awareness of the risks of addiction",
+              "Drug rehabilitation initiatives",
+              "Reintegration support for children with autism",
+              "Public awareness through seminars, posters, leaflets and video",
+            ],
+          },
+          {
+            title: "Future goals",
+            items: [
+              "Rehabilitate 200 children with autism",
+              "Integrate 100 children with autism into government schools within five years",
+              "Open three autism centers in the Kurdistan Region",
+              "Open a drug addiction rehabilitation center",
+              "Hold five awareness symposiums on the risks of addiction",
+            ],
+          },
+        ],
+      },
+      {
+        id: "livelihood",
+        title: "Livelihood and Empowerment",
+        intro:
+          "BCF supports livelihood projects that help individuals and families become more self-reliant.",
+        headline:
+          "The strongest humanitarian work does not only help people survive today. It helps them stand stronger tomorrow.",
+        groups: [
+          {
+            title: "Main areas",
+            items: [
+              "Skills development",
+              "Vocational training",
+              "Employment support",
+              "Income generation",
+              "Community recovery",
+              "Youth and family empowerment",
+            ],
+          },
+          {
+            title: "Vocational training centers",
+            items: [
+              "21 vocational training centers supported",
+              "587,216 individuals reached through them",
+            ],
+          },
+        ],
+      },
+      {
+        id: "camp",
+        title: "Camps and Displacement Support",
+        intro:
+          "BCF manages and supports camps serving refugees and internally displaced people.",
+        headline:
+          "Camp management is not only logistics. It is coordination, protection and a daily responsibility toward people living in displacement.",
+        groups: [
+          {
+            title: "Camp services",
+            items: [
+              "Food and fuel distribution",
+              "Medical care",
+              "Waste management",
+              "Tent and caravan maintenance",
+              "Education support",
+              "Water and sanitation services",
+              "Vocational and non-vocational training",
+              "Coordination with NGOs and government bodies",
+              "Advocacy for dignity and wellbeing",
+            ],
+          },
+          {
+            title: "Camps today",
+            items: [
+              "27 camps currently managed in Erbil and Duhok",
+              "More than 200,000 refugees and IDPs served each year through camp management",
+            ],
+          },
+        ],
+      },
+      {
+        id: "nfi",
+        title: "Non-Food Items",
+        intro:
+          "Essential relief items delivered to vulnerable families alongside food, water, shelter and cash support.",
+        groups: [
+          {
+            title: "Essential relief items",
+            items: [
+              "Blankets",
+              "Winter supplies",
+              "Mattresses",
+              "Kitchen sets",
+              "Emergency household items",
+            ],
+          },
+        ],
+      },
+      {
+        id: "cash",
+        title: "Cash Assistance and Essential Relief",
+        intro:
+          "BCF provides direct financial support to families who need urgent help to cover the basic needs of life.",
+        headline:
+          "Cash assistance gives vulnerable families the flexibility to meet urgent needs with dignity.",
+        groups: [
+          {
+            title: "Impact figure",
+            items: ["141,468,261,002 IQD distributed in cash assistance"],
+          },
+        ],
+      },
+      {
+        id: "environment",
+        title: "Environment and Climate Change",
+        intro:
+          "BCF's future direction includes protecting the environment and building awareness of climate change.",
+        headline:
+          "Protecting people also means protecting the environment they depend on. Humanitarian work cannot ignore climate change, water security, green space and the conditions of future life.",
+        groups: [
+          {
+            title: "Future goals",
+            items: [
+              "Plant one million trees within five years",
+              "Reduce plastic use by 80% in BCF offices",
+              "Launch recycling projects",
+              "Build environmental awareness",
+              "Support a healthier, greener Kurdistan Region",
+            ],
+          },
+        ],
+      },
     ],
+    serveDetailCta: "View details",
     whoServesTitle: "Who BCF Serves",
     howServesTitle: "How BCF Serves",
-    whoHowHint: "Separate who BCF serves from how BCF serves.",
+    whoHowHint:
+      "BCF works across the main humanitarian sectors to meet urgent needs and support long-term recovery.",
     whoServesItems: [
       "Orphans and widows",
       "Refugees and IDPs",
@@ -1064,6 +1392,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description:
           "Shelter and emergency relief for families displaced by the 2023 earthquakes in northern Syria.",
         facts: [
+          "4,129 tents provided after the 2023 Türkiye and Syria earthquakes",
           "Tents, blankets and winter supplies for displaced families",
           "Delivered alongside the response in Türkiye",
         ],
@@ -1393,17 +1722,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             name: "Rawaj Haji",
             role: "Administrative Board Member and Human Resources Dep. Manager",
           },
-        ],
-      },
-      {
-        id: "management",
-        title: "Management",
-        members: [
-          {
-            id: "farzin",
-            name: "Farzin Bagzade",
-            role: "Supervisor of Public Relations, Media and Legal Affairs Departments",
-          },
+          { id: "musa", name: "Musa Ahmad", role: "Administrative Board Member" },
         ],
       },
     ],
@@ -1721,19 +2040,305 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     whoWeServeWhite: "ئێمە",
     whoWeServeGold: "خزمەتی کێ دەکەین",
     serveCategories: [
-      { id: "relief", title: "فریاگوزاری" },
-      { id: "health", title: "تەندروستی" },
+      {
+        id: "food",
+        title: "ئاسایشی خۆراک",
+        intro:
+          "ئاسایشی خۆراک یەکێکە لە سێکتەرە مرۆییە سەرەکییەکانی دەزگای خێرخوازیی بارزانی. هاوکاریی خۆراکی پێشکەش بە خێزانە لێقەوماوەکان، ئاوارەکان، پەنابەران و ئەو کۆمەڵگایانە دەکرێت کە بەهۆی قەیرانەکانەوە زیانیان پێگەیشتووە.",
+        headline:
+          "پشتگیریی خۆراک زیاترە لە تەنها ژەمێک: سەقامگیرییە لە کاتی نادڵنیایی، کەرامەتە لە کاتی سەختی، و ئومێدە لە کاتی قەیراندا.",
+        groups: [
+          {
+            title: "چالاکییە سەرەکییەکان",
+            items: [
+              "دابەشکردنی خۆراکی وشک",
+              "ژەمی خۆراکی گەرم",
+              "سەبەتەی خۆراک",
+              "دابینکردنی بەپەلەی خۆراک",
+              "پێشکەشکردنی پاڵپشتی بەپێی پێوەرە مرۆییەکانی ئاسایشی خۆراک",
+            ],
+          },
+          {
+            title: "ئامارەکانی کاریگەری",
+            items: [
+              "دابەشکردنی ٧٧٦,٤٢٧ تەن خۆراکی وشک",
+              "دابەشکردنی ١٤,٤٢٩,٢٢٦ ژەمی گەرم",
+              "دابەشکردنی ٢,٤٥٠,٠٩٩ سەبەتەی خۆراک",
+            ],
+          },
+        ],
+      },
+      {
+        id: "health",
+        title: "تەندروستی و پشتگیری پزیشکی",
+        intro:
+          "دەزگای خێرخوازیی بارزانی پشتگیری خزمەتگوزارییە تەندروستییەکان بۆ کۆمەڵگە کەمدەرامەت و نەدارەکان دەکات، لە ڕێگەی پڕۆژەی پزیشکی، پشتگیریکردنی بنکە و دامەزراوەکان و پڕۆگرامەکانی چارەسەرکردنەوە.",
+        headline:
+          "چاودێری تەندروستی تەنها جەستە ناپارێزێت، بەڵکو کەرامەت، سەقامگیری خێزان و مافی ژیان بە ئومێدەوە دەپارێزێت.",
+        groups: [
+          {
+            title: "پڕۆژە تەندروستییە دیاریکراوەکان",
+            items: [
+              "دروستکردن و کردنەوەی پێنج بنکەی تەندروستی سەرەتایی",
+              "نۆژەنکردنەوەی نەخۆشخانەی خەلیفان",
+              "نۆژەنکردنەوەی نەخۆشخانەی پێشمەرگە",
+              "نۆژەنکردنەوەی نەخۆشخانەی لەدایکبوون لە ئاکرێ",
+              "کردنەوەی سەنتەری ڕاوێژکاری لە کامپی بەردەڕەش",
+              "پڕۆژەی نەشتەرگەری دڵی زگماکی بۆ منداڵان",
+              "پشتگیریکردنی ئەو منداڵانەی کە لە دەرەوەی وڵات چارەسەر وەردەگرن",
+              "پشتگیری پزیشکی بۆ کۆمەڵگە ئاوارەکان",
+            ],
+          },
+        ],
+      },
       {
         id: "education",
-        title: "پەروەردە",
-        tags: ["بژێوی و بەهێزکردنی ئابووری", "پەروەردە و گەشەپێدانی مرۆیی"],
+        title: "پەروەردە و گەشەپێدانی مرۆیی",
+        intro:
+          "دەزگای خێرخوازیی بارزانی وەبەرهێنان لە کەرتی پەروەردەدا دەکات، چونکە فێربوون یەکێکە لە بەهێزترین ڕێگاکان بۆ ڕزگاربوون لە هەژاری و نەداری.",
+        headline:
+          "پەروەردە شتێک لە زانیاری زیاتر بە منداڵان دەبەخشێت. بڕوا بەخۆبوون، دەرفەت و داهاتوویەکیان پێدەبەخشێت کە قەیرانەکان ناتوانن بە ئاسانی لێیان بستێننەوە.",
+        groups: [
+          {
+            title: "دەستکەوتە سەرەکییەکان",
+            items: [
+              "نۆژەنکردنەوەی ٣١٠ قوتابخانە",
+              "دابەشکردنی ٣٦٢,٥٣٨ پێداویستی قوتابخانە و تێنووس و قەڵەم",
+              "دروستکردنی ١٣١ پۆلی خوێندن",
+              "کردنەوەی سەنتەری تەنهایی لە ساڵی ٢٠٢٢",
+            ],
+          },
+          {
+            title: "ئامانجەکانی داهاتووی پەروەردە",
+            items: [
+              "نۆژەنکردنەوەی ٢٠٠ قوتابخانە",
+              "دروستکردنی ٥ قوتابخانەی نوێ",
+              "جێبەجێکردنی ٢ پڕۆژەی گەڕانەوە بۆ قوتابخانە بۆ ئەو منداڵانەی کە وازیان لە خوێندن هێناوە",
+            ],
+          },
+        ],
       },
-      { id: "environment", title: "ژینگە", tags: ["ژینگە و گۆڕانی کەشوهەوا"] },
-      { id: "community", title: "کۆمەڵگە" },
+      {
+        id: "wash",
+        title: "ئاو، ئاوەڕۆ و پاکوخاوێنی",
+        intro:
+          "کاری دەزگای خێرخوازیی بارزانی لە کەرتی ئاو، ئاوەڕۆ و پاکوخاوێنیدا سەرنج دەخاتە سەر دابینکردنی ئاوی خاوێن، خزمەتگوزارییەکانی ئاوەڕۆ و پاکوخاوێنی.",
+        headline:
+          "ئاوی خاوێن تەندروستی دەپارێزێت، کەرامەت دەگێڕێتەوە و پشتگیری لە ژیان دەکات لەو شوێنانەی کە قەیرانەکان پێداویستییە سەرەکییەکانیانی لێ زەوت کردووە.",
+        groups: [
+          {
+            title: "چالاکییە سەرەکییەکان",
+            items: [
+              "پشتگیریکردنی ئاوی خواردنەوە",
+              "تۆڕەکانی ئاو",
+              "بیرەکانی ئاو",
+              "پشتگیری ئاوەڕۆ و تەندروستی ژینگە",
+              "خزمەتگوزارییەکانی پاکوخاوێنی",
+              "گەیاندنی ئاو بە خێزانە کەمدەرامەتەکان",
+            ],
+          },
+          {
+            title: "پڕۆژە دیاریکراوەکان",
+            items: [
+              "لێدانی چوار بیری ئاو بۆ چوار گوند لە دهۆک لە ساڵی ٢٠١٩",
+              "لێدانی چوار بیری ئاو لە چیای شنگال لە ساڵی ٢٠١٦",
+              "گەیاندنی ٦٥,٨٦٤,٠٠٠ لیتر ئاوی خواردنەوە لە هەولێر لە ساڵی ٢٠٢١",
+              "پشتگیریکردنی ٩,١٠٠ خێزان بە ئاوی خواردنەوە لە هەولێر لە ساڵی ٢٠٢٤",
+            ],
+          },
+        ],
+      },
+      {
+        id: "shelter",
+        title: "حەوانەوە و بەدەمەوەچوونی فریاگوزاری",
+        intro:
+          "دەزگای خێرخوازیی بارزانی حەوانەوە و فریاگوزاری خێرا پێشکەش بە خێزانە ئاوارەکان و ئەو کۆمەڵگایانە دەکات کە بەهۆی شەڕ، قەیران و کارەساتی سروشتییەوە زیانیان بەرکەوتووە.",
+        headline:
+          "حەوانەوە یەکەم هەنگاوە بەرەو چاکبوونەوە و گەڕانەوە بۆ دۆخی ئاسایی. شوێنێکی ئارام هێز بە خێزانەکان دەبەخشێت بۆ ئەوەی سەرلەنوێ دەست پێبکەنەوە.",
+        groups: [
+          {
+            title: "پڕۆژە دیاریکراوەکانی حەوانەوە و بەدەمەوەچوون",
+            items: [
+              "دروستکردنی ٤٠٠ کاراوان لە ڤان، تورکیا، لە ساڵانی ٢٠١١–٢٠١٢",
+              "دروستکردنی ٣٠٠ کاراوان لە کامپی بەحرکە لە ساڵی ٢٠١٥",
+              "دروستکردنی ٦٠٠ کاراوان لە کامپی دەرکار عەجەم لە ساڵی ٢٠١٦",
+              "دابینکردنی ٤,١٢٩ خێمە دوای بوومەلەرزەی تورکیا و سوریا لە ساڵی ٢٠٢٣",
+              "دابەشکردنی ٥٤٠ یەکەی نیشتەجێبوون بەسەر خێزانی شەهیداندا لە هەولێر و سۆران لە ساڵی ٢٠٢٤",
+              "دروستکردنی ٢٠ خانوو لە شنگال لە ساڵی ٢٠٢٤",
+            ],
+          },
+        ],
+      },
+      {
+        id: "protection",
+        title: "پاراستن و کەرامەتی مرۆیی",
+        intro:
+          "کاری دەزگای خێرخوازیی بارزانی لە کەرتی پاراستندا سەرنج دەخاتە سەر سەلامەتی، کەرامەت و خۆشگوزەرانی خەڵکی کەمدەرامەت و بێدەرەتان.",
+        headline:
+          "پاراستن تەنها بەدەمەوەچوون لە مەترسییەکان نییە، بەڵکو بەو مانایەیە کە دڵنیا بین لەوەی مامەڵە لەگەڵ هەر مرۆڤێکدا بە کەرامەت و ڕێز و بایەخ پێدانەوە دەکرێت.",
+        groups: [
+          {
+            title: "تەرکیزی پاراستن",
+            items: [
+              "سەلامەتی جەستەیی",
+              "پاڵپشتی دەروونی",
+              "پاراستنی منداڵان",
+              "پشتگیریکردنی خێزانە کەمدەرامەتەکان",
+              "پشتگیریکردنی کەسانی خاوەن پێداویستی تایبەت",
+              "هۆشیاری و ڕاهێنان",
+              "خزمەتگوزارییەکانی پاراستنی کۆمەڵگە",
+            ],
+          },
+        ],
+      },
+      {
+        id: "rehabilitation",
+        title: "ڕاهێنانەوە و گشتگیرکردن",
+        intro:
+          "دەزگای خێرخوازیی بارزانی پشتگیری کەسانی خاوەن پێداویستی تایبەت، منداڵانی ئۆتیزم و ئەو کۆمەڵگایانە دەکات کە بەدەست تەحەددییاتە تەندروستی و کۆمەڵایەتییەکانەوە دەناڵێنن.",
+        headline:
+          "تێکەڵکردنەوە واتە بەخشینی مافی بەشداریکردن، فێربوون، چاکبوونەوە و ژیان بە کەرامەتەوە بە هەر مرۆڤێک.",
+        groups: [
+          {
+            title: "تەرکیزی ئێستا و داهاتوو",
+            items: [
+              "هۆشیاری و پشتگیریکردنی ئۆتیزم",
+              "پشتگیریکردنی منداڵانی خاوەن پێداویستی تایبەت",
+              "هۆشیارکردنەوە لە ماددە هۆشبەرەکان",
+              "دەستپێشخەرییەکانی ڕاهێنانەوەی ئاڵوودەبووانی ماددەی هۆشبەر",
+              "پشتگیری تێکەڵکردنەوە بۆ منداڵانی ئۆتیزم",
+              "هۆشیاری گشتی لە ڕێگەی سیمینار، پۆستەر، نامیلکە و ڤیدیۆوە",
+            ],
+          },
+          {
+            title: "ئامانجەکانی داهاتوو",
+            items: [
+              "ڕاهێنانەوەی ٢٠٠ منداڵی ئۆتیزم",
+              "تێکەڵکردنەوەی ١٠٠ منداڵی ئۆتیزم لە قوتابخانە حکومییەکاندا لە ماوەی پێنج ساڵدا",
+              "کردنەوەی سێ سەنتەری ئۆتیزم لە هەرێمی کوردستان",
+              "کردنەوەی سەنتەرێکی ڕاهێنانەوەی ئاڵوودەبووانی ماددەی هۆشبەر",
+              "ڕێکخستنی پێنج سیمپۆزیۆمی هۆشیاری لەسەر ماددەی هۆشبەر",
+            ],
+          },
+        ],
+      },
+      {
+        id: "livelihood",
+        title: "بژێوی ژیان و تواناسازی",
+        intro:
+          "دەزگای خێرخوازیی بارزانی پشتگیری پڕۆژەکانی بژێوی ژیان دەکات کە یارمەتی تاکەکان و خێزانەکان دەدەن بۆ ئەوەی زیاتر پشت بە خۆیان ببەستن.",
+        headline:
+          "بەهێزترین کاری مرۆیی تەنها یارمەتیدانی خەڵک نییە بۆ ئەوەی ئەمڕۆ بژین، بەڵکو یارمەتییان دەدات بۆ ئەوەی سبەینێ بە بەهێزی بوەستنەوە.",
+        groups: [
+          {
+            title: "کەرتە سەرەکییەکان",
+            items: [
+              "گەشەپێدانی کارامەییەکان",
+              "ڕاهێنانی پیشەیی",
+              "پشتگیریکردنی دەرفەتی کار",
+              "داهاتسازی",
+              "بوژانەوەی کۆمەڵگە",
+              "تواناسازی گەنجان و خێزانەکان",
+            ],
+          },
+          {
+            title: "سەنتەرەکانی ڕاهێنانی پیشەیی",
+            items: [
+              "پشتگیریکردنی ٢١ سەنتەری ڕاهێنانی پیشەیی",
+              "٥٨٧,٢١٦ تاک لێیان سوودمەند بوون",
+            ],
+          },
+        ],
+      },
+      {
+        id: "camp",
+        title: "بەڕێوەبردن و پشتگیریکردنی کامپەکان",
+        intro:
+          "دەزگای خێرخوازیی بارزانی بەڕێوەبردن و پشتگیریکردنی ئەو کامپانە دەکات کە خزمەتگوزاری بە پەنابەران و ئاوارە ناوخۆییەکان پێشکەش دەکەن.",
+        headline:
+          "بەڕێوەبردنی کامپ تەنها لۆجیستیک نییە، بەڵکو هەماهەنگی، پاراستن و بەرپرسیارێتی ڕۆژانەیە بەرامبەر بەو مرۆڤانەی کە لە دۆخی ئاوارەییدا دەژین.",
+        groups: [
+          {
+            title: "خزمەتگوزارییەکانی کامپ",
+            items: [
+              "دابەشکردنی خۆراک و سووتەمەنی",
+              "چاودێری پزیشکی",
+              "بەڕێوەبردنی پاشماوەکان",
+              "چاککردنەوە و ڕاگرتنی خێمە و کاراوانەکان",
+              "پشتگیری پەروەردە و فێرکردن",
+              "خزمەتگوزارییەکانی ئاو و ئاوەڕۆ",
+              "ڕاهێنانی پیشەیی و ناپیشەیی",
+              "هەماهەنگی لەگەڵ ڕێکخراوە ناحکومییەکان و لایەنە حکومییەکان",
+              "داکۆکیکردن لە کەرامەت و خۆشگوزەرانی",
+            ],
+          },
+          {
+            title: "کامپەکان لە ئێستادا",
+            items: [
+              "بەڕێوەبردنی ٢٧ کامپ لە هەولێر و دهۆک",
+              "خزمەتکردنی زیاتر لە ٢٠٠,٠٠٠ پەنابەر و ئاوارە بە ساڵێک لە ڕێگەی بەڕێوەبردنی کامپەکانەوە",
+            ],
+          },
+        ],
+      },
+      {
+        id: "nfi",
+        title: "پێداویستییە ناخۆراکییەکان",
+        intro:
+          "پێداویستییە فریاگوزارییە سەرەکییەکان کە لەگەڵ خۆراک، ئاو، حەوانەوە و هاوکاری نەقدی پێکەوە بە خێزانە کەمدەرامەتەکان دەگەیەنرێن.",
+        groups: [
+          {
+            title: "پێداویستییە فریاگوزارییە سەرەکییەکان",
+            items: [
+              "بەتانی",
+              "پێداویستییەکانی زستانە",
+              "دۆشەک",
+              "پێداویستییەکانی چێشتخانە",
+              "پێداویستییە بەپەلەکانی ناوماڵ",
+            ],
+          },
+        ],
+      },
+      {
+        id: "cash",
+        title: "هاوکاری نەقدی و فریاگوزارییە سەرەکییەکان",
+        intro:
+          "دەزگای خێرخوازیی بارزانی پاڵپشتی دارایی ڕاستەوخۆ پێشکەش بەو خێزانانە دەکات کە پێویستیان بە یارمەتی بەپەلە هەیە بۆ دابینکردنی پێداویستییە سەرەکییەکانی ژیان.",
+        headline:
+          "هاوکاری نەقدی نەرمی و ئاسانکاری بە خێزانە کەمدەرامەتەکان دەبەخشێت بۆ دابینکردنی پێویستییە بەپەلەکانیان بە کەرامەتەوە.",
+        groups: [
+          {
+            title: "ئاماری کاریگەری",
+            items: ["دابەشکردنی ١٤١,٤٦٨,٢٦١,٠٠٢ دیناری عێراقی وەک هاوکاری نەقدی"],
+          },
+        ],
+      },
+      {
+        id: "environment",
+        title: "ژینگە و گۆڕانی کەشوهەوا",
+        intro:
+          "ئاڕاستەی داهاتووی دەزگای خێرخوازیی بارزانی پاراستنی ژینگە و هۆشیاری سەبارەت بە کەشوهەوا لەخۆ دەگرێت.",
+        headline:
+          "پاراستنی مرۆڤەکان بە مانای پاراستنی ئەو ژینگەیەش دێت کە پشتی پێ دەبەستن. کاری مرۆیی ناتوانێت چاوپۆشی لە گۆڕانی کەشوهەوا، ئاسایشی ئاو، ڕووبەری سەوزایی و مەرجەکانی داهاتووی ژیان بکات.",
+        groups: [
+          {
+            title: "ئامانجەکانی داهاتوو",
+            items: [
+              "چاندنی یەک ملیۆن درەخت لە ماوەی پێنج ساڵدا",
+              "کەمکردنەوەی بەکارهێنانی پلاستیک بە ڕێژەی ٨٠٪ لە نووسینگەکانی دەزگای خێرخوازیی بارزانیدا",
+              "دەستپێکردنی پڕۆژەکانی ڕیسایکلین",
+              "پەرەپێدانی هۆشیاری ژینگەیی",
+              "پشتگیریکردنی هەرێمێکی کوردستانی تەندروستتر و سەوزتر",
+            ],
+          },
+        ],
+      },
     ],
+    serveDetailCta: "بینینی وردەکاری",
     whoServesTitle: "کێ خزمەت دەکەین",
     howServesTitle: "چۆن خزمەت دەکەین",
-    whoHowHint: "جیاکردنەوەی ئەوانەی BCF خزمەتیان دەکات لە شێوازی خزمەتکردن.",
+    whoHowHint:
+      "دەزگای خێرخوازیی بارزانی لە سەرانسەری سێکتەرە مرۆییە سەرەکییەکاندا کار دەکات بۆ دابینکردنی پێداویستییە بەپەلەکان و پاڵپشتیکردنی چاکبوونەوەی درێژخایەن.",
     whoServesItems: [
       "هەتیو و بێوەژن",
       "پەنابەر و ئاوارەکان",
@@ -1910,6 +2515,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description:
           "سەرپەناو یارمەتی فریاکەوتن بۆ ئەو خێزانانەی بە بوومەلەرزەکانی ٢٠٢٣ لە باکووری سووریا ئاوارە بوون.",
         facts: [
+          "٤,١٢٩ چادر دوای بوومەلەرزەکانی تورکیا و سووریا لە ٢٠٢٣ دابین کرا",
           "چادر، بەتانی و پێداویستی زستانە بۆ خێزانە ئاوارەکان",
           "لەگەڵ وەڵامدانەوەکەی تورکیا پێکەوە گەیەنرا",
         ],
@@ -2191,17 +2797,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             name: "ڕەواج حاجی",
             role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی سەرچاوە مرۆییەکان",
           },
-        ],
-      },
-      {
-        id: "management",
-        title: "بەڕێوەبەرایەتی",
-        members: [
-          {
-            id: "farzin",
-            name: "فەرزین بەگزادە",
-            role: "سەرپەرشتیاری بەشەکانی پەیوەندییە گشتییەکان، ڕاگەیاندن و کاروباری یاسایی",
-          },
+          { id: "musa", name: "موسا ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
         ],
       },
     ],
@@ -2518,19 +3114,305 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     whoWeServeWhite: "من",
     whoWeServeGold: "نخدم",
     serveCategories: [
-      { id: "relief", title: "الإغاثة" },
-      { id: "health", title: "الصحة" },
+      {
+        id: "food",
+        title: "الأمن الغذائي",
+        intro:
+          "الأمن الغذائي أحد القطاعات الإنسانية الأساسية للمؤسسة، حيث تُقدَّم المساعدات الغذائية للأسر الضعيفة والنازحين واللاجئين والمجتمعات المتأثرة بالأزمات.",
+        headline:
+          "الدعم الغذائي أكثر من مجرد وجبة؛ إنه استقرار في زمن عدم اليقين، وكرامة في زمن الشدة، وأمل في زمن الأزمة.",
+        groups: [
+          {
+            title: "الأنشطة الرئيسية",
+            items: [
+              "توزيع المواد الغذائية الجافة",
+              "الوجبات الساخنة",
+              "السلال الغذائية",
+              "الاستجابة الغذائية الطارئة",
+              "دعم متوافق مع المعايير الإنسانية للأمن الغذائي",
+            ],
+          },
+          {
+            title: "أرقام الأثر",
+            items: [
+              "776,427 طناً من المواد الغذائية الجافة تم توزيعها",
+              "14,429,226 وجبة ساخنة تم توزيعها",
+              "2,450,099 سلة غذائية تم توزيعها",
+            ],
+          },
+        ],
+      },
+      {
+        id: "health",
+        title: "الصحة والدعم الطبي",
+        intro:
+          "تدعم المؤسسة الخدمات الصحية للمجتمعات الضعيفة من خلال المشاريع الطبية ودعم المرافق وبرامج العلاج.",
+        headline:
+          "الرعاية الصحية لا تحمي الجسد وحده، بل تحمي الكرامة واستقرار الأسرة والحق في العيش بأمل.",
+        groups: [
+          {
+            title: "مشاريع صحية مختارة",
+            items: [
+              "بناء وافتتاح خمسة مراكز للرعاية الصحية الأولية",
+              "ترميم مستشفى خليفان",
+              "ترميم مستشفى البيشمركة",
+              "ترميم مستشفى الولادة في عقرة",
+              "افتتاح مركز استشاري في مخيم بردرش",
+              "مشروع جراحة القلب الخلقي عند الأطفال",
+              "دعم الأطفال المرضى المحوَّلين للعلاج بالخارج",
+              "الدعم الطبي للمجتمعات النازحة",
+            ],
+          },
+        ],
+      },
       {
         id: "education",
-        title: "التعليم",
-        tags: ["سبل العيش والتمكين الاقتصادي", "التعليم والتنمية البشرية"],
+        title: "التعليم والتنمية البشرية",
+        intro:
+          "تستثمر المؤسسة في التعليم لأنه من أقوى السبل للخروج من دائرة الفقر والضعف.",
+        headline:
+          "التعليم يمنح الأطفال أكثر من المعرفة؛ يمنحهم الثقة والفرصة ومستقبلاً لا تسلبه الأزمات بسهولة.",
+        groups: [
+          {
+            title: "الإنجازات الرئيسية",
+            items: [
+              "ترميم 310 مدارس",
+              "توزيع 362,538 قطعة من المواد واللوازم المدرسية",
+              "بناء 131 صفاً دراسياً",
+              "افتتاح مركز تناهي عام 2022",
+            ],
+          },
+          {
+            title: "الأهداف المستقبلية",
+            items: [
+              "ترميم 200 مدرسة",
+              "بناء 5 مدارس جديدة",
+              "تنفيذ مشروعين لإعادة الأطفال المتسرّبين إلى المدارس",
+            ],
+          },
+        ],
       },
-      { id: "environment", title: "البيئة", tags: ["البيئة وتغير المناخ"] },
-      { id: "community", title: "المجتمع" },
+      {
+        id: "wash",
+        title: "المياه والصرف الصحي والنظافة",
+        intro:
+          "يركّز عمل المؤسسة في هذا القطاع على توفير المياه النظيفة وخدمات الصرف الصحي والنظافة.",
+        headline:
+          "المياه النظيفة تحمي الصحة وتعيد الكرامة وتصون الحياة حيث سلبت الأزمات أبسط المقوّمات.",
+        groups: [
+          {
+            title: "الأنشطة الرئيسية",
+            items: [
+              "دعم مياه الشرب",
+              "شبكات المياه",
+              "آبار المياه",
+              "دعم الصرف الصحي",
+              "خدمات النظافة",
+              "توصيل المياه للأسر الضعيفة",
+            ],
+          },
+          {
+            title: "مشاريع مختارة",
+            items: [
+              "حفر أربع آبار مياه لأربع قرى في دهوك عام 2019",
+              "حفر أربع آبار مياه في جبل سنجار عام 2016",
+              "توزيع 65,864,000 لتر من مياه الشرب في أربيل عام 2021",
+              "دعم 9,100 عائلة بمياه الشرب في أربيل عام 2024",
+            ],
+          },
+        ],
+      },
+      {
+        id: "shelter",
+        title: "المأوى والاستجابة الطارئة",
+        intro:
+          "توفّر المؤسسة المأوى والإغاثة الطارئة للأسر والمجتمعات النازحة جرّاء الحروب والأزمات والكوارث الطبيعية.",
+        headline:
+          "المأوى هو الخطوة الأولى نحو التعافي والعودة إلى الحياة الطبيعية؛ فالمكان الآمن يمنح الأسرة القوة لتبدأ من جديد.",
+        groups: [
+          {
+            title: "مشاريع مختارة في المأوى والاستجابة",
+            items: [
+              "إنشاء 400 كرفان في فان، تركيا، بين عامي 2011 و2012",
+              "إنشاء 300 كرفان في مخيم بحركة عام 2015",
+              "إنشاء 600 كرفان في مخيم دركرعجم عام 2016",
+              "توزيع 4,129 خيمة بعد زلزال تركيا وسوريا عام 2023",
+              "توزيع 540 وحدة سكنية على عائلات الشهداء في أربيل وسوران عام 2024",
+              "بناء 20 منزلاً في سنجار عام 2024",
+            ],
+          },
+        ],
+      },
+      {
+        id: "protection",
+        title: "الحماية والكرامة الإنسانية",
+        intro:
+          "يركّز عمل المؤسسة في مجال الحماية على سلامة الأفراد الضعفاء وكرامتهم ورفاههم.",
+        headline:
+          "الحماية أكثر من مجرد الاستجابة للخطر؛ إنها ضمان أن يُعامَل كل إنسان بكرامة واحترام وتقدير.",
+        groups: [
+          {
+            title: "محاور الحماية",
+            items: [
+              "السلامة الجسدية",
+              "الدعم النفسي",
+              "حماية الطفل",
+              "دعم الأسر الضعيفة",
+              "دعم ذوي الإعاقة",
+              "التوعية والتدريب",
+              "خدمات الحماية المجتمعية",
+            ],
+          },
+        ],
+      },
+      {
+        id: "rehabilitation",
+        title: "إعادة التأهيل والدمج",
+        intro:
+          "تدعم المؤسسة ذوي الإعاقة والأطفال المصابين بالتوحّد والمجتمعات المتأثرة بالتحديات الصحية والاجتماعية.",
+        headline:
+          "الدمج يعني منح كل إنسان الحق في المشاركة والتعلّم والتعافي والعيش بكرامة.",
+        groups: [
+          {
+            title: "التركيز الحالي والمستقبلي",
+            items: [
+              "التوعية بالتوحّد ودعم المصابين به",
+              "دعم الأطفال ذوي الإعاقة",
+              "التوعية بمخاطر الإدمان",
+              "مبادرات التأهيل من الإدمان",
+              "دعم إعادة دمج الأطفال المصابين بالتوحّد",
+              "التوعية العامة عبر الندوات والملصقات والمنشورات والفيديوهات",
+            ],
+          },
+          {
+            title: "أهداف مستقبلية",
+            items: [
+              "تأهيل 200 طفل من ذوي التوحّد",
+              "دمج 100 طفل من ذوي التوحّد في المدارس الحكومية خلال خمس سنوات",
+              "افتتاح ثلاثة مراكز للتوحّد في إقليم كوردستان",
+              "افتتاح مركز لتأهيل مدمني المخدرات",
+              "تنظيم خمس ندوات توعوية حول مخاطر الإدمان",
+            ],
+          },
+        ],
+      },
+      {
+        id: "livelihood",
+        title: "سبل العيش والتمكين",
+        intro:
+          "تدعم المؤسسة مشاريع سبل العيش التي تساعد الأفراد والأسر على تحقيق مزيد من الاعتماد على الذات.",
+        headline:
+          "أقوى عمل إنساني لا يكتفي بمساعدة الناس على النجاة اليوم، بل يساعدهم على الوقوف أقوى غداً.",
+        groups: [
+          {
+            title: "المحاور الرئيسية",
+            items: [
+              "تطوير المهارات",
+              "التدريب المهني",
+              "دعم فرص العمل",
+              "توليد الدخل",
+              "تعافي المجتمعات",
+              "تمكين الشباب والأسر",
+            ],
+          },
+          {
+            title: "مراكز التدريب المهني",
+            items: [
+              "دعم 21 مركزاً للتدريب المهني",
+              "استفادة 587,216 شخصاً منها",
+            ],
+          },
+        ],
+      },
+      {
+        id: "camp",
+        title: "المخيمات ودعم النازحين",
+        intro:
+          "تدير المؤسسة وتدعم مخيمات تخدم اللاجئين والنازحين داخلياً.",
+        headline:
+          "إدارة المخيمات ليست عملاً لوجستياً فحسب؛ إنها تنسيق وحماية ومسؤولية يومية تجاه أناس يعيشون في النزوح.",
+        groups: [
+          {
+            title: "خدمات المخيمات",
+            items: [
+              "توزيع الغذاء والوقود",
+              "الرعاية الطبية",
+              "إدارة النفايات",
+              "صيانة الخيام والكرفانات",
+              "دعم التعليم",
+              "خدمات المياه والصرف الصحي",
+              "التدريب المهني وغير المهني",
+              "التنسيق مع المنظمات غير الحكومية والجهات الحكومية",
+              "المناصرة من أجل الكرامة والرفاه",
+            ],
+          },
+          {
+            title: "المخيمات اليوم",
+            items: [
+              "إدارة 27 مخيماً في أربيل ودهوك",
+              "خدمة أكثر من 200,000 لاجئ ونازح سنوياً عبر إدارة المخيمات",
+            ],
+          },
+        ],
+      },
+      {
+        id: "nfi",
+        title: "المواد غير الغذائية",
+        intro:
+          "مواد إغاثية أساسية تُسلَّم للأسر الضعيفة إلى جانب دعم الغذاء والمياه والمأوى والمساعدات النقدية.",
+        groups: [
+          {
+            title: "مواد الإغاثة الأساسية",
+            items: [
+              "البطانيات",
+              "مستلزمات الشتاء",
+              "الفرشات",
+              "مستلزمات المطبخ",
+              "الأدوات المنزلية الطارئة",
+            ],
+          },
+        ],
+      },
+      {
+        id: "cash",
+        title: "المساعدات النقدية والإغاثة الأساسية",
+        intro:
+          "تقدّم المؤسسة دعماً مالياً مباشراً للأسر التي تحتاج مساعدة عاجلة لتغطية احتياجات الحياة الأساسية.",
+        headline:
+          "المساعدة النقدية تمنح الأسر الضعيفة مرونة تلبية احتياجاتها العاجلة بكرامة.",
+        groups: [
+          {
+            title: "رقم الأثر",
+            items: ["141,468,261,002 ديناراً عراقياً تم توزيعها كمساعدات نقدية"],
+          },
+        ],
+      },
+      {
+        id: "environment",
+        title: "البيئة وتغيّر المناخ",
+        intro:
+          "يشمل التوجّه المستقبلي للمؤسسة حماية البيئة والتوعية بتغيّر المناخ.",
+        headline:
+          "حماية الناس تعني أيضاً حماية البيئة التي يعتمدون عليها؛ فالعمل الإنساني لا يمكنه تجاهل تغيّر المناخ وأمن المياه والمساحات الخضراء وشروط الحياة المقبلة.",
+        groups: [
+          {
+            title: "الأهداف المستقبلية",
+            items: [
+              "زراعة مليون شجرة خلال خمس سنوات",
+              "خفض استخدام البلاستيك بنسبة 80% في مكاتب المؤسسة",
+              "إطلاق مشاريع لإعادة التدوير",
+              "تعزيز الوعي البيئي",
+              "دعم إقليم كوردستان نحو بيئة أكثر صحة وخضرة",
+            ],
+          },
+        ],
+      },
     ],
+    serveDetailCta: "عرض التفاصيل",
     whoServesTitle: "من تخدم المؤسسة",
     howServesTitle: "كيف تخدم المؤسسة",
-    whoHowHint: "الفصل بين من تخدمهم المؤسسة وكيف تقدم خدمتها.",
+    whoHowHint:
+      "تعمل المؤسسة عبر قطاعات إنسانية رئيسية لتلبية الاحتياجات العاجلة ودعم التعافي طويل الأمد.",
     whoServesItems: [
       "الأيتام والأرامل",
       "اللاجئون والنازحون",
@@ -2707,6 +3589,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description:
           "مأوى وإغاثة طارئة للعائلات التي نزحت جرّاء زلازل 2023 في شمال سوريا.",
         facts: [
+          "توزيع 4,129 خيمة بعد زلزال تركيا وسوريا عام 2023",
           "خيام وبطانيات ومستلزمات شتوية للعائلات النازحة",
           "نُفِّذت بالتوازي مع الاستجابة في تركيا",
         ],
@@ -2983,17 +3866,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             name: "رواج حاجي",
             role: "عضو الهيئة الإدارية ومدير قسم الموارد البشرية",
           },
-        ],
-      },
-      {
-        id: "management",
-        title: "الإدارة",
-        members: [
-          {
-            id: "farzin",
-            name: "فرزين بكزاده",
-            role: "المشرف على أقسام العلاقات العامة والإعلام والشؤون القانونية",
-          },
+          { id: "musa", name: "موسى أحمد", role: "عضو الهيئة الإدارية" },
         ],
       },
     ],

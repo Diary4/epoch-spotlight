@@ -181,8 +181,9 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {c.trustAdminBoardBody}
             </motion.p>
-            {/* Named roster: the vice president and six board seats, then the
-                supervisor. Portraits are the named Board Members headshots. */}
+            {/* Named roster: the vice president and the board seats. Portraits
+                are the named Board Members headshots. A single group repeats
+                the page title, so its heading is dropped. */}
             <motion.div
               className="mx-auto mt-12 flex w-full max-w-[980px] flex-col gap-12"
               variants={bcfStagger(0.1, 0.24)}
@@ -191,16 +192,22 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {c.trustStaffGroups.map((group) => (
                 <motion.section key={group.id} variants={bcfRiseCard}>
-                  <h2
-                    className="text-[34px] font-semibold leading-tight"
-                    style={{ color: BCF.gold }}
-                  >
-                    {group.title}
-                  </h2>
-                  <span
-                    className="mt-4 block h-px w-full"
-                    style={{ background: `linear-gradient(90deg, ${BCF.gold}66, transparent)` }}
-                  />
+                  {c.trustStaffGroups.length > 1 ? (
+                    <>
+                      <h2
+                        className="text-[34px] font-semibold leading-tight"
+                        style={{ color: BCF.gold }}
+                      >
+                        {group.title}
+                      </h2>
+                      <span
+                        className="mt-4 block h-px w-full"
+                        style={{
+                          background: `linear-gradient(90deg, ${BCF.gold}66, transparent)`,
+                        }}
+                      />
+                    </>
+                  ) : null}
                   <div className="mt-7 grid grid-cols-2 gap-5">
                     {group.members.map((member) => {
                       const portrait = bcfStaffPortraits[member.id];
@@ -618,7 +625,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                   whileTap={BCF_TAP}
                   transition={BCF_TAP_TRANSITION}
                   onClick={() => setAwardPreview(src)}
-                  className="flex aspect-[4/3] transform-gpu items-center justify-center rounded-[24px] border border-white/14 bg-black/40 p-6"
+                  /* White plate: the certificates and plaques are photographed
+                     on every kind of ground, and a dark card let each one set
+                     its own apparent size. One white field, one size. */
+                  className="flex aspect-[4/3] transform-gpu items-center justify-center rounded-[24px] border border-white/14 bg-white p-6"
                   style={{ boxShadow: "0 16px 40px rgba(0,0,0,0.42)" }}
                 >
                   <img
@@ -651,7 +661,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     aria-modal="true"
                     aria-label={c.trustRecognitionTitle}
                     onClick={(event) => event.stopPropagation()}
-                    className="relative z-10 flex max-h-[1680px] w-full max-w-[920px] items-center justify-center rounded-[28px] border border-white/16 bg-black/55 p-10"
+                    className="relative z-10 flex max-h-[1680px] w-full max-w-[920px] items-center justify-center rounded-[28px] border border-white/16 bg-white p-10"
                     style={{ boxShadow: "0 40px 110px rgba(0,0,0,0.65)" }}
                     initial={{ opacity: 0, scale: 0.96, y: 18 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}

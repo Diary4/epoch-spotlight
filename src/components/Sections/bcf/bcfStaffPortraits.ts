@@ -5,7 +5,7 @@ import ways from "@/assets/images/bcf/Board Members/Ways Jalil.jpg";
 import ismail from "@/assets/images/bcf/Board Members/Ismail Abdulaziz.jpg";
 import karzan from "@/assets/images/bcf/Board Members/Karzan Nuri.jpg";
 import rawaj from "@/assets/images/bcf/Board Members/Rawaj Haji.jpg";
-import farzin from "@/assets/images/bcf/Board Members/Farzin Bagzade.jpg";
+import musa from "@/assets/images/bcf/Board Members/Musa Ahmad.jpg";
 
 /** Headshots for the named Trust roster, keyed to `TrustStaffMember.id`. */
 export const bcfStaffPortraits: Record<string, string> = {
@@ -16,5 +16,5 @@ export const bcfStaffPortraits: Record<string, string> = {
   "ismail-a": ismail,
   "karzan-n": karzan,
   rawaj,
-  farzin,
+  musa,
 };
