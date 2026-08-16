@@ -545,6 +545,9 @@ export type BcfCopy = {
   startJourney: string;
   journeyTitleLead: string;
   journeyTitleGold: string;
+  /** Gold eyebrow over the title — whose journey this is. */
+  journeyEyebrow: string;
+  /** One line under the rule, telling a visitor the cards are touchable. */
   journeySubtitle: string;
   journeyChapters: { id: JourneyChapterId; title: string }[];
   whoWeServeWhite: string;
@@ -850,7 +853,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     startJourney: "Start the Journey",
     journeyTitleLead: "Explore",
     journeyTitleGold: "Our Journey",
-    journeySubtitle: "6 Chapters . One Mission",
+    journeyEyebrow: "BARZANI CHARITY FOUNDATION",
+    journeySubtitle: "Tap a chapter to explore",
     journeyChapters: [
       { id: "humanity", title: "Humanity in Action" },
       { id: "story", title: "Our Story" },
@@ -1651,7 +1655,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     startJourney: "دەستپێکردنی گەشتەکە",
     journeyTitleLead: "گەشتی",
     journeyTitleGold: "ئێمە بدۆزەرەوە",
-    journeySubtitle: "٦ بەش . یەک ئامانج",
+    journeyEyebrow: "دەزگای خێرخوازیی بارزانی",
+    journeySubtitle: "دەست لە بەشێک بدە بۆ گەڕان",
     journeyChapters: [
       { id: "humanity", title: "مرۆڤایەتی لە کردار" },
       { id: "story", title: "چیرۆکەکەمان" },
@@ -2403,7 +2408,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     startJourney: "ابدأ الرحلة",
     journeyTitleLead: "اكتشف",
     journeyTitleGold: "رحلتنا",
-    journeySubtitle: "6 فصول . رسالة واحدة",
+    journeyEyebrow: "مؤسسة بارزاني الخيرية",
+    journeySubtitle: "المس فصلاً لاستكشافه",
     journeyChapters: [
       { id: "humanity", title: "الإنسانية في العمل" },
       { id: "story", title: "قصتنا" },

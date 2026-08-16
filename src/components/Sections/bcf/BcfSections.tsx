@@ -7,6 +7,7 @@ import {
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   bcfJourneyBg,
   bcfJourneyStory,
@@ -40,296 +41,373 @@ const thumbs: Record<JourneyChapterId, string> = {
   future: bcfJourneyFuture,
 };
 
-const CIRCLE = 236;
-
 /**
- * Constellation layout (1080×1920) — two rows of circles with the top-middle
- * node lifted, matching the Explore Our Journey Figma frame.
- * Positions are circle centers.
+ * Reading order, which is not the order `journeyChapters` is authored in.
+ * The numbers printed on the cards are this list's index — they are the
+ * chapter's position in the walk, so the order lives here rather than in the
+ * copy, where a translator reordering a list would renumber the experience.
  */
-const LAYOUT: {
-  id: JourneyChapterId;
-  cx: number;
-  cy: number;
-}[] = [
-  { id: "humanity", cx: 200, cy: 820 },
-  { id: "story", cx: 540, cy: 680 },
-  { id: "map", cx: 880, cy: 820 },
-  { id: "impact", cx: 200, cy: 1240 },
-  { id: "trust", cx: 540, cy: 1240 },
-  { id: "future", cx: 880, cy: 1240 },
+const ORDER: JourneyChapterId[] = [
+  "story",
+  "humanity",
+  "map",
+  "impact",
+  "trust",
+  "future",
 ];
 
-type Point = { cx: number; cy: number };
-
 /**
- * Smooth cubic path through three circle centers (left → middle → right).
- * Top row arches through the elevated middle; bottom row keeps a soft ribbon
- * undulation so flat rows still match the Figma wave, without looking hand-drawn.
+ * Vertical focus per chapter, as an `object-position` Y.
+ *
+ * The journey art is six 560×560 square centre-crops, and a card window is
+ * 340×190 — so `object-cover` keeps a band 56% of the source's height and
+ * throws the rest away. At a flat 50% that band runs 22%–78%, which decapitates
+ * the Our Story portrait (his face sits at 13%) and cuts the hospital sign off
+ * the Trust plate. These are the point of each photograph, measured, not
+ * guessed: 0% pins the band to the top of the source, 100% to the bottom.
  */
-function rowCurve(a: Point, b: Point, c: Point, dy = 0): string {
-  const lift = (p: Point): Point => ({ cx: p.cx, cy: p.cy + dy });
-  const A = lift(a);
-  const B = lift(b);
-  const C = lift(c);
-  const t = 0.42;
-  const dx1 = B.cx - A.cx;
-  const dx2 = C.cx - B.cx;
-  const flat = Math.abs(A.cy - B.cy) < 1 && Math.abs(B.cy - C.cy) < 1;
-  // Gentle sine-like ribbon when the three centers are level.
-  const wave = flat ? 22 : 0;
-
-  return [
-    `M ${A.cx} ${A.cy}`,
-    `C ${A.cx + dx1 * t} ${A.cy - wave} ${B.cx - dx1 * t} ${B.cy + wave * 0.35} ${B.cx} ${B.cy}`,
-    `C ${B.cx + dx2 * t} ${B.cy + wave * 0.35} ${C.cx - dx2 * t} ${C.cy - wave} ${C.cx} ${C.cy}`,
-  ].join(" ");
-}
-
-/** Three perfectly parallel strands per row — matching the Figma ribbon look. */
-const ROW_STRAND_OFFSETS = [-14, 0, 14] as const;
-
-/** Nodes bloom out of the strands, so the lines draw first and the discs follow. */
-const NODE_VARIANTS = {
-  initial: { opacity: 0, scale: 0.72 },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.6, ease: BCF_EASE },
-  },
+const FOCUS: Record<JourneyChapterId, string> = {
+  story: "0%",
+  humanity: "16%",
+  map: "41%",
+  impact: "18%",
+  trust: "32%",
+  future: "41%",
 };
+
+/* -------------------------------------------------------------------------
+ * Geometry (1080×1920 artboard)
+ *
+ * The cards descend a single spine, alternating which side of it they hang
+ * from. Every card still crosses the centre line, so the thread between them
+ * runs dead straight down the middle rather than zig-zagging — the stagger is
+ * in the cards, not in the path connecting them.
+ * ---------------------------------------------------------------------- */
+
+const CARD_W = 620;
+const CARD_H = 190;
+const CARD_GAP = 43;
+const FIRST_TOP = 414;
+/** How far a card sits in from whichever edge it hangs off. */
+const SIDE_INSET = 150;
+const SPINE_X = 540;
+/** Share of the card the photograph covers before the gradient takes it. */
+const PHOTO_W = 340;
+
+const cardTop = (index: number) => FIRST_TOP + index * (CARD_H + CARD_GAP);
 
 export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
+  const rtl = lang !== "en";
   const [activeId, setActiveId] = React.useState<JourneyChapterId>("story");
-
-  const topRow = React.useMemo(
-    () => [LAYOUT[0], LAYOUT[1], LAYOUT[2]] as [Point, Point, Point],
-    [],
-  );
-  const bottomRow = React.useMemo(
-    () => [LAYOUT[3], LAYOUT[4], LAYOUT[5]] as [Point, Point, Point],
-    [],
-  );
-
-  const rowPaths = React.useMemo(
-    () => [
-      ...ROW_STRAND_OFFSETS.map((dy) => rowCurve(topRow[0], topRow[1], topRow[2], dy)),
-      ...ROW_STRAND_OFFSETS.map((dy) =>
-        rowCurve(bottomRow[0], bottomRow[1], bottomRow[2], dy),
-      ),
-    ],
-    [topRow, bottomRow],
-  );
 
   return (
     <BcfShell
       showLogo={false}
       backgroundImage={bcfJourneyBg}
-      overlayClassName="bg-black/48"
+      /* Heavy. The plate underneath is a lit sunrise valley, and this screen
+         wants the ridge line as texture behind the cards, not as the subject —
+         a flat black at this depth keeps the silhouette and drops everything
+         that competed with the gold. */
+      overlayClassName="bg-black/74"
     >
       <div className="relative min-h-[1920px] w-full overflow-hidden">
-        {/* A low, warm glow behind the constellation only — the same amber the
-            rest of the experience carries, kept faint enough that the sunrise
-            underneath stays the brightest thing on the screen. */}
+        {/* Local dark lift under the header so the title stays readable over
+            whatever part of the ridge line sits behind it. */}
         <div
-          className="pointer-events-none absolute inset-x-0 top-[420px] h-[1100px]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[460px]"
           style={{
             background:
-              "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(251,193,88,0.16), transparent 70%)",
-          }}
-        />
-        {/* Local dark lift under the title so Explore Our Journey stays readable
-            over bright photography. */}
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(4,9,12,0.72) 0%, rgba(4,9,12,0.35) 55%, transparent 100%)",
+              "linear-gradient(180deg, rgba(4,6,9,0.82) 0%, rgba(4,6,9,0.42) 58%, transparent 100%)",
           }}
         />
 
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div
-          className="absolute left-[80px] top-[150px] z-20 max-w-[920px]"
-          variants={bcfStagger(0.1, 0.16)}
+          className="absolute inset-x-0 top-[128px] z-20 flex flex-col items-center"
+          variants={bcfStagger(0.09, 0.14)}
           initial="initial"
           animate="animate"
         >
+          <motion.p
+            variants={bcfRise}
+            className="text-[24px] font-medium uppercase tracking-[0.28em]"
+            style={{ color: BCF.gold }}
+          >
+            {c.journeyEyebrow}
+          </motion.p>
+
+          {/* One colour across the whole title. The gold on this screen belongs
+              to the eyebrow and the chapter numbers; a gold half-title as well
+              put three competing accents in the top third of the page. */}
           <motion.h1
             variants={bcfRise}
-            className="text-[96px] font-bold leading-[1.02] tracking-[0.01em]"
+            className="mt-5 text-[68px] font-semibold leading-[1.06]"
             style={{
-              textShadow: "0 8px 28px rgba(0,0,0,0.65), 0 2px 8px rgba(0,0,0,0.45)",
+              color: "#fff6e6",
+              textShadow: "0 8px 28px rgba(0,0,0,0.65)",
             }}
           >
-            <span className="text-[#fff6e6]">{c.journeyTitleLead}</span>{" "}
-            <span style={{ color: BCF.goldBright }}>{c.journeyTitleGold}</span>
+            {c.journeyTitleLead} {c.journeyTitleGold}
           </motion.h1>
+
           <motion.div
             variants={bcfDrawX}
-            className="mt-10 flex w-full max-w-[560px] origin-left items-center gap-3"
+            className="mt-6 flex w-[330px] items-center gap-3"
           >
-            <span className="h-[2px] flex-1" style={{ backgroundColor: `${BCF.gold}` }} />
-            <span className="h-3 w-3 rounded-full" style={{ backgroundColor: BCF.goldBright }} />
+            <span
+              className="h-px flex-1"
+              style={{
+                background: `linear-gradient(90deg, transparent, ${BCF.gold}b3)`,
+              }}
+            />
+            <span
+              className="h-[7px] w-[7px] rounded-full"
+              style={{ backgroundColor: BCF.goldBright }}
+            />
+            <span
+              className="h-px flex-1"
+              style={{
+                background: `linear-gradient(90deg, ${BCF.gold}b3, transparent)`,
+              }}
+            />
           </motion.div>
+
+          <motion.p
+            variants={bcfRise}
+            className="mt-5 text-[25px] text-white/45"
+          >
+            {c.journeySubtitle}
+          </motion.p>
         </motion.div>
 
         <motion.div
           className="absolute inset-0 z-20"
-          variants={bcfStagger(0.09, 0.5)}
+          variants={bcfStagger(0.1, 0.42)}
           initial="initial"
           animate="animate"
         >
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full"
-            viewBox="0 0 1080 1920"
-            fill="none"
-            aria-hidden="true"
-          >
-            {rowPaths.map((d, index) => {
-              const isCenter = index % 3 === 1;
-              return (
-                <motion.path
-                  key={`strand-${index}`}
-                  d={d}
-                  stroke={isCenter ? "rgba(251,193,88,0.42)" : "rgba(251,193,88,0.18)"}
-                  strokeWidth={isCenter ? 1.75 : 1.25}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  // The strands draw themselves left to right before the nodes
-                  // land on them — the constellation assembles instead of fading.
-                  initial={reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }}
-                  animate={
-                    reduceMotion
-                      ? { opacity: 1, transition: { duration: 0.3 } }
-                      : {
-                          pathLength: 1,
-                          opacity: 1,
-                          transition: {
-                            duration: 1.15,
-                            ease: BCF_EASE,
-                            delay: 0.18 + (index % 3) * 0.06 + (index > 2 ? 0.14 : 0),
-                          },
-                        }
-                  }
-                />
-              );
-            })}
-          </svg>
-
-          {LAYOUT.map((item, index) => {
-            const chapter = c.journeyChapters.find((ch) => ch.id === item.id);
+          {ORDER.map((id, index) => {
+            const chapter = c.journeyChapters.find((ch) => ch.id === id);
             if (!chapter) return null;
-            const isActive = activeId === item.id;
-            const size = isActive ? CIRCLE + 16 : CIRCLE;
+            const top = cardTop(index);
 
             return (
-              /* The centring translate lives on a plain wrapper: motion writes
-                 its own `transform` for the scale/tap, which would otherwise
-                 overwrite the utility classes and knock every node half a card
-                 down and to the side. */
-              <div
-                key={item.id}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{
-                  left: item.cx,
-                  top: item.cy,
-                  width: CIRCLE + 48,
-                  height: CIRCLE + 48,
-                }}
-              >
-              <motion.button
-                type="button"
-                variants={NODE_VARIANTS}
-                onClick={() => {
-                  setActiveId(item.id);
-                  onSelect(item.id);
-                }}
-                onPointerEnter={() => setActiveId(item.id)}
-                onPointerDown={() => setActiveId(item.id)}
-                whileTap={BCF_TAP}
-                transition={BCF_TAP_TRANSITION}
-                className="relative h-full w-full"
-              >
-                {/* Ambient halo — always on at a whisper, so the constellation
-                    reads as lit rather than pasted on top of the photograph;
-                    it blooms with the node the visitor has landed on.
-
-                    The gradient does the softening on its own; the `blur-2xl`
-                    that used to sit on top of it was six 380px blur surfaces on
-                    one screen, each of which Chrome renders by drawing the
-                    element to a texture and running a separable convolution
-                    over it — at 2× on the 4K panel, before anything moves. The
-                    wider, softer falloff below is the same picture for free. */}
-                <span
-                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-500"
-                  style={{
-                    width: size + 132,
-                    height: size + 132,
-                    background: `radial-gradient(circle, ${BCF.gold}4d 0%, ${BCF.gold}2b 42%, transparent 72%)`,
-                    opacity: isActive ? 0.9 : 0.32,
-                  }}
-                />
-
-                {/* Slow orbit ring — only the active node earns it, so it reads
-                    as "you are here" rather than decoration repeated six times.
-                    CSS keyframes, so the rotation lives on the compositor and
-                    the main thread stays free for the next tap. */}
-                {isActive && !reduceMotion ? (
-                  <span
-                    className="bcf-orbit pointer-events-none absolute left-1/2 top-1/2 rounded-full"
-                    style={{
-                      width: size + 34,
-                      height: size + 34,
-                      border: `1.5px dashed ${BCF.gold}99`,
-                    }}
+              <React.Fragment key={id}>
+                {index > 0 ? (
+                  <SpineLink
+                    top={top - CARD_GAP}
+                    delay={0.5 + index * 0.1}
+                    reduceMotion={reduceMotion}
                   />
                 ) : null}
 
-                <span
-                  className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-2 transition-[width,height,box-shadow,border-color] duration-500 ease-smooth-out"
-                  style={{
-                    width: size,
-                    height: size,
-                    borderColor: isActive ? BCF.gold : "rgba(251,193,88,0.55)",
-                    boxShadow: isActive
-                      ? `0 0 28px ${BCF.gold}66, 0 0 0 6px rgba(251,193,88,0.12)`
-                      : `0 0 0 0 ${BCF.gold}00`,
+                <ChapterCard
+                  top={top}
+                  /* Odd cards hang off the start edge, even off the end, so the
+                     column reads as a descent rather than a list. Logical
+                     insets, so the stagger mirrors with the language. */
+                  fromStart={index % 2 === 0}
+                  number={bcfDigits(String(index + 1).padStart(2, "0"), lang)}
+                  title={chapter.title}
+                  image={thumbs[id]}
+                  focus={FOCUS[id]}
+                  rtl={rtl}
+                  active={activeId === id}
+                  onActivate={() => setActiveId(id)}
+                  onSelect={() => {
+                    setActiveId(id);
+                    onSelect(id);
                   }}
-                >
-                  <img
-                    src={thumbs[item.id]}
-                    alt=""
-                    decoding="async"
-                    width={CIRCLE}
-                    height={CIRCLE}
-                    className="h-full w-full transform-gpu object-cover transition-transform duration-600 ease-smooth-out motion-reduce:transition-none"
-                    style={{ transform: isActive ? "scale(1.08)" : "scale(1)" }}
-                  />
-                  <span
-                    className="pointer-events-none absolute inset-0 transition-opacity duration-500"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 50% 50%, rgba(4,7,10,0.05), rgba(4,7,10,0.55))",
-                      opacity: isActive ? 0.35 : 0.8,
-                    }}
-                  />
-                </span>
-                <span
-                  className="absolute left-1/2 top-full mt-5 w-[280px] -translate-x-1/2 text-center text-[30px] font-medium leading-tight transition-colors duration-500"
-                  style={{ color: isActive ? BCF.sand : "#fdeed4" }}
-                >
-                  {chapter.title}
-                </span>
-              </motion.button>
-              </div>
+                />
+              </React.Fragment>
             );
           })}
         </motion.div>
       </div>
     </BcfShell>
+  );
+}
+
+/** Wide enough to hold the bead's halo without clipping it. */
+const LINK_W = 64;
+
+/**
+ * The thread between two cards: a lit filament down the spine with a bead on
+ * it. The bead is what makes the six cards read as one route — without it the
+ * gaps are just gaps.
+ *
+ * The light is painted, not filtered. Every glow here is a `box-shadow` or a
+ * radial gradient rather than a `blur()`, because five of these are on screen
+ * at once and a filtered layer is one Chrome draws to a texture and convolves
+ * before it can composite — the same reason the halos on the constellation
+ * this replaced had to lose their `blur-2xl`.
+ */
+function SpineLink({
+  top,
+  delay,
+  reduceMotion,
+}: {
+  top: number;
+  delay: number;
+  reduceMotion: boolean | null;
+}) {
+  return (
+    <motion.span
+      className="pointer-events-none absolute z-10 flex flex-col items-center"
+      style={{ left: SPINE_X - LINK_W / 2, top, height: CARD_GAP, width: LINK_W }}
+      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scaleY: 0 }}
+      animate={{ opacity: 1, scaleY: 1 }}
+      transition={{ duration: 0.5, delay, ease: BCF_EASE }}
+    >
+      <span
+        className="w-[2px] flex-1 rounded-full"
+        style={{
+          background: `linear-gradient(180deg, ${BCF.gold}00, ${BCF.goldBright})`,
+          boxShadow: `0 0 10px ${BCF.gold}b3, 0 0 22px ${BCF.gold}59`,
+        }}
+      />
+      <span className="relative grid shrink-0 place-items-center">
+        {/* Wide, soft falloff under the bead — this is the part that reads as
+            glow from across the room; the shadows below only sharpen its core. */}
+        <span
+          className="absolute h-[46px] w-[46px] rounded-full"
+          style={{
+            background: `radial-gradient(circle, ${BCF.gold}80 0%, ${BCF.gold}33 38%, transparent 72%)`,
+          }}
+        />
+        <span
+          className="relative h-[11px] w-[11px] rounded-full"
+          style={{
+            backgroundColor: "#fff2d4",
+            boxShadow: `0 0 8px ${BCF.goldBright}, 0 0 20px ${BCF.gold}cc, 0 0 40px ${BCF.gold}80`,
+          }}
+        />
+      </span>
+      <span
+        className="w-[2px] flex-1 rounded-full"
+        style={{
+          background: `linear-gradient(180deg, ${BCF.goldBright}, ${BCF.gold}00)`,
+          boxShadow: `0 0 10px ${BCF.gold}b3, 0 0 22px ${BCF.gold}59`,
+        }}
+      />
+    </motion.span>
+  );
+}
+
+const CARD_VARIANTS = {
+  initial: { opacity: 0, y: 26 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.62, ease: BCF_EASE },
+  },
+};
+
+function ChapterCard({
+  top,
+  fromStart,
+  number,
+  title,
+  image,
+  focus,
+  rtl,
+  active,
+  onActivate,
+  onSelect,
+}: {
+  top: number;
+  fromStart: boolean;
+  number: string;
+  title: string;
+  image: string;
+  focus: string;
+  rtl: boolean;
+  active: boolean;
+  onActivate: () => void;
+  onSelect: () => void;
+}) {
+  return (
+    <motion.button
+      type="button"
+      variants={CARD_VARIANTS}
+      onClick={onSelect}
+      onPointerEnter={onActivate}
+      onPointerDown={onActivate}
+      whileTap={BCF_TAP}
+      transition={BCF_TAP_TRANSITION}
+      className="absolute z-20 transform-gpu overflow-hidden text-start"
+      style={{
+        top,
+        width: CARD_W,
+        height: CARD_H,
+        [fromStart ? "insetInlineStart" : "insetInlineEnd"]: SIDE_INSET,
+        borderRadius: 18,
+        border: `1px solid ${active ? BCF.gold : `${BCF.gold}33`}`,
+        background:
+          "linear-gradient(100deg, rgba(9,8,6,0.94) 0%, rgba(12,10,7,0.86) 55%, rgba(12,10,7,0.55) 100%)",
+        boxShadow: active
+          ? `0 0 40px ${BCF.gold}2e, 0 22px 56px rgba(0,0,0,0.6)`
+          : "0 18px 44px rgba(0,0,0,0.5)",
+        transition:
+          "border-color 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1)",
+      }}
+    >
+      {/* The photograph is masked rather than scrimmed: a scrim leaves a hard
+          vertical edge where the image stops, which on six stacked cards is six
+          seams down the page. The mask direction follows the text, so in RTL
+          the picture moves to the other end and fades the other way.
+
+          It carries the card's own end-corner radii as well. A masked child is
+          composited on its own layer, and it was escaping the parent's rounded
+          `overflow-hidden` — a square photo corner poking past the gold border
+          on every card. Logical corners, so they follow the picture when the
+          layout mirrors. */}
+      <span
+        className="pointer-events-none absolute inset-y-0 end-0 block overflow-hidden"
+        style={{
+          width: PHOTO_W,
+          borderStartEndRadius: 17,
+          borderEndEndRadius: 17,
+          maskImage: `linear-gradient(${rtl ? 270 : 90}deg, transparent 0%, rgba(0,0,0,0.5) 26%, #000 64%)`,
+          WebkitMaskImage: `linear-gradient(${rtl ? 270 : 90}deg, transparent 0%, rgba(0,0,0,0.5) 26%, #000 64%)`,
+        }}
+      >
+        <img
+          src={image}
+          alt=""
+          decoding="async"
+          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
+          style={{
+            objectPosition: `50% ${focus}`,
+            transform: active ? "scale(1.06)" : "scale(1)",
+          }}
+        />
+        <span
+          className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+          style={{
+            backgroundColor: "rgba(4,6,9,0.28)",
+            opacity: active ? 0 : 1,
+          }}
+        />
+      </span>
+
+      <span className="relative z-10 flex h-full flex-col justify-center ps-11 pe-8">
+        <span
+          className="text-[46px] font-light leading-none tabular-nums"
+          style={{ color: BCF.gold }}
+        >
+          {number}
+        </span>
+        <span
+          className="mt-4 max-w-[280px] text-[34px] font-semibold leading-tight"
+          style={{ color: "#fff6e6" }}
+        >
+          {title}
+        </span>
+      </span>
+    </motion.button>
   );
 }

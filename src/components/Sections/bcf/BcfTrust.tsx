@@ -66,20 +66,14 @@ const topicBgs: Partial<Record<TrustTopicId, string>> = {
   recognition: recognitionBg,
 };
 
-/**
- * Credential artwork, keyed by `trustCredentials[].id`.
- *
- * Logos and certificates are shown whole (`document`) so seals and wordmarks
- * are not cropped. Country flags are contained too — they are graphics, not
- * photographs, and a crop would lose the canton or the sun.
- */
-const credentialArt: Record<string, { src: string; document?: boolean }> = {
-  "iraq-krg": { src: credKurdistan, document: true },
-  usa: { src: credUsa, document: true },
-  ecosoc: { src: credEcosoc, document: true },
-  uk: { src: credBcc, document: true },
-  kuwait: { src: credKuwait, document: true },
-  iso: { src: isoCertificate, document: true },
+/** Credential artwork, keyed by `trustCredentials[].id`. */
+const credentialArt: Record<string, string> = {
+  "iraq-krg": credKurdistan,
+  usa: credUsa,
+  ecosoc: credEcosoc,
+  uk: credBcc,
+  kuwait: credKuwait,
+  iso: isoCertificate,
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -383,7 +377,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 six credentials down and letting the certificate settle beside
                 them reads as the page assembling itself. */}
             <motion.div
-              className="mx-auto mt-16 flex w-full max-w-[1240px] gap-10"
+              className="mx-auto mt-16 flex w-full max-w-[1240px] items-stretch gap-10"
               variants={bcfStagger(0.16, 0.2)}
               initial="initial"
               animate="animate"
@@ -430,28 +424,17 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 
               <motion.div
                 variants={bcfRiseCard}
-                className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden p-8`}
+                className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
-                <div
-                  className="overflow-hidden rounded-xl border border-white/10"
-                  style={{
-                    backgroundColor: activeArt?.document
-                      ? "rgba(255,255,255,0.06)"
-                      : "transparent",
-                  }}
-                >
+                <div className="relative min-h-[760px] flex-1 overflow-hidden">
                   <AnimatePresence mode="wait">
-                    {/* Keyed on the image so a credential switch crossfades
-                        the plate, not the surrounding glass. */}
                     <motion.img
-                      key={activeArt?.src ?? certificateImg}
-                      src={activeArt?.src ?? certificateImg}
+                      key={activeArt ?? certificateImg}
+                      src={activeArt ?? certificateImg}
                       alt=""
                       decoding="async"
-                      className={`h-[680px] w-full ${
-                        activeArt?.document ? "object-contain p-3" : "object-cover"
-                      }`}
+                      className="absolute inset-0 h-full w-full object-cover"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -462,7 +445,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={activeCredential.id}
-                    className={`mt-8 text-[32px] text-white/85 ${
+                    className={`px-8 py-8 text-[32px] text-white/85 ${
                       lang === "en" ? "leading-relaxed" : "leading-[1.75]"
                     }`}
                     initial={{ opacity: 0, y: 12 }}
