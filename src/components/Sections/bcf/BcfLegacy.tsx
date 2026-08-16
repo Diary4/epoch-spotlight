@@ -49,7 +49,7 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
             src={legacyHero}
             alt=""
             decoding="async"
-            fetchPriority="high"
+            fetchpriority="high"
             className={`h-full w-full object-cover ${
               reduceMotion ? "" : "bcf-drift"
             }`}

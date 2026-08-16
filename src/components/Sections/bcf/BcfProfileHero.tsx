@@ -46,7 +46,7 @@ export default function BcfProfileHero({
         src={image}
         alt=""
         decoding="async"
-        fetchPriority="high"
+        fetchpriority="high"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition }}
         initial={{ opacity: 0, scale: 1.06 }}

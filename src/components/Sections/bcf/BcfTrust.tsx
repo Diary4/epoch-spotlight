@@ -43,7 +43,7 @@ import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait flag.jpeg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
-import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
+import presidentPortrait from "@/assets/images/bcf/optimized/bcf-president/8C6A9467.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -289,7 +289,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                   <img
                     src={presidentPortrait}
                     alt=""
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-[46%_12%]"
                   />
                 </span>
                 <div>

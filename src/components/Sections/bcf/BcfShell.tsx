@@ -146,7 +146,7 @@ export default function BcfShell({
             src={backgroundImage}
             alt=""
             decoding="async"
-            fetchPriority="high"
+            fetchpriority="high"
             className={`absolute inset-0 h-full w-full object-cover ${driftClass} ${blurClass}`}
           />
           <div className={`absolute inset-0 ${overlayClassName}`} />

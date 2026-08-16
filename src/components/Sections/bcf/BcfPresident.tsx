@@ -8,28 +8,8 @@ import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { bcfRiseCard, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
-import presidentPortrait from "@/assets/images/bcf/optimized/administration/fff.webp";
-/**
- * Context strip under the record.
- *
- * Stand-in photography: BCF field work rather than the President himself, which
- * is the honest placeholder until his own set arrives. Deliberately *not* the
- * other `administration/` portraits — those are other named officers, and a
- * strip on his page reads as him.
- */
-import stripConvoy from "@/assets/images/bcf/optimized/flood/8C6A6595.webp";
-import stripTeam from "@/assets/images/bcf/optimized/flood/4949107.webp";
-import stripClearing from "@/assets/images/bcf/optimized/flood/2B1A6744.webp";
-import stripCamp from "@/assets/images/bcf/optimized/camps/harsham.webp";
-import stripSchool from "@/assets/images/bcf/optimized/schools/8D1A7003.webp";
-
-const STRIP_IMAGES = [
-  stripTeam,
-  stripConvoy,
-  stripClearing,
-  stripCamp,
-  stripSchool,
-];
+import { bcfPresidentImages } from "@/components/Sections/bcf/bcfPresidentImages";
+import presidentPortrait from "@/assets/images/bcf/optimized/bcf-president/8C6A9467.webp";
 
 /** Padded column the record cards are read in. */
 const COLUMN = "mx-auto w-full max-w-[1000px] px-10";
@@ -73,7 +53,7 @@ export default function BcfPresident({ lang, onBack }: BcfPresidentProps) {
           meta={president.meta}
           align="center"
           height={640}
-          objectPosition="50% 22%"
+          objectPosition="46% 12%"
           plateWidth={700}
         />
 
@@ -120,9 +100,9 @@ export default function BcfPresident({ lang, onBack }: BcfPresidentProps) {
 
           <motion.div variants={bcfRiseCard}>
             <BcfFilmstrip
-              images={STRIP_IMAGES}
+              images={bcfPresidentImages}
               rtl={rtl}
-              controls={false}
+              controls
               size="sm"
               width={1080}
               delay={0}

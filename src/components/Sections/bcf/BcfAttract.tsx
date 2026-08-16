@@ -91,7 +91,7 @@ function BcfMonogram() {
       src={bcfLogo}
       alt="Barzani Charity Foundation"
       decoding="async"
-      fetchPriority="high"
+      fetchpriority="high"
       className="h-[300px] w-auto"
       // The seal carries its own ring, so the gold that used to be a border
       // becomes the glow behind it — the halo stays, the placeholder goes.
@@ -153,7 +153,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
                 src={plate}
                 alt=""
                 decoding="async"
-                fetchPriority={index === 0 ? "high" : "low"}
+                fetchpriority={index === 0 ? "high" : "low"}
                 className="absolute inset-0 h-full w-full object-cover"
                 initial={false}
                 animate={{ opacity: isActive ? 1 : 0 }}

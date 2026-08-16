@@ -1,6 +1,5 @@
 import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -142,36 +141,44 @@ function FilmBand({ width, size }: { width: number; size: FilmstripSize }) {
   );
 }
 
+/**
+ * One plate on the strip.
+ *
+ * The neighbours are the controls. A chevron floating over the film was a
+ * second thing to aim at on a screen that already shows you the photograph you
+ * would be moving to — so the plate either side *is* the button, and the one in
+ * the gate is inert (there is nowhere for it to take you).
+ */
 function Plate({
   src,
   alt,
+  label,
   centre,
   size,
+  onClick,
 }: {
   src: string;
   alt: string;
+  label?: string;
   centre: boolean;
   size: FilmstripSize;
+  onClick?: () => void;
 }) {
   const s = SIZES[size];
-  return (
-    <span
-      className="relative shrink-0 overflow-hidden"
-      style={{
-        width: centre ? s.centreW : s.sideW,
-        height: centre ? s.centreH : s.sideH,
-        borderRadius: centre ? 10 : 8,
-        border: centre
-          ? `3px solid ${BCF.gold}`
-          : "1px solid rgba(255,255,255,0.14)",
-        boxShadow: centre
-          ? `0 26px 62px rgba(0,0,0,0.6), 0 0 44px ${BCF.gold}26`
-          : "0 14px 34px rgba(0,0,0,0.45)",
-        opacity: centre ? 1 : 0.5,
-      }}
-    >
-      {/* Keyed on the source, not the index: neighbouring plates change source
-          on every step, and an index key would hold the old photograph. */}
+  const frameStyle: React.CSSProperties = {
+    width: centre ? s.centreW : s.sideW,
+    height: centre ? s.centreH : s.sideH,
+    borderRadius: centre ? 10 : 8,
+    border: centre
+      ? `3px solid ${BCF.gold}`
+      : "1px solid rgba(255,255,255,0.14)",
+    boxShadow: centre
+      ? `0 26px 62px rgba(0,0,0,0.6), 0 0 44px ${BCF.gold}26`
+      : "0 14px 34px rgba(0,0,0,0.45)",
+    opacity: centre ? 1 : 0.5,
+  };
+  const body = (
+    <>
       <AnimatePresence initial={false}>
         <motion.img
           key={src}
@@ -191,36 +198,29 @@ function Plate({
           style={{ backgroundColor: "rgba(4,6,9,0.35)" }}
         />
       )}
-    </span>
+    </>
   );
-}
 
-function StripArrow({
-  direction,
-  rtl,
-  onClick,
-}: {
-  direction: "prev" | "next";
-  rtl: boolean;
-  onClick: () => void;
-}) {
-  // "Previous" points back along the reading direction, so the glyph flips with
-  // the language rather than always pointing left.
-  const pointsLeft = direction === "prev" ? !rtl : rtl;
-  const Icon = pointsLeft ? ChevronLeft : ChevronRight;
+  if (onClick) {
+    return (
+      <motion.button
+        type="button"
+        onClick={onClick}
+        aria-label={label}
+        whileTap={BCF_TAP_FIRM}
+        transition={BCF_TAP_TRANSITION}
+        className="relative shrink-0 transform-gpu overflow-hidden"
+        style={frameStyle}
+      >
+        {body}
+      </motion.button>
+    );
+  }
 
   return (
-    <motion.button
-      type="button"
-      onClick={onClick}
-      aria-label={direction}
-      whileTap={BCF_TAP_FIRM}
-      transition={BCF_TAP_TRANSITION}
-      className="grid h-[64px] w-[64px] transform-gpu place-items-center rounded-full border bg-black/45 backdrop-blur-md"
-      style={{ borderColor: `${BCF.gold}59` }}
-    >
-      <Icon className="h-8 w-8" style={{ color: BCF.sand }} />
-    </motion.button>
+    <span className="relative shrink-0 overflow-hidden" style={frameStyle}>
+      {body}
+    </span>
   );
 }
 
@@ -233,7 +233,7 @@ type BcfFilmstripProps = {
   /** Per-plate description. Also the `alt` on the centre plate. */
   alts?: string[];
   rtl: boolean;
-  /** Chevrons and dots under the strip. Off where the strip is decoration. */
+  /** The dot rail under the strip. Off where the strip is decoration. */
   controls?: boolean;
   /** Advance on its own. Nobody walks up to a kiosk and taps a chevron first. */
   autoplay?: boolean;
@@ -248,9 +248,9 @@ type BcfFilmstripProps = {
  * Photography as a strip of film: one plate held in the gate with its
  * neighbours running off both edges of the screen.
  *
- * Shared by the Board Chief profile (where it is the subject, with controls)
- * and the President profile (where it sits between the biography and the
- * awards as a band of context, and runs on its own).
+ * Shared by the Board Chief and President profiles. The strip is stepped by
+ * touching the plate either side of the gate, or by swiping it; the dot rail
+ * underneath jumps straight to any plate. There are no chevrons — see `Plate`.
  */
 export default function BcfFilmstrip({
   images,
@@ -288,6 +288,19 @@ export default function BcfFilmstrip({
   const altAt = (offset: number) =>
     alts?.[((index + offset) % count + count) % count] ?? "";
 
+  const swipeX = React.useRef<number | null>(null);
+  const onPointerDown = (event: React.PointerEvent) => {
+    swipeX.current = event.clientX;
+  };
+  const onPointerUp = (event: React.PointerEvent) => {
+    if (swipeX.current == null) return;
+    const dx = event.clientX - swipeX.current;
+    swipeX.current = null;
+    if (Math.abs(dx) < 48) return;
+    const towardNext = dx < 0;
+    step(rtl === towardNext ? -1 : 1);
+  };
+
   return (
     <motion.div
       className={`flex w-full flex-col items-center ${className}`}
@@ -298,22 +311,43 @@ export default function BcfFilmstrip({
       <div
         className="relative w-full overflow-hidden"
         style={{ height: SIZES[size].band }}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={() => {
+          swipeX.current = null;
+        }}
       >
         <FilmBand width={width} size={size} />
         <div
           className="absolute inset-0 flex items-center justify-center"
           style={{ gap: PLATE_GAP }}
         >
-          <Plate src={at(-1)} alt="" centre={false} size={size} />
+          {/* The step is bound to what the plate *shows*, not to the side of
+              the screen it lands on — so it stays "touch that photograph to go
+              to it" when the row reverses under RTL. */}
+          <Plate
+            src={at(-1)}
+            alt=""
+            label="previous"
+            centre={false}
+            size={size}
+            onClick={() => step(-1)}
+          />
           <Plate src={at(0)} alt={altAt(0)} centre size={size} />
-          <Plate src={at(1)} alt="" centre={false} size={size} />
+          <Plate
+            src={at(1)}
+            alt=""
+            label="next"
+            centre={false}
+            size={size}
+            onClick={() => step(1)}
+          />
         </div>
       </div>
 
       {controls ? (
-        <div className="mt-5 flex items-center gap-8">
-          <StripArrow direction="prev" rtl={rtl} onClick={() => step(-1)} />
-          <div className="flex items-center gap-3">
+        <div className="mt-5 flex items-center justify-center">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {images.map((src, dot) => (
               <button
                 key={src}
@@ -338,7 +372,6 @@ export default function BcfFilmstrip({
               </button>
             ))}
           </div>
-          <StripArrow direction="next" rtl={rtl} onClick={() => step(1)} />
         </div>
       ) : null}
     </motion.div>

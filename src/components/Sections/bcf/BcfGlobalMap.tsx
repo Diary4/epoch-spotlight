@@ -16,7 +16,6 @@ import {
   Globe2,
   HandHeart,
   Landmark,
-  Map as MapIcon,
   Minus,
   Plus,
   RotateCcw,
@@ -808,30 +807,19 @@ export default function BcfGlobalMap({
             artboard is not somewhere a visitor's hand goes. */}
         <div className="pointer-events-none absolute inset-x-4 top-0 flex items-start justify-between gap-4">
           <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/12 bg-black/55 p-1.5 backdrop-blur-md">
-            {(["globe", "flat"] as ViewMode[]).map((id) => {
-              const on = mode === id;
-              const Icon = id === "globe" ? Globe2 : MapIcon;
-              return (
-                <motion.button
-                  key={id}
-                  type="button"
-                  onClick={() => setMode(id)}
-                  whileTap={BCF_TAP}
-                  transition={BCF_TAP_TRANSITION}
-                  aria-pressed={on}
-                  className="flex transform-gpu items-center gap-2.5 rounded-full px-5 py-3 transition-colors duration-300"
-                  style={{
-                    backgroundColor: on ? "rgba(251,178,47,0.15)" : "transparent",
-                    color: on ? BCF.gold : "rgba(255,255,255,0.45)",
-                  }}
-                >
-                  <Icon className="h-6 w-6" />
-                  <span className="text-[22px]">
-                    {id === "globe" ? c.viewGlobe : c.viewFlat}
-                  </span>
-                </motion.button>
-              );
-            })}
+            {/* Flat projection stays in this file; only the globe is offered. */}
+            <motion.button
+              type="button"
+              aria-pressed
+              className="flex items-center gap-2.5 rounded-full px-5 py-3"
+              style={{
+                backgroundColor: "rgba(251,178,47,0.15)",
+                color: BCF.gold,
+              }}
+            >
+              <Globe2 className="h-6 w-6" />
+              <span className="text-[22px]">{c.viewGlobe}</span>
+            </motion.button>
           </div>
 
           <div className="pointer-events-auto flex items-center gap-2">
