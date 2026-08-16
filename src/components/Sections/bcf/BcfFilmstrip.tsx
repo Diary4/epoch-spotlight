@@ -23,6 +23,20 @@ import {
  * record and the awards, where the same height would push the last card off
  * the foot of the artboard.
  */
+const PLATE_GAP = 14;
+const HOLE_W = 30;
+const HOLE_H = 20;
+const HOLE_GAP = 62;
+/** Half the band's thickness beyond its sprocket rail. */
+const RAIL_MARGIN = 30;
+
+/**
+ * `bow` is how far the middle of the strip rises above its ends, and it is why
+ * `railInset` cannot be chosen freely: the top edge of the band sits at
+ * `railInset - RAIL_MARGIN` at the ends and a further `bow` above that through
+ * the middle, so anything under `bow + RAIL_MARGIN` arcs straight out of the
+ * top of the viewBox and the film loses its own edge.
+ */
 const SIZES = {
   lg: {
     band: 470,
@@ -30,26 +44,21 @@ const SIZES = {
     centreH: 386,
     sideW: 300,
     sideH: 324,
-    railInset: 40,
+    railInset: 58,
+    bow: 26,
   },
   sm: {
     band: 340,
     centreW: 590,
-    centreH: 300,
+    centreH: 296,
     sideW: 250,
-    sideH: 248,
-    railInset: 26,
+    sideH: 244,
+    railInset: 44,
+    bow: 14,
   },
 } as const;
 
 export type FilmstripSize = keyof typeof SIZES;
-
-const PLATE_GAP = 14;
-const HOLE_W = 30;
-const HOLE_H = 20;
-const HOLE_GAP = 62;
-/** How far the middle of the strip rises above its ends. */
-const BOW = 26;
 
 type Point = { x: number; y: number };
 
@@ -73,27 +82,29 @@ function quadPoint(p0: Point, p1: Point, p2: Point, t: number): Point {
 function FilmBand({ width, size }: { width: number; size: FilmstripSize }) {
   const maskId = React.useId();
   const fillId = React.useId();
-  const { band: BAND_H, railInset: RAIL_INSET } = SIZES[size];
+  const { band: BAND_H, railInset: RAIL_INSET, bow: BOW } = SIZES[size];
 
   const topY = RAIL_INSET;
   const bottomY = BAND_H - RAIL_INSET;
   const holeCount = Math.max(2, Math.round(width / HOLE_GAP));
 
+  /** Control point that lifts the middle of a rail by exactly `BOW`. */
+  const control = (y: number) => y - BOW * 2;
+
   const railHoles = (y: number) => {
     const p0 = { x: 0, y };
-    const p1 = { x: width / 2, y: y - BOW * 2 };
+    const p1 = { x: width / 2, y: control(y) };
     const p2 = { x: width, y };
     return Array.from({ length: holeCount }, (_, i) =>
       quadPoint(p0, p1, p2, i / (holeCount - 1)),
     );
   };
 
-  const edge = (y: number) => `Q${width / 2} ${y - BOW * 2} ${width} ${y}`;
-  const bandTop = RAIL_INSET - 30;
-  const bandBottom = BAND_H - RAIL_INSET + 30;
+  const bandTop = RAIL_INSET - RAIL_MARGIN;
+  const bandBottom = BAND_H - RAIL_INSET + RAIL_MARGIN;
   const bandPath =
-    `M0 ${bandTop} ${edge(bandTop)} ` +
-    `L${width} ${bandBottom} Q${width / 2} ${bandBottom - BOW * 2} 0 ${bandBottom} Z`;
+    `M0 ${bandTop} Q${width / 2} ${control(bandTop)} ${width} ${bandTop} ` +
+    `L${width} ${bandBottom} Q${width / 2} ${control(bandBottom)} 0 ${bandBottom} Z`;
 
   return (
     <svg

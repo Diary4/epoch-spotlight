@@ -383,13 +383,13 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 six credentials down and letting the certificate settle beside
                 them reads as the page assembling itself. */}
             <motion.div
-              className="mx-auto mt-24 flex w-full max-w-[1120px] gap-8"
+              className="mx-auto mt-16 flex w-full max-w-[1240px] gap-10"
               variants={bcfStagger(0.16, 0.2)}
               initial="initial"
               animate="animate"
             >
               <motion.div
-                className="flex w-[440px] shrink-0 flex-col gap-5"
+                className="flex w-[540px] shrink-0 flex-col gap-6"
                 variants={bcfStagger(0.07, 0)}
               >
                 {c.trustCredentials.map((item, index) => {
@@ -401,7 +401,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative flex w-full transform-gpu items-center justify-between gap-5 overflow-hidden rounded-2xl px-7 py-6 text-start text-[30px] font-medium leading-snug backdrop-blur-md"
+                      className="relative flex w-full transform-gpu items-center justify-between gap-5 overflow-hidden rounded-2xl px-8 py-7 text-start text-[36px] font-medium leading-snug backdrop-blur-md"
                       style={{
                         border: "1px solid",
                         borderColor: selected ? BCF.gold : "rgba(255,255,255,0.22)",
@@ -418,7 +418,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                         {bcfDigits(item.title, lang)}
                       </span>
                       <ChevronRight
-                        className="h-7 w-7 shrink-0 rtl:rotate-180"
+                        className="h-8 w-8 shrink-0 rtl:rotate-180"
                         style={{ color: BCF.gold }}
                         strokeWidth={2.25}
                       />
@@ -430,7 +430,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 
               <motion.div
                 variants={bcfRiseCard}
-                className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden p-6`}
+                className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden p-8`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
                 <div
@@ -462,7 +462,9 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={activeCredential.id}
-                    className="mt-8 text-[28px] leading-relaxed text-white/85"
+                    className={`mt-8 text-[32px] text-white/85 ${
+                      lang === "en" ? "leading-relaxed" : "leading-[1.75]"
+                    }`}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}

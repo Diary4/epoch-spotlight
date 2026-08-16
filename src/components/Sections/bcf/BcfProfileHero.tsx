@@ -73,18 +73,12 @@ export default function BcfProfileHero({
       />
 
       <motion.div
-        className={`absolute bottom-9 backdrop-blur-md ${
+        className={`absolute bottom-9 ${
           align === "center" ? "start-0 end-0 mx-auto" : "start-12"
         }`}
         style={{
           maxWidth: plateWidth,
           width: align === "center" ? plateWidth : undefined,
-          padding: "22px 30px",
-          borderRadius: 14,
-          border: `1px solid ${BCF.gold}3d`,
-          background:
-            "linear-gradient(165deg, rgba(24,18,8,0.72) 0%, rgba(8,8,8,0.62) 100%)",
-          boxShadow: "0 24px 64px rgba(0,0,0,0.55)",
           textAlign: align === "center" ? "center" : "start",
         }}
         initial={{ opacity: 0, y: 26 }}
