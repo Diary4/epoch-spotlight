@@ -30,6 +30,7 @@ import {
   type PartnerLogoGroupId,
 } from "@/components/Sections/bcf/bcfPartnerLogos";
 import { bcfAwardImages } from "@/components/Sections/bcf/bcfAwardImages";
+import { bcfStaffPortraits } from "@/components/Sections/bcf/bcfStaffPortraits";
 import leadershipThumb from "@/assets/images/bcf/trust/leadership.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
 import partnershipsThumb from "@/assets/images/bcf/trust/partnerships.webp";
@@ -181,10 +182,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {c.trustAdminBoardBody}
             </motion.p>
-            {/* Named roster, grouped: the six who hold the board seat, then the
-                departments, then the offices. Cards carry no portrait — BCF
-                publishes the roster without photographs, and pairing the eight
-                unlabelled `administration/` shots with names would be guesswork. */}
+            {/* Named roster: the vice president and six board seats, then the
+                supervisor. Portraits are the named Board Members headshots. */}
             <motion.div
               className="mx-auto mt-12 flex w-full max-w-[980px] flex-col gap-12"
               variants={bcfStagger(0.1, 0.24)}
@@ -204,16 +203,30 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     style={{ background: `linear-gradient(90deg, ${BCF.gold}66, transparent)` }}
                   />
                   <div className="mt-7 grid grid-cols-2 gap-5">
-                    {group.members.map((member) => (
+                    {group.members.map((member) => {
+                      const portrait = bcfStaffPortraits[member.id];
+                      return (
                       <div
                         key={member.id}
-                        className={`${BCF_GLASS_CARD} flex gap-5 p-6`}
+                        className={`${BCF_GLASS_CARD} flex items-center gap-5 p-6`}
                         style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
                       >
                         <span
-                          className="mt-1 w-[3px] shrink-0 self-stretch rounded-full"
-                          style={{ backgroundColor: BCF.gold }}
-                        />
+                          className="h-[112px] w-[112px] shrink-0 overflow-hidden rounded-full border-2"
+                          style={{ borderColor: BCF.gold }}
+                        >
+                          {portrait ? (
+                            <img
+                              src={portrait}
+                              alt=""
+                              className="h-full w-full object-cover object-top"
+                            />
+                          ) : (
+                            <span className="flex h-full w-full items-center justify-center bg-white/5">
+                              <User className="h-12 w-12 text-white/35" />
+                            </span>
+                          )}
+                        </span>
                         <span className="flex min-w-0 flex-col">
                           <span className="text-[28px] font-semibold leading-snug text-[#fdeed4]">
                             {member.name}
@@ -227,7 +240,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                           </span>
                         </span>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </motion.section>
               ))}
