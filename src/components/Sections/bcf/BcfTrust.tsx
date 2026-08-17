@@ -37,11 +37,11 @@ import partnershipsThumb from "@/assets/images/bcf/trust/partnerships.webp";
 import recognitionThumb from "@/assets/images/bcf/trust/recognition.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
-import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpeg";
-import credUsa from "@/assets/images/bcf/Credibility page/United States.jpeg";
+import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpg";
+import credUsa from "@/assets/images/bcf/Credibility page/USA.jpg";
 import credEcosoc from "@/assets/images/bcf/credentials/ecosoc.webp";
 import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
-import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait flag.jpeg";
+import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
 import presidentPortrait from "@/assets/images/bcf/optimized/bcf-president/8C6A9467.webp";
