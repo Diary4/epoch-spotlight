@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import {
   ArrowLeft,
   Calendar,
@@ -25,7 +25,11 @@ import historyImg from "@/assets/images/mahabad.webp";
 import anthemBg from "@/assets/images/kurdistan.webp";
 import heroVideo from "@/assets/videos/natural.webm";
 import anthemAudio from "@/assets/audio/national-anthem.mp3";
-import { getAnthemKaraokeAt, type AnthemLang } from "@/data/nationalAnthemLyrics";
+import {
+  getAnthemKaraokeAt,
+  type AnthemKaraokeLine,
+  type AnthemLang,
+} from "@/data/nationalAnthemLyrics";
 
 const WRITER_YEAR = "1938";
 const ROLE_YEAR = "1946";
@@ -194,12 +198,69 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
 
-  const karaoke = getAnthemKaraokeAt(currentTime, lang as AnthemLang);
+  /**
+   * Playback position is sampled every frame so the karaoke stays word-accurate,
+   * but the two values it feeds change at very different rates, so they are
+   * handled differently rather than both living in state:
+   *
+   * - The progress bars move every frame. Their widths are written straight to
+   *   the DOM through these refs, keeping the same inline `width` percentage and
+   *   the same CSS `transition-[width]`, so the bars animate exactly as before
+   *   without re-rendering this component 60 times a second.
+   * - The karaoke lines change a couple of times a second. `applyTime` recomputes
+   *   them every frame but only commits state when the rendered result actually
+   *   differs, so React re-renders on a word boundary instead of on a frame.
+   */
+  const progressBarRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [karaoke, setKaraoke] = useState<AnthemKaraokeLine[] | null>(null);
+  const [timePastIntro, setTimePastIntro] = useState(false);
+  const karaokeSignatureRef = useRef<string>("");
+
+  // Read through a ref so `applyTime` keeps a stable identity: the audio element
+  // listeners below are bound once, and a changing callback would leave them
+  // holding a stale language (or force a rebind whose cleanup pauses playback).
+  const langRef = useRef(lang);
+  langRef.current = lang;
+
   // Once playback has started, titles yield to synced lyric subtitles.
-  const showSubtitles = currentTime > 0.05 || isPlaying;
+  const showSubtitles = timePastIntro || isPlaying;
+
+  const applyTime = useCallback(
+    (time: number, duration: number) => {
+      const ratio = duration ? time / duration : 0;
+      const width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+      for (const bar of progressBarRefs.current) {
+        if (bar) bar.style.width = width;
+      }
+
+      const next = getAnthemKaraokeAt(time, langRef.current as AnthemLang);
+      // Compare what the DOM would show, so identical frames commit nothing.
+      const signature = next
+        ? next
+            .map((line) =>
+              line.words.map((w) => `${w.text}|${w.current ? 1 : 0}${w.isPast ? 1 : 0}`).join(","),
+            )
+            .join("/")
+        : "";
+      if (signature !== karaokeSignatureRef.current) {
+        karaokeSignatureRef.current = signature;
+        setKaraoke(next);
+      }
+
+      setTimePastIntro(time > 0.05);
+    },
+    [],
+  );
+
+  // The lyrics are language-specific, and previously came from a value derived
+  // during render, so they switched the instant `lang` did. `applyTime` now owns
+  // that derivation, so re-run it on a language change to keep that immediacy
+  // rather than waiting for the next frame or `timeupdate`.
+  useEffect(() => {
+    const a = audioRef.current;
+    if (a) applyTime(a.currentTime, a.duration);
+  }, [lang, applyTime]);
 
   useEffect(() => {
     const a = audioRef.current;
@@ -208,13 +269,9 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
     const onPause = () => setIsPlaying(false);
     const onEnded = () => {
       setIsPlaying(false);
-      setProgress(0);
-      setCurrentTime(0);
+      applyTime(0, a.duration);
     };
-    const onTime = () => {
-      setCurrentTime(a.currentTime);
-      setProgress(a.duration ? a.currentTime / a.duration : 0);
-    };
+    const onTime = () => applyTime(a.currentTime, a.duration);
     a.addEventListener("play", onPlay);
     a.addEventListener("pause", onPause);
     a.addEventListener("ended", onEnded);
@@ -226,7 +283,8 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
       a.removeEventListener("timeupdate", onTime);
       a.pause();
     };
-  }, []);
+    // `applyTime` is stable (no deps), so this still binds exactly once.
+  }, [applyTime]);
 
   useEffect(() => {
     const videoEl = heroVideoRef.current;
@@ -258,10 +316,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
     const tick = () => {
       if (!alive) return;
       const a = audioRef.current;
-      if (a) {
-        setCurrentTime(a.currentTime);
-        setProgress(a.duration ? a.currentTime / a.duration : 0);
-      }
+      if (a) applyTime(a.currentTime, a.duration);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -269,7 +324,7 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
       alive = false;
       cancelAnimationFrame(raf);
     };
-  }, [isPlaying]);
+  }, [isPlaying, applyTime]);
 
   const togglePlay = () => {
     const a = audioRef.current;
@@ -283,16 +338,14 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
     if (!a) return;
     a.pause();
     a.currentTime = 0;
-    setProgress(0);
-    setCurrentTime(0);
+    applyTime(0, a.duration);
   };
 
   const restart = () => {
     const a = audioRef.current;
     if (!a) return;
     a.currentTime = 0;
-    setProgress(0);
-    setCurrentTime(0);
+    applyTime(0, a.duration);
     void a.play().catch(() => {});
   };
 
@@ -418,8 +471,11 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
                   <div className="flex flex-col items-center gap-3 opacity-70">
                     <div className="h-1 w-40 overflow-hidden rounded-full bg-[#e7dcc4]">
                       <div
+                        ref={(el) => {
+                          progressBarRefs.current[0] = el;
+                        }}
                         className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
-                        style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+                        style={{ width: 0 }}
                       />
                     </div>
                     <p className={`${displayFont} text-[18px] font-light italic`} style={{ color: GOLD }}>
@@ -433,8 +489,11 @@ export default function NationalAnthemPage({ lang = "en", onBack }: NationalAnth
             {/* Progress */}
             <div className="mt-2 h-1 w-48 overflow-hidden rounded-full bg-[#e7dcc4]/80">
               <div
+                ref={(el) => {
+                  progressBarRefs.current[1] = el;
+                }}
                 className="h-full rounded-full bg-[#c69237] transition-[width] duration-150 ease-linear"
-                style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+                style={{ width: 0 }}
               />
             </div>
 

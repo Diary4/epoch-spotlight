@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Capacitor } from "@capacitor/core";
 import { BrowserRouter, HashRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -44,6 +44,19 @@ const LibraryBookDetail = lazy(() => import("./pages/LibraryBookDetail.tsx"));
 const LibraryBookReader = lazy(() => import("./pages/LibraryBookReader.tsx"));
 
 import { useViewportHeight } from "@/hooks/useViewportHeight";
+import { startVideoAutopause } from "@/lib/videoAutopause";
+
+/**
+ * Imported statically on purpose, for the two `/__dev` preview routes below.
+ *
+ * Making these `lazy()` looks like the obvious win — they are only mounted under
+ * `import.meta.env.DEV`, and importing them here does pull them and GSAP into the
+ * production entry chunk. Measured on the kiosk profile it was a net loss: Index
+ * imports both screens too, so the dynamic import made Rollup split them and
+ * their shared dependencies into eight additional chunks, and /screen-1 paid
+ * eight extra round trips for exactly the same bytes. On a high-latency link that
+ * costs more than the larger entry chunk saves, so the static import stays.
+ */
 import KurdishLanguageDialectsPage from "@/components/Sections/TheLand/KurdishLanguageDialects";
 import KurdistanFlagPage from "@/components/Sections/TheLand/KurdistanFlagPage";
 
@@ -117,6 +130,10 @@ const AppRoutes = () => {
 
 const App = () => {
   useViewportHeight();
+
+  // Decorative hero videos stop decoding once they are well outside the
+  // viewport, and resume before they scroll back in. See lib/videoAutopause.
+  useEffect(startVideoAutopause, []);
 
   return (
   <QueryClientProvider client={queryClient}>

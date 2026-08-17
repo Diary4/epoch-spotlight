@@ -33,6 +33,13 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     chunkSizeWarningLimit: 1500,
+    // The kiosk panel runs Chrome/WebView on Android 13, so there is no reason to
+    // down-level modern syntax. Shipping it as authored keeps the bundles smaller
+    // and skips the transpiled helpers the weak CPU would have to parse.
+    target: "es2022",
+    // Vite gzips every emitted chunk just to print a size column; the numbers are
+    // reported by scripts/precompress-dist.mjs instead, from the files that ship.
+    reportCompressedSize: false,
     rollupOptions: {
       output: {
         manualChunks: {

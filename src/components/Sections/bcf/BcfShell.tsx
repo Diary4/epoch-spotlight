@@ -2,6 +2,17 @@ import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { bcfLogo } from "@/components/Sections/bcf/bcfAssets";
+
+/**
+ * React 18 note: this must stay lowercase and be applied via a spread.
+ *
+ * `react-dom@18.3.1` does not know the camelCase `fetchPriority` prop — it warns
+ * and drops it, so the hint never reaches the DOM — while `@types/react@18.3`
+ * already declares it, which makes the correct lowercase spelling look like a
+ * type error. Spreading keeps the spelling the runtime needs without a cast.
+ * On React 19 this can become a plain `fetchPriority` prop.
+ */
+const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 import {
   BCF,
   BCF_ATMOSPHERE_STYLE,
@@ -146,7 +157,7 @@ export default function BcfShell({
             src={backgroundImage}
             alt=""
             decoding="async"
-            fetchpriority="high"
+            {...HIGH_FETCH_PRIORITY}
             className={`absolute inset-0 h-full w-full object-cover ${driftClass} ${blurClass}`}
           />
           <div className={`absolute inset-0 ${overlayClassName}`} />

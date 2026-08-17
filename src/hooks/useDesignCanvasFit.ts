@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type DependencyList } from "react";
+import { rafSchedule } from "@/lib/rafSchedule";
 
 /** Portrait kiosk design width — matches 1080×1920 reference screens. */
 export const DESIGN_WIDTH = 1080;
@@ -49,17 +50,30 @@ export function useDesignCanvasFit(
         ? vh
         : Math.max(naturalHeight * scale, vh);
 
-      setFit({ scale, x, contentHeight, minCanvasHeight });
+      setFit((prev) =>
+        prev.scale === scale &&
+        prev.x === x &&
+        prev.contentHeight === contentHeight &&
+        prev.minCanvasHeight === minCanvasHeight
+          ? prev
+          : { scale, x, contentHeight, minCanvasHeight },
+      );
     };
 
-    recompute();
-    window.addEventListener("resize", recompute);
+    // The window listener and the ResizeObserver both fire for a single resize;
+    // coalescing them to one run per frame keeps the measurement identical and
+    // drops the duplicate forced layouts.
+    const schedule = rafSchedule(recompute);
+
+    schedule.flush();
+    window.addEventListener("resize", schedule, { passive: true });
     const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
+    const ro = el ? new ResizeObserver(schedule) : null;
     if (el && ro) ro.observe(el);
 
     return () => {
-      window.removeEventListener("resize", recompute);
+      schedule.cancel();
+      window.removeEventListener("resize", schedule);
       ro?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

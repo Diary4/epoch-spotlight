@@ -14,6 +14,17 @@ import { CITY_CATEGORIES, getCityCategory, getPlacesByCity } from "@/data/touris
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
+/**
+ * React 18 note: this must stay lowercase and be applied via a spread.
+ *
+ * `react-dom@18.3.1` does not know the camelCase `fetchPriority` prop — it warns
+ * and drops it, so the hint never reaches the DOM — while `@types/react@18.3`
+ * already declares it, which makes the correct lowercase spelling look like a
+ * type error. Spreading keeps the spelling the runtime needs without a cast.
+ * On React 19 this can become a plain `fetchPriority` prop.
+ */
+const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -235,6 +246,15 @@ const NaturalPlaces = () => {
           <div className="flex flex-col gap-16 md:gap-24">
             {places.map((place, index) => {
               const isEven = index % 2 === 0;
+              /**
+               * The opening cards are on screen at load on the 1080×1920 panel, so
+               * one of them is the LCP element. Deferring those costs more than it
+               * saves: the browser cannot even start the request until layout has
+               * run, which showed up as ~4.7s of LCP "load delay". They load
+               * eagerly and at high priority; everything further down the timeline
+               * stays lazy.
+               */
+              const isAboveFold = index < 2;
 
               return (
                 <article
@@ -275,7 +295,8 @@ const NaturalPlaces = () => {
                             src={place.image}
                             alt={place.name}
                             className="h-full w-full object-cover"
-                            loading="lazy"
+                            loading={isAboveFold ? "eager" : "lazy"}
+                            {...(isAboveFold ? HIGH_FETCH_PRIORITY : {})}
                           />
                           {/* Inner shadow applying an off-white border bleed effect */}
                           <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_#faf8f5]" />
@@ -290,6 +311,13 @@ const NaturalPlaces = () => {
                           src={place.image}
                           alt=""
                           className="h-full w-full rounded-full object-cover"
+                          /* Same URL as the card preview, which is already lazy.
+                             Left eager, this 40px dot started the fetch for every
+                             place's full-size artwork on load — 8.5 MB for one
+                             screen — which undid the card's `loading="lazy"`,
+                             since the request was in flight before the card
+                             could defer it. */
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -321,7 +349,8 @@ const NaturalPlaces = () => {
                             src={place.image}
                             alt={place.name}
                             className="h-full w-full object-cover"
-                            loading="lazy"
+                            loading={isAboveFold ? "eager" : "lazy"}
+                            {...(isAboveFold ? HIGH_FETCH_PRIORITY : {})}
                           />
                           {/* Inner shadow applying an off-white border bleed effect */}
                           <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_#faf8f5]" />
@@ -341,7 +370,8 @@ const NaturalPlaces = () => {
                         src={place.image}
                         alt={place.name}
                         className="h-full w-full object-cover"
-                        loading="lazy"
+                        loading={isAboveFold ? "eager" : "lazy"}
+                        {...(isAboveFold ? HIGH_FETCH_PRIORITY : {})}
                       />
                       {/* Inner shadow applying an off-white border bleed effect */}
                       <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_#faf8f5]" />

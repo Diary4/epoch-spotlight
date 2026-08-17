@@ -11,6 +11,17 @@ import {
 } from "@/components/Sections/bcf/bcfMotion";
 import { bcfIntroBg, bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 
+
+/**
+ * React 18 note: this must stay lowercase and be applied via a spread.
+ *
+ * `react-dom@18.3.1` does not know the camelCase `fetchPriority` prop — it warns
+ * and drops it, so the hint never reaches the DOM — while `@types/react@18.3`
+ * already declares it, which makes the correct lowercase spelling look like a
+ * type error. Spreading keeps the spelling the runtime needs without a cast.
+ * On React 19 this can become a plain `fetchPriority` prop.
+ */
+const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 type BcfAttractProps = {
   onEnter: () => void;
 };
@@ -49,7 +60,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
           src={bcfIntroBg}
           alt=""
           decoding="async"
-          fetchpriority="high"
+          {...HIGH_FETCH_PRIORITY}
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div
@@ -73,7 +84,7 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
           src={bcfLogo}
           alt="Barzani Charity Foundation"
           decoding="async"
-          fetchpriority="high"
+          {...HIGH_FETCH_PRIORITY}
           className="h-[300px] w-auto"
           style={{
             filter: `drop-shadow(0 0 60px ${BCF.gold}44) drop-shadow(0 12px 30px rgba(0,0,0,0.5))`,

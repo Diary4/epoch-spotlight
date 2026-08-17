@@ -1,0 +1,2173 @@
+{
+ "office.webp": {
+  "box": [
+   1188,
+   2112
+  ],
+  "fit": "cover"
+ },
+ "the-journey.webp": {
+  "box": [
+   476,
+   272
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1367,
+   2048
+  ]
+ },
+ "the-system.webp": {
+  "box": [
+   476,
+   268
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "the-land-and-future.webp": {
+  "box": [
+   476,
+   268
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   3456,
+   4928
+  ]
+ },
+ "the-people.webp": {
+  "box": [
+   476,
+   272
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   3712,
+   4544
+  ]
+ },
+ "parlaman.webp": {
+  "box": [
+   1080,
+   339
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "parliment.webp": {
+  "box": [
+   1145,
+   2035
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   853
+  ]
+ },
+ "government.webp": {
+  "box": [
+   145,
+   145
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "judiciary.webp": {
+  "box": [
+   638,
+   362
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "card-1.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1536,
+   1024
+  ]
+ },
+ "card-2.webp": {
+  "box": [
+   303,
+   301
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1122,
+   1402
+  ]
+ },
+ "card-3.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1122,
+   1402
+  ]
+ },
+ "lawmaking.webp": {
+  "box": [
+   189,
+   189
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "representation.webp": {
+  "box": [
+   189,
+   189
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "oversight.webp": {
+  "box": [
+   189,
+   189
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "council.webp": {
+  "box": [
+   96,
+   96
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "court.webp": {
+  "box": [
+   96,
+   96
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "appeal.webp": {
+  "box": [
+   96,
+   96
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "instant.webp": {
+  "box": [
+   96,
+   96
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "fair.webp": {
+  "box": [
+   76,
+   76
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "legal.webp": {
+  "box": [
+   76,
+   76
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "rights.webp": {
+  "box": [
+   76,
+   76
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1408,
+   768
+  ]
+ },
+ "journey-1.webp": {
+  "box": [
+   532,
+   743
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1194
+  ]
+ },
+ "journey-2.webp": {
+  "box": [
+   532,
+   660
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1194
+  ]
+ },
+ "journey-3.webp": {
+  "box": [
+   532,
+   751
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   880,
+   1600
+  ]
+ },
+ "1991.webp": {
+  "box": [
+   99,
+   99
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   656,
+   656
+  ]
+ },
+ "1992.webp": {
+  "box": [
+   1153,
+   1235
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   3840,
+   2160
+  ]
+ },
+ "building.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1122,
+   1402
+  ]
+ },
+ "2005.webp": {
+  "box": [
+   99,
+   99
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   610,
+   610
+  ]
+ },
+ "today.webp": {
+  "box": [
+   99,
+   99
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   661,
+   661
+  ]
+ },
+ "election.webp": {
+  "box": [
+   81,
+   81
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   606,
+   606
+  ]
+ },
+ "milestone.webp": {
+  "box": [
+   81,
+   81
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   562,
+   562
+  ]
+ },
+ "roots.webp": {
+  "box": [
+   130,
+   130
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "culture.webp": {
+  "box": [
+   130,
+   130
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "identity.webp": {
+  "box": [
+   130,
+   130
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "land-2.webp": {
+  "box": [
+   310,
+   321
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   3456,
+   4928
+  ]
+ },
+ "land-3.webp": {
+  "box": [
+   1017,
+   904
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1448,
+   1086
+  ]
+ },
+ "peshmarga.webp": {
+  "box": [
+   310,
+   321
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1536,
+   2784
+  ]
+ },
+ "land-5.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1536,
+   1024
+  ]
+ },
+ "land-6.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1536,
+   1024
+  ]
+ },
+ "bg-2.webp": {
+  "box": [
+   302,
+   756
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1122,
+   1402
+  ]
+ },
+ "t-2.webp": {
+  "box": [
+   1014,
+   1572
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   945,
+   1664
+  ]
+ },
+ "16.webp": {
+  "box": [
+   1035,
+   920
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1706,
+   2560
+  ]
+ },
+ "DSC04490.webp": {
+  "box": [
+   1014,
+   1572
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   2560,
+   1673
+  ]
+ },
+ "50560984651_d1bde10089_o.webp": {
+  "box": [
+   1014,
+   1572
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1709,
+   2560
+  ]
+ },
+ "DSC_0553 (3).webp": {
+  "box": [
+   1034,
+   919
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1709
+  ]
+ },
+ "land-4.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1054,
+   1492
+  ]
+ },
+ "kurdistan-3.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   736,
+   920
+  ]
+ },
+ "8.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1455
+  ]
+ },
+ "IMG_3603.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1023,
+   1537
+  ]
+ },
+ "1000140547.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1706
+  ]
+ },
+ "IMG_0252 copy 2.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1706,
+   2560
+  ]
+ },
+ "nature.webp": {
+  "box": [
+   1188,
+   2112
+  ],
+  "fit": "cover"
+ },
+ "IMG_8636 copy.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1706
+  ]
+ },
+ "IMG_8529 copy 3.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1765
+  ]
+ },
+ "1000140591.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1706
+  ]
+ },
+ "kurdistan-2.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   735,
+   507
+  ]
+ },
+ "r-3.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1373,
+   1146
+  ]
+ },
+ "r-2.webp": {
+  "box": [
+   991,
+   881
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1471,
+   1069
+  ]
+ },
+ "IMG_7947 copy.webp": {
+  "box": [
+   173,
+   167
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1706,
+   2560
+  ]
+ },
+ "IMG_8264 -2.webp": {
+  "box": [
+   173,
+   167
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2560,
+   1706
+  ]
+ },
+ "DSC_3019 copy.webp": {
+  "box": [
+   174,
+   168
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1708,
+   2560
+  ]
+ },
+ "IMG_7993 copy.webp": {
+  "box": [
+   174,
+   168
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1706,
+   2560
+  ]
+ },
+ "c-1.webp": {
+  "box": [
+   434,
+   338
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   952,
+   1653
+  ]
+ },
+ "language.webp": {
+  "box": [
+   130,
+   130
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "traditions.webp": {
+  "box": [
+   130,
+   130
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "memory.webp": {
+  "box": [
+   130,
+   130
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1024
+  ]
+ },
+ "presidency-centered.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover"
+ },
+ "1.webp": {
+  "box": [
+   431,
+   388
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1029
+  ]
+ },
+ "2.webp": {
+  "box": [
+   431,
+   452
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   951
+  ]
+ },
+ "3.webp": {
+  "box": [
+   474,
+   528
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   834
+  ]
+ },
+ "4.webp": {
+  "box": [
+   431,
+   472
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1067
+  ]
+ },
+ "5.webp": {
+  "box": [
+   431,
+   380
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1067
+  ]
+ },
+ "6.webp": {
+  "box": [
+   431,
+   287
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1066
+  ]
+ },
+ "7.webp": {
+  "box": [
+   431,
+   325
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1200,
+   906
+  ]
+ },
+ "9.webp": {
+  "box": [
+   431,
+   275
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   4160,
+   2654
+  ]
+ },
+ "r-8.webp": {
+  "box": [
+   1122,
+   882
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1448,
+   1086
+  ]
+ },
+ "cradle.webp": {
+  "box": [
+   1080,
+   849
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   850
+  ]
+ },
+ "history.webp": {
+  "box": [
+   1177,
+   2093
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2000,
+   2000
+  ]
+ },
+ "coexistence.webp": {
+  "box": [
+   1145,
+   2035
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   853
+  ]
+ },
+ "cover.webp": {
+  "box": [
+   1145,
+   2035
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   842,
+   1261
+  ]
+ },
+ "faiths.webp": {
+  "box": [
+   1145,
+   2035
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   720,
+   1280
+  ]
+ },
+ "kurdish-jews.webp": {
+  "box": [
+   1183,
+   2102
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   1280
+  ]
+ },
+ "r-5.webp": {
+  "box": [
+   212,
+   201
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1179,
+   1334
+  ]
+ },
+ "kurdistan.webp": {
+  "box": [
+   261,
+   168
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   736,
+   414
+  ]
+ },
+ "acceptance.webp": {
+  "box": [
+   1185,
+   2107
+  ],
+  "fit": "cover"
+ },
+ "respect.webp": {
+  "box": [
+   222,
+   297
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2000,
+   1498
+  ]
+ },
+ "humanity.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   958,
+   1280
+  ]
+ },
+ "living-identity.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2000,
+   1498
+  ]
+ },
+ "abdulsalam-barzani.webp": {
+  "box": [
+   222,
+   404
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   1280
+  ]
+ },
+ "mustafa-barzani.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   1280
+  ]
+ },
+ "ahmed-barzani.webp": {
+  "box": [
+   222,
+   333
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   1280
+  ]
+ },
+ "masoud-barzani.webp": {
+  "box": [
+   222,
+   333
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "krg_cabinet.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1200,
+   768
+  ]
+ },
+ "laws.webp": {
+  "box": [
+   1185,
+   2107
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2000,
+   1498
+  ]
+ },
+ "barzani.webp": {
+  "box": [
+   1112,
+   874
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   1066
+  ]
+ },
+ "zoroastrianism.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2643,
+   1734
+  ]
+ },
+ "meaning.webp": {
+  "box": [
+   440,
+   370
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   858
+  ]
+ },
+ "christianity.webp": {
+  "box": [
+   228,
+   903
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2249,
+   1334
+  ]
+ },
+ "lalish.webp": {
+  "box": [
+   440,
+   370
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   853
+  ]
+ },
+ "heritage.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   844
+  ]
+ },
+ "core.webp": {
+  "box": [
+   734,
+   1233
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   1280
+  ]
+ },
+ "shafi.webp": {
+  "box": [
+   440,
+   370
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   850
+  ]
+ },
+ "kurd.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2400,
+   1792
+  ]
+ },
+ "assyrian.webp": {
+  "box": [
+   736,
+   1221
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2304,
+   1856
+  ]
+ },
+ "armenian.webp": {
+  "box": [
+   228,
+   903
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2304,
+   1856
+  ]
+ },
+ "turkmen.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2400,
+   1792
+  ]
+ },
+ "historical.webp": {
+  "box": [
+   440,
+   370
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2000,
+   1498
+  ]
+ },
+ "mosques.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   857,
+   1280
+  ]
+ },
+ "christmas.webp": {
+  "box": [
+   222,
+   297
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   850
+  ]
+ },
+ "yazidi-festival.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   719,
+   1280
+  ]
+ },
+ "kakai-festival.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   720,
+   1280
+  ]
+ },
+ "crown.webp": {
+  "box": [
+   111,
+   167
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1536
+  ]
+ },
+ "book.webp": {
+  "box": [
+   201,
+   149
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   728,
+   538
+  ]
+ },
+ "guitar.webp": {
+  "box": [
+   111,
+   167
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1536
+  ]
+ },
+ "hand.webp": {
+  "box": [
+   111,
+   167
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1536
+  ]
+ },
+ "flower-2.webp": {
+  "box": [
+   309,
+   401
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1536
+  ]
+ },
+ "flower-1.webp": {
+  "box": [
+   309,
+   401
+  ],
+  "fit": "contain",
+  "intrinsic": [
+   1024,
+   1536
+  ]
+ },
+ "adila.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "khanzad.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "w-4.webp": {
+  "box": [
+   208,
+   201
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1024,
+   1536
+  ]
+ },
+ "maryamkhan.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "mayankhan.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover"
+ },
+ "minaqazi.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "nadia-sheikh.webp": {
+  "box": [
+   208,
+   201
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "danielle.webp": {
+  "box": [
+   208,
+   201
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2304,
+   1856
+  ]
+ },
+ "mastura.webp": {
+  "box": [
+   895,
+   880
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "shifagardi.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "maryam.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "ayshe.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "hapsaxan.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover"
+ },
+ "najibakhan.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "pakiza.webp": {
+  "box": [
+   422,
+   260
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "roshan.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "politic.webp": {
+  "box": [
+   1120,
+   1991
+  ],
+  "fit": "cover"
+ },
+ "qadamkher.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover"
+ },
+ "margret.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover"
+ },
+ "khajabawa.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover"
+ },
+ "laylaqasim.webp": {
+  "box": [
+   393,
+   260
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2304,
+   1856
+  ]
+ },
+ "dayka-aisha.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2752,
+   1536
+  ]
+ },
+ "amina.webp": {
+  "box": [
+   690,
+   679
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   714
+  ]
+ },
+ "honor-to-serve-bg.webp": {
+  "box": [
+   1137,
+   2021
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2160,
+   3840
+  ]
+ },
+ "logo-mark.webp": {
+  "box": [
+   185,
+   300
+  ],
+  "fit": "fill",
+  "intrinsic": [
+   456,
+   740
+  ]
+ },
+ "impact-camps.webp": {
+  "box": [
+   1080,
+   1920
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1400,
+   934
+  ]
+ },
+ "start-page.webp": {
+  "box": [
+   1191,
+   2117
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2160,
+   3840
+  ]
+ },
+ "main-background.PNG": {
+  "box": [
+   1150,
+   2045
+  ],
+  "fit": "cover"
+ },
+ "story.webp": {
+  "box": [
+   363,
+   201
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   560,
+   560
+  ]
+ },
+ "map.webp": {
+  "box": [
+   357,
+   197
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   560,
+   560
+  ]
+ },
+ "impact.webp": {
+  "box": [
+   355,
+   196
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   560,
+   560
+  ]
+ },
+ "trust.webp": {
+  "box": [
+   343,
+   190
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   560,
+   560
+  ]
+ },
+ "future.webp": {
+  "box": [
+   343,
+   190
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   560,
+   560
+  ]
+ },
+ "trustbehindwokr.png": {
+  "box": [
+   1199,
+   2131
+  ],
+  "fit": "cover"
+ },
+ "logo-seal.webp": {
+  "box": [
+   101,
+   102
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   640,
+   647
+  ]
+ },
+ "relief.webp": {
+  "box": [
+   554,
+   291
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1200,
+   798
+  ]
+ },
+ "health.webp": {
+  "box": [
+   554,
+   291
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1200,
+   800
+  ]
+ },
+ "education.webp": {
+  "box": [
+   844,
+   300
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1200,
+   1799
+  ]
+ },
+ "impact-idps.webp": {
+  "box": [
+   949,
+   892
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1066
+  ]
+ },
+ "qushtapa.webp": {
+  "box": [
+   554,
+   291
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1067
+  ]
+ },
+ "humanstories-recovery.webp": {
+  "box": [
+   978,
+   920
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1066
+  ]
+ },
+ "DSC_0070.webp": {
+  "box": [
+   554,
+   291
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   3216,
+   2136
+  ]
+ },
+ "impact-employees.webp": {
+  "box": [
+   978,
+   920
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1066
+  ]
+ },
+ "baharka.webp": {
+  "box": [
+   554,
+   291
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1067
+  ]
+ },
+ "community.webp": {
+  "box": [
+   554,
+   291
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1200,
+   801
+  ]
+ },
+ "environment.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   960
+  ]
+ },
+ "where-we-work-bg.webp": {
+  "box": [
+   1093,
+   1943
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2160,
+   3840
+  ]
+ },
+ "impact-schools.webp": {
+  "box": [
+   468,
+   518
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1067
+  ]
+ },
+ "humanity-education.webp": {
+  "box": [
+   174,
+   171
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1067
+  ]
+ },
+ "humanity-relief.webp": {
+  "box": [
+   171,
+   174
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1062
+  ]
+ },
+ "humanity-health.webp": {
+  "box": [
+   175,
+   165
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1066
+  ]
+ },
+ "humanity-community.webp": {
+  "box": [
+   174,
+   170
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1066
+  ]
+ },
+ "background.webp": {
+  "box": [
+   1080,
+   1920
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   941,
+   1672
+  ]
+ },
+ "bg.webp": {
+  "box": [
+   1096,
+   1949
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   858,
+   1280
+  ]
+ },
+ "eid.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   958
+  ]
+ },
+ "zoro-temples.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   853
+  ]
+ },
+ "churches-and-monasteries.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   958,
+   1280
+  ]
+ },
+ "lalish-temple.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "christmas-easter.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "opened-doors-2014.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   855,
+   1280
+  ]
+ },
+ "sabean-mandaeanism.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   5504,
+   3072
+  ]
+ },
+ "living-timeline.webp": {
+  "box": [
+   739,
+   1234
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "safe-haven.webp": {
+  "box": [
+   1194,
+   2122
+  ],
+  "fit": "cover"
+ },
+ "hospitality.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "living-side-by-side.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "shared-celebrations.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   853,
+   1280
+  ]
+ },
+ "yazidism.webp": {
+  "box": [
+   228,
+   903
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   3744,
+   2108
+  ]
+ },
+ "nowruz.webp": {
+  "box": [
+   1167,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1280,
+   720
+  ]
+ },
+ "three-pillars.webp": {
+  "box": [
+   1166,
+   2074
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1600,
+   1238
+  ]
+ },
+ "l-1.webp": {
+  "box": [
+   984,
+   520
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   2766,
+   1536
+  ]
+ },
+ "farhad-pirbal.webp": {
+  "box": [
+   338,
+   417
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   848,
+   1264
+  ]
+ },
+ "bakhtiar-ali.webp": {
+  "box": [
+   347,
+   428
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   848,
+   1264
+  ]
+ },
+ "rebwar-siwayli.webp": {
+  "box": [
+   226,
+   301
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   848,
+   1264
+  ]
+ },
+ "taalat-tahir.webp": {
+  "box": [
+   226,
+   301
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1264,
+   848
+  ]
+ },
+ "the-potato-eater.webp": {
+  "box": [
+   200,
+   300
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1800,
+   2700
+  ]
+ },
+ "hotel-europa.webp": {
+  "box": [
+   200,
+   300
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   720,
+   1080
+  ]
+ },
+ "triangle-tomb.webp": {
+  "box": [
+   302,
+   443
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   386,
+   579
+  ]
+ },
+ "benjaminfranklin.webp": {
+  "box": [
+   1188,
+   2112
+  ],
+  "fit": "cover"
+ },
+ "trump.webp": {
+  "box": [
+   1085,
+   1929
+  ],
+  "fit": "cover"
+ },
+ "napel.webp": {
+  "box": [
+   1085,
+   1929
+  ],
+  "fit": "cover"
+ },
+ "firstperson.webp": {
+  "box": [
+   1188,
+   2112
+  ],
+  "fit": "cover"
+ },
+ "bg-3.webp": {
+  "box": [
+   1080,
+   1920
+  ],
+  "fit": "cover"
+ },
+ "svg>": {
+  "box": [
+   431,
+   284
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   1920,
+   1080
+  ]
+ },
+ "mahabad.webp": {
+  "box": [
+   292,
+   170
+  ],
+  "fit": "cover",
+  "intrinsic": [
+   870,
+   439
+  ]
+ },
+ "images.webp": {
+  "box": [
+   1080,
+   555
+  ],
+  "fit": "cover"
+ },
+ "r-7.webp": {
+  "box": [
+   1080,
+   555
+  ],
+  "fit": "cover"
+ },
+ "future-legacy-bg.webp": {
+  "box": [
+   1135,
+   2019
+  ],
+  "fit": "cover"
+ }
+}

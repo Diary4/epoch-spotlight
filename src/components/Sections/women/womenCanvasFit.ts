@@ -1,4 +1,5 @@
 import React from "react";
+import { rafSchedule } from "@/lib/rafSchedule";
 
 export const WOMEN_DESIGN_WIDTH = 1400;
 
@@ -46,16 +47,28 @@ export function useWomenCanvasFit(
       const contentHeight = fitViewport
         ? vh
         : Math.max(naturalHeight * scale, vh);
-      setFit({ scale, x, contentHeight, minCanvasHeight });
+      setFit((prev) =>
+        prev.scale === scale &&
+        prev.x === x &&
+        prev.contentHeight === contentHeight &&
+        prev.minCanvasHeight === minCanvasHeight
+          ? prev
+          : { scale, x, contentHeight, minCanvasHeight },
+      );
     };
 
-    recompute();
-    window.addEventListener("resize", recompute);
+    // One run per frame: the window listener and the ResizeObserver otherwise
+    // repeat the same measurement — and its forced layout — for one resize.
+    const schedule = rafSchedule(recompute);
+
+    schedule.flush();
+    window.addEventListener("resize", schedule, { passive: true });
     const el = canvasRef.current;
-    const ro = el ? new ResizeObserver(recompute) : null;
+    const ro = el ? new ResizeObserver(schedule) : null;
     if (el && ro) ro.observe(el);
     return () => {
-      window.removeEventListener("resize", recompute);
+      schedule.cancel();
+      window.removeEventListener("resize", schedule);
       ro?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

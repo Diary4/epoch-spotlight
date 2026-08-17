@@ -3,6 +3,17 @@ import { X } from "lucide-react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { bcfLangBg, bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+
+/**
+ * React 18 note: this must stay lowercase and be applied via a spread.
+ *
+ * `react-dom@18.3.1` does not know the camelCase `fetchPriority` prop — it warns
+ * and drops it, so the hint never reaches the DOM — while `@types/react@18.3`
+ * already declares it, which makes the correct lowercase spelling look like a
+ * type error. Spreading keeps the spelling the runtime needs without a cast.
+ * On React 19 this can become a plain `fetchPriority` prop.
+ */
+const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 import {
   BCF_EASE,
   BCF_TAP,
@@ -61,7 +72,7 @@ export default function BcfLanguageOverlay({
             src={bcfLangBg}
             alt=""
             decoding="async"
-            fetchpriority="high"
+            {...HIGH_FETCH_PRIORITY}
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-black/55" />

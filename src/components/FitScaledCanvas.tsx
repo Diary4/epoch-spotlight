@@ -1,4 +1,5 @@
 import React from "react";
+import { rafSchedule } from "@/lib/rafSchedule";
 
 type FitScaledCanvasProps = {
   /** Artboard width the screens are designed against. */
@@ -59,24 +60,42 @@ export default function FitScaledCanvas({
       const naturalHeight = canvas.offsetHeight;
       if (!naturalHeight) return;
 
-      setFit({
+      const next = {
         scale,
         x: Math.max(0, (availWidth - designWidth * scale) / 2),
         contentHeight: Math.max(naturalHeight * scale, availHeight),
         minCanvasHeight,
-      });
+      };
+
+      // Bail out when nothing moved. This matters more here than elsewhere: the
+      // observer watches `canvas`, whose `minHeight` this function writes, so an
+      // unguarded update re-triggers the observer and the pair keeps measuring
+      // and re-rendering each frame instead of settling.
+      setFit((prev) =>
+        prev.scale === next.scale &&
+        prev.x === next.x &&
+        prev.contentHeight === next.contentHeight &&
+        prev.minCanvasHeight === next.minCanvasHeight
+          ? prev
+          : next,
+      );
     };
 
-    recompute();
+    // Three sources (wrap resize, canvas resize, window resize) collapse into a
+    // single measurement per frame.
+    const schedule = rafSchedule(recompute);
 
-    const observer = new ResizeObserver(recompute);
+    schedule.flush();
+
+    const observer = new ResizeObserver(schedule);
     observer.observe(wrap);
     observer.observe(canvas);
-    window.addEventListener("resize", recompute);
+    window.addEventListener("resize", schedule, { passive: true });
 
     return () => {
+      schedule.cancel();
       observer.disconnect();
-      window.removeEventListener("resize", recompute);
+      window.removeEventListener("resize", schedule);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...fitDeps, designWidth]);
