@@ -5,6 +5,7 @@ import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
 import BcfLanguageOverlay from "@/components/Sections/bcf/BcfLanguageOverlay";
 import BcfIdleOverlay from "@/components/Sections/bcf/BcfIdleOverlay";
 import BcfReachRail from "@/components/Sections/bcf/BcfReachRail";
+import BcfAttract from "@/components/Sections/bcf/BcfAttract";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
 import BcfSections from "@/components/Sections/bcf/BcfSections";
@@ -58,7 +59,7 @@ const IDLE_RESET_MS = 90_000;
 const IDLE_COUNTDOWN_FROM = 15;
 
 export default function BcfPage() {
-  const [step, setStep] = React.useState<BcfStep>("intro");
+  const [step, setStep] = React.useState<BcfStep>("attract");
   const [lang, setLang] = React.useState<BcfLang>("en");
   const [locationId, setLocationId] = React.useState<LocationId | null>(null);
   const [modalLocation, setModalLocation] = React.useState<LocationId | null>(null);
@@ -103,15 +104,19 @@ export default function BcfPage() {
     setSectorId(null);
     setImpactGalleryId(null);
     setLang("en");
-    setStep("intro");
+    setStep("attract");
   }, []);
 
   /**
-   * Idle watch. The Barzani vow is the resting plate, so it needs no timer
+   * Idle watch. The attract plate is the resting screen, so it needs no timer
    * until the visitor has tapped through into the journey.
    */
   React.useEffect(() => {
-    if (step === "intro" || (languageOpen && languageOrigin === "entry")) {
+    if (
+      step === "attract" ||
+      step === "intro" ||
+      (languageOpen && languageOrigin === "entry")
+    ) {
       setIdleCount(null);
       return;
     }
@@ -163,19 +168,26 @@ export default function BcfPage() {
     (next: BcfLang) => {
       setLang(next);
       setLanguageOpen(false);
-      if (languageOrigin === "entry") go(() => setStep("welcome"));
+      if (languageOrigin === "entry") go(() => setStep("intro"));
     },
     [go, languageOrigin],
   );
 
   const content = (() => {
     switch (step) {
+      case "attract":
+        return (
+          <BcfAttract
+            key="attract"
+            onEnter={() => openLanguage("entry")}
+          />
+        );
       case "intro":
         return (
           <BcfIntro
             key="intro"
             lang={lang}
-            onContinue={() => openLanguage("entry")}
+            onContinue={() => go(() => setStep("welcome"))}
           />
         );
       case "welcome":
@@ -387,7 +399,9 @@ export default function BcfPage() {
           {content}
         </AnimatePresence>
 
-        {step !== "intro" && !(languageOpen && languageOrigin === "entry") ? (
+        {step !== "attract" &&
+        step !== "intro" &&
+        !(languageOpen && languageOrigin === "entry") ? (
           <BcfReachRail
             homeLabel={c.home}
             languageLabel={c.language}

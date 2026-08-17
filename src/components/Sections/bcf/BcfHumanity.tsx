@@ -25,6 +25,7 @@ import {
   type SectorId,
 } from "@/components/Sections/bcf/bcfProjectData";
 import { BCF_SECTOR_ICONS } from "@/components/Sections/bcf/bcfSectorMeta";
+import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
 import foodImg from "@/assets/images/bcf/humanity-in-action/relief.webp";
 import healthImg from "@/assets/images/bcf/humanity-in-action/health.webp";
 import educationImg from "@/assets/images/bcf/humanity-in-action/education.webp";
@@ -37,7 +38,6 @@ import nfiImg from "@/assets/images/bcf/selected/impact-camps.webp";
 import protectionImg from "@/assets/images/bcf/selected/humanstories-recovery.webp";
 import livelihoodImg from "@/assets/images/bcf/selected/impact-employees.webp";
 import rehabilitationImg from "@/assets/images/bcf/drug-hospital/DSC_0070.webp";
-import humanityMainBg from "@/assets/images/bcf/humanity-in-action/main-bg.webp";
 
 type BcfHumanityProps = {
   lang: BcfLang;
@@ -238,8 +238,8 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   return (
     <BcfShell
       showLogo={false}
-      backgroundImage={humanityMainBg}
-      overlayClassName="bg-gradient-to-b from-[#04090c]/55 via-[#04090c]/45 to-[#04090c]/85"
+      backgroundImage={bcfTrustBg}
+      overlayClassName="bg-black/35"
     >
       <div className="relative flex min-h-[1920px] flex-col overflow-hidden pt-24">
         {/* Subtle dot field behind the carousel (Figma Mini Dots). */}

@@ -7,6 +7,7 @@ import BcfBoardChief, {
   type BoardChiefView,
 } from "@/components/Sections/bcf/BcfBoardChief";
 import BcfPresident from "@/components/Sections/bcf/BcfPresident";
+import BcfFounder from "@/components/Sections/bcf/BcfFounder";
 import {
   bcfCopy,
   type BcfLang,
@@ -44,6 +45,10 @@ import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait flag.jpeg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
 import presidentPortrait from "@/assets/images/bcf/optimized/bcf-president/8C6A9467.webp";
+/** Head-and-shoulders square cut from the founder's studio portrait. The full
+    frame is a seated three-quarter shot, which in a 112px circle would be a
+    turban and a chair with the face too small to recognise. */
+import founderPortrait from "@/assets/images/bcf/thumbs/bcf-founder.webp";
 
 type BcfTrustProps = {
   lang: BcfLang;
@@ -99,6 +104,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const [chiefView, setChiefView] = React.useState<BoardChiefView | null>(null);
   /** The President has one screen — his record is printed on the profile. */
   const [presidentOpen, setPresidentOpen] = React.useState(false);
+  /** The Founding Board member beside him, same shape: one screen, one record. */
+  const [founderOpen, setFounderOpen] = React.useState(false);
   const [adminBoardOpen, setAdminBoardOpen] = React.useState(false);
   const [partnerGroup, setPartnerGroup] =
     React.useState<PartnerLogoGroupId>("partners");
@@ -119,6 +126,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     }
     if (presidentOpen) {
       setPresidentOpen(false);
+      return;
+    }
+    if (founderOpen) {
+      setFounderOpen(false);
       return;
     }
     if (adminBoardOpen) {
@@ -156,6 +167,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 
     if (presidentOpen) {
       return <BcfPresident key="president" lang={lang} onBack={goBack} />;
+    }
+
+    if (founderOpen) {
+      return <BcfFounder key="founder" lang={lang} onBack={goBack} />;
     }
 
     if (adminBoardOpen) {
@@ -309,29 +324,35 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 </div>
               </motion.button>
 
-              {/* Slot held for the leader beside the President. No name, portrait
-                  or profile yet, so it renders as a plain card — a button that
-                  opens nothing reads as a broken one. */}
-              <motion.div
+              {/* The Founding Board member beside the President. */}
+              <motion.button
+                type="button"
                 variants={bcfRiseCard}
-                className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full flex-col items-start gap-6 p-10 text-start`}
+                whileTap={BCF_TAP}
+                transition={BCF_TAP_TRANSITION}
+                onClick={() => setFounderOpen(true)}
+                className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <span
-                  className="flex h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-full border-2 bg-white/5"
-                  style={{ borderColor: `${BCF.gold}80` }}
+                  className="h-[112px] w-[112px] overflow-hidden rounded-full border-2"
+                  style={{ borderColor: BCF.gold }}
                 >
-                  <User className="h-14 w-14 text-white/35" />
+                  <img
+                    src={founderPortrait}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
                 </span>
                 <div>
-                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]/60">
-                    {c.trustPendingLeaderName}
+                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
+                    {c.bcfFounder.name}
                   </h3>
-                  <p className="mt-4 text-[26px] leading-relaxed text-white/50">
-                    {c.trustPendingLeaderRole}
+                  <p className="mt-4 text-[26px] leading-relaxed text-white/75">
+                    {c.bcfFounder.role}
                   </p>
                 </div>
-              </motion.div>
+              </motion.button>
 
               <motion.button
                 type="button"

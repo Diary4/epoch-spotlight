@@ -44,7 +44,7 @@ export { default as bcfFutureDetailBg } from "@/assets/images/bcf/future-legacy-
 export { default as bcfAttractPoster } from "@/assets/images/bcf/start-page.webp";
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
 /** Full-bleed plate behind Explore Our Journey. */
-export { default as bcfJourneyBg } from "@/assets/images/bcf/journey-bg.webp";
+export { default as bcfJourneyBg } from "@/assets/images/bcf/main-background.PNG";
 
 /**
  * Journey-hub chapter discs — Explore Our Journey card photography.

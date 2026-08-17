@@ -106,11 +106,9 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
     <BcfShell
       showLogo={false}
       backgroundImage={bcfJourneyBg}
-      /* Heavy. The plate underneath is a lit sunrise valley, and this screen
-         wants the ridge line as texture behind the cards, not as the subject —
-         a flat black at this depth keeps the silhouette and drops everything
-         that competed with the gold. */
-      overlayClassName="bg-black/74"
+      /* The plate is a dark valley with a gold ridge; this depth keeps the
+         silhouette behind the cards without washing out the sunlight. */
+      overlayClassName="bg-black/55"
     >
       <div className="relative min-h-[1920px] w-full overflow-hidden">
         {/* Local dark lift under the header so the title stays readable over
