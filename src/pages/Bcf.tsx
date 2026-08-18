@@ -199,6 +199,49 @@ export default function BcfPage() {
     };
   }, [step, reset, languageOpen, languageOrigin]);
 
+  /**
+   * Warm the split screens once the attract plate is up and the main thread has
+   * nothing else to do.
+   *
+   * The chunks are fetched one at a time rather than all at once: the point is
+   * to use the idle gaps while a visitor reads the attract copy, not to hand the
+   * weak CPU thirteen parse jobs on the same frame — which would reintroduce the
+   * stutter this split exists to remove. `requestIdleCallback` yields between
+   * each, so a tap always wins over the warming.
+   */
+  React.useEffect(() => {
+    let cancelled = false;
+    let handle = 0;
+
+    const idle: (cb: () => void) => number =
+      typeof window.requestIdleCallback === "function"
+        ? (cb) => window.requestIdleCallback(cb, { timeout: 2000 })
+        : (cb) => window.setTimeout(cb, 200);
+    const cancelIdle: (id: number) => void =
+      typeof window.cancelIdleCallback === "function"
+        ? (id) => window.cancelIdleCallback(id)
+        : (id) => window.clearTimeout(id);
+
+    const warm = (index: number) => {
+      if (cancelled || index >= PREFETCH_STEPS.length) return;
+      handle = idle(() => {
+        if (cancelled) return;
+        // A chunk that fails to warm is not an error worth surfacing — the step
+        // will simply load on demand when the visitor reaches it.
+        PREFETCH_STEPS[index]()
+          .catch(() => undefined)
+          .then(() => warm(index + 1));
+      });
+    };
+
+    warm(0);
+
+    return () => {
+      cancelled = true;
+      cancelIdle(handle);
+    };
+  }, []);
+
   const openLanguage = React.useCallback((origin: "entry" | "control") => {
     setLanguageOrigin(origin);
     setLanguageOpen(true);
@@ -463,9 +506,15 @@ export default function BcfPage() {
             next one dissolves up, so the backdrop never cuts to black between
             screens. `initial={false}` keeps the first paint from fading in
             over itself. */}
-        <AnimatePresence mode="wait" initial={false}>
-          {content}
-        </AnimatePresence>
+        {/* The split screens suspend only if a visitor outruns the prefetch above.
+            The fallback is deliberately empty rather than a spinner: the scene
+            underneath has already faded out, and a chunk that is being read from
+            the kiosk's own disk is up within a frame or two. */}
+        <React.Suspense fallback={null}>
+          <AnimatePresence mode="wait" initial={false}>
+            {content}
+          </AnimatePresence>
+        </React.Suspense>
 
         {step !== "attract" &&
         step !== "intro" &&

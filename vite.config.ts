@@ -26,6 +26,14 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
+  // Large JSON (the 107 KB world topology behind the BCF map) ships as a
+  // `JSON.parse("…")` call rather than a JS object literal. The engine parses
+  // JSON with a dedicated reader that is markedly faster than parsing the
+  // equivalent literal as source, which is time taken straight off the map
+  // screen's first frame on the weak kiosk CPU.
+  json: {
+    stringify: true,
+  },
   // Local design-reference HTML bundles import deps (e.g. @emotion/is-prop-valid)
   // that aren't in this app — don't crawl them during optimizeDeps.
   optimizeDeps: {

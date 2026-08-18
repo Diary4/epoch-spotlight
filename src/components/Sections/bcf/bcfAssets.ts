@@ -19,7 +19,7 @@ export { default as bcfLogo } from "@/assets/images/bcf/logo-mark.webp";
 /** Circular seal only — text-free portrait ring from `logo.png`. Used in chapter pills. */
 export { default as bcfLogoSeal } from "@/assets/images/bcf/logo-seal.webp";
 /** Full-bleed plate behind the language choice. */
-export { default as bcfLangBg } from "@/assets/images/bcf/trustbehindwokr.png";
+export { default as bcfLangBg } from "@/assets/images/bcf/trustbehindwokr.webp";
 /** Full-bleed plate behind the vow (“It is an honor to serve one's own people.”). */
 export { default as bcfIntroBg } from "@/assets/images/bcf/honor-to-serve-bg.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";
@@ -29,7 +29,7 @@ export { default as bcfErbil } from "@/assets/images/bcf/optimized/schools/8D1A7
 /** Our Story full-bleed plate — used across every chapter pane. */
 export { default as bcfStoryBg } from "@/assets/images/bcf/our-story-bg.webp";
 /** Trust Behind the Work — hub and every topic / profile under it. */
-export { default as bcfTrustBg } from "@/assets/images/bcf/trustbehindwokr.png";
+export { default as bcfTrustBg } from "@/assets/images/bcf/trustbehindwokr.webp";
 export { default as bcfHubBg } from "@/assets/images/bcf/optimized/camps/harsham.webp";
 export { default as bcfImpactBg } from "@/assets/images/bcf/selected/humanity-relief.webp";
 export { default as bcfProjectsBg } from "@/assets/images/bcf/selected/impact-camps.webp";
@@ -44,7 +44,7 @@ export { default as bcfFutureDetailBg } from "@/assets/images/bcf/future-legacy-
 export { default as bcfAttractPoster } from "@/assets/images/bcf/start-page.webp";
 export { default as bcfSunrise } from "@/assets/images/bcf/closing-lockup.webp";
 /** Full-bleed plate behind Explore Our Journey. */
-export { default as bcfJourneyBg } from "@/assets/images/bcf/main-background.PNG";
+export { default as bcfJourneyBg } from "@/assets/images/bcf/main-background.webp";
 
 /**
  * Journey-hub chapter discs — Explore Our Journey card photography.
