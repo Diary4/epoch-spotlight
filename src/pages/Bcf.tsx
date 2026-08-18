@@ -9,19 +9,56 @@ import BcfReachRail from "@/components/Sections/bcf/BcfReachRail";
 import BcfAttract from "@/components/Sections/bcf/BcfAttract";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
 import BcfWelcome from "@/components/Sections/bcf/BcfWelcome";
-import BcfSections from "@/components/Sections/bcf/BcfSections";
-import BcfHumanity from "@/components/Sections/bcf/BcfHumanity";
-import BcfStory from "@/components/Sections/bcf/BcfStory";
-import BcfMap from "@/components/Sections/bcf/BcfMap";
-import BcfProjects from "@/components/Sections/bcf/BcfProjects";
-import BcfProjectDetail from "@/components/Sections/bcf/BcfProjectDetail";
-import BcfImpact from "@/components/Sections/bcf/BcfImpact";
-import BcfFuture from "@/components/Sections/bcf/BcfFuture";
-import BcfFutureDetail from "@/components/Sections/bcf/BcfFutureDetail";
-import BcfTrust from "@/components/Sections/bcf/BcfTrust";
-import BcfLegacy from "@/components/Sections/bcf/BcfLegacy";
-import BcfHumanStories from "@/components/Sections/bcf/BcfHumanStories";
-import BcfImpactGallery from "@/components/Sections/bcf/BcfImpactGallery";
+
+/**
+ * The thirteen screens past the welcome are split out of the entry chunk.
+ *
+ * Every one of them used to be a static import, so opening /bcf meant
+ * downloading, parsing and executing the world map geometry, the project
+ * register, the dome gallery and the trust portraits before the attract plate
+ * could paint — on a panel whose visitor had not yet chosen a language. That is
+ * the weight the weaker machines were feeling on arrival.
+ *
+ * They are loaded on demand instead, and then warmed during the first idle
+ * moment (see the prefetch effect below), so by the time anyone taps through
+ * the language overlay the chunks are already in memory and navigation is as
+ * instant as it was before.
+ */
+const BcfSections = React.lazy(() => import("@/components/Sections/bcf/BcfSections"));
+const BcfHumanity = React.lazy(() => import("@/components/Sections/bcf/BcfHumanity"));
+const BcfStory = React.lazy(() => import("@/components/Sections/bcf/BcfStory"));
+const BcfMap = React.lazy(() => import("@/components/Sections/bcf/BcfMap"));
+const BcfProjects = React.lazy(() => import("@/components/Sections/bcf/BcfProjects"));
+const BcfProjectDetail = React.lazy(() => import("@/components/Sections/bcf/BcfProjectDetail"));
+const BcfImpact = React.lazy(() => import("@/components/Sections/bcf/BcfImpact"));
+const BcfFuture = React.lazy(() => import("@/components/Sections/bcf/BcfFuture"));
+const BcfFutureDetail = React.lazy(() => import("@/components/Sections/bcf/BcfFutureDetail"));
+const BcfTrust = React.lazy(() => import("@/components/Sections/bcf/BcfTrust"));
+const BcfLegacy = React.lazy(() => import("@/components/Sections/bcf/BcfLegacy"));
+const BcfHumanStories = React.lazy(() => import("@/components/Sections/bcf/BcfHumanStories"));
+const BcfImpactGallery = React.lazy(() => import("@/components/Sections/bcf/BcfImpactGallery"));
+
+/**
+ * Warmed in this order: the chapter menu first, because it is the screen the
+ * visitor reaches next, then the six chapters behind it, then the details that
+ * hang off those.
+ */
+const PREFETCH_STEPS: Array<() => Promise<unknown>> = [
+  () => import("@/components/Sections/bcf/BcfSections"),
+  () => import("@/components/Sections/bcf/BcfStory"),
+  () => import("@/components/Sections/bcf/BcfHumanity"),
+  () => import("@/components/Sections/bcf/BcfImpact"),
+  () => import("@/components/Sections/bcf/BcfTrust"),
+  () => import("@/components/Sections/bcf/BcfFuture"),
+  () => import("@/components/Sections/bcf/BcfMap"),
+  () => import("@/components/Sections/bcf/BcfProjects"),
+  () => import("@/components/Sections/bcf/BcfProjectDetail"),
+  () => import("@/components/Sections/bcf/BcfHumanStories"),
+  () => import("@/components/Sections/bcf/BcfImpactGallery"),
+  () => import("@/components/Sections/bcf/BcfFutureDetail"),
+  () => import("@/components/Sections/bcf/BcfLegacy"),
+];
+
 import { BCF_PERF_CLASS } from "@/components/Sections/bcf/bcfPerf";
 import {
   BCF_LOCATIONS,

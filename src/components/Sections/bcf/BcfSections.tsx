@@ -7,7 +7,6 @@ import {
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   bcfJourneyBg,
   bcfJourneyStory,
@@ -43,9 +42,6 @@ const thumbs: Record<JourneyChapterId, string> = {
 
 /**
  * Reading order, which is not the order `journeyChapters` is authored in.
- * The numbers printed on the cards are this list's index — they are the
- * chapter's position in the walk, so the order lives here rather than in the
- * copy, where a translator reordering a list would renumber the experience.
  */
 const ORDER: JourneyChapterId[] = [
   "story",
@@ -138,8 +134,8 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
           </motion.p>
 
           {/* One colour across the whole title. The gold on this screen belongs
-              to the eyebrow and the chapter numbers; a gold half-title as well
-              put three competing accents in the top third of the page. */}
+              to the eyebrow; a gold half-title as well put competing accents
+              in the top third of the page. */}
           <motion.h1
             variants={bcfRise}
             className="mt-5 text-[68px] font-semibold leading-[1.06]"
@@ -208,7 +204,6 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
                      column reads as a descent rather than a list. Logical
                      insets, so the stagger mirrors with the language. */
                   fromStart={index % 2 === 0}
-                  number={bcfDigits(String(index + 1).padStart(2, "0"), lang)}
                   title={chapter.title}
                   image={thumbs[id]}
                   focus={FOCUS[id]}
@@ -307,7 +302,6 @@ const CARD_VARIANTS = {
 function ChapterCard({
   top,
   fromStart,
-  number,
   title,
   image,
   focus,
@@ -318,7 +312,6 @@ function ChapterCard({
 }: {
   top: number;
   fromStart: boolean;
-  number: string;
   title: string;
   image: string;
   focus: string;
@@ -394,13 +387,7 @@ function ChapterCard({
 
       <span className="relative z-10 flex h-full flex-col justify-center ps-11 pe-8">
         <span
-          className="text-[46px] font-light leading-none tabular-nums"
-          style={{ color: BCF.gold }}
-        >
-          {number}
-        </span>
-        <span
-          className="mt-4 max-w-[280px] text-[34px] font-semibold leading-tight"
+          className="max-w-[280px] text-[34px] font-semibold leading-tight"
           style={{ color: "#fff6e6" }}
         >
           {title}
