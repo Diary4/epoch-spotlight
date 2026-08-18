@@ -18,8 +18,8 @@
 export { default as bcfLogo } from "@/assets/images/bcf/logo-mark.webp";
 /** Circular seal only — text-free portrait ring from `logo.png`. Used in chapter pills. */
 export { default as bcfLogoSeal } from "@/assets/images/bcf/logo-seal.webp";
-/** Full-bleed plate behind the language choice — BCF field work with the truck in frame. */
-export { default as bcfLangBg } from "@/assets/images/bcf/selected/impact-camps.webp";
+/** Full-bleed plate behind the language choice. */
+export { default as bcfLangBg } from "@/assets/images/bcf/trustbehindwokr.png";
 /** Full-bleed plate behind the vow (“It is an honor to serve one's own people.”). */
 export { default as bcfIntroBg } from "@/assets/images/bcf/honor-to-serve-bg.webp";
 export { default as bcfWelcomeBg } from "@/assets/images/women/w-4.webp";

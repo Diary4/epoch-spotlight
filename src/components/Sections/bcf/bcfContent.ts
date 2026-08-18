@@ -2168,7 +2168,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     quoteAttr: "— مستەفا بارزانی",
     welcomeEyebrow: "بەخێربێیت بۆ",
     welcomeTitleBcf: "BCF",
-    welcomeTitleRest: "ئەزموون",
+    welcomeTitleRest: "ئەزموونی",
     welcomeBody: "چیرۆک، کاری مرۆیی، و کاریگەرییەکەمان پێکەوە ببینە.",
     startJourney: "دەستپێکردنی گەشتەکە",
     journeyTitleLead: "گەشتی",

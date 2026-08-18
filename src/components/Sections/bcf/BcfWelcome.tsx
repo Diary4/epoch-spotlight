@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, HeartHandshake } from "lucide-react";
-import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
@@ -55,17 +54,17 @@ export default function BcfWelcome({ lang, onStart, onDonate }: BcfWelcomeProps)
             variants={bcfRise}
             className="mt-4 flex flex-wrap items-baseline gap-x-4 font-sans text-[124px] font-bold uppercase leading-[1.02] tracking-[0.01em]"
           >
-            <span style={{ color: BCF.gold }}>{c.welcomeTitleBcf}</span>
-            <TextType
-              as="span"
-              text={c.welcomeTitleRest}
-              typingSpeed={55}
-              loop={false}
-              showCursor
-              cursorCharacter="|"
-              cursorClassName="text-[#fbc158]"
-              className="text-[124px] font-bold uppercase text-[#fbf4e4]"
-            />
+            {lang === "ku" ? (
+              <>
+                <span className="text-[#fbf4e4]">{c.welcomeTitleRest}</span>
+                <span style={{ color: BCF.gold }}>{c.welcomeTitleBcf}</span>
+              </>
+            ) : (
+              <>
+                <span style={{ color: BCF.gold }}>{c.welcomeTitleBcf}</span>
+                <span className="text-[#fbf4e4]">{c.welcomeTitleRest}</span>
+              </>
+            )}
           </motion.div>
 
           <motion.span
