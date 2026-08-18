@@ -31,10 +31,10 @@ import {
 import { bcfAwardImages } from "@/components/Sections/bcf/bcfAwardImages";
 import { bcfStaffPortraits } from "@/components/Sections/bcf/bcfStaffPortraits";
 import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
-import leadershipThumb from "@/assets/images/bcf/trust/leadership.webp";
+import leadershipThumb from "@/assets/images/bcf/from-source/trust-leadership.webp";
 import qualityThumb from "@/assets/images/bcf/selected/impact-schools.webp";
-import partnershipsThumb from "@/assets/images/bcf/trust/partnerships.webp";
-import recognitionThumb from "@/assets/images/bcf/trust/recognition.webp";
+import partnershipsThumb from "@/assets/images/bcf/from-source/trust-partnerships.webp";
+import recognitionThumb from "@/assets/images/bcf/from-source/trust-recognition.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpg";
@@ -44,7 +44,7 @@ import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
-import presidentPortrait from "@/assets/images/bcf/optimized/bcf-president/8C6A9467.webp";
+import presidentPortrait from "@/assets/images/bcf/from-source/board-musa-ahmad.webp";
 /** Head-and-shoulders square cut from the founder's studio portrait. The full
     frame is a seated three-quarter shot, which in a 112px circle would be a
     turban and a chair with the face too small to recognise. */
@@ -724,11 +724,11 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         backgroundImage={bcfTrustBg}
         overlayClassName="bg-black/35"
       >
-        <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
+        <div className="relative flex min-h-[1920px] w-full flex-col items-center px-[100px] pb-16 pt-28">
           <BcfBackButton onClick={goBack} label={c.back} />
 
           <motion.div
-            className="mx-auto flex w-full max-w-[980px] flex-col items-center"
+            className="flex w-full max-w-[880px] flex-col items-center"
             variants={bcfStagger(0.1, 0.16)}
             initial="initial"
             animate="animate"
@@ -751,7 +751,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           </motion.div>
 
           <motion.div
-            className="mx-auto mt-16 flex w-full max-w-[980px] flex-col gap-8"
+            className="mt-16 flex w-full max-w-[880px] flex-col gap-8"
             variants={bcfStagger(0.1, 0.3)}
             initial="initial"
             animate="animate"

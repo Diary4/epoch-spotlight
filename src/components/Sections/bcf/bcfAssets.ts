@@ -52,9 +52,11 @@ export { default as bcfJourneyBg } from "@/assets/images/bcf/main-background.PNG
  * Square 560×560 center-crops so six discs stay light on the 4K kiosk
  * (active disc is ~252 CSS px).
  */
-export { default as bcfJourneyStory } from "@/assets/images/bcf/thumbs/journey/story.webp";
-export { default as bcfJourneyHumanity } from "@/assets/images/bcf/thumbs/journey/humanity.webp";
-export { default as bcfJourneyMap } from "@/assets/images/bcf/thumbs/journey/map.webp";
-export { default as bcfJourneyImpact } from "@/assets/images/bcf/thumbs/journey/impact.webp";
-export { default as bcfJourneyTrust } from "@/assets/images/bcf/thumbs/journey/trust.webp";
-export { default as bcfJourneyFuture } from "@/assets/images/bcf/thumbs/journey/future.webp";
+export { default as bcfJourneyStory } from "@/assets/images/bcf/from-source/journey-story.webp";
+export { default as bcfJourneyHumanity } from "@/assets/images/bcf/from-source/journey-humanity.webp";
+export { default as bcfJourneyMap } from "@/assets/images/bcf/from-source/journey-map.webp";
+export { default as bcfJourneyImpact } from "@/assets/images/bcf/from-source/journey-impact.webp";
+export { default as bcfJourneyTrust } from "@/assets/images/bcf/from-source/journey-trust.webp";
+export { default as bcfJourneyFuture } from "@/assets/images/bcf/from-source/journey-future.webp";
+/** Humanity in Action full-bleed plate. */
+export { default as bcfHumanityBg } from "@/assets/images/bcf/from-source/humanity-bg.webp";

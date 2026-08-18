@@ -25,19 +25,19 @@ import {
   type SectorId,
 } from "@/components/Sections/bcf/bcfProjectData";
 import { BCF_SECTOR_ICONS } from "@/components/Sections/bcf/bcfSectorMeta";
-import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
-import foodImg from "@/assets/images/bcf/humanity-in-action/relief.webp";
-import healthImg from "@/assets/images/bcf/humanity-in-action/health.webp";
-import educationImg from "@/assets/images/bcf/humanity-in-action/education.webp";
-import environmentImg from "@/assets/images/bcf/humanity-in-action/environment.webp";
-import cashImg from "@/assets/images/bcf/humanity-in-action/community.webp";
-import shelterImg from "@/assets/images/bcf/optimized/camps/qushtapa.webp";
-import campImg from "@/assets/images/bcf/optimized/camps/baharka.webp";
-import washImg from "@/assets/images/bcf/selected/impact-idps.webp";
-import nfiImg from "@/assets/images/bcf/selected/impact-camps.webp";
-import protectionImg from "@/assets/images/bcf/selected/humanstories-recovery.webp";
-import livelihoodImg from "@/assets/images/bcf/selected/impact-employees.webp";
-import rehabilitationImg from "@/assets/images/bcf/drug-hospital/DSC_0070.webp";
+import { bcfHumanityBg } from "@/components/Sections/bcf/bcfAssets";
+import foodImg from "@/assets/images/bcf/from-source/humanity-food.webp";
+import healthImg from "@/assets/images/bcf/from-source/humanity-health.webp";
+import educationImg from "@/assets/images/bcf/from-source/humanity-education.webp";
+import environmentImg from "@/assets/images/bcf/from-source/humanity-environment.webp";
+import cashImg from "@/assets/images/bcf/from-source/humanity-cash.webp";
+import shelterImg from "@/assets/images/bcf/from-source/humanity-shelter.webp";
+import campImg from "@/assets/images/bcf/from-source/humanity-camp.webp";
+import washImg from "@/assets/images/bcf/from-source/humanity-wash.webp";
+import nfiImg from "@/assets/images/bcf/from-source/humanity-nfi.webp";
+import protectionImg from "@/assets/images/bcf/from-source/humanity-protection.webp";
+import livelihoodImg from "@/assets/images/bcf/from-source/humanity-livelihood.webp";
+import rehabilitationImg from "@/assets/images/bcf/from-source/humanity-rehab.webp";
 
 type BcfHumanityProps = {
   lang: BcfLang;
@@ -238,7 +238,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   return (
     <BcfShell
       showLogo={false}
-      backgroundImage={bcfTrustBg}
+      backgroundImage={bcfHumanityBg}
       overlayClassName="bg-black/35"
     >
       <div className="relative flex min-h-[1920px] flex-col overflow-hidden pt-24">

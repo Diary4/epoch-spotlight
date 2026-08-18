@@ -9,7 +9,7 @@ import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { bcfRiseCard, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 import { bcfPresidentImages } from "@/components/Sections/bcf/bcfPresidentImages";
-import presidentPortrait from "@/assets/images/bcf/optimized/bcf-president/8C6A9467.webp";
+import presidentPortrait from "@/assets/images/bcf/from-source/board-musa-ahmad.webp";
 
 /** Padded column the record cards are read in. */
 const COLUMN = "mx-auto w-full max-w-[1000px] px-10";
@@ -53,7 +53,7 @@ export default function BcfPresident({ lang, onBack }: BcfPresidentProps) {
           meta={president.meta}
           align="center"
           height={640}
-          objectPosition="46% 12%"
+          objectPosition="50% 18%"
           plateWidth={700}
         />
 

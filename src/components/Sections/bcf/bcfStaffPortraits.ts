@@ -1,11 +1,11 @@
-import ibrahim from "@/assets/images/bcf/Board Members/Ibrahim Samin.jpg";
-import awat from "@/assets/images/bcf/Board Members/Awat Ahmed.jpg";
-import abdulwahid from "@/assets/images/bcf/Board Members/Abdulwahid Amin.jpg";
-import ways from "@/assets/images/bcf/Board Members/Ways Jalil.jpg";
-import ismail from "@/assets/images/bcf/Board Members/Ismail Abdulaziz.jpg";
-import karzan from "@/assets/images/bcf/Board Members/Karzan Nuri.jpg";
-import rawaj from "@/assets/images/bcf/Board Members/Rawaj Haji.jpg";
-import farzin from "@/assets/images/bcf/Board Members/Farzin Bagzade.jpg";
+import ibrahim from "@/assets/images/bcf/from-source/board-ibrahim.webp";
+import awat from "@/assets/images/bcf/from-source/board-awat.webp";
+import abdulwahid from "@/assets/images/bcf/from-source/board-abdulwahid.webp";
+import ways from "@/assets/images/bcf/from-source/board-ways.webp";
+import ismail from "@/assets/images/bcf/from-source/board-ismail.webp";
+import karzan from "@/assets/images/bcf/from-source/board-karzan.webp";
+import rawaj from "@/assets/images/bcf/from-source/board-rawaj.webp";
+import farzin from "@/assets/images/bcf/from-source/board-farzin.webp";
 
 /** Headshots for the named Trust roster, keyed to `TrustStaffMember.id`. */
 export const bcfStaffPortraits: Record<string, string> = {

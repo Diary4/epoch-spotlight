@@ -27,14 +27,20 @@ import {
 import type { SectorId } from "@/components/Sections/bcf/bcfProjectData";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 
-import heroEmergency from "@/assets/images/bcf/optimized/flood/2B1A6744.webp";
-import heroSchools from "@/assets/images/bcf/optimized/schools/8D1A7011.webp";
-import heroCamps from "@/assets/images/bcf/optimized/camps/baharka.webp";
-import heroShelter from "@/assets/images/bcf/optimized/camps/qushtapa.webp";
-import heroHealth from "@/assets/images/bcf/drug-hospital/DSC_0070.webp";
-import heroRelief from "@/assets/images/bcf/selected/humanity-relief.webp";
+import heroEmergency from "@/assets/images/bcf/from-source/humanity-shelter.webp";
+import heroSchools from "@/assets/images/bcf/from-source/humanity-education.webp";
+import heroCamps from "@/assets/images/bcf/from-source/humanity-camp.webp";
+import heroShelter from "@/assets/images/bcf/from-source/humanity-shelter.webp";
+import heroHealth from "@/assets/images/bcf/from-source/humanity-health.webp";
+import heroFood from "@/assets/images/bcf/from-source/humanity-food.webp";
+import heroWash from "@/assets/images/bcf/from-source/humanity-wash.webp";
+import heroNfi from "@/assets/images/bcf/from-source/humanity-nfi.webp";
+import heroDisability from "@/assets/images/bcf/from-source/humanity-rehab.webp";
+import heroProtection from "@/assets/images/bcf/from-source/humanity-protection.webp";
+import heroLivelihood from "@/assets/images/bcf/from-source/humanity-livelihood.webp";
+import heroCash from "@/assets/images/bcf/from-source/humanity-cash.webp";
+import heroEnvironment from "@/assets/images/bcf/from-source/humanity-environment.webp";
 import heroCommunity from "@/assets/images/bcf/selected/humanity-community.webp";
-import heroIdps from "@/assets/images/bcf/selected/impact-idps.webp";
 
 export const BCF_SECTOR_ICONS: Record<SectorId, typeof Siren> = {
   emergency: Siren,
@@ -55,18 +61,18 @@ export const BCF_SECTOR_ICONS: Record<SectorId, typeof Siren> = {
 
 export const BCF_SECTOR_HERO: Record<SectorId, string> = {
   emergency: heroEmergency,
-  food: heroRelief,
+  food: heroFood,
   health: heroHealth,
   education: heroSchools,
   shelter: heroShelter,
-  wash: heroIdps,
+  wash: heroWash,
   camp: heroCamps,
-  nfi: heroRelief,
-  disability: heroHealth,
-  protection: heroIdps,
-  livelihood: heroCommunity,
-  cash: heroCommunity,
-  environment: heroRelief,
+  nfi: heroNfi,
+  disability: heroDisability,
+  protection: heroProtection,
+  livelihood: heroLivelihood,
+  cash: heroCash,
+  environment: heroEnvironment,
   community: heroCommunity,
 };
 

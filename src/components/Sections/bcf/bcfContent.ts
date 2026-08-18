@@ -100,7 +100,6 @@ export type GlobalLocationId =
   | "lebanon"
   | "morocco"
   | "saudiArabia"
-  | "sudan"
   | "yemen"
   | "bangladesh"
   | "australia"
@@ -168,7 +167,6 @@ export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
   { id: "turkiye", coordinates: [35.2, 39.1], kind: "response", iso: "792", focusZoom: 4.5 },
   { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422", focusZoom: 7 },
   { id: "syria", coordinates: [38.5, 35], kind: "response", iso: "760", focusZoom: 6 },
-  { id: "sudan", coordinates: [30.2, 15.9], kind: "work", iso: "729", focusZoom: 4 },
   { id: "southSudan", coordinates: [30.1, 7.0], kind: "work", iso: "728", focusZoom: 4.5 },
   { id: "saudiArabia", coordinates: [45.1, 24], kind: "work", iso: "682", focusZoom: 3.6 },
   { id: "yemen", coordinates: [47.5, 15.5], kind: "work", iso: "887", focusZoom: 5.5 },
@@ -1502,12 +1500,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: WORK_ONLY_EN,
         facts: [],
       },
-      sudan: {
-        name: "Sudan",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
-      },
       southSudan: {
         name: "South Sudan",
         meta: "Area of work",
@@ -2703,7 +2695,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: WORK_ONLY_KU,
         facts: [],
       },
-      sudan: { name: "سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       southSudan: { name: "باشووری سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       yemen: { name: "یەمەن", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       bangladesh: {
@@ -3883,7 +3874,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: WORK_ONLY_AR,
         facts: [],
       },
-      sudan: { name: "السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       southSudan: { name: "جنوب السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       yemen: { name: "اليمن", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       bangladesh: { name: "بنغلاديش", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
