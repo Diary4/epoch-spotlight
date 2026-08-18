@@ -381,13 +381,8 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   className="mt-auto flex w-full flex-col items-center px-6 pb-7"
                   style={{ opacity: 0, visibility: "hidden" }}
                 >
-                  {/* The wall text where BCF wrote one, otherwise the sector's
-                      own opening line — never an invented card subtitle. */}
-                  <span className="line-clamp-3 text-[22px] leading-snug text-white/70">
-                    {category.headline ?? category.intro}
-                  </span>
                   <span
-                    className="mt-5 inline-flex items-center gap-3 rounded-full border px-8 py-3.5 text-[22px] font-medium"
+                    className="inline-flex items-center gap-3 rounded-full border px-8 py-3.5 text-[22px] font-medium"
                     style={{
                       borderColor: `${BCF.gold}66`,
                       backgroundColor: "rgba(251,193,88,0.12)",
@@ -595,17 +590,6 @@ function ServeDetailDialog({
                   {category.headline}
                 </motion.p>
               ) : null}
-
-              <motion.div
-                variants={bcfRise}
-                className="mt-10 overflow-hidden rounded-[26px] border border-white/15"
-              >
-                <img
-                  src={categoryImages[category.id]}
-                  alt=""
-                  className="h-[420px] w-full object-cover object-center"
-                />
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>
