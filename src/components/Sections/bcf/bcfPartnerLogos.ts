@@ -1,9 +1,9 @@
 /**
  * Partner / donor / sponsor logo plates for the Trust → Partnerships screen.
  *
- * Sourced from the BCF logo pack (JPEG originals converted to WebP at ≤800px).
- * The sponsors set excludes logos that already sit in partners or donors, so
- * the three tabs never repeat the same mark.
+ * Sourced from the BCF logo pack (`Partners` / `Donors` / `Sponsers` JPEGs,
+ * converted to WebP at ≤800px). The sponsors set excludes logos that already
+ * sit in partners or donors, so the three tabs never repeat the same mark.
  *
  * Numbered `N-scaled.webp` plates are typeset names with no mark. Those go
  * after graphic logos so the grid opens on brands, not on word tiles.
@@ -26,12 +26,12 @@ function collect(modules: Record<string, string>): string[] {
 }
 
 const partnerModules = import.meta.glob<string>(
-  "@/assets/images/bcf/logos/partners/*.webp",
+  "@/assets/images/bcf/logos/Partners/*.webp",
   { eager: true, import: "default" },
 );
 
 const donorModules = import.meta.glob<string>(
-  "@/assets/images/bcf/logos/donors/*.webp",
+  "@/assets/images/bcf/logos/Donors/*.webp",
   { eager: true, import: "default" },
 );
 

@@ -19,13 +19,9 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
-import {
-  BCF_SECTOR_2025_TOTALS,
-  type SectorId,
-} from "@/components/Sections/bcf/bcfProjectData";
+import { type SectorId } from "@/components/Sections/bcf/bcfProjectData";
 import { BCF_SECTOR_ICONS } from "@/components/Sections/bcf/bcfSectorMeta";
-import { bcfHumanityBg } from "@/components/Sections/bcf/bcfAssets";
+import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
 import foodImg from "@/assets/images/bcf/from-source/humanity-food.webp";
 import healthImg from "@/assets/images/bcf/from-source/humanity-health.webp";
 import educationImg from "@/assets/images/bcf/from-source/humanity-education.webp";
@@ -61,8 +57,7 @@ const categoryImages: Record<ServeCategoryId, string> = {
 
 /**
  * The sector a card corresponds to in the project register, so the dialog can
- * reuse the register's icon and its published 2025 reach figure rather than
- * carry a second set of its own. Only `rehabilitation` differs by name — the
+ * reuse the register's icon. Only `rehabilitation` differs by name — the
  * register calls that work `disability`.
  */
 const categorySectors: Record<ServeCategoryId, SectorId> = {
@@ -93,9 +88,9 @@ const categorySectors: Record<ServeCategoryId, SectorId> = {
 const CARD_W = 600;
 const CARD_GAP = 64;
 const CARD_PITCH = CARD_W + CARD_GAP;
-const ACTIVE_H = 660;
-const INACTIVE_H = 480;
-const INACTIVE_Y = 90;
+const ACTIVE_H = 760;
+const INACTIVE_H = 620;
+const INACTIVE_Y = 70;
 const TRACK_H = ACTIVE_H;
 /** Figma Smart Animate default ≈ Ease In And Out @ 400ms */
 const ANIM_DURATION = 0.4;
@@ -238,7 +233,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   return (
     <BcfShell
       showLogo={false}
-      backgroundImage={bcfHumanityBg}
+      backgroundImage={bcfTrustBg}
       overlayClassName="bg-black/35"
     >
       <div className="relative flex min-h-[1920px] flex-col overflow-hidden pt-24">
@@ -306,7 +301,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           initial={{ opacity: 0, y: 48 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 h-[720px] w-full touch-pan-y overflow-hidden"
+          className="relative z-10 h-[820px] w-full touch-pan-y overflow-hidden"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -341,7 +336,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   }
                   animateToIndex(index);
                 }}
-                className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] px-6 pt-6 text-center backdrop-blur-[2px]"
+                className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] text-center backdrop-blur-[2px]"
                 style={{
                   width: CARD_W,
                   height: index === initialIndex ? ACTIVE_H : INACTIVE_H,
@@ -351,14 +346,11 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                       : `translateY(${INACTIVE_Y}px)`,
                 }}
               >
-                <span
-                  className="relative block h-[290px] w-full shrink-0 overflow-hidden rounded-[20px] border"
-                  style={{ borderColor: BCF.nature }}
-                >
+                <span className="relative block h-[500px] w-full shrink-0 overflow-hidden">
                   <img
                     src={categoryImages[category.id]}
                     alt=""
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-center"
                     draggable={false}
                   />
                   {/* Warm floor under the photo so the card edge does not cut a
@@ -367,7 +359,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                     className="pointer-events-none absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(180deg, rgba(4,7,10,0) 45%, rgba(4,7,10,0.62) 100%)",
+                        "linear-gradient(180deg, rgba(4,7,10,0) 70%, rgba(4,7,10,0.35) 100%)",
                     }}
                   />
                 </span>
@@ -376,7 +368,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                     hold the 64px display size the five-card strip used. */}
                 <span
                   dir={lang === "en" ? "ltr" : "rtl"}
-                  className="mt-6 block text-[38px] font-bold leading-[1.14] text-white"
+                  className="mt-6 block px-6 text-[38px] font-bold leading-[1.14] text-white"
                 >
                   {category.title}
                 </span>
@@ -386,7 +378,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                     tagRefs.current[index] = el;
                   }}
                   dir={lang === "en" ? "ltr" : "rtl"}
-                  className="mt-auto flex w-full flex-col items-center pb-7"
+                  className="mt-auto flex w-full flex-col items-center px-6 pb-7"
                   style={{ opacity: 0, visibility: "hidden" }}
                 >
                   {/* The wall text where BCF wrote one, otherwise the sector's
@@ -487,9 +479,6 @@ function ServeDetailDialog({
 }) {
   const c = bcfCopy[lang];
   const Icon = category ? BCF_SECTOR_ICONS[categorySectors[category.id]] : null;
-  const orgTotal = category
-    ? BCF_SECTOR_2025_TOTALS[categorySectors[category.id]]
-    : undefined;
 
   return (
     <AnimatePresence>
@@ -592,34 +581,6 @@ function ServeDetailDialog({
                 </motion.section>
               ))}
 
-              {/* BCF's own 2025 figure for the sector, where it published one —
-                  carried with the scope note it was published under so it is
-                  never read as an all-time total. */}
-              {orgTotal ? (
-                <motion.div
-                  variants={bcfRise}
-                  className="mt-10 rounded-[22px] border p-8"
-                  style={{
-                    borderColor: `${BCF.gold}33`,
-                    backgroundColor: "rgba(251,193,88,0.07)",
-                  }}
-                >
-                  <span
-                    className="block font-display-num text-[52px] font-semibold leading-none tabular-nums"
-                    style={{ color: BCF.sand }}
-                    dir="ltr"
-                  >
-                    {bcfDigits(orgTotal, lang)}
-                  </span>
-                  <span className="mt-4 block text-[26px] font-medium text-[#fdeed4]">
-                    {c.projects.orgTotalLabel}
-                  </span>
-                  <span className="mt-3 block text-[20px] leading-snug text-white/50">
-                    {c.projects.orgTotalNote}
-                  </span>
-                </motion.div>
-              ) : null}
-
               {/* The wall text closes the dialog, set apart from the register
                   lines above it — it is the sentence meant to be read, not
                   counted. */}
@@ -642,7 +603,7 @@ function ServeDetailDialog({
                 <img
                   src={categoryImages[category.id]}
                   alt=""
-                  className="h-[300px] w-full object-cover"
+                  className="h-[420px] w-full object-cover object-center"
                 />
               </motion.div>
             </div>

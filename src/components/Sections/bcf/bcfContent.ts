@@ -2002,6 +2002,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "Registered to operate in the United States, enabling transparent partnerships and accountable cross-border humanitarian support.",
       },
       {
+        id: "kuwait",
+        title: "Registered in Kuwait",
+        body: "Registered as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
+      },
+      {
         id: "ecosoc",
         title: "UN ECOSOC Consultative Status",
         body: "Special consultative status with the United Nations Economic and Social Council, affirming BCF's role in international humanitarian dialogue.",
@@ -2010,11 +2015,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "uk",
         title: "British Charity Commission",
         body: "Recognized under the UK Charity Commission framework, reinforcing standards of governance, reporting, and public trust.",
-      },
-      {
-        id: "kuwait",
-        title: "Registered in Kuwait",
-        body: "Registered as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
       },
       {
         id: "iso",
@@ -3182,6 +3182,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "تۆمارکراوە بۆ کارکردن لە ئەمریکا، بۆ هاوبەشی شفاف و پشتگیری مرۆیی بەرپرسیار.",
       },
       {
+        id: "kuwait",
+        title: "تۆمارکراو لە کوێت",
+        body: "لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکراوە.",
+      },
+      {
         id: "ecosoc",
         title: "پێگەی ڕاوێژکاری UN ECOSOC",
         body: "پێگەی ڕاوێژکاری تایبەت لەگەڵ ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان.",
@@ -3190,11 +3195,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "uk",
         title: "کۆمیسیۆنی خێرخوازی بەریتانیا",
         body: "ناسراو لە چوارچێوەی کۆمیسیۆنی خێرخوازی بەریتانیا بۆ حوکمڕانی و متمانەی گشتی.",
-      },
-      {
-        id: "kuwait",
-        title: "تۆمارکراو لە کوێت",
-        body: "لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکراوە.",
       },
       {
         id: "iso",
@@ -4353,6 +4353,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "مسجّلة للعمل في الولايات المتحدة لدعم شراكات شفافة وعمل إنساني مسؤول.",
       },
       {
+        id: "kuwait",
+        title: "مسجَّلة في الكويت",
+        body: "مسجَّلة كمنظمة خيرية في الكويت عام 2019.",
+      },
+      {
         id: "ecosoc",
         title: "الوضع الاستشاري لدى UN ECOSOC",
         body: "وضع استشاري خاص لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة.",
@@ -4361,11 +4366,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "uk",
         title: "هيئة الجمعيات الخيرية البريطانية",
         body: "معترف بها ضمن إطار هيئة الجمعيات الخيرية في المملكة المتحدة للحوكمة والثقة العامة.",
-      },
-      {
-        id: "kuwait",
-        title: "مسجَّلة في الكويت",
-        body: "مسجَّلة كمنظمة خيرية في الكويت عام 2019.",
       },
       {
         id: "iso",
