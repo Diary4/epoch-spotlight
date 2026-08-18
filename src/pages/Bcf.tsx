@@ -176,7 +176,25 @@ export default function BcfPage() {
     [go, languageOrigin],
   );
 
-  const content = (() => {
+  /**
+   * The scene is memoised, and that is a fix rather than a micro-optimisation.
+   *
+   * Raising the donate overlay is a `useState` on this component, so before
+   * this every tap of the donate control re-rendered the entire experience —
+   * the whole of the scene currently on screen, all of its cards, portraits,
+   * map geometry and counters — purely to add a panel that sits on top of it.
+   * On the Android panel that is a long main-thread block landing exactly on
+   * the visitor's finger, which is the stutter that was reported.
+   *
+   * Holding the scene element by reference lets React skip the subtree
+   * outright when only the overlay flags change: an element that is `===` what
+   * it was is never reconciled. `AnimatePresence` still sees the same child, so
+   * the screen transitions are untouched.
+   *
+   * Every value the branches read is in the dependency list below, so a real
+   * navigation still rebuilds the scene on the same frame it always did.
+   */
+  const content = React.useMemo(() => {
     switch (step) {
       case "attract":
         return (
@@ -378,7 +396,16 @@ export default function BcfPage() {
       default:
         return null;
     }
-  })();
+  }, [
+    step,
+    lang,
+    locationId,
+    modalLocation,
+    sectorId,
+    impactGalleryId,
+    go,
+    openLanguage,
+  ]);
 
   return (
     /* `BCF_PERF_CLASS` is the switch for the low-power rendering path — see

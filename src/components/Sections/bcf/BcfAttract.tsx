@@ -86,9 +86,6 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
           decoding="async"
           {...HIGH_FETCH_PRIORITY}
           className="h-[300px] w-auto"
-          style={{
-            filter: `drop-shadow(0 0 60px ${BCF.gold}44) drop-shadow(0 12px 30px rgba(0,0,0,0.5))`,
-          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: BCF_EASE, delay: 0.15 }}

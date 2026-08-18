@@ -60,10 +60,21 @@ export default function FitScaledCanvas({
       const naturalHeight = canvas.offsetHeight;
       if (!naturalHeight) return;
 
+      // `offsetHeight` is rounded to whole layout pixels, so a canvas that
+      // exactly fills the window routinely measures one pixel taller than it
+      // is. Scaled up that is `scale` device pixels of phantom overflow — and
+      // on Windows, where scrollbars take real width rather than floating over
+      // the content, a bar appears for it. The bar then eats `clientWidth`,
+      // which lowers `scale`, which re-runs this measurement: the "sometimes"
+      // in the reported flicker. Anything inside one layout pixel is that
+      // rounding, never content, so it is snapped away.
+      const scaledHeight = naturalHeight * scale;
+      const overflow = scaledHeight - availHeight;
+
       const next = {
         scale,
         x: Math.max(0, (availWidth - designWidth * scale) / 2),
-        contentHeight: Math.max(naturalHeight * scale, availHeight),
+        contentHeight: overflow > scale ? scaledHeight : availHeight,
         minCanvasHeight,
       };
 
@@ -105,7 +116,14 @@ export default function FitScaledCanvas({
       ref={wrapRef}
       dir={dir}
       lang={lang}
-      className={`relative min-h-screen w-full overflow-x-hidden overflow-y-auto ${bgClassName} ${className}`}
+      // `scrollbar-hide`: the artboard is 1080×1920, so any window that is not
+      // exactly 9:16 leaves real vertical overflow — a browser window with a
+      // toolbar on the 4K portrait panel is short by the height of that
+      // toolbar. Scrolling is the right answer for it, but a drawn scrollbar is
+      // not: these canvases are touch kiosks with no pointer, and on Windows
+      // the bar is an opaque strip down the edge of the composition. Wheel,
+      // touch and keyboard scrolling all still work.
+      className={`relative min-h-screen w-full overflow-x-hidden overflow-y-auto scrollbar-hide ${bgClassName} ${className}`}
     >
       <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
         <div

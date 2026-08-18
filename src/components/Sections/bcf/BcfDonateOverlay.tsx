@@ -12,6 +12,25 @@ import {
 /** Official BCF donate page — scanning this QR opens it on the visitor's phone. */
 export const BCF_DONATE_URL = "https://bcf.krd/donate-eng/";
 
+/**
+ * The QR never changes, so it is encoded once at module load rather than on
+ * every render of the overlay.
+ *
+ * `react-qr-code` builds the whole error-corrected matrix during render. Held
+ * as a constant element that work happens while the kiosk is still sitting on
+ * the attract screen, and the element is referentially stable afterwards, so
+ * re-renders of this overlay never touch it again.
+ */
+const DONATE_QR = (
+  <QRCode
+    value={BCF_DONATE_URL}
+    size={480}
+    bgColor="#FFFFFF"
+    fgColor="#0a0a0a"
+    style={{ height: "auto", width: "480px" }}
+  />
+);
+
 type BcfDonateOverlayProps = {
   open: boolean;
   lang: BcfLang;
@@ -85,13 +104,7 @@ export default function BcfDonateOverlay({
             </p>
 
             <div className="mx-auto mt-12 w-fit rounded-[28px] bg-white p-8">
-              <QRCode
-                value={BCF_DONATE_URL}
-                size={480}
-                bgColor="#FFFFFF"
-                fgColor="#0a0a0a"
-                style={{ height: "auto", width: "480px" }}
-              />
+              {DONATE_QR}
             </div>
           </motion.div>
         </motion.div>
