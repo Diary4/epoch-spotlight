@@ -176,7 +176,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             <motion.div
               key={`${lang}-${activeIndex}`}
               className={`absolute inset-x-0 z-20 px-14 ${
-                isTimeline ? "top-[240px]" : "top-[300px]"
+                isTimeline || isValues ? "top-[220px]" : "top-[300px]"
               }`}
               variants={bcfStagger(0.08, 0.06)}
               initial="initial"
@@ -187,31 +187,33 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                 <BcfChapterHead
                   titleGold={active.titleGold}
                   titleWhite={active.titleWhite}
-                  body={isValues ? undefined : active.body}
+                  body={active.body}
                 />
 
                 {isValues ? (
                   <motion.div
-                    variants={bcfStagger(0.07, 0.12)}
-                    className="mt-14 flex max-w-[920px] flex-col gap-7"
+                    variants={bcfStagger(0.05, 0.08)}
+                    className="mt-10 flex max-h-[1180px] max-w-[980px] flex-col gap-5 overflow-y-auto overscroll-contain pe-4"
                   >
-                    {c.storyValues.map((value, i) => (
+                    {c.storyValues.map((value) => (
                       <motion.div
                         key={value.id}
                         variants={bcfRise}
-                        className={`flex ${i % 2 === 0 ? "justify-start" : "justify-end"}`}
+                        className="rounded-[28px] border border-white/15 bg-black/45 px-8 py-6 backdrop-blur-sm"
                       >
-                        <span
-                          className={`flex items-center gap-4 rounded-full border border-white/15 bg-black/45 px-10 py-5 text-[34px] text-white backdrop-blur-sm ${
-                            i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                        <p
+                          className="text-[32px] font-semibold leading-tight"
+                          style={{ color: BCF.gold }}
+                        >
+                          {value.title}
+                        </p>
+                        <p
+                          className={`mt-3 text-[26px] text-[#fdeed4] ${
+                            lang === "en" ? "leading-snug" : "leading-[1.7]"
                           }`}
                         >
-                          <span
-                            className="h-3.5 w-3.5 shrink-0 rounded-full"
-                            style={{ backgroundColor: BCF.gold }}
-                          />
-                          {value.title}
-                        </span>
+                          {value.body}
+                        </p>
                       </motion.div>
                     ))}
                   </motion.div>

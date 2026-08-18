@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Globe2, Home } from "lucide-react";
+import { Globe2, HeartHandshake, Home } from "lucide-react";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -10,9 +10,11 @@ import {
 type BcfReachRailProps = {
   homeLabel: string;
   languageLabel: string;
+  donateLabel: string;
   /** Home is meaningless before the journey starts, so it is optional. */
   onHome?: () => void;
   onLanguage: () => void;
+  onDonate: () => void;
   /** True on the chapter menu — Home is where the visitor already is. */
   homeActive?: boolean;
 };
@@ -35,8 +37,10 @@ type BcfReachRailProps = {
 export default function BcfReachRail({
   homeLabel,
   languageLabel,
+  donateLabel,
   onHome,
   onLanguage,
+  onDonate,
   homeActive = false,
 }: BcfReachRailProps) {
   const items = [
@@ -54,6 +58,13 @@ export default function BcfReachRail({
       label: languageLabel,
       icon: Globe2,
       onClick: onLanguage,
+      active: false,
+    },
+    {
+      key: "donate",
+      label: donateLabel,
+      icon: HeartHandshake,
+      onClick: onDonate,
       active: false,
     },
   ].filter((item): item is NonNullable<typeof item> => item !== null);

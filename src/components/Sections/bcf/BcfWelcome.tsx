@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, HeartHandshake } from "lucide-react";
 import TextType from "@/components/TextType";
 import BcfShell from "@/components/Sections/bcf/BcfShell";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
@@ -17,9 +17,10 @@ import { bcfAttractPoster } from "@/components/Sections/bcf/bcfAssets";
 type BcfWelcomeProps = {
   lang: BcfLang;
   onStart: () => void;
+  onDonate: () => void;
 };
 
-export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
+export default function BcfWelcome({ lang, onStart, onDonate }: BcfWelcomeProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
 
@@ -114,6 +115,32 @@ export default function BcfWelcome({ lang, onStart }: BcfWelcomeProps) {
               style={{ boxShadow: "inset -1px -1px 20px 0 #fbb22f" }}
             >
               <ArrowRight className="h-10 w-10 text-white rtl:rotate-180" />
+            </span>
+          </motion.button>
+
+          <motion.button
+            variants={bcfRise}
+            type="button"
+            onClick={onDonate}
+            whileTap={BCF_TAP}
+            transition={BCF_TAP_TRANSITION}
+            className="mt-8 flex w-full max-w-[920px] transform-gpu items-center justify-center gap-5 rounded-full border px-8 py-7"
+            style={{
+              borderColor: `${BCF.gold}80`,
+              backgroundColor: `${BCF.gold}1a`,
+              boxShadow: "0 16px 48px rgba(0,0,0,0.35)",
+            }}
+          >
+            <HeartHandshake
+              className="h-12 w-12"
+              strokeWidth={1.6}
+              style={{ color: BCF.gold }}
+            />
+            <span
+              className="text-[32px] font-medium tracking-wide"
+              style={{ color: BCF.gold }}
+            >
+              {c.donate}
             </span>
           </motion.button>
         </div>

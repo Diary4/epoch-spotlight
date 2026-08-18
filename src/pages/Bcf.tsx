@@ -3,6 +3,7 @@ import { AnimatePresence } from "motion/react";
 import FitScaledCanvas from "@/components/FitScaledCanvas";
 import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
 import BcfLanguageOverlay from "@/components/Sections/bcf/BcfLanguageOverlay";
+import BcfDonateOverlay from "@/components/Sections/bcf/BcfDonateOverlay";
 import BcfIdleOverlay from "@/components/Sections/bcf/BcfIdleOverlay";
 import BcfReachRail from "@/components/Sections/bcf/BcfReachRail";
 import BcfAttract from "@/components/Sections/bcf/BcfAttract";
@@ -69,6 +70,7 @@ export default function BcfPage() {
   const [languageOpen, setLanguageOpen] = React.useState(false);
   const [languageOrigin, setLanguageOrigin] =
     React.useState<"entry" | "control">("entry");
+  const [donateOpen, setDonateOpen] = React.useState(false);
   const [idleCount, setIdleCount] = React.useState<number | null>(null);
 
   const c = bcfCopy[lang];
@@ -98,6 +100,7 @@ export default function BcfPage() {
   const reset = React.useCallback(() => {
     setIdleCount(null);
     setLanguageOpen(false);
+    setDonateOpen(false);
     setLanguageOrigin("entry");
     setModalLocation(null);
     setLocationId(null);
@@ -196,6 +199,7 @@ export default function BcfPage() {
             key="welcome"
             lang={lang}
             onStart={() => go(() => setStep("sections"))}
+            onDonate={() => setDonateOpen(true)}
           />
         );
       case "sections":
@@ -405,12 +409,14 @@ export default function BcfPage() {
           <BcfReachRail
             homeLabel={c.home}
             languageLabel={c.language}
+            donateLabel={c.donate}
             onHome={
               STEPS_WITH_HOME.includes(step)
                 ? () => go(() => setStep("sections"))
                 : undefined
             }
             onLanguage={() => openLanguage("control")}
+            onDonate={() => setDonateOpen(true)}
             homeActive={step === "sections"}
           />
         ) : null}
@@ -421,6 +427,12 @@ export default function BcfPage() {
           lang={lang}
           onSelect={chooseLanguage}
           onClose={() => setLanguageOpen(false)}
+        />
+
+        <BcfDonateOverlay
+          open={donateOpen}
+          lang={lang}
+          onClose={() => setDonateOpen(false)}
         />
 
         <BcfIdleOverlay

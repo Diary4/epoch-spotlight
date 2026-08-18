@@ -563,9 +563,9 @@ export type StorySection = {
 };
 
 /**
- * One of the five principle pills on the Values pane — title only.
+ * One of the six values on the Values pane — title and the source description.
  */
-export type StoryValue = { id: string; title: string };
+export type StoryValue = { id: string; title: string; body: string };
 
 /** One beat on the Our Story institutional timeline. */
 export type StoryMilestone = {
@@ -608,6 +608,9 @@ export type BcfCopy = {
   /** Persistent reach-rail controls, present on every scene after the attract. */
   home: string;
   language: string;
+  donate: string;
+  donateTitle: string;
+  donateHint: string;
   chooseLanguageHint: string;
   /** Idle warning shown before the kiosk returns itself to the attract screen. */
   idleTitle: string;
@@ -914,6 +917,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     enterHint: "TOUCH ANYWHERE",
     home: "Home",
     language: "Language",
+    donate: "Donate",
+    donateTitle: "Donate to BCF",
+    donateHint: "Scan this code with your phone to open the BCF donate page.",
     chooseLanguageHint: "You can change this at any time from the side controls.",
     idleTitle: "Still with us?",
     idleBody: "The experience returns to the start so the next visitor begins fresh.",
@@ -1302,14 +1308,40 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "values",
         titleGold: "Values",
         titleWhite: "Behind the Mission",
+        body: "BCF operates through values that shape both local and international humanitarian work.",
       },
     ],
     storyValues: [
-      { id: "neutrality", title: "Humanitarian neutrality" },
-      { id: "dignity", title: "Dignity in giving" },
-      { id: "resilience", title: "Resilience and empowerment" },
-      { id: "coexistence", title: "Coexistence and harmony" },
-      { id: "transparency", title: "Transparency" },
+      {
+        id: "neutrality",
+        title: "Humanitarian Neutrality",
+        body: "BCF provides aid based on need alone, without discrimination based on politics, ethnicity, religion, gender or background.",
+      },
+      {
+        id: "dignity",
+        title: "Dignity in Giving",
+        body: "Support is delivered in a way that protects the honor and self-worth of every person served.",
+      },
+      {
+        id: "resilience",
+        title: "Resilience and Empowerment",
+        body: "BCF works beyond emergency relief by helping communities rebuild, recover and become self-reliant.",
+      },
+      {
+        id: "coexistence",
+        title: "Coexistence and Harmony",
+        body: "BCF promotes peaceful coexistence among Kurdistan's diverse ethnic and religious communities.",
+      },
+      {
+        id: "vulnerable",
+        title: "Supporting the Vulnerable",
+        body: "BCF serves poor families, IDPs, refugees, people with disabilities, elderly people, orphans and other vulnerable groups.",
+      },
+      {
+        id: "transparency",
+        title: "Transparency",
+        body: "BCF maintains accountability to donors, partners and beneficiaries to ensure that resources reach those most in need.",
+      },
     ],
     storyMilestones: [
       { id: "founded", year: "2005", body: "BCF founded in Erbil." },
@@ -2122,6 +2154,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     enterHint: "دەستی لە هەر شوێنێک بدە",
     home: "سەرەتا",
     language: "زمان",
+    donate: "بەخشین",
+    donateTitle: "بەخشین بۆ BCF",
+    donateHint: "ئەم کۆدە بە مۆبایلەکەت سکان بکە بۆ کردنەوەی پەڕەی بەخشینی BCF.",
     chooseLanguageHint: "هەر کاتێک بتەوێت لە کۆنترۆڵەکانی لاوە دەیگۆڕیت.",
     idleTitle: "هێشتا لەگەڵمانیت؟",
     idleBody: "ئەزموونەکە دەگەڕێتەوە سەرەتا بۆ ئەوەی سەردانکەری داهاتوو لە سەرەتاوە دەست پێبکات.",
@@ -2502,14 +2537,40 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "values",
         titleGold: "بەهاکانی",
         titleWhite: "پشت پەیامەکە",
+        body: "دەزگا لە ڕێگەی بەهاکانەوە کار دەکات کە کاری مرۆیی ناوخۆیی و نێودەوڵەتی دادەڕێژن.",
       },
     ],
     storyValues: [
-      { id: "neutrality", title: "بێلایەنی مرۆیی" },
-      { id: "dignity", title: "کەرامەت لە بەخشیندا" },
-      { id: "resilience", title: "بەرگەگرتن و بەهێزکردن" },
-      { id: "coexistence", title: "هاوژیانی ئاشتیانە" },
-      { id: "transparency", title: "ڕوونکاری" },
+      {
+        id: "neutrality",
+        title: "بێلایەنی مرۆیی",
+        body: "دەزگا یارمەتی دەدات تەنها لەسەر بنەمای پێویستی، بەبێ جیاوازی لەسەر سیاسەت، نەتەوە، ئایین، ڕەگەز یان پێشینە.",
+      },
+      {
+        id: "dignity",
+        title: "کەرامەت لە بەخشیندا",
+        body: "پشتگیری بە شێوەیەک پێشکەش دەکرێت کە شەرەف و کەرامەتی هەر کەسێک بپارێزێت.",
+      },
+      {
+        id: "resilience",
+        title: "بەرگەگرتن و بەهێزکردن",
+        body: "دەزگا لە فریاکەوتنی فریاگوزاری تێدەپەڕێت و کۆمەڵگەکان یارمەتی دەدات بۆ نۆژەنکردنەوە، گەڕانەوە و خۆبەڕێوەبردن.",
+      },
+      {
+        id: "coexistence",
+        title: "هاوژیانی ئاشتیانە",
+        body: "دەزگا هاوژیانی ئاشتیانە لەنێوان کۆمەڵگە جیاوازە نەتەوەیی و ئایینییەکانی کوردستان پەرەپێدەدات.",
+      },
+      {
+        id: "vulnerable",
+        title: "پشتگیری لە لاوازەکان",
+        body: "دەزگا خزمەتی خێزانە هەژارەکان، ئاوارەکان، پەنابەران، کەسانی خاوەن پێداویستی تایبەت، بەساڵاچووان، هەتیوان و گروپە لاوازەکانی تر دەکات.",
+      },
+      {
+        id: "transparency",
+        title: "ڕوونکاری",
+        body: "دەزگا بەرپرسیارێتی لەبەردەم بەخشەران، هاوبەشان و سودمەندان دەپارێزێت بۆ ئەوەی سەرچاوەکان بگەنە ئەوانەی زۆرترین پێویستیان پێیەتی.",
+      },
     ],
     storyMilestones: [
       { id: "founded", year: "2005", body: "دامەزراندنی دەزگا لە هەولێر." },
@@ -3273,6 +3334,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     enterHint: "المس أي مكان",
     home: "الرئيسية",
     language: "اللغة",
+    donate: "تبرّع",
+    donateTitle: "تبرّع لمؤسسة بارزاني الخيرية",
+    donateHint: "امسح هذا الرمز بهاتفك لفتح صفحة التبرع.",
     chooseLanguageHint: "يمكنك تغييرها في أي وقت من أدوات التحكم الجانبية.",
     idleTitle: "هل ما زلت معنا؟",
     idleBody: "تعود التجربة إلى البداية ليبدأ الزائر التالي من جديد.",
@@ -3653,14 +3717,40 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "values",
         titleGold: "القيم",
         titleWhite: "التي تقوم عليها الرسالة",
+        body: "تعمل المؤسسة من خلال قيم تشكّل العمل الإنساني محلياً ودولياً.",
       },
     ],
     storyValues: [
-      { id: "neutrality", title: "الحياد الإنساني" },
-      { id: "dignity", title: "الكرامة في العطاء" },
-      { id: "resilience", title: "الصمود والتمكين" },
-      { id: "coexistence", title: "التعايش والانسجام" },
-      { id: "transparency", title: "الشفافية" },
+      {
+        id: "neutrality",
+        title: "الحياد الإنساني",
+        body: "تقدم المؤسسة المساعدة على أساس الحاجة وحدها، دون تمييز على أساس السياسة أو العرق أو الدين أو الجنس أو الخلفية.",
+      },
+      {
+        id: "dignity",
+        title: "الكرامة في العطاء",
+        body: "يُقدَّم الدعم بطريقة تحمي شرف وكرامة كل شخص يُخدم.",
+      },
+      {
+        id: "resilience",
+        title: "الصمود والتمكين",
+        body: "تعمل المؤسسة بما يتجاوز الإغاثة الطارئة بمساعدة المجتمعات على إعادة البناء والتعافي والاعتماد على الذات.",
+      },
+      {
+        id: "coexistence",
+        title: "التعايش والانسجام",
+        body: "تعزز المؤسسة التعايش السلمي بين مجتمعات كردستان المتنوعة عرقياً ودينياً.",
+      },
+      {
+        id: "vulnerable",
+        title: "دعم الفئات الضعيفة",
+        body: "تخدم المؤسسة العائلات الفقيرة والنازحين واللاجئين وذوي الإعاقة وكبار السن والأيتام وغيرهم من الفئات الضعيفة.",
+      },
+      {
+        id: "transparency",
+        title: "الشفافية",
+        body: "تحافظ المؤسسة على المساءلة أمام المانحين والشركاء والمستفيدين لضمان وصول الموارد إلى الأكثر احتياجاً.",
+      },
     ],
     storyMilestones: [
       { id: "founded", year: "2005", body: "تأسيس المؤسسة في أربيل." },
