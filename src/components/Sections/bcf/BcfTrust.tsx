@@ -44,7 +44,7 @@ import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/8C6A0295.webp";
-import presidentPortrait from "@/assets/images/bcf/from-source/board-musa-ahmad.webp";
+import presidentPortrait from "@/assets/images/bcf/from-source/president-musa.webp";
 /** Head-and-shoulders square cut from the founder's studio portrait. The full
     frame is a seated three-quarter shot, which in a 112px circle would be a
     turban and a chair with the face too small to recognise. */
@@ -311,7 +311,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                   <img
                     src={presidentPortrait}
                     alt=""
-                    className="h-full w-full object-cover object-[46%_12%]"
+                    className="h-full w-full object-cover object-top"
                   />
                 </span>
                 <div>

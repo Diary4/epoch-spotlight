@@ -1756,6 +1756,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Administrative Board Members",
         members: [
           { id: "ibrahim", name: "Ibrahim Samin", role: "BCF Vice President" },
+          { id: "farzin", name: "Farzin Bagzade", role: "Administrative Board Member" },
           { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
           {
             id: "abdulwahid",
@@ -1778,7 +1779,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             name: "Rawaj Haji",
             role: "Administrative Board Member and Human Resources Dep. Manager",
           },
-          { id: "farzin", name: "Farzin Bagzade", role: "Administrative Board Member" },
         ],
       },
     ],
@@ -1883,7 +1883,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfPresident: {
       open: "Meet the BCF President",
-      name: "Mousa Ahmed Agha Tajaldeen",
+      name: "Musa Ahmed Agha Tajaldeen",
       role: "BCF President",
       meta: "Barzani Charity Foundation",
       bioLabel: "Biography",
@@ -2936,6 +2936,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئەندامانی دەستەی کارگێڕی",
         members: [
           { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
+          { id: "farzin", name: "فەرزین بەگزادە", role: "ئەندامی دەستەی کارگێڕی" },
           { id: "awat", name: "ئاوات ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
           {
             id: "abdulwahid",
@@ -2958,7 +2959,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             name: "ڕەواج حاجی",
             role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی سەرچاوە مرۆییەکان",
           },
-          { id: "farzin", name: "فەرزین بەگزادە", role: "ئەندامی دەستەی کارگێڕی" },
         ],
       },
     ],
@@ -4110,6 +4110,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "أعضاء الهيئة الإدارية",
         members: [
           { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
+          { id: "farzin", name: "فرزين بغزادة", role: "عضو الهيئة الإدارية" },
           { id: "awat", name: "آوات أحمد", role: "عضو الهيئة الإدارية" },
           {
             id: "abdulwahid",
@@ -4132,7 +4133,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             name: "رواج حاجي",
             role: "عضو الهيئة الإدارية ومدير قسم الموارد البشرية",
           },
-          { id: "farzin", name: "فرزين بغزادة", role: "عضو الهيئة الإدارية" },
         ],
       },
     ],

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Sun } from "lucide-react";
+import { ArrowRight, House, Sun, User } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
@@ -39,6 +39,12 @@ const CARD_IMAGES: Record<ImpactGalleryId, string> = {
   idps: cardIdps,
   schools: cardSchools,
 };
+
+/** Headline reach figures — numbers only, as published on BCF's impact strip. */
+const IMPACT_TOTALS = [
+  { id: "families", value: "10,208,103", Icon: House },
+  { id: "people", value: "56,906,790", Icon: User },
+] as const;
 
 /**
  * Our Impact — Figma grid: 2×2 photo stat cards + Human Story Layer CTA.
@@ -100,6 +106,32 @@ export default function BcfImpact({
           animate="animate"
         >
           <div className="grid grid-cols-2 gap-7">
+            {IMPACT_TOTALS.map((stat, index) => (
+              <motion.div
+                key={stat.id}
+                variants={bcfRiseCard}
+                className="flex h-[200px] flex-col items-center justify-center gap-5 rounded-[28px] border border-white/15 bg-black/40"
+                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
+              >
+                <stat.Icon
+                  className="h-14 w-14"
+                  strokeWidth={1.6}
+                  style={{ color: BCF.gold }}
+                />
+                <BcfStatValue
+                  value={stat.value}
+                  lang={lang}
+                  className="text-[56px] font-semibold leading-none"
+                  color="#fbf4e4"
+                  duration={2.8}
+                  delay={0.2 + index * 0.12}
+                  smooth
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-7">
             {c.impactItems.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -108,7 +140,7 @@ export default function BcfImpact({
                 onClick={() => onOpenGallery(item.id)}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
-                className="relative flex h-[520px] transform-gpu flex-col overflow-hidden rounded-[28px] border border-white/15 text-left"
+                className="relative flex h-[460px] transform-gpu flex-col overflow-hidden rounded-[28px] border border-white/15 text-left"
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <img
