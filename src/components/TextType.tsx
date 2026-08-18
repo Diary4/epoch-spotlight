@@ -94,16 +94,27 @@ const TextType = ({
   }, [startOnVisible]);
 
   useEffect(() => {
-    if (showCursor && cursorRef.current) {
-      gsap.set(cursorRef.current, { opacity: 1 });
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        duration: cursorBlinkDuration,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power2.inOut'
-      });
-    }
+    if (!showCursor || !cursorRef.current) return;
+
+    gsap.set(cursorRef.current, { opacity: 1 });
+    const blink = gsap.to(cursorRef.current, {
+      opacity: 0,
+      duration: cursorBlinkDuration,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power2.inOut'
+    });
+
+    // `repeat: -1` never ends on its own, so without this the tween outlives the
+    // component. GSAP keeps it on the global ticker for the life of the page,
+    // animating a detached node at 60fps and holding it (and this subtree) in
+    // memory — measured on the BCF kiosk as the welcome screen leaving the whole
+    // experience pinned at 60 style recalcs a second after it had unmounted.
+    // Each visit adds another, and the kiosk's idle reset means the opening runs
+    // again every few minutes, so they accumulate for as long as the tab lives.
+    return () => {
+      blink.kill();
+    };
   }, [showCursor, cursorBlinkDuration]);
 
   useEffect(() => {
