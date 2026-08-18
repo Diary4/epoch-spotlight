@@ -3,23 +3,13 @@
  * folder so a visitor can browse the real photography behind each statistic.
  *
  * Sources are kiosk-sized WebPs under `bcf/optimized/` (max edge 1600px). The
- * original camera JPGs stay in the repo for archival use but are not bundled.
+ * original camera files stay in the repo for archival use but are not bundled.
  *
- * Employees maps to `administration/` (there is no dedicated employees folder).
- * IDPs maps to `flood/` emergency-response photography.
+ * Employees is the staff portrait set. IDPs maps to `flood/` emergency-response
+ * photography.
  */
 import type { DomeImage } from "@/components/Sections/bcf/DomeGallery";
 import type { ImpactGalleryId } from "@/components/Sections/bcf/bcfContent";
-
-import emp01 from "@/assets/images/bcf/optimized/administration/2496383.webp";
-import emp02 from "@/assets/images/bcf/optimized/administration/405A9925.webp";
-import emp03 from "@/assets/images/bcf/optimized/administration/8C6A0443.webp";
-import emp04 from "@/assets/images/bcf/optimized/administration/8C6A0612.webp";
-import emp05 from "@/assets/images/bcf/optimized/administration/8C6A7435.webp";
-import emp06 from "@/assets/images/bcf/optimized/administration/8C6A7443.webp";
-import emp07 from "@/assets/images/bcf/optimized/administration/FB_IMG_1785061539929.webp";
-import emp08 from "@/assets/images/bcf/optimized/administration/whatsapp-admin.webp";
-import emp09 from "@/assets/images/bcf/optimized/administration/fff.webp";
 
 import camp01 from "@/assets/images/bcf/optimized/camps/baharka.webp";
 import camp02 from "@/assets/images/bcf/optimized/camps/basrma.webp";
@@ -55,6 +45,11 @@ import school10 from "@/assets/images/bcf/optimized/schools/photo_2022-08-28.web
 import school11 from "@/assets/images/bcf/optimized/schools/photo_2022-09-04.webp";
 import school12 from "@/assets/images/bcf/optimized/schools/photo_2022-09-12.webp";
 
+const employeeModules = import.meta.glob<string>(
+  "@/assets/images/bcf/optimized/employees/*.webp",
+  { eager: true, import: "default" },
+);
+
 function toDome(srcs: string[], alt: string): DomeImage[] {
   return srcs.map((src, index) => ({
     src,
@@ -62,11 +57,24 @@ function toDome(srcs: string[], alt: string): DomeImage[] {
   }));
 }
 
+function titleFromAssetPath(key: string): string {
+  const stem = key.split("/").pop()?.replace(/\.webp$/i, "") ?? "employee";
+  return stem
+    .split("-")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+const employeeImages: DomeImage[] = Object.keys(employeeModules)
+  .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }))
+  .map((key) => ({
+    src: employeeModules[key],
+    alt: titleFromAssetPath(key),
+  }));
+
 export const IMPACT_GALLERY_IMAGES: Record<ImpactGalleryId, DomeImage[]> = {
-  employees: toDome(
-    [emp01, emp02, emp03, emp04, emp05, emp06, emp07, emp08, emp09],
-    "Employees",
-  ),
+  employees: employeeImages,
   camps: toDome(
     [
       camp01,
