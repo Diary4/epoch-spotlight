@@ -76,14 +76,21 @@ const topicThumbs: Record<TrustTopicId, string> = {
  */
 const credentialArt: Record<
   string,
-  { src: string; fit: "cover" | "contain"; pad?: string; position?: string }
+  {
+    src: string;
+    fit: "cover" | "contain";
+    pad?: string;
+    position?: string;
+    /** White mat behind letterboxed scans. Skip it when the document is already a white page. */
+    mat?: "white";
+  }
 > = {
   "iraq-krg": { src: credKurdistan, fit: "cover" },
   usa: { src: credUsa, fit: "cover" },
   kuwait: { src: credKuwait, fit: "cover" },
-  ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14" },
-  uk: { src: credBcc, fit: "contain", pad: "p-12" },
-  iso: { src: isoCertificate, fit: "contain", pad: "p-6" },
+  ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14", mat: "white" },
+  uk: { src: credBcc, fit: "contain", pad: "p-12", mat: "white" },
+  iso: { src: isoCertificate, fit: "contain", pad: "p-0" },
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -396,7 +403,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       const activeArt = credentialArt[activeCredential.id];
       const artSrc = activeArt?.src ?? certificateImg;
       const artFit = activeArt?.fit ?? "contain";
-      const artPad = activeArt?.pad ?? "p-8";
+      const artPad = activeArt?.pad ?? "";
       const artPosition = activeArt?.position ?? "";
       const qualityTitle =
         lang === "en" ? (
@@ -474,7 +481,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 <div
                   className="relative min-h-[760px] flex-1 overflow-hidden"
                   style={{
-                    backgroundColor: artFit === "contain" ? "#fff" : undefined,
+                    backgroundColor:
+                      artFit === "contain" && activeArt?.mat === "white"
+                        ? "#fff"
+                        : "#111",
                   }}
                 >
                   <AnimatePresence mode="wait">
