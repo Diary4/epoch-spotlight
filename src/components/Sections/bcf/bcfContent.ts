@@ -1750,7 +1750,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       open: "Meet the Board Chief",
       name: "Masrour Barzani",
       role: "President of the Board of Founders",
-      meta: "Barzani Charity Foundation · Established 2005",
+      meta: "Barzani Charity Foundation",
       intro:
         "The Board of Founders is the highest authority of the foundation, and its president sets the standard the work is held to: aid given on need alone, delivered in a way that protects the dignity of the person receiving it.",
       slides: [
@@ -2867,7 +2867,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       open: "ناسینی سەرۆکی بۆرد",
       name: "مەسرور بارزانی",
       role: "سەرۆکی بۆردی دامەزرێنەران",
-      meta: "دەزگای خێرخوازیی بارزانی · دامەزراوە لە ٢٠٠٥",
+      meta: "دەزگای خێرخوازیی بارزانی",
       intro:
         "بۆردی دامەزرێنەران باڵاترین دەسەڵاتە لە دەزگاکەدا، و سەرۆکەکەی ئەو پێوەرە دادەنێت کە کارەکە پێوەی هەڵدەسەنگێنرێت: هاوکاری تەنها لەسەر بنەمای پێویستی دەدرێت، و بە شێوەیەک پێشکەش دەکرێت کە کەرامەتی ئەو کەسە بپارێزێت کە وەریدەگرێت.",
       slides: [
@@ -3978,7 +3978,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       open: "تعرّف على رئيس المجلس",
       name: "مسرور بارزاني",
       role: "رئيس مجلس المؤسسين",
-      meta: "مؤسسة بارزاني الخيرية · تأسست عام 2005",
+      meta: "مؤسسة بارزاني الخيرية",
       intro:
         "مجلس المؤسسين هو السلطة العليا في المؤسسة، ورئيسه يضع المعيار الذي يُقاس به العمل: مساعدة تُقدَّم على أساس الحاجة وحدها، وبطريقة تصون كرامة من يتلقاها.",
       slides: [
