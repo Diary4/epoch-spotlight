@@ -25,6 +25,7 @@ import cardCamps from "@/assets/images/bcf/from-source/impact-camps.webp";
 import cardIdps from "@/assets/images/bcf/selected/impact-idps.webp";
 import cardSchools from "@/assets/images/bcf/selected/impact-schools.webp";
 import cardBeneficiaries from "@/assets/images/bcf/from-source/impact-beneficiaries.webp";
+import cardFamilies from "@/assets/images/bcf/from-source/impact-families.webp";
 
 type BcfImpactProps = {
   lang: BcfLang;
@@ -41,7 +42,12 @@ const CARD_IMAGES: Record<ImpactGalleryId, string> = {
 
 /** Headline reach figures published on BCF's impact strip. */
 const IMPACT_TOTALS = [
-  { id: "families", value: "10,208,103", Icon: House },
+  {
+    id: "families",
+    value: "10,208,103",
+    Icon: House,
+    image: cardFamilies,
+  },
   {
     id: "people",
     value: "56,906,790",
