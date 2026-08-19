@@ -585,11 +585,19 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
               })}
             </motion.div>
 
-            <div className="mx-auto mt-12 w-full max-w-[980px] flex-1">
+            <div
+              className="mx-auto mt-12 min-h-0 w-full max-w-[980px] flex-1"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, #000 72px, #000 calc(100% - 88px), transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, #000 72px, #000 calc(100% - 88px), transparent 100%)",
+              }}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={partnerGroup}
-                  className="grid max-h-[1280px] grid-cols-3 gap-x-8 gap-y-8 overflow-y-auto overscroll-contain px-2 pb-8 pt-1"
+                  className="grid max-h-[1280px] grid-cols-3 gap-x-8 gap-y-8 overflow-y-auto overscroll-contain scrollbar-hide px-2 pb-16 pt-10"
                   variants={bcfStagger(0.035, 0.04)}
                   initial="initial"
                   animate="animate"

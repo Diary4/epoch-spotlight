@@ -1,19 +1,8 @@
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import { bcfLangBg, bcfLogo } from "@/components/Sections/bcf/bcfAssets";
+import { bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
-
-/**
- * React 18 note: this must stay lowercase and be applied via a spread.
- *
- * `react-dom@18.3.1` does not know the camelCase `fetchPriority` prop — it warns
- * and drops it, so the hint never reaches the DOM — while `@types/react@18.3`
- * already declares it, which makes the correct lowercase spelling look like a
- * type error. Spreading keeps the spelling the runtime needs without a cast.
- * On React 19 this can become a plain `fetchPriority` prop.
- */
-const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 import {
   BCF_EASE,
   BCF_TAP,
@@ -41,12 +30,9 @@ type BcfLanguageOverlayProps = {
 };
 
 /**
- * Language as a full-bleed plate rather than a floating card.
- *
- * Matches the Option 1 language frame: logo alone in the corner, three glass
- * pills across the centre, photography carrying the rest of the screen. The
- * same surface serves entry and the rail reopen — origin only decides whether
- * a close control is drawn.
+ * Language as a frosted veil over the current scene, not a second photograph.
+ * A light dim plus a short blur keeps the page underneath readable as context
+ * while the three language pills take the centre.
  */
 export default function BcfLanguageOverlay({
   open,
@@ -59,7 +45,7 @@ export default function BcfLanguageOverlay({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="absolute inset-0 z-[60] overflow-hidden"
+          className="absolute inset-0 z-[60] overflow-hidden bg-black/25 backdrop-blur-md"
           role="dialog"
           aria-modal="true"
           aria-label={bcfCopy.en.languageTitle}
@@ -68,16 +54,6 @@ export default function BcfLanguageOverlay({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: BCF_EASE }}
         >
-          <img
-            src={bcfLangBg}
-            alt=""
-            decoding="async"
-            {...HIGH_FETCH_PRIORITY}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-
           <img
             src={bcfLogo}
             alt="Barzani Charity Foundation"

@@ -33,7 +33,7 @@ export { default as bcfTrustBg } from "@/assets/images/bcf/trustbehindwokr.webp"
 export { default as bcfHubBg } from "@/assets/images/bcf/optimized/camps/harsham.webp";
 export { default as bcfImpactBg } from "@/assets/images/bcf/selected/humanity-relief.webp";
 export { default as bcfProjectsBg } from "@/assets/images/bcf/selected/impact-camps.webp";
-export { default as bcfFutureDetailBg } from "@/assets/images/bcf/future-legacy-bg.webp";
+export { default as bcfFutureDetailBg } from "@/assets/images/bcf/future/main.jpeg";
 
 /**
  * Opening plates.

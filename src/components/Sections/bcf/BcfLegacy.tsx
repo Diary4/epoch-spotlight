@@ -9,22 +9,11 @@ import {
   bcfRiseCard,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import legacyHero from "@/assets/images/bcf/future-legacy-bg.webp";
+import { bcfFutureDetailBg } from "@/components/Sections/bcf/bcfAssets";
 import pillarService from "@/assets/images/bcf/future/service-is-dignity.jpeg";
 import pillarHumanity from "@/assets/images/bcf/future/human-responsibility.jpeg";
 import pillarHope from "@/assets/images/bcf/future/hope-through-action.jpeg";
 
-
-/**
- * React 18 note: this must stay lowercase and be applied via a spread.
- *
- * `react-dom@18.3.1` does not know the camelCase `fetchPriority` prop — it warns
- * and drops it, so the hint never reaches the DOM — while `@types/react@18.3`
- * already declares it, which makes the correct lowercase spelling look like a
- * type error. Spreading keeps the spelling the runtime needs without a cast.
- * On React 19 this can become a plain `fetchPriority` prop.
- */
-const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 type BcfLegacyProps = {
   lang: BcfLang;
   onBack: () => void;
@@ -35,47 +24,25 @@ const PILLAR_IMAGES = [pillarService, pillarHumanity, pillarHope];
 /**
  * Closing page — "A Legacy That Continues" (roadmap page 29).
  *
- * The scene is one photograph that dissolves into black and three pillars that
- * arrive on a stagger: the visitor should feel the room settling rather than
- * another list opening.
+ * Same landscape plate as The Future We Build, with three pillars that arrive
+ * on a stagger so the visitor feels the room settling rather than another list
+ * opening.
  */
 export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
 
   return (
-    <BcfShell showLogo={false} backgroundStyle={{ backgroundColor: BCF.bg }}>
+    <BcfShell
+      showLogo={false}
+      backgroundImage={bcfFutureDetailBg}
+      overlayClassName="bg-black/60"
+    >
       <div className="relative flex min-h-[1920px] flex-col">
         <BcfBackButton onClick={onBack} label={c.back} />
 
-        {/* Hero plate. It carries its own fade to black so the pillars below sit
-            on the page rather than on a photograph. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[700px] overflow-hidden">
-          {/* Same ken-burns push every other backdrop uses (`.bcf-drift` in
-              index.css), rather than a `motion` scale driven from JS. This plate
-              is 700px of full-width photograph, so a per-frame transform write
-              on the main thread was one of the more expensive things on the
-              screen — and it never stopped. */}
-          <img
-            src={legacyHero}
-            alt=""
-            decoding="async"
-            {...HIGH_FETCH_PRIORITY}
-            className={`h-full w-full object-cover ${
-              reduceMotion ? "" : "bcf-drift"
-            }`}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(10,10,10,0.42) 0%, rgba(10,10,10,0.25) 34%, rgba(10,10,10,0.86) 76%, #0a0a0a 100%)",
-            }}
-          />
-        </div>
-
         <motion.div
-          className="relative z-10 flex flex-1 flex-col px-14 pb-20 pt-[340px]"
+          className="relative z-10 flex flex-1 flex-col px-14 pb-20 pt-[180px]"
           variants={bcfStagger(0.12, 0.2)}
           initial="initial"
           animate="animate"
