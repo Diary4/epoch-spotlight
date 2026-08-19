@@ -502,8 +502,8 @@ export type BcfFounderEntry = {
  * Built on the President's record layout — labelled spine on one side, content
  * on the other — because it answers the same questions and should be recognised
  * as the same kind of page when a visitor lands on it from the Leadership grid.
- * It carries two lists the President's page has no use for: a service history
- * and the party seats held alongside the foundation seat.
+ * Four museum-label sections: profile, leadership, Peshmerga struggle, and
+ * liberation and defense.
  */
 export type BcfFounderCopy = {
   open: string;
@@ -1861,77 +1861,47 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "Sidad Mulla Mustafa Barzani",
       role: "Member of the Board of Founders",
       meta: "Barzani Charity Foundation · Born 1968",
-      bioLabel: "Biography",
-      bio: "Born in 1968, Sidad Barzani is the son of the Kurdish national leader Mulla Mustafa Barzani and the younger brother of President Masoud Barzani. A prominent political and social figure and a key decision-maker, he serves on the Leadership Council and Political Bureau of the Kurdistan Democratic Party and as Special Representative of President Masoud Barzani. Known for his calm and composed demeanour, he carries extensive experience in political, national, patriotic and environmental work, and is a member of the Board of Founders of the Barzani Charity Foundation.",
-      rolesLabel: "Roles and Activities",
+      bioLabel: "Profile",
+      bio: "Sidad Mulla Mustafa Barzani (b. 1968), son of national leader Mulla Mustafa Barzani and younger brother to President Masoud Barzani; founding board member of Barzani Charity Foundation.",
+      rolesLabel: "Leadership",
       roles: [
         {
-          id: "representation",
-          title: "Official Representation",
-          body: "Frequently serves as the Special Representative of President Masoud Barzani at political conventions, public awareness events, memorial services and dignitary visits across the regions of the Kurdistan Region.",
-        },
-        {
-          id: "diplomacy",
-          title: "Diplomatic and Social Engagement",
-          body: "Plays a prominent role in fostering social reconciliation and in maintaining the KDP's relations with tribal leaders and diverse political factions throughout Kurdistan and Iraq.",
-        },
-      ],
-      serviceLabel: "Peshmerga Service",
-      serviceIntro:
-        "Sidad Barzani grew up at the very heart of the Kurdish liberation struggle. As the son of Mulla Mustafa Barzani, his life was interwoven from an early age with political struggle, resistance and confrontation against oppression and tyranny.",
-      service: [
-        {
-          id: "joining",
-          title: "Joining the Peshmerga",
-          body: "Joined the ranks of the Kurdistan Peshmerga Forces in his youth, during the late 1970s.",
-        },
-        {
-          id: "gulan",
-          title: "Displacement and the Gulan Revolution",
-          body: "Alongside the KDP leadership and his brothers, Idris Barzani and Masoud Barzani — despite his young age, a steadfast companion and witness through those arduous years.",
-        },
-        {
-          id: "assignments",
-          title: "Special Assignments",
-          body: "During the mountain struggle he contributed within party institutions and decision-making centres to military logistics, security and the organization of Peshmerga battle sectors across the fronts. Many of the historic photographs documenting the revolution were captured through his lens.",
-        },
-        {
-          id: "uprising",
-          title: "The 1991 Uprising",
-          body: "Took part in the great Kurdistan Uprising of March 1991, contributing to the liberation of Kurdish towns and cities from the Ba'athist regime.",
-        },
-        {
-          id: "isis",
-          title: "The Campaign Against ISIS",
-          body: "Over the past decade and to the present day he has maintained an active presence — most notably during the war against ISIS — supervising meetings and providing frontline field support to the Peshmerga forces.",
-        },
-      ],
-      partyLabel: "Positions in the KDP",
-      party: [
-        {
           id: "politburo",
-          title: "Member of the Political Bureau",
-          body: "Elected in KDP general congresses to the Leadership Council, and subsequently to the Political Bureau and the Executive Board — the highest executive decision-making body of the party.",
+          title: "KDP Political Bureau",
+          body: "Member of the Kurdistan Democratic Party Political Bureau and Executive Board.",
         },
         {
-          id: "representative",
-          title: "Special Representative of President Barzani",
-          body: "Formally tasked with representing President Masoud Barzani at major political, national and social forums and events.",
+          id: "envoy",
+          title: "Special Envoy",
+          body: "Special Envoy to President Masoud Barzani.",
         },
         {
           id: "bureau",
-          title: "Head of the President's Private Bureau",
-          body: "Plays a central role in managing diplomatic relations, conveying political directives and organizing meetings between President Barzani and domestic and international delegations and dignitaries.",
+          title: "President's Private Bureau",
+          body: "Head of the President's Private Bureau.",
+        },
+      ],
+      serviceLabel: "Peshmerga Struggle",
+      serviceIntro:
+        "Enlisted in the Peshmerga in the late 1970s.",
+      service: [
+        {
+          id: "gulan",
+          title: "Gulan Revolution",
+          body: "Served in the Gulan Revolution, mountain struggle logistics, and photographic documentation of the revolution.",
+        },
+      ],
+      partyLabel: "Liberation and Defense",
+      party: [
+        {
+          id: "uprising",
+          title: "March 1991 Uprising",
+          body: "Participated in the March 1991 Uprising.",
         },
         {
-          id: "social",
-          title: "Management of Social Portfolios",
-          body: "Entrusted within the party hierarchy with resolving social disputes, mediating inter-tribal reconciliation and fostering organizational unity and harmony across regional branches.",
-        },
-        {
-          id: "campaigns",
-          title: "Electoral and Strategic Oversight",
-          body: "Actively participates in formulating party strategy and roadmaps for election campaigns as well as general party congresses.",
+          id: "isis",
+          title: "Counter-ISIS Campaign",
+          body: "Provided continuous frontline leadership in the counter-ISIS campaign.",
         },
       ],
     },
@@ -3008,77 +2978,47 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "سیداد مەلا مستەفا بارزانی",
       role: "ئەندامی بۆردی دامەزرێنەران",
       meta: "دەزگای خێرخوازیی بارزانی · لەدایکبووی ١٩٦٨",
-      bioLabel: "ژیاننامە",
-      bio: "سیداد بارزانی کوڕی ڕابەری نەتەوەیی کورد مەلا مستەفا بارزانی و برای بچووکی سەرۆک مەسعود بارزانییە. کەسایەتییەکی دیاری سیاسی و کۆمەڵایەتی و بڕیاردەرە، ئەندامی سەرکردایەتی و مەکتەبی سیاسیی پارتی دیموکراتی کوردستان و نوێنەری تایبەتی جەنابی سەرۆک مەسعود بارزانییە. بە کەسایەتییەکی ئارام و لەسەرخۆ ناسراوە، کاریگەری لەسەر دۆسیە کۆمەڵایەتی و سیاسییەکان هەیە، هەڵگری ئەزموونێکی دەوڵەمەندە لە خەباتی سیاسی و نیشتیمانی و نەتەوەیی و ژینگەپارێزیدا، ئەندامی بۆردی دامەزرێنەری دەزگای خێرخوازیی بارزانییە.",
-      rolesLabel: "ڕۆڵ و چالاکییەکان",
+      bioLabel: "ناسنامە",
+      bio: "سیداد مەلا مستەفا بارزانی (لەدایکبووی ١٩٦٨)، کوڕی ڕابەری نەتەوەیی مەلا مستەفا بارزانی و برای بچووکی سەرۆک مەسعود بارزانی؛ ئەندامی بۆردی دامەزرێنەری دەزگای خێرخوازیی بارزانی.",
+      rolesLabel: "پێگەی سەرکردایەتی",
       roles: [
         {
-          id: "representation",
-          title: "نوێنەرایەتیی ڕەسمی",
-          body: "زۆرجار وەک نوێنەری تایبەتی سەرۆک مەسعود بارزانی بەشداری لە کۆبوونەوە سیاسییەکان، هۆشیارکردنەوەی جەماوەری، پرسە و سەردانی کەسایەتییەکان لە ناوچە جیاوازەکانی هەرێمی کوردستان دەکات.",
+          id: "politburo",
+          title: "مەکتەبی سیاسی",
+          body: "ئەندامی مەکتەبی سیاسی و دەستەی کارگێڕیی پارتی دیموکراتی کوردستان.",
         },
         {
-          id: "diplomacy",
-          title: "کاری دیپلۆماسی و کۆمەڵایەتی",
-          body: "دەورێکی بەرچاو دەگێڕێت لە ئاشتەوایی کۆمەڵایەتی و پاراستنی پەیوەندییەکانی پارتی لەگەڵ عەشایر و لایەنە سیاسییە جیاوازەکانی کوردستان و عێراقدا.",
+          id: "envoy",
+          title: "نوێنەری تایبەتی",
+          body: "نوێنەری تایبەتی سەرۆک بارزانی.",
+        },
+        {
+          id: "bureau",
+          title: "ئۆفیسی تایبەتی سەرۆک",
+          body: "لێپرسراوی ئۆفیسی تایبەتی سەرۆک.",
         },
       ],
       serviceLabel: "خەباتی پێشمەرگایەتی",
       serviceIntro:
-        "سیداد بارزانی لە ناو جەرگەی خەبات و ژینگەی دەستپێکی شۆڕشە ڕزگاریخوازییەکانی کوردستاندا ژیاوە. وەک کوڕی مەلا مستەفا بارزانی، ژیانی لە تەمەنێکی زووەوە ئاوێتەی خەبات و سیاسەت و ڕووبەڕووبوونەوەی ستەم و زۆرداری بووە.",
+        "پەیوەندیکردن بە هێزی پێشمەرگە لە کۆتایی حەفتاکان.",
       service: [
         {
-          id: "joining",
-          title: "دەستپێکی پێشمەرگایەتی",
-          body: "لە کۆتایی حەفتاکاندا و لە تەمەنی لاویدا چووە ناو ڕیزەکانی هێزی پێشمەرگەی کوردستان.",
-        },
-        {
           id: "gulan",
-          title: "قۆناغی ئاوارەیی و شۆڕشی گوڵان",
-          body: "لەگەڵ سەرکردایەتیی پارتی و براکانیدا (ئیدریس بارزانی و مەسعود بارزانی)، ئەگەرچی تەمەنی بچووک بووە، بەڵام هاوڕێ و شاهیدی سەردەمە سەختەکان بووە.",
+          title: "شۆڕشی گوڵان",
+          body: "بەشداری لە شۆڕشی گوڵان، ئەرکی سەربازیی شاخ، و تۆمارکردنی وێنە مێژووییەکانی شۆڕش.",
         },
-        {
-          id: "assignments",
-          title: "ئەرکە تایبەتەکان",
-          body: "لە قۆناغی خەباتی شاخدا، لە ناو دەزگا جیاوازەکانی حیزب و ناوەندەکانی بڕیاردا ئەرکی پشتیوانیی سەربازی، ئاسایش و ڕێکخستنی میحوەرەکانی پێشمەرگەی لە سنوورە جیاوازەکاندا بەشداری کردووە. زۆربەی وێنە مێژووییەکانی شۆڕش بە کامێرای ئەو گیراون.",
-        },
+      ],
+      partyLabel: "ڕاپەڕین و بەرگری",
+      party: [
         {
           id: "uprising",
-          title: "بەشداری لە ڕاپەڕینی ١٩٩١",
-          body: "لە کاتی ڕاپەڕینە مەزنەکەی کوردستان لە ئاداری ١٩٩١دا، بەشدار بووە لە ڕزگارکردنی ناوچە و شارەکانی کوردستان لە دەست ڕژێمی بەعس.",
+          title: "ڕاپەڕینی ئاداری ١٩٩١",
+          body: "بەشداری لە ڕاپەڕینی ئاداری ١٩٩١ بۆ ڕزگارکردنی شارەکان.",
         },
         {
           id: "isis",
           title: "شەڕی دژی داعش",
-          body: "بەدرێژایی دەیەی ڕابردوو و تا ئێستاش، وەک کەسایەتییەکی کاریگەر و ئەندامی مەکتەبی سیاسی و دەستەی کارگێڕی، ئامادەیی بەردەوامی هەبووە — بەتایبەتی لە شەڕی دژی داعشدا — و سەرپەرشتی کۆبوونەوە و پشتگیرییە مەیدانییەکانی هێزەکانی پێشمەرگەی کردووە.",
-        },
-      ],
-      partyLabel: "پلە و ئەرکەکان لە پارتیدا",
-      party: [
-        {
-          id: "politburo",
-          title: "ئەندامی مەکتەبی سیاسی",
-          body: "لە کۆنگرەکانی پارتی دیموکراتی کوردستاندا وەک ئەندامی ئەنجومەنی سەرکردایەتی و دواتریش وەک ئەندامی مەکتەبی سیاسی و دەستەی کارگێڕی (کە بەرزترین دەستەی بڕیاردانی جێبەجێکردنی حیزبە) هەڵبژێردراوە.",
-        },
-        {
-          id: "representative",
-          title: "نوێنەری تایبەتی سەرۆک بارزانی",
-          body: "بە فەرمی ئەرکی نوێنەرایەتیکردنی سەرۆک مەسعود بارزانی پێسپێردراوە لە زۆربەی بۆنە سیاسی و نیشتیمانی و کۆمەڵایەتییەکاندا.",
-        },
-        {
-          id: "bureau",
-          title: "لێپرسراوی ئۆفیسی تایبەتی سەرۆک",
-          body: "ڕۆڵێکی ناوەندی لە بەڕێوەبردنی پەیوەندییەکان، گەیاندنی ئاڕاستە سیاسییەکان و ڕێکخستنی دیداری سەرۆک بارزانی لەگەڵ شاند و کەسایەتییە ناوخۆیی و دەرەکییەکاندا دەگێڕێت.",
-        },
-        {
-          id: "social",
-          title: "بەڕێوەبردنی دۆسیە کۆمەڵایەتییەکان",
-          body: "لە سیستەمی حیزبیدا ئەرکی چارەسەرکردنی کێشە کۆمەڵایەتییەکان، ئاشتکردنەوەی عەشایر و ڕاگرتنی هاوسەنگی و تەبایی ڕێکخستنەکانی پارتی لە سنوورە جیاوازەکاندا لەسەر شانە.",
-        },
-        {
-          id: "campaigns",
-          title: "سەرپەرشتیکردنی میحوەرەکانی هەڵبژاردن",
-          body: "بەشداریی کارای هەبووە لە داڕشتنی سیاسەت و نەخشەڕێگاکانی حیزب بۆ بەشداری لە بانگەشەی هەڵبژاردنەکان و کۆنگرە گشتییەکانی حیزبدا.",
+          body: "ئامادەیی و سەرپەرشتیی مەیدانی لە شەڕی دژی داعشدا.",
         },
       ],
     },
@@ -4146,77 +4086,47 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       name: "سيداد ملا مصطفى بارزاني",
       role: "عضو الهيئة التأسيسية",
       meta: "مؤسسة بارزاني الخيرية · مواليد 1968",
-      bioLabel: "السيرة الذاتية",
-      bio: "سيداد بارزاني (مواليد 1968) هو نجل الزعيم الوطني الكوردي ملا مصطفى بارزاني والشقيق الأصغر للرئيس مسعود بارزاني. يُعد شخصية سياسية واجتماعية بارزة وصاحب قرار، وعضواً في قيادة والمكتب السياسي للحزب الديمقراطي الكوردستاني وممثلاً خاصاً لجناب الرئيس مسعود بارزاني. يُعرف بشخصيته الهادئة والمتزنة، وله تأثير واسع في الملفات السياسية والاجتماعية، ويمتلك تجربة ثرية في النضال السياسي والوطني والقومي وحماية البيئة، كما أنه عضو الهيئة التأسيسية لمؤسسة بارزاني الخيرية.",
-      rolesLabel: "المهام والأنشطة",
+      bioLabel: "التعريف والنسب",
+      bio: "سيداد ملا مصطفى بارزاني (مواليد ١٩٦٨)، نجل الزعيم الوطني ملا مصطفى بارزاني والشقيق الأصغر للرئيس مسعود بارزاني؛ عضو الهيئة التأسيسية لمؤسسة بارزاني الخيرية.",
+      rolesLabel: "المهام القيادية",
       roles: [
         {
-          id: "representation",
-          title: "التمثيل الرسمي",
-          body: "يشارك في كثير من الأحيان كممثل خاص للرئيس مسعود بارزاني في الاجتماعات السياسية والتوعية الجماهيرية ومجالس العزاء وزيارة الشخصيات في مختلف مناطق إقليم كوردستان.",
+          id: "politburo",
+          title: "المكتب السياسي",
+          body: "عضو المكتب السياسي والهيئة الإدارية للحزب الديمقراطي الكوردستاني.",
         },
         {
-          id: "diplomacy",
-          title: "العمل الدبلوماسي والاجتماعي",
-          body: "يؤدي دوراً بارزاً في تحقيق السلم المجتمعي وتعزيز علاقات الحزب مع العشائر ومختلف الأطراف السياسية في كوردستان والعراق.",
+          id: "envoy",
+          title: "الممثل الخاص",
+          body: "الممثل الخاص للرئيس مسعود بارزاني.",
+        },
+        {
+          id: "bureau",
+          title: "المكتب الخاص للرئيس",
+          body: "مسؤول مكتبه الخاص.",
         },
       ],
-      serviceLabel: "مسيرة نضال البيشمركة",
+      serviceLabel: "نضال البيشمركة",
       serviceIntro:
-        "عاش سيداد بارزاني في خضم النضال والبيئة التي انطلقت منها الثورات التحررية الكوردستانية. وبصفته نجلاً لملا مصطفى بارزاني، فقد اقترنت حياته منذ سن مبكرة بالنضال والعمل السياسي ومقارعة الظلم والاستبداد.",
+        "التحق بالبيشمركة أواخر السبعينيات.",
       service: [
         {
-          id: "joining",
-          title: "بداية مسيرة البيشمركة",
-          body: "انخرط في صفوف قوات بيشمركة كوردستان في ريعان شبابه أواخر سبعينيات القرن الماضي.",
-        },
-        {
           id: "gulan",
-          title: "مرحلة النزوح وثورة كولان",
-          body: "رافق قيادة الحزب وشقيقيه (إدريس بارزاني ومسعود بارزاني)، ورغم صغر سنه آنذاك كان رفيقاً وشاهداً على تلك المراحل العصيبة.",
+          title: "ثورة كولان",
+          body: "شارك في ثورة كولان، والإسناد العسكري بالجبل، وتوثيق الثورة فوتوغرافياً.",
         },
-        {
-          id: "assignments",
-          title: "المهام الخاصة",
-          body: "خلال مرحلة نضال الجبل، ساهم في مختلف مؤسسات الحزب ومراكز القرار في مهام الإسناد العسكري والأمن وتنظيم محاور وقواطع البيشمركة عبر مختلف الجبهات؛ كما وثّقت كاميرته الخاصة معظم الصور التاريخية لتلك الثورة.",
-        },
+      ],
+      partyLabel: "التحرير والدفاع",
+      party: [
         {
           id: "uprising",
-          title: "المشاركة في انتفاضة 1991",
-          body: "شارك بفاعلية في انتفاضة كوردستان الكبرى في آذار/مارس 1991، مساهماً في تحرير مدن ومناطق كوردستان من قبضة نظام البعث.",
+          title: "انتفاضة آذار ١٩٩١",
+          body: "شارك في انتفاضة آذار ١٩٩١.",
         },
         {
           id: "isis",
           title: "الحرب ضد داعش",
-          body: "على مدار العقد الماضي وحتى اليوم، واصل حضوره الميداني الفاعل بصفته عضواً في المكتب السياسي والهيئة الإدارية، لا سيما خلال الحرب ضد تنظيم داعش، حيث أشرف على الاجتماعات وتقديم الدعم الميداني لقوات البيشمركة.",
-        },
-      ],
-      partyLabel: "المواقع التنظيمية في الحزب",
-      party: [
-        {
-          id: "politburo",
-          title: "عضوية المكتب السياسي",
-          body: "انتُخب في مؤتمرات الحزب عضواً في مجلس القيادة، ولاحقاً عضواً في المكتب السياسي والهيئة الإدارية (أعلى سلطة تنفيذية لاتخاذ القرار في الحزب).",
-        },
-        {
-          id: "representative",
-          title: "الممثل الخاص للرئيس بارزاني",
-          body: "مكلّف رسمياً بتمثيل الرئيس مسعود بارزاني في غالبية المحافل والمناسبات السياسية والوطنية والاجتماعية.",
-        },
-        {
-          id: "bureau",
-          title: "مسؤول المكتب الخاص للرئيس",
-          body: "يؤدي دوراً محورياً في إدارة العلاقات وإيصال التوجيهات السياسية وتنظيم لقاءات الرئيس بارزاني مع الوفود والشخصيات والقادة المحليين والدوليين.",
-        },
-        {
-          id: "social",
-          title: "إدارة الملفات الاجتماعية",
-          body: "يتولى ضمن الهيكلية الحزبية مهام حل النزاعات الاجتماعية وإجراء المصالحات العشائرية والحفاظ على التوازن والانسجام التنظيمي للحزب في مختلف المناطق.",
-        },
-        {
-          id: "campaigns",
-          title: "الإشراف على محاور الحملات الانتخابية",
-          body: "يشارك بفاعلية في صياغة السياسات ورسم خارطة طريق الحزب للمشاركة في الحملات الانتخابية والمؤتمرات العامة للحزب.",
+          body: "تولى الإشراف الميداني في الصفوف الأمامية ضد تنظيم داعش.",
         },
       ],
     },

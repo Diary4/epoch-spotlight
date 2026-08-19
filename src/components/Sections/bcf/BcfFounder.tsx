@@ -19,11 +19,10 @@ type BcfFounderProps = {
 /**
  * Founding Board member.
  *
- * The President's record page, carrying a longer record. Four labelled sections
- * instead of three, in the order a visitor asks for them — who he is, what he
- * does now, what he came through, what he holds in the party — so the two
- * profiles opened from the same grid read as one pair of documents rather than
- * two designs.
+ * The President's record page, carrying a concise museum label. Four labelled
+ * sections in the order a visitor asks for them — who he is, the seats he holds,
+ * the Peshmerga struggle, liberation and defense — so the two profiles opened
+ * from the same grid read as one pair of documents rather than two designs.
  *
  * No filmstrip between the cards, unlike the President's page: the one
  * photograph there is of him is the studio portrait already carrying the
