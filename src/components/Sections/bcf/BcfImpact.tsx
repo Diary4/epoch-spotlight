@@ -24,6 +24,7 @@ import cardEmployees from "@/assets/images/bcf/from-source/impact-employees.webp
 import cardCamps from "@/assets/images/bcf/from-source/impact-camps.webp";
 import cardIdps from "@/assets/images/bcf/selected/impact-idps.webp";
 import cardSchools from "@/assets/images/bcf/selected/impact-schools.webp";
+import cardBeneficiaries from "@/assets/images/bcf/from-source/impact-beneficiaries.webp";
 
 type BcfImpactProps = {
   lang: BcfLang;
@@ -41,7 +42,12 @@ const CARD_IMAGES: Record<ImpactGalleryId, string> = {
 /** Headline reach figures published on BCF's impact strip. */
 const IMPACT_TOTALS = [
   { id: "families", value: "10,208,103", Icon: House },
-  { id: "people", value: "56,906,790", Icon: User },
+  {
+    id: "people",
+    value: "56,906,790",
+    Icon: User,
+    image: cardBeneficiaries,
+  },
 ] as const;
 
 /**
@@ -107,34 +113,45 @@ export default function BcfImpact({
               const copy =
                 c.impactTotals.find((item) => item.id === stat.id) ??
                 c.impactTotals[index];
+              const photo = "image" in stat ? stat.image : undefined;
               return (
               <motion.div
                 key={stat.id}
                 variants={bcfRiseCard}
-                className="flex flex-col items-center justify-center gap-4 rounded-[28px] border border-white/15 bg-black/40 px-10 py-10 text-center"
+                className="relative flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[28px] border border-white/15 bg-black/40 px-10 py-10 text-center"
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
+                {photo ? (
+                  <>
+                    <img
+                      src={photo}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/62 to-black/40" />
+                  </>
+                ) : null}
                 <stat.Icon
-                  className="h-14 w-14"
+                  className="relative z-10 h-14 w-14"
                   strokeWidth={1.6}
                   style={{ color: BCF.gold }}
                 />
                 <BcfStatValue
                   value={stat.value}
                   lang={lang}
-                  className="text-[56px] font-semibold leading-none"
+                  className="relative z-10 text-[56px] font-semibold leading-none"
                   color="#fbf4e4"
                   duration={2.8}
                   delay={0.2 + index * 0.12}
                   smooth
                 />
                 <p
-                  className="text-[32px] font-medium leading-snug"
+                  className="relative z-10 text-[32px] font-medium leading-snug"
                   style={{ color: BCF.gold }}
                 >
                   {copy.title}
                 </p>
-                <p className="max-w-[520px] text-[24px] leading-snug text-white/80">
+                <p className="relative z-10 max-w-[520px] text-[24px] leading-snug text-white/80">
                   {copy.description}
                 </p>
               </motion.div>

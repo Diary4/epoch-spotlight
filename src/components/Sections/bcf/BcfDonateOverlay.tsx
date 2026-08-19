@@ -52,6 +52,14 @@ export default function BcfDonateOverlay({
           role="dialog"
           aria-modal="true"
           aria-labelledby="bcf-donate-title"
+          style={{
+            /* Held on a compositing layer from mount to unmount. Chromium
+               otherwise promotes a fading element when the animation starts and
+               demotes it when it ends, and each of those costs a repaint of the
+               artboard behind — the flash on the Android panel. */
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

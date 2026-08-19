@@ -36,7 +36,15 @@ export default function BcfIdleOverlay({
           className="absolute inset-0 z-[70] grid place-items-center backdrop-blur-xl"
           role="alertdialog"
           aria-labelledby="bcf-idle-title"
-          style={{ backgroundColor: "rgba(4,6,9,0.86)" }}
+          style={{
+            backgroundColor: "rgba(4,6,9,0.86)",
+            /* Held on a compositing layer from mount to unmount. Chromium
+               otherwise promotes a fading element when the animation starts and
+               demotes it when it ends, and each of those costs a repaint of the
+               artboard behind — the flash on the Android panel. */
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

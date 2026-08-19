@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { bcfLogo } from "@/components/Sections/bcf/bcfAssets";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF_LOW_POWER } from "@/components/Sections/bcf/bcfPerf";
 import {
   BCF_EASE,
   BCF_TAP,
@@ -30,8 +31,14 @@ type BcfLanguageOverlayProps = {
 };
 
 /**
- * Language as a veil over the current scene. The scene itself is blurred by
- * the page (low-power mode strips `backdrop-filter`), so this plate only dims.
+ * Language as a veil over the current scene.
+ *
+ * On the high tier the page behind blurs and this plate only dims over it. On
+ * the low tier — the default everywhere — that page blur is gone, because
+ * applying and removing a filter on the full artboard flashed the Android
+ * panel black at both ends of the animation (see the note in Bcf.tsx). So the
+ * veil is carried here instead, as a scrim deep enough to push the scene back
+ * on its own. Nothing behind this element changes when it opens or closes.
  */
 export default function BcfLanguageOverlay({
   open,
@@ -44,10 +51,23 @@ export default function BcfLanguageOverlay({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="absolute inset-0 z-[60] overflow-hidden bg-black/35"
+          className="absolute inset-0 z-[60] overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-label={bcfCopy.en.languageTitle}
+          style={{
+            backgroundColor: BCF_LOW_POWER
+              ? "rgba(0,0,0,0.78)"
+              : "rgba(0,0,0,0.35)",
+            /* Promoted from the first frame it exists. Left to itself Chromium
+               gives a fading element a compositing layer when the animation
+               starts and takes it away when it ends, and both the promotion and
+               the demotion cost a repaint of everything underneath — the second
+               half of the reported flash. Holding the layer for the whole life
+               of the overlay means the fade is only ever a texture blend. */
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

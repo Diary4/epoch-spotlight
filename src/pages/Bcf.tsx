@@ -57,7 +57,7 @@ const PREFETCH_STEPS: Array<() => Promise<unknown>> = [
   () => import("@/components/Sections/bcf/BcfLegacy"),
 ];
 
-import { BCF_PERF_CLASS } from "@/components/Sections/bcf/bcfPerf";
+import { BCF_LOW_POWER, BCF_PERF_CLASS } from "@/components/Sections/bcf/bcfPerf";
 import {
   BCF_LOCATIONS,
   bcfCopy,
@@ -489,13 +489,34 @@ export default function BcfPage() {
       {/* `relative` so the rail and the two overlays can pin themselves to the
           artboard rather than the window — they have to scale with it. */}
       <div className="relative flex min-h-[1920px] w-full flex-col overflow-hidden">
+        {/* Scene recession behind the language veil.
+            This was a transitioned `filter: blur(22px) brightness(0.62)` plus
+            `transform: scale(1.04)`, applied to the whole artboard on open and
+            taken off again on close. That is the black flash on the Android
+            panel, on both edges of the animation: a `filter` here forces
+            Chromium to allocate a render surface for the entire 1080×1920
+            artboard, which the panel draws at 2× — a 2160×3840 texture. The
+            compositor shows that surface before it has finished painting, and
+            removing the filter on close tears the same surface down and
+            repaints the artboard underneath, so the flash happens twice.
+            On the low tier — the default on every device, see bcfPerf.ts — the
+            page behind is now left completely untouched: no filter, no
+            transform, no surface to create or destroy, nothing to flash. The
+            overlay carries the recession itself as a deeper scrim, the same
+            trade the rest of this experience makes for `backdrop-filter`.
+            `?perf=high` still restores the glass version for comparing the two
+            on a workstation. */}
         <div
           className="flex min-h-[1920px] w-full flex-col"
-          style={{
-            filter: languageOpen ? "blur(22px) brightness(0.62)" : undefined,
-            transform: languageOpen ? "scale(1.04)" : undefined,
-            transition: "filter 400ms ease, transform 400ms ease",
-          }}
+          style={
+            BCF_LOW_POWER
+              ? undefined
+              : {
+                  filter: languageOpen ? "blur(22px) brightness(0.62)" : undefined,
+                  transform: languageOpen ? "scale(1.04)" : undefined,
+                  transition: "filter 400ms ease, transform 400ms ease",
+                }
+          }
         >
         {/* `mode="wait"` lets the outgoing scene finish its short exit before the
             next one dissolves up, so the backdrop never cuts to black between
