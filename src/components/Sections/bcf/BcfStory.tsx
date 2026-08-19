@@ -128,16 +128,28 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const isTimeline = active.id === "timeline";
 
   return (
-    <BcfShell showLogo={false} overlayClassName="bg-black/0">
-      <div className="relative h-[1920px] min-h-[1920px] w-full overflow-hidden">
-        <div className="absolute inset-0 z-10 overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={bcfStoryBg}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
+    <BcfShell
+      showLogo={false}
+      overlayClassName="bg-black/0"
+      overlayFade={false}
+      /* The plate and its three-way gradient used to be drawn inside this
+         chapter's own content, where they stopped at the artboard. Handed to
+         the shell they are drawn in its backdrop layer instead, which reaches
+         the edge of the screen on a display that is not 9:16 — and they sit at
+         exactly the same depth as before, behind everything here.
+
+         `atmosphere={false}` keeps the look identical rather than changing it:
+         the bloom, vignette and grain were always painted *under* this opaque
+         plate and have never been visible on this chapter. Now that the plate
+         is in the shell they would have landed on top of it. */
+      atmosphere={false}
+      backgroundSlot={
+        <>
+          <img
+            src={bcfStoryBg}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div
             className="absolute inset-0"
             style={{
@@ -145,7 +157,11 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                 "linear-gradient(90deg, rgb(4, 9, 12) 0%, rgba(4, 9, 12, 0) 55%), linear-gradient(0deg, rgb(4, 9, 12) 8%, rgba(4, 9, 12, 0) 50%), linear-gradient(180deg, rgb(4, 9, 12) 20%, rgba(29, 24, 22, 0) 55%)",
             }}
           />
-
+        </>
+      }
+    >
+      <div className="relative h-[1920px] min-h-[1920px] w-full overflow-hidden">
+        <div className="absolute inset-0 z-10 overflow-hidden">
           <motion.div
             className="absolute inset-x-0 top-10 z-20 px-14"
             initial={{ opacity: 0, y: -22 }}

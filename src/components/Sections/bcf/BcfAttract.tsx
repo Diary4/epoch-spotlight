@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Hand } from "lucide-react";
 
 import { bcfCopy } from "@/components/Sections/bcf/bcfContent";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_BLEED_STYLE } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
   bcfScene,
@@ -49,13 +49,18 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
 
   return (
     <motion.section
-      className="relative flex h-full min-h-[1920px] w-full flex-col overflow-hidden bg-[#0a0a0a] text-white"
+      /* No `overflow-hidden`: the plate below reaches past the artboard to the
+         edge of the screen on displays that are not 9:16. */
+      className="relative flex h-full min-h-[1920px] w-full flex-col bg-[#0a0a0a] text-white"
       variants={reduceMotion ? bcfSceneReduced : bcfScene}
       initial="initial"
       animate="animate"
       exit="exit"
     >
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      <div
+        className="pointer-events-none absolute z-0 overflow-hidden"
+        style={BCF_BLEED_STYLE}
+      >
         <img
           src={bcfIntroBg}
           alt=""
@@ -74,7 +79,8 @@ export default function BcfAttract({ onEnter }: BcfAttractProps) {
 
       <button
         type="button"
-        className="absolute inset-0 z-10 cursor-pointer border-0 bg-transparent p-0"
+        className="absolute z-10 cursor-pointer border-0 bg-transparent p-0"
+        style={BCF_BLEED_STYLE}
         onClick={onEnter}
         aria-label={bcfCopy.en.attractStart}
       />
