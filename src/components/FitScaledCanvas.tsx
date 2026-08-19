@@ -4,6 +4,25 @@ import { rafSchedule } from "@/lib/rafSchedule";
 type FitScaledCanvasProps = {
   /** Artboard width the screens are designed against. */
   designWidth: number;
+  /**
+   * Artboard height. Only read when `fit` is `"contain"`, which needs to know
+   * the shape of the box it is fitting, not just its width.
+   */
+  designHeight?: number;
+  /**
+   * How the artboard meets the window.
+   *
+   * `"width"` — the original behaviour, and the right one for a panel built to
+   * the artboard's own proportions: fill the width, and let anything past the
+   * bottom of the window scroll.
+   *
+   * `"contain"` — scale so the *whole* artboard is on screen, centred, with the
+   * background showing either side of it. Nothing scrolls and nothing is cut
+   * off, whatever shape the screen is. This is what a 1080×1920 experience
+   * needs on a display that is not 9:16 — an iPad Pro held upright is 3:4, so
+   * width-fitting it leaves a quarter of every screen below the fold.
+   */
+  fit?: "width" | "contain";
   dir?: "ltr" | "rtl";
   /** BCP 47 language tag — drives script-specific font stacks via CSS. */
   lang?: string;
@@ -26,6 +45,8 @@ type FitScaledCanvasProps = {
  */
 export default function FitScaledCanvas({
   designWidth,
+  designHeight = 1920,
+  fit: fitMode = "width",
   dir,
   lang,
   bgClassName = "",
@@ -38,6 +59,7 @@ export default function FitScaledCanvas({
   const [fit, setFit] = React.useState({
     scale: 1,
     x: 0,
+    y: 0,
     contentHeight: 0,
     minCanvasHeight: 0,
   });
@@ -51,6 +73,51 @@ export default function FitScaledCanvas({
       const availWidth = wrap.clientWidth;
       const availHeight = wrap.clientHeight;
       if (!availWidth || !availHeight) return;
+
+      if (fitMode === "contain") {
+        /**
+         * The artboard box is fixed, so the measurement cannot chase itself:
+         * `minHeight` is a constant here rather than something derived from the
+         * window, which is what the width path has to guard against below.
+         *
+         * `naturalHeight` still allows for a screen that runs past the artboard
+         * — it shrinks to fit rather than clipping, because on a kiosk losing
+         * the bottom of a chapter is worse than reading it a little smaller.
+         */
+        canvas.style.minHeight = `${designHeight}px`;
+        // `offsetHeight` rounds to whole layout pixels, so an artboard that is
+        // exactly 1920 routinely measures 1921. Taking that literally would
+        // shrink every screen by a hair to make room for a pixel that is not
+        // there — and worse, by a *different* hair on different chapters. Only
+        // a real overflow counts. (Same rounding the width path guards below.)
+        const measured = canvas.offsetHeight;
+        const naturalHeight =
+          measured > designHeight + 1 ? measured : designHeight;
+
+        const containScale = Math.min(
+          availWidth / designWidth,
+          availHeight / naturalHeight,
+        );
+
+        const next = {
+          scale: containScale,
+          x: Math.max(0, (availWidth - designWidth * containScale) / 2),
+          y: Math.max(0, (availHeight - naturalHeight * containScale) / 2),
+          contentHeight: availHeight,
+          minCanvasHeight: designHeight,
+        };
+
+        setFit((prev) =>
+          prev.scale === next.scale &&
+          prev.x === next.x &&
+          prev.y === next.y &&
+          prev.contentHeight === next.contentHeight &&
+          prev.minCanvasHeight === next.minCanvasHeight
+            ? prev
+            : next,
+        );
+        return;
+      }
 
       const scale = availWidth / designWidth;
       // Pre-scale height that fills the window when the page runs shorter.
@@ -74,6 +141,7 @@ export default function FitScaledCanvas({
       const next = {
         scale,
         x: Math.max(0, (availWidth - designWidth * scale) / 2),
+        y: 0,
         contentHeight: overflow > scale ? scaledHeight : availHeight,
         minCanvasHeight,
       };
@@ -85,6 +153,7 @@ export default function FitScaledCanvas({
       setFit((prev) =>
         prev.scale === next.scale &&
         prev.x === next.x &&
+        prev.y === next.y &&
         prev.contentHeight === next.contentHeight &&
         prev.minCanvasHeight === next.minCanvasHeight
           ? prev
@@ -109,7 +178,7 @@ export default function FitScaledCanvas({
       window.removeEventListener("resize", schedule);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...fitDeps, designWidth]);
+  }, [...fitDeps, designWidth, designHeight, fitMode]);
 
   return (
     <div
@@ -123,7 +192,16 @@ export default function FitScaledCanvas({
       // not: these canvases are touch kiosks with no pointer, and on Windows
       // the bar is an opaque strip down the edge of the composition. Wheel,
       // touch and keyboard scrolling all still work.
-      className={`relative min-h-screen w-full overflow-x-hidden overflow-y-auto scrollbar-hide ${bgClassName} ${className}`}
+      className={
+        fitMode === "contain"
+          ? // `fit-canvas-contain` is a definite viewport height with a `100vh`
+            // fallback under `100dvh` — see index.css. A definite height is what
+            // makes `clientHeight` above the real visible height on iPad Safari,
+            // where a `min-height` would let the wrapper grow past the window
+            // and quietly reintroduce the scroll this mode exists to remove.
+            `fit-canvas-contain relative w-full ${bgClassName} ${className}`
+          : `relative min-h-screen w-full overflow-x-hidden overflow-y-auto scrollbar-hide ${bgClassName} ${className}`
+      }
     >
       <div style={{ height: fit.contentHeight || undefined, position: "relative" }}>
         <div
@@ -134,7 +212,7 @@ export default function FitScaledCanvas({
           style={{
             width: designWidth,
             minHeight: fit.minCanvasHeight || undefined,
-            transform: `translate(${fit.x}px, 0px) scale(${fit.scale})`,
+            transform: `translate(${fit.x}px, ${fit.y}px) scale(${fit.scale})`,
             transformOrigin: "top left",
             position: "absolute",
             top: 0,

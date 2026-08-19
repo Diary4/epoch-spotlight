@@ -252,6 +252,26 @@ All colors MUST be HSL.
 }
 
 /* ---------------------------------------------------------------------------
+ * Contain-fitted artboard wrapper.
+ *
+ * A definite height rather than a minimum, so the canvas measures the window it
+ * can actually see. `100dvh` is the visible viewport on iPad Safari with its
+ * bars up; the `100vh` above it is the fallback for anything older, and being
+ * slightly too tall there is better than not resolving at all.
+ *
+ * `overscroll-behavior` stops the rubber-band on iPadOS. There is nothing to
+ * scroll inside this element, but without it a drag that starts on the artboard
+ * still peels the whole page away from the top of the screen.
+ * ------------------------------------------------------------------------ */
+
+.fit-canvas-contain {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* ---------------------------------------------------------------------------
  * Everything behind a dialog holds still.
  *
  * The experience keeps thirteen perpetual animations running — the ken-burns

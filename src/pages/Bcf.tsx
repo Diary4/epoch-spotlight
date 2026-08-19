@@ -89,6 +89,9 @@ const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
 const STEPS_WITH_HOME: BcfStep[] = STEPS_WITH_BACK_BUTTON;
 
 /** Idle rhythm, matched to the Threads experience so both kiosks behave alike. */
+/** Artboard height every BCF screen is built to (`min-h-[1920px]` throughout). */
+const DESIGN_HEIGHT = 1920;
+
 const IDLE_WARNING_MS = 75_000;
 const IDLE_RESET_MS = 90_000;
 const IDLE_COUNTDOWN_FROM = 15;
@@ -482,6 +485,16 @@ export default function BcfPage() {
        is why it goes on the canvas rather than on the shell. */
     <FitScaledCanvas
       designWidth={DESIGN_WIDTH}
+      designHeight={DESIGN_HEIGHT}
+      /* The experience is a 1080×1920 artboard, and it is shown on screens that
+         are not all 9:16 — the 4K portrait panel is, an iPad Pro held upright is
+         3:4. Width-fitting the iPad would put a quarter of every screen below
+         the fold, and these are screens nobody scrolls: the rail, the back
+         button and the language plate are all pinned to the artboard. Contained,
+         the whole composition is on screen at once on any display, with the
+         page's own near-black either side of it. On a 9:16 panel the two modes
+         are the same number, so the kiosk is untouched. */
+      fit="contain"
       dir={dir}
       lang={lang}
       bgClassName="bg-[#0a0a0a]"
