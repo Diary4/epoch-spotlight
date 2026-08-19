@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_BLEED_STYLE } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
   BCF_PANEL_MOTION,
@@ -35,12 +35,14 @@ export default function BcfIdleOverlay({
     <AnimatePresence>
       {count !== null ? (
         <motion.div
-          className={`absolute inset-0 z-[70] grid place-items-center ${
+          className={`absolute z-[70] grid place-items-center ${
             BCF_LOW_POWER ? "" : "backdrop-blur-xl"
           }`}
           role="alertdialog"
           aria-labelledby="bcf-idle-title"
           style={{
+            /* Covers the screen, not just the artboard — see BCF_BLEED_STYLE. */
+            ...BCF_BLEED_STYLE,
             backgroundColor: BCF_LOW_POWER
               ? "rgba(4,6,9,0.94)"
               : "rgba(4,6,9,0.86)",

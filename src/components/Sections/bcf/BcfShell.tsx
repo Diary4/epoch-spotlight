@@ -16,6 +16,7 @@ const HIGH_FETCH_PRIORITY = { fetchpriority: "high" };
 import {
   BCF,
   BCF_ATMOSPHERE_STYLE,
+  BCF_BLEED_STYLE,
   BCF_GRAIN_STYLE,
   BCF_PAGE,
 } from "@/components/Sections/bcf/bcfTheme";
@@ -145,10 +146,22 @@ export default function BcfShell({
       initial="initial"
       animate="animate"
       exit="exit"
-      style={backgroundStyle}
     >
+      {/* The scenes that carry no photograph paint a field instead. It used to
+          be the section's own background, which stopped at the artboard; as its
+          own plate it bleeds with everything else. */}
+      {backgroundStyle ? (
+        <div
+          className="pointer-events-none absolute z-0"
+          style={{ ...BCF_BLEED_STYLE, ...backgroundStyle }}
+        />
+      ) : null}
+
       {backgroundSlot ? (
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div
+          className="pointer-events-none absolute z-0 overflow-hidden"
+          style={BCF_BLEED_STYLE}
+        >
           {backgroundSlot}
           <div className={`absolute inset-0 ${overlayClassName}`} />
           {overlayFade ? (
@@ -156,7 +169,10 @@ export default function BcfShell({
           ) : null}
         </div>
       ) : backgroundImage ? (
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div
+          className="pointer-events-none absolute z-0 overflow-hidden"
+          style={BCF_BLEED_STYLE}
+        >
           <img
             src={backgroundImage}
             alt=""
@@ -178,17 +194,19 @@ export default function BcfShell({
       {atmosphere ? (
         <>
           <div
-            className="pointer-events-none absolute inset-0 z-[1]"
-            style={BCF_ATMOSPHERE_STYLE}
+            className="pointer-events-none absolute z-[1]"
+            style={{ ...BCF_BLEED_STYLE, ...BCF_ATMOSPHERE_STYLE }}
           />
           <div
-            className="pointer-events-none absolute inset-0 z-[2] opacity-[0.09]"
-            style={BCF_GRAIN_STYLE}
+            className="pointer-events-none absolute z-[2] opacity-[0.09]"
+            style={{ ...BCF_BLEED_STYLE, ...BCF_GRAIN_STYLE }}
           />
         </>
       ) : null}
       {showLogo ? <BcfLogoMark /> : null}
-      <div className="relative z-10 flex min-h-[1920px] w-full flex-1 flex-col">
+      {/* The clip that used to be on the section. The composition is still held
+          to the artboard — only the backdrop behind it is allowed out. */}
+      <div className="relative z-10 flex min-h-[1920px] w-full flex-1 flex-col overflow-hidden">
         {children}
       </div>
     </motion.section>

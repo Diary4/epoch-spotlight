@@ -22,8 +22,29 @@ export const BCF = {
 export const BCF_GLASS_CARD =
   "rounded-2xl border border-[#fbc158]/45 bg-black/55 backdrop-blur-md";
 
+/**
+ * The scene box.
+ *
+ * `overflow-hidden` used to live here. It now sits on the content wrapper
+ * inside BcfShell instead, because the backdrop has to be able to grow *out* of
+ * this box — see BCF_BLEED_STYLE — and a clip here would have cut it back to
+ * the artboard, which is the one thing it must not be.
+ */
 export const BCF_PAGE =
-  "relative flex h-full min-h-[1920px] w-full flex-col overflow-hidden bg-[#0a0a0a] text-white";
+  "relative flex h-full min-h-[1920px] w-full flex-col bg-[#0a0a0a] text-white";
+
+/**
+ * Full-bleed to the *screen*, not to the artboard.
+ *
+ * On a display shaped like the artboard these are zero and this is `inset: 0`.
+ * On one that is not — an iPad Pro upright is 3:4 against a 9:16 composition —
+ * they open the layer out into the space the contain-fit left either side, so
+ * the photograph runs to the edge of the glass instead of stopping at a seam
+ * with black beyond it. FitScaledCanvas publishes the two values.
+ */
+export const BCF_BLEED_STYLE: React.CSSProperties = {
+  inset: "calc(-1 * var(--fit-bleed-y, 0px)) calc(-1 * var(--fit-bleed-x, 0px))",
+};
 
 /**
  * Fine grain over every scene. Photography on a 65" panel at arm's length shows

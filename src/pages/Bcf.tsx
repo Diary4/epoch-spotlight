@@ -502,8 +502,14 @@ export default function BcfPage() {
       fitDeps={[step, lang]}
     >
       {/* `relative` so the rail and the two overlays can pin themselves to the
-          artboard rather than the window — they have to scale with it. */}
-      <div className="relative flex min-h-[1920px] w-full flex-col overflow-hidden">
+          artboard rather than the window — they have to scale with it.
+
+          No `overflow-hidden`: on a screen that is not the artboard's shape the
+          scene backdrop deliberately grows past this box to reach the edge of
+          the glass, and a clip here would cut it straight back. Scene content
+          is still clipped, one level in, by BcfShell. The window itself is the
+          outer boundary — `.fit-canvas-contain` in index.css. */}
+      <div className="relative flex min-h-[1920px] w-full flex-col">
         {/* Scene recession behind the language veil.
             This was a transitioned `filter: blur(22px) brightness(0.62)` plus
             `transform: scale(1.04)`, applied to the whole artboard on open and

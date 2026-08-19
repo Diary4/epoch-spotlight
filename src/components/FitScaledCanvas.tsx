@@ -210,6 +210,21 @@ export default function FitScaledCanvas({
           // to the full window height when the scaled content runs shorter.
           className="flex flex-col [&>*]:grow"
           style={{
+            /**
+             * How far the window reaches past the artboard, in artboard units.
+             *
+             * Contain-fitting a 9:16 composition onto a screen that is not 9:16
+             * leaves room either side of it, and painting that room flat black
+             * puts two hard seams down a full-bleed photograph. These say how
+             * much room there is, so a layer that is *meant* to be full-bleed —
+             * the backdrop, its scrims, the atmosphere, a modal veil — can grow
+             * out into it and meet the edge of the screen, while everything
+             * composed against the artboard stays where it was designed.
+             *
+             * Zero in width-fit mode, where there is no room to fill.
+             */
+            ["--fit-bleed-x" as string]: `${fit.scale ? fit.x / fit.scale : 0}px`,
+            ["--fit-bleed-y" as string]: `${fit.scale ? fit.y / fit.scale : 0}px`,
             width: designWidth,
             minHeight: fit.minCanvasHeight || undefined,
             transform: `translate(${fit.x}px, ${fit.y}px) scale(${fit.scale})`,

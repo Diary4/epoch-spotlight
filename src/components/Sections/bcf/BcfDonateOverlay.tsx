@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import donateQr from "@/assets/images/bcf/donate-qr.png";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_BLEED_STYLE } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
   BCF_PANEL_MOTION,
@@ -49,11 +49,13 @@ export default function BcfDonateOverlay({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="absolute inset-0 z-[65] grid place-items-center px-14"
+          className="absolute z-[65] grid place-items-center px-14"
           role="dialog"
           aria-modal="true"
           aria-labelledby="bcf-donate-title"
           style={{
+            /* Covers the screen, not just the artboard — see BCF_BLEED_STYLE. */
+            ...BCF_BLEED_STYLE,
             /* Held on a compositing layer from mount to unmount. Chromium
                otherwise promotes a fading element when the animation starts and
                demotes it when it ends, and each of those costs a repaint of the

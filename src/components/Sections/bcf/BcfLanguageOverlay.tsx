@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
-import { bcfLogo } from "@/components/Sections/bcf/bcfAssets";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, BCF_BLEED_STYLE } from "@/components/Sections/bcf/bcfTheme";
 import { BCF_LOW_POWER } from "@/components/Sections/bcf/bcfPerf";
 import {
   BCF_EASE,
@@ -51,11 +50,14 @@ export default function BcfLanguageOverlay({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="absolute inset-0 z-[60] overflow-hidden"
+          className="absolute z-[60] overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-label={bcfCopy.en.languageTitle}
           style={{
+            /* A veil that stopped at the artboard would leave the scene showing
+               either side of it on a screen that is not 9:16. */
+            ...BCF_BLEED_STYLE,
             backgroundColor: BCF_LOW_POWER
               ? "rgba(0,0,0,0.78)"
               : "rgba(0,0,0,0.35)",
@@ -73,13 +75,6 @@ export default function BcfLanguageOverlay({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: BCF_EASE }}
         >
-          <img
-            src={bcfLogo}
-            alt="Barzani Charity Foundation"
-            decoding="async"
-            className="pointer-events-none absolute left-10 top-10 z-10 h-[172px] w-auto"
-          />
-
           {origin === "control" ? (
             <motion.button
               type="button"
