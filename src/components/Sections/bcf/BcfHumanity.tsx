@@ -102,10 +102,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
     c.journeyChapters.find((chapter) => chapter.id === "humanity")?.title ??
     c.journeyChapters[1].title;
   const categories = c.serveCategories;
-  const initialIndex = Math.max(
-    0,
-    categories.findIndex((cat) => cat.id === "education"),
-  );
+  const initialIndex = 0;
 
   const viewportRef = React.useRef<HTMLDivElement | null>(null);
   const trackRef = React.useRef<HTMLDivElement | null>(null);
