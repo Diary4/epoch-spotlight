@@ -252,6 +252,38 @@ All colors MUST be HSL.
 }
 
 /* ---------------------------------------------------------------------------
+ * Everything behind a dialog holds still.
+ *
+ * The experience keeps thirteen perpetual animations running — the ken-burns
+ * drift on every backdrop, the orbit rings, embers, shafts, pings, sweeps. They
+ * are all on the compositor and all cheap, but "cheap" is per frame and they do
+ * not stop, so the moment a dialog opens is the moment the panel is asked to
+ * composite a full-artboard fade *on top of* a screen that is still moving
+ * underneath it — behind a scrim that has already hidden it.
+ *
+ * Pausing rather than removing: `animation-play-state` leaves each animation
+ * exactly where it stood, so closing the dialog resumes the drift mid-stroke
+ * instead of snapping it back to the start of its cycle.
+ * ------------------------------------------------------------------------ */
+
+.bcf-veiled .bcf-drift,
+.bcf-veiled .bcf-orbit,
+.bcf-veiled .bcf-plate-a,
+.bcf-veiled .bcf-plate-b,
+.bcf-veiled .bcf-ember,
+.bcf-veiled .bcf-shaft,
+.bcf-veiled .bcf-ping,
+.bcf-veiled .bcf-breathe,
+.bcf-veiled .bcf-pulse,
+.bcf-veiled .bcf-sweep,
+.bcf-veiled .bcf-beam,
+.bcf-veiled .bcf-spin,
+.bcf-veiled .bcf-spin-reverse,
+.bcf-veiled .bcf-map-glide {
+  animation-play-state: paused;
+}
+
+/* ---------------------------------------------------------------------------
  * BCF motion that runs forever.
  *
  * The backdrop drift and the journey-hub orbit ring used to be driven by

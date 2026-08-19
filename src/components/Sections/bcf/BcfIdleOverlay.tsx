@@ -4,9 +4,11 @@ import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
+  BCF_PANEL_MOTION,
   BCF_TAP,
   BCF_TAP_TRANSITION,
 } from "@/components/Sections/bcf/bcfMotion";
+import { BCF_LOW_POWER } from "@/components/Sections/bcf/bcfPerf";
 
 type BcfIdleOverlayProps = {
   /** Seconds left before the reset, or null when the visitor is active. */
@@ -33,11 +35,15 @@ export default function BcfIdleOverlay({
     <AnimatePresence>
       {count !== null ? (
         <motion.div
-          className="absolute inset-0 z-[70] grid place-items-center backdrop-blur-xl"
+          className={`absolute inset-0 z-[70] grid place-items-center ${
+            BCF_LOW_POWER ? "" : "backdrop-blur-xl"
+          }`}
           role="alertdialog"
           aria-labelledby="bcf-idle-title"
           style={{
-            backgroundColor: "rgba(4,6,9,0.86)",
+            backgroundColor: BCF_LOW_POWER
+              ? "rgba(4,6,9,0.94)"
+              : "rgba(4,6,9,0.86)",
             /* Held on a compositing layer from mount to unmount. Chromium
                otherwise promotes a fading element when the animation starts and
                demotes it when it ends, and each of those costs a repaint of the
@@ -59,9 +65,7 @@ export default function BcfIdleOverlay({
                 "linear-gradient(160deg, rgba(24,19,10,0.96), rgba(8,10,14,0.98))",
               boxShadow: `0 40px 120px rgba(0,0,0,0.6), inset 0 0 0 1px ${BCF.gold}12`,
             }}
-            initial={{ opacity: 0, y: 40, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            {...BCF_PANEL_MOTION}
             transition={{ duration: 0.5, ease: BCF_EASE }}
           >
             <span

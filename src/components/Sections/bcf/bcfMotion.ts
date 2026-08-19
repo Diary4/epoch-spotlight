@@ -98,6 +98,26 @@ export const bcfRiseCard: Variants = {
   },
 };
 
+/**
+ * Dialog panels — the donate card and the idle warning.
+ *
+ * These carry the most expensive paint in the experience for their size: a
+ * 48px radius over a gradient, an inset hairline, and a `0 40px 120px` shadow.
+ * A 120px gaussian around an 860px panel is a raster region well over a
+ * thousand pixels square, and the panel draws at 2× on the portrait screen.
+ * Scaling it meant re-rendering that blur on every frame of the entrance —
+ * which is the stutter the donate screen kept showing even after its QR stopped
+ * being twelve hundred SVG subpaths.
+ *
+ * The rise stays: `y` is a transform and the compositor carries it. Only the
+ * scale goes, and only on the low tier.
+ */
+export const BCF_PANEL_MOTION = {
+  initial: { opacity: 0, y: 40, ...(SCENE_DEPTH ? { scale: 0.97 } : null) },
+  animate: { opacity: 1, y: 0, ...(SCENE_DEPTH ? { scale: 1 } : null) },
+  exit: { opacity: 0, y: 20, ...(SCENE_DEPTH ? { scale: 0.98 } : null) },
+} as const;
+
 /** For pins, nodes and monograms: blooms from the centre instead of rising. */
 export const bcfBloom: Variants = {
   initial: { opacity: 0, scale: 0.72 },

@@ -96,6 +96,17 @@ const TRACK_H = ACTIVE_H;
 const ANIM_DURATION = 0.4;
 const ANIM_EASE = "power1.inOut";
 
+/**
+ * How many cards either side of the centred one are drawn in full.
+ *
+ * The strip is twelve cards and about a card and a half of it is ever on
+ * screen, so the other ten were being rasterised into a compositor layer nobody
+ * could see. Two either side puts the nearest culled card a full card width
+ * beyond the edge of the viewport — there is no index a drag can reach before
+ * its content is already there, so nothing pops in.
+ */
+const RENDER_WINDOW = 2;
+
 export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const c = bcfCopy[lang];
   const chapterTitle =
@@ -109,6 +120,22 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const cardRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
   const tagRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   const activeIndexRef = React.useRef(initialIndex);
+  /** Which card is currently *drawn* active — the one that has to be tweened back. */
+  const shownActiveRef = React.useRef(initialIndex);
+  /**
+   * The span of cards whose photographs have been mounted.
+   *
+   * It only ever grows. Culling that also *un*-mounts would be cheaper, but the
+   * position rail can jump from the first card to the twelfth, and the strip
+   * slides across everything in between — a card that gave its photograph back
+   * would fly past as an empty plate and read as a fault. Growing only, the
+   * screen arrives carrying five photographs instead of twelve, and picks the
+   * rest up as the visitor actually travels to them.
+   */
+  const drawnSpanRef = React.useRef({
+    lo: initialIndex - RENDER_WINDOW,
+    hi: initialIndex + RENDER_WINDOW,
+  });
   const dragRef = React.useRef({ startX: 0, baseX: 0, dragging: false, moved: false });
   /**
    * React mirror of `activeIndexRef`, for the position rail only. The ref stays
@@ -121,6 +148,33 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const detail = detailId
     ? (categories.find((cat) => cat.id === detailId) ?? null)
     : null;
+
+  /**
+   * Promote the strip only while it is actually moving.
+   *
+   * The track is twelve 600px cards and their gaps — 7904px wide — and the 4K
+   * portrait panel draws the artboard at 2×, so a permanent
+   * `will-change: transform` on it asked Chromium for a 15808×1520 compositing
+   * layer. That is past the texture size a lot of Android GPUs will give
+   * (8192px, and 4096px on the weaker ones), so the layer cannot be one
+   * surface: it gets split into tiles. Tiled layers under an ancestor that is
+   * itself scaled — which FitScaledCanvas is — are where Chrome for Android
+   * loses track of which tiles are dirty, and the result is the torn cards and
+   * doubled captions the panel was showing: whole rectangles of the previous
+   * frame left standing next to the new one.
+   *
+   * Held for the length of a tween or a drag and dropped after, the strip is a
+   * plain painted element at rest and there is no oversized layer to tile.
+   */
+  const setTrackLive = React.useCallback((live: boolean) => {
+    const track = trackRef.current;
+    if (track) track.style.willChange = live ? "transform" : "auto";
+  }, []);
+
+  drawnSpanRef.current = {
+    lo: Math.min(drawnSpanRef.current.lo, dotIndex - RENDER_WINDOW),
+    hi: Math.max(drawnSpanRef.current.hi, dotIndex + RENDER_WINDOW),
+  };
 
   const trackXForIndex = React.useCallback((index: number, viewportWidth: number) => {
     const center = viewportWidth / 2;
@@ -141,14 +195,36 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
       const duration = immediate ? 0 : ANIM_DURATION;
 
       // GSAP owns x / y / height / tags — avoid React style fighting mid-tween.
+      setTrackLive(true);
       gsap.to(track, {
         x,
         duration,
         ease: ANIM_EASE,
         overwrite: "auto",
+        onComplete: () => setTrackLive(false),
       });
 
-      cardRefs.current.forEach((card, i) => {
+      /**
+       * Only the card losing the centre and the card taking it.
+       *
+       * This used to walk all twelve. Ten of those tweens were writing the
+       * value the card already held — but GSAP still writes it, and `height` is
+       * a layout property, so every frame of every switch dirtied the layout of
+       * twelve 600×760 cards to move two of them. That is most of the cost of a
+       * swipe, and on the panel it is what the corrupted frames were being
+       * drawn on top of.
+       *
+       * A jump straight to `immediate` (first layout, resize, language switch)
+       * still settles the whole strip, because in that case there is no
+       * previous state to trust.
+       */
+      const touched = immediate
+        ? cardRefs.current.map((_, i) => i)
+        : Array.from(new Set([shownActiveRef.current, clamped]));
+      shownActiveRef.current = clamped;
+
+      touched.forEach((i) => {
+        const card = cardRefs.current[i];
         if (!card) return;
         const active = i === clamped;
         gsap.to(card, {
@@ -161,11 +237,9 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
             ? "0px 0px 20px 4px rgba(251,178,47,0.25)"
             : "0px 0px 0px 0px rgba(251,178,47,0)",
         });
-      });
 
-      tagRefs.current.forEach((tags, i) => {
+        const tags = tagRefs.current[i];
         if (!tags) return;
-        const active = i === clamped;
         gsap.to(tags, {
           autoAlpha: active ? 1 : 0,
           y: active ? 0 : 12,
@@ -175,7 +249,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         });
       });
     },
-    [categories.length, trackXForIndex],
+    [categories.length, setTrackLive, trackXForIndex],
   );
 
   React.useLayoutEffect(() => {
@@ -203,6 +277,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
       dragging: true,
       moved: false,
     };
+    setTrackLive(true);
     viewport.setPointerCapture(event.pointerId);
   };
 
@@ -307,10 +382,19 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           <div
             ref={trackRef}
             dir="ltr"
-            className="absolute top-0 flex flex-row will-change-transform"
+            /* No `will-change` here — see setTrackLive above. */
+            className="absolute top-0 flex flex-row"
             style={{ height: TRACK_H, gap: CARD_GAP }}
           >
-            {categories.map((category, index) => (
+            {categories.map((category, index) => {
+              /* Everything further out than the render window is an empty
+                 plate: off screen, so there is nothing to see, and nothing for
+                 the compositor to keep a tile of either. */
+              const drawn =
+                index >= drawnSpanRef.current.lo &&
+                index <= drawnSpanRef.current.hi;
+
+              return (
               <button
                 key={category.id}
                 type="button"
@@ -341,15 +425,22 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                     index === initialIndex
                       ? "translateY(0px)"
                       : `translateY(${INACTIVE_Y}px)`,
+                  /* The card's height is animated, which is a layout property.
+                     Containment scopes that invalidation to the card itself, so
+                     growing the centre one does not put the other eleven and
+                     the whole strip through layout on every frame. */
+                  contain: "layout paint",
                 }}
               >
                 <span className="relative block h-[500px] w-full shrink-0 overflow-hidden">
+                  {drawn ? (
                   <img
                     src={categoryImages[category.id]}
                     alt=""
                     className="h-full w-full object-cover object-center"
                     draggable={false}
                   />
+                  ) : null}
                   {/* Warm floor under the photo so the card edge does not cut a
                       bright image dead against the dark field. */}
                   <span
@@ -394,7 +485,8 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
                   </span>
                 </div>
               </button>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 

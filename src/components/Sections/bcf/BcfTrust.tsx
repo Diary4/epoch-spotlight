@@ -44,7 +44,7 @@ import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
 /** Square crop of the chief, for the portrait card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/main.webp";
-import presidentPortrait from "@/assets/images/bcf/from-source/president-musa.webp";
+import presidentPortrait from "@/assets/images/bcf/thumbs/bcf-president.webp";
 /** Head-and-shoulders square cut from Sidad Barzani's studio portrait. */
 import founderPortrait from "@/assets/images/bcf/thumbs/bcf-founder.webp";
 

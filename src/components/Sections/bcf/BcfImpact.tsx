@@ -134,7 +134,8 @@ export default function BcfImpact({
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/62 to-black/40" />
+                    <div className="absolute inset-0 bg-black/55" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
                   </>
                 ) : null}
                 <stat.Icon

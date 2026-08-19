@@ -5,9 +5,11 @@ import donateQr from "@/assets/images/bcf/donate-qr.png";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
+  BCF_PANEL_MOTION,
   BCF_TAP_FIRM,
   BCF_TAP_TRANSITION,
 } from "@/components/Sections/bcf/bcfMotion";
+import { BCF_LOW_POWER } from "@/components/Sections/bcf/bcfPerf";
 
 /**
  * Official BCF donate page — scanning the QR opens it on the visitor's phone.
@@ -64,9 +66,16 @@ export default function BcfDonateOverlay({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: BCF_EASE }}
         >
+          {/* The scrim states its own tier rather than leaning on the
+              `[class*="backdrop-blur"]` sweep in index.css. A full-artboard
+              `backdrop-filter` is a GPU readback per frame, so it is worth
+              being unable to get here by accident — a panel that once had
+              `?perf=high` opened on it keeps that in localStorage. */}
           <button
             type="button"
-            className="absolute inset-0 border-0 bg-black/78 backdrop-blur-xl"
+            className={`absolute inset-0 border-0 ${
+              BCF_LOW_POWER ? "bg-black/90" : "bg-black/78 backdrop-blur-xl"
+            }`}
             aria-label={c.close}
             onClick={onClose}
           />
@@ -80,9 +89,7 @@ export default function BcfDonateOverlay({
                 "linear-gradient(160deg, rgba(24,19,10,0.98), rgba(8,10,14,0.99))",
               boxShadow: `0 40px 120px rgba(0,0,0,0.6), inset 0 0 0 1px ${BCF.gold}12`,
             }}
-            initial={{ opacity: 0, y: 40, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            {...BCF_PANEL_MOTION}
             transition={{ duration: 0.5, ease: BCF_EASE }}
           >
             <motion.button

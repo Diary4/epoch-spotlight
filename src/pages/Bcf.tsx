@@ -109,6 +109,8 @@ export default function BcfPage() {
 
   const c = bcfCopy[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
+  /** Any of the three overlays standing between the visitor and the scene. */
+  const veiled = languageOpen || donateOpen || idleCount !== null;
   const navigatingRef = React.useRef(false);
 
   /**
@@ -507,7 +509,11 @@ export default function BcfPage() {
             `?perf=high` still restores the glass version for comparing the two
             on a workstation. */}
         <div
-          className="flex min-h-[1920px] w-full flex-col"
+          /* `bcf-veiled` stops the thirteen perpetual animations for as long as
+             anything is covering the scene — see the note in index.css. */
+          className={`flex min-h-[1920px] w-full flex-col${
+            veiled ? " bcf-veiled" : ""
+          }`}
           style={
             BCF_LOW_POWER
               ? undefined
