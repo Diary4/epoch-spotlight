@@ -884,7 +884,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     languages: [
       { id: "ku", label: "کوردی" },
       { id: "en", label: "English" },
-      { id: "ar", label: "عربي" },
+      { id: "ar", label: "العربية" },
     ],
     touchToContinue: "Touch to continue",
     attractStart: "Touch to Start",
@@ -2052,7 +2052,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     languages: [
       { id: "ku", label: "کوردی" },
       { id: "en", label: "English" },
-      { id: "ar", label: "عربي" },
+      { id: "ar", label: "العربية" },
     ],
     touchToContinue: "بۆ بەردەوامبوون دەستی لێبدە",
     attractStart: "دەستی لێبدە بۆ دەستپێکردن",
@@ -3168,7 +3168,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     languages: [
       { id: "ku", label: "کوردی" },
       { id: "en", label: "English" },
-      { id: "ar", label: "عربي" },
+      { id: "ar", label: "العربية" },
     ],
     touchToContinue: "المس للمتابعة",
     attractStart: "المس للبدء",

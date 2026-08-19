@@ -145,19 +145,6 @@ export default function BcfFuture({
         />
 
         <div className="relative mx-auto mt-16 flex w-full max-w-[980px] flex-col items-center gap-[92px]">
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[280px] h-[300px] w-px -translate-x-1/2"
-            style={{
-              background: `linear-gradient(180deg, transparent, ${BCF.gold}55, transparent)`,
-            }}
-          />
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[416px] h-3 w-3 -translate-x-1/2 rotate-45"
-            style={{ backgroundColor: BCF.gold }}
-          />
-
           {portals.map((portal, index) => (
             <FuturePortal
               key={portal.title}

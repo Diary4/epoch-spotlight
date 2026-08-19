@@ -14,7 +14,7 @@ import {
 const LANGUAGE_OPTIONS: { code: BcfLang; label: string }[] = [
   { code: "en", label: "English" },
   { code: "ku", label: "کوردی" },
-  { code: "ar", label: "عربي" },
+  { code: "ar", label: "العربية" },
 ];
 
 type BcfLanguageOverlayProps = {

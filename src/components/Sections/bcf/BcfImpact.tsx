@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { House, Sun, User } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
-import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import {
   bcfCopy,
   type BcfLang,
@@ -163,10 +162,7 @@ export default function BcfImpact({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
 
                 <div className="relative z-10 flex h-full flex-col p-9">
-                  <div className="flex items-start justify-between">
-                    <span className="text-[28px] font-light text-white/55">
-                      {bcfDigits(String(index + 1).padStart(2, "0"), lang)}
-                    </span>
+                  <div className="flex items-start justify-end">
                     <span
                       className="grid h-11 w-11 place-items-center rounded-full border"
                       style={{ borderColor: `${BCF.gold}88`, color: BCF.gold }}
