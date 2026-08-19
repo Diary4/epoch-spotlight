@@ -1,5 +1,4 @@
 import React from "react";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfLogoSeal } from "@/components/Sections/bcf/bcfAssets";
 
 type BcfChapterPillProps = {
@@ -23,17 +22,12 @@ export default function BcfChapterPill({ title, className = "" }: BcfChapterPill
         className="relative flex min-w-[220px] items-center rounded-full border border-[#fbc158]/25 bg-black/45 py-3 ps-[128px] pe-7 backdrop-blur-md"
         style={{ boxShadow: "0 16px 44px rgba(0,0,0,0.42)" }}
       >
-        <span
-          className="absolute start-0 top-1/2 grid h-[104px] w-[104px] -translate-y-1/2 place-items-center overflow-hidden rounded-full border-2 bg-black/80"
-          style={{
-            borderColor: BCF.gold,
-          }}
-        >
+        <span className="absolute start-0 top-1/2 grid h-[104px] w-[104px] -translate-y-1/2 place-items-center overflow-hidden rounded-full bg-black/80">
           <img
             src={bcfLogoSeal}
             alt=""
             decoding="async"
-            className="h-full w-full object-cover"
+            className="h-[112%] w-[112%] max-w-none object-cover"
           />
         </span>
         <span className="text-[32px] font-light tracking-wide text-[#fdeed4]">{title}</span>
