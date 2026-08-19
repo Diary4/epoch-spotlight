@@ -1,4 +1,4 @@
-// One-shot: kiosk-size WebPs from src/assets/images/bcf/employees
+// One-shot: kiosk-size WebPs from src/assets/images/bcf/IMAGE-1
 // into src/assets/images/bcf/optimized/employees (max edge 1600px).
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -7,17 +7,23 @@ import sharp from "sharp";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const SRC = path.join(ROOT, "src", "assets", "images", "bcf", "employees");
+const SRC = path.join(ROOT, "src", "assets", "images", "bcf", "IMAGE-1");
 const DEST = path.join(ROOT, "src", "assets", "images", "bcf", "optimized", "employees");
 const MAX_EDGE = 1600;
 const QUALITY = 82;
 const IMAGE_EXTS = new Set([
   ".jpg",
   ".jpeg",
+  ".jpe",
   ".png",
   ".jfif",
   ".heic",
+  ".heif",
   ".webp",
+  ".tif",
+  ".tiff",
+  ".bmp",
+  ".gif",
 ]);
 
 function slugBase(name) {
@@ -33,6 +39,13 @@ function slugBase(name) {
 
 async function main() {
   await fs.mkdir(DEST, { recursive: true });
+  const existing = await fs.readdir(DEST);
+  await Promise.all(
+    existing
+      .filter((name) => name.toLowerCase().endsWith(".webp"))
+      .map((name) => fs.unlink(path.join(DEST, name))),
+  );
+
   const entries = await fs.readdir(SRC);
   const used = new Set();
   let ok = 0;

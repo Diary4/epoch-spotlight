@@ -32,15 +32,21 @@ const topicImages: Record<FutureTopicId, string> = {
 };
 
 /**
- * Hotspot positions inside the interactive map stage (1080×~1100).
- * Tuned to the Figma “Future We Build” landscape layout.
+ * Five pins on a two-column zig-zag inside the 1000×1180 stage. Columns sit
+ * far enough inboard that a two-line title, centred under the disc, never
+ * meets the artboard edge — side labels used to clip “Rehabilitation”.
  */
-const HOTSPOTS: { id: FutureTopicId; left: number; top: number; labelSide: "left" | "right" | "bottom" }[] = [
-  { id: "education", left: 760, top: 180, labelSide: "right" },
-  { id: "environment", left: 250, top: 340, labelSide: "left" },
-  { id: "crises", left: 700, top: 420, labelSide: "right" },
-  { id: "rehabilitation", left: 210, top: 620, labelSide: "left" },
-  { id: "rights", left: 480, top: 720, labelSide: "bottom" },
+const COL_L = 280;
+const COL_R = 720;
+const COL_C = 500;
+const ROW = [160, 370, 580, 790, 1000] as const;
+
+const HOTSPOTS: { id: FutureTopicId; left: number; top: number }[] = [
+  { id: "education", left: COL_R, top: ROW[0] },
+  { id: "environment", left: COL_L, top: ROW[1] },
+  { id: "crises", left: COL_R, top: ROW[2] },
+  { id: "rehabilitation", left: COL_L, top: ROW[3] },
+  { id: "rights", left: COL_C, top: ROW[4] },
 ];
 
 type BcfFutureDetailProps = {
@@ -155,11 +161,9 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
             const isActive = activeId === pin.id;
 
             return (
-              /* Hotspot anchoring on a plain wrapper — motion owns `transform`
-                 on the button, and would otherwise drop the translate. */
               <div
                 key={pin.id}
-                className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+                className="absolute z-20 h-14 w-14 -translate-x-1/2 -translate-y-1/2"
                 style={{ left: pin.left, top: pin.top }}
               >
               <motion.button
@@ -168,50 +172,40 @@ export default function BcfFutureDetail({ lang, onBack }: BcfFutureDetailProps) 
                 onClick={() => setActiveId(pin.id)}
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
-                className="flex transform-gpu flex-col items-center"
+                className="relative grid h-14 w-14 transform-gpu place-items-center"
                 aria-label={topic.title}
               >
-                <span className="relative grid h-[56px] w-[56px] place-items-center">
-                  {!reduceMotion ? (
-                    <span
-                      aria-hidden="true"
-                      className="bcf-ping absolute inset-0 rounded-full"
-                      style={
-                        {
-                          backgroundColor: BCF.gold,
-                          "--ping-scale": "2.1",
-                          "--ping-opacity": "0.42",
-                          "--ping-delay": `${index * 0.32}s`,
-                        } as React.CSSProperties
-                      }
-                    />
-                  ) : null}
+                {!reduceMotion ? (
                   <span
-                    className="absolute inset-[-6px] rounded-full border-2 border-white/80 transition-shadow duration-500"
-                    style={{
-                      boxShadow: isActive
-                        ? `0 0 28px ${BCF.gold}`
-                        : `0 0 16px ${BCF.gold}99`,
-                    }}
+                    aria-hidden="true"
+                    className="bcf-ping absolute inset-0 rounded-full"
+                    style={
+                      {
+                        backgroundColor: BCF.gold,
+                        "--ping-scale": "2.1",
+                        "--ping-opacity": "0.42",
+                        "--ping-delay": `${index * 0.32}s`,
+                      } as React.CSSProperties
+                    }
                   />
-                  <span
-                    className="relative h-7 w-7 rounded-full"
-                    style={{
-                      backgroundColor: BCF.goldBright,
-                      boxShadow: `0 0 18px ${BCF.gold}`,
-                    }}
-                  />
-                </span>
-
+                ) : null}
                 <span
-                  className={`mt-4 max-w-[280px] text-[28px] font-medium leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] ${
-                    pin.labelSide === "left"
-                      ? "self-end text-right"
-                      : pin.labelSide === "right"
-                        ? "self-start text-left"
-                        : "text-center"
-                  }`}
-                >
+                  className="absolute inset-[-6px] rounded-full border-2 border-white/80 transition-shadow duration-500"
+                  style={{
+                    boxShadow: isActive
+                      ? `0 0 28px ${BCF.gold}`
+                      : `0 0 16px ${BCF.gold}99`,
+                  }}
+                />
+                <span
+                  className="relative h-7 w-7 rounded-full"
+                  style={{
+                    backgroundColor: BCF.goldBright,
+                    boxShadow: `0 0 18px ${BCF.gold}`,
+                  }}
+                />
+
+                <span className="pointer-events-none absolute left-1/2 top-full mt-5 w-[360px] -translate-x-1/2 text-center text-[28px] font-medium leading-snug text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
                   {topic.title}
                 </span>
               </motion.button>

@@ -58,7 +58,6 @@ export default function BcfLanguageOverlay({
             alt="Barzani Charity Foundation"
             decoding="async"
             className="pointer-events-none absolute left-10 top-10 z-10 h-[172px] w-auto"
-            style={{ filter: "drop-shadow(0 10px 28px rgba(0,0,0,0.55))" }}
           />
 
           {origin === "control" ? (

@@ -27,7 +27,6 @@ export default function BcfChapterPill({ title, className = "" }: BcfChapterPill
           className="absolute start-0 top-1/2 grid h-[104px] w-[104px] -translate-y-1/2 place-items-center overflow-hidden rounded-full border-2 bg-black/80"
           style={{
             borderColor: BCF.gold,
-            boxShadow: `0 0 26px ${BCF.gold}40`,
           }}
         >
           <img

@@ -59,7 +59,6 @@ function BcfLogoMark() {
         alt="Barzani Charity Foundation"
         decoding="async"
         className="h-[172px] w-auto"
-        style={{ filter: "drop-shadow(0 10px 28px rgba(0,0,0,0.55))" }}
       />
     </div>
   );

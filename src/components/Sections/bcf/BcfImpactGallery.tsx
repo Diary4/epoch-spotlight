@@ -89,7 +89,11 @@ export default function BcfImpactGallery({
         >
           <DomeGallery
             images={images}
-            segments={35}
+            segments={
+              galleryId === "employees"
+                ? Math.max(35, Math.ceil(images.length / 5))
+                : 35
+            }
             fit={1}
             fitBasis="width"
             minRadius={900}
