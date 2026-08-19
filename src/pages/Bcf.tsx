@@ -35,7 +35,6 @@ const BcfFuture = React.lazy(() => import("@/components/Sections/bcf/BcfFuture")
 const BcfFutureDetail = React.lazy(() => import("@/components/Sections/bcf/BcfFutureDetail"));
 const BcfTrust = React.lazy(() => import("@/components/Sections/bcf/BcfTrust"));
 const BcfLegacy = React.lazy(() => import("@/components/Sections/bcf/BcfLegacy"));
-const BcfHumanStories = React.lazy(() => import("@/components/Sections/bcf/BcfHumanStories"));
 const BcfImpactGallery = React.lazy(() => import("@/components/Sections/bcf/BcfImpactGallery"));
 
 /**
@@ -53,7 +52,6 @@ const PREFETCH_STEPS: Array<() => Promise<unknown>> = [
   () => import("@/components/Sections/bcf/BcfMap"),
   () => import("@/components/Sections/bcf/BcfProjects"),
   () => import("@/components/Sections/bcf/BcfProjectDetail"),
-  () => import("@/components/Sections/bcf/BcfHumanStories"),
   () => import("@/components/Sections/bcf/BcfImpactGallery"),
   () => import("@/components/Sections/bcf/BcfFutureDetail"),
   () => import("@/components/Sections/bcf/BcfLegacy"),
@@ -80,7 +78,6 @@ const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
   "projects",
   "projectDetail",
   "impact",
-  "humanStories",
   "impactGallery",
   "trust",
   "future",
@@ -406,21 +403,12 @@ export default function BcfPage() {
             key="impact"
             lang={lang}
             onBack={() => go(() => setStep("sections"))}
-            onOpenStories={() => go(() => setStep("humanStories"))}
             onOpenGallery={(id) =>
               go(() => {
                 setImpactGalleryId(id);
                 setStep("impactGallery");
               })
             }
-          />
-        );
-      case "humanStories":
-        return (
-          <BcfHumanStories
-            key="humanStories"
-            lang={lang}
-            onBack={() => go(() => setStep("impact"))}
           />
         );
       case "impactGallery":

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, House, Sun, User } from "lucide-react";
+import { House, Sun, User } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
@@ -29,7 +29,6 @@ import cardSchools from "@/assets/images/bcf/selected/impact-schools.webp";
 type BcfImpactProps = {
   lang: BcfLang;
   onBack: () => void;
-  onOpenStories: () => void;
   onOpenGallery: (id: ImpactGalleryId) => void;
 };
 
@@ -47,13 +46,12 @@ const IMPACT_TOTALS = [
 ] as const;
 
 /**
- * Our Impact — Figma grid: 2×2 photo stat cards + Human Story Layer CTA.
+ * Our Impact — Figma grid: totals plus 2×2 photo stat cards.
  * Each card opens a dome gallery of the photography in its BCF field folder.
  */
 export default function BcfImpact({
   lang,
   onBack,
-  onOpenStories,
   onOpenGallery,
 }: BcfImpactProps) {
   const c = bcfCopy[lang];
@@ -213,32 +211,6 @@ export default function BcfImpact({
               </motion.button>
             ))}
           </div>
-
-          <motion.button
-            type="button"
-            variants={bcfRiseCard}
-            onClick={onOpenStories}
-            whileTap={BCF_TAP}
-            transition={BCF_TAP_TRANSITION}
-            className="relative flex h-[180px] w-full transform-gpu items-center overflow-hidden rounded-[28px] border border-white/20 bg-black/40 px-10 text-left backdrop-blur-sm"
-          >
-            <span className="absolute left-10 top-8 text-[28px] font-light text-white/55">
-              01
-            </span>
-            <div className="min-w-0 flex-1 pr-10 pt-4">
-              <h2 className="text-[44px] font-bold leading-tight">
-                <span style={{ color: BCF.gold }}>{c.impactHumanStoryLead} </span>
-                <span className="text-[#fbf4e4]">{c.impactHumanStoryRest}</span>
-              </h2>
-              <p className="mt-3 text-[26px] text-white/75">{c.impactHumanStoryHint}</p>
-            </div>
-            <span
-              className="grid h-16 w-16 shrink-0 place-items-center rounded-full border"
-              style={{ borderColor: `${BCF.gold}99`, color: BCF.gold }}
-            >
-              <ArrowRight className="h-7 w-7 rtl:rotate-180" />
-            </span>
-          </motion.button>
         </motion.div>
       </div>
     </BcfShell>

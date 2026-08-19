@@ -22,7 +22,7 @@ import slideHonour from "@/assets/images/bcf/optimized/board-chief/309413182_646
 import slideMedal from "@/assets/images/bcf/optimized/board-chief/8C6A0117.webp";
 import slideGift from "@/assets/images/bcf/optimized/board-chief/8D1A9629.webp";
 import slideChild from "@/assets/images/bcf/optimized/board-chief/FY1A6788.webp";
-import slideDistribution from "@/assets/images/bcf/optimized/board-chief/FY1A7016.webp";
+import slideDistribution from "@/assets/images/bcf/board-chief/WhatsApp Image 2026-08-19 at 10.36.07.jpeg";
 import slideCeremony from "@/assets/images/bcf/optimized/board-chief/8C6A3599.webp";
 import nodeFounded from "@/assets/images/bcf/thumbs/board-chief/8C6A6742.webp";
 import nodeEcosoc from "@/assets/images/bcf/thumbs/board-chief/8C6A0257.webp";
