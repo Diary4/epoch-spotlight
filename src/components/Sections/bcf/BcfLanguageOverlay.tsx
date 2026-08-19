@@ -30,9 +30,8 @@ type BcfLanguageOverlayProps = {
 };
 
 /**
- * Language as a frosted veil over the current scene, not a second photograph.
- * A light dim plus a short blur keeps the page underneath readable as context
- * while the three language pills take the centre.
+ * Language as a veil over the current scene. The scene itself is blurred by
+ * the page (low-power mode strips `backdrop-filter`), so this plate only dims.
  */
 export default function BcfLanguageOverlay({
   open,
@@ -45,7 +44,7 @@ export default function BcfLanguageOverlay({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="absolute inset-0 z-[60] overflow-hidden bg-black/25 backdrop-blur-md"
+          className="absolute inset-0 z-[60] overflow-hidden bg-black/35"
           role="dialog"
           aria-modal="true"
           aria-label={bcfCopy.en.languageTitle}

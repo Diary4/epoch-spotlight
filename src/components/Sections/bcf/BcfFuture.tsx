@@ -121,7 +121,8 @@ export default function BcfFuture({
     <BcfShell
       showLogo={false}
       backgroundImage={bcfFutureDetailBg}
-      overlayClassName="bg-black/70"
+      overlayClassName="bg-black/25"
+      overlayFade={false}
     >
       <motion.div
         className="relative flex min-h-[1920px] flex-col px-10 pb-16 pt-24"

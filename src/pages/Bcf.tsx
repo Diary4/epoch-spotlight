@@ -500,7 +500,15 @@ export default function BcfPage() {
     >
       {/* `relative` so the rail and the two overlays can pin themselves to the
           artboard rather than the window — they have to scale with it. */}
-      <div className="relative flex min-h-[1920px] w-full flex-col">
+      <div className="relative flex min-h-[1920px] w-full flex-col overflow-hidden">
+        <div
+          className="flex min-h-[1920px] w-full flex-col"
+          style={{
+            filter: languageOpen ? "blur(22px) brightness(0.62)" : undefined,
+            transform: languageOpen ? "scale(1.04)" : undefined,
+            transition: "filter 400ms ease, transform 400ms ease",
+          }}
+        >
         {/* `mode="wait"` lets the outgoing scene finish its short exit before the
             next one dissolves up, so the backdrop never cuts to black between
             screens. `initial={false}` keeps the first paint from fading in
@@ -532,6 +540,7 @@ export default function BcfPage() {
             homeActive={step === "sections"}
           />
         ) : null}
+        </div>
 
         <BcfLanguageOverlay
           open={languageOpen}

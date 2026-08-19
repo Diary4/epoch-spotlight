@@ -32,6 +32,8 @@ type BcfShellProps = {
   backgroundImage?: string;
   /** Extra class for the dark scrim over the background image. */
   overlayClassName?: string;
+  /** Top-to-bottom fade over the photograph. Off when the plate should stay visible. */
+  overlayFade?: boolean;
   /** Optional custom background layer (e.g. DomeGallery on one page only). */
   backgroundSlot?: React.ReactNode;
   /** Background for scenes that carry no photograph. */
@@ -119,6 +121,7 @@ export default function BcfShell({
   showLogo = false,
   backgroundImage,
   overlayClassName = "bg-black/50",
+  overlayFade = true,
   backgroundSlot,
   backgroundStyle,
   drift = true,
@@ -149,7 +152,9 @@ export default function BcfShell({
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           {backgroundSlot}
           <div className={`absolute inset-0 ${overlayClassName}`} />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
+          {overlayFade ? (
+            <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
+          ) : null}
         </div>
       ) : backgroundImage ? (
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -161,7 +166,9 @@ export default function BcfShell({
             className={`absolute inset-0 h-full w-full object-cover ${driftClass} ${blurClass}`}
           />
           <div className={`absolute inset-0 ${overlayClassName}`} />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
+          {overlayFade ? (
+            <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/65" />
+          ) : null}
         </div>
       ) : null}
 
