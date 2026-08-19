@@ -24,12 +24,12 @@ import slideGift from "@/assets/images/bcf/optimized/board-chief/8D1A9629.webp";
 import slideChild from "@/assets/images/bcf/optimized/board-chief/FY1A6788.webp";
 import slideDistribution from "@/assets/images/bcf/board-chief/WhatsApp Image 2026-08-19 at 10.36.07.jpeg";
 import slideCeremony from "@/assets/images/bcf/optimized/board-chief/8C6A3599.webp";
-import nodeFounded from "@/assets/images/bcf/thumbs/board-chief/8C6A6742.webp";
-import nodeEcosoc from "@/assets/images/bcf/thumbs/board-chief/8C6A0257.webp";
-import nodeKuwait from "@/assets/images/bcf/thumbs/board-chief/8C6A0316.webp";
-import nodeEarthquake from "@/assets/images/bcf/thumbs/board-chief/FY1A7010.webp";
-import nodeHomes from "@/assets/images/bcf/thumbs/board-chief/8D1A9536.webp";
-import nodeAwards from "@/assets/images/bcf/thumbs/board-chief/8D1A8564.webp";
+import nodeOrigins from "@/assets/images/PrimeMinistir/formation.webp";
+import nodeYouth from "@/assets/images/PrimeMinistir/youth.webp";
+import nodeEducation from "@/assets/images/PrimeMinistir/education.webp";
+import nodeSecurity from "@/assets/images/PrimeMinistir/security.webp";
+import nodeService from "@/assets/images/PrimeMinistir/service.webp";
+import nodeCabinet from "@/assets/images/PrimeMinistir/2019.webp";
 
 export type BoardChiefView = "profile" | "timeline";
 
@@ -52,12 +52,21 @@ const SLIDE_IMAGES = [
 
 /** One disc per milestone, in the order the copy lists them. */
 const NODE_IMAGES = [
-  nodeFounded,
-  nodeEcosoc,
-  nodeKuwait,
-  nodeEarthquake,
-  nodeHomes,
-  nodeAwards,
+  nodeOrigins,
+  nodeYouth,
+  nodeEducation,
+  nodeSecurity,
+  nodeService,
+  nodeCabinet,
+];
+
+const NODE_FOCUS = [
+  "50% 28%",
+  "50% 22%",
+  "50% 24%",
+  "28% 26%",
+  "50% 30%",
+  "50% 22%",
 ];
 
 /**
@@ -336,6 +345,7 @@ export function GovernanceTimeline({
                 alt=""
                 decoding="async"
                 className="h-full w-full object-cover"
+                style={{ objectPosition: NODE_FOCUS[index % NODE_FOCUS.length] }}
               />
               <span
                 className="pointer-events-none absolute inset-0"

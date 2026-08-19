@@ -413,17 +413,15 @@ export type BoardChiefSlide = {
 };
 
 export type BoardChiefMilestoneId =
-  | "founded"
-  | "ecosoc"
-  | "kuwait"
-  | "earthquake"
-  | "homes"
-  | "awards";
+  | "origins"
+  | "youth"
+  | "education"
+  | "security"
+  | "service"
+  | "cabinet";
 
 /**
- * One node on the governance timeline. Every entry restates a fact the rest of
- * this file already carries (founding, credentials, recognition, human stories)
- * — a museum wall may not introduce a claim it cannot source.
+ * One node on the life timeline. Photography lives in BcfBoardChief.
  */
 export type BoardChiefMilestone = {
   id: BoardChiefMilestoneId;
@@ -1786,44 +1784,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "View Governance Timeline",
-      timelineTitle: "Board of Founders",
-      timelineRange: "2005 — Present",
+      timelineTitle: "Masrour Barzani",
+      timelineRange: "1969 — Present",
       timelineMilestones: [
         {
-          id: "founded",
+          id: "origins",
+          year: "1969",
+          title: "Origins & Formation",
+          body: "Born in 1969, Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
+        },
+        {
+          id: "youth",
+          year: "1985",
+          title: "From Youth to Resistance",
+          body: "In 1985, at the age of sixteen, Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
+        },
+        {
+          id: "education",
+          year: "1993",
+          title: "Education Beyond Borders",
+          body: "After years shaped by conflict, Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
+        },
+        {
+          id: "security",
+          year: "1998",
+          title: "Security & State-Building",
+          body: "After returning to Kurdistan in 1998, Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
+        },
+        {
+          id: "service",
           year: "2005",
-          title: "Founded in Erbil",
-          body: "BCF is officially established in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
+          title: "Service Beyond Government",
+          body: "Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
         },
         {
-          id: "ecosoc",
-          year: "2016",
-          title: "A seat at the UN table",
-          body: "Special consultative status with the United Nations Economic and Social Council, affirming BCF's role in international humanitarian dialogue.",
-        },
-        {
-          id: "kuwait",
+          id: "cabinet",
           year: "2019",
-          title: "Registered in Kuwait",
-          body: "Registered as a charity organization in Kuwait, extending BCF's licensed humanitarian presence across the region.",
-        },
-        {
-          id: "earthquake",
-          year: "2023",
-          title: "Across the border, in days",
-          body: "Rapid emergency support after the earthquakes in Turkey and Syria, including 4,129 tents provided to displaced families.",
-        },
-        {
-          id: "homes",
-          year: "2024",
-          title: "Homes for the families of martyrs",
-          body: "540 residential units distributed to the families of martyrs in Erbil and Soran.",
-        },
-        {
-          id: "awards",
-          year: "2025",
-          title: "Recognized abroad",
-          body: "The German Federal Parliament Award, the Wings of Help Organization Award and the Helfen Bringt Freude Award.",
+          title: "Prime Minister — The Ninth Cabinet",
+          body: "In 2019, Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
         },
       ],
     },
@@ -2903,44 +2901,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "بینینی هێڵی کاتی حوکمڕانی",
-      timelineTitle: "بۆردی دامەزرێنەران",
-      timelineRange: "٢٠٠٥ — ئێستا",
+      timelineTitle: "مەسرور بارزانی",
+      timelineRange: "١٩٦٩ — ئێستا",
       timelineMilestones: [
         {
-          id: "founded",
+          id: "origins",
+          year: "١٩٦٩",
+          title: "ڕەگ و پێکهاتە",
+          body: "مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
+        },
+        {
+          id: "youth",
+          year: "١٩٨٥",
+          title: "لە گەنجییەوە بۆ بەرخودان",
+          body: "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
+        },
+        {
+          id: "education",
+          year: "١٩٩٣",
+          title: "پەروەردە لە دەرەوەی سنوورەکان",
+          body: "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
+        },
+        {
+          id: "security",
+          year: "١٩٩٨",
+          title: "ئاسایش و دامەزراندنی دەوڵەت",
+          body: "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
+        },
+        {
+          id: "service",
           year: "٢٠٠٥",
-          title: "دامەزراندن لە هەولێر",
-          body: "دەزگای خێرخوازیی بارزانی بە فەرمی لە هەولێری پایتەختی هەرێمی کوردستانی عێراق دامەزرا، بۆ گۆڕینی بەزەیی بە کارێکی مرۆیی ڕێکخراو.",
+          title: "خزمەت لە دەرەوەی حکومەت",
+          body: "کاری گشتیی مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
         },
         {
-          id: "ecosoc",
-          year: "٢٠١٦",
-          title: "شوێنێک لەسەر مێزی نەتەوە یەکگرتووەکان",
-          body: "پێگەی ڕاوێژکاری تایبەت لەگەڵ ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان، کە ڕۆڵی دەزگاکە لە دیالۆگی مرۆیی نێودەوڵەتیدا دەسەلمێنێت.",
-        },
-        {
-          id: "kuwait",
+          id: "cabinet",
           year: "٢٠١٩",
-          title: "تۆمارکردن لە کوێت",
-          body: "وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکرا، بۆ فراوانکردنی ئامادەبوونی مۆڵەتپێدراوی دەزگاکە لە ناوچەکەدا.",
-        },
-        {
-          id: "earthquake",
-          year: "٢٠٢٣",
-          title: "بەو دیوی سنوور، بە ڕۆژ",
-          body: "پشتگیریی خێرای فریاگوزاری دوای بوومەلەرزەکانی تورکیا و سووریا، لەوانەش ٤٬١٢٩ ڕەشماڵ بۆ خێزانە ئاوارەکان.",
-        },
-        {
-          id: "homes",
-          year: "٢٠٢٤",
-          title: "خانوو بۆ خێزانی شەهیدان",
-          body: "٥٤٠ یەکەی نیشتەجێبوون بۆ خێزانی شەهیدان لە هەولێر و سۆران دابەشکرا.",
-        },
-        {
-          id: "awards",
-          year: "٢٠٢٥",
-          title: "پێزانین لە دەرەوە",
-          body: "خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا، خەڵاتی ڕێکخراوی Wings of Help و خەڵاتی Helfen Bringt Freude.",
+          title: "سەرۆک وەزیران — کابینەی نۆیەم",
+          body: "لە ٢٠١٩دا، مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
         },
       ],
     },
@@ -4011,44 +4009,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "عرض المسار الزمني للحوكمة",
-      timelineTitle: "مجلس المؤسسين",
-      timelineRange: "2005 — اليوم",
+      timelineTitle: "مسرور بارزاني",
+      timelineRange: "1969 — اليوم",
       timelineMilestones: [
         {
-          id: "founded",
+          id: "origins",
+          year: "1969",
+          title: "الأصول والنشأة",
+          body: "وُلد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
+        },
+        {
+          id: "youth",
+          year: "1985",
+          title: "من الشباب إلى المقاومة",
+          body: "في عام 1985، وفي سن السادسة عشرة، انضم مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
+        },
+        {
+          id: "education",
+          year: "1993",
+          title: "التعليم عبر الحدود",
+          body: "بعد سنوات شكلها الصراع، واصل مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
+        },
+        {
+          id: "security",
+          year: "1998",
+          title: "الأمن وبناء الدولة",
+          body: "بعد عودته إلى كردستان عام 1998، تولى مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
+        },
+        {
+          id: "service",
           year: "2005",
-          title: "التأسيس في أربيل",
-          body: "تأسست مؤسسة بارزاني الخيرية رسمياً في أربيل، عاصمة إقليم كوردستان العراق، لتحوّل التعاطف إلى عمل إنساني منظم.",
+          title: "خدمة خارج نطاق الحكومة",
+          body: "امتد عمل مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
         },
         {
-          id: "ecosoc",
-          year: "2016",
-          title: "مقعد على طاولة الأمم المتحدة",
-          body: "وضع استشاري خاص لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة، تأكيداً لدور المؤسسة في الحوار الإنساني الدولي.",
-        },
-        {
-          id: "kuwait",
+          id: "cabinet",
           year: "2019",
-          title: "التسجيل في الكويت",
-          body: "مسجَّلة كمنظمة خيرية في الكويت، بما يوسّع حضور المؤسسة المرخّص في المنطقة.",
-        },
-        {
-          id: "earthquake",
-          year: "2023",
-          title: "عبر الحدود، خلال أيام",
-          body: "دعم طارئ سريع بعد زلزالي تركيا وسوريا، شمل 4,129 خيمة للعوائل النازحة.",
-        },
-        {
-          id: "homes",
-          year: "2024",
-          title: "مساكن لعوائل الشهداء",
-          body: "توزيع 540 وحدة سكنية على عوائل الشهداء في أربيل وسوران.",
-        },
-        {
-          id: "awards",
-          year: "2025",
-          title: "تقدير من الخارج",
-          body: "جائزة البرلمان الاتحادي الألماني، وجائزة منظمة أجنحة العون (Wings of Help)، وجائزة Helfen Bringt Freude.",
+          title: "رئيس الوزراء — الحكومة التاسعة",
+          body: "في عام 2019، أصبح مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
         },
       ],
     },
