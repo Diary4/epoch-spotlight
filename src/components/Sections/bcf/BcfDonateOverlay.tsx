@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
-import QRCode from "react-qr-code";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
+import donateQr from "@/assets/images/bcf/donate-qr.png";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -9,27 +9,26 @@ import {
   BCF_TAP_TRANSITION,
 } from "@/components/Sections/bcf/bcfMotion";
 
-/** Official BCF donate page — scanning this QR opens it on the visitor's phone. */
+/**
+ * Official BCF donate page — scanning the QR opens it on the visitor's phone.
+ *
+ * The code itself is not generated here any more. `scripts/build-donate-qr.mjs`
+ * renders it to `donate-qr.png` from this exact URL, so if this string changes
+ * that script has to be re-run.
+ */
 export const BCF_DONATE_URL = "https://bcf.krd/donate-eng/";
 
 /**
- * The QR never changes, so it is encoded once at module load rather than on
- * every render of the overlay.
+ * Decoded while the kiosk is still on the attract plate.
  *
- * `react-qr-code` builds the whole error-corrected matrix during render. Held
- * as a constant element that work happens while the kiosk is still sitting on
- * the attract screen, and the element is referentially stable afterwards, so
- * re-renders of this overlay never touch it again.
+ * This module is a static import of the BCF page, so this runs at page load.
+ * Without it the first decode of the code lands on the frame the visitor taps
+ * Donate, and the panel arrives with an empty white square in it for a beat.
  */
-const DONATE_QR = (
-  <QRCode
-    value={BCF_DONATE_URL}
-    size={480}
-    bgColor="#FFFFFF"
-    fgColor="#0a0a0a"
-    style={{ height: "auto", width: "480px" }}
-  />
-);
+if (typeof Image !== "undefined") {
+  const warm = new Image();
+  warm.src = donateQr;
+}
 
 type BcfDonateOverlayProps = {
   open: boolean;
@@ -111,8 +110,23 @@ export default function BcfDonateOverlay({
               {c.donateHint}
             </p>
 
+            {/* The pre-rendered code, as one texture.
+                It used to be `react-qr-code`, which draws a QR as two SVG paths
+                carrying one subpath per module — a little over twelve hundred
+                of them for this URL. This panel arrives on a `scale` animation,
+                so Chromium re-rasterised all of them on every frame of the
+                entrance, at the 2× the 4K portrait panel draws the artboard.
+                That is the stutter this screen showed on open. A texture scales
+                on the GPU for free. See scripts/build-donate-qr.mjs. */}
             <div className="mx-auto mt-12 w-fit rounded-[28px] bg-white p-8">
-              {DONATE_QR}
+              <img
+                src={donateQr}
+                alt=""
+                width={480}
+                height={480}
+                decoding="async"
+                className="block h-[480px] w-[480px]"
+              />
             </div>
           </motion.div>
         </motion.div>

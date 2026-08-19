@@ -6,7 +6,7 @@ import BcfProfileHero from "@/components/Sections/bcf/BcfProfileHero";
 import { bcfCopy, type BcfLang } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { bcfRiseCard, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
-import founderPortrait from "@/assets/images/bcf/optimized/bcf-founder/portrait.webp";
+import founderPortrait from "@/assets/images/bcf/optimized/bcf-founder/sidad.webp";
 
 /** Padded column the record cards are read in — the President's, exactly. */
 const COLUMN = "mx-auto w-full max-w-[1000px] px-10";
@@ -42,10 +42,9 @@ export default function BcfFounder({ lang, onBack }: BcfFounderProps) {
       <div className="relative flex min-h-[1920px] flex-col pb-14">
         <BcfBackButton onClick={onBack} label={c.back} />
 
-        {/* A seated studio portrait cropped into a landscape band: the subject is
-            centred and his head sits high in the frame, so the band is pulled
-            down off the top of the source to leave headroom above the turban and
-            land the nameplate on the chest rather than across the face. */}
+        {/* Studio portrait cropped into a landscape band. Face is centred with
+            the turban high in the frame, so the crop sits near mid-height and
+            the nameplate lands on the jacket rather than across the face. */}
         <BcfProfileHero
           image={founderPortrait}
           name={founder.name}
@@ -53,7 +52,7 @@ export default function BcfFounder({ lang, onBack }: BcfFounderProps) {
           meta={founder.meta}
           align="center"
           height={640}
-          objectPosition="50% 10%"
+          objectPosition="50% 42%"
           plateWidth={760}
         />
 

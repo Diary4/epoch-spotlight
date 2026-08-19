@@ -17,7 +17,7 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 /** Full-bleed plate at the head of the profile. */
-import heroPortrait from "@/assets/images/bcf/optimized/board-chief/8C6A0295.webp";
+import heroPortrait from "@/assets/images/bcf/optimized/board-chief/main.webp";
 import slideHonour from "@/assets/images/bcf/optimized/board-chief/309413182_646064353547301_6647496102934481967_n.webp";
 import slideMedal from "@/assets/images/bcf/optimized/board-chief/8C6A0117.webp";
 import slideGift from "@/assets/images/bcf/optimized/board-chief/8D1A9629.webp";
@@ -162,7 +162,7 @@ export default function BcfBoardChief({
           meta={chief.meta}
           align="start"
           height={700}
-          objectPosition="52% 24%"
+          objectPosition="50% 42%"
         />
 
         <BcfFilmstrip
