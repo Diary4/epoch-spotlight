@@ -742,7 +742,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
         backgroundImage={bcfTrustBg}
         overlayClassName="bg-black/35"
       >
-        <div className="relative flex min-h-[1920px] w-full flex-col items-center px-[100px] pb-16 pt-28">
+        <div className="relative flex min-h-[1920px] w-full flex-col items-center justify-center px-[100px] py-16">
           <BcfBackButton onClick={goBack} label={c.back} />
 
           <motion.div
