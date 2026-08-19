@@ -1,4 +1,5 @@
 import type { Transition, Variants } from "motion/react";
+import { BCF_LOW_POWER } from "@/components/Sections/bcf/bcfPerf";
 
 /**
  * Shared motion language for the BCF VIP experience.
@@ -19,17 +20,39 @@ export const BCF_SCENE_TRANSITION: Transition = { duration: 0.66, ease: BCF_EASE
 /**
  * Scene shell transition. The 1.2% scale is deliberately below the threshold
  * where a full-bleed photo shows resampling — it reads as depth, not as a zoom.
+ *
+ * And on the low tier it is dropped, because that scale is the single reason
+ * the heavier chapters arrive worse than the lighter ones.
+ *
+ * It sits on the scene root, so for the 660ms of the entrance every layer
+ * inside the scene is being drawn at a size that changes on every frame:
+ * the full-bleed photograph, the atmosphere gradients, the grain grid, and
+ * each of the borders, rounded corners, shadows and text runs the chapter
+ * lays over them. Chromium cannot composite a scale it has to keep sharp — it
+ * re-rasterises the subtree — so the bill is proportional to how much the
+ * chapter puts on screen, at the 2× the 4K portrait panel draws the artboard.
+ * The Future and Legacy pages mount about twenty elements and feel weightless.
+ * Trust mounts a hundred and sixteen and animates thirty-three of them, and
+ * pays that same bill a hundred times over on the one frame the visitor is
+ * actually watching.
+ *
+ * Nobody at kiosk distance can name a 1.2% scale. Everybody can see a chapter
+ * stutter on the way in. So the low tier keeps the dissolve — which composites
+ * on the GPU whatever is inside it — and lets the depth go. Same trade the
+ * rest of this experience already makes; see bcfPerf.ts.
  */
+const SCENE_DEPTH = !BCF_LOW_POWER;
+
 export const bcfScene: Variants = {
-  initial: { opacity: 0, scale: 1.012 },
+  initial: { opacity: 0, ...(SCENE_DEPTH ? { scale: 1.012 } : null) },
   animate: {
     opacity: 1,
-    scale: 1,
+    ...(SCENE_DEPTH ? { scale: 1 } : null),
     transition: { duration: 0.66, ease: BCF_EASE, when: "beforeChildren" },
   },
   exit: {
     opacity: 0,
-    scale: 0.995,
+    ...(SCENE_DEPTH ? { scale: 0.995 } : null),
     transition: { duration: 0.3, ease: BCF_EASE_IN },
   },
 };
@@ -55,13 +78,22 @@ export const bcfRise: Variants = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.72, ease: BCF_EASE } },
 };
 
-/** For cards and tiles: rises and settles out of a slight recess. */
+/**
+ * For cards and tiles: rises and settles out of a slight recess.
+ *
+ * The 1.5% recess comes off on the low tier for the same reason the scene's
+ * does, and it matters more here than it looks: a card is a rounded border
+ * over a gradient with a wide shadow and a photograph inside it, and a grid of
+ * them all animate at once. Rising them on `y` alone is a transform the
+ * compositor can carry; rising them on `y` and `scale` makes it redraw every
+ * card on every frame of the stagger.
+ */
 export const bcfRiseCard: Variants = {
-  initial: { opacity: 0, y: 44, scale: 0.985 },
+  initial: { opacity: 0, y: 44, ...(SCENE_DEPTH ? { scale: 0.985 } : null) },
   animate: {
     opacity: 1,
     y: 0,
-    scale: 1,
+    ...(SCENE_DEPTH ? { scale: 1 } : null),
     transition: { duration: 0.78, ease: BCF_EASE },
   },
 };

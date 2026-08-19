@@ -1,5 +1,5 @@
 import { animate, useInView } from "motion/react";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 interface CountUpProps {
   to: number;
@@ -51,21 +51,35 @@ export default function CountUp({
 
   const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to));
 
+  /**
+   * Built once per counter, not once per frame.
+   *
+   * `Intl.NumberFormat` is one of the most expensive constructors the platform
+   * has — it resolves a locale and builds a formatter each time — and this used
+   * to run inside `onUpdate`, so every counter on a screen was constructing one
+   * sixty times a second for the whole two seconds it counted. On the kiosk's
+   * CPU that lands as main-thread work on exactly the frames the rest of the
+   * scene is trying to animate in. The formatter itself is immutable and
+   * `.format()` on an existing one is cheap.
+   */
+  const numberFormat = useMemo(() => {
+    const hasDecimals = maxDecimals > 0;
+    return Intl.NumberFormat("en-US", {
+      useGrouping: !!separator,
+      minimumFractionDigits: hasDecimals ? maxDecimals : 0,
+      maximumFractionDigits: hasDecimals ? maxDecimals : 0,
+    });
+  }, [maxDecimals, separator]);
+
   const formatValue = useCallback(
     (latest: number) => {
-      const hasDecimals = maxDecimals > 0;
-      const options: Intl.NumberFormatOptions = {
-        useGrouping: !!separator,
-        minimumFractionDigits: hasDecimals ? maxDecimals : 0,
-        maximumFractionDigits: hasDecimals ? maxDecimals : 0,
-      };
-      const formattedNumber = Intl.NumberFormat("en-US", options).format(latest);
+      const formattedNumber = numberFormat.format(latest);
       const withSep = separator
         ? formattedNumber.replace(/,/g, separator)
         : formattedNumber;
       return formatDigits ? formatDigits(withSep) : withSep;
     },
-    [maxDecimals, separator, formatDigits],
+    [numberFormat, separator, formatDigits],
   );
 
   useEffect(() => {

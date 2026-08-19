@@ -27,7 +27,7 @@ export default function BcfChapterPill({ title, className = "" }: BcfChapterPill
             src={bcfLogoSeal}
             alt=""
             decoding="async"
-            className="h-[112%] w-[112%] max-w-none object-cover"
+            className="h-full w-full object-contain"
           />
         </span>
         <span className="text-[32px] font-light tracking-wide text-[#fdeed4]">{title}</span>
