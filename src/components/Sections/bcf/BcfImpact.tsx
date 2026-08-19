@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { House, Sun, User } from "lucide-react";
+import { Sun } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import {
@@ -45,13 +45,11 @@ const IMPACT_TOTALS = [
   {
     id: "families",
     value: "10,208,103",
-    Icon: House,
     image: cardFamilies,
   },
   {
     id: "people",
     value: "56,906,790",
-    Icon: User,
     image: cardBeneficiaries,
   },
 ] as const;
@@ -119,48 +117,63 @@ export default function BcfImpact({
               const copy =
                 c.impactTotals.find((item) => item.id === stat.id) ??
                 c.impactTotals[index];
-              const photo = "image" in stat ? stat.image : undefined;
               return (
               <motion.div
                 key={stat.id}
                 variants={bcfRiseCard}
-                className="relative flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[28px] border border-white/15 bg-black/40 px-10 py-10 text-center"
+                className="relative flex h-[460px] flex-col overflow-hidden rounded-[28px] border border-white/15 text-left"
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
-                {photo ? (
-                  <>
-                    <img
-                      src={photo}
-                      alt=""
-                      className="absolute inset-0 h-full w-full object-cover"
+                <img
+                  src={stat.image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
+
+                <div className="relative z-10 flex h-full flex-col p-9">
+                  <div className="flex items-start justify-end">
+                    <span
+                      className="grid h-11 w-11 place-items-center rounded-full border"
+                      style={{ borderColor: `${BCF.gold}88`, color: BCF.gold }}
+                    >
+                      <Sun className="h-5 w-5" />
+                    </span>
+                  </div>
+
+                  <div className="mt-auto">
+                    <BcfStatValue
+                      value={stat.value}
+                      lang={lang}
+                      className="text-[76px] font-semibold leading-none"
+                      color="#fbf4e4"
+                      duration={2.8}
+                      delay={0.2 + index * 0.12}
+                      smooth
                     />
-                    <div className="absolute inset-0 bg-black/55" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
-                  </>
-                ) : null}
-                <stat.Icon
-                  className="relative z-10 h-14 w-14"
-                  strokeWidth={1.6}
-                  style={{ color: BCF.gold }}
-                />
-                <BcfStatValue
-                  value={stat.value}
-                  lang={lang}
-                  className="relative z-10 text-[56px] font-semibold leading-none"
-                  color="#fbf4e4"
-                  duration={2.8}
-                  delay={0.2 + index * 0.12}
-                  smooth
-                />
-                <p
-                  className="relative z-10 text-[32px] font-medium leading-snug"
-                  style={{ color: BCF.gold }}
-                >
-                  {copy.title}
-                </p>
-                <p className="relative z-10 max-w-[520px] text-[24px] leading-snug text-white/80">
-                  {copy.description}
-                </p>
+                    <motion.span
+                      aria-hidden="true"
+                      className="mt-5 block h-px w-[88px] origin-left"
+                      style={{
+                        background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+                      }}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      transition={{
+                        duration: 0.85,
+                        delay: 0.45 + index * 0.12,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    />
+                    <p className="mt-4 text-[34px] font-medium" style={{ color: BCF.gold }}>
+                      {copy.title}
+                    </p>
+                    <span className="mt-5 block border-t border-dashed border-white/30" />
+                    <p className="mt-5 text-[24px] leading-snug text-white/80">
+                      {copy.description}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
               );
             })}

@@ -742,7 +742,7 @@ const SECTORS_KU: Record<SectorId, string> = {
   disability: "پشتگیری کەمئەندامان",
   protection: "پاراستن",
   livelihood: "بژێوی",
-  cash: "پارە و هەتیوان",
+  cash: "پارە و ئازیزان",
   environment: "ژینگە",
   community: "پشتگیری کۆمەڵگا",
 };
@@ -2050,7 +2050,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     languages: [
       { id: "ku", label: "کوردی" },
       { id: "en", label: "English" },
-      { id: "ar", label: "العربية" },
+      { id: "ar", label: "عربي" },
     ],
     touchToContinue: "بۆ بەردەوامبوون دەستی لێبدە",
     attractStart: "دەستی لێبدە بۆ دەستپێکردن",
@@ -2078,15 +2078,15 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     welcomeBody: "چیرۆک، کاری مرۆیی، و کاریگەرییەکەمان پێکەوە ببینە.",
     startJourney: "دەستپێکردنی گەشتەکە",
     journeyTitleLead: "گەشتی",
-    journeyTitleGold: "ئێمە بدۆزەرەوە",
+    journeyTitleGold: "ئێمە",
     journeyEyebrow: "دەزگای خێرخوازی بارزانی",
     journeySubtitle: "دەست لە بەشێک بدە بۆ گەڕان",
     journeyChapters: [
       { id: "humanity", title: "مرۆڤایەتی لە کردار" },
-      { id: "story", title: "چیرۆکی ئێمە" },
+      { id: "story", title: "دەربارەی ئێمە" },
       { id: "map", title: "لە کوێ کار دەکەین؟" },
-      { id: "impact", title: "کاریگەری ئێمە" },
-      { id: "trust", title: "متمانەی پشت کارەکە" },
+      { id: "impact", title: "کاریگەرییەکانمان" },
+      { id: "trust", title: "متمانەی پشت کارەکانمان" },
       { id: "future", title: "داهاتوو و میرات" },
     ],
     whoWeServeWhite: "ئێمە",
@@ -2388,7 +2388,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     serveDetailCta: "بینینی وردەکاری",
     whoServesTitle: "کێ خزمەت دەکەین؟",
-    howServesTitle: "چۆن خزمەت دەکەین",
+    howServesTitle: "چۆن خزمەت دەکەین؟",
     whoHowHint:
       "دەزگای خێرخوازیی بارزانی لە سەرانسەری سێکتەرە مرۆییە سەرەکییەکاندا کار دەکات بۆ دابینکردنی پێداویستییە بەپەلەکان و پاڵپشتیکردنی چاکبوونەوەی درێژخایەن.",
     whoServesItems: [
@@ -2470,7 +2470,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       {
         id: "vulnerable",
         title: "پشتگیری لە لاوازەکان",
-        body: "دەزگا خزمەتی خێزانە هەژارەکان، ئاوارەکان، پەنابەران، کەسانی خاوەن پێداویستی تایبەت، بەساڵاچووان، هەتیوان و گروپە لاوازەکانی تر دەکات.",
+        body: "دەزگا خزمەتی خێزانە هەژارەکان، ئاوارەکان، پەنابەران، کەسانی خاوەن پێداویستی تایبەت، بەساڵاچووان، ئازیزان و گروپە لاوازەکانی تر دەکات.",
       },
       {
         id: "transparency",
@@ -2480,7 +2480,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     storyMilestones: [
       { id: "founded", year: "2005", body: "دامەزراندنی دەزگا لە هەولێر." },
-      { id: "orphan-care", year: "2009", body: "دەستپێکی پڕۆژەی چاودێری هەتیوان." },
+      { id: "orphan-care", year: "2009", body: "دەستپێکی پڕۆژەی چاودێری ئازیزان." },
       {
         id: "sinjar",
         year: "2014",
@@ -2673,7 +2673,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         name: "هەڵەبجە",
         short: "هەڵەبجە",
         description:
-          "پشتگیری کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی، یازدە قوتابخانەی نۆژەنکراوە، باخچەیەکی منداڵان لە ٢٠٢٣، و یارمەتی بەردەوامی خێزانی هەتیوان.",
+          "پشتگیری کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی، یازدە قوتابخانەی نۆژەنکراوە، باخچەیەکی منداڵان لە ٢٠٢٣، و یارمەتی بەردەوامی خێزانی ئازیزان",
         explore: "پڕۆژەکان ببینە",
       },
       soran: {
@@ -2708,7 +2708,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         name: "عەفرین",
         short: "عەفرین",
         description:
-          "بەرنامەیەکی چەسپاو لە سووریا: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران، و ١٩٢ هەتیوی سەرپەرشتیکراو.",
+          "بەرنامەیەکی چەسپاو لە سووریا: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران، و ١٩٢ ئازیزانی سەرپەرشتیکراو.",
         explore: "پڕۆژەکان ببینە",
       },
       rojava: {
@@ -2751,8 +2751,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     back: "گەڕانەوە",
     close: "داخستن",
     ourImpact: "کاریگەرییەکانمان",
-    impactTitleLead: "کاریگەری",
-    impactTitleGold: "ئێمە",
+    impactTitleLead: "کاریگەرییەکانمان",
+    impactTitleGold: "",
     impactSubtitle:
       "ژمارە گەورەکان پشتگیری دەکرێن بە چیرۆکی مرۆیی، وێنەی فەرمی و بەڵگەی پڕۆژە.",
     changing: "گۆڕینی ژیان",
@@ -2797,9 +2797,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: "ژینگەی فێربوون بۆ منداڵان و گەنجان",
       },
     ],
-    trustTitle: "متمانە و داهاتوو",
-    trustTitleGold: "متمانە",
-    trustTitleRest: "لە پشت کارەکە",
+    trustTitle: "متمانەی پشت کارەکانمان",
+    trustTitleGold: "متمانەی",
+    trustTitleRest: "پشت کارەکانمان",
     trustTopics: [
       { id: "leadership", title: "سەرکردایەتی و حوکمڕانی" },
       { id: "quality", title: "کوالیتی و باوەڕپێکراوی" },
