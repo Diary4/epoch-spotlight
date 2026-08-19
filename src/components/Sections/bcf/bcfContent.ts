@@ -2944,7 +2944,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfPresident: {
       open: "ناسینی سەرۆکی دەزگا",
-      name: "Musa Ahmed",
+      name: "موسا ئەحمەد",
       role: "سەرۆکی دەزگا",
       meta: "دەزگای خێرخوازیی بارزانی",
       bioLabel: "ژیاننامە",
@@ -4052,7 +4052,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfPresident: {
       open: "تعرّف على رئيس المؤسسة",
-      name: "Musa Ahmed",
+      name: "موسى أحمد",
       role: "رئيس المؤسسة",
       meta: "مؤسسة بارزاني الخيرية",
       bioLabel: "السيرة الذاتية",
