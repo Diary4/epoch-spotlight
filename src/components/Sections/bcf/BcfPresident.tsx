@@ -98,7 +98,7 @@ export default function BcfPresident({ lang, onBack }: BcfPresidentProps) {
             </RecordCard>
           </motion.div>
 
-          <motion.div variants={bcfRiseCard}>
+          <motion.div variants={bcfRiseCard} className="mt-10">
             <BcfFilmstrip
               images={bcfPresidentImages}
               rtl={rtl}
