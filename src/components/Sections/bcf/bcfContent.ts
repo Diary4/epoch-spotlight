@@ -309,6 +309,12 @@ type ImpactItem = {
   description: string;
 };
 
+type ImpactTotal = {
+  id: "families" | "people";
+  title: string;
+  description: string;
+};
+
 /**
  * The twelve sectors Humanity in Action presents, in the same reading order the
  * project register uses (`BCF_SECTOR_ORDER`): the long-running service sectors
@@ -679,6 +685,7 @@ export type BcfCopy = {
   humanStories: HumanStory[];
   changing: string;
   livesEveryday: string;
+  impactTotals: ImpactTotal[];
   impactItems: ImpactItem[];
   trustTitle: string;
   trustTitleGold: string;
@@ -1710,6 +1717,20 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     changing: "Changing lives",
     livesEveryday: "everyday",
+    impactTotals: [
+      {
+        id: "families",
+        title: "Beneficiary Families",
+        description:
+          "Total number of families who benefited from the organization’s activities and assistance over 19 years.",
+      },
+      {
+        id: "people",
+        title: "Individual Beneficiaries",
+        description:
+          "Total number of people who benefited from the organization’s activities and assistance over 19 years.",
+      },
+    ],
     impactItems: [
       {
         id: "employees",
@@ -1883,7 +1904,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfPresident: {
       open: "Meet the BCF President",
-      name: "Musa Ahmed Agha Tajaldeen",
+      name: "Musa Ahmed",
       role: "BCF President",
       meta: "Barzani Charity Foundation",
       bioLabel: "Biography",
@@ -1908,7 +1929,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       ],
       awardsLabel: "Awards",
       awards:
-        "Awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions. He is married and has four children.",
+        "Awarded the Immortal Barzani Medal, along with hundreds of other honors and distinctions.",
     },
     bcfFounder: {
       open: "Meet the Founding Board Member",
@@ -2890,6 +2911,20 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     changing: "گۆڕینی ژیان",
     livesEveryday: "هەموو ڕۆژێک",
+    impactTotals: [
+      {
+        id: "families",
+        title: "خێزانی سوودمەند",
+        description:
+          "کۆی ژمارەی ئەو خێزانانەی لە ماوەی ١٩ ساڵدا لە چالاکی و یارمەتییەکانی ڕێکخراوەکە سوودمەند بوون.",
+      },
+      {
+        id: "people",
+        title: "کەسی سوودمەند",
+        description:
+          "کۆی ژمارەی ئەو کەسانەی لە ماوەی ١٩ ساڵدا لە چالاکی و یارمەتییەکانی ڕێکخراوەکە سوودمەند بوون.",
+      },
+    ],
     impactItems: [
       {
         id: "employees",
@@ -3063,7 +3098,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfPresident: {
       open: "ناسینی سەرۆکی دەزگا",
-      name: "موسا ئەحمەد ئاغا تاجەدین",
+      name: "موسا ئەحمەد",
       role: "سەرۆکی دەزگا",
       meta: "دەزگای خێرخوازیی بارزانی",
       bioLabel: "ژیاننامە",
@@ -3088,7 +3123,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       ],
       awardsLabel: "خەڵاتەکان",
       awards:
-        "مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.",
+        "مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاریی تری پێبەخشراوە.",
     },
     bcfFounder: {
       open: "ناسینی ئەندامی بۆردی دامەزرێنەران",
@@ -4064,6 +4099,20 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     changing: "نغيّر الحيوات",
     livesEveryday: "كل يوم",
+    impactTotals: [
+      {
+        id: "families",
+        title: "أُسرة مستفيدة",
+        description:
+          "إجمالي عدد الأسر التي استفادت من أنشطة ومساعدات المنظمة خلال 19 عامًا.",
+      },
+      {
+        id: "people",
+        title: "مستفيد فرد",
+        description:
+          "إجمالي عدد الأشخاص الذين استفادوا من أنشطة ومساعدات المنظمة خلال 19 عامًا.",
+      },
+    ],
     impactItems: [
       {
         id: "employees",
@@ -4234,7 +4283,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfPresident: {
       open: "تعرّف على رئيس المؤسسة",
-      name: "موسى أحمد آغا تاج الدين",
+      name: "موسى أحمد",
       role: "رئيس المؤسسة",
       meta: "مؤسسة بارزاني الخيرية",
       bioLabel: "السيرة الذاتية",
@@ -4259,7 +4308,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       ],
       awardsLabel: "التكريمات",
       awards:
-        "مُنح وسام البارزاني الخالد، إلى جانب مئات الأوسمة والتكريمات الأخرى. وهو متزوج وأب لأربعة أطفال.",
+        "مُنح وسام البارزاني الخالد، إلى جانب مئات الأوسمة والتكريمات الأخرى.",
     },
     bcfFounder: {
       open: "تعرّف على عضو الهيئة التأسيسية",

@@ -10,9 +10,9 @@ import {
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
 import legacyHero from "@/assets/images/bcf/future-legacy-bg.webp";
-import pillarService from "@/assets/images/bcf/from-source/legacy-service.webp";
-import pillarHumanity from "@/assets/images/bcf/selected/humanity-community.webp";
-import pillarHope from "@/assets/images/bcf/selected/humanity-education.webp";
+import pillarService from "@/assets/images/bcf/future/service-is-dignity.jpeg";
+import pillarHumanity from "@/assets/images/bcf/future/human-responsibility.jpeg";
+import pillarHope from "@/assets/images/bcf/future/hope-through-action.jpeg";
 
 
 /**
@@ -152,15 +152,6 @@ export default function BcfLegacy({ lang, onBack }: BcfLegacyProps) {
                     alt=""
                     decoding="async"
                     className="h-full w-full object-cover"
-                  />
-                  {/* Feathered edge so the photo joins the card instead of
-                      sitting in a window cut out of it. */}
-                  <span
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(90deg, rgba(12,11,10,1) 0%, rgba(12,11,10,0.45) 42%, rgba(12,11,10,0.15) 100%)",
-                    }}
                   />
                 </span>
               </motion.div>

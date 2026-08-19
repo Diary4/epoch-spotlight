@@ -40,7 +40,7 @@ const CARD_IMAGES: Record<ImpactGalleryId, string> = {
   schools: cardSchools,
 };
 
-/** Headline reach figures — numbers only, as published on BCF's impact strip. */
+/** Headline reach figures published on BCF's impact strip. */
 const IMPACT_TOTALS = [
   { id: "families", value: "10,208,103", Icon: House },
   { id: "people", value: "56,906,790", Icon: User },
@@ -106,11 +106,15 @@ export default function BcfImpact({
           animate="animate"
         >
           <div className="grid grid-cols-2 gap-7">
-            {IMPACT_TOTALS.map((stat, index) => (
+            {IMPACT_TOTALS.map((stat, index) => {
+              const copy =
+                c.impactTotals.find((item) => item.id === stat.id) ??
+                c.impactTotals[index];
+              return (
               <motion.div
                 key={stat.id}
                 variants={bcfRiseCard}
-                className="flex h-[200px] flex-col items-center justify-center gap-5 rounded-[28px] border border-white/15 bg-black/40"
+                className="flex flex-col items-center justify-center gap-4 rounded-[28px] border border-white/15 bg-black/40 px-10 py-10 text-center"
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <stat.Icon
@@ -127,8 +131,18 @@ export default function BcfImpact({
                   delay={0.2 + index * 0.12}
                   smooth
                 />
+                <p
+                  className="text-[32px] font-medium leading-snug"
+                  style={{ color: BCF.gold }}
+                >
+                  {copy.title}
+                </p>
+                <p className="max-w-[520px] text-[24px] leading-snug text-white/80">
+                  {copy.description}
+                </p>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="grid grid-cols-2 gap-7">
