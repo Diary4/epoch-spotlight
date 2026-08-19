@@ -58,9 +58,8 @@ import worldTopology from "@/assets/geo/world-countries-110m.json";
  *   Globe — an orthographic earth the visitor spins with a finger. It is the
  *   default because a wall panel is a thing people walk up to and touch, and a
  *   sphere that answers a drag is the one object on this screen that behaves
- *   like an object. It costs nothing in coverage either: Rabat to Canberra is
- *   145° of longitude and every one of the thirteen sits inside the hemisphere
- *   centred on the home rotation below, so the opening frame shows all of them.
+ *   like an object. It opens on Kurdistan, the HQ, rather than on the Indian-
+ *   Ocean centre the flat map uses to frame the whole footprint.
  *
  *   Flat — Equal Earth, for reading the footprint as a whole. Mercator inflates
  *   the northern hemisphere, which is where nearly all of these countries
@@ -98,11 +97,6 @@ const GLOBE_MAX_ZOOM = 6;
 /** Labels crowd the Levant on a sphere sooner than they do on the flat map. */
 const GLOBE_LABEL_ZOOM = 1.9;
 /**
- * d3 rotates the sphere by the negation of the centre, so the home rotation is
- * the home centre flipped. Spinning to a country is the same trick.
- */
-const HOME_ROTATION: [number, number] = [-HOME_CENTER[0], -HOME_CENTER[1]];
-/**
  * The per-country `focusZoom` values were tuned against the flat artboard,
  * whose scale at zoom 1 is smaller than the globe's radius. Scaling them keeps
  * "tap Lebanon, get Lebanon" framing the same on both views without a second
@@ -110,9 +104,14 @@ const HOME_ROTATION: [number, number] = [-HOME_CENTER[0], -HOME_CENTER[1]];
  */
 const GLOBE_FOCUS_FACTOR = 0.8;
 
-const DEG = Math.PI / 180;
-
 const HQ = BCF_GLOBAL_LOCATIONS.find((l) => l.id === "kurdistan")!;
+/** Globe home is Erbil: d3 rotates by the negation of the centre. */
+const GLOBE_HOME: [number, number] = HQ.coordinates;
+const HOME_ROTATION: [number, number] = [-GLOBE_HOME[0], -GLOBE_HOME[1]];
+/** Opening frame is a full-radius globe facing Erbil, not a zoomed crop. */
+const GLOBE_HOME_ZOOM = 1;
+
+const DEG = Math.PI / 180;
 
 const kindIcons: Record<GlobalReachKind, typeof Landmark> = {
   hq: Landmark,
@@ -189,7 +188,7 @@ export default function BcfGlobalMap({
   const [activeKinds, setActiveKinds] = React.useState<GlobalReachKind[]>(ALL_KINDS);
   const [view, setView] = React.useState<View>(HOME_VIEW);
   const [rotation, setRotation] = React.useState<[number, number]>(HOME_ROTATION);
-  const [globeZoom, setGlobeZoom] = React.useState(1);
+  const [globeZoom, setGlobeZoom] = React.useState(GLOBE_HOME_ZOOM);
   /**
    * A programmatic move gets a CSS transition so the flat map glides to the
    * country instead of teleporting; a finger drag must not, or every frame of
@@ -375,7 +374,7 @@ export default function BcfGlobalMap({
     onSelect(null);
     if (mode === "globe") {
       stopSpin();
-      spinTo(HOME_CENTER, 1);
+      spinTo(GLOBE_HOME, GLOBE_HOME_ZOOM);
     } else {
       moveTo(HOME_VIEW);
     }
@@ -422,7 +421,7 @@ export default function BcfGlobalMap({
   /* The globe can arrive home a whole turn away from where it started, so the
      longitudes are compared as bearings rather than as numbers. */
   const atHome = isGlobe
-    ? Math.abs(globeZoom - 1) < 0.001 &&
+    ? Math.abs(globeZoom - GLOBE_HOME_ZOOM) < 0.001 &&
       Math.abs(shortWay(rotation[0] - HOME_ROTATION[0])) < 0.05 &&
       Math.abs(rotation[1] - HOME_ROTATION[1]) < 0.05
     : view.zoom === 1 && view.coordinates === HOME_CENTER;
