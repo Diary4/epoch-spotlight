@@ -1,6 +1,14 @@
 import React from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, ChevronRight, User, Users, X } from "lucide-react";
+import {
+  ArrowRight,
+  Briefcase,
+  Building2,
+  ChevronRight,
+  User,
+  Users,
+  X,
+} from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfImageCard from "@/components/Sections/bcf/BcfImageCard";
 import BcfBoardChief, {
@@ -52,6 +60,9 @@ type BcfTrustProps = {
   lang: BcfLang;
   onBack: () => void;
 };
+
+/** The two name-only rosters hanging off the Leadership grid. */
+type RosterId = "departments" | "offices";
 
 const topicThumbs: Record<TrustTopicId, string> = {
   leadership: leadershipThumb,
@@ -112,6 +123,11 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   /** The Founding Board member beside him, same shape: one screen, one record. */
   const [founderOpen, setFounderOpen] = React.useState(false);
   const [adminBoardOpen, setAdminBoardOpen] = React.useState(false);
+  /**
+   * The two name-only rosters that sit under the board card: department heads
+   * and office directors. One slot, since only one can be up at a time.
+   */
+  const [rosterOpen, setRosterOpen] = React.useState<RosterId | null>(null);
   const [partnerGroup, setPartnerGroup] =
     React.useState<PartnerLogoGroupId>("partners");
   const [awardPreview, setAwardPreview] = React.useState<string | null>(null);
@@ -139,6 +155,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     }
     if (adminBoardOpen) {
       setAdminBoardOpen(false);
+      return;
+    }
+    if (rosterOpen) {
+      setRosterOpen(null);
       return;
     }
     if (activeId) {
@@ -277,6 +297,78 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       );
     }
 
+    if (rosterOpen) {
+      const roster =
+        rosterOpen === "departments"
+          ? {
+              title: c.trustDepartmentsTitle,
+              body: c.trustDepartmentsBody,
+              members: c.trustDepartmentsMembers,
+            }
+          : {
+              title: c.trustOfficesTitle,
+              body: c.trustOfficesBody,
+              members: c.trustOfficesMembers,
+            };
+
+      return (
+        <BcfShell
+          key={`roster-${rosterOpen}`}
+          showLogo={false}
+          backgroundImage={bcfTrustBg}
+          overlayClassName="bg-black/35"
+        >
+          <TrustChrome title={roster.title} backLabel={c.back} onBack={goBack}>
+            <motion.p
+              className={`mx-auto mt-8 max-w-[820px] text-center text-[28px] text-[#fdeed4] ${
+                lang === "en" ? "leading-relaxed" : "leading-[1.75]"
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.2, ease: BCF_EASE }}
+            >
+              {roster.body}
+            </motion.p>
+            {/* No portrait plate here: bcf.krd publishes no headshots for these
+                two rosters, so a photo frame would be five empty placeholders.
+                The gold marker carries the card instead. */}
+            <motion.div
+              className="mx-auto mt-12 grid w-full max-w-[980px] grid-cols-2 gap-5"
+              variants={bcfStagger(0.08, 0.26)}
+              initial="initial"
+              animate="animate"
+            >
+              {roster.members.map((member) => (
+                <motion.div
+                  key={member.id}
+                  variants={bcfRiseCard}
+                  className={`${BCF_GLASS_CARD} flex items-center gap-6 p-8`}
+                  style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
+                >
+                  <span
+                    className="h-4 w-4 shrink-0 rotate-45"
+                    style={{ backgroundColor: BCF.gold }}
+                  />
+                  <span className="flex min-w-0 flex-col">
+                    <span className="text-[30px] font-semibold leading-snug text-[#fdeed4]">
+                      {member.name}
+                    </span>
+                    <span
+                      className={`mt-2 text-[22px] text-white/65 ${
+                        lang === "en" ? "leading-snug" : "leading-[1.7]"
+                      }`}
+                    >
+                      {member.role}
+                    </span>
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </TrustChrome>
+        </BcfShell>
+      );
+    }
+
     if (activeId === "leadership") {
       return (
         <BcfShell
@@ -314,37 +406,27 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 onClick={() => setPresidentOpen(true)}
               />
 
-              <motion.button
-                type="button"
-                variants={bcfRiseCard}
-                whileTap={BCF_TAP}
-                transition={BCF_TAP_TRANSITION}
+              <LeadershipGroupCard
+                icon={Users}
+                title={c.trustAdminBoardTitle}
+                body={c.trustAdminBoardBody}
+                open={c.trustAdminBoardOpen}
                 onClick={() => setAdminBoardOpen(true)}
-                className={`${BCF_GLASS_CARD} relative flex h-[200px] w-full transform-gpu items-stretch overflow-hidden text-start`}
-                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
-              >
-                <span
-                  className="flex w-[200px] shrink-0 items-center justify-center border-e-2 bg-white/5"
-                  style={{ borderColor: BCF.gold }}
-                >
-                  <Users className="h-16 w-16" style={{ color: BCF.gold }} />
-                </span>
-                <span className="flex min-w-0 flex-1 flex-col justify-center px-10 py-6">
-                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
-                    {c.trustAdminBoardTitle}
-                  </h3>
-                  <p className="mt-3 line-clamp-2 text-[24px] leading-relaxed text-white/75">
-                    {c.trustAdminBoardBody}
-                  </p>
-                  <p
-                    className="mt-4 flex items-center gap-3 text-[24px] font-medium"
-                    style={{ color: BCF.gold }}
-                  >
-                    {c.trustAdminBoardOpen}
-                    <ArrowRight className="h-6 w-6 rtl:rotate-180" />
-                  </p>
-                </span>
-              </motion.button>
+              />
+              <LeadershipGroupCard
+                icon={Briefcase}
+                title={c.trustDepartmentsTitle}
+                body={c.trustDepartmentsBody}
+                open={c.trustDepartmentsOpen}
+                onClick={() => setRosterOpen("departments")}
+              />
+              <LeadershipGroupCard
+                icon={Building2}
+                title={c.trustOfficesTitle}
+                body={c.trustOfficesBody}
+                open={c.trustOfficesOpen}
+                onClick={() => setRosterOpen("offices")}
+              />
             </motion.div>
           </TrustChrome>
         </BcfShell>
@@ -828,6 +910,58 @@ function LeadershipPersonCard({
             }`}
           />
         </span>
+      </span>
+    </motion.button>
+  );
+}
+
+/**
+ * A group on the Governance grid — same rectangle as `LeadershipPersonCard`,
+ * but the plate carries an icon because a group has no one portrait.
+ */
+function LeadershipGroupCard({
+  icon: Icon,
+  title,
+  body,
+  open,
+  onClick,
+}: {
+  icon: typeof Users;
+  title: string;
+  body: string;
+  open: string;
+  onClick: () => void;
+}) {
+  return (
+    <motion.button
+      type="button"
+      variants={bcfRiseCard}
+      whileTap={BCF_TAP}
+      transition={BCF_TAP_TRANSITION}
+      onClick={onClick}
+      className={`${BCF_GLASS_CARD} relative flex h-[200px] w-full transform-gpu items-stretch overflow-hidden text-start`}
+      style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
+    >
+      <span
+        className="flex w-[200px] shrink-0 items-center justify-center border-e-2 bg-white/5"
+        style={{ borderColor: BCF.gold }}
+      >
+        <Icon className="h-16 w-16" style={{ color: BCF.gold }} />
+      </span>
+      <span className="flex min-w-0 flex-1 flex-col justify-center px-10 py-6">
+        <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
+          {title}
+        </h3>
+        <p className="mt-3 line-clamp-2 text-[24px] leading-relaxed text-white/75">
+          {body}
+        </p>
+        <p
+          className="mt-4 flex items-center gap-3 text-[24px] font-medium"
+          style={{ color: BCF.gold }}
+        >
+          {open}
+          <ArrowRight className="h-6 w-6 rtl:rotate-180" />
+        </p>
       </span>
     </motion.button>
   );

@@ -674,6 +674,18 @@ export type BcfCopy = {
    * belong under the name the screen carries.
    */
   trustStaffGroups: TrustStaffGroup[];
+  /**
+   * The department and office heads from the same roster page. They have no
+   * headshots on bcf.krd, so their screens print names and titles only.
+   */
+  trustDepartmentsTitle: string;
+  trustDepartmentsOpen: string;
+  trustDepartmentsBody: string;
+  trustDepartmentsMembers: TrustStaffMember[];
+  trustOfficesTitle: string;
+  trustOfficesOpen: string;
+  trustOfficesBody: string;
+  trustOfficesMembers: TrustStaffMember[];
   boardChief: BoardChiefCopy;
   bcfPresident: BcfPresidentCopy;
   /** The Founding Board member who sits beside the President on the grid. */
@@ -1733,6 +1745,29 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           },
         ],
       },
+    ],
+    trustDepartmentsTitle: "Heads of Departments",
+    trustDepartmentsOpen: "View heads",
+    trustDepartmentsBody:
+      "Lead the operational departments that design and run the programs.",
+    trustDepartmentsMembers: [
+      { id: "ayoub", name: "Ayoub Mohammed Babakir", role: "Manager of Public Relation & Media" },
+      { id: "omar-a", name: "Omar Ahmad", role: "Orphans' & Widows' Care Dep. Manager" },
+      { id: "rizgar", name: "Rizgar Obed", role: "Supply Chain Dep. Manager" },
+      { id: "hardi", name: "Hardi Ismail", role: "Finance Dep. Manager" },
+      { id: "eskandar", name: "Eskandar Salih", role: "Monitoring & Evaluation Dep. Manager" },
+    ],
+    trustOfficesTitle: "Heads of Offices",
+    trustOfficesOpen: "View directors",
+    trustOfficesBody:
+      "Direct the regional offices that deliver the work with local communities.",
+    trustOfficesMembers: [
+      { id: "rebwar", name: "Rebwar Mihyaddin", role: "Kirkuk Office Director" },
+      { id: "stav", name: "Stav Aso", role: "Erbil Office Director" },
+      { id: "srwa", name: "Srwa Salih", role: "Slemani Office Director" },
+      { id: "karzan-s", name: "Karzan Salam", role: "Halabja Office Director" },
+      { id: "shero", name: "Shero Simo", role: "Shngal Office Director" },
+      { id: "araz", name: "Araz Ameer", role: "Acting of Mosul Office Director" },
     ],
     trustFounders: [
       {
@@ -2852,6 +2887,29 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         ],
       },
     ],
+    trustDepartmentsTitle: "بەڕێوەبەرانی بەشەکان",
+    trustDepartmentsOpen: "بینینی بەڕێوەبەران",
+    trustDepartmentsBody:
+      "بەشە کارگێڕییەکان بەڕێوە دەبەن کە بەرنامەکان دادەڕێژن و جێبەجێیان دەکەن.",
+    trustDepartmentsMembers: [
+      { id: "ayoub", name: "ئەیوب محەمەد بابەکر", role: "بەڕێوەبەری بەشی پەیوەندییەکان و ڕاگەیاندن" },
+      { id: "omar-a", name: "عومەر ئەحمەد", role: "بەڕێوەبەری بەشی چاودێری ئازیزان و بێوەژنان" },
+      { id: "rizgar", name: "ڕزگار عوبێد", role: "بەڕێوەبەری بەشی زنجیرەی دابینکردن" },
+      { id: "hardi", name: "هەردی ئیسماعیل", role: "بەڕێوەبەری بەشی دارایی" },
+      { id: "eskandar", name: "ئەسکەندەر ساڵح", role: "بەڕێوەبەری بەشی چاودێری و هەڵسەنگاندن" },
+    ],
+    trustOfficesTitle: "بەڕێوەبەرانی نووسینگەکان",
+    trustOfficesOpen: "بینینی بەڕێوەبەران",
+    trustOfficesBody:
+      "نووسینگە هەرێمییەکان بەڕێوە دەبەن کە کارەکان لەگەڵ کۆمەڵگە ناوخۆییەکاندا جێبەجێ دەکەن.",
+    trustOfficesMembers: [
+      { id: "rebwar", name: "ڕێبوار موحیەدین", role: "بەڕێوەبەری نووسینگەی کەرکووک" },
+      { id: "stav", name: "ستاڤ ئاسۆ", role: "بەڕێوەبەری نووسینگەی هەولێر" },
+      { id: "srwa", name: "سروە ساڵح", role: "بەڕێوەبەری نووسینگەی سلێمانی" },
+      { id: "karzan-s", name: "کارزان سەلام", role: "بەڕێوەبەری نووسینگەی هەڵەبجە" },
+      { id: "shero", name: "شێرۆ سیمۆ", role: "بەڕێوەبەری نووسینگەی شنگال" },
+      { id: "araz", name: "ئاراز ئەمیر", role: "جێبەجێکەری بەڕێوەبەری نووسینگەی موسڵ" },
+    ],
     trustFounders: [
       {
         title: "بۆردی دامەزرێنەران",
@@ -3963,6 +4021,29 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           },
         ],
       },
+    ],
+    trustDepartmentsTitle: "مدراء الأقسام",
+    trustDepartmentsOpen: "عرض المدراء",
+    trustDepartmentsBody:
+      "يقودون الأقسام التنفيذية التي تصمّم البرامج وتنفّذها.",
+    trustDepartmentsMembers: [
+      { id: "ayoub", name: "أيوب محمد بابكر", role: "مدير قسم العلاقات العامة والإعلام" },
+      { id: "omar-a", name: "عمر أحمد", role: "مدير قسم رعاية الأيتام والأرامل" },
+      { id: "rizgar", name: "رزكار عبيد", role: "مدير قسم سلسلة التجهيز" },
+      { id: "hardi", name: "هردي إسماعيل", role: "مدير القسم المالي" },
+      { id: "eskandar", name: "إسكندر صالح", role: "مدير قسم المتابعة والتقييم" },
+    ],
+    trustOfficesTitle: "مدراء المكاتب",
+    trustOfficesOpen: "عرض المدراء",
+    trustOfficesBody:
+      "يديرون المكاتب الإقليمية التي تنفّذ العمل مع المجتمعات المحلية.",
+    trustOfficesMembers: [
+      { id: "rebwar", name: "ريبوار محي الدين", role: "مدير مكتب كركوك" },
+      { id: "stav", name: "ستاف آسو", role: "مدير مكتب أربيل" },
+      { id: "srwa", name: "سروة صالح", role: "مدير مكتب السليمانية" },
+      { id: "karzan-s", name: "كارزان سلام", role: "مدير مكتب حلبجة" },
+      { id: "shero", name: "شيرو سيمو", role: "مدير مكتب سنجار" },
+      { id: "araz", name: "آراز أمير", role: "مدير مكتب الموصل بالوكالة" },
     ],
     trustFounders: [
       {
