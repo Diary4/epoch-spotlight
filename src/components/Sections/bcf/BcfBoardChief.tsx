@@ -172,6 +172,7 @@ export default function BcfBoardChief({
           align="start"
           height={700}
           objectPosition="50% 42%"
+          strongBottomFade
         />
 
         <BcfFilmstrip

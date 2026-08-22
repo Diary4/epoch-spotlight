@@ -42,10 +42,10 @@ import credUsa from "@/assets/images/bcf/Credibility page/USA.jpg";
 import credEcosoc from "@/assets/images/bcf/credentials/ecosoc.webp";
 import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
-/** Square crop of the chief, for the portrait card on the Leadership grid. */
+/** Portrait for the Board Chief card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/main.webp";
 import presidentPortrait from "@/assets/images/bcf/thumbs/bcf-president.webp";
-/** Head-and-shoulders square cut from Sidad Barzani's studio portrait. */
+/** Studio portrait for Sidad Barzani's leadership card. */
 import founderPortrait from "@/assets/images/bcf/thumbs/bcf-founder.webp";
 
 type BcfTrustProps = {
@@ -238,7 +238,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                         style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
                       >
                         <span
-                          className="h-[112px] w-[112px] shrink-0 overflow-hidden rounded-full border-2"
+                          className="h-[112px] w-[96px] shrink-0 overflow-hidden rounded-xl border-2"
                           style={{ borderColor: BCF.gold }}
                         >
                           {portrait ? (
@@ -286,78 +286,33 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           overlayClassName="bg-black/35"
         >
           <TrustChrome title={c.trustLeadershipTitle} backLabel={c.back} onBack={goBack}>
-            <ChiefCard
-              name={c.boardChief.name}
-              role={c.boardChief.role}
-              open={c.boardChief.open}
-              portrait={chiefPortrait}
-              onClick={() => setChiefView("profile")}
-            />
-
             <motion.div
-              className="mx-auto mt-10 grid w-full max-w-[980px] grid-cols-2 gap-8"
+              className="mx-auto mt-10 flex w-full max-w-[980px] flex-col gap-6"
               variants={bcfStagger(0.09, 0.32)}
               initial="initial"
               animate="animate"
             >
-              <motion.button
-                type="button"
-                variants={bcfRiseCard}
-                whileTap={BCF_TAP}
-                transition={BCF_TAP_TRANSITION}
-                onClick={() => setPresidentOpen(true)}
-                className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
-                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
-              >
-                <span
-                  className="h-[112px] w-[112px] overflow-hidden rounded-full border-2"
-                  style={{ borderColor: BCF.gold }}
-                >
-                  <img
-                    src={presidentPortrait}
-                    alt=""
-                    className="h-full w-full object-cover object-top"
-                  />
-                </span>
-                <div>
-                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
-                    {c.bcfPresident.name}
-                  </h3>
-                  <p className="mt-4 text-[26px] leading-relaxed text-white/75">
-                    {c.bcfPresident.role}
-                  </p>
-                </div>
-              </motion.button>
-
-              {/* The Founding Board member beside the President. */}
-              <motion.button
-                type="button"
-                variants={bcfRiseCard}
-                whileTap={BCF_TAP}
-                transition={BCF_TAP_TRANSITION}
+              <LeadershipPersonCard
+                name={c.boardChief.name}
+                role={c.boardChief.role}
+                open={c.boardChief.open}
+                portrait={chiefPortrait}
+                onClick={() => setChiefView("profile")}
+              />
+              <LeadershipPersonCard
+                name={c.bcfFounder.name}
+                role={c.bcfFounder.role}
+                open={c.bcfFounder.open}
+                portrait={founderPortrait}
                 onClick={() => setFounderOpen(true)}
-                className={`${BCF_GLASS_CARD} relative flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
-                style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
-              >
-                <span
-                  className="h-[112px] w-[112px] overflow-hidden rounded-full border-2"
-                  style={{ borderColor: BCF.gold }}
-                >
-                  <img
-                    src={founderPortrait}
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                </span>
-                <div>
-                  <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
-                    {c.bcfFounder.name}
-                  </h3>
-                  <p className="mt-4 text-[26px] leading-relaxed text-white/75">
-                    {c.bcfFounder.role}
-                  </p>
-                </div>
-              </motion.button>
+              />
+              <LeadershipPersonCard
+                name={c.bcfPresident.name}
+                role={c.bcfPresident.role}
+                open={c.bcfPresident.open}
+                portrait={presidentPortrait}
+                onClick={() => setPresidentOpen(true)}
+              />
 
               <motion.button
                 type="button"
@@ -365,30 +320,30 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 whileTap={BCF_TAP}
                 transition={BCF_TAP_TRANSITION}
                 onClick={() => setAdminBoardOpen(true)}
-                className={`${BCF_GLASS_CARD} relative col-span-2 flex min-h-[420px] w-full transform-gpu flex-col items-start gap-6 p-10 text-start`}
+                className={`${BCF_GLASS_CARD} relative flex h-[200px] w-full transform-gpu items-stretch overflow-hidden text-start`}
                 style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
               >
                 <span
-                  className="flex h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-full border-2 bg-white/5"
+                  className="flex w-[200px] shrink-0 items-center justify-center border-e-2 bg-white/5"
                   style={{ borderColor: BCF.gold }}
                 >
-                  <Users className="h-14 w-14" style={{ color: BCF.gold }} />
+                  <Users className="h-16 w-16" style={{ color: BCF.gold }} />
                 </span>
-                <div>
+                <span className="flex min-w-0 flex-1 flex-col justify-center px-10 py-6">
                   <h3 className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
                     {c.trustAdminBoardTitle}
                   </h3>
-                  <p className="mt-4 text-[26px] leading-relaxed text-white/75">
+                  <p className="mt-3 line-clamp-2 text-[24px] leading-relaxed text-white/75">
                     {c.trustAdminBoardBody}
                   </p>
                   <p
-                    className="mt-6 flex items-center gap-3 text-[24px] font-medium"
+                    className="mt-4 flex items-center gap-3 text-[24px] font-medium"
                     style={{ color: BCF.gold }}
                   >
                     {c.trustAdminBoardOpen}
-                    <Users className="h-6 w-6" />
+                    <ArrowRight className="h-6 w-6 rtl:rotate-180" />
                   </p>
-                </div>
+                </span>
               </motion.button>
             </motion.div>
           </TrustChrome>
@@ -805,13 +760,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
 }
 
 /**
- * The Board Chief entry on the Leadership grid.
- *
- * A portrait rather than another titled rectangle: it is the only card here
- * that opens onto a person, and it has to look unlike the four governance
- * cards for a visitor to know that before they touch it.
+ * One leadership profile on the Governance grid — horizontal rectangle with a
+ * portrait plate on the start edge, name and role beside it.
  */
-function ChiefCard({
+function LeadershipPersonCard({
   name,
   role,
   open,
@@ -829,46 +781,44 @@ function ChiefCard({
   return (
     <motion.button
       type="button"
+      variants={bcfRiseCard}
       onClick={onClick}
       onPointerDown={() => setPressed(true)}
       onPointerUp={() => setPressed(false)}
       onPointerLeave={() => setPressed(false)}
       onPointerCancel={() => setPressed(false)}
       whileTap={BCF_TAP}
-      className="mx-auto mt-10 flex w-full max-w-[980px] transform-gpu items-center gap-12 rounded-[32px] border p-12 text-start first:mt-14"
+      transition={BCF_TAP_TRANSITION}
+      className={`${BCF_GLASS_CARD} relative flex h-[200px] w-full transform-gpu items-stretch overflow-hidden text-start`}
       style={{
-        borderColor: pressed ? BCF.goldBright : `${BCF.gold}80`,
-        backgroundColor: pressed ? "rgba(251,193,88,0.12)" : "rgba(0,0,0,0.55)",
+        borderColor: pressed ? BCF.gold : undefined,
         boxShadow: pressed
-          ? `0 0 64px ${BCF.gold}44`
-          : `0 28px 80px rgba(0,0,0,0.5), 0 0 0 1px ${BCF.gold}28`,
+          ? `0 0 40px ${BCF.gold}33, 0 22px 60px rgba(0,0,0,0.45)`
+          : "0 22px 60px rgba(0,0,0,0.45)",
         transition:
-          "border-color 400ms cubic-bezier(0.22,1,0.36,1), background-color 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1)",
+          "border-color 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1)",
       }}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ ...BCF_TAP_TRANSITION, duration: 0.72, delay: 0.26, ease: BCF_EASE }}
     >
       <span
-        className="h-[260px] w-[260px] shrink-0 overflow-hidden rounded-full border-[3px]"
+        className="w-[200px] shrink-0 overflow-hidden border-e-2"
         style={{ borderColor: BCF.gold }}
       >
         <img
           src={portrait}
           alt=""
           decoding="async"
-          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
+          className="h-full w-full transform-gpu object-cover object-top transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
           style={{ transform: pressed ? "scale(1.06)" : "scale(1)" }}
         />
       </span>
 
-      <span className="flex min-w-0 flex-col">
-        <span className="text-[58px] font-semibold leading-tight text-[#fdeed4]">
+      <span className="flex min-w-0 flex-1 flex-col justify-center px-10 py-6">
+        <span className="text-[38px] font-semibold leading-tight text-[#fdeed4]">
           {name}
         </span>
-        <span className="mt-4 text-[30px] leading-snug text-white/70">{role}</span>
+        <span className="mt-3 text-[26px] leading-snug text-white/75">{role}</span>
         <span
-          className="mt-8 flex items-center gap-3 text-[28px] font-medium"
+          className="mt-4 flex items-center gap-3 text-[24px] font-medium"
           style={{ color: BCF.gold }}
         >
           {open}

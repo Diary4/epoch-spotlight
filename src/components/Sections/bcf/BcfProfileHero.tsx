@@ -26,6 +26,8 @@ type BcfProfileHeroProps = {
   objectPosition?: string;
   /** Widen the plate when a name runs long in Kurdish or Arabic. */
   plateWidth?: number;
+  /** Heavier dissolve at the foot — for heroes that meet a filmstrip below. */
+  strongBottomFade?: boolean;
 };
 
 /**
@@ -47,6 +49,7 @@ export default function BcfProfileHero({
   height = 700,
   objectPosition = "50% 28%",
   plateWidth = 640,
+  strongBottomFade = false,
 }: BcfProfileHeroProps) {
   return (
     <div
@@ -71,10 +74,21 @@ export default function BcfProfileHero({
       <span
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "linear-gradient(180deg, rgba(4,3,2,0.62) 0%, rgba(4,3,2,0.10) 30%, rgba(4,3,2,0.55) 72%, rgba(10,10,10,0.96) 100%)",
+          background: strongBottomFade
+            ? "linear-gradient(180deg, rgba(4,3,2,0.62) 0%, rgba(4,3,2,0.10) 28%, rgba(4,3,2,0.48) 58%, rgba(10,10,10,0.88) 78%, #0a0a0a 100%)"
+            : "linear-gradient(180deg, rgba(4,3,2,0.62) 0%, rgba(4,3,2,0.10) 30%, rgba(4,3,2,0.55) 72%, rgba(10,10,10,0.96) 100%)",
         }}
       />
+      {strongBottomFade ? (
+        <span
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            height: "42%",
+            background:
+              "linear-gradient(180deg, transparent 0%, rgba(4,3,2,0.22) 38%, rgba(10,10,10,0.82) 72%, #0a0a0a 100%)",
+          }}
+        />
+      ) : null}
       <span
         className="pointer-events-none absolute inset-0"
         style={{
