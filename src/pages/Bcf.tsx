@@ -590,11 +590,17 @@ export default function BcfPage() {
           onClose={() => setDonateOpen(false)}
         />
 
-        <BcfIdleOverlay
-          count={idleCount}
-          lang={lang}
-          onContinue={() => setIdleCount(null)}
-        />
+        {/* Never mount the countdown on attract/intro. After an idle reset the
+            count is cleared in the same render as the step change, but
+            AnimatePresence would still play the overlay's exit over the start
+            screen — which is the timer the visitor sees on the first page. */}
+        {step !== "attract" && step !== "intro" ? (
+          <BcfIdleOverlay
+            count={idleCount}
+            lang={lang}
+            onContinue={() => setIdleCount(null)}
+          />
+        ) : null}
       </div>
     </FitScaledCanvas>
   );

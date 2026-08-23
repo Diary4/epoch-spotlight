@@ -1720,6 +1720,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Administrative Board Members",
         members: [
           { id: "ibrahim", name: "Ibrahim Samin", role: "BCF Vice President" },
+          {
+            id: "karzan-n",
+            name: "Karzan Noori",
+            role: "Administrative Board Member and Program Planning Dep. Manager",
+          },
           { id: "farzin", name: "Farzin Bagzade", role: "Administrative Board Member" },
           { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
           {
@@ -1734,11 +1739,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             role: "Administrative Board Member",
           },
           {
-            id: "karzan-n",
-            name: "Karzan Nuri",
-            role: "Administrative Board Member and Program Planning Dep. Manager",
-          },
-          {
             id: "rawaj",
             name: "Rawaj Haji",
             role: "Administrative Board Member and Human Resources Dep. Manager",
@@ -1746,8 +1746,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         ],
       },
     ],
-    trustDepartmentsTitle: "Heads of Departments",
-    trustDepartmentsOpen: "View heads",
+    trustDepartmentsTitle: "Department Managers",
+    trustDepartmentsOpen: "View managers",
     trustDepartmentsBody:
       "Lead the operational departments that design and run the programs.",
     trustDepartmentsMembers: [
@@ -1757,7 +1757,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       { id: "hardi", name: "Hardi Ismail", role: "Finance Dep. Manager" },
       { id: "eskandar", name: "Eskandar Salih", role: "Monitoring & Evaluation Dep. Manager" },
     ],
-    trustOfficesTitle: "Heads of Offices",
+    trustOfficesTitle: "Office Directors",
     trustOfficesOpen: "View directors",
     trustOfficesBody:
       "Direct the regional offices that deliver the work with local communities.",
@@ -1949,9 +1949,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustQualityTitle: "Quality and Credibility",
     trustCredentials: [
       {
-        id: "iraq-krg",
-        title: "Licensed in Iraq and Kurdistan",
-        body: "BCF is officially licensed to operate in both the Republic of Iraq and the Kurdistan Region, ensuring full compliance with national regulations and a strong commitment to local communities.",
+        id: "krg",
+        title: "Licensed in the Kurdistan Region",
+        body: "BCF is officially licensed to operate in the Kurdistan Region, ensuring full compliance with regional regulations and a strong commitment to local communities.",
+      },
+      {
+        id: "iraq",
+        title: "Licensed in Iraq",
+        body: "BCF is officially licensed to operate in the Republic of Iraq, ensuring full compliance with national regulations and a strong commitment to communities across the country.",
       },
       {
         id: "usa",
@@ -2861,6 +2866,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئەندامانی دەستەی کارگێڕی",
         members: [
           { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
+          {
+            id: "karzan-n",
+            name: "کارزان نوری",
+            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
+          },
           { id: "farzin", name: "فەرزین بەگزادە", role: "ئەندامی دەستەی کارگێڕی" },
           { id: "awat", name: "ئاوات ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
           {
@@ -2873,11 +2883,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             id: "ismail-a",
             name: "ئیسماعیل عەبدولعەزیز",
             role: "ئەندامی دەستەی کارگێڕی",
-          },
-          {
-            id: "karzan-n",
-            name: "کارزان نووری",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
           },
           {
             id: "rawaj",
@@ -3090,9 +3095,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
     trustCredentials: [
       {
-        id: "iraq-krg",
-        title: "مۆڵەت لە عێراق و کوردستان",
-        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە کۆماری عێراق و هەرێمی کوردستان هەیە، بە پابەندبوون بە یاسا ناوخۆییەکان و پابەندییەکی بەهێز بە کۆمەڵگەکان.",
+        id: "krg",
+        title: "مۆڵەت لە هەرێمی کوردستان",
+        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە هەرێمی کوردستان هەیە، بە پابەندبوون بە یاسا هەرێمییەکان و پابەندییەکی بەهێز بە کۆمەڵگە ناوخۆییەکان.",
+      },
+      {
+        id: "iraq",
+        title: "مۆڵەت لە عێراق",
+        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە کۆماری عێراق هەیە، بە پابەندبوون بە یاسا نیشتمانییەکان و پابەندییەکی بەهێز بە کۆمەڵگەکان لە سەرانسەری وڵاتدا.",
       },
       {
         id: "usa",
@@ -3996,6 +4006,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "أعضاء الهيئة الإدارية",
         members: [
           { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
+          {
+            id: "karzan-n",
+            name: "كارزان نوري",
+            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
+          },
           { id: "farzin", name: "فرزين بغزادة", role: "عضو الهيئة الإدارية" },
           { id: "awat", name: "آوات أحمد", role: "عضو الهيئة الإدارية" },
           {
@@ -4008,11 +4023,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             id: "ismail-a",
             name: "إسماعيل عبدالعزيز",
             role: "عضو الهيئة الإدارية",
-          },
-          {
-            id: "karzan-n",
-            name: "كارزان نوري",
-            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
           },
           {
             id: "rawaj",
@@ -4222,9 +4232,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustQualityTitle: "الجودة والمصداقية",
     trustCredentials: [
       {
-        id: "iraq-krg",
-        title: "مرخّص في العراق وكوردستان",
-        body: "BCF مرخّصة رسمياً للعمل في جمهورية العراق وإقليم كوردستان، بما يضمن الامتثال للأنظمة الوطنية والالتزام بالمجتمعات المحلية.",
+        id: "krg",
+        title: "مرخّص في إقليم كوردستان",
+        body: "BCF مرخّصة رسمياً للعمل في إقليم كوردستان، بما يضمن الامتثال للأنظمة الإقليمية والالتزام بالمجتمعات المحلية.",
+      },
+      {
+        id: "iraq",
+        title: "مرخّص في العراق",
+        body: "BCF مرخّصة رسمياً للعمل في جمهورية العراق، بما يضمن الامتثال للأنظمة الوطنية والالتزام بالمجتمعات في أنحاء البلاد.",
       },
       {
         id: "usa",
