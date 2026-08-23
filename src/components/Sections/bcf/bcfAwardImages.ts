@@ -6,6 +6,8 @@
  */
 
 import featuredPlaque from "@/assets/images/bcf/awards/fb56d7b9-fd12-4175-96dd-a65bd49d10af.webp";
+import featuredAgitator from "@/assets/images/bcf/awards/6f41b5d0-3b93-441a-a104-c1341f3d4723.webp";
+import featuredBundestag from "@/assets/images/bcf/awards/63959e9f-7e2a-46a8-8299-5269b4c3dd32.webp";
 import featuredMedal from "@/assets/images/bcf/awards/e5c32586-98f0-4f37-94ba-e70929a0f7a0.webp";
 import featuredMemorial from "@/assets/images/bcf/awards/570f12d4-9fe6-4e49-a6ab-84104200ccb5.webp";
 import featuredFlag from "@/assets/images/bcf/awards/0cd1aa62-481a-4cdc-bb7a-0c2ad39dcb04.webp";
@@ -30,6 +32,8 @@ function collect(modules: Record<string, string>): string[] {
 
 const featuredAwardImages = [
   featuredPlaque,
+  featuredAgitator,
+  featuredBundestag,
   featuredMedal,
   featuredMemorial,
   featuredFlag,

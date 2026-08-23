@@ -4,7 +4,6 @@ import FitScaledCanvas from "@/components/FitScaledCanvas";
 import { DESIGN_WIDTH } from "@/hooks/useDesignCanvasFit";
 import BcfLanguageOverlay from "@/components/Sections/bcf/BcfLanguageOverlay";
 import BcfDonateOverlay from "@/components/Sections/bcf/BcfDonateOverlay";
-import BcfIdleOverlay from "@/components/Sections/bcf/BcfIdleOverlay";
 import BcfReachRail from "@/components/Sections/bcf/BcfReachRail";
 import BcfAttract from "@/components/Sections/bcf/BcfAttract";
 import BcfIntro from "@/components/Sections/bcf/BcfIntro";
@@ -88,13 +87,8 @@ const STEPS_WITH_BACK_BUTTON: BcfStep[] = [
 /** Home only means something once the chapter menu exists behind the visitor. */
 const STEPS_WITH_HOME: BcfStep[] = STEPS_WITH_BACK_BUTTON;
 
-/** Idle rhythm, matched to the Threads experience so both kiosks behave alike. */
 /** Artboard height every BCF screen is built to (`min-h-[1920px]` throughout). */
 const DESIGN_HEIGHT = 1920;
-
-const IDLE_WARNING_MS = 75_000;
-const IDLE_RESET_MS = 90_000;
-const IDLE_COUNTDOWN_FROM = 15;
 
 export default function BcfPage() {
   const [step, setStep] = React.useState<BcfStep>("attract");
@@ -108,12 +102,11 @@ export default function BcfPage() {
   const [languageOrigin, setLanguageOrigin] =
     React.useState<"entry" | "control">("entry");
   const [donateOpen, setDonateOpen] = React.useState(false);
-  const [idleCount, setIdleCount] = React.useState<number | null>(null);
 
   const c = bcfCopy[lang];
   const dir = lang === "en" ? "ltr" : "rtl";
-  /** Any of the three overlays standing between the visitor and the scene. */
-  const veiled = languageOpen || donateOpen || idleCount !== null;
+  /** Any overlay standing between the visitor and the scene. */
+  const veiled = languageOpen || donateOpen;
   const navigatingRef = React.useRef(false);
 
   /**
@@ -135,71 +128,6 @@ export default function BcfPage() {
       navigatingRef.current = false;
     }, 420);
   }, []);
-
-  const reset = React.useCallback(() => {
-    setIdleCount(null);
-    setLanguageOpen(false);
-    setDonateOpen(false);
-    setLanguageOrigin("entry");
-    setModalLocation(null);
-    setLocationId(null);
-    setSectorId(null);
-    setImpactGalleryId(null);
-    setLang("en");
-    setStep("attract");
-  }, []);
-
-  /**
-   * Idle watch. The attract plate is the resting screen, so it needs no timer
-   * until the visitor has tapped through into the journey.
-   */
-  React.useEffect(() => {
-    if (
-      step === "attract" ||
-      step === "intro" ||
-      (languageOpen && languageOrigin === "entry")
-    ) {
-      setIdleCount(null);
-      return;
-    }
-
-    let warningTimeout = 0;
-    let resetTimeout = 0;
-    let countdownInterval = 0;
-
-    const restart = () => {
-      window.clearTimeout(warningTimeout);
-      window.clearTimeout(resetTimeout);
-      window.clearInterval(countdownInterval);
-      setIdleCount(null);
-
-      warningTimeout = window.setTimeout(() => {
-        let remaining = IDLE_COUNTDOWN_FROM;
-        setIdleCount(remaining);
-        countdownInterval = window.setInterval(() => {
-          remaining -= 1;
-          setIdleCount(Math.max(remaining, 0));
-        }, 1000);
-      }, IDLE_WARNING_MS);
-
-      resetTimeout = window.setTimeout(() => {
-        window.clearInterval(countdownInterval);
-        reset();
-      }, IDLE_RESET_MS);
-    };
-
-    restart();
-    window.addEventListener("pointerdown", restart, { passive: true });
-    window.addEventListener("keydown", restart);
-
-    return () => {
-      window.clearTimeout(warningTimeout);
-      window.clearTimeout(resetTimeout);
-      window.clearInterval(countdownInterval);
-      window.removeEventListener("pointerdown", restart);
-      window.removeEventListener("keydown", restart);
-    };
-  }, [step, reset, languageOpen, languageOrigin]);
 
   /**
    * Warm the split screens once the attract plate is up and the main thread has
@@ -589,18 +517,6 @@ export default function BcfPage() {
           lang={lang}
           onClose={() => setDonateOpen(false)}
         />
-
-        {/* Never mount the countdown on attract/intro. After an idle reset the
-            count is cleared in the same render as the step change, but
-            AnimatePresence would still play the overlay's exit over the start
-            screen — which is the timer the visitor sees on the first page. */}
-        {step !== "attract" && step !== "intro" ? (
-          <BcfIdleOverlay
-            count={idleCount}
-            lang={lang}
-            onContinue={() => setIdleCount(null)}
-          />
-        ) : null}
       </div>
     </FitScaledCanvas>
   );
