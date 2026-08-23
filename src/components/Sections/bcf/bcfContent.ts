@@ -33,10 +33,11 @@ export type JourneyChapterId =
 /**
  * Every place the project register documents, in three groups.
  *
- * The first twelve are pins on the Region map. The next three are the near
- * abroad — two operations across the Syrian border and the rest of Iraq — which
- * the Region map offers as a row beside itself. The last three are countries on
- * the world map, reached from their own country card there.
+ * The first twelve are pins on the Region map. The next two are the near
+ * abroad — the Western Kurdistan operation across the Syrian border, Afrin
+ * included, and the rest of Iraq — which the Region map offers as a row beside
+ * itself. The last three are countries on the world map, reached from their own
+ * country card there.
  */
 export type LocationId =
   | "erbil"
@@ -51,7 +52,6 @@ export type LocationId =
   | "zakho"
   | "akre"
   | "amedi"
-  | "afrin"
   | "rojava"
   | "iraq"
   | "turkiye"
@@ -73,10 +73,14 @@ export type MapFilterId = "offices" | "camps" | "geographic" | "emergency";
 /**
  * Where We Work opens on the world, because BCF's footprint is not only the
  * Region: it is licensed in four countries, sits at the UN table, and crossed
- * the border into Türkiye and Syria within days of the 2023 earthquakes. The
- * Region map is the second half of that story, not the whole of it.
+ * the border into Türkiye and Syria within days of the 2023 earthquakes.
+ *
+ * Three scopes, narrowing. The country sits between the world and the Region
+ * because BCF is licensed in the Republic of Iraq as well as the Region, and
+ * because its work outside the Region — Baghdad, Diyala, Dhi Qar, Anbar,
+ * Samawah — used to be a single chip labelled "Iraq" with no map behind it.
  */
-export type MapScopeId = "global" | "kurdistan";
+export type MapScopeId = "global" | "iraq" | "kurdistan";
 
 export type BcfLocation = {
   id: LocationId;
@@ -224,13 +228,60 @@ export const BCF_LOCATIONS: BcfLocation[] = [
 ];
 
 /**
- * The near abroad. Afrin and Western Kurdistan are across the Syrian border —
- * Afrin sits some 1,200 artboard units west of Sinjar, so putting them on the
+ * The near abroad. Western Kurdistan is across the Syrian border — its towns
+ * sit as much as 1,200 artboard units west of Sinjar, so putting them on the
  * Region map would shrink the Region to a corner of it — and the rest of Iraq
- * is a reporting grouping rather than a point. The Region map offers all three
- * as a row above itself, where they are in reach on a wall panel.
+ * is a reporting grouping rather than a point. The Region map offers both as a
+ * row above itself, where they are in reach on a wall panel.
+ *
+ * Afrin is not a third entry here: it is a town in Rojava, and its register is
+ * filed under Rojava rather than beside it.
  */
-export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "afrin", "iraq"];
+export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "iraq"];
+
+/**
+ * The federal governorates the register names, keyed by the same ids the Iraq
+ * map's outlines carry so a pin and its governorate cannot drift apart.
+ *
+ * These five are the whole list, and deliberately so: the register documents
+ * Baghdad, Diyala and Dhi Qar in the 2021 Kuwait-supported food project, Anbar
+ * in 2022 and 2023, and a medical convoy to Samawah in 2021. Nothing is pinned
+ * that the source does not name.
+ */
+export type IraqPlaceId = "baghdad" | "diyala" | "dhiqar" | "anbar" | "muthanna";
+
+export type BcfIraqPlace = {
+  id: IraqPlaceId;
+  /**
+   * [longitude, latitude] of the governorate seat — the city a visitor knows,
+   * not the polygon's centroid. Projected by bcfIraqPin, never hand-placed.
+   */
+  coordinates: [number, number];
+};
+
+export const BCF_IRAQ_PLACES: BcfIraqPlace[] = [
+  { id: "baghdad", coordinates: [44.361, 33.312] },
+  { id: "diyala", coordinates: [44.632, 33.755] },
+  { id: "anbar", coordinates: [43.308, 33.42] },
+  { id: "dhiqar", coordinates: [46.259, 31.043] },
+  { id: "muthanna", coordinates: [45.294, 31.32] },
+];
+
+/**
+ * The Region's own cities as they appear on the Iraq map. Five of the twelve,
+ * not all: at country scale the Region is a quarter of the plate, and twelve
+ * labels inside it collide. These five are the ones with an office and a
+ * register of their own, and each opens the same card it opens on the Region
+ * map — which is what makes the Region part of the country map rather than a
+ * gold shape with nothing in it.
+ */
+export const BCF_IRAQ_REGION_PINS: LocationId[] = [
+  "duhok",
+  "erbil",
+  "sulaymaniyah",
+  "kirkuk",
+  "nineveh",
+];
 
 /**
  * Countries on the world map that have a register of their own, so their card
@@ -261,6 +312,15 @@ type LocCopy = {
   short: string;
   description: string;
   explore: string;
+};
+
+/** A federal governorate on the Iraq map. */
+type IraqPlaceCopy = {
+  name: string;
+  /** Short form for the pin label, where the full name will not fit. */
+  short: string;
+  /** One line of what the register documents there, and when. */
+  note: string;
 };
 
 type GlobalLocCopy = {
@@ -642,6 +702,9 @@ export type BcfCopy = {
   tapToExplore: string;
   locations: Record<LocationId, LocCopy>;
   mapScopes: Record<MapScopeId, string>;
+  iraqPlaces: Record<IraqPlaceId, IraqPlaceCopy>;
+  /** The two things the Iraq map's legend has to distinguish. */
+  iraqLegend: { region: string; federal: string };
   globalLead: string;
   globalZoomHint: string;
   globeHint: string;
@@ -1405,7 +1468,39 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     tapToExplore: "Tap to explore",
     mapScopes: {
       global: "Globally",
+      iraq: "Inside Iraq",
       kurdistan: "Inside Kurdistan",
+    },
+    iraqPlaces: {
+      baghdad: {
+        name: "Baghdad",
+        short: "Baghdad",
+        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+      },
+      diyala: {
+        name: "Diyala",
+        short: "Diyala",
+        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+      },
+      anbar: {
+        name: "Al-Anbar",
+        short: "Anbar",
+        note: "In the 2022 food-project table, and 480 families reached by the 2023 Qurbani meat project.",
+      },
+      dhiqar: {
+        name: "Dhi Qar",
+        short: "Dhi Qar",
+        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+      },
+      muthanna: {
+        name: "Al-Muthanna / Samawah",
+        short: "Samawah",
+        note: "A 2021 medical convoy carrying 50 types of medicine and medical supplies.",
+      },
+    },
+    iraqLegend: {
+      region: "Kurdistan Region",
+      federal: "Federal governorates",
     },
     globalLead:
       "Sixteen countries in twenty years, all run from Erbil.",
@@ -1629,18 +1724,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "The Smile Center with Caritas Germany, special-care and autism activities, and food baskets across the mountain townships.",
         explore: "Explore Projects",
       },
-      afrin: {
-        name: "Afrin",
-        short: "Afrin",
-        description:
-          "A standing programme in Syria: the mobile clinic, the Barzani Culture & Development Center, university student support, and 192 sponsored orphans.",
-        explore: "Explore Projects",
-      },
       rojava: {
-        name: "Western Kurdistan / Rojava",
+        name: "Western Kurdistan / Rojava, incl. Afrin",
         short: "Rojava",
         description:
-          "BCF's largest current cross-border operation — 415 truckloads, 29,070 families, flour for 3.36 million loaves, diesel, medicine and jobs.",
+          "BCF's largest current cross-border operation — 415 truckloads, 29,070 families, flour for 3.36 million loaves, diesel, medicine and jobs — alongside the standing Afrin programme: the mobile clinic, the Barzani Culture & Development Center, university student support and 192 sponsored orphans.",
         explore: "Explore Projects",
       },
       iraq: {
@@ -2617,7 +2705,39 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     tapToExplore: "بۆ گەڕان دەستی لێبدە",
     mapScopes: {
       global: "جیهانی",
+      iraq: "لە ناو عێراق",
       kurdistan: "لە ناو کوردستان",
+    },
+    iraqPlaces: {
+      baghdad: {
+        name: "بەغدا",
+        short: "بەغدا",
+        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+      },
+      diyala: {
+        name: "دیالە",
+        short: "دیالە",
+        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+      },
+      anbar: {
+        name: "ئەنبار",
+        short: "ئەنبار",
+        note: "لە خشتەی پڕۆژەی خۆراکی ٢٠٢٢، و پڕۆژەی گۆشتی قوربانی ٢٠٢٣ گەیشتە ٤٨٠ خێزان.",
+      },
+      dhiqar: {
+        name: "زیقار",
+        short: "زیقار",
+        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+      },
+      muthanna: {
+        name: "موسەننا / سەماوە",
+        short: "سەماوە",
+        note: "کاروانێکی پزیشکی لە ٢٠٢١ بە ٥٠ جۆر دەرمان و پێداویستی پزیشکی.",
+      },
+    },
+    iraqLegend: {
+      region: "هەرێمی کوردستان",
+      federal: "پارێزگاکانی فیدراڵ",
     },
     globalLead:
       "شازدە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.",
@@ -2793,18 +2913,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "ناوەندی زەردەخەنە لەگەڵ کاریتاسی ئەڵمانیا، چالاکی چاودێری تایبەت و ئۆتیزم، و سەبەتەی خۆراک بەناو شارۆچکە شاخاوییەکاندا.",
         explore: "پڕۆژەکان ببینە",
       },
-      afrin: {
-        name: "عەفرین",
-        short: "عەفرین",
-        description:
-          "بەرنامەیەکی چەسپاو لە سووریا: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران، و ١٩٢ ئازیزانی سەرپەرشتیکراو.",
-        explore: "پڕۆژەکان ببینە",
-      },
       rojava: {
-        name: "ڕۆژئاوای کوردستان",
+        name: "ڕۆژئاوای کوردستان، بە عەفرینەوە",
         short: "ڕۆژئاوا",
         description:
-          "گەورەترین کاری ئێستای BCF لە دەرەوەی سنوور — ٤١٥ بارهەڵگر، ٢٩٬٠٧٠ خێزان، ئارد بۆ ٣٫٣٦ ملیۆن نان، گازۆیل، دەرمان و کار.",
+          "گەورەترین کاری ئێستای BCF لە دەرەوەی سنوور — ٤١٥ بارهەڵگر، ٢٩٬٠٧٠ خێزان، ئارد بۆ ٣٫٣٦ ملیۆن نان، گازۆیل، دەرمان و کار — لەگەڵ بەرنامەی چەسپاوی عەفرین: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران و ١٩٢ ئازیزانی سەرپەرشتیکراو.",
         explore: "پڕۆژەکان ببینە",
       },
       iraq: {
@@ -3780,7 +3893,39 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     tapToExplore: "اضغط للاستكشاف",
     mapScopes: {
       global: "عالمياً",
+      iraq: "داخل العراق",
       kurdistan: "داخل كردستان",
+    },
+    iraqPlaces: {
+      baghdad: {
+        name: "بغداد",
+        short: "بغداد",
+        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+      },
+      diyala: {
+        name: "ديالى",
+        short: "ديالى",
+        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+      },
+      anbar: {
+        name: "الأنبار",
+        short: "الأنبار",
+        note: "في جدول مشروع الغذاء لعام ٢٠٢٢، ووصل مشروع لحوم الأضاحي عام ٢٠٢٣ إلى ٤٨٠ عائلة.",
+      },
+      dhiqar: {
+        name: "ذي قار",
+        short: "ذي قار",
+        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+      },
+      muthanna: {
+        name: "المثنى / السماوة",
+        short: "السماوة",
+        note: "قافلة طبية عام ٢٠٢١ تحمل ٥٠ نوعاً من الأدوية والمستلزمات الطبية.",
+      },
+    },
+    iraqLegend: {
+      region: "إقليم كردستان",
+      federal: "المحافظات الفدرالية",
     },
     globalLead:
       "تعمل المؤسسة في 16 دولة خلال 20 عاماً، وتُدار عملياتها من أربيل.",
@@ -3951,18 +4096,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "مركز الابتسامة مع كاريتاس ألمانيا، وأنشطة الرعاية الخاصة والتوحّد، وسلال غذائية في بلدات الجبل.",
         explore: "استكشف المشاريع",
       },
-      afrin: {
-        name: "عفرين",
-        short: "عفرين",
-        description:
-          "برنامج قائم في سوريا: العيادة المتنقّلة، ومركز بارزاني للثقافة والتنمية، ودعم طلبة الجامعة، و١٩٢ يتيماً مكفولاً.",
-        explore: "استكشف المشاريع",
-      },
       rojava: {
-        name: "غربي كردستان / روج آفا",
+        name: "غربي كردستان / روج آفا، ومنها عفرين",
         short: "روج آفا",
         description:
-          "أكبر عملية حالية للمؤسسة عبر الحدود — ٤١٥ شاحنة، و٢٩٬٠٧٠ عائلة، وطحين لـ ٣٫٣٦ مليون رغيف، ووقود ودواء وفرص عمل.",
+          "أكبر عملية حالية للمؤسسة عبر الحدود — ٤١٥ شاحنة، و٢٩٬٠٧٠ عائلة، وطحين لـ ٣٫٣٦ مليون رغيف، ووقود ودواء وفرص عمل — إلى جانب برنامج عفرين القائم: العيادة المتنقّلة، ومركز بارزاني للثقافة والتنمية، ودعم طلبة الجامعة، و١٩٢ يتيماً مكفولاً.",
         explore: "استكشف المشاريع",
       },
       iraq: {

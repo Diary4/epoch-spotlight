@@ -1161,7 +1161,16 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
     },
   ],
 
-  afrin: [
+  /*
+   * Western Kurdistan, Afrin included.
+   *
+   * Afrin used to be a register of its own, sitting beside this one — which
+   * split one geography into two entries and left a visitor choosing between
+   * two halves of the same place. Afrin is in Rojava, so its projects are filed
+   * here, under the sectors they belong to. Every entry keeps the wording that
+   * names the town, so the merge costs no detail.
+   */
+  rojava: [
     {
       id: "emergency",
       entries: [
@@ -1170,6 +1179,14 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           text: "BCF's earthquake response expanded into affected areas of Türkiye and Syria; Afrin received food, NFI and Qurbani assistance.",
         },
         { year: "2023", text: "The Qurbani meat project in Afrin reached 2,702 families." },
+        {
+          year: "2026",
+          text: "A large-scale response ran across Qamishlo, Hasakah, Amuda, Girke Lege, Derik, Tirbespiye, Derbasiye and the surrounding areas.",
+        },
+        {
+          year: "2026",
+          text: "BCF reported 415 truckloads of humanitarian aid and assistance to 29,070 families; 200 tons of flour supported the production and distribution of 3.36 million loaves.",
+        },
         {
           year: "2026",
           text: "Food and NFI assistance continued in Afrin camps, alongside youth football, cultural and other community activities.",
@@ -1182,6 +1199,10 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         {
           year: "Ongoing",
           text: "The Mobile Clinic in Afrin is listed among BCF's ongoing projects.",
+        },
+        {
+          year: "2026",
+          text: "8,707 people received medical treatment or medicines, and 294 cartons of medicines and supplies were delivered in one month to hospitals and health centres including Derik, Chil Agha and Hasakah.",
         },
       ],
     },
@@ -1198,7 +1219,16 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         },
         {
           year: "2026",
-          text: "A reading and writing educational course and youth-development activities continued.",
+          text: "A reading and writing educational course and youth-development activities continued in Afrin.",
+        },
+      ],
+    },
+    {
+      id: "livelihood",
+      entries: [
+        {
+          year: "2026",
+          text: "370,245 litres of diesel were distributed to 9,682 families, and the humanitarian operation created 1,483 employment opportunities.",
         },
       ],
     },
@@ -1216,40 +1246,6 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         {
           year: "2026",
           text: "Orphan and family-support services continued through the Afrin office.",
-        },
-      ],
-    },
-  ],
-
-  rojava: [
-    {
-      id: "emergency",
-      entries: [
-        {
-          year: "2026",
-          text: "A large-scale response ran across Qamishlo, Hasakah, Amuda, Girke Lege, Derik, Tirbespiye, Derbasiye and the surrounding areas.",
-        },
-        {
-          year: "2026",
-          text: "BCF reported 415 truckloads of humanitarian aid and assistance to 29,070 families; 200 tons of flour supported the production and distribution of 3.36 million loaves.",
-        },
-      ],
-    },
-    {
-      id: "health",
-      entries: [
-        {
-          year: "2026",
-          text: "8,707 people received medical treatment or medicines, and 294 cartons of medicines and supplies were delivered in one month to hospitals and health centres including Derik, Chil Agha and Hasakah.",
-        },
-      ],
-    },
-    {
-      id: "livelihood",
-      entries: [
-        {
-          year: "2026",
-          text: "370,245 litres of diesel were distributed to 9,682 families, and the humanitarian operation created 1,483 employment opportunities.",
         },
       ],
     },
