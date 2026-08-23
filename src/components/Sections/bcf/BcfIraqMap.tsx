@@ -15,7 +15,9 @@ import {
   bcfIraqPin,
 } from "@/components/Sections/bcf/bcfIraqGeometry";
 import BcfMapLocationCard from "@/components/Sections/bcf/BcfMapLocationCard";
-import BcfMapPin from "@/components/Sections/bcf/BcfMapPin";
+import BcfMapPin, {
+  type BcfPinLabelSide,
+} from "@/components/Sections/bcf/BcfMapPin";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import { BCF_EASE, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMotion";
 
@@ -33,12 +35,85 @@ import { BCF_EASE, bcfRise, bcfStagger } from "@/components/Sections/bcf/bcfMoti
  * its own map, with its cities opening the very same cards.
  */
 
+/** Iraq's proportions in the shared projection. */
+const IRAQ_RATIO = BCF_IRAQ_VIEWBOX.width / BCF_IRAQ_VIEWBOX.height;
+
+/**
+ * The largest box of Iraq's own proportions that fits the plane it is handed.
+ *
+ * This has to be measured. The pins are HTML placed in percentages of the box,
+ * while the outlines are an SVG that letterboxes itself inside it, and the two
+ * only agree while the box carries the viewBox's exact ratio. CSS `aspect-ratio`
+ * cannot honour a ratio *and* a height cap at once: on a portrait panel Iraq is
+ * taller than the plane is wide, so the box kept the full height, the drawing
+ * shrank to the width, and every pin floated off its governorate by as much as
+ * half the letterbox bar — Duhok sat north of Duhok, Dhi Qar south of Dhi Qar.
+ * Sizing the box from the plane is what puts a city back on its own ground.
+ */
+function useIraqPlate(ref: React.RefObject<HTMLDivElement | null>) {
+  const [plate, setPlate] = React.useState<{ width: number; height: number } | null>(
+    null,
+  );
+
+  React.useLayoutEffect(() => {
+    const plane = ref.current;
+    if (!plane) return;
+
+    const measure = () => {
+      const { width, height } = plane.getBoundingClientRect();
+      if (!width || !height) return;
+      const fitted = Math.min(width, height * IRAQ_RATIO);
+      setPlate((current) =>
+        current && Math.abs(current.width - fitted) < 0.5
+          ? current
+          : { width: fitted, height: fitted / IRAQ_RATIO },
+      );
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(plane);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return plate;
+}
+
 type BcfIraqMapProps = {
   lang: BcfLang;
   /** Region-side selection, held by the page so returning from a register can restore it. */
   selectedLocation: LocationId | null;
   onSelectLocation: (id: LocationId | null) => void;
   onExploreProjects: (id: LocationId) => void;
+};
+
+/**
+ * Which way each name hangs off its dot.
+ *
+ * Iraq's north is a quarter of the plate with five cities packed into it, and a
+ * country map cannot move a city to make room for its own name. So the names
+ * move instead, each pointing at the nearest empty ground: Mosul and Kirkuk
+ * west, Duhok and Erbil east, Diyala east of Baghdad — which is what frees
+ * Baghdad's own dot, the one the Diyala plate used to stand on.
+ *
+ * The sides are not chosen by eye. They come from checking every label
+ * rectangle against every other label and every other dot at the projected
+ * positions, across the range of plate widths this screen is drawn at, and this
+ * is the arrangement that collides nowhere at panel size. Change a coordinate,
+ * add a pin, and the check has to be run again — the rule it enforces is that a
+ * label may cross empty ground but never another city's dot.
+ */
+const LABEL_SIDES: Record<string, BcfPinLabelSide> = {
+  duhok: "right",
+  nineveh: "left",
+  erbil: "right",
+  sulaymaniyah: "below",
+  kirkuk: "left",
+  anbar: "left",
+  baghdad: "below",
+  diyala: "right",
+  muthanna: "left",
+  dhiqar: "below",
 };
 
 /** Region pins in the order they are declared, with their real coordinates. */
@@ -58,6 +133,8 @@ export default function BcfIraqMap({
   const reduceMotion = useReducedMotion();
   const [place, setPlace] = React.useState<IraqPlaceId | null>(null);
   const [hintVisible, setHintVisible] = React.useState(true);
+  const planeRef = React.useRef<HTMLDivElement>(null);
+  const plate = useIraqPlate(planeRef);
 
   const openPlace = (id: IraqPlaceId) => {
     setHintVisible(false);
@@ -149,18 +226,17 @@ export default function BcfIraqMap({
         />
       </div>
 
-      {/* Map plane. Fixed to Iraq's own aspect ratio and centred, so the
-          outlines and the pins share one coordinate space — the pin percentages
-          are percentages of *this* box, which is the only reason a city can be
-          trusted to sit on its own governorate. */}
-      <div className="relative min-h-0 flex-1">
+      {/* Map plane. The inner box is measured to Iraq's own proportions and
+          centred, so the outlines and the pins share one coordinate space — the
+          pin percentages are percentages of *this* box, which is the only
+          reason a city can be trusted to sit on its own governorate. */}
+      <div ref={planeRef} className="relative min-h-0 flex-1">
         <div
-          className="absolute inset-x-0 top-1/2 z-10 mx-auto -translate-y-1/2"
+          className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
           style={{
-            aspectRatio: `${BCF_IRAQ_VIEWBOX.width} / ${BCF_IRAQ_VIEWBOX.height}`,
-            maxHeight: "100%",
-            maxWidth: "100%",
-            height: "100%",
+            width: plate?.width ?? 0,
+            height: plate?.height ?? 0,
+            visibility: plate ? "visible" : "hidden",
           }}
         >
           <svg
@@ -240,6 +316,7 @@ export default function BcfIraqMap({
                   label={c.locations[loc.id].short}
                   selected={selectedLocation === loc.id}
                   index={index}
+                  labelSide={LABEL_SIDES[loc.id]}
                   onClick={() => openLocation(loc.id)}
                 />
               );
@@ -254,6 +331,7 @@ export default function BcfIraqMap({
                   label={c.iraqPlaces[iraqPlace.id].short}
                   selected={place === iraqPlace.id}
                   index={REGION_PINS.length + index}
+                  labelSide={LABEL_SIDES[iraqPlace.id]}
                   onClick={() => openPlace(iraqPlace.id)}
                 />
               );
