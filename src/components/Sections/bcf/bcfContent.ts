@@ -574,6 +574,8 @@ export type StoryValue = { id: string; title: string; body: string };
 export type StoryMilestone = {
   id: string;
   year: string;
+  /** Short headline under the year. */
+  title: string;
   body: string;
 };
 
@@ -628,6 +630,8 @@ export type BcfCopy = {
   storyTimelineStart: string;
   storyTimelineEnd: string;
   storyScrollHint: string;
+  /** Advance to the next beat on the Our Story timeline. */
+  storyNext: string;
   storySections: StorySection[];
   storyValues: StoryValue[];
   storyMilestones: StoryMilestone[];
@@ -1263,6 +1267,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storyTimelineStart: "2005",
     storyTimelineEnd: "Today",
     storyScrollHint: "Scroll Down",
+    storyNext: "Next",
     storySections: [
       {
         id: "foundation",
@@ -1333,42 +1338,59 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     storyMilestones: [
-      { id: "founded", year: "2005", body: "BCF founded in Erbil." },
-      { id: "orphan-care", year: "2009", body: "Orphan Care Project begins." },
+      {
+        id: "founded",
+        year: "2005",
+        title: "Foundation in Erbil",
+        body: "BCF was officially established in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
+      },
+      {
+        id: "orphan-care",
+        year: "2009",
+        title: "Orphan Care Project",
+        body: "The Orphan Care Project begins, supporting children who have lost parental care with long-term protection and dignity.",
+      },
       {
         id: "sinjar",
         year: "2014",
-        body: "Emergency response for displaced people on Sinjar Mountain.",
+        title: "Sinjar Emergency Response",
+        body: "Emergency response for displaced people on Sinjar Mountain during one of the darkest chapters of the crisis.",
       },
       {
         id: "camps",
         year: "2015",
-        body: "Management of IDP and refugee camps in Erbil.",
+        title: "Camp Management in Erbil",
+        body: "Management of IDP and refugee camps in Erbil, delivering daily services with structure and care.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        body: "UN ECOSOC consultative status and international licensing milestones.",
+        title: "UN ECOSOC Status",
+        body: "UN ECOSOC consultative status and international licensing milestones expand BCF's recognized reach.",
       },
       {
         id: "sphere",
         year: "2018",
-        body: "Sphere representation in the Kurdistan Region.",
+        title: "Sphere Representation",
+        body: "Sphere representation in the Kurdistan Region, aligning local practice with global humanitarian standards.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        body: "UK Charity Commission recognition and Duhok camp management.",
+        title: "UK Recognition & Duhok",
+        body: "UK Charity Commission recognition and Duhok camp management mark a new chapter of trust and delivery.",
       },
       {
         id: "iso-quake",
         year: "2023",
-        body: "ISO 9001:2015 certification and Turkey-Syria earthquake response.",
+        title: "ISO 9001:2015 & Earthquake Response",
+        body: "BCF achieved ISO 9001:2015 certification and was the first organization to reach major earthquake victims in Türkiye and Syria.",
       },
       {
         id: "recent",
         year: "2024–2026",
-        body: "Major housing, health, education and international recognition milestones.",
+        title: "Housing, Health & Recognition",
+        body: "Major housing, health, education and international recognition milestones shape the current era of service.",
       },
     ],
     whereWeWork: "Where We Work",
@@ -1789,7 +1811,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     boardChief: {
       open: "Meet the Board Chief",
-      name: "Masrour Barzani",
+      name: "H.E. Masrour Barzani",
       role: "President of the Board of Founders",
       meta: "Barzani Charity Foundation",
       intro:
@@ -1827,44 +1849,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "View Governance Timeline",
-      timelineTitle: "Masrour Barzani",
+      timelineTitle: "H.E. Masrour Barzani",
       timelineRange: "1969 — Present",
       timelineMilestones: [
         {
           id: "origins",
           year: "1969",
           title: "Origins & Formation",
-          body: "Born in 1969, Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
+          body: "Born in 1969, H.E. Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
         },
         {
           id: "youth",
           year: "1985",
           title: "From Youth to Resistance",
-          body: "In 1985, at the age of sixteen, Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
+          body: "In 1985, at the age of sixteen, H.E. Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
         },
         {
           id: "education",
           year: "1993",
           title: "Education Beyond Borders",
-          body: "After years shaped by conflict, Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
+          body: "After years shaped by conflict, H.E. Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
         },
         {
           id: "security",
           year: "1998",
           title: "Security & State-Building",
-          body: "After returning to Kurdistan in 1998, Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
+          body: "After returning to Kurdistan in 1998, H.E. Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
         },
         {
           id: "service",
           year: "2005",
           title: "Service Beyond Government",
-          body: "Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
+          body: "H.E. Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
         },
         {
           id: "cabinet",
           year: "2019",
           title: "Prime Minister — The Ninth Cabinet",
-          body: "In 2019, Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
+          body: "In 2019, H.E. Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
         },
       ],
     },
@@ -2457,6 +2479,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storyTimelineStart: "٢٠٠٥",
     storyTimelineEnd: "ئێستا",
     storyScrollHint: "بڕۆ خوارەوە",
+    storyNext: "دواتر",
     storySections: [
       {
         id: "foundation",
@@ -2527,42 +2550,59 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     storyMilestones: [
-      { id: "founded", year: "2005", body: "دامەزراندنی دەزگا لە هەولێر." },
-      { id: "orphan-care", year: "2009", body: "دەستپێکی پڕۆژەی چاودێری ئازیزان." },
+      {
+        id: "founded",
+        year: "2005",
+        title: "دامەزراندن لە هەولێر",
+        body: "دەزگا بە فەرمی لە هەولێر دامەزرا، پایتەختی هەرێمی کوردستانی عێراق، بۆ گۆڕینی میهرەبانی بۆ کاری مرۆیی ڕێکخراو.",
+      },
+      {
+        id: "orphan-care",
+        year: "2009",
+        title: "پڕۆژەی چاودێری ئازیزان",
+        body: "دەستپێکی پڕۆژەی چاودێری ئازیزان، پشتگیریکردنی منداڵانی بێ سەرپەرشتی بە پاراستن و کەرامەتی درێژخایەن.",
+      },
       {
         id: "sinjar",
         year: "2014",
-        body: "وەڵامی فریاکەوتن بۆ ئاوارەکانی چیای شنگال.",
+        title: "وەڵامی فریاکەوتنی شنگال",
+        body: "وەڵامی فریاکەوتن بۆ ئاوارەکانی چیای شنگال لە یەکێک لە تاریکترین قۆناغەکانی قەیرانەکە.",
       },
       {
         id: "camps",
         year: "2015",
-        body: "بەڕێوەبردنی کەمپەکانی ئاوارە و پەنابەران لە هەولێر.",
+        title: "بەڕێوەبردنی کەمپ لە هەولێر",
+        body: "بەڕێوەبردنی کەمپەکانی ئاوارە و پەنابەران لە هەولێر، پێشکەشکردنی خزمەتگوزاریی ڕۆژانە بە ڕێکخستن و چاودێری.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و مۆڵەتە نێودەوڵەتییەکان.",
+        title: "پێگەی ECOSOC",
+        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و مۆڵەتە نێودەوڵەتییەکان فراوانبوونی ناسراوی دەزگا دەردەخەن.",
       },
       {
         id: "sphere",
         year: "2018",
-        body: "نوێنەرایەتی Sphere لە هەرێمی کوردستان.",
+        title: "نوێنەرایەتی Sphere",
+        body: "نوێنەرایەتی Sphere لە هەرێمی کوردستان، هاوتاکردنی کارە ناوخۆییەکان لەگەڵ ستانداردە جیهانییەکانی مرۆیی.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        body: "ناسینەوەی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپی دهۆک.",
+        title: "ناسینەوەی بەریتانیا و دهۆک",
+        body: "ناسینەوەی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپی دهۆک قۆناغێکی نوێی متمانە و جێبەجێکردن دەست نیشان دەکەن.",
       },
       {
         id: "iso-quake",
         year: "2023",
-        body: "بڕوانامەی ISO 9001:2015 و وەڵامی بوومەلەرزەی تورکیا و سووریا.",
+        title: "ISO 9001:2015 و وەڵامی بوومەلەرزە",
+        body: "دەزگا بڕوانامەی ISO 9001:2015 بەدەستهێنا و یەکەم ڕێکخراو بوو کە گەیشتە قوربانییە سەرەکییەکانی بوومەلەرزە لە تورکیا و سووریا.",
       },
       {
         id: "recent",
         year: "2024–2026",
-        body: "هەنگاوە گەورەکانی نیشتەجێبوون، تەندروستی، پەروەردە و ناسینەوەی نێودەوڵەتی.",
+        title: "نیشتەجێبوون، تەندروستی و ناسینەوە",
+        body: "هەنگاوە گەورەکانی نیشتەجێبوون، تەندروستی، پەروەردە و ناسینەوەی نێودەوڵەتی سەردەمی ئێستای خزمەتگوزاری شێوە دەدەن.",
       },
     ],
     whereWeWork: "لە کوێ کار دەکەین",
@@ -2935,7 +2975,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     boardChief: {
       open: "ناسینی سەرۆکی بۆرد",
-      name: "مەسرور بارزانی",
+      name: "ڕێزدار مەسرور بارزانی",
       role: "سەرۆکی بۆردی دامەزرێنەران",
       meta: "دەزگای خێرخوازیی بارزانی",
       intro:
@@ -2973,44 +3013,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "بینینی هێڵی کاتی حوکمڕانی",
-      timelineTitle: "مەسرور بارزانی",
+      timelineTitle: "ڕێزدار مەسرور بارزانی",
       timelineRange: "١٩٦٩ — ئێستا",
       timelineMilestones: [
         {
           id: "origins",
           year: "١٩٦٩",
           title: "ڕەگ و پێکهاتە",
-          body: "مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
+          body: "ڕێزدار مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
         },
         {
           id: "youth",
           year: "١٩٨٥",
           title: "لە گەنجییەوە بۆ بەرخودان",
-          body: "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
+          body: "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، ڕێزدار مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
         },
         {
           id: "education",
           year: "١٩٩٣",
           title: "پەروەردە لە دەرەوەی سنوورەکان",
-          body: "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
+          body: "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، ڕێزدار مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
         },
         {
           id: "security",
           year: "١٩٩٨",
           title: "ئاسایش و دامەزراندنی دەوڵەت",
-          body: "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
+          body: "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، ڕێزدار مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
         },
         {
           id: "service",
           year: "٢٠٠٥",
           title: "خزمەت لە دەرەوەی حکومەت",
-          body: "کاری گشتیی مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
+          body: "کاری گشتیی ڕێزدار مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
         },
         {
           id: "cabinet",
           year: "٢٠١٩",
           title: "سەرۆک وەزیران — کابینەی نۆیەم",
-          body: "لە ٢٠١٩دا، مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
+          body: "لە ٢٠١٩دا، ڕێزدار مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
         },
       ],
     },
@@ -3602,6 +3642,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storyTimelineStart: "2005",
     storyTimelineEnd: "اليوم",
     storyScrollHint: "مرّر لأسفل الصفحة",
+    storyNext: "التالي",
     storySections: [
       {
         id: "foundation",
@@ -3672,42 +3713,59 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     storyMilestones: [
-      { id: "founded", year: "2005", body: "تأسيس المؤسسة في أربيل." },
-      { id: "orphan-care", year: "2009", body: "انطلاق مشروع رعاية الأيتام." },
+      {
+        id: "founded",
+        year: "2005",
+        title: "التأسيس في أربيل",
+        body: "تأسست المؤسسة رسمياً في أربيل، عاصمة إقليم كوردستان العراق، لتحويل التعاطف إلى عمل إنساني منظم.",
+      },
+      {
+        id: "orphan-care",
+        year: "2009",
+        title: "مشروع رعاية الأيتام",
+        body: "انطلاق مشروع رعاية الأيتام لدعم الأطفال فاقدي الرعاية الأبوية بحماية وكرامة طويلة الأمد.",
+      },
       {
         id: "sinjar",
         year: "2014",
-        body: "استجابة طارئة للنازحين على جبل سنجار.",
+        title: "الاستجابة الطارئة في سنجار",
+        body: "استجابة طارئة للنازحين على جبل سنجار خلال واحدة من أحلك فصول الأزمة.",
       },
       {
         id: "camps",
         year: "2015",
-        body: "إدارة مخيمات النازحين واللاجئين في أربيل.",
+        title: "إدارة المخيمات في أربيل",
+        body: "إدارة مخيمات النازحين واللاجئين في أربيل وتقديم الخدمات اليومية بتنظيم ورعاية.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وترخيص دولي.",
+        title: "الوضع لدى ECOSOC",
+        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وترخيص دولي يوسع الاعتراف بالمؤسسة.",
       },
       {
         id: "sphere",
         year: "2018",
-        body: "تمثيل Sphere في إقليم كوردستان.",
+        title: "تمثيل Sphere",
+        body: "تمثيل Sphere في إقليم كوردستان، ومواءمة الممارسة المحلية مع المعايير الإنسانية العالمية.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        body: "اعتراف هيئة المؤسسات الخيرية البريطانية وإدارة مخيم دهوك.",
+        title: "اعتراف بريطانيا ودهوك",
+        body: "اعتراف هيئة المؤسسات الخيرية البريطانية وإدارة مخيم دهوك يفتحان فصلاً جديداً من الثقة والتنفيذ.",
       },
       {
         id: "iso-quake",
         year: "2023",
-        body: "شهادة ISO 9001:2015 والاستجابة لزلزال تركيا وسوريا.",
+        title: "ISO 9001:2015 واستجابة الزلزال",
+        body: "حصلت المؤسسة على شهادة ISO 9001:2015 وكانت أول منظمة تصل إلى ضحايا الزلزال الكبار في تركيا وسوريا.",
       },
       {
         id: "recent",
         year: "2024–2026",
-        body: "محطات كبرى في الإسكان والصحة والتعليم والاعتراف الدولي.",
+        title: "الإسكان والصحة والاعتراف",
+        body: "محطات كبرى في الإسكان والصحة والتعليم والاعتراف الدولي تشكّل مرحلة الخدمة الحالية.",
       },
     ],
     whereWeWork: "أين نعمل",
@@ -4075,7 +4133,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     boardChief: {
       open: "تعرّف على رئيس المجلس",
-      name: "مسرور بارزاني",
+      name: "سعادة السيد مسرور بارزاني",
       role: "رئيس مجلس المؤسسين",
       meta: "مؤسسة بارزاني الخيرية",
       intro:
@@ -4110,44 +4168,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "عرض المسار الزمني للحوكمة",
-      timelineTitle: "مسرور بارزاني",
+      timelineTitle: "سعادة السيد مسرور بارزاني",
       timelineRange: "1969 — اليوم",
       timelineMilestones: [
         {
           id: "origins",
           year: "1969",
           title: "الأصول والنشأة",
-          body: "وُلد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
+          body: "وُلد سعادة السيد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
         },
         {
           id: "youth",
           year: "1985",
           title: "من الشباب إلى المقاومة",
-          body: "في عام 1985، وفي سن السادسة عشرة، انضم مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
+          body: "في عام 1985، وفي سن السادسة عشرة، انضم سعادة السيد مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
         },
         {
           id: "education",
           year: "1993",
           title: "التعليم عبر الحدود",
-          body: "بعد سنوات شكلها الصراع، واصل مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
+          body: "بعد سنوات شكلها الصراع، واصل سعادة السيد مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
         },
         {
           id: "security",
           year: "1998",
           title: "الأمن وبناء الدولة",
-          body: "بعد عودته إلى كردستان عام 1998، تولى مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
+          body: "بعد عودته إلى كردستان عام 1998، تولى سعادة السيد مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
         },
         {
           id: "service",
           year: "2005",
           title: "خدمة خارج نطاق الحكومة",
-          body: "امتد عمل مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
+          body: "امتد عمل سعادة السيد مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
         },
         {
           id: "cabinet",
           year: "2019",
           title: "رئيس الوزراء — الحكومة التاسعة",
-          body: "في عام 2019، أصبح مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
+          body: "في عام 2019، أصبح سعادة السيد مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
         },
       ],
     },

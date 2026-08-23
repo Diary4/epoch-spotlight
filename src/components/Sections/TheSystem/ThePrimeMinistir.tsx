@@ -38,7 +38,11 @@ export default function PrimeMinisterPage({
     };
   }, []);
 
-  const name = isAr ? "مەسرور بارزانی" : isKu ? "مەسرور بارزانی" : "Masrour Barzani";
+  const name = isAr
+    ? "سعادة السيد مسرور بارزاني"
+    : isKu
+      ? "ڕێزدار مەسرور بارزانی"
+      : "H.E. Masrour Barzani";
   const role = isAr ? "رئيس الوزراء" : isKu ? "سەرۆک وەزیران" : "Prime Minister";
 
   const about = isAr

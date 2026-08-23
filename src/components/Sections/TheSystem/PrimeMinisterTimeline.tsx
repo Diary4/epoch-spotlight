@@ -82,7 +82,7 @@ const biographyCatalog: Record<
       era: "1969",
       title: "Origins & Formation",
       description:
-        "Born in 1969, Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
+        "Born in 1969, H.E. Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
       details: [
         "Born on 2 March 1969",
         "Raised within the Barzani family's historic national legacy",
@@ -94,7 +94,7 @@ const biographyCatalog: Record<
       era: "١٩٦٩",
       title: "ڕەگ و پێکهاتە",
       description:
-        "مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
+        "ڕێزدار مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
       details: [
         "لە ٢ی ئازاری ١٩٦٩دا لە دایکبوو",
         "لە میراتی نەتەوەیی مێژوویی خێزانی بارزانیدا گەورە بوو",
@@ -106,7 +106,7 @@ const biographyCatalog: Record<
       era: "1969",
       title: "الأصول والنشأة",
       description:
-        "وُلد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
+        "وُلد سعادة السيد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
       details: [
         "وُلد في 2 آذار 1969",
         "نشأ ضمن الإرث الوطني التاريخي لعائلة بارزاني",
@@ -120,7 +120,7 @@ const biographyCatalog: Record<
       era: "1985",
       title: "From Youth to Resistance",
       description:
-        "In 1985, at the age of sixteen, Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
+        "In 1985, at the age of sixteen, H.E. Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
       details: [
         "Joined the Peshmerga in 1985",
         "Participated in the Battle of Khwakurk in 1988",
@@ -132,7 +132,7 @@ const biographyCatalog: Record<
       era: "١٩٨٥",
       title: "لە گەنجییەوە بۆ بەرخودان",
       description:
-        "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
+        "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، ڕێزدار مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
       details: [
         "لە ١٩٨٥دا بەشداری پێشمەرگە بوو",
         "بەشداری لە شەڕی خەوەکورک لە ١٩٨٨دا کرد",
@@ -144,7 +144,7 @@ const biographyCatalog: Record<
       era: "1985",
       title: "من الشباب إلى المقاومة",
       description:
-        "في عام 1985، وفي سن السادسة عشرة، انضم مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
+        "في عام 1985، وفي سن السادسة عشرة، انضم سعادة السيد مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
       details: [
         "انضم إلى پێشمەرگە عام 1985",
         "شارك في معركة خاوەكورك عام 1988",
@@ -158,7 +158,7 @@ const biographyCatalog: Record<
       era: "1993",
       title: "Education Beyond Borders",
       description:
-        "After years shaped by conflict, Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
+        "After years shaped by conflict, H.E. Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
       details: [
         "Moved to the United States in 1993",
         "Earned a bachelor's degree in 1997",
@@ -170,7 +170,7 @@ const biographyCatalog: Record<
       era: "١٩٩٣",
       title: "پەروەردە لە دەرەوەی سنوورەکان",
       description:
-        "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
+        "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، ڕێزدار مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
       details: [
         "لە ١٩٩٣دا گواسترایەوە بۆ ویلایەتە یەکگرتووەکانی ئەمریکا",
         "لە ١٩٩٧دا بڕوانامەی بەکالۆریۆسی بەدەست هێنا",
@@ -182,7 +182,7 @@ const biographyCatalog: Record<
       era: "1993",
       title: "التعليم عبر الحدود",
       description:
-        "بعد سنوات شكلها الصراع، واصل مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
+        "بعد سنوات شكلها الصراع، واصل سعادة السيد مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
       details: [
         "انتقل إلى الولايات المتحدة عام 1993",
         "حصل على درجة البكالوريوس عام 1997",
@@ -196,7 +196,7 @@ const biographyCatalog: Record<
       era: "1998",
       title: "Security & State-Building",
       description:
-        "After returning to Kurdistan in 1998, Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
+        "After returning to Kurdistan in 1998, H.E. Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
       details: [
         "Returned to Kurdistan in 1998",
         "Headed the Kurdistan Region Security Agency in 2004",
@@ -208,7 +208,7 @@ const biographyCatalog: Record<
       era: "١٩٩٨",
       title: "ئاسایش و دامەزراندنی دەوڵەت",
       description:
-        "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
+        "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، ڕێزدار مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
       details: [
         "لە ١٩٩٨دا گەڕایەوە بۆ کوردستان",
         "لە ٢٠٠٤دا سەرۆکایەتی ئاژانسی ئاسایشی هەرێمی کوردستان کرد",
@@ -220,7 +220,7 @@ const biographyCatalog: Record<
       era: "1998",
       title: "الأمن وبناء الدولة",
       description:
-        "بعد عودته إلى كردستان عام 1998، تولى مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
+        "بعد عودته إلى كردستان عام 1998، تولى سعادة السيد مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
       details: [
         "عاد إلى كردستان عام 1998",
         "ترأس وكالة أمن إقليم كردستان عام 2004",
@@ -234,7 +234,7 @@ const biographyCatalog: Record<
       era: "2014",
       title: "The ISIS War",
       description:
-        "During the ISIS attacks after 2014, Masrour Barzani played a major security role through the Kurdistan Region Security Council, coordinating with coalition forces and supporting field operations.",
+        "During the ISIS attacks after 2014, H.E. Masrour Barzani played a major security role through the Kurdistan Region Security Council, coordinating with coalition forces and supporting field operations.",
       details: [
         "Helped form a joint operations room with the coalition",
         "Supported airstrike coordination and field operations",
@@ -246,7 +246,7 @@ const biographyCatalog: Record<
       era: "٢٠١٤",
       title: "جەنگی داعش",
       description:
-        "لە کاتی هێرشەکانی داعش دوای ٢٠١٤دا، مەسرور بارزانی ڕۆڵێکی گرنگی ئاسایشی لە ڕێگەی ئەنجومەنی ئاسایشی هەرێمی کوردستانەوە گرت، هاوکاری لەگەڵ هێزەکانی هاوپەیمان و پشتگیری لە کاروباری مەیدانی.",
+        "لە کاتی هێرشەکانی داعش دوای ٢٠١٤دا، ڕێزدار مەسرور بارزانی ڕۆڵێکی گرنگی ئاسایشی لە ڕێگەی ئەنجومەنی ئاسایشی هەرێمی کوردستانەوە گرت، هاوکاری لەگەڵ هێزەکانی هاوپەیمان و پشتگیری لە کاروباری مەیدانی.",
       details: [
         "یارمەتی دروستکردنی ژووری کاروباری هاوبەش لەگەڵ هاوپەیمان",
         "پشتگیری لە هاوکاریی هێرشی ئاسمانی و کاروباری مەیدانی",
@@ -258,7 +258,7 @@ const biographyCatalog: Record<
       era: "2014",
       title: "حرب داعش",
       description:
-        "خلال هجمات داعش بعد 2014، لعب مسرور بارزاني دورًا أمنيًا رئيسيًا عبر مجلس أمن إقليم كردستان، منسقًا مع قوات التحالف وداعمًا للعمليات الميدانية.",
+        "خلال هجمات داعش بعد 2014، لعب سعادة السيد مسرور بارزاني دورًا أمنيًا رئيسيًا عبر مجلس أمن إقليم كردستان، منسقًا مع قوات التحالف وداعمًا للعمليات الميدانية.",
       details: [
         "ساعد في تشكيل غرفة عمليات مشتركة مع التحالف",
         "دعم تنسيق الغارات الجوية والعمليات الميدانية",
@@ -272,7 +272,7 @@ const biographyCatalog: Record<
       era: "2005",
       title: "Service Beyond Government",
       description:
-        "Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
+        "H.E. Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
       details: [
         "Founded Barzani Charity Foundation in 2005",
         "Supported refugees, displaced people, and vulnerable families",
@@ -284,7 +284,7 @@ const biographyCatalog: Record<
       era: "٢٠٠٥",
       title: "خزمەت لە دەرەوەی حکومەت",
       description:
-        "کاری گشتیی مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
+        "کاری گشتیی ڕێزدار مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
       details: [
         "لە ٢٠٠٥دا دامەزراوەی خێرخوازی بارزانی دامەزراند",
         "پشتگیری لە پەنابەران، جێگیربوونەوەکان، و خێزانە لاوازەکان",
@@ -296,7 +296,7 @@ const biographyCatalog: Record<
       era: "2005",
       title: "خدمة خارج نطاق الحكومة",
       description:
-        "امتد عمل مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
+        "امتد عمل سعادة السيد مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
       details: [
         "أسس مؤسسة بارزاني الخيرية عام 2005",
         "دعم اللاجئين والنازحين والعائلات الضعيفة",
@@ -310,7 +310,7 @@ const biographyCatalog: Record<
       era: "2019",
       title: "Prime Minister — The Ninth Cabinet",
       description:
-        "In 2019, Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
+        "In 2019, H.E. Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
       details: [
         "Nominated by KDP leadership in 2018",
         "Elected by Kurdistan Parliament in 2019",
@@ -321,7 +321,7 @@ const biographyCatalog: Record<
       era: "٢٠١٩",
       title: "سەرۆک وەزیران — کابینەی نۆیەم",
       description:
-        "لە ٢٠١٩دا، مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
+        "لە ٢٠١٩دا، ڕێزدار مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
       details: [
         "لە ٢٠١٨دا لەلایەن سەرکردایەتی KDPەوە پێشنیار کرا",
         "لە ٢٠١٩دا لەلایەن پەرلەمانی کوردستانەوە هەڵبژێردرا",
@@ -332,7 +332,7 @@ const biographyCatalog: Record<
       era: "2019",
       title: "رئيس الوزراء — الحكومة التاسعة",
       description:
-        "في عام 2019، أصبح مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
+        "في عام 2019، أصبح سعادة السيد مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
       details: [
         "رُشّح من قيادة KDP عام 2018",
         "انتُخب من قبل برلمان كردستان عام 2019",
@@ -747,7 +747,11 @@ export default function PrimeMinisterTimeline({ lang = "en", onBack }: PrimeMini
         <div className={`mb-16 ${isRtl ? "text-right" : "text-left"}`}>
           <p className="text-xs font-light uppercase tracking-[0.3em] text-[#e6c98f]">{headerLabel}</p>
           <h1 className={`mt-2 ${displayFont} text-4xl font-light tracking-tight text-white sm:text-5xl`}>
-            {isAr ? "مەسرور بارزانی" : isKu ? "مەسرور بارزانی" : "Masrour Barzani"}
+            {isAr
+              ? "سعادة السيد مسرور بارزاني"
+              : isKu
+                ? "ڕێزدار مەسرور بارزانی"
+                : "H.E. Masrour Barzani"}
           </h1>
         </div>
 
