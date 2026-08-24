@@ -325,41 +325,53 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
             >
               {roster.body}
             </motion.p>
-            {/* No portrait plate here: bcf.krd publishes no headshots for these
-                two rosters, so a photo frame would be five empty placeholders.
-                The gold marker carries the card instead. */}
             <motion.div
               className="mx-auto mt-12 grid w-full max-w-[980px] grid-cols-2 gap-5"
               variants={bcfStagger(0.08, 0.26)}
               initial="initial"
               animate="animate"
             >
-              {roster.members.map((member) => (
-                <motion.div
-                  key={member.id}
-                  variants={bcfRiseCard}
-                  className={`${BCF_GLASS_CARD} flex items-center gap-6 p-8`}
-                  style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
-                >
-                  <span
-                    className="h-4 w-4 shrink-0 rotate-45"
-                    style={{ backgroundColor: BCF.gold }}
-                  />
-                  <span className="flex min-w-0 flex-col">
-                    <span className="text-[30px] font-semibold leading-snug text-[#fdeed4]">
-                      {member.name}
-                    </span>
+              {roster.members.map((member) => {
+                const portrait = bcfStaffPortraits[member.id];
+                return (
+                  <motion.div
+                    key={member.id}
+                    variants={bcfRiseCard}
+                    className={`${BCF_GLASS_CARD} flex items-center gap-5 p-6`}
+                    style={{ boxShadow: "0 18px 48px rgba(0,0,0,0.4)" }}
+                  >
                     <span
-                      className={`mt-2 text-[22px] ${
-                        lang === "en" ? "leading-snug" : "leading-[1.7]"
-                      }`}
-                      style={{ color: BCF.gold }}
+                      className="h-[112px] w-[96px] shrink-0 overflow-hidden rounded-xl border-2"
+                      style={{ borderColor: BCF.gold }}
                     >
-                      {member.role}
+                      {portrait ? (
+                        <img
+                          src={portrait}
+                          alt=""
+                          className="h-full w-full object-cover object-top"
+                        />
+                      ) : (
+                        <span className="flex h-full w-full items-center justify-center bg-white/5">
+                          <User className="h-12 w-12 text-white/35" />
+                        </span>
+                      )}
                     </span>
-                  </span>
-                </motion.div>
-              ))}
+                    <span className="flex min-w-0 flex-col">
+                      <span className="text-[28px] font-semibold leading-snug text-[#fdeed4]">
+                        {member.name}
+                      </span>
+                      <span
+                        className={`mt-2 text-[21px] ${
+                          lang === "en" ? "leading-snug" : "leading-[1.7]"
+                        }`}
+                        style={{ color: BCF.gold }}
+                      >
+                        {member.role}
+                      </span>
+                    </span>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </TrustChrome>
         </BcfShell>
