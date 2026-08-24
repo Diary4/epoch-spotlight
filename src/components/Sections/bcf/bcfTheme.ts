@@ -47,6 +47,23 @@ export const BCF_BLEED_STYLE: React.CSSProperties = {
 };
 
 /**
+ * A band pinned to the top of the artboard that still bleeds to the screen.
+ *
+ * A scrim under a title has to be measured in artboard units — the height is
+ * chosen against the composition it is lifting — but painted to the width of
+ * the glass. Held to `inset-x-0` it stops at the artboard, and on any screen
+ * wider than 9:16 that puts two hard vertical seams down the photograph either
+ * side of the title. This keeps the height and start where they were designed
+ * and opens only the edges out, plus whatever the fit left above the artboard.
+ */
+export const bcfBleedTopStyle = (height: number): React.CSSProperties => ({
+  left: "calc(-1 * var(--fit-bleed-x, 0px))",
+  right: "calc(-1 * var(--fit-bleed-x, 0px))",
+  top: "calc(-1 * var(--fit-bleed-y, 0px))",
+  height: `calc(${height}px + var(--fit-bleed-y, 0px))`,
+});
+
+/**
  * Fine grain over every scene. Photography on a 65" panel at arm's length shows
  * banding in the dark gradients; a soft-light grid at 5% breaks it up and is what
  * separates a print-grade backdrop from a flat export.

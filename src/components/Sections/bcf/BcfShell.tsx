@@ -37,6 +37,16 @@ type BcfShellProps = {
   overlayFade?: boolean;
   /** Optional custom background layer (e.g. DomeGallery on one page only). */
   backgroundSlot?: React.ReactNode;
+  /**
+   * Scene-specific layer painted over the backdrop and below the content — a
+   * local scrim under a title, say.
+   *
+   * It goes here rather than in the scene's own markup because `children` is
+   * clipped to the artboard: a scrim drawn in there ends at the artboard edge
+   * and leaves a seam down a photograph that does not. Position the node with
+   * `BCF_BLEED_STYLE` or `bcfBleedTopStyle` so it reaches the glass.
+   */
+  bleedOverlay?: React.ReactNode;
   /** Background for scenes that carry no photograph. */
   backgroundStyle?: React.CSSProperties;
   /** Slow ken-burns push on the backdrop. Off for maps, where drift misleads. */
@@ -123,6 +133,7 @@ export default function BcfShell({
   overlayClassName = "bg-black/50",
   overlayFade = true,
   backgroundSlot,
+  bleedOverlay,
   backgroundStyle,
   drift = true,
   backgroundBlur = false,
@@ -191,6 +202,12 @@ export default function BcfShell({
           Bloom and vignette share one element (see BCF_ATMOSPHERE_STYLE): they
           are both static gradients, and a separate layer for each only doubled
           the compositor memory the scene needs. */}
+      {bleedOverlay ? (
+        <div className="pointer-events-none absolute inset-0 z-[3]">
+          {bleedOverlay}
+        </div>
+      ) : null}
+
       {atmosphere ? (
         <>
           <div
