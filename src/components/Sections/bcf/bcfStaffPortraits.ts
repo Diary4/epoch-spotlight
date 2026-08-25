@@ -17,6 +17,9 @@ import rizgar from "@/assets/images/bcf/from-source/staff-rizgar.webp";
 import omarA from "@/assets/images/bcf/from-source/staff-omar-a.webp";
 import eskandar from "@/assets/images/bcf/from-source/staff-eskandar.webp";
 import hardi from "@/assets/images/bcf/from-source/staff-hardi.webp";
+import ashna from "@/assets/images/bcf/from-source/staff-ashna.webp";
+import solaf from "@/assets/images/bcf/from-source/staff-solaf.webp";
+import najat from "@/assets/images/bcf/from-source/staff-najat.webp";
 
 /** Headshots for the named Trust roster, keyed to `TrustStaffMember.id`. */
 export const bcfStaffPortraits: Record<string, string> = {
@@ -39,4 +42,7 @@ export const bcfStaffPortraits: Record<string, string> = {
   "omar-a": omarA,
   eskandar,
   hardi,
+  ashna,
+  solaf,
+  najat,
 };
