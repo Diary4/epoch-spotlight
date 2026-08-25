@@ -25,7 +25,7 @@ import slideChild from "@/assets/images/bcf/optimized/board-chief/FY1A6788.webp"
 import slideDistribution from "@/assets/images/bcf/board-chief/WhatsApp Image 2026-08-19 at 10.36.07.jpeg";
 import slideCeremony from "@/assets/images/bcf/optimized/board-chief/8C6A3599.webp";
 import nodeOrigins from "@/assets/images/PrimeMinistir/formation.webp";
-import nodeYouth from "@/assets/images/bcf/optimized/board-chief/youth-1985.webp";
+import nodeYouth from "@/assets/images/bcf/board-chief/1985.jpeg";
 import nodeEducation from "@/assets/images/PrimeMinistir/education.webp";
 import nodeSecurity from "@/assets/images/PrimeMinistir/security.webp";
 import nodeService from "@/assets/images/PrimeMinistir/service.webp";
