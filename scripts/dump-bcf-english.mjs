@@ -185,6 +185,7 @@ function dumpLang(langId) {
   sub("Timeline");
   c.storyMilestones.forEach((m) => {
     add(m.year);
+    add(m.title);
     add(m.body);
   });
 

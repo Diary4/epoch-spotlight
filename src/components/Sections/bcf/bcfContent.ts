@@ -33,10 +33,11 @@ export type JourneyChapterId =
 /**
  * Every place the project register documents, in three groups.
  *
- * The first twelve are pins on the Region map. The next three are the near
- * abroad — two operations across the Syrian border and the rest of Iraq — which
- * the Region map offers as a row beside itself. The last three are countries on
- * the world map, reached from their own country card there.
+ * The first twelve are pins on the Region map. The next two are the near
+ * abroad — the Western Kurdistan operation across the Syrian border, Afrin
+ * included, and the rest of Iraq — which the Region map offers as a row beside
+ * itself. The last three are countries on the world map, reached from their own
+ * country card there.
  */
 export type LocationId =
   | "erbil"
@@ -51,7 +52,6 @@ export type LocationId =
   | "zakho"
   | "akre"
   | "amedi"
-  | "afrin"
   | "rojava"
   | "iraq"
   | "turkiye"
@@ -73,10 +73,14 @@ export type MapFilterId = "offices" | "camps" | "geographic" | "emergency";
 /**
  * Where We Work opens on the world, because BCF's footprint is not only the
  * Region: it is licensed in four countries, sits at the UN table, and crossed
- * the border into Türkiye and Syria within days of the 2023 earthquakes. The
- * Region map is the second half of that story, not the whole of it.
+ * the border into Türkiye and Syria within days of the 2023 earthquakes.
+ *
+ * Three scopes, narrowing. The country sits between the world and the Region
+ * because BCF is licensed in the Republic of Iraq as well as the Region, and
+ * because its work outside the Region — Baghdad, Diyala, Dhi Qar, Anbar,
+ * Samawah — used to be a single chip labelled "Iraq" with no map behind it.
  */
-export type MapScopeId = "global" | "kurdistan";
+export type MapScopeId = "global" | "iraq" | "kurdistan";
 
 export type BcfLocation = {
   id: LocationId;
@@ -99,6 +103,7 @@ export type GlobalLocationId =
   | "lebanon"
   | "morocco"
   | "saudiArabia"
+  | "sudan"
   | "yemen"
   | "bangladesh"
   | "australia"
@@ -166,6 +171,7 @@ export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
   { id: "turkiye", coordinates: [35.2, 39.1], kind: "response", iso: "792", focusZoom: 4.5 },
   { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422", focusZoom: 7 },
   { id: "syria", coordinates: [38.5, 35], kind: "response", iso: "760", focusZoom: 6 },
+  { id: "sudan", coordinates: [30.2, 15.9], kind: "work", iso: "729", focusZoom: 4 },
   { id: "southSudan", coordinates: [30.1, 7.0], kind: "work", iso: "728", focusZoom: 4.5 },
   { id: "saudiArabia", coordinates: [45.1, 24], kind: "work", iso: "682", focusZoom: 3.6 },
   { id: "yemen", coordinates: [47.5, 15.5], kind: "work", iso: "887", focusZoom: 5.5 },
@@ -222,13 +228,60 @@ export const BCF_LOCATIONS: BcfLocation[] = [
 ];
 
 /**
- * The near abroad. Afrin and Western Kurdistan are across the Syrian border —
- * Afrin sits some 1,200 artboard units west of Sinjar, so putting them on the
+ * The near abroad. Western Kurdistan is across the Syrian border — its towns
+ * sit as much as 1,200 artboard units west of Sinjar, so putting them on the
  * Region map would shrink the Region to a corner of it — and the rest of Iraq
- * is a reporting grouping rather than a point. The Region map offers all three
- * as a row above itself, where they are in reach on a wall panel.
+ * is a reporting grouping rather than a point. The Region map offers both as a
+ * row above itself, where they are in reach on a wall panel.
+ *
+ * Afrin is not a third entry here: it is a town in Rojava, and its register is
+ * filed under Rojava rather than beside it.
  */
-export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "afrin", "iraq"];
+export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "iraq"];
+
+/**
+ * The federal governorates the register names, keyed by the same ids the Iraq
+ * map's outlines carry so a pin and its governorate cannot drift apart.
+ *
+ * These five are the whole list, and deliberately so: the register documents
+ * Baghdad, Diyala and Dhi Qar in the 2021 Kuwait-supported food project, Anbar
+ * in 2022 and 2023, and a medical convoy to Samawah in 2021. Nothing is pinned
+ * that the source does not name.
+ */
+export type IraqPlaceId = "baghdad" | "diyala" | "dhiqar" | "anbar" | "muthanna";
+
+export type BcfIraqPlace = {
+  id: IraqPlaceId;
+  /**
+   * [longitude, latitude] of the governorate seat — the city a visitor knows,
+   * not the polygon's centroid. Projected by bcfIraqPin, never hand-placed.
+   */
+  coordinates: [number, number];
+};
+
+export const BCF_IRAQ_PLACES: BcfIraqPlace[] = [
+  { id: "baghdad", coordinates: [44.361, 33.312] },
+  { id: "diyala", coordinates: [44.632, 33.755] },
+  { id: "anbar", coordinates: [43.308, 33.42] },
+  { id: "dhiqar", coordinates: [46.259, 31.043] },
+  { id: "muthanna", coordinates: [45.294, 31.32] },
+];
+
+/**
+ * The Region's own cities as they appear on the Iraq map. Five of the twelve,
+ * not all: at country scale the Region is a quarter of the plate, and twelve
+ * labels inside it collide. These five are the ones with an office and a
+ * register of their own, and each opens the same card it opens on the Region
+ * map — which is what makes the Region part of the country map rather than a
+ * gold shape with nothing in it.
+ */
+export const BCF_IRAQ_REGION_PINS: LocationId[] = [
+  "duhok",
+  "erbil",
+  "sulaymaniyah",
+  "kirkuk",
+  "nineveh",
+];
 
 /**
  * Countries on the world map that have a register of their own, so their card
@@ -259,6 +312,15 @@ type LocCopy = {
   short: string;
   description: string;
   explore: string;
+};
+
+/** A federal governorate on the Iraq map. */
+type IraqPlaceCopy = {
+  name: string;
+  /** Short form for the pin label, where the full name will not fit. */
+  short: string;
+  /** One line of what the register documents there, and when. */
+  note: string;
 };
 
 type GlobalLocCopy = {
@@ -572,6 +634,8 @@ export type StoryValue = { id: string; title: string; body: string };
 export type StoryMilestone = {
   id: string;
   year: string;
+  /** Short headline under the year. */
+  title: string;
   body: string;
 };
 
@@ -626,6 +690,8 @@ export type BcfCopy = {
   storyTimelineStart: string;
   storyTimelineEnd: string;
   storyScrollHint: string;
+  /** Advance to the next beat on the Our Story timeline. */
+  storyNext: string;
   storySections: StorySection[];
   storyValues: StoryValue[];
   storyMilestones: StoryMilestone[];
@@ -636,6 +702,9 @@ export type BcfCopy = {
   tapToExplore: string;
   locations: Record<LocationId, LocCopy>;
   mapScopes: Record<MapScopeId, string>;
+  iraqPlaces: Record<IraqPlaceId, IraqPlaceCopy>;
+  /** The two things the Iraq map's legend has to distinguish. */
+  iraqLegend: { region: string; federal: string };
   globalLead: string;
   globalZoomHint: string;
   globeHint: string;
@@ -672,6 +741,18 @@ export type BcfCopy = {
    * belong under the name the screen carries.
    */
   trustStaffGroups: TrustStaffGroup[];
+  /**
+   * The department and office heads from the same roster page. They have no
+   * headshots on bcf.krd, so their screens print names and titles only.
+   */
+  trustDepartmentsTitle: string;
+  trustDepartmentsOpen: string;
+  trustDepartmentsBody: string;
+  trustDepartmentsMembers: TrustStaffMember[];
+  trustOfficesTitle: string;
+  trustOfficesOpen: string;
+  trustOfficesBody: string;
+  trustOfficesMembers: TrustStaffMember[];
   boardChief: BoardChiefCopy;
   bcfPresident: BcfPresidentCopy;
   /** The Founding Board member who sits beside the President on the grid. */
@@ -1249,6 +1330,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storyTimelineStart: "2005",
     storyTimelineEnd: "Today",
     storyScrollHint: "Scroll Down",
+    storyNext: "Next",
     storySections: [
       {
         id: "foundation",
@@ -1319,42 +1401,59 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     storyMilestones: [
-      { id: "founded", year: "2005", body: "BCF founded in Erbil." },
-      { id: "orphan-care", year: "2009", body: "Orphan Care Project begins." },
+      {
+        id: "founded",
+        year: "2005",
+        title: "Foundation in Erbil",
+        body: "BCF was officially established in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
+      },
+      {
+        id: "orphan-care",
+        year: "2009",
+        title: "Orphan Care Project",
+        body: "The Orphan Care Project begins, supporting children who have lost parental care with long-term protection and dignity.",
+      },
       {
         id: "sinjar",
         year: "2014",
-        body: "Emergency response for displaced people on Sinjar Mountain.",
+        title: "Sinjar Emergency Response",
+        body: "Emergency response for displaced people on Sinjar Mountain during one of the darkest chapters of the crisis.",
       },
       {
         id: "camps",
         year: "2015",
-        body: "Management of IDP and refugee camps in Erbil.",
+        title: "Camp Management in Erbil",
+        body: "Management of IDP and refugee camps in Erbil, delivering daily services with structure and care.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        body: "UN ECOSOC consultative status and international licensing milestones.",
+        title: "UN ECOSOC Status",
+        body: "UN ECOSOC consultative status and international licensing milestones expand BCF's recognized reach.",
       },
       {
         id: "sphere",
         year: "2018",
-        body: "Sphere representation in the Kurdistan Region.",
+        title: "Sphere Representation",
+        body: "Sphere representation in the Kurdistan Region, aligning local practice with global humanitarian standards.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        body: "UK Charity Commission recognition and Duhok camp management.",
+        title: "UK Recognition & Duhok",
+        body: "UK Charity Commission recognition and Duhok camp management mark a new chapter of trust and delivery.",
       },
       {
         id: "iso-quake",
         year: "2023",
-        body: "ISO 9001:2015 certification and Turkey-Syria earthquake response.",
+        title: "ISO 9001:2015 & Earthquake Response",
+        body: "BCF achieved ISO 9001:2015 certification and was the first organization to reach major earthquake victims in Türkiye and Syria.",
       },
       {
         id: "recent",
         year: "2024–2026",
-        body: "Major housing, health, education and international recognition milestones.",
+        title: "Housing, Health & Recognition",
+        body: "Major housing, health, education and international recognition milestones shape the current era of service.",
       },
     ],
     whereWeWork: "Where We Work",
@@ -1369,7 +1468,39 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     tapToExplore: "Tap to explore",
     mapScopes: {
       global: "Globally",
+      iraq: "Inside Iraq",
       kurdistan: "Inside Kurdistan",
+    },
+    iraqPlaces: {
+      baghdad: {
+        name: "Baghdad",
+        short: "Baghdad",
+        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+      },
+      diyala: {
+        name: "Diyala",
+        short: "Diyala",
+        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+      },
+      anbar: {
+        name: "Al-Anbar",
+        short: "Anbar",
+        note: "In the 2022 food-project table, and 480 families reached by the 2023 Qurbani meat project.",
+      },
+      dhiqar: {
+        name: "Dhi Qar",
+        short: "Dhi Qar",
+        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+      },
+      muthanna: {
+        name: "Al-Muthanna / Samawah",
+        short: "Samawah",
+        note: "A 2021 medical convoy carrying 50 types of medicine and medical supplies.",
+      },
+    },
+    iraqLegend: {
+      region: "Kurdistan Region",
+      federal: "Federal governorates",
     },
     globalLead:
       "Sixteen countries in twenty years, all run from Erbil.",
@@ -1473,6 +1604,12 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       saudiArabia: {
         name: "Saudi Arabia",
+        meta: "Area of work",
+        description: WORK_ONLY_EN,
+        facts: [],
+      },
+      sudan: {
+        name: "Sudan",
         meta: "Area of work",
         description: WORK_ONLY_EN,
         facts: [],
@@ -1587,18 +1724,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "The Smile Center with Caritas Germany, special-care and autism activities, and food baskets across the mountain townships.",
         explore: "Explore Projects",
       },
-      afrin: {
-        name: "Afrin",
-        short: "Afrin",
-        description:
-          "A standing programme in Syria: the mobile clinic, the Barzani Culture & Development Center, university student support, and 192 sponsored orphans.",
-        explore: "Explore Projects",
-      },
       rojava: {
-        name: "Western Kurdistan / Rojava",
+        name: "Western Kurdistan / Rojava, incl. Afrin",
         short: "Rojava",
         description:
-          "BCF's largest current cross-border operation — 415 truckloads, 29,070 families, flour for 3.36 million loaves, diesel, medicine and jobs.",
+          "BCF's largest current cross-border operation — 415 truckloads, 29,070 families, flour for 3.36 million loaves, diesel, medicine and jobs — alongside the standing Afrin programme: the mobile clinic, the Barzani Culture & Development Center, university student support and 192 sponsored orphans.",
         explore: "Explore Projects",
       },
       iraq: {
@@ -1700,6 +1830,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Administrative Board Members",
         members: [
           { id: "ibrahim", name: "Ibrahim Samin", role: "BCF Vice President" },
+          {
+            id: "karzan-n",
+            name: "Karzan Noori",
+            role: "Administrative Board Member and Program Planning Dep. Manager",
+          },
           { id: "farzin", name: "Farzin Bagzade", role: "Administrative Board Member" },
           { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
           {
@@ -1714,17 +1849,38 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             role: "Administrative Board Member",
           },
           {
-            id: "karzan-n",
-            name: "Karzan Nuri",
-            role: "Administrative Board Member and Program Planning Dep. Manager",
-          },
-          {
             id: "rawaj",
             name: "Rawaj Haji",
             role: "Administrative Board Member and Human Resources Dep. Manager",
           },
         ],
       },
+    ],
+    trustDepartmentsTitle: "Department Managers",
+    trustDepartmentsOpen: "View managers",
+    trustDepartmentsBody:
+      "Lead the operational departments that design and run the programs.",
+    trustDepartmentsMembers: [
+      { id: "ayoub", name: "Ayoub Mohammed Babakir", role: "Manager of Public Relation & Media" },
+      { id: "omar-a", name: "Omar Ahmad", role: "Orphans' & Widows' Care Dep. Manager" },
+      { id: "rizgar", name: "Rizgar Obed", role: "Supply Chain Dep. Manager" },
+      { id: "hardi", name: "Hardi Ismail", role: "Finance Dep. Manager" },
+      { id: "eskandar", name: "Eskandar Salih", role: "Monitoring & Evaluation Dep. Manager" },
+      { id: "ashna", name: "Ashna Jamal Jalal", role: "Quality Management Division Manager" },
+      { id: "solaf", name: "Solaf Sabah", role: "Financial Audit Division Manager" },
+      { id: "najat", name: "Najat Rafiq Sabir", role: "Legal Division Manager" },
+    ],
+    trustOfficesTitle: "Office Directors",
+    trustOfficesOpen: "View directors",
+    trustOfficesBody:
+      "Direct the regional offices that deliver the work with local communities.",
+    trustOfficesMembers: [
+      { id: "rebwar", name: "Rebwar Mihyaddin", role: "Kirkuk Office Director" },
+      { id: "stav", name: "Stav Aso", role: "Erbil Office Director" },
+      { id: "srwa", name: "Srwa Salih", role: "Slemani Office Director" },
+      { id: "karzan-s", name: "Karzan Salam", role: "Halabja Office Director" },
+      { id: "shero", name: "Shero Simo", role: "Shngal Office Director" },
+      { id: "araz", name: "Araz Ameer", role: "Acting of Mosul Office Director" },
     ],
     trustFounders: [
       {
@@ -1746,7 +1902,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     boardChief: {
       open: "Meet the Board Chief",
-      name: "Masrour Barzani",
+      name: "H.E. Masrour Barzani",
       role: "President of the Board of Founders",
       meta: "Barzani Charity Foundation",
       intro:
@@ -1784,44 +1940,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "View Governance Timeline",
-      timelineTitle: "Masrour Barzani",
+      timelineTitle: "H.E. Masrour Barzani",
       timelineRange: "1969 — Present",
       timelineMilestones: [
         {
           id: "origins",
           year: "1969",
           title: "Origins & Formation",
-          body: "Born in 1969, Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
+          body: "Born in 1969, H.E. Masrour Barzani grew up during a defining period in Kurdish history. His early years were shaped by displacement, resistance, education, and the responsibility of serving a nation in struggle.",
         },
         {
           id: "youth",
           year: "1985",
           title: "From Youth to Resistance",
-          body: "In 1985, at the age of sixteen, Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
+          body: "In 1985, at the age of sixteen, H.E. Masrour Barzani joined the Kurdistan Peshmerga. His early service placed him directly within the Kurdish struggle during some of its most difficult chapters.",
         },
         {
           id: "education",
           year: "1993",
           title: "Education Beyond Borders",
-          body: "After years shaped by conflict, Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
+          body: "After years shaped by conflict, H.E. Masrour Barzani pursued higher education abroad, strengthening his understanding of international relations, peace, and conflict resolution.",
         },
         {
           id: "security",
           year: "1998",
           title: "Security & State-Building",
-          body: "After returning to Kurdistan in 1998, Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
+          body: "After returning to Kurdistan in 1998, H.E. Masrour Barzani took on senior responsibilities in political and security institutions, later becoming Chancellor of the Kurdistan Region Security Council.",
         },
         {
           id: "service",
           year: "2005",
           title: "Service Beyond Government",
-          body: "Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
+          body: "H.E. Masrour Barzani's public work also extended into humanitarian and academic fields, including the establishment of the Barzani Charity Foundation and support for higher education in Kurdistan.",
         },
         {
           id: "cabinet",
           year: "2019",
           title: "Prime Minister — The Ninth Cabinet",
-          body: "In 2019, Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
+          body: "In 2019, H.E. Masrour Barzani became Prime Minister of the Kurdistan Region and was appointed to form the ninth cabinet of the Kurdistan Regional Government.",
         },
       ],
     },
@@ -1906,9 +2062,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustQualityTitle: "Quality and Credibility",
     trustCredentials: [
       {
-        id: "iraq-krg",
-        title: "Licensed in Iraq and Kurdistan",
-        body: "BCF is officially licensed to operate in both the Republic of Iraq and the Kurdistan Region, ensuring full compliance with national regulations and a strong commitment to local communities.",
+        id: "krg",
+        title: "Licensed in the Kurdistan Region",
+        body: "BCF is officially licensed to operate in the Kurdistan Region, ensuring full compliance with regional regulations and a strong commitment to local communities.",
+      },
+      {
+        id: "iraq",
+        title: "Licensed in Iraq",
+        body: "BCF is officially licensed to operate in the Republic of Iraq, ensuring full compliance with national regulations and a strong commitment to communities across the country.",
       },
       {
         id: "usa",
@@ -2409,6 +2570,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storyTimelineStart: "٢٠٠٥",
     storyTimelineEnd: "ئێستا",
     storyScrollHint: "بڕۆ خوارەوە",
+    storyNext: "دواتر",
     storySections: [
       {
         id: "foundation",
@@ -2479,42 +2641,59 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     storyMilestones: [
-      { id: "founded", year: "2005", body: "دامەزراندنی دەزگا لە هەولێر." },
-      { id: "orphan-care", year: "2009", body: "دەستپێکی پڕۆژەی چاودێری ئازیزان." },
+      {
+        id: "founded",
+        year: "2005",
+        title: "دامەزراندن لە هەولێر",
+        body: "دەزگا بە فەرمی لە هەولێر دامەزرا، پایتەختی هەرێمی کوردستانی عێراق، بۆ گۆڕینی میهرەبانی بۆ کاری مرۆیی ڕێکخراو.",
+      },
+      {
+        id: "orphan-care",
+        year: "2009",
+        title: "پڕۆژەی چاودێری ئازیزان",
+        body: "دەستپێکی پڕۆژەی چاودێری ئازیزان، پشتگیریکردنی منداڵانی بێ سەرپەرشتی بە پاراستن و کەرامەتی درێژخایەن.",
+      },
       {
         id: "sinjar",
         year: "2014",
-        body: "وەڵامی فریاکەوتن بۆ ئاوارەکانی چیای شنگال.",
+        title: "وەڵامی فریاکەوتنی شنگال",
+        body: "وەڵامی فریاکەوتن بۆ ئاوارەکانی چیای شنگال لە یەکێک لە تاریکترین قۆناغەکانی قەیرانەکە.",
       },
       {
         id: "camps",
         year: "2015",
-        body: "بەڕێوەبردنی کەمپەکانی ئاوارە و پەنابەران لە هەولێر.",
+        title: "بەڕێوەبردنی کەمپ لە هەولێر",
+        body: "بەڕێوەبردنی کەمپەکانی ئاوارە و پەنابەران لە هەولێر، پێشکەشکردنی خزمەتگوزاریی ڕۆژانە بە ڕێکخستن و چاودێری.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و مۆڵەتە نێودەوڵەتییەکان.",
+        title: "پێگەی ECOSOC",
+        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و مۆڵەتە نێودەوڵەتییەکان فراوانبوونی ناسراوی دەزگا دەردەخەن.",
       },
       {
         id: "sphere",
         year: "2018",
-        body: "نوێنەرایەتی Sphere لە هەرێمی کوردستان.",
+        title: "نوێنەرایەتی Sphere",
+        body: "نوێنەرایەتی Sphere لە هەرێمی کوردستان، هاوتاکردنی کارە ناوخۆییەکان لەگەڵ ستانداردە جیهانییەکانی مرۆیی.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        body: "ناسینەوەی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپی دهۆک.",
+        title: "ناسینەوەی بەریتانیا و دهۆک",
+        body: "ناسینەوەی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپی دهۆک قۆناغێکی نوێی متمانە و جێبەجێکردن دەست نیشان دەکەن.",
       },
       {
         id: "iso-quake",
         year: "2023",
-        body: "بڕوانامەی ISO 9001:2015 و وەڵامی بوومەلەرزەی تورکیا و سووریا.",
+        title: "ISO 9001:2015 و وەڵامی بوومەلەرزە",
+        body: "دەزگا بڕوانامەی ISO 9001:2015 بەدەستهێنا و یەکەم ڕێکخراو بوو کە گەیشتە قوربانییە سەرەکییەکانی بوومەلەرزە لە تورکیا و سووریا.",
       },
       {
         id: "recent",
         year: "2024–2026",
-        body: "هەنگاوە گەورەکانی نیشتەجێبوون، تەندروستی، پەروەردە و ناسینەوەی نێودەوڵەتی.",
+        title: "نیشتەجێبوون، تەندروستی و ناسینەوە",
+        body: "هەنگاوە گەورەکانی نیشتەجێبوون، تەندروستی، پەروەردە و ناسینەوەی نێودەوڵەتی سەردەمی ئێستای خزمەتگوزاری شێوە دەدەن.",
       },
     ],
     whereWeWork: "لە کوێ کار دەکەین",
@@ -2529,7 +2708,39 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     tapToExplore: "بۆ گەڕان دەستی لێبدە",
     mapScopes: {
       global: "جیهانی",
+      iraq: "لە ناو عێراق",
       kurdistan: "لە ناو کوردستان",
+    },
+    iraqPlaces: {
+      baghdad: {
+        name: "بەغدا",
+        short: "بەغدا",
+        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+      },
+      diyala: {
+        name: "دیالە",
+        short: "دیالە",
+        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+      },
+      anbar: {
+        name: "ئەنبار",
+        short: "ئەنبار",
+        note: "لە خشتەی پڕۆژەی خۆراکی ٢٠٢٢، و پڕۆژەی گۆشتی قوربانی ٢٠٢٣ گەیشتە ٤٨٠ خێزان.",
+      },
+      dhiqar: {
+        name: "زیقار",
+        short: "زیقار",
+        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+      },
+      muthanna: {
+        name: "موسەننا / سەماوە",
+        short: "سەماوە",
+        note: "کاروانێکی پزیشکی لە ٢٠٢١ بە ٥٠ جۆر دەرمان و پێداویستی پزیشکی.",
+      },
+    },
+    iraqLegend: {
+      region: "هەرێمی کوردستان",
+      federal: "پارێزگاکانی فیدراڵ",
     },
     globalLead:
       "شازدە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.",
@@ -2609,6 +2820,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: WORK_ONLY_KU,
         facts: [],
       },
+      sudan: { name: "سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       southSudan: { name: "باشووری سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       yemen: { name: "یەمەن", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       bangladesh: {
@@ -2704,18 +2916,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "ناوەندی زەردەخەنە لەگەڵ کاریتاسی ئەڵمانیا، چالاکی چاودێری تایبەت و ئۆتیزم، و سەبەتەی خۆراک بەناو شارۆچکە شاخاوییەکاندا.",
         explore: "پڕۆژەکان ببینە",
       },
-      afrin: {
-        name: "عەفرین",
-        short: "عەفرین",
-        description:
-          "بەرنامەیەکی چەسپاو لە سووریا: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران، و ١٩٢ ئازیزانی سەرپەرشتیکراو.",
-        explore: "پڕۆژەکان ببینە",
-      },
       rojava: {
-        name: "ڕۆژئاوای کوردستان",
+        name: "ڕۆژئاوای کوردستان، بە عەفرینەوە",
         short: "ڕۆژئاوا",
         description:
-          "گەورەترین کاری ئێستای BCF لە دەرەوەی سنوور — ٤١٥ بارهەڵگر، ٢٩٬٠٧٠ خێزان، ئارد بۆ ٣٫٣٦ ملیۆن نان، گازۆیل، دەرمان و کار.",
+          "گەورەترین کاری ئێستای BCF لە دەرەوەی سنوور — ٤١٥ بارهەڵگر، ٢٩٬٠٧٠ خێزان، ئارد بۆ ٣٫٣٦ ملیۆن نان، گازۆیل، دەرمان و کار — لەگەڵ بەرنامەی چەسپاوی عەفرین: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران و ١٩٢ ئازیزانی سەرپەرشتیکراو.",
         explore: "پڕۆژەکان ببینە",
       },
       iraq: {
@@ -2817,6 +3022,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئەندامانی دەستەی کارگێڕی",
         members: [
           { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
+          {
+            id: "karzan-n",
+            name: "کارزان نوری",
+            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
+          },
           { id: "farzin", name: "فەرزین بەگزادە", role: "ئەندامی دەستەی کارگێڕی" },
           { id: "awat", name: "ئاوات ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
           {
@@ -2831,17 +3041,38 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             role: "ئەندامی دەستەی کارگێڕی",
           },
           {
-            id: "karzan-n",
-            name: "کارزان نووری",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
-          },
-          {
             id: "rawaj",
             name: "ڕەواج حاجی",
             role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی سەرچاوە مرۆییەکان",
           },
         ],
       },
+    ],
+    trustDepartmentsTitle: "بەڕێوەبەرانی بەشەکان",
+    trustDepartmentsOpen: "بینینی بەڕێوەبەران",
+    trustDepartmentsBody:
+      "بەشە کارگێڕییەکان بەڕێوە دەبەن کە بەرنامەکان دادەڕێژن و جێبەجێیان دەکەن.",
+    trustDepartmentsMembers: [
+      { id: "ayoub", name: "ئەیوب محەمەد بابەکر", role: "بەڕێوەبەری بەشی پەیوەندییەکان و ڕاگەیاندن" },
+      { id: "omar-a", name: "عومەر ئەحمەد", role: "بەڕێوەبەری بەشی چاودێری ئازیزان و بێوەژنان" },
+      { id: "rizgar", name: "ڕزگار عوبێد", role: "بەڕێوەبەری بەشی زنجیرەی دابینکردن" },
+      { id: "hardi", name: "هەردی ئیسماعیل", role: "بەڕێوەبەری بەشی دارایی" },
+      { id: "eskandar", name: "ئەسکەندەر ساڵح", role: "بەڕێوەبەری بەشی چاودێری و هەڵسەنگاندن" },
+      { id: "ashna", name: "ئاشنا جمال جلال", role: "بەڕێوەبەری هۆبەی کارگێڕی جۆری" },
+      { id: "solaf", name: "سولاف صباح", role: "بەڕێوەبەری هۆبەی وردبینی دارایی" },
+      { id: "najat", name: "نجات رفیق صابر", role: "بەڕێوەبەری هۆبەی یاسایی" },
+    ],
+    trustOfficesTitle: "بەڕێوەبەرانی نووسینگەکان",
+    trustOfficesOpen: "بینینی بەڕێوەبەران",
+    trustOfficesBody:
+      "نووسینگە هەرێمییەکان بەڕێوە دەبەن کە کارەکان لەگەڵ کۆمەڵگە ناوخۆییەکاندا جێبەجێ دەکەن.",
+    trustOfficesMembers: [
+      { id: "rebwar", name: "ڕێبوار موحیەدین", role: "بەڕێوەبەری نووسینگەی کەرکووک" },
+      { id: "stav", name: "ستاڤ ئاسۆ", role: "بەڕێوەبەری نووسینگەی هەولێر" },
+      { id: "srwa", name: "سروە ساڵح", role: "بەڕێوەبەری نووسینگەی سلێمانی" },
+      { id: "karzan-s", name: "کارزان سەلام", role: "بەڕێوەبەری نووسینگەی هەڵەبجە" },
+      { id: "shero", name: "شێرۆ سیمۆ", role: "بەڕێوەبەری نووسینگەی شنگال" },
+      { id: "araz", name: "ئاراز ئەمیر", role: "جێبەجێکەری بەڕێوەبەری نووسینگەی موسڵ" },
     ],
     trustFounders: [
       {
@@ -2863,7 +3094,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     boardChief: {
       open: "ناسینی سەرۆکی بۆرد",
-      name: "مەسرور بارزانی",
+      name: "ڕێزدار مەسرور بارزانی",
       role: "سەرۆکی بۆردی دامەزرێنەران",
       meta: "دەزگای خێرخوازیی بارزانی",
       intro:
@@ -2901,44 +3132,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "بینینی هێڵی کاتی حوکمڕانی",
-      timelineTitle: "مەسرور بارزانی",
+      timelineTitle: "ڕێزدار مەسرور بارزانی",
       timelineRange: "١٩٦٩ — ئێستا",
       timelineMilestones: [
         {
           id: "origins",
           year: "١٩٦٩",
           title: "ڕەگ و پێکهاتە",
-          body: "مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
+          body: "ڕێزدار مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.",
         },
         {
           id: "youth",
           year: "١٩٨٥",
           title: "لە گەنجییەوە بۆ بەرخودان",
-          body: "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
+          body: "لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، ڕێزدار مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.",
         },
         {
           id: "education",
           year: "١٩٩٣",
           title: "پەروەردە لە دەرەوەی سنوورەکان",
-          body: "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
+          body: "دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، ڕێزدار مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.",
         },
         {
           id: "security",
           year: "١٩٩٨",
           title: "ئاسایش و دامەزراندنی دەوڵەت",
-          body: "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
+          body: "دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، ڕێزدار مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.",
         },
         {
           id: "service",
           year: "٢٠٠٥",
           title: "خزمەت لە دەرەوەی حکومەت",
-          body: "کاری گشتیی مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
+          body: "کاری گشتیی ڕێزدار مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.",
         },
         {
           id: "cabinet",
           year: "٢٠١٩",
           title: "سەرۆک وەزیران — کابینەی نۆیەم",
-          body: "لە ٢٠١٩دا، مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
+          body: "لە ٢٠١٩دا، ڕێزدار مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.",
         },
       ],
     },
@@ -3023,9 +3254,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustQualityTitle: "کوالیتی و باوەڕپێکراوی",
     trustCredentials: [
       {
-        id: "iraq-krg",
-        title: "مۆڵەت لە عێراق و کوردستان",
-        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە کۆماری عێراق و هەرێمی کوردستان هەیە، بە پابەندبوون بە یاسا ناوخۆییەکان و پابەندییەکی بەهێز بە کۆمەڵگەکان.",
+        id: "krg",
+        title: "مۆڵەت لە هەرێمی کوردستان",
+        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە هەرێمی کوردستان هەیە، بە پابەندبوون بە یاسا هەرێمییەکان و پابەندییەکی بەهێز بە کۆمەڵگە ناوخۆییەکان.",
+      },
+      {
+        id: "iraq",
+        title: "مۆڵەت لە عێراق",
+        body: "BCF بە فەرمی مۆڵەتی کارکردنی لە کۆماری عێراق هەیە، بە پابەندبوون بە یاسا نیشتمانییەکان و پابەندییەکی بەهێز بە کۆمەڵگەکان لە سەرانسەری وڵاتدا.",
       },
       {
         id: "usa",
@@ -3525,6 +3761,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     storyTimelineStart: "2005",
     storyTimelineEnd: "اليوم",
     storyScrollHint: "مرّر لأسفل الصفحة",
+    storyNext: "التالي",
     storySections: [
       {
         id: "foundation",
@@ -3595,42 +3832,59 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     storyMilestones: [
-      { id: "founded", year: "2005", body: "تأسيس المؤسسة في أربيل." },
-      { id: "orphan-care", year: "2009", body: "انطلاق مشروع رعاية الأيتام." },
+      {
+        id: "founded",
+        year: "2005",
+        title: "التأسيس في أربيل",
+        body: "تأسست المؤسسة رسمياً في أربيل، عاصمة إقليم كوردستان العراق، لتحويل التعاطف إلى عمل إنساني منظم.",
+      },
+      {
+        id: "orphan-care",
+        year: "2009",
+        title: "مشروع رعاية الأيتام",
+        body: "انطلاق مشروع رعاية الأيتام لدعم الأطفال فاقدي الرعاية الأبوية بحماية وكرامة طويلة الأمد.",
+      },
       {
         id: "sinjar",
         year: "2014",
-        body: "استجابة طارئة للنازحين على جبل سنجار.",
+        title: "الاستجابة الطارئة في سنجار",
+        body: "استجابة طارئة للنازحين على جبل سنجار خلال واحدة من أحلك فصول الأزمة.",
       },
       {
         id: "camps",
         year: "2015",
-        body: "إدارة مخيمات النازحين واللاجئين في أربيل.",
+        title: "إدارة المخيمات في أربيل",
+        body: "إدارة مخيمات النازحين واللاجئين في أربيل وتقديم الخدمات اليومية بتنظيم ورعاية.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وترخيص دولي.",
+        title: "الوضع لدى ECOSOC",
+        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وترخيص دولي يوسع الاعتراف بالمؤسسة.",
       },
       {
         id: "sphere",
         year: "2018",
-        body: "تمثيل Sphere في إقليم كوردستان.",
+        title: "تمثيل Sphere",
+        body: "تمثيل Sphere في إقليم كوردستان، ومواءمة الممارسة المحلية مع المعايير الإنسانية العالمية.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        body: "اعتراف هيئة المؤسسات الخيرية البريطانية وإدارة مخيم دهوك.",
+        title: "اعتراف بريطانيا ودهوك",
+        body: "اعتراف هيئة المؤسسات الخيرية البريطانية وإدارة مخيم دهوك يفتحان فصلاً جديداً من الثقة والتنفيذ.",
       },
       {
         id: "iso-quake",
         year: "2023",
-        body: "شهادة ISO 9001:2015 والاستجابة لزلزال تركيا وسوريا.",
+        title: "ISO 9001:2015 واستجابة الزلزال",
+        body: "حصلت المؤسسة على شهادة ISO 9001:2015 وكانت أول منظمة تصل إلى ضحايا الزلزال الكبار في تركيا وسوريا.",
       },
       {
         id: "recent",
         year: "2024–2026",
-        body: "محطات كبرى في الإسكان والصحة والتعليم والاعتراف الدولي.",
+        title: "الإسكان والصحة والاعتراف",
+        body: "محطات كبرى في الإسكان والصحة والتعليم والاعتراف الدولي تشكّل مرحلة الخدمة الحالية.",
       },
     ],
     whereWeWork: "أين نعمل",
@@ -3645,7 +3899,39 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     tapToExplore: "اضغط للاستكشاف",
     mapScopes: {
       global: "عالمياً",
+      iraq: "داخل العراق",
       kurdistan: "داخل كردستان",
+    },
+    iraqPlaces: {
+      baghdad: {
+        name: "بغداد",
+        short: "بغداد",
+        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+      },
+      diyala: {
+        name: "ديالى",
+        short: "ديالى",
+        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+      },
+      anbar: {
+        name: "الأنبار",
+        short: "الأنبار",
+        note: "في جدول مشروع الغذاء لعام ٢٠٢٢، ووصل مشروع لحوم الأضاحي عام ٢٠٢٣ إلى ٤٨٠ عائلة.",
+      },
+      dhiqar: {
+        name: "ذي قار",
+        short: "ذي قار",
+        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+      },
+      muthanna: {
+        name: "المثنى / السماوة",
+        short: "السماوة",
+        note: "قافلة طبية عام ٢٠٢١ تحمل ٥٠ نوعاً من الأدوية والمستلزمات الطبية.",
+      },
+    },
+    iraqLegend: {
+      region: "إقليم كردستان",
+      federal: "المحافظات الفدرالية",
     },
     globalLead:
       "تعمل المؤسسة في 16 دولة خلال 20 عاماً، وتُدار عملياتها من أربيل.",
@@ -3725,6 +4011,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: WORK_ONLY_AR,
         facts: [],
       },
+      sudan: { name: "السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       southSudan: { name: "جنوب السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       yemen: { name: "اليمن", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       bangladesh: { name: "بنغلاديش", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
@@ -3815,18 +4102,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           "مركز الابتسامة مع كاريتاس ألمانيا، وأنشطة الرعاية الخاصة والتوحّد، وسلال غذائية في بلدات الجبل.",
         explore: "استكشف المشاريع",
       },
-      afrin: {
-        name: "عفرين",
-        short: "عفرين",
-        description:
-          "برنامج قائم في سوريا: العيادة المتنقّلة، ومركز بارزاني للثقافة والتنمية، ودعم طلبة الجامعة، و١٩٢ يتيماً مكفولاً.",
-        explore: "استكشف المشاريع",
-      },
       rojava: {
-        name: "غربي كردستان / روج آفا",
+        name: "غربي كردستان / روج آفا، ومنها عفرين",
         short: "روج آفا",
         description:
-          "أكبر عملية حالية للمؤسسة عبر الحدود — ٤١٥ شاحنة، و٢٩٬٠٧٠ عائلة، وطحين لـ ٣٫٣٦ مليون رغيف، ووقود ودواء وفرص عمل.",
+          "أكبر عملية حالية للمؤسسة عبر الحدود — ٤١٥ شاحنة، و٢٩٬٠٧٠ عائلة، وطحين لـ ٣٫٣٦ مليون رغيف، ووقود ودواء وفرص عمل — إلى جانب برنامج عفرين القائم: العيادة المتنقّلة، ومركز بارزاني للثقافة والتنمية، ودعم طلبة الجامعة، و١٩٢ يتيماً مكفولاً.",
         explore: "استكشف المشاريع",
       },
       iraq: {
@@ -3928,6 +4208,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "أعضاء الهيئة الإدارية",
         members: [
           { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
+          {
+            id: "karzan-n",
+            name: "كارزان نوري",
+            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
+          },
           { id: "farzin", name: "فرزين بغزادة", role: "عضو الهيئة الإدارية" },
           { id: "awat", name: "آوات أحمد", role: "عضو الهيئة الإدارية" },
           {
@@ -3942,17 +4227,38 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
             role: "عضو الهيئة الإدارية",
           },
           {
-            id: "karzan-n",
-            name: "كارزان نوري",
-            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
-          },
-          {
             id: "rawaj",
             name: "رواج حاجي",
             role: "عضو الهيئة الإدارية ومدير قسم الموارد البشرية",
           },
         ],
       },
+    ],
+    trustDepartmentsTitle: "مدراء الأقسام",
+    trustDepartmentsOpen: "عرض المدراء",
+    trustDepartmentsBody:
+      "يقودون الأقسام التنفيذية التي تصمّم البرامج وتنفّذها.",
+    trustDepartmentsMembers: [
+      { id: "ayoub", name: "أيوب محمد بابكر", role: "مدير قسم العلاقات العامة والإعلام" },
+      { id: "omar-a", name: "عمر أحمد", role: "مدير قسم رعاية الأيتام والأرامل" },
+      { id: "rizgar", name: "رزكار عبيد", role: "مدير قسم سلسلة التجهيز" },
+      { id: "hardi", name: "هردي إسماعيل", role: "مدير القسم المالي" },
+      { id: "eskandar", name: "إسكندر صالح", role: "مدير قسم المتابعة والتقييم" },
+      { id: "ashna", name: "آشنا جمال جلال", role: "مديرة شعبة إدارة الجودة" },
+      { id: "solaf", name: "سولاف صباح", role: "مديرة شعبة التدقيق المالي" },
+      { id: "najat", name: "نجات رفيق صابر", role: "مدير الشعبة القانونية" },
+    ],
+    trustOfficesTitle: "مدراء المكاتب",
+    trustOfficesOpen: "عرض المدراء",
+    trustOfficesBody:
+      "يديرون المكاتب الإقليمية التي تنفّذ العمل مع المجتمعات المحلية.",
+    trustOfficesMembers: [
+      { id: "rebwar", name: "ريبوار محي الدين", role: "مدير مكتب كركوك" },
+      { id: "stav", name: "ستاف آسو", role: "مدير مكتب أربيل" },
+      { id: "srwa", name: "سروة صالح", role: "مدير مكتب السليمانية" },
+      { id: "karzan-s", name: "كارزان سلام", role: "مدير مكتب حلبجة" },
+      { id: "shero", name: "شيرو سيمو", role: "مدير مكتب سنجار" },
+      { id: "araz", name: "آراز أمير", role: "مدير مكتب الموصل بالوكالة" },
     ],
     trustFounders: [
       {
@@ -3974,7 +4280,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     ],
     boardChief: {
       open: "تعرّف على رئيس المجلس",
-      name: "مسرور بارزاني",
+      name: "سعادة السيد مسرور بارزاني",
       role: "رئيس مجلس المؤسسين",
       meta: "مؤسسة بارزاني الخيرية",
       intro:
@@ -4009,44 +4315,44 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         },
       ],
       timelineCta: "عرض المسار الزمني للحوكمة",
-      timelineTitle: "مسرور بارزاني",
+      timelineTitle: "سعادة السيد مسرور بارزاني",
       timelineRange: "1969 — اليوم",
       timelineMilestones: [
         {
           id: "origins",
           year: "1969",
           title: "الأصول والنشأة",
-          body: "وُلد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
+          body: "وُلد سعادة السيد مسرور بارزاني عام 1969 ونشأ في فترة محورية من تاريخ كردستان. شكلت سنواته الأولى النزوح والمقاومة والتعليم ومسؤولية خدمة أمة في صراع.",
         },
         {
           id: "youth",
           year: "1985",
           title: "من الشباب إلى المقاومة",
-          body: "في عام 1985، وفي سن السادسة عشرة، انضم مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
+          body: "في عام 1985، وفي سن السادسة عشرة، انضم سعادة السيد مسرور بارزاني إلى پێشمەرگە كردستان. وضعته خدمته المبكرة مباشرة في صلب النضال الكردي خلال بعض أصعب فصوله.",
         },
         {
           id: "education",
           year: "1993",
           title: "التعليم عبر الحدود",
-          body: "بعد سنوات شكلها الصراع، واصل مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
+          body: "بعد سنوات شكلها الصراع، واصل سعادة السيد مسرور بارزاني التعليم العالي في الخارج، وتعزيز فهمه للعلاقات الدولية والسلام وحل النزاعات.",
         },
         {
           id: "security",
           year: "1998",
           title: "الأمن وبناء الدولة",
-          body: "بعد عودته إلى كردستان عام 1998، تولى مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
+          body: "بعد عودته إلى كردستان عام 1998، تولى سعادة السيد مسرور بارزاني مسؤوليات عليا في المؤسسات السياسية والأمنية، ثم أصبح مستشار مجلس أمن إقليم كردستان.",
         },
         {
           id: "service",
           year: "2005",
           title: "خدمة خارج نطاق الحكومة",
-          body: "امتد عمل مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
+          body: "امتد عمل سعادة السيد مسرور بارزاني العام أيضًا إلى المجالات الإنسانية والأكاديمية، بما في ذلك تأسيس مؤسسة بارزاني الخيرية ودعم التعليم العالي في كردستان.",
         },
         {
           id: "cabinet",
           year: "2019",
           title: "رئيس الوزراء — الحكومة التاسعة",
-          body: "في عام 2019، أصبح مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
+          body: "في عام 2019، أصبح سعادة السيد مسرور بارزاني رئيسًا لوزراء إقليم كردستان وعُيّن لتشكيل الحكومة التاسعة للحكومة الإقليمية لكردستان.",
         },
       ],
     },
@@ -4131,9 +4437,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustQualityTitle: "الجودة والمصداقية",
     trustCredentials: [
       {
-        id: "iraq-krg",
-        title: "مرخّص في العراق وكوردستان",
-        body: "BCF مرخّصة رسمياً للعمل في جمهورية العراق وإقليم كوردستان، بما يضمن الامتثال للأنظمة الوطنية والالتزام بالمجتمعات المحلية.",
+        id: "krg",
+        title: "مرخّص في إقليم كوردستان",
+        body: "BCF مرخّصة رسمياً للعمل في إقليم كوردستان، بما يضمن الامتثال للأنظمة الإقليمية والالتزام بالمجتمعات المحلية.",
+      },
+      {
+        id: "iraq",
+        title: "مرخّص في العراق",
+        body: "BCF مرخّصة رسمياً للعمل في جمهورية العراق، بما يضمن الامتثال للأنظمة الوطنية والالتزام بالمجتمعات في أنحاء البلاد.",
       },
       {
         id: "usa",

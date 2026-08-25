@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Building2, Globe2, Tent, Siren, X, ArrowRight, Globe, MapPin } from "lucide-react";
+import { Building2, Globe2, Tent, Siren, ArrowRight, Globe, Map, MapPin } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import {
@@ -24,11 +24,12 @@ import {
 import {
   bcfEntryCountFor,
   bcfSectorsFor,
-  bcfYearSpanFor,
 } from "@/components/Sections/bcf/bcfProjectData";
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
-import { BCF_SECTOR_ICONS } from "@/components/Sections/bcf/bcfSectorMeta";
 import BcfGlobalMap from "@/components/Sections/bcf/BcfGlobalMap";
+import BcfIraqMap from "@/components/Sections/bcf/BcfIraqMap";
+import BcfMapLocationCard from "@/components/Sections/bcf/BcfMapLocationCard";
+import BcfMapPin from "@/components/Sections/bcf/BcfMapPin";
 import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_MAP_CONTEXT,
@@ -48,6 +49,7 @@ const filterIcons: Record<MapFilterId, typeof Building2> = {
 
 const scopeIcons: Record<MapScopeId, typeof Globe> = {
   global: Globe,
+  iraq: Map,
   kurdistan: MapPin,
 };
 
@@ -56,8 +58,11 @@ const scopeIcons: Record<MapScopeId, typeof Globe> = {
  * Turkish and Syrian border within days of the 2023 earthquakes; opening on the
  * Region alone told the smaller half of that story, so the scope is a category
  * the visitor switches, and it starts wide.
+ *
+ * Then the country, then the Region: each step in is a subset of the one before
+ * it, which is the only order a visitor does not have to think about.
  */
-const SCOPES: MapScopeId[] = ["global", "kurdistan"];
+const SCOPES: MapScopeId[] = ["global", "iraq", "kurdistan"];
 
 type BcfMapProps = {
   lang: BcfLang;
@@ -219,7 +224,7 @@ export default function BcfMap({
               >
                 {c.projects.beyondTitle}
               </h2>
-              <div className="grid flex-1 grid-cols-3 gap-4">
+              <div className="grid flex-1 grid-cols-2 gap-4">
                 {BCF_BEYOND_LOCATIONS.map((id) => (
                   <motion.button
                     key={id}
@@ -322,6 +327,22 @@ export default function BcfMap({
                   lang={lang}
                   selected={globalSelection}
                   onSelect={setGlobalSelection}
+                  onExploreProjects={onExploreProjects}
+                />
+              </motion.div>
+            ) : scope === "iraq" ? (
+              <motion.div
+                key="scope-iraq"
+                className="absolute inset-0 z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.22 } }}
+                transition={{ duration: 0.42, ease: BCF_EASE }}
+              >
+                <BcfIraqMap
+                  lang={lang}
+                  selectedLocation={selectedLocation}
+                  onSelectLocation={onSelectLocation}
                   onExploreProjects={onExploreProjects}
                 />
               </motion.div>
@@ -494,93 +515,20 @@ export default function BcfMap({
 
                     <AnimatePresence initial={false}>
                       {visibleLocations.map((loc, index) => {
-                        const isSelected = selectedLocation === loc.id;
                         const pin = bcfProjectPin(...loc.coordinates);
                         return (
-                          /* Pin anchoring stays on a plain wrapper — motion owns
-                             `transform` on the button for the bloom and tap scale.
-                             The wrapper centres on the coordinate rather than
-                             sitting above it: with twelve markers the dot is the
-                             thing that has to be exactly on its ground, and a
-                             label hanging beneath is free to be approximate. */
-                          <div
+                          <BcfMapPin
                             key={loc.id}
-                            className="absolute -translate-x-1/2 -translate-y-1/2"
-                            style={{ left: pin.x, top: pin.y }}
-                          >
-                            <motion.button
-                              type="button"
-                              variants={bcfBloom}
-                              initial="initial"
-                              animate="animate"
-                              exit={{ opacity: 0, scale: 0.7, transition: { duration: 0.22 } }}
-                              transition={{
-                                duration: 0.5,
-                                delay: 0.9 + index * 0.05,
-                                ease: BCF_EASE,
-                              }}
-                              onClick={() => {
-                                setHintVisible(false);
-                                onSelectLocation(loc.id);
-                              }}
-                              whileTap={BCF_TAP}
-                              className="group flex transform-gpu flex-col items-center"
-                            >
-                              {/* A dot, not a name plate. Five cities could each
-                                  carry a pill with their full name on it; twelve
-                                  cannot — "Sulaymaniyah" alone is wider than the
-                                  gap to Halabja, and the labels collided before
-                                  the map had even finished drawing. The name now
-                                  rides under the dot at a size that fits, and the
-                                  card carries the full form. */}
-                              <span className="relative grid h-9 w-9 place-items-center">
-                                {/* Halo ping marks a pin as live without needing a hover. */}
-                                {!reduceMotion ? (
-                                  <span
-                                    aria-hidden="true"
-                                    className="bcf-ping absolute h-6 w-6 rounded-full"
-                                    style={
-                                      {
-                                        backgroundColor: `${BCF.goldBright}55`,
-                                        "--ping-scale": "2.4",
-                                        "--ping-opacity": "0.55",
-                                        "--ping-duration": "2.4s",
-                                        "--ping-delay": `${index * 0.28}s`,
-                                      } as React.CSSProperties
-                                    }
-                                  />
-                                ) : null}
-                                <span
-                                  className="relative rounded-full border-2 transition-all duration-300"
-                                  style={{
-                                    width: isSelected ? 26 : 18,
-                                    height: isSelected ? 26 : 18,
-                                    borderColor: BCF.goldBright,
-                                    backgroundColor: isSelected
-                                      ? BCF.goldBright
-                                      : "rgba(10,10,10,0.85)",
-                                    boxShadow: isSelected
-                                      ? `0 0 30px ${BCF.gold}aa`
-                                      : `0 0 14px ${BCF.gold}55`,
-                                  }}
-                                />
-                              </span>
-                              <span
-                                className="mt-1 whitespace-nowrap rounded-md px-2 py-[3px] text-[22px] font-medium transition-all duration-300"
-                                style={{
-                                  color: isSelected ? BCF.bg : BCF.creamSoft,
-                                  backgroundColor: isSelected
-                                    ? BCF.goldBright
-                                    : "rgba(4,6,9,0.72)",
-                                  textShadow: isSelected
-                                    ? "none"
-                                    : "0 2px 8px rgba(0,0,0,0.9)",
-                                }}
-                              >
-                                {c.locations[loc.id].short}
-                              </span>
-                            </motion.button>
-                          </div>
+                            x={pin.x}
+                            y={pin.y}
+                            label={c.locations[loc.id].short}
+                            selected={selectedLocation === loc.id}
+                            index={index}
+                            onClick={() => {
+                              setHintVisible(false);
+                              onSelectLocation(loc.id);
+                            }}
+                          />
                         );
                       })}
                     </AnimatePresence>
@@ -597,128 +545,15 @@ export default function BcfMap({
                       exit={{ opacity: 0, y: 40, transition: { duration: 0.26 } }}
                       transition={{ duration: 0.55, ease: BCF_EASE }}
                     >
-                      <div
-                        className="w-full max-w-[920px] rounded-2xl border border-[#fbc158]/45 bg-[#0a0a0a]/95 p-8 backdrop-blur-xl"
-                        style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}
-                      >
-                        <div className="mb-4 flex items-start justify-between gap-4">
-                          <h2 className="text-[48px] font-semibold" style={{ color: BCF.gold }}>
-                            {selected.name}
-                          </h2>
-                          <motion.button
-                            type="button"
-                            onClick={() => onSelectLocation(null)}
-                            whileTap={BCF_TAP}
-                            transition={BCF_TAP_TRANSITION}
-                            className="grid h-12 w-12 transform-gpu place-items-center rounded-full border border-white/30"
-                            aria-label={c.close}
-                          >
-                            <X className="h-6 w-6" />
-                          </motion.button>
-                        </div>
-                        <p className="max-w-[760px] text-[24px] leading-relaxed text-white/80">
-                          {bcfDigits(selected.description, lang)}
-                        </p>
-
-                        {/* Sectors, not a landscape photograph. The card used to
-                            show a tourist plate of the nearest beauty spot — a
-                            waterfall for Sulaymaniyah, a castle for Kirkuk — and
-                            two invented totals underneath. What a visitor is
-                            about to open is a register of sectors, so that is
-                            what the card previews, drawn from the same data. */}
-                        <div className="mt-7 flex flex-wrap gap-3">
-                          {bcfSectorsFor(selectedLocation).map((record) => {
-                            const SectorIcon = BCF_SECTOR_ICONS[record.id];
-                            return (
-                              <span
-                                key={record.id}
-                                className="flex items-center gap-2.5 rounded-full border px-4 py-2"
-                                style={{
-                                  borderColor: `${BCF.gold}3d`,
-                                  backgroundColor: "rgba(251,193,88,0.07)",
-                                }}
-                              >
-                                <SectorIcon
-                                  className="h-6 w-6 shrink-0"
-                                  style={{ color: BCF.gold }}
-                                />
-                                <span className="text-[22px] text-white/85">
-                                  {c.projects.sectors[record.id]}
-                                </span>
-                              </span>
-                            );
-                          })}
-                        </div>
-
-                        <div className="mt-7 grid grid-cols-3 gap-8">
-                          <div>
-                            <p
-                              className="text-[52px] font-bold leading-none tabular-nums"
-                              style={{ color: BCF.gold }}
-                            >
-                              {bcfDigits(bcfSectorsFor(selectedLocation).length, lang)}
-                            </p>
-                            <p className="mt-2 text-[22px] text-white/75">
-                              {c.projects.sectorsLabel}
-                            </p>
-                          </div>
-                          <div>
-                            <p
-                              className="text-[52px] font-bold leading-none tabular-nums"
-                              style={{ color: BCF.gold }}
-                            >
-                              {bcfDigits(bcfEntryCountFor(selectedLocation), lang)}
-                            </p>
-                            <p className="mt-2 text-[22px] text-white/75">
-                              {c.projects.entriesLabel}
-                            </p>
-                          </div>
-                          {bcfYearSpanFor(selectedLocation) ? (
-                            <div>
-                              {/* Smaller than its two neighbours: "2012 - 2026"
-                                  is nine glyphs where they are one or two, and
-                                  at 52px it wrapped and shoved its own caption
-                                  out of the row. */}
-                              <p
-                                className="whitespace-nowrap text-[40px] font-bold leading-none tabular-nums"
-                                style={{ color: BCF.gold }}
-                                dir="ltr"
-                              >
-                                {bcfDigits(bcfYearSpanFor(selectedLocation)!, lang)}
-                              </p>
-                              <p className="mt-2 text-[22px] text-white/75">
-                                {c.projects.yearsLabel}
-                              </p>
-                            </div>
-                          ) : null}
-                        </div>
-                        <motion.button
-                          type="button"
-                          onClick={() => onExploreProjects(selectedLocation)}
-                          whileTap={BCF_TAP}
-                          transition={BCF_TAP_TRANSITION}
-                          className="mt-8 flex w-full transform-gpu items-center justify-between rounded-full border border-[#fbc158]/50 bg-black/25 px-8 py-5"
-                        >
-                          <span className="text-[28px] text-white">{selected.explore}</span>
-                          <span
-                            className={`grid h-14 w-14 place-items-center rounded-full border-2 ${
-                              reduceMotion ? "" : "bcf-pulse"
-                            }`}
-                            style={
-                              {
-                                borderColor: BCF.gold,
-                                "--pulse-scale": "1.06",
-                                "--pulse-duration": "2.4s",
-                              } as React.CSSProperties
-                            }
-                          >
-                            <ArrowRight
-                              className="h-7 w-7 rtl:rotate-180"
-                              style={{ color: BCF.gold }}
-                            />
-                          </span>
-                        </motion.button>
-                      </div>
+                      <BcfMapLocationCard
+                        lang={lang}
+                        title={selected.name}
+                        description={selected.description}
+                        register={selectedLocation}
+                        preview={selectedLocation}
+                        onClose={() => onSelectLocation(null)}
+                        onExplore={() => onExploreProjects(selectedLocation)}
+                      />
                     </motion.div>
                   ) : null}
                 </AnimatePresence>

@@ -26,6 +26,22 @@ function collect(modules: Record<string, string>): string[] {
     .map((key) => modules[key]);
 }
 
+/** Donors pinned to the head of the grid — major institutional supporters first. */
+const DONOR_PRIORITY = [
+  "lds-chariteis-logo.webp",
+  "emirates-red-crescent-logo.webp",
+  "kwait-is-by-your-side-logo.webp",
+];
+
+function prioritize(paths: string[], priorityFiles: string[]): string[] {
+  const byFile = new Map(paths.map((path) => [path.split("/").pop() ?? path, path]));
+  const pinned = priorityFiles
+    .map((file) => byFile.get(file))
+    .filter((path): path is string => Boolean(path));
+  const pinnedSet = new Set(pinned);
+  return [...pinned, ...paths.filter((path) => !pinnedSet.has(path))];
+}
+
 const partnerModules = import.meta.glob<string>(
   "@/assets/images/bcf/logos/partners/*.webp",
   { eager: true, import: "default" },
@@ -45,6 +61,6 @@ export type PartnerLogoGroupId = "partners" | "donors" | "sponsors";
 
 export const bcfPartnerLogos: Record<PartnerLogoGroupId, string[]> = {
   partners: collect(partnerModules),
-  donors: collect(donorModules),
+  donors: prioritize(collect(donorModules), DONOR_PRIORITY),
   sponsors: collect(sponsorModules),
 };

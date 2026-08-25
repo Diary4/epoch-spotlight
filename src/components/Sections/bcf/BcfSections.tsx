@@ -6,7 +6,7 @@ import {
   type BcfLang,
   type JourneyChapterId,
 } from "@/components/Sections/bcf/bcfContent";
-import { BCF } from "@/components/Sections/bcf/bcfTheme";
+import { BCF, bcfBleedTopStyle } from "@/components/Sections/bcf/bcfTheme";
 import {
   bcfJourneyBg,
   bcfJourneyStory,
@@ -105,18 +105,23 @@ export default function BcfSections({ lang, onBack, onSelect }: BcfSectionsProps
       /* The plate is a dark valley with a gold ridge; this depth keeps the
          silhouette behind the cards without washing out the sunlight. */
       overlayClassName="bg-black/55"
-    >
-      <div className="relative min-h-[1920px] w-full overflow-hidden">
-        {/* Local dark lift under the header so the title stays readable over
-            whatever part of the ridge line sits behind it. */}
+      /* Local dark lift under the header so the title stays readable over
+         whatever part of the ridge line sits behind it. It runs to the edge of
+         the screen rather than to the artboard: on a display wider than 9:16
+         an artboard-width scrim draws its own edges into the photograph, two
+         vertical seams either side of the title. */
+      bleedOverlay={
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-[460px]"
+          className="pointer-events-none absolute"
           style={{
+            ...bcfBleedTopStyle(460),
             background:
               "linear-gradient(180deg, rgba(4,6,9,0.82) 0%, rgba(4,6,9,0.42) 58%, transparent 100%)",
           }}
         />
-
+      }
+    >
+      <div className="relative min-h-[1920px] w-full overflow-hidden">
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div

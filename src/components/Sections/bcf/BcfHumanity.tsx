@@ -1,6 +1,13 @@
 import React from "react";
-import { AnimatePresence, motion } from "motion/react";
-import gsap from "gsap";
+import {
+  AnimatePresence,
+  animate,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 import { X } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
@@ -86,24 +93,29 @@ const categorySectors: Record<ServeCategoryId, SectorId> = {
  * something has to say so.
  */
 const CARD_W = 600;
-const CARD_GAP = 64;
-const CARD_PITCH = CARD_W + CARD_GAP;
-const ACTIVE_H = 760;
-const INACTIVE_H = 620;
-const INACTIVE_Y = 70;
-const TRACK_H = ACTIVE_H;
+const CARD_H = 760;
+/**
+ * Figma draws the off-centre cards at y=70 and 620px tall against the centre
+ * card's y=0 and 760px. Those two rectangles share a centre line, so the same
+ * silhouette falls out of scaling one 760px card about its own middle — and a
+ * scale is a compositor transform where a height is a layout property. That is
+ * the whole fix: nothing in this strip animates layout any more.
+ */
+const INACTIVE_SCALE = 620 / 760;
+/** Centre-to-centre spacing. Tighter than 600+64 because the sides now shrink. */
+const CARD_PITCH = 632;
 /** Figma Smart Animate default ≈ Ease In And Out @ 400ms */
-const ANIM_DURATION = 0.4;
-const ANIM_EASE = "power1.inOut";
+const SNAP_DURATION = 0.42;
+const SNAP_EASE = [0.45, 0, 0.2, 1] as const;
+/** A drag shorter than half a card still counts as a flick past this many px. */
+const FLICK_PX = 60;
 
 /**
- * How many cards either side of the centred one are drawn in full.
+ * How many cards either side of the centred one carry their photograph.
  *
- * The strip is twelve cards and about a card and a half of it is ever on
- * screen, so the other ten were being rasterised into a compositor layer nobody
- * could see. Two either side puts the nearest culled card a full card width
- * beyond the edge of the viewport — there is no index a drag can reach before
- * its content is already there, so nothing pops in.
+ * Every card's frame is mounted — twelve 600px boxes cost nothing — but the
+ * photographs are the expensive part, so they arrive with the visitor rather
+ * than all at once on entry.
  */
 const RENDER_WINDOW = 2;
 
@@ -116,12 +128,40 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   const initialIndex = 0;
 
   const viewportRef = React.useRef<HTMLDivElement | null>(null);
-  const trackRef = React.useRef<HTMLDivElement | null>(null);
-  const cardRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
-  const tagRefs = React.useRef<(HTMLDivElement | null)[]>([]);
-  const activeIndexRef = React.useRef(initialIndex);
-  /** Which card is currently *drawn* active — the one that has to be tweened back. */
-  const shownActiveRef = React.useRef(initialIndex);
+
+  /**
+   * The strip's whole state: a fractional card index.
+   *
+   * There is no track element any more. Every card sits at the centre of the
+   * viewport and carries its own `translateX((index - position) * pitch)`, so
+   * the thing the compositor is asked to move is a 600×760 card rather than the
+   * 7904px slab the twelve of them used to be laid out in. That slab, drawn at
+   * 2× on the 4K portrait panel and living under FitScaledCanvas's own scale,
+   * was past the texture size Chrome for Android will hand out in one surface;
+   * it got tiled, the tile invalidation went wrong under the scaled ancestor,
+   * and the result was the torn cards and doubled captions on the panel.
+   *
+   * A motion value rather than React state because a drag writes it every
+   * pointer event: the cards read it through `useTransform` and are re-styled
+   * off the main render path, so dragging never re-renders the component.
+   */
+  const position = useMotionValue(initialIndex);
+  const snapRef = React.useRef<ReturnType<typeof animate> | null>(null);
+  const dragRef = React.useRef({
+    startX: 0,
+    basePosition: initialIndex,
+    dragging: false,
+    moved: false,
+  });
+
+  /**
+   * The card nearest the centre. Only mounting and the position rail read it,
+   * so it is rounded off `position` rather than driving it — which is why a
+   * drag can update it live without ever fighting the transforms.
+   */
+  const [centerIndex, setCenterIndex] = React.useState(initialIndex);
+  const centerRef = React.useRef(initialIndex);
+
   /**
    * The span of cards whose photographs have been mounted.
    *
@@ -136,170 +176,108 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
     lo: initialIndex - RENDER_WINDOW,
     hi: initialIndex + RENDER_WINDOW,
   });
-  const dragRef = React.useRef({ startX: 0, baseX: 0, dragging: false, moved: false });
-  /**
-   * React mirror of `activeIndexRef`, for the position rail only. The ref stays
-   * the source of truth during a tween so a re-render never fights GSAP for the
-   * card transforms.
-   */
-  const [dotIndex, setDotIndex] = React.useState(initialIndex);
+
   /** The sector whose dialog is open, or null. Tapping the centred card opens it. */
   const [detailId, setDetailId] = React.useState<ServeCategoryId | null>(null);
   const detail = detailId
     ? (categories.find((cat) => cat.id === detailId) ?? null)
     : null;
 
-  /**
-   * Promote the strip only while it is actually moving.
-   *
-   * The track is twelve 600px cards and their gaps — 7904px wide — and the 4K
-   * portrait panel draws the artboard at 2×, so a permanent
-   * `will-change: transform` on it asked Chromium for a 15808×1520 compositing
-   * layer. That is past the texture size a lot of Android GPUs will give
-   * (8192px, and 4096px on the weaker ones), so the layer cannot be one
-   * surface: it gets split into tiles. Tiled layers under an ancestor that is
-   * itself scaled — which FitScaledCanvas is — are where Chrome for Android
-   * loses track of which tiles are dirty, and the result is the torn cards and
-   * doubled captions the panel was showing: whole rectangles of the previous
-   * frame left standing next to the new one.
-   *
-   * Held for the length of a tween or a drag and dropped after, the strip is a
-   * plain painted element at rest and there is no oversized layer to tile.
-   */
-  const setTrackLive = React.useCallback((live: boolean) => {
-    const track = trackRef.current;
-    if (track) track.style.willChange = live ? "transform" : "auto";
-  }, []);
-
   drawnSpanRef.current = {
-    lo: Math.min(drawnSpanRef.current.lo, dotIndex - RENDER_WINDOW),
-    hi: Math.max(drawnSpanRef.current.hi, dotIndex + RENDER_WINDOW),
+    lo: Math.min(drawnSpanRef.current.lo, centerIndex - RENDER_WINDOW),
+    hi: Math.max(drawnSpanRef.current.hi, centerIndex + RENDER_WINDOW),
   };
 
-  const trackXForIndex = React.useCallback((index: number, viewportWidth: number) => {
-    const center = viewportWidth / 2;
-    return center - (index * CARD_PITCH + CARD_W / 2);
-  }, []);
-
-  const animateToIndex = React.useCallback(
-    (nextIndex: number, immediate = false) => {
-      const viewport = viewportRef.current;
-      const track = trackRef.current;
-      if (!viewport || !track) return;
-
-      const clamped = Math.max(0, Math.min(categories.length - 1, nextIndex));
-      activeIndexRef.current = clamped;
-      setDotIndex(clamped);
-
-      const x = trackXForIndex(clamped, viewport.clientWidth);
-      const duration = immediate ? 0 : ANIM_DURATION;
-
-      // GSAP owns x / y / height / tags — avoid React style fighting mid-tween.
-      setTrackLive(true);
-      gsap.to(track, {
-        x,
-        duration,
-        ease: ANIM_EASE,
-        overwrite: "auto",
-        onComplete: () => setTrackLive(false),
-      });
-
-      /**
-       * Only the card losing the centre and the card taking it.
-       *
-       * This used to walk all twelve. Ten of those tweens were writing the
-       * value the card already held — but GSAP still writes it, and `height` is
-       * a layout property, so every frame of every switch dirtied the layout of
-       * twelve 600×760 cards to move two of them. That is most of the cost of a
-       * swipe, and on the panel it is what the corrupted frames were being
-       * drawn on top of.
-       *
-       * A jump straight to `immediate` (first layout, resize, language switch)
-       * still settles the whole strip, because in that case there is no
-       * previous state to trust.
-       */
-      const touched = immediate
-        ? cardRefs.current.map((_, i) => i)
-        : Array.from(new Set([shownActiveRef.current, clamped]));
-      shownActiveRef.current = clamped;
-
-      touched.forEach((i) => {
-        const card = cardRefs.current[i];
-        if (!card) return;
-        const active = i === clamped;
-        gsap.to(card, {
-          y: active ? 0 : INACTIVE_Y,
-          height: active ? ACTIVE_H : INACTIVE_H,
-          duration,
-          ease: ANIM_EASE,
-          overwrite: "auto",
-          boxShadow: active
-            ? "0px 0px 20px 4px rgba(251,178,47,0.25)"
-            : "0px 0px 0px 0px rgba(251,178,47,0)",
-        });
-
-        const tags = tagRefs.current[i];
-        if (!tags) return;
-        gsap.to(tags, {
-          autoAlpha: active ? 1 : 0,
-          y: active ? 0 : 12,
-          duration: immediate ? 0 : ANIM_DURATION * 0.9,
-          ease: active ? "power2.out" : "power1.in",
-          overwrite: "auto",
-        });
-      });
-    },
-    [categories.length, setTrackLive, trackXForIndex],
+  const clampIndex = React.useCallback(
+    (index: number) => Math.max(0, Math.min(categories.length - 1, index)),
+    [categories.length],
   );
 
+  useMotionValueEvent(position, "change", (value) => {
+    const nearest = clampIndex(Math.round(value));
+    if (nearest === centerRef.current) return;
+    centerRef.current = nearest;
+    setCenterIndex(nearest);
+  });
+
+  const goToIndex = React.useCallback(
+    (nextIndex: number, immediate = false) => {
+      const clamped = clampIndex(nextIndex);
+      snapRef.current?.stop();
+      snapRef.current = null;
+      if (immediate) {
+        position.set(clamped);
+        return;
+      }
+      snapRef.current = animate(position, clamped, {
+        duration: SNAP_DURATION,
+        ease: SNAP_EASE,
+      });
+    },
+    [clampIndex, position],
+  );
+
+  /** A language switch re-labels every card, so the strip starts over. */
   React.useLayoutEffect(() => {
-    animateToIndex(initialIndex, true);
-  }, [animateToIndex, initialIndex, lang]);
+    goToIndex(initialIndex, true);
+  }, [goToIndex, initialIndex, lang]);
 
   /** A dialog left open across a language switch would keep the old copy. */
   React.useEffect(() => {
     setDetailId(null);
   }, [lang]);
 
-  React.useEffect(() => {
-    const onResize = () => animateToIndex(activeIndexRef.current, true);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [animateToIndex]);
+  React.useEffect(() => () => snapRef.current?.stop(), []);
 
   const onPointerDown = (event: React.PointerEvent) => {
-    const track = trackRef.current;
     const viewport = viewportRef.current;
-    if (!track || !viewport) return;
+    if (!viewport) return;
+    snapRef.current?.stop();
+    snapRef.current = null;
     dragRef.current = {
       startX: event.clientX,
-      baseX: gsap.getProperty(track, "x") as number,
+      basePosition: position.get(),
       dragging: true,
       moved: false,
     };
-    setTrackLive(true);
     viewport.setPointerCapture(event.pointerId);
   };
 
   const onPointerMove = (event: React.PointerEvent) => {
-    if (!dragRef.current.dragging || !trackRef.current) return;
+    if (!dragRef.current.dragging) return;
     const dx = event.clientX - dragRef.current.startX;
     if (Math.abs(dx) > 8) dragRef.current.moved = true;
-    gsap.set(trackRef.current, { x: dragRef.current.baseX + dx });
+    const raw = dragRef.current.basePosition - dx / CARD_PITCH;
+    const last = categories.length - 1;
+    /* Past either end the strip follows the finger at a third of the distance,
+       so pulling on the first or last card reads as resistance rather than as
+       the strip having come loose. */
+    const bounded =
+      raw < 0 ? raw * 0.3 : raw > last ? last + (raw - last) * 0.3 : raw;
+    position.set(bounded);
   };
 
   const onPointerUp = (event: React.PointerEvent) => {
     if (!dragRef.current.dragging) return;
     dragRef.current.dragging = false;
     const dx = event.clientX - dragRef.current.startX;
-    const threshold = 80;
-    if (dx < -threshold) {
-      animateToIndex(activeIndexRef.current + 1);
-    } else if (dx > threshold) {
-      animateToIndex(activeIndexRef.current - 1);
-    } else {
-      animateToIndex(activeIndexRef.current);
+    const from = Math.round(dragRef.current.basePosition);
+    let next = Math.round(position.get());
+    /* A short flick never crosses the half-card the rounding wants, but it is
+       still unmistakably a request for the next sector. */
+    if (next === from && Math.abs(dx) > FLICK_PX) next += dx < 0 ? 1 : -1;
+    goToIndex(next);
+  };
+
+  const onCardSelect = (index: number) => {
+    if (dragRef.current.moved) return;
+    // The centred card is already chosen; tapping it again is the request for
+    // its detail. Any other card just comes forward.
+    if (index === centerRef.current) {
+      setDetailId(categories[index].id);
+      return;
     }
+    goToIndex(index);
   };
 
   return (
@@ -379,115 +357,25 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
         >
-          <div
-            ref={trackRef}
-            dir="ltr"
-            /* No `will-change` here — see setTrackLive above. */
-            className="absolute top-0 flex flex-row"
-            style={{ height: TRACK_H, gap: CARD_GAP }}
-          >
-            {categories.map((category, index) => {
+          {categories.map((category, index) => (
+            <ServeCard
+              key={category.id}
+              index={index}
+              position={position}
+              category={category}
+              image={categoryImages[category.id]}
+              lang={lang}
+              cta={c.serveDetailCta}
+              centred={index === centerIndex}
               /* Everything further out than the render window is an empty
-                 plate: off screen, so there is nothing to see, and nothing for
-                 the compositor to keep a tile of either. */
-              const drawn =
+                 plate: off screen, so there is nothing to see. */
+              drawn={
                 index >= drawnSpanRef.current.lo &&
-                index <= drawnSpanRef.current.hi;
-
-              return (
-              <button
-                key={category.id}
-                type="button"
-                ref={(el) => {
-                  cardRefs.current[index] = el;
-                }}
-                data-serve={category.id}
-                aria-label={
-                  index === dotIndex
-                    ? `${category.title} — ${c.serveDetailCta}`
-                    : category.title
-                }
-                onClick={() => {
-                  if (dragRef.current.moved) return;
-                  // The centred card is already chosen; tapping it again is the
-                  // request for its detail. Any other card just comes forward.
-                  if (index === activeIndexRef.current) {
-                    setDetailId(category.id);
-                    return;
-                  }
-                  animateToIndex(index);
-                }}
-                className="relative flex shrink-0 flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] text-center backdrop-blur-[2px]"
-                style={{
-                  width: CARD_W,
-                  height: index === initialIndex ? ACTIVE_H : INACTIVE_H,
-                  transform:
-                    index === initialIndex
-                      ? "translateY(0px)"
-                      : `translateY(${INACTIVE_Y}px)`,
-                  /* The card's height is animated, which is a layout property.
-                     Containment scopes that invalidation to the card itself, so
-                     growing the centre one does not put the other eleven and
-                     the whole strip through layout on every frame. */
-                  contain: "layout paint",
-                }}
-              >
-                <span className="relative block h-[500px] w-full shrink-0 overflow-hidden">
-                  {drawn ? (
-                  <img
-                    src={categoryImages[category.id]}
-                    alt=""
-                    className="h-full w-full object-cover object-center"
-                    draggable={false}
-                  />
-                  ) : null}
-                  {/* Warm floor under the photo so the card edge does not cut a
-                      bright image dead against the dark field. */}
-                  <span
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(4,7,10,0) 70%, rgba(4,7,10,0.35) 100%)",
-                    }}
-                  />
-                </span>
-
-                {/* Twelve sector names, several of them four words long, cannot
-                    hold the 64px display size the five-card strip used. */}
-                <span
-                  dir={lang === "en" ? "ltr" : "rtl"}
-                  className="mt-6 block px-6 text-[38px] font-bold leading-[1.14] text-white"
-                >
-                  {category.title}
-                </span>
-
-                <div
-                  ref={(el) => {
-                    tagRefs.current[index] = el;
-                  }}
-                  dir={lang === "en" ? "ltr" : "rtl"}
-                  className="mt-auto flex w-full flex-col items-center px-6 pb-7"
-                  style={{ opacity: 0, visibility: "hidden" }}
-                >
-                  <span
-                    className="inline-flex items-center gap-3 rounded-full border px-8 py-3.5 text-[22px] font-medium"
-                    style={{
-                      borderColor: `${BCF.gold}66`,
-                      backgroundColor: "rgba(251,193,88,0.12)",
-                      color: BCF.cream,
-                    }}
-                  >
-                    <span
-                      className="h-2.5 w-2.5 rounded-full"
-                      style={{ backgroundColor: BCF.goldBright }}
-                    />
-                    {c.serveDetailCta}
-                  </span>
-                </div>
-              </button>
-              );
-            })}
-          </div>
+                index <= drawnSpanRef.current.hi
+              }
+              onSelect={onCardSelect}
+            />
+          ))}
         </motion.div>
 
         {/* Position rail — a strip of twelve cards with no indicator gives the
@@ -504,12 +392,12 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
               key={`dot-${category.id}`}
               type="button"
               aria-label={category.title}
-              onClick={() => animateToIndex(index)}
+              onClick={() => goToIndex(index)}
               className="h-3 rounded-full transition-all duration-500 ease-smooth-out"
               style={{
-                width: index === dotIndex ? 64 : 24,
+                width: index === centerIndex ? 64 : 24,
                 backgroundColor:
-                  index === dotIndex ? BCF.goldBright : "rgba(255,255,255,0.24)",
+                  index === centerIndex ? BCF.goldBright : "rgba(255,255,255,0.24)",
               }}
             />
           ))}
@@ -523,6 +411,123 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
         />
       </div>
     </BcfShell>
+  );
+}
+
+/**
+ * One sector card.
+ *
+ * Every value it animates — x, scale, opacity — is a compositor property read
+ * straight off the shared `position` motion value, so a swipe re-styles five
+ * small elements and never touches layout or React's render path.
+ */
+function ServeCard({
+  index,
+  position,
+  category,
+  image,
+  lang,
+  cta,
+  centred,
+  drawn,
+  onSelect,
+}: {
+  index: number;
+  position: MotionValue<number>;
+  category: ServeCategory;
+  image: string;
+  lang: BcfLang;
+  cta: string;
+  centred: boolean;
+  drawn: boolean;
+  onSelect: (index: number) => void;
+}) {
+  /** Distance from the centre in cards, clamped — past one card nothing changes. */
+  const near = useTransform(position, (p) => Math.min(Math.abs(index - p), 1));
+  const x = useTransform(position, (p) => (index - p) * CARD_PITCH);
+  const scale = useTransform(near, (d) => 1 + (INACTIVE_SCALE - 1) * d);
+  /** The shoulders sit back rather than dropping out, so depth reads at a glance. */
+  const opacity = useTransform(position, (p) =>
+    Math.max(0.28, 1 - Math.max(0, Math.abs(index - p) - 1) * 0.55),
+  );
+  const glow = useTransform(
+    near,
+    (d) => `0 0 20px 4px rgba(251,178,47,${(0.25 * (1 - d)).toFixed(3)})`,
+  );
+  /** The cue belongs to the centred card only, and leaves ahead of the move. */
+  const ctaOpacity = useTransform(position, (p) =>
+    Math.max(0, 1 - Math.abs(index - p) * 2.4),
+  );
+
+  return (
+    <motion.button
+      type="button"
+      data-serve={category.id}
+      aria-label={centred ? `${category.title} — ${cta}` : category.title}
+      onClick={() => onSelect(index)}
+      style={{
+        x,
+        scale,
+        opacity,
+        boxShadow: glow,
+        width: CARD_W,
+        height: CARD_H,
+        left: "50%",
+        marginLeft: -CARD_W / 2,
+        zIndex: centred ? 2 : 1,
+      }}
+      className="absolute top-0 flex flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] text-center backdrop-blur-[2px]"
+    >
+      <span className="relative block h-[500px] w-full shrink-0 overflow-hidden">
+        {drawn ? (
+          <img
+            src={image}
+            alt=""
+            className="h-full w-full object-cover object-center"
+            draggable={false}
+          />
+        ) : null}
+        {/* Warm floor under the photo so the card edge does not cut a bright
+            image dead against the dark field. */}
+        <span
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(4,7,10,0) 70%, rgba(4,7,10,0.35) 100%)",
+          }}
+        />
+      </span>
+
+      {/* Twelve sector names, several of them four words long, cannot hold the
+          64px display size the five-card strip used. */}
+      <span
+        dir={lang === "en" ? "ltr" : "rtl"}
+        className="mt-6 block px-6 text-[38px] font-bold leading-[1.14] text-white"
+      >
+        {category.title}
+      </span>
+
+      <motion.div
+        dir={lang === "en" ? "ltr" : "rtl"}
+        style={{ opacity: ctaOpacity }}
+        className="mt-auto flex w-full flex-col items-center px-6 pb-7"
+      >
+        <span
+          className="inline-flex items-center gap-3 rounded-full border px-8 py-3.5 text-[22px] font-medium"
+          style={{
+            borderColor: `${BCF.gold}66`,
+            backgroundColor: "rgba(251,193,88,0.12)",
+            color: BCF.cream,
+          }}
+        >
+          <span
+            className="h-2.5 w-2.5 rounded-full"
+            style={{ backgroundColor: BCF.goldBright }}
+          />
+          {cta}
+        </span>
+      </motion.div>
+    </motion.button>
   );
 }
 

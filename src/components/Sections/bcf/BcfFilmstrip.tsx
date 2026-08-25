@@ -1,5 +1,10 @@
 import React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type PanInfo,
+} from "motion/react";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
   BCF_EASE,
@@ -155,6 +160,7 @@ function Plate({
   label,
   centre,
   size,
+  focus,
   onClick,
 }: {
   src: string;
@@ -162,6 +168,8 @@ function Plate({
   label?: string;
   centre: boolean;
   size: FilmstripSize;
+  /** `object-position` on the plate in the gate. */
+  focus: string;
   onClick?: () => void;
 }) {
   const s = SIZES[size];
@@ -180,12 +188,17 @@ function Plate({
   const body = (
     <>
       <AnimatePresence initial={false}>
+        {/* The plate always fills its frame, so the only question is which part
+            of a tall photograph a landscape gate keeps. Dead centre cuts the
+            heads off a standing group; the faces in this archive sit in the
+            upper third, so that is where the crop is anchored. */}
         <motion.img
           key={src}
           src={src}
           alt={alt}
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-top"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={centre ? { objectPosition: focus } : { objectPosition: "50% 12%" }}
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
@@ -242,6 +255,14 @@ type BcfFilmstripProps = {
   size?: FilmstripSize;
   className?: string;
   delay?: number;
+  /**
+   * `object-position` for the plate in the gate. Faces sit above the middle in
+   * almost every frame here, so the default crops from the upper third; a page
+   * with a differently framed set can override it, and `focusFor` can name a
+   * single plate that needs its own anchor.
+   */
+  focus?: string;
+  focusFor?: Record<number, string>;
 };
 
 /**
@@ -262,6 +283,8 @@ export default function BcfFilmstrip({
   size = "lg",
   className = "",
   delay = 0.3,
+  focus = "50% 22%",
+  focusFor,
 }: BcfFilmstripProps) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = React.useState(0);
@@ -288,17 +311,36 @@ export default function BcfFilmstrip({
   const altAt = (offset: number) =>
     alts?.[((index + offset) % count + count) % count] ?? "";
 
-  const swipeX = React.useRef<number | null>(null);
-  const onPointerDown = (event: React.PointerEvent) => {
-    swipeX.current = event.clientX;
-  };
-  const onPointerUp = (event: React.PointerEvent) => {
-    if (swipeX.current == null) return;
-    const dx = event.clientX - swipeX.current;
-    swipeX.current = null;
-    if (Math.abs(dx) < 48) return;
-    const towardNext = dx < 0;
+  /**
+   * The strip is dragged, not only tapped.
+   *
+   * `drag="x"` with both constraints pinned to 0 lets the row follow the finger
+   * and rubber-band back on release, which is the whole reason a visitor knows
+   * it can be swiped at all — a row that does not move under the thumb reads as
+   * a static picture. The step is decided on release from distance *or* flick
+   * speed, so a short fast swipe counts.
+   */
+  const draggedRef = React.useRef(false);
+
+  const onDragEnd = (_event: unknown, info: PanInfo) => {
+    const dx = info.offset.x;
+    const vx = info.velocity.x;
+    const decisive = Math.abs(dx) > 60 || Math.abs(vx) > 420;
+    // Any real movement suppresses the tap the neighbouring plates listen for,
+    // so a swipe that starts on a plate does not also jump to it.
+    draggedRef.current = Math.abs(dx) > 8;
+    if (!decisive) return;
+    const towardNext = (Math.abs(vx) > 420 ? vx : dx) < 0;
     step(rtl === towardNext ? -1 : 1);
+  };
+
+  /** A plate tap only counts when the gesture was not a drag. */
+  const tap = (delta: number) => () => {
+    if (draggedRef.current) {
+      draggedRef.current = false;
+      return;
+    }
+    step(delta);
   };
 
   return (
@@ -311,16 +353,16 @@ export default function BcfFilmstrip({
       <div
         className="relative w-full overflow-hidden"
         style={{ height: SIZES[size].band }}
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => {
-          swipeX.current = null;
-        }}
       >
         <FilmBand width={width} size={size} />
-        <div
-          className="absolute inset-0 flex items-center justify-center"
+        <motion.div
+          className="absolute inset-0 flex cursor-grab items-center justify-center active:cursor-grabbing"
           style={{ gap: PLATE_GAP }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.16}
+          dragMomentum={false}
+          onDragEnd={onDragEnd}
         >
           {/* The step is bound to what the plate *shows*, not to the side of
               the screen it lands on — so it stays "touch that photograph to go
@@ -331,18 +373,26 @@ export default function BcfFilmstrip({
             label="previous"
             centre={false}
             size={size}
-            onClick={() => step(-1)}
+            focus={focus}
+            onClick={tap(-1)}
           />
-          <Plate src={at(0)} alt={altAt(0)} centre size={size} />
+          <Plate
+            src={at(0)}
+            alt={altAt(0)}
+            centre
+            size={size}
+            focus={focusFor?.[index] ?? focus}
+          />
           <Plate
             src={at(1)}
             alt=""
             label="next"
             centre={false}
             size={size}
-            onClick={() => step(1)}
+            focus={focus}
+            onClick={tap(1)}
           />
-        </div>
+        </motion.div>
       </div>
 
       {controls ? (

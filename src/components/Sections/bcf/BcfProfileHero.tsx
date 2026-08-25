@@ -26,6 +26,8 @@ type BcfProfileHeroProps = {
   objectPosition?: string;
   /** Widen the plate when a name runs long in Kurdish or Arabic. */
   plateWidth?: number;
+  /** Heavier dissolve at the foot — for heroes that meet a filmstrip below. */
+  strongBottomFade?: boolean;
 };
 
 /**
@@ -47,11 +49,12 @@ export default function BcfProfileHero({
   height = 700,
   objectPosition = "50% 28%",
   plateWidth = 640,
+  strongBottomFade = false,
 }: BcfProfileHeroProps) {
   return (
     <div
       className="relative w-full shrink-0 overflow-hidden"
-      style={{ height }}
+      style={{ height, ...(strongBottomFade ? { background: BCF.bg } : {}) }}
     >
       <motion.img
         src={image}
@@ -59,7 +62,17 @@ export default function BcfProfileHero({
         decoding="async"
         {...HIGH_FETCH_PRIORITY}
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition }}
+        style={{
+          objectPosition,
+          ...(strongBottomFade
+            ? {
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 72%, rgba(0,0,0,0.7) 88%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 72%, rgba(0,0,0,0.7) 88%, transparent 100%)",
+              }
+            : {}),
+        }}
         initial={{ opacity: 0, scale: 1.06 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: BCF_EASE }}
@@ -71,10 +84,21 @@ export default function BcfProfileHero({
       <span
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "linear-gradient(180deg, rgba(4,3,2,0.62) 0%, rgba(4,3,2,0.10) 30%, rgba(4,3,2,0.55) 72%, rgba(10,10,10,0.96) 100%)",
+          background: strongBottomFade
+            ? "linear-gradient(180deg, rgba(4,3,2,0.55) 0%, rgba(4,3,2,0.08) 28%, rgba(4,3,2,0.28) 68%, rgba(10,10,10,0.55) 88%, #0a0a0a 100%)"
+            : "linear-gradient(180deg, rgba(4,3,2,0.62) 0%, rgba(4,3,2,0.10) 30%, rgba(4,3,2,0.55) 72%, rgba(10,10,10,0.96) 100%)",
         }}
       />
+      {strongBottomFade ? (
+        <span
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            height: "28%",
+            background:
+              "linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.35) 55%, #0a0a0a 100%)",
+          }}
+        />
+      ) : null}
       <span
         className="pointer-events-none absolute inset-0"
         style={{
