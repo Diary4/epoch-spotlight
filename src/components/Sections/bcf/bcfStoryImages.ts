@@ -31,13 +31,18 @@ export type StoryImagePair = {
 export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
   founded: { front: journeyStory, back: journeyTrust },
   "orphan-care": { front: humanityEducation, back: humanityRelief },
+  "van-earthquake": { front: humanityShelter, back: humanityRelief },
+  "syrian-refugees": { front: humanityCamp, back: impactCamps },
   sinjar: { front: humanityProtection, back: humanityShelter },
   camps: { front: humanityCamp, back: impactCamps },
   ecosoc: { front: trustRecognition, back: trustPartnerships },
   sphere: { front: trustLeadership, back: impactEmployees },
+  "syria-cross-border": { front: humanityFood, back: journeyHumanity },
   "uk-duhok": { front: humanityHealth, back: humanityCommunity },
+  autism: { front: humanityHealth, back: humanityEducation },
   "iso-quake": { front: humanityFood, back: journeyHumanity },
-  recent: { front: impactFamilies, back: impactBeneficiaries },
+  "drug-rehab": { front: trustRecognition, back: humanityHealth },
+  shipments: { front: impactFamilies, back: impactBeneficiaries },
 };
 
 export const bcfStoryImageFallback: StoryImagePair = {

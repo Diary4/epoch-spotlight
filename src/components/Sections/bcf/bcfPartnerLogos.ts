@@ -9,11 +9,16 @@
  * Numbered `N-scaled.webp` plates are typeset names with no mark. Those go
  * after graphic logos so the grid opens on brands, not on word tiles.
  *
- * Priority pinning must run on glob *keys* (source paths like
- * `…/lds-chariteis-logo.webp`). Mapping to URLs first breaks production:
- * Vite emits hashed filenames (`lds-chariteis-logo-Ab12.webp`), so lookups
- * against the original names never match and the grid falls back to A–Z.
+ * Lead donors are static imports (not filename string matches). Matching by
+ * basename against glob *values* fails in production because Vite hashes
+ * asset URLs; matching against glob *keys* can also fail depending on how
+ * the build rewrites the eager-glob object. URL identity from a static
+ * import is stable in both dev and the production bundle.
  */
+
+import donorLds from "@/assets/images/bcf/logos/donors/lds-chariteis-logo.webp";
+import donorEmirates from "@/assets/images/bcf/logos/donors/emirates-red-crescent-logo.webp";
+import donorKuwaitSide from "@/assets/images/bcf/logos/donors/kwait-is-by-your-side-logo.webp";
 
 function isTextPlate(path: string): boolean {
   const file = path.split("/").pop() ?? "";
@@ -33,27 +38,18 @@ function collect(modules: Record<string, string>): string[] {
   return sortedKeys(modules).map((key) => modules[key]);
 }
 
-/** Donors pinned to the head of the grid — major institutional supporters first. */
-const DONOR_PRIORITY = [
-  "lds-chariteis-logo.webp",
-  "emirates-red-crescent-logo.webp",
-  "kwait-is-by-your-side-logo.webp",
+/** Major institutional supporters — always first, in this order. */
+const DONOR_LEAD: readonly string[] = [
+  donorLds,
+  donorEmirates,
+  donorKuwaitSide,
 ];
 
-/** Pin by source filename, then resolve to the built asset URLs. */
-function collectPrioritized(
-  modules: Record<string, string>,
-  priorityFiles: string[],
-): string[] {
-  const keys = sortedKeys(modules);
-  const byFile = new Map(keys.map((key) => [key.split("/").pop() ?? key, key]));
-  const pinned = priorityFiles
-    .map((file) => byFile.get(file))
-    .filter((key): key is string => Boolean(key));
-  const pinnedSet = new Set(pinned);
-  return [...pinned, ...keys.filter((key) => !pinnedSet.has(key))].map(
-    (key) => modules[key],
-  );
+function collectDonors(modules: Record<string, string>): string[] {
+  const lead = [...DONOR_LEAD];
+  const leadSet = new Set(lead);
+  const rest = collect(modules).filter((src) => !leadSet.has(src));
+  return [...lead, ...rest];
 }
 
 const partnerModules = import.meta.glob<string>(
@@ -75,6 +71,6 @@ export type PartnerLogoGroupId = "partners" | "donors" | "sponsors";
 
 export const bcfPartnerLogos: Record<PartnerLogoGroupId, string[]> = {
   partners: collect(partnerModules),
-  donors: collectPrioritized(donorModules, DONOR_PRIORITY),
+  donors: collectDonors(donorModules),
   sponsors: collect(sponsorModules),
 };
