@@ -44,7 +44,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import worldTopology from "@/assets/geo/world-countries-110m.json";
+import { BCF_WORLD_FEATURES } from "@/components/Sections/bcf/bcfWorldGeography";
 
 /**
  * The world half of Where We Work.
@@ -176,7 +176,7 @@ type BcfGlobalMapProps = {
   onExploreProjects: (id: LocationId) => void;
 };
 
-export default function BcfGlobalMap({
+function BcfGlobalMap({
   lang,
   selected,
   onSelect,
@@ -434,7 +434,7 @@ export default function BcfGlobalMap({
    */
   const countries = React.useMemo(
     () => (
-      <Geographies geography={worldTopology}>
+      <Geographies geography={BCF_WORLD_FEATURES}>
         {({ geographies }) =>
           geographies.map((geo) => {
             const hit = highlighted.get(String(geo.id));
@@ -1011,3 +1011,18 @@ function ZoomButton({
     </motion.button>
   );
 }
+
+/**
+ * Memoised, because the world map now outlives the scope it belongs to.
+ *
+ * Switching scope re-renders the page around this component, and while the 177
+ * country paths are memoised on their own, everything beside them is not: the
+ * graticule builds a fresh path, the thirteen arcs are reprojected geodesics,
+ * and the markers are rebuilt. That is a few milliseconds of main thread on the
+ * exact frame the crossfade is starting, which is where a dropped frame shows.
+ *
+ * Nothing this component is given changes on a scope switch — the page holds
+ * the selection and clears it before the switch — so the honest answer is to
+ * not render at all.
+ */
+export default React.memo(BcfGlobalMap);
