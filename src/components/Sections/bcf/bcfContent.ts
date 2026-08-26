@@ -1075,7 +1075,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             title: "Key achievements",
             items: [
-              "310 schools renovated",
+              "315 schools renovated",
               "362,538 school materials and stationery items distributed",
               "131 classrooms built",
               "The Tanahi Center opened in 2022",
@@ -1823,7 +1823,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "schools",
-        value: "310",
+        value: "315",
         title: "Schools Renovated",
         description: "Learning environments restored for children and young people.",
       },
@@ -2334,7 +2334,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             title: "دەستکەوتە سەرەکییەکان",
             items: [
-              "نۆژەنکردنەوەی ٣١٠ قوتابخانە",
+              "نۆژەنکردنەوەی ٣١٥ قوتابخانە",
               "دابەشکردنی ٣٦٢,٥٣٨ پێداویستی قوتابخانە و تێنووس و قەڵەم",
               "دروستکردنی ١٣١ پۆلی خوێندن",
               "کردنەوەی سەنتەری تەنهایی لە ساڵی ٢٠٢٢",
@@ -3072,7 +3072,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "schools",
-        value: "310",
+        value: "315",
         title: "قوتابخانەی نۆژەنکراو",
         description: "ژینگەی فێربوون بۆ منداڵان و گەنجان",
       },
@@ -3582,7 +3582,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             title: "الإنجازات الرئيسية",
             items: [
-              "ترميم 310 مدارس",
+              "ترميم 315 مدارس",
               "توزيع 362,538 قطعة من المواد واللوازم المدرسية",
               "بناء 131 صفاً دراسياً",
               "افتتاح مركز تناهي عام 2022",
@@ -4320,7 +4320,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "schools",
-        value: "310",
+        value: "315",
         title: "مدارس مجدّدة",
         description: "بيئات تعلم أُعيد ترميمها للأطفال والشباب",
       },
