@@ -52,7 +52,8 @@ import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
 /** Portrait for the Board Chief card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/main.webp";
-import presidentPortrait from "@/assets/images/bcf/from-source/president-musa.webp";
+/** Studio portrait for Musa Ahmad's leadership card (detail cover stays separate). */
+import presidentPortrait from "@/assets/images/bcf/from-source/president-musa-card.webp";
 /** Studio portrait for Sidad Barzani's leadership card. */
 import founderPortrait from "@/assets/images/bcf/thumbs/bcf-founder.webp";
 
