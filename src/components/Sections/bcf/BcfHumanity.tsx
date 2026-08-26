@@ -28,6 +28,7 @@ import {
 } from "@/components/Sections/bcf/bcfMotion";
 import { type SectorId } from "@/components/Sections/bcf/bcfProjectData";
 import { BCF_SECTOR_ICONS } from "@/components/Sections/bcf/bcfSectorMeta";
+import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import { bcfTrustBg } from "@/components/Sections/bcf/bcfAssets";
 import foodImg from "@/assets/images/bcf/from-source/humanity-food.webp";
 import healthImg from "@/assets/images/bcf/from-source/humanity-health.webp";
@@ -632,8 +633,12 @@ function ServeDetailDialog({
             />
 
             {/* The longest sectors run to two groups of nine lines; the body
-                scrolls so a dialog never grows past the panel. */}
-            <div className="mt-8 min-h-0 flex-1 overflow-y-auto overscroll-contain pe-2">
+                scrolls so a dialog never grows past the panel. `scrollbar-hide`
+                for the same reason the rest of the kiosk uses it: this is a
+                touch panel, the bar is furniture nobody can grab, and a track
+                appearing down the edge of a glass card breaks it. Scrolling
+                itself is untouched — the content still moves under a finger. */}
+            <div className="scrollbar-hide mt-8 min-h-0 flex-1 overflow-y-auto overscroll-contain pe-2">
               <motion.p
                 variants={bcfRise}
                 className={`text-[28px] text-[#fdeed4] ${
@@ -642,6 +647,54 @@ function ServeDetailDialog({
               >
                 {category.intro}
               </motion.p>
+
+              {category.beneficiaries ? (
+                <motion.div
+                  variants={bcfRise}
+                  className="mt-10 rounded-[22px] border px-8 py-7"
+                  style={{
+                    borderColor: `${BCF.gold}66`,
+                    background:
+                      "linear-gradient(135deg, rgba(251,193,88,0.12), rgba(0,0,0,0.28))",
+                    boxShadow: `inset 0 0 0 1px ${BCF.gold}18, 0 18px 40px rgba(0,0,0,0.28)`,
+                  }}
+                >
+                  <p
+                    className="text-[22px] font-semibold uppercase tracking-[0.14em]"
+                    style={{ color: BCF.gold }}
+                  >
+                    {c.serveBeneficiariesLabel}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-x-12 gap-y-4">
+                    {category.beneficiaries.families ? (
+                      <div>
+                        <p
+                          className="text-[44px] font-light leading-none tabular-nums"
+                          style={{ color: BCF.cream }}
+                        >
+                          {bcfDigits(category.beneficiaries.families, lang)}
+                        </p>
+                        <p className="mt-2 text-[22px] text-white/60">
+                          {c.serveFamiliesLabel}
+                        </p>
+                      </div>
+                    ) : null}
+                    {category.beneficiaries.individuals ? (
+                      <div>
+                        <p
+                          className="text-[44px] font-light leading-none tabular-nums"
+                          style={{ color: BCF.cream }}
+                        >
+                          {bcfDigits(category.beneficiaries.individuals, lang)}
+                        </p>
+                        <p className="mt-2 text-[22px] text-white/60">
+                          {c.serveIndividualsLabel}
+                        </p>
+                      </div>
+                    ) : null}
+                  </div>
+                </motion.div>
+              ) : null}
 
               {category.groups.map((group) => (
                 <motion.section key={group.title} variants={bcfRise} className="mt-10">

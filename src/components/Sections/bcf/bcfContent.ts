@@ -363,11 +363,19 @@ type ProjectsCopy = {
 
 export type ImpactGalleryId = "employees" | "camps" | "idps" | "schools";
 
+/** Gallery cards plus display-only stats on the Impact page. */
+export type ImpactCardId = ImpactGalleryId | "logistics" | "campCapacity";
+
 type ImpactItem = {
-  id: ImpactGalleryId;
+  id: ImpactCardId;
   value: string;
   title: string;
   description: string;
+  /** Optional unit under the main figure (e.g. "vehicles"). */
+  valueLabel?: string;
+  /** Optional second figure (e.g. warehouses beside vehicles). */
+  secondaryValue?: string;
+  secondaryLabel?: string;
 };
 
 type ImpactTotal = {
@@ -407,6 +415,14 @@ export type ServeCategory = {
   title: string;
   /** Opening paragraph: what BCF does in this sector, and for whom. */
   intro: string;
+  /**
+   * Cumulative beneficiaries reached in this sector. Shown as a highlight in
+   * the sector dialog; omitted where BCF has not published a figure.
+   */
+  beneficiaries?: {
+    families?: string;
+    individuals?: string;
+  };
   /**
    * The sector's wall text — BCF's own "museum text" line, which is written to
    * be read on a panel rather than in a report. Shown on the card and as the
@@ -682,6 +698,10 @@ export type BcfCopy = {
   serveCategories: ServeCategory[];
   /** Cue on the centred sector card, and the label of the dialog it opens. */
   serveDetailCta: string;
+  /** Heading over the beneficiary totals in a Humanity sector dialog. */
+  serveBeneficiariesLabel: string;
+  serveFamiliesLabel: string;
+  serveIndividualsLabel: string;
   whoServesTitle: string;
   howServesTitle: string;
   whoHowHint: string;
@@ -1018,6 +1038,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Food Security",
         intro:
           "Food security is one of BCF's core humanitarian sectors. Food assistance reaches vulnerable families, internally displaced people, refugees and communities affected by crisis.",
+        beneficiaries: {
+          families: "3,550,152",
+          individuals: "19,332,863",
+        },
         headline:
           "Food support is more than a meal: it is stability in a time of uncertainty, dignity in a time of hardship, and hope in a time of crisis.",
         groups: [
@@ -1046,6 +1070,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Health and Medical Support",
         intro:
           "BCF supports health services for vulnerable communities through medical projects, support to facilities, and treatment programmes.",
+        beneficiaries: {
+          individuals: "3,318,211",
+        },
         headline:
           "Health care protects more than the body. It protects dignity, the stability of a family, and the right to live in hope.",
         groups: [
@@ -1069,6 +1096,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Education and Human Development",
         intro:
           "BCF invests in education because learning is one of the strongest routes out of poverty and vulnerability.",
+        beneficiaries: {
+          individuals: "707,700",
+        },
         headline:
           "Education gives children more than knowledge. It gives them confidence, opportunity and a future that crisis cannot easily take away.",
         groups: [
@@ -1096,6 +1126,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Water, Sanitation and Hygiene",
         intro:
           "BCF's work in this sector focuses on clean water, sanitation and hygiene services.",
+        beneficiaries: {
+          families: "834,827",
+          individuals: "4,145,402",
+        },
         headline:
           "Clean water protects health, restores dignity and supports life in places where crisis has taken away the basics.",
         groups: [
@@ -1126,6 +1160,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Shelter and Emergency Response",
         intro:
           "BCF provides shelter and rapid relief to families and communities displaced by war, crisis and natural disaster.",
+        beneficiaries: {
+          families: "39,587",
+          individuals: "190,664",
+        },
         headline:
           "Shelter is the first step toward recovery and a return to normal life. A safe place gives a family the strength to begin again.",
         groups: [
@@ -1147,6 +1185,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Protection and Human Dignity",
         intro:
           "BCF's protection work focuses on the safety, dignity and wellbeing of vulnerable people.",
+        beneficiaries: {
+          individuals: "397,830",
+        },
         headline:
           "Protection means more than responding to danger. It means making sure every person is treated with dignity, respect and worth.",
         groups: [
@@ -1200,6 +1241,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Livelihood and Empowerment",
         intro:
           "BCF supports livelihood projects that help individuals and families become more self-reliant.",
+        beneficiaries: {
+          families: "56,929",
+          individuals: "428,122",
+        },
         headline:
           "The strongest humanitarian work does not only help people survive today. It helps them stand stronger tomorrow.",
         groups: [
@@ -1228,6 +1273,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Camps and Displacement Support",
         intro:
           "BCF manages and supports camps serving refugees and internally displaced people.",
+        beneficiaries: {
+          families: "4,531,250",
+          individuals: "22,679,526",
+        },
         headline:
           "Camp management is not only logistics. It is coordination, protection and a daily responsibility toward people living in displacement.",
         groups: [
@@ -1259,6 +1308,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Non-Food Items",
         intro:
           "Essential relief items delivered to vulnerable families alongside food, water, shelter and cash support.",
+        beneficiaries: {
+          families: "1,426,999",
+          individuals: "7,487,226",
+        },
         groups: [
           {
             title: "Essential relief items",
@@ -1277,6 +1330,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Cash Assistance and Essential Relief",
         intro:
           "BCF provides direct financial support to families who need urgent help to cover the basic needs of life.",
+        beneficiaries: {
+          families: "37,121",
+          individuals: "338,767",
+        },
         headline:
           "Cash assistance gives vulnerable families the flexibility to meet urgent needs with dignity.",
         groups: [
@@ -1308,6 +1365,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     serveDetailCta: "View details",
+    serveBeneficiariesLabel: "Beneficiaries",
+    serveFamiliesLabel: "families",
+    serveIndividualsLabel: "individuals",
     whoServesTitle: "Who BCF Serves",
     howServesTitle: "How BCF Serves",
     whoHowHint:
@@ -1827,6 +1887,21 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Schools Renovated",
         description: "Learning environments restored for children and young people.",
       },
+      {
+        id: "logistics",
+        value: "109",
+        valueLabel: "vehicles",
+        title: "Logistic Capacity",
+        description: "Vehicles and warehouses supporting field operations.",
+        secondaryValue: "10",
+        secondaryLabel: "warehouses",
+      },
+      {
+        id: "campCapacity",
+        value: "30",
+        title: "Camp Management",
+        description: "Up to 30 IDP and refugee camps.",
+      },
     ],
     trustTitle: "Trust & The Future",
     trustTitleGold: "Trust",
@@ -2277,6 +2352,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئاسایشی خۆراک",
         intro:
           "ئاسایشی خۆراک یەکێکە لە سێکتەرە مرۆییە سەرەکییەکانی دەزگای خێرخوازیی بارزانی. هاوکاریی خۆراکی پێشکەش بە خێزانە لێقەوماوەکان، ئاوارەکان، پەنابەران و ئەو کۆمەڵگایانە دەکرێت کە بەهۆی قەیرانەکانەوە زیانیان پێگەیشتووە.",
+        beneficiaries: {
+          families: "3,550,152",
+          individuals: "19,332,863",
+        },
         headline:
           "پشتگیریی خۆراک زیاترە لە تەنها ژەمێک: سەقامگیرییە لە کاتی نادڵنیایی، کەرامەتە لە کاتی سەختی، و ئومێدە لە کاتی قەیراندا.",
         groups: [
@@ -2305,6 +2384,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "تەندروستی و پشتگیری پزیشکی",
         intro:
           "دەزگای خێرخوازیی بارزانی پشتگیری خزمەتگوزارییە تەندروستییەکان بۆ کۆمەڵگە کەمدەرامەت و نەدارەکان دەکات، لە ڕێگەی پڕۆژەی پزیشکی، پشتگیریکردنی بنکە و دامەزراوەکان و پڕۆگرامەکانی چارەسەرکردنەوە.",
+        beneficiaries: {
+          individuals: "3,318,211",
+        },
         headline:
           "چاودێری تەندروستی تەنها جەستە ناپارێزێت، بەڵکو کەرامەت، سەقامگیری خێزان و مافی ژیان بە ئومێدەوە دەپارێزێت.",
         groups: [
@@ -2328,6 +2410,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "پەروەردە و گەشەپێدانی مرۆیی",
         intro:
           "دەزگای خێرخوازیی بارزانی وەبەرهێنان لە کەرتی پەروەردەدا دەکات، چونکە فێربوون یەکێکە لە بەهێزترین ڕێگاکان بۆ ڕزگاربوون لە هەژاری و نەداری.",
+        beneficiaries: {
+          individuals: "707,700",
+        },
         headline:
           "پەروەردە شتێک لە زانیاری زیاتر بە منداڵان دەبەخشێت. بڕوا بەخۆبوون، دەرفەت و داهاتوویەکیان پێدەبەخشێت کە قەیرانەکان ناتوانن بە ئاسانی لێیان بستێننەوە.",
         groups: [
@@ -2355,6 +2440,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئاو، ئاوەڕۆ و پاکوخاوێنی",
         intro:
           "کاری دەزگای خێرخوازیی بارزانی لە کەرتی ئاو، ئاوەڕۆ و پاکوخاوێنیدا سەرنج دەخاتە سەر دابینکردنی ئاوی خاوێن، خزمەتگوزارییەکانی ئاوەڕۆ و پاکوخاوێنی.",
+        beneficiaries: {
+          families: "834,827",
+          individuals: "4,145,402",
+        },
         headline:
           "ئاوی خاوێن تەندروستی دەپارێزێت، کەرامەت دەگێڕێتەوە و پشتگیری لە ژیان دەکات لەو شوێنانەی کە قەیرانەکان پێداویستییە سەرەکییەکانیانی لێ زەوت کردووە.",
         groups: [
@@ -2385,6 +2474,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "حەوانەوە و بەدەمەوەچوونی فریاگوزاری",
         intro:
           "دەزگای خێرخوازیی بارزانی حەوانەوە و فریاگوزاری خێرا پێشکەش بە خێزانە ئاوارەکان و ئەو کۆمەڵگایانە دەکات کە بەهۆی شەڕ، قەیران و کارەساتی سروشتییەوە زیانیان بەرکەوتووە.",
+        beneficiaries: {
+          families: "39,587",
+          individuals: "190,664",
+        },
         headline:
           "حەوانەوە یەکەم هەنگاوە بەرەو چاکبوونەوە و گەڕانەوە بۆ دۆخی ئاسایی. شوێنێکی ئارام هێز بە خێزانەکان دەبەخشێت بۆ ئەوەی سەرلەنوێ دەست پێبکەنەوە.",
         groups: [
@@ -2406,6 +2499,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "پاراستن و کەرامەتی مرۆیی",
         intro:
           "کاری دەزگای خێرخوازیی بارزانی لە کەرتی پاراستندا سەرنج دەخاتە سەر سەلامەتی، کەرامەت و خۆشگوزەرانی خەڵکی کەمدەرامەت و بێدەرەتان.",
+        beneficiaries: {
+          individuals: "397,830",
+        },
         headline:
           "پاراستن تەنها بەدەمەوەچوون لە مەترسییەکان نییە، بەڵکو بەو مانایەیە کە دڵنیا بین لەوەی مامەڵە لەگەڵ هەر مرۆڤێکدا بە کەرامەت و ڕێز و بایەخ پێدانەوە دەکرێت.",
         groups: [
@@ -2459,6 +2555,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "بژێوی ژیان و تواناسازی",
         intro:
           "دەزگای خێرخوازیی بارزانی پشتگیری پڕۆژەکانی بژێوی ژیان دەکات کە یارمەتی تاکەکان و خێزانەکان دەدەن بۆ ئەوەی زیاتر پشت بە خۆیان ببەستن.",
+        beneficiaries: {
+          families: "56,929",
+          individuals: "428,122",
+        },
         headline:
           "بەهێزترین کاری مرۆیی تەنها یارمەتیدانی خەڵک نییە بۆ ئەوەی ئەمڕۆ بژین، بەڵکو یارمەتییان دەدات بۆ ئەوەی سبەینێ بە بەهێزی بوەستنەوە.",
         groups: [
@@ -2487,6 +2587,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "بەڕێوەبردن و پشتگیریکردنی کامپەکان",
         intro:
           "دەزگای خێرخوازیی بارزانی بەڕێوەبردن و پشتگیریکردنی ئەو کامپانە دەکات کە خزمەتگوزاری بە پەنابەران و ئاوارە ناوخۆییەکان پێشکەش دەکەن.",
+        beneficiaries: {
+          families: "4,531,250",
+          individuals: "22,679,526",
+        },
         headline:
           "بەڕێوەبردنی کامپ تەنها لۆجیستیک نییە، بەڵکو هەماهەنگی، پاراستن و بەرپرسیارێتی ڕۆژانەیە بەرامبەر بەو مرۆڤانەی کە لە دۆخی ئاوارەییدا دەژین.",
         groups: [
@@ -2518,6 +2622,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "پێداویستییە ناخۆراکییەکان",
         intro:
           "پێداویستییە فریاگوزارییە سەرەکییەکان کە لەگەڵ خۆراک، ئاو، حەوانەوە و هاوکاری نەقدی پێکەوە بە خێزانە کەمدەرامەتەکان دەگەیەنرێن.",
+        beneficiaries: {
+          families: "1,426,999",
+          individuals: "7,487,226",
+        },
         groups: [
           {
             title: "پێداویستییە فریاگوزارییە سەرەکییەکان",
@@ -2536,6 +2644,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "هاوکاری نەقدی و فریاگوزارییە سەرەکییەکان",
         intro:
           "دەزگای خێرخوازیی بارزانی پاڵپشتی دارایی ڕاستەوخۆ پێشکەش بەو خێزانانە دەکات کە پێویستیان بە یارمەتی بەپەلە هەیە بۆ دابینکردنی پێداویستییە سەرەکییەکانی ژیان.",
+        beneficiaries: {
+          families: "37,121",
+          individuals: "338,767",
+        },
         headline:
           "هاوکاری نەقدی نەرمی و ئاسانکاری بە خێزانە کەمدەرامەتەکان دەبەخشێت بۆ دابینکردنی پێویستییە بەپەلەکانیان بە کەرامەتەوە.",
         groups: [
@@ -2567,6 +2679,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     serveDetailCta: "بینینی وردەکاری",
+    serveBeneficiariesLabel: "سوودمەندان",
+    serveFamiliesLabel: "خێزان",
+    serveIndividualsLabel: "کەس",
     whoServesTitle: "کێ خزمەت دەکەین؟",
     howServesTitle: "چۆن خزمەت دەکەین؟",
     whoHowHint:
@@ -3076,6 +3191,21 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "قوتابخانەی نۆژەنکراو",
         description: "ژینگەی فێربوون بۆ منداڵان و گەنجان",
       },
+      {
+        id: "logistics",
+        value: "109",
+        valueLabel: "ئۆتۆمبێل",
+        title: "توانای لۆجیستی",
+        description: "ئۆتۆمبێل و کۆگا بۆ پشتگیری کرداری مەیدانی.",
+        secondaryValue: "10",
+        secondaryLabel: "کۆگا",
+      },
+      {
+        id: "campCapacity",
+        value: "30",
+        title: "بەڕێوەبردنی کەمپ",
+        description: "تا ٣٠ کەمپی ئاوارە و پەنابەر.",
+      },
     ],
     trustTitle: "متمانەی پشت کارەکانمان",
     trustTitleGold: "متمانەی",
@@ -3525,6 +3655,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "الأمن الغذائي",
         intro:
           "الأمن الغذائي أحد القطاعات الإنسانية الأساسية للمؤسسة، حيث تُقدَّم المساعدات الغذائية للأسر الضعيفة والنازحين واللاجئين والمجتمعات المتأثرة بالأزمات.",
+        beneficiaries: {
+          families: "3,550,152",
+          individuals: "19,332,863",
+        },
         headline:
           "الدعم الغذائي أكثر من مجرد وجبة؛ إنه استقرار في زمن عدم اليقين، وكرامة في زمن الشدة، وأمل في زمن الأزمة.",
         groups: [
@@ -3553,6 +3687,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "الصحة والدعم الطبي",
         intro:
           "تدعم المؤسسة الخدمات الصحية للمجتمعات الضعيفة من خلال المشاريع الطبية ودعم المرافق وبرامج العلاج.",
+        beneficiaries: {
+          individuals: "3,318,211",
+        },
         headline:
           "الرعاية الصحية لا تحمي الجسد وحده، بل تحمي الكرامة واستقرار الأسرة والحق في العيش بأمل.",
         groups: [
@@ -3576,6 +3713,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "التعليم والتنمية البشرية",
         intro:
           "تستثمر المؤسسة في التعليم لأنه من أقوى السبل للخروج من دائرة الفقر والضعف.",
+        beneficiaries: {
+          individuals: "707,700",
+        },
         headline:
           "التعليم يمنح الأطفال أكثر من المعرفة؛ يمنحهم الثقة والفرصة ومستقبلاً لا تسلبه الأزمات بسهولة.",
         groups: [
@@ -3603,6 +3743,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المياه والصرف الصحي والنظافة",
         intro:
           "يركّز عمل المؤسسة في هذا القطاع على توفير المياه النظيفة وخدمات الصرف الصحي والنظافة.",
+        beneficiaries: {
+          families: "834,827",
+          individuals: "4,145,402",
+        },
         headline:
           "المياه النظيفة تحمي الصحة وتعيد الكرامة وتصون الحياة حيث سلبت الأزمات أبسط المقوّمات.",
         groups: [
@@ -3633,6 +3777,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المأوى والاستجابة الطارئة",
         intro:
           "توفّر المؤسسة المأوى والإغاثة الطارئة للأسر والمجتمعات النازحة جرّاء الحروب والأزمات والكوارث الطبيعية.",
+        beneficiaries: {
+          families: "39,587",
+          individuals: "190,664",
+        },
         headline:
           "المأوى هو الخطوة الأولى نحو التعافي والعودة إلى الحياة الطبيعية؛ فالمكان الآمن يمنح الأسرة القوة لتبدأ من جديد.",
         groups: [
@@ -3654,6 +3802,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "الحماية والكرامة الإنسانية",
         intro:
           "يركّز عمل المؤسسة في مجال الحماية على سلامة الأفراد الضعفاء وكرامتهم ورفاههم.",
+        beneficiaries: {
+          individuals: "397,830",
+        },
         headline:
           "الحماية أكثر من مجرد الاستجابة للخطر؛ إنها ضمان أن يُعامَل كل إنسان بكرامة واحترام وتقدير.",
         groups: [
@@ -3707,6 +3858,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "سبل العيش والتمكين",
         intro:
           "تدعم المؤسسة مشاريع سبل العيش التي تساعد الأفراد والأسر على تحقيق مزيد من الاعتماد على الذات.",
+        beneficiaries: {
+          families: "56,929",
+          individuals: "428,122",
+        },
         headline:
           "أقوى عمل إنساني لا يكتفي بمساعدة الناس على النجاة اليوم، بل يساعدهم على الوقوف أقوى غداً.",
         groups: [
@@ -3735,6 +3890,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المخيمات ودعم النازحين",
         intro:
           "تدير المؤسسة وتدعم مخيمات تخدم اللاجئين والنازحين داخلياً.",
+        beneficiaries: {
+          families: "4,531,250",
+          individuals: "22,679,526",
+        },
         headline:
           "إدارة المخيمات ليست عملاً لوجستياً فحسب؛ إنها تنسيق وحماية ومسؤولية يومية تجاه أناس يعيشون في النزوح.",
         groups: [
@@ -3766,6 +3925,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المواد غير الغذائية",
         intro:
           "مواد إغاثية أساسية تُسلَّم للأسر الضعيفة إلى جانب دعم الغذاء والمياه والمأوى والمساعدات النقدية.",
+        beneficiaries: {
+          families: "1,426,999",
+          individuals: "7,487,226",
+        },
         groups: [
           {
             title: "مواد الإغاثة الأساسية",
@@ -3784,6 +3947,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المساعدات النقدية والإغاثة الأساسية",
         intro:
           "تقدّم المؤسسة دعماً مالياً مباشراً للأسر التي تحتاج مساعدة عاجلة لتغطية احتياجات الحياة الأساسية.",
+        beneficiaries: {
+          families: "37,121",
+          individuals: "338,767",
+        },
         headline:
           "المساعدة النقدية تمنح الأسر الضعيفة مرونة تلبية احتياجاتها العاجلة بكرامة.",
         groups: [
@@ -3815,6 +3982,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     serveDetailCta: "عرض التفاصيل",
+    serveBeneficiariesLabel: "المستفيدون",
+    serveFamiliesLabel: "أسر",
+    serveIndividualsLabel: "أفراد",
     whoServesTitle: "من تخدم المؤسسة",
     howServesTitle: "كيف تخدم المؤسسة",
     whoHowHint:
@@ -4323,6 +4493,21 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         value: "315",
         title: "مدارس مجدّدة",
         description: "بيئات تعلم أُعيد ترميمها للأطفال والشباب",
+      },
+      {
+        id: "logistics",
+        value: "109",
+        valueLabel: "مركبات",
+        title: "القدرة اللوجستية",
+        description: "مركبات ومستودعات لدعم العمليات الميدانية.",
+        secondaryValue: "10",
+        secondaryLabel: "مستودعات",
+      },
+      {
+        id: "campCapacity",
+        value: "30",
+        title: "إدارة المخيمات",
+        description: "حتى ٣٠ مخيماً للنازحين واللاجئين.",
       },
     ],
     trustTitle: "الثقة والمستقبل",

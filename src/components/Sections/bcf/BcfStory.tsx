@@ -56,10 +56,10 @@ function GoldPhoto({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-[18px] ${className ?? ""}`}
+      className={`overflow-hidden rounded-[24px] ${className ?? ""}`}
       style={{
-        border: `1.5px solid ${BCF.gold}`,
-        boxShadow: `0 0 28px ${BCF.gold}40, 0 18px 48px rgba(0,0,0,0.55)`,
+        border: `2px solid ${BCF.gold}`,
+        boxShadow: `0 0 0 1px ${BCF.gold}33, 0 0 60px ${BCF.gold}45, 0 28px 70px rgba(0,0,0,0.6)`,
         ...style,
       }}
     >
@@ -75,15 +75,19 @@ function GoldPhoto({
 }
 
 /**
- * One gold-framed plate per beat. The chapter controls sit in their own band
- * below the beat, so the plate has the full content column to centre in.
+ * One gold-framed plate per beat, and the loudest thing on the screen after
+ * the headline. It takes every pixel the copy above it leaves behind — the
+ * frame stretches to the bottom of the beat column rather than sitting at a
+ * fixed size — so on a 65" portrait TV the photograph reads from across the
+ * room. The floor keeps it a hero even under the wordiest milestone; the
+ * ceiling keeps it clear of the Back/Next band on the shortest one.
  */
 function StoryPhoto({ src, label }: { src: string; label: string }) {
   return (
     <GoldPhoto
       src={src}
       alt={label}
-      className="h-[420px] w-[560px] shrink-0"
+      className="h-full max-h-[700px] min-h-[440px] w-full max-w-[940px]"
     />
   );
 }
@@ -264,11 +268,17 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
         <div className="relative z-10 mt-16 flex min-h-0 flex-1">
           {/* Left progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
-            <span
-              className="absolute top-8 bottom-24 w-px"
-              style={{ backgroundColor: "rgba(255,255,255,0.18)" }}
-            />
             <div className="relative z-10 flex flex-1 flex-col items-center justify-between py-4">
+              {/* The thread runs dot centre to dot centre: `inset-y-9` is the
+                  column's own py-4 (16px) plus half a 40px dot button, so it
+                  meets the first and last dots exactly however many beats the
+                  language produces. A fixed inset measured from the rail
+                  instead used to stop short and leave the last two dots
+                  hanging off the end of the line. */}
+              <span
+                className="pointer-events-none absolute inset-y-9 left-1/2 w-px -translate-x-1/2"
+                style={{ backgroundColor: "rgba(255,255,255,0.18)" }}
+              />
               {beats.map((beat, index) => {
                 const on = index === activeIndex;
                 const passed = index < activeIndex;
@@ -352,7 +362,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
                     <motion.div
                       variants={bcfRise}
-                      className="flex flex-1 items-start justify-center pt-10"
+                      className="flex min-h-0 flex-1 items-stretch justify-center pt-12"
                       style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={active.data.title} />
@@ -443,7 +453,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
                     <motion.div
                       variants={bcfRise}
-                      className="flex flex-1 items-start justify-center pt-10"
+                      className="flex min-h-0 flex-1 items-stretch justify-center pt-12"
                       style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto
