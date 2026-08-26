@@ -2097,7 +2097,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "kuwait",
-        title: "Registered in Kuwait",
+        title: "Recognized in Kuwait",
         body: "Registered as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
       },
       {
@@ -3346,7 +3346,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "kuwait",
-        title: "تۆمارکراو لە کوێت",
+        title: "ناسراو لە کوێت",
         body: "لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکراوە.",
       },
       {
@@ -4591,7 +4591,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "kuwait",
-        title: "مسجَّلة في الكويت",
+        title: "معترف بها في الكويت",
         body: "مسجَّلة كمنظمة خيرية في الكويت عام 2019.",
       },
       {

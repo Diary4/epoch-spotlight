@@ -75,9 +75,8 @@ function GoldPhoto({
 }
 
 /**
- * One gold-framed plate per beat. Sized to fit the beat column, which the
- * flanking chapter controls have already narrowed — the plate centres inside
- * whatever width is left rather than reaching for the artboard edges.
+ * One gold-framed plate per beat. The chapter controls sit in their own band
+ * below the beat, so the plate has the full content column to centre in.
  */
 function StoryPhoto({ src, label }: { src: string; label: string }) {
   return (
@@ -112,7 +111,7 @@ function StoryNavButton({
       disabled={disabled}
       whileTap={disabled ? undefined : BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className="flex h-[64px] w-[116px] shrink-0 items-center justify-center gap-2 rounded-full border text-[20px] font-medium disabled:cursor-default disabled:opacity-30"
+      className="flex h-[64px] w-[132px] shrink-0 items-center justify-center gap-2 rounded-full border text-[22px] font-medium disabled:cursor-default disabled:opacity-30"
       style={{
         borderColor: BCF.gold,
         backgroundColor: isPrev
@@ -236,7 +235,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
         </>
       }
     >
-      <div className="relative flex h-[1920px] min-h-[1920px] w-full flex-col overflow-hidden px-12 pt-[130px]">
+      <div className="relative flex h-[1920px] min-h-[1920px] w-full flex-col overflow-hidden px-12 pb-[560px] pt-[130px]">
         <BcfBackButton onClick={onBack} label={c.back} className="z-50" />
 
         {/* Title */}
@@ -261,25 +260,8 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           />
         </motion.header>
 
-        {/* Body row: prev control | rail + beat | next control.
-            The controls stay at the artboard's vertical middle — the reachable
-            band on a 65" portrait screen — but they are laid out as real
-            columns instead of being absolutely positioned over the beat.
-            Floating them meant nothing reserved their space, so the widest
-            beat (the Values pills, which alternate out to both edges) ran
-            straight under them. As flex siblings the beat can only use the
-            width that is left, so the collision cannot come back. */}
-        <div className="relative z-10 mt-16 flex min-h-0 flex-1 gap-4">
-          <div className="flex shrink-0 items-center">
-            <StoryNavButton
-              label={c.back}
-              disabled={isFirst}
-              onClick={goPrev}
-              side="prev"
-              rtl={rtl}
-            />
-          </div>
-
+        {/* Body row: rail + content */}
+        <div className="relative z-10 mt-16 flex min-h-0 flex-1">
           {/* Left progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
             <span
@@ -371,6 +353,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex flex-1 items-start justify-center pt-10"
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={active.data.title} />
                     </motion.div>
@@ -461,6 +444,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex flex-1 items-start justify-center pt-10"
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto
                         src={photos.front}
@@ -472,18 +456,37 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
               </motion.div>
             </AnimatePresence>
           </div>
-
-          <div className="flex shrink-0 items-center">
-            <StoryNavButton
-              label={c.storyNext}
-              disabled={isLast}
-              onClick={goNext}
-              side="next"
-              rtl={rtl}
-            />
-          </div>
         </div>
 
+        {/* Back and Next sit together in one centred band. The artboard's
+            bottom padding lifts that band off the floor of the 1920px canvas
+            so it lands in the middle of the screen — on a 65" portrait TV the
+            true bottom is near the ground and out of reach. It cannot be
+            centred exactly: the tallest beat (Values) runs to roughly y=1160
+            on its own, so the band sits just below the content it drives and
+            holds still there as the beats change behind it. */}
+        <nav className="relative z-40 flex shrink-0 items-center justify-center gap-12 pt-10">
+          <StoryNavButton
+            label={c.back}
+            disabled={isFirst}
+            onClick={goPrev}
+            side="prev"
+            rtl={rtl}
+          />
+          <span
+            className="min-w-[104px] text-center text-[24px] tabular-nums"
+            style={{ color: "rgba(255,255,255,0.45)" }}
+          >
+            {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
+          </span>
+          <StoryNavButton
+            label={c.storyNext}
+            disabled={isLast}
+            onClick={goNext}
+            side="next"
+            rtl={rtl}
+          />
+        </nav>
       </div>
     </BcfShell>
   );
