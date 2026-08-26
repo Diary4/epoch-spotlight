@@ -93,6 +93,13 @@ const credentialArt: Record<
     position?: string;
     /** White mat behind letterboxed scans. Skip it when the document is already a white page. */
     mat?: "white";
+    /**
+     * Width ÷ height of the frame, for artwork whose own shape should set it.
+     * Without this the panel is one tall box for every credential and a
+     * portrait page floats in it between two black bands. With it the frame is
+     * cut to the document, and `contain` has nothing left to letterbox.
+     */
+    ratio?: number;
   }
 > = {
   "iraq": { src: credIraq, fit: "cover" },
@@ -101,7 +108,8 @@ const credentialArt: Record<
   kuwait: { src: credKuwait, fit: "cover" },
   ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14", mat: "white" },
   uk: { src: credBcc, fit: "contain", pad: "p-12", mat: "white" },
-  iso: { src: isoCertificate, fit: "contain", pad: "p-0" },
+  /* The scan is 1045×1472 — A4 — so the frame is too, to the pixel. */
+  iso: { src: isoCertificate, fit: "contain", pad: "p-0", ratio: 1045 / 1472 },
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -452,6 +460,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       const artFit = activeArt?.fit ?? "contain";
       const artPad = activeArt?.pad ?? "";
       const artPosition = activeArt?.position ?? "";
+      const artRatio = activeArt?.ratio;
       const qualityTitle =
         lang === "en" ? (
           <>
@@ -470,18 +479,28 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           backgroundImage={bcfTrustBg}
           overlayClassName="bg-black/35"
         >
-          <TrustChrome title={qualityTitle} backLabel={c.back} onBack={goBack}>
+          <TrustChrome
+            title={qualityTitle}
+            backLabel={c.back}
+            onBack={goBack}
+            titleClassName="text-[52px]"
+          >
             {/* The rail used to arrive as one slab with the panel. Cascading the
                 credentials down and letting the certificate settle beside
                 them reads as the page assembling itself. */}
             <motion.div
-              className="mx-auto mt-12 flex w-full max-w-[1240px] items-stretch gap-10"
+              className="mx-auto mt-12 flex w-full max-w-[1240px] items-stretch gap-8"
               variants={bcfStagger(0.16, 0.2)}
               initial="initial"
               animate="animate"
             >
               <motion.div
-                className="flex w-[540px] shrink-0 flex-col gap-4"
+                /* 400, not 540. The column the artboard leaves is 984px wide,
+                   so every pixel the rail gives up is a pixel the certificate
+                   and its caption get — the panel goes from 404 to 552, half
+                   again as wide, and the caption stops breaking every three
+                   words. */
+                className="flex w-[400px] shrink-0 flex-col gap-4"
                 variants={bcfStagger(0.07, 0)}
               >
                 {c.trustCredentials.map((item, index) => {
@@ -493,7 +512,9 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative flex w-full transform-gpu items-center justify-between gap-5 overflow-hidden rounded-2xl px-8 py-5 text-start text-[32px] font-medium leading-snug backdrop-blur-md"
+                      /* Down a size with the rail, so the labels wrap no more
+                         than they did at 540 wide. */
+                      className="relative flex w-full transform-gpu items-center justify-between gap-4 overflow-hidden rounded-2xl px-6 py-5 text-start text-[28px] font-medium leading-snug backdrop-blur-md"
                       style={{
                         border: "1px solid",
                         borderColor: selected ? BCF.gold : "rgba(255,255,255,0.22)",
@@ -525,9 +546,15 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
+                {/* A credential with its own `ratio` is framed to the shape of
+                    the document; everything else keeps the one tall panel and
+                    fills whatever height the row settles at. */}
                 <div
-                  className="relative min-h-[760px] flex-1 overflow-hidden"
+                  className={`relative overflow-hidden ${
+                    artRatio ? "w-full shrink-0" : "min-h-[760px] flex-1"
+                  }`}
                   style={{
+                    aspectRatio: artRatio,
                     backgroundColor:
                       artFit === "contain" && activeArt?.mat === "white"
                         ? "#fff"
@@ -1023,17 +1050,25 @@ function TrustChrome({
   backLabel,
   onBack,
   children,
+  /**
+   * Trust's four screens share one heading size. Quality and Credibility is
+   * the one that cannot hold it: the longest title of the four, over the only
+   * screen with a full-height panel under it, so 64px pushes the certificate
+   * down the artboard. It asks for a step down; the rest are unaffected.
+   */
+  titleClassName = "text-[64px]",
 }: {
   title: React.ReactNode;
   backLabel: string;
   onBack: () => void;
   children: React.ReactNode;
+  titleClassName?: string;
 }) {
   return (
     <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
       <BcfBackButton onClick={onBack} label={backLabel} />
       <motion.h1
-        className="mx-auto max-w-[980px] text-center text-[64px] font-bold leading-tight"
+        className={`mx-auto max-w-[980px] text-center font-bold leading-tight ${titleClassName}`}
         style={{ color: BCF.gold }}
         initial={{ opacity: 0, y: 26 }}
         animate={{ opacity: 1, y: 0 }}
