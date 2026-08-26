@@ -1,0 +1,1478 @@
+
+========================================================================
+BCF — KURDISH TEXTS (on-screen copy)
+========================================================================
+
+Kurdish phrases shown when the experience is set to Kurdish. Section headings in this file stay in English so you can match them to the English list.
+Names of people and organisations can stay as they are.
+Project register bodies use textKu / textAr when present; English is noted where a translation is still missing.
+A few accessibility labels stay English in the code: Experience controls, Previous image, Next image, Open image.
+
+========================================================================
+SHARED CHROME (most pages)
+========================================================================
+
+سەرەتا
+زمان
+گەڕانەوە
+داخستن
+بۆ گەڕان دەستی لێبدە
+Experience controls
+Barzani Charity Foundation
+Previous image
+Next image
+Open image
+
+========================================================================
+LANGUAGE OVERLAY
+========================================================================
+
+زمانەکەت هەڵبژێرە
+هەر کاتێک بتەوێت لە کۆنترۆڵەکانی لاوە دەیگۆڕیت.
+بۆ بەردەوامبوون دەستی لێبدە
+کوردی
+English
+عربي
+
+========================================================================
+IDLE WARNING
+========================================================================
+
+هێشتا لەگەڵمانیت؟
+ئەزموونەکە دەگەڕێتەوە سەرەتا بۆ ئەوەی سەردانکەری داهاتوو لە سەرەتاوە دەست پێبکات.
+بەڵێ، لێرەم
+
+========================================================================
+PAGE: Attract (opening screen)
+========================================================================
+
+دەزگای خێرخوازی بارزانی
+دەزگای خێرخوازی بارزانی
+میراتێک لە خزمەتکردن.
+دەستی لێبدە بۆ دەستپێکردن
+دەستی لە هەر شوێنێک بدە
+
+========================================================================
+PAGE: Intro
+========================================================================
+
+مرۆڤایەتی
+کەرامەت
+هیوا
+شانازییە بۆ مرۆڤ خزمەتکاری میللەتی خۆی بێ
+— مستەفا بارزانی
+
+========================================================================
+PAGE: Welcome
+========================================================================
+
+بەخێربێیت بۆ
+BCF
+ئەزموون
+چیرۆک، کاری مرۆیی، و کاریگەرییەکەمان پێکەوە ببینە.
+دەستپێکردنی گەشتەکە
+
+========================================================================
+PAGE: Our Journey (chapter menu)
+========================================================================
+
+دەزگای خێرخوازی بارزانی
+گەشتی
+ئێمە
+دەست لە بەشێک بدە بۆ گەڕان
+مرۆڤایەتی لە کردار
+دەربارەی ئێمە
+لە کوێ کار دەکەین؟
+کاریگەرییەکانمان
+متمانەی پشت کارەکانمان
+داهاتوو و میرات
+
+========================================================================
+PAGE: Humanity in Action
+========================================================================
+
+ئێمە
+خزمەتی کێ دەکەین؟
+بینینی وردەکاری
+کێ خزمەت دەکەین؟
+چۆن خزمەت دەکەین؟
+دەزگای خێرخوازیی بارزانی لە سەرانسەری سێکتەرە مرۆییە سەرەکییەکاندا کار دەکات بۆ دابینکردنی پێداویستییە بەپەلەکان و پاڵپشتیکردنی چاکبوونەوەی درێژخایەن.
+منداڵانی ئازیزان و بێ هاوژینان
+پەنابەر و ئاوارەکان
+کۆمەڵگە خانەخوێکان و خێزانە کەمداهاتەکان
+کەسانی خاوەن پێداویستی تایبەت
+منداڵان، گەنجان و کۆمەڵگە زیانلێکەوتووەکانی کارەسات
+ئاسایشی خۆراک
+کاڵای نەخۆراکی
+ئاو، ئاوەڕۆ و پاکوخاوێنی (WASH)
+پەروەردە و گەشەپێدان
+بژێوی و هاوکاری نەختی
+پاراستن، تەندروستی، پەناگە و بەڕێوەبردنی کەمپ
+
+--- Sector: ئاسایشی خۆراک ---
+
+ئاسایشی خۆراک
+ئاسایشی خۆراک یەکێکە لە سێکتەرە مرۆییە سەرەکییەکانی دەزگای خێرخوازیی بارزانی. هاوکاریی خۆراکی پێشکەش بە خێزانە لێقەوماوەکان، ئاوارەکان، پەنابەران و ئەو کۆمەڵگایانە دەکرێت کە بەهۆی قەیرانەکانەوە زیانیان پێگەیشتووە.
+پشتگیریی خۆراک زیاترە لە تەنها ژەمێک: سەقامگیرییە لە کاتی نادڵنیایی، کەرامەتە لە کاتی سەختی، و ئومێدە لە کاتی قەیراندا.
+سوودمەندان
+3,550,152 خێزان
+19,332,863 کەس
+چالاکییە سەرەکییەکان
+دابەشکردنی خۆراکی وشک
+ژەمی خۆراکی گەرم
+سەبەتەی خۆراک
+دابینکردنی بەپەلەی خۆراک
+پێشکەشکردنی پاڵپشتی بەپێی پێوەرە مرۆییەکانی ئاسایشی خۆراک
+ئامارەکانی کاریگەری
+دابەشکردنی ٧٧٦,٤٢٧ تەن خۆراکی وشک
+دابەشکردنی ١٤,٤٢٩,٢٢٦ ژەمی گەرم
+دابەشکردنی ٢,٤٥٠,٠٩٩ سەبەتەی خۆراک
+
+--- Sector: تەندروستی و پشتگیری پزیشکی ---
+
+تەندروستی و پشتگیری پزیشکی
+دەزگای خێرخوازیی بارزانی پشتگیری خزمەتگوزارییە تەندروستییەکان بۆ کۆمەڵگە کەمدەرامەت و نەدارەکان دەکات، لە ڕێگەی پڕۆژەی پزیشکی، پشتگیریکردنی بنکە و دامەزراوەکان و پڕۆگرامەکانی چارەسەرکردنەوە.
+چاودێری تەندروستی تەنها جەستە ناپارێزێت، بەڵکو کەرامەت، سەقامگیری خێزان و مافی ژیان بە ئومێدەوە دەپارێزێت.
+سوودمەندان
+3,318,211 کەس
+پڕۆژە تەندروستییە دیاریکراوەکان
+دروستکردن و کردنەوەی پێنج بنکەی تەندروستی سەرەتایی
+نۆژەنکردنەوەی نەخۆشخانەی خەلیفان
+نۆژەنکردنەوەی نەخۆشخانەی پێشمەرگە
+نۆژەنکردنەوەی نەخۆشخانەی لەدایکبوون لە ئاکرێ
+کردنەوەی سەنتەری ڕاوێژکاری لە کامپی بەردەڕەش
+پڕۆژەی نەشتەرگەری دڵی زگماکی بۆ منداڵان
+پشتگیریکردنی ئەو منداڵانەی کە لە دەرەوەی وڵات چارەسەر وەردەگرن
+پشتگیری پزیشکی بۆ کۆمەڵگە ئاوارەکان
+
+--- Sector: پەروەردە و گەشەپێدانی مرۆیی ---
+
+پەروەردە و گەشەپێدانی مرۆیی
+دەزگای خێرخوازیی بارزانی وەبەرهێنان لە کەرتی پەروەردەدا دەکات، چونکە فێربوون یەکێکە لە بەهێزترین ڕێگاکان بۆ ڕزگاربوون لە هەژاری و نەداری.
+پەروەردە شتێک لە زانیاری زیاتر بە منداڵان دەبەخشێت. بڕوا بەخۆبوون، دەرفەت و داهاتوویەکیان پێدەبەخشێت کە قەیرانەکان ناتوانن بە ئاسانی لێیان بستێننەوە.
+سوودمەندان
+707,700 کەس
+دەستکەوتە سەرەکییەکان
+نۆژەنکردنەوەی ٣١٥ قوتابخانە
+دابەشکردنی ٣٦٢,٥٣٨ پێداویستی قوتابخانە و تێنووس و قەڵەم
+دروستکردنی ١٣١ پۆلی خوێندن
+کردنەوەی سەنتەری تەنهایی لە ساڵی ٢٠٢٢
+ئامانجەکانی داهاتووی پەروەردە
+نۆژەنکردنەوەی ٢٠٠ قوتابخانە
+دروستکردنی ٥ قوتابخانەی نوێ
+جێبەجێکردنی ٢ پڕۆژەی گەڕانەوە بۆ قوتابخانە بۆ ئەو منداڵانەی کە وازیان لە خوێندن هێناوە
+
+--- Sector: ئاو، ئاوەڕۆ و پاکوخاوێنی ---
+
+ئاو، ئاوەڕۆ و پاکوخاوێنی
+کاری دەزگای خێرخوازیی بارزانی لە کەرتی ئاو، ئاوەڕۆ و پاکوخاوێنیدا سەرنج دەخاتە سەر دابینکردنی ئاوی خاوێن، خزمەتگوزارییەکانی ئاوەڕۆ و پاکوخاوێنی.
+ئاوی خاوێن تەندروستی دەپارێزێت، کەرامەت دەگێڕێتەوە و پشتگیری لە ژیان دەکات لەو شوێنانەی کە قەیرانەکان پێداویستییە سەرەکییەکانیانی لێ زەوت کردووە.
+سوودمەندان
+834,827 خێزان
+4,145,402 کەس
+چالاکییە سەرەکییەکان
+پشتگیریکردنی ئاوی خواردنەوە
+تۆڕەکانی ئاو
+بیرەکانی ئاو
+پشتگیری ئاوەڕۆ و تەندروستی ژینگە
+خزمەتگوزارییەکانی پاکوخاوێنی
+گەیاندنی ئاو بە خێزانە کەمدەرامەتەکان
+پڕۆژە دیاریکراوەکان
+لێدانی چوار بیری ئاو بۆ چوار گوند لە دهۆک لە ساڵی ٢٠١٩
+لێدانی چوار بیری ئاو لە چیای شنگال لە ساڵی ٢٠١٦
+گەیاندنی ٦٥,٨٦٤,٠٠٠ لیتر ئاوی خواردنەوە لە هەولێر لە ساڵی ٢٠٢١
+پشتگیریکردنی ٩,١٠٠ خێزان بە ئاوی خواردنەوە لە هەولێر لە ساڵی ٢٠٢٤
+
+--- Sector: حەوانەوە و بەدەمەوەچوونی فریاگوزاری ---
+
+حەوانەوە و بەدەمەوەچوونی فریاگوزاری
+دەزگای خێرخوازیی بارزانی حەوانەوە و فریاگوزاری خێرا پێشکەش بە خێزانە ئاوارەکان و ئەو کۆمەڵگایانە دەکات کە بەهۆی شەڕ، قەیران و کارەساتی سروشتییەوە زیانیان بەرکەوتووە.
+حەوانەوە یەکەم هەنگاوە بەرەو چاکبوونەوە و گەڕانەوە بۆ دۆخی ئاسایی. شوێنێکی ئارام هێز بە خێزانەکان دەبەخشێت بۆ ئەوەی سەرلەنوێ دەست پێبکەنەوە.
+سوودمەندان
+39,587 خێزان
+190,664 کەس
+پڕۆژە دیاریکراوەکانی حەوانەوە و بەدەمەوەچوون
+دروستکردنی ٤٠٠ کاراوان لە ڤان، تورکیا، لە ساڵانی ٢٠١١–٢٠١٢
+دروستکردنی ٣٠٠ کاراوان لە کامپی بەحرکە لە ساڵی ٢٠١٥
+دروستکردنی ٦٠٠ کاراوان لە کامپی دەرکار عەجەم لە ساڵی ٢٠١٦
+دابینکردنی ٤,١٢٩ خێمە دوای بوومەلەرزەی تورکیا و سوریا لە ساڵی ٢٠٢٣
+دابەشکردنی ٥٤٠ یەکەی نیشتەجێبوون بەسەر خێزانی شەهیداندا لە هەولێر و سۆران لە ساڵی ٢٠٢٤
+دروستکردنی ٢٠ خانوو لە شنگال لە ساڵی ٢٠٢٤
+
+--- Sector: پاراستن و کەرامەتی مرۆیی ---
+
+پاراستن و کەرامەتی مرۆیی
+کاری دەزگای خێرخوازیی بارزانی لە کەرتی پاراستندا سەرنج دەخاتە سەر سەلامەتی، کەرامەت و خۆشگوزەرانی خەڵکی کەمدەرامەت و بێدەرەتان.
+پاراستن تەنها بەدەمەوەچوون لە مەترسییەکان نییە، بەڵکو بەو مانایەیە کە دڵنیا بین لەوەی مامەڵە لەگەڵ هەر مرۆڤێکدا بە کەرامەت و ڕێز و بایەخ پێدانەوە دەکرێت.
+سوودمەندان
+397,830 کەس
+تەرکیزی پاراستن
+سەلامەتی جەستەیی
+پاڵپشتی دەروونی
+پاراستنی منداڵان
+پشتگیریکردنی خێزانە کەمدەرامەتەکان
+پشتگیریکردنی کەسانی خاوەن پێداویستی تایبەت
+هۆشیاری و ڕاهێنان
+خزمەتگوزارییەکانی پاراستنی کۆمەڵگە
+
+--- Sector: ڕاهێنانەوە و گشتگیرکردن ---
+
+ڕاهێنانەوە و گشتگیرکردن
+دەزگای خێرخوازیی بارزانی پشتگیری کەسانی خاوەن پێداویستی تایبەت، منداڵانی ئۆتیزم و ئەو کۆمەڵگایانە دەکات کە بەدەست تەحەددییاتە تەندروستی و کۆمەڵایەتییەکانەوە دەناڵێنن.
+تێکەڵکردنەوە واتە بەخشینی مافی بەشداریکردن، فێربوون، چاکبوونەوە و ژیان بە کەرامەتەوە بە هەر مرۆڤێک.
+تەرکیزی ئێستا و داهاتوو
+هۆشیاری و پشتگیریکردنی ئۆتیزم
+پشتگیریکردنی منداڵانی خاوەن پێداویستی تایبەت
+هۆشیارکردنەوە لە ماددە هۆشبەرەکان
+دەستپێشخەرییەکانی ڕاهێنانەوەی ئاڵوودەبووانی ماددەی هۆشبەر
+پشتگیری تێکەڵکردنەوە بۆ منداڵانی ئۆتیزم
+هۆشیاری گشتی لە ڕێگەی سیمینار، پۆستەر، نامیلکە و ڤیدیۆوە
+ئامانجەکانی داهاتوو
+ڕاهێنانەوەی ٢٠٠ منداڵی ئۆتیزم
+تێکەڵکردنەوەی ١٠٠ منداڵی ئۆتیزم لە قوتابخانە حکومییەکاندا لە ماوەی پێنج ساڵدا
+کردنەوەی سێ سەنتەری ئۆتیزم لە هەرێمی کوردستان
+کردنەوەی سەنتەرێکی ڕاهێنانەوەی ئاڵوودەبووانی ماددەی هۆشبەر
+ڕێکخستنی پێنج سیمپۆزیۆمی هۆشیاری لەسەر ماددەی هۆشبەر
+
+--- Sector: بژێوی ژیان و تواناسازی ---
+
+بژێوی ژیان و تواناسازی
+دەزگای خێرخوازیی بارزانی پشتگیری پڕۆژەکانی بژێوی ژیان دەکات کە یارمەتی تاکەکان و خێزانەکان دەدەن بۆ ئەوەی زیاتر پشت بە خۆیان ببەستن.
+بەهێزترین کاری مرۆیی تەنها یارمەتیدانی خەڵک نییە بۆ ئەوەی ئەمڕۆ بژین، بەڵکو یارمەتییان دەدات بۆ ئەوەی سبەینێ بە بەهێزی بوەستنەوە.
+سوودمەندان
+56,929 خێزان
+428,122 کەس
+کەرتە سەرەکییەکان
+گەشەپێدانی کارامەییەکان
+ڕاهێنانی پیشەیی
+پشتگیریکردنی دەرفەتی کار
+داهاتسازی
+بوژانەوەی کۆمەڵگە
+تواناسازی گەنجان و خێزانەکان
+سەنتەرەکانی ڕاهێنانی پیشەیی
+پشتگیریکردنی ٢١ سەنتەری ڕاهێنانی پیشەیی
+٥٨٧,٢١٦ تاک لێیان سوودمەند بوون
+
+--- Sector: بەڕێوەبردن و پشتگیریکردنی کامپەکان ---
+
+بەڕێوەبردن و پشتگیریکردنی کامپەکان
+دەزگای خێرخوازیی بارزانی بەڕێوەبردن و پشتگیریکردنی ئەو کامپانە دەکات کە خزمەتگوزاری بە پەنابەران و ئاوارە ناوخۆییەکان پێشکەش دەکەن.
+بەڕێوەبردنی کامپ تەنها لۆجیستیک نییە، بەڵکو هەماهەنگی، پاراستن و بەرپرسیارێتی ڕۆژانەیە بەرامبەر بەو مرۆڤانەی کە لە دۆخی ئاوارەییدا دەژین.
+سوودمەندان
+4,531,250 خێزان
+22,679,526 کەس
+خزمەتگوزارییەکانی کامپ
+دابەشکردنی خۆراک و سووتەمەنی
+چاودێری پزیشکی
+بەڕێوەبردنی پاشماوەکان
+چاککردنەوە و ڕاگرتنی خێمە و کاراوانەکان
+پشتگیری پەروەردە و فێرکردن
+خزمەتگوزارییەکانی ئاو و ئاوەڕۆ
+ڕاهێنانی پیشەیی و ناپیشەیی
+هەماهەنگی لەگەڵ ڕێکخراوە ناحکومییەکان و لایەنە حکومییەکان
+داکۆکیکردن لە کەرامەت و خۆشگوزەرانی
+کامپەکان لە ئێستادا
+بەڕێوەبردنی ٢٧ کامپ لە هەولێر و دهۆک
+خزمەتکردنی زیاتر لە ٢٠٠,٠٠٠ پەنابەر و ئاوارە بە ساڵێک لە ڕێگەی بەڕێوەبردنی کامپەکانەوە
+
+--- Sector: پێداویستییە ناخۆراکییەکان ---
+
+پێداویستییە ناخۆراکییەکان
+پێداویستییە فریاگوزارییە سەرەکییەکان کە لەگەڵ خۆراک، ئاو، حەوانەوە و هاوکاری نەقدی پێکەوە بە خێزانە کەمدەرامەتەکان دەگەیەنرێن.
+سوودمەندان
+1,426,999 خێزان
+7,487,226 کەس
+پێداویستییە فریاگوزارییە سەرەکییەکان
+بەتانی
+پێداویستییەکانی زستانە
+دۆشەک
+پێداویستییەکانی چێشتخانە
+پێداویستییە بەپەلەکانی ناوماڵ
+
+--- Sector: هاوکاری نەقدی و فریاگوزارییە سەرەکییەکان ---
+
+هاوکاری نەقدی و فریاگوزارییە سەرەکییەکان
+دەزگای خێرخوازیی بارزانی پاڵپشتی دارایی ڕاستەوخۆ پێشکەش بەو خێزانانە دەکات کە پێویستیان بە یارمەتی بەپەلە هەیە بۆ دابینکردنی پێداویستییە سەرەکییەکانی ژیان.
+هاوکاری نەقدی نەرمی و ئاسانکاری بە خێزانە کەمدەرامەتەکان دەبەخشێت بۆ دابینکردنی پێویستییە بەپەلەکانیان بە کەرامەتەوە.
+سوودمەندان
+37,121 خێزان
+338,767 کەس
+ئاماری کاریگەری
+دابەشکردنی ١٤١,٤٦٨,٢٦١,٠٠٢ دیناری عێراقی وەک هاوکاری نەقدی
+
+--- Sector: ژینگە و گۆڕانی کەشوهەوا ---
+
+ژینگە و گۆڕانی کەشوهەوا
+ئاڕاستەی داهاتووی دەزگای خێرخوازیی بارزانی پاراستنی ژینگە و هۆشیاری سەبارەت بە کەشوهەوا لەخۆ دەگرێت.
+پاراستنی مرۆڤەکان بە مانای پاراستنی ئەو ژینگەیەش دێت کە پشتی پێ دەبەستن. کاری مرۆیی ناتوانێت چاوپۆشی لە گۆڕانی کەشوهەوا، ئاسایشی ئاو، ڕووبەری سەوزایی و مەرجەکانی داهاتووی ژیان بکات.
+ئامانجەکانی داهاتوو
+چاندنی یەک ملیۆن درەخت لە ماوەی پێنج ساڵدا
+کەمکردنەوەی بەکارهێنانی پلاستیک بە ڕێژەی ٨٠٪ لە نووسینگەکانی دەزگای خێرخوازیی بارزانیدا
+دەستپێکردنی پڕۆژەکانی ڕیسایکلین
+پەرەپێدانی هۆشیاری ژینگەیی
+پشتگیریکردنی هەرێمێکی کوردستانی تەندروستتر و سەوزتر
+
+========================================================================
+PAGE: Our Story
+========================================================================
+
+٢٠٠٥
+ئێستا
+بڕۆ خوارەوە
+
+--- Story section: میراتێک لە خزمەتکردن ---
+
+میراتێک
+لە خزمەتکردن
+دەزگای خێرخوازیی بارزانی بە شێوەیەکی فەرمی لە ساڵی ٢٠٠٥ لە هەولێری پایتەختی هەرێمی کوردستانی عێراق دامەزرا، بۆ گۆڕینی بەزەیی و هاوسۆزی بە کارێکی مرۆیی ڕێکخراو.
+
+--- Story section: هێڵی کاتی دەزگاکە ---
+
+هێڵی کاتی
+دەزگاکە
+
+--- Story section: پەیام ---
+
+پەیام
+پێشکەشکردنی هاوکاریی مرۆیی بە لێقەوماوان، بەبێ جیاکاری لەسەر بنەمای بنچینەی نەتەوەیی، ئاینی یان سیاسی، لەگەڵ بەرقەرارکردنی ئاشتی و کەرامەت بۆ مرۆڤایەتی و سروشت.
+
+--- Story section: دیدگا ---
+
+دیدگا
+جیهانێک کە تێیدا هەژاری و کۆچی زۆرەملێ بنبڕ کرابێت، و هەموو کەسێک مافی هەبێت لە بەدەستهێنانی پەروەردە، خزمەتگوزارییە سەرەکییەکان، مافە بنەڕەتییەکان و ژینگەیەکی پارێزراو.
+
+--- Story section: فەلسەفەی مرۆڤ دۆستانە ---
+
+فەلسەفەی
+مرۆڤ دۆستانە
+وتەی «شانازییە بۆ مرۆڤ خزمەتکاری میللەتی خۆی بێ» تەنها دروشمێک نییە؛ بەڵکو بنەمای ئەخلاقی کارەکانی دەزگای خێرخوازی بارزانییە. کاری مرۆیی بەخشینێک نییە لە سەرەوە، بەڵکو خزمەتکردنە بە کەرامەتەوە.
+
+--- Story section: بەهاکانی پشت پەیامەکە ---
+
+بەهاکانی
+پشت پەیامەکە
+دەزگا لە ڕێگەی بەهاکانەوە کار دەکات کە کاری مرۆیی ناوخۆیی و نێودەوڵەتی دادەڕێژن.
+
+--- Values ---
+
+بێلایەنی مرۆیی
+کەرامەت لە بەخشیندا
+بەرگەگرتن و بەهێزکردن
+هاوژیانی ئاشتیانە
+پشتگیری لە لاوازەکان
+ڕوونکاری
+
+--- Timeline ---
+
+2005
+دامەزراندن لە هەولێر
+دەزگای خێرخوازی بارزانی لە هەولێر، هەرێمی کوردستانی عێراق دامەزرا.
+2009
+پڕۆژەی چاودێری ئازیزان
+پڕۆژەیەکی تایبەت چاودێری و پاراستنی درێژخایەنی بۆ منداڵانی ئازیزان فراوانتر کرد.
+2011
+وەڵامی بوومەلەرزەی وان
+دەزگا چووە ناو تورکیا بۆ پشتگیریکردنی خێزانە زیانلێکەوتووەکانی بوومەلەرزەی وان.
+2013
+پێشوازی لە پەنابەرانی سووری
+تا ساڵی ٢٠١٣، دەزگا زیاتر لە ٢٥٠,٠٠٠ پەنابەری سووری پێشوازی لێکرد.
+2014
+٩ ملیۆن ژەم — هێڵی ژیانی چیای شنگال
+دەزگا ٩ ملیۆن ژەم خواردنی گەرمی پێشکەش بە خێزانە ئاوارەکانی چیای شنگال کرد.
+2015
+بەڕێوەبردنی کەمپ لە هەولێر
+دەزگا کەمپەکانی خزمەتکردنی ئاوارە و پەنابەرانی لە هەولێر بەڕێوەبرد.
+2016
+ناسینەوەی نێودەوڵەتی
+پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و تۆمارکردنی خێرخوازی لە کوەیت.
+2018
+نوێنەرایەتی Sphere
+دەزگا بوو بە نوێنەری Sphere لە هەرێمی کوردستان.
+2019
+وەڵامی سنووربەزێن لە سووریا
+دەزگا سنوورەکانی بڕی بۆ پشتگیریکردنی خەڵکی مەدەنی زیانلێکەوتووی ململانێی چەکداری لە سووریا.
+2020
+مۆڵەتی بەریتانیا و کەمپەکانی دهۆک
+مۆڵەتی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپەکان لە دهۆک.
+2021
+یەکەم ناوەندی مرۆیی بۆ ئۆتیزم
+دەزگا یەکەم ناوەندی مرۆیی تایبەت بە ئۆتیزمی لە کوردستان کردەوە.
+2023
+ISO 9001:2015 و وەڵامی بوومەلەرزە
+دەزگا بڕوانامەی ISO 9001:2015 بەدەستهێنا و یەکەم ڕێکخراو بوو کە گەیشتە قوربانییە سەرەکییەکانی بوومەلەرزە لە تورکیا و سووریا.
+2025
+ناوەندی چارەسەری ماددە هۆشبەرەکان
+دەزگا بەردی بناغەی یەکەم ناوەندی چارەسەری ماددە هۆشبەرەکانی دانا لە کوردستان–عێراق.
+2026
+٤٦٥ بارهەڵگری مرۆیی
+دەزگا ٤٦٥ بارهەڵگری مرۆیی گەیاندە سووریا دوای ململانێی چەکداری.
+
+========================================================================
+PAGE: Where We Work — Kurdistan map
+========================================================================
+
+لە کوێ کار دەکەین
+لەسەر
+سنوورەکان
+ئۆفیسەکان
+کەمپەکان
+جوگرافی
+فریاکەوتن
+لە ناو کوردستان
+پڕۆژەکان لە
+
+--- هەولێر ---
+
+هەولێر
+هەولێر
+پارێزگای سەرەکیی BCF و فراوانترین ناوچەی کارەکانی دامەزراوەکەیە؛ پڕۆژەکانی خۆراک، قوتابخانە، ئاو، کەمپ، نیشتەجێکردن و ناوەندی لێهاتوویی بۆ چاودێری ئاڵۆز لەخۆدەگرێت.
+پڕۆژەکان ببینە
+
+--- دهۆک ---
+
+دهۆک
+دهۆک
+لە ساڵی ٢٠٢١دا ژمارەی کەمپەکان لە بەرزترین ئاستدا گەیشتە ٢٠ کەمپ؛ هەروەها پڕۆژەی نیشتەجێبوونی ڕۆژ سیتی بە ٤٢٠ یەکەی نیشتەجێبوون جێبەجێ کرا، و لە ساڵی ٢٠٢٦دا نانەواخانەکانی نانی خۆڕایی لە ناوچە جیاوازەکاندا بەردەوامن لە کارکردن.
+پڕۆژەکان ببینە
+
+--- سلێمانی ---
+
+سلێمانی
+سلێمانی
+لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، ٥٠ قوتابخانە نۆژەن کرانەوە؛ هەروەها پڕۆژەکانی گۆشتی قوربانی و خۆراکی ڕەمەزان بەردەوام بوون، و لە ساڵی ٢٠٢٦دا لە ڕێگەی ئۆفیسەکەوە یارمەتی دارایی بۆ خێزانەکان دابەش کرا.
+پڕۆژەکان ببینە
+
+--- کەرکوک ---
+
+کەرکوک
+کەرکوک
+لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، کەرکووک زۆرترین بەشی هەبوو؛ هەروەها پڕۆژەکانی خۆراک، یارمەتی کەسانی خاوەن پێداویستی تایبەت و پێکەوەژیان لە پارێزگاکە جێبەجێ کران.
+پڕۆژەکان ببینە
+
+--- نەینەوا / مووسڵ ---
+
+نەینەوا / مووسڵ
+مووسڵ
+نزیکەی نیو ملیۆن ژەم خواردنی گەرم لە ساڵی ٢٠٢٢ دابەش کرا، ١٠ کەمپ بەڕێوەدەبران، هەروەها نەخۆشان لە کەمپەکانی ڕۆژهەڵاتی موسڵ بۆ نەخۆشخانەکانی هەولێر و موسڵ گواسترایەوە.
+پڕۆژەکان ببینە
+
+--- شنگال ---
+
+شنگال
+شنگال
+ئەو شوێنەی کاری فریاکەوتنی BCF لێوە دەستی پێکرد؛ وەڵامدانەوە بە تەقینەوەکانی ساڵی ٢٠٠٧، گەیاندنی یارمەتی بە هەلیکۆپتەر بۆ چیا لە ساڵی ٢٠١٤، و ئەو خانووانەی لەوێ لەو کاتەوە دروست کراون.
+پڕۆژەکان ببینە
+
+--- گەرمیان / کەلار ---
+
+گەرمیان / کەلار
+گەرمیان
+پڕۆژەکانی خۆراک، یارمەتی کەسانی خاوەن پێداویستی تایبەت و یارمەتی دارایی لە کەلار، کفری، خانەقین، ڕزگاری و دەربەندیخان جێبەجێ کران؛ هەروەها لە ساڵی ٢٠٢٤دا یارمەتی بۆ خێزانە زیانلێکەوتووەکانی لافاو دابەش کرا.
+پڕۆژەکان ببینە
+
+--- هەڵەبجە ---
+
+هەڵەبجە
+هەڵەبجە
+یارمەتی پزیشکی کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی دابین کرا؛ ١١ قوتابخانە نۆژەن کرانەوە؛ لە ساڵی ٢٠٢٣ باخچەیەکی منداڵان کرایەوە؛ هەروەها یارمەتی و پشتگیری خێزانەکانی ئازیزان بەردەوام بوو.
+پڕۆژەکان ببینە
+
+--- سۆران ---
+
+سۆران
+سۆران
+پێنج قوتابخانە نۆژەن کرانەوە، بەشێک لە خانووەکانی پڕۆژەی شەهیدان دابەش کران، هەروەها لە ناوەندی کۆمەڵایەتی دایک چالاکی هۆشیارکردنەوە دەربارەی ئۆتیزم جێبەجێ کرا.
+پڕۆژەکان ببینە
+
+--- زاخۆ ---
+
+زاخۆ
+زاخۆ
+سۆپای زستانە و وەڵامدانەوەی لافاو لەسەر سنوور، پڕۆژەیەکی خوێندەواری پێنج مانگە بۆ منداڵانی پەنابەر، و فەرشی مزگەوتەکان لە سەرانسەری ئیدارەدا.
+پڕۆژەکان ببینە
+
+--- ئاکرێ ---
+
+ئاکرێ
+ئاکرێ
+بەستە خۆراکییەکان بۆ دانیشتوانی کەمپەکان بە هاوکاری کاریتاسی ئەڵمانی دابەش کران. لە ساڵی ٢٠٢١دا ١٠,٠٠٠ نەمامی دار بەڕوو چێندران. هەروەها نەخۆشخانەی دایک و منداڵ نوێکرایەوە و ئەم کارە لە ڕاپۆرتی گشتی کۆکراوەدا تۆمار کراوە.
+پڕۆژەکان ببینە
+
+--- ئامێدی / شێلادزێ / دەرەلوک / سەرسنگ ---
+
+ئامێدی / شێلادزێ / دەرەلوک / سەرسنگ
+ئامێدی
+ناوەندی زەردەخەنە بە هاوکاری کاریتاسی ئەڵمانیا، خزمەتگوزاری چاودێری تایبەت و چالاکییەکانی هۆشیارکردنەوەی ئۆتیزمی پێشکەش کرد؛ هەروەها سەبەتەی خۆراک لە شارۆچکەکانی ناوچە شاخاوییەکان دابەش کران.
+پڕۆژەکان ببینە
+
+--- ڕۆژئاوای کوردستان، بە عەفرینەوە ---
+
+ڕۆژئاوای کوردستان، بە عەفرینەوە
+ڕۆژئاوا
+گەورەترین کاری ئێستای BCF لە دەرەوەی سنوور — ٤١٥ بارهەڵگر، ٢٩٬٠٧٠ خێزان، ئارد بۆ ٣٫٣٦ ملیۆن نان، گازۆیل، دەرمان و کار — لەگەڵ بەرنامەی چەسپاوی عەفرین: کلینیکی گەڕۆک، ناوەندی کولتوور و گەشەپێدانی بارزانی، پشتگیری خوێندکاران و ١٩٢ ئازیزانی سەرپەرشتیکراو.
+پڕۆژەکان ببینە
+
+--- پارێزگاکانی دیکەی عێراق ---
+
+پارێزگاکانی دیکەی عێراق
+عێراق
+کاری خۆراک و پزیشکی لە بەغدا، دیالە، زیقار، ئەنبار و سەماوە — ٤٩٣٬٣٨٠ کەس لە عێراق لە دەرەوەی هەرێم لە ٢٠٢٥.
+پڕۆژەکان ببینە
+
+--- تورکیا ---
+
+تورکیا
+تورکیا
+کەمپی وان بە ٤٠٠ کاروان، و وەڵامدانەوەی بوومەلەرزەی ٢٠٢٣ کە لە ماوەی چەند ڕۆژێکدا بە تیمی ڕزگارکردن، ژەمی گەرم و چادرەوە پەڕییەوە.
+پڕۆژەکان ببینە
+
+--- سووریا ---
+
+سووریا
+سووریا
+لێرەدا وەڵامدانەوەی بوومەلەرزە و بەرنامەی عەفرین کاری BCF فراوان کرد، و ئێستا کاری ڕۆژئاوای کوردستان لێرەدا بەڕێوەدەچێت.
+پڕۆژەکان ببینە
+
+--- لوبنان ---
+
+لوبنان
+لوبنان
+چادر لە کەمپی مام ڕەشان بۆ پێشوازی لە کوردە لوبنانییەکان کە بەهۆی قەیرانی ناوچەکەوە ئاوارە بوون.
+پڕۆژەکان ببینە
+
+========================================================================
+PAGE: Where We Work — world / global map
+========================================================================
+
+جیهانی
+شازدە وڵات لە بیست ساڵدا، هەموویان لە هەولێرەوە بەڕێوە دەبرێن.
+ڕایبکێشە بۆ جوڵاندن · بیگوشە بۆ نزیکبوونەوە
+ڕایبکێشە بۆ خولاندن · بیگوشە بۆ نزیکبوونەوە
+گۆی زەوی
+نەخشەی تەخت
+نزیکبوونەوە
+دوورکەوتنەوە
+گەڕانەوە بۆ دیمەنی سەرەتا
+بارەگا
+مۆڵەتدار
+فریاکەوتن
+ناوچەی کار
+
+--- هەرێمی کوردستان، عێراق ---
+
+هەرێمی کوردستان، عێراق
+لە ٢٠٠٥ەوە
+لە هەولێر دامەزراوە و لە کۆماری عێراق و هەرێمی کوردستان مۆڵەتی هەیە؛ لێرەوە هەموو بەرنامەیەک دادەڕێژرێت و بەڕێوە دەبرێت.
+ئۆفیس لە هەولێر، دهۆک، زاخۆ، کەرکوک و سلێمانی
+بڕوانامەی بەڕێوەبردنی جۆرایەتی ISO 9001:2015
+
+--- شانشینی یەکگرتوو ---
+
+شانشینی یەکگرتوو
+١ کەرت
+سوودمەندان: ١٩٥ کەس
+کەرت: هاوکاریی پارەیی
+
+--- ویلایەتە یەکگرتووەکانی ئەمریکا ---
+
+ویلایەتە یەکگرتووەکانی ئەمریکا
+مۆڵەتدار
+لە ویلایەتە یەکگرتووەکان تۆمار کراوە بۆ کارکردن، کە هاوبەشی ڕوون و پشتگیریی مرۆیی بەرپرسیارانەی نێودەوڵەتی دەستەبەر دەکات.
+ئامادەبوونی مرۆیی مۆڵەتدار لە ویلایەتە یەکگرتووەکان
+پشتگیری بۆ هاوبەشییە نێودەوڵەتییە ڕوونەکان
+
+--- تورکیا ---
+
+تورکیا
+١٠ شوێن
+سوودمەندان: ٨٠,١٤٩ خێزان، ٣٣٠,٢٤٩ کەس
+٦ کەرت: خۆراک، کەلوپەلی ناخۆراکی، پەناگە، هاوکاریی پارەیی، ئاو و خاوێنکاری، تەندروستی
+
+--- سووریا ---
+
+سووریا
+٤ شوێن
+سوودمەندان: ٦١,١٨٧ خێزان، ٢٥٧,١٠٦ کەس
+٩ کەرت: خۆراک، ئاو و خاوێنکاری، پاراستن، هاوکاریی پارەیی، تەندروستی، پەناگە، پەروەردە، بژێوی، کەلوپەلی ناخۆراکی
+
+--- ئۆکرانیا ---
+
+ئۆکرانیا
+١ کەرت
+سوودمەندان: ١٢٤ کەس
+کەرت: پاراستن
+
+--- سربیا ---
+
+سربیا
+٣ کەرت
+سوودمەندان: ٧٠٠ کەس
+کەرتەکان: پەروەردە، خۆراک، کەلوپەلی ناخۆراکی
+
+--- یۆنان ---
+
+یۆنان
+ناوچەی کار
+یەکێکە لەو وڵاتانەی کە کاری مرۆڤدۆستانەی BCF لە ماوەی بیست ساڵی ڕابردوودا گەیشتووەتێ.
+
+--- لوبنان ---
+
+لوبنان
+٢ کەرت
+سوودمەندان: ١,٧٦٨ خێزان، ٨,٥٩٠ کەس
+کەرتەکان: هاوکاریی پارەیی، خۆراک
+
+--- مەغریب ---
+
+مەغریب
+٢ کەرت
+سوودمەندان: ١,٥٢٠ کەس
+کەرتەکان: خۆراک، کەلوپەلی ناخۆراکی
+
+--- شانشینی عەرەبستانی سعودی ---
+
+شانشینی عەرەبستانی سعودی
+١ کەرت
+سوودمەندان: ٣,٠٠٠ کەس
+کەرت: خۆراک
+
+--- سودان ---
+
+سودان
+٢ کەرت
+سوودمەندان: ٨٠٠ کەس
+کەرتەکان: کەلوپەلی ناخۆراکی، پاراستن
+
+--- باشووری سودان ---
+
+باشووری سودان
+ناوچەی کار
+یەکێکە لەو وڵاتانەی کە کاری مرۆڤدۆستانەی BCF لە ماوەی بیست ساڵی ڕابردوودا گەیشتووەتێ.
+
+--- یەمەن ---
+
+یەمەن
+١ کەرت
+سوودمەندان: ١٤٠ خێزان، ٧٠٠ کەس
+کەرت: خۆراک
+
+--- بەنگلادیش ---
+
+بەنگلادیش
+١ کەرت
+سوودمەندان: ١١,٨١٠ کەس
+کەرت: تەندروستی
+
+--- ئۆسترالیا ---
+
+ئۆسترالیا
+١ کەرت
+ئاو، خاوێنکاری و تەندروستی ژینگەیی (WASH)
+کەرت: ئاو و خاوێنکاری (WASH)
+
+========================================================================
+PAGE: Projects (city / sector register)
+========================================================================
+
+وەڵامدانەوەی فریاکەوتن
+دڵنیایی خۆراک
+تەندروستی
+پەروەردە و گەشەپێدان
+پەناگە و نیشتەجێبوون
+ئاو و خاوێنکاری
+بەڕێوەبردنی کەمپ
+کەلوپەلی ناخۆراکی
+پشتگیری کەمئەندامان
+پاراستن
+بژێوی
+پارە و ئازیزان
+ژینگە
+پشتگیری کۆمەڵگا
+مێژوویی
+ڕاپۆرتی ساڵانە ٢٠٢٠-٢٤
+٢٠٢٥ — دوایین ساڵی تەواو
+٢٠٢٦ — ئێستا
+مێژوویی
+چەند ساڵە
+بەردەوام
+کەرتەکان
+کەرت
+پڕۆژەی تۆمارکراو
+پڕۆژەی تۆمارکراو
+پڕۆژە
+ساڵانی تۆمارکراو
+ساڵانی تۆمارکراو
+لە دەرەوەی هەرێم
+ئەو کارانەی BCF لە دەرەوەی نەخشەی هەرێمی کوردستان تۆماری کردوون.
+گەیشتووە لە ٢٠٢٥
+کۆی گشتی کەسان بۆ ئەم کەرتە لە ٢٠٢٥ لە ئاستی دامەزراوەدا، لە کانوونی دووەمی ٢٠٢٦ بڵاوکراوەتەوە. ژمارەی ئەم شوێنە نییە.
+مەودا
+لە ڕاپۆرتە ساڵانە فەرمییەکانی BCF، ڕاپۆرتی کۆی ٢٠٠٥-٢٠٢٤ و نوێکارییەکانی ماڵپەڕ کە لە ئابی ٢٠٢٦ پشتڕاست کراونەتەوە.
+
+--- Organisation-wide 2025 totals (numbers) ---
+
+بەڕێوەبردنی کەمپ: 874,747
+دڵنیایی خۆراک: 475,867
+تەندروستی: 314,573
+کەلوپەلی ناخۆراکی: 175,708
+بژێوی: 111,552
+ئاو و خاوێنکاری: 73,152
+پارە و ئازیزان: 45,917
+پەروەردە و گەشەپێدان: 41,588
+پاراستن: 27,834
+پەناگە و نیشتەجێبوون: 228
+
+--- Project entries (localised bodies; English fallback marked) ---
+
+--- Projects — هەولێر ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] Food distributions across Erbil: Korek parcels for 350 households, Galiawa food for 6,817 households in Hasan Sham U2/U3 and Khazir, and Qurbani meat for 14,021 households in the city and its camps.
+2022 — [ENGLISH FALLBACK] The hot-meal programme served 694,362 meals in Erbil, alongside food distributions continuing through partner projects.
+2023 — [ENGLISH FALLBACK] Qurbani meat reached 1,481 families, with regular food and non-food assistance continuing across Erbil and the camps.
+2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 14,943 food parcels in Erbil; other Ramadan and food projects ran separately.
+[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+2026 — [ENGLISH FALLBACK] Ramadan iftar at Erbil Park for 1,000 people daily, 500 Turaq food baskets, food for families of martyrs, Eid food baskets and camp food and flour assistance.
+
+[پەروەردە و گەشەپێدان]
+2020 — [ENGLISH FALLBACK] The 450 school-chairs project covered Halgurd Basic School in Erbil together with schools under the Sulaymaniyah and Penjwen directorates.
+2022 — [ENGLISH FALLBACK] Fifty of the 203 schools in the renovation programme were in Erbil.
+2024 — [ENGLISH FALLBACK] Fifteen schools renovated in Erbil, and a solar-electricity pilot installed at ten Erbil schools.
+2025 — [ENGLISH FALLBACK] The Orphans' Educational Project was officially announced in Erbil and operates across BCF offices and Kurdistan.
+2026 — [ENGLISH FALLBACK] First participation in the Kurdish Book Fair, education and awareness initiatives, and a new Capacity Development Center for Orphans and Widows announced in Erbil.
+
+[تەندروستی]
+2020 — [ENGLISH FALLBACK] COVID-19 medical assistance delivered to Central Erbil Hospital as part of regional hospital support.
+2024 — [ENGLISH FALLBACK] The Center of Excellence for Complex Care was active, and Erbil hospitals also received patients through the mobility-service project.
+2026 — [ENGLISH FALLBACK] The memorandum for the Kurdistan Center of Excellence for Complex Care was renewed, and a mammography support project announced for the Erbil breast-disease centre.
+
+[ئاو و خاوێنکاری]
+2021 — [ENGLISH FALLBACK] Emergency water response delivered 65,864,000 litres through 3,261 tanker runs to 65,220 families across Erbil Governorate.
+2022 — [ENGLISH FALLBACK] Well drilling and repair, pumps and generators in Kawrgosk, Qushtapa, Kasnazan-area villages and Ruvia, with related countryside water systems.
+2024 — [ENGLISH FALLBACK] Drinking-water support reported for 9,100 families in Erbil Governorate.
+
+[پەناگە و نیشتەجێبوون]
+2015 — [ENGLISH FALLBACK] Three hundred caravans established in Bahirka Camp.
+[ENGLISH NOTE] Recorded in the cumulative 2005-2024 report.
+2019 — [ENGLISH FALLBACK] Khazir camp shelter support, including large tent projects with LDS Charities and Catholic Teufen.
+2021 — [ENGLISH FALLBACK] Two major flood responses in Erbil: 751 households assisted in October and 2,905 households in December.
+2023 — [ENGLISH FALLBACK] BCF responded again to flood-affected families in Erbil after heavy rains.
+2024 — [ENGLISH FALLBACK] The foundation stone was laid for BCF City in Qushtapa, and the shared Erbil/Soran martyrs' housing distribution took place.
+[ENGLISH NOTE] 540 units project-wide; the Erbil-vs-Soran split is not published in the reviewed source.
+2025 — [ENGLISH FALLBACK] The first phase of BCF City moved into implementation in Qushtapa, including 180 houses for poor and low-income families.
+
+[پشتگیری کەمئەندامان]
+2015 — [ENGLISH FALLBACK] The mobility-aid project launched with LDS Charities and continued in later years.
+2021 — [ENGLISH FALLBACK] 389 people in Erbil received wheelchairs or other mobility aids.
+2022 — [ENGLISH FALLBACK] 326 beneficiaries recorded in Erbil.
+2026 — [ENGLISH FALLBACK] Wheelchairs and other disability support continued: ten wheelchairs distributed in March, with further support in April.
+
+[بەڕێوەبردنی کەمپ]
+2021 — [ENGLISH FALLBACK] BCF managed nine IDP and refugee camps plus one host-community camp in Erbil Governorate; clothing, blanket and household-item projects supported Harsham, Hasan Sham, Bahirka, Debaga and others.
+2021-26 — [ENGLISH FALLBACK] Recurring food, NFI, winter, health and camp-support projects operated in Bahirka, Hasan Sham, Khazir, Debaga, Qushtapa, Basirma, Darashakran and Harsham.
+2023 — [ENGLISH FALLBACK] Seven camps managed in Erbil, and more than 300,000 Iranian pilgrims temporarily accommodated in Sami Abdulrahman Park with food, water and health services.
+2024 — [ENGLISH FALLBACK] The Warm Winter programme distributed heaters to schools in Erbil; camp coordination remained one of BCF's largest sectors.
+2026 — [ENGLISH FALLBACK] Food, cash, clothing and disability assistance continued in Baharka, Hasan Sham, Khazir and Debaga camps, and a World Refugee Day event was held in Erbil.
+
+[پارە و ئازیزان]
+2012 — [ENGLISH FALLBACK] Orphan sponsorship — the Kurdistan project — began and later expanded across BCF offices.
+2021 — [ENGLISH FALLBACK] Erbil joined the academic-excellence programme honouring top Grade 12 orphan students.
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 802 orphans in Erbil, and the educational project launched in the city.
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Erbil.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Erbil counts.
+2026 — [ENGLISH FALLBACK] The Capacity Development Center for Orphans and Widows was announced, and food, clothing and family assistance continued.
+
+--- Projects — دهۆک ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] Food projects covered Duhok; Qurbani meat reached 2,060 households in Duhok and Bardarash Camp, and Akre Camp received food parcels through Caritas.
+2022 — [ENGLISH FALLBACK] 60,788 hot meals reported in Duhok, with annual food-distribution projects continuing.
+2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 13,931 food parcels in Duhok Governorate.
+[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+2026 — [ENGLISH FALLBACK] A free-bread Ramadan project ran through 13 bakeries across Duhok-area districts, alongside Semel food baskets and large flour distributions to camp families.
+
+[تەندروستی]
+2020 — [ENGLISH FALLBACK] COVID-19 medical supplies delivered to the Duhok Health Directorate.
+2021 — [ENGLISH FALLBACK] A COVID vaccination centre opened in Domiz 1 Camp, and medical equipment and supplies were delivered to five Duhok hospitals and camp facilities.
+2025 — [ENGLISH FALLBACK] The Mobile Medical Clinic project launched for camps in Duhok Province; 17 Kurdish children were also sent to Germany for examination and treatment through a partner programme.
+2026 — [ENGLISH FALLBACK] BCF noted plans for an autism centre in Duhok, in addition to the existing centres elsewhere.
+
+[پەروەردە و گەشەپێدان]
+2022 — [ENGLISH FALLBACK] Twenty of the 203 schools in the renovation programme were in Duhok.
+2024 — [ENGLISH FALLBACK] Fourteen schools renovated in Duhok in the final annual report.
+2025 — [ENGLISH FALLBACK] A solar-electricity project was announced for ten schools in Duhok Province.
+
+[پەناگە و نیشتەجێبوون]
+2016 — [ENGLISH FALLBACK] Six hundred caravans established in Darkar Ajam Camp.
+2021 — [ENGLISH FALLBACK] 188 shelters built in Sharya Camp in cooperation with LDS Charities.
+[ENGLISH NOTE] Recorded in the cumulative 2005-2024 report.
+2022 — [ENGLISH FALLBACK] The Duhok martyrs' housing project completed 420 residential units in Roj City.
+[ENGLISH NOTE] First phase 368, second phase 52. Use 420 as the complete project; 368 is only the first phase.
+2024-26 — [ENGLISH FALLBACK] Camp shelter and winter support continued through BCF's regular camp programmes.
+
+[بەڕێوەبردنی کەمپ]
+2021 — [ENGLISH FALLBACK] BCF managed 20 IDP and refugee camps in Duhok Governorate.
+2021-26 — [ENGLISH FALLBACK] Recurring food, NFI, winter, health and camp-support projects operated in Khanke, Domiz, Sharya and other Duhok-area sites.
+2023 — [ENGLISH FALLBACK] Thirteen camps managed in Duhok.
+2024 — [ENGLISH FALLBACK] The Warm Winter heater project included Duhok schools, and flood-relief NFI support covered affected Duhok locations.
+2026 — [ENGLISH FALLBACK] Food, flour, white oil and other assistance continued across Duhok camps; Eid projects included major flour support for displaced families.
+
+[پشتگیری کەمئەندامان]
+2015 — [ENGLISH FALLBACK] The mobility-aid project launched and continued in Duhok.
+2021 — [ENGLISH FALLBACK] 154 mobility-aid beneficiaries in Duhok.
+2022 — [ENGLISH FALLBACK] 106 beneficiaries in Duhok.
+2026 — [ENGLISH FALLBACK] Eight wheelchairs distributed in May, with disability-support activities continuing.
+
+[بژێوی]
+2023 — [ENGLISH FALLBACK] Livelihood-sector activity continued through the Duhok office and its vocational centres.
+2026 — [ENGLISH FALLBACK] The Kurdivia fruit-drying and green-garden initiative was implemented at the University of Duhok with the American Corner.
+
+[پارە و ئازیزان]
+2012 — [ENGLISH FALLBACK] Orphan sponsorship — the Kurdistan project — operates across Duhok and the other offices.
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 594 orphans in Duhok.
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Duhok.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Duhok counts.
+2026 — [ENGLISH FALLBACK] The Duhok office organised activities and cash support for orphaned children and their families.
+
+[پشتگیری کۆمەڵگا]
+2025 — [ENGLISH FALLBACK] A community-support project announced carpets for 62 mosques across Duhok Province and the Zakho administration.
+
+--- Projects — سلێمانی ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] The Korek food project reached 1,500 households and Qurbani meat 1,000 households; other BCF and Kuwait-supported food projects also covered Sulaymaniyah.
+2022 — [ENGLISH FALLBACK] 3,550 hot meals reported in Sulaymaniyah.
+2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,149 families.
+2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 2,605 food parcels.
+[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+2026 — [ENGLISH FALLBACK] 400 Ramadan food baskets, support for 75 families and teachers in the Penjwen area, and 500 food baskets to families of persons with disabilities.
+
+[پەروەردە و گەشەپێدان]
+2020 — [ENGLISH FALLBACK] The school-chair project also covered schools under the Sulaymaniyah and Penjwen education directorates.
+2022 — [ENGLISH FALLBACK] Fifty of the 203 schools in the renovation programme were in Sulaymaniyah.
+
+[کەلوپەلی ناخۆراکی]
+2023 — [ENGLISH FALLBACK] The NFI sector recorded 22,297 individual beneficiaries through the Sulaymaniyah office.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 125 mobility-aid beneficiaries.
+2022 — [ENGLISH FALLBACK] 115 beneficiaries.
+2026 — [ENGLISH FALLBACK] Eleven wheelchairs in May; food support also targeted 250 people with special needs in March and 500 disability-linked families in May.
+
+[پاراستن]
+2024 — [ENGLISH FALLBACK] Sulaymaniyah was included in BCF's protection-sector geographic coverage.
+
+[پارە و ئازیزان]
+2021 — [ENGLISH FALLBACK] Sulaymaniyah students were included in the top Grade 12 orphan recognition programme.
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 561 orphans in Sulaymaniyah.
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Sulaymaniyah.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Sulaymaniyah counts.
+2026 — [ENGLISH FALLBACK] Two March cash projects supported 100 families with IQD 200,000 each and another 100 families with US$200 each.
+
+--- Projects — کەرکوک ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] The Korek food project reached 750 households and Qurbani meat 1,000 households; BCF and Kuwait-supported projects also covered Kirkuk.
+2022 — [ENGLISH FALLBACK] 3,500 hot meals reported in Kirkuk.
+2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,972 families.
+2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 6,750 food parcels.
+[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+2026 — [ENGLISH FALLBACK] Prde food baskets for 200 families, and the 'Immortal Barzani, Symbol of Coexistence' project began with food and NFI support to 30 families.
+
+[پەروەردە و گەشەپێدان]
+2022 — [ENGLISH FALLBACK] Fifty-two of the 203 schools in the renovation programme were in Kirkuk.
+2024 — [ENGLISH FALLBACK] The final 50-school programme included five schools in Kirkuk.
+
+[کەلوپەلی ناخۆراکی]
+2023 — [ENGLISH FALLBACK] NFI activities recorded 3,850 individual beneficiaries.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 121 mobility-aid beneficiaries.
+2022 — [ENGLISH FALLBACK] 220 disability-support beneficiaries.
+
+[پاراستن]
+2024 — [ENGLISH FALLBACK] Kirkuk was included in protection-sector programmes.
+
+[بژێوی]
+2023 — [ENGLISH FALLBACK] Livelihood-sector work continued through the Kirkuk office.
+
+[پارە و ئازیزان]
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 644 orphans in Kirkuk.
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Kirkuk.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Kirkuk counts.
+2026 — [ENGLISH FALLBACK] Cash distributions reached 300 families with US$100 each and another 50 families with US$200 each.
+
+--- Projects — نەینەوا / مووسڵ ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] The Korek project reached 1,850 households in Mosul and Qurbani meat 1,000 households in Nineveh; the Kuwait-supported food project also covered the governorate.
+2022 — [ENGLISH FALLBACK] 498,545 hot meals reported in Nineveh, with food-project beneficiaries also recorded in Nineveh and Zummar.
+2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,815 families in Mosul.
+2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 6,500 food parcels in Mosul.
+[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+
+[تەندروستی]
+2022 — [ENGLISH FALLBACK] Hasan Sham and Khazir Health Centers were listed among ongoing BCF health projects serving displacement-affected populations near Nineveh.
+2024 — [ENGLISH FALLBACK] Nineveh recorded major health-sector reach; Patient Mobility Services transported 525 patients from East Mosul camps to hospitals in Erbil and Mosul.
+
+[پەروەردە و گەشەپێدان]
+2022 — [ENGLISH FALLBACK] Twenty of the 203 schools in the renovation programme were in Nineveh.
+2024 — [ENGLISH FALLBACK] The final 50-school programme included five schools in Mosul.
+
+[ئاو و خاوێنکاری]
+Multi-year — [ENGLISH FALLBACK] A concrete water tank was constructed for Lalish as part of BCF's longer-term WASH infrastructure work.
+[ENGLISH NOTE] The cumulative report does not specify a year.
+
+[بەڕێوەبردنی کەمپ]
+2023 — [ENGLISH FALLBACK] Ten camps managed in Nineveh, with NFI office activity also continuing.
+2024 — [ENGLISH FALLBACK] Camp coordination and multi-sector services remained active across displacement sites.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 208 mobility-aid beneficiaries in Nineveh.
+2022 — [ENGLISH FALLBACK] 115 disability-support beneficiaries.
+
+[پاراستن]
+2024 — [ENGLISH FALLBACK] Nineveh was included in protection-sector programmes.
+
+[بژێوی]
+2023 — [ENGLISH FALLBACK] Livelihood-sector work recorded through the Nineveh office.
+
+[پارە و ئازیزان]
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Nineveh and Mosul as part of its multi-office family-support programme.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Nineveh counts.
+
+--- Projects — شنگال ---
+
+[وەڵامدانەوەی فریاکەوتن]
+2007 — [ENGLISH FALLBACK] BCF's early major relief campaign responded to the Gir Uzer and Siba Sheikh Khidr bombing disaster in the Sinjar area — one of the foundation's first large emergency responses.
+2014 — [ENGLISH FALLBACK] After the ISIS attack and the Yazidi genocide, BCF delivered aid to Mount Sinjar by helicopter.
+[ENGLISH NOTE] Recounted in BCF's 2025 historical project article.
+2015 — [ENGLISH FALLBACK] BCF opened an office on Mount Sinjar and supported displaced families with water, food, clothing and shelter; schools were built on the mountain with electricity and water.
+2024 — [ENGLISH FALLBACK] The Restoration of Life project constructed 20 houses for families in Sinjar.
+2025 — [ENGLISH FALLBACK] BCF highlighted continued Restoration of Life work and ongoing support for roughly 300 orphans in Sinjar.
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] Sinjar was included in BCF office and disability-support activity.
+2022 — [ENGLISH FALLBACK] A winter convoy delivered flour and fuel to 1,300 displaced families on Mount Sinjar and its surroundings.
+2026 — [ENGLISH FALLBACK] 750 food baskets in Zummar and 500 across Sinjar, with further Ramadan and Eid assistance.
+
+[تەندروستی]
+2026 — [ENGLISH FALLBACK] A Dental Health Unit opened at Zorava Community Health Center for free examination, consultation and treatment.
+
+[پەروەردە و گەشەپێدان]
+2015 — [ENGLISH FALLBACK] Schools were built on Mount Sinjar during the displacement period.
+[ENGLISH NOTE] From BCF's historical website account.
+2023 — [ENGLISH FALLBACK] Food parcels and sleeping sheets were provided to 80 Grade 12 girls travelling from Sinjar to Duhok and Semel for their final exams.
+2024 — [ENGLISH FALLBACK] The final 50-school renovation programme included two schools in Sinjar.
+
+[ئاو و خاوێنکاری]
+2016 — [ENGLISH FALLBACK] Four water wells drilled in the Sinjar Mountain area.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 63 mobility-aid beneficiaries in Sinjar.
+
+[پارە و ئازیزان]
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 261 orphans in Sinjar; BCF separately reported ongoing support for about 300 Sinjar orphans.
+2026 — [ENGLISH FALLBACK] The eighth Poland-linked Azizan phase delivered cash, food baskets, school bags, supplies and desks, with separate cash support for low-income families.
+
+--- Projects — گەرمیان / کەلار ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] BCF food and Qurbani projects covered Garmian and Kalar; Qurbani reached 500 households.
+2022 — [ENGLISH FALLBACK] 2,610 hot meals reported in Garmian.
+2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,188 families in Garmian.
+2026 — [ENGLISH FALLBACK] Food baskets distributed in Kifri, Khanaqin, Rizgari and Darbandikhan, with Qurbani meat distributed in Darbandikhan.
+
+[وەڵامدانەوەی فریاکەوتن]
+2024 — [ENGLISH FALLBACK] The flood-relief project covered Kalar and Rzgari among the affected areas, distributing essential household and winter items.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 95 mobility-aid beneficiaries in Garmian.
+2022 — [ENGLISH FALLBACK] 176 disability-support beneficiaries.
+2026 — [ENGLISH FALLBACK] Wheelchairs provided in Kalar.
+
+[پاراستن]
+2024 — [ENGLISH FALLBACK] Garmian was included in protection-sector coverage.
+
+[بژێوی]
+2023 — [ENGLISH FALLBACK] Livelihood-sector activities were recorded through the Garmian office.
+
+[پارە و ئازیزان]
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 454 orphans in Garmian.
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Garmian and Khanaqin.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Garmian counts.
+2026 — [ENGLISH FALLBACK] The Garmian office distributed cash support to low-income families.
+
+--- Projects — هەڵەبجە ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] Food projects included Halabja; Qurbani meat reached 500 households.
+2022 — [ENGLISH FALLBACK] Food-sector distributions continued; 1,055 food-project beneficiaries were listed in the annual location table.
+2023 — [ENGLISH FALLBACK] Qurbani meat reached 400 families.
+2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 500 food parcels in Halabja.
+[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+2026 — [ENGLISH FALLBACK] Qurbani meat distributed to 235 families, with food and orphan-family assistance also continuing.
+
+[تەندروستی]
+2020 — [ENGLISH FALLBACK] COVID-19 medical assistance delivered to the Halabja Health Directorate.
+
+[پەروەردە و گەشەپێدان]
+2022 — [ENGLISH FALLBACK] Eleven of the 203 schools in the renovation programme were in Halabja.
+2023 — [ENGLISH FALLBACK] Halabja Kindergarten opened under the Education and Development sector.
+
+[کەلوپەلی ناخۆراکی]
+2023 — [ENGLISH FALLBACK] NFI activity recorded through the Halabja office.
+2024 — [ENGLISH FALLBACK] Halabja was included in the flood-relief NFI response.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] Two mobility-aid beneficiaries.
+2022 — [ENGLISH FALLBACK] Ten disability-support beneficiaries.
+
+[پارە و ئازیزان]
+2021 — [ENGLISH FALLBACK] Halabja students were included in the top Grade 12 orphan recognition programme.
+2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 55 orphans in Halabja.
+2026 — [ENGLISH FALLBACK] Forty low-income families received US$200 each, and orphan families also received food and financial support.
+
+--- Projects — سۆران ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] The Korek food project reached 300 households in Soran.
+
+[پەروەردە و گەشەپێدان]
+2024 — [ENGLISH FALLBACK] The final 50-school renovation programme included five schools in Soran.
+
+[پەناگە و نیشتەجێبوون]
+2024 — [ENGLISH FALLBACK] Soran was included in the shared Erbil/Soran martyrs' housing distribution project.
+[ENGLISH NOTE] 540 units project-wide; the exact city split is not published in the reviewed source.
+
+[کەلوپەلی ناخۆراکی]
+2024 — [ENGLISH FALLBACK] The Warm Winter heater programme included schools in Soran.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 62 mobility-aid beneficiaries in Soran.
+2021 — [ENGLISH FALLBACK] Mobility-aid beneficiaries in the surrounding administration: Rawanduz 16 and Sidakan 32.
+2026 — [ENGLISH FALLBACK] World Autism Awareness activities at the Mother Community Center involved 52 children.
+
+[پارە و ئازیزان]
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Soran.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Soran counts.
+
+--- Projects — زاخۆ ---
+
+[دڵنیایی خۆراک]
+2026 — [ENGLISH FALLBACK] Food assistance distributed to low-income families in Zakho.
+
+[پەروەردە و گەشەپێدان]
+2024 — [ENGLISH FALLBACK] The final 50-school renovation programme included four schools in Zakho.
+2026 — [ENGLISH FALLBACK] A five-month literacy and education project launched for 50 refugee children, including school supplies and clothing.
+
+[وەڵامدانەوەی فریاکەوتن]
+2026 — [ENGLISH FALLBACK] The Rizgari flood response supported 60 affected families with food and non-food items.
+
+[کەلوپەلی ناخۆراکی]
+2024 — [ENGLISH FALLBACK] The Warm Winter heater project included Zakho, and the flood-relief NFI project also covered the area.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] 58 mobility-aid beneficiaries in Zakho.
+2026 — [ENGLISH FALLBACK] Wheelchairs distributed through the Zakho representative office in April.
+
+[پارە و ئازیزان]
+2025-26 — [ENGLISH FALLBACK] Nujin operates in Zakho.
+[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Zakho counts.
+
+[پشتگیری کۆمەڵگا]
+2025 — [ENGLISH FALLBACK] A carpet project was announced for 62 mosques across Duhok Province and the Zakho administration.
+
+--- Projects — ئاکرێ ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] Akre Camp received food parcels for 243 refugee households through German Caritas; Duhok and Akre also shared Korek food support.
+2026 — [ENGLISH FALLBACK] 300 Ramadan food baskets, and 250 families received Qurbani meat.
+
+[تەندروستی]
+Historic — [ENGLISH FALLBACK] The cumulative report records the renovation of the maternity hospital in Akre.
+[ENGLISH NOTE] No year is specified in the cumulative summary.
+
+[ژینگە]
+2021 — [ENGLISH FALLBACK] The Akre Greening Project planted 10,000 oak saplings.
+
+[پارە و ئازیزان]
+2026 — [ENGLISH FALLBACK] 82 families and patients received cash assistance across several aid categories.
+
+--- Projects — ئامێدی / شێلادزێ / دەرەلوک / سەرسنگ ---
+
+[دڵنیایی خۆراک]
+2026 — [ENGLISH FALLBACK] 275 food baskets distributed across Sheladize, Deraluk, Amedi, Qadish and Sarsang to environmental workers and low-income families; separate food aid also reached Shiladze and Siriye.
+
+[پشتگیری کەمئەندامان]
+2021 — [ENGLISH FALLBACK] Mobility-aid beneficiaries: Amedi 4, Shiladze 3, Dereluk 12 and Sarsang 8.
+2024 — [ENGLISH FALLBACK] The Amedi Smile Center, with Caritas Germany, served 159 beneficiaries.
+2026 — [ENGLISH FALLBACK] Special-care and autism-awareness activities continued at the Amedi-area centres.
+
+[پارە و ئازیزان]
+2026 — [ENGLISH FALLBACK] The Amedi representative office distributed support to 43 low-income families and patients.
+
+--- Projects — ڕۆژئاوای کوردستان، بە عەفرینەوە ---
+
+[وەڵامدانەوەی فریاکەوتن]
+2023 — [ENGLISH FALLBACK] BCF's earthquake response expanded into affected areas of Türkiye and Syria; Afrin received food, NFI and Qurbani assistance.
+2023 — [ENGLISH FALLBACK] The Qurbani meat project in Afrin reached 2,702 families.
+2026 — [ENGLISH FALLBACK] A large-scale response ran across Qamishlo, Hasakah, Amuda, Girke Lege, Derik, Tirbespiye, Derbasiye and the surrounding areas.
+2026 — [ENGLISH FALLBACK] BCF reported 415 truckloads of humanitarian aid and assistance to 29,070 families; 200 tons of flour supported the production and distribution of 3.36 million loaves.
+2026 — [ENGLISH FALLBACK] Food and NFI assistance continued in Afrin camps, alongside youth football, cultural and other community activities.
+
+[تەندروستی]
+Ongoing — [ENGLISH FALLBACK] The Mobile Clinic in Afrin is listed among BCF's ongoing projects.
+2026 — [ENGLISH FALLBACK] 8,707 people received medical treatment or medicines, and 294 cartons of medicines and supplies were delivered in one month to hospitals and health centres including Derik, Chil Agha and Hasakah.
+
+[پەروەردە و گەشەپێدان]
+2024 — [ENGLISH FALLBACK] The Barzani Culture & Development Center in Afrin trained 213 participants in practical, market-oriented skills.
+2024 — [ENGLISH FALLBACK] The Afrin University student-support programme assisted 125 students.
+2026 — [ENGLISH FALLBACK] A reading and writing educational course and youth-development activities continued in Afrin.
+
+[بژێوی]
+2026 — [ENGLISH FALLBACK] 370,245 litres of diesel were distributed to 9,682 families, and the humanitarian operation created 1,483 employment opportunities.
+
+[پارە و ئازیزان]
+2025 — [ENGLISH FALLBACK] Azizan financial assistance was distributed to 192 orphans across Afrin villages and townships, and December 2025 assistance again reached 192 orphans.
+2025 — [ENGLISH FALLBACK] Azizan education and welfare support continued for the same 192 orphans.
+2026 — [ENGLISH FALLBACK] Orphan and family-support services continued through the Afrin office.
+
+--- Projects — پارێزگاکانی دیکەی عێراق ---
+
+[دڵنیایی خۆراک]
+2021 — [ENGLISH FALLBACK] The Kuwait-supported food project included Baghdad, Diyala and Dhi Qar alongside Kurdistan locations; 14,100 households benefited across all listed locations.
+2022 — [ENGLISH FALLBACK] The food-project location table included Anbar, with 126 beneficiaries listed in the prepared-food distribution table.
+2023 — [ENGLISH FALLBACK] The Qurbani meat project included Anbar, reaching 480 families.
+
+[تەندروستی]
+2021 — [ENGLISH FALLBACK] A medical convoy was sent to Samawah Governorate with 50 types of medicines and medical supplies.
+
+[پشتگیری کۆمەڵگا]
+2025 — [ENGLISH FALLBACK] Latest full-year geography: 73,006 beneficiary families — 493,380 individuals — in Iraq outside the Kurdistan Region.
+
+--- Projects — تورکیا ---
+
+[وەڵامدانەوەی فریاکەوتن]
+2011-12 — [ENGLISH FALLBACK] BCF constructed a camp in Van with 400 caravans.
+2023 — [ENGLISH FALLBACK] Major earthquake response in Türkiye: rescue, hot meals, food, tents, medical aid and heavy equipment.
+[ENGLISH NOTE] The cumulative report records 4,129 tents for Türkiye and Syria earthquake victims together.
+
+--- Projects — سووریا ---
+
+[وەڵامدانەوەی فریاکەوتن]
+2023 — [ENGLISH FALLBACK] The earthquake response and ongoing Afrin programming expanded BCF's work in Syria.
+2026 — [ENGLISH FALLBACK] The large Western Kurdistan response became one of BCF's biggest current cross-border operations.
+
+[پشتگیری کۆمەڵگا]
+2025 — [ENGLISH FALLBACK] BCF reported 10,673 individual beneficiaries in Syria for the full year.
+
+--- Projects — لوبنان ---
+
+[وەڵامدانەوەی فریاکەوتن]
+2024 — [ENGLISH FALLBACK] BCF provided tents to welcome Lebanese Kurds in Mam Rashan Camp — the Kurdistan Region's response to displacement from Lebanon.
+
+========================================================================
+PAGE: Our Impact
+========================================================================
+
+کاریگەرییەکانمان
+کاریگەرییەکانمان
+ژمارە گەورەکان پشتگیری دەکرێن بە چیرۆکی مرۆیی، وێنەی فەرمی و بەڵگەی پڕۆژە.
+
+--- Impact total: خێزانی سوودمەند ---
+
+خێزانی سوودمەند
+کۆی ژمارەی ئەو خێزانانەی لە ماوەی ١٩ ساڵدا لە چالاکی و یارمەتییەکانی ڕێکخراوەکە سوودمەند بوون.
+
+--- Impact total: کەسی سوودمەند ---
+
+کەسی سوودمەند
+کۆی ژمارەی ئەو کەسانەی لە ماوەی ١٩ ساڵدا لە چالاکی و یارمەتییەکانی ڕێکخراوەکە سوودمەند بوون.
+
+--- Impact card / gallery: کارمەند ---
+
+1,004
+کارمەند
+هەماهەنگی کاری مرۆیی هەموو ڕۆژێک
+
+--- Impact card / gallery: کەس لە کەمپ ---
+
+191,386
+کەس لە کەمپ
+پشتگیریکراو لە ڕێگەی خزمەتگوزارییە ڕێکخراوەکان
+
+--- Impact card / gallery: ئاوارە و پەنابەر ---
+
+751,948
+ئاوارە و پەنابەر
+گەیشتوون لە دەرەوەی کەمپەکان لە کۆمەڵگەکان
+
+--- Impact card / gallery: قوتابخانەی نۆژەنکراو ---
+
+315
+قوتابخانەی نۆژەنکراو
+ژینگەی فێربوون بۆ منداڵان و گەنجان
+
+--- Impact card / gallery: توانای لۆجیستی ---
+
+109
+ئۆتۆمبێل
+10
+کۆگا
+توانای لۆجیستی
+ئۆتۆمبێل و کۆگا بۆ پشتگیری کرداری مەیدانی.
+
+--- Impact card / gallery: بەڕێوەبردنی کەمپ ---
+
+30
+بەڕێوەبردنی کەمپ
+تا ٣٠ کەمپی ئاوارە و پەنابەر.
+
+========================================================================
+PAGE: Trust Behind the Work
+========================================================================
+
+متمانەی پشت کارەکانمان
+متمانەی
+پشت کارەکانمان
+سەرکردایەتی و حوکمڕانی
+کوالیتی و باوەڕپێکراوی
+هاوبەشییەکان
+پێزانین و خەڵاتەکان
+
+--- Leadership ---
+
+سەرکردایەتی و حوکمڕانی
+بۆردی دامەزرێنەران
+باڵاترین دەسەڵاتە لە دەزگاکەدا.
+دەستەی کارگێڕی
+سەرپەرشتی بڕیارە سەرەکییەکان و ڕێساکان و ئاڕاستەکردنی پڕۆژەکان دەکات.
+بەشەکانی ڕاپەڕاندن
+هەڵسەنگاندن بۆ پێداویستییەکان دەکەن و بەرنامەکان دادەڕێژن.
+نووسینگە هەرێمییەکان
+کارەکان لەگەڵ کۆمەڵگە ناوخۆییەکاندا جێبەجێ دەکەن.
+ئەندامانی دەستەی کارگێڕی
+بینینی ئەندامان
+سەرپەرشتی بڕیارە سەرەکییەکان و ڕێساکان و ئاڕاستەکردنی پڕۆژەکان دەکات.
+ئەندامانی دەستەی کارگێڕی
+کارزان نوری
+ئەندامی دەستەی کارگێڕی
+ئیبراهیم سامین
+جێگری سەرۆکی دەزگا
+فەرزین بەگزادە
+ئەندامی دەستەی کارگێڕی
+ئاوات ئەحمەد
+ئەندامی دەستەی کارگێڕی
+عەبدولواحید ئەمین
+ئەندامی دەستەی کارگێڕی
+ویس جەلیل
+ئەندامی دەستەی کارگێڕی
+ئیسماعیل عەبدولعەزیز
+ئەندامی دەستەی کارگێڕی
+ڕەواج حاجی
+ئەندامی دەستەی کارگێڕی
+
+--- Board Chief profile ---
+
+ناسینی سەرۆکی بۆرد
+ڕێزدار مەسرور بارزانی
+سەرۆکی بۆردی دامەزرێنەران
+دەزگای خێرخوازیی بارزانی
+بۆردی دامەزرێنەران باڵاترین دەسەڵاتە لە دەزگاکەدا، و سەرۆکەکەی ئەو پێوەرە دادەنێت کە کارەکە پێوەی هەڵدەسەنگێنرێت: هاوکاری تەنها لەسەر بنەمای پێویستی دەدرێت، و بە شێوەیەک پێشکەش دەکرێت کە کەرامەتی ئەو کەسە بپارێزێت کە وەریدەگرێت.
+honour
+ڕێزلێنان لە دایکێک لە ڕێوڕەسمی پێشکەشکردنی خانوو بۆ خێزانی شەهیدان لە دهۆک.
+medal
+پێشکەشکردنی مەدالیای یادەوەری بە خێزانێک لە هەمان ڕێوڕەسم، لەژێر ئاڵای دەزگاکەدا.
+gift
+چۆکدادان بۆ پێشکەشکردنی دیارییەک بە منداڵێک لەسەر شانۆ — کارەکە بە یەک کەس یەک کەس دەپێورێت.
+child
+ساتێک لەگەڵ منداڵێک دوور لە منبەر، لە دەزگایەکدا کە فەلسەفەکەی خزمەتکردنە، نەک بەخشین لە سەرەوە.
+distribution
+بینینی منداڵان لە شوێنێکی دابەشکردنی دەزگاکە، لەوێدا بەرنامەکان ڕاستەوخۆ دەگەنە خێزانەکان.
+ceremony
+دانیشتن لەگەڵ بەرپرسان و هاوبەشان و پێشەوایانی ئایینی — پێکەوەژیانی کۆمەڵگەکانی کوردستان یەکێکە لەو شەش بەهایەی دەزگاکە پێی کار دەکات.
+بینینی هێڵی کاتی حوکمڕانی
+ڕێزدار مەسرور بارزانی
+١٩٦٩ — ئێستا
+origins
+١٩٦٩
+ڕەگ و پێکهاتە
+ڕێزدار مەسرور بارزانی لە ١٩٦٩دا لە دایکبوو و لە ماوەیەکی دیاریکەر لە مێژووی کوردیدا گەورە بوو. ساڵانی سەرەتاییی ژیانی بە دابڕان، بەرخودان، پەروەردە، و بەرپرسیارێتی خزمەتکردنی نەتەوەیەک لە ناکۆکیدا شێوە پێدرا.
+youth
+١٩٨٥
+لە گەنجییەوە بۆ بەرخودان
+لە ١٩٨٥دا، لە تەمەنی شانزە ساڵیدا، ڕێزدار مەسرور بارزانی بەشداری پێشمەرگەی کوردستان بوو. خزمەتکردنی سەرەتاییی ئەو ڕاستەوخۆ لە ناو بەرخودانی کوردیدا بوو لە کاتی هەندێک لە قورسترین بەشەکانی.
+education
+١٩٩٣
+پەروەردە لە دەرەوەی سنوورەکان
+دوای ساڵانێک کە لە ناکۆکیدا شێوە پێدرا، ڕێزدار مەسرور بارزانی پەروەردەی باڵا لە دەرەوە بەدواداچوو، تێگەیشتنی لە پەیوەندییە نێودەوڵەتییەکان، ئاشتی، و چارەسەرکردنی ناکۆکی بەهێزتر کرد.
+security
+١٩٩٨
+ئاسایش و دامەزراندنی دەوڵەت
+دوای گەڕانەوەی بۆ کوردستان لە ١٩٩٨دا، ڕێزدار مەسرور بارزانی بەرپرسیارێتییە باڵاکانی لە دامەزراوە سیاسی و ئاسایشییەکان وەرگرت، دواتر بوو بە کانسێری ئەنجومەنی ئاسایشی هەرێمی کوردستان.
+service
+٢٠٠٥
+خزمەت لە دەرەوەی حکومەت
+کاری گشتیی ڕێزدار مەسرور بارزانی هەروەها بۆ بواری مرۆیی و ئەکادیمی درێژ بوو، لەوانە دامەزراندنی دامەزراوەی خێرخوازی بارزانی و پشتگیری لە پەروەردەی باڵا لە کوردستان.
+cabinet
+٢٠١٩
+سەرۆک وەزیران — کابینەی نۆیەم
+لە ٢٠١٩دا، ڕێزدار مەسرور بارزانی بوو بە سەرۆک وەزیرانی هەرێمی کوردستان و دامەزرا بۆ پێکهێنانی کابینەی نۆیەمی حکومەتی هەرێمی کوردستان.
+
+--- BCF President profile ---
+
+ناسینی سەرۆکی دەزگا
+موسا ئەحمەد
+سەرۆکی دەزگا · ئەندامی بۆردی دامەزرێنەران
+دەزگای خێرخوازیی بارزانی
+ژیاننامە
+لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە و دەرچووی پەیمانگای هونەرە جوانەکانە. پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.
+دەستپێکی ڕێگا
+students
+١٩٩٤ – ١٩٩٨
+سکرتێری یەکێتیی قوتابیانی کوردستان بووە
+bcf
+٢٠٠٧
+پەیوەستی بە سەرکردایەتیی دەزگای خێرخوازیی بارزانی بوو وەک جێگری سەرۆک و دواتر بوو بە سەرۆکی دەزگاکە
+tenure
++١٩ ساڵ
+یارمەتی ڕێنمایی کردنی پەیامی مرۆیی دەزگاکە و فراوانکردنی پشتگیری بۆ کۆمەڵگە پێویستدارەکانی داوە.
+خەڵاتەکان
+مەدالیای بارزانیی نەمر و سەدان شانازی و جیاکاری تری پێبەخشراوە. خێزاندارە و خاوەنی چوار منداڵە.
+
+--- Founding Board member profile ---
+
+ناسینی ئەندامی بۆردی دامەزرێنەران
+سیداد مەلا مستەفا بارزانی
+ئەندامی بۆردی دامەزرێنەران
+دەزگای خێرخوازیی بارزانی · لەدایکبووی ١٩٦٨
+ژیاننامە
+سیداد بارزانی کوڕی ڕابەری نەتەوەیی کورد مەلا مستەفا بارزانی و برای بچووکی سەرۆک مەسعود بارزانییە. کەسایەتییەکی دیاری سیاسی و کۆمەڵایەتی و بڕیاردەرە، ئەندامی سەرکردایەتی و مەکتەبی سیاسیی پارتی دیموکراتی کوردستان و نوێنەری تایبەتی جەنابی سەرۆک مەسعود بارزانییە. بە کەسایەتییەکی ئارام و لەسەرخۆ ناسراوە، کاریگەری لەسەر دۆسیە کۆمەڵایەتی و سیاسییەکان هەیە، هەڵگری ئەزموونێکی دەوڵەمەندە لە خەباتی سیاسی و نیشتیمانی و نەتەوەیی و ژینگەپارێزیدا، ئەندامی بۆردی دامەزرێنەری دەزگای خێرخوازیی بارزانییە.
+ڕۆڵ و چالاکییەکان
+politburo
+ئەندامی مەکتەبی سیاسی
+لە کۆنگرەکانی پارتی دیموکراتی کوردستاندا وەک ئەندامی ئەنجومەنی سەرکردایەتی و دواتریش وەک ئەندامی مەکتەبی سیاسی و دەستەی کارگێڕی (کە بەرزترین دەستەی بڕیاردانی جێبەجێکردنی حیزبە) هەڵبژێردراوە.
+envoy
+نوێنەری تایبەتی سەرۆک بارزانی
+بە فەرمی ئەرکی نوێنەرایەتیکردنی سەرۆک مەسعود بارزانی پێسپێردراوە لە زۆربەی بۆنە سیاسی و نیشتیمانی و کۆمەڵایەتییەکاندا.
+bureau
+لێپرسراوی ئۆفیسی تایبەتی سەرۆک
+ڕۆڵێکی ناوەندی لە بەڕێوەبردنی پەیوەندییەکان، گەیاندنی ئاڕاستە سیاسییەکان و ڕێکخستنی دیداری سەرۆک بارزانی لەگەڵ شاند و کەسایەتییە ناوخۆیی و دەرەکییەکاندا دەگێڕێت.
+خەباتی پێشمەرگایەتی
+سیداد بارزانی لە ناو جەرگەی خەبات و ژینگەی دەستپێکی شۆڕشە ڕزگاریخوازییەکانی کوردستاندا ژیاوە. وەک کوڕی مەلا مستەفا بارزانی، ژیانی لە تەمەنێکی زووەوە ئاوێتەی خەبات و سیاسەت و ڕووبەڕووبوونەوەی ستەم و زۆرداری بووە.
+gulan
+قۆناغی ئاوارەیی و شۆڕشی گوڵان
+لەگەڵ سەرکردایەتیی پارتی و براکانیدا (ئیدریس بارزانی و مەسعود بارزانی)، ئەگەرچی تەمەنی بچووک بووە، بەڵام هاوڕێ و شاهیدی سەردەمە سەختەکان بووە.
+پلە و ئەرکەکان لە پارتیدا
+uprising
+بەشداری لە ڕاپەڕینی ١٩٩١
+لە کاتی ڕاپەڕینە مەزنەکەی کوردستان لە ئاداری ١٩٩١دا، بەشدار بووە لە ڕزگارکردنی ناوچە و شارەکانی کوردستان لە دەست ڕژێمی بەعس.
+isis
+شەڕی دژی داعش
+بەدرێژایی دەیەی ڕابردوو و تا ئێستاش، وەک کەسایەتییەکی کاریگەر و ئەندامی مەکتەبی سیاسی و دەستەی کارگێڕی، ئامادەیی بەردەوامی هەبووە — بەتایبەتی لە شەڕی دژی داعشدا — و سەرپەرشتی کۆبوونەوە و پشتگیرییە مەیدانییەکانی هێزەکانی پێشمەرگەی کردووە.
+
+--- Quality and Credibility ---
+
+کوالیتی و باوەڕپێکراوی
+مۆڵەت لە هەرێمی کوردستان
+BCF بە فەرمی مۆڵەتی کارکردنی لە هەرێمی کوردستان هەیە، بە پابەندبوون بە یاسا هەرێمییەکان و پابەندییەکی بەهێز بە کۆمەڵگە ناوخۆییەکان.
+مۆڵەت لە عێراق
+BCF بە فەرمی مۆڵەتی کارکردنی لە کۆماری عێراق هەیە، بە پابەندبوون بە یاسا نیشتمانییەکان و پابەندییەکی بەهێز بە کۆمەڵگەکان لە سەرانسەری وڵاتدا.
+مۆڵەتی ویلایەتە یەکگرتووەکان
+تۆمارکراوە بۆ کارکردن لە ئەمریکا، بۆ هاوبەشی شفاف و پشتگیری مرۆیی بەرپرسیار.
+ناسراو لە کوێت
+لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکراوە.
+پێگەی ڕاوێژکاری UN ECOSOC
+پێگەی ڕاوێژکاری تایبەت لەگەڵ ئەنجومەنی ئابووری و کۆمەڵایەتی نەتەوە یەکگرتووەکان.
+کۆمیسیۆنی خێرخوازی بەریتانیا
+ناسراو لە چوارچێوەی کۆمیسیۆنی خێرخوازی بەریتانیا بۆ حوکمڕانی و متمانەی گشتی.
+ISO 9001:2015
+بڕوانامەی بەڕێوەبردنی کوالیتی: بەرپرسیارێتییەکان ڕوونن، سیستمەکان ڕێکخراون، و خزمەتگوزارییە مرۆییەکان بە کوالیتییەکی جێگیر پێشکەش دەکرێن.
+
+--- Partnerships ---
+
+هاوبەشییەکان
+هاوبەش و بەخشەر و سپۆنسەرەکان لەگەڵ BCF
+هاوبەشەکان
+بەخشەرەکان
+سپۆنسەرەکان
+
+--- Recognition ---
+
+پێزانین و خەڵاتەکان
+پێزانین ڕەنگدانەوەی متمانەیە، بەڵام بەهای ڕاستەقینەی کاری دەزگای خێرخوازیی بارزانی لەو کۆمەڵگایانەدایە کە هێشتا خزمەتیان دەکات.
+خەڵاتە مرۆییە نێودەوڵەتییەکان
+خەڵاتی Sergio de Mello لەلایەن حکومەتی پورتوگالەوە، خەڵاتی ڕێکخراوی باڵەکانی یارمەتی (Wings of Help) ٢٠٢٥، خەڵاتی Helfen Bringt Freude ٢٠٢٥، خەڵاتی پێزانینی لوتکەی خۆبەخشان ٢٠٢٥، و خەڵاتێک لەلایەن حاکمی ئێسن / ئەڵمانیا ٢٠٢٤.
+پێزانین و بڕوانامەکان
+پێگەی ڕاوێژکاری لە ئەنجومەنی ئابووری و کۆمەڵایەتیی نەتەوە یەکگرتووەکان (ECOSOC) لە ساڵی ٢٠١٦ەوە، و بڕوانامەی بەڕێوەبردنی کوالیتی ISO 9001:2015.
+پێزانینی پەرلەمانی
+خەڵاتی پەرلەمانی فیدراڵی ئەڵمانیا ٢٠٢٥، خەڵاتی پەرلەمانی عێراق بۆ باشترین ڕێکخراوی ناحکومی لە عێراق ٢٠١٥، و خەڵاتی گرووپی کار (Labour Group) لە لەندەن.
+سوپاسنامەکان
+چەندین سوپاسنامە و پێزانینی ناوخۆیی و نێودەوڵەتی.
+هێڵی کاتیی خەڵاتەکان
+تۆمارێکی بەڵگەدار بە درێژایی دەیەیەک، لە ٢٠١٥ەوە تا ٢٠٢٥.
+
+========================================================================
+PAGE: Future
+========================================================================
+
+داهاتووی بنیاد دەنێین
+میراتێک کە بەردەوامە
+داهاتوو
+کە
+بنیاد دەنێین
+ئامانجە ستراتیژییەکان بۆ خەڵک، پەروەردە، نۆژەنکردنەوە، ژینگە و ئامادەکاری قەیران
+
+--- پەروەردە ---
+
+پەروەردە
+نۆژەنکردنەوەی ٢٠٠ قوتابخانە
+دروستکردنی پێنج قوتابخانەی نوێ
+دوو پڕۆژەی گەڕانەوە بۆ قوتابخانە
+
+--- ژینگە ---
+
+ژینگە
+پاراستنی سەرچاوە سروشتییە هاوبەشەکان
+پشتگیریکردنی کۆمەڵگەکان لەبەرامبەر گۆڕانی کەشوهەوا
+فراوانکردنی بەرنامەکانی ژیانی سەوز
+
+--- ئامادەکاری قەیران ---
+
+ئامادەکاری قەیران
+بەهێزکردنی توانای وەڵامدانەوەی فریاگوزاری
+دانانی یارمەتی لە ڕێڕەوە سەرەکییەکان
+ڕاهێنانی تیمە خێرا وەڵامدەرەکان
+
+--- نۆژەنکردنەوە و گشتگیری ---
+
+نۆژەنکردنەوە و گشتگیری
+دووبارە دروستکردنەوەی ماڵ و شوێنە گشتییەکان
+فراوانکردنی خزمەتگوزارییەکانی گشتگیری
+پشتگیریکردنی گەڕانەوە و پێکەوەژیان
+
+--- مافی مرۆڤ و چاکبوونەوە ---
+
+مافی مرۆڤ و چاکبوونەوە
+پاراستنی کەرامەت لە هەموو بەرنامەیەکدا
+پشتگیریکردنی ڕزگاربووان
+دەستپێڕاگەیشتنی دادپەروەرانە بە خزمەتگوزارییەکان
+
+========================================================================
+PAGE: Legacy
+========================================================================
+
+میراتێک
+کە بەردەوامە
+دەزگای خێرخوازیی بارزانی کە ڕەگی لە ناو خاکی کوردستاندایە و بەو باوەڕەوە هەنگاو دەنێت کە خزمەتکردن شانازییە، بەردەوامە لە پشتگیریکردنی کۆمەڵگا نەدار و کەمدەرامەتەکان لە ڕێگەی بەزەیی، کەرامەت و کارە مرۆییە پیشەییەکانەوە.
+لە دابینکردنی خۆراک و پەناگە تا دەگاتە پەروەردە، تەندروستی، پاراستن، ڕاهێنان و بەرپرسیارێتی ژینگەیی، دەزگای خێرخوازیی بارزانی پەیامێک هەڵدەگرێت کە دەگاتە دەرەوەی سنوورەکان:
+خزمەتکردن
+کەرامەتە
+مرۆڤایەتی
+بەرپرسیارێتییە
+هیوا
+لە ڕێگەی کارکردنەوە بنیاد دەنرێت
+سوپاس
+سوپاس بۆ سەردانیکردنی دەزگای خێرخوازیی بارزانی.
+گەڕانەوە بۆ سەرەتا

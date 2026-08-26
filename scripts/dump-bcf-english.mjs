@@ -92,7 +92,7 @@ function dumpLang(langId) {
   );
   if (langId !== "en") {
     lines.push(
-      "Project register sentences (year + body) are still English on every language — they are listed here because they appear on the Projects pages.",
+      "Project register bodies use textKu / textAr when present; English is noted where a translation is still missing.",
     );
     lines.push(
       "A few accessibility labels stay English in the code: Experience controls, Previous image, Next image, Open image.",
@@ -164,6 +164,15 @@ function dumpLang(langId) {
     add(cat.title);
     add(cat.intro);
     if (cat.headline) add(cat.headline);
+    if (cat.beneficiaries) {
+      add(c.serveBeneficiariesLabel);
+      if (cat.beneficiaries.families) {
+        add(`${cat.beneficiaries.families} ${c.serveFamiliesLabel}`);
+      }
+      if (cat.beneficiaries.individuals) {
+        add(`${cat.beneficiaries.individuals} ${c.serveIndividualsLabel}`);
+      }
+    }
     for (const g of cat.groups) {
       add(g.title);
       g.items.forEach(add);
@@ -246,7 +255,7 @@ function dumpLang(langId) {
   });
 
   if (langId !== "en") {
-    sub("Project entries (English on screen in every language)");
+    sub("Project entries (localised bodies; English fallback marked)");
   }
 
   for (const [locId, sectors] of Object.entries(BCF_PROJECT_DATA)) {
@@ -257,8 +266,29 @@ function dumpLang(langId) {
       lines.push("");
       lines.push(`[${sectorName}]`);
       for (const entry of sector.entries) {
-        add(`${entry.year} — ${entry.text}`);
-        if (entry.note) add(entry.note);
+        const body =
+          langId === "ku"
+            ? entry.textKu
+            : langId === "ar"
+              ? entry.textAr
+              : entry.text;
+        const note =
+          langId === "ku"
+            ? entry.noteKu ?? entry.note
+            : langId === "ar"
+              ? entry.noteAr ?? entry.note
+              : entry.note;
+        if (body) {
+          add(`${entry.year} — ${body}`);
+        } else {
+          add(`${entry.year} — [ENGLISH FALLBACK] ${entry.text}`);
+        }
+        if (note) {
+          const noteIsEnglish =
+            (langId === "ku" && !entry.noteKu && entry.note) ||
+            (langId === "ar" && !entry.noteAr && entry.note);
+          add(noteIsEnglish ? `[ENGLISH NOTE] ${note}` : note);
+        }
       }
     }
   }
@@ -268,25 +298,19 @@ function dumpLang(langId) {
   add(c.impactTitleLead);
   add(c.impactTitleGold);
   add(c.impactSubtitle);
-  add(c.impactHumanStoryLead);
-  add(c.impactHumanStoryRest);
-  add(c.impactHumanStoryHint);
-  add(c.changing);
-  add(c.livesEveryday);
+  for (const total of c.impactTotals ?? []) {
+    sub(`Impact total: ${total.title}`);
+    add(total.title);
+    add(total.description);
+  }
   for (const item of c.impactItems) {
     sub(`Impact card / gallery: ${item.title}`);
     add(item.value);
+    if (item.valueLabel) add(item.valueLabel);
+    if (item.secondaryValue) add(item.secondaryValue);
+    if (item.secondaryLabel) add(item.secondaryLabel);
     add(item.title);
     add(item.description);
-  }
-
-  heading("PAGE: The Human Story Layer");
-  add(c.humanStoriesTitle);
-  add(c.humanStoriesTagline);
-  for (const story of c.humanStories) {
-    sub(story.title);
-    add(story.title);
-    add(story.body);
   }
 
   heading("PAGE: Trust Behind the Work");

@@ -93,6 +93,13 @@ const credentialArt: Record<
     position?: string;
     /** White mat behind letterboxed scans. Skip it when the document is already a white page. */
     mat?: "white";
+    /**
+     * Width ÷ height of the frame, for artwork whose own shape should set it.
+     * Without this the panel is one tall box for every credential and a
+     * portrait page floats in it between two black bands. With it the frame is
+     * cut to the document, and `contain` has nothing left to letterbox.
+     */
+    ratio?: number;
   }
 > = {
   "iraq": { src: credIraq, fit: "cover" },
@@ -101,7 +108,8 @@ const credentialArt: Record<
   kuwait: { src: credKuwait, fit: "cover" },
   ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14", mat: "white" },
   uk: { src: credBcc, fit: "contain", pad: "p-12", mat: "white" },
-  iso: { src: isoCertificate, fit: "contain", pad: "p-0" },
+  /* The scan is 1045×1472 — A4 — so the frame is too, to the pixel. */
+  iso: { src: isoCertificate, fit: "contain", pad: "p-0", ratio: 1045 / 1472 },
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -452,6 +460,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       const artFit = activeArt?.fit ?? "contain";
       const artPad = activeArt?.pad ?? "";
       const artPosition = activeArt?.position ?? "";
+      const artRatio = activeArt?.ratio;
       const qualityTitle =
         lang === "en" ? (
           <>
@@ -470,18 +479,28 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
           backgroundImage={bcfTrustBg}
           overlayClassName="bg-black/35"
         >
-          <TrustChrome title={qualityTitle} backLabel={c.back} onBack={goBack}>
+          <TrustChrome
+            title={qualityTitle}
+            backLabel={c.back}
+            onBack={goBack}
+            titleClassName="text-[52px]"
+          >
             {/* The rail used to arrive as one slab with the panel. Cascading the
                 credentials down and letting the certificate settle beside
                 them reads as the page assembling itself. */}
             <motion.div
-              className="mx-auto mt-12 flex w-full max-w-[1240px] items-stretch gap-10"
+              className="mx-auto mt-12 flex w-full max-w-[1240px] items-stretch gap-8"
               variants={bcfStagger(0.16, 0.2)}
               initial="initial"
               animate="animate"
             >
               <motion.div
-                className="flex w-[540px] shrink-0 flex-col gap-4"
+                /* 400, not 540. The column the artboard leaves is 984px wide,
+                   so every pixel the rail gives up is a pixel the certificate
+                   and its caption get — the panel goes from 404 to 552, half
+                   again as wide, and the caption stops breaking every three
+                   words. */
+                className="flex w-[400px] shrink-0 flex-col gap-4"
                 variants={bcfStagger(0.07, 0)}
               >
                 {c.trustCredentials.map((item, index) => {
@@ -493,7 +512,9 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                       onClick={() => setCredentialIndex(index)}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
-                      className="relative flex w-full transform-gpu items-center justify-between gap-5 overflow-hidden rounded-2xl px-8 py-5 text-start text-[32px] font-medium leading-snug backdrop-blur-md"
+                      /* Down a size with the rail, so the labels wrap no more
+                         than they did at 540 wide. */
+                      className="relative flex w-full transform-gpu items-center justify-between gap-4 overflow-hidden rounded-2xl px-6 py-5 text-start text-[28px] font-medium leading-snug backdrop-blur-md"
                       style={{
                         border: "1px solid",
                         borderColor: selected ? BCF.gold : "rgba(255,255,255,0.22)",
@@ -525,9 +546,15 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 className={`${BCF_GLASS_CARD} flex min-w-0 flex-1 flex-col overflow-hidden`}
                 style={{ boxShadow: `0 0 40px ${BCF.gold}18` }}
               >
+                {/* A credential with its own `ratio` is framed to the shape of
+                    the document; everything else keeps the one tall panel and
+                    fills whatever height the row settles at. */}
                 <div
-                  className="relative min-h-[760px] flex-1 overflow-hidden"
+                  className={`relative overflow-hidden ${
+                    artRatio ? "w-full shrink-0" : "min-h-[760px] flex-1"
+                  }`}
                   style={{
+                    aspectRatio: artRatio,
                     backgroundColor:
                       artFit === "contain" && activeArt?.mat === "white"
                         ? "#fff"
@@ -697,32 +724,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
               {c.trustRecognitionBody}
             </motion.p>
 
-            <motion.div
-              className="mx-auto mt-10 grid max-h-[1420px] w-full max-w-[980px] grid-cols-2 gap-6 overflow-y-auto overscroll-contain px-2 pb-8"
-              variants={bcfStagger(0.03, 0.1)}
-              initial="initial"
-              animate="animate"
-            >
-              {bcfAwardImages.map((src, index) => (
-                <motion.div
-                  key={src}
-                  variants={bcfRiseCard}
-                  /* White plate: the certificates and plaques are photographed
-                     on every kind of ground, and a dark card let each one set
-                     its own apparent size. One white field, one size. */
-                  className="flex aspect-[4/3] transform-gpu items-center justify-center rounded-[24px] border border-white/14 bg-white p-6"
-                  style={{ boxShadow: "0 16px 40px rgba(0,0,0,0.42)" }}
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    decoding="async"
-                    loading={index < 6 ? "eager" : "lazy"}
-                    className="max-h-full max-w-full object-contain"
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+            <AwardWall images={bcfAwardImages} />
           </TrustChrome>
         </BcfShell>
       );
@@ -937,22 +939,136 @@ function LeadershipGroupCard({
   );
 }
 
+/**
+ * The wall of awards, and the fade over its edges.
+ *
+ * The wall is as tall as it needs to be, up to the room the artboard has for
+ * it: on most devices every award fits and nothing scrolls at all. So the fade
+ * cannot be painted unconditionally — a mask over a list with nothing below it
+ * just dims the last row for no reason, which is what a fixed gradient here
+ * did. It is built from the live scroll position instead: a top edge once the
+ * list has moved, a bottom edge while anything is still under the fold, and no
+ * mask whatsoever when it all fits on screen.
+ */
+function AwardWall({ images }: { images: string[] }) {
+  const wall = React.useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = React.useState({ top: false, bottom: false });
+
+  const measure = React.useCallback(() => {
+    const el = wall.current;
+    if (!el) return;
+    /* A few pixels of slack: sub-pixel layout leaves a scrollHeight a hair
+       over the clientHeight on lists that do not actually scroll. */
+    const slack = el.scrollHeight - el.clientHeight;
+    const scrolls = slack > 4;
+    const next = {
+      top: scrolls && el.scrollTop > 4,
+      bottom: scrolls && el.scrollTop < slack - 4,
+    };
+    setEdges((prev) =>
+      prev.top === next.top && prev.bottom === next.bottom ? prev : next,
+    );
+  }, []);
+
+  React.useEffect(() => {
+    measure();
+    const el = wall.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    /* Only the box itself needs watching. The plates are sized by their own
+       aspect-ratio and the photographs inside them are out of flow, so the
+       scroll height is settled at first layout and cannot move when the
+       images decode — all that is left to react to is the box changing size
+       under a rotation or a resize. */
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [measure, images]);
+
+  /* Painted on the scroller itself rather than on a wrapper around it: the
+     gradient's stops are percentages of the box they are painted on, and only
+     the scroller is guaranteed to be exactly the box the visitor is looking
+     through. */
+  const mask =
+    edges.top && edges.bottom
+      ? "linear-gradient(to bottom, transparent 0%, #000 72px, #000 calc(100% - 88px), transparent 100%)"
+      : edges.top
+        ? "linear-gradient(to bottom, transparent 0%, #000 72px)"
+        : edges.bottom
+          ? "linear-gradient(to bottom, #000 calc(100% - 88px), transparent 100%)"
+          : undefined;
+
+  return (
+    <motion.div
+      ref={wall}
+      onScroll={measure}
+      /* The height cap is what makes this a scroller at all, and it has to be
+         a `max-h` rather than `flex-1`. TrustChrome is a column flex box with
+         a `min-height` and no definite height, and in that case a `flex: 1 1
+         0%` item has no free space to grow into — it sizes to its content
+         instead. With 109 plates that is some 20,000px: the wall stops
+         scrolling, the artboard grows to match, and the contain-fit shrinks
+         the entire page down to a thin ribbon. */
+      className="mx-auto mt-10 grid max-h-[1420px] w-full max-w-[980px] grid-cols-2 gap-6 overflow-y-auto overscroll-contain scrollbar-hide px-2 pb-8"
+      style={{ WebkitMaskImage: mask, maskImage: mask }}
+      variants={bcfStagger(0.03, 0.1)}
+      initial="initial"
+      animate="animate"
+    >
+      {images.map((src, index) => (
+        <motion.div
+          key={src}
+          variants={bcfRiseCard}
+          /* White plate: the certificates and plaques are photographed on
+             every kind of ground, and a dark card let each one set its own
+             apparent size. One white field, one size.
+
+             The photograph is taken out of the flow entirely. Left in it, a
+             tall portrait certificate could outgrow the 4:3 box — `max-h-full`
+             is a percentage of a height the box only derives from its own
+             aspect-ratio, which WebKit declines to resolve — and that one
+             plate grew while the plate beside it stayed at 4:3. Absolute means
+             the ratio is the only thing that can set the height, so every
+             plate in the wall is identical on every engine. */
+          className="relative aspect-[4/3] w-full transform-gpu overflow-hidden rounded-[24px] border border-white/14 bg-white"
+          style={{ boxShadow: "0 16px 40px rgba(0,0,0,0.42)" }}
+        >
+          <img
+            src={src}
+            alt=""
+            decoding="async"
+            loading={index < 6 ? "eager" : "lazy"}
+            className="absolute inset-0 h-full w-full object-contain p-6"
+          />
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
 function TrustChrome({
   title,
   backLabel,
   onBack,
   children,
+  /**
+   * Trust's four screens share one heading size. Quality and Credibility is
+   * the one that cannot hold it: the longest title of the four, over the only
+   * screen with a full-height panel under it, so 64px pushes the certificate
+   * down the artboard. It asks for a step down; the rest are unaffected.
+   */
+  titleClassName = "text-[64px]",
 }: {
   title: React.ReactNode;
   backLabel: string;
   onBack: () => void;
   children: React.ReactNode;
+  titleClassName?: string;
 }) {
   return (
     <div className="relative flex min-h-[1920px] flex-col px-12 pb-16 pt-28">
       <BcfBackButton onClick={onBack} label={backLabel} />
       <motion.h1
-        className="mx-auto max-w-[980px] text-center text-[64px] font-bold leading-tight"
+        className={`mx-auto max-w-[980px] text-center font-bold leading-tight ${titleClassName}`}
         style={{ color: BCF.gold }}
         initial={{ opacity: 0, y: 26 }}
         animate={{ opacity: 1, y: 0 }}
