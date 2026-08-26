@@ -1863,7 +1863,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "karzan-n",
             name: "Karzan Noori",
-            role: "Administrative Board Member and Program Planning Dep. Manager",
+            role: "Administrative Board Member",
           },
           { id: "farzin", name: "Farzin Bagzade", role: "Administrative Board Member" },
           { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
@@ -1881,7 +1881,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "rawaj",
             name: "Rawaj Haji",
-            role: "Administrative Board Member and Human Resources Dep. Manager",
+            role: "Administrative Board Member",
           },
         ],
       },
@@ -3085,7 +3085,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "karzan-n",
             name: "کارزان نوری",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
+            role: "ئەندامی دەستەی کارگێڕی",
           },
           { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
           { id: "farzin", name: "فەرزین بەگزادە", role: "ئەندامی دەستەی کارگێڕی" },
@@ -3104,7 +3104,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "rawaj",
             name: "ڕەواج حاجی",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی سەرچاوە مرۆییەکان",
+            role: "ئەندامی دەستەی کارگێڕی",
           },
         ],
       },
@@ -4302,7 +4302,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "karzan-n",
             name: "كارزان نوري",
-            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
+            role: "عضو الهيئة الإدارية",
           },
           { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
           { id: "farzin", name: "فرزين بغزادة", role: "عضو الهيئة الإدارية" },
@@ -4321,7 +4321,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "rawaj",
             name: "رواج حاجي",
-            role: "عضو الهيئة الإدارية ومدير قسم الموارد البشرية",
+            role: "عضو الهيئة الإدارية",
           },
         ],
       },

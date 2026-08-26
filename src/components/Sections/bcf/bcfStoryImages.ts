@@ -43,6 +43,11 @@ export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
   "iso-quake": { front: humanityFood, back: journeyHumanity },
   "drug-rehab": { front: trustRecognition, back: humanityHealth },
   shipments: { front: impactFamilies, back: impactBeneficiaries },
+  /** Identity panes restored after the year timeline. */
+  mission: { front: journeyHumanity, back: journeyTrust },
+  vision: { front: impactBeneficiaries, back: impactFamilies },
+  philosophy: { front: humanityCommunity, back: journeyStory },
+  values: { front: trustLeadership, back: trustPartnerships },
 };
 
 export const bcfStoryImageFallback: StoryImagePair = {

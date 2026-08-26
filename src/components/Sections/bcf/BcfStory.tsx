@@ -5,6 +5,9 @@ import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import {
   bcfCopy,
   type BcfLang,
+  type StoryMilestone,
+  type StorySection,
+  type StorySectionId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
@@ -25,6 +28,18 @@ type BcfStoryProps = {
   lang: BcfLang;
   onBack: () => void;
 };
+
+/** Sections that sit directly after the 2005 founding beat. */
+const AFTER_2005_IDS: StorySectionId[] = [
+  "mission",
+  "vision",
+  "philosophy",
+  "values",
+];
+
+type StoryBeat =
+  | { kind: "milestone"; data: StoryMilestone }
+  | { kind: "section"; data: StorySection };
 
 const PHOTO_FILTER = "saturate(0.55) sepia(0.22) contrast(1.05) brightness(0.92)";
 
@@ -129,26 +144,56 @@ function StoryNavButton({
   );
 }
 
+function beatKey(beat: StoryBeat) {
+  return beat.data.id;
+}
+
+function beatLabel(beat: StoryBeat) {
+  if (beat.kind === "milestone") return beat.data.title;
+  const { titleGold, titleWhite } = beat.data;
+  return [titleGold, titleWhite].filter(Boolean).join(" ");
+}
+
 /**
- * Our Story — Timeline 2.
- *
- * Left progress rail, year + headline + body, then a twin photo stack with
- * Back on the left and Next on the right of the photographs.
+ * Our Story — founding year (2005), then Mission / Vision / Humanitarian
+ * Philosophy / Values, then the remaining institutional timeline.
  */
 export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const c = bcfCopy[lang];
   const milestones = c.storyMilestones;
+
+  const beats = React.useMemo<StoryBeat[]>(() => {
+    const identitySections = AFTER_2005_IDS.map((id) =>
+      c.storySections.find((section) => section.id === id),
+    ).filter((section): section is StorySection => Boolean(section));
+
+    const [first, ...rest] = milestones;
+    const identity = identitySections.map((data) => ({
+      kind: "section" as const,
+      data,
+    }));
+
+    // Identity panes sit directly after the founding year (2005), then the
+    // rest of the institutional timeline continues.
+    return [
+      ...(first ? [{ kind: "milestone" as const, data: first }] : []),
+      ...identity,
+      ...rest.map((data) => ({ kind: "milestone" as const, data })),
+    ];
+  }, [c.storySections, milestones]);
+
   const storyLabel =
     c.journeyChapters.find((chapter) => chapter.id === "story")?.title ??
     c.journeyChapters[0].title;
   const rtl = lang !== "en";
 
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const active = milestones[activeIndex];
+  const active = beats[activeIndex] ?? beats[0];
   const isFirst = activeIndex === 0;
-  const isLast = activeIndex === milestones.length - 1;
+  const isLast = activeIndex === beats.length - 1;
+  const isValues = active?.kind === "section" && active.data.id === "values";
   const photos =
-    bcfStoryImagePairs[active.id] ?? bcfStoryImageFallback;
+    bcfStoryImagePairs[beatKey(active)] ?? bcfStoryImageFallback;
 
   const goPrev = () => {
     if (isFirst) return;
@@ -157,7 +202,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
   const goNext = () => {
     if (isLast) return;
-    setActiveIndex((i) => Math.min(milestones.length - 1, i + 1));
+    setActiveIndex((i) => Math.min(beats.length - 1, i + 1));
   };
 
   return (
@@ -243,21 +288,21 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
         {/* Body row: rail + content */}
         <div className="relative z-10 mt-16 flex min-h-0 flex-1">
-          {/* Left timeline rail */}
+          {/* Left progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
             <span
               className="absolute top-8 bottom-24 w-px"
               style={{ backgroundColor: "rgba(255,255,255,0.18)" }}
             />
             <div className="relative z-10 flex flex-1 flex-col items-center justify-between py-4">
-              {milestones.map((milestone, index) => {
+              {beats.map((beat, index) => {
                 const on = index === activeIndex;
                 const passed = index < activeIndex;
                 return (
                   <button
-                    key={milestone.id}
+                    key={beatKey(beat)}
                     type="button"
-                    aria-label={milestone.title}
+                    aria-label={beatLabel(beat)}
                     aria-current={on ? "step" : undefined}
                     onClick={() => setActiveIndex(index)}
                     className="relative grid h-10 w-10 place-items-center"
@@ -295,49 +340,145 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           <div className="relative flex min-w-0 flex-1 flex-col pe-4 ps-6">
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${lang}-${active.id}`}
+                key={`${lang}-${beatKey(active)}`}
                 className="flex flex-1 flex-col"
                 variants={bcfStagger(0.08, 0.05)}
                 initial="initial"
                 animate="animate"
                 exit={{ opacity: 0, y: -20, transition: { duration: 0.25 } }}
               >
-                <motion.div
-                  variants={bcfRise}
-                  className={`max-w-[820px] ${rtl ? "text-end" : "text-start"}`}
-                >
-                  <p
-                    className="text-[96px] font-light leading-none tracking-tight tabular-nums"
-                    style={{ color: "rgba(251,244,228,0.95)" }}
-                  >
-                    {bcfDigits(active.year, lang)}
-                  </p>
-                  <h2
-                    className={`mt-5 text-[30px] font-semibold uppercase leading-snug ${
-                      lang === "en" ? "tracking-[0.04em]" : "tracking-normal"
-                    }`}
-                    style={{ color: BCF.gold }}
-                  >
-                    {active.title}
-                  </h2>
-                  <p
-                    className={`mt-5 max-w-[700px] text-[26px] text-white/70 ${
-                      lang === "en" ? "leading-relaxed" : "leading-[1.85]"
-                    }`}
-                  >
-                    {active.body}
-                  </p>
-                </motion.div>
+                {active.kind === "milestone" ? (
+                  <>
+                    <motion.div
+                      variants={bcfRise}
+                      className={`max-w-[820px] ${rtl ? "text-end" : "text-start"}`}
+                    >
+                      <p
+                        className="text-[96px] font-light leading-none tracking-tight tabular-nums"
+                        style={{ color: "rgba(251,244,228,0.95)" }}
+                      >
+                        {bcfDigits(active.data.year, lang)}
+                      </p>
+                      <h2
+                        className={`mt-5 text-[30px] font-semibold uppercase leading-snug ${
+                          lang === "en" ? "tracking-[0.04em]" : "tracking-normal"
+                        }`}
+                        style={{ color: BCF.gold }}
+                      >
+                        {active.data.title}
+                      </h2>
+                      <p
+                        className={`mt-5 max-w-[700px] text-[26px] text-white/70 ${
+                          lang === "en" ? "leading-relaxed" : "leading-[1.85]"
+                        }`}
+                      >
+                        {active.data.body}
+                      </p>
+                    </motion.div>
 
-                {/* Photo stack, pulled back over the rail gutter so it reads as
-                    centred on the artboard rather than on the text column. */}
-                <motion.div
-                  variants={bcfRise}
-                  className="flex flex-1 items-start justify-center pt-10"
-                  style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
-                >
-                  <StoryPhoto src={photos.front} label={active.title} />
-                </motion.div>
+                    <motion.div
+                      variants={bcfRise}
+                      className="flex flex-1 items-start justify-center pt-10"
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
+                    >
+                      <StoryPhoto src={photos.front} label={active.data.title} />
+                    </motion.div>
+                  </>
+                ) : isValues ? (
+                  <>
+                    <motion.div
+                      variants={bcfRise}
+                      className={`max-w-[920px] ${rtl ? "text-end" : "text-start"}`}
+                    >
+                      <h2
+                        className="text-[64px] font-bold leading-[1.08]"
+                        style={{ color: BCF.gold }}
+                      >
+                        {active.data.titleGold}
+                        {active.data.titleWhite ? (
+                          <span style={{ color: BCF.cream }}>
+                            {" "}
+                            {active.data.titleWhite}
+                          </span>
+                        ) : null}
+                      </h2>
+                      {active.data.body ? (
+                        <p
+                          className={`mt-6 max-w-[820px] text-[28px] text-white/70 ${
+                            lang === "en" ? "leading-relaxed" : "leading-[1.85]"
+                          }`}
+                        >
+                          {active.data.body}
+                        </p>
+                      ) : null}
+                    </motion.div>
+
+                    <motion.div
+                      variants={bcfStagger(0.07, 0.1)}
+                      className="mt-12 flex max-w-[920px] flex-col gap-6"
+                    >
+                      {c.storyValues.map((value, i) => (
+                        <motion.div
+                          key={value.id}
+                          variants={bcfRise}
+                          className={`flex ${i % 2 === 0 ? "justify-start" : "justify-end"}`}
+                        >
+                          <span
+                            className={`flex items-center gap-4 rounded-full border border-white/15 bg-black/45 px-10 py-5 text-[30px] text-white backdrop-blur-sm ${
+                              i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                            }`}
+                          >
+                            <span
+                              className="h-3.5 w-3.5 shrink-0 rounded-full"
+                              style={{ backgroundColor: BCF.gold }}
+                            />
+                            {value.title}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </>
+                ) : (
+                  <>
+                    <motion.div
+                      variants={bcfRise}
+                      className={`max-w-[900px] ${rtl ? "text-end" : "text-start"}`}
+                    >
+                      <h2
+                        className="text-[72px] font-bold leading-[1.05]"
+                        style={{ color: BCF.gold }}
+                      >
+                        {active.data.titleGold}
+                        {active.data.titleWhite ? (
+                          <span style={{ color: BCF.cream }}>
+                            {" "}
+                            {active.data.titleWhite}
+                          </span>
+                        ) : null}
+                      </h2>
+                      {active.data.body ? (
+                        <p
+                          className={`mt-8 max-w-[820px] text-[32px] font-medium text-[#fcdfaa] ${
+                            lang === "en" ? "leading-snug" : "leading-[1.75]"
+                          }`}
+                        >
+                          {active.data.body}
+                        </p>
+                      ) : null}
+                    </motion.div>
+
+                    <motion.div
+                      variants={bcfRise}
+                      className="flex flex-1 items-start justify-center pt-10"
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
+                    >
+                      <StoryPhoto
+                        src={photos.front}
+                        label={beatLabel(active)}
+                      />
+                    </motion.div>
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
