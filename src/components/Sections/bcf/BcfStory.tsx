@@ -76,18 +76,26 @@ function GoldPhoto({
 
 /**
  * One gold-framed plate per beat, and the loudest thing on the screen after
- * the headline. It takes every pixel the copy above it leaves behind — the
- * frame stretches to the bottom of the beat column rather than sitting at a
- * fixed size — so on a 65" portrait TV the photograph reads from across the
- * room. The floor keeps it a hero even under the wordiest milestone; the
- * ceiling keeps it clear of the Back/Next band on the shortest one.
+ * the headline.
+ *
+ * 780 is the widest the plate can go before it collides with something. It is
+ * centred on the artboard rather than on its own column — the wrapper's
+ * negative start margin pulls it back over the rail's gutter — so half of it
+ * lives left of centre, and at 940 its edge reached x≈76 while the timeline
+ * dots sit at x≈84: the rail ended up drawn across the photograph. 780 leaves
+ * its edge at x=150, clear of the 120px the rail occupies.
+ *
+ * The size is fixed rather than stretched to the leftover space: every beat
+ * carries a different amount of copy, and a plate that changed size on each
+ * tap of Next drew attention to itself instead of to the picture. 560 tall
+ * fits under the wordiest milestone without crowding the Back/Next band.
  */
 function StoryPhoto({ src, label }: { src: string; label: string }) {
   return (
     <GoldPhoto
       src={src}
       alt={label}
-      className="h-full max-h-[700px] min-h-[440px] w-full max-w-[940px]"
+      className="h-[560px] w-[780px] shrink-0"
     />
   );
 }
@@ -362,7 +370,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
                     <motion.div
                       variants={bcfRise}
-                      className="flex min-h-0 flex-1 items-stretch justify-center pt-12"
+                      className="flex min-h-0 flex-1 items-start justify-center pt-10"
                       style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={active.data.title} />
@@ -453,7 +461,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
                     <motion.div
                       variants={bcfRise}
-                      className="flex min-h-0 flex-1 items-stretch justify-center pt-12"
+                      className="flex min-h-0 flex-1 items-start justify-center pt-10"
                       style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto

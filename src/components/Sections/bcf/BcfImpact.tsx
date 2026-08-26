@@ -26,8 +26,8 @@ import cardIdps from "@/assets/images/bcf/selected/impact-idps.webp";
 import cardSchools from "@/assets/images/bcf/selected/impact-schools.webp";
 import cardBeneficiaries from "@/assets/images/bcf/from-source/impact-beneficiaries.webp";
 import cardFamilies from "@/assets/images/bcf/from-source/impact-families.webp";
-import cardLogistics from "@/assets/images/bcf/from-source/humanity-nfi.webp";
-import cardCampCapacity from "@/assets/images/bcf/from-source/humanity-camp.webp";
+import cardLogistics from "@/assets/images/bcf/from-source/impact-logistics.webp";
+import cardCampCapacity from "@/assets/images/bcf/from-source/impact-camp-capacity.webp";
 
 type BcfImpactProps = {
   lang: BcfLang;
