@@ -8,39 +8,61 @@
  *
  * Numbered `N-scaled.webp` plates are typeset names with no mark. Those go
  * after graphic logos so the grid opens on brands, not on word tiles.
+ *
+ * Ordering is decided entirely on the glob *keys* — the source paths. Nothing
+ * here compares asset URLs: those are hashed at build time, so any pinning
+ * that matched on URL identity would order one way in dev and another way in
+ * the built app.
+ *
+ * Those keys do NOT have stable casing, so every filename comparison here is
+ * case-insensitive. The macOS working tree holds `Donors/act-now-...-logo.webp`
+ * while git has the same file indexed as `donors/Act-now-...-Logo.webp`; the
+ * glob reads the filesystem, so it yields lowercase names on a developer's Mac
+ * and the git casing on a Linux CI checkout. Matching pinned names literally
+ * silently stops pinning in production while looking perfect locally.
  */
 
-function isTextPlate(path: string): boolean {
-  const file = path.split("/").pop() ?? "";
-  return /^\d+(-\d+)?-scaled\.webp$/i.test(file);
+function basename(path: string): string {
+  return path.split("/").pop() ?? path;
 }
 
-function collect(modules: Record<string, string>): string[] {
+function isTextPlate(path: string): boolean {
+  return /^\d+(-\d+)?-scaled\.webp$/i.test(basename(path));
+}
+
+/**
+ * Sorts glob keys: pinned files first in the given order, then graphic logos
+ * alphabetically, then the typeset word plates.
+ */
+export function collect(
+  modules: Record<string, string>,
+  pinnedFiles: readonly string[] = [],
+): string[] {
+  const rank = new Map(pinnedFiles.map((file, index) => [file.toLowerCase(), index]));
+  const rankOf = (path: string) =>
+    rank.get(basename(path).toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+
   return Object.keys(modules)
     .sort((a, b) => {
+      const aRank = rankOf(a);
+      const bRank = rankOf(b);
+      if (aRank !== bRank) return aRank - bRank;
+
       const aText = isTextPlate(a);
       const bText = isTextPlate(b);
       if (aText !== bText) return aText ? 1 : -1;
+
       return a.localeCompare(b, undefined, { sensitivity: "base" });
     })
     .map((key) => modules[key]);
 }
 
-/** Donors pinned to the head of the grid — major institutional supporters first. */
-const DONOR_PRIORITY = [
+/** Major institutional supporters — always first, in this order. Case-insensitive. */
+export const DONOR_LEAD_FILES: readonly string[] = [
   "lds-chariteis-logo.webp",
   "emirates-red-crescent-logo.webp",
   "kwait-is-by-your-side-logo.webp",
 ];
-
-function prioritize(paths: string[], priorityFiles: string[]): string[] {
-  const byFile = new Map(paths.map((path) => [path.split("/").pop() ?? path, path]));
-  const pinned = priorityFiles
-    .map((file) => byFile.get(file))
-    .filter((path): path is string => Boolean(path));
-  const pinnedSet = new Set(pinned);
-  return [...pinned, ...paths.filter((path) => !pinnedSet.has(path))];
-}
 
 const partnerModules = import.meta.glob<string>(
   "@/assets/images/bcf/logos/partners/*.webp",
@@ -61,6 +83,6 @@ export type PartnerLogoGroupId = "partners" | "donors" | "sponsors";
 
 export const bcfPartnerLogos: Record<PartnerLogoGroupId, string[]> = {
   partners: collect(partnerModules),
-  donors: prioritize(collect(donorModules), DONOR_PRIORITY),
+  donors: collect(donorModules, DONOR_LEAD_FILES),
   sponsors: collect(sponsorModules),
 };

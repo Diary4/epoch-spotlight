@@ -304,6 +304,22 @@ All colors MUST be HSL.
 }
 
 /* ---------------------------------------------------------------------------
+ * Idle map scopes hold still, for the same reason.
+ *
+ * Where We Work keeps all three of its maps mounted once they have been opened,
+ * so switching scope is a crossfade rather than a remount. The two that are not
+ * on screen are `visibility: hidden` and cost nothing to paint — but a CSS
+ * animation goes on ticking on the compositor whether or not anything is being
+ * painted, and between them the three maps carry some thirty pin pings. Paused
+ * rather than removed, so a pin resumes mid-cycle instead of restarting the
+ * moment its scope comes back.
+ * ------------------------------------------------------------------------ */
+
+.bcf-map-idle .bcf-ping {
+  animation-play-state: paused;
+}
+
+/* ---------------------------------------------------------------------------
  * BCF motion that runs forever.
  *
  * The backdrop drift and the journey-hub orbit ring used to be driven by

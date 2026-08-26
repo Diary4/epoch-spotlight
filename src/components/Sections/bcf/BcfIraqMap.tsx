@@ -81,6 +81,12 @@ function useIraqPlate(ref: React.RefObject<HTMLDivElement | null>) {
 
 type BcfIraqMapProps = {
   lang: BcfLang;
+  /**
+   * Whether this is the scope on screen. The map is no longer unmounted when
+   * the visitor leaves it — that remount was the stutter — so leaving has to be
+   * something it is told, rather than something that happens to it.
+   */
+  active: boolean;
   /** Region-side selection, held by the page so returning from a register can restore it. */
   selectedLocation: LocationId | null;
   onSelectLocation: (id: LocationId | null) => void;
@@ -125,6 +131,7 @@ const REGION_PINS = BCF_IRAQ_REGION_PINS.map((id) => {
 
 export default function BcfIraqMap({
   lang,
+  active,
   selectedLocation,
   onSelectLocation,
   onExploreProjects,
@@ -135,6 +142,14 @@ export default function BcfIraqMap({
   const [hintVisible, setHintVisible] = React.useState(true);
   const planeRef = React.useRef<HTMLDivElement>(null);
   const plate = useIraqPlate(planeRef);
+
+  /* The governorate cards are this map's own state, and the page cannot clear
+     them the way it clears the Region selection it holds. Left alone they would
+     outlive the switch: tap Samawah, go to the world, come back, and Samawah's
+     card is still standing over the country. */
+  React.useEffect(() => {
+    if (!active) setPlace(null);
+  }, [active]);
 
   const openPlace = (id: IraqPlaceId) => {
     setHintVisible(false);

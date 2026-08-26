@@ -363,11 +363,19 @@ type ProjectsCopy = {
 
 export type ImpactGalleryId = "employees" | "camps" | "idps" | "schools";
 
+/** Gallery cards plus display-only stats on the Impact page. */
+export type ImpactCardId = ImpactGalleryId | "logistics" | "campCapacity";
+
 type ImpactItem = {
-  id: ImpactGalleryId;
+  id: ImpactCardId;
   value: string;
   title: string;
   description: string;
+  /** Optional unit under the main figure (e.g. "vehicles"). */
+  valueLabel?: string;
+  /** Optional second figure (e.g. warehouses beside vehicles). */
+  secondaryValue?: string;
+  secondaryLabel?: string;
 };
 
 type ImpactTotal = {
@@ -407,6 +415,14 @@ export type ServeCategory = {
   title: string;
   /** Opening paragraph: what BCF does in this sector, and for whom. */
   intro: string;
+  /**
+   * Cumulative beneficiaries reached in this sector. Shown as a highlight in
+   * the sector dialog; omitted where BCF has not published a figure.
+   */
+  beneficiaries?: {
+    families?: string;
+    individuals?: string;
+  };
   /**
    * The sector's wall text — BCF's own "museum text" line, which is written to
    * be read on a panel rather than in a report. Shown on the card and as the
@@ -682,6 +698,10 @@ export type BcfCopy = {
   serveCategories: ServeCategory[];
   /** Cue on the centred sector card, and the label of the dialog it opens. */
   serveDetailCta: string;
+  /** Heading over the beneficiary totals in a Humanity sector dialog. */
+  serveBeneficiariesLabel: string;
+  serveFamiliesLabel: string;
+  serveIndividualsLabel: string;
   whoServesTitle: string;
   howServesTitle: string;
   whoHowHint: string;
@@ -1018,6 +1038,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Food Security",
         intro:
           "Food security is one of BCF's core humanitarian sectors. Food assistance reaches vulnerable families, internally displaced people, refugees and communities affected by crisis.",
+        beneficiaries: {
+          families: "3,550,152",
+          individuals: "19,332,863",
+        },
         headline:
           "Food support is more than a meal: it is stability in a time of uncertainty, dignity in a time of hardship, and hope in a time of crisis.",
         groups: [
@@ -1046,6 +1070,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Health and Medical Support",
         intro:
           "BCF supports health services for vulnerable communities through medical projects, support to facilities, and treatment programmes.",
+        beneficiaries: {
+          individuals: "3,318,211",
+        },
         headline:
           "Health care protects more than the body. It protects dignity, the stability of a family, and the right to live in hope.",
         groups: [
@@ -1069,13 +1096,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Education and Human Development",
         intro:
           "BCF invests in education because learning is one of the strongest routes out of poverty and vulnerability.",
+        beneficiaries: {
+          individuals: "707,700",
+        },
         headline:
           "Education gives children more than knowledge. It gives them confidence, opportunity and a future that crisis cannot easily take away.",
         groups: [
           {
             title: "Key achievements",
             items: [
-              "310 schools renovated",
+              "315 schools renovated",
               "362,538 school materials and stationery items distributed",
               "131 classrooms built",
               "The Tanahi Center opened in 2022",
@@ -1096,6 +1126,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Water, Sanitation and Hygiene",
         intro:
           "BCF's work in this sector focuses on clean water, sanitation and hygiene services.",
+        beneficiaries: {
+          families: "834,827",
+          individuals: "4,145,402",
+        },
         headline:
           "Clean water protects health, restores dignity and supports life in places where crisis has taken away the basics.",
         groups: [
@@ -1126,6 +1160,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Shelter and Emergency Response",
         intro:
           "BCF provides shelter and rapid relief to families and communities displaced by war, crisis and natural disaster.",
+        beneficiaries: {
+          families: "39,587",
+          individuals: "190,664",
+        },
         headline:
           "Shelter is the first step toward recovery and a return to normal life. A safe place gives a family the strength to begin again.",
         groups: [
@@ -1147,6 +1185,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Protection and Human Dignity",
         intro:
           "BCF's protection work focuses on the safety, dignity and wellbeing of vulnerable people.",
+        beneficiaries: {
+          individuals: "397,830",
+        },
         headline:
           "Protection means more than responding to danger. It means making sure every person is treated with dignity, respect and worth.",
         groups: [
@@ -1200,6 +1241,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Livelihood and Empowerment",
         intro:
           "BCF supports livelihood projects that help individuals and families become more self-reliant.",
+        beneficiaries: {
+          families: "56,929",
+          individuals: "428,122",
+        },
         headline:
           "The strongest humanitarian work does not only help people survive today. It helps them stand stronger tomorrow.",
         groups: [
@@ -1228,6 +1273,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Camps and Displacement Support",
         intro:
           "BCF manages and supports camps serving refugees and internally displaced people.",
+        beneficiaries: {
+          families: "4,531,250",
+          individuals: "22,679,526",
+        },
         headline:
           "Camp management is not only logistics. It is coordination, protection and a daily responsibility toward people living in displacement.",
         groups: [
@@ -1259,6 +1308,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Non-Food Items",
         intro:
           "Essential relief items delivered to vulnerable families alongside food, water, shelter and cash support.",
+        beneficiaries: {
+          families: "1,426,999",
+          individuals: "7,487,226",
+        },
         groups: [
           {
             title: "Essential relief items",
@@ -1277,6 +1330,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "Cash Assistance and Essential Relief",
         intro:
           "BCF provides direct financial support to families who need urgent help to cover the basic needs of life.",
+        beneficiaries: {
+          families: "37,121",
+          individuals: "338,767",
+        },
         headline:
           "Cash assistance gives vulnerable families the flexibility to meet urgent needs with dignity.",
         groups: [
@@ -1308,6 +1365,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     serveDetailCta: "View details",
+    serveBeneficiariesLabel: "Beneficiaries",
+    serveFamiliesLabel: "families",
+    serveIndividualsLabel: "individuals",
     whoServesTitle: "Who BCF Serves",
     howServesTitle: "How BCF Serves",
     whoHowHint:
@@ -1405,43 +1465,67 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "founded",
         year: "2005",
         title: "Foundation in Erbil",
-        body: "BCF was officially established in Erbil, capital of the Kurdistan Region of Iraq, to turn compassion into organized humanitarian action.",
+        body: "BCF was founded in Erbil, Kurdistan Region of Iraq.",
       },
       {
         id: "orphan-care",
         year: "2009",
         title: "Orphan Care Project",
-        body: "The Orphan Care Project begins, supporting children who have lost parental care with long-term protection and dignity.",
+        body: "A dedicated project expanded long-term care and protection for orphaned children.",
+      },
+      {
+        id: "van-earthquake",
+        year: "2011",
+        title: "Van Earthquake Response",
+        body: "BCF crossed into Türkiye to support families affected by the Van earthquake.",
+      },
+      {
+        id: "syrian-refugees",
+        year: "2013",
+        title: "Welcoming Syrian Refugees",
+        body: "By 2013, BCF had welcomed more than 250,000 Syrian refugees.",
       },
       {
         id: "sinjar",
         year: "2014",
-        title: "Sinjar Emergency Response",
-        body: "Emergency response for displaced people on Sinjar Mountain during one of the darkest chapters of the crisis.",
+        title: "9 Million Meals — Sinjar Mountain Lifeline",
+        body: "BCF provided 9 million hot meals to displaced families on Sinjar Mountain.",
       },
       {
         id: "camps",
         year: "2015",
         title: "Camp Management in Erbil",
-        body: "Management of IDP and refugee camps in Erbil, delivering daily services with structure and care.",
+        body: "BCF managed camps serving displaced people and refugees in Erbil.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        title: "UN ECOSOC Status",
-        body: "UN ECOSOC consultative status and international licensing milestones expand BCF's recognized reach.",
+        title: "International Recognition",
+        body: "UN ECOSOC Consultative Status and charity registration in Kuwait.",
       },
       {
         id: "sphere",
         year: "2018",
         title: "Sphere Representation",
-        body: "Sphere representation in the Kurdistan Region, aligning local practice with global humanitarian standards.",
+        body: "BCF became the Sphere representative in the Kurdistan Region.",
+      },
+      {
+        id: "syria-cross-border",
+        year: "2019",
+        title: "Cross-Border Response in Syria",
+        body: "BCF crossed borders to support civilians affected by armed conflict in Syria.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        title: "UK Recognition & Duhok",
-        body: "UK Charity Commission recognition and Duhok camp management mark a new chapter of trust and delivery.",
+        title: "British Licensing & Duhok Camps",
+        body: "Licensed by the Charity Commission in Britain and operating camps in Duhok.",
+      },
+      {
+        id: "autism",
+        year: "2021",
+        title: "First Autism Humanitarian Center",
+        body: "BCF opened Kurdistan's first humanitarian center dedicated to autism.",
       },
       {
         id: "iso-quake",
@@ -1450,10 +1534,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "BCF achieved ISO 9001:2015 certification and was the first organization to reach major earthquake victims in Türkiye and Syria.",
       },
       {
-        id: "recent",
-        year: "2024–2026",
-        title: "Housing, Health & Recognition",
-        body: "Major housing, health, education and international recognition milestones shape the current era of service.",
+        id: "drug-rehab",
+        year: "2025",
+        title: "Drug Rehabilitation Center",
+        body: "BCF laid the foundation stone for Kurdistan–Iraq's first drug rehabilitation center.",
+      },
+      {
+        id: "shipments",
+        year: "2026",
+        title: "465 Humanitarian Shipments",
+        body: "BCF delivered 465 humanitarian shipments to Syria after the armed conflict.",
       },
     ],
     whereWeWork: "Where We Work",
@@ -1530,13 +1620,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       unitedKingdom: {
         name: "United Kingdom",
-        meta: "Charity Commission",
-        description:
-          "Recognized under the UK Charity Commission framework, reinforcing standards of governance, reporting and public trust.",
-        facts: [
-          "Governance and reporting to UK charity standards",
-          "Labour Group London Award",
-        ],
+        meta: "1 sector",
+        description: "Beneficiaries: 195 individuals",
+        facts: ["Sector: Cash assistance"],
       },
       unitedStates: {
         name: "United States of America",
@@ -1550,39 +1636,31 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       turkiye: {
         name: "Türkiye",
-        meta: "Earthquake response, 2023",
-        description:
-          "Rapid emergency support after the February 2023 earthquakes, with relief moving across the border within days of the first tremor.",
+        meta: "10 places",
+        description: "Beneficiaries: 80,149 families, 330,249 individuals",
         facts: [
-          "4,129 tents provided to displaced families across Türkiye and Syria",
-          "Five disaster-response teams planned across five locations",
+          "6 sectors: Food, Non-food items, Shelter, Cash assistance, WASH, Health",
         ],
       },
       syria: {
         name: "Syria",
-        meta: "Earthquake response, 2023",
-        description:
-          "Shelter and emergency relief for families displaced by the 2023 earthquakes in northern Syria.",
+        meta: "4 locations",
+        description: "Beneficiaries: 61,187 families, 257,106 individuals",
         facts: [
-          "4,129 tents provided after the 2023 Türkiye and Syria earthquakes",
-          "Tents, blankets and winter supplies for displaced families",
-          "Delivered alongside the response in Türkiye",
+          "9 sectors: Food, WASH, Protection, Cash assistance, Health, Shelter, Education, Livelihood, Non-food items",
         ],
       },
-      /* TODO(bcf): the nine entries below carry only what the twenty-year map
-         itself states. Each needs its real meta line, description and facts —
-         until then they say nothing that is not on the poster. */
       ukraine: {
         name: "Ukraine",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Beneficiaries: 124 individuals",
+        facts: ["Sector: Protection"],
       },
       serbia: {
         name: "Serbia",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "3 sectors",
+        description: "Beneficiaries: 700 individuals",
+        facts: ["Sectors: Education, Food, Non-food items"],
       },
       greece: {
         name: "Greece",
@@ -1592,27 +1670,27 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       lebanon: {
         name: "Lebanon",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "2 sectors",
+        description: "Beneficiaries: 1,768 families, 8,590 individuals",
+        facts: ["Sectors: Cash assistance, Food"],
       },
       morocco: {
         name: "Morocco",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "2 sectors",
+        description: "Beneficiaries: 1,520 individuals",
+        facts: ["Sectors: Food, Non-food items"],
       },
       saudiArabia: {
-        name: "Saudi Arabia",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        name: "Kingdom of Saudi Arabia",
+        meta: "1 sector",
+        description: "Beneficiaries: 3,000 individuals",
+        facts: ["Sector: Food"],
       },
       sudan: {
         name: "Sudan",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "2 sectors",
+        description: "Beneficiaries: 800 individuals",
+        facts: ["Sectors: Non-food items, Protection"],
       },
       southSudan: {
         name: "South Sudan",
@@ -1622,21 +1700,21 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       yemen: {
         name: "Yemen",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Beneficiaries: 140 families, 700 individuals",
+        facts: ["Sector: Food"],
       },
       bangladesh: {
         name: "Bangladesh",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Beneficiaries: 11,810 individuals",
+        facts: ["Sector: Health"],
       },
       australia: {
         name: "Australia",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Water, sanitation and hygiene (WASH)",
+        facts: ["Sector: WASH"],
       },
     },
     locations: {
@@ -1805,9 +1883,24 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "schools",
-        value: "310",
+        value: "315",
         title: "Schools Renovated",
         description: "Learning environments restored for children and young people.",
+      },
+      {
+        id: "logistics",
+        value: "109",
+        valueLabel: "vehicles",
+        title: "Logistic Capacity",
+        description: "Vehicles and warehouses supporting field operations.",
+        secondaryValue: "10",
+        secondaryLabel: "warehouses",
+      },
+      {
+        id: "campCapacity",
+        value: "30",
+        title: "Camp Management",
+        description: "Up to 30 IDP and refugee camps.",
       },
     ],
     trustTitle: "Trust & The Future",
@@ -1833,14 +1926,14 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "karzan-n",
             name: "Karzan Noori",
-            role: "Administrative Board Member and Program Planning Dep. Manager",
+            role: "Administrative Board Member",
           },
           { id: "farzin", name: "Farzin Bagzade", role: "Administrative Board Member" },
           { id: "awat", name: "Awat Ahmed", role: "Administrative Board Member" },
           {
             id: "abdulwahid",
             name: "Abdulwahid Amin",
-            role: "Administrative Board Member and Duhok Office Director",
+            role: "Administrative Board Member",
           },
           { id: "ways", name: "Ways Jalil", role: "Administrative Board Member" },
           {
@@ -1851,7 +1944,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "rawaj",
             name: "Rawaj Haji",
-            role: "Administrative Board Member and Human Resources Dep. Manager",
+            role: "Administrative Board Member",
           },
         ],
       },
@@ -1875,6 +1968,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustOfficesBody:
       "Direct the regional offices that deliver the work with local communities.",
     trustOfficesMembers: [
+      { id: "abdulwahid", name: "Abdulwahid Amin", role: "Duhok Office Director" },
       { id: "rebwar", name: "Rebwar Mihyaddin", role: "Kirkuk Office Director" },
       { id: "stav", name: "Stav Aso", role: "Erbil Office Director" },
       { id: "srwa", name: "Srwa Salih", role: "Slemani Office Director" },
@@ -1984,7 +2078,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     bcfPresident: {
       open: "Meet the BCF President",
       name: "Musa Ahmed",
-      role: "BCF President",
+      role: "BCF President · Member of the Board of Founders",
       meta: "Barzani Charity Foundation",
       bioLabel: "Biography",
       bio: "Born on August 5, 1974, in Kalok village in the Barzan region, he graduated from the Institute of Fine Arts. His commitment to public and humanitarian service began at an early age.",
@@ -2078,7 +2172,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "kuwait",
-        title: "Registered in Kuwait",
+        title: "Recognized in Kuwait",
         body: "Registered as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
       },
       {
@@ -2258,6 +2352,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئاسایشی خۆراک",
         intro:
           "ئاسایشی خۆراک یەکێکە لە سێکتەرە مرۆییە سەرەکییەکانی دەزگای خێرخوازیی بارزانی. هاوکاریی خۆراکی پێشکەش بە خێزانە لێقەوماوەکان، ئاوارەکان، پەنابەران و ئەو کۆمەڵگایانە دەکرێت کە بەهۆی قەیرانەکانەوە زیانیان پێگەیشتووە.",
+        beneficiaries: {
+          families: "3,550,152",
+          individuals: "19,332,863",
+        },
         headline:
           "پشتگیریی خۆراک زیاترە لە تەنها ژەمێک: سەقامگیرییە لە کاتی نادڵنیایی، کەرامەتە لە کاتی سەختی، و ئومێدە لە کاتی قەیراندا.",
         groups: [
@@ -2286,6 +2384,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "تەندروستی و پشتگیری پزیشکی",
         intro:
           "دەزگای خێرخوازیی بارزانی پشتگیری خزمەتگوزارییە تەندروستییەکان بۆ کۆمەڵگە کەمدەرامەت و نەدارەکان دەکات، لە ڕێگەی پڕۆژەی پزیشکی، پشتگیریکردنی بنکە و دامەزراوەکان و پڕۆگرامەکانی چارەسەرکردنەوە.",
+        beneficiaries: {
+          individuals: "3,318,211",
+        },
         headline:
           "چاودێری تەندروستی تەنها جەستە ناپارێزێت، بەڵکو کەرامەت، سەقامگیری خێزان و مافی ژیان بە ئومێدەوە دەپارێزێت.",
         groups: [
@@ -2309,13 +2410,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "پەروەردە و گەشەپێدانی مرۆیی",
         intro:
           "دەزگای خێرخوازیی بارزانی وەبەرهێنان لە کەرتی پەروەردەدا دەکات، چونکە فێربوون یەکێکە لە بەهێزترین ڕێگاکان بۆ ڕزگاربوون لە هەژاری و نەداری.",
+        beneficiaries: {
+          individuals: "707,700",
+        },
         headline:
           "پەروەردە شتێک لە زانیاری زیاتر بە منداڵان دەبەخشێت. بڕوا بەخۆبوون، دەرفەت و داهاتوویەکیان پێدەبەخشێت کە قەیرانەکان ناتوانن بە ئاسانی لێیان بستێننەوە.",
         groups: [
           {
             title: "دەستکەوتە سەرەکییەکان",
             items: [
-              "نۆژەنکردنەوەی ٣١٠ قوتابخانە",
+              "نۆژەنکردنەوەی ٣١٥ قوتابخانە",
               "دابەشکردنی ٣٦٢,٥٣٨ پێداویستی قوتابخانە و تێنووس و قەڵەم",
               "دروستکردنی ١٣١ پۆلی خوێندن",
               "کردنەوەی سەنتەری تەنهایی لە ساڵی ٢٠٢٢",
@@ -2336,6 +2440,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "ئاو، ئاوەڕۆ و پاکوخاوێنی",
         intro:
           "کاری دەزگای خێرخوازیی بارزانی لە کەرتی ئاو، ئاوەڕۆ و پاکوخاوێنیدا سەرنج دەخاتە سەر دابینکردنی ئاوی خاوێن، خزمەتگوزارییەکانی ئاوەڕۆ و پاکوخاوێنی.",
+        beneficiaries: {
+          families: "834,827",
+          individuals: "4,145,402",
+        },
         headline:
           "ئاوی خاوێن تەندروستی دەپارێزێت، کەرامەت دەگێڕێتەوە و پشتگیری لە ژیان دەکات لەو شوێنانەی کە قەیرانەکان پێداویستییە سەرەکییەکانیانی لێ زەوت کردووە.",
         groups: [
@@ -2366,6 +2474,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "حەوانەوە و بەدەمەوەچوونی فریاگوزاری",
         intro:
           "دەزگای خێرخوازیی بارزانی حەوانەوە و فریاگوزاری خێرا پێشکەش بە خێزانە ئاوارەکان و ئەو کۆمەڵگایانە دەکات کە بەهۆی شەڕ، قەیران و کارەساتی سروشتییەوە زیانیان بەرکەوتووە.",
+        beneficiaries: {
+          families: "39,587",
+          individuals: "190,664",
+        },
         headline:
           "حەوانەوە یەکەم هەنگاوە بەرەو چاکبوونەوە و گەڕانەوە بۆ دۆخی ئاسایی. شوێنێکی ئارام هێز بە خێزانەکان دەبەخشێت بۆ ئەوەی سەرلەنوێ دەست پێبکەنەوە.",
         groups: [
@@ -2387,6 +2499,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "پاراستن و کەرامەتی مرۆیی",
         intro:
           "کاری دەزگای خێرخوازیی بارزانی لە کەرتی پاراستندا سەرنج دەخاتە سەر سەلامەتی، کەرامەت و خۆشگوزەرانی خەڵکی کەمدەرامەت و بێدەرەتان.",
+        beneficiaries: {
+          individuals: "397,830",
+        },
         headline:
           "پاراستن تەنها بەدەمەوەچوون لە مەترسییەکان نییە، بەڵکو بەو مانایەیە کە دڵنیا بین لەوەی مامەڵە لەگەڵ هەر مرۆڤێکدا بە کەرامەت و ڕێز و بایەخ پێدانەوە دەکرێت.",
         groups: [
@@ -2440,6 +2555,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "بژێوی ژیان و تواناسازی",
         intro:
           "دەزگای خێرخوازیی بارزانی پشتگیری پڕۆژەکانی بژێوی ژیان دەکات کە یارمەتی تاکەکان و خێزانەکان دەدەن بۆ ئەوەی زیاتر پشت بە خۆیان ببەستن.",
+        beneficiaries: {
+          families: "56,929",
+          individuals: "428,122",
+        },
         headline:
           "بەهێزترین کاری مرۆیی تەنها یارمەتیدانی خەڵک نییە بۆ ئەوەی ئەمڕۆ بژین، بەڵکو یارمەتییان دەدات بۆ ئەوەی سبەینێ بە بەهێزی بوەستنەوە.",
         groups: [
@@ -2468,6 +2587,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "بەڕێوەبردن و پشتگیریکردنی کامپەکان",
         intro:
           "دەزگای خێرخوازیی بارزانی بەڕێوەبردن و پشتگیریکردنی ئەو کامپانە دەکات کە خزمەتگوزاری بە پەنابەران و ئاوارە ناوخۆییەکان پێشکەش دەکەن.",
+        beneficiaries: {
+          families: "4,531,250",
+          individuals: "22,679,526",
+        },
         headline:
           "بەڕێوەبردنی کامپ تەنها لۆجیستیک نییە، بەڵکو هەماهەنگی، پاراستن و بەرپرسیارێتی ڕۆژانەیە بەرامبەر بەو مرۆڤانەی کە لە دۆخی ئاوارەییدا دەژین.",
         groups: [
@@ -2499,6 +2622,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "پێداویستییە ناخۆراکییەکان",
         intro:
           "پێداویستییە فریاگوزارییە سەرەکییەکان کە لەگەڵ خۆراک، ئاو، حەوانەوە و هاوکاری نەقدی پێکەوە بە خێزانە کەمدەرامەتەکان دەگەیەنرێن.",
+        beneficiaries: {
+          families: "1,426,999",
+          individuals: "7,487,226",
+        },
         groups: [
           {
             title: "پێداویستییە فریاگوزارییە سەرەکییەکان",
@@ -2517,6 +2644,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "هاوکاری نەقدی و فریاگوزارییە سەرەکییەکان",
         intro:
           "دەزگای خێرخوازیی بارزانی پاڵپشتی دارایی ڕاستەوخۆ پێشکەش بەو خێزانانە دەکات کە پێویستیان بە یارمەتی بەپەلە هەیە بۆ دابینکردنی پێداویستییە سەرەکییەکانی ژیان.",
+        beneficiaries: {
+          families: "37,121",
+          individuals: "338,767",
+        },
         headline:
           "هاوکاری نەقدی نەرمی و ئاسانکاری بە خێزانە کەمدەرامەتەکان دەبەخشێت بۆ دابینکردنی پێویستییە بەپەلەکانیان بە کەرامەتەوە.",
         groups: [
@@ -2548,6 +2679,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     serveDetailCta: "بینینی وردەکاری",
+    serveBeneficiariesLabel: "سوودمەندان",
+    serveFamiliesLabel: "خێزان",
+    serveIndividualsLabel: "کەس",
     whoServesTitle: "کێ خزمەت دەکەین؟",
     howServesTitle: "چۆن خزمەت دەکەین؟",
     whoHowHint:
@@ -2645,43 +2779,67 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "founded",
         year: "2005",
         title: "دامەزراندن لە هەولێر",
-        body: "دەزگا بە فەرمی لە هەولێر دامەزرا، پایتەختی هەرێمی کوردستانی عێراق، بۆ گۆڕینی میهرەبانی بۆ کاری مرۆیی ڕێکخراو.",
+        body: "دەزگای خێرخوازی بارزانی لە هەولێر، هەرێمی کوردستانی عێراق دامەزرا.",
       },
       {
         id: "orphan-care",
         year: "2009",
         title: "پڕۆژەی چاودێری ئازیزان",
-        body: "دەستپێکی پڕۆژەی چاودێری ئازیزان، پشتگیریکردنی منداڵانی بێ سەرپەرشتی بە پاراستن و کەرامەتی درێژخایەن.",
+        body: "پڕۆژەیەکی تایبەت چاودێری و پاراستنی درێژخایەنی بۆ منداڵانی ئازیزان فراوانتر کرد.",
+      },
+      {
+        id: "van-earthquake",
+        year: "2011",
+        title: "وەڵامی بوومەلەرزەی وان",
+        body: "دەزگا چووە ناو تورکیا بۆ پشتگیریکردنی خێزانە زیانلێکەوتووەکانی بوومەلەرزەی وان.",
+      },
+      {
+        id: "syrian-refugees",
+        year: "2013",
+        title: "پێشوازی لە پەنابەرانی سووری",
+        body: "تا ساڵی ٢٠١٣، دەزگا زیاتر لە ٢٥٠,٠٠٠ پەنابەری سووری پێشوازی لێکرد.",
       },
       {
         id: "sinjar",
         year: "2014",
-        title: "وەڵامی فریاکەوتنی شنگال",
-        body: "وەڵامی فریاکەوتن بۆ ئاوارەکانی چیای شنگال لە یەکێک لە تاریکترین قۆناغەکانی قەیرانەکە.",
+        title: "٩ ملیۆن ژەم — هێڵی ژیانی چیای شنگال",
+        body: "دەزگا ٩ ملیۆن ژەم خواردنی گەرمی پێشکەش بە خێزانە ئاوارەکانی چیای شنگال کرد.",
       },
       {
         id: "camps",
         year: "2015",
         title: "بەڕێوەبردنی کەمپ لە هەولێر",
-        body: "بەڕێوەبردنی کەمپەکانی ئاوارە و پەنابەران لە هەولێر، پێشکەشکردنی خزمەتگوزاریی ڕۆژانە بە ڕێکخستن و چاودێری.",
+        body: "دەزگا کەمپەکانی خزمەتکردنی ئاوارە و پەنابەرانی لە هەولێر بەڕێوەبرد.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        title: "پێگەی ECOSOC",
-        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و مۆڵەتە نێودەوڵەتییەکان فراوانبوونی ناسراوی دەزگا دەردەخەن.",
+        title: "ناسینەوەی نێودەوڵەتی",
+        body: "پێگەی ڕاوێژکاری ECOSOC لە نەتەوە یەکگرتووەکان و تۆمارکردنی خێرخوازی لە کوەیت.",
       },
       {
         id: "sphere",
         year: "2018",
         title: "نوێنەرایەتی Sphere",
-        body: "نوێنەرایەتی Sphere لە هەرێمی کوردستان، هاوتاکردنی کارە ناوخۆییەکان لەگەڵ ستانداردە جیهانییەکانی مرۆیی.",
+        body: "دەزگا بوو بە نوێنەری Sphere لە هەرێمی کوردستان.",
+      },
+      {
+        id: "syria-cross-border",
+        year: "2019",
+        title: "وەڵامی سنووربەزێن لە سووریا",
+        body: "دەزگا سنوورەکانی بڕی بۆ پشتگیریکردنی خەڵکی مەدەنی زیانلێکەوتووی ململانێی چەکداری لە سووریا.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        title: "ناسینەوەی بەریتانیا و دهۆک",
-        body: "ناسینەوەی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپی دهۆک قۆناغێکی نوێی متمانە و جێبەجێکردن دەست نیشان دەکەن.",
+        title: "مۆڵەتی بەریتانیا و کەمپەکانی دهۆک",
+        body: "مۆڵەتی کۆمیسیۆنی خێرخوازیی بەریتانیا و بەڕێوەبردنی کەمپەکان لە دهۆک.",
+      },
+      {
+        id: "autism",
+        year: "2021",
+        title: "یەکەم ناوەندی مرۆیی بۆ ئۆتیزم",
+        body: "دەزگا یەکەم ناوەندی مرۆیی تایبەت بە ئۆتیزمی لە کوردستان کردەوە.",
       },
       {
         id: "iso-quake",
@@ -2690,10 +2848,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "دەزگا بڕوانامەی ISO 9001:2015 بەدەستهێنا و یەکەم ڕێکخراو بوو کە گەیشتە قوربانییە سەرەکییەکانی بوومەلەرزە لە تورکیا و سووریا.",
       },
       {
-        id: "recent",
-        year: "2024–2026",
-        title: "نیشتەجێبوون، تەندروستی و ناسینەوە",
-        body: "هەنگاوە گەورەکانی نیشتەجێبوون، تەندروستی، پەروەردە و ناسینەوەی نێودەوڵەتی سەردەمی ئێستای خزمەتگوزاری شێوە دەدەن.",
+        id: "drug-rehab",
+        year: "2025",
+        title: "ناوەندی چارەسەری ماددە هۆشبەرەکان",
+        body: "دەزگا بەردی بناغەی یەکەم ناوەندی چارەسەری ماددە هۆشبەرەکانی دانا لە کوردستان–عێراق.",
+      },
+      {
+        id: "shipments",
+        year: "2026",
+        title: "٤٦٥ بارهەڵگری مرۆیی",
+        body: "دەزگا ٤٦٥ بارهەڵگری مرۆیی گەیاندە سووریا دوای ململانێی چەکداری.",
       },
     ],
     whereWeWork: "لە کوێ کار دەکەین",
@@ -2770,13 +2934,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       unitedKingdom: {
         name: "شانشینی یەکگرتوو",
-        meta: "لیژنەی خێرخوازی بەریتانیا",
-        description:
-          "لە چوارچێوەی لیژنەی خێرخوازی بەریتانیا دانی پێدا نراوە، کە ستانداردی حوکمڕانی، ڕاپۆرتکردن و متمانەی گشتی بەهێز دەکات.",
-        facts: [
-          "حوکمڕانی و ڕاپۆرتکردن بەپێی ستانداردی خێرخوازی بەریتانیا",
-          "خەڵاتی گرووپی کرێکاری لەندەن",
-        ],
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١٩٥ کەس",
+        facts: ["کەرت: هاوکاریی پارەیی"],
       },
       unitedStates: {
         name: "ویلایەتە یەکگرتووەکانی ئەمریکا",
@@ -2790,46 +2950,76 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       turkiye: {
         name: "تورکیا",
-        meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
-        description:
-          "پشتگیری فریاکەوتنی خێرا دوای بوومەلەرزەکانی شوباتی ٢٠٢٣، کە یارمەتی لە ماوەی چەند ڕۆژێکدا لە سنوور پەڕییەوە.",
+        meta: "١٠ شوێن",
+        description: "سوودمەندان: ٨٠,١٤٩ خێزان، ٣٣٠,٢٤٩ کەس",
         facts: [
-          "٤,١٢٩ چادر بۆ خێزانە ئاوارەکان لە تورکیا و سووریا",
-          "پلانی پێنج تیمی وەڵامدانەوەی کارەسات لە پێنج شوێن",
+          "٦ کەرت: خۆراک، کەلوپەلی ناخۆراکی، پەناگە، هاوکاریی پارەیی، ئاو و خاوێنکاری، تەندروستی",
         ],
       },
       syria: {
         name: "سووریا",
-        meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
-        description:
-          "سەرپەناو یارمەتی فریاکەوتن بۆ ئەو خێزانانەی بە بوومەلەرزەکانی ٢٠٢٣ لە باکووری سووریا ئاوارە بوون.",
+        meta: "٤ شوێن",
+        description: "سوودمەندان: ٦١,١٨٧ خێزان، ٢٥٧,١٠٦ کەس",
         facts: [
-          "٤,١٢٩ چادر دوای بوومەلەرزەکانی تورکیا و سووریا لە ٢٠٢٣ دابین کرا",
-          "چادر، بەتانی و پێداویستی زستانە بۆ خێزانە ئاوارەکان",
-          "لەگەڵ وەڵامدانەوەکەی تورکیا پێکەوە گەیەنرا",
+          "٩ کەرت: خۆراک، ئاو و خاوێنکاری، پاراستن، هاوکاریی پارەیی، تەندروستی، پەناگە، پەروەردە، بژێوی، کەلوپەلی ناخۆراکی",
         ],
       },
-      ukraine: { name: "ئۆکرانیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      serbia: { name: "سربیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      greece: { name: "یۆنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      lebanon: { name: "لوبنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      morocco: { name: "مەغریب", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      saudiArabia: {
-        name: "عەرەبستانی سعودی",
-        meta: "ناوچەی کار",
-        description: WORK_ONLY_KU,
-        facts: [],
+      ukraine: {
+        name: "ئۆکرانیا",
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١٢٤ کەس",
+        facts: ["کەرت: پاراستن"],
       },
-      sudan: { name: "سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      serbia: {
+        name: "سربیا",
+        meta: "٣ کەرت",
+        description: "سوودمەندان: ٧٠٠ کەس",
+        facts: ["کەرتەکان: پەروەردە، خۆراک، کەلوپەلی ناخۆراکی"],
+      },
+      greece: { name: "یۆنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      lebanon: {
+        name: "لوبنان",
+        meta: "٢ کەرت",
+        description: "سوودمەندان: ١,٧٦٨ خێزان، ٨,٥٩٠ کەس",
+        facts: ["کەرتەکان: هاوکاریی پارەیی، خۆراک"],
+      },
+      morocco: {
+        name: "مەغریب",
+        meta: "٢ کەرت",
+        description: "سوودمەندان: ١,٥٢٠ کەس",
+        facts: ["کەرتەکان: خۆراک، کەلوپەلی ناخۆراکی"],
+      },
+      saudiArabia: {
+        name: "شانشینی عەرەبستانی سعودی",
+        meta: "١ کەرت",
+        description: "سوودمەندان: ٣,٠٠٠ کەس",
+        facts: ["کەرت: خۆراک"],
+      },
+      sudan: {
+        name: "سودان",
+        meta: "٢ کەرت",
+        description: "سوودمەندان: ٨٠٠ کەس",
+        facts: ["کەرتەکان: کەلوپەلی ناخۆراکی، پاراستن"],
+      },
       southSudan: { name: "باشووری سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      yemen: { name: "یەمەن", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      yemen: {
+        name: "یەمەن",
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١٤٠ خێزان، ٧٠٠ کەس",
+        facts: ["کەرت: خۆراک"],
+      },
       bangladesh: {
         name: "بەنگلادیش",
-        meta: "ناوچەی کار",
-        description: WORK_ONLY_KU,
-        facts: [],
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١١,٨١٠ کەس",
+        facts: ["کەرت: تەندروستی"],
       },
-      australia: { name: "ئۆسترالیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      australia: {
+        name: "ئۆسترالیا",
+        meta: "١ کەرت",
+        description: "ئاو، خاوێنکاری و تەندروستی ژینگەیی (WASH)",
+        facts: ["کەرت: ئاو و خاوێنکاری (WASH)"],
+      },
     },
     locations: {
       erbil: {
@@ -2997,9 +3187,24 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "schools",
-        value: "310",
+        value: "315",
         title: "قوتابخانەی نۆژەنکراو",
         description: "ژینگەی فێربوون بۆ منداڵان و گەنجان",
+      },
+      {
+        id: "logistics",
+        value: "109",
+        valueLabel: "ئۆتۆمبێل",
+        title: "توانای لۆجیستی",
+        description: "ئۆتۆمبێل و کۆگا بۆ پشتگیری کرداری مەیدانی.",
+        secondaryValue: "10",
+        secondaryLabel: "کۆگا",
+      },
+      {
+        id: "campCapacity",
+        value: "30",
+        title: "بەڕێوەبردنی کەمپ",
+        description: "تا ٣٠ کەمپی ئاوارە و پەنابەر.",
       },
     ],
     trustTitle: "متمانەی پشت کارەکانمان",
@@ -3021,18 +3226,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "board",
         title: "ئەندامانی دەستەی کارگێڕی",
         members: [
-          { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
           {
             id: "karzan-n",
             name: "کارزان نوری",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی پلاندانانی پڕۆگرام",
+            role: "ئەندامی دەستەی کارگێڕی",
           },
+          { id: "ibrahim", name: "ئیبراهیم سامین", role: "جێگری سەرۆکی دەزگا" },
           { id: "farzin", name: "فەرزین بەگزادە", role: "ئەندامی دەستەی کارگێڕی" },
           { id: "awat", name: "ئاوات ئەحمەد", role: "ئەندامی دەستەی کارگێڕی" },
           {
             id: "abdulwahid",
             name: "عەبدولواحید ئەمین",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری نووسینگەی دهۆک",
+            role: "ئەندامی دەستەی کارگێڕی",
           },
           { id: "ways", name: "ویس جەلیل", role: "ئەندامی دەستەی کارگێڕی" },
           {
@@ -3043,7 +3248,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "rawaj",
             name: "ڕەواج حاجی",
-            role: "ئەندامی دەستەی کارگێڕی و بەڕێوەبەری بەشی سەرچاوە مرۆییەکان",
+            role: "ئەندامی دەستەی کارگێڕی",
           },
         ],
       },
@@ -3067,6 +3272,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustOfficesBody:
       "نووسینگە هەرێمییەکان بەڕێوە دەبەن کە کارەکان لەگەڵ کۆمەڵگە ناوخۆییەکاندا جێبەجێ دەکەن.",
     trustOfficesMembers: [
+      { id: "abdulwahid", name: "عەبدولواحید ئەمین", role: "بەڕێوەبەری نووسینگەی دهۆک" },
       { id: "rebwar", name: "ڕێبوار موحیەدین", role: "بەڕێوەبەری نووسینگەی کەرکووک" },
       { id: "stav", name: "ستاڤ ئاسۆ", role: "بەڕێوەبەری نووسینگەی هەولێر" },
       { id: "srwa", name: "سروە ساڵح", role: "بەڕێوەبەری نووسینگەی سلێمانی" },
@@ -3176,7 +3382,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     bcfPresident: {
       open: "ناسینی سەرۆکی دەزگا",
       name: "موسا ئەحمەد",
-      role: "سەرۆکی دەزگا",
+      role: "سەرۆکی دەزگا · ئەندامی بۆردی دامەزرێنەران",
       meta: "دەزگای خێرخوازیی بارزانی",
       bioLabel: "ژیاننامە",
       bio: "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە و دەرچووی پەیمانگای هونەرە جوانەکانە. پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.",
@@ -3270,7 +3476,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "kuwait",
-        title: "تۆمارکراو لە کوێت",
+        title: "ناسراو لە کوێت",
         body: "لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت تۆمارکراوە.",
       },
       {
@@ -3449,6 +3655,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "الأمن الغذائي",
         intro:
           "الأمن الغذائي أحد القطاعات الإنسانية الأساسية للمؤسسة، حيث تُقدَّم المساعدات الغذائية للأسر الضعيفة والنازحين واللاجئين والمجتمعات المتأثرة بالأزمات.",
+        beneficiaries: {
+          families: "3,550,152",
+          individuals: "19,332,863",
+        },
         headline:
           "الدعم الغذائي أكثر من مجرد وجبة؛ إنه استقرار في زمن عدم اليقين، وكرامة في زمن الشدة، وأمل في زمن الأزمة.",
         groups: [
@@ -3477,6 +3687,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "الصحة والدعم الطبي",
         intro:
           "تدعم المؤسسة الخدمات الصحية للمجتمعات الضعيفة من خلال المشاريع الطبية ودعم المرافق وبرامج العلاج.",
+        beneficiaries: {
+          individuals: "3,318,211",
+        },
         headline:
           "الرعاية الصحية لا تحمي الجسد وحده، بل تحمي الكرامة واستقرار الأسرة والحق في العيش بأمل.",
         groups: [
@@ -3500,13 +3713,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "التعليم والتنمية البشرية",
         intro:
           "تستثمر المؤسسة في التعليم لأنه من أقوى السبل للخروج من دائرة الفقر والضعف.",
+        beneficiaries: {
+          individuals: "707,700",
+        },
         headline:
           "التعليم يمنح الأطفال أكثر من المعرفة؛ يمنحهم الثقة والفرصة ومستقبلاً لا تسلبه الأزمات بسهولة.",
         groups: [
           {
             title: "الإنجازات الرئيسية",
             items: [
-              "ترميم 310 مدارس",
+              "ترميم 315 مدارس",
               "توزيع 362,538 قطعة من المواد واللوازم المدرسية",
               "بناء 131 صفاً دراسياً",
               "افتتاح مركز تناهي عام 2022",
@@ -3527,6 +3743,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المياه والصرف الصحي والنظافة",
         intro:
           "يركّز عمل المؤسسة في هذا القطاع على توفير المياه النظيفة وخدمات الصرف الصحي والنظافة.",
+        beneficiaries: {
+          families: "834,827",
+          individuals: "4,145,402",
+        },
         headline:
           "المياه النظيفة تحمي الصحة وتعيد الكرامة وتصون الحياة حيث سلبت الأزمات أبسط المقوّمات.",
         groups: [
@@ -3557,6 +3777,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المأوى والاستجابة الطارئة",
         intro:
           "توفّر المؤسسة المأوى والإغاثة الطارئة للأسر والمجتمعات النازحة جرّاء الحروب والأزمات والكوارث الطبيعية.",
+        beneficiaries: {
+          families: "39,587",
+          individuals: "190,664",
+        },
         headline:
           "المأوى هو الخطوة الأولى نحو التعافي والعودة إلى الحياة الطبيعية؛ فالمكان الآمن يمنح الأسرة القوة لتبدأ من جديد.",
         groups: [
@@ -3578,6 +3802,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "الحماية والكرامة الإنسانية",
         intro:
           "يركّز عمل المؤسسة في مجال الحماية على سلامة الأفراد الضعفاء وكرامتهم ورفاههم.",
+        beneficiaries: {
+          individuals: "397,830",
+        },
         headline:
           "الحماية أكثر من مجرد الاستجابة للخطر؛ إنها ضمان أن يُعامَل كل إنسان بكرامة واحترام وتقدير.",
         groups: [
@@ -3631,6 +3858,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "سبل العيش والتمكين",
         intro:
           "تدعم المؤسسة مشاريع سبل العيش التي تساعد الأفراد والأسر على تحقيق مزيد من الاعتماد على الذات.",
+        beneficiaries: {
+          families: "56,929",
+          individuals: "428,122",
+        },
         headline:
           "أقوى عمل إنساني لا يكتفي بمساعدة الناس على النجاة اليوم، بل يساعدهم على الوقوف أقوى غداً.",
         groups: [
@@ -3659,6 +3890,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المخيمات ودعم النازحين",
         intro:
           "تدير المؤسسة وتدعم مخيمات تخدم اللاجئين والنازحين داخلياً.",
+        beneficiaries: {
+          families: "4,531,250",
+          individuals: "22,679,526",
+        },
         headline:
           "إدارة المخيمات ليست عملاً لوجستياً فحسب؛ إنها تنسيق وحماية ومسؤولية يومية تجاه أناس يعيشون في النزوح.",
         groups: [
@@ -3690,6 +3925,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المواد غير الغذائية",
         intro:
           "مواد إغاثية أساسية تُسلَّم للأسر الضعيفة إلى جانب دعم الغذاء والمياه والمأوى والمساعدات النقدية.",
+        beneficiaries: {
+          families: "1,426,999",
+          individuals: "7,487,226",
+        },
         groups: [
           {
             title: "مواد الإغاثة الأساسية",
@@ -3708,6 +3947,10 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         title: "المساعدات النقدية والإغاثة الأساسية",
         intro:
           "تقدّم المؤسسة دعماً مالياً مباشراً للأسر التي تحتاج مساعدة عاجلة لتغطية احتياجات الحياة الأساسية.",
+        beneficiaries: {
+          families: "37,121",
+          individuals: "338,767",
+        },
         headline:
           "المساعدة النقدية تمنح الأسر الضعيفة مرونة تلبية احتياجاتها العاجلة بكرامة.",
         groups: [
@@ -3739,6 +3982,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
     ],
     serveDetailCta: "عرض التفاصيل",
+    serveBeneficiariesLabel: "المستفيدون",
+    serveFamiliesLabel: "أسر",
+    serveIndividualsLabel: "أفراد",
     whoServesTitle: "من تخدم المؤسسة",
     howServesTitle: "كيف تخدم المؤسسة",
     whoHowHint:
@@ -3831,48 +4077,72 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "تحافظ المؤسسة على المساءلة أمام المانحين والشركاء والمستفيدين لضمان وصول الموارد إلى الأكثر احتياجاً.",
       },
     ],
-    storyMilestones: [
+        storyMilestones: [
       {
         id: "founded",
         year: "2005",
         title: "التأسيس في أربيل",
-        body: "تأسست المؤسسة رسمياً في أربيل، عاصمة إقليم كوردستان العراق، لتحويل التعاطف إلى عمل إنساني منظم.",
+        body: "تأسست مؤسسة بارزاني الخيرية في أربيل، إقليم كوردستان العراق.",
       },
       {
         id: "orphan-care",
         year: "2009",
         title: "مشروع رعاية الأيتام",
-        body: "انطلاق مشروع رعاية الأيتام لدعم الأطفال فاقدي الرعاية الأبوية بحماية وكرامة طويلة الأمد.",
+        body: "وسّع مشروع مخصص الرعاية والحماية طويلة الأمد للأطفال الأيتام.",
+      },
+      {
+        id: "van-earthquake",
+        year: "2011",
+        title: "الاستجابة لزلزال وان",
+        body: "عبرت المؤسسة إلى تركيا لدعم العائلات المتضررة من زلزال وان.",
+      },
+      {
+        id: "syrian-refugees",
+        year: "2013",
+        title: "استقبال اللاجئين السوريين",
+        body: "بحلول عام 2013، كانت المؤسسة قد استقبلت أكثر من 250,000 لاجئ سوري.",
       },
       {
         id: "sinjar",
         year: "2014",
-        title: "الاستجابة الطارئة في سنجار",
-        body: "استجابة طارئة للنازحين على جبل سنجار خلال واحدة من أحلك فصول الأزمة.",
+        title: "9 ملايين وجبة — شريان جبل سنجار",
+        body: "قدّمت المؤسسة 9 ملايين وجبة ساخنة للعائلات النازحة على جبل سنجار.",
       },
       {
         id: "camps",
         year: "2015",
         title: "إدارة المخيمات في أربيل",
-        body: "إدارة مخيمات النازحين واللاجئين في أربيل وتقديم الخدمات اليومية بتنظيم ورعاية.",
+        body: "أدارت المؤسسة مخيمات تخدم النازحين واللاجئين في أربيل.",
       },
       {
         id: "ecosoc",
         year: "2016",
-        title: "الوضع لدى ECOSOC",
-        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وترخيص دولي يوسع الاعتراف بالمؤسسة.",
+        title: "الاعتراف الدولي",
+        body: "الوضع الاستشاري لدى المجلس الاقتصادي والاجتماعي للأمم المتحدة وتسجيل خيري في الكويت.",
       },
       {
         id: "sphere",
         year: "2018",
         title: "تمثيل Sphere",
-        body: "تمثيل Sphere في إقليم كوردستان، ومواءمة الممارسة المحلية مع المعايير الإنسانية العالمية.",
+        body: "أصبحت المؤسسة ممثلة Sphere في إقليم كوردستان.",
+      },
+      {
+        id: "syria-cross-border",
+        year: "2019",
+        title: "استجابة عبر الحدود في سوريا",
+        body: "عبرت المؤسسة الحدود لدعم المدنيين المتضررين من النزاع المسلح في سوريا.",
       },
       {
         id: "uk-duhok",
         year: "2020",
-        title: "اعتراف بريطانيا ودهوك",
-        body: "اعتراف هيئة المؤسسات الخيرية البريطانية وإدارة مخيم دهوك يفتحان فصلاً جديداً من الثقة والتنفيذ.",
+        title: "الترخيص البريطاني ومخيمات دهوك",
+        body: "مرخّصة من هيئة المؤسسات الخيرية في بريطانيا وتشغّل مخيمات في دهوك.",
+      },
+      {
+        id: "autism",
+        year: "2021",
+        title: "أول مركز إنساني للتوحّد",
+        body: "افتتحت المؤسسة أول مركز إنساني مخصص للتوحّد في كوردستان.",
       },
       {
         id: "iso-quake",
@@ -3881,10 +4151,16 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         body: "حصلت المؤسسة على شهادة ISO 9001:2015 وكانت أول منظمة تصل إلى ضحايا الزلزال الكبار في تركيا وسوريا.",
       },
       {
-        id: "recent",
-        year: "2024–2026",
-        title: "الإسكان والصحة والاعتراف",
-        body: "محطات كبرى في الإسكان والصحة والتعليم والاعتراف الدولي تشكّل مرحلة الخدمة الحالية.",
+        id: "drug-rehab",
+        year: "2025",
+        title: "مركز إعادة التأهيل من المخدرات",
+        body: "وضعت المؤسسة حجر الأساس لأول مركز لإعادة التأهيل من المخدرات في كوردستان–العراق.",
+      },
+      {
+        id: "shipments",
+        year: "2026",
+        title: "465 شحنة إنسانية",
+        body: "أوصلت المؤسسة 465 شحنة إنسانية إلى سوريا بعد النزاع المسلح.",
       },
     ],
     whereWeWork: "أين نعمل",
@@ -3961,13 +4237,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       unitedKingdom: {
         name: "المملكة المتحدة",
-        meta: "مفوضية الجمعيات الخيرية",
-        description:
-          "معترف بها ضمن إطار مفوضية الجمعيات الخيرية البريطانية، بما يعزّز معايير الحوكمة وإعداد التقارير وثقة الجمهور.",
-        facts: [
-          "حوكمة وتقارير وفق المعايير الخيرية البريطانية",
-          "جائزة مجموعة العمال في لندن",
-        ],
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١٩٥ فرداً",
+        facts: ["القطاع: المساعدة النقدية"],
       },
       unitedStates: {
         name: "الولايات المتحدة الأمريكية",
@@ -3981,41 +4253,76 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       turkiye: {
         name: "تركيا",
-        meta: "استجابة الزلزال، 2023",
-        description:
-          "دعم طارئ سريع بعد زلازل شباط/فبراير 2023، مع عبور الإغاثة للحدود خلال أيام من الهزّة الأولى.",
+        meta: "١٠ مواقع",
+        description: "المستفيدون: ٨٠,١٤٩ أسرة، ٣٣٠,٢٤٩ فرداً",
         facts: [
-          "4,129 خيمة للعائلات النازحة في تركيا وسوريا",
-          "خطة لخمسة فرق استجابة للكوارث في خمسة مواقع",
+          "٦ قطاعات: الغذاء، المواد غير الغذائية، المأوى، المساعدة النقدية، المياه والإصحاح، الصحة",
         ],
       },
       syria: {
         name: "سوريا",
-        meta: "استجابة الزلزال، 2023",
-        description:
-          "مأوى وإغاثة طارئة للعائلات التي نزحت جرّاء زلازل 2023 في شمال سوريا.",
+        meta: "٤ مواقع",
+        description: "المستفيدون: ٦١,١٨٧ أسرة، ٢٥٧,١٠٦ فرداً",
         facts: [
-          "توزيع 4,129 خيمة بعد زلزال تركيا وسوريا عام 2023",
-          "خيام وبطانيات ومستلزمات شتوية للعائلات النازحة",
-          "نُفِّذت بالتوازي مع الاستجابة في تركيا",
+          "٩ قطاعات: الغذاء، المياه والإصحاح، الحماية، المساعدة النقدية، الصحة، المأوى، التعليم، سبل العيش، المواد غير الغذائية",
         ],
       },
-      ukraine: { name: "أوكرانيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      serbia: { name: "صربيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      greece: { name: "اليونان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      lebanon: { name: "لبنان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      morocco: { name: "المغرب", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      saudiArabia: {
-        name: "السعودية",
-        meta: "منطقة عمل",
-        description: WORK_ONLY_AR,
-        facts: [],
+      ukraine: {
+        name: "أوكرانيا",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١٢٤ فرداً",
+        facts: ["القطاع: الحماية"],
       },
-      sudan: { name: "السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      serbia: {
+        name: "صربيا",
+        meta: "٣ قطاعات",
+        description: "المستفيدون: ٧٠٠ فرد",
+        facts: ["القطاعات: التعليم، الغذاء، المواد غير الغذائية"],
+      },
+      greece: { name: "اليونان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      lebanon: {
+        name: "لبنان",
+        meta: "قطاعان",
+        description: "المستفيدون: ١,٧٦٨ أسرة، ٨,٥٩٠ فرداً",
+        facts: ["القطاعات: المساعدة النقدية، الغذاء"],
+      },
+      morocco: {
+        name: "المغرب",
+        meta: "قطاعان",
+        description: "المستفيدون: ١,٥٢٠ فرداً",
+        facts: ["القطاعات: الغذاء، المواد غير الغذائية"],
+      },
+      saudiArabia: {
+        name: "المملكة العربية السعودية",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ٣,٠٠٠ فرد",
+        facts: ["القطاع: الغذاء"],
+      },
+      sudan: {
+        name: "السودان",
+        meta: "قطاعان",
+        description: "المستفيدون: ٨٠٠ فرد",
+        facts: ["القطاعات: المواد غير الغذائية، الحماية"],
+      },
       southSudan: { name: "جنوب السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      yemen: { name: "اليمن", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      bangladesh: { name: "بنغلاديش", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      australia: { name: "أستراليا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      yemen: {
+        name: "اليمن",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١٤٠ أسرة، ٧٠٠ فرد",
+        facts: ["القطاع: الغذاء"],
+      },
+      bangladesh: {
+        name: "بنغلاديش",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١١,٨١٠ فرداً",
+        facts: ["القطاع: الصحة"],
+      },
+      australia: {
+        name: "أستراليا",
+        meta: "قطاع واحد",
+        description: "المياه والإصحاح والنظافة (WASH)",
+        facts: ["القطاع: المياه والإصحاح (WASH)"],
+      },
     },
     locations: {
       erbil: {
@@ -4183,9 +4490,24 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "schools",
-        value: "310",
+        value: "315",
         title: "مدارس مجدّدة",
         description: "بيئات تعلم أُعيد ترميمها للأطفال والشباب",
+      },
+      {
+        id: "logistics",
+        value: "109",
+        valueLabel: "مركبات",
+        title: "القدرة اللوجستية",
+        description: "مركبات ومستودعات لدعم العمليات الميدانية.",
+        secondaryValue: "10",
+        secondaryLabel: "مستودعات",
+      },
+      {
+        id: "campCapacity",
+        value: "30",
+        title: "إدارة المخيمات",
+        description: "حتى ٣٠ مخيماً للنازحين واللاجئين.",
       },
     ],
     trustTitle: "الثقة والمستقبل",
@@ -4207,18 +4529,18 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "board",
         title: "أعضاء الهيئة الإدارية",
         members: [
-          { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
           {
             id: "karzan-n",
             name: "كارزان نوري",
-            role: "عضو الهيئة الإدارية ومدير قسم تخطيط البرامج",
+            role: "عضو الهيئة الإدارية",
           },
+          { id: "ibrahim", name: "إبراهيم سامين", role: "نائب رئيس المؤسسة" },
           { id: "farzin", name: "فرزين بغزادة", role: "عضو الهيئة الإدارية" },
           { id: "awat", name: "آوات أحمد", role: "عضو الهيئة الإدارية" },
           {
             id: "abdulwahid",
             name: "عبدالواحد أمين",
-            role: "عضو الهيئة الإدارية ومدير مكتب دهوك",
+            role: "عضو الهيئة الإدارية",
           },
           { id: "ways", name: "ويس جليل", role: "عضو الهيئة الإدارية" },
           {
@@ -4229,7 +4551,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
           {
             id: "rawaj",
             name: "رواج حاجي",
-            role: "عضو الهيئة الإدارية ومدير قسم الموارد البشرية",
+            role: "عضو الهيئة الإدارية",
           },
         ],
       },
@@ -4253,6 +4575,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustOfficesBody:
       "يديرون المكاتب الإقليمية التي تنفّذ العمل مع المجتمعات المحلية.",
     trustOfficesMembers: [
+      { id: "abdulwahid", name: "عبدالواحد أمين", role: "مدير مكتب دهوك" },
       { id: "rebwar", name: "ريبوار محي الدين", role: "مدير مكتب كركوك" },
       { id: "stav", name: "ستاف آسو", role: "مدير مكتب أربيل" },
       { id: "srwa", name: "سروة صالح", role: "مدير مكتب السليمانية" },
@@ -4359,7 +4682,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     bcfPresident: {
       open: "تعرّف على رئيس المؤسسة",
       name: "موسى أحمد",
-      role: "رئيس المؤسسة",
+      role: "رئيس المؤسسة · عضو مجلس المؤسسين",
       meta: "مؤسسة بارزاني الخيرية",
       bioLabel: "السيرة الذاتية",
       bio: "وُلد في 5 آب/أغسطس 1974 في قرية كالوك بمنطقة بارزان، وتخرّج في معهد الفنون الجميلة. وبدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.",
@@ -4453,7 +4776,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       {
         id: "kuwait",
-        title: "مسجَّلة في الكويت",
+        title: "معترف بها في الكويت",
         body: "مسجَّلة كمنظمة خيرية في الكويت عام 2019.",
       },
       {

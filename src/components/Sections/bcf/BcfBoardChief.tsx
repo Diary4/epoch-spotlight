@@ -25,7 +25,7 @@ import slideChild from "@/assets/images/bcf/optimized/board-chief/FY1A6788.webp"
 import slideDistribution from "@/assets/images/bcf/board-chief/WhatsApp Image 2026-08-19 at 10.36.07.jpeg";
 import slideCeremony from "@/assets/images/bcf/optimized/board-chief/8C6A3599.webp";
 import nodeOrigins from "@/assets/images/PrimeMinistir/formation.webp";
-import nodeYouth from "@/assets/images/bcf/optimized/board-chief/youth-1985.webp";
+import nodeYouth from "@/assets/images/bcf/board-chief/1985.jpeg";
 import nodeEducation from "@/assets/images/PrimeMinistir/education.webp";
 import nodeSecurity from "@/assets/images/PrimeMinistir/security.webp";
 import nodeService from "@/assets/images/PrimeMinistir/service.webp";
@@ -112,14 +112,14 @@ export default function BcfBoardChief({
           >
             <motion.h1
               variants={bcfRise}
-              className="max-w-[640px] text-start text-[62px] font-bold leading-none"
+              className="max-w-[640px] text-start text-[48px] font-bold leading-none"
               style={{ color: BCF.cream }}
             >
               {chief.timelineTitle}
             </motion.h1>
             <motion.span
               variants={bcfRise}
-              className="pb-2 text-[34px] font-medium tabular-nums"
+              className="pb-2 text-[28px] font-medium tabular-nums"
               style={{ color: BCF.gold }}
             >
               {bcfDigits(chief.timelineRange, lang)}
@@ -380,18 +380,18 @@ export function GovernanceTimeline({
               }}
             >
               <p
-                className="text-[46px] font-bold leading-none tabular-nums"
+                className="text-[38px] font-bold leading-none tabular-nums"
                 style={{ color: BCF.gold }}
               >
                 {bcfDigits(milestone.year, lang)}
               </p>
               <p
-                className="mt-3 text-[31px] font-semibold leading-tight"
+                className="mt-2.5 text-[24px] font-semibold leading-tight"
                 style={{ color: BCF.cream }}
               >
                 {milestone.title}
               </p>
-              <p className="mt-3 text-[24px] leading-snug text-white/65">
+              <p className="mt-2.5 text-[18px] leading-snug text-white/65">
                 {milestone.body}
               </p>
             </motion.div>

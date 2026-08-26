@@ -5,6 +5,9 @@ import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import {
   bcfCopy,
   type BcfLang,
+  type StoryMilestone,
+  type StorySection,
+  type StorySectionId,
 } from "@/components/Sections/bcf/bcfContent";
 import { BCF } from "@/components/Sections/bcf/bcfTheme";
 import {
@@ -26,6 +29,18 @@ type BcfStoryProps = {
   onBack: () => void;
 };
 
+/** Sections that sit directly after the 2005 founding beat. */
+const AFTER_2005_IDS: StorySectionId[] = [
+  "mission",
+  "vision",
+  "philosophy",
+  "values",
+];
+
+type StoryBeat =
+  | { kind: "milestone"; data: StoryMilestone }
+  | { kind: "section"; data: StorySection };
+
 const PHOTO_FILTER = "saturate(0.55) sepia(0.22) contrast(1.05) brightness(0.92)";
 
 function GoldPhoto({
@@ -41,10 +56,10 @@ function GoldPhoto({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-[18px] ${className ?? ""}`}
+      className={`overflow-hidden rounded-[24px] ${className ?? ""}`}
       style={{
-        border: `1.5px solid ${BCF.gold}`,
-        boxShadow: `0 0 28px ${BCF.gold}40, 0 18px 48px rgba(0,0,0,0.55)`,
+        border: `2px solid ${BCF.gold}`,
+        boxShadow: `0 0 0 1px ${BCF.gold}33, 0 0 60px ${BCF.gold}45, 0 28px 70px rgba(0,0,0,0.6)`,
         ...style,
       }}
     >
@@ -60,15 +75,27 @@ function GoldPhoto({
 }
 
 /**
- * One gold-framed plate per beat. Sized to leave the flanking chapter controls
- * their own gutter, so a photograph never runs under Back or Next.
+ * One gold-framed plate per beat, and the loudest thing on the screen after
+ * the headline.
+ *
+ * 780 is the widest the plate can go before it collides with something. It is
+ * centred on the artboard rather than on its own column — the wrapper's
+ * negative start margin pulls it back over the rail's gutter — so half of it
+ * lives left of centre, and at 940 its edge reached x≈76 while the timeline
+ * dots sit at x≈84: the rail ended up drawn across the photograph. 780 leaves
+ * its edge at x=150, clear of the 120px the rail occupies.
+ *
+ * The size is fixed rather than stretched to the leftover space: every beat
+ * carries a different amount of copy, and a plate that changed size on each
+ * tap of Next drew attention to itself instead of to the picture. 560 tall
+ * fits under the wordiest milestone without crowding the Back/Next band.
  */
 function StoryPhoto({ src, label }: { src: string; label: string }) {
   return (
     <GoldPhoto
       src={src}
       alt={label}
-      className="h-[420px] w-[560px] shrink-0"
+      className="h-[560px] w-[780px] shrink-0"
     />
   );
 }
@@ -129,26 +156,56 @@ function StoryNavButton({
   );
 }
 
+function beatKey(beat: StoryBeat) {
+  return beat.data.id;
+}
+
+function beatLabel(beat: StoryBeat) {
+  if (beat.kind === "milestone") return beat.data.title;
+  const { titleGold, titleWhite } = beat.data;
+  return [titleGold, titleWhite].filter(Boolean).join(" ");
+}
+
 /**
- * Our Story — Timeline 2.
- *
- * Left progress rail, year + headline + body, then a twin photo stack with
- * Back on the left and Next on the right of the photographs.
+ * Our Story — founding year (2005), then Mission / Vision / Humanitarian
+ * Philosophy / Values, then the remaining institutional timeline.
  */
 export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const c = bcfCopy[lang];
   const milestones = c.storyMilestones;
+
+  const beats = React.useMemo<StoryBeat[]>(() => {
+    const identitySections = AFTER_2005_IDS.map((id) =>
+      c.storySections.find((section) => section.id === id),
+    ).filter((section): section is StorySection => Boolean(section));
+
+    const [first, ...rest] = milestones;
+    const identity = identitySections.map((data) => ({
+      kind: "section" as const,
+      data,
+    }));
+
+    // Identity panes sit directly after the founding year (2005), then the
+    // rest of the institutional timeline continues.
+    return [
+      ...(first ? [{ kind: "milestone" as const, data: first }] : []),
+      ...identity,
+      ...rest.map((data) => ({ kind: "milestone" as const, data })),
+    ];
+  }, [c.storySections, milestones]);
+
   const storyLabel =
     c.journeyChapters.find((chapter) => chapter.id === "story")?.title ??
     c.journeyChapters[0].title;
   const rtl = lang !== "en";
 
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const active = milestones[activeIndex];
+  const active = beats[activeIndex] ?? beats[0];
   const isFirst = activeIndex === 0;
-  const isLast = activeIndex === milestones.length - 1;
+  const isLast = activeIndex === beats.length - 1;
+  const isValues = active?.kind === "section" && active.data.id === "values";
   const photos =
-    bcfStoryImagePairs[active.id] ?? bcfStoryImageFallback;
+    bcfStoryImagePairs[beatKey(active)] ?? bcfStoryImageFallback;
 
   const goPrev = () => {
     if (isFirst) return;
@@ -157,7 +214,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
   const goNext = () => {
     if (isLast) return;
-    setActiveIndex((i) => Math.min(milestones.length - 1, i + 1));
+    setActiveIndex((i) => Math.min(beats.length - 1, i + 1));
   };
 
   return (
@@ -190,34 +247,8 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
         </>
       }
     >
-      <div className="relative flex h-[1920px] min-h-[1920px] w-full flex-col overflow-hidden px-12 pt-[130px]">
+      <div className="relative flex h-[1920px] min-h-[1920px] w-full flex-col overflow-hidden px-12 pb-[560px] pt-[130px]">
         <BcfBackButton onClick={onBack} label={c.back} className="z-50" />
-
-        {/* Chapter controls belong to the page, not to the photographs: pinned
-            to the artboard edges at its vertical middle so they hold still
-            while each beat's copy and photo stack change behind them. */}
-        <div className="pointer-events-none absolute inset-y-0 start-[100px] z-40 flex items-center">
-          <div className="pointer-events-auto">
-            <StoryNavButton
-              label={c.back}
-              disabled={isFirst}
-              onClick={goPrev}
-              side="prev"
-              rtl={rtl}
-            />
-          </div>
-        </div>
-        <div className="pointer-events-none absolute inset-y-0 end-[100px] z-40 flex items-center">
-          <div className="pointer-events-auto">
-            <StoryNavButton
-              label={c.storyNext}
-              disabled={isLast}
-              onClick={goNext}
-              side="next"
-              rtl={rtl}
-            />
-          </div>
-        </div>
 
         {/* Title */}
         <motion.header
@@ -243,21 +274,27 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
 
         {/* Body row: rail + content */}
         <div className="relative z-10 mt-16 flex min-h-0 flex-1">
-          {/* Left timeline rail */}
+          {/* Left progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
-            <span
-              className="absolute top-8 bottom-24 w-px"
-              style={{ backgroundColor: "rgba(255,255,255,0.18)" }}
-            />
             <div className="relative z-10 flex flex-1 flex-col items-center justify-between py-4">
-              {milestones.map((milestone, index) => {
+              {/* The thread runs dot centre to dot centre: `inset-y-9` is the
+                  column's own py-4 (16px) plus half a 40px dot button, so it
+                  meets the first and last dots exactly however many beats the
+                  language produces. A fixed inset measured from the rail
+                  instead used to stop short and leave the last two dots
+                  hanging off the end of the line. */}
+              <span
+                className="pointer-events-none absolute inset-y-9 left-1/2 w-px -translate-x-1/2"
+                style={{ backgroundColor: "rgba(255,255,255,0.18)" }}
+              />
+              {beats.map((beat, index) => {
                 const on = index === activeIndex;
                 const passed = index < activeIndex;
                 return (
                   <button
-                    key={milestone.id}
+                    key={beatKey(beat)}
                     type="button"
-                    aria-label={milestone.title}
+                    aria-label={beatLabel(beat)}
                     aria-current={on ? "step" : undefined}
                     onClick={() => setActiveIndex(index)}
                     className="relative grid h-10 w-10 place-items-center"
@@ -295,53 +332,179 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           <div className="relative flex min-w-0 flex-1 flex-col pe-4 ps-6">
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${lang}-${active.id}`}
+                key={`${lang}-${beatKey(active)}`}
                 className="flex flex-1 flex-col"
                 variants={bcfStagger(0.08, 0.05)}
                 initial="initial"
                 animate="animate"
                 exit={{ opacity: 0, y: -20, transition: { duration: 0.25 } }}
               >
-                <motion.div
-                  variants={bcfRise}
-                  className={`max-w-[820px] ${rtl ? "text-end" : "text-start"}`}
-                >
-                  <p
-                    className="text-[96px] font-light leading-none tracking-tight tabular-nums"
-                    style={{ color: "rgba(251,244,228,0.95)" }}
-                  >
-                    {bcfDigits(active.year, lang)}
-                  </p>
-                  <h2
-                    className={`mt-5 text-[30px] font-semibold uppercase leading-snug ${
-                      lang === "en" ? "tracking-[0.04em]" : "tracking-normal"
-                    }`}
-                    style={{ color: BCF.gold }}
-                  >
-                    {active.title}
-                  </h2>
-                  <p
-                    className={`mt-5 max-w-[700px] text-[26px] text-white/70 ${
-                      lang === "en" ? "leading-relaxed" : "leading-[1.85]"
-                    }`}
-                  >
-                    {active.body}
-                  </p>
-                </motion.div>
+                {active.kind === "milestone" ? (
+                  <>
+                    <motion.div
+                      variants={bcfRise}
+                      className={`max-w-[820px] ${rtl ? "text-end" : "text-start"}`}
+                    >
+                      <p
+                        className="text-[96px] font-light leading-none tracking-tight tabular-nums"
+                        style={{ color: "rgba(251,244,228,0.95)" }}
+                      >
+                        {bcfDigits(active.data.year, lang)}
+                      </p>
+                      <h2
+                        className={`mt-5 text-[30px] font-semibold uppercase leading-snug ${
+                          lang === "en" ? "tracking-[0.04em]" : "tracking-normal"
+                        }`}
+                        style={{ color: BCF.gold }}
+                      >
+                        {active.data.title}
+                      </h2>
+                      <p
+                        className={`mt-5 max-w-[700px] text-[26px] text-white/70 ${
+                          lang === "en" ? "leading-relaxed" : "leading-[1.85]"
+                        }`}
+                      >
+                        {active.data.body}
+                      </p>
+                    </motion.div>
 
-                {/* Photo stack, pulled back over the rail gutter so it reads as
-                    centred on the artboard rather than on the text column. */}
-                <motion.div
-                  variants={bcfRise}
-                  className="flex flex-1 items-start justify-center pt-10"
-                  style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
-                >
-                  <StoryPhoto src={photos.front} label={active.title} />
-                </motion.div>
+                    <motion.div
+                      variants={bcfRise}
+                      className="flex min-h-0 flex-1 items-start justify-center pt-10"
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
+                    >
+                      <StoryPhoto src={photos.front} label={active.data.title} />
+                    </motion.div>
+                  </>
+                ) : isValues ? (
+                  <>
+                    <motion.div
+                      variants={bcfRise}
+                      className={`max-w-[920px] ${rtl ? "text-end" : "text-start"}`}
+                    >
+                      <h2
+                        className="text-[64px] font-bold leading-[1.08]"
+                        style={{ color: BCF.gold }}
+                      >
+                        {active.data.titleGold}
+                        {active.data.titleWhite ? (
+                          <span style={{ color: BCF.cream }}>
+                            {" "}
+                            {active.data.titleWhite}
+                          </span>
+                        ) : null}
+                      </h2>
+                      {active.data.body ? (
+                        <p
+                          className={`mt-6 max-w-[820px] text-[28px] text-white/70 ${
+                            lang === "en" ? "leading-relaxed" : "leading-[1.85]"
+                          }`}
+                        >
+                          {active.data.body}
+                        </p>
+                      ) : null}
+                    </motion.div>
+
+                    <motion.div
+                      variants={bcfStagger(0.07, 0.1)}
+                      className="mt-12 flex max-w-[920px] flex-col gap-6"
+                    >
+                      {c.storyValues.map((value, i) => (
+                        <motion.div
+                          key={value.id}
+                          variants={bcfRise}
+                          className={`flex ${i % 2 === 0 ? "justify-start" : "justify-end"}`}
+                        >
+                          <span
+                            className={`flex items-center gap-4 rounded-full border border-white/15 bg-black/45 px-10 py-5 text-[30px] text-white backdrop-blur-sm ${
+                              i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                            }`}
+                          >
+                            <span
+                              className="h-3.5 w-3.5 shrink-0 rounded-full"
+                              style={{ backgroundColor: BCF.gold }}
+                            />
+                            {value.title}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </>
+                ) : (
+                  <>
+                    <motion.div
+                      variants={bcfRise}
+                      className={`max-w-[900px] ${rtl ? "text-end" : "text-start"}`}
+                    >
+                      <h2
+                        className="text-[72px] font-bold leading-[1.05]"
+                        style={{ color: BCF.gold }}
+                      >
+                        {active.data.titleGold}
+                        {active.data.titleWhite ? (
+                          <span style={{ color: BCF.cream }}>
+                            {" "}
+                            {active.data.titleWhite}
+                          </span>
+                        ) : null}
+                      </h2>
+                      {active.data.body ? (
+                        <p
+                          className={`mt-8 max-w-[820px] text-[32px] font-medium text-[#fcdfaa] ${
+                            lang === "en" ? "leading-snug" : "leading-[1.75]"
+                          }`}
+                        >
+                          {active.data.body}
+                        </p>
+                      ) : null}
+                    </motion.div>
+
+                    <motion.div
+                      variants={bcfRise}
+                      className="flex min-h-0 flex-1 items-start justify-center pt-10"
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
+                    >
+                      <StoryPhoto
+                        src={photos.front}
+                        label={beatLabel(active)}
+                      />
+                    </motion.div>
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Back and Next sit together in one centred band. The artboard's
+            bottom padding lifts that band off the floor of the 1920px canvas
+            so it lands in the middle of the screen — on a 65" portrait TV the
+            true bottom is near the ground and out of reach. It cannot be
+            centred exactly: the tallest beat (Values) runs to roughly y=1160
+            on its own, so the band sits just below the content it drives and
+            holds still there as the beats change behind it. */}
+        <nav className="relative z-40 flex shrink-0 items-center justify-center gap-12 pt-10">
+          <StoryNavButton
+            label={c.back}
+            disabled={isFirst}
+            onClick={goPrev}
+            side="prev"
+            rtl={rtl}
+          />
+          <span
+            className="min-w-[104px] text-center text-[24px] tabular-nums"
+            style={{ color: "rgba(255,255,255,0.45)" }}
+          >
+            {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
+          </span>
+          <StoryNavButton
+            label={c.storyNext}
+            disabled={isLast}
+            onClick={goNext}
+            side="next"
+            rtl={rtl}
+          />
+        </nav>
       </div>
     </BcfShell>
   );

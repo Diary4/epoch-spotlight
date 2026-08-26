@@ -26,6 +26,9 @@ const DOME_BG = "#0a0a0a";
 /**
  * Impact statistic gallery — same dome browser as the Human Story Layer, but
  * filled with the photography inside each BCF field folder.
+ *
+ * The employees set is large (~300 portraits). It uses a bigger dome and fewer
+ * segments so each headshot reads clearly on the kiosk instead of a fine grain.
  */
 export default function BcfImpactGallery({
   lang,
@@ -36,6 +39,7 @@ export default function BcfImpactGallery({
   const item =
     c.impactItems.find((entry) => entry.id === galleryId) ?? c.impactItems[0];
   const images = IMPACT_GALLERY_IMAGES[galleryId];
+  const isEmployees = galleryId === "employees";
 
   return (
     <BcfShell
@@ -47,41 +51,58 @@ export default function BcfImpactGallery({
         <BcfBackButton onClick={onBack} label={c.back} />
 
         <motion.div
-          className="relative z-20 mx-auto flex w-full max-w-[900px] flex-col items-center px-12 pt-28 text-center"
+          className={`relative z-20 mx-auto flex w-full max-w-[900px] flex-col items-center px-12 text-center ${
+            isEmployees ? "pt-24" : "pt-28"
+          }`}
           variants={bcfStagger(0.1, 0.16)}
           initial="initial"
           animate="animate"
         >
           <motion.h1
             variants={bcfRise}
-            className="text-[64px] font-bold leading-tight"
+            className={`font-bold leading-tight ${
+              isEmployees ? "text-[56px]" : "text-[64px]"
+            }`}
             style={{ color: BCF.gold }}
           >
             {item.title}
           </motion.h1>
           <motion.span
             variants={bcfDrawX}
-            className="mt-7 block h-px w-[320px]"
+            className={`block h-px w-[320px] ${isEmployees ? "mt-5" : "mt-7"}`}
             style={{
               background: `linear-gradient(90deg, transparent, ${BCF.gold}, transparent)`,
             }}
           />
-          <motion.p
-            variants={bcfRise}
-            className="mt-8 text-[30px] leading-relaxed text-[#fdeed4]"
-          >
-            {item.description}
-          </motion.p>
-          <motion.p
-            variants={bcfRise}
-            className="mt-6 text-[24px] tracking-[0.16em] text-white/45"
-          >
-            {c.tapToExplore}
-          </motion.p>
+          {!isEmployees ? (
+            <>
+              <motion.p
+                variants={bcfRise}
+                className="mt-8 text-[30px] leading-relaxed text-[#fdeed4]"
+              >
+                {item.description}
+              </motion.p>
+              <motion.p
+                variants={bcfRise}
+                className="mt-6 text-[24px] tracking-[0.16em] text-white/45"
+              >
+                {c.tapToExplore}
+              </motion.p>
+            </>
+          ) : (
+            <motion.p
+              variants={bcfRise}
+              className="mt-5 text-[22px] tracking-[0.16em] text-white/45"
+            >
+              {c.tapToExplore}
+            </motion.p>
+          )}
         </motion.div>
 
         <motion.div
-          className="relative z-10 mt-4 h-[1440px] w-full"
+          className={`relative z-10 w-full ${
+            isEmployees ? "mt-2 h-[1520px]" : "mt-4 h-[1440px]"
+          }`}
           style={{ backgroundColor: DOME_BG }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -90,13 +111,13 @@ export default function BcfImpactGallery({
           <DomeGallery
             images={images}
             segments={
-              galleryId === "employees"
-                ? Math.max(35, Math.ceil(images.length / 5))
+              isEmployees
+                ? Math.max(42, Math.min(50, Math.ceil(images.length / 6)))
                 : 35
             }
-            fit={1}
-            fitBasis="width"
-            minRadius={900}
+            fit={isEmployees ? 1.28 : 1}
+            fitBasis={isEmployees ? "max" : "width"}
+            minRadius={isEmployees ? 1150 : 900}
             imageBorderRadius="24px"
             overlayBlurColor={DOME_BG}
             grayscale={false}

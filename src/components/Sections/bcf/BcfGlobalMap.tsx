@@ -44,7 +44,7 @@ import {
   bcfRise,
   bcfStagger,
 } from "@/components/Sections/bcf/bcfMotion";
-import worldTopology from "@/assets/geo/world-countries-110m.json";
+import { BCF_WORLD_FEATURES } from "@/components/Sections/bcf/bcfWorldGeography";
 
 /**
  * The world half of Where We Work.
@@ -96,6 +96,14 @@ const GLOBE_MIN_ZOOM = 1;
 const GLOBE_MAX_ZOOM = 6;
 /** Labels crowd the Levant on a sphere sooner than they do on the flat map. */
 const GLOBE_LABEL_ZOOM = 1.9;
+/**
+ * Time constant of the zoom glide, in milliseconds: the gap to the target
+ * shrinks to 1/e of itself every `GLOBE_ZOOM_TAU`, so a step is essentially
+ * over in three of them. Around a third of a second — long enough to read as
+ * a move rather than a cut, short enough that a second tap still feels
+ * answered immediately.
+ */
+const GLOBE_ZOOM_TAU = 115;
 /**
  * The per-country `focusZoom` values were tuned against the flat artboard,
  * whose scale at zoom 1 is smaller than the globe's radius. Scaling them keeps
@@ -176,7 +184,7 @@ type BcfGlobalMapProps = {
   onExploreProjects: (id: LocationId) => void;
 };
 
-export default function BcfGlobalMap({
+function BcfGlobalMap({
   lang,
   selected,
   onSelect,
@@ -205,6 +213,18 @@ export default function BcfGlobalMap({
   const globeZoomRef = React.useRef(globeZoom);
   const spinFrame = React.useRef<number>();
   const rafFrame = React.useRef<number>();
+  /**
+   * Where the zoom is heading, and the loop closing the gap to it.
+   *
+   * A tap or a wheel tick moves the *target*; the loop eases the live value
+   * toward it every frame. Two things fall out of that which a straight
+   * `zoom *= 1.5` could not give: the step is a glide rather than a jump, and
+   * a second tap while the first is still running compounds into one
+   * continuous push instead of restarting the motion from a standstill.
+   */
+  const zoomTarget = React.useRef(globeZoom);
+  const zoomFrame = React.useRef<number>();
+  const zoomClock = React.useRef(0);
   /** Live pointers on the globe, by id — two of them means a pinch. */
   const pointers = React.useRef(new Map<number, { x: number; y: number }>());
   const pinch = React.useRef<{ distance: number; zoom: number } | null>(null);
@@ -214,6 +234,7 @@ export default function BcfGlobalMap({
     () => () => {
       window.clearTimeout(glideTimer.current);
       if (spinFrame.current) cancelAnimationFrame(spinFrame.current);
+      if (zoomFrame.current) cancelAnimationFrame(zoomFrame.current);
       if (rafFrame.current) cancelAnimationFrame(rafFrame.current);
       releaseDrag.current?.();
     },
@@ -253,16 +274,30 @@ export default function BcfGlobalMap({
   );
 
   const stopSpin = React.useCallback(() => {
-    if (spinFrame.current) cancelAnimationFrame(spinFrame.current);
+    if (!spinFrame.current) return;
+    cancelAnimationFrame(spinFrame.current);
     spinFrame.current = undefined;
+    /* A spin carries the zoom with it, so an interrupted one leaves the live
+       value somewhere between its old and new zoom. Re-aim from there, or the
+       next tap would multiply a destination the globe never reached. */
+    zoomTarget.current = globeZoomRef.current;
+  }, []);
+
+  /** Hands the zoom back to whatever is taking over — a pinch, or a spin. */
+  const stopZoomGlide = React.useCallback(() => {
+    if (zoomFrame.current) cancelAnimationFrame(zoomFrame.current);
+    zoomFrame.current = undefined;
+    zoomTarget.current = globeZoomRef.current;
   }, []);
 
   /** Turns the globe so a country faces the visitor, by the shorter way round. */
   const spinTo = React.useCallback(
     (coordinates: [number, number], zoom: number) => {
       stopSpin();
+      stopZoomGlide();
       const from = rotationRef.current;
       const fromZoom = globeZoomRef.current;
+      zoomTarget.current = zoom;
       const target: [number, number] = [
         from[0] + shortWay(-coordinates[0] - from[0]),
         clampTilt(-coordinates[1]),
@@ -280,21 +315,61 @@ export default function BcfGlobalMap({
             from[0] + (target[0] - from[0]) * eased,
             from[1] + (target[1] - from[1]) * eased,
           ],
-          fromZoom + (zoom - fromZoom) * eased,
+          /* Geometric, like the buttons: halfway through a 1× → 4× move the
+             globe should read 2×, not 2.5×. */
+          fromZoom * Math.pow(zoom / fromZoom, eased),
         );
         spinFrame.current = p < 1 ? requestAnimationFrame(step) : undefined;
       };
       spinFrame.current = requestAnimationFrame(step);
     },
-    [commitGlobe, reduceMotion, stopSpin],
+    [commitGlobe, reduceMotion, stopSpin, stopZoomGlide],
   );
 
+  /**
+   * Zoom, eased.
+   *
+   * The live value chases the target exponentially — the gap closes by the
+   * same fraction every frame — measured in log space, so a 1.5× step takes
+   * the same time whether the globe is at 1× or at 6×. `dt` comes off the
+   * clock rather than being assumed to be a frame, so a dropped frame slows
+   * nothing down.
+   */
   const zoomGlobe = React.useCallback(
     (factor: number) => {
       stopSpin();
-      commitGlobe(rotationRef.current, clampGlobeZoom(globeZoomRef.current * factor));
+      const next = clampGlobeZoom(zoomTarget.current * factor);
+      if (next === zoomTarget.current && !zoomFrame.current) return;
+      zoomTarget.current = next;
+      if (reduceMotion) {
+        if (zoomFrame.current) cancelAnimationFrame(zoomFrame.current);
+        zoomFrame.current = undefined;
+        commitGlobe(rotationRef.current, next);
+        return;
+      }
+      /* Already gliding: the new target is enough, the loop will bend to it. */
+      if (zoomFrame.current) return;
+      zoomClock.current = performance.now();
+      const step = (now: number) => {
+        /* Capped so a backgrounded tab does not resume with one huge jump. */
+        const dt = Math.min(64, now - zoomClock.current);
+        zoomClock.current = now;
+        const current = globeZoomRef.current;
+        const remaining = Math.log(zoomTarget.current / current);
+        if (Math.abs(remaining) < 0.002) {
+          zoomFrame.current = undefined;
+          commitGlobe(rotationRef.current, zoomTarget.current);
+          return;
+        }
+        commitGlobe(
+          rotationRef.current,
+          current * Math.exp(remaining * (1 - Math.exp(-dt / GLOBE_ZOOM_TAU))),
+        );
+        zoomFrame.current = requestAnimationFrame(step);
+      };
+      zoomFrame.current = requestAnimationFrame(step);
     },
-    [commitGlobe, stopSpin],
+    [commitGlobe, reduceMotion, stopSpin],
   );
 
   /**
@@ -315,10 +390,14 @@ export default function BcfGlobalMap({
       if (pointers.current.size >= 2 && pinch.current) {
         const [a, b] = [...pointers.current.values()];
         const distance = Math.hypot(a.x - b.x, a.y - b.y) || 1;
-        commitGlobe(
-          rotationRef.current,
-          clampGlobeZoom(pinch.current.zoom * (distance / pinch.current.distance)),
+        const pinched = clampGlobeZoom(
+          pinch.current.zoom * (distance / pinch.current.distance),
         );
+        /* A pinch is its own authority on the zoom — the fingers are the
+           easing. Move the glide target with it so the first button tap after
+           a pinch starts from where the fingers left the globe. */
+        zoomTarget.current = pinched;
+        commitGlobe(rotationRef.current, pinched);
         return;
       }
 
@@ -353,6 +432,7 @@ export default function BcfGlobalMap({
 
   const onGlobePointerDown = (event: React.PointerEvent) => {
     stopSpin();
+    stopZoomGlide();
     pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
     if (pointers.current.size === 2) {
       const [a, b] = [...pointers.current.values()];
@@ -434,7 +514,7 @@ export default function BcfGlobalMap({
    */
   const countries = React.useMemo(
     () => (
-      <Geographies geography={worldTopology}>
+      <Geographies geography={BCF_WORLD_FEATURES}>
         {({ geographies }) =>
           geographies.map((geo) => {
             const hit = highlighted.get(String(geo.id));
@@ -1011,3 +1091,18 @@ function ZoomButton({
     </motion.button>
   );
 }
+
+/**
+ * Memoised, because the world map now outlives the scope it belongs to.
+ *
+ * Switching scope re-renders the page around this component, and while the 177
+ * country paths are memoised on their own, everything beside them is not: the
+ * graticule builds a fresh path, the thirteen arcs are reprojected geodesics,
+ * and the markers are rebuilt. That is a few milliseconds of main thread on the
+ * exact frame the crossfade is starting, which is where a dropped frame shows.
+ *
+ * Nothing this component is given changes on a scope switch — the page holds
+ * the selection and clears it before the switch — so the honest answer is to
+ * not render at all.
+ */
+export default React.memo(BcfGlobalMap);

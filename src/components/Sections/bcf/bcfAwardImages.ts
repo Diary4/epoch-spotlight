@@ -6,6 +6,7 @@
  */
 
 import featuredMedal from "@/assets/images/bcf/awards/e5c32586-98f0-4f37-94ba-e70929a0f7a0.webp";
+import featuredMedalCertificate from "@/assets/images/bcf/awards/barzani-medal-certificate-2018.webp";
 import featuredAgitator from "@/assets/images/bcf/awards/6f41b5d0-3b93-441a-a104-c1341f3d4723.webp";
 import featuredBundestag from "@/assets/images/bcf/awards/63959e9f-7e2a-46a8-8299-5269b4c3dd32.webp";
 import featuredWingsOfHelp from "@/assets/images/bcf/awards/0cd31f0a-7c0e-434c-92c4-d1bd67949571.webp";
@@ -33,13 +34,14 @@ function collect(modules: Record<string, string>): string[] {
     .map((key) => modules[key]);
 }
 
-/** Curated lead order from the numbered reference set (slot 2 was blank). */
+/** Curated lead order — Barzani medal, then its 2018 certificate, then the rest. */
 const featuredAwardImages = [
   featuredMedal,
-  featuredAgitator,
-  featuredBundestag,
+  featuredMedalCertificate,
   featuredWingsOfHelp,
   featuredWingsCertificate,
+  featuredAgitator,
+  featuredBundestag,
   featuredUnhcr,
   featuredHumanRights,
   featuredMasoudGift,
