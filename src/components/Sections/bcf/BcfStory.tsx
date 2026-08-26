@@ -75,8 +75,9 @@ function GoldPhoto({
 }
 
 /**
- * One gold-framed plate per beat. Sized to leave the flanking chapter controls
- * their own gutter, so a photograph never runs under Back or Next.
+ * One gold-framed plate per beat. Sized to sit inside the content column
+ * beside the progress rail; the chapter controls have their own footer band,
+ * so nothing here has to dodge them.
  */
 function StoryPhoto({ src, label }: { src: string; label: string }) {
   return (
@@ -237,32 +238,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
     >
       <div className="relative flex h-[1920px] min-h-[1920px] w-full flex-col overflow-hidden px-12 pt-[130px]">
         <BcfBackButton onClick={onBack} label={c.back} className="z-50" />
-
-        {/* Chapter controls belong to the page, not to the photographs: pinned
-            to the artboard edges at its vertical middle so they hold still
-            while each beat's copy and photo stack change behind them. */}
-        <div className="pointer-events-none absolute inset-y-0 start-[100px] z-40 flex items-center">
-          <div className="pointer-events-auto">
-            <StoryNavButton
-              label={c.back}
-              disabled={isFirst}
-              onClick={goPrev}
-              side="prev"
-              rtl={rtl}
-            />
-          </div>
-        </div>
-        <div className="pointer-events-none absolute inset-y-0 end-[100px] z-40 flex items-center">
-          <div className="pointer-events-auto">
-            <StoryNavButton
-              label={c.storyNext}
-              disabled={isLast}
-              onClick={goNext}
-              side="next"
-              rtl={rtl}
-            />
-          </div>
-        </div>
 
         {/* Title */}
         <motion.header
@@ -483,6 +458,36 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Chapter controls get their own band at the foot of the artboard.
+            Floating them at the vertical middle put them on top of the beat:
+            the Values pills alternate out to both edges and ran straight under
+            Back and Next, and a control that collides with its own content
+            reads as broken. A reserved row keeps them clear of every beat,
+            still holds them still while the copy changes behind them, and puts
+            them in thumb reach at the bottom of a portrait screen. */}
+        <footer className="relative z-40 flex shrink-0 items-center justify-center gap-12 pb-4 pt-10">
+          <StoryNavButton
+            label={c.back}
+            disabled={isFirst}
+            onClick={goPrev}
+            side="prev"
+            rtl={rtl}
+          />
+          <span
+            className="min-w-[104px] text-center text-[24px] tabular-nums"
+            style={{ color: "rgba(255,255,255,0.45)" }}
+          >
+            {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
+          </span>
+          <StoryNavButton
+            label={c.storyNext}
+            disabled={isLast}
+            onClick={goNext}
+            side="next"
+            rtl={rtl}
+          />
+        </footer>
       </div>
     </BcfShell>
   );

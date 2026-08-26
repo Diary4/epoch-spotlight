@@ -1560,13 +1560,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       unitedKingdom: {
         name: "United Kingdom",
-        meta: "Charity Commission",
-        description:
-          "Recognized under the UK Charity Commission framework, reinforcing standards of governance, reporting and public trust.",
-        facts: [
-          "Governance and reporting to UK charity standards",
-          "Labour Group London Award",
-        ],
+        meta: "1 sector",
+        description: "Beneficiaries: 195 individuals",
+        facts: ["Sector: Cash assistance"],
       },
       unitedStates: {
         name: "United States of America",
@@ -1580,39 +1576,31 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       turkiye: {
         name: "Türkiye",
-        meta: "Earthquake response, 2023",
-        description:
-          "Rapid emergency support after the February 2023 earthquakes, with relief moving across the border within days of the first tremor.",
+        meta: "10 places",
+        description: "Beneficiaries: 80,149 families, 330,249 individuals",
         facts: [
-          "4,129 tents provided to displaced families across Türkiye and Syria",
-          "Five disaster-response teams planned across five locations",
+          "6 sectors: Food, Non-food items, Shelter, Cash assistance, WASH, Health",
         ],
       },
       syria: {
         name: "Syria",
-        meta: "Earthquake response, 2023",
-        description:
-          "Shelter and emergency relief for families displaced by the 2023 earthquakes in northern Syria.",
+        meta: "4 locations",
+        description: "Beneficiaries: 61,187 families, 257,106 individuals",
         facts: [
-          "4,129 tents provided after the 2023 Türkiye and Syria earthquakes",
-          "Tents, blankets and winter supplies for displaced families",
-          "Delivered alongside the response in Türkiye",
+          "9 sectors: Food, WASH, Protection, Cash assistance, Health, Shelter, Education, Livelihood, Non-food items",
         ],
       },
-      /* TODO(bcf): the nine entries below carry only what the twenty-year map
-         itself states. Each needs its real meta line, description and facts —
-         until then they say nothing that is not on the poster. */
       ukraine: {
         name: "Ukraine",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Beneficiaries: 124 individuals",
+        facts: ["Sector: Protection"],
       },
       serbia: {
         name: "Serbia",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "3 sectors",
+        description: "Beneficiaries: 700 individuals",
+        facts: ["Sectors: Education, Food, Non-food items"],
       },
       greece: {
         name: "Greece",
@@ -1622,27 +1610,27 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       lebanon: {
         name: "Lebanon",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "2 sectors",
+        description: "Beneficiaries: 1,768 families, 8,590 individuals",
+        facts: ["Sectors: Cash assistance, Food"],
       },
       morocco: {
         name: "Morocco",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "2 sectors",
+        description: "Beneficiaries: 1,520 individuals",
+        facts: ["Sectors: Food, Non-food items"],
       },
       saudiArabia: {
-        name: "Saudi Arabia",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        name: "Kingdom of Saudi Arabia",
+        meta: "1 sector",
+        description: "Beneficiaries: 3,000 individuals",
+        facts: ["Sector: Food"],
       },
       sudan: {
         name: "Sudan",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "2 sectors",
+        description: "Beneficiaries: 800 individuals",
+        facts: ["Sectors: Non-food items, Protection"],
       },
       southSudan: {
         name: "South Sudan",
@@ -1652,21 +1640,21 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       yemen: {
         name: "Yemen",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Beneficiaries: 140 families, 700 individuals",
+        facts: ["Sector: Food"],
       },
       bangladesh: {
         name: "Bangladesh",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Beneficiaries: 11,810 individuals",
+        facts: ["Sector: Health"],
       },
       australia: {
         name: "Australia",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
+        meta: "1 sector",
+        description: "Water, sanitation and hygiene (WASH)",
+        facts: ["Sector: WASH"],
       },
     },
     locations: {
@@ -2831,13 +2819,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       unitedKingdom: {
         name: "شانشینی یەکگرتوو",
-        meta: "لیژنەی خێرخوازی بەریتانیا",
-        description:
-          "لە چوارچێوەی لیژنەی خێرخوازی بەریتانیا دانی پێدا نراوە، کە ستانداردی حوکمڕانی، ڕاپۆرتکردن و متمانەی گشتی بەهێز دەکات.",
-        facts: [
-          "حوکمڕانی و ڕاپۆرتکردن بەپێی ستانداردی خێرخوازی بەریتانیا",
-          "خەڵاتی گرووپی کرێکاری لەندەن",
-        ],
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١٩٥ کەس",
+        facts: ["کەرت: هاوکاریی پارەیی"],
       },
       unitedStates: {
         name: "ویلایەتە یەکگرتووەکانی ئەمریکا",
@@ -2851,46 +2835,76 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       turkiye: {
         name: "تورکیا",
-        meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
-        description:
-          "پشتگیری فریاکەوتنی خێرا دوای بوومەلەرزەکانی شوباتی ٢٠٢٣، کە یارمەتی لە ماوەی چەند ڕۆژێکدا لە سنوور پەڕییەوە.",
+        meta: "١٠ شوێن",
+        description: "سوودمەندان: ٨٠,١٤٩ خێزان، ٣٣٠,٢٤٩ کەس",
         facts: [
-          "٤,١٢٩ چادر بۆ خێزانە ئاوارەکان لە تورکیا و سووریا",
-          "پلانی پێنج تیمی وەڵامدانەوەی کارەسات لە پێنج شوێن",
+          "٦ کەرت: خۆراک، کەلوپەلی ناخۆراکی، پەناگە، هاوکاریی پارەیی، ئاو و خاوێنکاری، تەندروستی",
         ],
       },
       syria: {
         name: "سووریا",
-        meta: "وەڵامدانەوەی بوومەلەرزە، ٢٠٢٣",
-        description:
-          "سەرپەناو یارمەتی فریاکەوتن بۆ ئەو خێزانانەی بە بوومەلەرزەکانی ٢٠٢٣ لە باکووری سووریا ئاوارە بوون.",
+        meta: "٤ شوێن",
+        description: "سوودمەندان: ٦١,١٨٧ خێزان، ٢٥٧,١٠٦ کەس",
         facts: [
-          "٤,١٢٩ چادر دوای بوومەلەرزەکانی تورکیا و سووریا لە ٢٠٢٣ دابین کرا",
-          "چادر، بەتانی و پێداویستی زستانە بۆ خێزانە ئاوارەکان",
-          "لەگەڵ وەڵامدانەوەکەی تورکیا پێکەوە گەیەنرا",
+          "٩ کەرت: خۆراک، ئاو و خاوێنکاری، پاراستن، هاوکاریی پارەیی، تەندروستی، پەناگە، پەروەردە، بژێوی، کەلوپەلی ناخۆراکی",
         ],
       },
-      ukraine: { name: "ئۆکرانیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      serbia: { name: "سربیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      greece: { name: "یۆنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      lebanon: { name: "لوبنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      morocco: { name: "مەغریب", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      saudiArabia: {
-        name: "عەرەبستانی سعودی",
-        meta: "ناوچەی کار",
-        description: WORK_ONLY_KU,
-        facts: [],
+      ukraine: {
+        name: "ئۆکرانیا",
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١٢٤ کەس",
+        facts: ["کەرت: پاراستن"],
       },
-      sudan: { name: "سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      serbia: {
+        name: "سربیا",
+        meta: "٣ کەرت",
+        description: "سوودمەندان: ٧٠٠ کەس",
+        facts: ["کەرتەکان: پەروەردە، خۆراک، کەلوپەلی ناخۆراکی"],
+      },
+      greece: { name: "یۆنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      lebanon: {
+        name: "لوبنان",
+        meta: "٢ کەرت",
+        description: "سوودمەندان: ١,٧٦٨ خێزان، ٨,٥٩٠ کەس",
+        facts: ["کەرتەکان: هاوکاریی پارەیی، خۆراک"],
+      },
+      morocco: {
+        name: "مەغریب",
+        meta: "٢ کەرت",
+        description: "سوودمەندان: ١,٥٢٠ کەس",
+        facts: ["کەرتەکان: خۆراک، کەلوپەلی ناخۆراکی"],
+      },
+      saudiArabia: {
+        name: "شانشینی عەرەبستانی سعودی",
+        meta: "١ کەرت",
+        description: "سوودمەندان: ٣,٠٠٠ کەس",
+        facts: ["کەرت: خۆراک"],
+      },
+      sudan: {
+        name: "سودان",
+        meta: "٢ کەرت",
+        description: "سوودمەندان: ٨٠٠ کەس",
+        facts: ["کەرتەکان: کەلوپەلی ناخۆراکی، پاراستن"],
+      },
       southSudan: { name: "باشووری سودان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
-      yemen: { name: "یەمەن", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      yemen: {
+        name: "یەمەن",
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١٤٠ خێزان، ٧٠٠ کەس",
+        facts: ["کەرت: خۆراک"],
+      },
       bangladesh: {
         name: "بەنگلادیش",
-        meta: "ناوچەی کار",
-        description: WORK_ONLY_KU,
-        facts: [],
+        meta: "١ کەرت",
+        description: "سوودمەندان: ١١,٨١٠ کەس",
+        facts: ["کەرت: تەندروستی"],
       },
-      australia: { name: "ئۆسترالیا", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
+      australia: {
+        name: "ئۆسترالیا",
+        meta: "١ کەرت",
+        description: "ئاو، خاوێنکاری و تەندروستی ژینگەیی (WASH)",
+        facts: ["کەرت: ئاو و خاوێنکاری (WASH)"],
+      },
     },
     locations: {
       erbil: {
@@ -4053,13 +4067,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       unitedKingdom: {
         name: "المملكة المتحدة",
-        meta: "مفوضية الجمعيات الخيرية",
-        description:
-          "معترف بها ضمن إطار مفوضية الجمعيات الخيرية البريطانية، بما يعزّز معايير الحوكمة وإعداد التقارير وثقة الجمهور.",
-        facts: [
-          "حوكمة وتقارير وفق المعايير الخيرية البريطانية",
-          "جائزة مجموعة العمال في لندن",
-        ],
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١٩٥ فرداً",
+        facts: ["القطاع: المساعدة النقدية"],
       },
       unitedStates: {
         name: "الولايات المتحدة الأمريكية",
@@ -4073,41 +4083,76 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       },
       turkiye: {
         name: "تركيا",
-        meta: "استجابة الزلزال، 2023",
-        description:
-          "دعم طارئ سريع بعد زلازل شباط/فبراير 2023، مع عبور الإغاثة للحدود خلال أيام من الهزّة الأولى.",
+        meta: "١٠ مواقع",
+        description: "المستفيدون: ٨٠,١٤٩ أسرة، ٣٣٠,٢٤٩ فرداً",
         facts: [
-          "4,129 خيمة للعائلات النازحة في تركيا وسوريا",
-          "خطة لخمسة فرق استجابة للكوارث في خمسة مواقع",
+          "٦ قطاعات: الغذاء، المواد غير الغذائية، المأوى، المساعدة النقدية، المياه والإصحاح، الصحة",
         ],
       },
       syria: {
         name: "سوريا",
-        meta: "استجابة الزلزال، 2023",
-        description:
-          "مأوى وإغاثة طارئة للعائلات التي نزحت جرّاء زلازل 2023 في شمال سوريا.",
+        meta: "٤ مواقع",
+        description: "المستفيدون: ٦١,١٨٧ أسرة، ٢٥٧,١٠٦ فرداً",
         facts: [
-          "توزيع 4,129 خيمة بعد زلزال تركيا وسوريا عام 2023",
-          "خيام وبطانيات ومستلزمات شتوية للعائلات النازحة",
-          "نُفِّذت بالتوازي مع الاستجابة في تركيا",
+          "٩ قطاعات: الغذاء، المياه والإصحاح، الحماية، المساعدة النقدية، الصحة، المأوى، التعليم، سبل العيش، المواد غير الغذائية",
         ],
       },
-      ukraine: { name: "أوكرانيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      serbia: { name: "صربيا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      greece: { name: "اليونان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      lebanon: { name: "لبنان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      morocco: { name: "المغرب", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      saudiArabia: {
-        name: "السعودية",
-        meta: "منطقة عمل",
-        description: WORK_ONLY_AR,
-        facts: [],
+      ukraine: {
+        name: "أوكرانيا",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١٢٤ فرداً",
+        facts: ["القطاع: الحماية"],
       },
-      sudan: { name: "السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      serbia: {
+        name: "صربيا",
+        meta: "٣ قطاعات",
+        description: "المستفيدون: ٧٠٠ فرد",
+        facts: ["القطاعات: التعليم، الغذاء، المواد غير الغذائية"],
+      },
+      greece: { name: "اليونان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      lebanon: {
+        name: "لبنان",
+        meta: "قطاعان",
+        description: "المستفيدون: ١,٧٦٨ أسرة، ٨,٥٩٠ فرداً",
+        facts: ["القطاعات: المساعدة النقدية، الغذاء"],
+      },
+      morocco: {
+        name: "المغرب",
+        meta: "قطاعان",
+        description: "المستفيدون: ١,٥٢٠ فرداً",
+        facts: ["القطاعات: الغذاء، المواد غير الغذائية"],
+      },
+      saudiArabia: {
+        name: "المملكة العربية السعودية",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ٣,٠٠٠ فرد",
+        facts: ["القطاع: الغذاء"],
+      },
+      sudan: {
+        name: "السودان",
+        meta: "قطاعان",
+        description: "المستفيدون: ٨٠٠ فرد",
+        facts: ["القطاعات: المواد غير الغذائية، الحماية"],
+      },
       southSudan: { name: "جنوب السودان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      yemen: { name: "اليمن", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      bangladesh: { name: "بنغلاديش", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
-      australia: { name: "أستراليا", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
+      yemen: {
+        name: "اليمن",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١٤٠ أسرة، ٧٠٠ فرد",
+        facts: ["القطاع: الغذاء"],
+      },
+      bangladesh: {
+        name: "بنغلاديش",
+        meta: "قطاع واحد",
+        description: "المستفيدون: ١١,٨١٠ فرداً",
+        facts: ["القطاع: الصحة"],
+      },
+      australia: {
+        name: "أستراليا",
+        meta: "قطاع واحد",
+        description: "المياه والإصحاح والنظافة (WASH)",
+        facts: ["القطاع: المياه والإصحاح (WASH)"],
+      },
     },
     locations: {
       erbil: {
