@@ -52,7 +52,7 @@ import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
 import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
 /** Portrait for the Board Chief card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/main.webp";
-import presidentPortrait from "@/assets/images/bcf/thumbs/bcf-president.webp";
+import presidentPortrait from "@/assets/images/bcf/from-source/president-musa.webp";
 /** Studio portrait for Sidad Barzani's leadership card. */
 import founderPortrait from "@/assets/images/bcf/thumbs/bcf-founder.webp";
 
@@ -412,6 +412,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 role={c.bcfPresident.role}
                 label={c.bcfPresident.open}
                 portrait={presidentPortrait}
+                portraitZoom={1.55}
+                portraitPosition="50% 8%"
                 onClick={() => setPresidentOpen(true)}
               />
 
@@ -808,6 +810,8 @@ function LeadershipPersonCard({
   role,
   label,
   portrait,
+  portraitZoom = 1,
+  portraitPosition = "50% 0%",
   onClick,
 }: {
   name: string;
@@ -815,9 +819,14 @@ function LeadershipPersonCard({
   /** Screen-reader label only — the card shows an arrow, not this copy. */
   label: string;
   portrait: string;
+  /** Scale the plate so waist-up studio shots match head-and-shoulders framing. */
+  portraitZoom?: number;
+  portraitPosition?: string;
   onClick: () => void;
 }) {
   const [pressed, setPressed] = React.useState(false);
+  const baseScale = portraitZoom;
+  const pressedScale = portraitZoom * 1.06;
 
   return (
     <motion.button
@@ -849,8 +858,11 @@ function LeadershipPersonCard({
           src={portrait}
           alt=""
           decoding="async"
-          className="h-full w-full transform-gpu object-cover object-top transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
-          style={{ transform: pressed ? "scale(1.06)" : "scale(1)" }}
+          className="h-full w-full transform-gpu object-cover transition-transform duration-700 ease-smooth-out motion-reduce:transition-none"
+          style={{
+            objectPosition: portraitPosition,
+            transform: `scale(${pressed ? pressedScale : baseScale})`,
+          }}
         />
       </span>
 

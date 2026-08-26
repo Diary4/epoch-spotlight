@@ -2078,7 +2078,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     bcfPresident: {
       open: "Meet the BCF President",
       name: "Musa Ahmed",
-      role: "BCF President",
+      role: "BCF President · Member of the Board of Founders",
       meta: "Barzani Charity Foundation",
       bioLabel: "Biography",
       bio: "Born on August 5, 1974, in Kalok village in the Barzan region, he graduated from the Institute of Fine Arts. His commitment to public and humanitarian service began at an early age.",
@@ -3382,7 +3382,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     bcfPresident: {
       open: "ناسینی سەرۆکی دەزگا",
       name: "موسا ئەحمەد",
-      role: "سەرۆکی دەزگا",
+      role: "سەرۆکی دەزگا · ئەندامی بۆردی دامەزرێنەران",
       meta: "دەزگای خێرخوازیی بارزانی",
       bioLabel: "ژیاننامە",
       bio: "لە ٥ی ئابی ١٩٧٤ لە گوندی کەلۆک لە ناوچەی بارزان لە دایک بووە و دەرچووی پەیمانگای هونەرە جوانەکانە. پابەندیی بە خزمەتی گشتی و مرۆیی لە تەمەنێکی زووەوە دەستی پێکرد.",
@@ -4682,7 +4682,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     bcfPresident: {
       open: "تعرّف على رئيس المؤسسة",
       name: "موسى أحمد",
-      role: "رئيس المؤسسة",
+      role: "رئيس المؤسسة · عضو مجلس المؤسسين",
       meta: "مؤسسة بارزاني الخيرية",
       bioLabel: "السيرة الذاتية",
       bio: "وُلد في 5 آب/أغسطس 1974 في قرية كالوك بمنطقة بارزان، وتخرّج في معهد الفنون الجميلة. وبدأ التزامه بالخدمة العامة والإنسانية في سن مبكرة.",
