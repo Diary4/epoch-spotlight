@@ -9,11 +9,17 @@
  * Numbered `N-scaled.webp` plates are typeset names with no mark. Those go
  * after graphic logos so the grid opens on brands, not on word tiles.
  *
- * Ordering is decided entirely on the glob *keys* — the source paths, which
- * are the same literal strings in `vite dev` and in the production bundle.
- * Nothing here compares asset URLs: those are hashed at build time, so any
- * pinning that matched on URL identity would order one way in dev and another
- * way in the built app.
+ * Ordering is decided entirely on the glob *keys* — the source paths. Nothing
+ * here compares asset URLs: those are hashed at build time, so any pinning
+ * that matched on URL identity would order one way in dev and another way in
+ * the built app.
+ *
+ * Those keys do NOT have stable casing, so every filename comparison here is
+ * case-insensitive. The macOS working tree holds `Donors/act-now-...-logo.webp`
+ * while git has the same file indexed as `donors/Act-now-...-Logo.webp`; the
+ * glob reads the filesystem, so it yields lowercase names on a developer's Mac
+ * and the git casing on a Linux CI checkout. Matching pinned names literally
+ * silently stops pinning in production while looking perfect locally.
  */
 
 function basename(path: string): string {
@@ -28,12 +34,13 @@ function isTextPlate(path: string): boolean {
  * Sorts glob keys: pinned files first in the given order, then graphic logos
  * alphabetically, then the typeset word plates.
  */
-function collect(
+export function collect(
   modules: Record<string, string>,
   pinnedFiles: readonly string[] = [],
 ): string[] {
-  const rank = new Map(pinnedFiles.map((file, index) => [file, index]));
-  const rankOf = (path: string) => rank.get(basename(path)) ?? Number.MAX_SAFE_INTEGER;
+  const rank = new Map(pinnedFiles.map((file, index) => [file.toLowerCase(), index]));
+  const rankOf = (path: string) =>
+    rank.get(basename(path).toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
 
   return Object.keys(modules)
     .sort((a, b) => {
@@ -50,8 +57,8 @@ function collect(
     .map((key) => modules[key]);
 }
 
-/** Major institutional supporters — always first, in this order. */
-const DONOR_LEAD_FILES: readonly string[] = [
+/** Major institutional supporters — always first, in this order. Case-insensitive. */
+export const DONOR_LEAD_FILES: readonly string[] = [
   "lds-chariteis-logo.webp",
   "emirates-red-crescent-logo.webp",
   "kwait-is-by-your-side-logo.webp",
