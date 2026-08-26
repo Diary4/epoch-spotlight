@@ -412,8 +412,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                 role={c.bcfPresident.role}
                 label={c.bcfPresident.open}
                 portrait={presidentPortrait}
-                portraitZoom={1.55}
-                portraitPosition="50% 8%"
+                portraitZoom={1.02}
+                portraitPosition="50% 22%"
                 onClick={() => setPresidentOpen(true)}
               />
 
