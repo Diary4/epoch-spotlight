@@ -401,7 +401,7 @@ function dumpLang(langId) {
   return lines.join("\n").replace(/\n{3,}/g, "\n\n") + "\n";
 }
 
-for (const langId of ["ku", "ar"]) {
+for (const langId of Object.keys(LANGS)) {
   const out = path.join(ROOT, LANGS[langId].file);
   await fs.writeFile(out, dumpLang(langId), "utf8");
   console.log(`Wrote ${out}`);
