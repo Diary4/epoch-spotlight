@@ -75,9 +75,9 @@ function GoldPhoto({
 }
 
 /**
- * One gold-framed plate per beat. Sized to sit inside the content column
- * beside the progress rail; the chapter controls have their own footer band,
- * so nothing here has to dodge them.
+ * One gold-framed plate per beat. Sized to fit the beat column, which the
+ * flanking chapter controls have already narrowed — the plate centres inside
+ * whatever width is left rather than reaching for the artboard edges.
  */
 function StoryPhoto({ src, label }: { src: string; label: string }) {
   return (
@@ -112,7 +112,7 @@ function StoryNavButton({
       disabled={disabled}
       whileTap={disabled ? undefined : BCF_TAP}
       transition={BCF_TAP_TRANSITION}
-      className="flex h-[64px] w-[132px] shrink-0 items-center justify-center gap-2 rounded-full border text-[22px] font-medium disabled:cursor-default disabled:opacity-30"
+      className="flex h-[64px] w-[116px] shrink-0 items-center justify-center gap-2 rounded-full border text-[20px] font-medium disabled:cursor-default disabled:opacity-30"
       style={{
         borderColor: BCF.gold,
         backgroundColor: isPrev
@@ -261,8 +261,25 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           />
         </motion.header>
 
-        {/* Body row: rail + content */}
-        <div className="relative z-10 mt-16 flex min-h-0 flex-1">
+        {/* Body row: prev control | rail + beat | next control.
+            The controls stay at the artboard's vertical middle — the reachable
+            band on a 65" portrait screen — but they are laid out as real
+            columns instead of being absolutely positioned over the beat.
+            Floating them meant nothing reserved their space, so the widest
+            beat (the Values pills, which alternate out to both edges) ran
+            straight under them. As flex siblings the beat can only use the
+            width that is left, so the collision cannot come back. */}
+        <div className="relative z-10 mt-16 flex min-h-0 flex-1 gap-4">
+          <div className="flex shrink-0 items-center">
+            <StoryNavButton
+              label={c.back}
+              disabled={isFirst}
+              onClick={goPrev}
+              side="prev"
+              rtl={rtl}
+            />
+          </div>
+
           {/* Left progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
             <span
@@ -354,7 +371,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex flex-1 items-start justify-center pt-10"
-                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={active.data.title} />
                     </motion.div>
@@ -445,7 +461,6 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex flex-1 items-start justify-center pt-10"
-                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto
                         src={photos.front}
@@ -457,37 +472,18 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
               </motion.div>
             </AnimatePresence>
           </div>
+
+          <div className="flex shrink-0 items-center">
+            <StoryNavButton
+              label={c.storyNext}
+              disabled={isLast}
+              onClick={goNext}
+              side="next"
+              rtl={rtl}
+            />
+          </div>
         </div>
 
-        {/* Chapter controls get their own band at the foot of the artboard.
-            Floating them at the vertical middle put them on top of the beat:
-            the Values pills alternate out to both edges and ran straight under
-            Back and Next, and a control that collides with its own content
-            reads as broken. A reserved row keeps them clear of every beat,
-            still holds them still while the copy changes behind them, and puts
-            them in thumb reach at the bottom of a portrait screen. */}
-        <footer className="relative z-40 flex shrink-0 items-center justify-center gap-12 pb-4 pt-10">
-          <StoryNavButton
-            label={c.back}
-            disabled={isFirst}
-            onClick={goPrev}
-            side="prev"
-            rtl={rtl}
-          />
-          <span
-            className="min-w-[104px] text-center text-[24px] tabular-nums"
-            style={{ color: "rgba(255,255,255,0.45)" }}
-          >
-            {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
-          </span>
-          <StoryNavButton
-            label={c.storyNext}
-            disabled={isLast}
-            onClick={goNext}
-            side="next"
-            rtl={rtl}
-          />
-        </footer>
       </div>
     </BcfShell>
   );
