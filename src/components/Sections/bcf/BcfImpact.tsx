@@ -186,10 +186,6 @@ export default function BcfImpact({
                       >
                         {copy.title}
                       </p>
-                      <span className="mt-4 block border-t border-dashed border-white/30" />
-                      <p className="mt-4 text-[22px] leading-snug text-white/80">
-                        {copy.description}
-                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -283,10 +279,6 @@ export default function BcfImpact({
                         style={{ color: BCF.gold }}
                       >
                         {item.title}
-                      </p>
-                      <span className="mt-3 block border-t border-dashed border-white/30" />
-                      <p className="mt-3 text-[20px] leading-snug text-white/80">
-                        {item.description}
                       </p>
                     </div>
                   </div>

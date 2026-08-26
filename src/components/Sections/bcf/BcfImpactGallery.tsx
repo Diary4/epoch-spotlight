@@ -101,7 +101,7 @@ export default function BcfImpactGallery({
 
         <motion.div
           className={`relative z-10 w-full ${
-            isEmployees ? "mt-2 h-[1620px]" : "mt-4 h-[1440px]"
+            isEmployees ? "mt-2 h-[1520px]" : "mt-4 h-[1440px]"
           }`}
           style={{ backgroundColor: DOME_BG }}
           initial={{ opacity: 0 }}
@@ -112,12 +112,12 @@ export default function BcfImpactGallery({
             images={images}
             segments={
               isEmployees
-                ? Math.max(38, Math.min(44, Math.ceil(images.length / 7)))
+                ? Math.max(42, Math.min(50, Math.ceil(images.length / 6)))
                 : 35
             }
-            fit={isEmployees ? 1.55 : 1}
+            fit={isEmployees ? 1.28 : 1}
             fitBasis={isEmployees ? "max" : "width"}
-            minRadius={isEmployees ? 1400 : 900}
+            minRadius={isEmployees ? 1150 : 900}
             imageBorderRadius="24px"
             overlayBlurColor={DOME_BG}
             grayscale={false}
