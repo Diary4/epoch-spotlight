@@ -11,6 +11,7 @@ import {
 import {
   bcfEntriesFor,
   bcfEraForYear,
+  bcfLocalizedProjectEntry,
   BCF_SECTOR_2025_TOTALS,
   type BcfEraId,
   type BcfProjectEntry,
@@ -226,7 +227,9 @@ export default function BcfProjectDetail({
               </h2>
 
               <div className={`flex flex-col ${d.gap}`}>
-                {group.entries.map((entry, index) => (
+                {group.entries.map((entry, index) => {
+                  const localized = bcfLocalizedProjectEntry(entry, lang);
+                  return (
                   <article key={`${entry.year}-${index}`} className="relative flex gap-8">
                     {/* Year rail. Fixed width so every year in the sector lines
                         up on the spine — "Multi-year" and "2011-12" are as wide
@@ -259,25 +262,19 @@ export default function BcfProjectDetail({
                         backgroundColor: "rgba(6,8,12,0.72)",
                       }}
                     >
-                      {/* The entry bodies are English — they are paraphrased
-                          from English-language BCF reporting and are not yet
-                          translated — so they are marked as English rather than
-                          inheriting the page direction. Left in an RTL run they
-                          came out with the full stop leading the sentence, and
-                          their figures are left in Western digits because
-                          "٧٥١ households" is neither script's convention. The
-                          chrome around them is translated and localised
-                          normally. */}
+                      {/* Localised bodies use the page direction. English
+                          fallbacks stay LTR so Western figures and punctuation
+                          do not flip when the chrome is RTL. */}
                       <p
-                        dir="ltr"
+                        dir={localized.dir}
                         className="text-start leading-[1.45] text-white/90"
                         style={{ fontSize: d.body }}
                       >
-                        {entry.text}
+                        {localized.text}
                       </p>
-                      {entry.note ? (
+                      {localized.note ? (
                         <p
-                          dir="ltr"
+                          dir={localized.dir}
                           className="mt-3 border-t pt-3 text-start leading-snug text-white/45"
                           style={{
                             fontSize: d.note,
@@ -287,12 +284,13 @@ export default function BcfProjectDetail({
                           <span style={{ color: BCF.goldDeep }}>
                             {c.projects.scopeNote}:
                           </span>{" "}
-                          {entry.note}
+                          {localized.note}
                         </p>
                       ) : null}
                     </div>
                   </article>
-                ))}
+                  );
+                })}
               </div>
             </motion.section>
           ))}
