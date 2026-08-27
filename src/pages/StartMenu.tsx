@@ -8,27 +8,12 @@ type ScreenOption = {
 };
 
 const SCREEN_OPTIONS: ScreenOption[] = [
-  { id: "01", label: "Screen 1 - Main Experience", path: "/screen-1" },
-  { id: "02", label: "Screen 2 - Second Screen", path: "/screen-2" },
-  { id: "03", label: "Screen 3 - Portraits", path: "/portraits" },
-  { id: "04", label: "Screen 4 - Portrait Detail (ID 1)", path: "/portraits/1" },
-  { id: "05", label: "Screen 5 - Portrait Timeline (ID 1)", path: "/portraits/1/timeline" },
-  { id: "06", label: "Screen 6 - Touristic (v2 Grid)", path: "/touristic-v2" },
-  { id: "07", label: "Screen 7 - Religions", path: "/religions" },
-  { id: "07b", label: "Screen 7b - Religions V2", path: "/religions-v2" },
-  { id: "07c", label: "Screen 7c - Religions V4 (Threads)", path: "/religions-v4" },
-  { id: "08", label: "Screen 8 - Women", path: "/women" },
-  { id: "09", label: "Screen 9 - Portrait Detail (ID 2)", path: "/portraits/2" },
-  { id: "10", label: "Screen 10 - Portrait Timeline (ID 2)", path: "/portraits/2/timeline" },
-  { id: "11", label: "Screen 11 - Portrait Detail (ID 3)", path: "/portraits/3" },
-  { id: "12", label: "Screen 12 - Touristic", path: "/touristic" },
-  { id: "13", label: "Screen 13 - Library Home", path: "/library" },
-  { id: "14", label: "Screen 14 - Library Writers", path: "/library/writers" },
-  { id: "15", label: "Screen 15 - Writer Detail (Farhad Pirbal)", path: "/library/writers/farhad-pirbal" },
-  { id: "16", label: "Screen 16 - Featured Writer (Dark)", path: "/library/writers/farhad-pirbal/featured" },
-  { id: "17", label: "Screen 17 - Book Detail (The Potato Eaters)", path: "/library/books/the-potato-eaters" },
-  { id: "18", label: "Screen 18 - Book Reader (Preview)", path: "/library/books/the-potato-eaters/read" },
-  { id: "19", label: "Screen 19 - BCF (VIP)", path: "/bcf" },
+  { id: "01", label: "Kurdistan", path: "/screen-1" },
+  { id: "02", label: "Religion", path: "/religions-v4" },
+  { id: "03", label: "Women", path: "/women" },
+  { id: "04", label: "Touristic Places", path: "/touristic-v2" },
+  { id: "05", label: "Digital Library", path: "/library" },
+  { id: "06", label: "BCF", path: "/bcf" },
 ];
 
 export default function StartMenu() {
