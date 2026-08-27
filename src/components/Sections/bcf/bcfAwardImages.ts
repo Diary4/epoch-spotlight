@@ -26,7 +26,6 @@ import featuredAva from "@/assets/images/bcf/awards/ad0c88ce-3317-4b2e-ad89-12d2
 import featuredHealthAnniversary from "@/assets/images/bcf/awards/9f5a922e-f0a3-4af8-94db-eb54129c7a2c.webp";
 import featuredKdpKirkuk from "@/assets/images/bcf/awards/2041a20e-3fc3-46c9-bf9e-403a5dcb5e69.webp";
 import featuredBarzaniBust from "@/assets/images/bcf/awards/d81b363d-c2ee-4a20-a394-74dab3b529df.webp";
-import featuredPublicServices from "@/assets/images/bcf/awards/864634ad-93dc-48c9-802c-89816a418c19.webp";
 
 function collect(modules: Record<string, string>): string[] {
   return Object.keys(modules)
@@ -57,7 +56,6 @@ const featuredAwardImages = [
   featuredHealthAnniversary,
   featuredKdpKirkuk,
   featuredBarzaniBust,
-  featuredPublicServices,
 ];
 
 const awardModules = import.meta.glob<string>(
