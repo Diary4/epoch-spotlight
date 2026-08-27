@@ -727,450 +727,450 @@ PAGE: Projects (city / sector register)
 --- Projects — هەولێر ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] Food distributions across Erbil: Korek parcels for 350 households, Galiawa food for 6,817 households in Hasan Sham U2/U3 and Khazir, and Qurbani meat for 14,021 households in the city and its camps.
-2022 — [ENGLISH FALLBACK] The hot-meal programme served 694,362 meals in Erbil, alongside food distributions continuing through partner projects.
-2023 — [ENGLISH FALLBACK] Qurbani meat reached 1,481 families, with regular food and non-food assistance continuing across Erbil and the camps.
-2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 14,943 food parcels in Erbil; other Ramadan and food projects ran separately.
-[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
-2026 — [ENGLISH FALLBACK] Ramadan iftar at Erbil Park for 1,000 people daily, 500 Turaq food baskets, food for families of martyrs, Eid food baskets and camp food and flour assistance.
+2021 — دابەشکردنی خۆراک لە هەولێر بەردەوام بوو؛ ٣٥٠ خێزان پاکێتی خۆراکی کۆرەکیان وەرگرت، ٦,٨١٧ خێزان لە حەسەن شام U2/U3 و خازر خۆراکی گەلاوێژیان وەرگرت، هەروەها گۆشتی قوربانی بۆ ١٤,٠٢١ خێزان لە شاری هەولێر و کەمپەکان دابەش کرا.
+2022 — لە بەرنامەی خواردنی گەرمدا، لە هەولێر ٦٩٤,٣٦٢ ژەم خواردن دابەش کرا. لە هەمان کاتدا، دابەشکردنی خۆراک لە ڕێگەی پڕۆژە هاوبەشەکانەوە بەردەوام بوو.
+2023 — گۆشتی قوربانی بۆ ١,٤٨١ خێزان دابەش کرا. هەروەها دابەشکردنی خۆراک و کەلوپەلی ناخۆراکی لە هەولێر و کەمپەکان بەردەوام بوو.
+2024 — لە پوختەی بەرنامەکانی ڕەمەزاندا، ١٤,٩٤٣ پاکێتی خۆراکی لە هەولێر تۆمار کرا. پڕۆژەکانی تری ڕەمەزان و خۆراک بە جیا جێبەجێ کران.
+ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان دەگرنەوە.
+2026 — لە پارکی هەولێر، ڕۆژانە خوانی بەربانگ بۆ ١,٠٠٠ کەس دابین دەکرا. هەروەها ٥٠٠ سەبەتەی خۆراکی توراق، خۆراک بۆ خێزانەکانی شەهیدان، سەبەتەی خۆراکی جەژن، و خۆراک و ئارد بۆ خێزانەکانی کەمپەکان دابەش کرا.
 
 [پەروەردە و گەشەپێدان]
-2020 — [ENGLISH FALLBACK] The 450 school-chairs project covered Halgurd Basic School in Erbil together with schools under the Sulaymaniyah and Penjwen directorates.
-2022 — [ENGLISH FALLBACK] Fifty of the 203 schools in the renovation programme were in Erbil.
-2024 — [ENGLISH FALLBACK] Fifteen schools renovated in Erbil, and a solar-electricity pilot installed at ten Erbil schools.
-2025 — [ENGLISH FALLBACK] The Orphans' Educational Project was officially announced in Erbil and operates across BCF offices and Kurdistan.
-2026 — [ENGLISH FALLBACK] First participation in the Kurdish Book Fair, education and awareness initiatives, and a new Capacity Development Center for Orphans and Widows announced in Erbil.
+2020 — پڕۆژەی ٤٥٠ کورسی قوتابخانە، قوتابخانەی بنەڕەتی هەڵگورد لە هەولێر و هەروەها چەند قوتابخانەیەک لە سلێمانی و پێنجوێنی گرتەوە.
+2022 — لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، ٥٠ قوتابخانە لە هەولێر نۆژەن کرانەوە.
+2024 — لە هەولێر ١٥ قوتابخانە نۆژەن کرانەوە، هەروەها سیستەمی کارەبای خۆر بە شێوەی تاقیکاری لە ١٠ قوتابخانە دامەزرێنرا.
+2025 — پڕۆژەی پەروەردەیی هەتیوان بە فەرمی لە هەولێر ڕاگەیەنرا و لە ڕێگەی ئۆفیسەکانی BCF لە ناوچە جیاوازەکانی کوردستان جێبەجێ دەکرێت.
+2026 — BCF بۆ یەکەم جار بەشداری پێشانگای کتێبی کوردی کرد. هەروەها چالاکییەکانی پەروەردە و هۆشیارکردنەوە بەڕێوەچوون، و دامەزراندنی ناوەندێکی نوێ بۆ گەشەپێدانی توانای ئازیزان و بێ هاوژینان لە هەولێر ڕاگەیەنرا.
 
 [تەندروستی]
-2020 — [ENGLISH FALLBACK] COVID-19 medical assistance delivered to Central Erbil Hospital as part of regional hospital support.
-2024 — [ENGLISH FALLBACK] The Center of Excellence for Complex Care was active, and Erbil hospitals also received patients through the mobility-service project.
-2026 — [ENGLISH FALLBACK] The memorandum for the Kurdistan Center of Excellence for Complex Care was renewed, and a mammography support project announced for the Erbil breast-disease centre.
+2020 — یارمەتی پزیشکی کۆڤید-١٩ بۆ نەخۆشخانەی ناوەندی هەولێر گەیەنرا، وەک بەشێک لە بەرنامەی پشتگیری نەخۆشخانەکانی هەرێم.
+2024 — ناوەندی تایبەت بە چاودێری نەخۆشییە ئاڵۆزەکان بەردەوام لە کارکردن بوو؛ هەروەها لە ڕێگەی پڕۆژەی گواستنەوەی نەخۆشانەوە، نەخۆش بۆ نەخۆشخانەکانی هەولێر گواسترایەوە.
+2026 — ڕێککەوتننامەی ناوەندی کوردستان بۆ چاودێری نەخۆشییە ئاڵۆزەکان نوێ کرایەوە؛ هەروەها پڕۆژەیەک بۆ پشتگیری پشکنینی مامۆگرافی لە ناوەندی نەخۆشییەکانی مەمک لە هەولێر ڕاگەیەنرا.
 
 [ئاو و خاوێنکاری]
-2021 — [ENGLISH FALLBACK] Emergency water response delivered 65,864,000 litres through 3,261 tanker runs to 65,220 families across Erbil Governorate.
-2022 — [ENGLISH FALLBACK] Well drilling and repair, pumps and generators in Kawrgosk, Qushtapa, Kasnazan-area villages and Ruvia, with related countryside water systems.
-2024 — [ENGLISH FALLBACK] Drinking-water support reported for 9,100 families in Erbil Governorate.
+2021 — لە پارێزگای هەولێر، بۆ دابینکردنی ئاوی فریاکەوتن، ٦٥,٨٦٤,٠٠٠ لیتر ئاو بە ٣,٢٦١ گەشتی تانکەر بۆ ٦٥,٢٢٠ خێزان گەیەنرا.
+2022 — لە کەورگۆسک، قوشتەپە، گوندەکانی دەوروبەری کەسنەزان و ڕوڤیا، بیری ئاو حەفر و چاک کرایەوە، پەمپ و مۆلیدە دابین کرا، هەروەها سیستەمی ئاوی گوندەکان چاک و بەهێز کرا.
+2024 — لە پارێزگای هەولێر، ئاوی خواردنەوە بۆ ٩,١٠٠ خێزان دابین کرا.
 
 [پەناگە و نیشتەجێبوون]
-2015 — [ENGLISH FALLBACK] Three hundred caravans established in Bahirka Camp.
-[ENGLISH NOTE] Recorded in the cumulative 2005-2024 report.
-2019 — [ENGLISH FALLBACK] Khazir camp shelter support, including large tent projects with LDS Charities and Catholic Teufen.
-2021 — [ENGLISH FALLBACK] Two major flood responses in Erbil: 751 households assisted in October and 2,905 households in December.
-2023 — [ENGLISH FALLBACK] BCF responded again to flood-affected families in Erbil after heavy rains.
-2024 — [ENGLISH FALLBACK] The foundation stone was laid for BCF City in Qushtapa, and the shared Erbil/Soran martyrs' housing distribution took place.
-[ENGLISH NOTE] 540 units project-wide; the Erbil-vs-Soran split is not published in the reviewed source.
-2025 — [ENGLISH FALLBACK] The first phase of BCF City moved into implementation in Qushtapa, including 180 houses for poor and low-income families.
+2015 — ٣٠٠ کەرەڤان لە کەمپی بەحرکە دامەزرێنران.
+ئەم زانیارییە لە ڕاپۆرتی کۆکراوەی ساڵانی ٢٠٠٥ تا ٢٠٢٤ هاتووە.
+2019 — لە کەمپی خازر، پەناگە و چادر بۆ ئاوارەکان دابین کران؛ هەروەها چەند پڕۆژەیەکی گەورەی چادر بە هاوکاری LDS Charities و Catholic Teufen جێبەجێ کران.
+2021 — لە هەولێر دوو جار وەڵامدانەوەی گەورە بۆ لافاو ئەنجام درا؛ لە مانگی تشرینی یەکەم ٧٥١ خێزان و لە مانگی کانونی یەکەم ٢,٩٠٥ خێزان یارمەتییان وەرگرت.
+2023 — دوای بارانبارینی زۆر، BCF جارێکی تر یارمەتی خێزانە زیانلێکەوتووەکانی لافاو لە هەولێر دا.
+2024 — بەردی بناغەی شاری BCF لە قوشتەپە دانرا ؛ هەروەها خانووی شەهیدان لە پڕۆژەی هاوبەشی هەولێر و سۆران دابەش کران.
+کۆی پڕۆژەکە ٥٤٠ یەکەی نیشتەجێبوون بوو، بەڵام لە سەرچاوەکەدا دیاری نەکراوە چەند یەکە بۆ هەولێر و چەند یەکە بۆ سۆران بوو.
+2025 — قۆناغی یەکەمی شاری BCF لە قوشتەپە چووە بواری جێبەجێکردن، کە ١٨٠ خانوو بۆ خێزانە هەژار و کەمداهاتەکان لەخۆدەگرت.
 
 [پشتگیری کەمئەندامان]
-2015 — [ENGLISH FALLBACK] The mobility-aid project launched with LDS Charities and continued in later years.
-2021 — [ENGLISH FALLBACK] 389 people in Erbil received wheelchairs or other mobility aids.
-2022 — [ENGLISH FALLBACK] 326 beneficiaries recorded in Erbil.
-2026 — [ENGLISH FALLBACK] Wheelchairs and other disability support continued: ten wheelchairs distributed in March, with further support in April.
+2015 — پڕۆژەی یارمەتی جووڵە و گواستنەوە بە هاوکاری LDS Charities دەستی پێکرد و لە ساڵانی دواتریش بەردەوام بوو.
+2021 — لە هەولێر، ٣٨٩ کەس کورسی چەرخدار یان یارمەتییەکانی تری جووڵە و گواستنەوەیان وەرگرت.
+2022 — لە هەولێر، ٣٢٦ کەس لەم پڕۆژەیە سوودمەند بوون.
+2026 — پشتگیری کەسانی خاوەن پێداویستی تایبەت بەردەوام بوو؛ لە مانگی ئادار ١٠ کورسی چەرخدار دابەش کرا و لە مانگی نیسانیش یارمەتی زیاتر پێشکەش کرا.
 
 [بەڕێوەبردنی کەمپ]
-2021 — [ENGLISH FALLBACK] BCF managed nine IDP and refugee camps plus one host-community camp in Erbil Governorate; clothing, blanket and household-item projects supported Harsham, Hasan Sham, Bahirka, Debaga and others.
-2021-26 — [ENGLISH FALLBACK] Recurring food, NFI, winter, health and camp-support projects operated in Bahirka, Hasan Sham, Khazir, Debaga, Qushtapa, Basirma, Darashakran and Harsham.
-2023 — [ENGLISH FALLBACK] Seven camps managed in Erbil, and more than 300,000 Iranian pilgrims temporarily accommodated in Sami Abdulrahman Park with food, water and health services.
-2024 — [ENGLISH FALLBACK] The Warm Winter programme distributed heaters to schools in Erbil; camp coordination remained one of BCF's largest sectors.
-2026 — [ENGLISH FALLBACK] Food, cash, clothing and disability assistance continued in Baharka, Hasan Sham, Khazir and Debaga camps, and a World Refugee Day event was held in Erbil.
+2021 — BCF لە پارێزگای هەولێر ٩ کەمپی ئاوارە و پەنابەر و یەک کەمپی تری بۆ دانیشتوانی ناوچەکە بەڕێوە دەبرد. هەروەها لە هەرشەم، حەسەن شام، بەحرکە، دیبەگە و ناوچەکانی تر، جل‌ و بەرگ، بەتانی و کەلوپەلی پێویستی ماڵەوە دابەش دەکرد.
+2021-26 — لە بەحرکە، حەسەن شام، خازر، دیبەگە، قوشتەپە، بەسیرمە، دارەشەکران و هەڕشەم، پڕۆژەکانی خۆراک، کەلوپەلی ناخۆراکی، یارمەتی زستانی، تەندروستی و پشتگیری کەمپەکان بەردەوام بوون.
+2023 — لە هەولێر ٧ کەمپ بەڕێوەدەبران. هەروەها زیاتر لە ٣٠٠,٠٠٠ زیارەتکاری ئێرانی بۆ ماوەیەکی کاتی لە پارکی سامی عەبدولڕەحمان نیشتەجێ کران و خۆراک، ئاو و خزمەتگوزاری تەندروستییان بۆ دابین کرا.
+2024 — لە بەرنامەی «گەرمی زستانە»دا، سۆپا بۆ قوتابخانەکانی هەولێر دابەش کرا. هەروەها بەڕێوەبردن و هەماهەنگی کەمپەکان یەکێک بوو لە گەورەترین بوارەکانی کاری BCF.
+2026 — لە کەمپەکانی بەحرکە، حەسەن شام، خازر و دیبەگە، دابەشکردنی خۆراک، یارمەتی پارەیی، جل‌ و بەرگ و پشتگیری کەسانی خاوەن پێداویستی تایبەت بەردەوام بوو. هەروەها لە هەولێر چالاکییەک بە بۆنەی ڕۆژی جیهانی پەنابەران بەڕێوەچوو.
 
 [پارە و ئازیزان]
-2012 — [ENGLISH FALLBACK] Orphan sponsorship — the Kurdistan project — began and later expanded across BCF offices.
-2021 — [ENGLISH FALLBACK] Erbil joined the academic-excellence programme honouring top Grade 12 orphan students.
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 802 orphans in Erbil, and the educational project launched in the city.
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Erbil.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Erbil counts.
-2026 — [ENGLISH FALLBACK] The Capacity Development Center for Orphans and Widows was announced, and food, clothing and family assistance continued.
+2012 — پڕۆژەی کەفالەتی ئازیزان، بە ناوی «پڕۆژەی کوردستان»، دەستی پێکرد و دواتر لە ئۆفیسە جیاوازەکانی BCF جێبەجێ کرا.
+2021 — لە هەولێر، قوتابییە ئازیزە سەرکەوتووەکانی پۆلی ١٢ لە بەرنامەی تایبەت بە ڕێزلێناندا بەشدار بوون.
+2025 — لە قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان، ٨٠٢ ئازیز لە هەولێر سوودمەند بوون؛ هەروەها پڕۆژەی پەروەردەیی ئازیزان لە هەولێر دەستی پێکرد.
+2025-26 — پڕۆژەی نوژین لە هەولێر جێبەجێ دەکرێت.
+١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦ سوودمەند بوون، بەڵام ئەم ژمارانە کۆی هەموو ئۆفیسەکانی پڕۆژەکەن و تایبەت بە هەولێر نین.
+2026 — دامەزراندنی ناوەندێکی نوێ بۆ گەشەپێدانی توانای هەتیوان و بێوەژنان ڕاگەیەنرا؛ هەروەها دابەشکردنی خۆراک و جل‌ و بەرگ و پشتگیری خێزانەکان بەردەوام بوو.
 
 --- Projects — دهۆک ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] Food projects covered Duhok; Qurbani meat reached 2,060 households in Duhok and Bardarash Camp, and Akre Camp received food parcels through Caritas.
-2022 — [ENGLISH FALLBACK] 60,788 hot meals reported in Duhok, with annual food-distribution projects continuing.
-2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 13,931 food parcels in Duhok Governorate.
-[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
-2026 — [ENGLISH FALLBACK] A free-bread Ramadan project ran through 13 bakeries across Duhok-area districts, alongside Semel food baskets and large flour distributions to camp families.
+2021 — پڕۆژەکانی خۆراک دهۆکیان گرتەوە؛ گۆشتی قوربانی گەیشتە ٢,٠٦٠ خێزان لە دهۆک و کەمپی بەردەڕەش، هەروەها کەمپی ئاکرێ لە ڕێگەی Caritas پاکێتی خۆراکی وەرگرت.
+2022 — لە دهۆک ٦٠,٧٨٨ ژەم خواردنی گەرم دابەش کرا، هەروەها پڕۆژە ساڵانەکانی دابەشکردنی خۆراک بەردەوام بوون.
+2024 — پوختەی بەرنامەکانی ڕەمەزان تۆماری ١٣,٩٣١ پاکێتی خۆراکی لە پارێزگای دهۆک کرد.
+ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە، هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان دەگرنەوە.
+2026 — لە مانگی ڕەمەزاندا، پڕۆژەی نانی خۆڕایی لە ڕێگەی ١٣ نانەواخانە لە قەزاکانی ناوچەی دهۆک جێبەجێ کرا؛ هەروەها سەبەتەی خۆراک لە سێمێل و بڕێکی زۆر ئارد بۆ خێزانەکانی کەمپەکان دابەش کرا.
 
 [تەندروستی]
-2020 — [ENGLISH FALLBACK] COVID-19 medical supplies delivered to the Duhok Health Directorate.
-2021 — [ENGLISH FALLBACK] A COVID vaccination centre opened in Domiz 1 Camp, and medical equipment and supplies were delivered to five Duhok hospitals and camp facilities.
-2025 — [ENGLISH FALLBACK] The Mobile Medical Clinic project launched for camps in Duhok Province; 17 Kurdish children were also sent to Germany for examination and treatment through a partner programme.
-2026 — [ENGLISH FALLBACK] BCF noted plans for an autism centre in Duhok, in addition to the existing centres elsewhere.
+2020 — پێداویستییە پزیشکییەکانی کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی دهۆک گەیەنران.
+2021 — ناوەندێکی ڤاکسینی کۆڤید لە کەمپی دومیز ١ کرایەوە؛ هەروەها ئامێر و پێداویستییە پزیشکییەکان بۆ پێنج نەخۆشخانە لە دهۆک و ناوەندە پزیشکییەکانی کەمپەکان گەیەنران.
+2025 — پڕۆژەی کلینیکی پزیشکی گەڕۆک بۆ کەمپەکانی پارێزگای دهۆک دەستی پێکرد؛ هەروەها ١٧ منداڵی کورد، لە ڕێگەی بەرنامەیەکی هاوبەشەوە، بۆ پشکنین و چارەسەر نێردران بۆ ئەڵمانیا.
+2026 — BCF ڕایگەیاند کە پلانی دامەزراندنی ناوەندێک بۆ ئۆتیزم لە دهۆک هەیە، لە پاڵ ئەو ناوەندانەی کە لە ناوچەکانی تر هەن.
 
 [پەروەردە و گەشەپێدان]
-2022 — [ENGLISH FALLBACK] Twenty of the 203 schools in the renovation programme were in Duhok.
-2024 — [ENGLISH FALLBACK] Fourteen schools renovated in Duhok in the final annual report.
-2025 — [ENGLISH FALLBACK] A solar-electricity project was announced for ten schools in Duhok Province.
+2022 — لە کۆی ٢٠٣ قوتابخانەی ناو بەرنامەی نۆژەنکردنەوە، ٢٠ قوتابخانە لە دهۆک بوون.
+2024 — لە ڕاپۆرتی ساڵانەی کۆتاییدا، ١٤ قوتابخانە لە دهۆک نۆژەن کرانەوە.
+2025 — پڕۆژەیەکی کارەبای خۆر بۆ ١٠ قوتابخانە لە پارێزگای دهۆک ڕاگەیەنرا.
 
 [پەناگە و نیشتەجێبوون]
-2016 — [ENGLISH FALLBACK] Six hundred caravans established in Darkar Ajam Camp.
-2021 — [ENGLISH FALLBACK] 188 shelters built in Sharya Camp in cooperation with LDS Charities.
-[ENGLISH NOTE] Recorded in the cumulative 2005-2024 report.
-2022 — [ENGLISH FALLBACK] The Duhok martyrs' housing project completed 420 residential units in Roj City.
-[ENGLISH NOTE] First phase 368, second phase 52. Use 420 as the complete project; 368 is only the first phase.
-2024-26 — [ENGLISH FALLBACK] Camp shelter and winter support continued through BCF's regular camp programmes.
+2016 — ٦٠٠ کەرەڤان لە کەمپی دارکار عەجەم دامەزرێنران.
+2021 — ١٨٨ پەناگە لە کەمپی شاریە بە هاوکاری LDS Charities دروست کران.
+ئەم زانیارییە لە ڕاپۆرتی کۆکراوەی ساڵانی ٢٠٠٥ تا ٢٠٢٤ تۆمار کراوە.
+2022 — پڕۆژەی خانووبەرەی شەهیدانی دهۆک لە شاری ڕۆژ ٤٢٠ یەکەی نیشتەجێبوونی تەواو کرد.
+قۆناغی یەکەم ٣٦٨ یەکە و قۆناغی دووەم ٥٢ یەکە بوو. ژمارەی ٤٢٠ کۆی تەواوی پڕۆژەکەیە؛ ٣٦٨ تەنها ژمارەی قۆناغی یەکەمە.
+2024-26 — پشتگیری پەناگە و پێداویستییە زستانییەکانی کەمپەکان، لە ڕێگەی بەرنامە بەردەوامەکانی BCF بەردەوام بوو.
 
 [بەڕێوەبردنی کەمپ]
-2021 — [ENGLISH FALLBACK] BCF managed 20 IDP and refugee camps in Duhok Governorate.
-2021-26 — [ENGLISH FALLBACK] Recurring food, NFI, winter, health and camp-support projects operated in Khanke, Domiz, Sharya and other Duhok-area sites.
-2023 — [ENGLISH FALLBACK] Thirteen camps managed in Duhok.
-2024 — [ENGLISH FALLBACK] The Warm Winter heater project included Duhok schools, and flood-relief NFI support covered affected Duhok locations.
-2026 — [ENGLISH FALLBACK] Food, flour, white oil and other assistance continued across Duhok camps; Eid projects included major flour support for displaced families.
+2021 — لە پارێزگای دهۆک ٢٠ کەمپی ئاوارە و پەنابەری بەڕێوە دەبرد BCF
+2021-26 — پڕۆژەکانی خۆراک، کەلوپەلی ناخۆراکی، یارمەتیی زستانی، تەندروستی و پشتگیریی کەمپەکان بەردەوام لە خانکێ، دومیز، شاریە و ناوچەکانی تری دهۆک جێبەجێ دەکران.
+2023 — لە دهۆک ١٣ کەمپ بەڕێوەبران.
+2024 — پڕۆژەی گەرمکەرەوەی «زستانی گەرم» قوتابخانەکانی دهۆکیشی گرتەوە؛ هەروەها یارمەتییە ناخۆراکییەکانی فریاکەوتنی لافاو بۆ ناوچە زیانلێکەوتووەکانی دهۆک دابین کران.
+2026 — لە کەمپەکانی دهۆک، یارمەتیی خۆراک، ئارد، نەوتی سپی و یارمەتییەکانی تر بەردەوام دابەش دەکران؛ هەروەها لە پڕۆژەکانی جەژندا بڕێکی زۆر ئارد بۆ خێزانە ئاوارەکان دابەش کرا.
 
 [پشتگیری کەمئەندامان]
-2015 — [ENGLISH FALLBACK] The mobility-aid project launched and continued in Duhok.
-2021 — [ENGLISH FALLBACK] 154 mobility-aid beneficiaries in Duhok.
-2022 — [ENGLISH FALLBACK] 106 beneficiaries in Duhok.
-2026 — [ENGLISH FALLBACK] Eight wheelchairs distributed in May, with disability-support activities continuing.
+2015 — پڕۆژەی یارمەتییەکانی جووڵە و گواستنەوە لە دهۆک دەستی پێکرد و بەردەوام بوو.
+2021 — لە دهۆک ١٥٤ کەس سوودمەندی یارمەتییەکانی جووڵە و گواستنەوە بوون.
+2022 — لە دهۆک ١٠٦ کەس سوودمەند بوون.
+2026 — لە مانگی ئایار ٨ کورسی چەرخدار دابەش کرا؛ هەروەها چالاکییەکانی پشتگیری کەسانی خاوەن پێداویستی تایبەت بەردەوام بوون.
 
 [بژێوی]
-2023 — [ENGLISH FALLBACK] Livelihood-sector activity continued through the Duhok office and its vocational centres.
-2026 — [ENGLISH FALLBACK] The Kurdivia fruit-drying and green-garden initiative was implemented at the University of Duhok with the American Corner.
+2023 — چالاکییەکانی بواری بژێوی ژیان لە ڕێگەی ئۆفیسی دهۆک و ناوەندەکانی فێرکاریی پیشەیی بەردەوام بوون.
+2026 — دەستپێشخەری Kurdivia بۆ وشککردنەوەی بەرهەم و دروستکردنی باخچەی سەوز، لە زانکۆی دهۆک بە هاوکاری American Corner جێبەجێ کرا.
 
 [پارە و ئازیزان]
-2012 — [ENGLISH FALLBACK] Orphan sponsorship — the Kurdistan project — operates across Duhok and the other offices.
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 594 orphans in Duhok.
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Duhok.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Duhok counts.
-2026 — [ENGLISH FALLBACK] The Duhok office organised activities and cash support for orphaned children and their families.
+2012 — پڕۆژەی پاڵپشتی ئازیزان ــ پڕۆژەی کوردستان ــ لە دهۆک و ئۆفیسەکانی تری BCF جێبەجێ دەکرێت.
+2025 — قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان لە دهۆک گەیشتە ٥٩٤ ئازیز
+2025-26 — پڕۆژەی نوژین لە دهۆک جێبەجێ دەکرێت.
+ژمارەی ١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦، کۆی گشیی پڕۆژەکە لە هەموو ئۆفیسەکانە و تایبەت بە دهۆک نییە.
+2026 — ئۆفیسی دهۆک چالاکی جیاوازی بۆ منداڵانی ئازیز و خێزانەکانیان ڕێکخست، هەروەها یارمەتی دارایی پێشکەش کرد.
 
 [پشتگیری کۆمەڵگا]
-2025 — [ENGLISH FALLBACK] A community-support project announced carpets for 62 mosques across Duhok Province and the Zakho administration.
+2025 — پڕۆژەیەکی پشتگیری کۆمەڵگا ڕایگەیاند کە فەرش بۆ ٦٢ مزگەوت لە پارێزگای دهۆک و ئیدارەی زاخۆ دابین دەکرێت.
 
 --- Projects — سلێمانی ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] The Korek food project reached 1,500 households and Qurbani meat 1,000 households; other BCF and Kuwait-supported food projects also covered Sulaymaniyah.
-2022 — [ENGLISH FALLBACK] 3,550 hot meals reported in Sulaymaniyah.
-2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,149 families.
-2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 2,605 food parcels.
-[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
-2026 — [ENGLISH FALLBACK] 400 Ramadan food baskets, support for 75 families and teachers in the Penjwen area, and 500 food baskets to families of persons with disabilities.
+2021 — پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ١,٥٠٠ خێزان دابەش کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان دابەش کرا؛ پڕۆژەکانی تری BCF و ئەو پڕۆژانەی بە پشتگیری کوێت جێبەجێ کران، سلێمانیشیان گرتەوە.
+2022 — لە سلێمانی، ٣,٥٥٠ ژەم خواردنی گەرم دابەش کرا.
+2023 — لە پڕۆژەی گۆشتی قوربانیدا، ١,١٤٩ خێزان سوودمەند بوون.
+2024 — لە پوختەی بەرنامەکانی ڕەمەزاندا، ٢,٦٠٥ پاکێتی خۆراکی تۆمار کرا.
+ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە، هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان لەخۆدەگرن.
+2026 — لە ڕەمەزاندا ٤٠٠ سەبەتەی خۆراک دابەش کرا؛ هەروەها ٧٥ خێزان و مامۆستا لە ناوچەی پێنجوێن یارمەتییان وەرگرت، و ٥٠٠ سەبەتەی خۆراک بۆ خێزانەکانی کەسانی خاوەن پێداویستی تایبەت دابەش کرا.
 
 [پەروەردە و گەشەپێدان]
-2020 — [ENGLISH FALLBACK] The school-chair project also covered schools under the Sulaymaniyah and Penjwen education directorates.
-2022 — [ENGLISH FALLBACK] Fifty of the 203 schools in the renovation programme were in Sulaymaniyah.
+2020 — پڕۆژەی کورسی قوتابخانە، قوتابخانەکانی سەر بە بەڕێوەبەرایەتی پەروەردەی سلێمانی و پێنجوێنیشی گرتەوە.
+2022 — لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، ٥٠ قوتابخانە لە سلێمانی بوون.
 
 [کەلوپەلی ناخۆراکی]
-2023 — [ENGLISH FALLBACK] The NFI sector recorded 22,297 individual beneficiaries through the Sulaymaniyah office.
+2023 — لە ڕێگەی ئۆفیسی سلێمانی، ٢٢,٢٩٧ کەس لە یارمەتییە ناخۆراکییەکان سوودمەند بوون.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 125 mobility-aid beneficiaries.
-2022 — [ENGLISH FALLBACK] 115 beneficiaries.
-2026 — [ENGLISH FALLBACK] Eleven wheelchairs in May; food support also targeted 250 people with special needs in March and 500 disability-linked families in May.
+2021 — ١٢٥ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
+2022 — ١١٥ کەس یارمەتی و پشتگیرییان وەرگرت.
+2026 — لە مانگی ئایار ١١ کورسی چەرخدار دابەش کرا؛ هەروەها لە مانگی ئادار یارمەتی خۆراکی بۆ ٢٥٠ کەسی خاوەن پێداویستی تایبەت و لە مانگی ئایار بۆ ٥٠٠ خێزانی کەسانی خاوەن پێداویستی تایبەت دابەش کرا.
 
 [پاراستن]
-2024 — [ENGLISH FALLBACK] Sulaymaniyah was included in BCF's protection-sector geographic coverage.
+2024 — سلێمانی یەکێک بوو لەو ناوچانەی کە BCF لە بواری پاراستندا خزمەتگوزاری پێشکەش دەکرد.
 
 [پارە و ئازیزان]
-2021 — [ENGLISH FALLBACK] Sulaymaniyah students were included in the top Grade 12 orphan recognition programme.
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 561 orphans in Sulaymaniyah.
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Sulaymaniyah.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Sulaymaniyah counts.
-2026 — [ENGLISH FALLBACK] Two March cash projects supported 100 families with IQD 200,000 each and another 100 families with US$200 each.
+2021 — قوتابییە هەتیوە سەرکەوتووەکانی پۆلی ١٢ لە سلێمانی، لە بەرنامەی ڕێزلێناندا بەشدار بوون.
+2025 — لە قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان، ٥٦١ ئازیز لە سلێمانی یارمەتییان وەرگرت.
+2025-26 — پڕۆژەی نوژین لە سلێمانی جێبەجێ دەکرێت.
+١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦، کۆی گشتی سوودمەندانی پڕۆژەکە لە هەموو ئۆفیسەکانن؛ ئەم ژمارانە تایبەت بە سلێمانی نین.
+2026 — لە مانگی ئادار، دوو پڕۆژەی یارمەتی دارایی جێبەجێ کران؛ ١٠٠ خێزان هەر یەک ٢٠٠,٠٠٠ دیناری عێراقییان وەرگرت، و ١٠٠ خێزانی تر هەر یەک ٢٠٠ دۆلاریان وەرگرت.
 
 --- Projects — کەرکوک ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] The Korek food project reached 750 households and Qurbani meat 1,000 households; BCF and Kuwait-supported projects also covered Kirkuk.
-2022 — [ENGLISH FALLBACK] 3,500 hot meals reported in Kirkuk.
-2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,972 families.
-2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 6,750 food parcels.
-[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
-2026 — [ENGLISH FALLBACK] Prde food baskets for 200 families, and the 'Immortal Barzani, Symbol of Coexistence' project began with food and NFI support to 30 families.
+2021 — پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ٧٥٠ خێزان دابەش کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان دابەش کرا؛ پڕۆژەکانی BCF و ئەو پڕۆژانەی بە پشتگیری کوێت جێبەجێ کران، کەرکوکیشیان گرتەوە.
+2022 — لە کەرکووک، ٣,٥٠٠ ژەم خواردنی گەرم دابەش کرا.
+2023 — لە پڕۆژەی گۆشتی قوربانیدا، ١,٩٧٢ خێزان سوودمەند بوون.
+2024 — لە پوختەی بەرنامەکانی ڕەمەزاندا، ٦,٧٥٠ پاکێتی خۆراکی تۆمار کرا.
+ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە، هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان لەخۆدەگرن.
+2026 — لە پردێ، سەبەتەی خۆراک بۆ ٢٠٠ خێزان دابەش کرا؛ هەروەها پڕۆژەی «بارزانی نەمر، هێمای پێکەوەژیان» دەستی پێکرد و خۆراک و کەلوپەلی ناخۆراکی بۆ ٣٠ خێزان دابین کرد.
 
 [پەروەردە و گەشەپێدان]
-2022 — [ENGLISH FALLBACK] Fifty-two of the 203 schools in the renovation programme were in Kirkuk.
-2024 — [ENGLISH FALLBACK] The final 50-school programme included five schools in Kirkuk.
+2022 — لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، ٥٢ قوتابخانە لە کەرکووک بوون.
+2024 — لە بەرنامەی کۆتایی نۆژەنکردنەوەی ٥٠ قوتابخانەدا، ٥ قوتابخانەی کەرکووک نۆژەن کرانەوە.
 
 [کەلوپەلی ناخۆراکی]
-2023 — [ENGLISH FALLBACK] NFI activities recorded 3,850 individual beneficiaries.
+2023 — لە چالاکییەکانی یارمەتییە ناخۆراکییەکاندا، ٣,٨٥٠ کەس سوودمەند بوون.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 121 mobility-aid beneficiaries.
-2022 — [ENGLISH FALLBACK] 220 disability-support beneficiaries.
+2021 — ١٢١ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
+2022 — ٢٢٠ کەس کە خاوەن پێداویستی تایبەت بوون، یارمەتی و پشتگیرییان وەرگرت.
 
 [پاراستن]
-2024 — [ENGLISH FALLBACK] Kirkuk was included in protection-sector programmes.
+2024 — کەرکووک یەکێک بوو لەو ناوچانەی کە بەرنامەکانی بواری پاراستن لێی جێبەجێ دەکران.
 
 [بژێوی]
-2023 — [ENGLISH FALLBACK] Livelihood-sector work continued through the Kirkuk office.
+2023 — کار و چالاکییەکانی بواری بژێوی ژیان لە ڕێگەی ئۆفیسی کەرکووک بەردەوام بوون.
 
 [پارە و ئازیزان]
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 644 orphans in Kirkuk.
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Kirkuk.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Kirkuk counts.
-2026 — [ENGLISH FALLBACK] Cash distributions reached 300 families with US$100 each and another 50 families with US$200 each.
+2025 — لە قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستاندا، ٦٤٤ ئازیز لە کەرکووک سوودمەند بوون.
+2025-26 — پڕۆژەی نوژین لە کەرکووک جێبەجێ دەکرێت.
+١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦ سوودمەند بوون، بەڵام ئەم ژمارانە کۆی گشتی هەموو ئۆفیسەکانی پڕۆژەکەن و تایبەت بە کەرکووک نین.
+2026 — یارمەتی دارایی بۆ ٣٠٠ خێزان دابەش کرا، هەر خێزانێک ١٠٠ دۆلاری وەرگرت؛ هەروەها ٥٠ خێزانی تر هەر یەک ٢٠٠ دۆلاریان وەرگرت.
 
 --- Projects — نەینەوا / مووسڵ ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] The Korek project reached 1,850 households in Mosul and Qurbani meat 1,000 households in Nineveh; the Kuwait-supported food project also covered the governorate.
-2022 — [ENGLISH FALLBACK] 498,545 hot meals reported in Nineveh, with food-project beneficiaries also recorded in Nineveh and Zummar.
-2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,815 families in Mosul.
-2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 6,500 food parcels in Mosul.
-[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
+2021 — پڕۆژەی کۆرەک لە موسڵ یارمەتی خۆراکی بۆ ١,٨٥٠ خێزان دابین کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان لە نەینەوا دابەش کرا؛ پڕۆژەی خۆراکی بە پشتگیری کوێتیش پارێزگای نەینەوای گرتەوە.
+2022 — لە نەینەوا ٤٩٨,٥٤٥ ژەم خواردنی گەرم دابەش کرا؛ هەروەها سوودمەندانی پڕۆژەکانی خۆراک لە نەینەوا و زوممار تۆمار کران.
+2023 — پڕۆژەی گۆشتی قوربانی لە موسڵ گەیشتە ١,٨١٥ خێزان.
+2024 — لە پوختەی بەرنامەکانی ڕەمەزاندا، ٦,٥٠٠ پاکێتی خۆراکی لە موسڵ تۆمار کرا.
+ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان دەگرنەوە.
 
 [تەندروستی]
-2022 — [ENGLISH FALLBACK] Hasan Sham and Khazir Health Centers were listed among ongoing BCF health projects serving displacement-affected populations near Nineveh.
-2024 — [ENGLISH FALLBACK] Nineveh recorded major health-sector reach; Patient Mobility Services transported 525 patients from East Mosul camps to hospitals in Erbil and Mosul.
+2022 — ناوەندە تەندروستییەکانی حەسەن شام و خازر، بەشێک بوون لە پڕۆژە تەندروستییە بەردەوامەکانی BCF و خزمەتگوزارییان بۆ خەڵکی ئاوارەی ناوچەکانی نزیک نەینەوا پێشکەش دەکرد.
+2024 — لە نەینەوا، خزمەتگوزارییە تەندروستییەکان ژمارەیەکی زۆر کەسیان گرتەوە؛ هەروەها ٥٢٥ نەخۆش لە کەمپەکانی ڕۆژهەڵاتی موسڵ بۆ نەخۆشخانەکانی هەولێر و موسڵ گواسترایەوە.
 
 [پەروەردە و گەشەپێدان]
-2022 — [ENGLISH FALLBACK] Twenty of the 203 schools in the renovation programme were in Nineveh.
-2024 — [ENGLISH FALLBACK] The final 50-school programme included five schools in Mosul.
+2022 — لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، ٢٠ قوتابخانەی نەینەوا نۆژەن کرانەوە.
+2024 — لە بەرنامەی کۆتایی نۆژەنکردنەوەی ٥٠ قوتابخانەدا، ٥ قوتابخانەی موسڵ نۆژەن کرانەوە.
 
 [ئاو و خاوێنکاری]
-Multi-year — [ENGLISH FALLBACK] A concrete water tank was constructed for Lalish as part of BCF's longer-term WASH infrastructure work.
-[ENGLISH NOTE] The cumulative report does not specify a year.
+Multi-year — تانکێکی کۆنکرێتی بۆ هەڵگرتنی ئاو لە لالش دروست کرا، وەک بەشێک لە پڕۆژە درێژخایەنەکانی BCF لە بواری ئاو، پاکوخاوێنی و تەندروستیی ژینگە.
+لە ڕاپۆرتی کۆکراوەکەدا ساڵی جێبەجێکردنی ئەم پڕۆژەیە دیاری نەکراوە.
 
 [بەڕێوەبردنی کەمپ]
-2023 — [ENGLISH FALLBACK] Ten camps managed in Nineveh, with NFI office activity also continuing.
-2024 — [ENGLISH FALLBACK] Camp coordination and multi-sector services remained active across displacement sites.
+2023 — لە نەینەوا ١٠ کەمپ بەڕێوەدەبران، هەروەها چالاکییەکانی ئۆفیسی یارمەتییە ناخۆراکییەکان بەردەوام بوون.
+2024 — لە شوێنەکانی نیشتەجێبوونی ئاوارەکان، هەماهەنگی کەمپەکان و خزمەتگوزارییەکانی چەند بوارێکی جیاواز بەردەوام بوون.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 208 mobility-aid beneficiaries in Nineveh.
-2022 — [ENGLISH FALLBACK] 115 disability-support beneficiaries.
+2021 — لە نەینەوا، ٢٠٨ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
+2022 — هەروەها ١١٥ کەس کە خاوەن پێداویستیی تایبەت بوون، یارمەتی و پشتگیرییان وەرگرت.
 
 [پاراستن]
-2024 — [ENGLISH FALLBACK] Nineveh was included in protection-sector programmes.
+2024 — نەینەوا یەکێک بوو لەو ناوچانەی کە بەرنامەکانی بواری پاراستن لێ جێبەجێ دەکران.
 
 [بژێوی]
-2023 — [ENGLISH FALLBACK] Livelihood-sector work recorded through the Nineveh office.
+2023 — کار و چالاکییەکانی بواری بژێوی ژیان لە ڕێگەی ئۆفیسی نەینەوا تۆمار کران.
 
 [پارە و ئازیزان]
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Nineveh and Mosul as part of its multi-office family-support programme.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Nineveh counts.
+2025-26 — پڕۆژەی نوژین لە نەینەوا و موسڵ جێبەجێ دەکرێت، و لە ڕێگەی چەند ئۆفیسێکەوە پشتگیری خێزانەکان دەکات.
+١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦ کۆی گشتیی سوودمەندانی هەموو ئۆفیسەکانی پڕۆژەکەن؛ ئەم ژمارانە تایبەت بە نەینەوا نین.
 
 --- Projects — شنگال ---
 
 [وەڵامدانەوەی فریاکەوتن]
-2007 — [ENGLISH FALLBACK] BCF's early major relief campaign responded to the Gir Uzer and Siba Sheikh Khidr bombing disaster in the Sinjar area — one of the foundation's first large emergency responses.
-2014 — [ENGLISH FALLBACK] After the ISIS attack and the Yazidi genocide, BCF delivered aid to Mount Sinjar by helicopter.
-[ENGLISH NOTE] Recounted in BCF's 2025 historical project article.
-2015 — [ENGLISH FALLBACK] BCF opened an office on Mount Sinjar and supported displaced families with water, food, clothing and shelter; schools were built on the mountain with electricity and water.
-2024 — [ENGLISH FALLBACK] The Restoration of Life project constructed 20 houses for families in Sinjar.
-2025 — [ENGLISH FALLBACK] BCF highlighted continued Restoration of Life work and ongoing support for roughly 300 orphans in Sinjar.
+2007 — یەکێک لە یەکەم هەڵمەتە گەورەکانی فریاکەوتنی BCF، وەڵامدانەوە بە کارەساتی تەقینەوەکانی گڕ عوزێر و سیبا شێخ خدر لە ناوچەی شنگال بوو؛ ئەمە یەکێک بوو لە یەکەم وەڵامدانەوە فریاکەوتنە گەورەکانی دامەزراوەکە.
+2014 — دوای هێرشی داعش و جینۆسایدی ئێزیدییەکان، BCF بە هەلیکۆپتەر یارمەتی بۆ چیای شنگال گەیاند.
+ئەم زانیارییە لە بابەتێکی مێژوویی BCF لە ساڵی ٢٠٢٥ دووبارە باس کراوەتەوە.
+2015 — BCF ئۆفیسێکی لە چیای شنگال کردەوە و بە ئاو، خۆراک، جل‌ و بەرگ و پەناگە پشتگیری خێزانە ئاوارەکانی کرد؛ هەروەها قوتابخانە لەسەر چیا دروست کران و ئاو و کارەبایان بۆ دابین کرا.
+2024 — پڕۆژەی «گەڕاندنەوەی ژیان» ٢٠ خانووی بۆ خێزانەکان لە شنگال دروست کرد.
+2025 — BCF جەختی لە بەردەوامبوونی پڕۆژەی «گەڕاندنەوەی ژیان» کردەوە، هەروەها پشتگیری نزیکەی ٣٠٠ ئازیزان لە شنگال بەردەوام بوو.
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] Sinjar was included in BCF office and disability-support activity.
-2022 — [ENGLISH FALLBACK] A winter convoy delivered flour and fuel to 1,300 displaced families on Mount Sinjar and its surroundings.
-2026 — [ENGLISH FALLBACK] 750 food baskets in Zummar and 500 across Sinjar, with further Ramadan and Eid assistance.
+2021 — شنگال لە بەرنامە و چالاکییەکانی BCF بۆ پشتگیری کەسانی خاوەن پێداویستی تایبەتدا بەشدار بوو.
+2022 — لە زستاندا، کاروانێکی یارمەتی ئارد و سووتەمەنی بۆ ١,٣٠٠ خێزانی ئاوارە لە چیای شنگال و دەوروبەری دابەش کرد.
+2026 — لە زوممار ٧٥٠ سەبەتەی خۆراک و لە ناوچەکانی شنگال ٥٠٠ سەبەتەی خۆراک دابەش کرا؛ هەروەها لە ڕەمەزان و جەژندا یارمەتی خۆراکی و یارمەتییەکانی تر بەردەوام بوون.
 
 [تەندروستی]
-2026 — [ENGLISH FALLBACK] A Dental Health Unit opened at Zorava Community Health Center for free examination, consultation and treatment.
+2026 — لە ناوەندی تەندروستی کۆمەڵگەی زۆراڤا، بەشێکی تایبەت بە تەندروستی ددان کرایەوە، کە پشکنین، ڕاوێژکاری و چارەسەری ددان بە خۆڕای پێشکەش دەکات.
 
 [پەروەردە و گەشەپێدان]
-2015 — [ENGLISH FALLBACK] Schools were built on Mount Sinjar during the displacement period.
-[ENGLISH NOTE] From BCF's historical website account.
-2023 — [ENGLISH FALLBACK] Food parcels and sleeping sheets were provided to 80 Grade 12 girls travelling from Sinjar to Duhok and Semel for their final exams.
-2024 — [ENGLISH FALLBACK] The final 50-school renovation programme included two schools in Sinjar.
+2015 — لە ماوەی ئاوارەبوونی خەڵکی شنگالدا، چەند قوتابخانەیەک لە چیای شنگال دروست کران.
+ئەم زانیارییە لە بابەتێکی مێژوویی BCF لە ماڵپەڕەکەی هاتووە.
+2023 — بۆ ٨٠ کچە قوتابیی پۆلی ١٢ کە لە شنگالەوە بۆ دهۆک و سێمێل دەچوون بۆ بەشداری لە تاقیکردنەوە کۆتاییەکانیان، پاکێتی خۆراک و پێداویستیی خەویان بۆ دابین کرا.
+2024 — لە بەرنامەی کۆتایی نۆژەنکردنەوەی ٥٠ قوتابخانەدا، ٢ قوتابخانەی شنگال نۆژەن کرانەوە.
 
 [ئاو و خاوێنکاری]
-2016 — [ENGLISH FALLBACK] Four water wells drilled in the Sinjar Mountain area.
+2016 — لە ناوچەی چیای شنگال، ٤ بیری ئاو حەفر کران.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 63 mobility-aid beneficiaries in Sinjar.
+2021 — لە شنگال، ٦٣ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
 
 [پارە و ئازیزان]
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 261 orphans in Sinjar; BCF separately reported ongoing support for about 300 Sinjar orphans.
-2026 — [ENGLISH FALLBACK] The eighth Poland-linked Azizan phase delivered cash, food baskets, school bags, supplies and desks, with separate cash support for low-income families.
+2025 — قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان لە شنگال گەیشتە ٢٦١ ئازیز؛ هەروەها BCF بە جیا ڕایگەیاند کە پشتگیری نزیکەی ٣٠٠ هەتیوی شنگال بەردەوامە.
+2026 — لە قۆناغی هەشتەمی پڕۆژەی ئازیزان، کە بە هاوکاری پۆڵەندا جێبەجێ کرا، یارمەتی دارایی، سەبەتەی خۆراک، جانتای قوتابخانە، پێداویستی خوێندن و مێزی قوتابی دابەش کرا؛ هەروەها یارمەتی دارایی جیاواز بۆ خێزانە کەم‌داهاتەکان دابین کرا.
 
 --- Projects — گەرمیان / کەلار ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] BCF food and Qurbani projects covered Garmian and Kalar; Qurbani reached 500 households.
-2022 — [ENGLISH FALLBACK] 2,610 hot meals reported in Garmian.
-2023 — [ENGLISH FALLBACK] The Qurbani meat project reached 1,188 families in Garmian.
-2026 — [ENGLISH FALLBACK] Food baskets distributed in Kifri, Khanaqin, Rizgari and Darbandikhan, with Qurbani meat distributed in Darbandikhan.
+2021 — پڕۆژەکانی خۆراک و گۆشتی قوربانی BCF لە گەرمیان و کەلار جێبەجێ کران؛ گۆشتی قوربانی بۆ ٥٠٠ خێزان دابەش کرا.
+2022 — لە گەرمیان، ٢,٦١٠ ژەم خواردنی گەرم دابەش کرا.
+2023 — لە گەرمیان، گۆشتی قوربانی بۆ ١,١٨٨ خێزان دابەش کرا.
+2026 — لە کفری، خانەقین، ڕزگاری و دەربەندیخان سەبەتەی خۆراک دابەش کرا؛ هەروەها لە دەربەندیخان گۆشتی قوربانی دابەش کرا.
 
 [وەڵامدانەوەی فریاکەوتن]
-2024 — [ENGLISH FALLBACK] The flood-relief project covered Kalar and Rzgari among the affected areas, distributing essential household and winter items.
+2024 — پڕۆژەی یارمەتی زیانلێکەوتووانی لافاو، کەلار و ڕزگاریشی گرتەوە؛ لەو ناوچانە کەلوپەلی پێویستی ماڵەوە و پێداویستی زستانی بۆ خێزانە زیانلێکەوتووەکان دابەش کرا.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 95 mobility-aid beneficiaries in Garmian.
-2022 — [ENGLISH FALLBACK] 176 disability-support beneficiaries.
-2026 — [ENGLISH FALLBACK] Wheelchairs provided in Kalar.
+2021 — لە گەرمیان، ٩٥ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
+2022 — ١٧٦ کەس کە خاوەن پێداویستی تایبەت بوون، یارمەتی و پشتگیرییان وەرگرت.
+2026 — لە کەلار، کورسی چەرخدار دابەش کرا.
 
 [پاراستن]
-2024 — [ENGLISH FALLBACK] Garmian was included in protection-sector coverage.
+2024 — لە گەرمیان، بەرنامە و خزمەتگوزارییەکانی بواری پاراستن جێبەجێ دەکران.
 
 [بژێوی]
-2023 — [ENGLISH FALLBACK] Livelihood-sector activities were recorded through the Garmian office.
+2023 — چالاکییەکانی بواری بژێوی ژیان لە ڕێگەی ئۆفیسی گەرمیان بەڕێوەچوون.
 
 [پارە و ئازیزان]
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 454 orphans in Garmian.
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Garmian and Khanaqin.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Garmian counts.
-2026 — [ENGLISH FALLBACK] The Garmian office distributed cash support to low-income families.
+2025 — لە قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان، ٤٥٤ ئازیز لە گەرمیان یارمەتییان وەرگرت.
+2025-26 — پڕۆژەی نوژین لە گەرمیان و خانەقین جێبەجێ دەکرێت.
+١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦، کۆی گشتی سوودمەندانی پڕۆژەکە لە هەموو ئۆفیسەکانن و تایبەت بە گەرمیان نین.
+2026 — ئۆفیسی گەرمیان یارمەتی دارایی بۆ خێزانە کەمداهاتەکان دابەش کرد.
 
 --- Projects — هەڵەبجە ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] Food projects included Halabja; Qurbani meat reached 500 households.
-2022 — [ENGLISH FALLBACK] Food-sector distributions continued; 1,055 food-project beneficiaries were listed in the annual location table.
-2023 — [ENGLISH FALLBACK] Qurbani meat reached 400 families.
-2024 — [ENGLISH FALLBACK] The Ramadan overview recorded 500 food parcels in Halabja.
-[ENGLISH NOTE] Annual report and website Ramadan overviews cover different project scopes.
-2026 — [ENGLISH FALLBACK] Qurbani meat distributed to 235 families, with food and orphan-family assistance also continuing.
+2021 — پڕۆژەکانی خۆراک هەڵەبجەشیان گرتەوە؛ گۆشتی قوربانی بۆ ٥٠٠ خێزان دابەش کرا.
+2022 — دابەشکردنی یارمەتی خۆراکی بەردەوام بوو؛ لە خشتەی ناوچەکانی ڕاپۆرتی ساڵانەدا ١,٠٥٥ سوودمەندی پڕۆژەکانی خۆراک لە هەڵەبجە تۆمار کران.
+2023 — گۆشتی قوربانی بۆ ٤٠٠ خێزان دابەش کرا.
+2024 — لە پوختەی بەرنامەکانی ڕەمەزاندا، ٥٠٠ پاکێتی خۆراکی لە هەڵەبجە تۆمار کرا.
+ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە، هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان لەخۆدەگرن.
+2026 — گۆشتی قوربانی بۆ ٢٣٥ خێزان دابەش کرا؛ هەروەها یارمەتی خۆراک و پشتگیری خێزانەکانی ئازیزان بەردەوام بوو.
 
 [تەندروستی]
-2020 — [ENGLISH FALLBACK] COVID-19 medical assistance delivered to the Halabja Health Directorate.
+2020 — یارمەتی و پێداویستی پزیشکی کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی هەڵەبجە دابین کرا.
 
 [پەروەردە و گەشەپێدان]
-2022 — [ENGLISH FALLBACK] Eleven of the 203 schools in the renovation programme were in Halabja.
-2023 — [ENGLISH FALLBACK] Halabja Kindergarten opened under the Education and Development sector.
+2022 — لە بەرنامەی نۆژەنکردنەوەی ٢٠٣ قوتابخانەدا، ١١ قوتابخانە لە هەڵەبجە بوون.
+2023 — باخچەی منداڵانی هەڵەبجە لە چوارچێوەی بواری پەروەردە و گەشەپێداندا کرایەوە.
 
 [کەلوپەلی ناخۆراکی]
-2023 — [ENGLISH FALLBACK] NFI activity recorded through the Halabja office.
-2024 — [ENGLISH FALLBACK] Halabja was included in the flood-relief NFI response.
+2023 — لە ڕێگەی ئۆفیسی هەڵەبجە، یارمەتییە ناخۆراکییەکان دابەش کران.
+2024 — لە هەڵەبجەش، یارمەتییە ناخۆراکییەکان بۆ خێزانە زیانلێکەوتووەکانی لافاو دابەش کران.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] Two mobility-aid beneficiaries.
-2022 — [ENGLISH FALLBACK] Ten disability-support beneficiaries.
+2021 — ٢ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
+2022 — ١٠ کەس کە خاوەن پێداویستی تایبەت بوون، یارمەتی و پشتگیرییان وەرگرت.
 
 [پارە و ئازیزان]
-2021 — [ENGLISH FALLBACK] Halabja students were included in the top Grade 12 orphan recognition programme.
-2025 — [ENGLISH FALLBACK] The Azizan-Kurdistan March stage reached 55 orphans in Halabja.
-2026 — [ENGLISH FALLBACK] Forty low-income families received US$200 each, and orphan families also received food and financial support.
+2021 — قوتابییە ئازیزە سەرکەوتووەکانی پۆلی ١٢ لە هەڵەبجە، لە بەرنامەی ڕێزلێناندا بەشدار بوون.
+2025 — لە قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان، ٥٥ ئازیز لە هەڵەبجە سوودمەند بوون.
+2026 — ٤٠ خێزانی کەمداهات هەر یەک ٢٠٠ دۆلاریان وەرگرت؛ هەروەها بۆ خێزانەکانی ئازیزان یارمەتی خۆراک و پارە دابین کرا.
 
 --- Projects — سۆران ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] The Korek food project reached 300 households in Soran.
+2021 — لە سۆران، پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ٣٠٠ خێزان دابین کرد.
 
 [پەروەردە و گەشەپێدان]
-2024 — [ENGLISH FALLBACK] The final 50-school renovation programme included five schools in Soran.
+2024 — لە کۆی ٥٠ قوتابخانەی ئەو بەرنامەیەی نۆژەن کرانەوە، ٥ قوتابخانە لە سۆران بوون.
 
 [پەناگە و نیشتەجێبوون]
-2024 — [ENGLISH FALLBACK] Soran was included in the shared Erbil/Soran martyrs' housing distribution project.
-[ENGLISH NOTE] 540 units project-wide; the exact city split is not published in the reviewed source.
+2024 — سۆران لە پڕۆژەی هاوبەشی دابەشکردنی خانووی شەهیدان بۆ هەولێر و سۆران بەشدار بوو.
+لە کۆی گشتیی پڕۆژەکەدا ٥٤٠ یەکەی نیشتەجێبوون هەبوو، بەڵام لە سەرچاوەی پێداچوونەوەکراودا دیاری نەکراوە کە چەند یەکە بۆ هەولێر و چەند یەکە بۆ سۆران بوو.
 
 [کەلوپەلی ناخۆراکی]
-2024 — [ENGLISH FALLBACK] The Warm Winter heater programme included schools in Soran.
+2024 — پڕۆژەی «گەرمی زستانە» بۆ دابینکردنی سۆپا، قوتابخانەکانی سۆرانیشی گرتەوە.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 62 mobility-aid beneficiaries in Soran.
-2021 — [ENGLISH FALLBACK] Mobility-aid beneficiaries in the surrounding administration: Rawanduz 16 and Sidakan 32.
-2026 — [ENGLISH FALLBACK] World Autism Awareness activities at the Mother Community Center involved 52 children.
+2021 — لە سۆران، ٦٢ کەس سوودمەندی یارمەتییەکانی جووڵە و گواستنەوە بوون.
+2021 — لە ناوچەکانی دەوروبەری ئیدارەی سۆرانیش، لە ڕەواندز ١٦ کەس و لە سیدەکان ٣٢ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.
+2026 — لە چالاکییەکانی ڕۆژی جیهانی هۆشیارکردنەوە دەربارەی ئۆتیزم، کە لە ناوەندی کۆمەڵایەتی دایک بەڕێوەچوو، ٥٢ منداڵ بەشدار بوون.
 
 [پارە و ئازیزان]
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Soran.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Soran counts.
+2025-26 — پڕۆژەی نوژین لە سۆران جێبەجێ دەکرێت.
+ژمارەی ١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦، کۆی گشتی سوودمەندانی پڕۆژەکە لە هەموو ئۆفیسەکانە، نەک تەنها لە سۆران.
 
 --- Projects — زاخۆ ---
 
 [دڵنیایی خۆراک]
-2026 — [ENGLISH FALLBACK] Food assistance distributed to low-income families in Zakho.
+2026 — هاوکاری خۆراک بەسەر خێزانە کەمداهاتەکانی زاخۆ دابەشکرا.
 
 [پەروەردە و گەشەپێدان]
-2024 — [ENGLISH FALLBACK] The final 50-school renovation programme included four schools in Zakho.
-2026 — [ENGLISH FALLBACK] A five-month literacy and education project launched for 50 refugee children, including school supplies and clothing.
+2024 — لە بەرنامەی کۆتایی نۆژەنکردنەوەی ٥٠ قوتابخانە، ٤ قوتابخانە لە زاخۆ بوون.
+2026 — پڕۆژەیەکی پێنج مانگی خوێندەواری و پەروەردە بۆ 50 منداڵی پەنابەر دەستیپێکرد، کە پێداویستییەکانی قوتابخانە و جل‌ وبەرگیشی بۆیان دابین دەکرد.
 
 [وەڵامدانەوەی فریاکەوتن]
-2026 — [ENGLISH FALLBACK] The Rizgari flood response supported 60 affected families with food and non-food items.
+2026 — لە پڕۆژەی یارمەتیدانی زیانلێکەوتووانی لافاو لە ڕزگاری، خۆراک و کەلوپەلی ناخۆراکی بۆ ٦٠ خێزانی زیانلێکەوتوو دابەش کرا.
 
 [کەلوپەلی ناخۆراکی]
-2024 — [ENGLISH FALLBACK] The Warm Winter heater project included Zakho, and the flood-relief NFI project also covered the area.
+2024 — پڕۆژەی گەرمکەرەوەی گەرمی زستانە، کە سۆپای دابەش دەکرد زاخۆشی گرتەوە، هەروەها لە زاخۆ یارمەتی کەلوپەلی ناخۆراکی بۆ خێزانە زیانلێکەوتووەکانی لافاو دابەش کرا.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] 58 mobility-aid beneficiaries in Zakho.
-2026 — [ENGLISH FALLBACK] Wheelchairs distributed through the Zakho representative office in April.
+2021 — لە زاخۆ ٥٨ کەس سوودمەندی یارمەتییەکانی جووڵە و گواستنەوە بوون.
+2026 — لە مانگی نیسان، کورسی چەرخدار لە ڕێگەی ئۆفیسی نوێنەرایەتیی زاخۆ دابەش کران.
 
 [پارە و ئازیزان]
-2025-26 — [ENGLISH FALLBACK] Nujin operates in Zakho.
-[ENGLISH NOTE] 15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Zakho counts.
+2025-26 — پڕۆژەی نوژین لە زاخۆ جێبەجێ دەکرێت.
+لە ساڵی ٢٠٢٥دا ١٥ خێزان و لە ساڵی ٢٠٢٦دا ١٢ خێزان سوودمەند بوون، بەڵام ئەم ژمارانە کۆی هەموو ئۆفیسەکانی پڕۆژەکەن و تایبەت بە زاخۆ نین.
 
 [پشتگیری کۆمەڵگا]
-2025 — [ENGLISH FALLBACK] A carpet project was announced for 62 mosques across Duhok Province and the Zakho administration.
+2025 — پڕۆژەیەکی فەرش بۆ ٦٢ مزگەوت لە پارێزگای دهۆک و ئیدارەی زاخۆ ڕاگەیەنرا.
 
 --- Projects — ئاکرێ ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] Akre Camp received food parcels for 243 refugee households through German Caritas; Duhok and Akre also shared Korek food support.
-2026 — [ENGLISH FALLBACK] 300 Ramadan food baskets, and 250 families received Qurbani meat.
+2021 — کەمپی ئاکرێ لە ڕێگەی Caritasی ئەڵمانیا پاکێتی خۆراکی بۆ ٢٤٣ خێزانی پەنابەر دابەش کرد؛ هەروەها لە دهۆک و ئاکرێ یارمەتی خۆراکی پڕۆژەی کۆڕەک دابەش کرا.
+2026 — لە ڕەمەزاندا ٣٠٠ سەبەتەی خۆراک دابەش کرا، هەروەها ٢٥٠ خێزان گۆشتی قوربانییان وەرگرت.
 
 [تەندروستی]
-Historic — [ENGLISH FALLBACK] The cumulative report records the renovation of the maternity hospital in Akre.
-[ENGLISH NOTE] No year is specified in the cumulative summary.
+Historic — لە ڕاپۆرتی کۆکراوەدا نۆژەنکردنەوەی نەخۆشخانەی منداڵبوون لە ئاکرێ تۆمار کراوە.
+لە پوختەی ڕاپۆرتە کۆکراوەکەدا ساڵی جێبەجێکردنی ئەم پڕۆژەیە دیاری نەکراوە.
 
 [ژینگە]
-2021 — [ENGLISH FALLBACK] The Akre Greening Project planted 10,000 oak saplings.
+2021 — لە پڕۆژەی سەوزکردنەوەی ئاکرێدا، ١٠,٠٠٠ نەمامی داربەڕوو چێنرا.
 
 [پارە و ئازیزان]
-2026 — [ENGLISH FALLBACK] 82 families and patients received cash assistance across several aid categories.
+2026 — یارمەتی دارایی بۆ ٨٢ خێزان و نەخۆش، لە چوارچێوەی چەند بەرنامەی جیاوازی یارمەتیدا دابین کران.
 
 --- Projects — ئامێدی / شێلادزێ / دەرەلوک / سەرسنگ ---
 
 [دڵنیایی خۆراک]
-2026 — [ENGLISH FALLBACK] 275 food baskets distributed across Sheladize, Deraluk, Amedi, Qadish and Sarsang to environmental workers and low-income families; separate food aid also reached Shiladze and Siriye.
+2026 — ٢٧٥ سەبەتەی خۆراک لە شێلادزێ، دێرەلووک، ئامێدی، قادش و سەرسەنگ بۆ کرێکارانی ژینگە و خێزانە کەم‌ داهاتەکان دابەش کرا؛ هەروەها یارمەتیی خۆراکی جیاواز بۆ شێلادزێ و سیریێش گەیەنرا.
 
 [پشتگیری کەمئەندامان]
-2021 — [ENGLISH FALLBACK] Mobility-aid beneficiaries: Amedi 4, Shiladze 3, Dereluk 12 and Sarsang 8.
-2024 — [ENGLISH FALLBACK] The Amedi Smile Center, with Caritas Germany, served 159 beneficiaries.
-2026 — [ENGLISH FALLBACK] Special-care and autism-awareness activities continued at the Amedi-area centres.
+2021 — سوودمەندانی یارمەتییەکانی جووڵە و گواستنەوە: لە ئامێدی ٤ کەس، لە شێلادزێ ٣ کەس، لە دێرەلووک ١٢ کەس و لە سەرسەنگ ٨ کەس.
+2024 — ناوەندی زەردەخەنەی ئامێدی، بە هاوکاری Caritasی ئەڵمانیا، خزمەتگوزاریی بۆ ١٥٩ کەس پێشکەش کرد.
+2026 — لە ناوەندەکانی ناوچەی ئامێدی، خزمەتگوزاری چاودێری تایبەت و چالاکییەکانی هۆشیارکردنەوە دەربارەی ئۆتیزم بەردەوام بوون.
 
 [پارە و ئازیزان]
-2026 — [ENGLISH FALLBACK] The Amedi representative office distributed support to 43 low-income families and patients.
+2026 — ئۆفیسی نوێنەرایەتی ئامێدی یارمەتی بۆ ٤٣ خێزانی کەم‌ داهات و نەخۆش دابەش کرد.
 
 --- Projects — ڕۆژئاوای کوردستان، بە عەفرینەوە ---
 
 [وەڵامدانەوەی فریاکەوتن]
-2023 — [ENGLISH FALLBACK] BCF's earthquake response expanded into affected areas of Türkiye and Syria; Afrin received food, NFI and Qurbani assistance.
-2023 — [ENGLISH FALLBACK] The Qurbani meat project in Afrin reached 2,702 families.
-2026 — [ENGLISH FALLBACK] A large-scale response ran across Qamishlo, Hasakah, Amuda, Girke Lege, Derik, Tirbespiye, Derbasiye and the surrounding areas.
-2026 — [ENGLISH FALLBACK] BCF reported 415 truckloads of humanitarian aid and assistance to 29,070 families; 200 tons of flour supported the production and distribution of 3.36 million loaves.
-2026 — [ENGLISH FALLBACK] Food and NFI assistance continued in Afrin camps, alongside youth football, cultural and other community activities.
+2023 — وەڵامدانەوەی BCF بۆ بوومەلەرزەکە گەیشتە ناوچە زیان‌لێکەوتووەکانی تورکیا و سوریا. لە عەفرین خۆراک، کەلوپەلی پێویستی ڕۆژانە و گۆشتی قوربانی دابەش کرا.
+2023 — لە عەفرین، گۆشتی قوربانی بە ٢,٧٠٢ خێزان دابەش کرا.
+2026 — یارمەتییە بەرفراوانەکان لە قامیشلۆ، حەسەکە، عامودا، گرکێ لەگە، دێریک، تربەسپیێ، دەرباسیێ و ناوچەکانی دەوروبەریان جێبەجێ کران.
+2026 — BCF ڕایگەیاند کە ٤١٥ بار یارمەتی مرۆیی گەیەنراوە و ٢٩,٠٧٠ خێزان سوودمەند بوون. هەروەها ٢٠٠ تەن ئارد دابین کرا، کە بەهۆی ئەوەوە ٣.٣٦ ملیۆن نان بەرهەم هێنرا و دابەش کرا.
+2026 — لە کەمپەکانی عەفرین، دابەشکردنی خۆراک و کەلوپەلی پێویستی ڕۆژانە بەردەوام بوو. هەروەها یاری تۆپی پێ بۆ گەنجان، چالاکییە کەلتوورییەکان و چالاکییە کۆمەڵایەتییە جیاوازەکان بەڕێوەچوون.
 
 [تەندروستی]
-Ongoing — [ENGLISH FALLBACK] The Mobile Clinic in Afrin is listed among BCF's ongoing projects.
-2026 — [ENGLISH FALLBACK] 8,707 people received medical treatment or medicines, and 294 cartons of medicines and supplies were delivered in one month to hospitals and health centres including Derik, Chil Agha and Hasakah.
+Ongoing — BCF لە عەفرین کلینیکێکی گەڕۆکی هەیە کە تا ئێستا بەردەوامە لە پێشکەشکردنی خزمەتگوزاریی تەندروستی.
+2026 — ٨,٧٠٧ کەس چارەسەری پزیشکی یان دەرمانیان وەرگرت. هەروەها لە ماوەی یەک مانگدا ٢٩٤ کارتۆن دەرمان و پێداویستی تەندروستی بۆ نەخۆشخانە و ناوەندە تەندروستییەکانی دێریک، چل ئاغا و حەسەکە نێردران.
 
 [پەروەردە و گەشەپێدان]
-2024 — [ENGLISH FALLBACK] The Barzani Culture & Development Center in Afrin trained 213 participants in practical, market-oriented skills.
-2024 — [ENGLISH FALLBACK] The Afrin University student-support programme assisted 125 students.
-2026 — [ENGLISH FALLBACK] A reading and writing educational course and youth-development activities continued in Afrin.
+2024 — لە سەنتەری کەلتوور و گەشەپێدانی بارزانی لە عەفرین، ٢١٣ کەس فێری پیشە و شارەزایییەکان بوون کە بۆ دۆزینەوەی کار و کارکردن لە بازاڕی کار پێویستن.
+2024 — بەرنامەی پشتگیری خوێندکارانی زانکۆی عەفرین، یارمەتی ١٢٥ خوێندکاری دا.
+2026 — لە عەفرین، کۆرسی فێربوونی خوێندنەوە و نووسین و هەروەها چالاکییەکانی گەشەپێدانی گەنجان بەردەوام بوون.
 
 [بژێوی]
-2026 — [ENGLISH FALLBACK] 370,245 litres of diesel were distributed to 9,682 families, and the humanitarian operation created 1,483 employment opportunities.
+2026 — ٣٧٠,٢٤٥ لیتر گازۆیل بە ٩,٦٨٢ خێزان دابەش کرا. هەروەها ئەم کارە مرۆییە ١,٤٨٣ دەرفەتی کاری دروست کرد.
 
 [پارە و ئازیزان]
-2025 — [ENGLISH FALLBACK] Azizan financial assistance was distributed to 192 orphans across Afrin villages and townships, and December 2025 assistance again reached 192 orphans.
-2025 — [ENGLISH FALLBACK] Azizan education and welfare support continued for the same 192 orphans.
-2026 — [ENGLISH FALLBACK] Orphan and family-support services continued through the Afrin office.
+2025 — لە گوند و شارۆچکەکانی عەفرین، یارمەتی دارایی بە ١٩٢ منداڵی ئازیز دابەش کرا. لە کانوونی یەکەمی ٢٠٢٥دا هەمان یارمەتی دیسان گەیشتە ١٩٢ منداڵی ئازیز.
+2025 — پشتگیری خوێندن و خۆشگوزەرانی ئازیزان بۆ هەمان ١٩٢ منداڵی ئازیز بەردەوام بوو.
+2026 — لە نووسینگەی عەفرین، خزمەتگوزارییەکانی پشتگیری منداڵانی ئازیز و خێزانەکان بەردەوام بوون.
 
 --- Projects — پارێزگاکانی دیکەی عێراق ---
 
 [دڵنیایی خۆراک]
-2021 — [ENGLISH FALLBACK] The Kuwait-supported food project included Baghdad, Diyala and Dhi Qar alongside Kurdistan locations; 14,100 households benefited across all listed locations.
-2022 — [ENGLISH FALLBACK] The food-project location table included Anbar, with 126 beneficiaries listed in the prepared-food distribution table.
-2023 — [ENGLISH FALLBACK] The Qurbani meat project included Anbar, reaching 480 families.
+2021 — پڕۆژەی خۆراک کە بە پشتیوانی کوەیت جێبەجێ کرا، بەغدا، دیالە، زیقار و هەندێک ناوچەی کوردستانی لەخۆگرت. لە هەموو ئەو ناوچانەدا، ١٤,١٠٠ خێزان سوودمەند بوون.
+2022 — ئەنبار یەکێک بوو لە ناوچەکانی پڕۆژەی خۆراک. لە دابەشکردنی خواردنی ئامادەدا، ١٢٦ کەس لە ئەنبار سوودمەند بوون.
+2023 — لە ئەنبار، گۆشتی قوربانی بە ٤٨٠ خێزان دابەش کرا.
 
 [تەندروستی]
-2021 — [ENGLISH FALLBACK] A medical convoy was sent to Samawah Governorate with 50 types of medicines and medical supplies.
+2021 — کاروانێکی پزیشکی بۆ پارێزگای سەماوە نێردرا، کە ٥٠ جۆر دەرمان و پێداویستی پزیشکی لەخۆگرتبوو.
 
 [پشتگیری کۆمەڵگا]
-2025 — [ENGLISH FALLBACK] Latest full-year geography: 73,006 beneficiary families — 493,380 individuals — in Iraq outside the Kurdistan Region.
+2025 — بەپێی دوا داتای ساڵانە، لە ناوچەکانی عێراق لە دەرەوەی هەرێمی کوردستان، ٧٣,٠٠٦ خێزان، واتە ٤٩٣,٣٨٠ کەس، سوودمەند بوون.
 
 --- Projects — تورکیا ---
 
 [وەڵامدانەوەی فریاکەوتن]
-2011-12 — [ENGLISH FALLBACK] BCF constructed a camp in Van with 400 caravans.
-2023 — [ENGLISH FALLBACK] Major earthquake response in Türkiye: rescue, hot meals, food, tents, medical aid and heavy equipment.
-[ENGLISH NOTE] The cumulative report records 4,129 tents for Türkiye and Syria earthquake victims together.
+2011-12 — BCF کەمپێکی لە وان بە ٤٠٠ کەرەڤان دروست کرد.
+2023 — وەڵامدانەوەی گەورەی بوومەلەرزە لە تورکیا: ڕزگارکردن، ژەمی گەرم، خۆراک، چادر، یارمەتی پزیشکی و ئامێری قورس.
+ڕاپۆرتی کۆکراوە ٤,١٢٩ چادر بۆ زیانلێکەوتووانی بوومەلەرزەی تورکیا و سوریا پێکەوە تۆمار دەکات.
 
 --- Projects — سووریا ---
 
 [وەڵامدانەوەی فریاکەوتن]
-2023 — [ENGLISH FALLBACK] The earthquake response and ongoing Afrin programming expanded BCF's work in Syria.
-2026 — [ENGLISH FALLBACK] The large Western Kurdistan response became one of BCF's biggest current cross-border operations.
+2023 — وەڵامدانەوەی بوومەلەرزە و بەرنامەی بەردەوامی عەفرین کاری BCF لە سوریا فراوان کرد.
+2026 — وەڵامدانەوەی گەورەی ڕۆژئاوای کوردستان بوو بە یەکێک لە گەورەترین کارەکانی ئێستای BCF لە دەرەوەی سنوور.
 
 [پشتگیری کۆمەڵگا]
-2025 — [ENGLISH FALLBACK] BCF reported 10,673 individual beneficiaries in Syria for the full year.
+2025 — BCF ڕایگەیاند ١٠,٦٧٣ کەس لە سوریا سوودمەند بوون بۆ تەواوی ساڵەکە.
 
 --- Projects — لوبنان ---
 
 [وەڵامدانەوەی فریاکەوتن]
-2024 — [ENGLISH FALLBACK] BCF provided tents to welcome Lebanese Kurds in Mam Rashan Camp — the Kurdistan Region's response to displacement from Lebanon.
+2024 — BCF چادری دابین کرد بۆ پێشوازی لە کوردە لوبنانییەکان لە کەمپی مام ڕەشان — وەڵامی هەرێمی کوردستان بۆ ئاوارەبوون لە لوبنان.
 
 ========================================================================
 PAGE: Our Impact
