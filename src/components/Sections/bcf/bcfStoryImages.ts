@@ -12,7 +12,7 @@ import impactBeneficiaries from "@/assets/images/bcf/from-source/impact-benefici
 import impactFamilies from "@/assets/images/bcf/from-source/impact-families.webp";
 import trustLeadership from "@/assets/images/bcf/from-source/trust-leadership.webp";
 import trustPartnerships from "@/assets/images/bcf/from-source/trust-partnerships.webp";
-import humanityCommunity from "@/assets/images/bcf/selected/humanity-community.webp";
+import storyPhilosophy from "@/assets/images/bcf/selected/story-philosophy.webp";
 
 import year2005 from "@/assets/images/bcf/optimized/story-timeline/2005.webp";
 import year2009 from "@/assets/images/bcf/optimized/story-timeline/2009.webp";
@@ -56,7 +56,7 @@ export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
   /** Identity panes restored after the year timeline. */
   mission: { front: journeyHumanity, back: journeyTrust },
   vision: { front: impactBeneficiaries, back: impactFamilies },
-  philosophy: { front: humanityCommunity, back: journeyStory },
+  philosophy: plate(storyPhilosophy),
   values: { front: trustLeadership, back: trustPartnerships },
 };
 
