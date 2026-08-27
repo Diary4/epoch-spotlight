@@ -20,7 +20,8 @@ type BcfReachRailProps = {
 };
 
 /**
- * Persistent controls, in the top-right corner.
+ * Persistent controls, in the trailing corner (top-right in English, top-left
+ * in Kurdish and Arabic).
  *
  * Before this, the only way to change language was to walk the whole experience
  * back to the second screen, and the only way home was to press back once per
@@ -74,10 +75,9 @@ export default function BcfReachRail({
       aria-label="Experience controls"
       // The rail stays mounted across screens, so it never re-announces itself
       // on a navigation.
-      // `right-10`, not `end-10`: it is pinned to the physical right in every
-      // language, the way the back control is pinned to the physical left, so
-      // the two corners never trade places under an RTL title.
-      className="absolute right-10 top-10 z-40 flex items-center gap-3"
+      // Trailing corner in LTR (right), leading-to-center in RTL (left),
+      // opposite the back control.
+      className="absolute right-10 top-10 z-40 flex items-center gap-3 rtl:left-10 rtl:right-auto rtl:flex-row-reverse"
       initial={{ opacity: 0, y: -14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: BCF_EASE, delay: 0.3 }}

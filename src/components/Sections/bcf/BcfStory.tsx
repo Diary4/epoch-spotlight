@@ -48,11 +48,13 @@ function GoldPhoto({
   alt,
   className,
   style,
+  objectPosition = "center",
 }: {
   src: string;
   alt: string;
   className?: string;
   style?: React.CSSProperties;
+  objectPosition?: string;
 }) {
   return (
     <div
@@ -68,7 +70,7 @@ function GoldPhoto({
         alt={alt}
         decoding="async"
         className="h-full w-full object-cover"
-        style={{ filter: PHOTO_FILTER }}
+        style={{ filter: PHOTO_FILTER, objectPosition }}
       />
     </div>
   );
@@ -90,11 +92,20 @@ function GoldPhoto({
  * tap of Next drew attention to itself instead of to the picture. 560 tall
  * fits under the wordiest milestone without crowding the Back/Next band.
  */
-function StoryPhoto({ src, label }: { src: string; label: string }) {
+function StoryPhoto({
+  src,
+  label,
+  objectPosition = "center",
+}: {
+  src: string;
+  label: string;
+  objectPosition?: string;
+}) {
   return (
     <GoldPhoto
       src={src}
       alt={label}
+      objectPosition={objectPosition}
       className="h-[560px] w-[780px] shrink-0"
     />
   );
@@ -114,7 +125,13 @@ function StoryNavButton({
   rtl: boolean;
 }) {
   const isPrev = side === "prev";
-  const Chevron = isPrev ? ChevronLeft : ChevronRight;
+  const Chevron = isPrev
+    ? rtl
+      ? ChevronRight
+      : ChevronLeft
+    : rtl
+      ? ChevronLeft
+      : ChevronRight;
 
   return (
     <motion.button
@@ -137,19 +154,13 @@ function StoryNavButton({
     >
       {isPrev ? (
         <>
-          <Chevron
-            className={`h-5 w-5 shrink-0 ${rtl ? "rotate-180" : ""}`}
-            style={{ color: BCF.gold }}
-          />
+          <Chevron className="h-5 w-5 shrink-0" style={{ color: BCF.gold }} />
           {label}
         </>
       ) : (
         <>
           {label}
-          <Chevron
-            className={`h-5 w-5 shrink-0 ${rtl ? "rotate-180" : ""}`}
-            style={{ color: BCF.gold }}
-          />
+          <Chevron className="h-5 w-5 shrink-0" style={{ color: BCF.gold }} />
         </>
       )}
     </motion.button>
@@ -272,8 +283,11 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           />
         </motion.header>
 
-        {/* Body row: rail + content */}
-        <div className="relative z-10 mt-16 flex min-h-0 flex-1">
+        {/* Body row stays LTR so the timeline rail stays on the physical left
+            in every language. Kurdish/Arabic copy still starts from the right
+            inside the content column. `dir=rtl` on this row used to flip the
+            rail onto the right edge, on top of the text. */}
+        <div className="relative z-10 mt-16 flex min-h-0 flex-1" dir="ltr">
           {/* Left progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
             <div className="relative z-10 flex flex-1 flex-col items-center justify-between py-4">
@@ -329,7 +343,10 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           </div>
 
           {/* Active beat */}
-          <div className="relative flex min-w-0 flex-1 flex-col pe-4 ps-6">
+          <div
+            className="relative flex min-w-0 flex-1 flex-col pe-4 ps-6"
+            dir={rtl ? "rtl" : "ltr"}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${lang}-${beatKey(active)}`}
@@ -371,7 +388,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
-                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
+                      style={{ marginLeft: -96, marginRight: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={active.data.title} />
                     </motion.div>
@@ -462,11 +479,14 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
-                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
+                      style={{ marginLeft: -96, marginRight: -16 }}
                     >
                       <StoryPhoto
                         src={photos.front}
                         label={beatLabel(active)}
+                        objectPosition={
+                          beatKey(active) === "philosophy" ? "center 28%" : "center"
+                        }
                       />
                     </motion.div>
                   </>
@@ -483,27 +503,57 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
             centred exactly: the tallest beat (Values) runs to roughly y=1160
             on its own, so the band sits just below the content it drives and
             holds still there as the beats change behind it. */}
-        <nav className="relative z-40 flex shrink-0 items-center justify-center gap-12 pt-10">
-          <StoryNavButton
-            label={c.back}
-            disabled={isFirst}
-            onClick={goPrev}
-            side="prev"
-            rtl={rtl}
-          />
-          <span
-            className="min-w-[104px] text-center text-[24px] tabular-nums"
-            style={{ color: "rgba(255,255,255,0.45)" }}
-          >
-            {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
-          </span>
-          <StoryNavButton
-            label={c.storyNext}
-            disabled={isLast}
-            onClick={goNext}
-            side="next"
-            rtl={rtl}
-          />
+        <nav
+          className="relative z-40 flex shrink-0 items-center justify-center gap-12 pt-10"
+          dir="ltr"
+        >
+          {rtl ? (
+            <>
+              <StoryNavButton
+                label={c.storyNext}
+                disabled={isLast}
+                onClick={goNext}
+                side="next"
+                rtl={rtl}
+              />
+              <span
+                className="min-w-[104px] text-center text-[24px] tabular-nums"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
+              </span>
+              <StoryNavButton
+                label={c.back}
+                disabled={isFirst}
+                onClick={goPrev}
+                side="prev"
+                rtl={rtl}
+              />
+            </>
+          ) : (
+            <>
+              <StoryNavButton
+                label={c.back}
+                disabled={isFirst}
+                onClick={goPrev}
+                side="prev"
+                rtl={rtl}
+              />
+              <span
+                className="min-w-[104px] text-center text-[24px] tabular-nums"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                {bcfDigits(activeIndex + 1, lang)} / {bcfDigits(beats.length, lang)}
+              </span>
+              <StoryNavButton
+                label={c.storyNext}
+                disabled={isLast}
+                onClick={goNext}
+                side="next"
+                rtl={rtl}
+              />
+            </>
+          )}
         </nav>
       </div>
     </BcfShell>

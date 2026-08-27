@@ -81,21 +81,9 @@ function BcfLogoMark() {
  * exactly the kind of drift a visitor reads as "unfinished" without being able
  * to name it.
  *
- * It sits in the top-left corner, and it is pinned to the *physical* left in
- * every language rather than to the logical start.
- *
- * That looks backwards for Kurdish and Arabic until you look at the corner it
- * came from. Back used to share the top right with the home/language rail,
- * stacked one above the other — a column of circles running 300px down the
- * right edge of the artboard. In an RTL layout the page title starts at that
- * same edge, so "لەسەر سنوورەکان" was printed straight through the rail. Every
- * screen then carried its own bit of clearance for the corner: a `pr-[150px]`
- * here, an extra hundred pixels of top padding there.
- *
- * Splitting the pair fixes all of it at once. Back owns the left corner, the
- * rail owns the right, both in every language, and the title in between has
- * the full width. The chevron still turns round in RTL, so the arrow points
- * the way the visitor came from even though the button does not move.
+ * It sits in the leading corner: physical left in English, physical right in
+ * Kurdish and Arabic, so the control lives where RTL “back” is expected. The
+ * chevron flips with the page direction.
  */
 export function BcfBackButton({
   onClick,
@@ -113,7 +101,7 @@ export function BcfBackButton({
       aria-label={label}
       whileTap={BCF_TAP_FIRM}
       transition={BCF_TAP_TRANSITION}
-      className={`absolute left-10 top-10 z-40 grid h-[76px] w-[76px] place-items-center rounded-full border border-[#fbc158]/35 bg-black/45 backdrop-blur-md ${className}`}
+      className={`absolute left-10 top-10 z-40 grid h-[76px] w-[76px] place-items-center rounded-full border border-[#fbc158]/35 bg-black/45 backdrop-blur-md rtl:left-auto rtl:right-10 ${className}`}
       style={{ boxShadow: "0 10px 34px rgba(0,0,0,0.45)" }}
     >
       <ChevronLeft className="h-9 w-9 rtl:rotate-180" style={{ color: BCF.sand }} />
