@@ -107,7 +107,6 @@ export type GlobalLocationId =
   | "yemen"
   | "bangladesh"
   | "australia"
-  | "greece"
   | "southSudan";
 
 export type BcfGlobalLocation = {
@@ -166,7 +165,6 @@ export const BCF_GLOBAL_LOCATIONS: BcfGlobalLocation[] = [
   },
   { id: "morocco", coordinates: [-6.842, 31.8], kind: "work", iso: "504", focusZoom: 4.5 },
   { id: "serbia", coordinates: [20.457, 44.787], kind: "work", iso: "688", focusZoom: 6.5 },
-  { id: "greece", coordinates: [21.8, 39.1], kind: "work", iso: "300", focusZoom: 5.5 },
   { id: "ukraine", coordinates: [31.2, 48.8], kind: "work", iso: "804", focusZoom: 4 },
   { id: "turkiye", coordinates: [35.2, 39.1], kind: "response", iso: "792", focusZoom: 4.5 },
   { id: "lebanon", coordinates: [35.501, 33.888], kind: "work", iso: "422", focusZoom: 7 },
@@ -1662,12 +1660,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: "Beneficiaries: 700 individuals",
         facts: ["Sectors: Education, Food, Non-food items"],
       },
-      greece: {
-        name: "Greece",
-        meta: "Area of work",
-        description: WORK_ONLY_EN,
-        facts: [],
-      },
       lebanon: {
         name: "Lebanon",
         meta: "2 sectors",
@@ -2976,7 +2968,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: "سوودمەندان: ٧٠٠ کەس",
         facts: ["کەرتەکان: پەروەردە، خۆراک، کەلوپەلی ناخۆراکی"],
       },
-      greece: { name: "یۆنان", meta: "ناوچەی کار", description: WORK_ONLY_KU, facts: [] },
       lebanon: {
         name: "لوبنان",
         meta: "٢ کەرت",
@@ -4279,7 +4270,6 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         description: "المستفيدون: ٧٠٠ فرد",
         facts: ["القطاعات: التعليم، الغذاء، المواد غير الغذائية"],
       },
-      greece: { name: "اليونان", meta: "منطقة عمل", description: WORK_ONLY_AR, facts: [] },
       lebanon: {
         name: "لبنان",
         meta: "قطاعان",
