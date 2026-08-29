@@ -1,0 +1,10 @@
+{
+  // Static Vite SPA for Cloudflare Workers (not a Worker script).
+  // `npx wrangler versions upload` needs this file so it knows to publish ./dist.
+  "name": "epoch-spotlight",
+  "compatibility_date": "2026-08-29",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
