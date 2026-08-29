@@ -283,12 +283,15 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           />
         </motion.header>
 
-        {/* Body row stays LTR so the timeline rail stays on the physical left
-            in every language. Kurdish/Arabic copy still starts from the right
-            inside the content column. `dir=rtl` on this row used to flip the
-            rail onto the right edge, on top of the text. */}
-        <div className="relative z-10 mt-16 flex min-h-0 flex-1" dir="ltr">
-          {/* Left progress rail */}
+        {/* Timeline rail sits on the start edge — left in English, right in
+            Kurdish and Arabic — so it never draws through the photograph.
+            Copy uses the same direction as the page, so the heading and body
+            start from the right in ku/ar. */}
+        <div
+          className="relative z-10 mt-16 flex min-h-0 flex-1"
+          dir={rtl ? "rtl" : "ltr"}
+        >
+          {/* Progress rail */}
           <div className="relative flex w-[72px] shrink-0 flex-col items-center pt-6">
             <div className="relative z-10 flex flex-1 flex-col items-center justify-between py-4">
               {/* The thread runs dot centre to dot centre: `inset-y-9` is the
@@ -315,9 +318,15 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                   >
                     {on ? (
                       <span
+                        // `start-full` mirrors the spur with the rail, but a
+                        // gradient does not follow direction: at 90deg the gold
+                        // end landed away from the dot in ku/ar and the line
+                        // read as pointing at nothing.
                         className="absolute start-full top-1/2 h-px w-8 -translate-y-1/2"
                         style={{
-                          background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+                          background: `linear-gradient(${
+                            rtl ? "270deg" : "90deg"
+                          }, ${BCF.gold}, transparent)`,
                           boxShadow: `0 0 10px ${BCF.gold}`,
                         }}
                       />
@@ -343,10 +352,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
           </div>
 
           {/* Active beat */}
-          <div
-            className="relative flex min-w-0 flex-1 flex-col pe-4 ps-6"
-            dir={rtl ? "rtl" : "ltr"}
-          >
+          <div className="relative flex min-w-0 flex-1 flex-col pe-4 ps-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${lang}-${beatKey(active)}`}
@@ -360,7 +366,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                   <>
                     <motion.div
                       variants={bcfRise}
-                      className={`max-w-[820px] ${rtl ? "text-end" : "text-start"}`}
+                      className="max-w-[820px] text-start"
                     >
                       <p
                         className="text-[96px] font-light leading-none tracking-tight tabular-nums"
@@ -388,7 +394,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
-                      style={{ marginLeft: -96, marginRight: -16 }}
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={active.data.title} />
                     </motion.div>
@@ -397,7 +403,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                   <>
                     <motion.div
                       variants={bcfRise}
-                      className={`max-w-[920px] ${rtl ? "text-end" : "text-start"}`}
+                      className="max-w-[920px] text-start"
                     >
                       <h2
                         className="text-[64px] font-bold leading-[1.08]"
@@ -451,7 +457,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                   <>
                     <motion.div
                       variants={bcfRise}
-                      className={`max-w-[900px] ${rtl ? "text-end" : "text-start"}`}
+                      className="max-w-[900px] text-start"
                     >
                       <h2
                         className="text-[72px] font-bold leading-[1.05]"
@@ -515,7 +521,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                     <motion.div
                       variants={bcfRise}
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
-                      style={{ marginLeft: -96, marginRight: -16 }}
+                      style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
                       <StoryPhoto src={photos.front} label={beatLabel(active)} />
                     </motion.div>
