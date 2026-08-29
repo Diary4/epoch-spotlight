@@ -83,7 +83,11 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
           </motion.span>
           <motion.p
             variants={bcfRise}
-            className="relative font-display-num text-[86px] font-semibold italic leading-[1.14]"
+            className={`relative text-[86px] ${
+              lang === "en"
+                ? "font-display-num font-semibold italic leading-[1.14]"
+                : "font-amiri font-bold leading-[1.45]"
+            }`}
             style={{ color: BCF.cream, textShadow: "0 20px 60px rgba(0,0,0,0.6)" }}
           >
             {c.quote}
@@ -95,7 +99,10 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
             className="h-[3px] w-16 rounded-full"
             style={{ backgroundColor: BCF.goldDeep }}
           />
-          <p className="text-[40px] font-medium" style={{ color: BCF.gold }}>
+          <p
+            className={`text-[40px] font-medium ${lang === "en" ? "" : "font-amiri"}`}
+            style={{ color: BCF.gold }}
+          >
             {c.quoteAttr.replace(/^—\s*/, "")}
           </p>
         </motion.div>

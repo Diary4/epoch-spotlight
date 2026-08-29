@@ -637,6 +637,9 @@ export type StorySection = {
   titleGold: string;
   titleWhite: string;
   body?: string;
+  /** Optional vow on the Humanitarian Philosophy beat. */
+  quote?: string;
+  quoteAttr?: string;
 };
 
 /**
@@ -1002,7 +1005,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     dignity: "DIGNITY",
     hope: "HOPE",
     quote: "It is an honor to serve one's own people.",
-    quoteAttr: "— Mustafa Barzani",
+    quoteAttr: "— Mulla Mustafa Barzani",
     welcomeEyebrow: "WELCOME TO THE",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "EXPERIENCE",
@@ -1417,7 +1420,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "philosophy",
         titleGold: "Humanitarian",
         titleWhite: "Philosophy",
-        body: "Humanitarian work is not charity from above. It is service with dignity, delivered to people as human beings, not as statistics.",
+        quote: "It is an honor to serve one's own people.",
+        quoteAttr: "Mulla Mustafa Barzani",
+        body: "Barzani Charity Foundation was established and continues to serve guided by this principle.",
       },
       {
         id: "values",
@@ -2318,7 +2323,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     dignity: "کەرامەت",
     hope: "هیوا",
     quote: "شانازییە بۆ مرۆڤ خزمەتکاری میللەتی خۆی بێ",
-    quoteAttr: "— مستەفا بارزانی",
+    quoteAttr: "— مەلا مستەفا بارزانی",
     welcomeEyebrow: "بەخێربێیت بۆ",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "ئەزموون",
@@ -2725,7 +2730,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "philosophy",
         titleGold: "فەلسەفەی",
         titleWhite: "مرۆڤ دۆستانە",
-        body: "وتەی «شانازییە بۆ مرۆڤ خزمەتکاری میللەتی خۆی بێ» تەنها دروشمێک نییە؛ بەڵکو بنەمای ئەخلاقی کارەکانی دەزگای خێرخوازی بارزانییە. کاری مرۆیی بەخشینێک نییە لە سەرەوە، بەڵکو خزمەتکردنە بە کەرامەتەوە.",
+        quote: "شانازییە بۆ مرۆڤ خزمەتکاری میللەتی خۆی بێ",
+        quoteAttr: "مەلا مستەفا بارزانی",
+        body: "دەزگای خێرخوازیی بارزانی لەسەر ئەم بنەمایە دامەزرا و بەردەوامە لە خزمەتکردن.",
       },
       {
         id: "values",
@@ -3620,7 +3627,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     dignity: "الكرامة",
     hope: "الأمل",
     quote: "شرفٌ عظيم أن يخدم الإنسان أبناء شعبه.",
-    quoteAttr: "— مصطفى بارزاني",
+    quoteAttr: "— الملا مصطفى بارزاني",
     welcomeEyebrow: "مرحباً بكم في",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "التجربة",
@@ -4027,7 +4034,9 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         id: "philosophy",
         titleGold: "الفلسفة",
         titleWhite: "الإنسانية",
-        body: "العمل الإنساني ليس تفضّلاً على الناس، بل خدمة تحفظ كرامتهم وتتعامل معهم كبشر، لا كأرقام.",
+        quote: "شرفٌ عظيم أن يخدم الإنسان أبناء شعبه.",
+        quoteAttr: "الملا مصطفى بارزاني",
+        body: "تأسست مؤسسة بارزاني الخيرية ولا تزال تعمل وفق هذا المبدأ.",
       },
       {
         id: "values",
