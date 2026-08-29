@@ -32,6 +32,7 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
   const c = bcfCopy[lang];
   const reduceMotion = useReducedMotion();
   const pillars = [c.humanity, c.dignity, c.hope];
+  const rtl = lang !== "en";
 
   return (
     <BcfShell
@@ -64,9 +65,14 @@ export default function BcfIntro({ lang, onContinue }: BcfIntroProps) {
 
         <motion.span
           variants={bcfDrawX}
-          className="mt-8 block h-px w-[460px] origin-left"
+          // Tailwind 3 has no logical `origin-start`, so the pair of physical
+          // utilities is what actually flips the draw; the gradient has to be
+          // turned by hand too — CSS never mirrors one for direction.
+          className="mt-8 block h-px w-[460px] origin-left rtl:origin-right"
           style={{
-            background: `linear-gradient(90deg, ${BCF.gold}, transparent)`,
+            background: `linear-gradient(${
+              rtl ? "270deg" : "90deg"
+            }, ${BCF.gold}, transparent)`,
           }}
         />
 

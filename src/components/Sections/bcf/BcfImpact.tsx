@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Sun } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfStatValue from "@/components/Sections/bcf/BcfStatValue";
 import {
@@ -136,7 +135,7 @@ export default function BcfImpact({
                 <motion.div
                   key={stat.id}
                   variants={bcfRiseCard}
-                  className="relative flex h-[360px] flex-col overflow-hidden rounded-[28px] border border-white/15 text-left"
+                  className="relative flex h-[360px] flex-col overflow-hidden rounded-[28px] border border-white/15 text-start"
                   style={{ boxShadow: "0 22px 60px rgba(0,0,0,0.45)" }}
                 >
                   <img
@@ -147,15 +146,6 @@ export default function BcfImpact({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
 
                   <div className="relative z-10 flex h-full flex-col p-8">
-                    <div className="flex items-start justify-end">
-                      <span
-                        className="grid h-11 w-11 place-items-center rounded-full border"
-                        style={{ borderColor: `${BCF.gold}88`, color: BCF.gold }}
-                      >
-                        <Sun className="h-5 w-5" />
-                      </span>
-                    </div>
-
                     <div className="mt-auto">
                       <BcfStatValue
                         value={stat.value}
@@ -199,7 +189,7 @@ export default function BcfImpact({
                 enItems.find((entry) => entry.id === item.id) ?? enItems[index];
               const opensGallery = isGalleryId(item.id);
               const sharedClassName =
-                "relative flex h-[380px] flex-col overflow-hidden rounded-[28px] border border-white/15 text-left";
+                "relative flex h-[380px] flex-col overflow-hidden rounded-[28px] border border-white/15 text-start";
               const sharedStyle = { boxShadow: "0 22px 60px rgba(0,0,0,0.45)" };
 
               const body = (
@@ -212,15 +202,6 @@ export default function BcfImpact({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
 
                   <div className="relative z-10 flex h-full flex-col p-7">
-                    <div className="flex items-start justify-end">
-                      <span
-                        className="grid h-10 w-10 place-items-center rounded-full border"
-                        style={{ borderColor: `${BCF.gold}88`, color: BCF.gold }}
-                      >
-                        <Sun className="h-4 w-4" />
-                      </span>
-                    </div>
-
                     <div className="mt-auto">
                       <div className="flex flex-wrap items-end gap-x-6 gap-y-2">
                         <div>
