@@ -465,9 +465,45 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                           </span>
                         ) : null}
                       </h2>
+                      {active.data.quote ? (
+                        <div className="relative mt-8 max-w-[860px]">
+                          <span
+                            aria-hidden="true"
+                            className="absolute -left-1 -top-8 font-display-num text-[92px] leading-none rtl:-right-1 rtl:left-auto"
+                            style={{ color: `${BCF.gold}aa` }}
+                          >
+                            “
+                          </span>
+                          <p
+                            className={`relative pt-4 text-[42px] ${
+                              lang === "en"
+                                ? "font-display-num font-semibold italic leading-snug"
+                                : "font-amiri font-bold leading-[1.7]"
+                            }`}
+                            style={{
+                              color: BCF.cream,
+                              textShadow: "0 12px 40px rgba(0,0,0,0.55)",
+                            }}
+                          >
+                            {active.data.quote}
+                          </p>
+                          {active.data.quoteAttr ? (
+                            <p
+                              className={`mt-5 text-[30px] font-medium ${
+                                lang === "en" ? "" : "font-amiri"
+                              }`}
+                              style={{ color: BCF.gold }}
+                            >
+                              — {active.data.quoteAttr}
+                            </p>
+                          ) : null}
+                        </div>
+                      ) : null}
                       {active.data.body ? (
                         <p
-                          className={`mt-8 max-w-[820px] text-[32px] font-medium text-[#fcdfaa] ${
+                          className={`max-w-[820px] text-[32px] font-medium text-[#fcdfaa] ${
+                            active.data.quote ? "mt-6" : "mt-8"
+                          } ${
                             lang === "en" ? "leading-snug" : "leading-[1.75]"
                           }`}
                         >
@@ -481,13 +517,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
                       style={{ marginLeft: -96, marginRight: -16 }}
                     >
-                      <StoryPhoto
-                        src={photos.front}
-                        label={beatLabel(active)}
-                        objectPosition={
-                          beatKey(active) === "philosophy" ? "center 28%" : "center"
-                        }
-                      />
+                      <StoryPhoto src={photos.front} label={beatLabel(active)} />
                     </motion.div>
                   </>
                 )}
