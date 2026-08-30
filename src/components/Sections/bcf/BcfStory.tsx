@@ -49,19 +49,23 @@ function GoldPhoto({
   className,
   style,
   objectPosition = "center",
+  fit = "cover",
 }: {
   src: string;
   alt: string;
   className?: string;
   style?: React.CSSProperties;
   objectPosition?: string;
+  fit?: "cover" | "contain";
 }) {
+  const contain = fit === "contain";
   return (
     <div
       className={`overflow-hidden rounded-[24px] ${className ?? ""}`}
       style={{
         border: `2px solid ${BCF.gold}`,
         boxShadow: `0 0 0 1px ${BCF.gold}33, 0 0 60px ${BCF.gold}45, 0 28px 70px rgba(0,0,0,0.6)`,
+        backgroundColor: contain ? "#fff" : undefined,
         ...style,
       }}
     >
@@ -69,8 +73,12 @@ function GoldPhoto({
         src={src}
         alt={alt}
         decoding="async"
-        className="h-full w-full object-cover"
-        style={{ filter: PHOTO_FILTER, objectPosition }}
+        className={`h-full w-full ${contain ? "object-contain" : "object-cover"}`}
+        style={{
+          /* Logo plates keep their own colours; the gold wash is for photographs. */
+          filter: contain ? undefined : PHOTO_FILTER,
+          objectPosition,
+        }}
       />
     </div>
   );
@@ -96,16 +104,19 @@ function StoryPhoto({
   src,
   label,
   objectPosition = "center",
+  fit = "cover",
 }: {
   src: string;
   label: string;
   objectPosition?: string;
+  fit?: "cover" | "contain";
 }) {
   return (
     <GoldPhoto
       src={src}
       alt={label}
       objectPosition={objectPosition}
+      fit={fit}
       className="h-[560px] w-[780px] shrink-0"
     />
   );
@@ -396,7 +407,11 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
                       style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
-                      <StoryPhoto src={photos.front} label={active.data.title} />
+                      <StoryPhoto
+                        src={photos.front}
+                        label={active.data.title}
+                        fit={photos.fit}
+                      />
                     </motion.div>
                   </>
                 ) : isValues ? (
@@ -523,7 +538,11 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                       className="flex min-h-0 flex-1 items-start justify-center pt-10"
                       style={{ marginInlineStart: -96, marginInlineEnd: -16 }}
                     >
-                      <StoryPhoto src={photos.front} label={beatLabel(active)} />
+                      <StoryPhoto
+                        src={photos.front}
+                        label={beatLabel(active)}
+                        fit={photos.fit}
+                      />
                     </motion.div>
                   </>
                 )}

@@ -53,14 +53,12 @@ function groupByEra(entries: BcfProjectEntry[]): EraGroup[] {
  * Type scale by how much there is to say.
  *
  * The shell does not scroll: a sector that runs past 1920px is a sector whose
- * last years nobody can read. The register's heaviest page — Erbil's shelter
- * work, six entries with three scope notes — needs the middle setting to land
- * inside the panel with margin. But it is the exception: 51 of the 87 sector
- * pages carry one or two entries, and setting all of them at the size the worst
- * case needs would leave most of the experience reading as fine print.
- *
- * The third tier is a guard rather than a case that exists today; it keeps the
- * page honest if a future year pushes a sector past six.
+ * last years nobody can read. The register's heaviest pages — Erbil food,
+ * education, shelter and cash, eight entries each once the 2006-18 stories were
+ * filed under them — need the tightest setting to land inside the panel. But
+ * they are the exception: most sector pages carry one to three entries, and
+ * setting all of them at the size the worst case needs would leave most of the
+ * experience reading as fine print.
  */
 function densityFor(count: number) {
   if (count <= 4) {
@@ -69,7 +67,10 @@ function densityFor(count: number) {
   if (count <= 6) {
     return { body: 25, note: 20, pad: "p-5", gap: "gap-4", band: "gap-8" };
   }
-  return { body: 23, note: 19, pad: "px-5 py-4", gap: "gap-3.5", band: "gap-7" };
+  if (count <= 7) {
+    return { body: 23, note: 19, pad: "px-5 py-4", gap: "gap-3.5", band: "gap-7" };
+  }
+  return { body: 21, note: 18, pad: "px-5 py-3", gap: "gap-3", band: "gap-6" };
 }
 
 type BcfProjectDetailProps = {
@@ -202,7 +203,7 @@ export default function BcfProjectDetail({
               headings sit on it as markers instead of breaking it into pieces. */}
           <span
             aria-hidden="true"
-            className="absolute bottom-2 top-2 w-px ltr:left-[86px] rtl:right-[86px]"
+            className="absolute bottom-2 top-2 w-px ltr:left-[116px] rtl:right-[116px]"
             style={{
               background: `linear-gradient(180deg, ${BCF.gold}00, ${BCF.gold}55 8%, ${BCF.gold}55 92%, ${BCF.gold}00)`,
             }}
@@ -234,10 +235,18 @@ export default function BcfProjectDetail({
                     {/* Year rail. Fixed width so every year in the sector lines
                         up on the spine — "Multi-year" and "2011-12" are as wide
                         as the column allows and wrap rather than shifting the
-                        text beside them. */}
+                        text beside them. The year is set against the spine side
+                        of its column in both directions. The alignment is
+                        physical rather than logical: the span forces LTR so its
+                        Western digits do not flip, which also makes `text-end`
+                        mean "right" on an RTL page and parks the year on the
+                        outer edge, 40px from the dot it belongs to. */}
                     <span
-                      className="relative w-[86px] shrink-0 pt-1 text-end text-[28px] font-semibold leading-tight tabular-nums"
-                      style={{ color: BCF_ERA_COLORS[group.era] }}
+                      className="relative w-[86px] shrink-0 pt-1 text-[28px] font-semibold leading-tight tabular-nums"
+                      style={{
+                        color: BCF_ERA_COLORS[group.era],
+                        textAlign: lang === "en" ? "right" : "left",
+                      }}
                       dir="ltr"
                     >
                       {bcfDigits(
@@ -248,7 +257,7 @@ export default function BcfProjectDetail({
 
                     <span
                       aria-hidden="true"
-                      className="absolute top-[12px] h-[13px] w-[13px] rounded-full border-2 ltr:left-[80px] rtl:right-[80px]"
+                      className="absolute top-[12px] h-[13px] w-[13px] rounded-full border-2 ltr:left-[110px] rtl:right-[110px]"
                       style={{
                         borderColor: BCF_ERA_COLORS[group.era],
                         backgroundColor: BCF.bg,

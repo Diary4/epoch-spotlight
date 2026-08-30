@@ -220,6 +220,22 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "أُقيم إفطار رمضاني في بارك أربيل لـ 1,000 شخص يوميًا، وتم توزيع 500 سلة غذائية في تورق، إلى جانب تقديم مساعدات غذائية لعائلات الشهداء، وسلال غذائية للعيد، ومساعدات غذائية وطحين للمخيمات.",
         },
+        {
+          year: "2007",
+          text: "Food parcels reached 700 families across four Erbil neighbourhoods, and 500 martyrs' families in Sarwaran received additional Eid support.",
+          textKu:
+            "پاکێتی خۆراک گەیشتە ٧٠٠ خێزان لە چوار گەڕەکی هەولێر، هەروەها ٥٠٠ خێزانی شەهید لە سەروەران یارمەتی زیادەی جەژنیان وەرگرت.",
+          textAr:
+            "وصلت الطرود الغذائية إلى 700 أسرة في أربعة أحياء بأربيل، كما تلقت 500 من أسر الشهداء في سروران دعماً إضافياً بمناسبة العيد.",
+        },
+        {
+          year: "2015",
+          text: "Monthly food aid reached 12,741 refugees in Dibaga, Khabat and Koya, and 1,298 tonnes were distributed over the year.",
+          textKu:
+            "یارمەتی خۆراکی مانگانە گەیشتە ١٢,٧٤١ پەنابەر لە دیبەگە، خەبات و کۆیە، هەروەها بە درێژایی ساڵ ١,٢٩٨ تەن خۆراک دابەش کرا.",
+          textAr:
+            "وصلت المساعدات الغذائية الشهرية إلى 12,741 لاجئاً في ديبكة والخبات وكويسنجق، وجرى توزيع 1,298 طناً خلال العام.",
+        },
       ],
     },
     {
@@ -263,6 +279,35 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "شاركت المؤسسة للمرة الأولى في معرض الكتاب الكوردي، ونفذت مبادرات تعليمية وتوعوية، كما أُعلن عن إنشاء مركز لتنمية قدرات الأيتام والأرامل في أربيل.",
         },
+        {
+          year: "2008",
+          text: "A regional school-supplies campaign reached 7,700 pupils, including 17 schools in Erbil, Shaqlawa and the governorate's displacement camps.",
+          textKu:
+            "کەمپەینێکی هەرێمی بۆ پێداویستی خوێندن گەیشتە ٧,٧٠٠ قوتابی، لەوانە ١٧ قوتابخانە لە هەولێر، شەقڵاوە و کەمپەکانی ئاوارەکانی پارێزگاکە.",
+          textAr:
+            "وصلت حملة إقليمية للقرطاسية المدرسية إلى 7,700 تلميذ، شملت 17 مدرسة في أربيل وشقلاوة ومخيمات النزوح في المحافظة.",
+        },
+        {
+          year: "2021",
+          text: "A USD 3.5 million college-building project was announced at Salahaddin University.",
+          textKu:
+            "پڕۆژەی بنیاتنانی کۆلێژێک بە نرخی ٣.٥ ملیۆن دۆلار لە زانکۆی سەڵاحەدین ڕاگەیەنرا.",
+          textAr:
+            "أُعلن عن مشروع لبناء كلية بكلفة 3.5 مليون دولار أمريكي في جامعة صلاح الدين.",
+        },
+        {
+          year: "2023",
+          text: "Education activities recorded 39,745 beneficiaries in Erbil.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە هەولێر ٣٩,٧٤٥ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 39,745 مستفيداً في أربيل.",
+          note: "Livelihood activities recorded 40,054 beneficiaries in the same year; education and livelihood stay separate records.",
+          noteKu:
+            "لە هەمان ساڵدا چالاکییەکانی بژێوی ٤٠,٠٥٤ سوودمەندیان تۆمار کرد؛ پەروەردە و بژێوی دوو تۆماری جیاوازن.",
+          noteAr:
+            "سجلت أنشطة سبل العيش 40,054 مستفيداً في العام نفسه، والتعليم وسبل العيش سجلان منفصلان.",
+        },
       ],
     },
     {
@@ -292,6 +337,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "تم تجديد مذكرة مركز كوردستان للتميز في رعاية الحالات المعقدة، والإعلان عن مشروع لدعم فحوصات الماموغرام في مركز أمراض الثدي بأربيل.",
         },
+        {
+          year: "2006",
+          text: "BCF supplied health facilities to hospitals in Erbil, benefiting 2,144 people in its first documented year.",
+          textKu:
+            "BCF پێداویستی تەندروستی بۆ نەخۆشخانەکانی هەولێر دابین کرد، کە لە یەکەم ساڵی تۆمارکراودا ٢,١٤٤ کەس سوودمەند بوون.",
+          textAr:
+            "زوّدت مؤسسة بارزاني الخيرية مستشفيات أربيل بالمستلزمات الصحية، فاستفاد 2,144 شخصاً في أول عام موثّق لها.",
+        },
+        {
+          year: "2015",
+          text: "The Harsham IDP Camp Health Center opened on 28 February to provide care inside the camp.",
+          textKu:
+            "لە ٢٨ی شوباتدا ناوەندی تەندروستی کەمپی ئاوارەکانی هەرشەم کرایەوە بۆ دابینکردنی چاودێری لە ناو کەمپەکەدا.",
+          textAr:
+            "افتُتح المركز الصحي في مخيم هرشم للنازحين في 28 شباط لتقديم الرعاية داخل المخيم.",
+        },
+        {
+          year: "2024",
+          text: "Health activities recorded 13,597 beneficiaries in Erbil.",
+          textKu:
+            "چالاکییەکانی کەرتی تەندروستی لە هەولێر ١٣,٥٩٧ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة الصحية 13,597 مستفيداً في أربيل.",
+        },
       ],
     },
     {
@@ -315,9 +384,19 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         },
         {
           year: "2024",
-          text: "Drinking-water support reported for 9,100 families in Erbil Governorate.",
-          textKu: "لە پارێزگای هەولێر، ئاوی خواردنەوە بۆ ٩,١٠٠ خێزان دابین کرا.",
-          textAr: "تم توفير مياه الشرب لـ 9,100 أسرة في محافظة أربيل.",
+          text: "WASH activities reached 9,508 families in Erbil Governorate, representing 48,180 people.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە پارێزگای هەولێر گەیشتنە ٩,٥٠٨ خێزان، واتە ٤٨,١٨٠ کەس.",
+          textAr:
+            "وصلت أنشطة المياه والإصحاح في محافظة أربيل إلى 9,508 أسر، أي ما يمثل 48,180 شخصاً.",
+        },
+        {
+          year: "2015",
+          text: "BCF delivered 120,000 litres of clean water daily to Erbil's Qalai Nwe and Qarabu neighbourhoods.",
+          textKu:
+            "BCF ڕۆژانە ١٢٠,٠٠٠ لیتر ئاوی خاوێنی بۆ گەڕەکەکانی قەڵای نوێ و قەرەبووی هەولێر دەگەیاند.",
+          textAr:
+            "كانت مؤسسة بارزاني الخيرية توصل يومياً 120,000 لتر من المياه النظيفة إلى حيي قلعة نوي وقره بو في أربيل.",
         },
       ],
     },
@@ -326,9 +405,11 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
       entries: [
         {
           year: "2015",
-          text: "Three hundred caravans established in Bahirka Camp.",
-          textKu: "٣٠٠ کەرەڤان لە کەمپی بەحرکە دامەزرێنران.",
-          textAr: "تم إنشاء 300 كرفان في مخيم بحركة.",
+          text: "BCF built 304 caravan homes in Bahirka Camp, and 251 displaced families were resettled there in September.",
+          textKu:
+            "BCF ژمارە ٣٠٤ ماڵی کەرەڤانی لە کەمپی بەحرکە دروست کرد، و لە ئەیلوولدا ٢٥١ خێزانی ئاوارە لەوێ نیشتەجێ کران.",
+          textAr:
+            "بنت مؤسسة بارزاني الخيرية 304 منازل كرفانية في مخيم بحركة، وأُسكنت فيها 251 أسرة نازحة في أيلول.",
           note: "Recorded in the cumulative 2005-2024 report.",
           noteKu: "ئەم زانیارییە لە ڕاپۆرتی کۆکراوەی ساڵانی ٢٠٠٥ تا ٢٠٢٤ هاتووە.",
         },
@@ -374,6 +455,27 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "بدأ تنفيذ المرحلة الأولى من مدينة مؤسسة بارزاني الخيرية (BCF City) في قوشتبة، وتشمل 180 منزلًا للعائلات الفقيرة ومحدودة الدخل.",
         },
+        {
+          year: "2011",
+          text: "BCF supplied 90 complete bedroom sets to the Erbil Social Welfare Directorate.",
+          textKu:
+            "BCF ژمارە ٩٠ ست ژووری نووستنی تەواوی بۆ بەڕێوەبەرایەتی چاودێری کۆمەڵایەتی هەولێر دابین کرد.",
+          textAr:
+            "زوّدت مؤسسة بارزاني الخيرية مديرية الرعاية الاجتماعية في أربيل بـ 90 طقماً كاملاً لغرف النوم.",
+        },
+        {
+          year: "2024",
+          text: "Household-support records reached 24,796 people in Erbil and shelter records 2,682.",
+          textKu:
+            "تۆمارەکانی پاڵپشتی ماڵ لە هەولێر گەیشتنە ٢٤,٧٩٦ کەس و تۆمارەکانی سەرپەناش ٢,٦٨٢ کەس.",
+          textAr:
+            "بلغت سجلات دعم المستلزمات المنزلية 24,796 شخصاً في أربيل، وبلغت سجلات المأوى 2,682 شخصاً.",
+          note: "Two separate records. The report never sums household support and shelter.",
+          noteKu:
+            "دوو تۆماری جیاوازن. ڕاپۆرتەکە هەرگیز پاڵپشتی ماڵ و سەرپەنا کۆناکاتەوە.",
+          noteAr:
+            "سجلان منفصلان، والتقرير لا يجمع بين دعم المستلزمات المنزلية والمأوى.",
+        },
       ],
     },
     {
@@ -406,6 +508,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "پشتگیری کەسانی خاوەن پێداویستی تایبەت بەردەوام بوو؛ لە مانگی ئادار ١٠ کورسی چەرخدار دابەش کرا و لە مانگی نیسانیش یارمەتی زیاتر پێشکەش کرا.",
           textAr:
             "استمر توزيع الكراسي المتحركة وتقديم الدعم لذوي الإعاقة؛ حيث تم توزيع 10 كراسٍ متحركة في آذار، وتواصل تقديم الدعم في نيسان.",
+        },
+        {
+          year: "2009",
+          text: "Forty-two hearing aids were provided to children with hearing loss in Erbil.",
+          textKu:
+            "ژمارە ٤٢ ئامێری بیستن بۆ منداڵانی کێشەی بیستن لە هەولێر دابین کرا.",
+          textAr:
+            "قُدمت 42 سماعة طبية للأطفال ذوي ضعف السمع في أربيل.",
+        },
+        {
+          year: "2015",
+          text: "On World Autism Awareness Day, BCF presented gifts to 150 children with autism in Erbil.",
+          textKu:
+            "لە ڕۆژی جیهانی ئاگاداری لە ئۆتیزمدا، BCF دیاری بە ١٥٠ منداڵی ئۆتیزمی لە هەولێر بەخشی.",
+          textAr:
+            "في اليوم العالمي للتوعية بالتوحد، قدمت مؤسسة بارزاني الخيرية هدايا لـ 150 طفلاً من ذوي التوحد في أربيل.",
+        },
+        {
+          year: "2024",
+          text: "The autism centre in Erbil reports annual support for 60 to 90 children.",
+          textKu:
+            "ناوەندی ئۆتیزم لە هەولێر ڕایدەگەیەنێت ساڵانە پشتگیری ٦٠ بۆ ٩٠ منداڵ دەکات.",
+          textAr:
+            "يفيد مركز التوحد في أربيل بأنه يدعم سنوياً ما بين 60 و90 طفلاً.",
         },
       ],
     },
@@ -447,6 +573,22 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           text: "Food, cash, clothing and disability assistance continued in Baharka, Hasan Sham, Khazir and Debaga camps, and a World Refugee Day event was held in Erbil.",
           textKu:
             "لە کەمپەکانی بەحرکە، حەسەن شام، خازر و دیبەگە، دابەشکردنی خۆراک، یارمەتی پارەیی، جل‌ و بەرگ و پشتگیری کەسانی خاوەن پێداویستی تایبەت بەردەوام بوو. هەروەها لە هەولێر چالاکییەک بە بۆنەی ڕۆژی جیهانی پەنابەران بەڕێوەچوو.",
+        },
+        {
+          year: "2011",
+          text: "BCF assisted 100 families in the Kawa, Jazhnekan, Sebiran and Azadi camps in Koya.",
+          textKu:
+            "BCF یارمەتی ١٠٠ خێزانی دا لە کەمپەکانی کاوە، جەژنیکان، سەیبیران و ئازادی لە کۆیە.",
+          textAr:
+            "قدمت مؤسسة بارزاني الخيرية المساعدة لـ 100 أسرة في مخيمات كاوة وجزنيكان وسيبيران وآزادي في كويسنجق.",
+        },
+        {
+          year: "2015",
+          text: "BCF took over the administration of Harsham camp in January, following approval by UNHCR and the Erbil Refugee Council.",
+          textKu:
+            "لە کانوونی دووەمدا BCF بەڕێوەبردنی کەمپی هەرشەمی وەرگرت، دوای ڕەزامەندی UNHCR و ئەنجومەنی پەنابەرانی هەولێر.",
+          textAr:
+            "تسلمت مؤسسة بارزاني الخيرية إدارة مخيم هرشم في كانون الثاني، بعد موافقة المفوضية السامية لشؤون اللاجئين ومجلس لاجئي أربيل.",
         },
       ],
     },
@@ -494,6 +636,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "أُعلن عن مركز تنمية قدرات الأعزاء والأرامل، مع استمرار تقديم المساعدات الغذائية والملابس والدعم للأسر.",
         },
+        {
+          year: "2010",
+          text: "Eighty-one children in Erbil's orphanages received Eid gifts of USD 100 each.",
+          textKu:
+            "ژمارە ٨١ منداڵ لە خانەکانی هەتیوانی هەولێر، هەریەکە دیاری جەژنی ١٠٠ دۆلاریان وەرگرت.",
+          textAr:
+            "تلقى 81 طفلاً في دور الأيتام بأربيل هدايا العيد بواقع 100 دولار أمريكي لكل طفل.",
+        },
+        {
+          year: "2021",
+          text: "The UAE-supported OrphanCare project recorded 3,195 children in Erbil.",
+          textKu:
+            "پڕۆژەی OrphanCare بە پشتگیری ئیمارات ٣,١٩٥ منداڵی لە هەولێر تۆمار کرد.",
+          textAr:
+            "سجل مشروع رعاية الأيتام المدعوم إماراتياً 3,195 طفلاً في أربيل.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 1,027 Erbil families, representing 8,759 people.",
+          textKu:
+            "یارمەتی نەقدی گەیشتە ١,٠٢٧ خێزان لە هەولێر، واتە ٨,٧٥٩ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية إلى 1,027 أسرة في أربيل، أي ما يمثل 8,759 شخصاً.",
+        },
       ],
     },
   ],
@@ -535,6 +701,35 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "أُقيم مشروع رمضاني لتوفير الخبز المجاني عبر 13 مخبزاً في مناطق قضاء دهوك، إلى جانب توزيع سلال غذائية في سيميل وتوزيع كميات كبيرة من الطحين على العائلات في المخيمات.",
         },
+        {
+          year: "2008",
+          text: "BCF and its partners distributed food parcels to displaced Iraqi families across Duhok Governorate.",
+          textKu:
+            "BCF و هاوبەشەکانی پاکێتی خۆراکیان بۆ خێزانە ئاوارە عێراقییەکان لە سەرانسەری پارێزگای دهۆک دابەش کرد.",
+          textAr:
+            "وزّعت مؤسسة بارزاني الخيرية وشركاؤها طروداً غذائية على الأسر العراقية النازحة في عموم محافظة دهوك.",
+        },
+        {
+          year: "2015",
+          text: "Monthly food parcels reached 25,212 displaced families from Sinjar and Zummar, and 15,896 tonnes were delivered during the year.",
+          textKu:
+            "پاکێتی خۆراکی مانگانە گەیشتە ٢٥,٢١٢ خێزانی ئاوارە لە شنگال و زومار، هەروەها بە درێژایی ساڵ ١٥,٨٩٦ تەن گەیەنرا.",
+          textAr:
+            "وصلت الطرود الغذائية الشهرية إلى 25,212 أسرة نازحة من سنجار وزمار، وجرى إيصال 15,896 طناً خلال العام.",
+        },
+        {
+          year: "2024",
+          text: "Food assistance reached 43,260 families in Duhok, representing 226,300 people.",
+          textKu:
+            "یارمەتی خۆراک لە دهۆک گەیشتە ٤٣,٢٦٠ خێزان، واتە ٢٢٦,٣٠٠ کەس.",
+          textAr:
+            "وصلت المساعدات الغذائية في دهوك إلى 43,260 أسرة، أي ما يمثل 226,300 شخصاً.",
+          note: "The annual sector record. The Ramadan parcel count is a separate record and the report does not combine the two.",
+          noteKu:
+            "ئەمە تۆماری ساڵانەی کەرتەکەیە. ژمارەی پاکێتەکانی ڕەمەزان تۆمارێکی جیاوازە و ڕاپۆرتەکە ئەم دووانە تێکەڵ ناکات.",
+          noteAr:
+            "هذا هو السجل السنوي للقطاع، أما عدد طرود رمضان فهو سجل منفصل، والتقرير لا يجمع بينهما.",
+        },
       ],
     },
     {
@@ -570,6 +765,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "أشارت مؤسسة بارزاني الخيرية (BCF) إلى وجود خطط لإنشاء مركز لمرض التوحد في دهوك، بالإضافة إلى المراكز القائمة في أماكن أخرى.",
         },
+        {
+          year: "2012",
+          text: "Two medical missions examined and treated 730 refugees in the Domiz, Moqbele and Tanahi camps.",
+          textKu:
+            "دوو نێردراوی پزیشکی ٧٣٠ پەنابەریان لە کەمپەکانی دۆمیز، موقبلە و تەناهی پشکنین و چارەسەر کرد.",
+          textAr:
+            "فحصت بعثتان طبيتان وعالجتا 730 لاجئاً في مخيمات دوميز ومقبلة وتناهي.",
+        },
+        {
+          year: "2023",
+          text: "The Duhok health-sector record reached 56,004 people.",
+          textKu:
+            "تۆماری کەرتی تەندروستی لە دهۆک گەیشتە ٥٦,٠٠٤ کەس.",
+          textAr:
+            "بلغ سجل القطاع الصحي في دهوك 56,004 أشخاص.",
+        },
+        {
+          year: "2024",
+          text: "Health activities recorded 342,230 beneficiaries in Duhok, the largest city health record of the year.",
+          textKu:
+            "چالاکییەکانی تەندروستی لە دهۆک ٣٤٢,٢٣٠ سوودمەندیان تۆمار کرد، کە گەورەترین تۆماری تەندروستی شار بوو لەو ساڵەدا.",
+          textAr:
+            "سجلت الأنشطة الصحية 342,230 مستفيداً في دهوك، وهو أكبر سجل صحي لمدينة خلال ذلك العام.",
+        },
       ],
     },
     {
@@ -594,6 +813,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "الإعلان عن مشروع لتوليد الكهرباء بالطاقة الشمسية لـ 10 مدارس في محافظة دهوك.",
         },
+        {
+          year: "2010",
+          text: "A music laboratory opened inside Tanahi's vocational and cultural centre.",
+          textKu:
+            "تاقیگەیەکی مۆسیقا لە ناو ناوەندی پیشەیی و کولتووری تەناهی کرایەوە.",
+          textAr:
+            "افتُتح مختبر للموسيقى داخل المركز المهني والثقافي في تناهي.",
+        },
+        {
+          year: "2022",
+          text: "BCF supported 700 Sinjar students living temporarily in the University of Duhok dormitories.",
+          textKu:
+            "BCF پشتگیری ٧٠٠ قوتابی شنگالی کرد کە بە شێوەی کاتی لە نامۆخانەکانی زانکۆی دهۆک دەژیان.",
+          textAr:
+            "دعمت مؤسسة بارزاني الخيرية 700 طالب من سنجار يقيمون مؤقتاً في أقسام جامعة دهوك الداخلية.",
+        },
+        {
+          year: "2023",
+          text: "Education activities recorded 10,006 beneficiaries in Duhok.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە دهۆک ١٠,٠٠٦ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 10,006 مستفيدين في دهوك.",
+        },
       ],
     },
     {
@@ -615,10 +858,11 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         },
         {
           year: "2022",
-          text: "The Duhok martyrs' housing project completed 420 residential units in Roj City.",
-          textKu: "پڕۆژەی خانووبەرەی شەهیدانی دهۆک لە شاری ڕۆژ ٤٢٠ یەکەی نیشتەجێبوونی تەواو کرد.",
+          text: "The Duhok martyrs' housing project completed 420 residential units in Roj City, housing 1,763 people.",
+          textKu:
+            "پڕۆژەی خانووبەرەی شەهیدانی دهۆک لە شاری ڕۆژ ٤٢٠ یەکەی نیشتەجێبوونی تەواو کرد، کە ١,٧٦٣ کەسی تێدا نیشتەجێ بوون.",
           textAr:
-            "إنجاز 420 وحدة سكنية ضمن مشروع إسكان عوائل شهداء دهوك في روج ستي.",
+            "أنجز مشروع إسكان عوائل شهداء دهوك 420 وحدة سكنية في روج ستي، تؤوي 1,763 شخصاً.",
           note: "First phase 368, second phase 52. Use 420 as the complete project; 368 is only the first phase.",
           noteKu:
             "قۆناغی یەکەم ٣٦٨ یەکە و قۆناغی دووەم ٥٢ یەکە بوو. ژمارەی ٤٢٠ کۆی تەواوی پڕۆژەکەیە؛ ٣٦٨ تەنها ژمارەی قۆناغی یەکەمە.",
@@ -630,6 +874,27 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "پشتگیری پەناگە و پێداویستییە زستانییەکانی کەمپەکان، لە ڕێگەی بەرنامە بەردەوامەکانی BCF بەردەوام بوو.",
           textAr:
             "استمرار تقديم خدمات الإيواء والمساعدات الشتوية في المخيمات عبر برامج المخيمات الاعتيادية لمؤسسة بارزاني الخيرية (BCF).",
+        },
+        {
+          year: "2006",
+          text: "Household supplies reached 14 refugee families in Duhok, representing 70 people.",
+          textKu:
+            "پێداویستی ماڵ گەیشتە ١٤ خێزانی پەنابەر لە دهۆک، واتە ٧٠ کەس.",
+          textAr:
+            "وصلت المستلزمات المنزلية إلى 14 أسرة لاجئة في دهوك، أي ما يمثل 70 شخصاً.",
+        },
+        {
+          year: "2024",
+          text: "Household-support records reached 239,187 people in Duhok and shelter records 216.",
+          textKu:
+            "تۆمارەکانی پاڵپشتی ماڵ لە دهۆک گەیشتنە ٢٣٩,١٨٧ کەس و تۆمارەکانی سەرپەناش ٢١٦ کەس.",
+          textAr:
+            "بلغت سجلات دعم المستلزمات المنزلية 239,187 شخصاً في دهوك، وبلغت سجلات المأوى 216 شخصاً.",
+          note: "Two separate records. The report never sums household support and shelter.",
+          noteKu:
+            "دوو تۆماری جیاوازن. ڕاپۆرتەکە هەرگیز پاڵپشتی ماڵ و سەرپەنا کۆناکاتەوە.",
+          noteAr:
+            "سجلان منفصلان، والتقرير لا يجمع بين دعم المستلزمات المنزلية والمأوى.",
         },
       ],
     },
@@ -686,9 +951,14 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         },
         {
           year: "2021",
-          text: "154 mobility-aid beneficiaries in Duhok.",
-          textKu: "لە دهۆک ١٥٤ کەس سوودمەندی یارمەتییەکانی جووڵە و گواستنەوە بوون.",
-          textAr: "استفاد 154 شخصاً من المعينات الحركية في دهوك.",
+          text: "Mobility-aid support reached 154 people in Duhok city.",
+          textKu: "یارمەتییەکانی جووڵە و گواستنەوە لە شاری دهۆک گەیشتنە ١٥٤ کەس.",
+          textAr: "وصلت المعينات الحركية إلى 154 شخصاً في مدينة دهوك.",
+          note: "The city record. Zakho, Amedi, Shiladze and the other districts are recorded separately.",
+          noteKu:
+            "ئەمە تۆماری شارەکەیە. زاخۆ، ئامێدی، شێلادزێ و ناوچەکانی دیکە بە جیا تۆمار کراون.",
+          noteAr:
+            "هذا سجل المدينة، أما زاخو والعمادية وشيلادزي والأقضية الأخرى فتُسجَّل على حدة.",
         },
         {
           year: "2022",
@@ -702,6 +972,14 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textKu:
             "لە مانگی ئایار ٨ کورسی چەرخدار دابەش کرا؛ هەروەها چالاکییەکانی پشتگیری کەسانی خاوەن پێداویستی تایبەت بەردەوام بوون.",
           textAr: "وُزعت 8 كراسٍ متحركة في شهر مايو، مع استمرار أنشطة دعم ذوي الإعاقة.",
+        },
+        {
+          year: "2016",
+          text: "Disabled-care activities reached 110 people in Duhok host communities and 66 more inside the camps.",
+          textKu:
+            "چالاکییەکانی چاودێری کەم‌ئەندامان گەیشتنە ١١٠ کەس لە کۆمەڵگا میوانداریەکانی دهۆک و ٦٦ کەسی دیکەش لە ناو کەمپەکاندا.",
+          textAr:
+            "وصلت أنشطة رعاية ذوي الإعاقة إلى 110 أشخاص في المجتمعات المضيفة بدهوك و66 شخصاً آخرين داخل المخيمات.",
         },
       ],
     },
@@ -758,6 +1036,22 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "ئۆفیسی دهۆک چالاکی جیاوازی بۆ منداڵانی ئازیز و خێزانەکانیان ڕێکخست، هەروەها یارمەتی دارایی پێشکەش کرد.",
           textAr: "نظّم مكتب دهوك أنشطة وقدّم مساعدات نقدية للأعزاء وعائلاتهم.",
         },
+        {
+          year: "2021",
+          text: "The UAE-supported OrphanCare project recorded 2,902 children in Duhok.",
+          textKu:
+            "پڕۆژەی OrphanCare بە پشتگیری ئیمارات ٢,٩٠٢ منداڵی لە دهۆک تۆمار کرد.",
+          textAr:
+            "سجل مشروع رعاية الأيتام المدعوم إماراتياً 2,902 طفلاً في دهوك.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 515 families in Duhok, representing 6,588 people.",
+          textKu:
+            "یارمەتی نەقدی لە دهۆک گەیشتە ٥١٥ خێزان، واتە ٦,٥٨٨ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية في دهوك إلى 515 أسرة، أي ما يمثل 6,588 شخصاً.",
+        },
       ],
     },
     {
@@ -770,6 +1064,35 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "پڕۆژەیەکی پشتگیری کۆمەڵگا ڕایگەیاند کە فەرش بۆ ٦٢ مزگەوت لە پارێزگای دهۆک و ئیدارەی زاخۆ دابین دەکرێت.",
           textAr:
             "أعلن مشروع لدعم المجتمع عن توفير سجاد لـ 62 مسجداً في عموم محافظة دهوك وإدارة زاخو المستقلة.",
+        },
+      ],
+    },
+    {
+      id: "wash",
+      entries: [
+        {
+          year: "2018",
+          text: "WASH work recorded 9,557 family and 66,021 individual beneficiary entries in Duhok.",
+          textKu:
+            "کاری ئاو و خاوێنکاری لە دهۆک ٩,٥٥٧ تۆماری خێزان و ٦٦,٠٢١ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أعمال المياه والإصحاح 9,557 مدخلاً أسرياً و66,021 مدخلاً فردياً للمستفيدين في دهوك.",
+        },
+        {
+          year: "2023",
+          text: "The Duhok WASH record reached 3,151 beneficiaries.",
+          textKu:
+            "تۆماری ئاو و خاوێنکاری لە دهۆک گەیشتە ٣,١٥١ سوودمەند.",
+          textAr:
+            "بلغ سجل المياه والإصحاح في دهوك 3,151 مستفيداً.",
+        },
+        {
+          year: "2024",
+          text: "WASH activities reached 235 families in Duhok, representing 1,308 people.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە دهۆک گەیشتنە ٢٣٥ خێزان، واتە ١,٣٠٨ کەس.",
+          textAr:
+            "وصلت أنشطة المياه والإصحاح في دهوك إلى 235 أسرة، أي ما يمثل 1,308 أشخاص.",
         },
       ],
     },
@@ -816,6 +1139,35 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "توزيع 400 سلة غذائية رمضانية، ودعم 75 عائلة ومعلماً في منطقة بنجوين، ووزعت 500 سلة غذائية على عائلات ذوي الإعاقة.",
         },
+        {
+          year: "2008",
+          text: "Food parcels reached 860 poor and low-income families across nine locations in Sulaymaniyah.",
+          textKu:
+            "پاکێتی خۆراک گەیشتە ٨٦٠ خێزانی هەژار و کەمداهات لە نۆ شوێنی سلێمانی.",
+          textAr:
+            "وصلت الطرود الغذائية إلى 860 أسرة فقيرة ومحدودة الدخل في تسعة مواقع بالسليمانية.",
+        },
+        {
+          year: "2015",
+          text: "Food parcels reached 3,000 families in the Barika and Arbat refugee camps on 10 May.",
+          textKu:
+            "لە ١٠ی ئایاردا پاکێتی خۆراک گەیشتە ٣,٠٠٠ خێزان لە کەمپەکانی پەنابەرانی بەریکە و عەربەت.",
+          textAr:
+            "في 10 أيار وصلت الطرود الغذائية إلى 3,000 أسرة في مخيمي بريكة وعربت للاجئين.",
+        },
+        {
+          year: "2024",
+          text: "Food assistance reached 14,281 families in Sulaymaniyah, representing 63,273 people.",
+          textKu:
+            "یارمەتی خۆراک لە سلێمانی گەیشتە ١٤,٢٨١ خێزان، واتە ٦٣,٢٧٣ کەس.",
+          textAr:
+            "وصلت المساعدات الغذائية في السليمانية إلى 14,281 أسرة، أي ما يمثل 63,273 شخصاً.",
+          note: "The annual sector record. The Ramadan parcel count is a separate record and the report does not combine the two.",
+          noteKu:
+            "ئەمە تۆماری ساڵانەی کەرتەکەیە. ژمارەی پاکێتەکانی ڕەمەزان تۆمارێکی جیاوازە و ڕاپۆرتەکە ئەم دووانە تێکەڵ ناکات.",
+          noteAr:
+            "هذا هو السجل السنوي للقطاع، أما عدد طرود رمضان فهو سجل منفصل، والتقرير لا يجمع بينهما.",
+        },
       ],
     },
     {
@@ -836,6 +1188,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "تضمنت أعمال برنامج التأهيل والترميم 50 مدرسة من أصل 203 مدارس في محافظة السليمانية.",
         },
+        {
+          year: "2012",
+          text: "School bags and stationery reached 300 low-income students.",
+          textKu:
+            "جانتای قوتابخانە و قەرتاسیە گەیشتە ٣٠٠ قوتابی کەمداهات.",
+          textAr:
+            "وصلت الحقائب المدرسية والقرطاسية إلى 300 طالب من ذوي الدخل المحدود.",
+        },
+        {
+          year: "2015",
+          text: "Two camp schools opened: Bar Khudan in Barika, and the 12-classroom Pekawazhiyan School in Ashti camp.",
+          textKu:
+            "دوو قوتابخانەی کەمپ کرانەوە: بەر خودان لە بەریکە، و قوتابخانەی پێکەوەژیان بە ١٢ پۆل لە کەمپی ئاشتی.",
+          textAr:
+            "افتُتحت مدرستان في المخيمات: مدرسة بر خودان في بريكة، ومدرسة بيكاوجيان المكوّنة من 12 صفاً في مخيم آشتي.",
+        },
+        {
+          year: "2023",
+          text: "Education activities recorded 25,178 beneficiaries in Sulaymaniyah.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە سلێمانی ٢٥,١٧٨ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 25,178 مستفيداً في السليمانية.",
+        },
       ],
     },
     {
@@ -847,6 +1223,27 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textKu: "لە ڕێگەی ئۆفیسی سلێمانی، ٢٢,٢٩٧ کەس لە یارمەتییە ناخۆراکییەکان سوودمەند بوون.",
           textAr:
             "تسجيل 22,297 مستفيداً ضمن قطاع المواد غير الغذائية عبر مكتب السليمانية.",
+        },
+        {
+          year: "2018",
+          text: "NFI activities recorded 284 families and 1,202 people.",
+          textKu:
+            "چالاکییەکانی کەلوپەلی ناخۆراکی ٢٨٤ خێزان و ١,٢٠٢ کەسیان تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المواد غير الغذائية 284 أسرة و1,202 شخص.",
+        },
+        {
+          year: "2024",
+          text: "Household-support records reached 110 people in Sulaymaniyah and shelter records 50.",
+          textKu:
+            "تۆمارەکانی پاڵپشتی ماڵ لە سلێمانی گەیشتنە ١١٠ کەس و تۆمارەکانی سەرپەناش ٥٠ کەس.",
+          textAr:
+            "بلغت سجلات دعم المستلزمات المنزلية 110 أشخاص في السليمانية، وبلغت سجلات المأوى 50 شخصاً.",
+          note: "The report gives no family total for either record, and does not combine them.",
+          noteKu:
+            "ڕاپۆرتەکە بۆ هیچ کام لەم دوو تۆمارە کۆی خێزان نادات و کۆشیان ناکاتەوە.",
+          noteAr:
+            "لا يعطي التقرير إجمالاً للأسر في أي من السجلين، ولا يجمع بينهما.",
         },
       ],
     },
@@ -872,6 +1269,14 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "لە مانگی ئایار ١١ کورسی چەرخدار دابەش کرا؛ هەروەها لە مانگی ئادار یارمەتی خۆراکی بۆ ٢٥٠ کەسی خاوەن پێداویستی تایبەت و لە مانگی ئایار بۆ ٥٠٠ خێزانی کەسانی خاوەن پێداویستی تایبەت دابەش کرا.",
           textAr:
             "توزيع 11 كرسياً متحركاً في شهر مايو؛ كما استهدف الدعم الغذائي 250 شخصاً من ذوي الاحتياجات الخاصة في شهر مارس، و500 أسرة من عائلات ذوي الإعاقة في شهر مايو.",
+        },
+        {
+          year: "2009",
+          text: "Wheelchairs and walking aids reached 44 people directly in Sulaymaniyah.",
+          textKu:
+            "کورسی چەرخدار و داری یارمەتی ڕۆیشتن ڕاستەوخۆ گەیشتە ٤٤ کەس لە سلێمانی.",
+          textAr:
+            "وصلت الكراسي المتحركة ومساعدات المشي إلى 44 شخصاً مباشرة في السليمانية.",
         },
       ],
     },
@@ -921,6 +1326,87 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "دعم مشروعان لشهر آذار 100 أسرة بمبلغ 200,000 دينار عراقي لكل منها، و100 أسرة أخرى بمبلغ 200 دولار أمريكي لكل منها.",
         },
+        {
+          year: "2021",
+          text: "The UAE-supported OrphanCare project recorded 2,193 children in Sulaymaniyah.",
+          textKu:
+            "پڕۆژەی OrphanCare بە پشتگیری ئیمارات ٢,١٩٣ منداڵی لە سلێمانی تۆمار کرد.",
+          textAr:
+            "سجل مشروع رعاية الأيتام المدعوم إماراتياً 2,193 طفلاً في السليمانية.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 496 families in Sulaymaniyah, representing 4,882 people.",
+          textKu:
+            "یارمەتی نەقدی لە سلێمانی گەیشتە ٤٩٦ خێزان، واتە ٤,٨٨٢ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية في السليمانية إلى 496 أسرة، أي ما يمثل 4,882 شخصاً.",
+        },
+      ],
+    },
+    {
+      id: "health",
+      entries: [
+        {
+          year: "2012",
+          text: "A visiting medical team examined and treated 110 Iranian patients in Zurgwez camp.",
+          textKu:
+            "تیمێکی پزیشکی سەردانکەر ١١٠ نەخۆشی ئێرانی لە کەمپی زرگوێزدا پشکنین و چارەسەر کرد.",
+          textAr:
+            "فحص فريق طبي زائر وعالج 110 مرضى إيرانيين في مخيم زركويز.",
+        },
+        {
+          year: "2022",
+          text: "The Sulaymaniyah Health Directorate received 6,600 medicines and medical supplies.",
+          textKu:
+            "بەڕێوەبەرایەتی تەندروستی سلێمانی ٦,٦٠٠ دەرمان و پێداویستی پزیشکی وەرگرت.",
+          textAr:
+            "تسلمت دائرة صحة السليمانية 6,600 من الأدوية والمستلزمات الطبية.",
+        },
+        {
+          year: "2023",
+          text: "Health activities recorded 400 beneficiaries in Sulaymaniyah.",
+          textKu:
+            "چالاکییەکانی تەندروستی لە سلێمانی ٤٠٠ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة الصحية 400 مستفيد في السليمانية.",
+        },
+      ],
+    },
+    {
+      id: "wash",
+      entries: [
+        {
+          year: "2018",
+          text: "WASH work recorded 4,674 family and 33,403 individual beneficiary entries in Sulaymaniyah.",
+          textKu:
+            "کاری ئاو و خاوێنکاری لە سلێمانی ٤,٦٧٤ تۆماری خێزان و ٣٣,٤٠٣ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أعمال المياه والإصحاح 4,674 مدخلاً أسرياً و33,403 مدخلاً فردياً للمستفيدين في السليمانية.",
+          note: "No clean 2024 city split appears in the supplied reports; this stays the latest verified figure.",
+          noteKu:
+            "لە ڕاپۆرتە پێشکەشکراوەکاندا دابەشکردنێکی ڕوونی ٢٠٢٤ بۆ شارەکە نییە؛ ئەمە دوایین ژمارەی پشتڕاستکراوەیە.",
+          noteAr:
+            "لا يرد في التقارير المتاحة تفصيل واضح لعام 2024 على مستوى المدينة، فيبقى هذا الرقم آخر رقم موثّق.",
+        },
+      ],
+    },
+    {
+      id: "camp",
+      entries: [
+        {
+          year: "2018",
+          text: "Camp coordination recorded 122 family and 500 individual beneficiary entries in Sulaymaniyah.",
+          textKu:
+            "هەماهەنگی کەمپ لە سلێمانی ١٢٢ تۆماری خێزان و ٥٠٠ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجل تنسيق المخيمات 122 مدخلاً أسرياً و500 مدخل فردي للمستفيدين في السليمانية.",
+          note: "A historical record; no newer Sulaymaniyah camp-management figure is supplied.",
+          noteKu:
+            "تۆمارێکی مێژووییە؛ هیچ ژمارەیەکی نوێتری بەڕێوەبردنی کەمپ بۆ سلێمانی پێشکەش نەکراوە.",
+          noteAr:
+            "سجل تاريخي، ولم يُقدَّم رقم أحدث لإدارة المخيمات في السليمانية.",
+        },
       ],
     },
   ],
@@ -966,6 +1452,27 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "تم توزيع سلال غذائية على 200 أسرة، كما انطلق مشروع «بارزاني الخالد، رمز التعايش» بتقديم مساعدات غذائية ومواد غير غذائية إلى 30 أسرة.",
         },
+        {
+          year: "2007",
+          text: "Food parcels reached 600 needy families across Kirkuk.",
+          textKu:
+            "پاکێتی خۆراک گەیشتە ٦٠٠ خێزانی کەمدەرامەت لە سەرانسەری کەرکووک.",
+          textAr:
+            "وصلت الطرود الغذائية إلى 600 أسرة محتاجة في عموم كركوك.",
+        },
+        {
+          year: "2024",
+          text: "Food assistance reached 8,542 families in Kirkuk, representing 42,839 people.",
+          textKu:
+            "یارمەتی خۆراک لە کەرکووک گەیشتە ٨,٥٤٢ خێزان، واتە ٤٢,٨٣٩ کەس.",
+          textAr:
+            "وصلت المساعدات الغذائية في كركوك إلى 8,542 أسرة، أي ما يمثل 42,839 شخصاً.",
+          note: "The annual sector record. The Ramadan parcel count is a separate record and the report does not combine the two.",
+          noteKu:
+            "ئەمە تۆماری ساڵانەی کەرتەکەیە. ژمارەی پاکێتەکانی ڕەمەزان تۆمارێکی جیاوازە و ڕاپۆرتەکە ئەم دووانە تێکەڵ ناکات.",
+          noteAr:
+            "هذا هو السجل السنوي للقطاع، أما عدد طرود رمضان فهو سجل منفصل، والتقرير لا يجمع بينهما.",
+        },
       ],
     },
     {
@@ -983,6 +1490,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textKu: "لە بەرنامەی کۆتایی نۆژەنکردنەوەی ٥٠ قوتابخانەدا، ٥ قوتابخانەی کەرکووک نۆژەن کرانەوە.",
           textAr: "شمل البرنامج النهائي المكوّن من 50 مدرسة، خمس مدارس في كركوك.",
         },
+        {
+          year: "2008",
+          text: "Equipment reached six kindergartens and benefited 665 children.",
+          textKu:
+            "کەلوپەل گەیشتە شەش باخچەی منداڵان و ٦٦٥ منداڵی لێ سوودمەند بوون.",
+          textAr:
+            "وصلت التجهيزات إلى ست رياض أطفال واستفاد منها 665 طفلاً.",
+        },
+        {
+          year: "2018",
+          text: "Education activities recorded 1,074 beneficiaries in Kirkuk.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە کەرکووک ١,٠٧٤ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 1,074 مستفيداً في كركوك.",
+        },
+        {
+          year: "2023",
+          text: "Education activities recorded 4,014 beneficiaries in Kirkuk.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە کەرکووک ٤,٠١٤ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 4,014 مستفيداً في كركوك.",
+        },
       ],
     },
     {
@@ -993,6 +1524,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           text: "NFI activities recorded 3,850 individual beneficiaries.",
           textKu: "لە چالاکییەکانی یارمەتییە ناخۆراکییەکاندا، ٣,٨٥٠ کەس سوودمەند بوون.",
           textAr: "استفاد 3,850 شخصًا من أنشطة توزيع المواد غير الغذائية.",
+        },
+        {
+          year: "2008",
+          text: "Household essentials reached 1,230 displaced families returning to Kirkuk.",
+          textKu:
+            "پێداویستی سەرەکی ماڵ گەیشتە ١,٢٣٠ خێزانی ئاوارە کە دەگەڕانەوە کەرکووک.",
+          textAr:
+            "وصلت المستلزمات المنزلية الأساسية إلى 1,230 أسرة نازحة عائدة إلى كركوك.",
+        },
+        {
+          year: "2018",
+          text: "NFI activities recorded 166 families and 758 people in Kirkuk.",
+          textKu:
+            "چالاکییەکانی کەلوپەلی ناخۆراکی لە کەرکووک ١٦٦ خێزان و ٧٥٨ کەسیان تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المواد غير الغذائية 166 أسرة و758 شخصاً في كركوك.",
+        },
+        {
+          year: "2024",
+          text: "NFI assistance reached 110 families in Kirkuk, representing 611 people.",
+          textKu:
+            "یارمەتی کەلوپەلی ناخۆراکی لە کەرکووک گەیشتە ١١٠ خێزان، واتە ٦١١ کەس.",
+          textAr:
+            "وصلت مساعدات المواد غير الغذائية في كركوك إلى 110 أسر، أي ما يمثل 611 شخصاً.",
         },
       ],
     },
@@ -1010,6 +1565,22 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           text: "220 disability-support beneficiaries.",
           textKu: "٢٢٠ کەس کە خاوەن پێداویستی تایبەت بوون، یارمەتی و پشتگیرییان وەرگرت.",
           textAr: "استفاد 220 شخصًا من خدمات دعم ذوي الهمم.",
+        },
+        {
+          year: "2016",
+          text: "Disabled-care assistance reached 24 people in Kirkuk.",
+          textKu:
+            "یارمەتی چاودێری کەم‌ئەندامان گەیشتە ٢٤ کەس لە کەرکووک.",
+          textAr:
+            "وصلت مساعدات رعاية ذوي الإعاقة إلى 24 شخصاً في كركوك.",
+        },
+        {
+          year: "2023",
+          text: "Wheelchairs were distributed in Kirkuk through the LDS-supported disability programme.",
+          textKu:
+            "کورسی چەرخدار لە کەرکووک دابەش کران لە ڕێگەی بەرنامەی کەم‌ئەندامان بە پشتگیری LDS.",
+          textAr:
+            "وُزّعت الكراسي المتحركة في كركوك عبر برنامج ذوي الإعاقة المدعوم من مؤسسة LDS الخيرية.",
         },
       ],
     },
@@ -1062,6 +1633,79 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "تم توزيع مساعدات نقدية على 300 أسرة بمبلغ 100 دولار أمريكي لكل أسرة، وعلى 50 أسرة أخرى بواقع 200 دولار أمريكي لكل أسرة.",
         },
+        {
+          year: "2021",
+          text: "The UAE-supported OrphanCare project recorded 1,743 children in Kirkuk.",
+          textKu:
+            "پڕۆژەی OrphanCare بە پشتگیری ئیمارات ١,٧٤٣ منداڵی لە کەرکووک تۆمار کرد.",
+          textAr:
+            "سجل مشروع رعاية الأيتام المدعوم إماراتياً 1,743 طفلاً في كركوك.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 451 families in Kirkuk, representing 3,604 people.",
+          textKu:
+            "یارمەتی نەقدی لە کەرکووک گەیشتە ٤٥١ خێزان، واتە ٣,٦٠٤ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية في كركوك إلى 451 أسرة، أي ما يمثل 3,604 أشخاص.",
+        },
+      ],
+    },
+    {
+      id: "health",
+      entries: [
+        {
+          year: "2021",
+          text: "Kirkuk received 25,000 masks through a COVID-19 prevention initiative.",
+          textKu:
+            "کەرکووک ٢٥,٠٠٠ ماسکی وەرگرت لە ڕێگەی دەستپێشخەرییەکی پێشگیری لە کۆڤید-١٩.",
+          textAr:
+            "تسلمت كركوك 25,000 كمامة ضمن مبادرة للوقاية من كوفيد-19.",
+        },
+        {
+          year: "2022",
+          text: "BCF and the Health Directorate delivered assistance to 35 children with cancer.",
+          textKu:
+            "BCF و بەڕێوەبەرایەتی تەندروستی یارمەتییان گەیاندە ٣٥ منداڵی تووشبووی شێرپەنجە.",
+          textAr:
+            "قدمت مؤسسة بارزاني الخيرية ودائرة الصحة المساعدة لـ 35 طفلاً مصاباً بالسرطان.",
+          note: "A focused local story. The supplied 2024 report carries no clean Kirkuk health total.",
+          noteKu:
+            "چیرۆکێکی خۆجێیی دیاریکراوە. ڕاپۆرتی ٢٠٢٤ی پێشکەشکراو هیچ کۆیەکی ڕوونی تەندروستی بۆ کەرکووک ناگرێتەخۆ.",
+          noteAr:
+            "قصة محلية محددة، ولا يتضمن تقرير 2024 المتاح إجمالاً صحياً واضحاً لكركوك.",
+        },
+      ],
+    },
+    {
+      id: "wash",
+      entries: [
+        {
+          year: "2024",
+          text: "WASH activities reached 110 families in Kirkuk, representing 501 people.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە کەرکووک گەیشتنە ١١٠ خێزان، واتە ٥٠١ کەس.",
+          textAr:
+            "وصلت أنشطة المياه والإصحاح في كركوك إلى 110 أسر، أي ما يمثل 501 شخص.",
+        },
+      ],
+    },
+    {
+      id: "camp",
+      entries: [
+        {
+          year: "2017",
+          text: "The Kirkuk office reported nine IDP camps hosting 2,065 families, alongside 15,406 displaced families living outside camps.",
+          textKu:
+            "ئۆفیسی کەرکووک ڕایگەیاند نۆ کەمپی ئاوارەکان ٢,٠٦٥ خێزانیان لە خۆ گرتووە، لەگەڵ ١٥,٤٠٦ خێزانی ئاوارە کە لە دەرەوەی کەمپەکان دەژیان.",
+          textAr:
+            "أفاد مكتب كركوك بوجود تسعة مخيمات للنازحين تؤوي 2,065 أسرة، إلى جانب 15,406 أسر نازحة تقيم خارج المخيمات.",
+          note: "A historical coordination footprint; no newer Kirkuk camp count is supplied.",
+          noteKu:
+            "ئەمە شوێنپێی مێژووی هەماهەنگییە؛ هیچ ژمارەیەکی نوێتری کەمپ بۆ کەرکووک پێشکەش نەکراوە.",
+          noteAr:
+            "بصمة تنسيق تاريخية، ولم يُقدَّم عدد أحدث لمخيمات كركوك.",
+        },
       ],
     },
   ],
@@ -1101,6 +1745,40 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           noteKu:
             "ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان دەگرنەوە.",
         },
+        {
+          year: "2010",
+          text: "Food assistance reached 37 displaced Christian families in Al-Qosh.",
+          textKu:
+            "یارمەتی خۆراک گەیشتە ٣٧ خێزانی مەسیحی ئاوارە لە ئەلقۆش.",
+          textAr:
+            "وصلت المساعدات الغذائية إلى 37 أسرة مسيحية نازحة في ألقوش.",
+        },
+        {
+          year: "2017",
+          text: "Ready meals supported 781,649 displaced-person beneficiary entries during the Mosul response.",
+          textKu:
+            "لە کاتی وەڵامدانەوەی موسڵدا، ژەمە ئامادەکان ٧٨١,٦٤٩ تۆماری سوودمەندی ئاوارەیان پشتگیری کرد.",
+          textAr:
+            "دعمت الوجبات الجاهزة 781,649 مدخلاً للمستفيدين من النازحين خلال الاستجابة في الموصل.",
+          note: "Recorded service entries across the response, not a count of individual people.",
+          noteKu:
+            "ئەمانە تۆماری خزمەتگوزارین لە درێژایی وەڵامدانەوەکەدا، نەک ژمارەی کەسانی جیاواز.",
+          noteAr:
+            "هذه مدخلات خدمة مسجلة على امتداد الاستجابة، وليست عدداً للأشخاص الأفراد.",
+        },
+        {
+          year: "2024",
+          text: "Food assistance reached 14,431 families in Nineveh, representing 79,937 people.",
+          textKu:
+            "یارمەتی خۆراک لە نەینەوا گەیشتە ١٤,٤٣١ خێزان، واتە ٧٩,٩٣٧ کەس.",
+          textAr:
+            "وصلت المساعدات الغذائية في نينوى إلى 14,431 أسرة، أي ما يمثل 79,937 شخصاً.",
+          note: "The annual sector record. The Ramadan parcel count is a separate record and the report does not combine the two.",
+          noteKu:
+            "ئەمە تۆماری ساڵانەی کەرتەکەیە. ژمارەی پاکێتەکانی ڕەمەزان تۆمارێکی جیاوازە و ڕاپۆرتەکە ئەم دووانە تێکەڵ ناکات.",
+          noteAr:
+            "هذا هو السجل السنوي للقطاع، أما عدد طرود رمضان فهو سجل منفصل، والتقرير لا يجمع بينهما.",
+        },
       ],
     },
     {
@@ -1116,11 +1794,27 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
         },
         {
           year: "2024",
-          text: "Nineveh recorded major health-sector reach; Patient Mobility Services transported 525 patients from East Mosul camps to hospitals in Erbil and Mosul.",
+          text: "Health activities recorded 228,247 beneficiaries in Nineveh; Patient Mobility Services transported 525 patients from East Mosul camps to hospitals in Erbil and Mosul.",
           textKu:
-            "لە نەینەوا، خزمەتگوزارییە تەندروستییەکان ژمارەیەکی زۆر کەسیان گرتەوە؛ هەروەها ٥٢٥ نەخۆش لە کەمپەکانی ڕۆژهەڵاتی موسڵ بۆ نەخۆشخانەکانی هەولێر و موسڵ گواسترایەوە.",
+            "چالاکییەکانی تەندروستی لە نەینەوا ٢٢٨,٢٤٧ سوودمەندیان تۆمار کرد؛ هەروەها ٥٢٥ نەخۆش لە کەمپەکانی ڕۆژهەڵاتی موسڵ بۆ نەخۆشخانەکانی هەولێر و موسڵ گواسترایەوە.",
           textAr:
-            "قدّمت خدمة نقل المرضى الدعم لـ 525 مريضاً، ونقلتهم من مخيمات شرق الموصل إلى مستشفيات في أربيل والموصل.",
+            "سجلت الأنشطة الصحية 228,247 مستفيداً في نينوى، كما نقلت خدمة نقل المرضى 525 مريضاً من مخيمات شرق الموصل إلى مستشفيات في أربيل والموصل.",
+        },
+        {
+          year: "2017",
+          text: "Two primary health centres served displaced families in the Hassan Sham and Khazir camps.",
+          textKu:
+            "دوو ناوەندی تەندروستی سەرەتایی خزمەتی خێزانە ئاوارەکانیان لە کەمپەکانی حەسەن شام و خازردا پێشکەش کرد.",
+          textAr:
+            "قدّم مركزان للرعاية الصحية الأولية الخدمة للأسر النازحة في مخيمي حسن شام والخازر.",
+        },
+        {
+          year: "2018",
+          text: "Health activities recorded 20,657 beneficiaries in Nineveh.",
+          textKu:
+            "چالاکییەکانی تەندروستی لە نەینەوا ٢٠,٦٥٧ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة الصحية 20,657 مستفيداً في نينوى.",
         },
       ],
     },
@@ -1140,6 +1834,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "وضمّت المرحلة النهائية من البرنامج، التي شملت 50 مدرسة، 5 مدارس في الموصل.",
         },
+        {
+          year: "2008",
+          text: "A regional school campaign included 17 schools in Tilkaif, Bartella and Bashiqa.",
+          textKu:
+            "کەمپەینێکی هەرێمی قوتابخانە ١٧ قوتابخانەی لە تلکێف، بەرتەلە و بەعشیقە لەخۆ گرت.",
+          textAr:
+            "شملت حملة مدرسية إقليمية 17 مدرسة في تلكيف وبرطلة وبعشيقة.",
+        },
+        {
+          year: "2015",
+          text: "A temporary school opened on Mount Sinjar on 13 December, bringing 300 Yazidi students back to class.",
+          textKu:
+            "لە ١٣ی کانوونی یەکەمدا قوتابخانەیەکی کاتی لەسەر چیای شنگال کرایەوە و ٣٠٠ قوتابی ئێزیدی گەڕانەوە ڕیزی خوێندن.",
+          textAr:
+            "افتُتحت مدرسة مؤقتة في جبل سنجار في 13 كانون الأول، فعاد 300 طالب إيزيدي إلى مقاعد الدراسة.",
+        },
+        {
+          year: "2018",
+          text: "Education activities recorded 6,847 beneficiaries in Nineveh.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە نەینەوا ٦,٨٤٧ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 6,847 مستفيداً في نينوى.",
+        },
       ],
     },
     {
@@ -1154,6 +1872,30 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "تم إنشاء خزان مياه خرساني في لالش ضمن مشاريع مؤسسة بارزاني الخيرية طويلة الأمد لتطوير البنية التحتية للمياه والإصحاح.",
           note: "The cumulative report does not specify a year.",
           noteKu: "لە ڕاپۆرتی کۆکراوەکەدا ساڵی جێبەجێکردنی ئەم پڕۆژەیە دیاری نەکراوە.",
+        },
+        {
+          year: "2017",
+          text: "A Sinjar water project supplied 2,500 displaced families every day.",
+          textKu:
+            "پڕۆژەیەکی ئاوی شنگال ڕۆژانە ئاوی بۆ ٢,٥٠٠ خێزانی ئاوارە دابین دەکرد.",
+          textAr:
+            "زوّد مشروع مائي في سنجار 2,500 أسرة نازحة بالمياه يومياً.",
+        },
+        {
+          year: "2018",
+          text: "WASH work recorded 76,711 family and 401,033 individual beneficiary entries in Nineveh.",
+          textKu:
+            "کاری ئاو و خاوێنکاری لە نەینەوا ٧٦,٧١١ تۆماری خێزان و ٤٠١,٠٣٣ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أعمال المياه والإصحاح 76,711 مدخلاً أسرياً و401,033 مدخلاً فردياً للمستفيدين في نينوى.",
+        },
+        {
+          year: "2024",
+          text: "WASH activities reached 2,195 families in Nineveh, representing 10,769 people.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە نەینەوا گەیشتنە ٢,١٩٥ خێزان، واتە ١٠,٧٦٩ کەس.",
+          textAr:
+            "وصلت أنشطة المياه والإصحاح في نينوى إلى 2,195 أسرة، أي ما يمثل 10,769 شخصاً.",
         },
       ],
     },
@@ -1175,6 +1917,19 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "كما استمرت أعمال تنسيق المخيمات وتقديم الخدمات متعددة القطاعات في مواقع النزوح.",
         },
+        {
+          year: "2018",
+          text: "Nineveh camp coordination recorded 151,058 family and 808,298 individual beneficiary entries.",
+          textKu:
+            "هەماهەنگی کەمپەکانی نەینەوا ١٥١,٠٥٨ تۆماری خێزان و ٨٠٨,٢٩٨ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجل تنسيق المخيمات في نينوى 151,058 مدخلاً أسرياً و808,298 مدخلاً فردياً للمستفيدين.",
+          note: "Recorded service entries, not camp population.",
+          noteKu:
+            "ئەمانە تۆماری خزمەتگوزارین، نەک ژمارەی دانیشتووانی کەمپ.",
+          noteAr:
+            "هذه مدخلات خدمة مسجلة، وليست عدد سكان المخيمات.",
+        },
       ],
     },
     {
@@ -1182,15 +1937,29 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
       entries: [
         {
           year: "2021",
-          text: "208 mobility-aid beneficiaries in Nineveh.",
-          textKu: "لە نەینەوا، ٢٠٨ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.",
-          textAr: "استفاد 208 أشخاص في نينوى من المعينات الحركية.",
+          text: "Mobility-aid support recorded 208 people in Ninewa and 63 more in Sinjar.",
+          textKu:
+            "یارمەتییەکانی جووڵە و گواستنەوە ٢٠٨ کەسیان لە نەینەوا و ٦٣ کەسی دیکەیان لە شنگال تۆمار کرد.",
+          textAr:
+            "سجلت المعينات الحركية 208 أشخاص في نينوى و63 شخصاً آخرين في سنجار.",
+          note: "Two separate local records; Sinjar is not counted inside the Ninewa figure.",
+          noteKu:
+            "دوو تۆماری خۆجێیی جیاوازن؛ شنگال لە ناو ژمارەی نەینەوادا ژمێردراو نییە.",
+          noteAr: "سجلان محليان منفصلان، وسنجار غير محتسبة ضمن رقم نينوى.",
         },
         {
           year: "2022",
           text: "115 disability-support beneficiaries.",
           textKu: "هەروەها ١١٥ کەس کە خاوەن پێداویستیی تایبەت بوون، یارمەتی و پشتگیرییان وەرگرت.",
           textAr: "كما استفاد 115 شخصاً من خدمات دعم ذوي الهمم.",
+        },
+        {
+          year: "2023",
+          text: "Wheelchairs, walkers and crutches were distributed in Mosul and the surrounding communities.",
+          textKu:
+            "کورسی چەرخدار، ئامێری ڕۆیشتن و گۆچان لە موسڵ و کۆمەڵگا دەوروبەرەکاندا دابەش کران.",
+          textAr:
+            "وُزّعت الكراسي المتحركة والمشايات والعكازات في الموصل والمجتمعات المحيطة بها.",
         },
       ],
     },
@@ -1229,6 +1998,61 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           note: "15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Nineveh counts.",
           noteKu:
             "١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦ کۆی گشتیی سوودمەندانی هەموو ئۆفیسەکانی پڕۆژەکەن؛ ئەم ژمارانە تایبەت بە نەینەوا نین.",
+        },
+        {
+          year: "2008",
+          text: "IQD 110 million was allocated for displaced Christian families across several Nineveh communities.",
+          textKu:
+            "بڕی ١١٠ ملیۆن دیناری عێراقی بۆ خێزانە مەسیحییە ئاوارەکان لە چەند کۆمەڵگایەکی نەینەوا تەرخان کرا.",
+          textAr:
+            "خُصص 110 ملايين دينار عراقي للأسر المسيحية النازحة في عدد من مجتمعات نينوى.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 722 families in Nineveh, representing 4,902 people.",
+          textKu:
+            "یارمەتی نەقدی لە نەینەوا گەیشتە ٧٢٢ خێزان، واتە ٤,٩٠٢ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية في نينوى إلى 722 أسرة، أي ما يمثل 4,902 شخص.",
+        },
+      ],
+    },
+    {
+      id: "nfi",
+      entries: [
+        {
+          year: "2008",
+          text: "Emergency household supplies supported families affected by the Khazna explosion near Bartella.",
+          textKu:
+            "پێداویستی ماڵی فریاکەوتن پشتگیری ئەو خێزانانەی کرد کە لە تەقینەوەی خەزنە نزیک بەرتەلە زیانیان بەرکەوتبوو.",
+          textAr:
+            "دعمت المستلزمات المنزلية الطارئة الأسر المتضررة من انفجار الخزنة قرب برطلة.",
+        },
+        {
+          year: "2018",
+          text: "NFI activities recorded 125,214 family and 647,115 individual beneficiary entries in Nineveh.",
+          textKu:
+            "چالاکییەکانی کەلوپەلی ناخۆراکی لە نەینەوا ١٢٥,٢١٤ تۆماری خێزان و ٦٤٧,١١٥ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المواد غير الغذائية 125,214 مدخلاً أسرياً و647,115 مدخلاً فردياً للمستفيدين في نينوى.",
+          note: "Recorded service entries across the year, not a count of individual people.",
+          noteKu:
+            "ئەمانە تۆماری خزمەتگوزارین بە درێژایی ساڵ، نەک ژمارەی کەسانی جیاواز.",
+          noteAr:
+            "هذه مدخلات خدمة مسجلة على مدار العام، وليست عدداً للأشخاص الأفراد.",
+        },
+        {
+          year: "2024",
+          text: "Household-support records reached 79,928 people in Nineveh and shelter records 14.",
+          textKu:
+            "تۆمارەکانی پاڵپشتی ماڵ لە نەینەوا گەیشتنە ٧٩,٩٢٨ کەس و تۆمارەکانی سەرپەناش ١٤ کەس.",
+          textAr:
+            "بلغت سجلات دعم المستلزمات المنزلية 79,928 شخصاً في نينوى، وبلغت سجلات المأوى 14 شخصاً.",
+          note: "Two separate records. The report never sums household support and shelter.",
+          noteKu:
+            "دوو تۆماری جیاوازن. ڕاپۆرتەکە هەرگیز پاڵپشتی ماڵ و سەرپەنا کۆناکاتەوە.",
+          noteAr:
+            "سجلان منفصلان، والتقرير لا يجمع بين دعم المستلزمات المنزلية والمأوى.",
         },
       ],
     },
@@ -1424,6 +2248,35 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "تواصلت جهود المؤسسة عبر توزيع السلال الغذائية في مناطق كفري، خانقين، رزكاري، ودربنديخان، إلى جانب توزيع لحم الأضاحي في قضاء دربنديخان.",
         },
+        {
+          year: "2012",
+          text: "Garmian joined a seven-area food programme reaching 5,409 families overall.",
+          textKu:
+            "گەرمیان بەشدار بوو لە بەرنامەیەکی خۆراکی حەوت ناوچەیی کە بە گشتی گەیشتە ٥,٤٠٩ خێزان.",
+          textAr:
+            "شاركت كرميان في برنامج غذائي شمل سبع مناطق ووصل إجمالاً إلى 5,409 أسر.",
+          note: "The 5,409 figure is the programme total across all seven areas, not Garmian's own share.",
+          noteKu:
+            "ژمارەی ٥,٤٠٩ کۆی بەرنامەکەیە بۆ هەر حەوت ناوچەکە، نەک بەشی گەرمیان بە تەنها.",
+          noteAr:
+            "رقم 5,409 هو إجمالي البرنامج في المناطق السبع كافة، وليس حصة كرميان وحدها.",
+        },
+        {
+          year: "2018",
+          text: "Food activities recorded 3,200 families and 16,789 people in Garmian.",
+          textKu:
+            "چالاکییەکانی خۆراک لە گەرمیان ٣,٢٠٠ خێزان و ١٦,٧٨٩ کەسیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة الغذائية 3,200 أسرة و16,789 شخصاً في كرميان.",
+        },
+        {
+          year: "2024",
+          text: "Food assistance reached 4,235 families in Garmian, representing 20,250 people.",
+          textKu:
+            "یارمەتی خۆراک لە گەرمیان گەیشتە ٤,٢٣٥ خێزان، واتە ٢٠,٢٥٠ کەس.",
+          textAr:
+            "وصلت المساعدات الغذائية في كرميان إلى 4,235 أسرة، أي ما يمثل 20,250 شخصاً.",
+        },
       ],
     },
     {
@@ -1458,6 +2311,14 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textKu: "لە کەلار، کورسی چەرخدار دابەش کرا.",
           textAr: "توفير وتوزيع الكراسي المتحركة في كلار.",
         },
+        {
+          year: "2023",
+          text: "Wheelchairs were distributed in Darbandikhan through the LDS-supported programme.",
+          textKu:
+            "کورسی چەرخدار لە دەربەندیخان دابەش کران لە ڕێگەی بەرنامەکەی بە پشتگیری LDS.",
+          textAr:
+            "وُزّعت الكراسي المتحركة في دربنديخان عبر البرنامج المدعوم من مؤسسة LDS الخيرية.",
+        },
       ],
     },
     {
@@ -1476,9 +2337,10 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
       entries: [
         {
           year: "2023",
-          text: "Livelihood-sector activities were recorded through the Garmian office.",
-          textKu: "چالاکییەکانی بواری بژێوی ژیان لە ڕێگەی ئۆفیسی گەرمیان بەڕێوەچوون.",
-          textAr: "سُجِّلَت أنشطة قطاع سبل العيش من خلال مكتب كرميان.",
+          text: "Livelihood activities recorded 80 beneficiaries through the Garmian office.",
+          textKu:
+            "چالاکییەکانی بژێوی ژیان لە ڕێگەی ئۆفیسی گەرمیانەوە ٨٠ سوودمەندیان تۆمار کرد.",
+          textAr: "سجلت أنشطة سبل العيش 80 مستفيداً من خلال مكتب كرميان.",
         },
       ],
     },
@@ -1506,6 +2368,116 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           text: "The Garmian office distributed cash support to low-income families.",
           textKu: "ئۆفیسی گەرمیان یارمەتی دارایی بۆ خێزانە کەمداهاتەکان دابەش کرد.",
           textAr: "قام مكتب كرميان بتوزيع الدعم النقدي على العائلات ذات الدخل المحدود.",
+        },
+        {
+          year: "2023",
+          text: "Cash assistance recorded 3,136 beneficiaries through the Garmian office.",
+          textKu:
+            "یارمەتی نەقدی لە ڕێگەی ئۆفیسی گەرمیانەوە ٣,١٣٦ سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت المساعدات النقدية 3,136 مستفيداً عبر مكتب كرميان.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 1,032 families in Garmian, representing 6,376 people.",
+          textKu:
+            "یارمەتی نەقدی لە گەرمیان گەیشتە ١,٠٣٢ خێزان، واتە ٦,٣٧٦ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية في كرميان إلى 1,032 أسرة، أي ما يمثل 6,376 شخصاً.",
+        },
+      ],
+    },
+    {
+      id: "health",
+      entries: [
+        {
+          year: "2009",
+          text: "Garmian joined a three-area health programme serving 4,925 people overall.",
+          textKu:
+            "گەرمیان بەشدار بوو لە بەرنامەیەکی تەندروستی سێ ناوچەیی کە بە گشتی خزمەتی ٤,٩٢٥ کەسی کرد.",
+          textAr:
+            "شاركت كرميان في برنامج صحي شمل ثلاث مناطق وخدم إجمالاً 4,925 شخصاً.",
+          note: "The 4,925 figure is the programme total across all three areas, not Garmian's own share.",
+          noteKu:
+            "ژمارەی ٤,٩٢٥ کۆی بەرنامەکەیە بۆ هەر سێ ناوچەکە، نەک بەشی گەرمیان بە تەنها.",
+          noteAr:
+            "رقم 4,925 هو إجمالي البرنامج في المناطق الثلاث، وليس حصة كرميان وحدها.",
+        },
+        {
+          year: "2024",
+          text: "Health activities recorded 7,000 beneficiaries in Garmian.",
+          textKu:
+            "چالاکییەکانی تەندروستی لە گەرمیان ٧,٠٠٠ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة الصحية 7,000 مستفيد في كرميان.",
+        },
+      ],
+    },
+    {
+      id: "education",
+      entries: [
+        {
+          year: "2010",
+          text: "Garmian schools joined a regional programme distributing 10,000 school bags and stationery sets.",
+          textKu:
+            "قوتابخانەکانی گەرمیان بەشدار بوون لە بەرنامەیەکی هەرێمی کە ١٠,٠٠٠ جانتای قوتابخانە و ستی قەرتاسیەی دابەش کرد.",
+          textAr:
+            "شاركت مدارس كرميان في برنامج إقليمي وُزّعت خلاله 10,000 حقيبة مدرسية وطقم قرطاسية.",
+        },
+        {
+          year: "2018",
+          text: "Education activities recorded 237 beneficiaries in Garmian.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە گەرمیان ٢٣٧ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 237 مستفيداً في كرميان.",
+        },
+      ],
+    },
+    {
+      id: "nfi",
+      entries: [
+        {
+          year: "2018",
+          text: "NFI activities recorded 2,928 families and 12,033 people in Garmian.",
+          textKu:
+            "چالاکییەکانی کەلوپەلی ناخۆراکی لە گەرمیان ٢,٩٢٨ خێزان و ١٢,٠٣٣ کەسیان تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المواد غير الغذائية 2,928 أسرة و12,033 شخصاً في كرميان.",
+        },
+        {
+          year: "2023",
+          text: "A caravan was supplied to the Garmian branch of a kidney-support organisation.",
+          textKu:
+            "کاروانێک بۆ لقی گەرمیانی ڕێکخراوێکی پشتگیری نەخۆشانی گورچیلە دابین کرا.",
+          textAr:
+            "جرى تجهيز كرفان لفرع كرميان في منظمة لدعم مرضى الكلى.",
+        },
+        {
+          year: "2024",
+          text: "NFI assistance reached 300 families in Garmian, representing 1,514 people.",
+          textKu:
+            "یارمەتی کەلوپەلی ناخۆراکی لە گەرمیان گەیشتە ٣٠٠ خێزان، واتە ١,٥١٤ کەس.",
+          textAr:
+            "وصلت مساعدات المواد غير الغذائية في كرميان إلى 300 أسرة، أي ما يمثل 1,514 شخصاً.",
+        },
+      ],
+    },
+    {
+      id: "wash",
+      entries: [
+        {
+          year: "2018",
+          text: "WASH activities recorded 755 family and 4,385 individual beneficiary entries in Garmian.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە گەرمیان ٧٥٥ تۆماری خێزان و ٤,٣٨٥ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المياه والإصحاح 755 مدخلاً أسرياً و4,385 مدخلاً فردياً للمستفيدين في كرميان.",
+          note: "No newer verified city split is supplied; this stays the latest verified figure.",
+          noteKu:
+            "هیچ دابەشکردنێکی نوێتری پشتڕاستکراوەی شارەکە پێشکەش نەکراوە؛ ئەمە دوایین ژمارەی پشتڕاستکراوەیە.",
+          noteAr:
+            "لم يُقدَّم تفصيل موثّق أحدث على مستوى المدينة، فيبقى هذا الرقم آخر رقم موثّق.",
         },
       ],
     },
@@ -1552,6 +2524,40 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr:
             "وُزِّع لحم الأضاحي على 235 عائلة، مع استمرار مساعدات الغذاء وعوائل الأيتام.",
         },
+        {
+          year: "2012",
+          text: "Halabja joined a seven-area food programme reaching 5,409 families overall.",
+          textKu:
+            "هەڵەبجە بەشدار بوو لە بەرنامەیەکی خۆراکی حەوت ناوچەیی کە بە گشتی گەیشتە ٥,٤٠٩ خێزان.",
+          textAr:
+            "شاركت حلبجة في برنامج غذائي شمل سبع مناطق ووصل إجمالاً إلى 5,409 أسر.",
+          note: "The 5,409 figure is the programme total across all seven areas, not Halabja's own share.",
+          noteKu:
+            "ژمارەی ٥,٤٠٩ کۆی بەرنامەکەیە بۆ هەر حەوت ناوچەکە، نەک بەشی هەڵەبجە بە تەنها.",
+          noteAr:
+            "رقم 5,409 هو إجمالي البرنامج في المناطق السبع كافة، وليس حصة حلبجة وحدها.",
+        },
+        {
+          year: "2018",
+          text: "Food activities recorded 3,100 families and 15,994 people in Halabja.",
+          textKu:
+            "چالاکییەکانی خۆراک لە هەڵەبجە ٣,١٠٠ خێزان و ١٥,٩٩٤ کەسیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة الغذائية 3,100 أسرة و15,994 شخصاً في حلبجة.",
+        },
+        {
+          year: "2024",
+          text: "Food assistance reached 1,310 families in Halabja, representing 6,550 people.",
+          textKu:
+            "یارمەتی خۆراک لە هەڵەبجە گەیشتە ١,٣١٠ خێزان، واتە ٦,٥٥٠ کەس.",
+          textAr:
+            "وصلت المساعدات الغذائية في حلبجة إلى 1,310 أسر، أي ما يمثل 6,550 شخصاً.",
+          note: "The annual sector record. The Ramadan parcel count is a separate record and the report does not combine the two.",
+          noteKu:
+            "ئەمە تۆماری ساڵانەی کەرتەکەیە. ژمارەی پاکێتەکانی ڕەمەزان تۆمارێکی جیاوازە و ڕاپۆرتەکە ئەم دووانە تێکەڵ ناکات.",
+          noteAr:
+            "هذا هو السجل السنوي للقطاع، أما عدد طرود رمضان فهو سجل منفصل، والتقرير لا يجمع بينهما.",
+        },
       ],
     },
     {
@@ -1559,9 +2565,15 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
       entries: [
         {
           year: "2020",
-          text: "COVID-19 medical assistance delivered to the Halabja Health Directorate.",
-          textKu: "یارمەتی و پێداویستی پزیشکی کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی هەڵەبجە دابین کرا.",
-          textAr: "تقديم المساعدة الطبية الخاصة بـكوفيد-19 إلى مديرية صحة حلبجة.",
+          text: "The Halabja Health Directorate received COVID-19 tests, masks and medical equipment through the regional response.",
+          textKu:
+            "بەڕێوەبەرایەتی تەندروستی هەڵەبجە لە ڕێگەی وەڵامدانەوەی هەرێمییەوە تاقیکردنەوەی کۆڤید-١٩، ماسک و ئامێری پزیشکی وەرگرت.",
+          textAr:
+            "تسلمت مديرية صحة حلبجة فحوصات كوفيد-19 والكمامات والمعدات الطبية ضمن الاستجابة الإقليمية.",
+          note: "A system-support record. The report gives no city beneficiary total for it.",
+          noteKu:
+            "ئەمە تۆماری پاڵپشتی سیستەمە. ڕاپۆرتەکە هیچ کۆیەکی سوودمەندی شارەکەی بۆ نادات.",
+          noteAr: "سجل لدعم المنظومة الصحية، ولا يعطي التقرير إجمالاً للمستفيدين في المدينة.",
         },
       ],
     },
@@ -1581,6 +2593,22 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textKu: "باخچەی منداڵانی هەڵەبجە لە چوارچێوەی بواری پەروەردە و گەشەپێداندا کرایەوە.",
           textAr: "تم افتتاح روضة أطفال حلبجة ضمن قطاع التعليم والتطوير.",
         },
+        {
+          year: "2008",
+          text: "A regional school campaign included 41 schools in Halabja's villages.",
+          textKu:
+            "کەمپەینێکی هەرێمی قوتابخانە ٤١ قوتابخانەی گوندەکانی هەڵەبجەی لەخۆ گرت.",
+          textAr:
+            "شملت حملة مدرسية إقليمية 41 مدرسة في قرى حلبجة.",
+        },
+        {
+          year: "2018",
+          text: "Education activities recorded 2,271 beneficiaries in Halabja.",
+          textKu:
+            "چالاکییەکانی پەروەردە لە هەڵەبجە ٢,٢٧١ سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجلت الأنشطة التعليمية 2,271 مستفيداً في حلبجة.",
+        },
       ],
     },
     {
@@ -1597,6 +2625,22 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           text: "Halabja was included in the flood-relief NFI response.",
           textKu: "لە هەڵەبجەش، یارمەتییە ناخۆراکییەکان بۆ خێزانە زیانلێکەوتووەکانی لافاو دابەش کران.",
           textAr: "تم إدراج حلبجة ضمن استجابة الإغاثة من الفيضانات وتوفير المواد غير الغذائية.",
+        },
+        {
+          year: "2018",
+          text: "NFI activities recorded four families and 23 people in Halabja.",
+          textKu:
+            "چالاکییەکانی کەلوپەلی ناخۆراکی لە هەڵەبجە چوار خێزان و ٢٣ کەسیان تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المواد غير الغذائية أربع أسر و23 شخصاً في حلبجة.",
+        },
+        {
+          year: "2024",
+          text: "NFI assistance reached 42 families in Halabja, representing 168 people.",
+          textKu:
+            "یارمەتی کەلوپەلی ناخۆراکی لە هەڵەبجە گەیشتە ٤٢ خێزان، واتە ١٦٨ کەس.",
+          textAr:
+            "وصلت مساعدات المواد غير الغذائية في حلبجة إلى 42 أسرة، أي ما يمثل 168 شخصاً.",
         },
       ],
     },
@@ -1640,6 +2684,128 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "٤٠ خێزانی کەمداهات هەر یەک ٢٠٠ دۆلاریان وەرگرت؛ هەروەها بۆ خێزانەکانی ئازیزان یارمەتی خۆراک و پارە دابین کرا.",
           textAr:
             "تم تقديم منح مالية بقيمة 200 دولار أمريكي لكل عائلة لـ 40 أسرة من ذوي الدخل المحدود، فضلاً عن استمرار تقديم المساعدات الغذائية والدعم المالي لعائلات الأعزاء.",
+        },
+        {
+          year: "2018",
+          text: "Two orphan-care programmes recorded separate beneficiary groups in Halabja.",
+          textKu:
+            "دوو بەرنامەی چاودێری هەتیوان لە هەڵەبجە دوو گرووپی جیاوازی سوودمەندیان تۆمار کرد.",
+          textAr:
+            "سجل برنامجان لرعاية الأيتام مجموعتين منفصلتين من المستفيدين في حلبجة.",
+          note: "Each programme keeps its own count; the report does not combine them.",
+          noteKu:
+            "هەر بەرنامەیەک ژمارەی خۆی هەیە؛ ڕاپۆرتەکە کۆیان ناکاتەوە.",
+          noteAr:
+            "لكل برنامج عدده الخاص، والتقرير لا يجمع بينهما.",
+        },
+        {
+          year: "2024",
+          text: "Cash assistance reached 317 families in Halabja, representing 1,568 people.",
+          textKu:
+            "یارمەتی نەقدی لە هەڵەبجە گەیشتە ٣١٧ خێزان، واتە ١,٥٦٨ کەس.",
+          textAr:
+            "وصلت المساعدات النقدية في حلبجة إلى 317 أسرة، أي ما يمثل 1,568 شخصاً.",
+        },
+      ],
+    },
+    {
+      id: "wash",
+      entries: [
+        {
+          year: "2018",
+          text: "WASH activities recorded 1,300 family and 8,015 individual beneficiary entries in Halabja.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە هەڵەبجە ١,٣٠٠ تۆماری خێزان و ٨,٠١٥ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المياه والإصحاح 1,300 مدخل أسري و8,015 مدخلاً فردياً للمستفيدين في حلبجة.",
+          note: "No newer verified city split is supplied; this stays the latest verified figure.",
+          noteKu:
+            "هیچ دابەشکردنێکی نوێتری پشتڕاستکراوەی شارەکە پێشکەش نەکراوە؛ ئەمە دوایین ژمارەی پشتڕاستکراوەیە.",
+          noteAr:
+            "لم يُقدَّم تفصيل موثّق أحدث على مستوى المدينة، فيبقى هذا الرقم آخر رقم موثّق.",
+        },
+      ],
+    },
+  ],
+
+  raparin: [
+    {
+      id: "food",
+      entries: [
+        {
+          year: "2007",
+          text: "Food parcels reached 1,200 poor and low-income families in Pishdar and Bitwin.",
+          textKu:
+            "پاکێتی خۆراک گەیشتە ١,٢٠٠ خێزانی هەژار و کەمداهات لە پشدەر و بێتوێن.",
+          textAr:
+            "وصلت الطرود الغذائية إلى 1,200 أسرة فقيرة ومحدودة الدخل في بشدر وبيتوين.",
+          note: "No recent city-only food total is supplied for Raparin.",
+          noteKu:
+            "هیچ کۆیەکی نوێی خۆراک تەنها بۆ ڕاپەڕین پێشکەش نەکراوە.",
+          noteAr:
+            "لم يُقدَّم إجمالي غذائي حديث خاص برابرين وحدها.",
+        },
+      ],
+    },
+    {
+      id: "education",
+      entries: [
+        {
+          year: "2010",
+          text: "Raparin joined the regional school-supply and education-course programme.",
+          textKu:
+            "ڕاپەڕین بەشدار بوو لە بەرنامەی هەرێمیی پێداویستی خوێندن و خولە پەروەردەییەکان.",
+          textAr:
+            "شاركت رابرين في البرنامج الإقليمي للقرطاسية المدرسية والدورات التعليمية.",
+          note: "Narrative evidence only; the reports record no city-only beneficiary split.",
+          noteKu:
+            "تەنها بەڵگەی چیرۆکییە؛ ڕاپۆرتەکان هیچ دابەشکردنێکی سوودمەندی تەنها بۆ شارەکە تۆمار ناکەن.",
+          noteAr:
+            "أدلة سردية فقط، ولا تسجل التقارير تفصيلاً للمستفيدين على مستوى المدينة وحدها.",
+        },
+      ],
+    },
+    {
+      id: "wash",
+      entries: [
+        {
+          year: "2018",
+          text: "WASH activities recorded 400 family and 3,597 individual beneficiary entries in Raparin.",
+          textKu:
+            "چالاکییەکانی ئاو و خاوێنکاری لە ڕاپەڕین ٤٠٠ تۆماری خێزان و ٣,٥٩٧ تۆماری کەسی سوودمەندی تۆمار کرد.",
+          textAr:
+            "سجلت أنشطة المياه والإصحاح 400 مدخل أسري و3,597 مدخلاً فردياً للمستفيدين في رابرين.",
+          note: "No newer verified Raparin WASH split appears in the supplied reports.",
+          noteKu:
+            "لە ڕاپۆرتە پێشکەشکراوەکاندا هیچ دابەشکردنێکی نوێتری ئاو و خاوێنکاری بۆ ڕاپەڕین نییە.",
+          noteAr:
+            "لا يرد في التقارير المتاحة تفصيل أحدث لأنشطة المياه والإصحاح في رابرين.",
+        },
+      ],
+    },
+    {
+      id: "cash",
+      entries: [
+        {
+          year: "2018",
+          text: "The UAE-supported orphan project recorded 99 children in Raparin.",
+          textKu:
+            "پڕۆژەی هەتیوان بە پشتگیری ئیمارات ٩٩ منداڵی لە ڕاپەڕین تۆمار کرد.",
+          textAr:
+            "سجل مشروع الأيتام المدعوم إماراتياً 99 طفلاً في رابرين.",
+        },
+        {
+          year: "2018",
+          text: "The Kurdistan-supported orphan project separately recorded 674 children in Raparin.",
+          textKu:
+            "پڕۆژەی هەتیوانی پشتگیریکراو لە کوردستان بە جیا ٦٧٤ منداڵی لە ڕاپەڕین تۆمار کرد.",
+          textAr:
+            "وسجل مشروع الأيتام المدعوم من كوردستان بشكل منفصل 674 طفلاً في رابرين.",
+          note: "Both figures stay labelled by programme; they are never added together.",
+          noteKu:
+            "هەردوو ژمارە بە ناوی بەرنامەکەی خۆیانەوە دەمێننەوە؛ هەرگیز کۆ ناکرێنەوە.",
+          noteAr:
+            "يبقى كل رقم منسوباً إلى برنامجه، ولا يُجمع الرقمان أبداً.",
         },
       ],
     },
@@ -2262,11 +3428,31 @@ export function bcfEntriesFor(
 }
 
 /**
- * The span a city's own register covers, as "2007 - 2026". Undated entries are
- * excluded from the arithmetic rather than being pinned to a year they never
- * claimed; a city documented only by undated projects gets no span at all.
+ * Documented coverage spans from the BCF city register — not derived from the
+ * selected stories on each page, which may start later than the office's own
+ * archive.
+ */
+export const BCF_DOCUMENTED_YEAR_SPANS: Partial<Record<LocationId, string>> = {
+  erbil: "2006 - 2026",
+  sulaymaniyah: "2008 - 2024",
+  duhok: "2006 - 2024",
+  kirkuk: "2007 - 2024",
+  nineveh: "2007 - 2024",
+  garmian: "2008 - 2024",
+  halabja: "2008 - 2024",
+  raparin: "2007 - 2019",
+};
+
+/**
+ * The span a city's own register covers, as "2007 - 2026". Uses
+ * `BCF_DOCUMENTED_YEAR_SPANS` when the source gives an office archive wider
+ * than the selected stories filed under it; otherwise falls back to the dated
+ * entries in the register. Undated markers are excluded from that arithmetic.
  */
 export function bcfYearSpanFor(locationId: LocationId): string | null {
+  const documented = BCF_DOCUMENTED_YEAR_SPANS[locationId];
+  if (documented) return documented;
+
   const years = (BCF_PROJECT_DATA[locationId] ?? [])
     .flatMap((sector) => sector.entries)
     .flatMap((entry) => entry.year.match(/\d{4}/g) ?? [])

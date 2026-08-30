@@ -48,6 +48,7 @@ export type LocationId =
   | "sinjar"
   | "garmian"
   | "halabja"
+  | "raparin"
   | "soran"
   | "zakho"
   | "akre"
@@ -219,6 +220,7 @@ export const BCF_LOCATIONS: BcfLocation[] = [
   { id: "sinjar", coordinates: [41.84, 36.32], filters: ["offices", "emergency", "geographic"] },
   { id: "garmian", coordinates: [45.323, 34.629], filters: ["offices", "geographic", "emergency"] },
   { id: "halabja", coordinates: [45.986, 35.178], filters: ["offices", "geographic"] },
+  { id: "raparin", coordinates: [44.886, 36.329], filters: ["offices", "geographic"] },
   { id: "soran", coordinates: [44.542, 36.652], filters: ["offices", "geographic"] },
   { id: "zakho", coordinates: [42.681, 37.144], filters: ["offices", "emergency"] },
   { id: "akre", coordinates: [43.892, 36.741], filters: ["camps", "geographic"] },
@@ -1573,7 +1575,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       diyala: {
         name: "Diyala",
         short: "Diyala",
-        note: "In the 2021 Kuwait-supported food project, alongside the Kurdistan locations.",
+        note: "Project work documented from 2008 to 2021, including the 2021 Kuwait-supported food project.",
       },
       anbar: {
         name: "Al-Anbar",
@@ -1769,6 +1771,13 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         short: "Halabja",
         description:
           "COVID-19 support to the health directorate, eleven renovated schools, a kindergarten opened in 2023, and continuing orphan-family assistance.",
+        explore: "Explore Projects",
+      },
+      raparin: {
+        name: "Raparin",
+        short: "Raparin",
+        description:
+          "BCF's Raparin office — food, health and community programmes documented from 2007 to 2019.",
         explore: "Explore Projects",
       },
       soran: {
@@ -2883,7 +2892,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       diyala: {
         name: "دیالە",
         short: "دیالە",
-        note: "لە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت ٢٠٢١، لەگەڵ شوێنەکانی کوردستان.",
+        note: "کار و پڕۆژەکان لە ساڵی ٢٠٠٨ تا ٢٠٢١ تۆمار کراون، لەوانە پڕۆژەی خۆراکی پاڵپشتیکراوی کوەیت لە ٢٠٢١.",
       },
       anbar: {
         name: "ئەنبار",
@@ -3074,6 +3083,13 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         short: "هەڵەبجە",
         description:
           "یارمەتی پزیشکی کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی دابین کرا؛ ١١ قوتابخانە نۆژەن کرانەوە؛ لە ساڵی ٢٠٢٣ باخچەیەکی منداڵان کرایەوە؛ هەروەها یارمەتی و پشتگیری خێزانەکانی ئازیزان بەردەوام بوو.",
+        explore: "پڕۆژەکان ببینە",
+      },
+      raparin: {
+        name: "ڕاپەڕین",
+        short: "ڕاپەڕین",
+        description:
+          "ئۆفیسی ڕاپەڕینی BCF — پڕۆژەکانی خۆراک، تەندروستی و کۆمەڵایەتی لە ساڵی ٢٠٠٧ تا ٢٠١٩ تۆمار کراون.",
         explore: "پڕۆژەکان ببینە",
       },
       soran: {
@@ -4187,7 +4203,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       diyala: {
         name: "ديالى",
         short: "ديالى",
-        note: "ضمن مشروع الغذاء المدعوم من الكويت عام ٢٠٢١، إلى جانب مواقع كردستان.",
+        note: "عمل ومشاريع موثّقة من ٢٠٠٨ إلى ٢٠٢١، بما فيها مشروع الغذاء المدعوم من الكويت عام ٢٠٢١.",
       },
       anbar: {
         name: "الأنبار",
@@ -4378,6 +4394,13 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         short: "حلبجة",
         description:
           "دعم كوفيد-١٩ لدائرة الصحة، وإحدى عشرة مدرسة مُرمَّمة، وروضة افتُتحت في ٢٠٢٣، ومساعدة مستمرة لعائلات الأيتام.",
+        explore: "استكشف المشاريع",
+      },
+      raparin: {
+        name: "رابرين",
+        short: "رابرين",
+        description:
+          "مكتب رابرين — برامج غذاء وصحة ومجتمع موثّقة من ٢٠٠٧ إلى ٢٠١٩.",
         explore: "استكشف المشاريع",
       },
       soran: {
