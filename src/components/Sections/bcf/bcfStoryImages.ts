@@ -32,10 +32,18 @@ import year2026 from "@/assets/images/bcf/optimized/story-timeline/2026.webp";
 export type StoryImagePair = {
   front: string;
   back: string;
+  /**
+   * Logo / document plates must show edge-to-edge — `cover` crops them in the
+   * fixed 780×560 story frame. Photographs keep the default crop.
+   */
+  fit?: "cover" | "contain";
 };
 
-function plate(src: string): StoryImagePair {
-  return { front: src, back: src };
+function plate(
+  src: string,
+  options?: { fit?: "cover" | "contain" },
+): StoryImagePair {
+  return { front: src, back: src, fit: options?.fit };
 }
 
 export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
@@ -45,7 +53,7 @@ export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
   "syrian-refugees": plate(year2013),
   sinjar: plate(year2014),
   camps: plate(year2015),
-  ecosoc: plate(year2016),
+  ecosoc: plate(year2016, { fit: "contain" }),
   sphere: plate(year2018),
   "syria-cross-border": plate(year2019),
   "uk-duhok": plate(year2020),

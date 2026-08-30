@@ -10,6 +10,7 @@ import {
 import {
   bcfEraForYear,
   bcfSectorsFor,
+  bcfYearSpanFor,
   type BcfEraId,
   type BcfSectorRecord,
   type SectorId,
@@ -188,13 +189,7 @@ export default function BcfProjects({
   const sectors = bcfSectorsFor(locationId);
 
   const entryCount = sectors.reduce((total, s) => total + s.entries.length, 0);
-  const years = sectors
-    .flatMap((s) => s.entries)
-    .flatMap((entry) => entry.year.match(/\d{4}/g) ?? [])
-    .map(Number);
-  const span = years.length
-    ? `${Math.min(...years)} - ${Math.max(...years)}`
-    : null;
+  const span = bcfYearSpanFor(locationId);
 
   /**
    * Tile height follows how many rows there are.

@@ -45,7 +45,7 @@ import recognitionThumb from "@/assets/images/bcf/from-source/trust-recognition.
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
 import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpg";
-import credIraq from "@/assets/images/bcf/Credibility page/Iraq.png";
+import credIraq from "@/assets/images/bcf/Credibility page/Iraq.jpg";
 import credUsa from "@/assets/images/bcf/Credibility page/USA.jpg";
 import credEcosoc from "@/assets/images/bcf/credentials/ecosoc.webp";
 import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
