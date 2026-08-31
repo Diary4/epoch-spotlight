@@ -181,7 +181,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021",
           text: "Food distributions across Erbil: Korek parcels for 350 households, Galiawa food for 6,817 households in Hasan Sham U2/U3 and Khazir, and Qurbani meat for 14,021 households in the city and its camps.",
           textKu:
-            "دابەشکردنی خۆراک لە هەولێر بەردەوام بوو؛ ٣٥٠ خێزان پاکێتی خۆراکی کۆرەکیان وەرگرت، ٦,٨١٧ خێزان لە حەسەن شام U2/U3 و خازر خۆراکی گەلاوێژیان وەرگرت، هەروەها گۆشتی قوربانی بۆ ١٤,٠٢١ خێزان لە شاری هەولێر و کەمپەکان دابەش کرا.",
+            "لە ناوچەکانی دەوروبەری ئیدارەی سۆرانیش، لە ڕەواندز ١٦ کەس و لە سیدەکان ٣٢ کەس یارمەتی جووڵە و گواستنەوەیان وەرگرت.",
           textAr:
             "توزيعات غذائية في أربيل: استفادت 350 أسرة من طرود كورك، و6,817 أسرة من مساعدات كلاويز الغذائية في مخيمي حسن شام U2 وU3 والخازر، و14,021 أسرة من لحوم الأضاحي في المدينة ومخيماتها.",
         },
@@ -189,7 +189,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2022",
           text: "The hot-meal programme served 694,362 meals in Erbil, alongside food distributions continuing through partner projects.",
           textKu:
-            "لە بەرنامەی خواردنی گەرمدا، لە هەولێر ٦٩٤,٣٦٢ ژەم خواردن دابەش کرا. لە هەمان کاتدا، دابەشکردنی خۆراک لە ڕێگەی پڕۆژە هاوبەشەکانەوە بەردەوام بوو.",
+            "١٠ کەس کە خاوەن پێداویستی تایبەت بوون، یارمەتی و پشتگیریان وەرگرت.",
           textAr:
             "قدّم برنامج الوجبات الساخنة 694,362 وجبة في أربيل، إلى جانب استمرار توزيع المواد الغذائية عبر المشاريع الشريكة.",
         },
@@ -197,7 +197,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2023",
           text: "Qurbani meat reached 1,481 families, with regular food and non-food assistance continuing across Erbil and the camps.",
           textKu:
-            "گۆشتی قوربانی بۆ ١,٤٨١ خێزان دابەش کرا. هەروەها دابەشکردنی خۆراک و کەلوپەلی ناخۆراکی لە هەولێر و کەمپەکان بەردەوام بوو.",
+            "وەڵامدانەوەی بوومەلەرزە و بەرنامەی بەردەوامی عەفرین کاری دەزگای خێرخوازی بارزانی لە سوریا فراوان کرد.",
           textAr:
             "استفادت 1,481 أسرة من لحوم الأضاحي، مع استمرار تقديم المساعدات الغذائية وغير الغذائية في أربيل والمخيمات.",
         },
@@ -205,18 +205,18 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2024",
           text: "The Ramadan overview recorded 14,943 food parcels in Erbil; other Ramadan and food projects ran separately.",
           textKu:
-            "لە پوختەی بەرنامەکانی ڕەمەزاندا، ١٤,٩٤٣ پاکێتی خۆراکی لە هەولێر تۆمار کرا. پڕۆژەکانی تری ڕەمەزان و خۆراک بە جیا جێبەجێ کران.",
+            "دەزگای خێرخوازی بارزانی چادری دابین کرد بۆ پێشوازی لە کوردە لوبنانییەکان لە کەمپی مام ڕەشان — وەڵامی هەرێمی کوردستان بۆ ئاوارەبوون لە لوبنان.",
           textAr:
             "تم توزيع 14,943 طردًا غذائيًا في أربيل خلال شهر رمضان، إلى جانب تنفيذ مشاريع رمضانية وغذائية أخرى بشكل منفصل.",
           note: "Annual report and website Ramadan overviews cover different project scopes.",
           noteKu:
-            "ڕاپۆرتی ساڵانە و پوختەی ڕەمەزان لە ماڵپەڕەکە هەر یەکەیان پڕۆژە و چالاکییە جیاوازەکان دەگرنەوە.",
+            "========================================================================",
         },
         {
           year: "2026",
           text: "Ramadan iftar at Erbil Park for 1,000 people daily, 500 Turaq food baskets, food for families of martyrs, Eid food baskets and camp food and flour assistance.",
           textKu:
-            "لە پارکی هەولێر، ڕۆژانە خوانی بەربانگ بۆ ١,٠٠٠ کەس دابین دەکرا. هەروەها ٥٠٠ سەبەتەی خۆراکی توراق، خۆراک بۆ خێزانەکانی شەهیدان، سەبەتەی خۆراکی جەژن، و خۆراک و ئارد بۆ خێزانەکانی کەمپەکان دابەش کرا.",
+            "لە کەمپەکانی عەفرین، دابەشکردنی خۆراک و کەلوپەلی پێویستی ڕۆژانە بەردەوام بوو. هەروەها یاری تۆپی پێ بۆ گەنجان، چالاکییە کەلتوورییەکان و چالاکییە کۆمەڵایەتییە جیاوازەکان بەڕێوەچوون.",
           textAr:
             "أُقيم إفطار رمضاني في بارك أربيل لـ 1,000 شخص يوميًا، وتم توزيع 500 سلة غذائية في تورق، إلى جانب تقديم مساعدات غذائية لعائلات الشهداء، وسلال غذائية للعيد، ومساعدات غذائية وطحين للمخيمات.",
         },
@@ -224,7 +224,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2007",
           text: "Food parcels reached 700 families across four Erbil neighbourhoods, and 500 martyrs' families in Sarwaran received additional Eid support.",
           textKu:
-            "پاکێتی خۆراک گەیشتە ٧٠٠ خێزان لە چوار گەڕەکی هەولێر، هەروەها ٥٠٠ خێزانی شەهید لە سەروەران یارمەتی زیادەی جەژنیان وەرگرت.",
+            "یەکێک لە یەکەم هەڵمەتە گەورەکانی فریاکەوتنی دەزگای خێرخوازی بارزانی، وەڵامدانەوە بە کارەساتی تەقینەوەکانی گڕ عوزێر و سیبا شێخ خدر لە ناوچەی شنگال بوو؛ ئەمە یەکێک بوو لە یەکەم وەڵامدانەوە فریاکەوتنە گەورەکانی دامەزراوەکە.",
           textAr:
             "وصلت الطرود الغذائية إلى 700 أسرة في أربعة أحياء بأربيل، كما تلقت 500 من أسر الشهداء في سروران دعماً إضافياً بمناسبة العيد.",
         },
@@ -232,7 +232,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2015",
           text: "Monthly food aid reached 12,741 refugees in Dibaga, Khabat and Koya, and 1,298 tonnes were distributed over the year.",
           textKu:
-            "یارمەتی خۆراکی مانگانە گەیشتە ١٢,٧٤١ پەنابەر لە دیبەگە، خەبات و کۆیە، هەروەها بە درێژایی ساڵ ١,٢٩٨ تەن خۆراک دابەش کرا.",
+            "لە ماوەی ئاوارەبوونی خەڵکی شنگالدا، چەند قوتابخانەیەک لە چیای شنگال دروست کران.",
           textAr:
             "وصلت المساعدات الغذائية الشهرية إلى 12,741 لاجئاً في ديبكة والخبات وكويسنجق، وجرى توزيع 1,298 طناً خلال العام.",
         },
@@ -245,7 +245,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2020",
           text: "The 450 school-chairs project covered Halgurd Basic School in Erbil together with schools under the Sulaymaniyah and Penjwen directorates.",
           textKu:
-            "پڕۆژەی ٤٥٠ کورسی قوتابخانە، قوتابخانەی بنەڕەتی هەڵگورد لە هەولێر و هەروەها چەند قوتابخانەیەک لە سلێمانی و پێنجوێنی گرتەوە.",
+            "یارمەتی و پێداویستی پزیشکی کۆڤید-١٩ بۆ بەڕێوەبەرایەتی تەندروستی هەڵەبجە دابین کرا.",
           textAr:
             "شمل مشروع 450 مقعدًا مدرسيًا مدرسة هەڵگورد الأساسية في أربيل، إلى جانب مدارس في السليمانية وبنجوين.",
         },
@@ -267,7 +267,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2025",
           text: "The Orphans' Educational Project was officially announced in Erbil and operates across BCF offices and Kurdistan.",
           textKu:
-            "پڕۆژەی پەروەردەیی هەتیوان بە فەرمی لە هەولێر ڕاگەیەنرا و لە ڕێگەی ئۆفیسەکانی BCF لە ناوچە جیاوازەکانی کوردستان جێبەجێ دەکرێت.",
+            "دەزگای خێرخوازی بارزانی ڕایگەیاند ١٠,٦٧٣ کەس لە سوریا سوودمەند بوون بۆ تەواوی ساڵەکە.",
           textAr:
             "أُطلق في أربيل المشروع التعليمي للأيتام، ويُنفَّذ عبر مكاتب مؤسسة بارزاني الخيرية في كوردستان.",
         },
@@ -275,7 +275,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2026",
           text: "First participation in the Kurdish Book Fair, education and awareness initiatives, and a new Capacity Development Center for Orphans and Widows announced in Erbil.",
           textKu:
-            "BCF بۆ یەکەم جار بەشداری پێشانگای کتێبی کوردی کرد. هەروەها چالاکییەکانی پەروەردە و هۆشیارکردنەوە بەڕێوەچوون، و دامەزراندنی ناوەندێکی نوێ بۆ گەشەپێدانی توانای ئازیزان و بێ هاوژینان لە هەولێر ڕاگەیەنرا.",
+            "دەزگای خێرخوازی بارزانی بۆ یەکەم جار بەشداری پێشانگای کتێبی کوردی کرد. هەروەها چالاکییەکانی پەروەردە و هۆشیارکردنەوە بەڕێوەچوون، و دامەزراندنی ناوەندێکی نوێ بۆ گەشەپێدانی توانای ئازیزان و بێ هاوژینان لە هەولێر ڕاگەیەنرا.",
           textAr:
             "شاركت المؤسسة للمرة الأولى في معرض الكتاب الكوردي، ونفذت مبادرات تعليمية وتوعوية، كما أُعلن عن إنشاء مركز لتنمية قدرات الأيتام والأرامل في أربيل.",
         },
@@ -304,7 +304,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "سجلت الأنشطة التعليمية 39,745 مستفيداً في أربيل.",
           note: "Livelihood activities recorded 40,054 beneficiaries in the same year; education and livelihood stay separate records.",
           noteKu:
-            "لە هەمان ساڵدا چالاکییەکانی بژێوی ٤٠,٠٥٤ سوودمەندیان تۆمار کرد؛ پەروەردە و بژێوی دوو تۆماری جیاوازن.",
+            "ئەم زانیارییە لە بابەتێکی مێژوویی دەزگای خێرخوازی بارزانی لە ماڵپەڕەکەی هاتووە.",
           noteAr:
             "سجلت أنشطة سبل العيش 40,054 مستفيداً في العام نفسه، والتعليم وسبل العيش سجلان منفصلان.",
         },
@@ -341,7 +341,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2006",
           text: "BCF supplied health facilities to hospitals in Erbil, benefiting 2,144 people in its first documented year.",
           textKu:
-            "BCF پێداویستی تەندروستی بۆ نەخۆشخانەکانی هەولێر دابین کرد، کە لە یەکەم ساڵی تۆمارکراودا ٢,١٤٤ کەس سوودمەند بوون.",
+            "دەزگای خێرخوازی بارزانی پێداویستی تەندروستی بۆ نەخۆشخانەکانی هەولێر دابین کرد، کە لە یەکەم ساڵی تۆمارکراودا ٢,١٤٤ کەس سوودمەند بوون.",
           textAr:
             "زوّدت مؤسسة بارزاني الخيرية مستشفيات أربيل بالمستلزمات الصحية، فاستفاد 2,144 شخصاً في أول عام موثّق لها.",
         },
@@ -394,7 +394,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2015",
           text: "BCF delivered 120,000 litres of clean water daily to Erbil's Qalai Nwe and Qarabu neighbourhoods.",
           textKu:
-            "BCF ڕۆژانە ١٢٠,٠٠٠ لیتر ئاوی خاوێنی بۆ گەڕەکەکانی قەڵای نوێ و قەرەبووی هەولێر دەگەیاند.",
+            "دەزگای خێرخوازی بارزانی ڕۆژانە ١٢٠,٠٠٠ لیتر ئاوی خاوێنی بۆ گەڕەکەکانی قەڵای نوێ و قەرەبووی هەولێر دەگەیاند.",
           textAr:
             "كانت مؤسسة بارزاني الخيرية توصل يومياً 120,000 لتر من المياه النظيفة إلى حيي قلعة نوي وقره بو في أربيل.",
         },
@@ -407,7 +407,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2015",
           text: "BCF built 304 caravan homes in Bahirka Camp, and 251 displaced families were resettled there in September.",
           textKu:
-            "BCF ژمارە ٣٠٤ ماڵی کەرەڤانی لە کەمپی بەحرکە دروست کرد، و لە ئەیلوولدا ٢٥١ خێزانی ئاوارە لەوێ نیشتەجێ کران.",
+            "دەزگای خێرخوازی بارزانی ژمارە ٣٠٤ ماڵی کەرەڤانی لە کەمپی بەحرکە دروست کرد، و لە ئەیلوولدا ٢٥١ خێزانی ئاوارە لەوێ نیشتەجێ کران.",
           textAr:
             "بنت مؤسسة بارزاني الخيرية 304 منازل كرفانية في مخيم بحركة، وأُسكنت فيها 251 أسرة نازحة في أيلول.",
           note: "Recorded in the cumulative 2005-2024 report.",
@@ -440,7 +440,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2024",
           text: "The foundation stone was laid for BCF City in Qushtapa, and the shared Erbil/Soran martyrs' housing distribution took place.",
           textKu:
-            "بەردی بناغەی شاری BCF لە قوشتەپە دانرا ؛ هەروەها خانووی شەهیدان لە پڕۆژەی هاوبەشی هەولێر و سۆران دابەش کران.",
+            "بەردی بناغەی شاری دەزگای خێرخوازی بارزانی لە قوشتەپە دانرا ؛ هەروەها خانووی شەهیدان لە پڕۆژەی هاوبەشی هەولێر و سۆران دابەش کران.",
           textAr:
             "وُضع حجر الأساس لمدينة مؤسسة بارزاني الخيرية (BCF) في قوشتبة، وتم توزيع مساكن الشهداء ضمن المشروع المشترك بين أربيل وسوران.",
           note: "540 units project-wide; the Erbil-vs-Soran split is not published in the reviewed source.",
@@ -451,7 +451,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2025",
           text: "The first phase of BCF City moved into implementation in Qushtapa, including 180 houses for poor and low-income families.",
           textKu:
-            "قۆناغی یەکەمی شاری BCF لە قوشتەپە چووە بواری جێبەجێکردن، کە ١٨٠ خانوو بۆ خێزانە هەژار و کەمداهاتەکان لەخۆدەگرت.",
+            "قۆناغی یەکەمی شاری دەزگای خێرخوازی بارزانی لە قوشتەپە چووە بواری جێبەجێکردن، کە ١٨٠ خانوو بۆ خێزانە هەژار و کەمداهاتەکان لەخۆدەگرت.",
           textAr:
             "بدأ تنفيذ المرحلة الأولى من مدينة مؤسسة بارزاني الخيرية (BCF City) في قوشتبة، وتشمل 180 منزلًا للعائلات الفقيرة ومحدودة الدخل.",
         },
@@ -459,7 +459,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2011",
           text: "BCF supplied 90 complete bedroom sets to the Erbil Social Welfare Directorate.",
           textKu:
-            "BCF ژمارە ٩٠ ست ژووری نووستنی تەواوی بۆ بەڕێوەبەرایەتی چاودێری کۆمەڵایەتی هەولێر دابین کرد.",
+            "دەزگای خێرخوازی بارزانی ژمارە ٩٠ ست ژووری نووستنی تەواوی بۆ بەڕێوەبەرایەتی چاودێری کۆمەڵایەتی هەولێر دابین کرد.",
           textAr:
             "زوّدت مؤسسة بارزاني الخيرية مديرية الرعاية الاجتماعية في أربيل بـ 90 طقماً كاملاً لغرف النوم.",
         },
@@ -521,7 +521,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2015",
           text: "On World Autism Awareness Day, BCF presented gifts to 150 children with autism in Erbil.",
           textKu:
-            "لە ڕۆژی جیهانی ئاگاداری لە ئۆتیزمدا، BCF دیاری بە ١٥٠ منداڵی ئۆتیزمی لە هەولێر بەخشی.",
+            "لە ڕۆژی جیهانی ئاگاداری لە ئۆتیزمدا، دەزگای خێرخوازی بارزانی دیاری بە ١٥٠ منداڵی ئۆتیزمی لە هەولێر بەخشی.",
           textAr:
             "في اليوم العالمي للتوعية بالتوحد، قدمت مؤسسة بارزاني الخيرية هدايا لـ 150 طفلاً من ذوي التوحد في أربيل.",
         },
@@ -542,7 +542,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021",
           text: "BCF managed nine IDP and refugee camps plus one host-community camp in Erbil Governorate; clothing, blanket and household-item projects supported Harsham, Hasan Sham, Bahirka, Debaga and others.",
           textKu:
-            "BCF لە پارێزگای هەولێر ٩ کەمپی ئاوارە و پەنابەر و یەک کەمپی تری بۆ دانیشتوانی ناوچەکە بەڕێوە دەبرد. هەروەها لە هەرشەم، حەسەن شام، بەحرکە، دیبەگە و ناوچەکانی تر، جل‌ و بەرگ، بەتانی و کەلوپەلی پێویستی ماڵەوە دابەش دەکرد.",
+            "دەزگای خێرخوازی بارزانی لە پارێزگای هەولێر ٩ کەمپی ئاوارە و پەنابەر و یەک کەمپی تری بۆ دانیشتوانی ناوچەکە بەڕێوە دەبرد. هەروەها لە هەرشەم، حەسەن شام، بەحرکە، دیبەگە و ناوچەکانی تر، جل‌ و بەرگ، بەتانی و کەلوپەلی پێویستی ماڵەوە دابەش دەکرد.",
           textAr:
             "أدارت مؤسسة بارزاني الخيرية 9 مخيمات للنازحين واللاجئين، إضافة إلى مخيم واحد للمجتمع المضيف في محافظة أربيل، ونفذت مشاريع لتوفير الملابس والبطانيات والمستلزمات المنزلية في هرشەم، حسن شام، بحركة، ديبگە ومخيمات أخرى.",
         },
@@ -550,7 +550,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021-26",
           text: "Recurring food, NFI, winter, health and camp-support projects operated in Bahirka, Hasan Sham, Khazir, Debaga, Qushtapa, Basirma, Darashakran and Harsham.",
           textKu:
-            "لە بەحرکە، حەسەن شام، خازر، دیبەگە، قوشتەپە، بەسیرمە، دارەشەکران و هەڕشەم، پڕۆژەکانی خۆراک، کەلوپەلی ناخۆراکی، یارمەتی زستانی، تەندروستی و پشتگیری کەمپەکان بەردەوام بوون.",
+            "پڕۆژەکانی خۆراک، کەلوپەلی ناخۆراکی، یارمەتیی زستانی، تەندروستی و پشتگیری کەمپەکان بەردەوام لە خانکێ، دومیز، شاریە و ناوچەکانی تری دهۆک جێبەجێ دەکران.",
         },
         {
           year: "2023",
@@ -564,7 +564,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2024",
           text: "The Warm Winter programme distributed heaters to schools in Erbil; camp coordination remained one of BCF's largest sectors.",
           textKu:
-            "لە بەرنامەی «گەرمی زستانە»دا، سۆپا بۆ قوتابخانەکانی هەولێر دابەش کرا. هەروەها بەڕێوەبردن و هەماهەنگی کەمپەکان یەکێک بوو لە گەورەترین بوارەکانی کاری BCF.",
+            "لە بەرنامەی «گەرمی زستانە»دا، سۆپا بۆ قوتابخانەکانی هەولێر دابەش کرا. هەروەها بەڕێوەبردن و هەماهەنگی کەمپەکان یەکێک بوو لە گەورەترین بوارەکانی کاری دەزگای خێرخوازی بارزانی.",
           textAr:
             "وزّع برنامج الشتاء الدافئ أجهزة تدفئة على مدارس في أربيل، فيما ظلت إدارة وتنسيق المخيمات من أكبر قطاعات عمل المؤسسة.",
         },
@@ -578,7 +578,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2011",
           text: "BCF assisted 100 families in the Kawa, Jazhnekan, Sebiran and Azadi camps in Koya.",
           textKu:
-            "BCF یارمەتی ١٠٠ خێزانی دا لە کەمپەکانی کاوە، جەژنیکان، سەیبیران و ئازادی لە کۆیە.",
+            "دەزگای خێرخوازی بارزانی یارمەتی ١٠٠ خێزانی دا لە کەمپەکانی کاوە، جەژنیکان، سەیبیران و ئازادی لە کۆیە.",
           textAr:
             "قدمت مؤسسة بارزاني الخيرية المساعدة لـ 100 أسرة في مخيمات كاوة وجزنيكان وسيبيران وآزادي في كويسنجق.",
         },
@@ -586,7 +586,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2015",
           text: "BCF took over the administration of Harsham camp in January, following approval by UNHCR and the Erbil Refugee Council.",
           textKu:
-            "لە کانوونی دووەمدا BCF بەڕێوەبردنی کەمپی هەرشەمی وەرگرت، دوای ڕەزامەندی UNHCR و ئەنجومەنی پەنابەرانی هەولێر.",
+            "لە کانوونی دووەمدا دەزگای خێرخوازی بارزانی بەڕێوەبردنی کەمپی هەرشەمی وەرگرت، دوای ڕەزامەندی UNHCR و ئەنجومەنی پەنابەرانی هەولێر.",
           textAr:
             "تسلمت مؤسسة بارزاني الخيرية إدارة مخيم هرشم في كانون الثاني، بعد موافقة المفوضية السامية لشؤون اللاجئين ومجلس لاجئي أربيل.",
         },
@@ -599,7 +599,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2012",
           text: "Orphan sponsorship — the Kurdistan project — began and later expanded across BCF offices.",
           textKu:
-            "پڕۆژەی کەفالەتی ئازیزان، بە ناوی «پڕۆژەی کوردستان»، دەستی پێکرد و دواتر لە ئۆفیسە جیاوازەکانی BCF جێبەجێ کرا.",
+            "پڕۆژەی پاڵپشتی ئازیزان ــ پڕۆژەی کوردستان ــ لە دهۆک و ئۆفیسەکانی تری دەزگای خێرخوازی بارزانی جێبەجێ دەکرێت.",
           textAr:
             "انطلق مشروع كوردستان لكفالة الأعزاء، ثم توسّع لاحقاً ليشمل مكاتب مؤسسة بارزاني الخيرية.",
         },
@@ -626,13 +626,13 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           textAr: "يعمل مشروع نوزين في أربيل.",
           note: "15 families in 2025 and 12 in 2026 are project-wide totals across all offices, not Erbil counts.",
           noteKu:
-            "١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦ سوودمەند بوون، بەڵام ئەم ژمارانە کۆی هەموو ئۆفیسەکانی پڕۆژەکەن و تایبەت بە هەولێر نین.",
+            "١٥ خێزان لە ساڵی ٢٠٢٥ و ١٢ خێزان لە ساڵی ٢٠٢٦ کۆی گشتی سوودمەندانی هەموو ئۆفیسەکانی پڕۆژەکەن؛ ئەم ژمارانە تایبەت بە نەینەوا نین.",
         },
         {
           year: "2026",
           text: "The Capacity Development Center for Orphans and Widows was announced, and food, clothing and family assistance continued.",
           textKu:
-            "دامەزراندنی ناوەندێکی نوێ بۆ گەشەپێدانی توانای هەتیوان و بێوەژنان ڕاگەیەنرا؛ هەروەها دابەشکردنی خۆراک و جل‌ و بەرگ و پشتگیری خێزانەکان بەردەوام بوو.",
+            "پڕۆژەی نوژین لە نەینەوا و موسڵ جێبەجێ دەکرێت، و لە ڕێگەی چەند ئۆفیسێکەوە پشتگیری خێزانەکان دەکات.",
           textAr:
             "أُعلن عن مركز تنمية قدرات الأعزاء والأرامل، مع استمرار تقديم المساعدات الغذائية والملابس والدعم للأسر.",
         },
@@ -705,7 +705,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2008",
           text: "BCF and its partners distributed food parcels to displaced Iraqi families across Duhok Governorate.",
           textKu:
-            "BCF و هاوبەشەکانی پاکێتی خۆراکیان بۆ خێزانە ئاوارە عێراقییەکان لە سەرانسەری پارێزگای دهۆک دابەش کرد.",
+            "دەزگای خێرخوازی بارزانی و هاوبەشەکانی پاکێتی خۆراکیان بۆ خێزانە ئاوارە عێراقییەکان لە سەرانسەری پارێزگای دهۆک دابەش کرد.",
           textAr:
             "وزّعت مؤسسة بارزاني الخيرية وشركاؤها طروداً غذائية على الأسر العراقية النازحة في عموم محافظة دهوك.",
         },
@@ -761,7 +761,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2026",
           text: "BCF noted plans for an autism centre in Duhok, in addition to the existing centres elsewhere.",
           textKu:
-            "BCF ڕایگەیاند کە پلانی دامەزراندنی ناوەندێک بۆ ئۆتیزم لە دهۆک هەیە، لە پاڵ ئەو ناوەندانەی کە لە ناوچەکانی تر هەن.",
+            "دەزگای خێرخوازی بارزانی ڕایگەیاند کە پلانی دامەزراندنی ناوەندێک بۆ ئۆتیزم لە دهۆک هەیە، لە پاڵ ئەو ناوەندانەی کە لە ناوچەکانی تر هەن.",
           textAr:
             "أشارت مؤسسة بارزاني الخيرية (BCF) إلى وجود خطط لإنشاء مركز لمرض التوحد في دهوك، بالإضافة إلى المراكز القائمة في أماكن أخرى.",
         },
@@ -825,7 +825,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2022",
           text: "BCF supported 700 Sinjar students living temporarily in the University of Duhok dormitories.",
           textKu:
-            "BCF پشتگیری ٧٠٠ قوتابی شنگالی کرد کە بە شێوەی کاتی لە نامۆخانەکانی زانکۆی دهۆک دەژیان.",
+            "دەزگای خێرخوازی بارزانی پشتگیری ٧٠٠ قوتابی شنگالی کرد کە بە شێوەی کاتی لە نامۆخانەکانی زانکۆی دهۆک دەژیان.",
           textAr:
             "دعمت مؤسسة بارزاني الخيرية 700 طالب من سنجار يقيمون مؤقتاً في أقسام جامعة دهوك الداخلية.",
         },
@@ -871,7 +871,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2024-26",
           text: "Camp shelter and winter support continued through BCF's regular camp programmes.",
           textKu:
-            "پشتگیری پەناگە و پێداویستییە زستانییەکانی کەمپەکان، لە ڕێگەی بەرنامە بەردەوامەکانی BCF بەردەوام بوو.",
+            "پشتگیری پەناگە و پێداویستییە زستانییەکانی کەمپەکان، لە ڕێگەی بەرنامە بەردەوامەکانی دەزگای خێرخوازی بارزانی بەردەوام بوو.",
           textAr:
             "استمرار تقديم خدمات الإيواء والمساعدات الشتوية في المخيمات عبر برامج المخيمات الاعتيادية لمؤسسة بارزاني الخيرية (BCF).",
         },
@@ -1106,7 +1106,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021",
           text: "The Korek food project reached 1,500 households and Qurbani meat 1,000 households; other BCF and Kuwait-supported food projects also covered Sulaymaniyah.",
           textKu:
-            "پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ١,٥٠٠ خێزان دابەش کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان دابەش کرا؛ پڕۆژەکانی تری BCF و ئەو پڕۆژانەی بە پشتگیری کوێت جێبەجێ کران، سلێمانیشیان گرتەوە.",
+            "پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ١,٥٠٠ خێزان دابەش کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان دابەش کرا؛ پڕۆژەکانی تری دەزگای خێرخوازی بارزانی و ئەو پڕۆژانەی بە پشتگیری کوێت جێبەجێ کران، سلێمانیشیان گرتەوە.",
           textAr:
             "وصل مشروع كۆرەک الغذائي إلى 1,500 أسرة، ووصل لحم الأضاحي إلى 1,000 أسرة؛ كما غطت مشاريع غذائية أخرى بدعم من مؤسسة بارزاني الخيرية والكويت محافظة السليمانية.",
         },
@@ -1419,7 +1419,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021",
           text: "The Korek food project reached 750 households and Qurbani meat 1,000 households; BCF and Kuwait-supported projects also covered Kirkuk.",
           textKu:
-            "پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ٧٥٠ خێزان دابەش کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان دابەش کرا؛ پڕۆژەکانی BCF و ئەو پڕۆژانەی بە پشتگیری کوێت جێبەجێ کران، کەرکوکیشیان گرتەوە.",
+            "پڕۆژەی خۆراکی کۆرەک یارمەتی خۆراکی بۆ ٧٥٠ خێزان دابەش کرد، هەروەها گۆشتی قوربانی بۆ ١,٠٠٠ خێزان دابەش کرا؛ پڕۆژەکانی دەزگای خێرخوازی بارزانی و ئەو پڕۆژانەی بە پشتگیری کوێت جێبەجێ کران، کەرکوکیشیان گرتەوە.",
           textAr:
             "وصل مشروع كورك الغذائي إلى 750 أسرة، فيما استفادت 1,000 أسرة من مشروع لحوم الأضاحي. كما شملت مشاريع مؤسسة بارزاني الخيرية والمشاريع المدعومة من الكويت كركوك.",
         },
@@ -1666,7 +1666,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2022",
           text: "BCF and the Health Directorate delivered assistance to 35 children with cancer.",
           textKu:
-            "BCF و بەڕێوەبەرایەتی تەندروستی یارمەتییان گەیاندە ٣٥ منداڵی تووشبووی شێرپەنجە.",
+            "دەزگای خێرخوازی بارزانی و بەڕێوەبەرایەتی تەندروستی یارمەتییان گەیاندە ٣٥ منداڵی تووشبووی شێرپەنجە.",
           textAr:
             "قدمت مؤسسة بارزاني الخيرية ودائرة الصحة المساعدة لـ 35 طفلاً مصاباً بالسرطان.",
           note: "A focused local story. The supplied 2024 report carries no clean Kirkuk health total.",
@@ -1788,7 +1788,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2022",
           text: "Hasan Sham and Khazir Health Centers were listed among ongoing BCF health projects serving displacement-affected populations near Nineveh.",
           textKu:
-            "ناوەندە تەندروستییەکانی حەسەن شام و خازر، بەشێک بوون لە پڕۆژە تەندروستییە بەردەوامەکانی BCF و خزمەتگوزارییان بۆ خەڵکی ئاوارەی ناوچەکانی نزیک نەینەوا پێشکەش دەکرد.",
+            "ناوەندە تەندروستییەکانی حەسەن شام و خازر، بەشێک بوون لە پڕۆژە تەندروستییە بەردەوامەکانی دەزگای خێرخوازی بارزانی و خزمەتگوزارییان بۆ خەڵکی ئاوارەی ناوچەکانی نزیک نەینەوا پێشکەش دەکرد.",
           textAr:
             "استمر مركزا حسن شام والخازر الصحيان ضمن مشاريع مؤسسة بارزاني الخيرية الصحية لخدمة النازحين والمتضررين من النزوح في مناطق نينوى.",
         },
@@ -1867,7 +1867,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "Multi-year",
           text: "A concrete water tank was constructed for Lalish as part of BCF's longer-term WASH infrastructure work.",
           textKu:
-            "تانکێکی کۆنکرێتی بۆ هەڵگرتنی ئاو لە لالش دروست کرا، وەک بەشێک لە پڕۆژە درێژخایەنەکانی BCF لە بواری ئاو، پاکوخاوێنی و تەندروستیی ژینگە.",
+            "تانکێکی کۆنکرێتی بۆ هەڵگرتنی ئاو لە لالش دروست کرا، وەک بەشێک لە پڕۆژە درێژخایەنەکانی دەزگای خێرخوازی بارزانی لە بواری ئاو، پاکوخاوێنی و تەندروستیی ژینگە.",
           textAr:
             "تم إنشاء خزان مياه خرساني في لالش ضمن مشاريع مؤسسة بارزاني الخيرية طويلة الأمد لتطوير البنية التحتية للمياه والإصحاح.",
           note: "The cumulative report does not specify a year.",
@@ -1926,7 +1926,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "سجل تنسيق المخيمات في نينوى 151,058 مدخلاً أسرياً و808,298 مدخلاً فردياً للمستفيدين.",
           note: "Recorded service entries, not camp population.",
           noteKu:
-            "ئەمانە تۆماری خزمەتگوزارین، نەک ژمارەی دانیشتووانی کەمپ.",
+            "لە ڕاپۆرتی کۆکراوەکەدا ساڵی جێبەجێکردنی ئەم پڕۆژەیە دیاری نەکراوە.",
           noteAr:
             "هذه مدخلات خدمة مسجلة، وليست عدد سكان المخيمات.",
         },
@@ -2066,7 +2066,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2007",
           text: "BCF's early major relief campaign responded to the Gir Uzer and Siba Sheikh Khidr bombing disaster in the Sinjar area — one of the foundation's first large emergency responses.",
           textKu:
-            "یەکێک لە یەکەم هەڵمەتە گەورەکانی فریاکەوتنی BCF، وەڵامدانەوە بە کارەساتی تەقینەوەکانی گڕ عوزێر و سیبا شێخ خدر لە ناوچەی شنگال بوو؛ ئەمە یەکێک بوو لە یەکەم وەڵامدانەوە فریاکەوتنە گەورەکانی دامەزراوەکە.",
+            "یەکێک لە یەکەم هەڵمەتە گەورەکانی فریاکەوتنی دەزگای خێرخوازی بارزانی، وەڵامدانەوە بە کارەساتی تەقینەوەکانی گڕ عوزێر و سیبا شێخ خدر لە ناوچەی شنگال بوو؛ ئەمە یەکێک بوو لە یەکەم وەڵامدانەوە فریاکەوتنە گەورەکانی دامەزراوەکە.",
           textAr:
             "استجابت الحملة الإغاثية الكبرى المبكرة لمؤسسة بارزاني الخيرية (BCF) لكارثة التفجيرات في جير أوذر وسيما شيخ خضر بمنطقة سنجار، والتي تعد واحدة من أولى الاستجابات الطارئة واسعة النطاق للمؤسسة.",
         },
@@ -2083,7 +2083,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2015",
           text: "BCF opened an office on Mount Sinjar and supported displaced families with water, food, clothing and shelter; schools were built on the mountain with electricity and water.",
           textKu:
-            "BCF ئۆفیسێکی لە چیای شنگال کردەوە و بە ئاو، خۆراک، جل‌ و بەرگ و پەناگە پشتگیری خێزانە ئاوارەکانی کرد؛ هەروەها قوتابخانە لەسەر چیا دروست کران و ئاو و کارەبایان بۆ دابین کرا.",
+            "دوای هێرشی داعش و جینۆسایدی ئێزیدییەکان، دەزگای خێرخوازی بارزانی بە هەلیکۆپتەر یارمەتی بۆ چیای شنگال گەیاند.",
           textAr:
             "افتتحت مؤسسة بارزاني الخيرية مكتباً على جبل سنجار وقدمت الدعم للعائلات النازحة عبر توفير المياه، والغذاء، والملابس، والمأوى؛ كما بُنيت مدارس على الجبل مزودة بالكهرباء والمياه.",
         },
@@ -2097,7 +2097,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2025",
           text: "BCF highlighted continued Restoration of Life work and ongoing support for roughly 300 orphans in Sinjar.",
           textKu:
-            "BCF جەختی لە بەردەوامبوونی پڕۆژەی «گەڕاندنەوەی ژیان» کردەوە، هەروەها پشتگیری نزیکەی ٣٠٠ ئازیزان لە شنگال بەردەوام بوو.",
+            "دەزگای خێرخوازی بارزانی جەختی لە بەردەوامبوونی پڕۆژەی «گەڕاندنەوەی ژیان» کردەوە، هەروەها پشتگیری نزیکەی ٣٠٠ ئازیزان لە شنگال بەردەوام بوو.",
           textAr:
             "سلطت مؤسسة بارزاني الخيرية الضوء على استمرار أعمال مشروع إعادة الحياة والدعم المستمر لنحو 300 يتيم في سنجار.",
         },
@@ -2110,7 +2110,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021",
           text: "Sinjar was included in BCF office and disability-support activity.",
           textKu:
-            "شنگال لە بەرنامە و چالاکییەکانی BCF بۆ پشتگیری کەسانی خاوەن پێداویستی تایبەتدا بەشدار بوو.",
+            "شنگال لە بەرنامە و چالاکییەکانی دەزگای خێرخوازی بارزانی بۆ پشتگیری کەسانی خاوەن پێداویستی تایبەتدا بەشدار بوو.",
           textAr: "أُدرجت سنجار ضمن نطاق مكتب مؤسسة بارزاني الخيرية وأنشطة دعم ذوي الهمم.",
         },
         {
@@ -2200,7 +2200,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2025",
           text: "The Azizan-Kurdistan March stage reached 261 orphans in Sinjar; BCF separately reported ongoing support for about 300 Sinjar orphans.",
           textKu:
-            "قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان لە شنگال گەیشتە ٢٦١ ئازیز؛ هەروەها BCF بە جیا ڕایگەیاند کە پشتگیری نزیکەی ٣٠٠ هەتیوی شنگال بەردەوامە.",
+            "قۆناغی ئاداری پڕۆژەی ئازیزان-کوردستان لە شنگال گەیشتە ٢٦١ ئازیز؛ هەروەها دەزگای خێرخوازی بارزانی بە جیا ڕایگەیاند کە پشتگیری نزیکەی ٣٠٠ ئازیزانی شنگال بەردەوامە.",
           textAr:
             "وصل مشروع الاعزاء - مسيرة كوردستان إلى 261 يتيماً في سنجار؛ وأبلغت مؤسسة بارزاني الخيرية بشكل منفصل عن تقديم دعم مستمر لنحو 300 يتيم في سنجار.",
         },
@@ -2224,7 +2224,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2021",
           text: "BCF food and Qurbani projects covered Garmian and Kalar; Qurbani reached 500 households.",
           textKu:
-            "پڕۆژەکانی خۆراک و گۆشتی قوربانی BCF لە گەرمیان و کەلار جێبەجێ کران؛ گۆشتی قوربانی بۆ ٥٠٠ خێزان دابەش کرا.",
+            "پڕۆژەکانی خۆراک و گۆشتی قوربانی دەزگای خێرخوازی بارزانی لە گەرمیان و کەلار جێبەجێ کران؛ گۆشتی قوربانی بۆ ٥٠٠ خێزان دابەش کرا.",
           textAr:
             "غطت مشاريع الأمن الغذائي والأضاحي التابعة لمؤسسة بارزاني الخيرية منطقتي كرميان وكلار، حيث بلغ عدد المستفيدين من توزيع لحم الأضاحي 500 أسرة.",
         },
@@ -2257,7 +2257,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
             "شاركت كرميان في برنامج غذائي شمل سبع مناطق ووصل إجمالاً إلى 5,409 أسر.",
           note: "The 5,409 figure is the programme total across all seven areas, not Garmian's own share.",
           noteKu:
-            "ژمارەی ٥,٤٠٩ کۆی بەرنامەکەیە بۆ هەر حەوت ناوچەکە، نەک بەشی گەرمیان بە تەنها.",
+            "ئەم زانیارییە لە بابەتێکی مێژوویی دەزگای خێرخوازی بارزانی لە ساڵی ٢٠٢٥ دووبارە باس کراوەتەوە.",
           noteAr:
             "رقم 5,409 هو إجمالي البرنامج في المناطق السبع كافة، وليس حصة كرميان وحدها.",
         },
@@ -3136,7 +3136,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2023",
           text: "BCF's earthquake response expanded into affected areas of Türkiye and Syria; Afrin received food, NFI and Qurbani assistance.",
           textKu:
-            "وەڵامدانەوەی BCF بۆ بوومەلەرزەکە گەیشتە ناوچە زیان‌لێکەوتووەکانی تورکیا و سوریا. لە عەفرین خۆراک، کەلوپەلی پێویستی ڕۆژانە و گۆشتی قوربانی دابەش کرا.",
+            "وەڵامدانەوەی دەزگای خێرخوازی بارزانی بۆ بوومەلەرزەکە گەیشتە ناوچە زیان‌لێکەوتووەکانی تورکیا و سوریا. لە عەفرین خۆراک، کەلوپەلی پێویستی ڕۆژانە و گۆشتی قوربانی دابەش کرا.",
           textAr:
             "توسعت استجابة مؤسسة بارزاني الخيرية للزلزال لتشمل المناطق المتضررة في تركيا وسوريا؛ حيث تلقت عفرين مساعدات الأمن الغذائي، والمستلزمات غير الغذائية، ومساعدات الأضاحي.",
         },
@@ -3158,7 +3158,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2026",
           text: "BCF reported 415 truckloads of humanitarian aid and assistance to 29,070 families; 200 tons of flour supported the production and distribution of 3.36 million loaves.",
           textKu:
-            "BCF ڕایگەیاند کە ٤١٥ بار یارمەتی مرۆیی گەیەنراوە و ٢٩,٠٧٠ خێزان سوودمەند بوون. هەروەها ٢٠٠ تەن ئارد دابین کرا، کە بەهۆی ئەوەوە ٣.٣٦ ملیۆن نان بەرهەم هێنرا و دابەش کرا.",
+            "دەزگای خێرخوازی بارزانی ڕایگەیاند کە ٤١٥ بار یارمەتی مرۆیی گەیەنراوە و ٢٩,٠٧٠ خێزان سوودمەند بوون. هەروەها ٢٠٠ تەن ئارد دابین کرا، کە بەهۆی ئەوەوە ٣.٣٦ ملیۆن نان بەرهەم هێنرا و دابەش کرا.",
           textAr:
             "أعلنت مؤسسة بارزاني الخيرية عن إرسال 415 شاحنة محملة بالمساعدات الإنسانية لخدمة 29,070 عائلة؛ فضلاً عن دعم إنتاج وتوزيع 3.36 مليون رغيف خبز باستخدام 200 طن من الطحين.",
         },
@@ -3179,7 +3179,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "Ongoing",
           text: "The Mobile Clinic in Afrin is listed among BCF's ongoing projects.",
           textKu:
-            "BCF لە عەفرین کلینیکێکی گەڕۆکی هەیە کە تا ئێستا بەردەوامە لە پێشکەشکردنی خزمەتگوزاریی تەندروستی.",
+            "دەزگای خێرخوازی بارزانی لە عەفرین کلینیکێکی گەڕۆکی هەیە کە تا ئێستا بەردەوامە لە پێشکەشکردنی خزمەتگوزاری تەندروستی.",
           textAr: "تُدرج العيادة المتنقلة في عفرين ضمن مشاريع مؤسسة بارزاني الخيرية المستمرة.",
         },
         {
@@ -3344,7 +3344,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2023",
           text: "Major earthquake response in Türkiye: rescue, hot meals, food, tents, medical aid and heavy equipment.",
           textKu:
-            "وەڵامدانەوەی گەورەی بوومەلەرزە لە تورکیا: ڕزگارکردن، ژەمی گەرم، خۆراک، چادر، یارمەتی پزیشکی و ئامێری قورس.",
+            "دەزگای خێرخوازی بارزانی کەمپێکی لە وان بە ٤٠٠ کەرەڤان دروست کرد.",
           textAr:
             "الاستجابة للزلزال الكبير في تركيا: عمليات الإنقاذ، الوجبات الساخنة، المواد الغذائية، الخيام، المساعدات الطبية والمعدات الثقيلة.",
           note: "The cumulative report records 4,129 tents for Türkiye and Syria earthquake victims together.",
@@ -3370,7 +3370,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2026",
           text: "The large Western Kurdistan response became one of BCF's biggest current cross-border operations.",
           textKu:
-            "وەڵامدانەوەی گەورەی ڕۆژئاوای کوردستان بوو بە یەکێک لە گەورەترین کارەکانی ئێستای BCF لە دەرەوەی سنوور.",
+            "وەڵامدانەوەی گەورەی ڕۆژئاوای کوردستان بوو بە یەکێک لە گەورەترین کارەکانی ئێستای دەزگای خێرخوازی بارزانی لە دەرەوەی سنوور.",
           textAr:
             "أصبحت الاستجابة الواسعة في غرب كوردستان إحدى كبرى العمليات الحالية العابرة للحدود لمؤسسة بارزاني الخيرية.",
         },
@@ -3398,7 +3398,7 @@ export const BCF_PROJECT_DATA: Record<LocationId, BcfSectorRecord[]> = {
           year: "2024",
           text: "BCF provided tents to welcome Lebanese Kurds in Mam Rashan Camp — the Kurdistan Region's response to displacement from Lebanon.",
           textKu:
-            "BCF چادری دابین کرد بۆ پێشوازی لە کوردە لوبنانییەکان لە کەمپی مام ڕەشان — وەڵامی هەرێمی کوردستان بۆ ئاوارەبوون لە لوبنان.",
+            "دەزگای خێرخوازی بارزانی چادری دابین کرد بۆ پێشوازی لە کوردە لوبنانییەکان لە کەمپی مام ڕەشان — وەڵامی هەرێمی کوردستان بۆ ئاوارەبوون لە لوبنان.",
           textAr:
             "قدمت مؤسسة بارزاني الخيرية الخيام لاستقبال كورد لبنان في مخيم مام رشان، وذلك استجابةً من إقليم كوردستان لموجة النزوح من لبنان.",
         },

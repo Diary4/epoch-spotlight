@@ -43,6 +43,13 @@ type StoryBeat =
 
 const PHOTO_FILTER = "saturate(0.55) sepia(0.22) contrast(1.05) brightness(0.92)";
 
+/**
+ * The plate is a fixed 780×560 window. A photograph that is not that shape is
+ * shown whole rather than cropped — `fit: "contain"` — and the strip left over
+ * either side is painted flat. It used to hold a blurred, enlarged copy of the
+ * same photo, which read as a smear beside the sharp picture it framed; flat
+ * colour keeps the eye on the photograph itself.
+ */
 function GoldPhoto({
   src,
   alt,
@@ -50,6 +57,7 @@ function GoldPhoto({
   style,
   objectPosition = "center",
   fit = "cover",
+  mat,
 }: {
   src: string;
   alt: string;
@@ -57,6 +65,7 @@ function GoldPhoto({
   style?: React.CSSProperties;
   objectPosition?: string;
   fit?: "cover" | "contain";
+  mat?: string;
 }) {
   const contain = fit === "contain";
   return (
@@ -65,7 +74,7 @@ function GoldPhoto({
       style={{
         border: `2px solid ${BCF.gold}`,
         boxShadow: `0 0 0 1px ${BCF.gold}33, 0 0 60px ${BCF.gold}45, 0 28px 70px rgba(0,0,0,0.6)`,
-        backgroundColor: contain ? "#fff" : undefined,
+        backgroundColor: contain ? (mat ?? "#fff") : undefined,
         ...style,
       }}
     >
@@ -105,11 +114,13 @@ function StoryPhoto({
   label,
   objectPosition = "center",
   fit = "cover",
+  mat,
 }: {
   src: string;
   label: string;
   objectPosition?: string;
   fit?: "cover" | "contain";
+  mat?: string;
 }) {
   return (
     <GoldPhoto
@@ -117,6 +128,7 @@ function StoryPhoto({
       alt={label}
       objectPosition={objectPosition}
       fit={fit}
+      mat={mat}
       className="h-[560px] w-[780px] shrink-0"
     />
   );
@@ -411,6 +423,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                         src={photos.front}
                         label={active.data.title}
                         fit={photos.fit}
+                        mat={photos.mat}
                       />
                     </motion.div>
                   </>
@@ -542,6 +555,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                         src={photos.front}
                         label={beatLabel(active)}
                         fit={photos.fit}
+                        mat={photos.mat}
                       />
                     </motion.div>
                   </>

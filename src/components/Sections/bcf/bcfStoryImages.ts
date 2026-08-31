@@ -7,12 +7,11 @@
 
 import journeyStory from "@/assets/images/bcf/from-source/journey-story.webp";
 import journeyTrust from "@/assets/images/bcf/from-source/journey-trust.webp";
-import journeyHumanity from "@/assets/images/bcf/from-source/journey-humanity.webp";
-import impactBeneficiaries from "@/assets/images/bcf/from-source/impact-beneficiaries.webp";
-import impactFamilies from "@/assets/images/bcf/from-source/impact-families.webp";
 import trustLeadership from "@/assets/images/bcf/from-source/trust-leadership.webp";
 import trustPartnerships from "@/assets/images/bcf/from-source/trust-partnerships.webp";
+import storyMission from "@/assets/images/bcf/selected/story-mission.webp";
 import storyPhilosophy from "@/assets/images/bcf/selected/story-philosophy.webp";
+import storyVision from "@/assets/images/bcf/selected/story-vision.webp";
 
 import year2005 from "@/assets/images/bcf/optimized/story-timeline/2005.webp";
 import year2009 from "@/assets/images/bcf/optimized/story-timeline/2009.webp";
@@ -34,16 +33,29 @@ export type StoryImagePair = {
   back: string;
   /**
    * Logo / document plates must show edge-to-edge — `cover` crops them in the
-   * fixed 780×560 story frame. Photographs keep the default crop.
+   * fixed 780×560 story frame. Portrait photographs use `contain` so the full
+   * image fits inside the frame without resizing it.
    */
   fit?: "cover" | "contain";
+  /** Letterbox colour behind a `contain` image. Defaults to white, which suits
+   *  logo and document plates; photographs use the dark story tone. */
+  mat?: string;
 };
+
+/** Near-black behind a contained photograph, so the strip either side reads as
+ *  part of the night background rather than as a border of its own. */
+const PHOTO_MAT = "#0b0d12";
 
 function plate(
   src: string,
-  options?: { fit?: "cover" | "contain" },
+  options?: { fit?: "cover" | "contain"; mat?: string },
 ): StoryImagePair {
-  return { front: src, back: src, fit: options?.fit };
+  return {
+    front: src,
+    back: src,
+    fit: options?.fit,
+    mat: options?.mat,
+  };
 }
 
 export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
@@ -62,8 +74,8 @@ export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
   "drug-rehab": plate(year2025),
   shipments: plate(year2026),
   /** Identity panes restored after the year timeline. */
-  mission: { front: journeyHumanity, back: journeyTrust },
-  vision: { front: impactBeneficiaries, back: impactFamilies },
+  mission: plate(storyMission, { fit: "contain", mat: PHOTO_MAT }),
+  vision: plate(storyVision, { fit: "contain", mat: PHOTO_MAT }),
   philosophy: plate(storyPhilosophy),
   values: { front: trustLeadership, back: trustPartnerships },
 };
