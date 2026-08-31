@@ -44,11 +44,13 @@ type StoryBeat =
 const PHOTO_FILTER = "saturate(0.55) sepia(0.22) contrast(1.05) brightness(0.92)";
 
 /**
- * The plate is a fixed 780×560 window. A photograph that is not that shape is
- * shown whole rather than cropped — `fit: "contain"` — and the strip left over
- * either side is painted flat. It used to hold a blurred, enlarged copy of the
- * same photo, which read as a smear beside the sharp picture it framed; flat
- * colour keeps the eye on the photograph itself.
+ * The plate is a fixed 780×560 window and photographs fill it edge to edge.
+ * A portrait photograph shown whole inside a landscape frame leaves a strip
+ * down both sides, and nothing fills that strip well — a blurred copy of the
+ * photo reads as a smear, flat colour as a black bar — so the photograph is
+ * cropped to the frame instead, steered by `objectPosition` so the crop keeps
+ * its subject. `contain` is left for logo and document plates, which have to
+ * show whole and sit on their own mat.
  */
 function GoldPhoto({
   src,
@@ -424,6 +426,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                         label={active.data.title}
                         fit={photos.fit}
                         mat={photos.mat}
+                        objectPosition={photos.objectPosition}
                       />
                     </motion.div>
                   </>
@@ -556,6 +559,7 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
                         label={beatLabel(active)}
                         fit={photos.fit}
                         mat={photos.mat}
+                        objectPosition={photos.objectPosition}
                       />
                     </motion.div>
                   </>
