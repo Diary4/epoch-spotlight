@@ -77,9 +77,9 @@ export const bcfStoryImagePairs: Record<string, StoryImagePair> = {
   /** Identity panes restored after the year timeline. */
   /* Both are portrait shots framed around a person seen from behind. The crop
      is pulled below centre so it holds the subject rather than the sky: the
-     child and the helmet in Mission, the head and the chest badge in Vision. */
+     child and the helmet in Mission, the head and the back badge in Vision. */
   mission: plate(storyMission, { objectPosition: "center 55%" }),
-  vision: plate(storyVision, { objectPosition: "center 62%" }),
+  vision: plate(storyVision, { objectPosition: "center 80%" }),
   philosophy: plate(storyPhilosophy),
   values: { front: trustLeadership, back: trustPartnerships },
 };
