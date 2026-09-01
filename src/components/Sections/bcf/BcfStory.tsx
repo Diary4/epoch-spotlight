@@ -31,9 +31,9 @@ type BcfStoryProps = {
 
 /** Sections that sit directly after the 2005 founding beat. */
 const AFTER_2005_IDS: StorySectionId[] = [
+  "philosophy",
   "mission",
   "vision",
-  "philosophy",
   "values",
 ];
 
