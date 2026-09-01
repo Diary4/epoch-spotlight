@@ -153,6 +153,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
     basePosition: initialIndex,
     dragging: false,
     moved: false,
+    captured: false,
   });
 
   /**
@@ -231,8 +232,7 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
   React.useEffect(() => () => snapRef.current?.stop(), []);
 
   const onPointerDown = (event: React.PointerEvent) => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
+    if (!viewportRef.current) return;
     snapRef.current?.stop();
     snapRef.current = null;
     dragRef.current = {
@@ -240,14 +240,25 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
       basePosition: position.get(),
       dragging: true,
       moved: false,
+      captured: false,
     };
-    viewport.setPointerCapture(event.pointerId);
+    /* Capture only after a real drag starts. Grabbing on pointerdown steals the
+       click from the card button, so "View details" never fires and the cursor
+       never reads as a pointer over the CTA. */
   };
 
   const onPointerMove = (event: React.PointerEvent) => {
     if (!dragRef.current.dragging) return;
+    const viewport = viewportRef.current;
     const dx = event.clientX - dragRef.current.startX;
-    if (Math.abs(dx) > 8) dragRef.current.moved = true;
+    if (!dragRef.current.moved) {
+      if (Math.abs(dx) <= 8) return;
+      dragRef.current.moved = true;
+      if (viewport) {
+        viewport.setPointerCapture(event.pointerId);
+        dragRef.current.captured = true;
+      }
+    }
     const raw = dragRef.current.basePosition - dx / CARD_PITCH;
     const last = categories.length - 1;
     /* Past either end the strip follows the finger at a third of the distance,
@@ -260,8 +271,17 @@ export default function BcfHumanity({ lang, onBack }: BcfHumanityProps) {
 
   const onPointerUp = (event: React.PointerEvent) => {
     if (!dragRef.current.dragging) return;
+    const viewport = viewportRef.current;
+    if (dragRef.current.captured && viewport) {
+      try {
+        viewport.releasePointerCapture(event.pointerId);
+      } catch {
+        /* already released */
+      }
+    }
     dragRef.current.dragging = false;
     const dx = event.clientX - dragRef.current.startX;
+    if (!dragRef.current.moved) return;
     const from = Math.round(dragRef.current.basePosition);
     let next = Math.round(position.get());
     /* A short flick never crosses the half-card the rounding wants, but it is
@@ -477,7 +497,7 @@ function ServeCard({
         marginLeft: -CARD_W / 2,
         zIndex: centred ? 2 : 1,
       }}
-      className="absolute top-0 flex flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] text-center backdrop-blur-[2px]"
+      className="absolute top-0 flex cursor-pointer flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.06] text-center backdrop-blur-[2px]"
     >
       <span className="relative block h-[500px] w-full shrink-0 overflow-hidden">
         {drawn ? (

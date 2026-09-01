@@ -1,0 +1,21 @@
+# Use this ONLY if you uploaded the app into a subfolder, e.g.:
+#   public_html/bcf/index.html  →  site URL is yourdomain.com/bcf/
+#
+# Rename this file to .htaccess and place it in that subfolder (next to index.html).
+
+DirectoryIndex index.html
+Options -MultiViews +FollowSymLinks
+ErrorDocument 404 /bcf/index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /bcf/
+
+  RewriteRule ^index\.html$ - [L]
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule . /bcf/index.html [L]
+</IfModule>
