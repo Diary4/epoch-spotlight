@@ -104,6 +104,11 @@ async function main() {
   console.log(
     `\n${count} files: ${kb(raw)} KB raw → ${kb(br)} KB brotli / ${kb(gz)} KB gzip`,
   );
+
+  // cPanel/LiteSpeed: some hosts ignore rewrite rules but still honour a custom
+  // 404 page. A copy of index.html lets /bcf refresh work via ErrorDocument.
+  const index = path.join(DIST, "index.html");
+  await fs.copyFile(index, path.join(DIST, "404.html"));
 }
 
 main().catch((err) => {

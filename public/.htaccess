@@ -1,0 +1,29 @@
+# cPanel / LiteSpeed — React Router SPA (refresh /bcf without 404)
+#
+# Upload this file next to index.html in your document root (usually public_html).
+# In cPanel File Manager: Settings → enable "Show Hidden Files (dotfiles)".
+#
+# If the site is in a SUBFOLDER (e.g. yourdomain.com/myapp/), change every
+# "/index.html" below to "/myapp/index.html" and set RewriteBase /myapp/
+
+DirectoryIndex index.html
+Options -MultiViews +FollowSymLinks
+
+# Fallback when mod_rewrite is disabled or ignored (common on some cPanel plans)
+ErrorDocument 404 /index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not rewrite the shell itself
+  RewriteRule ^index\.html$ - [L]
+
+  # Real files and folders (assets/, favicon, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Client routes such as /bcf → serve the SPA
+  RewriteRule . /index.html [L]
+</IfModule>
