@@ -1,8 +1,9 @@
 /**
- * Partner / donor / sponsor logo plates for the Trust → Partnerships screen.
+ * Partner / donor logo plates for the Trust → Partnerships screen.
  *
  * Sourced from the BCF logo pack (`partners` / `donors` / `Sponsers` JPEGs,
- * converted to WebP at ≤800px). Paths must match the git-indexed folder names
+ * converted to WebP at ≤800px). Sponsor marks ship under Partners — there is
+ * no separate Sponsors tab. Paths must match the git-indexed folder names
  * exactly — Linux production is case-sensitive, so `Partners` would collect
  * nothing even though macOS treats it as the same directory.
  *
@@ -74,15 +75,15 @@ const donorModules = import.meta.glob<string>(
   { eager: true, import: "default" },
 );
 
+/** Former Sponsors folder — merged into Partners. */
 const sponsorModules = import.meta.glob<string>(
   "@/assets/images/bcf/logos/sponsors/*.webp",
   { eager: true, import: "default" },
 );
 
-export type PartnerLogoGroupId = "partners" | "donors" | "sponsors";
+export type PartnerLogoGroupId = "partners" | "donors";
 
 export const bcfPartnerLogos: Record<PartnerLogoGroupId, string[]> = {
-  partners: collect(partnerModules),
+  partners: collect({ ...partnerModules, ...sponsorModules }),
   donors: collect(donorModules, DONOR_LEAD_FILES),
-  sponsors: collect(sponsorModules),
 };
