@@ -243,12 +243,17 @@ export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "iraq"];
  * The federal governorates the register names, keyed by the same ids the Iraq
  * map's outlines carry so a pin and its governorate cannot drift apart.
  *
- * These five are the whole list, and deliberately so: the register documents
- * Baghdad, Diyala and Dhi Qar in the 2021 Kuwait-supported food project, Anbar
- * in 2022 and 2023, and a medical convoy to Samawah in 2021. Nothing is pinned
- * that the source does not name.
+ * Baghdad, Diyala and Dhi Qar appear in the 2021 Kuwait-supported food project,
+ * Anbar in 2022 and 2023, Samawah (Muthanna) for a 2021 medical convoy, and
+ * Basrah as a southern federal governorate on the country map.
  */
-export type IraqPlaceId = "baghdad" | "diyala" | "dhiqar" | "anbar" | "muthanna";
+export type IraqPlaceId =
+  | "baghdad"
+  | "diyala"
+  | "dhiqar"
+  | "anbar"
+  | "muthanna"
+  | "basra";
 
 export type BcfIraqPlace = {
   id: IraqPlaceId;
@@ -265,6 +270,7 @@ export const BCF_IRAQ_PLACES: BcfIraqPlace[] = [
   { id: "anbar", coordinates: [43.308, 33.42] },
   { id: "dhiqar", coordinates: [46.259, 31.043] },
   { id: "muthanna", coordinates: [45.294, 31.32] },
+  { id: "basra", coordinates: [47.783, 30.508] },
 ];
 
 /**
@@ -1592,6 +1598,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         short: "Samawah",
         note: "A 2021 medical convoy carrying 50 types of medicine and medical supplies.",
       },
+      basra: {
+        name: "Basrah",
+        short: "Basrah",
+        note: "A southern federal governorate on BCF's map of work across Iraq beyond the Kurdistan Region.",
+      },
     },
     iraqLegend: {
       region: "Kurdistan Region",
@@ -2909,6 +2920,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         short: "سەماوە",
         note: "کاروانێکی پزیشکی لە ٢٠٢١ بە ٥٠ جۆر دەرمان و پێداویستی پزیشکی.",
       },
+      basra: {
+        name: "بەسرە",
+        short: "بەسرە",
+        note: "پارێزگایەکی فیدراڵی باشوور لەسەر نەخشەی کاری دەزگای خێرخوازی بارزانی لە عێراق، لە دەرەوەی هەرێمی کوردستان.",
+      },
     },
     iraqLegend: {
       region: "هەرێمی کوردستان",
@@ -4217,6 +4233,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         name: "المثنى / السماوة",
         short: "السماوة",
         note: "قافلة طبية عام ٢٠٢١ تحمل ٥٠ نوعاً من الأدوية والمستلزمات الطبية.",
+      },
+      basra: {
+        name: "البصرة",
+        short: "البصرة",
+        note: "محافظة فدرالية جنوبية على خريطة عمل المؤسسة في العراق خارج إقليم كردستان.",
       },
     },
     iraqLegend: {
