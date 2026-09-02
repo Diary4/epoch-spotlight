@@ -2179,7 +2179,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       {
         id: "kuwait",
         title: "Recognized in Kuwait",
-        body: "Registered as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
+        body: "Recognized as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
       },
       {
         id: "ecosoc",

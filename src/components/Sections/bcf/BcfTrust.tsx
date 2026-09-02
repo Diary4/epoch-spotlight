@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Briefcase,
   Building2,
+  ChevronLeft,
   ChevronRight,
   User,
   Users,
@@ -44,12 +45,13 @@ import partnershipsThumb from "@/assets/images/bcf/from-source/trust-partnership
 import recognitionThumb from "@/assets/images/bcf/from-source/trust-recognition.webp";
 import certificateImg from "@/assets/images/PrimeMinistir/agreement.webp";
 import isoCertificate from "@/assets/images/bcf/credentials/iso-9001.webp";
-import credKurdistan from "@/assets/images/bcf/Credibility page/Kurdistan.jpg";
-import credIraq from "@/assets/images/bcf/Credibility page/Iraq.jpg";
-import credUsa from "@/assets/images/bcf/Credibility page/USA.jpg";
-import credEcosoc from "@/assets/images/bcf/credentials/ecosoc.webp";
-import credBcc from "@/assets/images/bcf/credentials/bcc.webp";
-import credKuwait from "@/assets/images/bcf/Credibility page/Kuwait.jpg";
+import credKrgEn from "@/assets/images/bcf/Credibility page/krg-en.webp";
+import credKrgKr from "@/assets/images/bcf/Credibility page/krg-kr.webp";
+import credIraq from "@/assets/images/bcf/Credibility page/iraq.webp";
+import credUsa from "@/assets/images/bcf/Credibility page/us.webp";
+import credEcosoc from "@/assets/images/bcf/Credibility page/un.webp";
+import credUk from "@/assets/images/bcf/Credibility page/uk-en.webp";
+import credKuwait from "@/assets/images/bcf/Credibility page/kuwait.webp";
 /** Portrait for the Board Chief card on the Leadership grid. */
 import chiefPortrait from "@/assets/images/bcf/thumbs/board-chief/main.webp";
 /** Studio portrait for Musa Ahmad's leadership card (detail cover stays separate). */
@@ -87,7 +89,8 @@ const topicThumbs: Record<TrustTopicId, string> = {
 const credentialArt: Record<
   string,
   {
-    src: string;
+    /** One or more certificate scans. KRG alone ships both language pages. */
+    srcs: string[];
     fit: "cover" | "contain";
     pad?: string;
     position?: string;
@@ -102,14 +105,25 @@ const credentialArt: Record<
     ratio?: number;
   }
 > = {
-  "iraq": { src: credIraq, fit: "cover" },
-  "krg": { src: credKurdistan, fit: "cover" },
-  usa: { src: credUsa, fit: "cover" },
-  kuwait: { src: credKuwait, fit: "cover" },
-  ecosoc: { src: credEcosoc, fit: "contain", pad: "p-14", mat: "white" },
-  uk: { src: credBcc, fit: "contain", pad: "p-12", mat: "white" },
+  /* Licence scans are portrait pages — show whole, on a white mat. */
+  krg: {
+    srcs: [credKrgEn, credKrgKr],
+    fit: "contain",
+    pad: "p-3",
+    mat: "white",
+  },
+  iraq: { srcs: [credIraq], fit: "contain", pad: "p-3", mat: "white" },
+  usa: { srcs: [credUsa], fit: "contain", pad: "p-3", mat: "white" },
+  kuwait: { srcs: [credKuwait], fit: "cover" },
+  ecosoc: { srcs: [credEcosoc], fit: "contain", pad: "p-3", mat: "white" },
+  uk: { srcs: [credUk], fit: "contain", pad: "p-3", mat: "white" },
   /* The scan is 1045×1472 — A4 — so the frame is too, to the pixel. */
-  iso: { src: isoCertificate, fit: "contain", pad: "p-0", ratio: 1045 / 1472 },
+  iso: {
+    srcs: [isoCertificate],
+    fit: "contain",
+    pad: "p-0",
+    ratio: 1045 / 1472,
+  },
 };
 
 const PARTNER_GROUPS: PartnerLogoGroupId[] = [
@@ -126,6 +140,8 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
   const c = bcfCopy[lang];
   const [activeId, setActiveId] = React.useState<TrustTopicId | null>(null);
   const [credentialIndex, setCredentialIndex] = React.useState(0);
+  /** Page inside a multi-scan credential (KRG English / Kurdish). */
+  const [credentialPage, setCredentialPage] = React.useState(0);
   /** Null while the Leadership grid is up; the profile and its timeline sit under it. */
   const [chiefView, setChiefView] = React.useState<BoardChiefView | null>(null);
   /** The President has one screen — his record is printed on the profile. */
@@ -456,7 +472,7 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
     if (activeId === "quality") {
       const activeCredential = c.trustCredentials[credentialIndex] ?? c.trustCredentials[0];
       const activeArt = credentialArt[activeCredential.id];
-      const artSrc = activeArt?.src ?? certificateImg;
+      const artSrcs = activeArt?.srcs ?? [certificateImg];
       const artFit = activeArt?.fit ?? "contain";
       const artPad = activeArt?.pad ?? "";
       const artPosition = activeArt?.position ?? "";
@@ -509,7 +525,10 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
                     <motion.div key={item.id} variants={bcfRiseCard}>
                     <motion.button
                       type="button"
-                      onClick={() => setCredentialIndex(index)}
+                      onClick={() => {
+                        setCredentialIndex(index);
+                        setCredentialPage(0);
+                      }}
                       whileTap={BCF_TAP}
                       transition={BCF_TAP_TRANSITION}
                       /* Down a size with the rail, so the labels wrap no more
@@ -548,37 +567,19 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
               >
                 {/* A credential with its own `ratio` is framed to the shape of
                     the document; everything else keeps the one tall panel and
-                    fills whatever height the row settles at. */}
-                <div
-                  className={`relative overflow-hidden ${
-                    artRatio ? "w-full shrink-0" : "min-h-[760px] flex-1"
-                  }`}
-                  style={{
-                    aspectRatio: artRatio,
-                    backgroundColor:
-                      artFit === "contain" && activeArt?.mat === "white"
-                        ? "#fff"
-                        : "#111",
-                  }}
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={artSrc}
-                      src={artSrc}
-                      alt=""
-                      decoding="async"
-                      className={
-                        artFit === "cover"
-                          ? `absolute inset-0 h-full w-full object-cover ${artPosition}`
-                          : `absolute inset-0 h-full w-full object-contain ${artPad}`
-                      }
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                  </AnimatePresence>
-                </div>
+                    fills whatever height the row settles at. KRG alone is a
+                    slider — one language page at a time, never merged. */}
+                <CredentialArtPanel
+                  srcs={artSrcs}
+                  page={Math.min(credentialPage, artSrcs.length - 1)}
+                  onPageChange={setCredentialPage}
+                  fit={artFit}
+                  pad={artPad}
+                  position={artPosition}
+                  ratio={artRatio}
+                  mat={activeArt?.mat}
+                  pageLabel={`${bcfDigits(Math.min(credentialPage, artSrcs.length - 1) + 1, lang)} / ${bcfDigits(artSrcs.length, lang)}`}
+                />
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={activeCredential.id}
@@ -1042,6 +1043,159 @@ function AwardWall({ images }: { images: string[] }) {
         </motion.div>
       ))}
     </motion.div>
+  );
+}
+
+function CredentialArtPanel({
+  srcs,
+  page,
+  onPageChange,
+  fit,
+  pad,
+  position,
+  ratio,
+  mat,
+  pageLabel,
+}: {
+  srcs: string[];
+  page: number;
+  onPageChange: (page: number) => void;
+  fit: "cover" | "contain";
+  pad: string;
+  position: string;
+  ratio?: number;
+  mat?: "white";
+  pageLabel: string;
+}) {
+  /** Only KRG ships more than one scan — that is the sole slider case. */
+  const isSlider = srcs.length > 1;
+  const safePage = Math.max(0, Math.min(page, srcs.length - 1));
+  const src = srcs[safePage] ?? srcs[0];
+  const dragRef = React.useRef({ x: 0, active: false });
+
+  const blockSave = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+  };
+
+  const onPointerDown = (event: React.PointerEvent) => {
+    if (!isSlider) return;
+    dragRef.current = { x: event.clientX, active: true };
+  };
+
+  const onPointerUp = (event: React.PointerEvent) => {
+    if (!isSlider || !dragRef.current.active) return;
+    const dx = event.clientX - dragRef.current.x;
+    dragRef.current.active = false;
+    if (Math.abs(dx) < 48) return;
+    if (dx < 0 && safePage < srcs.length - 1) onPageChange(safePage + 1);
+    if (dx > 0 && safePage > 0) onPageChange(safePage - 1);
+  };
+
+  return (
+    <div
+      className={`relative overflow-hidden touch-pan-y ${
+        ratio ? "w-full shrink-0" : "min-h-[760px] flex-1"
+      }`}
+      style={{
+        aspectRatio: ratio,
+        backgroundColor: fit === "contain" && mat === "white" ? "#fff" : "#111",
+      }}
+      onContextMenu={blockSave}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerCancel={() => {
+        dragRef.current.active = false;
+      }}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.img
+          key={src}
+          src={src}
+          alt=""
+          decoding="async"
+          draggable={false}
+          onDragStart={blockSave}
+          onContextMenu={blockSave}
+          className={
+            fit === "cover"
+              ? `absolute inset-0 h-full w-full select-none object-cover ${position}`
+              : `absolute inset-0 h-full w-full select-none object-contain ${pad}`
+          }
+          style={{ WebkitUserDrag: "none", userSelect: "none", pointerEvents: "none" }}
+          initial={{ opacity: 0, x: isSlider ? 28 : 0 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: isSlider ? -28 : 0 }}
+          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </AnimatePresence>
+
+      {isSlider ? (
+        <>
+          <button
+            type="button"
+            aria-label="Previous document"
+            disabled={safePage <= 0}
+            onClick={() => onPageChange(safePage - 1)}
+            className="absolute start-5 top-1/2 z-10 grid h-16 w-16 -translate-y-1/2 place-items-center rounded-full disabled:opacity-25"
+            style={{
+              backgroundColor: "rgba(4,6,9,0.72)",
+              border: `1.5px solid ${BCF.gold}88`,
+              color: BCF.cream,
+              boxShadow: `0 8px 24px rgba(0,0,0,0.35)`,
+            }}
+          >
+            <ChevronLeft className="h-9 w-9 rtl:rotate-180" strokeWidth={2.4} />
+          </button>
+          <button
+            type="button"
+            aria-label="Next document"
+            disabled={safePage >= srcs.length - 1}
+            onClick={() => onPageChange(safePage + 1)}
+            className="absolute end-5 top-1/2 z-10 grid h-16 w-16 -translate-y-1/2 place-items-center rounded-full disabled:opacity-25"
+            style={{
+              backgroundColor: "rgba(4,6,9,0.72)",
+              border: `1.5px solid ${BCF.gold}88`,
+              color: BCF.cream,
+              boxShadow: `0 8px 24px rgba(0,0,0,0.35)`,
+            }}
+          >
+            <ChevronRight className="h-9 w-9 rtl:rotate-180" strokeWidth={2.4} />
+          </button>
+          <div className="pointer-events-none absolute inset-x-0 bottom-5 z-10 flex flex-col items-center gap-3">
+            <div className="pointer-events-auto flex items-center gap-2.5">
+              {srcs.map((slideSrc, index) => (
+                <button
+                  key={slideSrc}
+                  type="button"
+                  aria-label={`Document ${index + 1}`}
+                  onClick={() => onPageChange(index)}
+                  className="h-3 rounded-full transition-all duration-300"
+                  style={{
+                    width: index === safePage ? 44 : 14,
+                    backgroundColor:
+                      index === safePage ? BCF.goldBright : "rgba(4,6,9,0.4)",
+                    boxShadow:
+                      index === safePage
+                        ? `0 0 0 2px ${BCF.gold}`
+                        : "0 0 0 1px rgba(255,255,255,0.55)",
+                  }}
+                />
+              ))}
+            </div>
+            <span
+              className="rounded-full px-5 py-2 text-[20px] font-medium"
+              style={{
+                backgroundColor: "rgba(4,6,9,0.72)",
+                color: BCF.cream,
+                border: `1px solid ${BCF.gold}55`,
+              }}
+            >
+              {pageLabel}
+            </span>
+          </div>
+        </>
+      ) : null}
+    </div>
   );
 }
 
