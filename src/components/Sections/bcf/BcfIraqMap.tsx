@@ -120,6 +120,7 @@ const LABEL_SIDES: Record<string, BcfPinLabelSide> = {
   diyala: "right",
   muthanna: "left",
   dhiqar: "below",
+  basra: "right",
 };
 
 /** Region pins in the order they are declared, with their real coordinates. */
