@@ -1971,6 +1971,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustDepartmentsBody:
       "Lead the operational departments that design and run the programs.",
     trustDepartmentsMembers: [
+      { id: "karzan-n", name: "Karzan Noori", role: "Projects Dep. Manager" },
+      { id: "rawaj", name: "Rawaj Haji", role: "Department Manager" },
       { id: "ayoub", name: "Ayoub Mohammed Babakir", role: "Manager of Public Relation & Media" },
       { id: "omar-a", name: "Omar Ahmad", role: "Orphans' & Widows' Care Dep. Manager" },
       { id: "rizgar", name: "Rizgar Obed", role: "Supply Chain Dep. Manager" },
@@ -3288,6 +3290,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustDepartmentsBody:
       "بەشە کارگێڕییەکان بەڕێوە دەبەن کە بەرنامەکان دادەڕێژن و جێبەجێیان دەکەن.",
     trustDepartmentsMembers: [
+      { id: "karzan-n", name: "کارزان نوری", role: "بەڕێوەبەری بەشی پڕۆژەکان" },
+      { id: "rawaj", name: "ڕەواج حاجی", role: "بەڕێوەبەری بەش" },
       { id: "ayoub", name: "ئەیوب محەمەد بابەکر", role: "بەڕێوەبەری بەشی پەیوەندییەکان و ڕاگەیاندن" },
       { id: "omar-a", name: "عومەر ئەحمەد", role: "بەڕێوەبەری بەشی چاودێری ئازیزان و بێوەژنان" },
       { id: "rizgar", name: "ڕزگار عوبێد", role: "بەڕێوەبەری بەشی زنجیرەی دابینکردن" },
@@ -4602,6 +4606,8 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     trustDepartmentsBody:
       "يقودون الأقسام التنفيذية التي تصمّم البرامج وتنفّذها.",
     trustDepartmentsMembers: [
+      { id: "karzan-n", name: "كارزان نوري", role: "مدير قسم المشاريع" },
+      { id: "rawaj", name: "رواج حاجي", role: "مدير قسم" },
       { id: "ayoub", name: "أيوب محمد بابكر", role: "مدير قسم العلاقات العامة والإعلام" },
       { id: "omar-a", name: "عمر أحمد", role: "مدير قسم رعاية الأيتام والأرامل" },
       { id: "rizgar", name: "رزكار عبيد", role: "مدير قسم سلسلة التجهيز" },
