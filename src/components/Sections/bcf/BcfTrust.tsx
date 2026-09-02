@@ -126,11 +126,7 @@ const credentialArt: Record<
   },
 };
 
-const PARTNER_GROUPS: PartnerLogoGroupId[] = [
-  "partners",
-  "donors",
-  "sponsors",
-];
+const PARTNER_GROUPS: PartnerLogoGroupId[] = ["partners", "donors"];
 
 /**
  * Trust Behind the Work — Figma frames:
@@ -605,7 +601,6 @@ export default function BcfTrust({ lang, onBack }: BcfTrustProps) {
       const groupLabels: Record<PartnerLogoGroupId, string> = {
         partners: c.trustPartnersLabel,
         donors: c.trustDonorsLabel,
-        sponsors: c.trustSponsorsLabel,
       };
       const logos = bcfPartnerLogos[partnerGroup];
 

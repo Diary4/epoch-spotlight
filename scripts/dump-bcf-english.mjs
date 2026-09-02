@@ -362,7 +362,6 @@ function dumpLang(langId) {
   add(c.trustPartnershipsHint);
   add(c.trustPartnersLabel);
   add(c.trustDonorsLabel);
-  add(c.trustSponsorsLabel);
 
   sub("Recognition");
   add(c.trustRecognitionTitle);
