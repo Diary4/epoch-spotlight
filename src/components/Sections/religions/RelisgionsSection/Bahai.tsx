@@ -3,7 +3,7 @@ import { Heart, Sparkles } from "lucide-react";
 
 import bg from "@/assets/images/religions/bahai/cover.webp";
 import kurdistanImg from "@/assets/images/religions/bahai/kurdistan.webp";
-import coreImg from "@/assets/images/religions/bahai/core.webp";
+import coreImg from "@/assets/images/Religion new photos/Faiths/The Bahai Faith/Core Principles.jpg";
 import freeImg from "@/assets/images/religions/bahai/free.webp";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {

@@ -1,11 +1,11 @@
 import React from "react";
 import { Sparkles, Star } from "lucide-react";
 
-import bg from "@/assets/images/religions/judaism/heritage.webp";
+import bg from "@/assets/images/Religion new photos/Faiths/Judaism/Heritage.jpg";
 import kurdishJewsImg from "@/assets/images/religions/judaism/kurdish-jews.webp";
 import torahImg from "@/assets/images/religions/judaism/torah.webp";
 import nahumShrineImg from "@/assets/images/religions/judaism/nahum-shrine.webp";
-import heritageImg from "@/assets/images/religions/judaism/heritage.webp";
+import heritageImg from "@/assets/images/Religion new photos/Faiths/Judaism/Heritage.jpg";
 import { useReligionPageAnimation } from "@/components/Sections/religions/useReligionPageAnimation";
 import {
   FAITH_CONTENT_PADDING,

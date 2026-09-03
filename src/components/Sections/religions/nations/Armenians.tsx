@@ -2,7 +2,7 @@ import React from "react";
 import { Sparkles } from "lucide-react";
 
 import heroBg from "@/assets/images/religions/nations/aremnian/armenian.webp";
-import historyImg from "@/assets/images/new/religions/nations/armenian.webp";
+import historyImg from "@/assets/images/Religion new photos/Nations/Armenians/History.jpg";
 import churchesImg from "@/assets/images/religions/nations/aremnian/churches.webp";
 import communityImg from "@/assets/images/religions/nations/aremnian/community.webp";
 import parliamentImg from "@/assets/images/religions/nations/aremnian/parliament.webp";

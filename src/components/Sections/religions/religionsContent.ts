@@ -18,6 +18,10 @@ import buildingImg from "@/assets/mainImages/building.webp";
 import parliamentImg from "@/assets/images/religions/rights/cover.webp";
 import presidencyImg from "@/assets/images/religions/history/history.webp";
 import faithsImg from "@/assets/images/religions/faiths.webp";
+import newCoexistenceDailyLife from "@/assets/images/Religion new photos/Coexistence/Coexistance in daily life (main card).jpg";
+import newFaithIslam from "@/assets/images/Religion new photos/Faiths/Islam (Main Picture).jpg";
+import newKurdsMain from "@/assets/images/Religion new photos/Nations/Kurds (Main Picture).jpg";
+import newLawsProtection from "@/assets/images/Religion new photos/Rights and Recognition/Laws and Protection (Main card).jpg";
 
 export type ReligionsLangCode = "en" | "ku" | "ar";
 
@@ -120,12 +124,12 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "Faiths",
         body: "Sacred paths living side by side.",
-        image: faithsImg,
+        image: newFaithIslam,
       },
       {
         title: "Nations",
         body: "Languages, cultures, and belonging.",
-        image: nationsImg,
+        image: newKurdsMain,
       },
       {
         title: "Shared Life",
@@ -135,7 +139,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "Rights",
         body: "Recognition made durable by law.",
-        image: parliamentImg,
+        image: newLawsProtection,
       },
     ],
     introCta: "Begin the journey",
@@ -182,7 +186,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "leaders",
         title: "Coexistence",
-        image: leadersImg,
+        image: newCoexistenceDailyLife,
         icon: Award,
         color: "#52351a",
         number: "03",
@@ -191,7 +195,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "nations",
         title: "Nations",
-        image: nationsImg,
+        image: newKurdsMain,
         icon: UsersRound,
         color: "#16466b",
         number: "04",
@@ -200,7 +204,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "faiths",
         title: "Faiths",
-        image: faithsImg,
+        image: newFaithIslam,
         icon: Church,
         color: "#244b1f",
         number: "05",
@@ -218,7 +222,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "rights",
         title: "Rights & Recognition",
-        image: parliamentImg,
+        image: newLawsProtection,
         icon: Scale,
         color: "#52235f",
         number: "07",
@@ -259,17 +263,17 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "ئایینەکان",
         body: "لە سەرەتایی مێژووەوە چەندین ئاینی جیاواز لێرەدا سەری هەڵداوە",
-        image: faithsImg,
+        image: newFaithIslam,
       },
       {
         title: "نەتەوەکان",
         body: "کورد، تورکمان، ئاشووری، ئەرمەن، و چەندانی تر.",
-        image: nationsImg,
+        image: newKurdsMain,
       },
       {
         title: "یاساکان",
         body: "چوارچێوەی یاسایی بۆ پاراستنی هەموو پێکهاتەکان.",
-        image: parliamentImg,
+        image: newLawsProtection,
       },
       {
         title: "پێکەوەژیان",
@@ -321,7 +325,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "leaders",
         title: "پێکەوەژیان",
-        image: leadersImg,
+        image: newCoexistenceDailyLife,
         icon: Award,
         color: "#52351a",
         number: "03",
@@ -330,7 +334,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "nations",
         title: "نەتەوەکان",
-        image: nationsImg,
+        image: newKurdsMain,
         icon: UsersRound,
         color: "#16466b",
         number: "04",
@@ -339,7 +343,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "faiths",
         title: "ئایینەکان",
-        image: faithsImg,
+        image: newFaithIslam,
         icon: Church,
         color: "#244b1f",
         number: "05",
@@ -357,7 +361,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "rights",
         title: "مافەکان و دانپێدانان",
-        image: parliamentImg,
+        image: newLawsProtection,
         icon: Scale,
         color: "#52235f",
         number: "07",
@@ -398,17 +402,17 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         title: "الأديان",
         body: "أديان متعددة ازدهرت هنا منذ فجر التاريخ.",
-        image: faithsImg,
+        image: newFaithIslam,
       },
       {
         title: "القوميات",
         body: "الكورد والآشوريون والأرمن والتركمان وغيرهم.",
-        image: nationsImg,
+        image: newKurdsMain,
       },
       {
         title: "القوانين",
         body: "أطر قانونية تحمي كل مجتمع.",
-        image: parliamentImg,
+        image: newLawsProtection,
       },
       {
         title: "التعايش",
@@ -460,7 +464,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "leaders",
         title: "التعايش",
-        image: leadersImg,
+        image: newCoexistenceDailyLife,
         icon: Award,
         color: "#52351a",
         number: "03",
@@ -469,7 +473,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "nations",
         title: "القوميات",
-        image: nationsImg,
+        image: newKurdsMain,
         icon: UsersRound,
         color: "#16466b",
         number: "04",
@@ -478,7 +482,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "faiths",
         title: "الأديان",
-        image: faithsImg,
+        image: newFaithIslam,
         icon: Church,
         color: "#244b1f",
         number: "05",
@@ -496,7 +500,7 @@ export const religionsPageContent: Record<ReligionsLangCode, ReligionsPageConten
       {
         id: "rights",
         title: "الحقوق والاعتراف",
-        image: parliamentImg,
+        image: newLawsProtection,
         icon: Scale,
         color: "#52235f",
         number: "07",

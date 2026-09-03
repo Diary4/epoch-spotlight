@@ -8,7 +8,7 @@ import {
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
-import krgCabinetHero from "@/assets/images/religions/rights/krg_cabinet.webp";
+import krgCabinetHero from "@/assets/images/Religion new photos/Rights and Recognition/The KRG/First Democratic Election.jpg";
 import renamedToServeAllImg from "@/assets/images/religions/rights/renamed-to-serve-all.webp";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {

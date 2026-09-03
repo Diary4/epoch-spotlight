@@ -1977,7 +1977,7 @@ export const u2 = { parliament: threadsAssets.Kg, language: threadsAssets.a2, cu
 
 export const h2 = { language: threadsAssets.syriacLanguage, ankawa: threadsAssets.d2, patriarch: threadsAssets.f2, parliament: threadsAssets.dollar_g };
 
-export const g2 = { history: threadsAssets.yo, churches: threadsAssets.m2, community: threadsAssets.Gg, parliament: threadsAssets.armenianParliament };
+export const g2 = { history: threadsAssets.armenianHistory, churches: threadsAssets.m2, community: threadsAssets.Gg, parliament: threadsAssets.armenianParliament };
 
 export const E2 = {
     "abdul-salam-barzani": threadsAssets.S2,
@@ -2500,4 +2500,3 @@ export const N2 = {
       },
     },
   };
-

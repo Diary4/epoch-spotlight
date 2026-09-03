@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 
 import bg from "@/assets/images/religions/christianity/cover.webp";
-import historicalImg from "@/assets/images/religions/christianity/historical.webp";
+import historicalImg from "@/assets/images/Religion new photos/Faiths/Christianity/Historical Presence.jpg";
 import popeImg from "@/assets/images/religions/christianity/pope.webp";
 import churchesImg from "@/assets/images/religions/christianity/churches.webp";
 import easterImg from "@/assets/images/religions/christianity/easter-egg.webp";

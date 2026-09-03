@@ -2,7 +2,7 @@ import { BookOpen, HeartHandshake, Languages, Scale } from "lucide-react";
 import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
-import lawsHero from "@/assets/images/religions/rights/laws.webp";
+import lawsHero from "@/assets/images/Religion new photos/Rights and Recognition/Laws and Protection (Main card).jpg";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {
