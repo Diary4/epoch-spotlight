@@ -28,6 +28,18 @@ import lawsLanguages from "@/assets/images/religions/rights/laws/languages.webp"
 import lawsCoexistenceDirectorate from "@/assets/images/religions/rights/laws/coexistence-directorate.webp";
 import Ci from "@/assets/images/religions/kakai-festival.webp";
 import co from "@/assets/images/new/religions/faiths/christianity.webp";
+import newCoexistenceDailyLife from "@/assets/images/Religion new photos/Coexistence/Coexistance in daily life (main card).jpg";
+import newTimelineSharedFuture from "@/assets/images/Religion new photos/Coexistence/A living timeline/A shared future.jpg";
+import newChristianHistorical from "@/assets/images/Religion new photos/Faiths/Christianity/Historical Presence.jpg";
+import newFaithIslam from "@/assets/images/Religion new photos/Faiths/Islam (Main Picture).jpg";
+import newJudaismHeritage from "@/assets/images/Religion new photos/Faiths/Judaism/Heritage.jpg";
+import newBahaiCore from "@/assets/images/Religion new photos/Faiths/The Bahai Faith/Core Principles.jpg";
+import newArmenianHistory from "@/assets/images/Religion new photos/Nations/Armenians/History.jpg";
+import newKurdsMain from "@/assets/images/Religion new photos/Nations/Kurds (Main Picture).jpg";
+import newDefenders from "@/assets/images/Religion new photos/Rights and Recognition/2014, Kurdistan Opened its doors/Defenders of Communities.jpg";
+import newFirstDemocraticElection from "@/assets/images/Religion new photos/Rights and Recognition/The KRG/First Democratic Election.jpg";
+import newLawsProtection from "@/assets/images/Religion new photos/Rights and Recognition/Laws and Protection (Main card).jpg";
+import newVoicesParliament from "@/assets/images/Religion new photos/Rights and Recognition/Voices in Parliament (Main card picture).jpg";
 /* Story-card covers. The carousel card rasterises at 1480×2440 on the 4K
    portrait kiosk, so a 1280px photo lands ~2.9× upscaled and reads soft. These
    are the 2000–5500px siblings of `co`/`mu`, sized like the nations covers. */
@@ -137,7 +149,7 @@ export const threadsAssets = {
   Kg: Kg,
   LS: LS,
   OS: OS,
-  Ot: Ot,
+  Ot: newVoicesParliament,
   Pi: Pi,
   Qg: Qg,
   renamedToServeAll: renamedToServeAll,
@@ -147,7 +159,7 @@ export const threadsAssets = {
   rightsRecognitionDay,
   rightsMotherTongue,
   rightsHeritage,
-  defenders,
+  defenders: newDefenders,
   lawsEquality,
   lawsLanguages,
   lawsCoexistenceDirectorate,
@@ -160,7 +172,7 @@ export const threadsAssets = {
   Ug: Ug,
   Wg: Wg,
   YS: YS,
-  Yg: Yg,
+  Yg: newVoicesParliament,
   Yn: Yn,
   ZS: ZS,
   _S: _S,
@@ -175,9 +187,9 @@ export const threadsAssets = {
   fo: fo,
   gS: gS,
   go: go,
-  gu: gu,
+  gu: newKurdsMain,
   hS: hS,
-  ho: ho,
+  ho: newJudaismHeritage,
   i2: i2,
   l2: l2,
   m2: m2,
@@ -186,10 +198,10 @@ export const threadsAssets = {
   mu: mu,
   n2: n2,
   pS: pS,
-  po: po,
-  pu: pu,
+  po: newBahaiCore,
+  pu: newFaithIslam,
   qS: qS,
-  qp: christianHistorical,
+  qp: newChristianHistorical,
   easterEgg: christianEaster,
   nowruz: zoroNowruz,
   threePillars: zoroThreePillars,
@@ -209,8 +221,10 @@ export const threadsAssets = {
   yo: yo,
   yu: yu,
   zS: zS,
-  faithIslam,
-  faithJudaism,
+  faithIslam: newFaithIslam,
+  faithJudaism: newJudaismHeritage,
+  armenianHistory: newArmenianHistory,
+  firstDemocraticElection: newFirstDemocraticElection,
   faithSabean,
   faithYarsanism,
   faithYazidism,
@@ -231,9 +245,9 @@ export const threadsAssets = {
   coexistenceLivingTimeline,
   timelineLivedLegacy,
   timelineRecognition,
-  timelineSharedFuture,
+  timelineSharedFuture: newTimelineSharedFuture,
   rightsCover,
-  rightsLaws,
+  rightsLaws: newLawsProtection,
   rightsYear2014,
   rights2014Genocide,
   rights2014Refuge,

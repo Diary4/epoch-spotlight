@@ -7,8 +7,8 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
-import bg from "@/assets/images/religions/nations/cover.webp";
-import nationKurds from "@/assets/images/new/religions/nations/kurd.webp";
+import bg from "@/assets/images/Religion new photos/Nations/Kurds (Main Picture).jpg";
+import nationKurds from "@/assets/images/Religion new photos/Nations/Kurds (Main Picture).jpg";
 import nationTurkmens from "@/assets/images/new/religions/nations/turkmen.webp";
 import nationChaldo from "@/assets/images/new/religions/nations/assyrian.webp";
 import nationArmenians from "@/assets/images/new/religions/nations/armenian.webp";

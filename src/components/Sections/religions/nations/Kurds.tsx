@@ -1,7 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 
-import heroBg from "@/assets/images/religions/kurds/cover.webp";
+import heroBg from "@/assets/images/Religion new photos/Nations/Kurds (Main Picture).jpg";
 import languageImg from "@/assets/images/religions/kurds/language.webp";
 import newrozImg from "@/assets/images/religions/kurds/newroz.webp";
 import cultureImg from "@/assets/images/religions/kurds/culture.webp";

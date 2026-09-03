@@ -3,6 +3,7 @@ import RightsDetailPage, {
   type RightsDetailContent,
 } from "./RightsDetailPage";
 import hawlerCastleHero from "@/assets/images/religions/rights/year-2014.webp";
+import defendersImg from "@/assets/images/Religion new photos/Rights and Recognition/2014, Kurdistan Opened its doors/Defenders of Communities.jpg";
 
 const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
   en: {
@@ -36,6 +37,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
           "Played a vital role in halting ISIS, protecting minority communities, and liberating key areas including Sinjar and Kirkuk in cooperation with international coalition forces.",
         icon: Shield,
         accent: "#244b1f",
+        image: defendersImg,
       },
       {
         id: "region",
@@ -80,6 +82,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
           "ڕۆڵی سەرەکی هەبوو لە ڕاگرتنی داعش و پاراستنی پێکهاتەکان و ڕزگارکردنی ناوچەکانی وەک شنگال و کەرکوک.",
         icon: Shield,
         accent: "#244b1f",
+        image: defendersImg,
       },
       {
         id: "region",
@@ -124,6 +127,7 @@ const content: Record<"en" | "ku" | "ar", RightsDetailContent> = {
           "أدّت دوراً محورياً في وقف تقدم داعش وحماية المجتمعات الأقلوية وتحرير المناطق الرئيسية كشنگال وكركوك بالتنسيق مع قوات التحالف الدولي.",
         icon: Shield,
         accent: "#244b1f",
+        image: defendersImg,
       },
       {
         id: "region",

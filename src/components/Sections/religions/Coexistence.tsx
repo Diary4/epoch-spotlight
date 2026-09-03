@@ -18,7 +18,7 @@ import ReligionInfoCard from "@/components/Sections/religions/ReligionInfoCard";
 import ReligionsScaledPage from "@/components/Sections/religions/ReligionsScaledPage";
 import { useSectionExit } from "@/components/Sections/religions/useSectionExit";
 
-import bg from "@/assets/images/religions/r-2.webp";
+import bg from "@/assets/images/Religion new photos/Coexistence/Coexistance in daily life (main card).jpg";
 import en from "@/data/en.json";
 import ar from "@/data/ar.json";
 

@@ -123,7 +123,7 @@ function mapTimeline(
 }
 
 const governmentImages = [
-  threadsAssets.xo,
+  threadsAssets.firstDemocraticElection,
   threadsAssets.renamedToServeAll,
   threadsAssets.rightsMotherTongue,
   threadsAssets.rightsHeritage,
