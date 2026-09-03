@@ -2191,7 +2191,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       {
         id: "kuwait",
         title: "Recognized in Kuwait",
-        body: "Recognized as a charity organization in Kuwait in 2019, extending BCF's licensed humanitarian presence across the region.",
+        body: "Recognized as a charity organization by the State of Kuwait in 2016, extending BCF's licensed humanitarian presence across the region.",
       },
       {
         id: "ecosoc",
@@ -3506,7 +3506,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       {
         id: "kuwait",
         title: "باوەڕپێکراو لە کوێت",
-        body: "لە ساڵی ٢٠١٩ وەک ڕێکخراوێکی خێرخوازی لە کوێت بە فەرمی تۆمارکرا، و بەو شێوەیە دەزگای خێرخوازی بارزانی توانی چالاکییە مرۆییە مۆڵەتپێدراوەکانی لە ناوچەکەدا فراوانتر بکات.",
+        body: "لە ساڵی ٢٠١٦ وەک ڕێکخراوێکی خێرخوازی لەلایەن دەوڵەتی کوێتەوە بە فەرمی ناسرا، و بەو شێوەیە دەزگای خێرخوازی بارزانی توانی چالاکییە مرۆییە مۆڵەتپێدراوەکانی لە ناوچەکەدا فراوانتر بکات.",
       },
       {
         id: "ecosoc",
@@ -4820,7 +4820,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       {
         id: "kuwait",
         title: "معترف بها في الكويت",
-        body: "مسجَّلة كمنظمة خيرية في الكويت عام 2019.",
+        body: "معترف بها كمنظمة خيرية من دولة الكويت عام ٢٠١٦، بما يوسّع الحضور الإنساني المرخّص للمؤسسة في المنطقة.",
       },
       {
         id: "ecosoc",

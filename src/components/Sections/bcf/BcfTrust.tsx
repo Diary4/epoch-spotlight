@@ -114,7 +114,7 @@ const credentialArt: Record<
   },
   iraq: { srcs: [credIraq], fit: "contain", pad: "p-3", mat: "white" },
   usa: { srcs: [credUsa], fit: "contain", pad: "p-3", mat: "white" },
-  kuwait: { srcs: [credKuwait], fit: "cover" },
+  kuwait: { srcs: [credKuwait], fit: "contain", pad: "p-3", mat: "white" },
   ecosoc: { srcs: [credEcosoc], fit: "contain", pad: "p-3", mat: "white" },
   uk: { srcs: [credUk], fit: "contain", pad: "p-3", mat: "white" },
   /* The scan is 1045×1472 — A4 — so the frame is too, to the pixel. */
