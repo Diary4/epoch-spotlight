@@ -45,6 +45,27 @@ export type BcfCameraBox = {
   plateH: number;
   planeW: number;
   planeH: number;
+  /**
+   * Where the plate's own top-left sits inside the window, in layout pixels.
+   *
+   * The plate holds the Region's aspect ratio and the window does not, so the
+   * plate is letterboxed inside it — and the transform is measured from the
+   * *plate's* corner while a finger is measured from the window's. Without this
+   * offset a pinch is anchored a couple of hundred pixels above the finger, and
+   * the map slides away from whatever the visitor was reaching for.
+   */
+  offsetX: number;
+  offsetY: number;
+  /**
+   * Rendered pixels per layout pixel.
+   *
+   * Every BCF screen is drawn on a 1080-wide artboard that `FitScaledCanvas`
+   * scales to the panel — 2× on the 4K kiosk. `clientX` arrives in rendered
+   * pixels and `transform: translate()` is applied in layout pixels, so a drag
+   * measured in one and applied in the other moves the map at twice the speed
+   * of the finger.
+   */
+  scale: number;
 };
 
 /** Metres per degree of latitude, over the projection's units per degree. */
@@ -60,6 +81,28 @@ const TAP_SLOP = 10;
 const DOUBLE_TAP_MS = 320;
 
 const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+/**
+ * Where one axis of the plate is allowed to sit.
+ *
+ * Two regimes, and they have to meet without a step. While the plate is smaller
+ * than the window along this axis it is centred in it — that is the letterboxed
+ * rest state the Region map opens on. Once the zoom has made it larger, it may
+ * be panned but never dragged clear of an edge, the way any map behaves. At the
+ * crossover the two give the same answer, so the map grows through it rather
+ * than jumping.
+ */
+function clampAxis(
+  t: number,
+  offset: number,
+  plateSize: number,
+  planeSize: number,
+  k: number,
+) {
+  const span = plateSize * k;
+  if (span <= planeSize) return planeSize / 2 - offset - span / 2;
+  return clamp(t, planeSize - offset - span, -offset);
+}
 
 type Options = {
   /** The clipping viewport: the box gestures are read from. */
@@ -123,28 +166,52 @@ export function useBcfMapCamera({
     plateH: 0,
     planeW: 0,
     planeH: 0,
+    offsetX: 0,
+    offsetY: 0,
+    scale: 1,
   });
+
+  /**
+   * The plate's untransformed box.
+   *
+   * `contentRef` carries the camera, so its own rect is the *transformed* one —
+   * clamping against that would scale the clamp by the scale it is clamping.
+   * Its parent is the letterbox frame: the same box, never transformed.
+   */
+  const frameOf = React.useCallback(
+    () => contentRef.current?.parentElement ?? null,
+    [contentRef],
+  );
 
   const measure = React.useCallback(() => {
     const plate = contentRef.current;
     const plane = planeRef.current;
+    const frame = frameOf();
+    if (!plate || !plane || !frame) return;
+    const frameRect = frame.getBoundingClientRect();
+    const planeRect = plane.getBoundingClientRect();
+    const measured =
+      frame.offsetWidth > 0 ? frameRect.width / frame.offsetWidth : 1;
+    const scale = measured > 0.001 ? measured : 1;
     box.current = {
-      plateW: plate?.offsetWidth ?? 0,
-      plateH: plate?.offsetHeight ?? 0,
-      planeW: plane?.clientWidth ?? 0,
-      planeH: plane?.clientHeight ?? 0,
+      plateW: plate.offsetWidth,
+      plateH: plate.offsetHeight,
+      planeW: plane.clientWidth,
+      planeH: plane.clientHeight,
+      offsetX: (frameRect.left - planeRect.left) / scale,
+      offsetY: (frameRect.top - planeRect.top) / scale,
+      scale,
     };
-  }, [contentRef, planeRef]);
+  }, [contentRef, planeRef, frameOf]);
 
-  /** The plate may never be dragged off its own box: at k = 1 it cannot move. */
   const commit = React.useCallback(
     (next: BcfCameraState) => {
-      const { plateW, plateH } = box.current;
+      const { plateW, plateH, planeW, planeH, offsetX, offsetY } = box.current;
       const k = clamp(next.k, minZoom, maxZoom);
       const state = {
         k,
-        x: clamp(next.x, plateW * (1 - k), 0),
-        y: clamp(next.y, plateH * (1 - k), 0),
+        x: clampAxis(next.x, offsetX, plateW, planeW, k),
+        y: clampAxis(next.y, offsetY, plateH, planeH, k),
       };
       cam.current = state;
       const el = contentRef.current;
@@ -205,11 +272,11 @@ export function useBcfMapCamera({
       const { x, y, k } = cam.current;
       const next = clamp(k * factor, minZoom, maxZoom);
       const ratio = next / k;
-      const { plateW, plateH } = box.current;
+      const { plateW, plateH, planeW, planeH, offsetX, offsetY } = box.current;
       return {
         k: next,
-        x: clamp(px - (px - x) * ratio, plateW * (1 - next), 0),
-        y: clamp(py - (py - y) * ratio, plateH * (1 - next), 0),
+        x: clampAxis(px - (px - x) * ratio, offsetX, plateW, planeW, next),
+        y: clampAxis(py - (py - y) * ratio, offsetY, plateH, planeH, next),
       };
     },
     [minZoom, maxZoom],
@@ -219,9 +286,18 @@ export function useBcfMapCamera({
     const plane = planeRef.current;
     if (!plane) return;
 
+    /* A pointer, in the plate's own untransformed layout pixels — the frame it
+       is about to be translated in. Read per event rather than cached, because
+       this plate sits two thirds of the way down a page that scrolls. */
     const local = (event: { clientX: number; clientY: number }) => {
-      const rect = plane.getBoundingClientRect();
-      return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+      const frame = frameOf();
+      if (!frame) return { x: 0, y: 0 };
+      const rect = frame.getBoundingClientRect();
+      const scale = box.current.scale || 1;
+      return {
+        x: (event.clientX - rect.left) / scale,
+        y: (event.clientY - rect.top) / scale,
+      };
     };
 
     let pinchDistance = 0;
@@ -340,7 +416,7 @@ export function useBcfMapCamera({
       cancelAnimationFrame(anim.current);
       clearTimeout(settle.current);
     };
-  }, [planeRef, commit, scaleAbout, animateTo, targetFor, minZoom]);
+  }, [planeRef, frameOf, commit, scaleAbout, animateTo, targetFor, minZoom]);
 
   /* The boxes are measured, not assumed: the plate is sized from the plane it
      is handed, and the plane changes with the language row above it. A resize
@@ -361,18 +437,33 @@ export function useBcfMapCamera({
   return React.useMemo(
     () => ({
       zoomBy: (factor: number) => {
-        const { planeW, planeH } = box.current;
-        animateTo(targetFor(factor, planeW / 2, planeH / 2), 300);
+        const { planeW, planeH, offsetX, offsetY } = box.current;
+        animateTo(
+          targetFor(factor, planeW / 2 - offsetX, planeH / 2 - offsetY),
+          300,
+        );
       },
       reset: () => animateTo({ x: 0, y: 0, k: minZoom }, 480),
       refresh: () => commit(cam.current),
       focus: (fx: number, fy: number, k: number) => {
-        const { plateW, plateH, planeW, planeH } = box.current;
+        const { plateW, plateH, planeW, planeH, offsetX, offsetY } = box.current;
         const next = clamp(k, minZoom, maxZoom);
         animateTo({
           k: next,
-          x: clamp(planeW / 2 - fx * plateW * next, plateW * (1 - next), 0),
-          y: clamp(planeH / 2 - fy * plateH * next, plateH * (1 - next), 0),
+          x: clampAxis(
+            planeW / 2 - offsetX - fx * plateW * next,
+            offsetX,
+            plateW,
+            planeW,
+            next,
+          ),
+          y: clampAxis(
+            planeH / 2 - offsetY - fy * plateH * next,
+            offsetY,
+            plateH,
+            planeH,
+            next,
+          ),
         });
       },
       dragged,

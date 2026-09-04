@@ -20,10 +20,54 @@
  *   OpenStreetMap via Overpass                ODbL       openstreetmap.org
  *   Natural Earth 10m urban areas             public domain
  *
- * Downloads this expects in the working directory:
- *   irq_adm1.json  irq_adm2.json  ne_urban.json
- *   roads-major.json  roads-minor.json  water.json  places.json
- *   streets/<city>.json  landuse/<city>.json
+ * Downloads this expects in the working directory, and how to get them. The
+ * window is lon 41.6–46.6, lat 34.3–37.5 — the Region map's own viewBox, worked
+ * back through the projection below.
+ *
+ *   B=https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson
+ *   curl -sLo ne_urban.json $B/ne_10m_urban_areas.geojson
+ *   curl -sLo irq_adm1.json https://media.githubusercontent.com/media/wmgeolab/\
+ *     geoBoundaries/main/releaseData/gbOpen/IRQ/ADM1/geoBoundaries-IRQ-ADM1_simplified.geojson
+ *   curl -sL "$(curl -s https://www.geoboundaries.org/api/current/gbOpen/IRQ/ADM2/ \
+ *     | node -pe 'JSON.parse(require("fs").readFileSync(0)).gjDownloadURL')" -o irq_adm2.json
+ *
+ * The rest is Overpass. `O` is any interpreter endpoint — the main one rate
+ * limits hard on queries this size, and the mirrors take turns being reachable,
+ * so expect to retry and to switch host. `BB` is the window, in Overpass's
+ * south,west,north,east order.
+ *
+ *   O=https://overpass-api.de/api/interpreter
+ *   BB=34.30,41.60,37.50,46.60
+ *   post() { curl -s -m 900 -X POST --data-binary "$2" "$O" -o "$1"; }
+ *
+ *   post roads-major.json '[out:json][timeout:600];
+ *     way["highway"~"^(motorway|trunk|primary)$"]('$BB');out geom;'
+ *   post roads-minor.json '[out:json][timeout:600];
+ *     way["highway"~"^(secondary|tertiary)$"]('$BB');out geom;'
+ *   post water.json '[out:json][timeout:600];(
+ *     way["natural"="water"]["water"~"^(lake|reservoir)$"]('$BB');
+ *     relation["natural"="water"]["water"~"^(lake|reservoir)$"]('$BB');
+ *     way["waterway"="river"]('$BB'););out geom;'
+ *   post places.json '[out:json][timeout:300];
+ *     node["place"~"^(city|town)$"]('$BB');out body;'
+ *
+ * And one street file and one land-use file per city in CITIES below, each a
+ * radius around that city's coordinates in bcfContent's BCF_LOCATIONS. The
+ * radii are the ones the committed data was built with — a city whose data
+ * comes back suspiciously thin has usually been cut short by the endpoint
+ * rather than by its radius, so check the element count before widening it:
+ *
+ *   erbil 13000  duhok 9000  sulaymaniyah 12000  kirkuk 11000  nineveh 13000
+ *   sinjar 5000  garmian 6000  halabja 5000  raparin 9000  soran 5000
+ *   zakho 7000  akre 5000  amedi 4000
+ *
+ *   post streets/<city>.json '[out:json][timeout:900];
+ *     way["highway"~"^(residential|unclassified|living_street|pedestrian)$"]
+ *       (around:<r>,<lat>,<lon>);out geom;'
+ *   post landuse/<city>.json '[out:json][timeout:900];(
+ *     way["landuse"~"^(residential|industrial|commercial|retail)$"](around:<r>,<lat>,<lon>);
+ *     way["leisure"~"^(park|garden|pitch|stadium)$"](around:<r>,<lat>,<lon>);
+ *     way["aeroway"="aerodrome"](around:<r>,<lat>,<lon>););out geom;'
  */
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";

@@ -161,7 +161,7 @@ export default function BcfKurdistanMap({
   const onCamera = React.useCallback(
     (
       { k, x, y }: BcfCameraState,
-      { plateW, planeW, planeH }: BcfCameraBox,
+      { plateW, planeW, planeH, offsetX, offsetY }: BcfCameraBox,
     ) => {
       const next = tierFor(k);
       setTier((current) => (current === next ? current : next));
@@ -186,11 +186,15 @@ export default function BcfKurdistanMap({
       /* Thirteen boxes against one rectangle, once a frame, so that the twelve
          cities the visitor is not looking at cost nothing to not draw. */
       if (next < TIER.streets || !cityDetail) return;
+      /* The window's own corners, walked back through the camera into the
+         plate's user units. `offsetX/Y` is the letterbox: the window's top-left
+         is that far *above* the plate's own, and forgetting it culls the city
+         the visitor is actually looking at. */
       const units = BCF_MAP_VIEWBOX.width / plateW;
-      const left = BCF_MAP_VIEWBOX.minX + (-x / k) * units;
-      const right = BCF_MAP_VIEWBOX.minX + ((planeW - x) / k) * units;
-      const top = BCF_MAP_VIEWBOX.minY + (-y / k) * units;
-      const bottom = BCF_MAP_VIEWBOX.minY + ((planeH - y) / k) * units;
+      const left = BCF_MAP_VIEWBOX.minX + ((-offsetX - x) / k) * units;
+      const right = BCF_MAP_VIEWBOX.minX + ((planeW - offsetX - x) / k) * units;
+      const top = BCF_MAP_VIEWBOX.minY + ((-offsetY - y) / k) * units;
+      const bottom = BCF_MAP_VIEWBOX.minY + ((planeH - offsetY - y) / k) * units;
       const visible = cityDetail
         .filter(
           (city) =>
