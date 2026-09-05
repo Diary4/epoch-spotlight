@@ -230,14 +230,14 @@ export const BCF_LOCATIONS: BcfLocation[] = [
 /**
  * The near abroad. Western Kurdistan is across the Syrian border — its towns
  * sit as much as 1,200 artboard units west of Sinjar, so putting them on the
- * Region map would shrink the Region to a corner of it — and the rest of Iraq
- * is a reporting grouping rather than a point. The Region map offers both as a
- * row above itself, where they are in reach on a wall panel.
+ * Region map would shrink the Region to a corner of it. The Region map offers
+ * Rojava as a row above itself, where it is in reach on a wall panel.
  *
- * Afrin is not a third entry here: it is a town in Rojava, and its register is
- * filed under Rojava rather than beside it.
+ * Afrin is not a second entry here: it is a town in Rojava, and its register is
+ * filed under Rojava rather than beside it. Federal Iraq is reached through the
+ * Inside Iraq map scope, not this row.
  */
-export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava", "iraq"];
+export const BCF_BEYOND_LOCATIONS: LocationId[] = ["rojava"];
 
 /**
  * The federal governorates the register names, keyed by the same ids the Iraq

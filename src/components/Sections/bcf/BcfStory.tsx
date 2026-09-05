@@ -29,9 +29,11 @@ type BcfStoryProps = {
   onBack: () => void;
 };
 
+/** Opens the story — Humanitarian Philosophy leads. */
+const OPENING_ID: StorySectionId = "philosophy";
+
 /** Sections that sit directly after the 2005 founding beat. */
 const AFTER_2005_IDS: StorySectionId[] = [
-  "philosophy",
   "mission",
   "vision",
   "values",
@@ -203,14 +205,15 @@ function beatLabel(beat: StoryBeat) {
 }
 
 /**
- * Our Story — founding year (2005), then Mission / Vision / Humanitarian
- * Philosophy / Values, then the remaining institutional timeline.
+ * Our Story — Humanitarian Philosophy first, then founding year (2005),
+ * Mission / Vision / Values, then the remaining institutional timeline.
  */
 export default function BcfStory({ lang, onBack }: BcfStoryProps) {
   const c = bcfCopy[lang];
   const milestones = c.storyMilestones;
 
   const beats = React.useMemo<StoryBeat[]>(() => {
+    const opening = c.storySections.find((section) => section.id === OPENING_ID);
     const identitySections = AFTER_2005_IDS.map((id) =>
       c.storySections.find((section) => section.id === id),
     ).filter((section): section is StorySection => Boolean(section));
@@ -221,9 +224,10 @@ export default function BcfStory({ lang, onBack }: BcfStoryProps) {
       data,
     }));
 
-    // Identity panes sit directly after the founding year (2005), then the
-    // rest of the institutional timeline continues.
+    // Philosophy leads; founding year and the rest of the identity panes
+    // follow, then the institutional timeline continues.
     return [
+      ...(opening ? [{ kind: "section" as const, data: opening }] : []),
       ...(first ? [{ kind: "milestone" as const, data: first }] : []),
       ...identity,
       ...rest.map((data) => ({ kind: "milestone" as const, data })),
