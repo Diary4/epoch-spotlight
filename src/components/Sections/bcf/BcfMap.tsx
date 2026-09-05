@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  type Transition,
-} from "motion/react";
-import { Building2, Globe2, Tent, Siren, ArrowRight, Globe, Map, MapPin } from "lucide-react";
+import { motion, useReducedMotion, type Transition } from "motion/react";
+import { ArrowRight, Globe, Map, MapPin } from "lucide-react";
 import BcfShell, { BcfBackButton } from "@/components/Sections/bcf/BcfShell";
 import BcfChapterPill from "@/components/Sections/bcf/BcfChapterPill";
 import {
@@ -18,12 +13,10 @@ import {
 } from "@/components/Sections/bcf/bcfMotion";
 import {
   BCF_BEYOND_LOCATIONS,
-  BCF_LOCATIONS,
   bcfCopy,
   type BcfLang,
   type GlobalLocationId,
   type LocationId,
-  type MapFilterId,
   type MapScopeId,
 } from "@/components/Sections/bcf/bcfContent";
 import {
@@ -33,24 +26,9 @@ import {
 import { bcfDigits } from "@/components/Sections/bcf/bcfDigits";
 import BcfGlobalMap from "@/components/Sections/bcf/BcfGlobalMap";
 import BcfIraqMap from "@/components/Sections/bcf/BcfIraqMap";
-import BcfMapLocationCard from "@/components/Sections/bcf/BcfMapLocationCard";
-import BcfMapPin from "@/components/Sections/bcf/BcfMapPin";
+import BcfKurdistanMap from "@/components/Sections/bcf/BcfKurdistanMap";
 import { BCF, BCF_FIELD_BG } from "@/components/Sections/bcf/bcfTheme";
-import {
-  BCF_MAP_CONTEXT,
-  BCF_MAP_CORE,
-  BCF_MAP_KIRKUK,
-  BCF_MAP_VIEWBOX,
-  bcfProjectPin,
-} from "@/components/Sections/bcf/bcfMapGeometry";
 import { bcfMapBg } from "@/components/Sections/bcf/bcfAssets";
-
-const filterIcons: Record<MapFilterId, typeof Building2> = {
-  offices: Building2,
-  camps: Tent,
-  geographic: Globe2,
-  emergency: Siren,
-};
 
 const scopeIcons: Record<MapScopeId, typeof Globe> = {
   global: Globe,
@@ -105,13 +83,6 @@ export default function BcfMap({
   const [scope, setScope] = React.useState<MapScopeId>("global");
   const [globalSelection, setGlobalSelection] =
     React.useState<GlobalLocationId | null>(null);
-  const [activeFilters, setActiveFilters] = React.useState<MapFilterId[]>([
-    "offices",
-    "camps",
-    "geographic",
-    "emergency",
-  ]);
-  const [hintVisible, setHintVisible] = React.useState(true);
   /* Which scopes exist in the DOM. A scope joins the list the first time it is
      opened and never leaves it, so a second visit costs a crossfade instead of
      a mount. The world half is on it from the start because it is the one the
@@ -127,18 +98,6 @@ export default function BcfMap({
     setOpened((prev) => (prev.includes(next) ? prev : [...prev, next]));
     setScope(next);
   };
-
-  const toggleFilter = (id: MapFilterId) => {
-    setActiveFilters((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id],
-    );
-  };
-
-  const visibleLocations = BCF_LOCATIONS.filter((loc) =>
-    loc.filters.some((f) => activeFilters.includes(f)),
-  );
-
-  const selected = selectedLocation ? c.locations[selectedLocation] : null;
 
   return (
     <BcfShell
@@ -401,208 +360,17 @@ export default function BcfMap({
               active={scope === "kurdistan"}
               className="absolute inset-0 z-10 flex flex-col"
             >
-              {/* Control band, matching the world half: instruction, then the
-                  filters, then a rule, and the map gets everything below.
-                  The filters used to be a column pinned to the bottom-left
-                  corner of the plate, which on a 1920 artboard stood on its
-                  end is a place a visitor's hand does not go. */}
-              <div className="px-8 pt-7">
-                {/* Faded rather than unmounted once a pin has been tapped —
-                    the row below it must not jump when the advice retires. */}
-                <p
-                  className="text-center text-[26px] leading-relaxed text-white/70 transition-opacity duration-500"
-                  style={{
-                    opacity: hintVisible && !selectedLocation ? 1 : 0,
-                  }}
-                >
-                  {c.tapToExplore}
-                </p>
-
-                <motion.div
-                  className="mt-5 flex flex-wrap justify-center gap-3"
-                  variants={bcfStagger(0.06, 0.4)}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {(Object.keys(c.filters) as MapFilterId[]).map((id) => {
-                    const Icon = filterIcons[id];
-                    const on = activeFilters.includes(id);
-                    return (
-                      <motion.button
-                        key={id}
-                        type="button"
-                        variants={bcfRise}
-                        onClick={() => toggleFilter(id)}
-                        whileTap={BCF_TAP}
-                        transition={BCF_TAP_TRANSITION}
-                        aria-pressed={on}
-                        className="flex transform-gpu items-center gap-3 rounded-full border px-5 py-2.5 transition-all duration-300"
-                        style={{
-                          borderColor: on ? `${BCF.gold}88` : "rgba(255,255,255,0.14)",
-                          backgroundColor: on
-                            ? "rgba(0,0,0,0.5)"
-                            : "rgba(0,0,0,0.28)",
-                          boxShadow: on ? `0 0 22px ${BCF.gold}26` : "none",
-                        }}
-                      >
-                        <Icon
-                          className="h-6 w-6"
-                          style={{ color: on ? BCF.gold : "rgba(255,255,255,0.35)" }}
-                        />
-                        <span
-                          className="text-[24px]"
-                          style={{
-                            color: on ? BCF.creamSoft : "rgba(255,255,255,0.4)",
-                          }}
-                        >
-                          {c.filters[id]}
-                        </span>
-                      </motion.button>
-                    );
-                  })}
-                </motion.div>
-
-                <div
-                  className="mt-6 h-px"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, transparent, rgba(251,193,88,0.3), transparent)",
-                  }}
-                />
-              </div>
-
-              {/* Map plane. Fixed to the region's own aspect ratio and centred, so
-                  the outlines and the pins share one coordinate space — the pin
-                  percentages in BCF_LOCATIONS are percentages of *this* box, which
-                  is the only reason a city can be trusted to sit on its own
-                  governorate. */}
-              <div className="relative min-h-0 flex-1">
-                <div
-                  className="absolute inset-x-0 top-1/2 z-10 -translate-y-1/2"
-                  style={{
-                    aspectRatio: `${BCF_MAP_VIEWBOX.width} / ${BCF_MAP_VIEWBOX.height}`,
-                  }}
-                >
-                  <svg
-                    className="absolute inset-0 h-full w-full"
-                    viewBox={`${BCF_MAP_VIEWBOX.minX} ${BCF_MAP_VIEWBOX.minY} ${BCF_MAP_VIEWBOX.width} ${BCF_MAP_VIEWBOX.height}`}
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient id="bcf-map-core" x1="0" y1="0" x2="0.4" y2="1">
-                        <stop offset="0%" stopColor={BCF.gold} stopOpacity="0.22" />
-                        <stop offset="100%" stopColor={BCF.goldDeep} stopOpacity="0.1" />
-                      </linearGradient>
-                    </defs>
-
-                    {/* Neighbours first, and faint: they give the Region an edge to
-                        sit against without ever competing with it. */}
-                    {BCF_MAP_CONTEXT.map((shape) => (
-                      <path
-                        key={shape.id}
-                        d={shape.d}
-                        fill="rgba(255,255,255,0.022)"
-                        stroke="rgba(255,255,255,0.1)"
-                        strokeWidth={1.2}
-                        strokeLinejoin="round"
-                      />
-                    ))}
-
-                    {/* Kirkuk is worked in but outside the Region — a dashed edge
-                        says that without needing a legend. */}
-                    <path
-                      d={BCF_MAP_KIRKUK.d}
-                      fill={`${BCF.gold}0f`}
-                      stroke={`${BCF.gold}72`}
-                      strokeWidth={1.8}
-                      strokeDasharray="12 9"
-                      strokeLinejoin="round"
-                    />
-
-                    {BCF_MAP_CORE.map((shape, index) => (
-                      <g key={shape.id}>
-                        {/* Wide, soft pass under the hairline reads as a glow on a
-                            65" panel, where a 2px stroke alone goes thin and mean. */}
-                        <path
-                          d={shape.d}
-                          fill="url(#bcf-map-core)"
-                          stroke={`${BCF.gold}26`}
-                          strokeWidth={9}
-                          strokeLinejoin="round"
-                        />
-                        <motion.path
-                          d={shape.d}
-                          stroke={BCF.goldBright}
-                          strokeWidth={2.4}
-                          strokeLinejoin="round"
-                          // The border draws itself before the pins bloom, so the
-                          // Region assembles rather than simply appearing.
-                          initial={
-                            reduceMotion ? { opacity: 0 } : { pathLength: 0, opacity: 0 }
-                          }
-                          animate={
-                            reduceMotion
-                              ? { opacity: 1, transition: { duration: 0.3 } }
-                              : {
-                                  pathLength: 1,
-                                  opacity: 1,
-                                  transition: {
-                                    duration: 1.5,
-                                    ease: BCF_EASE,
-                                    delay: 0.4 + index * 0.16,
-                                  },
-                                }
-                          }
-                        />
-                      </g>
-                    ))}
-                  </svg>
-
-                  <AnimatePresence initial={false}>
-                    {visibleLocations.map((loc, index) => {
-                      const pin = bcfProjectPin(...loc.coordinates);
-                      return (
-                        <BcfMapPin
-                          key={loc.id}
-                          x={pin.x}
-                          y={pin.y}
-                          label={c.locations[loc.id].short}
-                          selected={selectedLocation === loc.id}
-                          index={index}
-                          onClick={() => {
-                            setHintVisible(false);
-                            onSelectLocation(loc.id);
-                          }}
-                        />
-                      );
-                    })}
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              <AnimatePresence mode="wait">
-                {selected && selectedLocation ? (
-                  <motion.div
-                    key={selectedLocation}
-                    className="absolute inset-0 z-30 flex items-center justify-center px-10"
-                    initial={{ opacity: 0, y: 56 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 40, transition: { duration: 0.26 } }}
-                    transition={{ duration: 0.55, ease: BCF_EASE }}
-                  >
-                    <BcfMapLocationCard
-                      lang={lang}
-                      title={selected.name}
-                      description={selected.description}
-                      register={selectedLocation}
-                      preview={selectedLocation}
-                      onClose={() => onSelectLocation(null)}
-                      onExplore={() => onExploreProjects(selectedLocation)}
-                    />
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
+              <BcfKurdistanMap
+                lang={lang}
+                /* The Region map now holds a camera of its own, and now that it
+                   outlives the switch it has to be told when it has been left —
+                   otherwise a visitor who zoomed into a street in Kalar comes
+                   back to it from the world map with no memory of going there. */
+                active={scope === "kurdistan"}
+                selectedLocation={selectedLocation}
+                onSelectLocation={onSelectLocation}
+                onExploreProjects={onExploreProjects}
+              />
             </BcfMapFade>
           ) : null}
         </motion.div>

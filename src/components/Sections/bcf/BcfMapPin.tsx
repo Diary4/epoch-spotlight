@@ -50,6 +50,18 @@ type BcfMapPinProps = {
   index: number;
   /** Defaults to `below`; set it where a neighbour is already standing there. */
   labelSide?: BcfPinLabelSide;
+  /**
+   * Hold the dot and its name at the size they look, against a zooming plate.
+   *
+   * The Region map is a camera over a drawing now, and everything inside the
+   * plate is multiplied by the zoom. That is right for a governorate and wrong
+   * for a name: a label sixteen times the size is not a legible label, it is a
+   * word covering the map. `--bcf-inv-k` is the camera's reciprocal scale,
+   * published on the plate — see useBcfMapCamera — and it cancels the zoom for
+   * this pin alone. The scaling happens about the dot's own centre, so the
+   * coordinate the pin stands on does not move while it resizes.
+   */
+  holdScale?: boolean;
   onClick: () => void;
 };
 
@@ -60,6 +72,7 @@ export default function BcfMapPin({
   selected,
   index,
   labelSide = "below",
+  holdScale = false,
   onClick,
 }: BcfMapPinProps) {
   const reduceMotion = useReducedMotion();
@@ -71,10 +84,13 @@ export default function BcfMapPin({
        inside that box, its height went into the centring and lifted every dot
        north of its own city. The name is positioned off the dot instead. */
     <div
-      className="absolute -translate-x-1/2 -translate-y-1/2"
+      className={holdScale ? "absolute" : "absolute -translate-x-1/2 -translate-y-1/2"}
       style={{
         left: x,
         top: y,
+        transform: holdScale
+          ? "translate(-50%, -50%) scale(var(--bcf-inv-k, 1))"
+          : undefined,
         // A selected pin's plate goes over its neighbours' rather than under.
         zIndex: selected ? 2 : 1,
       }}
