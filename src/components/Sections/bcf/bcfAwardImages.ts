@@ -5,6 +5,7 @@
  * Headline honours lead the grid in the curated order; the rest follow.
  */
 
+import featuredWingedTrophy from "@/assets/images/bcf/awards/bcf-winged-trophy.webp";
 import featuredMedal from "@/assets/images/bcf/awards/e5c32586-98f0-4f37-94ba-e70929a0f7a0.webp";
 import featuredMedalCertificate from "@/assets/images/bcf/awards/barzani-medal-certificate-2018.webp";
 import featuredAgitator from "@/assets/images/bcf/awards/6f41b5d0-3b93-441a-a104-c1341f3d4723.webp";
@@ -33,8 +34,9 @@ function collect(modules: Record<string, string>): string[] {
     .map((key) => modules[key]);
 }
 
-/** Curated lead order — Barzani medal, then its 2018 certificate, then the rest. */
+/** Curated lead order — newest winged trophy first, then Barzani medal and the rest. */
 const featuredAwardImages = [
+  featuredWingedTrophy,
   featuredMedal,
   featuredMedalCertificate,
   featuredWingsOfHelp,
