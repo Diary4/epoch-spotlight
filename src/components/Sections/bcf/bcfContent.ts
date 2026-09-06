@@ -1012,7 +1012,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     dignity: "DIGNITY",
     hope: "HOPE",
     quote: "It is an honor to serve one's own people.",
-    quoteAttr: "— Mulla Mustafa Barzani",
+    quoteAttr: "— Mustafa Barzani",
     welcomeEyebrow: "WELCOME TO THE",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "EXPERIENCE",
@@ -1428,7 +1428,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleGold: "Humanitarian",
         titleWhite: "Philosophy",
         quote: "It is an honor to serve one's own people.",
-        quoteAttr: "Mulla Mustafa Barzani",
+        quoteAttr: "Mustafa Barzani",
         body: "Barzani Charity Foundation was established and continues to serve guided by this principle.",
       },
       {
@@ -2124,11 +2124,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfFounder: {
       open: "Meet the Founding Board Member",
-      name: "Sidad Mulla Mustafa Barzani",
+      name: "Sidad Mustafa Barzani",
       role: "Member of the Board of Founders",
       meta: "Barzani Charity Foundation · Born 1968",
       bioLabel: "Profile",
-      bio: "Sidad Mulla Mustafa Barzani (b. 1968), son of national leader Mulla Mustafa Barzani and younger brother to President Masoud Barzani; founding board member of Barzani Charity Foundation.",
+      bio: "Sidad Mustafa Barzani (b. 1968), son of national leader Mustafa Barzani and younger brother to President Masoud Barzani; founding board member of Barzani Charity Foundation.",
       rolesLabel: "Leadership",
       roles: [
         {
@@ -3440,11 +3440,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfFounder: {
       open: "ناسینی ئەندامی بۆردی دامەزرێنەران",
-      name: "سیداد مەلا مستەفا بارزانی",
+      name: "سیداد مستەفا بارزانی",
       role: "ئەندامی بۆردی دامەزرێنەران",
       meta: "دەزگای خێرخوازی بارزانی · لەدایکبووی ١٩٦٨",
       bioLabel: "ژیاننامە",
-      bio: "سیداد مەلا مستەفا بارزانی، لەدایکبووی ساڵی ١٩٦٨، کوڕی ڕێبەری نەتەوەیی مەلا مستەفا بارزانی و برای بچووکی سەرۆک مەسعود بارزانییە. ئەو یەکێکە لە ئەندامانی دەستەی دامەزرێنەری دەزگای خێرخوازی بارزانی.",
+      bio: "سیداد مستەفا بارزانی، لەدایکبووی ساڵی ١٩٦٨، کوڕی ڕێبەری نەتەوەیی مستەفا بارزانی و برای بچووکی سەرۆک مەسعود بارزانییە. ئەو یەکێکە لە ئەندامانی دەستەی دامەزرێنەری دەزگای خێرخوازی بارزانی.",
       rolesLabel: "ڕۆڵ و چالاکییەکان",
       roles: [
         {
@@ -3657,7 +3657,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     dignity: "الكرامة",
     hope: "الأمل",
     quote: "شرفٌ عظيم أن يخدم الإنسان أبناء شعبه.",
-    quoteAttr: "— الملا مصطفى بارزاني",
+    quoteAttr: "— مصطفى بارزاني",
     welcomeEyebrow: "مرحباً بكم في",
     welcomeTitleBcf: "BCF",
     welcomeTitleRest: "التجربة",
@@ -4065,7 +4065,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
         titleGold: "الفلسفة",
         titleWhite: "الإنسانية",
         quote: "شرفٌ عظيم أن يخدم الإنسان أبناء شعبه.",
-        quoteAttr: "الملا مصطفى بارزاني",
+        quoteAttr: "مصطفى بارزاني",
         body: "تأسست مؤسسة بارزاني الخيرية ولا تزال تعمل وفق هذا المبدأ.",
       },
       {
@@ -4753,11 +4753,11 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
     },
     bcfFounder: {
       open: "تعرّف على عضو الهيئة التأسيسية",
-      name: "سيداد ملا مصطفى بارزاني",
+      name: "سيداد مصطفى بارزاني",
       role: "عضو الهيئة التأسيسية",
       meta: "مؤسسة بارزاني الخيرية · مواليد 1968",
       bioLabel: "السيرة الذاتية",
-      bio: "وُلد سيداد بارزاني عام 1968، وهو نجل الزعيم الوطني الكوردي ملا مصطفى بارزاني والشقيق الأصغر للرئيس مسعود بارزاني. ويُعد شخصية سياسية واجتماعية بارزة، وعضواً في مجلس القيادة والمكتب السياسي للحزب الديمقراطي الكوردستاني، وممثلاً خاصاً للرئيس مسعود بارزاني. ويُعرف بشخصيته الهادئة والمتزنة وتأثيره في الملفات السياسية والاجتماعية، كما يمتلك خبرة واسعة في النضال السياسي والوطني والقومي وحماية البيئة، ويشغل عضوية الهيئة التأسيسية لمؤسسة بارزاني الخيرية.",
+      bio: "وُلد سيداد بارزاني عام 1968، وهو نجل الزعيم الوطني الكوردي مصطفى بارزاني والشقيق الأصغر للرئيس مسعود بارزاني. ويُعد شخصية سياسية واجتماعية بارزة، وعضواً في مجلس القيادة والمكتب السياسي للحزب الديمقراطي الكوردستاني، وممثلاً خاصاً للرئيس مسعود بارزاني. ويُعرف بشخصيته الهادئة والمتزنة وتأثيره في الملفات السياسية والاجتماعية، كما يمتلك خبرة واسعة في النضال السياسي والوطني والقومي وحماية البيئة، ويشغل عضوية الهيئة التأسيسية لمؤسسة بارزاني الخيرية.",
       rolesLabel: "المهام والأنشطة",
       roles: [
         {
@@ -4778,7 +4778,7 @@ export const bcfCopy: Record<BcfLang, BcfCopy> = {
       ],
       serviceLabel: "مسيرة نضال البيشمركة",
       serviceIntro:
-        "نشأ سيداد بارزاني في خضم النضال والبيئة التي انطلقت منها الثورات التحررية الكوردستانية. وبصفته نجل ملا مصطفى بارزاني، ارتبطت حياته منذ سن مبكرة بالنضال والعمل السياسي ومواجهة الظلم والاستبداد.",
+        "نشأ سيداد بارزاني في خضم النضال والبيئة التي انطلقت منها الثورات التحررية الكوردستانية. وبصفته نجل مصطفى بارزاني، ارتبطت حياته منذ سن مبكرة بالنضال والعمل السياسي ومواجهة الظلم والاستبداد.",
       service: [
         {
           id: "gulan",
