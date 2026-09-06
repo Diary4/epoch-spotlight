@@ -36,7 +36,6 @@ function collect(modules: Record<string, string>): string[] {
 
 /** Curated lead order — newest winged trophy first, then Barzani medal and the rest. */
 const featuredAwardImages = [
-  featuredWingedTrophy,
   featuredMedal,
   featuredMedalCertificate,
   featuredWingsOfHelp,
@@ -58,6 +57,7 @@ const featuredAwardImages = [
   featuredHealthAnniversary,
   featuredKdpKirkuk,
   featuredBarzaniBust,
+  featuredWingedTrophy,
 ];
 
 const awardModules = import.meta.glob<string>(
