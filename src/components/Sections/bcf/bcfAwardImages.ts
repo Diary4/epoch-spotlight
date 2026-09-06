@@ -5,7 +5,6 @@
  * Headline honours lead the grid in the curated order; the rest follow.
  */
 
-import featuredWingedTrophy from "@/assets/images/bcf/awards/bcf-winged-trophy.webp";
 import featuredMedal from "@/assets/images/bcf/awards/e5c32586-98f0-4f37-94ba-e70929a0f7a0.webp";
 import featuredMedalCertificate from "@/assets/images/bcf/awards/barzani-medal-certificate-2018.webp";
 import featuredAgitator from "@/assets/images/bcf/awards/6f41b5d0-3b93-441a-a104-c1341f3d4723.webp";
@@ -27,6 +26,7 @@ import featuredAva from "@/assets/images/bcf/awards/ad0c88ce-3317-4b2e-ad89-12d2
 import featuredHealthAnniversary from "@/assets/images/bcf/awards/9f5a922e-f0a3-4af8-94db-eb54129c7a2c.webp";
 import featuredKdpKirkuk from "@/assets/images/bcf/awards/2041a20e-3fc3-46c9-bf9e-403a5dcb5e69.webp";
 import featuredBarzaniBust from "@/assets/images/bcf/awards/d81b363d-c2ee-4a20-a394-74dab3b529df.webp";
+import featuredWingedTrophy from "@/assets/images/bcf/awards/bcf-winged-trophy.webp";
 
 function collect(modules: Record<string, string>): string[] {
   return Object.keys(modules)
